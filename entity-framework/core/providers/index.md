@@ -1,0 +1,19 @@
+---
+title: "Veritabanı sağlayıcıları - EF çekirdek"
+author: rowanmiller
+ms.author: divega
+ms.date: 10/27/2016
+ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
+ms.technology: entity-framework-core
+uid: core/providers/index
+ms.openlocfilehash: 19c275b7e89c62e79c8bded977e39b2cfb2b439a
+ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.translationtype: MT
+ms.contentlocale: tr-TR
+ms.lasthandoff: 10/27/2017
+---
+# <a name="database-providers"></a><span data-ttu-id="b5aff-102">Veritabanı sağlayıcıları</span><span class="sxs-lookup"><span data-stu-id="b5aff-102">Database Providers</span></span>
+
+<span data-ttu-id="b5aff-103">Entity Framework Çekirdek sayıda farklı veritabanına erişmek için kullanılacak EF izin vermek için bir sağlayıcı modeli kullanır.</span><span class="sxs-lookup"><span data-stu-id="b5aff-103">Entity Framework Core uses a provider model to allow EF to be used to access many different databases.</span></span> <span data-ttu-id="b5aff-104">Bazı kavramları çoğu veritabanları için ortaktır ve birincil EF çekirdek bileşenler dahil edilir.</span><span class="sxs-lookup"><span data-stu-id="b5aff-104">Some concepts are common to most databases, and are included in the primary EF Core components.</span></span> <span data-ttu-id="b5aff-105">Nesnelerdeki değişiklikleri kez tacking veritabanından yüklenmeden ve bu tür kavramları LINQ, işlemler, sorgularda ifade içerir.</span><span class="sxs-lookup"><span data-stu-id="b5aff-105">Such concepts include expressing queries in LINQ, transactions, and tacking changes to objects once they are loaded from the database.</span></span> <span data-ttu-id="b5aff-106">Bazı kavramları, belirli bir sağlayıcıya özgü.</span><span class="sxs-lookup"><span data-stu-id="b5aff-106">Some concepts are specific to a particular provider.</span></span> <span data-ttu-id="b5aff-107">Örneğin, SQL Server sağlayıcısı bellek için iyileştirilmiş tablolar (özelliği SQL Server'a özgü) yapılandırmanıza olanak sağlar.</span><span class="sxs-lookup"><span data-stu-id="b5aff-107">For example, the SQL Server provider allows you to configure memory-optimized tables (a feature specific to SQL Server).</span></span> <span data-ttu-id="b5aff-108">Diğer kavramlar sağlayıcıları sınıfına özeldir.</span><span class="sxs-lookup"><span data-stu-id="b5aff-108">Other concepts are specific to a class of providers.</span></span> <span data-ttu-id="b5aff-109">Örneğin, ilişkisel veritabanları için EF çekirdek sağlayıcılar ortak yapı `Microsoft.EntityFrameworkCore.Relational` kitaplığı yapılandırmak için tablo ve sütun eşlemelerini, yabancı anahtar kısıtlamaları, vb. API'ler sağlar.</span><span class="sxs-lookup"><span data-stu-id="b5aff-109">For example, EF Core providers for relational databases build on the common `Microsoft.EntityFrameworkCore.Relational` library, which provides APIs for configuring table and column mappings, foreign key constraints, etc.</span></span>
+
+<span data-ttu-id="b5aff-110">EF çekirdek sağlayıcılar çeşitli kaynakları tarafından oluşturulur.</span><span class="sxs-lookup"><span data-stu-id="b5aff-110">EF Core providers are built by a variety of sources.</span></span> <span data-ttu-id="b5aff-111">Tüm sağlayıcılar Entity Framework Çekirdek projenin bir parçası olarak korunur.</span><span class="sxs-lookup"><span data-stu-id="b5aff-111">Not all providers are maintained as part of the Entity Framework Core project.</span></span> <span data-ttu-id="b5aff-112">Bir üçüncü taraf sağlayıcı değerlendirirken, kalite, lisans, destek, gereksinimlerinizi karşıladıklarından emin olmak için vb. değerlendirmek emin olun.</span><span class="sxs-lookup"><span data-stu-id="b5aff-112">When considering a third party provider, be sure to evaluate quality, licensing, support, etc. to ensure they meet your requirements.</span></span>
