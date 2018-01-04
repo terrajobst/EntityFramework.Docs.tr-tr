@@ -6,25 +6,49 @@ ms.date: 10/27/2016
 ms.assetid: d7a22b5a-4c5b-4e3b-9897-4d7320fcd13f
 ms.technology: entity-framework-core
 uid: core/miscellaneous/configuring-dbcontext
-ms.openlocfilehash: 96abf3b94be3e1d19f833644f1c2f6f13fe0e730
-ms.sourcegitcommit: 860ec5d047342fbc4063a0de881c9861cc1f8813
+ms.openlocfilehash: de26e3b28851d4dc4e50f0490093dd05ad489b31
+ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/05/2017
+ms.lasthandoff: 12/22/2017
 ---
 # <a name="configuring-a-dbcontext"></a>Bir yapılandırma
 
-Bu makalede yapılandırma desenleri gösterilmektedir bir `DbContext` ile `DbContextOptions`. Seçenekler, öncelikle seçin ve veri deposunu yapılandırmak için kullanılır.
+Bu makalede yapılandırma temel düzenlerden gösterilmektedir bir `DbContext` aracılığıyla bir `DbContextOptions` belirli EF çekirdek sağlayıcısını ve isteğe bağlı davranışları kullanarak bir veritabanına bağlanmak için.
+
+## <a name="design-time-dbcontext-configuration"></a>Tasarım zamanı DbContext yapılandırma
+
+EF çekirdek tasarım zamanı araçları gibi [geçişler](xref:core/managing-schemas/migrations/index) bulmak ve bir çalışma örneği oluşturmak gereken bir `DbContext` uygulamanın varlık türlerini ve bunların bir veritabanı şeması nasıl eşleneceğine ayrıntılarını toplama amacıyla türü. Aracı kolayca oluşturabilir sürece bu işlemi otomatik olabilir `DbContext` , benzer şekilde nasıl çalışma zamanında yapılandırılması için yapılandırılır şekilde.
+
+While gerekli yapılandırma bilgileri sağlar düzeni `DbContext` çalışma zamanında, kullanmak için gerekli araçları çalışabilir bir `DbContext` tasarım zamanında yalnızca sınırlı sayıda desenler ile çalışabilirsiniz. Bunlar daha ayrıntılı olarak ele alınmıştır [tasarım zamanı bağlam oluşturma](xref:core/miscellaneous/cli/dbcontext-creation) bölümü.
 
 ## <a name="configuring-dbcontextoptions"></a>DbContextOptions yapılandırma
 
-`DbContext`bir örneği olmalıdır `DbContextOptions` yürütmek için. Bu geçersiz kılma tarafından yapılandırılabilir `OnConfiguring`, ya da dışarıdan oluşturucu bağımsız değişkeni sağlanan.
+`DbContext`bir örneği olmalıdır `DbContextOptions` herhangi bir iş gerçekleştirmek için. `DbContextOptions` Örneği yapılandırma bilgilerini aşağıdaki gibi yapar:
 
-Her ikisi de kullanılıyorsa, `OnConfiguring` ADDITIVE ve can olduğu anlamına gelir sağlanan seçeneklerin, yürütülen üzerine yazma seçeneklerini oluşturucu bağımsız değişkeni için sağlanan.
+- Genellikle seçili kullanmak için veritabanı sağlayıcısı gibi bir yöntemini çağırarak `UseSqlServer` veya`UseSqlite`
+- Tüm gerekli bağlantı dizesi veya veritabanı örneğinin tanıtıcısı genellikle geçirilen bağımsız değişken olarak yukarıda belirtilen sağlayıcı seçimi yöntemi
+- Sağlayıcı seçimi yöntem çağrısı içinde genellikle de zincirleme tüm sağlayıcısı düzeyi isteğe bağlı davranışını seçiciler
+- Sağlayıcı Seçici yöntemi önce veya sonra genellikle zincirleme tüm genel EF çekirdek davranışı seçiciler
+
+Aşağıdaki örnek yapılandırır `DbContextOptions` SQL Server sağlayıcısı kullanmak için bir bağlantı içinde yer alan `connectionString` değişkeni, sağlayıcı düzeyi komut zaman aşımı ve içinde yürütülen tüm sorguları yapar EF çekirdek davranışı Seçici `DbContext` [Hayır izleme](xref:core/querying/tracking#no-tracking-queries) varsayılan olarak:
+
+``` csharp
+optionsBuilder
+    .UseSqlServer(connectionString, providerOptions=>providerOptions.CommandTimeout(60))
+    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+```
+
+> [!NOTE]  
+> Sağlayıcı Seçici ve yukarıda belirtilen diğer davranış Seçici yöntemleri olan genişletme yöntemleri `DbContextOptions` veya sağlayıcıya özgü seçenek sınıfları. Erişilebilmesi için bir ad alanı içerecek şekilde gerekebilir bu uzantı yöntemleri (genellikle `Microsoft.EntityFrameworkCore`) içinde kapsam ve ek paket bağımlılıklarını projeye ekleyin.
+
+`DbContextOptions` İçin sağlanan `DbContext` kılarak `OnConfiguring` yöntemi veya oluşturucu bağımsız değişkeni aracılığıyla harici olarak.
+
+Her ikisi de kullanılıyorsa, `OnConfiguring` son olarak uygulanır ve oluşturucu bağımsız değişkeni için sağlanan seçenekleri geçersiz kılabilirsiniz.
 
 ### <a name="constructor-argument"></a>Oluşturucu bağımsız değişkeni
 
-Bağlam koduyla Oluşturucusu
+Bağlam Kod Oluşturucusu ile:
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -38,9 +62,9 @@ public class BloggingContext : DbContext
 ```
 
 > [!TIP]  
-> Temel DbContext oluşturucusunun genel olmayan sürümünü de kabul eder `DbContextOptions`. Genel olmayan sürümünü kullanarak birden fazla bağlam türü olan uygulamalar için önerilmez.
+> Temel DbContext oluşturucusunun genel olmayan sürümünü de kabul eder `DbContextOptions`, ancak genel olmayan sürümüyle önerilmez birden fazla bağlam türü olan uygulamalar için.
 
-Uygulama kodu oluşturucu bağımsız değişkenden başlatmak için
+Oluşturucu bağımsız değişkenden başlatmak için uygulama kodu:
 
 ``` csharp
 var optionsBuilder = new DbContextOptionsBuilder<BloggingContext>();
@@ -53,9 +77,6 @@ using (var context = new BloggingContext(optionsBuilder.Options))
 ```
 
 ### <a name="onconfiguring"></a>OnConfiguring
-
-> [!WARNING]  
-> `OnConfiguring`Son oluşur ve üzerine yazma seçeneklerini dı veya oluşturucusu elde. Bu yaklaşım kendisini (tam veritabanı hedef sürece) sınama için ödünç değil.
 
 Bağlam koduyla `OnConfiguring`:
 
@@ -71,7 +92,7 @@ public class BloggingContext : DbContext
 }
 ```
 
-Uygulama kodu ile başlatmak için `OnConfiguring`:
+Uygulama kodu başlatmak için bir `DbContext` kullanan `OnConfiguring`:
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -80,15 +101,18 @@ using (var context = new BloggingContext())
 }
 ```
 
-## <a name="using-dbcontext-with-dependency-injection"></a>DbContext ile bağımlılık ekleme kullanılarak
+> [!TIP]
+> Tam veritabanı testleri hedef sürece bu yaklaşım kendisini test için ödünç değil.
 
-EF destekleyen kullanarak `DbContext` bir bağımlılık ekleme kapsayıcısını ile. DbContext türü kullanarak hizmet kapsayıcısı eklenebilir `AddDbContext<TContext>`.
+### <a name="using-dbcontext-with-dependency-injection"></a>DbContext ile bağımlılık ekleme kullanılarak
 
-`AddDbContext`hem sizin DbContext türü, yapacak `TContext`, ve `DbContextOptions<TContext>` hizmet kapsayıcısından yerleştirme için kullanılabilir.
+EF çekirdek destekleyen kullanarak `DbContext` bir bağımlılık ekleme kapsayıcısını ile. DbContext türü kullanarak hizmet kapsayıcısı eklenebilir `AddDbContext<TContext>` yöntemi.
 
-Bkz: [daha fazla okuma](#more-reading) aşağıda bağımlılık ekleme hakkında bilgi için.
+`AddDbContext<TContext>`hem sizin DbContext türü, yapacak `TContext`ve karşılık gelen `DbContextOptions<TContext>` hizmet kapsayıcısından yerleştirme için kullanılabilir.
 
-Bağımlılık ekleme dbcontext ekleme
+Bkz: [daha fazla okuma](#more-reading) aşağıda bağımlılık ekleme hakkında daha fazla bilgi için.
+
+Ekleme `Dbcontext` bağımlılık ekleme için:
 
 ``` csharp
 public void ConfigureServices(IServiceCollection services)
@@ -97,7 +121,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Bu ekleme gerektiren bir [oluşturucu bağımsız değişkeni](#constructor-argument) kabul eder, DbContext türü `DbContextOptions`.
+Bu ekleme gerektiren bir [oluşturucu bağımsız değişkeni](#constructor-argument) kabul eder, DbContext türü `DbContextOptions<TContext>`.
 
 Bağlam kodu:
 
@@ -115,7 +139,17 @@ public class BloggingContext : DbContext
 Uygulama kodunda (ASP.NET Core):
 
 ``` csharp
-public MyController(BloggingContext context)
+public class MyController
+{
+    private readonly BloggingContext _context;
+
+    public MyController(BloggingContext context)
+    {
+      _context = context;
+    }
+
+    ...
+}
 ```
 
 Uygulama kodu (ServiceProvider, daha az yaygın kullanarak doğrudan):
@@ -129,35 +163,8 @@ using (var context = serviceProvider.GetService<BloggingContext>())
 var options = serviceProvider.GetService<DbContextOptions<BloggingContext>>();
 ```
 
-## <a name="using-idesigntimedbcontextfactorytcontext"></a>Kullanma`IDesignTimeDbContextFactory<TContext>`
-
-Yukarıdaki seçeneklerin alternatif olarak, bir uygulaması, ayrıca sağlayabilen `IDesignTimeDbContextFactory<TContext>`. EF araçları bu Fabrika, DbContext örneği oluşturmak için kullanabilirsiniz. Geçişler gibi belirli tasarım zamanı deneyimleri etkinleştirmek için gerekli olabilir.
-
-Genel varsayılan bir oluşturucu yok bağlam türleri için tasarım zamanı hizmetlerini etkinleştirmek için bu arabirimi uygular. Tasarım zamanı Hizmetleri türetilmiş bağlamı olarak aynı bütünleştirilmiş kodda olan bu arabirim uygulamaları otomatik olarak bulur.
-
-Örnek:
-
-``` csharp
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-
-namespace MyProject
-{
-    public class BloggingContextFactory : IDesignTimeDbContextFactory<BloggingContext>
-    {
-        public BloggingContext CreateDbContext(string[] args)
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<BloggingContext>();
-            optionsBuilder.UseSqlite("Data Source=blog.db");
-
-            return new BloggingContext(optionsBuilder.Options);
-        }
-    }
-}
-```
-
 ## <a name="more-reading"></a>Daha fazla okuma
 
 * Okuma [Başlarken ASP.NET Core üzerinde](../get-started/aspnetcore/index.md) EF ASP.NET Core ile kullanma hakkında daha fazla bilgi için.
-* Okuma [bağımlılık ekleme](https://docs.asp.net/en/latest/fundamentals/dependency-injection.html) dı kullanma hakkında daha fazla bilgi edinmek için.
+* Okuma [bağımlılık ekleme](https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection) dı kullanma hakkında daha fazla bilgi edinmek için.
 * Okuma [test](testing/index.md) daha fazla bilgi için.

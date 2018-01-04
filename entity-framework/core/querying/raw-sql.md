@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 ms.technology: entity-framework-core
 uid: core/querying/raw-sql
-ms.openlocfilehash: ddf3a841800684688d50dcf9323f4d83c851222f
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 79894c7b9fd9e40cdf14460abf5d872ee2f4b9f0
+ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 12/22/2017
 ---
 # <a name="raw-sql-queries"></a>Ham SQL sorguları
 
@@ -29,6 +29,13 @@ Birkaç ham SQL sorguları kullanırken dikkat edilmesi gereken sınırlama vard
 * Sonuç kümesi içindeki sütun adlarının özellikleri eşlendiği sütun adlarının eşleşmesi gerekir. Bu özelliği/sütun eşlemesi için ham SQL sorguları yeri yoksayıldı EF6 farklı olduğuna dikkat edin ve sonuç kümesi sütunu adları özellik adlarının eşleşmesi gerekiyordu.
 
 * SQL sorgusu, ilgili veri içeremez. Bununla birlikte, çoğu durumda, sorgu kullanarak üstünde oluşturabilirsiniz `Include` ilgili verileri döndürmek için işleci (bkz [ilgili verileri de dahil olmak üzere](#including-related-data)).
+
+* `SELECT`Bu yönteme geçirilen deyimleri genellikle birleştirilebilir olmalıdır: varsa EF çekirdek gereken sunucu üzerindeki Ek sorgu işleçleri değerlendirmek (örneğin sonra uygulanan LINQ işleçleri çevirmek için `FromSql`), sağlanan SQL alt sorgu kabul edilir. Başka bir deyişle, geçirilen SQL herhangi bir karakter veya gibi bir alt sorgu geçerli olmayan seçenekler içermemelidir:
+  * sondaki noktalı virgül
+  * SQL Server'da sorgu düzeyi sondaki ipucu, örn.`OPTION (HASH JOIN)`
+  * SQL Server'da bir `ORDER BY` , eşlik yan tümcesi `TOP 100 PERCENT` içinde `SELECT` yan tümcesi
+
+* SQL deyimleri dışında `SELECT` otomatik birleştirilebilir olmayan tanınır. Sonuç olarak, tam sonuçları saklı yordamlar, her zaman istemciye döndürülen ve sonra LINQ işleçleri uygulanan `FromSql` değerlendirilen bellek içi şunlardır. 
 
 ## <a name="basic-raw-sql-queries"></a>Temel ham SQL sorguları
 

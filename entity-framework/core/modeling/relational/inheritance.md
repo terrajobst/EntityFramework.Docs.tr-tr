@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: 9a7c5488-aaf4-4b40-b1ff-f435ff30f6ec
 ms.technology: entity-framework-core
 uid: core/modeling/relational/inheritance
-ms.openlocfilehash: a7f697dfe2b93c7b93a2dd14945732db4f37628c
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 55286adf08a6a1c3286b7059d747a62e1feffd22
+ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 12/22/2017
 ---
 # <a name="inheritance-relational-database"></a>Devralma (ilişkisel veritabanı)
 
@@ -19,11 +19,14 @@ ms.lasthandoff: 10/27/2017
 
 Devralma EF modeldeki varlık sınıflarını devralma veritabanında nasıl temsil denetlemek için kullanılır.
 
+> [!NOTE]  
+> Şu anda, yalnızca tablo başına hiyerarşisi (TPH) deseni EF çekirdek uygulanır. Diğer ortak desenler tablo başına-türü (birleştirilmiş TPT) gibi ve tablo başına-somut-türü (TPC) henüz kullanılabilir değildir.
+
 ## <a name="conventions"></a>Kurallar
 
 Kurala göre tablo-başına-hiyerarşisi (TPH) desenini kullanarak devralma eşleşecektir. TPH tek bir tabloyu hiyerarşideki tüm türleri için verileri depolamak için kullanır. Ayrıştırıcı sütunun her satırın gösterdiği hangi türünü tanımlamak için kullanılır.
 
-EF yalnızca Kurulum devralma iki veya daha fazla devralınan türleri açıkça modelde varsa (bkz [devralma](../inheritance.md) daha fazla ayrıntı için).
+EF çekirdek yalnızca Kurulum devralma iki veya daha fazla devralınan türleri açıkça modelde varsa (bkz [devralma](../inheritance.md) daha fazla ayrıntı için).
 
 Aşağıda bir basit devralma senaryo ve TPH desen kullanan bir ilişkisel veritabanı tablosunda depolanan verileri gösteren bir örnektir. *Ayrıştırıcıyı* sütun türünü tanımlayan *Blog* her satır depolanır.
 

@@ -6,11 +6,11 @@ ms.date: 8/13/2017
 ms.assetid: 8BD43C8C-63D9-4F3A-B954-7BC518A1B7DB
 ms.technology: entity-framework-core
 uid: core/miscellaneous/1x-2x-upgrade
-ms.openlocfilehash: 0bd1ea2476621f826cca7d4a526a49a1b902acf8
-ms.sourcegitcommit: 860ec5d047342fbc4063a0de881c9861cc1f8813
+ms.openlocfilehash: 380f27c9f00943a2909ec7b876e151572a67dc37
+ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/05/2017
+ms.lasthandoff: 12/22/2017
 ---
 # <a name="upgrading-applications-from-previous-versions-to-ef-core-20"></a>Uygulamaları EF çekirdek 2.0 önceki sürümlerinden yükseltme
 
@@ -31,7 +31,7 @@ EF çekirdek 2.0 varolan bir uygulamaya güncelleştirme gerektirebilir:
 1. Özellikle bkz [uygulamanın hizmet sağlayıcısı başlatma için yeni düzeni](#new-way-of-getting-application-services) aşağıda açıklanmıştır.
 
 > [!TIP]  
-> 2.0 uygulamaları güncelleştirme önerilir ve çalışmaya sırayla Entity Framework Çekirdek geçişler gibi ürün özellikleri için gereken bu yeni düzeni benimseme. Ortak bir alternatif [uygulamak *IDesignTimeDbContextFactory\<TContext >*](configuring-dbcontext.md#using-idesigntimedbcontextfactorytcontext).
+> 2.0 uygulamaları güncelleştirme önerilir ve çalışmaya sırayla Entity Framework Çekirdek geçişler gibi ürün özellikleri için gereken bu yeni düzeni benimseme. Ortak bir alternatif [uygulamak *IDesignTimeDbContextFactory\<TContext >*](xref:core/miscellaneous/cli/dbcontext-creation#from-a-design-time-factory).
 
 2. ASP.NET Core 2.0 hedefleme uygulamaları EF çekirdek 2.0 üçüncü taraf veritabanı sağlayıcıları yanı sıra ek bağımlılıklar olmadan kullanabilir. Ancak, ASP.NET Core önceki sürümlerini hedefleyen uygulamalar EF çekirdek 2.0 kullanmak için ASP.NET Core 2.0 sürümüne yükseltmek gerekir. ASP.NET Core uygulamaları 2.0 yükseltme hakkında daha fazla bilgi için bkz [konu ASP.NET Core belgelerine](https://docs.microsoft.com/aspnet/core/migration/1x-to-2x/).
 
