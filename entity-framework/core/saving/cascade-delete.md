@@ -8,7 +8,7 @@ ms.technology: entity-framework-core
 uid: core/saving/cascade-delete
 ms.openlocfilehash: a9481fe851cc264ab3eaecad052c2e683ae57a44
 ms.sourcegitcommit: 5367516f063cb42804ec92c31cdf76322554f2b5
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 11/08/2017
 ---
@@ -16,7 +16,7 @@ ms.lasthandoff: 11/08/2017
 
 Art arda silme ilişkili satırları silme işlemini otomatik olarak tetikleyecek bir satırın silme işlemine izin veren bir özellik açıklamak için Veritabanı terminolojisinde yaygın olarak kullanılır. Ayrıca EF çekirdek delete davranışları tarafından kapsanan bir yakından ilgili ilişki üst olduğunda alt varlık otomatik olarak silinmesini zarar görmesi--genellikle "artık silme" olarak bilinen bu i kavramdır.
 
-EF çekirdek birkaç farklı silme davranışı uygular ve tek tek ilişkileri Sil davranışlarını yapılandırmasını sağlar. EF çekirdek de otomatik olarak yararlı varsayılan silme davranışlar [requiredness ilişkinin üzerinde](.. /Modeling/relationships.MD#Required-and-Optional-relationships) tabanlı her ilişki için yapılandırma kuralları uygular.
+EF çekirdek birkaç farklı silme davranışı uygular ve tek tek ilişkileri Sil davranışlarını yapılandırmasını sağlar. EF çekirdek de otomatik olarak yararlı varsayılan silme davranışlar [requiredness ilişkinin üzerinde](../modeling/relationships.md#required-and-optional-relationships) tabanlı her ilişki için yapılandırma kuralları uygular.
 
 ## <a name="delete-behaviors"></a>Davranışları Sil
 Silme davranışları tanımlanmış *DeleteBehavior* Numaralandırıcı yazın ve için geçirilen *OnDelete* denetlemek için fluent API olup olmadığını silinmesi asıl/üst varlık veya, severing bağımlı/alt varlıkları ilişkisi bağımlı/alt varlıklarını bir yan etkisi olması gerekir.
