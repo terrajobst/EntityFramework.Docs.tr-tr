@@ -6,17 +6,17 @@ ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 ms.technology: entity-framework-core
 uid: core/saving/cascade-delete
-ms.openlocfilehash: a9481fe851cc264ab3eaecad052c2e683ae57a44
-ms.sourcegitcommit: 5367516f063cb42804ec92c31cdf76322554f2b5
-ms.translationtype: HT
+ms.openlocfilehash: e1cb194d7c7472af59eb44fe2a084fa16c40c186
+ms.sourcegitcommit: 3b21a7fdeddc7b3c70d9b7777b72bef61f59216c
+ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/08/2017
+ms.lasthandoff: 01/22/2018
 ---
-# <a name="cascade-delete"></a>Art arda silme
+# <a name="cascade-delete"></a>Cascade Delete
 
 Art arda silme ilişkili satırları silme işlemini otomatik olarak tetikleyecek bir satırın silme işlemine izin veren bir özellik açıklamak için Veritabanı terminolojisinde yaygın olarak kullanılır. Ayrıca EF çekirdek delete davranışları tarafından kapsanan bir yakından ilgili ilişki üst olduğunda alt varlık otomatik olarak silinmesini zarar görmesi--genellikle "artık silme" olarak bilinen bu i kavramdır.
 
-EF çekirdek birkaç farklı silme davranışı uygular ve tek tek ilişkileri Sil davranışlarını yapılandırmasını sağlar. EF çekirdek de otomatik olarak yararlı varsayılan silme davranışlar [requiredness ilişkinin üzerinde](../modeling/relationships.md#required-and-optional-relationships) tabanlı her ilişki için yapılandırma kuralları uygular.
+EF çekirdek birkaç farklı silme davranışı uygular ve tek tek ilişkileri Sil davranışlarını yapılandırmasını sağlar. EF çekirdek de otomatik olarak yararlı varsayılan silme davranışlar [requiredness ilişkinin üzerinde] tabanlı her ilişki için yapılandırma kuralları uygular (../modeling/relationships.md#required-and-optional-relationships).
 
 ## <a name="delete-behaviors"></a>Davranışları Sil
 Silme davranışları tanımlanmış *DeleteBehavior* Numaralandırıcı yazın ve için geçirilen *OnDelete* denetlemek için fluent API olup olmadığını silinmesi asıl/üst varlık veya, severing bağımlı/alt varlıkları ilişkisi bağımlı/alt varlıklarını bir yan etkisi olması gerekir.
@@ -36,18 +36,18 @@ Dört silme davranışı, aşağıdaki tablolarda listelenen gibi vardır. İste
 | Davranış adı | Bağımlı/alt bellekte etkisi | Bağımlı/alt veritabanı üzerinde etkisi
 |-|-|-
 | **CASCADE** | Varlıkları silinir | Varlıkları silinir
-| **ClientSetNull** (varsayılan) | Yabancı anahtar özellikleri null | Yok
+| **ClientSetNull** (varsayılan) | Yabancı anahtar özellikleri null | Yok.
 | **SetNull** | Yabancı anahtar özellikleri null | Yabancı anahtar özellikleri null
-| **Kısıtlama** | Yok | Yok
+| **Kısıtlama** | Yok. | Yok.
 
 Gerekli ilişkileri (null yabancı anahtar) olduğu _değil_ olası, aşağıdaki efektler sonuçları bir null yabancı anahtar değeri kaydetmek:
 
 | Davranış adı | Bağımlı/alt bellekte etkisi | Bağımlı/alt veritabanı üzerinde etkisi
 |-|-|-
 | **CASCADE** (varsayılan) | Varlıkları silinir | Varlıkları silinir
-| **ClientSetNull** | SaveChanges oluşturur | Yok
+| **ClientSetNull** | SaveChanges oluşturur | Yok.
 | **SetNull** | SaveChanges oluşturur | SaveChanges oluşturur
-| **Kısıtlama** | Yok | Yok
+| **Kısıtlama** | Yok. | Yok.
 
 Yukarıdaki tablolarda *hiçbiri* bir kısıtlama ihlali neden olabilir. Örneğin, bir asıl/alt varlık silinir, ancak bağımlı/alt yabancı anahtarı değiştirmek için hiçbir işlem yapılmadı, sonra veritabanını olasılıkla SaveChanges üzerinde bir yabancı kısıtlaması ihlali nedeniyle durum oluşturur.
 
@@ -67,7 +67,7 @@ Yüksek düzeyde:
 
 ## <a name="entity-deletion-examples"></a>Varlık silme örnekleri
 
-Aşağıdaki kod parçası olan bir [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/CascadeDelete/) bir çalışma indirilebilir. Örnek bir üst varlık silindiğinde her silme davranışı isteğe bağlıdır ve gerekli ilişkiler için ne olacağını gösterir.
+Aşağıdaki kod parçası olan bir [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/CascadeDelete/) , indirilebilen ve çalıştırın. Örnek bir üst varlık silindiğinde her silme davranışı isteğe bağlıdır ve gerekli ilişkiler için ne olacağını gösterir.
 
 [!code-csharp[Main](../../../samples/core/Saving/Saving/CascadeDelete/Sample.cs#DeleteBehaviorVariations)]
 

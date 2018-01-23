@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: f9fb64e2-6699-4d70-a773-592918c04c19
 ms.technology: entity-framework-core
 uid: core/querying/related-data
-ms.openlocfilehash: cd26bd2e6f85083f73d97b1356d0ba38f53e0b8f
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: ec69bb128890a1e0b72fe77014f37747585bb5a5
+ms.sourcegitcommit: 3b21a7fdeddc7b3c70d9b7777b72bef61f59216c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 01/22/2018
 ---
 # <a name="loading-related-data"></a>İlgili verileri yükleniyor
 
@@ -41,6 +41,9 @@ Tek bir sorguda birden çok ilişki ilgili verileri içerebilir.
 Birden çok düzeyinden birini kullanarak ilgili verileri içerecek şekilde ilişkileri ayrıntıya girebilirsiniz `ThenInclude` yöntemi. Aşağıdaki örnek, tüm blogları, kendi ilgili gönderileri ve her posta yazarı yükler.
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#SingleThenInclude)]
+
+> [!NOTE]  
+> Visual Studio'nun geçerli sürümleri yanlış kod tamamlama seçenekleri sunar ve sözdizimi hataları ile kullanırken işaretlenmesini doğru ifadeleri neden olabilir `ThenInclude` yöntemi sonra bir koleksiyon gezinme özelliği. Https://github.com/dotnet/roslyn/issues/8237 izlenen bir IntelliSense hatanın belirtisidir. Kod doğru olduğundan ve başarıyla derlenen sürece bu alacaklardır sözdizimi hataları yoksaymak güvenlidir. 
 
 Birden fazla çağrı zincir `ThenInclude` daha ilgili verileri düzeylerini dahil olmak üzere devam etmek için.
 
@@ -99,7 +102,7 @@ EF çekirdek işlem otomatik olarak düzeltme yukarı Gezinti özellikleri, dön
 
 Bazı serileştirme çerçeveler gibi döngüleri izin vermez. Örneğin, bir döngü encoutered ise Json.NET şu özel durum oluşturur.
 
-> Newtonsoft.Json.JsonSerializationException: Kendi kendine başvuran döngü 'Blog' özelliği için 'MyApplication.Models.Blog' türüyle algılandı.
+> Newtonsoft.Json.JsonSerializationException: Self referencing loop detected for property 'Blog' with type 'MyApplication.Models.Blog'.
 
 ASP.NET Core kullanıyorsanız, nesne grafiğinde bulduğu döngüleri yoksaymak için Json.NET yapılandırabilirsiniz. Bu yapılır `ConfigureServices(...)` yönteminde `Startup.cs`.
 
