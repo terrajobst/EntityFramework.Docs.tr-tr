@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: 06f1f18b-3267-4f79-b94e-173f9db0a7cb
 ms.technology: entity-framework-core
 uid: core/get-started/full-dotnet/index
-ms.openlocfilehash: c69c851e8e2cda944fdf1901c19b0c45cf9ac942
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: b6b265ed8742459921b7ba4f3f04720eb43d06da
+ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 02/12/2018
 ---
 # <a name="getting-started-with-ef-core-on-net-framework"></a>.NET Framework EF çekirdek ile çalışmaya başlama
 
@@ -19,4 +19,4 @@ Bu 101 öğreticileri Entity Framework Çekirdek ya da Visual Studio önceki hi�
 WPF ve WinForms dahil olmak üzere, .NET Framework hedefler herhangi bir uygulamanın bu öğreticileri öğrenilen teknikleri kullanabilirsiniz.
 
 > [!NOTE]  
-> Bu öğreticiler ve eşlik eden örnekleri EF çekirdek 2.0 (EF çekirdek 1.1 kullanan UWP öğretici hariç olmak üzere) kullanmak için güncelleştirilmiştir. Ancak, çoğu durumda yönergeleri için en az değişiklik ile önceki sürümlerde kullanan uygulamalar oluşturmak mümkün olmalıdır.
+> Bu öğreticiler ve eşlik eden örnekleri EF çekirdek 2.0 kullanmak için güncelleştirilmiştir. Ancak, çoğu durumda yönergeleri için en az değişiklik ile önceki sürümlerde kullanan uygulamalar oluşturmak mümkün olmalıdır.

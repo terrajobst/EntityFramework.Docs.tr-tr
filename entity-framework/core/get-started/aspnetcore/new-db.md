@@ -8,11 +8,11 @@ ms.topic: get-started-article
 ms.assetid: e153627f-f132-4c11-b13c-6c9a607addce
 ms.technology: entity-framework-core
 uid: core/get-started/aspnetcore/new-db
-ms.openlocfilehash: 7e7ecaff29e9830bf3bcf742e6a5d54e1ced24de
-ms.sourcegitcommit: 860ec5d047342fbc4063a0de881c9861cc1f8813
+ms.openlocfilehash: f6ed19d3c5d2ae8d1f5756558e50c1f0dddd2f07
+ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/05/2017
+ms.lasthandoff: 02/12/2018
 ---
 # <a name="getting-started-with-ef-core-on-aspnet-core-with-a-new-database"></a>ASP.NET Core EF Çekirdeğinde ile yeni bir veritabanı ile çalışmaya başlama
 
@@ -47,15 +47,15 @@ Hedeflemek istediğiniz EF çekirdek veritabanı sağlayıcı(lar) için paketin
 
 * **Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu**
 
-* Çalıştırma`Install-Package Microsoft.EntityFrameworkCore.SqlServer`
+* `Install-Package Microsoft.EntityFrameworkCore.SqlServer`'i çalıştırın.
 
 EF çekirdek modelinizin dışında bir veritabanı oluşturmak için size bazı Entity Framework Çekirdek araçları kullanarak. Böylece biz de araçları paketini yükleyecek:
 
-* Çalıştırma`Install-Package Microsoft.EntityFrameworkCore.Tools`
+* `Install-Package Microsoft.EntityFrameworkCore.Tools`'i çalıştırın.
 
 Daha sonra denetleyicileri ve görünümleri oluşturmak için size bazı ASP.NET Core İskele araçlarını kullanma. Böylece biz de bu tasarım paket yükleyecek:
 
-* Çalıştırma`Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design`
+* `Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design`'i çalıştırın.
 
 ## <a name="create-the-model"></a>Model oluşturma
 
@@ -86,7 +86,7 @@ Ekleme `AddDbContext` yöntemi bir hizmet olarak kaydetmek için:
 
  [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Startup.cs?name=ConfigureServices&highlight=7-8)]
 
-Not: Gerçek bir uygulama yapılandırma dosyasında bağlantı dizesini gennerally koyabilirsiniz. Basitleştirmek amacıyla, biz bu kodda tanımlıyorsanız. Bkz: [bağlantı dizeleri](../../miscellaneous/connection-strings.md) daha fazla bilgi için.
+Not: Gerçek bir uygulama yapılandırma dosyasında bağlantı dizesini genellikle koyabilirsiniz. Basitleştirmek amacıyla, biz bu kodda tanımlıyorsanız. Bkz: [bağlantı dizeleri](../../miscellaneous/connection-strings.md) daha fazla bilgi için.
 
 ## <a name="create-your-database"></a>Veritabanı oluşturma
 
@@ -118,7 +118,7 @@ Askılama özelliğinin etkinleştirildiğinden, bir denetleyici için iskele `B
 
 Ve uygulamayı test çalıştırmak için F5 tuşuna basın.
 
-* Gidin`/Blogs`
+* Gidin `/Blogs`
 * Bazı Web günlüğü girişleri oluşturmak için Oluştur bağlantısını kullanın. Sınama ayrıntıları ve bağlantıları silin.
 
 ![görüntü](_static/create.png)
@@ -130,4 +130,4 @@ Ve uygulamayı test çalıştırmak için F5 tuşuna basın.
 * [EF - yeni veritabanı SQLite ile](xref:core/get-started/netcore/new-db-sqlite) -platformlar arası konsol EF öğretici.
 * [ASP.NET Core Mac veya Linux MVC giriş](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app-xplat/index)
 * [ASP.NET Core Visual Studio ile MVC giriş](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/index)
-* [ASP.NET Core ve Entity Framework Visual Studio kullanarak çekirdek ile çalışmaya başlama](https://docs.microsoft.com/aspnet/core/data/ef-mvc/index)
+* [Visual Studio kullanarak ASP.NET Core ve Entity Framework Core ile çalışmaya başlama](https://docs.microsoft.com/aspnet/core/data/ef-mvc/index)

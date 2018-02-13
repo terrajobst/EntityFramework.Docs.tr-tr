@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: d7a22b5a-4c5b-4e3b-9897-4d7320fcd13f
 ms.technology: entity-framework-core
 uid: core/miscellaneous/configuring-dbcontext
-ms.openlocfilehash: de26e3b28851d4dc4e50f0490093dd05ad489b31
-ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
+ms.openlocfilehash: 6980acd53b0a74055af7a1e04b476f4625c327c9
+ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/22/2017
+ms.lasthandoff: 02/12/2018
 ---
 # <a name="configuring-a-dbcontext"></a>Bir yapılandırma
 
@@ -24,9 +24,9 @@ While gerekli yapılandırma bilgileri sağlar düzeni `DbContext` çalışma za
 
 ## <a name="configuring-dbcontextoptions"></a>DbContextOptions yapılandırma
 
-`DbContext`bir örneği olmalıdır `DbContextOptions` herhangi bir iş gerçekleştirmek için. `DbContextOptions` Örneği yapılandırma bilgilerini aşağıdaki gibi yapar:
+`DbContext` bir örneği olmalıdır `DbContextOptions` herhangi bir iş gerçekleştirmek için. `DbContextOptions` Örneği yapılandırma bilgilerini aşağıdaki gibi yapar:
 
-- Genellikle seçili kullanmak için veritabanı sağlayıcısı gibi bir yöntemini çağırarak `UseSqlServer` veya`UseSqlite`
+- Genellikle seçili kullanmak için veritabanı sağlayıcısı gibi bir yöntemini çağırarak `UseSqlServer` veya `UseSqlite`
 - Tüm gerekli bağlantı dizesi veya veritabanı örneğinin tanıtıcısı genellikle geçirilen bağımsız değişken olarak yukarıda belirtilen sağlayıcı seçimi yöntemi
 - Sağlayıcı seçimi yöntem çağrısı içinde genellikle de zincirleme tüm sağlayıcısı düzeyi isteğe bağlı davranışını seçiciler
 - Sağlayıcı Seçici yöntemi önce veya sonra genellikle zincirleme tüm genel EF çekirdek davranışı seçiciler
@@ -108,7 +108,7 @@ using (var context = new BloggingContext())
 
 EF çekirdek destekleyen kullanarak `DbContext` bir bağımlılık ekleme kapsayıcısını ile. DbContext türü kullanarak hizmet kapsayıcısı eklenebilir `AddDbContext<TContext>` yöntemi.
 
-`AddDbContext<TContext>`hem sizin DbContext türü, yapacak `TContext`ve karşılık gelen `DbContextOptions<TContext>` hizmet kapsayıcısından yerleştirme için kullanılabilir.
+`AddDbContext<TContext>` hem sizin DbContext türü, yapacak `TContext`ve karşılık gelen `DbContextOptions<TContext>` hizmet kapsayıcısından yerleştirme için kullanılabilir.
 
 Bkz: [daha fazla okuma](#more-reading) aşağıda bağımlılık ekleme hakkında daha fazla bilgi için.
 

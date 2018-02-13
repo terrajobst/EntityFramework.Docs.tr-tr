@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: 2533b195-d357-4056-b0e0-8698971bc3b0
 ms.technology: entity-framework-core
 uid: core/saving/disconnected-entities
-ms.openlocfilehash: 0ea02876b9594d54c971a7b70fcf7ce591e56ba0
-ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
+ms.openlocfilehash: 0b145217d40027c4b8e4746e9c5651652a28c9eb
+ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/22/2017
+ms.lasthandoff: 02/12/2018
 ---
 # <a name="disconnected-entities"></a>Bağlantısı kesilmiş varlıklar
 
@@ -20,6 +20,9 @@ Ancak, bazen varlıklar bir bağlam örneğini kullanarak ve farklı bir örneğ
 
 > [!TIP]  
 > Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/Disconnected/) github'da.
+
+> [!TIP]
+> EF çekirdek yalnızca bir örneğini belirtilen birincil anahtar değerine sahip herhangi bir varlığa izleyebilirsiniz. Bu bağlamda boş başlatır gibi kısa süreli bir bağlam her--iş birimi için kullanmak üzere bir sorun olduğu durumda önlemek için en iyi yolu ekli varlıklar bu varlıkların ve bağlam atıldı ve atılan kaydeder sahiptir.
 
 ## <a name="identifying-new-entities"></a>Yeni varlıklar tanımlama
 
@@ -85,6 +88,10 @@ Burada adımlar şunlardır:
 > Yalnızca SetValues izlenen varlık de için farklı değerlere sahip özellikleri değiştirilemez olarak işaretlenmesine neden olur. Bu güncelleştirme gönderildiğinde, aslında değişmiş olan sütunları güncelleştirilecek anlamına gelir. (Ve hiçbir şey değiştiyse, ardından güncelleştirme hiç gönderilecek.)
 
 ## <a name="working-with-graphs"></a>Grafikleri ile çalışma
+
+### <a name="identity-resolution"></a>Kimlik çözümleme
+
+Yukarıda belirtildiği gibi EF çekirdek yalnızca bir örneğini belirtilen birincil anahtar değerine sahip herhangi bir varlığa izleyebilirsiniz. Grafiklerle çalışırken grafiği ideal olarak bu değişmeyen saklanır ve bağlam yalnızca bir birim çalışma için kullanılması gereken şekilde oluşturulmalıdır. Ardından grafiği çoğaltmaları içeriyorsa, bu grafiği tek birden çok örneği birleştirilecek EF göndermeden işlemek gerekli olacaktır. Bu yani sağlamlaştırmak çoğaltmaları mümkün olan en kısa sürede çakışma çözümü önlemek için uygulama ardışık düzeninizde yapılmalıdır örnekleri çakışan değerler ve ilişkileri, sahip olduğu Önemsiz olmayabilir.
 
 ### <a name="all-newall-existing-entities"></a>Tüm yeni/tüm var olan varlıkları
 
