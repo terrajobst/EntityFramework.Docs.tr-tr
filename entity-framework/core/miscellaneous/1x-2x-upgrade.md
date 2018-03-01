@@ -6,11 +6,11 @@ ms.date: 8/13/2017
 ms.assetid: 8BD43C8C-63D9-4F3A-B954-7BC518A1B7DB
 ms.technology: entity-framework-core
 uid: core/miscellaneous/1x-2x-upgrade
-ms.openlocfilehash: 380f27c9f00943a2909ec7b876e151572a67dc37
-ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
+ms.openlocfilehash: 30f4de794d42b1385145286e77c2e7c67987fea6
+ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/22/2017
+ms.lasthandoff: 02/28/2018
 ---
 # <a name="upgrading-applications-from-previous-versions-to-ef-core-20"></a>Uygulamaları EF çekirdek 2.0 önceki sürümlerinden yükseltme
 
@@ -78,15 +78,15 @@ Bu arabirim güçlü tasarım zamanı semantiği iletişim kurmak için şu şek
 
 2.0 için sürüm `IDbContextFactory<TContext>` hala var, ancak kullanımdan kaldırılmış olarak işaretlenmiş.
 
-### <a name="dbcontextfactoryoptions-removed"></a>DbContextFactoryOptions kaldırıldı
+### <a name="dbcontextfactoryoptions-removed"></a>DbContextFactoryOptions removed
 
 Yukarıda açıklanan ASP.NET Core 2.0 değişiklikler nedeniyle, bulduk `DbContextFactoryOptions` artık yeni gerekti `IDesignTimeDbContextFactory<TContext>` arabirimi. Burada, bunun yerine kullanarak alternatifleri bulunmaktadır.
 
-DbContextFactoryOptions | Alternatifi
---- | ---
-ApplicationBasePath | AppContext.BaseDirectory
-ContentRootPath | Directory.GetCurrentDirectory()
-EnvironmentName | Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
+| DbContextFactoryOptions | Alternatifi                                                  |
+|:------------------------|:-------------------------------------------------------------|
+| ApplicationBasePath     | AppContext.BaseDirectory                                     |
+| ContentRootPath         | Directory.GetCurrentDirectory()                              |
+| EnvironmentName         | Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") |
 
 ### <a name="design-time-working-directory-changed"></a>Tasarım zamanı çalışma dizini değiştirildi
 
@@ -159,7 +159,7 @@ Bu oluşturur / "Veritabanım" adda bir veritabanı kullanır. Varsa `UseInMemor
 
 ### <a name="new-clientsetnull-delete-behavior"></a>Yeni ClientSetNull silme davranışı
 
-Önceki sürümlerde [DeleteBehavior.Restrict](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/DeleteBehavior.cs) sahip varlıklar için bir davranış izlenen kapsamında daha fazla eşleşen kapalı `SetNull` semantiği. EF çekirdek 2. 0'da, yeni bir `ClientSetNull` davranışı, isteğe bağlı ilişkiler için varsayılan olarak sunulmuş. Bu davranışı `SetNull` izlenen varlık anlamları ve `Restrict` EF çekirdek kullanılarak oluşturulmuş veritabanları için davranış. İzlenen varlıkları ve veritabanı için beklenen/faydalı davranışları bunlar deneyimi bizim. `DeleteBehavior.Restrict`Şimdi için isteğe bağlı bir ilişki ayarlandığında izlenen varlıklar için uygulanır.
+Önceki sürümlerde [DeleteBehavior.Restrict](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/DeleteBehavior.cs) sahip varlıklar için bir davranış izlenen kapsamında daha fazla eşleşen kapalı `SetNull` semantiği. EF çekirdek 2. 0'da, yeni bir `ClientSetNull` davranışı, isteğe bağlı ilişkiler için varsayılan olarak sunulmuş. Bu davranışı `SetNull` izlenen varlık anlamları ve `Restrict` EF çekirdek kullanılarak oluşturulmuş veritabanları için davranış. İzlenen varlıkları ve veritabanı için beklenen/faydalı davranışları bunlar deneyimi bizim. `DeleteBehavior.Restrict` Şimdi için isteğe bağlı bir ilişki ayarlandığında izlenen varlıklar için uygulanır.
 
 ### <a name="provider-design-time-packages-removed"></a>Sağlayıcı tasarım zamanı paketleri kaldırıldı
 

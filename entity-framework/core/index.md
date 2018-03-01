@@ -6,26 +6,28 @@ ms.date: 10/27/2016
 ms.assetid: bc2a2676-bc46-493f-bf49-e3cc97994d57
 ms.technology: entity-framework-core
 uid: core/index
-ms.openlocfilehash: 13de9cf98111b8e253e073c591fcec04206b4c4f
-ms.sourcegitcommit: 5e2d97e731f975cf3405ff3deab2a3c75ad1b969
+ms.openlocfilehash: c76b4cd318151b502c549fa0a82800f9987ed94c
+ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/15/2017
+ms.lasthandoff: 02/28/2018
 ---
 # <a name="entity-framework-core-quick-overview"></a>Entity Framework Çekirdek hızlı bir genel bakış
 
 Hafif, Genişletilebilir, Entity Framework (EF) çekirdeği olur ve platformlar arası sürümü popüler Entity Framework verilerine erişim teknolojisini.
 
-EF çekirdeği .NET geliştiricilerinin .NET nesneleri kullanarak bir veritabanı ile çalışmak bir nesne ilişkisel Eşleyici (O/RM) olur. Bu, geliştiriciler genellikle yazmanıza gerek veri erişim kod gereksinimini ortadan kaldırır. EF çekirdek destekleyen birçok veritabanı motoru, bkz: [veritabanı sağlayıcıları](providers/index.md) Ayrıntılar için.
+EF çekirdeği .NET geliştiricilerinin .NET nesneleri kullanarak bir veritabanı ile çalışmak bir nesne ilişkisel Eşleyici (O/RM) olur. Genellikle geliştiricilerin yazmak zorunda olduğu çoğu veri erişim koduna yönelik gereksinimi ortadan kaldırır. EF çekirdek destekleyen birçok veritabanı motoru, bkz: [veritabanı sağlayıcıları](providers/index.md) Ayrıntılar için.
 
 Kod yazarak öğrenmek istiyorsanız, aşağıdakilerden birini öneririz bizim [Başlarken](get-started/index.md) elde kılavuzlara EF çekirdek ile başlatıldı.
 
-## <a name="latest-version-ef-core-20"></a>En son sürümünü: EF çekirdek 2.0
+## <a name="what-is-new-in-ef-core"></a>EF çekirdek yenilikler nelerdir?
 
-EF çekirdek bilgi sahibiyseniz ve düz yeni sürümün ayrıntılarını atlamak istiyorsanız:
+EF çekirdek bilgi sahibiyseniz ve en son sürümlerini ayrıntılara düz atlamak istiyorsanız:
 
-- **[EF çekirdek 2.0 yeni özellikler](what-is-new/index.md)**
-- **[EF çekirdek 2.0 için var olan uygulamaları yükseltme](miscellaneous/1x-2x-upgrade.md)**
+- **[(Şu anda önizlemede) EF çekirdek 2.1 yenilikler nelerdir?](xref:core/what-is-new/ef-core-2.1)**
+- **[EF çekirdek 2.0 (son yayımlanmış bir sürüm) yenilikler](xref:core/what-is-new/ef-core-2.0)**
+- **[EF çekirdek 2.0 için var olan uygulamaları yükseltme](xref:core/miscellaneous/1x-2x-upgrade)**
+
 
 ## <a name="get-entity-framework-core"></a>Entity Framework Çekirdek Al
 

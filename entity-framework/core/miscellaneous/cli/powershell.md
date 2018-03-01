@@ -4,11 +4,11 @@ author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
 ms.technology: entity-framework-core
-ms.openlocfilehash: b4ecb27edf94e7b9ad6c7fe65a891dcbf1593309
-ms.sourcegitcommit: 5e2d97e731f975cf3405ff3deab2a3c75ad1b969
+ms.openlocfilehash: aacf8c8564a3966db6202c9ff1c1c02a19a10814
+ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/15/2017
+ms.lasthandoff: 02/28/2018
 ---
 <a name="ef-core-package-manager-console-tools"></a>EF çekirdek Paket Yöneticisi konsolu araçları
 =====================================
@@ -49,7 +49,7 @@ Başlangıç projesi projenizin kodu çalıştırırken araçları tarafından �
 Ortak Parametreler:
 
 |                           |                             |
-| ------------------------- | --------------------------- |
+|:--------------------------|:----------------------------|
 | -Context \<dize >        | Kullanılacak DbContext.       |
 | -Proje \<dize >        | Kullanmak için proje.         |
 | -StartupProject \<dize > | Kullanılacak başlangıç projesi. |
@@ -63,7 +63,7 @@ Bir komutla ilgili Yardım bilgilerini göstermek için PowerShell'ın kullanın
 > [!TIP]
 > Ayarlama **env:ASPNETCORE_ENVIRONMENT** ASP.NET Core ortam belirtmek için çalıştırmadan önce.
 
-<a name="commands"></a>Komutları
+<a name="commands"></a>Komutlar
 --------
 
 ### <a name="add-migration"></a>Add-Migration
@@ -72,10 +72,10 @@ Yeni bir geçiş ekler.
 
 Parametreler:
 
-|                                    |                                                                                 |
-| ---------------------------------- | ------------------------------------------------------------------------------- |
-| ***-Ad*** \<dize >              | Geçiş adı.                                                      |
-| <nobr>-OutputDir \<dize ></nobr>  | Kullanılacak dizin (ve alt ad alanı). Proje dizininin göreli yollardır. Varsayılan olarak "Geçiş". |
+|                                   |                                                                                                                  |
+|:----------------------------------|:-----------------------------------------------------------------------------------------------------------------|
+| ***-Ad*** \<dize >             | Geçiş adı.                                                                                       |
+| <nobr>-OutputDir \<dize ></nobr> | Kullanılacak dizin (ve alt ad alanı). Proje dizininin göreli yollardır. Varsayılan olarak "Geçiş". |
 
 > [!NOTE]
 > Parametrelerde **kalın** gereklidir ve olanları içinde *italik* konumsal şunlardır.
@@ -86,9 +86,9 @@ Veritabanı bırakır.
 
 Parametreler:
 
-|          |                                                          |
-| -------- | -------------------------------------------------------- |
-| -WhatIf  | Hangi veritabanı olduğundan bırakılamaz, ancak bırakma yok gösterir. |
+|         |                                                          |
+|:--------|:---------------------------------------------------------|
+| -WhatIf | Hangi veritabanı olduğundan bırakılamaz, ancak bırakma yok gösterir. |
 
 ### <a name="get-dbcontext"></a>Get-DbContext
 
@@ -101,26 +101,26 @@ Son geçiş kaldırır.
 Parametreler:
 
 |        |                                                                       |
-| ------ | --------------------------------------------------------------------- |
+|:-------|:----------------------------------------------------------------------|
 | -Force | Geçiş veritabanına uygulanıp uygulanmadığını denetleyin yok. |
 
-### <a name="scaffold-dbcontext"></a>İskele DbContext
+### <a name="scaffold-dbcontext"></a>Scaffold-DbContext
 
 Bir veritabanı için bir DbContext ve varlık türleri iskelesini kurar.
 
 Parametreler:
 
-|                                          |                                                                           |
-| ---------------------------------------- | ------------------------------------------------------------------------- |
-| <nobr>***-Bağlantı*** \<dize ></nobr> | Veritabanı bağlantı dizesi.                                    |
-| ***-Sağlayıcısı*** \<dize >                | Kullanılacak sağlayıcısı. (Örn. Microsoft.EntityFrameworkCore.SqlServer)       |
-| -OutputDir \<dize >                     | Dosyaları yerleştirmek için dizin. Proje dizininin göreli yollardır. |
-| -Context \<dize >                       | Oluşturulacak DbContext adı.                                    |
-| -Şemaları \<String [] >                     | Varlık türleri oluşturmak için tabloları şemalar.                       |
-| -Tabloları \<String [] >                      | Varlık türleri için oluşturmak üzere tablolara.                                  |
+|                                          |                                                                                                  |
+|:-----------------------------------------|:-------------------------------------------------------------------------------------------------|
+| <nobr>***-Bağlantı*** \<dize ></nobr> | Veritabanı bağlantı dizesi.                                                           |
+| ***-Sağlayıcısı*** \<dize >                | Kullanılacak sağlayıcısı. (Örn. Microsoft.EntityFrameworkCore.SqlServer)                              |
+| -OutputDir \<dize >                     | Dosyaları yerleştirmek için dizin. Proje dizininin göreli yollardır.                      |
+| -Context \<dize >                       | Oluşturulacak DbContext adı.                                                           |
+| -Schemas \<String[]>                     | Varlık türleri oluşturmak için tabloları şemalar.                                              |
+| -Tabloları \<String [] >                      | Varlık türleri için oluşturmak üzere tablolara.                                                         |
 | -DataAnnotations                         | Öznitelikler, model (mümkün olduğunda) yapılandırmak için kullanın. Atlanırsa, yalnızca fluent API kullanılır. |
-| -UseDatabaseNames                        | Doğrudan veritabanından tablo ve sütun adları kullanın.                    |
-| -Force                                   | Var olan dosyaların üzerine yazar.                                                 |
+| -UseDatabaseNames                        | Doğrudan veritabanından tablo ve sütun adları kullanın.                                           |
+| -Force                                   | Var olan dosyaların üzerine yazar.                                                                        |
 
 ### <a name="script-migration"></a>Komut dosyası geçişi
 
@@ -129,7 +129,7 @@ Bir SQL betiği geçişleri oluşturur.
 Parametreler:
 
 |                   |                                                                    |
-| ----------------- | ------------------------------------------------------------------ |
+|:------------------|:-------------------------------------------------------------------|
 | *-From* \<dize > | Başlangıç geçiş. Varsayılan ayar: 0 (ilk veritabanı).      |
 | *-Çok* \<dize >   | Bitiş geçiş. Son geçiş varsayılan olarak ayarlanır.              |
 | -Idempotent       | Bir veritabanında hiçbir geçiş sırasında kullanılan bir komut dosyası oluşturur. |
@@ -140,8 +140,8 @@ Parametreler:
 
 ### <a name="update-database"></a>Update-Database
 
-|                                     |                                                                                |
-| ----------------------------------- | ------------------------------------------------------------------------------ |
+|                                     |                                                                                                |
+|:------------------------------------|:-----------------------------------------------------------------------------------------------|
 | <nobr>*-Geçiş* \<dize ></nobr> | Hedef geçiş. '0 'ise, tüm geçişler geri alınacak. Son geçiş varsayılan olarak ayarlanır. |
 
 > [!TIP]

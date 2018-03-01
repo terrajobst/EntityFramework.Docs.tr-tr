@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 ms.technology: entity-framework-core
 uid: core/saving/cascade-delete
-ms.openlocfilehash: e1cb194d7c7472af59eb44fe2a084fa16c40c186
-ms.sourcegitcommit: 3b21a7fdeddc7b3c70d9b7777b72bef61f59216c
+ms.openlocfilehash: 1ab9d114e27aac0bec972df631a426c8ce87a518
+ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/22/2018
+ms.lasthandoff: 02/28/2018
 ---
 # <a name="cascade-delete"></a>Cascade Delete
 
@@ -33,21 +33,21 @@ Bir yabancı anahtar değeri null olarak ayarlama özelliği Yukarıdaki ikinci 
 
 Dört silme davranışı, aşağıdaki tablolarda listelenen gibi vardır. İsteğe bağlı ilişkiler (boş değer atanabilir yabancı anahtar), _olan_ olası, aşağıdaki efektler sonuçları bir null yabancı anahtar değeri kaydetmek:
 
-| Davranış adı | Bağımlı/alt bellekte etkisi | Bağımlı/alt veritabanı üzerinde etkisi
-|-|-|-
-| **CASCADE** | Varlıkları silinir | Varlıkları silinir
-| **ClientSetNull** (varsayılan) | Yabancı anahtar özellikleri null | Yok.
-| **SetNull** | Yabancı anahtar özellikleri null | Yabancı anahtar özellikleri null
-| **Kısıtlama** | Yok. | Yok.
+| Davranış adı               | Bağımlı/alt bellekte etkisi    | Bağımlı/alt veritabanı üzerinde etkisi  |
+|:----------------------------|:---------------------------------------|:---------------------------------------|
+| **CASCADE**                 | Varlıkları silinir                   | Varlıkları silinir                   |
+| **ClientSetNull** (varsayılan) | Yabancı anahtar özellikleri null | Yok.                                   |
+| **SetNull**                 | Yabancı anahtar özellikleri null | Yabancı anahtar özellikleri null |
+| **Kısıtlama**                | Yok.                                   | Yok.                                   |
 
 Gerekli ilişkileri (null yabancı anahtar) olduğu _değil_ olası, aşağıdaki efektler sonuçları bir null yabancı anahtar değeri kaydetmek:
 
-| Davranış adı | Bağımlı/alt bellekte etkisi | Bağımlı/alt veritabanı üzerinde etkisi
-|-|-|-
-| **CASCADE** (varsayılan) | Varlıkları silinir | Varlıkları silinir
-| **ClientSetNull** | SaveChanges oluşturur | Yok.
-| **SetNull** | SaveChanges oluşturur | SaveChanges oluşturur
-| **Kısıtlama** | Yok. | Yok.
+| Davranış adı         | Bağımlı/alt bellekte etkisi | Bağımlı/alt veritabanı üzerinde etkisi |
+|:----------------------|:------------------------------------|:--------------------------------------|
+| **CASCADE** (varsayılan) | Varlıkları silinir                | Varlıkları silinir                  |
+| **ClientSetNull**     | SaveChanges oluşturur                  | Yok.                                  |
+| **SetNull**           | SaveChanges oluşturur                  | SaveChanges oluşturur                    |
+| **Kısıtlama**          | Yok.                                | Yok.                                  |
 
 Yukarıdaki tablolarda *hiçbiri* bir kısıtlama ihlali neden olabilir. Örneğin, bir asıl/alt varlık silinir, ancak bağımlı/alt yabancı anahtarı değiştirmek için hiçbir işlem yapılmadı, sonra veritabanını olasılıkla SaveChanges üzerinde bir yabancı kısıtlaması ihlali nedeniyle durum oluşturur.
 
