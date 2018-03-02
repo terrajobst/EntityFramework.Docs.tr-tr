@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: eb082011-11a1-41b4-a108-15daafa03e80
 ms.technology: entity-framework-core
 uid: core/modeling/generated-properties
-ms.openlocfilehash: 2d79bf1339ebe522c39fe8971d908c30e1f4dca0
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 892494461bcf49ee10d05c972da0ba19ca003c35
+ms.sourcegitcommit: 4b7d3d3e258b0d9cb778bb45a9f4a33c0792e38e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 02/28/2018
 ---
 # <a name="generated-values"></a>Oluşturulan değerleri
 
@@ -50,7 +50,7 @@ Gibi `value generated on add`, değer oluşturulan bir değer yerine eklenir, bi
 
 ## <a name="conventions"></a>Kurallar
 
-Kurala göre bir tamsayı ya da GUID veri türüyle birincil anahtarlar üzerinde oluşturulan değerler eklemek için Kur olacaktır. Diğer tüm özellikleri Kurulum hiçbir değer nesil olacaktır.
+Kural tarafından bileşik olmayan birincil anahtarlar türü kısa, int, uzun veya GUID üzerinde oluşturulan değerler eklemek için Kur olacaktır. Diğer tüm özellikleri Kurulum hiçbir değer nesil olacaktır.
 
 ## <a name="data-annotations"></a>Veri ek açıklamaları
 
@@ -85,7 +85,7 @@ Belirli bir özellik için değer oluşturma düzenini değiştirmek için Fluen
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/ValueGeneratedOnAdd.cs#Sample)]
 
 > [!WARNING]  
-> `ValueGeneratedOnAdd()`yalnızca bildiğiniz değerleri eklenen varlıklar için oluşturulur, bu EF değerlerini oluşturmak için gerçek mekanizmasını Kurulum garanti etmez EF sağlar.  Bkz: [üzerinde üretilen değer eklemek](#value-generated-on-add) daha fazla ayrıntı için bölüm.
+> `ValueGeneratedOnAdd()` yalnızca bildiğiniz değerleri eklenen varlıklar için oluşturulur, bu EF değerlerini oluşturmak için gerçek mekanizmasını Kurulum garanti etmez EF sağlar.  Bkz: [üzerinde üretilen değer eklemek](#value-generated-on-add) daha fazla ayrıntı için bölüm.
 
 ### <a name="value-generated-on-add-or-update-fluent-api"></a>Üzerinde üretilen değer ekleme veya güncelleştirme (Fluent API)
 
