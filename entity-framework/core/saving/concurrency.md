@@ -1,33 +1,61 @@
 ---
-title: "EF çekirdek eşzamanlılık - işleme"
+title: "Eşzamanlılık çakışmalarını - EF çekirdek işleme"
 author: rowanmiller
 ms.author: divega
-ms.date: 10/27/2016
-ms.assetid: bce0539d-b0cd-457d-be71-f7ca16f3baea
+ms.date: 03/03/2018
 ms.technology: entity-framework-core
 uid: core/saving/concurrency
-ms.openlocfilehash: bbd3e154c1b27b16c7d8f8fbf9ed51df0849795c
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 288d9c6fced5ebbaa2c366248c68547502c3698e
+ms.sourcegitcommit: 8f3be0a2a394253efb653388ec66bda964e5ee1b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 03/05/2018
 ---
-# <a name="handling-concurrency"></a>Eşzamanlılık işleme
+# <a name="handling-concurrency-conflicts"></a>Eşzamanlılık çakışmalarını işleme
 
-Ardından bir özelliği bir eşzamanlılık belirteci olarak yapılandırılmışsa, EF başka bir kullanıcı o değerini veritabanında değişiklikler kayda kaydedilirken değiştirdi denetleyin.
+> [!NOTE]
+> Bu sayfayı eşzamanlılık EF çekirdek nasıl çalıştığını ve uygulamanızda eşzamanlılık çakışmaları nasıl ele alınacağını belgeler. Bkz: [eşzamanlılık belirteçleri](xref:core/modeling/concurrency) eşzamanlılık belirteçleri modelinizde yapılandırma hakkında ayrıntılar için.
 
-> [!TIP]  
+> [!TIP]
 > Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/Concurrency/) github'da.
 
-## <a name="how-concurrency-handling-works-in-ef-core"></a>Eşzamanlılık işleme EF çekirdek nasıl çalışır?
+_Veritabanı eşzamanlılık_ , çok sayıda işlem veya kullanıcıların erişmek veya aynı anda aynı verileri bir veritabanındaki değiştirmek durumlarda başvuruyor. _Eşzamanlılık denetimi_ eşzamanlı değişiklikleri bulunması veri tutarlılığını sağlamak için kullanılan belirli mekanizmaları ifade eder.
 
-Eşzamanlılık işleme Entity Framework Çekirdek nasıl çalıştığını ayrıntılı bir açıklaması için bkz: [eşzamanlılık belirteçleri](../modeling/concurrency.md).
+EF çekirdek uygulayan _iyimser eşzamanlılık denetimini_, birden çok işlem sağlayacaktır veya kullanıcılar bağımsız olarak eşitleme yükü olmadan değişiklikler yapmak anlamına veya kilitleme. İdeal durumda, bu değişiklikler birbirleri ile müdahale etmez ve bu nedenle başarılı mümkün olacaktır. En kötü Durum senaryosu iki veya daha fazla işlem çakışan değişiklik dener ve bunlardan yalnızca birini başarılı olması gerekir.
+
+## <a name="how-concurrency-control-works-in-ef-core"></a>Eşzamanlılık denetimi EF çekirdek nasıl çalışır?
+
+Eşzamanlılık belirteçleri iyimser eşzamanlılık denetimini uygulamak için kullanılan olarak yapılandırılan özellikler: her bir güncelleştirme veya silme işlemi gerçekleştirildi sırasında `SaveChanges`, Veritabanı eşzamanlılık belirteci değeri karşı özgün karşılaştırılır değer EF çekirdek tarafından okunur.
+
+- Değerler eşleşiyorsa işlemi tamamlayabilir.
+- Değerler eşleşmiyorsa EF çekirdek başka bir kullanıcı çakışan bir işlem gerçekleştirdi ve geçerli işlemi iptal varsayar.
+
+Başka bir kullanıcı geçerli işlem ile çakışan bir işlem gerçekleştirdiğinde durum olarak bilinen _eşzamanlılık çakışması_.
+
+Veritabanı sağlayıcıları eşzamanlılık belirteci değerleri karşılaştırma uygulamak için sorumlu.
+
+İlişkisel veritabanları EF çekirdek eşzamanlılık belirteci değeri için bir denetimi içeren `WHERE` yan tümcesi herhangi `UPDATE` veya `DELETE` deyimleri. EF çekirdek deyimleri yürüttükten sonra etkilenen satır sayısını okur.
+
+Hiçbir satır etkilenen bir eşzamanlılık çakışması algılandı ve EF çekirdek oluşturur `DbUpdateConcurrencyException`.
+
+Örneğin, biz yapılandırmak isteyebilirsiniz `LastName` üzerinde `Person` bir eşzamanlılık belirteci olmalıdır. Kişi üzerinde herhangi bir güncelleştirme işlemi eşzamanlılık iade içerecektir sonra `WHERE` yan tümcesi:
+
+``` sql
+UPDATE [Person] SET [FirstName] = @p1
+WHERE [PersonId] = @p0 AND [LastName] = @p2;
+```
 
 ## <a name="resolving-concurrency-conflicts"></a>Eşzamanlılık çakışmalarını çözme
 
-Bir eşzamanlılık çakışması çözümleme geçerli kullanıcı veritabanında yapılan değişikliklerle bekleyen değişiklikler birleştirmek için bir algoritma kullanmayı içerir. Tam bir yaklaşım uygulamanız göre değişir, ancak ortak bir yaklaşım kullanıcıya değerleri görüntüler ve bunları doğru değerleri veritabanında depolanan karar sahip olmaktır.
+Bir kullanıcı için bazı değişiklikleri kaydetmek çalışırsa önceki örnekle devam etmeden bir `Person`, ancak başka bir kullanıcı zaten değiştirdi `LastName` bir özel durum.
 
-**Değerleri bir eşzamanlılık çakışması çözümlenmesine yardımcı olmak kullanılabilir üç kümesi vardır.**
+Bu noktada, uygulama yalnızca kullanıcı güncelleştirme çakışan değişiklikler nedeniyle başarısız oldu ve bildirin geçin. Ancak bu kaydı hala aynı gerçek kişi temsil emin olun ve işlemi yeniden denemek için kullanıcıdan istenebilir.
+
+Bu işlem, örneğidir _bir eşzamanlılık çakışması çözümleme_.
+
+Bir eşzamanlılık çakışması çözümleme içerir geçerli bekleyen değişiklikleri birleştirme `DbContext` veritabanındaki değerlerle. Hangi değerlerin birleştirilir uygulamanın göre değişir ve kullanıcı girişi tarafından yönlendirilebilir.
+
+**Değerleri bir eşzamanlılık çakışması çözümlenmesine yardımcı olmak kullanılabilir üç kümesi vardır:**
 
 * **Geçerli değerler** uygulama veritabanına yazmaya çalışıyordu değerlerdir.
 
@@ -35,106 +63,13 @@ Bir eşzamanlılık çakışması çözümleme geçerli kullanıcı veritabanın
 
 * **Veritabanı değerleri** şu anda veritabanında depolanan değerler.
 
-Bir eşzamanlılık çakışması işlemek için catch bir `DbUpdateConcurrencyException` sırasında `SaveChanges()`, kullanın `DbUpdateConcurrencyException.Entries` etkilenen varlıklar için yeni bir değişiklik kümesini hazırlamak ve ardından yeniden deneyin `SaveChanges()` işlemi.
+Bir eşzamanlılık çakışması işlemek için genel yaklaşım şöyledir:
 
-Aşağıdaki örnekte, `Person.FirstName` ve `Person.LastName` Kurulum eşzamanlılık belirteci olarak değiştirilebilir. Var olan bir `// TODO:` burada dahil veritabanına kaydedilecek değer seçmek için uygulama belirli mantığını konumda açıklama.
+1. Catch `DbUpdateConcurrencyException` sırasında `SaveChanges`.
+2. Kullanım `DbUpdateConcurrencyException.Entries` etkilenen varlıklar için yeni bir değişiklik kümesini hazırlamak için.
+3. Veritabanındaki geçerli değerleri yansıtacak şekilde eşzamanlılık belirteci özgün değerlerini yenileyin.
+4. Hiçbir çakışmalar kadar işlemi yeniden deneyin.
 
-<!-- [!code-csharp[Main](samples/core/Saving/Saving/Concurrency/Sample.cs?highlight=53,54)] -->
-``` csharp
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+Aşağıdaki örnekte, `Person.FirstName` ve `Person.LastName` Kurulum eşzamanlılık belirteçleri değiştirilebilir. Var olan bir `// TODO:` kaydedilecek değer seçmek için uygulama belirli mantığını dahil olduğu konumda açıklama.
 
-namespace EFSaving.Concurrency
-{
-    public class Sample
-    {
-        public static void Run()
-        {
-            // Ensure database is created and has a person in it
-            using (var context = new PersonContext())
-            {
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
-
-                context.People.Add(new Person { FirstName = "John", LastName = "Doe" });
-                context.SaveChanges();
-            }
-
-            using (var context = new PersonContext())
-            {
-                // Fetch a person from database and change phone number
-                var person = context.People.Single(p => p.PersonId == 1);
-                person.PhoneNumber = "555-555-5555";
-
-                // Change the persons name in the database (will cause a concurrency conflict)
-                context.Database.ExecuteSqlCommand("UPDATE dbo.People SET FirstName = 'Jane' WHERE PersonId = 1");
-
-                try
-                {
-                    // Attempt to save changes to the database
-                    context.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException ex)
-                {
-                    foreach (var entry in ex.Entries)
-                    {
-                        if (entry.Entity is Person)
-                        {
-                            // Using a NoTracking query means we get the entity but it is not tracked by the context
-                            // and will not be merged with existing entities in the context.
-                            var databaseEntity = context.People.AsNoTracking().Single(p => p.PersonId == ((Person)entry.Entity).PersonId);
-                            var databaseEntry = context.Entry(databaseEntity);
-
-                            foreach (var property in entry.Metadata.GetProperties())
-                            {
-                                var proposedValue = entry.Property(property.Name).CurrentValue;
-                                var originalValue = entry.Property(property.Name).OriginalValue;
-                                var databaseValue = databaseEntry.Property(property.Name).CurrentValue;
-
-                                // TODO: Logic to decide which value should be written to database
-                                // entry.Property(property.Name).CurrentValue = <value to be saved>;
-
-                                // Update original values to
-                                entry.Property(property.Name).OriginalValue = databaseEntry.Property(property.Name).CurrentValue;
-                            }
-                        }
-                        else
-                        {
-                            throw new NotSupportedException("Don't know how to handle concurrency conflicts for " + entry.Metadata.Name);
-                        }
-                    }
-
-                    // Retry the save operation
-                    context.SaveChanges();
-                }
-            }
-        }
-
-        public class PersonContext : DbContext
-        {
-            public DbSet<Person> People { get; set; }
-
-            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            {
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFSaving.Concurrency;Trusted_Connection=True;");
-            }
-        }
-
-        public class Person
-        {
-            public int PersonId { get; set; }
-
-            [ConcurrencyCheck]
-            public string FirstName { get; set; }
-
-            [ConcurrencyCheck]
-            public string LastName { get; set; }
-
-            public string PhoneNumber { get; set; }
-        }
-
-    }
-}
-```
+[!code-csharp[Main](../../../samples/core/Saving/Saving/Concurrency/Sample.cs?name=ConcurrencyHandlingCode&highlight=34-35)]

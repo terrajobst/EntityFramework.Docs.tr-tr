@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: f9fb64e2-6699-4d70-a773-592918c04c19
 ms.technology: entity-framework-core
 uid: core/querying/related-data
-ms.openlocfilehash: dadc6235c3879ae27ad5c99988a5e594872045df
-ms.sourcegitcommit: 4b7d3d3e258b0d9cb778bb45a9f4a33c0792e38e
+ms.openlocfilehash: 0d7705e0e5368435536e98d319c853ea8c732643
+ms.sourcegitcommit: 8f3be0a2a394253efb653388ec66bda964e5ee1b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 03/05/2018
 ---
 # <a name="loading-related-data"></a>İlgili verileri yükleniyor
 
@@ -152,7 +152,7 @@ Ayrıca, hangi ilgili varlıklar belleğe yüklenen filtre uygulayabilirsiniz.
 > [!NOTE]  
 > Bu özellik EF çekirdek 2.1 içinde sunulmuştur.
 
-Yükleme yavaş kullanmak için en basit yolu yüklemektir [Microsoft.EntityFramworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) paket ve çağrısıyla etkinleştirme `UseLazyLoadingProxies`. Örneğin:
+Yükleme yavaş kullanmak için en basit yolu yüklemektir [Microsoft.EntityFrameworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) paket ve çağrısıyla etkinleştirme `UseLazyLoadingProxies`. Örneğin:
 ```Csharp
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     => optionsBuilder
