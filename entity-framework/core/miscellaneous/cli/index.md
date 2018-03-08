@@ -4,11 +4,11 @@ author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
 ms.technology: entity-framework-core
-ms.openlocfilehash: 076e9251850ba10df323cd25922aa8b95b3a5491
-ms.sourcegitcommit: 5e2d97e731f975cf3405ff3deab2a3c75ad1b969
+ms.openlocfilehash: db25ed55e3724ee71743e563f39a6e4b16c17589
+ms.sourcegitcommit: fc68321c211aca38f7b9dc3a75677c6ca1b2524b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/15/2017
+ms.lasthandoff: 03/08/2018
 ---
 <a name="entity-framework-core-tools"></a>Entity Framework Çekirdek araçları
 ===========================
@@ -24,15 +24,9 @@ Her iki araçları aynı işlevselliği kullanıma sunar. Visual Studio'da geli�
 ----------
 Proje .NET Framework veya .NET Core hedefleme destek araçları.
 
-Projenize başka bir framework (örneğin, Evrensel Windows veya Xamarin) hedefliyorsa, ayrı bir oluşturmanızı öneririz .NET standart proje ve desteklenen çerçeveleri arası hedefleme biri.
+Ardından, bir sınıf kitaplığı kullanmak istiyorsanız, bir .NET Core veya .NET Framework sınıf kitaplığı mümkünse kullanmayı düşünün. Bu en az sorunları .NET araçları ile sonuçlanır. Sonra .NET standart bir sınıf kitaplığı kullanmak istiyorsanız bunun yerine, içine sınıf kitaplığı yükleyebilir conrete hedef platformu araçları sahip olması başlangıç projesi hedefleyen .NET Framework veya .NET Core kullanmanız gerekecektir. Bu başlangıç projesi kukla proje olabilir ile gerçek kodu yok--bunu yalnızca bir hedef için araç sağlamak için gereklidir.
 
-Çapraz hedef .NET Core için örneğin, projeyi sağ tıklatın ve **Düzenle \*.csproj**. Güncelleştirme `TargetFramework` şekilde özelliği. (Not, özellik adı çoğul olur.)
-
-``` xml
-<TargetFrameworks>netcoreapp2.0;netstandard2.0</TargetFrameworks>
-```
-
-.NET standart bir sınıf kitaplığı kullanıyorsanız, çapraz başlangıç projeniz .NET Framework veya .NET Core hedefliyorsa hedefi gerekmez.
+Projenize başka bir framework (örneğin, Evrensel Windows veya Xamarin) hedefliyorsa, ayrı bir .NET standart sınıf kitaplığı oluşturmanız gerekir. Bu durumda, aynı zamanda araçları tarafından kullanılan bir başlangıç projesi oluşturmak için yukarıdaki yönergeleri izleyin.
 
 <a name="startup-and-target-projects"></a>Başlangıç ve hedef projeleri
 ---------------------------

@@ -6,11 +6,11 @@ ms.date: 2/23/2018
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 ms.technology: entity-framework-core
 uid: core/providers/index
-ms.openlocfilehash: 520afe85af5a2eacbfc2764fdc0a8addb78c07ab
-ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
+ms.openlocfilehash: 6311f6a336198b45d307fa8c4318abd2e64e9df0
+ms.sourcegitcommit: fc68321c211aca38f7b9dc3a75677c6ca1b2524b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 03/08/2018
 ---
 # <a name="database-providers"></a>Veritabanı sağlayıcıları
 
@@ -71,7 +71,8 @@ install-package provider_package_name
 Bir kez yüklendikten sonra sağlayıcısında yapılandırır, `DbContext`, her iki içinde `OnConfiguring` yöntemi veya `AddDbContext` bir bağımlılık ekleme kapsayıcısını kullanıyorsanız yöntemi. Örneğin Aşağıdaki satırı geçirilen bağlantı dizesi ile SQL Server sağlayıcısı yapılandırır:
 
 ``` csharp
-  optionsBuilder.UseSqlServer("Server=(localdb)\mssqllocaldb;Database=MyDatabase;Trusted_Connection=True;");
+optionsBuilder.UseSqlServer(
+    "Server=(localdb)\mssqllocaldb;Database=MyDatabase;Trusted_Connection=True;");
 ```  
 
 Veritabanı sağlayıcıları EF belirli veritabanlarına benzersiz işlevselliğini etkinleştirmek için çekirdek genişletebilirsiniz. Bazı kavramları çoğu veritabanları için ortaktır ve birincil EF çekirdek bileşenler dahil edilir. Bu tür kavramları LINQ, işlemler, sorguları belirtme ve veritabanından yüklenmeden sonra değişiklikleri izleme nesneleri için içerir. Bazı kavramları, belirli bir sağlayıcıya özgü. Örneğin, SQL Server sağlayıcısı sayesinde [bellek için iyileştirilmiş tablolar yapılandırma](xref:core/providers/sql-server/memory-optimized-tables) (özelliği SQL Server'a özgü). Diğer kavramlar sağlayıcıları sınıfına özeldir. Örneğin, ilişkisel veritabanları için EF çekirdek sağlayıcılar ortak yapı `Microsoft.EntityFrameworkCore.Relational` kitaplığı yapılandırmak için tablo ve sütun eşlemelerini, yabancı anahtar kısıtlamaları, vb. API'ler sağlar. Sağlayıcılar genellikle NuGet paket olarak dağıtılır.
