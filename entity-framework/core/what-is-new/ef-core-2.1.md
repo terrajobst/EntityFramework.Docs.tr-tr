@@ -6,11 +6,11 @@ ms.date: 2/20/2018
 ms.assetid: 585F90A3-4D5A-4DD1-92D8-5243B14E0FEC
 ms.technology: entity-framework-core
 uid: core/what-is-new/ef-core-2.1
-ms.openlocfilehash: 1e5e9839bae1e5da4082d90c02d098bb3b2b43bd
-ms.sourcegitcommit: 4b7d3d3e258b0d9cb778bb45a9f4a33c0792e38e
+ms.openlocfilehash: bb1e691e0f22bd36467d58c02bde22c63067207e
+ms.sourcegitcommit: fcaeaf085171dfb5c080ec42df1d1df8dfe204fb
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 03/15/2018
 ---
 # <a name="new-features-in-ef-core-21"></a>EF çekirdek 2.1 yeni özellikler
 > [!NOTE]  
@@ -124,7 +124,7 @@ var query = context.Customers.Select(
 
 Bu sorgu için yalnızca iki SQL sorguları çevrilir unutmayın: biri müşteriler ve siparişler bir sonraki.
 
-### <a name="ownedattribute"></a>OwnedAttribute
+## <a name="ownedattribute"></a>OwnedAttribute
 
 Şimdi yapılandırmak olası [varlık türlerine ait](xref:core/modeling/owned-entities) yalnızca türüyle yorumlama tarafından `[Owned]` ve sahibi varlık emin olmak için model eklenir:
 
@@ -145,7 +145,7 @@ public class Order
 
 ## <a name="database-provider-compatibility"></a>Veritabanı sağlayıcısı uyumluluğu
 
-EF çekirdek 2.1 EF çekirdek 2.0 için oluşturulan veritabanı sağlayıcıları ile uyumlu olacak şekilde tasarlanmıştır. (Örn. değer dönüşümler) açıklanan özelliklerden bazıları güncellenmiş bir sağlayıcı gerektirirken başkalarının (örneğin yavaş yükleniyor) mevcut sağlayıcılarıyla yanar.
+EF çekirdek 2.1 EF çekirdek 2.0 için oluşturulan veritabanı sağlayıcıları ile uyumlu olacak şekilde tasarlanmıştır. (Örn. değer dönüşümler) açıklanan özelliklerden bazıları güncellenmiş bir sağlayıcı gerektirirken, diğerleri (örneğin yavaş yükleniyor) mevcut sağlayıcılarıyla yanar.
 
 > [!TIP]
 > Her beklenmeyen bulursanız uyumsuzluk herhangi sorun'deki yeni özelliklerin veya bunlar üzerinde Geribildiriminiz varsa lütfen kullanarak rapor [bizim sorun İzleyicisi](https://github.com/aspnet/EntityFrameworkCore/issues/new).
