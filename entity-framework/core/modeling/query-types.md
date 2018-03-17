@@ -6,11 +6,11 @@ ms.date: 2/26/2018
 ms.assetid: 9F4450C5-1A3F-4BB6-AC19-9FAC64292AAD
 ms.technology: entity-framework-core
 uid: core/modeling/query-types
-ms.openlocfilehash: 19a371c65da33e8209cc1ab3423a67c34ddae61e
-ms.sourcegitcommit: fc68321c211aca38f7b9dc3a75677c6ca1b2524b
+ms.openlocfilehash: dfd08cd1c30debddc79740bbf05c39c22e973855
+ms.sourcegitcommit: 01b5cf3b7c983bcced91e7cc4c78391ced2d2caa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 03/17/2018
 ---
 # <a name="query-types"></a>Sorgu türleri
 > [!NOTE]
@@ -20,7 +20,7 @@ Sorgu, EF çekirdek modeli eklenebilir salt okunur sorgu sonuç türleri türler
 
 Bunlar, varlık türleri için kavramsal olarak benzerdir:
 
-- Model ya da eklenen POCO C# türleri oldukları ```OnModelCreating``` kullanarak ```ModelBuilder.Query``` yöntemi, veya bir DbContext "Ayarla" özelliği aracılığıyla (olarak sorgu böyle bir özellik türleri için yazılan ```DbQuery<T>``` yerine, ```DbSet<T>```).
+- Model ya da eklenen POCO C# türleri oldukları ```OnModelCreating``` kullanarak ```ModelBuilder.Query``` yöntemi, veya bir DbContext "Ayarla" özelliği aracılığıyla (olarak sorgu böyle bir özellik türleri için yazılan ```DbQuery<T>``` yerine ```DbSet<T>```).
 - Bunlar normal varlık türü olarak aynı eşleme özelliklerinin çoğunu destekler. Örneğin, devralma eşleme, gezintilerini (limitiations aşağıya bakın) ve ilişkisel depoları, hedef veritabanı şema nesnelerindeki aracılığıyla yapılandırma yeteneğini üzerinde ```ToTable```, ```HasColumn``` fluent API yöntemlerini (veya veri ek açıklamaları).
 
 Sorgu türleri varlıktan farklı türleri, bunlar:
