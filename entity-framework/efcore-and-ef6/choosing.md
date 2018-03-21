@@ -5,11 +5,11 @@ ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 288f825b-b3e6-4096-971b-d0a1cb96770e
 uid: efcore-and-ef6/choosing
-ms.openlocfilehash: 9a113e0965fa75a03510199fb75165f6e9be0bbd
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: f0a632902384a65ea3cddf752ad262c7a2e89e2e
+ms.sourcegitcommit: 2ef0a4a90b01edd22b9206f8729b8de459ef8cab
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 03/20/2018
 ---
 # <a name="ef-core-and-ef6-which-one-is-right-for-you"></a>EF çekirdek ve EF6: hangisinin sizin için uygun
 
@@ -17,13 +17,11 @@ Aşağıdaki bilgiler Entity Framework Çekirdek ve Entity Framework 6 arasında
 
 ## <a name="guidance-for-new-applications"></a>Yeni uygulamalar için yönergeler
 
-EF çekirdek yeni bir üründür ve hala bazı önemli O/RM özellikleri eksik olduğundan, EF6 birçok uygulama için en uygun seçim olmaya devam eder.
+EF çekirdek yeni uygulamalar için uygulamanın EF çekirdek henüz uygulanmadı herhangi bir özellik gerektirmez ve tüm özelliklerini EF çekirdek yararlanmak isterseniz kullanmayı düşünün.
 
-**EF çekirdek için kullanmanızı öneririz uygulama türleri şunlardır:**
+EF6 .NET Framework 4.0 (veya sonraki bir sürümünü) gerektirir ve yalnızca (yani, .NET Core üzerinde çalışmaz ve diğer işletim sistemlerinde desteklenmez) Windows desteklenir, ancak hala uzun bu kısıtlamalar kabul edilebilir olduğundan yeni uygulamalar için uygun bir seçim değil ve bir uygulama için EF6 bulunmayan yeni EF çekirdek özellikler gerektirmez.
 
-* EF çekirdek henüz uygulanmadı özellikleri gerektirmeyen yeni uygulamalar. Gözden geçirme [özellik karşılaştırması](features.md) EF çekirdek uygulamanız için uygun bir seçim sunulup sunulmadığını görmek için.
-
-* .NET Core gibi Evrensel Windows Platformu (UWP) ve ASP.NET Core uygulamaları hedefleyen uygulamalar. .NET Framework (yani .NET Framework 4.5) gerektirdiği şekilde bu uygulamaları EF6 kullanamazsınız.
+Gözden geçirme [özellik karşılaştırması](features.md) EF çekirdek uygulamanız için uygun bir seçim sunulup sunulmadığını görmek için.
 
 ## <a name="guidance-for-existing-ef6-applications"></a>Mevcut EF6 uygulamalar için kılavuz
 
