@@ -1,21 +1,18 @@
 ---
-title: "ASP.NET Core - var olan veritabanı - EF Çekirdeğinde Başlarken"
+title: ASP.NET Core - var olan veritabanı - EF Çekirdeğinde Başlarken
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 2bc68bea-ff77-4860-bf0b-cf00db6712a0
 ms.technology: entity-framework-core
 uid: core/get-started/aspnetcore/existing-db
-ms.openlocfilehash: afd99d68d2ba25ce58a21dc48d2c7ce27f208807
-ms.sourcegitcommit: 5e2d97e731f975cf3405ff3deab2a3c75ad1b969
+ms.openlocfilehash: db2469d0badd428734425c1f568667f00bef2f4f
+ms.sourcegitcommit: 90139dbd6f485473afda0788a5a314c9aa601ea0
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/15/2017
+ms.lasthandoff: 03/23/2018
 ---
 # <a name="getting-started-with-ef-core-on-aspnet-core-with-an-existing-database"></a>Varolan bir veritabanını ile ASP.NET Core EF Çekirdeğinde ile çalışmaya başlama
-
-> [!IMPORTANT]  
-> [.NET Core SDK](https://www.microsoft.com/net/download/core) artık `project.json` veya Visual Studio 2015. Herkes .NET Core geliştirme yapılması önerilir [project.json için csproj geçirmek](https://docs.microsoft.com/dotnet/articles/core/migration/) ve [Visual Studio 2017](https://www.visualstudio.com/downloads/).
 
 Bu kılavuzda, Entity Framework kullanarak temel veri erişimi gerçekleştirdiği bir ASP.NET Core MVC uygulaması oluşturacaksınız. Varolan bir veritabanını temel alan bir Entity Framework modelini oluşturmak için ters mühendislik kullanır.
 
@@ -53,11 +50,11 @@ Bu öğretici kullanan bir **blog** veritabanı, yerel veritabanı örneğinde v
 
 ## <a name="create-a-new-project"></a>Yeni bir proje oluşturma
 
-* Visual Studio 2017 Aç
+* Open Visual Studio 2017
 * **Dosya -> Yeni Proje ->...**
 * Sol menüden seçin **yüklü şablonları -> Visual C# -> Web ->**
 * Seçin **ASP.NET çekirdek Web uygulaması (.NET Core)** proje şablonu
-* Girin **EFGetStarted.AspNetCore.ExistingDb** tıklatın ve adı olarak **Tamam**
+* Enter **EFGetStarted.AspNetCore.ExistingDb** as the name and click **OK**
 * Bekle **çekirdek yeni bir ASP.NET Web uygulaması** görünmesi iletişim
 * Altında **ASP.NET Core şablonları 2.0** seçin **Web uygulaması (Model-View-Controller)**
 * Emin **kimlik doğrulaması** ayarlanır **doğrulaması yok**
@@ -69,15 +66,15 @@ EF çekirdek kullanmak için hedeflemek istediğiniz veritabanı sağlayıcı(la
 
 * **Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu**
 
-* Çalıştırma`Install-Package Microsoft.EntityFrameworkCore.SqlServer`
+* `Install-Package Microsoft.EntityFrameworkCore.SqlServer`'i çalıştırın.
 
 Veritabanından bir model oluşturmak için size bazı Entity Framework araçları kullanarak. Böylece biz de araçları paketini yükleyecek:
 
-* Çalıştırma`Install-Package Microsoft.EntityFrameworkCore.Tools`
+* `Install-Package Microsoft.EntityFrameworkCore.Tools`'i çalıştırın.
 
 Daha sonra denetleyicileri ve görünümleri oluşturmak için size bazı ASP.NET Core İskele araçlarını kullanma. Böylece biz de bu tasarım paket yükleyecek:
 
-* Çalıştırma`Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design`
+* `Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design`'i çalıştırın.
 
 ## <a name="reverse-engineer-your-model"></a>Tersine mühendislik modelinizi
 
@@ -144,7 +141,7 @@ Bağımlılık ekleme kavramı ASP.NET Core taşımaktadır. Hizmetler (gibi `Bl
 
 ASP.NET çekirdek yapılandırması genellikle içinde gerçekleştirilir **haline**. Bu desene uyacak şekilde biz veritabanı sağlayıcısı yapılandırmasını taşınır **haline**.
 
-* Açık`Models\BloggingContext.cs`
+* Açık `Models\BloggingContext.cs`
 * Silme `OnConfiguring(...)` yöntemi
 
 ``` csharp
@@ -198,7 +195,7 @@ Askılama özelliğinin etkinleştirildiğinden, bir denetleyici için iskele `B
 
 * **Hata ayıklama, hata ayıklama olmadan Başlat ->**
 * Uygulama oluşturma ve bir web tarayıcısında Aç
-* Gidin`/Blogs`
+* Gidin `/Blogs`
 * Tıklatın **Yeni Oluştur**
 * Girin bir **Url** tıklatın ve yeni blog **oluştur**
 

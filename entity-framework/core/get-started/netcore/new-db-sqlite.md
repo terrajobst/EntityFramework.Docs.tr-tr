@@ -1,26 +1,23 @@
 ---
-title: ".NET Core - yeni veritabanı - EF Çekirdeğinde Başlarken"
+title: .NET Core - yeni veritabanı - EF Çekirdeğinde Başlarken
 author: rick-anderson
 ms.author: riande
 ms.author2: tdykstra
-description: "Entity Framework Çekirdek kullanarak .NET Core'u kullanmaya başlama"
-keywords: ".NET core, Entity Framework Çekirdek, VS kodu, Visual Studio kodu, Mac, Linux"
+description: Entity Framework Çekirdek kullanarak .NET Core'u kullanmaya başlama
+keywords: .NET core, Entity Framework Çekirdek, VS kodu, Visual Studio kodu, Mac, Linux
 ms.date: 04/05/2017
 ms.assetid: 099d179e-dd7b-4755-8f3c-fcde914bf50b
 ms.technology: entity-framework-core
 uid: core/get-started/netcore/new-db-sqlite
-ms.openlocfilehash: 3becf75e7a513a3aa18c3c2daf628b65327365b0
-ms.sourcegitcommit: 0858f157b806f4a881b94ddbeecf1ece1d53e1e0
+ms.openlocfilehash: 2511dfa3f3262bb12c2058dc1c402b7dcc4c670d
+ms.sourcegitcommit: 90139dbd6f485473afda0788a5a314c9aa601ea0
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/21/2018
+ms.lasthandoff: 03/23/2018
 ---
 # <a name="getting-started-with-ef-core-on-net-core-console-app-with-a-new-database"></a>.NET Core konsol uygulaması EF Çekirdeğinde ile yeni bir veritabanı ile çalışmaya başlama
 
 Bu kılavuzda, Entity Framework Çekirdek kullanarak bir SQLite veritabanı karşı temel veri erişimi gerçekleştirdiği bir .NET Core konsol uygulaması oluşturacaksınız. Geçişler, modelden veritabanı oluşturmak için kullanır. Bkz: [ASP.NET Core - yeni veritabanı](xref:core/get-started/aspnetcore/new-db) ASP.NET Core MVC kullanarak bir Visual Studio sürümü.
-
-> [!NOTE]  
-> [.NET Core SDK](https://www.microsoft.com/net/download/core) artık `project.json` veya Visual Studio 2015. Öneririz [project.json için csproj geçirmek](https://docs.microsoft.com/dotnet/articles/core/migration/). Visual Studio kullanıyorsanız, geçiş için öneririz [Visual Studio 2017](https://www.visualstudio.com/downloads/).
 
 > [!TIP]  
 > Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/NetCore/ConsoleApp.SQLite) github'da.
