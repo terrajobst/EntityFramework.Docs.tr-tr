@@ -1,15 +1,15 @@
 ---
-title: "Tasarım zamanı DbContext oluşturma - EF çekirdek"
+title: Tasarım zamanı DbContext oluşturma - EF çekirdek
 author: bricelam
 ms.author: bricelam
 ms.date: 10/27/2017
 ms.technology: entity-framework-core
 uid: core/miscellaneous/cli/dbcontext-creation
-ms.openlocfilehash: a899c474cc45437bff7c82ce5bddeb915b15c3b0
-ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
+ms.openlocfilehash: 8b38d300d31038bdf5cd877aa3c42b7f5f97eabc
+ms.sourcegitcommit: 7113e8675f26cbb546200824512078bf360225df
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/22/2017
+ms.lasthandoff: 03/28/2018
 ---
 <a name="design-time-dbcontext-creation"></a>Tasarım zamanı DbContext oluşturma
 ==============================
@@ -38,6 +38,7 @@ Araçlar uygulayarak, DbContext oluşturmak nasıl anlayabilirsiniz `IDesignTime
 
 ``` csharp
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace MyProject
@@ -59,7 +60,7 @@ namespace MyProject
 > `args` Parametresi şu anda kullanılmayan bağlıdır. Yoktur [bir sorun] [ 7] araçları tasarım zamanı bağımsız değişkenlerini belirtme olanağı izleme.
 
 Tasarım zamanı Fabrika DbContext farklı çalışma zamanında tasarım zamanından yapılandırmak, gerekirse çok kullanışlı olabilir `DbContext` ek parametreler kaydedilmedi dı içinde dı hiç kullanmıyorsanız Oluşturucusu alır ya da Eğer bazı için tercih ettiğiniz yüklüyse neden bir `BuildWebHost` ASP.NET Core uygulamanızın yöntemi  
-`Main`sınıf.
+`Main` Sınıf.
 
   [1]: xref:core/managing-schemas/migrations/index
   [2]: xref:core/miscellaneous/configuring-dbcontext
