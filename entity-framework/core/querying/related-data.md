@@ -1,5 +1,5 @@
 ---
-title: "Yükleme ilgili verileri - EF çekirdek"
+title: Yükleme ilgili verileri - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -43,7 +43,7 @@ Birden çok düzeyinden birini kullanarak ilgili verileri içerecek şekilde ili
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#SingleThenInclude)]
 
 > [!NOTE]  
-> Visual Studio'nun geçerli sürümleri yanlış kod tamamlama seçenekleri sunar ve sözdizimi hataları ile kullanırken işaretlenmesini doğru ifadeleri neden olabilir `ThenInclude` yöntemi sonra bir koleksiyon gezinme özelliği. Https://github.com/dotnet/roslyn/issues/8237 izlenen bir IntelliSense hatanın belirtisidir. Kod doğru olduğundan ve başarıyla derlenen sürece bu alacaklardır sözdizimi hataları yoksaymak güvenlidir. 
+> Visual Studio'nun geçerli sürümleri yanlış kod tamamlama seçenekleri sunar ve sözdizimi hataları ile kullanırken işaretlenmesini doğru ifadeleri neden olabilir `ThenInclude` yöntemi sonra bir koleksiyon gezinme özelliği. https://github.com/dotnet/roslyn/issues/8237 izlenen bir IntelliSense hatanın belirtisidir. Kod doğru olduğundan ve başarıyla derlenen sürece bu alacaklardır sözdizimi hataları yoksaymak güvenlidir. 
 
 Birden fazla çağrı zincir `ThenInclude` daha ilgili verileri düzeylerini dahil olmak üzere devam etmek için.
 
