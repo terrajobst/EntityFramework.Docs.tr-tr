@@ -1,73 +1,76 @@
 ---
-title: "Sorgu türleri - EF çekirdek"
+title: Sorgu türleri - EF çekirdek
 author: anpete
 ms.author: anpete
 ms.date: 2/26/2018
 ms.assetid: 9F4450C5-1A3F-4BB6-AC19-9FAC64292AAD
 ms.technology: entity-framework-core
 uid: core/modeling/query-types
-ms.openlocfilehash: dfd08cd1c30debddc79740bbf05c39c22e973855
-ms.sourcegitcommit: 01b5cf3b7c983bcced91e7cc4c78391ced2d2caa
+ms.openlocfilehash: 4e02f106e086d243b23a60c02838f32555be210e
+ms.sourcegitcommit: 26f33758c47399ae933f22fec8e1d19fa7d2c0b7
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 04/19/2018
 ---
-# <a name="query-types"></a><span data-ttu-id="b9d2d-102">Sorgu türleri</span><span class="sxs-lookup"><span data-stu-id="b9d2d-102">Query Types</span></span>
+# <a name="query-types"></a><span data-ttu-id="b7fc4-102">Sorgu türleri</span><span class="sxs-lookup"><span data-stu-id="b7fc4-102">Query Types</span></span>
 > [!NOTE]
-> <span data-ttu-id="b9d2d-103">Bu özellik EF çekirdek 2.1 yenilikler</span><span class="sxs-lookup"><span data-stu-id="b9d2d-103">This feature is new in EF Core 2.1</span></span>
+> <span data-ttu-id="b7fc4-103">Bu özellik EF çekirdek 2.1 yenilikler</span><span class="sxs-lookup"><span data-stu-id="b7fc4-103">This feature is new in EF Core 2.1</span></span>
 
-<span data-ttu-id="b9d2d-104">Sorgu, EF çekirdek modeli eklenebilir salt okunur sorgu sonuç türleri türleridir.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-104">Query Types are read-only query result types that can be added to the EF Core model.</span></span> <span data-ttu-id="b9d2d-105">Sorgu türleri geçici (anonim türleri gibi) sorgulama yapmayı etkinleştirmek, ancak belirtilen eşleme yapılandırması olduğundan daha esnektir.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-105">Query Types enable ad-hoc querying (like anonymous types), but are more flexible because they can have mapping configuration specified.</span></span>
+<span data-ttu-id="b7fc4-104">EF çekirdek modeli varlık türlerine ek olarak içerebilir _sorgu türü_, varlık türleri eşlenmediği veri veritabanı sorguları yürütmek için kullanılabilir.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-104">In addition to entity types, an EF Core model can contain _query types_, which can be used to carry out database queries against data that isn't mapped to entity types.</span></span>
 
-<span data-ttu-id="b9d2d-106">Bunlar, varlık türleri için kavramsal olarak benzerdir:</span><span class="sxs-lookup"><span data-stu-id="b9d2d-106">They are conceptually similar to Entity Types in that:</span></span>
+<span data-ttu-id="b7fc4-105">Sorgu türleri varlık türleriyle birçok benzerlikler vardır:</span><span class="sxs-lookup"><span data-stu-id="b7fc4-105">Query types have many similarities with entity types:</span></span>
 
-- <span data-ttu-id="b9d2d-107">Model ya da eklenen POCO C# türleri oldukları ```OnModelCreating``` kullanarak ```ModelBuilder.Query``` yöntemi, veya bir DbContext "Ayarla" özelliği aracılığıyla (olarak sorgu böyle bir özellik türleri için yazılan ```DbQuery<T>``` yerine ```DbSet<T>```).</span><span class="sxs-lookup"><span data-stu-id="b9d2d-107">They are POCO C# types that are added to the model, either in ```OnModelCreating``` using the ```ModelBuilder.Query``` method, or via a DbContext "set" property (for query types such a property is typed as ```DbQuery<T>``` rather than ```DbSet<T>```).</span></span>
-- <span data-ttu-id="b9d2d-108">Bunlar normal varlık türü olarak aynı eşleme özelliklerinin çoğunu destekler.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-108">They support much of the same mapping capabilities as regular entity types.</span></span> <span data-ttu-id="b9d2d-109">Örneğin, devralma eşleme, gezintilerini (limitiations aşağıya bakın) ve ilişkisel depoları, hedef veritabanı şema nesnelerindeki aracılığıyla yapılandırma yeteneğini üzerinde ```ToTable```, ```HasColumn``` fluent API yöntemlerini (veya veri ek açıklamaları).</span><span class="sxs-lookup"><span data-stu-id="b9d2d-109">For example, inheritance mapping, navigations (see limitiations below) and, on relational stores, the ability to configure the target database schema objects via ```ToTable```, ```HasColumn``` fluent-api methods (or data annotations).</span></span>
+- <span data-ttu-id="b7fc4-106">Bunlar ayrıca modeline ya da eklenebilir, `OnModelCreating`, veya türetilmiş bir "Ayarla" özellik aracılığıyla _DbContext_.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-106">They can also be added to the model either in `OnModelCreating`, or via a "set" property on a derived _DbContext_.</span></span>
+- <span data-ttu-id="b7fc4-107">Bunlar aynı eşleme özelliklerini, devralma eşleme, gezinti özellikleri (sınırlamalar aşağıya bakın) gibi ve ilişkisel depoları, hedef veritabanı nesneleri ve sütunları fluent API yöntemlerini veya veri ek açıklamaları aracılığıyla yapılandırma yeteneğini destekler.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-107">They support many of the same mapping capabilities, like inheritance mapping, navigation properties (see limitations below) and, on relational stores, the ability to configure the target database objects and columns via fluent API methods or data annotations.</span></span>
 
-<span data-ttu-id="b9d2d-110">Sorgu türleri varlıktan farklı türleri, bunlar:</span><span class="sxs-lookup"><span data-stu-id="b9d2d-110">Query Types are different from entity types in that they:</span></span>
+<span data-ttu-id="b7fc4-108">Ancak varlıktan farklı türleri, bunlar:</span><span class="sxs-lookup"><span data-stu-id="b7fc4-108">However they are different from entity types in that they:</span></span>
 
-- <span data-ttu-id="b9d2d-111">Tanımlanmamış bir anahtarı gerektirmez.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-111">Do not require a key to be defined.</span></span>
-- <span data-ttu-id="b9d2d-112">Hiçbir zaman değişikliği İzleyicisi tarafından izlenir.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-112">Are never tracked by the Change Tracker.</span></span>
-- <span data-ttu-id="b9d2d-113">Hiçbir zaman kurala göre bulunur.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-113">Are never discovered by convention.</span></span>
-- <span data-ttu-id="b9d2d-114">Yalnızca bir alt kümesini Gezinti eşleme özelliklerini - özellikle destek, hiçbir zaman bir ilişkinin asıl ucu çalışabilir.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-114">Only support a subset of navigation mapping capabilities - Specifically, they may never act as the principal end of a relationship.</span></span>
-- <span data-ttu-id="b9d2d-115">Eşlenmiş bir _sorgu tanımlama_ -A tanımlama sorgudur sorgu türü için bir veri kaynağı görevi gören bir ikincil sorgu.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-115">May be mapped to a _defining query_ - A Defining Query is a secondary query that acts a data source for a Query Type.</span></span>
+- <span data-ttu-id="b7fc4-109">Tanımlanmamış bir anahtarı gerektirmez.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-109">Do not require a key to be defined.</span></span>
+- <span data-ttu-id="b7fc4-110">Üzerinde değişiklikler için hiçbir zaman izlenir _DbContext_ ve bu nedenle hiçbir zaman eklenir, güncelleştirilmiş veya veritabanında silindi.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-110">Are never tracked for changes on the _DbContext_ and therefore are never inserted, updated or deleted on the database.</span></span>
+- <span data-ttu-id="b7fc4-111">Hiçbir zaman kurala göre bulunur.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-111">Are never discovered by convention.</span></span>
+- <span data-ttu-id="b7fc4-112">Yalnızca bir alt kümesini Gezinti eşleme özelliklerini - özellikle destek, hiçbir zaman bir ilişkinin asıl ucu çalışabilir.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-112">Only support a subset of navigation mapping capabilities - Specifically, they may never act as the principal end of a relationship.</span></span>
+- <span data-ttu-id="b7fc4-113">Üzerinde ele _ModelBuilder_ kullanarak `Query` yöntemi yerine `Entity` yöntemi.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-113">Are addressed on the _ModelBuilder_ using the `Query` method rather than the `Entity` method.</span></span>
+- <span data-ttu-id="b7fc4-114">Üzerinde eşlenen _DbContext_ türünün özelliklerini aracılığıyla `DbQuery<T>` yerine `DbSet<T>`</span><span class="sxs-lookup"><span data-stu-id="b7fc4-114">Are mapped on the _DbContext_ through properties of type `DbQuery<T>` rather than `DbSet<T>`</span></span>
+- <span data-ttu-id="b7fc4-115">Kullanarak veritabanı nesneleri eşlenen `ToView` yöntemi yerine `ToTable`.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-115">Are mapped to database objects using the `ToView` method, rather than `ToTable`.</span></span>
+- <span data-ttu-id="b7fc4-116">Eşlenmiş bir _sorgu tanımlama_ - A olan bir sorgu türü için bir veri kaynağı görevi gören modelinde bildirilen ikincil bir sorgu sorgu tanımlama.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-116">May be mapped to a _defining query_ - A defining query is a secondary query declared in the model that acts a data source for a query type.</span></span>
 
-<span data-ttu-id="b9d2d-116">Sorgu türleri için temel kullanım senaryoları bazıları şunlardır:</span><span class="sxs-lookup"><span data-stu-id="b9d2d-116">Some of the main usage scenarios for query types are:</span></span>
+<span data-ttu-id="b7fc4-117">Sorgu türleri için temel kullanım senaryoları bazıları şunlardır:</span><span class="sxs-lookup"><span data-stu-id="b7fc4-117">Some of the main usage scenarios for query types are:</span></span>
 
-- <span data-ttu-id="b9d2d-117">Veritabanı görünümlerine eşleme.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-117">Mapping to database views.</span></span>
-- <span data-ttu-id="b9d2d-118">Tanımlı birincil anahtarı olmayan tablolar için eşleme.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-118">Mapping to tables that do not have a primary key defined.</span></span>
-- <span data-ttu-id="b9d2d-119">Dönüş türü için geçici hizmet veren ```FromSql()``` sorgular.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-119">Serving as the return type for ad hoc ```FromSql()``` queries.</span></span>
-- <span data-ttu-id="b9d2d-120">Model içinde tanımlanan sorgulara eşleme.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-120">Mapping to queries defined in the model.</span></span>
-
-> [!TIP]
-> <span data-ttu-id="b9d2d-121">Bir veritabanı görünümü için bir sorgu türü eşleme elde edilir kullanarak ```ToTable``` fluent API.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-121">Mapping a query type to a database view is achieved using the ```ToTable``` fluent API.</span></span>
-
-## <a name="example"></a><span data-ttu-id="b9d2d-122">Örnek</span><span class="sxs-lookup"><span data-stu-id="b9d2d-122">Example</span></span>
-
-<span data-ttu-id="b9d2d-123">Aşağıdaki örnek sorgu türü bir veritabanı görünümü sorgulamak için nasıl kullanılacağını gösterir.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-123">The following example shows how to use Query Type to query a database view.</span></span>
+- <span data-ttu-id="b7fc4-118">Dönüş türü için geçici hizmet veren `FromSql()` sorgular.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-118">Serving as the return type for ad hoc `FromSql()` queries.</span></span>
+- <span data-ttu-id="b7fc4-119">Veritabanı görünümlerine eşleme.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-119">Mapping to database views.</span></span>
+- <span data-ttu-id="b7fc4-120">Tanımlı birincil anahtarı olmayan tablolar için eşleme.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-120">Mapping to tables that do not have a primary key defined.</span></span>
+- <span data-ttu-id="b7fc4-121">Model içinde tanımlanan sorgulara eşleme.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-121">Mapping to queries defined in the model.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="b9d2d-124">Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFrameworkCore/tree/dev/samples/QueryTypes) github'da.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-124">You can view this article's [sample](https://github.com/aspnet/EntityFrameworkCore/tree/dev/samples/QueryTypes) on GitHub.</span></span>
+> <span data-ttu-id="b7fc4-122">Bir veritabanı nesnesi için bir sorgu türü eşleme elde edilir kullanarak `ToView` fluent API.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-122">Mapping a query type to a database object is achieved using the `ToView` fluent API.</span></span> <span data-ttu-id="b7fc4-123">EF çekirdek açısından bakıldığında, bu yöntemi, belirtilen veritabanı nesnesidir bir _Görünüm_, yani bir salt okunur sorgu kaynağı olarak kabul edilir ve güncelleştirme hedefi, eklenemiyor veya silme işlemleri.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-123">From the perspective of EF Core, the database object specified in this method is a _view_, meaning that it is treated as a read-only query source and cannot be the target of update, insert or delete operations.</span></span> <span data-ttu-id="b7fc4-124">Ancak, bu gelmez veritabanı nesne bir veritabanı görünümü olması gerektiğine - alternatif olarak salt okunur olarak kabul edilecek bir veritabanı tablosu olabilir.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-124">However, this does not mean that the database object is actually required to be a database view - It can alternatively be a database table that will be treated as read-only.</span></span> <span data-ttu-id="b7fc4-125">Buna karşılık, varlık türleri için bir veritabanı nesnesi içinde belirtilen EF çekirdek varsayar `ToTable` yöntemi kabul bir _tablo_, bir sorgu kaynağı olarak kullanılabilir ancak aynı zamanda güncelleştirme tarafından hedeflenmiş silme anlamına gelir ve Ekle işlemler.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-125">Conversely, for entity types, EF Core assumes that a database object specified in the `ToTable` method can be treated as a _table_, meaning that it can be used as a query source but also targeted by update, delete and insert operations.</span></span> <span data-ttu-id="b7fc4-126">Aslında, bir veritabanı görünümünde adını belirtebilirsiniz `ToTable` ve görünüm veritabanında güncelleştirilebilir için yapılandırılmış olduğu sürece her şeyi sorunsuz çalışması gerekir.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-126">In fact, you can specify the name of a database view in `ToTable` and everything should work fine as long as the view is configured to be updatable on the database.</span></span>
 
-<span data-ttu-id="b9d2d-125">İlk olarak, basit bir Blog ve Post modelinin tanımlayın:</span><span class="sxs-lookup"><span data-stu-id="b9d2d-125">First, we define a simple Blog and Post model:</span></span>
+## <a name="example"></a><span data-ttu-id="b7fc4-127">Örnek</span><span class="sxs-lookup"><span data-stu-id="b7fc4-127">Example</span></span>
+
+<span data-ttu-id="b7fc4-128">Aşağıdaki örnek sorgu türü bir veritabanı görünümü sorgulamak için nasıl kullanılacağını gösterir.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-128">The following example shows how to use Query Type to query a database view.</span></span>
+
+> [!TIP]
+> <span data-ttu-id="b7fc4-129">Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFrameworkCore/tree/dev/samples/QueryTypes) github'da.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-129">You can view this article's [sample](https://github.com/aspnet/EntityFrameworkCore/tree/dev/samples/QueryTypes) on GitHub.</span></span>
+
+<span data-ttu-id="b7fc4-130">İlk olarak, basit bir Blog ve Post modelinin tanımlayın:</span><span class="sxs-lookup"><span data-stu-id="b7fc4-130">First, we define a simple Blog and Post model:</span></span>
 
 [!code-csharp[Main](../../../efcore-dev/samples/QueryTypes/Program.cs#Entities)]
 
-<span data-ttu-id="b9d2d-126">Ardından, bize her blog ile ilişkili gönderileri sayısı sorgulamaya izin veren basit veritabanı görünümü tanımlayın:</span><span class="sxs-lookup"><span data-stu-id="b9d2d-126">Next, we define a simple database view that will allow us to query the number of posts associated with each blog:</span></span>
+<span data-ttu-id="b7fc4-131">Ardından, bize her blog ile ilişkili gönderileri sayısı sorgulamaya izin veren basit veritabanı görünümü tanımlayın:</span><span class="sxs-lookup"><span data-stu-id="b7fc4-131">Next, we define a simple database view that will allow us to query the number of posts associated with each blog:</span></span>
 
 [!code-csharp[Main](../../../efcore-dev/samples/QueryTypes/Program.cs#View)]
 
-<span data-ttu-id="b9d2d-127">Ardından, veritabanı görünümü sonucundan tutmak için bir sınıf tanımlayın:</span><span class="sxs-lookup"><span data-stu-id="b9d2d-127">Next, we define a class to hold the result from the database view:</span></span>
+<span data-ttu-id="b7fc4-132">Ardından, veritabanı görünümü sonucundan tutmak için bir sınıf tanımlayın:</span><span class="sxs-lookup"><span data-stu-id="b7fc4-132">Next, we define a class to hold the result from the database view:</span></span>
 
 [!code-csharp[Main](../../../efcore-dev/samples/QueryTypes/Program.cs#QueryType)]
 
-<span data-ttu-id="b9d2d-128">Ardından, biz sorgu türünde yapılandırın _OnModelCreating_ kullanarak ```modelBuilder.Query<T>``` API.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-128">Next, we configure the query type in _OnModelCreating_ using the ```modelBuilder.Query<T>``` API.</span></span>
-<span data-ttu-id="b9d2d-129">Sorgu türü eşlemeyi yapılandırmak için standart fluent yapılandırma API'leri kullanın:</span><span class="sxs-lookup"><span data-stu-id="b9d2d-129">We use standard fluent configuration APIs to configure the mapping for the Query Type:</span></span>
+<span data-ttu-id="b7fc4-133">Ardından, biz sorgu türünde yapılandırın _OnModelCreating_ kullanarak `modelBuilder.Query<T>` API.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-133">Next, we configure the query type in _OnModelCreating_ using the `modelBuilder.Query<T>` API.</span></span>
+<span data-ttu-id="b7fc4-134">Sorgu türü eşlemeyi yapılandırmak için standart fluent yapılandırma API'leri kullanın:</span><span class="sxs-lookup"><span data-stu-id="b7fc4-134">We use standard fluent configuration APIs to configure the mapping for the Query Type:</span></span>
 
 [!code-csharp[Main](../../../efcore-dev/samples/QueryTypes/Program.cs#Configuration)]
 
-<span data-ttu-id="b9d2d-130">Son olarak, biz veritabanı görünümü standart şekilde sorgulama yapabilirsiniz:</span><span class="sxs-lookup"><span data-stu-id="b9d2d-130">Finally, we can query the database view in the standard way:</span></span>
+<span data-ttu-id="b7fc4-135">Son olarak, biz veritabanı görünümü standart şekilde sorgulama yapabilirsiniz:</span><span class="sxs-lookup"><span data-stu-id="b7fc4-135">Finally, we can query the database view in the standard way:</span></span>
 
 [!code-csharp[Main](../../../efcore-dev/samples/QueryTypes/Program.cs#Query)]
 
 > [!TIP]
-> <span data-ttu-id="b9d2d-131">Biz de içerik düzeyi sorgu özelliği (DbQuery) bu tür sorguları için bir kök olarak görev yapması için tanımladığınız unutmayın.</span><span class="sxs-lookup"><span data-stu-id="b9d2d-131">Note we have also defined a context level query property (DbQuery) to act as a root for queries against this type.</span></span>
+> <span data-ttu-id="b7fc4-136">Biz de içerik düzeyi sorgu özelliği (DbQuery) bu tür sorguları için bir kök olarak görev yapması için tanımladığınız unutmayın.</span><span class="sxs-lookup"><span data-stu-id="b7fc4-136">Note we have also defined a context level query property (DbQuery) to act as a root for queries against this type.</span></span>
