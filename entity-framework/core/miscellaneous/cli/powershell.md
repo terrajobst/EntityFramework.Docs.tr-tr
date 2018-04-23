@@ -1,14 +1,14 @@
 ---
-title: "Paket Yöneticisi Konsolu (Visual Studio) - EF çekirdek"
+title: Paket Yöneticisi Konsolu (Visual Studio) - EF çekirdek
 author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
 ms.technology: entity-framework-core
-ms.openlocfilehash: aacf8c8564a3966db6202c9ff1c1c02a19a10814
-ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
+ms.openlocfilehash: a53455a78db4bc504c45abafdacf9a15381f608e
+ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 04/16/2018
 ---
 <a name="ef-core-package-manager-console-tools"></a>EF çekirdek Paket Yöneticisi konsolu araçları
 =====================================
@@ -100,9 +100,9 @@ Son geçiş kaldırır.
 
 Parametreler:
 
-|        |                                                                       |
-|:-------|:----------------------------------------------------------------------|
-| -Force | Geçiş veritabanına uygulanıp uygulanmadığını denetleyin yok. |
+|        |                                                              |
+|:-------|:-------------------------------------------------------------|
+| -Force | Veritabanına uyguladıysanız geçişi geri alın. |
 
 ### <a name="scaffold-dbcontext"></a>Scaffold-DbContext
 
@@ -115,8 +115,9 @@ Parametreler:
 | <nobr>***-Bağlantı*** \<dize ></nobr> | Veritabanı bağlantı dizesi.                                                           |
 | ***-Sağlayıcısı*** \<dize >                | Kullanılacak sağlayıcısı. (Örn. Microsoft.EntityFrameworkCore.SqlServer)                              |
 | -OutputDir \<dize >                     | Dosyaları yerleştirmek için dizin. Proje dizininin göreli yollardır.                      |
+| -ContextDir \<dize >                    | DbContext dosyasını yerleştirmek için dizin. Proje dizininin göreli yollardır.             |
 | -Context \<dize >                       | Oluşturulacak DbContext adı.                                                           |
-| -Schemas \<String[]>                     | Varlık türleri oluşturmak için tabloları şemalar.                                              |
+| -Şemaları \<String [] >                     | Varlık türleri oluşturmak için tabloları şemalar.                                              |
 | -Tabloları \<String [] >                      | Varlık türleri için oluşturmak üzere tablolara.                                                         |
 | -DataAnnotations                         | Öznitelikler, model (mümkün olduğunda) yapılandırmak için kullanın. Atlanırsa, yalnızca fluent API kullanılır. |
 | -UseDatabaseNames                        | Doğrudan veritabanından tablo ve sütun adları kullanın.                                           |

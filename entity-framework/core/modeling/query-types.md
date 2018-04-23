@@ -1,45 +1,48 @@
 ---
-title: "Sorgu türleri - EF çekirdek"
+title: Sorgu türleri - EF çekirdek
 author: anpete
 ms.author: anpete
 ms.date: 2/26/2018
 ms.assetid: 9F4450C5-1A3F-4BB6-AC19-9FAC64292AAD
 ms.technology: entity-framework-core
 uid: core/modeling/query-types
-ms.openlocfilehash: dfd08cd1c30debddc79740bbf05c39c22e973855
-ms.sourcegitcommit: 01b5cf3b7c983bcced91e7cc4c78391ced2d2caa
+ms.openlocfilehash: 4e02f106e086d243b23a60c02838f32555be210e
+ms.sourcegitcommit: 26f33758c47399ae933f22fec8e1d19fa7d2c0b7
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 04/19/2018
 ---
 # <a name="query-types"></a>Sorgu türleri
 > [!NOTE]
 > Bu özellik EF çekirdek 2.1 yenilikler
 
-Sorgu, EF çekirdek modeli eklenebilir salt okunur sorgu sonuç türleri türleridir. Sorgu türleri geçici (anonim türleri gibi) sorgulama yapmayı etkinleştirmek, ancak belirtilen eşleme yapılandırması olduğundan daha esnektir.
+EF çekirdek modeli varlık türlerine ek olarak içerebilir _sorgu türü_, varlık türleri eşlenmediği veri veritabanı sorguları yürütmek için kullanılabilir.
 
-Bunlar, varlık türleri için kavramsal olarak benzerdir:
+Sorgu türleri varlık türleriyle birçok benzerlikler vardır:
 
-- Model ya da eklenen POCO C# türleri oldukları ```OnModelCreating``` kullanarak ```ModelBuilder.Query``` yöntemi, veya bir DbContext "Ayarla" özelliği aracılığıyla (olarak sorgu böyle bir özellik türleri için yazılan ```DbQuery<T>``` yerine ```DbSet<T>```).
-- Bunlar normal varlık türü olarak aynı eşleme özelliklerinin çoğunu destekler. Örneğin, devralma eşleme, gezintilerini (limitiations aşağıya bakın) ve ilişkisel depoları, hedef veritabanı şema nesnelerindeki aracılığıyla yapılandırma yeteneğini üzerinde ```ToTable```, ```HasColumn``` fluent API yöntemlerini (veya veri ek açıklamaları).
+- Bunlar ayrıca modeline ya da eklenebilir, `OnModelCreating`, veya türetilmiş bir "Ayarla" özellik aracılığıyla _DbContext_.
+- Bunlar aynı eşleme özelliklerini, devralma eşleme, gezinti özellikleri (sınırlamalar aşağıya bakın) gibi ve ilişkisel depoları, hedef veritabanı nesneleri ve sütunları fluent API yöntemlerini veya veri ek açıklamaları aracılığıyla yapılandırma yeteneğini destekler.
 
-Sorgu türleri varlıktan farklı türleri, bunlar:
+Ancak varlıktan farklı türleri, bunlar:
 
 - Tanımlanmamış bir anahtarı gerektirmez.
-- Hiçbir zaman değişikliği İzleyicisi tarafından izlenir.
+- Üzerinde değişiklikler için hiçbir zaman izlenir _DbContext_ ve bu nedenle hiçbir zaman eklenir, güncelleştirilmiş veya veritabanında silindi.
 - Hiçbir zaman kurala göre bulunur.
 - Yalnızca bir alt kümesini Gezinti eşleme özelliklerini - özellikle destek, hiçbir zaman bir ilişkinin asıl ucu çalışabilir.
-- Eşlenmiş bir _sorgu tanımlama_ -A tanımlama sorgudur sorgu türü için bir veri kaynağı görevi gören bir ikincil sorgu.
+- Üzerinde ele _ModelBuilder_ kullanarak `Query` yöntemi yerine `Entity` yöntemi.
+- Üzerinde eşlenen _DbContext_ türünün özelliklerini aracılığıyla `DbQuery<T>` yerine `DbSet<T>`
+- Kullanarak veritabanı nesneleri eşlenen `ToView` yöntemi yerine `ToTable`.
+- Eşlenmiş bir _sorgu tanımlama_ - A olan bir sorgu türü için bir veri kaynağı görevi gören modelinde bildirilen ikincil bir sorgu sorgu tanımlama.
 
 Sorgu türleri için temel kullanım senaryoları bazıları şunlardır:
 
+- Dönüş türü için geçici hizmet veren `FromSql()` sorgular.
 - Veritabanı görünümlerine eşleme.
 - Tanımlı birincil anahtarı olmayan tablolar için eşleme.
-- Dönüş türü için geçici hizmet veren ```FromSql()``` sorgular.
 - Model içinde tanımlanan sorgulara eşleme.
 
 > [!TIP]
-> Bir veritabanı görünümü için bir sorgu türü eşleme elde edilir kullanarak ```ToTable``` fluent API.
+> Bir veritabanı nesnesi için bir sorgu türü eşleme elde edilir kullanarak `ToView` fluent API. EF çekirdek açısından bakıldığında, bu yöntemi, belirtilen veritabanı nesnesidir bir _Görünüm_, yani bir salt okunur sorgu kaynağı olarak kabul edilir ve güncelleştirme hedefi, eklenemiyor veya silme işlemleri. Ancak, bu gelmez veritabanı nesne bir veritabanı görünümü olması gerektiğine - alternatif olarak salt okunur olarak kabul edilecek bir veritabanı tablosu olabilir. Buna karşılık, varlık türleri için bir veritabanı nesnesi içinde belirtilen EF çekirdek varsayar `ToTable` yöntemi kabul bir _tablo_, bir sorgu kaynağı olarak kullanılabilir ancak aynı zamanda güncelleştirme tarafından hedeflenmiş silme anlamına gelir ve Ekle işlemler. Aslında, bir veritabanı görünümünde adını belirtebilirsiniz `ToTable` ve görünüm veritabanında güncelleştirilebilir için yapılandırılmış olduğu sürece her şeyi sorunsuz çalışması gerekir.
 
 ## <a name="example"></a>Örnek
 
@@ -60,7 +63,7 @@ Ardından, veritabanı görünümü sonucundan tutmak için bir sınıf tanımla
 
 [!code-csharp[Main](../../../efcore-dev/samples/QueryTypes/Program.cs#QueryType)]
 
-Ardından, biz sorgu türünde yapılandırın _OnModelCreating_ kullanarak ```modelBuilder.Query<T>``` API.
+Ardından, biz sorgu türünde yapılandırın _OnModelCreating_ kullanarak `modelBuilder.Query<T>` API.
 Sorgu türü eşlemeyi yapılandırmak için standart fluent yapılandırma API'leri kullanın:
 
 [!code-csharp[Main](../../../efcore-dev/samples/QueryTypes/Program.cs#Configuration)]

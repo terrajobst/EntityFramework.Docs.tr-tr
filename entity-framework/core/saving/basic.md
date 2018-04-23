@@ -1,16 +1,16 @@
 ---
-title: "Temel Kaydet - EF çekirdek"
+title: Temel Kaydet - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 850d842e-3fad-4ef2-be17-053768e97b9e
 ms.technology: entity-framework-core
 uid: core/saving/basic
-ms.openlocfilehash: e99d755b8f7c42b15a73cfdb6a2f8999a405a739
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: deead323301dc4a0ee0748b4536ddff4596b99e6
+ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="basic-save"></a>Temel Kaydet
 
@@ -24,6 +24,9 @@ Ekleme, değiştirme ve bağlamını ve varlık sınıflarını kullanarak veril
 Kullanım *DbSet.Add* varlık sınıflarınızı yeni örneklerini ekleme yöntemi. Veritabanında veri çağırdığınızda eklenir *SaveChanges*.
 
 [!code-csharp[Main](../../../samples/core/Saving/Saving/Basics/Sample.cs#Add)]
+
+> [!TIP]  
+> Tüm çalışma tam grafiğin varlıkların Ekle, ekleme ve güncelleştirme yöntemleri geçirilen, kendilerine, açıklandığı gibi [ilgili verileri](related-data.md) bölümü. Alternatif olarak, EntityEntry.State özelliği yalnızca tek bir varlık durumunu ayarlamak için kullanılabilir. Örneğin, `context.Entry(blog).State = EntityState.Modified`.
 
 ## <a name="updating-data"></a>Verileri güncelleştirme
 

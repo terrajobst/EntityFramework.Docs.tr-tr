@@ -1,14 +1,14 @@
 ---
-title: ".NET core CLI - EF çekirdek"
+title: .NET core CLI - EF çekirdek
 author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
 ms.technology: entity-framework-core
-ms.openlocfilehash: 8a52cb8259bb381729a33a8161aec4b73f69f45d
-ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
+ms.openlocfilehash: 396d31c9d0c0f47d299f49e82e557ed29b8420e7
+ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 04/16/2018
 ---
 <a name="ef-core-net-command-line-tools"></a>EF çekirdek .NET komut satırı araçları
 ===============================
@@ -65,6 +65,9 @@ Hedef dosyalar eklendiği (veya kaldırılan bazı durumlarda) projesidir. Hedef
 
 Başlangıç projesi projenizin kodu çalıştırırken araçları tarafından Öykünülen adrestir. Ayrıca projenin geçerli dizinin varsayılan olarak, ancak kullanılarak değiştirilebilir **--başlangıç projesi** seçeneği.
 
+> [!NOTE]
+> Örneğin, web uygulamanızın EF çekirdek farklı projede yüklü olan veritabanını güncelleştirme şuna benzer: `dotnet ef database update --project {project-path}` (dizininizden web uygulaması)
+
 Ortak seçenekleri:
 
 |    |                                  |                             |
@@ -76,10 +79,10 @@ Ortak seçenekleri:
 |    | --framework \<FRAMEWORK >         | Hedef çerçevesi.       |
 |    | --configuration \<yapılandırma > | Kullanılacak yapılandırma.   |
 |    | --çalışma zamanı \<TANIMLAYICISI >          | Çalışma zamanı.         |
-| -h | --help                           | Yardım bilgilerini gösterir.      |
-| -v | --verbose                        | Ayrıntılı çıktıyı göster.        |
+| -h | --Yardım                           | Yardım bilgilerini gösterir.      |
+| -v | --ayrıntılı                        | Ayrıntılı çıktıyı göster.        |
 |    | --renk yok                       | Çıktı renklendirme yok.      |
-|    | --prefix-output                  | Düzeyiyle çıktı öneki.   |
+|    | --önek çıktı                  | Düzeyiyle çıktı öneki.   |
 
 
 > [!TIP]
@@ -107,7 +110,7 @@ Bağımsız değişkenler:
 
 |              |                                                                                              |
 |:-------------|:---------------------------------------------------------------------------------------------|
-| \<GEÇİŞ > | Hedef geçiş. 0 ise, tüm geçişler geri alınacak. Son geçiş varsayılan olarak ayarlanır. |
+| \<GEÇİŞ &GT; | Hedef geçiş. 0 ise, tüm geçişler geri alınacak. Son geçiş varsayılan olarak ayarlanır. |
 
 ### <a name="dotnet-ef-dbcontext-info"></a>DotNet ef dbcontext bilgisi
 
@@ -117,7 +120,7 @@ DbContext türü hakkındaki bilgileri alır.
 
 Kullanılabilir DbContext türleri listelenmektedir.
 
-### <a name="dotnet-ef-dbcontext-scaffold"></a>dotnet ef dbcontext scaffold
+### <a name="dotnet-ef-dbcontext-scaffold"></a>DotNet ef dbcontext iskele
 
 Bir veritabanı için bir DbContext ve varlık türleri iskelesini kurar.
 
@@ -125,8 +128,8 @@ Bağımsız değişkenler:
 
 |               |                                                                     |
 |:--------------|:--------------------------------------------------------------------|
-| \<BAĞLANTI > | Veritabanı bağlantı dizesi.                              |
-| \<SAĞLAYICI >   | Kullanılacak sağlayıcısı. (Örn. Microsoft.EntityFrameworkCore.SqlServer) |
+| \<BAĞLANTI &GT; | Veritabanı bağlantı dizesi.                              |
+| \<SAĞLAYICI &GT;   | Kullanılacak sağlayıcısı. (Örn. Microsoft.EntityFrameworkCore.SqlServer) |
 
 Seçenekler:
 
@@ -134,11 +137,12 @@ Seçenekler:
 |:----------------|:----------------------------------------|:-------------------------------------------------------------------------------------------------|
 | <nobr>-d</nobr> | --Veri ek açıklamaları                      | Öznitelikler, model (mümkün olduğunda) yapılandırmak için kullanın. Atlanırsa, yalnızca fluent API kullanılır. |
 | -c              | --bağlam \<adı >                       | DbContext adı.                                                                       |
+|                 | --bağlam dir \<yolu >                   | DbContext dosyasını yerleştirmek için dizin. Proje dizininin göreli yollardır.             |
 | -f              | --zorla                                 | Var olan dosyaların üzerine yazar.                                                                        |
 | -o              | --Çıkış dir \<yolu >                    | Dosyaları yerleştirmek için dizin. Proje dizininin göreli yollardır.                      |
-|                 | <nobr>--schema \<SCHEMA_NAME>...</nobr> | Varlık türleri oluşturmak için tabloları şemalar.                                              |
+|                 | <nobr>--şema \<SCHEMA_NAME >...</nobr> | Varlık türleri oluşturmak için tabloları şemalar.                                              |
 | -t              | --Tablo \<TABLE_NAME >...                | Varlık türleri için oluşturmak üzere tablolara.                                                         |
-|                 | --use-database-names                    | Doğrudan veritabanından tablo ve sütun adları kullanın.                                           |
+|                 | --adları veritabanı kullan                    | Doğrudan veritabanından tablo ve sütun adları kullanın.                                           |
 
 ### <a name="dotnet-ef-migrations-add"></a>DotNet ef geçişler ekleme
 
@@ -148,7 +152,7 @@ Bağımsız değişkenler:
 
 |         |                            |
 |:--------|:---------------------------|
-| \<NAME> | Geçiş adı. |
+| \<ADI &GT; | Geçiş adı. |
 
 Seçenekler:
 
@@ -168,7 +172,7 @@ Seçenekler:
 
 |    |         |                                                                       |
 |:---|:--------|:----------------------------------------------------------------------|
-| -f | --zorla | Geçiş veritabanına uygulanıp uygulanmadığını denetleyin yok. |
+| -f | --zorla | Veritabanına uyguladıysanız geçişi geri alın. |
 
 ### <a name="dotnet-ef-migrations-script"></a>DotNet ef geçişler komut dosyası
 
@@ -178,8 +182,8 @@ Bağımsız değişkenler:
 
 |         |                                                               |
 |:--------|:--------------------------------------------------------------|
-| \<FROM> | Başlangıç geçiş. Varsayılan ayar: 0 (ilk veritabanı). |
-| \<TO>   | Bitiş geçiş. Son geçiş varsayılan olarak ayarlanır.         |
+| \<GELEN &GT; | Başlangıç geçiş. Varsayılan ayar: 0 (ilk veritabanı). |
+| \<İÇİN &GT;   | Bitiş geçiş. Son geçiş varsayılan olarak ayarlanır.         |
 
 Seçenekler:
 

@@ -1,22 +1,22 @@
 ---
-title: "EF çekirdek 2.1 - EF çekirdek yenilikler nelerdir?"
+title: EF çekirdek 2.1 - EF çekirdek yenilikler nelerdir?
 author: divega
 ms.author: divega
 ms.date: 2/20/2018
 ms.assetid: 585F90A3-4D5A-4DD1-92D8-5243B14E0FEC
 ms.technology: entity-framework-core
 uid: core/what-is-new/ef-core-2.1
-ms.openlocfilehash: bb1e691e0f22bd36467d58c02bde22c63067207e
-ms.sourcegitcommit: fcaeaf085171dfb5c080ec42df1d1df8dfe204fb
+ms.openlocfilehash: db1648095aa4d612af53f4e10a30be36edc40da5
+ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/15/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="new-features-in-ef-core-21"></a>EF çekirdek 2.1 yeni özellikler
 > [!NOTE]  
 > Bu sürüm hala önizlemede değil.
 
-Çok sayıda küçük geliştirmeleri ve birden fazla yüzlerce ürün hata düzeltmeleri yanı sıra, EF çekirdek 2.1 çeşitli yeni özellikler içerir:
+Çok sayıda hata düzeltmeleri ve küçük işlevsel ve performans geliştirmeleri yanı sıra EF çekirdek 2.1 ilgi çekici bazı yeni özellikler içerir:
 
 ## <a name="lazy-loading"></a>yavaş yükleniyor
 EF çekirdek şimdi herkes, gezinti özellikleri isteğe bağlı olarak yükleyebilir varlık sınıfları yazmak gerekli yapı taşlarını içerir. Bu yapı taşları yararlanır Microsoft.EntityFrameworkCore.Proxies, yeni bir paket de oluşturduk yavaş yükleniyor proxy üretmek için en düşük düzeyde temel sınıfları sınıflar (örneğin sanal Gezinti özellikleri sınıflarıyla) değiştirdi.
@@ -71,7 +71,7 @@ Yeni sürümde bir veritabanını doldurmak için ilk veri sağlamak mümkün ol
 Örnek olarak, bu bir POST çekirdek verileri yapılandırmak için kullanabileceğiniz `OnModelCreating`:
 
 ``` csharp
-modelBuilder.Entity<Post>().SeedData(new Post{ Id = 1, Text = "Hello World!" });
+modelBuilder.Entity<Post>().HasData(new Post{ Id = 1, Text = "Hello World!" });
 ```
 
 Okuma [verileri dengeli üzerinde bölüm](xref:core/modeling/data-seeding) Bu konu hakkında daha fazla bilgi için.  
@@ -143,9 +143,29 @@ public class Order
 }
 ```
 
+## <a name="new-dotnet-ef-global-tool"></a>Yeni dotnet ef genel aracı
+
+_Dotnet ef_ komutları dönüştürülmemiş bir .NET CLI genel aracı için onu artık geçişler kullanın veya var olan bir veritabanından bir DbContext iskele kullanabilmek için projede DotNetCliToolReference kullanmak için gerekli olur.
+
+## <a name="microsoftentityframeworkcoreabstractions-package"></a>Microsoft.EntityFrameworkCore.Abstractions paketi
+Yeni paket öznitelikleri ve projelerinizde bir bütün olarak EF çekirdeği üzerinde bir bağımlılık bırakmadan EF temel özellikleri açık için kullanabileceğiniz arabirimleri içerir. Örneğin Preview 1'de sunulan [Owned] özniteliği burada taşındı.
+
+## <a name="state-change-events"></a>Durum değişikliği olayları
+
+Yeni `Tracked` ve `StateChanged` olaylarına `ChangeTracker` DbContext girme veya durumlarını değiştirerek varlıklara tepki verdiğini mantığı yazmak için kullanılabilir.
+
+## <a name="raw-sql-parameter-analyzer"></a>Ham SQL parametresi Çözümleyicisi
+
+Yeni bir kod Çözümleyicisi EF çekirdek ile olmayabilecek kullanımları bizim SQL ham API'leri gibi algılar dahil `FromSql` veya `ExecuteSqlCommand`. Örneğin Aşağıdaki sorgu için bir uyarı çünkü görürsünüz _minAge_ değil parametreli:
+
+``` csharp
+var sql = $"SELECT * FROM People WHERE Age > {minAge}";
+var query = context.People.FromSql(sql);
+```
+
 ## <a name="database-provider-compatibility"></a>Veritabanı sağlayıcısı uyumluluğu
 
-EF çekirdek 2.1 EF çekirdek 2.0 için oluşturulan veritabanı sağlayıcıları ile uyumlu olacak şekilde tasarlanmıştır. (Örn. değer dönüşümler) açıklanan özelliklerden bazıları güncellenmiş bir sağlayıcı gerektirirken, diğerleri (örneğin yavaş yükleniyor) mevcut sağlayıcılarıyla yanar.
+EF çekirdek 2.1 EF çekirdek 2.0 için oluşturulan veritabanı sağlayıcıları ile uyumlu olması veya en azından küçük değişiklikler gerektiren için tasarlanmıştır. (Örn. değer dönüşümler) açıklanan özelliklerden bazıları güncellenmiş bir sağlayıcı gerektirirken, diğerleri (örneğin yavaş yükleniyor) mevcut sağlayıcılarıyla yanar.
 
 > [!TIP]
 > Her beklenmeyen bulursanız uyumsuzluk herhangi sorun'deki yeni özelliklerin veya bunlar üzerinde Geribildiriminiz varsa lütfen kullanarak rapor [bizim sorun İzleyicisi](https://github.com/aspnet/EntityFrameworkCore/issues/new).
