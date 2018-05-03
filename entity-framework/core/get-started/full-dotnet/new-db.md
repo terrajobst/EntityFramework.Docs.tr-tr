@@ -1,5 +1,5 @@
 ---
-title: ".NET Framework - yeni veritabanı - EF Çekirdeğinde Başlarken"
+title: .NET Framework - yeni veritabanı - EF Çekirdeğinde Başlarken
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -7,10 +7,10 @@ ms.assetid: 52b69727-ded9-4a7b-b8d5-73f3acfbbad3
 ms.technology: entity-framework-core
 uid: core/get-started/full-dotnet/new-db
 ms.openlocfilehash: bd7054c6834ae11bfdc352d63654e4304771e432
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
+ms.lasthandoff: 04/26/2018
 ---
 # <a name="getting-started-with-ef-core-on-net-framework-with-a-new-database"></a>.NET Framework ile yeni bir veritabanı EF Çekirdeğinde ile çalışmaya başlama
 
@@ -49,11 +49,11 @@ EF çekirdek kullanmak için hedeflemek istediğiniz veritabanı sağlayıcı(la
 
 * Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu
 
-* Çalıştırma`Install-Package Microsoft.EntityFrameworkCore.SqlServer`
+* `Install-Package Microsoft.EntityFrameworkCore.SqlServer`'i çalıştırın.
 
 Bu kılavuzda daha sonra biz de bazı Entity Framework Araçları veritabanını korumak için kullanır. Böylece biz de araçları paketini yükler.
 
-* Çalıştırma`Install-Package Microsoft.EntityFrameworkCore.Tools`
+* `Install-Package Microsoft.EntityFrameworkCore.Tools`'i çalıştırın.
 
 ## <a name="create-your-model"></a>Model oluşturma
 

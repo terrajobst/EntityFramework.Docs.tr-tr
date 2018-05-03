@@ -1,16 +1,16 @@
 ---
-title: "Oluşturulan değerler - EF çekirdek"
+title: Oluşturulan değerler - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: eb082011-11a1-41b4-a108-15daafa03e80
 ms.technology: entity-framework-core
 uid: core/modeling/generated-properties
-ms.openlocfilehash: 892494461bcf49ee10d05c972da0ba19ca003c35
-ms.sourcegitcommit: 4b7d3d3e258b0d9cb778bb45a9f4a33c0792e38e
+ms.openlocfilehash: 88ccc2da3c2b6cbba8920d7113c82e769b459897
+ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 04/26/2018
 ---
 # <a name="generated-values"></a>Oluşturulan değerleri
 
@@ -28,7 +28,7 @@ Hiçbir değer oluşturma, veritabanına kaydedilmesi için geçerli bir değer 
 
 Veritabanı sağlayıcısı bağlı olarak kullanılan değerler olabilir istemci tarafı EF ya da veritabanında oluşturulmuş. Ardından değeri veritabanı tarafından oluşturulmuşsa bağlamına varlık eklediğinizde EF geçici bir değeri atayabilir. Bu geçici bir değerinin sırasında oluşturulan veritabanı değeriyle sonra değiştirilecek `SaveChanges()`.
 
-Bir varlık özelliğine atanan bir değere sahip bağlam eklerseniz, yeni bir tane oluşturmak yerine bu değeri eklemek EF deneyecek. Bir özelliğin CLR varsayılan değer atanmamışsa atanmış bir değere sahip olduğu kabul edildiği (`null` için `string`, `0` için `int`, `Guid.Empty` için `Guid`, vb..). Daha fazla bilgi için bkz: [oluşturulan özellikler için açık değerler](..\saving\explicit-values-generated-properties.md).
+Bir varlık özelliğine atanan bir değere sahip bağlam eklerseniz, yeni bir tane oluşturmak yerine bu değeri eklemek EF deneyecek. Bir özelliğin CLR varsayılan değer atanmamışsa atanmış bir değere sahip olduğu kabul edildiği (`null` için `string`, `0` için `int`, `Guid.Empty` için `Guid`, vb..). Daha fazla bilgi için bkz: [oluşturulan özellikler için açık değerler](../saving/explicit-values-generated-properties.md).
 
 > [!WARNING]  
 > Değer eklenen varlıklar için nasıl oluşturulacağını kullanılan veritabanı sağlayıcısı bağlıdır. Veritabanı sağlayıcıları otomatik olarak değer oluşturma bazı özellik türleri için Kurulum, ancak diğer el ile değer nasıl oluşturulacağını Kurulum gerektirebilir.
@@ -39,13 +39,13 @@ Bir varlık özelliğine atanan bir değere sahip bağlam eklerseniz, yeni bir t
 
 Oluşturulan değeri eklemek veya güncelleştirme anlamına gelir (INSERT veya update) kaydı kaydedilen her zaman yeni bir değer oluşturulur.
 
-Gibi `value generated on add`, değer oluşturulan bir değer yerine eklenir, bir varlığın yeni eklenen bir örnek özelliği için bir değer belirtirseniz. Açık bir değer güncelleştirilirken ayarlamak da mümkündür. Daha fazla bilgi için bkz: [oluşturulan özellikler için açık değerler](..\saving\explicit-values-generated-properties.md).
+Gibi `value generated on add`, değer oluşturulan bir değer yerine eklenir, bir varlığın yeni eklenen bir örnek özelliği için bir değer belirtirseniz. Açık bir değer güncelleştirilirken ayarlamak da mümkündür. Daha fazla bilgi için bkz: [oluşturulan özellikler için açık değerler](../saving/explicit-values-generated-properties.md).
 
-> [!WARNING]  
+> [!WARNING]
 > Değer eklenen ve güncelleştirilen varlıklar için nasıl oluşturulacağını kullanılan veritabanı sağlayıcısı bağlıdır. Başkalarının el ile değer nasıl oluşturulacağını Kurulum gerekir sırasında veritabanı sağlayıcıları otomatik olarak değer oluşturma bazı özellik türleri için Kurulum.
->
+> 
 > Örneğin, SQL Server'ı kullanırken `byte[]` üretilir olarak ayarlanmış olan özellikler ekleme veya güncelleştirme ve eşzamanlılık belirteçleri işaretlenmiş Kurulum'a olacaktır `rowversion` veri türü - böylece değerleri veritabanında oluşturulur. Ancak, belirtirseniz bir `DateTime` özelliği oluşturulur üzerinde ekleyebilir ya da bir yol oluşturulacak değerleri için Kurulum sonra güncelleştirebilirsiniz. Bunu yapmanın bir yolu olan bir varsayılan değerini yapılandırmak için `GETDATE()` (bkz [varsayılan değerleri](relational/default-values.md)) yeni satırlar için değerlerini oluşturmak için. Veritabanı tetikleyicisi sonra (örneğin, aşağıdaki örnek tetikleyici) güncelleştirilmesi sırasında değerlerini oluşturmak için de kullanabilirsiniz.
->
+> 
 > [!code-sql[Main](../../../samples/core/Modeling/FluentAPI/Samples/ValueGeneratedOnAddOrUpdate.sql)]
 
 ## <a name="conventions"></a>Kurallar

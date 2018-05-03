@@ -1,5 +1,5 @@
 ---
-title: ".NET Framework - var olan veritabanı - EF Çekirdeğinde Başlarken"
+title: .NET Framework - var olan veritabanı - EF Çekirdeğinde Başlarken
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -7,10 +7,10 @@ ms.assetid: a29a3d97-b2d8-4d33-9475-40ac67b3b2c6
 ms.technology: entity-framework-core
 uid: core/get-started/full-dotnet/existing-db
 ms.openlocfilehash: 3cd69109e3cf8dbc103f9eea6e2553df17f29a98
-ms.sourcegitcommit: 5e2d97e731f975cf3405ff3deab2a3c75ad1b969
+ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/15/2017
+ms.lasthandoff: 04/26/2018
 ---
 # <a name="getting-started-with-ef-core-on-net-framework-with-an-existing-database"></a>.NET Framework ile varolan bir veritabanını temel EF ile çalışmaya başlama
 
@@ -78,11 +78,11 @@ EF çekirdek kullanmak için hedeflemek istediğiniz veritabanı sağlayıcı(la
 
 * Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu
 
-* Çalıştırma`Install-Package Microsoft.EntityFrameworkCore.SqlServer`
+* `Install-Package Microsoft.EntityFrameworkCore.SqlServer`'i çalıştırın.
 
 Varolan bir veritabanından ters mühendislik etkinleştirmek için sizi birkaç diğer paketleri çok yüklemeniz gerekir.
 
-* Çalıştırma`Install-Package Microsoft.EntityFrameworkCore.Tools`
+* `Install-Package Microsoft.EntityFrameworkCore.Tools`'i çalıştırın.
 
 ## <a name="reverse-engineer-your-model"></a>Tersine mühendislik modelinizi
 

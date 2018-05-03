@@ -1,5 +1,5 @@
 ---
-title: "ASP.NET Core - yeni veritabanı - EF Çekirdeğinde Başlarken"
+title: ASP.NET Core - yeni veritabanı - EF Çekirdeğinde Başlarken
 author: rick-anderson
 ms.author: riande
 ms.author2: tdykstra
@@ -8,11 +8,11 @@ ms.topic: get-started-article
 ms.assetid: e153627f-f132-4c11-b13c-6c9a607addce
 ms.technology: entity-framework-core
 uid: core/get-started/aspnetcore/new-db
-ms.openlocfilehash: f6ed19d3c5d2ae8d1f5756558e50c1f0dddd2f07
-ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
+ms.openlocfilehash: 80477ca57b8b3df6de8ba3595c9056c6b8412040
+ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/12/2018
+ms.lasthandoff: 04/26/2018
 ---
 # <a name="getting-started-with-ef-core-on-aspnet-core-with-a-new-database"></a>ASP.NET Core EF Çekirdeğinde ile yeni bir veritabanı ile çalışmaya başlama
 
@@ -65,7 +65,7 @@ Modeli olun bağlamını ve varlık sınıflarını tanımlayın:
 * Girin **Model.cs** tıklatın ve adı olarak **Tamam**.
 * Dosyasının içeriğini aşağıdaki kodla değiştirin:
 
- [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Models/Model.cs)]
+  [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Models/Model.cs)]
 
 Not: Gerçek bir uygulamada, genellikle her sınıf ayrı bir dosyada, modelden koyabilirsiniz. Basitleştirmek amacıyla, biz tüm sınıflar bir dosyada Bu öğretici için koyduğunuz.
 
@@ -78,13 +78,13 @@ Bizim MVC denetleyicileri yapmak için sırayla kullanımı `BloggingContext` si
 * Açık **haline**
 * Aşağıdakileri ekleyin `using` deyimleri:
 
- [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Startup.cs#AddedUsings)]
+  [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Startup.cs#AddedUsings)]
 
 Ekleme `AddDbContext` yöntemi bir hizmet olarak kaydetmek için:
 
 * Aşağıdaki kodu ekleyin `ConfigureServices` yöntemi:
 
- [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Startup.cs?name=ConfigureServices&highlight=7-8)]
+  [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Startup.cs?name=ConfigureServices&highlight=7-8)]
 
 Not: Gerçek bir uygulama yapılandırma dosyasında bağlantı dizesini genellikle koyabilirsiniz. Basitleştirmek amacıyla, biz bu kodda tanımlıyorsanız. Bkz: [bağlantı dizeleri](../../miscellaneous/connection-strings.md) daha fazla bilgi için.
 

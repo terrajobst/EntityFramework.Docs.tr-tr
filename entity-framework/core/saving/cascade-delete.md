@@ -1,22 +1,22 @@
 ---
-title: "Basamaklı silme - EF çekirdek"
+title: Basamaklı silme - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 ms.technology: entity-framework-core
 uid: core/saving/cascade-delete
-ms.openlocfilehash: 1ab9d114e27aac0bec972df631a426c8ce87a518
-ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
+ms.openlocfilehash: 0fc8929c56d4c657b7fb1e3c8e4b1a71659220c9
+ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/28/2018
+ms.lasthandoff: 04/26/2018
 ---
-# <a name="cascade-delete"></a>Cascade Delete
+# <a name="cascade-delete"></a>Art arda silme
 
-Art arda silme ilişkili satırları silme işlemini otomatik olarak tetikleyecek bir satırın silme işlemine izin veren bir özellik açıklamak için Veritabanı terminolojisinde yaygın olarak kullanılır. Ayrıca EF çekirdek delete davranışları tarafından kapsanan bir yakından ilgili ilişki üst olduğunda alt varlık otomatik olarak silinmesini zarar görmesi--genellikle "artık silme" olarak bilinen bu i kavramdır.
+Art arda silme ilişkili satırları silme işlemini otomatik olarak tetikleyecek bir satırın silme işlemine izin veren bir özellik açıklamak için Veritabanı terminolojisinde yaygın olarak kullanılır. Bir üst ilişkisi zarar görmesi olduğunda da EF çekirdek delete davranışları tarafından kapsanan bir yakından ilgili alt varlık otomatik olarak silinmesini kavramıdır bu genellikle "artık silinmesi" adı verilir.
 
-EF çekirdek birkaç farklı silme davranışı uygular ve tek tek ilişkileri Sil davranışlarını yapılandırmasını sağlar. EF çekirdek de otomatik olarak yararlı varsayılan silme davranışlar [requiredness ilişkinin üzerinde] tabanlı her ilişki için yapılandırma kuralları uygular (../modeling/relationships.md#required-and-optional-relationships).
+EF çekirdek birkaç farklı silme davranışı uygular ve tek tek ilişkileri Sil davranışlarını yapılandırmasını sağlar. EF çekirdek de yararlı silme davranışa göre her ilişki için otomatik olarak yapılandırma kuralları uygular [ilişkinin requiredness](../modeling/relationships.md#required-and-optional-relationships).
 
 ## <a name="delete-behaviors"></a>Davranışları Sil
 Silme davranışları tanımlanmış *DeleteBehavior* Numaralandırıcı yazın ve için geçirilen *OnDelete* denetlemek için fluent API olup olmadığını silinmesi asıl/üst varlık veya, severing bağımlı/alt varlıkları ilişkisi bağımlı/alt varlıklarını bir yan etkisi olması gerekir.
