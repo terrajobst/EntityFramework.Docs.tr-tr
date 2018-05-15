@@ -1,16 +1,16 @@
 ---
-title: "Ham SQL sorguları - EF çekirdek"
+title: Ham SQL sorguları - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 ms.technology: entity-framework-core
 uid: core/querying/raw-sql
-ms.openlocfilehash: 79894c7b9fd9e40cdf14460abf5d872ee2f4b9f0
-ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
+ms.openlocfilehash: 29b7e20e875bf791a88a92636c1df4bc4e31656b
+ms.sourcegitcommit: 038acd91ce2f5a28d76dcd2eab72eeba225e366d
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/22/2017
+ms.lasthandoff: 05/14/2018
 ---
 # <a name="raw-sql-queries"></a>Ham SQL sorguları
 
@@ -21,18 +21,18 @@ Entity Framework Çekirdek, ilişkisel veritabanı ile çalışırken, ham SQL s
 
 ## <a name="limitations"></a>Sınırlamalar
 
-Birkaç ham SQL sorguları kullanırken dikkat edilmesi gereken sınırlama vardır:
+Ham SQL sorguları kullanırken dikkat edilmesi gereken bazı sınırlamalar vardır:
 * SQL sorguları yalnızca dönüş modelinizi parçası olan varlık türleri için kullanılabilir. Bizim biriktirme listesi üzerinde bir geliştirme yoktur [ham SQL sorgularından geçici türleri döndüren etkinleştir](https://github.com/aspnet/EntityFramework/issues/1862).
 
-* SQL sorgusu varlık türünün tüm özelliklerinin veri döndürmesi gerekir.
+* SQL sorgusu, varlık veya sorgu türü tüm özelliklerde için veri döndürmesi gerekir.
 
 * Sonuç kümesi içindeki sütun adlarının özellikleri eşlendiği sütun adlarının eşleşmesi gerekir. Bu özelliği/sütun eşlemesi için ham SQL sorguları yeri yoksayıldı EF6 farklı olduğuna dikkat edin ve sonuç kümesi sütunu adları özellik adlarının eşleşmesi gerekiyordu.
 
 * SQL sorgusu, ilgili veri içeremez. Bununla birlikte, çoğu durumda, sorgu kullanarak üstünde oluşturabilirsiniz `Include` ilgili verileri döndürmek için işleci (bkz [ilgili verileri de dahil olmak üzere](#including-related-data)).
 
-* `SELECT`Bu yönteme geçirilen deyimleri genellikle birleştirilebilir olmalıdır: varsa EF çekirdek gereken sunucu üzerindeki Ek sorgu işleçleri değerlendirmek (örneğin sonra uygulanan LINQ işleçleri çevirmek için `FromSql`), sağlanan SQL alt sorgu kabul edilir. Başka bir deyişle, geçirilen SQL herhangi bir karakter veya gibi bir alt sorgu geçerli olmayan seçenekler içermemelidir:
+* `SELECT` Bu yönteme geçirilen deyimleri genellikle birleştirilebilir olmalıdır: varsa EF çekirdek gereken sunucu üzerindeki Ek sorgu işleçleri değerlendirmek (örneğin sonra uygulanan LINQ işleçleri çevirmek için `FromSql`), sağlanan SQL alt sorgu kabul edilir. Başka bir deyişle, geçirilen SQL herhangi bir karakter veya gibi bir alt sorgu geçerli olmayan seçenekler içermemelidir:
   * sondaki noktalı virgül
-  * SQL Server'da sorgu düzeyi sondaki ipucu, örn.`OPTION (HASH JOIN)`
+  * SQL Server'da sorgu düzeyi sondaki ipucu, örn. `OPTION (HASH JOIN)`
   * SQL Server'da bir `ORDER BY` , eşlik yan tümcesi `TOP 100 PERCENT` içinde `SELECT` yan tümcesi
 
 * SQL deyimleri dışında `SELECT` otomatik birleştirilebilir olmayan tanınır. Sonuç olarak, tam sonuçları saklı yordamlar, her zaman istemciye döndürülen ve sonra LINQ işleçleri uygulanan `FromSql` değerlendirilen bellek içi şunlardır. 

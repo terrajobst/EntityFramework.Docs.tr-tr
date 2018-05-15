@@ -6,11 +6,11 @@ ms.date: 2/26/2018
 ms.assetid: 9F4450C5-1A3F-4BB6-AC19-9FAC64292AAD
 ms.technology: entity-framework-core
 uid: core/modeling/query-types
-ms.openlocfilehash: 4e02f106e086d243b23a60c02838f32555be210e
-ms.sourcegitcommit: 26f33758c47399ae933f22fec8e1d19fa7d2c0b7
+ms.openlocfilehash: f16e3a130f3a4f92b2bf6014f2df0ca4eec56a25
+ms.sourcegitcommit: 038acd91ce2f5a28d76dcd2eab72eeba225e366d
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/19/2018
+ms.lasthandoff: 05/14/2018
 ---
 # <a name="query-types"></a>Sorgu türleri
 > [!NOTE]
@@ -28,7 +28,10 @@ Ancak varlıktan farklı türleri, bunlar:
 - Tanımlanmamış bir anahtarı gerektirmez.
 - Üzerinde değişiklikler için hiçbir zaman izlenir _DbContext_ ve bu nedenle hiçbir zaman eklenir, güncelleştirilmiş veya veritabanında silindi.
 - Hiçbir zaman kurala göre bulunur.
-- Yalnızca bir alt kümesini Gezinti eşleme özelliklerini - özellikle destek, hiçbir zaman bir ilişkinin asıl ucu çalışabilir.
+- Yalnızca bir alt kümesini Gezinti eşleme özelliklerini - özellikle destekler:
+  - Bunlar, hiçbir zaman bir ilişkinin asıl ucu çalışabilir.
+  - Bunlar yalnızca varlıklara işaret eden başvuru Gezinti özellikleri de içerebilir.
+  - Varlık Gezinti özellikleri için sorgu türleri içeremez.
 - Üzerinde ele _ModelBuilder_ kullanarak `Query` yöntemi yerine `Entity` yöntemi.
 - Üzerinde eşlenen _DbContext_ türünün özelliklerini aracılığıyla `DbQuery<T>` yerine `DbSet<T>`
 - Kullanarak veritabanı nesneleri eşlenen `ToView` yöntemi yerine `ToTable`.

@@ -4,11 +4,11 @@ author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
 ms.technology: entity-framework-core
-ms.openlocfilehash: 396d31c9d0c0f47d299f49e82e557ed29b8420e7
-ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
+ms.openlocfilehash: d053d53bd50d2e7d16223c5b4e4009c9bb2298bb
+ms.sourcegitcommit: 038acd91ce2f5a28d76dcd2eab72eeba225e366d
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/16/2018
+ms.lasthandoff: 05/14/2018
 ---
 <a name="ef-core-net-command-line-tools"></a>EF çekirdek .NET komut satırı araçları
 ===============================
@@ -19,14 +19,18 @@ Platformlar arası uzantısı Entity Framework Çekirdek .NET komut satırı ara
 
 <a name="installing-the-tools"></a>Araçları yükleme
 --------------------
-EF çekirdek .NET komut satırı araçları şu adımları kullanarak yükleyin:
+> [!NOTE]
+> .NET Core SDK'sı sürüm 2.1.300 ve daha yeni içerir **dotnet ef** EF çekirdek 2.0 ve sonraki sürümleri ile uyumlu olan komutları. Bu nedenle .NET Core SDK'sı ve EF çekirdeği çalışma zamanı en güncel sürümlerini kullanıyorsanız, herhangi bir yükleme gereklidir ve bu bölümde rest yoksayabilirsiniz.
+>
+> Diğer taraftan, **dotnet ef** aracı .NET Core SDK sürüm 2.1.300 içerdiği ve daha yeni sürümü 1.0 ve 1.1 EF çekirdek sürümü ile uyumlu değil. .NET Core SDK 2.1.300 sahip bir bilgisayarda bu sürümlerde EF çekirdek kullanan bir proje ile çalışabilirsiniz ya da daha yeni yüklü önce sürüm 2.1.200 de yüklemeniz gerekir ya da SDK'ın eski ve uygulamayı değiştirerek, eski sürümünün kullanacak şekilde yapılandırın,  [global.json](https://docs.microsoft.com/en-us/dotnet/core/tools/global-json) dosya. Bu dosya, normalde çözüm dizini (bir proje üzerinde) bulunmaktadır. Ardından installlation talimatıyla devam edebilirsiniz.
+
+.NET Core SDK önceki sürümleri için aşağıdaki adımları kullanarak EF çekirdek .NET komut satırı araçları yükleyebilirsiniz:
 
 1. Proje dosyasını düzenleyin ve Microsoft.EntityFrameworkCore.Tools.DotNet DotNetCliToolReference öğesi (aşağıya bakın) olarak Ekle
 2. Aşağıdaki komutları çalıştırın:
 
        dotnet add package Microsoft.EntityFrameworkCore.Design
        dotnet restore
-
 
 Elde edilen proje aşağıdakine benzer görünmelidir:
 
