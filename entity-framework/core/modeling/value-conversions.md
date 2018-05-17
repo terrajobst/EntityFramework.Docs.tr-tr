@@ -6,11 +6,11 @@ ms.date: 02/19/2018
 ms.assetid: 3154BF3C-1749-4C60-8D51-AE86773AA116
 ms.technology: entity-framework-core
 uid: core/modeling/value-conversions
-ms.openlocfilehash: 329d2757059462468ca30772d37789343c03ba7b
-ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
+ms.openlocfilehash: 3e97c05a87ad9b4817c03f446031ea6c74704f5b
+ms.sourcegitcommit: 605e42232854ce44bae09624a6eebc35b8e2473b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/16/2018
+ms.lasthandoff: 05/16/2018
 ---
 # <a name="value-conversions"></a>Değer dönüşümler
 
@@ -78,7 +78,7 @@ Birden çok özellikleri aynı dönüştürme kullandığınızda bu yararlı ol
 
 ## <a name="built-in-converters"></a>Yerleşik dönüştürücüler
 
-EF çekirdek gelir bir dizi önceden tanımlanmış `ValueConverter` bulunan sınıflar, `Microsoft.EntityFrameworkCore.Storage.Converters` ad alanı. Bunlar:
+EF çekirdek gelir bir dizi önceden tanımlanmış `ValueConverter` bulunan sınıflar, `Microsoft.EntityFrameworkCore.Storage.ValueConversion` ad alanı. Bunlar:
 * `BoolToZeroOneConverter` -Bool sıfır ve
 * `BoolToStringConverter` -"Y" ve "N" gibi dizelere Bool
 * `BoolToTwoValuesConverter` -Bool herhangi iki değer için
