@@ -1,5 +1,5 @@
 ---
-title: "Zaman uyumsuz sorguları - EF çekirdek"
+title: Zaman uyumsuz sorguları - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 01/24/2017
