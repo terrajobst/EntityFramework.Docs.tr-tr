@@ -1,5 +1,5 @@
 ---
-title: "Bağlantısı kesilmiş varlıkları - EF çekirdek"
+title: Bağlantısı kesilmiş varlıkları - EF çekirdek
 author: ajcvickers
 ms.author: avickers
 ms.date: 10/27/2016

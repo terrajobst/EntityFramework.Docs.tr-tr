@@ -1,5 +1,5 @@
 ---
-title: "Genel sorgu filtreleri - EF çekirdek"
+title: Genel sorgu filtreleri - EF çekirdek
 author: anpete
 ms.author: anpete
 ms.date: 11/03/2017

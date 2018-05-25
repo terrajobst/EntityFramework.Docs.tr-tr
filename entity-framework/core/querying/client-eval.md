@@ -1,5 +1,5 @@
 ---
-title: "İstemci vs. Sunucu değerlendirmesi - EF çekirdek"
+title: İstemci vs. Sunucu değerlendirmesi - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016

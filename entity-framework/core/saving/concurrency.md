@@ -1,5 +1,5 @@
 ---
-title: "Eşzamanlılık çakışmalarını - EF çekirdek işleme"
+title: Eşzamanlılık çakışmalarını - EF çekirdek işleme
 author: rowanmiller
 ms.author: divega
 ms.date: 03/03/2018
