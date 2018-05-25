@@ -1,5 +1,5 @@
 ---
-title: "Oluşturulan özellikleri - EF çekirdek açık değerleri ayarlama"
+title: Oluşturulan özellikleri - EF çekirdek açık değerleri ayarlama
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016

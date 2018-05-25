@@ -1,5 +1,5 @@
 ---
-title: "EF çekirdek verileri - kaydetme"
+title: EF çekirdek verileri - kaydetme
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016

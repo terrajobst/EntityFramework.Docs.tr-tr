@@ -1,5 +1,5 @@
 ---
-title: "İzleme vs. Hayır-izleme sorguları - EF çekirdek"
+title: İzleme vs. Hayır-izleme sorguları - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016

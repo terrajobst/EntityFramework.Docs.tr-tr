@@ -1,5 +1,5 @@
 ---
-title: "Data - EF çekirdek sorgulama"
+title: Data - EF çekirdek sorgulama
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016

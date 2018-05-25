@@ -1,5 +1,5 @@
 ---
-title: "İş - EF çekirdek nasıl sorgular"
+title: İş - EF çekirdek nasıl sorgular
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -42,7 +42,7 @@ LINQ işleçleri çağırdığınızda, sorgu bir bellek içi temsili yalnızca 
 
 Veritabanına gönderilen sorgu sonucunda en yaygın işlemleri şunlardır:
 * Sonuçlarda yineleme bir `for` döngü
-* Bir işleç gibi kullanılarak `ToList`, `ToArray`, `Single`,`Count`
+* Bir işleç gibi kullanılarak `ToList`, `ToArray`, `Single`, `Count`
 * Veri bağlama bir kullanıcı Arabirimi için bir sorgu sonuçları
 
 > [!WARNING]  

@@ -1,5 +1,5 @@
 ---
-title: "Zaman uyumsuz kaydetme - EF çekirdek"
+title: Zaman uyumsuz kaydetme - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 01/24/2017
