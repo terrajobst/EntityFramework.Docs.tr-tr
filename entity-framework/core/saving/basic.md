@@ -6,11 +6,12 @@ ms.date: 10/27/2016
 ms.assetid: 850d842e-3fad-4ef2-be17-053768e97b9e
 ms.technology: entity-framework-core
 uid: core/saving/basic
-ms.openlocfilehash: deead323301dc4a0ee0748b4536ddff4596b99e6
-ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
+ms.openlocfilehash: 35bf14af43289ad6308a49482d3f45a7a8be9067
+ms.sourcegitcommit: 72e59e6af86b568653e1b29727529dfd7f65d312
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/16/2018
+ms.lasthandoff: 06/04/2018
+ms.locfileid: "34754395"
 ---
 # <a name="basic-save"></a>Temel Kaydet
 
@@ -38,7 +39,7 @@ Yalnızca özelliklerine atanan değerlerini değiştirin ve ardından çağıra
 
 ## <a name="deleting-data"></a>Verileri silme
 
-Kullanım *DbSet.Remove* , sınıflar örneklerini silmek için yöntem.
+Kullanım *DbSet.Remove* varlık sınıfların örneklerini silmek için yöntem.
 
 Varlık veritabanında zaten varsa, sırasında silinecek *SaveChanges*. Varlık (yani, izlenir eklenen) veritabanı henüz kaydedilmedi varsa bağlamdan kaldırılır ve artık ne zaman eklenen *SaveChanges* olarak adlandırılır.
 

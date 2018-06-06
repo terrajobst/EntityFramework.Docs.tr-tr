@@ -6,20 +6,19 @@ ms.date: 2/20/2018
 ms.assetid: 585F90A3-4D5A-4DD1-92D8-5243B14E0FEC
 ms.technology: entity-framework-core
 uid: core/what-is-new/ef-core-2.1
-ms.openlocfilehash: db1648095aa4d612af53f4e10a30be36edc40da5
-ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
+ms.openlocfilehash: 2372a6b2e3f3b7b1d9214a6ea321fe28cea45fff
+ms.sourcegitcommit: 72e59e6af86b568653e1b29727529dfd7f65d312
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/16/2018
+ms.lasthandoff: 06/04/2018
+ms.locfileid: "34754431"
 ---
 # <a name="new-features-in-ef-core-21"></a>EF çekirdek 2.1 yeni özellikler
-> [!NOTE]  
-> Bu sürüm hala önizlemede değil.
 
 Çok sayıda hata düzeltmeleri ve küçük işlevsel ve performans geliştirmeleri yanı sıra EF çekirdek 2.1 ilgi çekici bazı yeni özellikler içerir:
 
 ## <a name="lazy-loading"></a>yavaş yükleniyor
-EF çekirdek şimdi herkes, gezinti özellikleri isteğe bağlı olarak yükleyebilir varlık sınıfları yazmak gerekli yapı taşlarını içerir. Bu yapı taşları yararlanır Microsoft.EntityFrameworkCore.Proxies, yeni bir paket de oluşturduk yavaş yükleniyor proxy üretmek için en düşük düzeyde temel sınıfları sınıflar (örneğin sanal Gezinti özellikleri sınıflarıyla) değiştirdi.
+EF çekirdek şimdi herkes, gezinti özellikleri isteğe bağlı olarak yükleyebilir varlık sınıfları yazmak gerekli yapı taşlarını içerir. Bu yapı taşları yararlanır Microsoft.EntityFrameworkCore.Proxies, yeni bir paket de oluşturduk yavaş yükleniyor proxy üretmek için en düşük düzeyde temel sınıfları sınıflar (örneğin, sanal Gezinti özellikleri sınıflarıyla) değiştirdi.
 
 Okuma [geç yükleme bölümünde](xref:core/querying/related-data#lazy-loading) Bu konu hakkında daha fazla bilgi için.
 
@@ -38,7 +37,7 @@ Okuma [varlık Oluşturucusu parametrelerle bölüm](xref:core/modeling/construc
 Okuma [değer dönüşümler bölüm](xref:core/modeling/value-conversions) Bu konu hakkında daha fazla bilgi için.  
 
 ## <a name="linq-groupby-translation"></a>LINQ GroupBy çevirisi
-GroupBy LINQ işleci her zaman olduğu EF çekirdek 2.1 sürümünde bellekte değerlendirilmesi önce. GROUP BY yan tümcesine en yaygın durumlarda çevirme artık destekler.
+Sürüm 2.1 önce EF çekirdek GroupBy LINQ işleci her zaman bellekte değerlendirilmesi. GROUP BY yan tümcesine en yaygın durumlarda çevirme artık destekler.
 
 Bu örnek bir sorgu ile çeşitli toplama işlevleri hesaplamak için kullanılan GroupBy gösterir:
 
@@ -124,7 +123,7 @@ var query = context.Customers.Select(
 
 Bu sorgu için yalnızca iki SQL sorguları çevrilir unutmayın: biri müşteriler ve siparişler bir sonraki.
 
-## <a name="ownedattribute"></a>OwnedAttribute
+## <a name="owned-attribute"></a>[Ait] özniteliği
 
 Şimdi yapılandırmak olası [varlık türlerine ait](xref:core/modeling/owned-entities) yalnızca türüyle yorumlama tarafından `[Owned]` ve sahibi varlık emin olmak için model eklenir:
 
@@ -143,12 +142,14 @@ public class Order
 }
 ```
 
-## <a name="new-dotnet-ef-global-tool"></a>Yeni dotnet ef genel aracı
+## <a name="command-line-tool-dotnet-ef-included-in-net-core-sdk"></a>Komut satırı aracı dotnet-ef .NET Core SDK'da bulunan
 
-_Dotnet ef_ komutları dönüştürülmemiş bir .NET CLI genel aracı için onu artık geçişler kullanın veya var olan bir veritabanından bir DbContext iskele kullanabilmek için projede DotNetCliToolReference kullanmak için gerekli olur.
+_Dotnet ef_ komutlardır şimdi .NET Core SDK parçası, bu nedenle, artık DotNetCliToolReference geçişler kullanın veya var olan bir veritabanından bir DbContext iskele kullanabilmek için projede kullanmak için gerekli olacaktır.
+
+Bölümüne bakarak [araçlarını yükleme](xref:core/miscellaneous/cli/dotnet#installing-the-tools) farklı sürümlerini .NET Core SDK ve EF çekirdek için komut satırı araçları etkinleştirme hakkında daha fazla ayrıntı için.
 
 ## <a name="microsoftentityframeworkcoreabstractions-package"></a>Microsoft.EntityFrameworkCore.Abstractions paketi
-Yeni paket öznitelikleri ve projelerinizde bir bütün olarak EF çekirdeği üzerinde bir bağımlılık bırakmadan EF temel özellikleri açık için kullanabileceğiniz arabirimleri içerir. Örneğin Preview 1'de sunulan [Owned] özniteliği burada taşındı.
+Yeni paket öznitelikleri ve projelerinizde bir bütün olarak EF çekirdeği üzerinde bir bağımlılık bırakmadan EF temel özellikleri açık için kullanabileceğiniz arabirimleri içerir. Örneğin, [Owned] özniteliği ve ILazyLoader arabirimi burada listelenir.
 
 ## <a name="state-change-events"></a>Durum değişikliği olayları
 
@@ -165,7 +166,7 @@ var query = context.People.FromSql(sql);
 
 ## <a name="database-provider-compatibility"></a>Veritabanı sağlayıcısı uyumluluğu
 
-EF çekirdek 2.1 EF çekirdek 2.0 için oluşturulan veritabanı sağlayıcıları ile uyumlu olması veya en azından küçük değişiklikler gerektiren için tasarlanmıştır. (Örn. değer dönüşümler) açıklanan özelliklerden bazıları güncellenmiş bir sağlayıcı gerektirirken, diğerleri (örneğin yavaş yükleniyor) mevcut sağlayıcılarıyla yanar.
+Güncelleştirilmiş veya EF çekirdek 2.1 ile birlikte çalışmak üzere en az test sağlayıcılarla EF çekirdek 2.1 kullanmanız önerilir.
 
 > [!TIP]
 > Her beklenmeyen bulursanız uyumsuzluk herhangi sorun'deki yeni özelliklerin veya bunlar üzerinde Geribildiriminiz varsa lütfen kullanarak rapor [bizim sorun İzleyicisi](https://github.com/aspnet/EntityFrameworkCore/issues/new).

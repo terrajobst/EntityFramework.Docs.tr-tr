@@ -6,11 +6,12 @@ ms.date: 10/27/2016
 ms.assetid: 2533b195-d357-4056-b0e0-8698971bc3b0
 ms.technology: entity-framework-core
 uid: core/saving/disconnected-entities
-ms.openlocfilehash: 0b145217d40027c4b8e4746e9c5651652a28c9eb
-ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
+ms.openlocfilehash: dae6265fe2b9dd2cd5da78dc69d081950f374436
+ms.sourcegitcommit: 72e59e6af86b568653e1b29727529dfd7f65d312
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/12/2018
+ms.lasthandoff: 06/04/2018
+ms.locfileid: "34754398"
 ---
 # <a name="disconnected-entities"></a>Bağlantısı kesilmiş varlıklar
 
@@ -34,7 +35,7 @@ Bu bölüm geri kalanı durumları kapsayan Burada, diğer herhangi bir yolla ek
 
 ### <a name="with-auto-generated-keys"></a>Otomatik olarak oluşturulan anahtarlarla
 
-Otomatik olarak oluşturulan bir anahtarın değeri, genellikle bir varlık eklenmesi veya güncelleştirilmesi gerekip gerekmediğini belirlemek için kullanılabilir. Anahtar olmayan varsa varlık yeni olmalıdır ve gereken ekleme (yani hala bulunduğu CLR varsayılan değeri null, sıfır, vb.), ayarlanmış bırakıldı. Diğer taraftan, anahtar değeri ayarlarsanız sonra zaten daha önce kaydedilmiş gerekir ve şimdi güncelleştirilmesi gerekiyor. Diğer bir deyişle, anahtar değeri varsa, ardından varlık, istemciye gönderilen sorgulandı ve şimdi güncelleştirilmesi döndürülmesini.
+Otomatik olarak oluşturulan bir anahtarın değeri, genellikle bir varlık eklenmesi veya güncelleştirilmesi gerekip gerekmediğini belirlemek için kullanılabilir. Anahtar olmayan varsa varlık yeni olmalıdır ve gereken ekleme (yani hala bulunduğu CLR varsayılan değeri null, sıfır, vb.), ayarlanmış bırakıldı. Diğer taraftan, anahtar değeri ayarlarsanız sonra zaten daha önce kaydedilmiş gerekir ve şimdi güncelleştirilmesi gerekiyor. Diğer bir deyişle, anahtarı varsa, bir değer sonra varlık, istemciye gönderilen sorgulandı ve şimdi güncelleştirilmesi döndürülmesini.
 
 Varlık türü bilinen bir unset anahtarı için denetimi kolaydır:
 

@@ -4,11 +4,13 @@ author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
 ms.technology: entity-framework-core
-ms.openlocfilehash: d053d53bd50d2e7d16223c5b4e4009c9bb2298bb
-ms.sourcegitcommit: 038acd91ce2f5a28d76dcd2eab72eeba225e366d
+uid: core/miscellaneous/cli/dotnet
+ms.openlocfilehash: 721235b07e695efd8df43294e1f4e90c28ae83d7
+ms.sourcegitcommit: 72e59e6af86b568653e1b29727529dfd7f65d312
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 05/14/2018
+ms.lasthandoff: 06/04/2018
+ms.locfileid: "34754502"
 ---
 <a name="ef-core-net-command-line-tools"></a>EF çekirdek .NET komut satırı araçları
 ===============================
@@ -130,10 +132,10 @@ Bir veritabanı için bir DbContext ve varlık türleri iskelesini kurar.
 
 Bağımsız değişkenler:
 
-|               |                                                                     |
-|:--------------|:--------------------------------------------------------------------|
-| \<BAĞLANTI &GT; | Veritabanı bağlantı dizesi.                              |
-| \<SAĞLAYICI &GT;   | Kullanılacak sağlayıcısı. (Örn. Microsoft.EntityFrameworkCore.SqlServer) |
+|               |                                                                             |
+|:--------------|:----------------------------------------------------------------------------|
+| \<BAĞLANTI &GT; | Veritabanı bağlantı dizesi.                                      |
+| \<SAĞLAYICI &GT;   | Kullanılacak sağlayıcısı. (örneğin, Microsoft.EntityFrameworkCore.SqlServer) |
 
 Seçenekler:
 

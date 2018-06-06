@@ -5,11 +5,12 @@ ms.author: divega
 ms.date: 03/03/2018
 ms.technology: entity-framework-core
 uid: core/saving/concurrency
-ms.openlocfilehash: 288d9c6fced5ebbaa2c366248c68547502c3698e
-ms.sourcegitcommit: 8f3be0a2a394253efb653388ec66bda964e5ee1b
+ms.openlocfilehash: 2d8909585201a45eb020537847800f125b3b0120
+ms.sourcegitcommit: 72e59e6af86b568653e1b29727529dfd7f65d312
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/05/2018
+ms.lasthandoff: 06/04/2018
+ms.locfileid: "34754392"
 ---
 # <a name="handling-concurrency-conflicts"></a>Eşzamanlılık çakışmalarını işleme
 
@@ -47,7 +48,7 @@ WHERE [PersonId] = @p0 AND [LastName] = @p2;
 
 ## <a name="resolving-concurrency-conflicts"></a>Eşzamanlılık çakışmalarını çözme
 
-Bir kullanıcı için bazı değişiklikleri kaydetmek çalışırsa önceki örnekle devam etmeden bir `Person`, ancak başka bir kullanıcı zaten değiştirdi `LastName` bir özel durum.
+Bir kullanıcı için bazı değişiklikleri kaydetmek çalışırsa önceki örnekle devam etmeden bir `Person`, ancak başka bir kullanıcı zaten değiştirdi `LastName`, sonra da bir özel durum.
 
 Bu noktada, uygulama yalnızca kullanıcı güncelleştirme çakışan değişiklikler nedeniyle başarısız oldu ve bildirin geçin. Ancak bu kaydı hala aynı gerçek kişi temsil emin olun ve işlemi yeniden denemek için kullanıcıdan istenebilir.
 
