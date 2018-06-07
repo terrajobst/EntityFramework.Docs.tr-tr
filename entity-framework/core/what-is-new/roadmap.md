@@ -6,22 +6,21 @@ ms.date: 02/20/2018
 ms.assetid: 834C9729-7F6E-4355-917D-DE3EE9FE149E
 ms.technology: entity-framework-core
 uid: core/what-is-new/roadmap
-ms.openlocfilehash: 6c10e64a4fa3bf26dc0da64bb9e102c8b76d3a6e
-ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
+ms.openlocfilehash: e23f5d7b1ff95bead310fa8e618a88c161a4e10c
+ms.sourcegitcommit: 72e59e6af86b568653e1b29727529dfd7f65d312
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/16/2018
+ms.lasthandoff: 06/04/2018
+ms.locfileid: "34754450"
 ---
 # <a name="entity-framework-core-roadmap"></a>Entity Framework Çekirdek yol haritası
 
 > [!IMPORTANT]
 > Özellik kümeleri ve gelecek sürümlerin zamanlamaları her zaman değiştirilebilir ve bu sayfa, son planlarımızı hiç yansıtmayabilir güncelliğini deneyeceğiz rağmen zaman olmadığını unutmayın.
 
-EF çekirdek 2.1 ikinci önizlemesini Nisan 2018 üzerinde yayımlanmıştır. Şimdi bu sürümde hakkında daha fazla bilgi bulabilirsiniz [EF çekirdek 2.1 yenilikler](xref:core/what-is-new/ef-core-2.1).
+EF çekirdek 2.1 kararlı sürümü 30 May 2018 üzerinde yayımlanmıştır. Bu sürüm hakkında daha fazla bilgi bulabilirsiniz [EF çekirdek 2.1 yenilikler](xref:core/what-is-new/ef-core-2.1).
 
-EF çekirdek aylık 2.1 ve son sürümde 2018 ikinci Takvim çeyreğini üzerinde ek önizlemeleri yayımlamayı düşündüğünüz.
-
-Biz tamamlanmamış [planlama yayın](#release-planning-process) 2.1 sonra bir sonraki sürümü için.
+Biz tamamlanmamış [Planlama işlemi yayın](#release-planning-process) 2.1 sonra bir sonraki sürümü için.
 
 ## <a name="schedule"></a>Zamanlama
 
