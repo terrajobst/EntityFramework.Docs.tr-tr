@@ -14,8 +14,8 @@
 
 ### [EF Core yenilikleri](core/what-is-new/index.md)
 #### [EF Core Roadmap](core/what-is-new/roadmap.md)
-#### [EF Core 2.1 (önizlemede)](core/what-is-new/ef-core-2.1.md)
-#### [EF Core 2.0 (son sürüm)](core/what-is-new/ef-core-2.0.md)
+#### [EF Core 2.1](core/what-is-new/ef-core-2.1.md)
+#### [EF Core 2.0](core/what-is-new/ef-core-2.0.md)
 #### [EF Core 1.1](core/what-is-new/ef-core-1.1.md)
 #### [EF Core 1.0](core/what-is-new/ef-core-1.0.md)
 
