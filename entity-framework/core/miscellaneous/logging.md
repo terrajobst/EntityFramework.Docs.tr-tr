@@ -1,25 +1,26 @@
 ---
-title: "Günlüğü - EF çekirdek"
+title: Günlüğü - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: f6e35c6d-45b7-4258-be1d-87c1bb67438d
 ms.technology: entity-framework-core
 uid: core/miscellaneous/logging
-ms.openlocfilehash: 807560e563eddfb72d4286353b1403a0d2e2a441
-ms.sourcegitcommit: 5367516f063cb42804ec92c31cdf76322554f2b5
+ms.openlocfilehash: 60d76bf3360eb47cdd9836494c1f135d1005a215
+ms.sourcegitcommit: 3adf1267be92effc3c9daa893906a7f36834204f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/08/2017
+ms.lasthandoff: 06/08/2018
+ms.locfileid: "35232142"
 ---
-# <a name="logging"></a>Günlük Kaydı
+# <a name="logging"></a>Günlüğe Kaydetme
 
 > [!TIP]  
 > Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Logging) github'da.
 
 ## <a name="aspnet-core-applications"></a>ASP.NET Core uygulamaları
 
-EF çekirdek tümleştirir otomatik olarak ASP.NET Core günlük mechanims ile her `AddDbContext` veya `AddDbContextPool` kullanılır. Bu nedenle, ASP.NET Core kullanırken, günlük açıklandığı gibi yapılandırılmalıdır [ASP.NET Core belgeleri](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging?tabs=aspnetcore2x).
+EF çekirdek tümleştirir otomatik olarak ASP.NET Core günlük mekanizmalarıyla her `AddDbContext` veya `AddDbContextPool` kullanılır. Bu nedenle, ASP.NET Core kullanırken, günlük açıklandığı gibi yapılandırılmalıdır [ASP.NET Core belgeleri](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging?tabs=aspnetcore2x).
 
 ## <a name="other-applications"></a>Diğer uygulamalar
 

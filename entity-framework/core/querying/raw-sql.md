@@ -6,15 +6,16 @@ ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 ms.technology: entity-framework-core
 uid: core/querying/raw-sql
-ms.openlocfilehash: 29b7e20e875bf791a88a92636c1df4bc4e31656b
-ms.sourcegitcommit: 038acd91ce2f5a28d76dcd2eab72eeba225e366d
+ms.openlocfilehash: 7ed9a8938f8b6dffa7149d64d7e869b0b0078169
+ms.sourcegitcommit: 3adf1267be92effc3c9daa893906a7f36834204f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 05/14/2018
+ms.lasthandoff: 06/08/2018
+ms.locfileid: "35232174"
 ---
 # <a name="raw-sql-queries"></a>Ham SQL sorguları
 
-Entity Framework Çekirdek, ilişkisel veritabanı ile çalışırken, ham SQL sorguları açılan olanak sağlar. Gerçekleştirmek istediğiniz sorgu LINQ kullanılarak ifade edilemeyen veya bir LINQ Sorgu kullanarak verimsiz SQL veritabanına gönderilen kaynaklanan bu yararlı olabilir.
+Entity Framework Çekirdek, ilişkisel veritabanı ile çalışırken, ham SQL sorguları açılan olanak sağlar. Gerçekleştirmek istediğiniz sorgu LINQ kullanılarak ifade edilemeyen veya bir LINQ Sorgu kullanarak verimsiz SQL veritabanına gönderilen kaynaklanan bu yararlı olabilir. Ham SQL sorguları, varlık türleri veya EF çekirdek 2.1 ile başlayan dönebilirsiniz [sorgu türü](xref:core/modeling/query-types) modelinizi bir parçası.
 
 > [!TIP]  
 > Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) github'da.
@@ -22,7 +23,6 @@ Entity Framework Çekirdek, ilişkisel veritabanı ile çalışırken, ham SQL s
 ## <a name="limitations"></a>Sınırlamalar
 
 Ham SQL sorguları kullanırken dikkat edilmesi gereken bazı sınırlamalar vardır:
-* SQL sorguları yalnızca dönüş modelinizi parçası olan varlık türleri için kullanılabilir. Bizim biriktirme listesi üzerinde bir geliştirme yoktur [ham SQL sorgularından geçici türleri döndüren etkinleştir](https://github.com/aspnet/EntityFramework/issues/1862).
 
 * SQL sorgusu, varlık veya sorgu türü tüm özelliklerde için veri döndürmesi gerekir.
 
