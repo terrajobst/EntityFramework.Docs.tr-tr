@@ -127,7 +127,7 @@
 #### [1.0 RC2’den RTM’ye yükseltme](core/miscellaneous/rc2-rtm-upgrade.md)
 #### [EF Core 2.0 sürümüne yükseltme](core/miscellaneous/1x-2x-upgrade.md)
 
-### [⤤ API Başvurusu](https://docs.microsoft.com/dotnet/api/?view=efcore-2.0)
+### [⤤ API Başvurusu](https://docs.microsoft.com/dotnet/api/?view=efcore-2.1)
 
 ## [Entity Framework 6](ef6/index.md)
 ### [⤤ Belgeleri](http://msdn.com/data/ef)
