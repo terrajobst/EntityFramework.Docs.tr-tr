@@ -1,5 +1,5 @@
 ---
-title: "UWP - yeni veritabanı - EF Çekirdeğinde Başlarken"
+title: UWP - yeni veritabanı - EF Çekirdeğinde Başlarken
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -12,6 +12,7 @@ ms.sourcegitcommit: 96324e58c02b97277395ed43173bf13ac80d2012
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 12/01/2017
+ms.locfileid: "26054816"
 ---
 # <a name="getting-started-with-ef-core-on-universal-windows-platform-uwp-with-a-new-database"></a>Evrensel Windows Platformu (UWP) yeni bir veritabanı EF Çekirdeğinde ile çalışmaya başlama
 

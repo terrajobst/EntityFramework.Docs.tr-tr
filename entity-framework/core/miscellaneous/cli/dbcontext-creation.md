@@ -10,6 +10,7 @@ ms.sourcegitcommit: 7113e8675f26cbb546200824512078bf360225df
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 03/28/2018
+ms.locfileid: "30202490"
 ---
 <a name="design-time-dbcontext-creation"></a>Tasarım zamanı DbContext oluşturma
 ==============================

@@ -1,5 +1,5 @@
 ---
-title: "EF çekirdek 2 - EF çekirdek önceki sürümlerinden yükseltme"
+title: EF çekirdek 2 - EF çekirdek önceki sürümlerinden yükseltme
 author: divega
 ms.author: divega
 ms.date: 8/13/2017
@@ -11,6 +11,7 @@ ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 02/28/2018
+ms.locfileid: "29678620"
 ---
 # <a name="upgrading-applications-from-previous-versions-to-ef-core-20"></a>Uygulamaları EF çekirdek 2.0 önceki sürümlerinden yükseltme
 

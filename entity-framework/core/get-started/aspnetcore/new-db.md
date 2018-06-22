@@ -13,6 +13,7 @@ ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 04/26/2018
+ms.locfileid: "31812579"
 ---
 # <a name="getting-started-with-ef-core-on-aspnet-core-with-a-new-database"></a>ASP.NET Core EF Çekirdeğinde ile yeni bir veritabanı ile çalışmaya başlama
 

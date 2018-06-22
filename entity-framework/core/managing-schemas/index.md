@@ -1,5 +1,5 @@
 ---
-title: "Veritabanı şemalarını - EF çekirdek yönetme"
+title: Veritabanı şemalarını - EF çekirdek yönetme
 author: bricelam
 ms.author: divega
 ms.date: 10/30/2017
@@ -9,6 +9,7 @@ ms.sourcegitcommit: b467368cc350e6059fdc0949e042a41cb11e61d9
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 11/15/2017
+ms.locfileid: "26054741"
 ---
 # <a name="managing-database-schemas"></a>Veritabanı şemalarını yönetme
 EF çekirdek EF çekirdek modeli ve veritabanı şeması eşitlenmiş şekilde kalmasının iki birincil yolu sağlar. İkisi arasında seçmek için EF çekirdek modelinizi veya veritabanı şeması gerçekte kaynak olup olmadığına karar vermek.

@@ -1,5 +1,5 @@
 ---
-title: "Microsoft SQL Server veritabanı sağlayıcısı - bellek için iyileştirilmiş tablolar - EF çekirdek"
+title: Microsoft SQL Server veritabanı sağlayıcısı - bellek için iyileştirilmiş tablolar - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26054147"
 ---
 # <a name="memory-optimized-tables-support-in-sql-server-ef-core-database-provider"></a>SQL Server EF çekirdek veritabanı sağlayıcısı bellek için iyileştirilmiş tablolar desteği
 

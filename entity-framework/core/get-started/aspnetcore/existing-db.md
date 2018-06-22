@@ -11,6 +11,7 @@ ms.sourcegitcommit: 90139dbd6f485473afda0788a5a314c9aa601ea0
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 03/23/2018
+ms.locfileid: "30151020"
 ---
 # <a name="getting-started-with-ef-core-on-aspnet-core-with-an-existing-database"></a>Varolan bir veritabanını ile ASP.NET Core EF Çekirdeğinde ile çalışmaya başlama
 

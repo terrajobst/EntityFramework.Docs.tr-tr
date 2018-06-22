@@ -11,6 +11,7 @@ ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 04/26/2018
+ms.locfileid: "31812631"
 ---
 # <a name="getting-started-with-ef-core-on-net-framework-with-an-existing-database"></a>.NET Framework ile varolan bir veritabanını temel EF ile çalışmaya başlama
 

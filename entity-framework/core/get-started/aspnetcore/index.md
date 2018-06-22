@@ -1,5 +1,5 @@
 ---
-title: "ASP.NET Core - EF çekirdek Başlarken"
+title: ASP.NET Core - EF çekirdek Başlarken
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26054219"
 ---
 # <a name="getting-started-with-ef-core-on-aspnet-core"></a>ASP.NET Core EF Çekirdeğinde ile çalışmaya başlama
 

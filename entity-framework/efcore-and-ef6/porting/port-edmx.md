@@ -10,6 +10,7 @@ ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 04/26/2018
+ms.locfileid: "31812696"
 ---
 # <a name="porting-an-ef6-edmx-based-model-to-ef-core"></a>Bir EF6 EDMX tabanlı modeli EF çekirdek için bağlantı noktası oluşturma
 

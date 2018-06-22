@@ -1,5 +1,5 @@
 ---
-title: "EF çekirdek ve sizin için uygun olan EF6-"
+title: EF çekirdek ve sizin için uygun olan EF6-
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -10,6 +10,7 @@ ms.sourcegitcommit: 2ef0a4a90b01edd22b9206f8729b8de459ef8cab
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 03/20/2018
+ms.locfileid: "30002827"
 ---
 # <a name="ef-core-and-ef6-which-one-is-right-for-you"></a>EF çekirdek ve EF6: hangisinin sizin için uygun
 

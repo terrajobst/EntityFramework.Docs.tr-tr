@@ -1,5 +1,5 @@
 ---
-title: "Birden çok proje - EF çekirdek ile geçişleri"
+title: Birden çok proje - EF çekirdek ile geçişleri
 author: bricelam
 ms.author: bricelam
 ms.date: 10/30/2017
@@ -9,6 +9,7 @@ ms.sourcegitcommit: ced2637bf8cc5964c6daa6c7fcfce501bf9ef6e8
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 12/22/2017
+ms.locfileid: "27161233"
 ---
 <a name="using-a-separate-project"></a>Ayrı bir proje kullanma
 ========================

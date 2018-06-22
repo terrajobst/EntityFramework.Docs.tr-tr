@@ -1,5 +1,5 @@
 ---
-title: "Aynı DbContext türü - EF çekirdek ile birden çok modelleri arasında geçiş yapma"
+title: Aynı DbContext türü - EF çekirdek ile birden çok modelleri arasında geçiş yapma
 author: AndriySvyryd
 ms.author: divega
 ms.date: 12/10/2017
@@ -11,6 +11,7 @@ ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 02/28/2018
+ms.locfileid: "29678728"
 ---
 # <a name="alternating-between-multiple-models-with-the-same-dbcontext-type"></a>Aynı DbContext türü ile birden çok modelleri arasında geçiş yapma
 
