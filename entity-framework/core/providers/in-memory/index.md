@@ -1,5 +1,5 @@
 ---
-title: "Inmemory veritabanı sağlayıcısı - EF çekirdek"
+title: Inmemory veritabanı sağlayıcısı - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 02/28/2018
+ms.locfileid: "29678992"
 ---
 # <a name="ef-core-in-memory-database-provider"></a><span data-ttu-id="8f168-102">EF çekirdek bellek içi veritabanı sağlayıcısı</span><span class="sxs-lookup"><span data-stu-id="8f168-102">EF Core In-Memory Database Provider</span></span>
 

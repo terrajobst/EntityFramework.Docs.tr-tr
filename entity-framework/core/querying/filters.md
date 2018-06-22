@@ -10,6 +10,7 @@ ms.sourcegitcommit: 6e379265e4f087fb7cf180c824722c81750554dc
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 11/15/2017
+ms.locfileid: "26054762"
 ---
 # <a name="global-query-filters"></a><span data-ttu-id="1fbb2-102">Genel sorgu filtreleri</span><span class="sxs-lookup"><span data-stu-id="1fbb2-102">Global Query Filters</span></span>
 

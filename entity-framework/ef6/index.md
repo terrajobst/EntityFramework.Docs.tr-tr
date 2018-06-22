@@ -11,6 +11,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26054222"
 ---
 # <a name="entity-framework-6"></a><span data-ttu-id="40e45-102">Entity Framework 6</span><span class="sxs-lookup"><span data-stu-id="40e45-102">Entity Framework 6</span></span>
 

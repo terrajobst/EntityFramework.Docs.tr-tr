@@ -9,6 +9,7 @@ ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 04/26/2018
+ms.locfileid: "31812566"
 ---
 <a name="ef-core-package-manager-console-tools"></a><span data-ttu-id="4737a-102">EF çekirdek Paket Yöneticisi konsolu araçları</span><span class="sxs-lookup"><span data-stu-id="4737a-102">EF Core Package Manager Console Tools</span></span>
 =====================================

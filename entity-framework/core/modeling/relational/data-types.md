@@ -1,5 +1,5 @@
 ---
-title: "Veri türleri - EF çekirdek"
+title: Veri türleri - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 860ec5d047342fbc4063a0de881c9861cc1f8813
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 11/05/2017
+ms.locfileid: "26054546"
 ---
 # <a name="data-types"></a><span data-ttu-id="0b441-102">Veri Türleri</span><span class="sxs-lookup"><span data-stu-id="0b441-102">Data Types</span></span>
 

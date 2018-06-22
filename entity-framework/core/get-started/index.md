@@ -1,5 +1,5 @@
 ---
-title: "Alma başlatıldı - EF çekirdek"
+title: Alma başlatıldı - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 02/12/2018
+ms.locfileid: "29152409"
 ---
 # <a name="getting-started-with-entity-framework-core"></a><span data-ttu-id="ca696-102">Entity Framework Core'u kullanmaya başlama</span><span class="sxs-lookup"><span data-stu-id="ca696-102">Getting Started with Entity Framework Core</span></span>
 

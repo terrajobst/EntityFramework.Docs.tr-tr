@@ -1,5 +1,5 @@
 ---
-title: ".NET Framework - EF çekirdek Başlarken"
+title: .NET Framework - EF çekirdek Başlarken
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 02/12/2018
+ms.locfileid: "29152383"
 ---
 # <a name="getting-started-with-ef-core-on-net-framework"></a><span data-ttu-id="b8ed8-102">.NET Framework EF çekirdek ile çalışmaya başlama</span><span class="sxs-lookup"><span data-stu-id="b8ed8-102">Getting Started with EF Core on .NET Framework</span></span>
 

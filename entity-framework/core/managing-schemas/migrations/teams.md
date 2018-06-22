@@ -1,5 +1,5 @@
 ---
-title: "Takım ortamlarda - EF çekirdek geçişleri"
+title: Takım ortamlarda - EF çekirdek geçişleri
 author: bricelam
 ms.author: bricelam
 ms.date: 10/30/2017
@@ -9,6 +9,7 @@ ms.sourcegitcommit: b467368cc350e6059fdc0949e042a41cb11e61d9
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 11/15/2017
+ms.locfileid: "26054726"
 ---
 <a name="migrations-in-team-environments"></a><span data-ttu-id="5f2fb-102">Takım ortamlarda geçişleri</span><span class="sxs-lookup"><span data-stu-id="5f2fb-102">Migrations in Team Environments</span></span>
 ===============================

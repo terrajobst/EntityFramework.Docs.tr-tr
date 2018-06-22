@@ -1,5 +1,5 @@
 ---
-title: "Oluşturma ve API - EF çekirdek bırakma"
+title: "\U0001F527Oluşturma ve API - EF çekirdek bırakma"
 author: bricelam
 ms.author: bricelam
 ms.date: 11/10/2017
@@ -9,6 +9,7 @@ ms.sourcegitcommit: b467368cc350e6059fdc0949e042a41cb11e61d9
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 11/15/2017
+ms.locfileid: "26054732"
 ---
 # <a name="-create-and-drop-apis"></a><span data-ttu-id="19ad3-102">🔧Oluşturma ve API bırakma</span><span class="sxs-lookup"><span data-stu-id="19ad3-102">🔧 Create and Drop APIs</span></span>
 

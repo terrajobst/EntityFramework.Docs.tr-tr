@@ -11,6 +11,7 @@ ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 04/26/2018
+ms.locfileid: "31812443"
 ---
 # <a name="creating-a-model"></a><span data-ttu-id="6c7ce-102">Model oluşturma</span><span class="sxs-lookup"><span data-stu-id="6c7ce-102">Creating a Model</span></span>
 

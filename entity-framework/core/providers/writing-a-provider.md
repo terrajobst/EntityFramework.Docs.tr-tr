@@ -1,5 +1,5 @@
 ---
-title: "Veritabanı sağlayıcısı - EF çekirdek yazma"
+title: Veritabanı sağlayıcısı - EF çekirdek yazma
 author: anmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 02/28/2018
+ms.locfileid: "29678966"
 ---
 # <a name="writing-a-database-provider"></a><span data-ttu-id="e0fa8-102">Veritabanı sağlayıcısı yazma</span><span class="sxs-lookup"><span data-stu-id="e0fa8-102">Writing a Database Provider</span></span>
 

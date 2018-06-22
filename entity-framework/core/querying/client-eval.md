@@ -11,6 +11,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26054159"
 ---
 # <a name="client-vs-server-evaluation"></a><span data-ttu-id="a6574-102">İstemci vs. Sunucu değerlendirmesi</span><span class="sxs-lookup"><span data-stu-id="a6574-102">Client vs. Server Evaluation</span></span>
 

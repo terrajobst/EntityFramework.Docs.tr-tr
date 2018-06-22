@@ -1,5 +1,5 @@
 ---
-title: "Gölge özellikleri - EF çekirdek"
+title: Gölge özellikleri - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 860ec5d047342fbc4063a0de881c9861cc1f8813
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 11/05/2017
+ms.locfileid: "26054564"
 ---
 # <a name="shadow-properties"></a><span data-ttu-id="a453c-102">Gölge Özellikleri</span><span class="sxs-lookup"><span data-stu-id="a453c-102">Shadow Properties</span></span>
 

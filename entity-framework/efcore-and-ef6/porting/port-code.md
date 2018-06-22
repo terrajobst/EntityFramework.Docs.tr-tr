@@ -1,5 +1,5 @@
 ---
-title: "Kod tabanlı bir Model taşıma EF çekirdek - EF6 bağlantı noktası oluşturma"
+title: Kod tabanlı bir Model taşıma EF çekirdek - EF6 bağlantı noktası oluşturma
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -10,6 +10,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26054285"
 ---
 # <a name="porting-an-ef6-code-based-model-to-ef-core"></a><span data-ttu-id="a44ba-102">Kod tabanlı bir EF6 modeli EF çekirdek için bağlantı noktası oluşturma</span><span class="sxs-lookup"><span data-stu-id="a44ba-102">Porting an EF6 Code-Based Model to EF Core</span></span>
 

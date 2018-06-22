@@ -1,5 +1,5 @@
 ---
-title: "Devralma (ilişkisel veritabanı) - EF çekirdek"
+title: Devralma (ilişkisel veritabanı) - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 02/12/2018
+ms.locfileid: "29152374"
 ---
 # <a name="inheritance-relational-database"></a><span data-ttu-id="8dcfa-102">Devralma (ilişkisel veritabanı)</span><span class="sxs-lookup"><span data-stu-id="8dcfa-102">Inheritance (Relational Database)</span></span>
 

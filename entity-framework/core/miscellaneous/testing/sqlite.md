@@ -1,5 +1,5 @@
 ---
-title: "SQLite - EF çekirdek test etme"
+title: SQLite - EF çekirdek test etme
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26054174"
 ---
 # <a name="testing-with-sqlite"></a><span data-ttu-id="84947-102">SQLite ile test etme</span><span class="sxs-lookup"><span data-stu-id="84947-102">Testing with SQLite</span></span>
 

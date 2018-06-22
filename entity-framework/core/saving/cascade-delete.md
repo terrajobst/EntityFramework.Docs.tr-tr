@@ -11,6 +11,7 @@ ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 04/26/2018
+ms.locfileid: "31812683"
 ---
 # <a name="cascade-delete"></a><span data-ttu-id="6a025-102">Art arda silme</span><span class="sxs-lookup"><span data-stu-id="6a025-102">Cascade Delete</span></span>
 

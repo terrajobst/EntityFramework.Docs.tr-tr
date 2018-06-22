@@ -1,5 +1,5 @@
 ---
-title: "Tablo eşlemesi - EF çekirdek"
+title: Tablo eşlemesi - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26054183"
 ---
 # <a name="table-mapping"></a><span data-ttu-id="3d1ce-102">Tablo eşlemesi</span><span class="sxs-lookup"><span data-stu-id="3d1ce-102">Table Mapping</span></span>
 

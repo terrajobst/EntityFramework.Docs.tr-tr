@@ -1,5 +1,5 @@
 ---
-title: "Birincil anahtarlar - EF çekirdek"
+title: Birincil anahtarlar - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26054180"
 ---
 # <a name="primary-keys"></a><span data-ttu-id="b4ad0-102">Birincil anahtarlar</span><span class="sxs-lookup"><span data-stu-id="b4ad0-102">Primary Keys</span></span>
 

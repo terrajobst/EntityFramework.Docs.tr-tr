@@ -1,5 +1,5 @@
 ---
-title: "EF çekirdek alanlar - yedekleme"
+title: EF çekirdek alanlar - yedekleme
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 860ec5d047342fbc4063a0de881c9861cc1f8813
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 11/05/2017
+ms.locfileid: "26054534"
 ---
 # <a name="backing-fields"></a><span data-ttu-id="ede5d-102">Destekleyen alanlar</span><span class="sxs-lookup"><span data-stu-id="ede5d-102">Backing Fields</span></span>
 

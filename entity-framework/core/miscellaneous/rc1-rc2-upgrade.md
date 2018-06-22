@@ -1,5 +1,5 @@
 ---
-title: "RC2 - EF çekirdek EF çekirdek 1.0 RC1 ' yükseltme"
+title: RC2 - EF çekirdek EF çekirdek 1.0 RC1 ' yükseltme
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 02/28/2018
+ms.locfileid: "29678633"
 ---
 # <a name="upgrading-from-ef-core-10-rc1-to-10-rc2"></a><span data-ttu-id="718e4-102">EF çekirdek 1.0 RC1 1.0 RC2'ye yükseltme</span><span class="sxs-lookup"><span data-stu-id="718e4-102">Upgrading from EF Core 1.0 RC1 to 1.0 RC2</span></span>
 

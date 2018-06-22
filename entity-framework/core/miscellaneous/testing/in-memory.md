@@ -1,5 +1,5 @@
 ---
-title: "Inmemory - EF çekirdek test etme"
+title: Inmemory - EF çekirdek test etme
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: d096484dcf9eff73d9943fa60db7a418b10ca0b3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 01/22/2018
+ms.locfileid: "27995593"
 ---
 # <a name="testing-with-inmemory"></a><span data-ttu-id="cc39b-102">Inmemory ile test etme</span><span class="sxs-lookup"><span data-stu-id="cc39b-102">Testing with InMemory</span></span>
 

@@ -1,5 +1,5 @@
 ---
-title: "EF6 ve EF çekirdek - aynı uygulamada kullanma"
+title: EF6 ve EF çekirdek - aynı uygulamada kullanma
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -10,6 +10,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26054213"
 ---
 # <a name="using-ef-core-and-ef6-in-the-same-application"></a><span data-ttu-id="cbd85-102">EF çekirdek ve EF6 aynı uygulamasında kullanma</span><span class="sxs-lookup"><span data-stu-id="cbd85-102">Using EF Core and EF6 in the Same Application</span></span>
 

@@ -1,5 +1,5 @@
 ---
-title: "Eşzamanlılık belirteçleri - EF çekirdek"
+title: Eşzamanlılık belirteçleri - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 03/03/2018
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 8f3be0a2a394253efb653388ec66bda964e5ee1b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 03/05/2018
+ms.locfileid: "29745499"
 ---
 # <a name="concurrency-tokens"></a><span data-ttu-id="9afad-102">Eşzamanlılık belirteçleri</span><span class="sxs-lookup"><span data-stu-id="9afad-102">Concurrency Tokens</span></span>
 

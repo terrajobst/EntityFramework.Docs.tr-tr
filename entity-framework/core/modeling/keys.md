@@ -1,5 +1,5 @@
 ---
-title: "Anahtarları (birincil) - EF çekirdek"
+title: Anahtarları (birincil) - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26054111"
 ---
 # <a name="keys-primary"></a><span data-ttu-id="0b1f1-102">Anahtarları (birincil)</span><span class="sxs-lookup"><span data-stu-id="0b1f1-102">Keys (primary)</span></span>
 

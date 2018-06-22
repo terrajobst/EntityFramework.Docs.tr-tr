@@ -1,5 +1,5 @@
 ---
-title: "Tasarım zamanı Hizmetleri - EF çekirdek"
+title: Tasarım zamanı Hizmetleri - EF çekirdek
 author: bricelam
 ms.author: bricelam
 ms.date: 10/26/2017
@@ -9,6 +9,7 @@ ms.sourcegitcommit: 5e2d97e731f975cf3405ff3deab2a3c75ad1b969
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 11/15/2017
+ms.locfileid: "26054609"
 ---
 <a name="design-time-services"></a><span data-ttu-id="53c47-102">Tasarım zamanı Hizmetleri</span><span class="sxs-lookup"><span data-stu-id="53c47-102">Design-time services</span></span>
 ====================

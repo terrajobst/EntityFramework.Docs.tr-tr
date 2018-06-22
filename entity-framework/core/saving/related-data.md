@@ -11,6 +11,7 @@ ms.sourcegitcommit: 4997314356118d0d97b04ad82e433e49bb9420a2
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 04/16/2018
+ms.locfileid: "31006656"
 ---
 # <a name="saving-related-data"></a><span data-ttu-id="9054e-102">İlgili verileri kaydetme</span><span class="sxs-lookup"><span data-stu-id="9054e-102">Saving Related Data</span></span>
 

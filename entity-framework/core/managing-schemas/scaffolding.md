@@ -9,6 +9,7 @@ ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 04/26/2018
+ms.locfileid: "31812670"
 ---
 # <a name="-reverse-engineering"></a><span data-ttu-id="561e1-102">🔧 Tersine mühendislik</span><span class="sxs-lookup"><span data-stu-id="561e1-102">🔧 Reverse Engineering</span></span>
 

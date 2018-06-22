@@ -1,5 +1,5 @@
 ---
-title: "UWP - EF Başlarken çekirdek"
+title: UWP - EF Başlarken çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: c72d85805db0aa95f980514a18381fdc5e17c786
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 12/01/2017
+ms.locfileid: "26054801"
 ---
 # <a name="getting-started-with-ef-core-on-universal-windows-platform-uwp"></a><span data-ttu-id="ad1e3-102">Evrensel Windows Platformu (UWP) EF Çekirdeğinde ile çalışmaya başlama</span><span class="sxs-lookup"><span data-stu-id="ad1e3-102">Getting Started with EF Core on Universal Windows Platform (UWP)</span></span>
 

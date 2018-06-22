@@ -9,6 +9,7 @@ ms.sourcegitcommit: 038acd91ce2f5a28d76dcd2eab72eeba225e366d
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 05/14/2018
+ms.locfileid: "34163148"
 ---
 <a name="custom-migrations-operations"></a><span data-ttu-id="9311b-102">Özel geçişler işlemleri</span><span class="sxs-lookup"><span data-stu-id="9311b-102">Custom Migrations Operations</span></span>
 ============================

@@ -1,5 +1,5 @@
 ---
-title: "EF çekirdek yükleniyor"
+title: EF çekirdek yükleniyor
 author: divega
 ms.author: divega
 ms.date: 08/06/2017
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 5e2d97e731f975cf3405ff3deab2a3c75ad1b969
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 11/15/2017
+ms.locfileid: "26054648"
 ---
 # <a name="installing-ef-core"></a><span data-ttu-id="bab76-102">EF çekirdek yükleniyor</span><span class="sxs-lookup"><span data-stu-id="bab76-102">Installing EF Core</span></span>
 

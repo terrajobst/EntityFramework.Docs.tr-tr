@@ -1,5 +1,5 @@
 ---
-title: "Veritabanı şemalarını - EF çekirdek yönetme"
+title: Veritabanı şemalarını - EF çekirdek yönetme
 author: bricelam
 ms.author: divega
 ms.date: 10/30/2017
@@ -9,6 +9,7 @@ ms.sourcegitcommit: b467368cc350e6059fdc0949e042a41cb11e61d9
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 11/15/2017
+ms.locfileid: "26054741"
 ---
 # <a name="managing-database-schemas"></a><span data-ttu-id="530f3-102">Veritabanı şemalarını yönetme</span><span class="sxs-lookup"><span data-stu-id="530f3-102">Managing Database Schemas</span></span>
 <span data-ttu-id="530f3-103">EF çekirdek EF çekirdek modeli ve veritabanı şeması eşitlenmiş şekilde kalmasının iki birincil yolu sağlar. İkisi arasında seçmek için EF çekirdek modelinizi veya veritabanı şeması gerçekte kaynak olup olmadığına karar vermek.</span><span class="sxs-lookup"><span data-stu-id="530f3-103">EF Core provides two primary ways of keeping your EF Core model and database schema in sync. To choose between the two, decide whether your EF Core model or the database schema is the source of truth.</span></span>

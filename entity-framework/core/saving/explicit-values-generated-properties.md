@@ -11,6 +11,7 @@ ms.sourcegitcommit: 5e2d97e731f975cf3405ff3deab2a3c75ad1b969
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 11/15/2017
+ms.locfileid: "26054612"
 ---
 # <a name="setting-explicit-values-for-generated-properties"></a><span data-ttu-id="bdf2a-102">Açık değerler için oluşturulan özelliklerini ayarlama</span><span class="sxs-lookup"><span data-stu-id="bdf2a-102">Setting Explicit Values for Generated Properties</span></span>
 

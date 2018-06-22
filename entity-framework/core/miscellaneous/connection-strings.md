@@ -1,5 +1,5 @@
 ---
-title: "Bağlantı dizeleri - EF çekirdek"
+title: Bağlantı dizeleri - EF çekirdek
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -11,6 +11,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26054099"
 ---
 # <a name="connection-strings"></a><span data-ttu-id="12621-102">Bağlantı dizeleri</span><span class="sxs-lookup"><span data-stu-id="12621-102">Connection Strings</span></span>
 

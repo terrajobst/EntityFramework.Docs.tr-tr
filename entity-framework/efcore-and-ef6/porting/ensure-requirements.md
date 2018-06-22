@@ -1,5 +1,5 @@
 ---
-title: "EF çekirdek - EF6 bağlantı noktası oluşturma gereksinimlerini doğrulayın"
+title: EF çekirdek - EF6 bağlantı noktası oluşturma gereksinimlerini doğrulayın
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
@@ -10,6 +10,7 @@ ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 10/27/2017
+ms.locfileid: "26054255"
 ---
 # <a name="before-porting-from-ef6-to-ef-core-validate-your-applications-requirements"></a><span data-ttu-id="8a8cd-102">EF çekirdek EF6 bağlantı noktası oluşturma önce: uygulamanızın gereksinimlerini doğrulayın</span><span class="sxs-lookup"><span data-stu-id="8a8cd-102">Before porting from EF6 to EF Core: Validate your Application's Requirements</span></span>
 
