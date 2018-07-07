@@ -1,55 +1,55 @@
 ---
-title: Genel sorgu filtreleri - EF çekirdek
+title: Genel sorgu filtreleri - EF Core
 author: anpete
 ms.author: anpete
 ms.date: 11/03/2017
 ms.technology: entity-framework-core
 uid: core/querying/filters
-ms.openlocfilehash: 4e3c3c99d155f69e00fed99c415f519808ea1a68
-ms.sourcegitcommit: 6e379265e4f087fb7cf180c824722c81750554dc
+ms.openlocfilehash: 0c7858d660665b4f17aedea2101452048f9aff25
+ms.sourcegitcommit: fd50ac53b93a03825dcbb42ed2e7ca95ca858d5f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/15/2017
-ms.locfileid: "26054762"
+ms.lasthandoff: 07/07/2018
+ms.locfileid: "37900297"
 ---
 # <a name="global-query-filters"></a>Genel sorgu filtreleri
 
-Genel sorgu filtreleri şunlardır LINQ Sorgu koşulları (Boole ifadesi genellikle LINQ to geçirilen *nerede* sorgu işleci) meta veri modeli varlık türlerine uygulanan (genellikle *OnModelCreating*). Bu tür filtreleri, varlık türleri INCLUDE kullanımıyla dolaylı olarak gibi başvurulan veya doğrudan gezinti özelliği başvuruları dahil olmak üzere bu varlık türleriyle ilgili herhangi bir LINQ Sorgu otomatik olarak uygulanır. Bu özellik, bazı ortak uygulamalar şunlardır:
+Genel sorgu filtreleri olan LINQ Sorgu koşullarına (bir Boole ifadesi, LINQ to genellikle geçirilen *burada* sorgu işleci) meta veri modeli varlık türlerine uygulanır (genellikle *OnModelCreating*). Bu filtreler, varlık türleri Ekle kullanarak dolaylı olarak gibi başvurulan veya doğrudan bir gezinti özelliği başvuruları dahil olmak üzere bu varlık türleriyle ilgili herhangi bir LINQ sorguları için otomatik olarak uygulanır. Bu özelliğin bazı ortak uygulamalar şunlardır:
 
-* **Yumuşak silme** -bir varlık türünü tanımlayan bir *IsDeleted* özelliği.
-* **Çoklu kiracı** -bir varlık türünü tanımlayan bir *Tenantıd* özelliği.
+* **Geçici silme** -bir varlık türü tanımlayan bir *IsDeleted* özelliği.
+* **Çok kiracılılık** -bir varlık türü tanımlayan bir *Tenantıd* özelliği.
 
 ## <a name="example"></a>Örnek
 
-Aşağıdaki örnek genel sorgu filtreleri basit blog modelinde yumuşak silebilir ve çoklu kiracı sorgu davranışlarını uygulamak için nasıl kullanılacağını gösterir.
+Aşağıdaki örnek, basit bir blog oluşturma modelinde geçici silmeyi ve çok kiracılılık sorgu davranışları uygulamak için genel sorgu filtreleri kullanmayı gösterir.
 
 > [!TIP]
-> Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFrameworkCore/tree/dev/samples/QueryFilters) github'da.
+> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFrameworkCore/tree/dev/samples/QueryFilters) GitHub üzerinde.
 
-İlk olarak, varlıkları tanımlayın:
+İlk olarak, varlıklar tanımlayın:
 
-[!code-csharp[Main](../../../efcore-dev/samples/QueryFilters/Program.cs#Entities)]
+[!code-csharp[Main](../../../efcore-repo/samples/QueryFilters/Program.cs#Entities)]
 
-Bir _ bildirimi Not_Tenantıd_ alanını _Blog_ varlık. Bu, her bir Blog örneği belirli bir kiracı ile ilişkilendirmek için kullanılır. Ayrıca tanımlı olan bir _IsDeleted_ özelliği _Post_ varlık türü. Bu kullanılır olup izlenmesi için bir _Post_ örneği "geçici olarak silinen" açıldı. Yani Örnek temel alınan verileri fiziksel olarak kaldırma silinen withouth işaretlenir.
+Bir _ bildirimi Not_Tenantıd_ alanını _Blog_ varlık. Bu, her Blog örneği belirli bir kiracı ile ilişkilendirmek için kullanılır. Ayrıca tanımlı olan bir _IsDeleted_ özelliği _Post_ varlık türü. Bu kullanılır olup izlenmesi için bir _Post_ örneği "geçici silinen". Yani Örnek, temel alınan verileri fiziksel olarak kaldırma silinen withouth işaretlenir.
 
 Ardından, sorgu filtreleri yapılandırma _OnModelCreating_ kullanarak ```HasQueryFilter``` API.
 
-[!code-csharp[Main](../../../efcore-dev/samples/QueryFilters/Program.cs#Configuration)]
+[!code-csharp[Main](../../../efcore-repo/samples/QueryFilters/Program.cs#Configuration)]
 
-Karşılaştırma ifadeleri geçirilen _HasQueryFilter_ çağrıları artık otomatik olarak uygulanacak bu türleri için herhangi bir LINQ Sorgu.
+Koşul ifadeleri geçirilen _HasQueryFilter_ çağrıları artık otomatik olarak uygulanacak LINQ sorguları bu türleri için.
 
 > [!TIP]
-> DbContext örnek düzeyi alanı kullanımına dikkat edin: ```_tenantId``` geçerli Kiracı ayarlamak için kullanılır. Model düzeyindeki filtreleri doğru bağlamı örneğinden değeri kullanır. Yani Sorgu yürütülürken örneği.
+> DbContext örnek düzeyinde bir alanı kullanımına dikkat edin: ```_tenantId``` geçerli Kiracı ayarlamak için kullanılır. Model düzeyinde filtreler doğru bağlam örneğinin değerini kullanır. Yani Sorgu yürütülürken örneği.
 
 ## <a name="disabling-filters"></a>Filtreleri devre dışı bırakma
 
 Filtreleri devre dışı bırakılabilir için tek tek LINQ sorgularını kullanarak ```IgnoreQueryFilters()``` işleci.
 
-[!code-csharp[Main](../../../efcore-dev/samples/QueryFilters/Program.cs#IgnoreFilters)]
+[!code-csharp[Main](../../../efcore-repo/samples/QueryFilters/Program.cs#IgnoreFilters)]
 
 ## <a name="limitations"></a>Sınırlamalar
 
 Genel sorgu filtreleri aşağıdaki sınırlamalara sahiptir:
 
-* Filtreler, gezinti özellikleri için başvuru içeremez.
-* Filtreler yalnızca varlık türü bir devralma hiyerarşisini kök için tanımlanabilir.
+* Filtreler, gezinti özellikleri başvurular içeremez.
+* Filtreler yalnızca varlık türü devralma hiyerarşisinin kökü için tanımlanabilir.

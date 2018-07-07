@@ -1,80 +1,80 @@
 ---
-title: Sorgu türleri - EF çekirdek
+title: Sorgu türleri - EF Core
 author: anpete
 ms.author: anpete
 ms.date: 2/26/2018
 ms.assetid: 9F4450C5-1A3F-4BB6-AC19-9FAC64292AAD
 ms.technology: entity-framework-core
 uid: core/modeling/query-types
-ms.openlocfilehash: f16e3a130f3a4f92b2bf6014f2df0ca4eec56a25
-ms.sourcegitcommit: 038acd91ce2f5a28d76dcd2eab72eeba225e366d
+ms.openlocfilehash: 89f5be356654dc02e353441a83e34c90fc727593
+ms.sourcegitcommit: fd50ac53b93a03825dcbb42ed2e7ca95ca858d5f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 05/14/2018
-ms.locfileid: "34163180"
+ms.lasthandoff: 07/07/2018
+ms.locfileid: "37900310"
 ---
 # <a name="query-types"></a>Sorgu türleri
 > [!NOTE]
-> Bu özellik EF çekirdek 2.1 yenilikler
+> Bu EF Core 2.1 içinde yeni bir özelliktir
 
-EF çekirdek modeli varlık türlerine ek olarak içerebilir _sorgu türü_, varlık türleri eşlenmediği veri veritabanı sorguları yürütmek için kullanılabilir.
+Varlık türlerine ek olarak, EF Core modeli içerebilir _sorgu türü_, varlık türlerine eşlenmediği verilere karşı veritabanı sorgularını yürütmek için kullanılabilir.
 
-Sorgu türleri varlık türleriyle birçok benzerlikler vardır:
+Sorgu türleri varlık türleri ile birçok benzerlikler:
 
-- Bunlar ayrıca modeline ya da eklenebilir, `OnModelCreating`, veya türetilmiş bir "Ayarla" özellik aracılığıyla _DbContext_.
-- Bunlar aynı eşleme özelliklerini, devralma eşleme, gezinti özellikleri (sınırlamalar aşağıya bakın) gibi ve ilişkisel depoları, hedef veritabanı nesneleri ve sütunları fluent API yöntemlerini veya veri ek açıklamaları aracılığıyla yapılandırma yeteneğini destekler.
+- Bunlar ayrıca modele ya da eklenebilir, `OnModelCreating`, veya bir türetilen "Ayarla" özellik aracılığıyla _DbContext_.
+- Bunlar aynı Haritalama özellikleri, eşleme, gezinti özellikleri (bkz. aşağıdaki sınırlamalar) devralma gibi ve hedef veritabanı nesneleri ve sütunları fluent API yöntemleri veya veri ek açıklamaları aracılığıyla yapılandırabilir, ilişkisel depoları çoğunu destekler.
 
-Ancak varlıktan farklı türleri, bunlar:
+Ancak bunlar varlıktan farklıdır türleri, bunlar:
 
-- Tanımlanmamış bir anahtarı gerektirmez.
-- Üzerinde değişiklikler için hiçbir zaman izlenir _DbContext_ ve bu nedenle hiçbir zaman eklenir, güncelleştirilmiş veya veritabanında silindi.
-- Hiçbir zaman kurala göre bulunur.
-- Yalnızca bir alt kümesini Gezinti eşleme özelliklerini - özellikle destekler:
-  - Bunlar, hiçbir zaman bir ilişkinin asıl ucu çalışabilir.
+- Tanımlanacak bir anahtarı gerektirmez.
+- Üzerinde değişiklikler için hiçbir zaman izlenir _DbContext_ ve bu nedenle hiçbir zaman eklenen, güncelleştirilen veya veritabanında silindi.
+- Kural gereği hiçbir zaman bulunur.
+- Yalnızca bir alt kümesini Gezinti Haritalama özellikleri - özellikle destekler:
+  - Bunlar, hiçbir zaman bir ilişkisinin birincil ucu çalışabilir.
   - Bunlar yalnızca varlıklara işaret eden başvuru Gezinti özellikleri de içerebilir.
-  - Varlık Gezinti özellikleri için sorgu türleri içeremez.
+  - Varlıklar için sorgu türleri Gezinti özellikleri içeremez.
 - Üzerinde ele _ModelBuilder_ kullanarak `Query` yöntemi yerine `Entity` yöntemi.
-- Üzerinde eşlenen _DbContext_ türünün özelliklerini aracılığıyla `DbQuery<T>` yerine `DbSet<T>`
-- Kullanarak veritabanı nesneleri eşlenen `ToView` yöntemi yerine `ToTable`.
-- Eşlenmiş bir _sorgu tanımlama_ - A olan bir sorgu türü için bir veri kaynağı görevi gören modelinde bildirilen ikincil bir sorgu sorgu tanımlama.
+- Üzerinde eşlenen _DbContext_ türü özellikleri aracılığıyla `DbQuery<T>` yerine `DbSet<T>`
+- Kullanarak veritabanı nesneleri için eşlenmiş `ToView` yöntemi yerine `ToTable`.
+- Eşlenen bir _sorgu tanımlama_ - bir sorgu tanımlanıyor bir sorgu türü için bir veri kaynağı görevi gören modelinde bildirilen ikincil bir sorgu verilmiştir.
 
-Sorgu türleri için temel kullanım senaryoları bazıları şunlardır:
+Sorgu türleri için ana kullanım senaryoları bazıları şunlardır:
 
-- Dönüş türü için geçici hizmet veren `FromSql()` sorgular.
-- Veritabanı görünümlerine eşleme.
-- Tanımlı birincil anahtarı olmayan tablolar için eşleme.
-- Model içinde tanımlanan sorgulara eşleme.
+- Dönüş türü için geçici hizmet `FromSql()` sorgular.
+- Veritabanı görünümleriyle eşleme.
+- Tanımlı bir birincil anahtarı olmayan tablolar için eşleme.
+- Eşleme için modelde tanımlı sorgular.
 
 > [!TIP]
-> Bir veritabanı nesnesi için bir sorgu türü eşleme elde edilir kullanarak `ToView` fluent API. EF çekirdek açısından bakıldığında, bu yöntemi, belirtilen veritabanı nesnesidir bir _Görünüm_, yani bir salt okunur sorgu kaynağı olarak kabul edilir ve güncelleştirme hedefi, eklenemiyor veya silme işlemleri. Ancak, bu gelmez veritabanı nesne bir veritabanı görünümü olması gerektiğine - alternatif olarak salt okunur olarak kabul edilecek bir veritabanı tablosu olabilir. Buna karşılık, varlık türleri için bir veritabanı nesnesi içinde belirtilen EF çekirdek varsayar `ToTable` yöntemi kabul bir _tablo_, bir sorgu kaynağı olarak kullanılabilir ancak aynı zamanda güncelleştirme tarafından hedeflenmiş silme anlamına gelir ve Ekle işlemler. Aslında, bir veritabanı görünümünde adını belirtebilirsiniz `ToTable` ve görünüm veritabanında güncelleştirilebilir için yapılandırılmış olduğu sürece her şeyi sorunsuz çalışması gerekir.
+> Bir sorgu türü için bir veritabanı nesnesi eşleme gerçekleştirilir kullanarak `ToView` fluent API'si. EF Core açısından bakıldığında, bu yöntemde belirtilen veritabanı nesnesi olan bir _görünümü_, yani bir salt okunur sorgu kaynağı olarak kabul edilir ve güncelleştirme işleminin hedefi, ekleme ya da silme işlemleri. Ancak, bu gelmez veritabanı nesnesi veritabanı görünümü için gerçekten gerekli değildir - alternatif olarak salt okunur olarak kabul edilir bir veritabanınız olabilir. Buna karşılık, varlık türleri için bir veritabanı nesnesi içinde belirtilen EF Core varsayar `ToTable` yöntemi olarak kabul bir _tablo_, sorgu kaynağı olarak kullanılabilir olduğunu bildirir ancak aynı zamanda update tarafından hedeflenen Sil anlamına gelir ve Ekle işlemler. Aslında, bir veritabanı görünümü'nde adını belirtebilirsiniz. `ToTable` ve görünümü veritabanında güncelleştirilebilir olarak yapılandırılmış olduğu sürece her şeyin düzgün çalışmalıdır.
 
 ## <a name="example"></a>Örnek
 
-Aşağıdaki örnek sorgu türü bir veritabanı görünümü sorgulamak için nasıl kullanılacağını gösterir.
+Aşağıdaki örnek bir veritabanı görünümü sorgulamak için sorgu türünü kullanmayı gösterir.
 
 > [!TIP]
-> Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFrameworkCore/tree/dev/samples/QueryTypes) github'da.
+> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFrameworkCore/tree/dev/samples/QueryTypes) GitHub üzerinde.
 
-İlk olarak, basit bir Blog ve Post modelinin tanımlayın:
+İlk olarak, basit bir Blog ve gönderi modeli tanımlayın:
 
-[!code-csharp[Main](../../../efcore-dev/samples/QueryTypes/Program.cs#Entities)]
+[!code-csharp[Main](../../../efcore-repo/samples/QueryTypes/Program.cs#Entities)]
 
-Ardından, bize her blog ile ilişkili gönderileri sayısı sorgulamaya izin veren basit veritabanı görünümü tanımlayın:
+Ardından, bize her blog ile ilişkili gönderi sayısı sorgulamaya izin verecek basit veritabanı görünümü tanımlayın:
 
-[!code-csharp[Main](../../../efcore-dev/samples/QueryTypes/Program.cs#View)]
+[!code-csharp[Main](../../../efcore-repo/samples/QueryTypes/Program.cs#View)]
 
-Ardından, veritabanı görünümü sonucundan tutmak için bir sınıf tanımlayın:
+Ardından, veritabanı görünümü sonucu için bir sınıf tanımlayın:
 
-[!code-csharp[Main](../../../efcore-dev/samples/QueryTypes/Program.cs#QueryType)]
+[!code-csharp[Main](../../../efcore-repo/samples/QueryTypes/Program.cs#QueryType)]
 
-Ardından, biz sorgu türünde yapılandırın _OnModelCreating_ kullanarak `modelBuilder.Query<T>` API.
-Sorgu türü eşlemeyi yapılandırmak için standart fluent yapılandırma API'leri kullanın:
+Ardından, sorgu türünde yapılandırıyoruz _OnModelCreating_ kullanarak `modelBuilder.Query<T>` API.
+Sorgu türü için eşlemeyi yapılandırmak için standart fluent yapılandırma API'leri kullanın:
 
-[!code-csharp[Main](../../../efcore-dev/samples/QueryTypes/Program.cs#Configuration)]
+[!code-csharp[Main](../../../efcore-repo/samples/QueryTypes/Program.cs#Configuration)]
 
-Son olarak, biz veritabanı görünümü standart şekilde sorgulama yapabilirsiniz:
+Son olarak, biz veritabanı görünümü standart şekilde sorgulayabilirsiniz:
 
-[!code-csharp[Main](../../../efcore-dev/samples/QueryTypes/Program.cs#Query)]
+[!code-csharp[Main](../../../efcore-repo/samples/QueryTypes/Program.cs#Query)]
 
 > [!TIP]
-> Biz de içerik düzeyi sorgu özelliği (DbQuery) bu tür sorguları için bir kök olarak görev yapması için tanımladığınız unutmayın.
+> Biz de içerik düzeyi sorgu özelliği (Bu tür sorgu için bir kök olarak görev yapacak DbQuery) tanımladığınız unutmayın.
