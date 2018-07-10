@@ -19,22 +19,28 @@
             - name: Başlarken
               tocHref: /ef/core/get-started/
               topicHref: /ef/core/get-started/index
-            - name: Model oluşturma
+            - name: Model Oluşturma
               tocHref: /ef/core/modeling/
               topicHref: /ef/core/modeling/index
-            - name: Verileri sorgulama
+            - name: Veri Sorgulama
               tocHref: /ef/core/querying/
               topicHref: /ef/core/querying/index
-            - name: Verileri kaydetme
+            - name: Verileri Kaydetme
               tocHref: /ef/core/saving/
               topicHref: /ef/core/saving/index
-            - name: Veritabanı sağlayıcıları
+            - name: Desteklenen .NET Uygulamaları
+              tocHref: /ef/core/platforms/
+              topicHref: /ef/core/platofms/index
+            - name: Veritabanı Sağlayıcıları
               tocHref: /ef/core/providers/
               topicHref: /ef/core/providers/index
-            - name: Komut satırı başvurusu
+            - name: Veritabanı Şemalarını Yönetme
+              tocHref: /ef/core/managing-schemas/
+              topicHref: /ef/core/managing-schemas/index
+            - name: Komut Satırı Başvurusu
               tocHref: /ef/core/miscellaneous/cli/
               topicHref: /ef/core/miscellaneous/cli/index
-            - name: Araçlar ve uzantılar
+            - name: Araçlar ve Uzantılar
               tocHref: /ef/core/extensions/
               topicHref: /ef/core/extensions/index
             - name: Çeşitli
@@ -43,3 +49,25 @@
         - name: Entity Framework 6
           tocHref: /ef/ef6/
           topicHref: /ef/ef6/index
+          items:
+            - name: Yenilikler
+              tocHref: /ef/ef6/what-is-new/
+              topicHref: /ef/ef6/what-is-new/index
+            - name: Başlarken
+              tocHref: /ef/ef6/get-started
+              topicHref: /ef/ef6/get-started
+            - name: Temeller
+              tocHref: /ef/ef6/fundamentals/
+              topicHref: /ef/ef6/fundamentals/index
+            - name: Model Oluşturma
+              tocHref: /ef/ef6/modeling/
+              topicHref: /ef/ef6/modeling/index
+            - name: Veri Sorgulama
+              tocHref: /ef/ef6/querying/
+              topicHref: /ef/ef6/querying/index
+            - name: Verileri Kaydetme
+              tocHref: /ef/ef6/saving/
+              topicHref: /ef/ef6/saving/index
+            - name: Ek Kaynaklar
+              tocHref: /ef/ef6/resources/
+              topicHref: /ef/ef6/resources/index

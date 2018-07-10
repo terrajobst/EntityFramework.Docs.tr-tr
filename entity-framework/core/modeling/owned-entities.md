@@ -1,29 +1,30 @@
 ---
-title: EF çekirdek varlık türleri - ait
+title: Varlık türleri - EF Core ait
 author: julielerman
 ms.author: divega
 ms.date: 2/26/2018
 ms.assetid: 2B0BADCE-E23E-4B28-B8EE-537883E16DF3
 ms.technology: entity-framework-core
 uid: core/modeling/owned-entities
-ms.openlocfilehash: f2f05499a3e3494f420d916df2db19667a6f1e29
-ms.sourcegitcommit: 26f33758c47399ae933f22fec8e1d19fa7d2c0b7
+ms.openlocfilehash: 768429b857b09c1974f4ade31b5bbb6b1c7e15c3
+ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/19/2018
+ms.lasthandoff: 07/08/2018
+ms.locfileid: "37912693"
 ---
-# <a name="owned-entity-types"></a>Ait varlık türleri
+# <a name="owned-entity-types"></a>Sahip olunan varlık türleri
 
 >[!NOTE]
-> Bu özelliği EF çekirdek 2. 0'yeni bir özelliktir.
+> Bu özellik, EF Core 2.0 sürümünde yenidir.
 
-EF çekirdek her zaman sadece diğer varlık türleri Gezinti özelliklerini görünebilir modeli varlık türlerine izin verir. Bunlar adlandırılır _varlık türlerine ait_. Bir ait varlık türünü içeren varlık kendi _sahibi_.
+EF Core, diğer varlık türleri Gezinti özellikleri yalnızca görüntülenebilir modeli varlık türleri sağlar. Bunlar adlandırılır _varlık türlerine ait_. Sahip olunan varlık türünü içeren bir varlık, _sahibi_.
 
 ## <a name="explicit-configuration"></a>Açık yapılandırma
 
-Varlık türleri hiçbir zaman EF çekirdek tarafından modelde kurala göre dahil edilen ait. Kullanabileceğiniz `OwnsOne` yönteminde `OnModelCreating` veya türüyle açıklama `OwnedAttribute` (EF çekirdek 2.1 yeni) ait bir tür olarak türünü yapılandırmak için.
+Sahip olunan varlık türleri hiçbir zaman EF Core tarafından modelde kuralı olarak eklenir. Kullanabileceğiniz `OwnsOne` yöntemi `OnModelCreating` veya açıklama türüyle `OwnedAttribute` (EF Core 2.1 yeni) sahip olunan bir türü türünü yapılandırmak için.
 
-Bu örnekte, StreetAddress hiçbir kimlik özelliği türüdür. Sipariş türünde bir özellik, belirli bir sıraya sevkiyat adresini belirtmek için kullanılır. İçinde `OnModelCreating`, kullandığımız `OwnsOne` ShippingAddress özelliği sipariş türünde bir ait varlık olduğunu belirtmek için yöntem.
+Bu örnekte, StreetAddress hiçbir kimlik özelliği türüdür. Sipariş türünde bir özellik, belirli bir siparişi teslimat adresini belirtmek için kullanılır. İçinde `OnModelCreating`, kullandığımız `OwnsOne` ShippingAddress özelliği siparişini ait bir varlığın olduğunu belirtmek için yöntemi.
 
 ``` csharp
 public class StreetAddress
@@ -42,7 +43,7 @@ public class Order
 modelBuilder.Entity<Order>().OwnsOne(p => p.ShippingAddress);
 ```
 
-ShippingAddress özelliği sipariş türünde özel ise, dize sürümü kullanabilirsiniz `OwnsOne` yöntemi:
+ShippingAddress özellik siparişini özel ise, dize sürümü kullanabileceğiniz `OwnsOne` yöntemi:
 
 ``` csharp
 modelBuilder.Entity<Order>().OwnsOne(typeof(StreetAddress), "ShippingAddress");
@@ -67,20 +68,20 @@ public class Order
 
 ## <a name="implicit-keys"></a>Örtük anahtarları
 
-EF çekirdek 2.0 ve 2.1, yalnızca başvuru Gezinti özellikleri ait türlerine işaret edebilir. Ait türler desteklenmez. Bu başvuru türleri her zaman bire bir ilişki ile sahip, bu nedenle anahtar değerlerine gerekmeyen ait. Önceki örnekte StreetAddress türü bir anahtar özellik tanımlamak gerekmez.  
+EF Core 2.0 ve 2.1, yalnızca başvuru Gezinti özellikleri ait türlerine işaret edebilir. Sahip olunan türler desteklenmez. Bu başvuru ait türleri, her zaman bire bir ilişki sahip olması, bu nedenle anahtar değerlerini gerekmez. Önceki örnekte StreetAddress türü tanımlayan bir anahtar özellik gerekmez.  
 
-EF çekirdek bu nesnelerin nasıl izler anlamak için sırayla bir birincil anahtar olarak oluşturduğunuz düşünmek yararlı olur bir [gölge özelliği](xref:core/modeling/shadow-properties) ait türü. Ait türünün bir örneği anahtarının değerini sahibi örneğinin anahtarının değeri ile aynı olacaktır.      
+EF Core bu nesnelerin nasıl izlediği anlamanın sırada bir birincil anahtar olarak oluşturduğunuz düşünün yararlı bir [gölge özelliği](xref:core/modeling/shadow-properties) ait türü. Sahip olunan türünün bir örneği anahtarın değerini sahibi örneğinin anahtarı değeri ile aynı olacaktır.      
 
-## <a name="mapping-owned-types-with-table-splitting"></a>Tablo bölme ile türlerine ait eşleme
+## <a name="mapping-owned-types-with-table-splitting"></a>Tablo bölme ile türleri ait eşleme
 
-İlişkisel veritabanları kullanırken türlerine ait kurala göre aynı tablonun sahibi olarak eşlenir. Bu iki tabloda bölme gerektirir: bazı sütunları sahibinin verileri depolamak için kullanılan ve bazı sütunları ait varlık verilerini depolamak için kullanılır. Bu tablo bölme olarak bilinen ortak bir özelliktir.
+İlişkisel veritabanları kullanırken türlerine sahip kurala göre aynı tablonun sahibi olarak eşlenir. Bu iki tablodaki bölünmesini gerektirir: bazı sütunları sahibinin verileri depolamak için kullanılan ve bazı sütunları, sahip olunan varlık verilerini depolamak için kullanılacak. Bu tablo bölme olarak bilinen genel bir özelliğidir.
 
 > [!TIP]
-> Tablo bölme depolanan türleri olabilir ait çok benzer bir şekilde nasıl karmaşık türler EF6 kullanılan kullanılır.
+> Tablo bölme depolanan türleri olabilir sahip olduğu için nasıl karmaşık türler içinde EF6 kullanılan çok benzer şekilde kullanılır.
 
-Kurala göre EF çekirdek desen aşağıdaki ait varlık türü özellikler için veritabanı sütunlarını adlandıracaktır _EntityProperty_OwnedEntityProperty_. Bu nedenle StreetAddress özellikler ShippingAddress_Street ve ShippingAddress_City adlarıyla Siparişler tablosundaki görünür.
+Kural gereği, EF Core düzenini izleyerek sahip olunan varlık türünün özelliklerini veritabanı sütunlarını adlandıracaktır _EntityProperty_OwnedEntityProperty_. Bu nedenle StreetAddress özellikleri, Northwind'deki Siparişler tablosunda ShippingAddress_Street ve ShippingAddress_City adlarla görünür.
 
-Ekleyebilirsiniz `HasColumnName` bu sütunları yeniden adlandırmak için yöntem. Eşlemeleri StreetAddress genel özelliği olduğu durumda olacaktır
+Ekleyebilirsiniz `HasColumnName` bu sütunları yeniden adlandırma için yöntemi. Eşlemeleri StreetAddress ortak özelliği olduğu durumda olacaktır
 
 ``` csharp
 modelBuilder.Entity<Order>().OwnsOne(
@@ -94,11 +95,11 @@ modelBuilder.Entity<Order>().OwnsOne(
 
 ## <a name="sharing-the-same-net-type-among-multiple-owned-types"></a>Aynı .NET türü birden çok ait türleri arasında paylaşma
 
-Bir ait varlık türü aynı .NET türde başka bir ait varlık türü, bu nedenle .NET türü ait türünü tanımlamak için yeterli olmayabilir olabilir.
+Sahip olunan varlık türü başka bir sahip olunan varlık türü olarak aynı .NET türü, bu nedenle .NET türü sahip olunan bir tür tanımlamak için yeterli olmayabilir olabilir.
 
-Bu gibi durumlarda sahibinden ait varlığa işaret eden özellik olur _Gezinti tanımlama_ ait varlık türü. EF çekirdek perspektifinden tanımlayan gezinmeyi tür kimliği .NET türü yanında bir parçasıdır.   
+Bu gibi durumlarda, sahip olunan varlık sahibinden işaret eden özelliği haline gelir _Gezinti tanımlama_ sahip olunan varlık türü. EF Core perspektifinden tanımlama Gezinti tipin kimliği .NET türü yanı sıra bir parçasıdır.   
 
-Örneğin, aşağıdaki sınıfında ShippingAddress ve BillingAddress aynı .NET türü StreetAddress her ikisi de şunlardır:
+Örneğin, aşağıdaki sınıfında ShippingAddress BillingAddress hem de aynı .NET türü StreetAddress olması:
 
 ``` csharp
 public class Order
@@ -109,11 +110,11 @@ public class Order
 }
 ```
 
-EF çekirdek izlenen nesnelerin örneklerini nasıl ayıracaktır olduğunu anlamak için tanımlayan gezinmeyi sahibinin anahtarının değeri yanında örneğinin anahtarının bir parçası ve ait türün .NET türü haline gelmiştir düşünmek yararlı olabilir.
+EF Core izlenen nesnelerin örneklerini nasıl ayıracaktır anlamak için tanımlama Gezinti değerin yanı sıra sahibinin anahtar örneğinin anahtarının bir parçası ve şirkete ait türün .NET türü hale geldiğini düşünmek yararlı olabilir.
 
-## <a name="nested-owned-types"></a>İç içe geçmiş ait türler
+## <a name="nested-owned-types"></a>Sahip olunan iç içe geçmiş türler
 
-Bu örnekte, Sipariş Ayrıntıları BillingAddress ve her iki StreetAddress türleri ShippingAddress sahip olur. Ardından Sipariş Ayrıntıları sipariş türüne göre aittir.
+Bu örnekte, BillingAddress ve her iki StreetAddress türleri olan ShippingAddress OrderDetails aittir. Ardından OrderDetails sipariş türüne göre aittir.
 
 ``` csharp
 public class Order
@@ -129,6 +130,12 @@ public class OrderDetails
     public StreetAddress ShippingAddress { get; set; }
 }
 
+public enum OrderStatus
+{
+    Pending,
+    Shipped
+}
+
 public class StreetAddress
 {
     public string Street { get; set; }
@@ -136,7 +143,7 @@ public class StreetAddress
 }
 ```
 
-Zinciri mümkündür `OwnsOne` yöntemi fluent eşlemesinde bu modeli yapılandırmak için:
+Zincire mümkündür `OwnsOne` yöntemi fluent eşlemesindeki bu modeli yapılandırmak için:
 
 ``` csharp
 modelBuilder.Entity<Order>().OwnsOne(p => p.OrderDetails, od =>
@@ -146,9 +153,9 @@ modelBuilder.Entity<Order>().OwnsOne(p => p.OrderDetails, od =>
     });
 ```
 
-Kullanarak aynı şey elde mümkündür `OwnedAttribute` sipariş ayrıntıları ve StreetAdress.
+Kullanarak aynı şeyi elde etmek mümkündür `OwnedAttribute` OrderDetails hem StreetAdress.
 
-İç içe geçmiş ait türlerine ek olarak ait türü normal bir varlığa başvurabilir. Aşağıdaki örnekte, ülke bir normal (yani sahibi olmayan) varlıktır:
+Ek olarak sahip olunan iç içe geçmiş türler, sahip olunan bir türü normal bir varlık başvurabilirsiniz. Aşağıdaki örnekte, bir normal (yani sahibi olmayan) varlık ülke verilmiştir:
 
 ``` csharp
 public class StreetAddress
@@ -159,11 +166,11 @@ public class StreetAddress
 }
 ```
 
-Bu özellik ait varlık türleri karmaşık türler dışında EF6 ayarlar.
+Bu özellik, sahip olunan varlık türleri karmaşık türler dışında EF6 ' ayarlar.
 
 ## <a name="storing-owned-types-in-separate-tables"></a>Depolama türleri ayrı tablolarda ait
 
-Ayrıca EF6 karmaşık türlerinin aksine ait türleri sahibinden ayrı bir tablo depolanabilir. Sahibi olarak aynı tabloya ait türü eşlemeleri kuralını geçersiz kılmak için yalnızca çağırabilirsiniz `ToTable` ve farklı bir tablo adı sağlayın. Aşağıdaki örnek sipariş ayrıntıları ve iki adreslere ayrı bir tabloya siparişi eşler:
+Ayrıca EF6 karmaşık türlerinin aksine, sahip olunan türleri sahibinden ayrı bir tabloda depolanabilir. Aynı tablonun sahibi olarak sahip olunan bir türü eşlendiği kuralını geçersiz kılmak için basitçe çağırabilirsiniz `ToTable` ve farklı bir tablo adı sağlayın. Aşağıdaki örnek OrderDetails ve iki adreslere ayrı bir tabloya siparişi eşler:
 
 ``` csharp
 modelBuilder.Entity<Order>().OwnsOne(p => p.OrderDetails, od =>
@@ -173,9 +180,9 @@ modelBuilder.Entity<Order>().OwnsOne(p => p.OrderDetails, od =>
     }).ToTable("OrderDetails");
 ```
 
-## <a name="querying-owned-types"></a>Ait türleri sorgulama
+## <a name="querying-owned-types"></a>Sahip olunan türler sorgulanıyor
 
-Sahibi sorgulanırken ait türleri varsayılan olarak dahil edilir. Kullanmak gerekli değildir `Include` yöntemi, olsa da ait türü ayrı bir tabloda depolanır. Önce açıklanan modeline bağlı olarak, aşağıdaki sorguyu sırası, Sipariş Ayrıntıları ve veritabanından tüm bekleyen siparişler için iki ait StreeAddresses çeker:
+Sahibi sorgulanırken ait türleri varsayılan olarak dahil edilir. Kullanmak için gerekli değil `Include` yöntemi olsa da sahibi türleri, ayrı bir tabloda depolanır. Önce belirtilen modeline bağlı olarak, aşağıdaki sorguyu sırası, OrderDetails ve veritabanından tüm bekleyen siparişleri için iki ait StreeAddresses çeker:
 
 ``` csharp
 var orders = context.Orders.Where(o => o.Status == OrderStatus.Pending);
@@ -183,15 +190,17 @@ var orders = context.Orders.Where(o => o.Status == OrderStatus.Pending);
 
 ## <a name="limitations"></a>Sınırlamalar
 
-Burada, bazı sınırlamalar ait varlık türlerinin bulunmaktadır. Bu sınırlamalara nasıl ait türleri çalışmaya temel bazıları, ancak bazı diğer gelecek sürümlerde kaldırmak için isteriz zaman içinde nokta kısıtlamaları şunlardır:
+Bu sınırlamaların bazıları nasıl sahip olunan varlık türleri iş temel ancak bazıları biz gelecek sürümlerde kaldırmak mümkün olabileceğini kısıtlamaları şunlardır:
 
-### <a name="current-shortcomings"></a>Geçerli eksik
-- Devralma ait türleri desteklenmiyor
-- Ait türleri konumundaki bir koleksiyon gezinti özelliği tarafından yönlendirilmesi olamaz
-- Tablo tarafından bölme kullandığından varsayılan türleri aşağıdaki kısıtlamalar açıkça farklı bir tabloya eşlenen sürece de ait:
-   - Türetilmiş bir tür tarafından sahibi olamaz
-   - Tanımlayıcı gezinti özelliği ayarlanamıyor null (örneğin aynı tablo türlerinde gerekli her zaman ait)
+### <a name="shortcomings-in-previous-versions"></a>Önceki sürümlerde eksiklikleri
+- EF Core 2.0 sürümünde, sahip olunan varlık sahibi hiyerarşiden açıkça ayrı bir tabloya eşlenmiş sürece, türetilen varlık türleri varlık türleri bildirilemez gezintiler için ait. Bu sınırlama EF Core 2.1 kaldırıldı
+ 
+### <a name="current-shortcomings"></a>Geçerli eksiklikleri
+- İçeren devralma hiyerarşilerini sahip olunan varlık türleri desteklenmez
+- Sahip olunan varlık türleri, bir koleksiyon gezinme özelliği (yalnızca başvuru gezintiler şu anda desteklenen) tarafından yönlendirilmesi olamaz
+- Gezintiler sahip olduğu için açıkça ayrı bir tabloya sahibinden eşleştirildikleri sürece varlık türleri null olamaz 
+- (Bu, sahip olunan varlık türleri kullanılarak uygulanamaz değer nesneleri için iyi bilinen bir senaryo) birden çok sahipleri tarafından sahip olunan varlık türleri örneklerini paylaşılamaz.
 
-### <a name="by-design-restrictions"></a>Tasarım kaynaklı kısıtlamaları
+### <a name="by-design-restrictions"></a>Tasarım kısıtlamaları
 - Oluşturamazsınız bir `DbSet<T>`
-- Çağıramazsınız `Entity<T>()` ait türüne sahip `ModelBuilder`
+- Çağıramazsınız `Entity<T>()` üzerinde sahip olunan bir türü `ModelBuilder`
