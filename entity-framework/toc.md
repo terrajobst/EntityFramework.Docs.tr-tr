@@ -29,7 +29,7 @@
 #### [ASP.NET Core](core/get-started/aspnetcore/index.md)
 ##### [ASP.NET Core - Yeni Veritabanı](core/get-started/aspnetcore/new-db.md)
 ##### [ASP.NET Core - Mevcut Veritabanı](core/get-started/aspnetcore/existing-db.md)
-##### [ASP.NET Core sitesinde EF Core Öğreticisi](https://docs.asp.net/en/latest/data/ef-mvc/intro.html)
+##### [EF Core ve Razor Pages](/aspnet/core/data/ef-rp/intro)
 #### [Evrensel Windows Platformu (UWP)](core/get-started/uwp/index.md)
 ##### [UWP - Yeni Veritabanı](core/get-started/uwp/getting-started.md)
 
