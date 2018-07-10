@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 402fe960-754b-470f-976b-e5de3e9986b5
 caps.latest.revision: 3
-ms.openlocfilehash: df752722dafbeff3042acdc95a58741f6e0f271d
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
-ms.translationtype: HT
+ms.openlocfilehash: f924945b19dd6d73847ff3ec52c0b5a286c591bb
+ms.sourcegitcommit: 9ae4473425c5e76337c9d032b0e5dbfedf1fcf57
+ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912675"
+ms.lasthandoff: 07/09/2018
+ms.locfileid: "37914467"
 ---
 # <a name="relationships---ef-designer"></a>İlişkiler - EF Designer
 > [!NOTE]
@@ -53,7 +53,8 @@ EF Designer güncelleştirmeleri ile ilişkilendirme .edmx dosyasını modeli i�
     ![AddAssociation](~/ef6/media/addassociation.png)
 
     > [!NOTE]
-> Gezinti özellikleri veya yabancı anahtar özelliklerini ilişkilendirmenin bir ucunda varlıklara temizleyerek eklememeyi seçebilirsiniz ** gezinti özelliği ** ve ** yabancı anahtar özellikleri &lt;varlık türü adı&gt; varlık ** onay kutuları. Yalnızca bir gezinti özelliği eklerseniz, ilişki sadece tek yöndedir traversable olacaktır. Gezinti özelliği eklerseniz, ilişkilendirmenin bir ucunda varlıklara erişmek için yabancı anahtar özelliklerini eklemek seçmeniz gerekir.
+    > Gezinti özellikleri veya yabancı anahtar özelliklerini ilişkilendirmenin bir ucunda varlıklara temizleyerek eklememeyi seçebilirsiniz ** gezinti özelliği ** ve ** yabancı anahtar özellikleri &lt;varlık türü adı&gt; varlık ** onay kutuları. Yalnızca bir gezinti özelliği eklerseniz, ilişki sadece tek yöndedir traversable olacaktır. Gezinti özelliği eklerseniz, ilişkilendirmenin bir ucunda varlıklara erişmek için yabancı anahtar özelliklerini eklemek seçmeniz gerekir.
+    
 3.  **Tamam**'ı tıklatın.
 
 ### <a name="to-delete-an-association"></a>Bir ilişkiyi silmek için

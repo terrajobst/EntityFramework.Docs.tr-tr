@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: a4af4b1a-40f4-48cc-b2e0-fa8f5d9d5419
 caps.latest.revision: 3
-ms.openlocfilehash: ac76d416d806e18b3acfabe746a7015191b3a9e1
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
-ms.translationtype: HT
+ms.openlocfilehash: a9977c80d9a9401afdcad2284a705bcb28790fb8
+ms.sourcegitcommit: 9ae4473425c5e76337c9d032b0e5dbfedf1fcf57
+ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912783"
+ms.lasthandoff: 07/09/2018
+ms.locfileid: "37914476"
 ---
 # <a name="ssdl-specification"></a>SSDL belirtimi
 Store şeması tanım dili (SSDL) açıklayan bir varlık çerçevesi uygulamasına depolama modelinin bir XML tabanlı bir dildir.
@@ -50,12 +50,8 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **ilişkilendirme** 
 |:---------------|:------------|:---------------------------------------------------------------------------------|
 | **Ad**       | Evet         | Karşılık gelen yabancı anahtar kısıtlaması temel alınan veritabanında adı. |
 
- 
-
 > [!NOTE]
 > Ek açıklama öznitelikleri (özel XML öznitelikleri) herhangi bir sayıda uygulanabilir **ilişkilendirme** öğesi. Ancak, özel öznitelikler SSDL için ayrılmış herhangi bir XML ad alanı için ait olamaz. İki özel öznitelikleri için tam olarak nitelenmiş adlar aynı olamaz.
-
- 
 
 ### <a name="example"></a>Örnek
 
@@ -79,9 +75,6 @@ Aşağıdaki örnekte gösterildiği bir **ilişkilendirme** kullanan öğesi bi
    </ReferentialConstraint>
  </Association>
 ```
- 
-
- 
 
 ## <a name="associationset-element-ssdl"></a>AssociationSet öğesi (SSDL)
 
@@ -104,12 +97,8 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **AssociationSet** �
 | **Ad**        | Evet         | Yabancı anahtar kısıtlaması ilişkiyi temsil kümesi adı.                          |
 | **İlişkilendirme** | Evet         | Yabancı anahtar kısıtlaması katılan sütunlar tanımlayan ilişkilendirmenin adı. |
 
- 
-
 > [!NOTE]
 > Ek açıklama öznitelikleri (özel XML öznitelikleri) herhangi bir sayıda uygulanabilir **AssociationSet** öğesi. Ancak, özel öznitelikler SSDL için ayrılmış herhangi bir XML ad alanı için ait olamaz. İki özel öznitelikleri için tam olarak nitelenmiş adlar aynı olamaz.
-
- 
 
 ### <a name="example"></a>Örnek
 
@@ -122,9 +111,6 @@ Aşağıdaki örnekte gösterildiği bir **AssociationSet** temsil eden öğe `F
    <End Role="Orders" EntitySet="Orders" />
  </AssociationSet>
 ```
- 
-
- 
 
 ## <a name="collectiontype-element-ssdl"></a>CollectionType öğesi (SSDL)
 
@@ -132,8 +118,6 @@ Aşağıdaki örnekte gösterildiği bir **AssociationSet** temsil eden öğe `F
 
 > [!NOTE]
 > Ek açıklama öznitelikleri (özel XML öznitelikleri) herhangi bir sayıda uygulanabilir **CollectionType** öğesi. Ancak, özel öznitelikler SSDL için ayrılmış herhangi bir XML ad alanı için ait olamaz. İki özel öznitelikleri için tam olarak nitelenmiş adlar aynı olamaz.
-
- 
 
 ### <a name="example"></a>Örnek
 
@@ -154,9 +138,6 @@ Aşağıdaki örnek, kullanan bir işlev gösterir. bir **CollectionType** işle
      </ReturnType>
    </Function>
 ```
- 
-
- 
 
 ## <a name="commandtext-element-ssdl"></a>CommandText öğesi (SSDL)
 
@@ -185,13 +166,10 @@ Aşağıdaki örnekte gösterildiği bir **işlevi** bir alt öğe **CommandText
               Type="int"/>
  </Function>
 ```
- 
-
- 
 
 ## <a name="definingquery-element-ssdl"></a>DefiningQuery öğesi (SSDL)
 
- **DefiningQuery** depo şeması tanım dili (SSDL) öğesinde doğrudan temel alınan veritabanında bir SQL deyimi yürütme olanak tanır. **DefiningQuery** öğesi, bir veritabanı görünümü gibi yaygın olarak kullanılır, ancak görünüm veritabanı yerine depolama modelinde tanımlanır. İçinde tanımlanan görünüm bir **DefiningQuery** öğesi, bir varlık türü kavramsal modelde EntitySetMapping öğenin üzerinden eşlenebilir. Bu eşlemeler salt okunurdur.  
+**DefiningQuery** depo şeması tanım dili (SSDL) öğesinde doğrudan temel alınan veritabanında bir SQL deyimi yürütme olanak tanır. **DefiningQuery** öğesi, bir veritabanı görünümü gibi yaygın olarak kullanılır, ancak görünüm veritabanı yerine depolama modelinde tanımlanır. İçinde tanımlanan görünüm bir **DefiningQuery** öğesi, bir varlık türü kavramsal modelde EntitySetMapping öğenin üzerinden eşlenebilir. Bu eşlemeler salt okunurdur.  
 
 Bildirimi aşağıdaki SSDL sözdizimini gösterir bir **EntitySet** ardından **DefiningQuery** görünümü almak için kullanılan bir sorgu içeren öğe.
 
@@ -207,13 +185,10 @@ Bildirimi aşağıdaki SSDL sözdizimini gösterir bir **EntitySet** ardından *
      </EntitySet>
  </Schema>
 ```
- 
 
 Saklı yordamlar, varlık Çerçevesi'nde görünümlerini okuma-yazma senaryolarını etkinleştirmek için kullanabilirsiniz. Veri alma ve saklı yordamlar tarafından işleme değişiklik için temel tablo bir veri kaynağı görünümü ya varlık SQL görünümü kullanabilirsiniz.
 
 Kullanabileceğiniz **DefiningQuery** hedeflenecek Microsoft SQL Server Compact 3.5 öğesi. SQL Server Compact 3.5 saklı yordamları desteklemez ancak benzer işlevselliği olan uygulayabilirsiniz **DefiningQuery** öğesi. Burada da yararlı olabilir başka bir programlama dili ve bu veri kaynağının kullanılan veri türleri arasında bir uyuşmazlık üstesinden gelmek için saklı yordamlar oluşturma yerdir. Yazabileceğiniz küçük bir **DefiningQuery** , belirli bir parametre kümesi alır ve daha sonra farklı bir dizi parametrenin, örneğin, verilerin bir saklı yordam olan bir saklı yordam çağırır.
-
- 
 
 ## <a name="dependent-element-ssdl"></a>Bağımlı öğesi (SSDL)
 
@@ -232,12 +207,8 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **bağımlı** öğe
 |:---------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Rol**       | Evet         | Aynı değer olarak **rol** (kullanılıyorsa) karşılık gelen son öğe öznitelik; Aksi takdirde, tablonun adını içeren başvuru sütunu. |
 
- 
-
 > [!NOTE]
 > Ek açıklama öznitelikleri (özel XML öznitelikleri) herhangi bir sayıda uygulanabilir **bağımlı** öğesi. Ancak, özel öznitelikler CSDL için ayrılmış herhangi bir XML ad alanı için ait olamaz. İki özel öznitelikleri için tam olarak nitelenmiş adlar aynı olamaz.
-
- 
 
 ### <a name="example"></a>Örnek
 
@@ -261,9 +232,6 @@ Aşağıdaki örnek, kullanan bir ilişkilendirme öğenin gösterir. bir **Refe
    </ReferentialConstraint>
  </Association>
 ```
- 
-
- 
 
 ## <a name="documentation-element-ssdl"></a>Belge öğesi (SSDL)
 
@@ -295,9 +263,6 @@ Aşağıdaki örnekte gösterildiği **belgeleri** EntityType öğesinin alt ö�
    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
  </EntityType>
 ```
- 
-
- 
 
 ## <a name="end-element-ssdl"></a>Bitiş öğesi (SSDL)
 
@@ -323,12 +288,8 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **son** öğesi alt 
 | **Rol**         | Hayır          | Değerini **rol** (kullanılıyorsa) karşılık gelen Referentialconstraint'teki öğe sorumlusu veya bağımlı öğesindeki özniteliği.                                                                                                                                                                                                                                             |
 | **Çokluk** | Evet         | **1**, **0..1**, veya **\*** yabancı anahtar kısıtlaması sonunda olabilir satır sayısına bağlı olarak. <br/> **1** tam olarak bir satır var. yabancı anahtar kısıtlaması sonunda gösterir. <br/> **0..1** belirten sıfır veya bir satır yabancı anahtar kısıtlaması sonunda yok. <br/> **\*** sıfır, bir veya daha fazla satır yabancı anahtar kısıtlaması sonunda bulunduğunu gösterir. |
 
- 
-
 > [!NOTE]
 > Ek açıklama öznitelikleri (özel XML öznitelikleri) herhangi bir sayıda uygulanabilir **son** öğesi. Ancak, özel öznitelikler CSDL için ayrılmış herhangi bir XML ad alanı için ait olamaz. İki özel öznitelikleri için tam olarak nitelenmiş adlar aynı olamaz.
-
- 
 
 #### <a name="example"></a>Örnek
 
@@ -352,7 +313,6 @@ Aşağıdaki örnekte gösterildiği bir **ilişkilendirme** tanımlayan öğe *
    </ReferentialConstraint>
  </Association>
 ```
- 
 
 ### <a name="end-element-as-a-child-of-the-associationset-element"></a>AssociationSet öğesinin bir alt öğesi olarak bitiş öğesi
 
@@ -372,12 +332,8 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **son** öğesi alt 
 | **EntitySet**  | Evet         | Yabancı anahtar kısıtlaması sonunda SSDL varlık kümesinin adı.                                      |
 | **Rol**       | Hayır          | Değerin aşağıdakilerden biri **rol** birinde belirtilen öznitelikler **son** karşılık gelen Association öğesinde öğesidir. |
 
- 
-
 > [!NOTE]
 > Ek açıklama öznitelikleri (özel XML öznitelikleri) herhangi bir sayıda uygulanabilir **son** öğesi. Ancak, özel öznitelikler CSDL için ayrılmış herhangi bir XML ad alanı için ait olamaz. İki özel öznitelikleri için tam olarak nitelenmiş adlar aynı olamaz.
-
- 
 
 #### <a name="example"></a>Örnek
 
@@ -398,9 +354,6 @@ Aşağıdaki örnekte gösterildiği bir **EntityContainer** öğesi ile bir **A
    </AssociationSet>
  </EntityContainer>
 ```
- 
-
- 
 
 ## <a name="entitycontainer-element-ssdl"></a>EntityContainer öğesi (SSDL)
 
@@ -422,12 +375,8 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **EntityContainer** 
 |:---------------|:------------|:------------------------------------------------------------------------|
 | **Ad**       | Evet         | Varlık kapsayıcısının adı. Bu ad, nokta (..) içeremez. |
 
- 
-
 > [!NOTE]
 > Ek açıklama öznitelikleri (özel XML öznitelikleri) herhangi bir sayıda uygulanabilir **EntityContainer** öğesi. Ancak, özel öznitelikler SSDL için ayrılmış herhangi bir XML ad alanı için ait olamaz. İki özel öznitelikleri için tam olarak nitelenmiş adlar aynı olamaz.
-
- 
 
 ### <a name="example"></a>Örnek
 
@@ -448,13 +397,10 @@ Aşağıdaki örnekte gösterildiği bir **EntityContainer** iki varlık kümele
    </AssociationSet>
  </EntityContainer>
 ```
- 
-
- 
 
 ## <a name="entityset-element-ssdl"></a>Entityset'in öğe (SSDL)
 
- Bir **EntitySet** depo şeması tanım dili (SSDL) öğesinde bir tablo veya Görünüm temel alınan veritabanında temsil eder. SSDL EntityType öğesinin tablo veya Görünüm bir sırayı temsil eder. **EntityType** özniteliği bir **EntitySet** öğesi bir SSDL varlık kümesindeki satırları gösteren belirli SSDL varlık türünü belirtir. CSDL varlık kümesi ve bir SSDL varlık kümesi arasındaki eşleme bir EntitySetMapping öğesinde belirtilir.
+Bir **EntitySet** depo şeması tanım dili (SSDL) öğesinde bir tablo veya Görünüm temel alınan veritabanında temsil eder. SSDL EntityType öğesinin tablo veya Görünüm bir sırayı temsil eder. **EntityType** özniteliği bir **EntitySet** öğesi bir SSDL varlık kümesindeki satırları gösteren belirli SSDL varlık türünü belirtir. CSDL varlık kümesi ve bir SSDL varlık kümesi arasındaki eşleme bir EntitySetMapping öğesinde belirtilir.
 
 **EntitySet** öğesi şu alt öğelerden (listelenen sırayla) olabilir:
 
@@ -469,25 +415,15 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **EntitySet** öğes
 > [!NOTE]
 > Bazı öznitelikler (burada listelenmeyen) ile nitelenebilir **depolamak** diğer adı. Bu öznitelikler bir modeli güncelleştirme güncelleştirme modeli Sihirbazı tarafından kullanılır.
 
- 
-
 | Öznitelik adı | Gereklidir | Değer                                                                                    |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------|
 | **Ad**       | Evet         | Varlık kümesinin adı.                                                              |
 | **EntityType** | Evet         | Varlık türü için varlık kümesi tam olarak nitelenmiş adını örneklerini içerir. |
 | **Şema**     | Hayır          | Veritabanı şeması.                                                                     |
 | **Tablo**      | Hayır          | Veritabanı tablosu.                                                                      |
- 
- 
- 
- 
- 
- 
 
 > [!NOTE]
 > Ek açıklama öznitelikleri (özel XML öznitelikleri) herhangi bir sayıda uygulanabilir **EntitySet** öğesi. Ancak, özel öznitelikler SSDL için ayrılmış herhangi bir XML ad alanı için ait olamaz. İki özel öznitelikleri için tam olarak nitelenmiş adlar aynı olamaz.
-
- 
 
 ### <a name="example"></a>Örnek
 
@@ -508,9 +444,6 @@ Aşağıdaki örnekte gösterildiği bir **EntityContainer** sahip iki öğe **E
    </AssociationSet>
  </EntityContainer>
 ```
- 
-
- 
 
 ## <a name="entitytype-element-ssdl"></a>EntityType öğesi (SSDL)
 
@@ -530,12 +463,8 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **EntityType** öğe
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Ad**       | Evet         | Varlık türü adı. Bu değer genellikle varlık türü bir satırı temsil eden tablosunun adı ile aynıdır. Bu değer, herhangi bir nokta (.) içerebilir. |
 
- 
-
 > [!NOTE]
 > Ek açıklama öznitelikleri (özel XML öznitelikleri) herhangi bir sayıda uygulanabilir **EntityType** öğesi. Ancak, özel öznitelikler SSDL için ayrılmış herhangi bir XML ad alanı için ait olamaz. İki özel öznitelikleri için tam olarak nitelenmiş adlar aynı olamaz.
-
- 
 
 ### <a name="example"></a>Örnek
 
@@ -554,9 +483,6 @@ Aşağıdaki örnekte gösterildiği bir **EntityType** sahip iki özellik öğe
    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
  </EntityType>
 ```
- 
-
- 
 
 ## <a name="function-element-ssdl"></a>Function öğesi (SSDL)
 
@@ -581,8 +507,6 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **işlevi** öğesi.
 > [!NOTE]
 > Bazı öznitelikler (burada listelenmeyen) ile nitelenebilir **depolamak** diğer adı. Bu öznitelikler bir modeli güncelleştirme güncelleştirme modeli Sihirbazı tarafından kullanılır.
 
- 
-
 | Öznitelik adı             | Gereklidir | Değer                                                                                                                                                                                                              |
 |:---------------------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Ad**                   | Evet         | Saklı yordamın adı.                                                                                                                                                                                  |
@@ -595,8 +519,6 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **işlevi** öğesi.
 | **ParameterTypeSemantics** | Hayır          | İşlev aşırı yüklemelerinin çözümlemek için kullanılan türü anlamları tanımlayan sabit listesi. Numaralandırma, işlev tanımı başına sağlayıcısı bildirimi içinde tanımlanır. Varsayılan değer **Allowımplicitconversion**. |
 | **Şema**                 | Hayır          | Saklı yordam tanımlandığı şemasının adı.                                                                                                                                                   |
 
- 
-
 <sup>1</sup> veritabanında tanımlı bir işlev yerleşik bir işlevdir. CommandText öğesi (SSDL) depolama modelde tanımlı işlevler hakkında daha fazla bilgi için bkz.
 
 <sup>2</sup> parametresiz işlevi, hiçbir parametre kabul eden ve çağrıldığında, parantez gerektirmeyen bir işlevdir.
@@ -605,8 +527,6 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **işlevi** öğesi.
 
 > [!NOTE]
 > Ek açıklama öznitelikleri (özel XML öznitelikleri) herhangi bir sayıda uygulanabilir **işlevi** öğesi. Ancak, özel öznitelikler SSDL için ayrılmış herhangi bir XML ad alanı için ait olamaz. İki özel öznitelikleri için tam olarak nitelenmiş adlar aynı olamaz.
-
- 
 
 ### <a name="example"></a>Örnek
 
@@ -624,9 +544,6 @@ Aşağıdaki örnekte gösterildiği bir **işlevi** karşılık gelen öğe **U
    <Parameter Name="newQuantity" Type="int" Mode="In" />
  </Function>
 ```
- 
-
- 
 
 ## <a name="key-element-ssdl"></a>Anahtar öğesi (SSDL)
 
@@ -656,9 +573,6 @@ Aşağıdaki örnekte gösterildiği bir **EntityType** öğesi bir anahtarla bi
    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
  </EntityType>
 ```
- 
-
- 
 
 ## <a name="ondelete-element-ssdl"></a>OnDelete öğesi (SSDL)
 
@@ -677,12 +591,8 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **OnDelete** öğesi
 |:---------------|:------------|:----------------------------------------------------------------------------------------------------|
 | **Eylem**     | Evet         | **Art arda** veya **hiçbiri**. (Değer **kısıtlı** geçerlidir, ancak aynı davranışı sahiptir **hiçbiri**.) |
 
- 
-
 > [!NOTE]
 > Ek açıklama öznitelikleri (özel XML öznitelikleri) herhangi bir sayıda uygulanabilir **OnDelete** öğesi. Ancak, özel öznitelikler SSDL için ayrılmış herhangi bir XML ad alanı için ait olamaz. İki özel öznitelikleri için tam olarak nitelenmiş adlar aynı olamaz.
-
- 
 
 ### <a name="example"></a>Örnek
 
@@ -706,9 +616,6 @@ Aşağıdaki örnekte gösterildiği bir **ilişkilendirme** tanımlayan öğe *
    </ReferentialConstraint>
  </Association>
 ```
- 
-
- 
 
 ## <a name="parameter-element-ssdl"></a>Parametre öğesi (SSDL)
 
@@ -733,12 +640,8 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **parametre** öğes
 | **Ölçek**      | Hayır          | Parametre ölçeği.                                                                                                                                                                                                     |
 | **SRID**       | Hayır          | Sistem uzamsal başvuru tanımlayıcısı. Uzamsal tür parametreleri yalnızca için geçerlidir. Daha fazla bilgi için [SRID](http://en.wikipedia.org/wiki/SRID) ve [SRID (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 
- 
-
 > [!NOTE]
 > Ek açıklama öznitelikleri (özel XML öznitelikleri) herhangi bir sayıda uygulanabilir **parametre** öğesi. Ancak, özel öznitelikler SSDL için ayrılmış herhangi bir XML ad alanı için ait olamaz. İki özel öznitelikleri için tam olarak nitelenmiş adlar aynı olamaz.
-
- 
 
 ### <a name="example"></a>Örnek
 
@@ -756,9 +659,6 @@ Aşağıdaki örnekte gösterildiği bir **işlevi** sahip iki öğe **parametre
    <Parameter Name="newQuantity" Type="int" Mode="In" />
  </Function>
 ```
- 
-
- 
 
 ## <a name="principal-element-ssdl"></a>Asıl öğe (SSDL)
 
@@ -777,12 +677,8 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **asıl** öğesi.
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Rol**       | Evet         | Aynı değer olarak **rol** (kullanılıyorsa) karşılık gelen son öğe öznitelik; Aksi takdirde, tablonun adını içeren başvurulan sütun. |
 
- 
-
 > [!NOTE]
 > Ek açıklama öznitelikleri (özel XML öznitelikleri) herhangi bir sayıda uygulanabilir **asıl** öğesi. Ancak, özel öznitelikler CSDL için ayrılmış herhangi bir XML ad alanı için ait olamaz. İki özel öznitelikleri için tam olarak nitelenmiş adlar aynı olamaz.
-
- 
 
 ### <a name="example"></a>Örnek
 
@@ -806,9 +702,6 @@ Aşağıdaki örnek, kullanan bir ilişkilendirme öğenin gösterir. bir **Refe
    </ReferentialConstraint>
  </Association>
 ```
- 
-
- 
 
 ## <a name="property-element-ssdl"></a>Özellik öğesi (SSDL)
 
@@ -835,12 +728,8 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **özelliği** öğe
 | **SRID**                  | Hayır          | Sistem uzamsal başvuru tanımlayıcısı. Yalnızca uzamsal tür özellikleri için geçerlidir. Daha fazla bilgi için [SRID](http://en.wikipedia.org/wiki/SRID) ve [SRID (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 | **StoreGeneratedPattern** | Hayır          | **Hiçbiri**, **kimlik** (karşılık gelen sütun değeri veritabanında oluşturulan bir kimlik ise), veya **hesaplanan** (karşılık gelen sütun değeri veritabanında hesaplanan varsa). Değil RowType özellikleri için geçerlidir. |
 
- 
-
 > [!NOTE]
 > Ek açıklama öznitelikleri (özel XML öznitelikleri) herhangi bir sayıda uygulanabilir **özelliği** öğesi. Ancak, özel öznitelikler SSDL için ayrılmış herhangi bir XML ad alanı için ait olamaz. İki özel öznitelikleri için tam olarak nitelenmiş adlar aynı olamaz.
-
- 
 
 ### <a name="example"></a>Örnek
 
@@ -859,9 +748,6 @@ Aşağıdaki örnekte gösterildiği bir **EntityType** iki alt öğe **özelli�
    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
  </EntityType>
 ```
- 
-
- 
 
 ## <a name="propertyref-element-ssdl"></a>PropertyRef öğesi (SSDL)
 
@@ -883,12 +769,8 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **PropertyRef** öğ
 |:---------------|:------------|:-------------------------------------|
 | **Ad**       | Evet         | Başvurulan özelliğin adı. |
 
- 
-
 > [!NOTE]
 > Ek açıklama öznitelikleri (özel XML öznitelikleri) herhangi bir sayıda uygulanabilir **PropertyRef** öğesi. Ancak, özel öznitelikler CSDL için ayrılmış herhangi bir XML ad alanı için ait olamaz. İki özel öznitelikleri için tam olarak nitelenmiş adlar aynı olamaz.
-
- 
 
 ### <a name="example"></a>Örnek
 
@@ -907,9 +789,6 @@ Aşağıdaki örnekte gösterildiği bir **PropertyRef** birincil anahtar tanım
    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
  </EntityType>
 ```
- 
-
- 
 
 ## <a name="referentialconstraint-element-ssdl"></a>Referentialconstraint'teki öğesi (SSDL)
 
@@ -1015,9 +894,6 @@ Aşağıdaki örnek, kullanır depo işlev gösterir. bir **CollectionType** iş
      </ReturnType>
    </Function>
 ```
- 
-
- 
 
 ## <a name="schema-element-ssdl"></a>Şema öğesi (SSDL)
 
@@ -1044,8 +920,6 @@ Aşağıdaki tabloda öznitelikleri açıklar uygulanabilir **şema** öğesi.
 | **Diğer ad**                 | Hayır          | Ad alanı adı yerine kullanılan tanımlayıcıdır. Örneğin, bir **EntityType** adlı *müşteri* ExampleModel.Store ad alanı ve değerini **diğer** özniteliği *StorageModel*, tam nitelikli adı olarak StorageModel.Customer kullanabilirsiniz **EntityType.**                                                                                                                                                                                                                                                                                    |
 | **Sağlayıcı**              | Evet         | Veri sağlayıcısı.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | **ProviderManifestToken** | Evet         | Sağlayıcıya döndürmek için hangi sağlayıcı bildirimi gösteren bir belirteç. Biçim belirteci için tanımlanır. Belirteç için değer sağlayıcı tarafından tanımlanır. SQL Server sağlayıcısı bildirimi belirteçleri hakkında daha fazla bilgi için Entity Framework için SqlClient bakın.                                                                                                                                                                                                                                                                                                                        |
-
- 
 
 ### <a name="example"></a>Örnek
 
@@ -1134,9 +1008,6 @@ Aşağıdaki örnekte gösterildiği bir **şema** öğesini içeren bir **Entit
    </Function>
  </Schema>
 ```
- 
-
- 
 
 ## <a name="annotation-attributes"></a>Ek açıklama öznitelikleri
 
@@ -1166,9 +1037,6 @@ Aşağıdaki örnek, uygulanan bir ek açıklama özniteliği olan bir EntityTyp
    </c:CustomElement>
  </EntityType>
 ```
- 
-
- 
 
 ## <a name="annotation-elements-ssdl"></a>Ek açıklama öğelerinin (SSDL)
 
@@ -1199,9 +1067,6 @@ Aşağıdaki örnek, bir ek açıklama öğesi olan bir EntityType öğeyi göst
    </c:CustomElement>
  </EntityType>
 ```
- 
-
- 
 
 ## <a name="facets-ssdl"></a>Modelleri (SSDL)
 

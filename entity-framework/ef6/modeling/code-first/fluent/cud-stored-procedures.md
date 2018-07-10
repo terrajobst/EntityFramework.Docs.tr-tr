@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 9a7ae7f9-4072-4843-877d-506dd7eef576
 caps.latest.revision: 3
-ms.openlocfilehash: bb27d416dcf931a29005160be7eae3806803b1b6
-ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
-ms.translationtype: HT
+ms.openlocfilehash: 6f8466601bedb705775b11e0b2732b1c4215aeac
+ms.sourcegitcommit: 9ae4473425c5e76337c9d032b0e5dbfedf1fcf57
+ms.translationtype: MT
 ms.contentlocale: tr-TR
 ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914120"
+ms.locfileid: "37914470"
 ---
 # <a name="code-first-insert-update-and-delete-stored-procedures"></a>İlk kod ekleme, güncelleştirme ve saklı yordamlar silme
 > [!NOTE]
@@ -36,8 +36,8 @@ Bunun yapılması beklenen şeklini veritabanında saklı yordamları oluşturma
 
 - Üç saklı yordamlar adlı  **\<type_name\>_ekle**,  **\<type_name\>_güncelleştirme** ve  **\<type_ adı\>_sil** (örneğin Blog_Insert, Blog_Update ve Blog_Delete).  
 - Parametre adları, özellik adlara karşılık gelir.  
-    > [!NOTE]
-> Belirli bir özellik için bir sütunu yeniden adlandırmak için HasColumnName() veya sütun özniteliğini kullanırsanız, bu ad özelliği adı yerine parametreleri için kullanılır.  
+  > [!NOTE]
+  > Belirli bir özellik için bir sütunu yeniden adlandırmak için HasColumnName() veya sütun özniteliğini kullanırsanız, bu ad özelliği adı yerine parametreleri için kullanılır.  
 - **INSERT saklı yordamı** oluşturulan depolama işaretlenmiş hariç her bir özellik için bir parametre gerekir (kimlik veya hesaplanan). Saklı yordamı bir sonuç deposu oluşturulan her bir özellik için bir sütun kümesi döndürmelidir.  
 - **Update saklı yordamı** bir 'Computed' oluşturulan depolama deseniyle işaretlenenler dışında her bir özellik için bir parametreye sahip. Bazı eşzamanlılık belirteçleri ilk değeri bir parametre gerekli, bkz: *eşzamanlılık belirteçleri* ayrıntılarını bölümü altında. Saklı yordam her hesaplanan bir özellik için bir sütun kümesi bir sonuç döndürmesi gerekir.  
 - **Delete saklı yordamı** varlık (veya varlık bir bileşik anahtarı varsa, birden çok parametre) anahtar değeri için bir parametre olmalıdır. Ayrıca, delete yordamı hedef tablodaki (varlık içinde bildirilen, karşılık gelen, yabancı anahtar özelliklerini olmayan ilişkiler) da bağımsız ilişkilendirme yabancı anahtarları için parametreleri olmalıdır. Bazı eşzamanlılık belirteçleri ilk değeri bir parametre gerekli, bkz: *eşzamanlılık belirteçleri* ayrıntılarını bölümü altında.  
