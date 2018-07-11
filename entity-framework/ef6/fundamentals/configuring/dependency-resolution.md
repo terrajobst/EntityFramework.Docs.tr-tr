@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 32d19ac6-9186-4ae1-8655-64ee49da55d0
 caps.latest.revision: 3
-ms.openlocfilehash: 76bb350f2407e0e33a20d0c4f6961ba57d646818
-ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
+ms.openlocfilehash: 88fd859b4f9a8069eeb08f32bb1d35ddcd21aec5
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914217"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949284"
 ---
 # <a name="dependency-resolution"></a>Bağımlılık çözümlemesi
 > [!NOTE]
@@ -31,7 +31,7 @@ public interface IDbDependencyResolver
 
 GetService yöntemi genellikle EF tarafından çağrılır ve EF veya uygulama tarafından sağlanan IDbDependencyResolver uygulaması tarafından işlenir. Çağrıldığında, tür bağımsız değişkeni istenen hizmet arabirimi veya temel sınıf türünde olduğundan ve anahtar nesnesi null ya da istenen hizmeti hakkında bağlamsal bilgiler sağlayan bir nesne değil.  
 
-Bu makalede IDbDependencyResolver uygulamak tam birleştiremiyorsa içermiyor, ancak bunun yerine, kendisi için EF GetService semantiği anahtar nesnesinin her biri bu çağrılar için çağırır ve hizmet türleri (yani, arabirim ve temel sınıf türleri) için bir başvuru olarak görev yapar. Ek hizmetler eklendikçe bu belgeyi güncel tutulacak.  
+Bu makalede IDbDependencyResolver uygulamak tam birleştiremiyorsa içermiyor, ancak bunun yerine, EF GetService anahtar nesnesi semantiği bunların her biri için çağırır ve hizmet türleri (diğer bir deyişle, arabirimi ve temel sınıf türleri) için bir başvuru olarak davranır çağırır. Ek hizmetler eklendikçe bu belgeyi güncel tutulacak.  
 
 ## <a name="services-resolved"></a>Çözümlenen hizmetler  
 
@@ -71,7 +71,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 
 **Kullanıma sunulan sürümü**: EF6.0.0  
 
-**Döndürülen nesne**: EF veritabanı bağlantısı oluşturduğunda, kural olarak kullanılacak bağlantı üreteci. Diğer bir deyişle, hiçbir bağlantı veya bağlantı dizesi için EF verilir ve bağlantı dizesi app.config veya web.config içinde bulunabilir, sonra bu hizmet bir bağlantı oluşturmak için kural olarak kullanılır. Bağlantı üreteci değiştirme (örneğin SQL Server Compact Edition) veritabanının farklı bir türü varsayılan olarak kullanmak üzere EF izin verebilirsiniz.  
+**Döndürülen nesne**: EF veritabanı bağlantısı oluşturduğunda, kural olarak kullanılacak bağlantı üreteci. Diğer bir deyişle, hiçbir bağlantı veya bağlantı dizesi için EF verilir ve bağlantı dizesi app.config veya web.config içinde bulunabilir, sonra bu hizmet bir bağlantı oluşturmak için kural olarak kullanılır. Bağlantı üreteci değiştirme EF farklı türde bir veritabanı (örneğin, SQL Server Compact Edition) kullanmak varsayılan olarak izin verebilirsiniz.  
 
 **Anahtar**: kullanılan; null  
 

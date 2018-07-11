@@ -6,12 +6,12 @@ ms.date: 02/20/2018
 ms.assetid: 2CB5809E-0EFB-44F6-AF14-9D5BFFFBFF9D
 ms.technology: entity-framework-core
 uid: core/what-is-new/ef-core-2.0
-ms.openlocfilehash: 4b319e7d4571e5e32ae7470601345e6f98807551
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 538458cf49ee86b9a5cba2f606adc04e583605e2
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37911547"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949133"
 ---
 # <a name="new-features-in-ef-core-20"></a>EF Core 2.0 yenilikleri
 
@@ -93,7 +93,7 @@ public class BloggingContext : DbContext
     }
 }
 ```
-Çok kiracılılık ve geçici silme için uygulayan bir model düzeyi filtresi tanımlarız örneklerini ```Post``` varlık türü. DbContext örnek düzeyi özelliği kullanımına dikkat edin: ```TenantId```. Model düzeyinde filtreler doğru bağlam örneğinin değerini kullanır. Yani, sorguyu yürüten bir.
+Çok kiracılılık ve geçici silme için uygulayan bir model düzeyi filtresi tanımlarız örneklerini ```Post``` varlık türü. DbContext örnek düzeyi özelliği kullanımına dikkat edin: ```TenantId```. Model düzeyi filtreleri (diğer bir deyişle, sorguyu yürüten bağlam örnek) doğru bağlam örneğinin değerini kullanır.
 
 Filtreler IgnoreQueryFilters() işlecini kullanarak tek tek LINQ sorguları için devre dışı bırakılabilir.
 
@@ -134,7 +134,7 @@ Dikkat edilecek bazı noktalar:
 
 - Yöntemin adı (Bu durumda bir işlevde kullanıcı tanımlı) bir işlev adı olarak kullanıldığında Kural gereği SQL, ancak oluşturma adını ve şemayı yöntemi kayıt sırasında geçersiz kılabilirsiniz
 - Şu anda yalnızca skaler işlevler desteklenir
-- Veritabanında, örneğin geçişleri oluşturma ilgileniriz değil EF Core eşlenen işlevi oluşturma
+- Veritabanında eşleşen işlev oluşturmanız gerekir. EF Core geçişleri oluşturma ilgileniriz değil
 
 ### <a name="self-contained-type-configuration-for-code-first"></a>Kod için kendi içinde bulunan tür yapılandırma ilk
 
@@ -177,7 +177,7 @@ Bu, kavramsal olarak benzer nasıl bağlantı havuzu ADO.NET sağlayıcıları �
 Yöntem ne yapılabilir bazı sınırlamalar sunar ```OnConfiguring()``` DbContext yöntemi.
 
 > [!WARNING]  
-> İstekler genelinde Paylaşılmaması gereken, türetilmiş bir DbContext sınıfı içinde kendi durumunu (ör. özel alanları) korumak kullanıyorsa, DbContext havuzu kaçının. EF Core, yalnızca bir DbContext örneği havuza eklemeden önce farkında durumuna sıfırlar.
+> DbContext havuzu istekler genelinde Paylaşılmaması gereken, türetilmiş bir DbContext sınıfı içinde kendi durumu (örneğin, özel alanları) korur kullanmaktan kaçının. EF Core, yalnızca bir DbContext örneği havuza eklemeden önce farkında durumuna sıfırlar.
 
 ### <a name="explicitly-compiled-queries"></a>Açıkça derlenmiş sorgular
 
@@ -220,7 +220,7 @@ Bu iş grup birleştirmeleri için oluşturulan SQL artırır. Grup birleştirme
 
 ### <a name="string-interpolation-in-fromsql-and-executesqlcommand"></a>SQL ve ExecuteSqlCommand dize ilişkilendirme
 
-C# 6 yapı dizeleri çalışma zamanında iyi bir yol sağlayarak, dize ilişkilendirme dize değişmez değerleri, doğrudan gömülü olması C# ifadelerini sağlayan bir özelliği kullanıma sunuldu. EF Core 2.0 sürümünde ham SQL dizeleri kabul iki birincil Apı'lerimizi için ilişkilendirilmiş dizeler için özel destek eklendi: ```FromSql``` ve ```ExecuteSqlCommand```. Bu yeni Destek 'güvenli' bir şekilde kullanılacak C# dize ilişkilendirme sağlar. Yani bir şekilde, dinamik olarak çalışma zamanında SQL oluşturma sırasında oluşabilecek yaygın SQL ekleme hatalarına karşı korur.
+C# 6 yapı dizeleri çalışma zamanında iyi bir yol sağlayarak, dize ilişkilendirme dize değişmez değerleri, doğrudan gömülü olması C# ifadelerini sağlayan bir özelliği kullanıma sunuldu. EF Core 2.0 sürümünde ham SQL dizeleri kabul iki birincil Apı'lerimizi için ilişkilendirilmiş dizeler için özel destek eklendi: ```FromSql``` ve ```ExecuteSqlCommand```. Bu yeni Destek 'güvenli' bir şekilde kullanılacak C# dize ilişkilendirme sağlar. Diğer bir deyişle, dinamik olarak oluşabilir ortak SQL ekleme hatalarına karşı koruyan bir şekilde çalışma zamanında SQL oluşturma.
 
 Aşağıda bir örnek verilmiştir:
 
