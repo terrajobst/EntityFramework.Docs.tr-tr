@@ -1,26 +1,26 @@
 ---
-title: EF6 ve EF çekirdek - aynı uygulamada kullanma
+title: EF6 ve EF Core - bunları aynı uygulamada kullanma
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: a06e3c35-110c-4294-a1e2-32d2c31c90a7
 uid: efcore-and-ef6/side-by-side
-ms.openlocfilehash: f6eb4bf7d99fbc61f8ffbd0dc7c6c17789395303
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: ead251c5454473738c2f2bfdac6557aa3e1c5591
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054213"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949084"
 ---
-# <a name="using-ef-core-and-ef6-in-the-same-application"></a><span data-ttu-id="cbd85-102">EF çekirdek ve EF6 aynı uygulamasında kullanma</span><span class="sxs-lookup"><span data-stu-id="cbd85-102">Using EF Core and EF6 in the Same Application</span></span>
+# <a name="using-ef-core-and-ef6-in-the-same-application"></a><span data-ttu-id="ed638-102">EF Core ve EF6 aynı uygulamada kullanma</span><span class="sxs-lookup"><span data-stu-id="ed638-102">Using EF Core and EF6 in the Same Application</span></span>
 
-<span data-ttu-id="cbd85-103">EF çekirdek ve EF6 aynı .NET Framework uygulama ya da kitaplık hem NuGet paketlerini yükleyerek kullanmak da mümkündür.</span><span class="sxs-lookup"><span data-stu-id="cbd85-103">It is possible to use EF Core and EF6 in the same .NET Framework application or library by installing both NuGet packages.</span></span> 
+<span data-ttu-id="ed638-103">EF Core ve EF6 aynı .NET Framework uygulamasına veya Kitaplığı hem NuGet paketlerini yükleyerek kullanmak mümkündür.</span><span class="sxs-lookup"><span data-stu-id="ed638-103">It is possible to use EF Core and EF6 in the same .NET Framework application or library by installing both NuGet packages.</span></span>
 
-<span data-ttu-id="cbd85-104">Bazı türleri EF çekirdek ve EF6 aynı ada sahip ve yalnızca ad, aynı kod dosyasında EF çekirdek ve EF6 kullanarak karmaşıklaştırır göre farklılık gösterir.</span><span class="sxs-lookup"><span data-stu-id="cbd85-104">Some types have the same names in EF Core and EF6 and differ only by namespace, which may complicate using both EF Core and EF6 in the same code file.</span></span> <span data-ttu-id="cbd85-105">Belirsizliği kolayca ad alanı diğer adı yönergeleri, örneğin kullanılarak kaldırılabilir:</span><span class="sxs-lookup"><span data-stu-id="cbd85-105">The ambiguity can be easily removed using namespace alias directives, e.g.:</span></span>
+<span data-ttu-id="ed638-104">Bazı türleri EF Core ve EF6 aynı ada sahip ve yalnızca ad alanını aynı kod dosyasında hem EF Core ve EF6 kullanarak karmaşıklaştırır göre farklılık gösterir.</span><span class="sxs-lookup"><span data-stu-id="ed638-104">Some types have the same names in EF Core and EF6 and differ only by namespace, which may complicate using both EF Core and EF6 in the same code file.</span></span> <span data-ttu-id="ed638-105">Belirsizlik ad alanı diğer ad yönergeleri kullanarak kolayca kaldırabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="ed638-105">The ambiguity can be easily removed using namespace alias directives.</span></span> <span data-ttu-id="ed638-106">Örneğin:</span><span class="sxs-lookup"><span data-stu-id="ed638-106">For example:</span></span>
 
 ``` csharp
-using Microsoft.EntityFrameworkCore;
-using EF6 = System.Data.Entity; // e.g. EF6.DbContext
+using Microsoft.EntityFrameworkCore; // use DbContext for EF Core
+using EF6 = System.Data.Entity; // use EF6.DbContext for the EF6 version
 ```
 
-<span data-ttu-id="cbd85-106">Birden çok EF modelleri olan mevcut bir uygulama bağlantı noktası oluşturma, seçmeli olarak bazıları EF çekirdek için bağlantı noktası ve diğerleri için EF6 kullanmaya devam etmek seçebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="cbd85-106">If you are porting an existing application that has multiple EF models, you can choose to selectively port some of them to EF Core, and continue using EF6 for the others.</span></span>
+<span data-ttu-id="ed638-107">Birden çok EF modeli olan bir var olan bir uygulama bağlantı noktası oluşturma, seçmeli olarak bazı EF core'a taşıma ve EF6 diğerleri için kullanmaya devam etmek seçebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="ed638-107">If you are porting an existing application that has multiple EF models, you can choose to selectively port some of them to EF Core, and continue using EF6 for the others.</span></span>
