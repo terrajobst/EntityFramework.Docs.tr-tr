@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 9a7ae7f9-4072-4843-877d-506dd7eef576
 caps.latest.revision: 3
-ms.openlocfilehash: 6f8466601bedb705775b11e0b2732b1c4215aeac
-ms.sourcegitcommit: 9ae4473425c5e76337c9d032b0e5dbfedf1fcf57
+ms.openlocfilehash: 1f100ed888abd98df83c80d0de2086cfb1ba7b4f
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914470"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949085"
 ---
 # <a name="code-first-insert-update-and-delete-stored-procedures"></a>İlk kod ekleme, güncelleştirme ve saklı yordamlar silme
 > [!NOTE]
@@ -34,7 +34,7 @@ modelBuilder
 
 Bunun yapılması beklenen şeklini veritabanında saklı yordamları oluşturmak için bazı kurallar kullanmak Code First neden olur.  
 
-- Üç saklı yordamlar adlı  **\<type_name\>_ekle**,  **\<type_name\>_güncelleştirme** ve  **\<type_ adı\>_sil** (örneğin Blog_Insert, Blog_Update ve Blog_Delete).  
+- Üç saklı yordamlar adlı  **\<type_name\>_ekle**,  **\<type_name\>_güncelleştirme** ve  **\<type_ adı\>_sil** (örneğin, Blog_Insert, Blog_Update ve Blog_Delete).  
 - Parametre adları, özellik adlara karşılık gelir.  
   > [!NOTE]
   > Belirli bir özellik için bir sütunu yeniden adlandırmak için HasColumnName() veya sütun özniteliğini kullanırsanız, bu ad özelliği adı yerine parametreleri için kullanılır.  
@@ -220,7 +220,7 @@ Update ve delete saklı yordamları eşzamanlılık ile dağıtılacak da gereke
 
 - Varlık eşzamanlılık belirteçleri varsa, saklı yordam isteğe bağlı olarak güncelleştirilen/silinen satır (etkilenen satır) sayısını döndüren bir output parametresi olabilir. Bu tür RowsAffectedParameter yöntemi kullanılarak yapılandırılması gerekir.  
 Varsayılan olarak EF kaç satır etkilendiğini belirlemek için dönüş değeri ExecuteNonQuery kullanır. Satırlardan etkilenen çıkış parametresi ExecuteNonQuery (EF'ın açısından) için yanlış olan dönüş değeri neden olacağından, sproc herhangi bir mantık gerçekleştirmek istiyorsanız, kullanışlı belirtme yürütme sonunda.  
-- Her eşzamanlılık belirteci yok adlı bir parametre olacak  **\<property_name\>_Original** (yani Timestamp_Original). Bu özelliğin – veritabanından sorgulandığında değer özgün değeri geçirilir.  
+- Her eşzamanlılık belirteci yok adlı bir parametre olacak  **\<property_name\>_Original** (örneğin, Timestamp_Original). Bu özelliğin – veritabanından sorgulandığında değer özgün değeri geçirilir.  
     - Zaman damgaları gibi– – veritabanı tarafından hesaplanan eşzamanlılık belirteçleri, yalnızca özgün bir değer parametresi sahip olur.  
     - Eşzamanlılık belirteçleri ayarlanan olmayan hesaplanan özellikler, güncelleştirme yordamı da yeni bir değer için bir parametre gerekir. Bu yeni değerleri için zaten ele adlandırma kurallarını kullanır. Böyle bir belirteç örneği bir Blog URL bir eşzamanlılık belirteci olarak kullanılmasına, kodunuzu (aksine, yalnızca bir veritabanı tarafından güncelleştirilen zaman damgası belirteç) tarafından yeni bir değer bu güncelleştirilebilir olduğundan yeni bir değer gereklidir.  
 
@@ -336,8 +336,8 @@ modelBuilder
 
 Sonra başka bir yapılandırma belirtilirse aşağıdaki saklı yordamı şekil varsayılan olarak kullanılır.  
 
-- İki saklı yordamlar adlı  **\<type_one\>\<type_two\>_ekle** ve  **\<type_one\>\<type_two \>_Sil** (yani PostTag_Insert ve PostTag_Delete).  
-- Parametreleri her türü için anahtar değerleri olacaktır. Her parametre olma adı **\<type_name\>_\<property_name\>** (yani Post_PostId ve Tag_TagId).
+- İki saklı yordamlar adlı  **\<type_one\>\<type_two\>_ekle** ve  **\<type_one\>\<type_two \>_Sil** (örneğin, PostTag_Insert ve PostTag_Delete).  
+- Parametreleri her türü için anahtar değerleri olacaktır. Her parametre olma adı **\<type_name\>_\<property_name\>** (örneğin, Post_PostId ve Tag_TagId).
 
 Örnek İşte ekleme ve saklı yordamları güncelleştirme.  
 

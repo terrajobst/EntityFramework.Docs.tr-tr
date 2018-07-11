@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: ecaa5a27-b19e-4bf9-8142-a3fb00642270
 caps.latest.revision: 3
-ms.openlocfilehash: 361065def0e83a097d4bb0109d468983ce41cd86
-ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
+ms.openlocfilehash: 9588ef85435d3c0218defdc098f1e7150fb7ef72
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914048"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949047"
 ---
 # <a name="connection-management"></a>Bağlantı Yönetimi
 Bu sayfa bağlamı ve işlevselliği için bağlantıları geçirme onaylamaz Entity Framework davranışını açıklar **Database.Connection.Open()** API.  
@@ -146,7 +146,7 @@ EF5 ve önceki sürümlerde bir hata varsa şekilde **ObjectContext.Connection.S
 ((IObjectContextAdapter)context).ObjectContext.Connection.State
 ```  
 
-Database.Connection.Open() çağırarak veritabanı bağlantısını açtığınıza başlatıldığında, bir sorgu yürütme veya bir veritabanı bağlantısı (temel alınan bağlantı depolamak örn SaveChanges()) sonra ancak gerektiren herhangi bir şey çağırmak kadar ayrı olarak, bu açık olacaktır kapatılacak. Bağlamı daha sonra yeniden açılacak ve bağlantıyı başka bir veritabanı işlemi gereklidir dilediğiniz zaman yeniden kapatın:  
+Database.Connection.Open() çağırarak veritabanı bağlantısını açtığınıza gerekirse kadar sonraki açışınızda, bir sorgu yürütme veya bir veritabanı bağlantısı gerektiren her şeyi arayın ayrı olarak açık olacak (örneğin, SaveChanges()) sonra ancak arka plandaki depolamanız bağlantı kapatılacak. Bağlamı daha sonra yeniden açılacak ve bağlantıyı başka bir veritabanı işlemi gereklidir dilediğiniz zaman yeniden kapatın:  
 
 ``` csharp
 using System;
