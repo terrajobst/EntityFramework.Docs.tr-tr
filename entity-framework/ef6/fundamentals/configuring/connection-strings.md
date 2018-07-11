@@ -9,19 +9,19 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 294bb138-978f-4fe2-8491-fdf3cd3c60c4
 caps.latest.revision: 3
-ms.openlocfilehash: afb13998a6482b3e7a7e250892854ab7599f109d
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: ca597e68a5b3e2085612669ee81da10ba6969eeb
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912069"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949104"
 ---
 # <a name="connection-strings-and-models"></a>Bağlantı dizelerini ve modeller
 Bu konuda, Entity Framework için kullanılacak veritabanı bağlantıyı nasıl bulur ve nasıl değiştirebileceğinizi kapsar. Code First ve EF Designer ile oluşturulan modeller Bu konu başlığında ele alınmaktadır.  
 
 Genellikle bir Entity Framework uygulamasını DbContext türetilmiş bir sınıf kullanır. Bu türetilmiş sınıf oluşturucular bir denetim temel DbContext sınıfına çağırmak:  
 
-- Nasıl bağlamı bir database—i.e nasıl bir bağlantı dizesi bulundu ve kullanılan bağlanmak  
+- Bağlam bir veritabanına nasıl bağlanacağını — diğer bir deyişle, nasıl bir bağlantı dizesi bulunamadı/kullanılır  
 - Bağlam kullanıp kullanmayacağını Code First kullanarak bir model hesaplamak veya EF Designer ile oluşturulan bir modeli yüklenemiyor  
 - Ek Gelişmiş Seçenekler  
 

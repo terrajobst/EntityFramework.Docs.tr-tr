@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 0fc4eef8-29b8-4192-9c77-08fd33d3db3a
 caps.latest.revision: 3
-ms.openlocfilehash: 58a895d0cccdd9caa076168d8314d997be2ae96c
-ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
+ms.openlocfilehash: 135a51d93a06c0d64732438f067df4ce2675fbe2
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914045"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949077"
 ---
 # <a name="model-based-conventions"></a>Model tabanlı kuralları
 > [!NOTE]
@@ -89,7 +89,7 @@ class DiscriminatorRenamingConvention : IStoreModelConvention<EdmProperty>
 
 Başka bir daha karmaşık eylem dayalı modeli kuralları bağımsız ilişkilendirmeleri (IAS) adlandırdığınız şekilde yapılandırmak için örneğidir.  Bu Model kuralları burada IAS oluşturulur çünkü EF tarafından uygulanabilir ve DbModelBuilder API erişimi olan modelde olmayan bir durumdur.  
 
-EF bir IA oluşturduğunda, yani Customer_CustomerId adlı bir sütun oluşturmak CustomerID adlı bir anahtar sütunu ile müşteri adlı bir ilişkilendirme için EntityType_KeyName adlı bir sütun oluşturur.  Aşağıdaki kural şeritler '\_' karakteri dışında IA. için oluşturulan sütun adı  
+EF bir IA oluşturduğunda EntityType_KeyName adlı bir sütun oluşturur. Örneğin, müşteri adlı bir anahtar sütunu ile bir ilişki Customer_CustomerId adlı bir sütun oluşturmak CustomerID adlı. Aşağıdaki kural şeritler '\_' karakteri dışında IA. için oluşturulan sütun adı  
 
 ``` csharp
 using System.Data.Entity;
@@ -197,7 +197,7 @@ public class CustomKeyDiscoveryConvention : KeyDiscoveryConvention
 }
 ```  
 
-Ardından sunduğumuz yeni kural önce mevcut anahtar kuralı eklemek ihtiyacımız var. Biz CustomKeyDiscoveryConvention ekledikten sonra IdKeyDiscoveryConvention kaldırabiliriz.  Biz bu yana ilk kez, ancak "anahtarını" özellik bulunduğu çalışması çalıştırın bu kuralı hala öncelik kimliği bulma kuralı götürecek mevcut IdKeyDiscoveryConvention kaldırmadı "id" kuralı çalışacaktır.  Her kural önceki kuralı tarafından güncelleştirilmiş bir önceki kuralı, örneğin bir sütun adı böylece ilginizi çeken bir şey eşleşecek şekilde (yerine üzerinde bağımsız olarak çalışan ve tüm birlikte birleştirilmeye) güncelleştirdikten model gördüğünden bu davranışı görüyoruz. (önce adı ilgi bulunmadığında), özel kuralı sonra bu sütun için geçerli olur.  
+Ardından sunduğumuz yeni kural önce mevcut anahtar kuralı eklemek ihtiyacımız var. Biz CustomKeyDiscoveryConvention ekledikten sonra IdKeyDiscoveryConvention kaldırabiliriz.  Biz bu yana ilk kez, ancak "anahtarını" özellik bulunduğu çalışması çalıştırın bu kuralı hala öncelik kimliği bulma kuralı götürecek mevcut IdKeyDiscoveryConvention kaldırmadı "id" kuralı çalışacaktır.  Her kural, böylece Örneğin, önceki kuralı bir sütun adı, bir şey eşleşecek şekilde güncelleştirildi (yerine üzerinde bağımsız olarak çalışan ve tüm birlikte birleştirilmeye) önceki Kural gereği güncelleştirilmiş gibi model gördüğünden bu davranışı görüyoruz. ilgi alanlarına, özel kuralı (önce adı ilgi bulunmadığında) sonra bu sütun için geçerli olur.  
 
 ``` csharp
 public class BlogContext : DbContext

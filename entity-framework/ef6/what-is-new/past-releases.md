@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 1060bb99-765f-4f32-aaeb-d6635d3dbd3e
 caps.latest.revision: 4
-ms.openlocfilehash: 64cf28b858ad364243447a529f26475d449cf73e
-ms.sourcegitcommit: 45494121254ad4fdcec613d1dd22d850068d6f39
+ms.openlocfilehash: 5be3632fd3a3f04e12e2d3aa67de6c1d9c7b56a2
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37913453"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949325"
 ---
 # <a name="past-releases-of-entity-framework"></a>Eski sürümler Entity Framework'ün
 
@@ -68,10 +68,10 @@ Bu sürüm, birden çok kişi karşılaştığı sorunlar için düzeltmeler iç
 Bu küçük güncelleştirme çok sayıda yeni özellik içerir:
 
 - **Birleştirme Araçları** yeni EF modeli oluşturmak için tutarlı bir yol sağlar. Bu özellik [ADO.NET varlık veri modeli Sihirbazı'nı oluşturma Code First modelleri destekleyecek şekilde genişletir](~/ef6/modeling/code-first/workflows/existing-database.md), varolan bir veritabanından tersine mühendislik dahil. Bu özellikler daha önce Beta kalite EF Power Tools içinde mevcuttu.
-- **[İşlem işleme hatalarının işleme](~/ef6/fundamentals/connection-resiliency/commit-failures.md) ** kullanan yeni çıkan yeteneğini işlem işlem kesmeye CommitFailureHandler sağlar. CommitFailureHandler bağlantı hatalardan otomatik kurtarma, bir işlem Sistemi'ne artırabileceksiniz sağlar.
-- **[IndexAttribute](~/ef6/modeling/code-first/data-annotations.md) ** yerleştirerek belirtilmesi için dizinler sağlayan bir `[Index]` Code First modelinizde bir özellik (veya özellikleri) özniteliği. Kod önce sonra karşılık gelen bir dizin veritabanında oluşturursunuz.
+- **[İşlem işleme hatalarının işleme](~/ef6/fundamentals/connection-resiliency/commit-failures.md)**  kullanan yeni çıkan yeteneğini işlem işlem kesmeye CommitFailureHandler sağlar. CommitFailureHandler bağlantı hatalardan otomatik kurtarma, bir işlem Sistemi'ne artırabileceksiniz sağlar.
+- **[IndexAttribute](~/ef6/modeling/code-first/data-annotations.md)**  yerleştirerek belirtilmesi için dizinler sağlayan bir `[Index]` Code First modelinizde bir özellik (veya özellikleri) özniteliği. Kod önce sonra karşılık gelen bir dizin veritabanında oluşturursunuz.
 - **Genel eşleme API** EF sahip nasıl özellikler ve türler sütun ve veritabanındaki tablolar eşlendiğine şirket bilgilerine erişim sağlar. Sürümleri bu API iç içindeydi.
-- **[Kesiciler App/Web.config dosyasıyla yapılandırma yeteneği](~/ef6/fundamentals/configuring/config-file.md) ** dinleyiciler, uygulamanın yeniden derlemeye gerek kalmadan eklenecek sağlar.
+- **[Kesiciler App/Web.config dosyasıyla yapılandırma yeteneği](~/ef6/fundamentals/configuring/config-file.md)**  dinleyiciler, uygulamanın yeniden derlemeye gerek kalmadan eklenecek sağlar.
 - **System.Data.Entity.Infrastructure.Interception.DatabaseLogger**günlük dosyasında tüm veritabanı işlemleri kolaylaştıran yeni bir dinleyiciyi olduğu. Önceki özelliğiyle birlikte kolayca böylece [dağıtılmış bir uygulama için veritabanı işlem günlüğünü geçiş](~/ef6/fundamentals/configuring/config-file.md), yeniden derlemenize gerek kalmadan.
 - **Geçişleri modeli değişiklik algılama** iskele kurulmuş geçişleri değişiklik algılama işleminin performansı da geliştirilmiştir daha doğru; olacak şekilde iyileştirilmiştir.
 - **Performans iyileştirmeleri** başlatma sırasında azaltılmış veritabanı işlemleri dahil olmak üzere en iyi duruma getirme LINQ sorgularında null eşitlik karşılaştırması için daha hızlı oluşturma (modeli oluşturma) daha fazla senaryolarda ve görüntüleme daha verimli materialization birden fazla ilişki ile izlenen varlık.
@@ -95,14 +95,14 @@ Bölümüne [Entity Framework 6'ya yükseltme](upgrading-to-ef6.md) yükseltmek 
 Bu sürüm, çok sayıda yeni özellikler içerir.
 Aşağıdaki özellikler, Code First veya EF Designer ile oluşturulan modeller için çalışır:
 
-- **[Zaman uyumsuz sorgu ve tasarruf](~/ef6/fundamentals/async.md) ** .NET 4. 5 ' tanıtılan görev tabanlı zaman uyumsuz desenleri için destek ekler.
-- **[Bağlantı dayanıklılığı](~/ef6/fundamentals/connection-resiliency/retry-logic.md) ** geçici bağlantı hatalardan otomatik kurtarma sağlar.
-- **[Kod tabanlı yapılandırma](~/ef6/fundamentals/configuring/code-based.md) ** kodda bir yapılandırma dosyasında – geleneksel olarak gerçekleştirilen yapılandırma – gerçekleştirme seçeneği sunar.
-- **[Bağımlılık çözümlemesi](~/ef6/fundamentals/configuring/dependency-resolution.md) ** destek sunuyor hizmet bulucu için desen ve bazı özel uygulamaları ile değiştirilebilir işlevsellik parçalarını kullanıma factored.
-- **[Durdurma/SQL günlüğü](~/ef6/fundamentals/logging-and-interception.md) ** durdurma EF işlemleri için üstte yerleşik basit SQL günlüğü alt düzey yapı taşlarını sağlar.
+- **[Zaman uyumsuz sorgu ve tasarruf](~/ef6/fundamentals/async.md)**  .NET 4. 5 ' tanıtılan görev tabanlı zaman uyumsuz desenleri için destek ekler.
+- **[Bağlantı dayanıklılığı](~/ef6/fundamentals/connection-resiliency/retry-logic.md)**  geçici bağlantı hatalardan otomatik kurtarma sağlar.
+- **[Kod tabanlı yapılandırma](~/ef6/fundamentals/configuring/code-based.md)**  kodda bir yapılandırma dosyasında – geleneksel olarak gerçekleştirilen yapılandırma – gerçekleştirme seçeneği sunar.
+- **[Bağımlılık çözümlemesi](~/ef6/fundamentals/configuring/dependency-resolution.md)**  destek sunuyor hizmet bulucu için desen ve bazı özel uygulamaları ile değiştirilebilir işlevsellik parçalarını kullanıma factored.
+- **[Durdurma/SQL günlüğü](~/ef6/fundamentals/logging-and-interception.md)**  durdurma EF işlemleri için üstte yerleşik basit SQL günlüğü alt düzey yapı taşlarını sağlar.
 - **Test Edilebilirlik geliştirmeleri** DbContext ve olan DB için test double oluşturmayı kolaylaştırmak, [sahte bir framework kullanarak](~/ef6/fundamentals/testing/mocking.md) veya [kendi test double](~/ef6/fundamentals/testing/writing-test-doubles.md).
-- **[DbContext artık zaten açık bir DbConnection ile oluşturulabilir](~/ef6/fundamentals/connection-management.md) ** nerede olacağını yararlı bağlantı bağlamı oluştururken açık olup senaryoları etkinleştirir (bileşenler arasındaki bir bağlantıyı paylaşmak gibi burada bağlantının durumunu garanti).
-- **[İşlem desteği geliştirildi](~/ef6/saving/transactions.md) ** framework yanı sıra bir işlem içinde Framework oluşturmanın geliştirilmiş yolu dış bir işlem için destek sağlar.
+- **[DbContext artık zaten açık bir DbConnection ile oluşturulabilir](~/ef6/fundamentals/connection-management.md)**  nerede olacağını yararlı bağlantı bağlamı oluştururken açık olup senaryoları etkinleştirir (bileşenler arasındaki bir bağlantıyı paylaşmak gibi burada bağlantının durumunu garanti).
+- **[İşlem desteği geliştirildi](~/ef6/saving/transactions.md)**  framework yanı sıra bir işlem içinde Framework oluşturmanın geliştirilmiş yolu dış bir işlem için destek sağlar.
 - **Numaralandırmalar, uzamsal ve daha iyi performans .NET 4.0** - taşıyarak duyuyoruz artık .NET üzerinde EF5 gelen numaralandırma desteği, uzamsal veri türleri ve performans iyileştirmeleri sunuyor EF NuGet paketi .NET Framework'e bulunması için kullanılan çekirdek bileşenleri 4.0.
 - **Gelişmiş LINQ sorgularında Enumerable.Contains performansını**.
 - **Geliştirilmiş Isınma süresini (görünümü oluşturma)**, özellikle büyük modeller için.
@@ -114,14 +114,14 @@ Aşağıdaki özellikler, Code First veya EF Designer ile oluşturulan modeller 
 
 Aşağıdaki özellikler Code First yalnızca geçerlidir:
 
-- **[Özel kod öncelikli kurallar](~/ef6/modeling/code-first/conventions/custom.md) ** izin yinelenen yapılandırmasını önlemek için kendi kuralları yazma. Daha karmaşık kurallar yazma olanak tanımak için basit bir API basit kuralları ve bunun yanı sıra bazı daha karmaşık bir yapı taşlarını sunuyoruz.
-- **[İlk eşleme Insert/Update/Delete saklı yordamlar için kod](~/ef6/modeling/code-first/fluent/cud-stored-procedures.md) ** artık desteklenmektedir.
-- **[Idempotent geçiş betikleri](~/ef6/modeling/code-first/migrations/index.md) ** bir veritabanının herhangi bir sürümünü en son sürüme yükseltebilirsiniz bir SQL komut dosyası oluşturmayı sağlar.
-- **[Yapılandırılabilir geçişleri geçmiş tablosu](~/ef6/modeling/code-first/migrations/history-customization.md) ** geçişler geçmiş tablosu tanımını özelleştirmenizi sağlar. Bu, özellikle düzgün çalışması geçişler geçmiş tablosu için belirtilecek uygun veri türleri vb. gerektiren veritabanı sağlayıcıları için kullanışlıdır.
+- **[Özel kod öncelikli kurallar](~/ef6/modeling/code-first/conventions/custom.md)**  izin yinelenen yapılandırmasını önlemek için kendi kuralları yazma. Daha karmaşık kurallar yazma olanak tanımak için basit bir API basit kuralları ve bunun yanı sıra bazı daha karmaşık bir yapı taşlarını sunuyoruz.
+- **[İlk eşleme Insert/Update/Delete saklı yordamlar için kod](~/ef6/modeling/code-first/fluent/cud-stored-procedures.md)**  artık desteklenmektedir.
+- **[Idempotent geçiş betikleri](~/ef6/modeling/code-first/migrations/index.md)**  bir veritabanının herhangi bir sürümünü en son sürüme yükseltebilirsiniz bir SQL komut dosyası oluşturmayı sağlar.
+- **[Yapılandırılabilir geçişleri geçmiş tablosu](~/ef6/modeling/code-first/migrations/history-customization.md)**  geçişler geçmiş tablosu tanımını özelleştirmenizi sağlar. Bu, özellikle düzgün çalışması geçişler geçmiş tablosu için belirtilecek uygun veri türleri vb. gerektiren veritabanı sağlayıcıları için kullanışlıdır.
 - **Veritabanı başına birden fazla bağlamı** modelinin bir Code First Migrations'ı kullanırken, veritabanı başına veya Code First otomatik olarak veritabanı için oluşturduğunuz önceki sınırlamayı kaldırır.
-- **[DbModelBuilder.HasDefaultSchema](~/ef6/modeling/code-first/fluent/types-and-properties.md) ** bir yeni kodu ilk varsayılan veritabanı şeması tek bir yerde yapılandırılması için Code First modeli için izin veren API. Daha önce Code First varsayılan şema için sabit kodlanmış &quot;dbo&quot; ve ait olduğu tablo şemasını yapılandırmak için tek yolu ToTable API aracılığıyla.
+- **[DbModelBuilder.HasDefaultSchema](~/ef6/modeling/code-first/fluent/types-and-properties.md)**  bir yeni kodu ilk varsayılan veritabanı şeması tek bir yerde yapılandırılması için Code First modeli için izin veren API. Daha önce Code First varsayılan şema için sabit kodlanmış &quot;dbo&quot; ve ait olduğu tablo şemasını yapılandırmak için tek yolu ToTable API aracılığıyla.
 - **DbModelBuilder.Configurations.AddFromAssembly yöntemi** kod ilk Fluent API'si ile yapılandırma sınıfları kullanırken, bir derlemede tanımlanan tüm yapılandırma sınıfları kolayca eklemenize olanak sağlar.
-- **[Özel geçiş işlemleri](http://romiller.com/2013/02/27/ef6-writing-your-own-code-first-migration-operations/) ** kod tabanlı işlemlerinde kullanılmak üzere ek işlemler eklemek etkinleştirilmiş.
+- **[Özel geçiş işlemleri](http://romiller.com/2013/02/27/ef6-writing-your-own-code-first-migration-operations/)**  kod tabanlı işlemlerinde kullanılmak üzere ek işlemler eklemek etkinleştirilmiş.
 - **Varsayılan işlem yalıtım düzeyi için read_commıtted_snapshot değiştirildiğinde** daha fazla ölçeklenebilirlik ve daha az kilitlenmeler için izin verme Code First kullanarak oluşturulan veritabanları için.
 - **Varlık ve karmaşık türler artık olabilir nestedinside sınıfları**. |
 
@@ -229,7 +229,7 @@ Bu bileşenler, Code First Migrations (EF 4.3 dahil) ve EF güç araçları tara
 
 Fark edeceksiniz garip sürüm 4.1.10715 paket sayısı.
 Benimsemeye karar vermeden tarihi düzeltme eki sürümleri kullanılacak kullandık [Semantic Versioning](https://semver.org).
-Bu sürümü EF 4.1 düzeltme eki 1 (yani, 4.1.1) düşünebilirsiniz.
+Bu sürüm EF 4.1 düzeltme eki 1 (veya EF 4.1.1) olarak düşünebilirsiniz.
 
 İşte biz put birlikte 4.1.1 için içerik listesini sürüm:
 

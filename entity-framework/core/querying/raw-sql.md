@@ -1,45 +1,45 @@
 ---
-title: Ham SQL sorguları - EF çekirdek
+title: Ham SQL sorguları - EF Core
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 ms.technology: entity-framework-core
 uid: core/querying/raw-sql
-ms.openlocfilehash: 7ed9a8938f8b6dffa7149d64d7e869b0b0078169
-ms.sourcegitcommit: 3adf1267be92effc3c9daa893906a7f36834204f
+ms.openlocfilehash: a1d554795dcd8a3e5b44e89ac014f538598461cc
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 06/08/2018
-ms.locfileid: "35232174"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949246"
 ---
 # <a name="raw-sql-queries"></a>Ham SQL sorguları
 
-Entity Framework Çekirdek, ilişkisel veritabanı ile çalışırken, ham SQL sorguları açılan olanak sağlar. Gerçekleştirmek istediğiniz sorgu LINQ kullanılarak ifade edilemeyen veya bir LINQ Sorgu kullanarak verimsiz SQL veritabanına gönderilen kaynaklanan bu yararlı olabilir. Ham SQL sorguları, varlık türleri veya EF çekirdek 2.1 ile başlayan dönebilirsiniz [sorgu türü](xref:core/modeling/query-types) modelinizi bir parçası.
+Entity Framework Core, ilişkisel bir veritabanı ile çalışırken, ham SQL sorguları açılan olanak tanır. Gerçekleştirmek istediğiniz sorguyu LINQ kullanılarak ifade edilemediğinde ya da bir LINQ Sorgu kullanarak verimsiz SQL veritabanına gönderilen kaynaklanan bu yararlı olabilir. Ham SQL sorguları varlık türleri veya EF Core 2.1 ile başlayan döndürebilir [sorgu türü](xref:core/modeling/query-types) modelinizin bir parçası.
 
 > [!TIP]  
-> Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) github'da.
+> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub üzerinde.
 
 ## <a name="limitations"></a>Sınırlamalar
 
 Ham SQL sorguları kullanırken dikkat edilmesi gereken bazı sınırlamalar vardır:
 
-* SQL sorgusu, varlık veya sorgu türü tüm özelliklerde için veri döndürmesi gerekir.
+* SQL sorgusu, veri varlığı veya sorguyu türü tüm özelliklerde için döndürmesi gerekir.
 
-* Sonuç kümesi içindeki sütun adlarının özellikleri eşlendiği sütun adlarının eşleşmesi gerekir. Bu özelliği/sütun eşlemesi için ham SQL sorguları yeri yoksayıldı EF6 farklı olduğuna dikkat edin ve sonuç kümesi sütunu adları özellik adlarının eşleşmesi gerekiyordu.
+* Sonuç kümesi sütun adları, özellikler için eşlenen sütun adları eşleşmelidir. Bu özellik/sütun eşlemesi için ham SQL sorguları burada yoksayıldı EF6 farklı olduğuna dikkat edin ve sonuç kümesi sütun adları, özellik adlarının eşleşmesi gerekiyordu.
 
-* SQL sorgusu, ilgili veri içeremez. Bununla birlikte, çoğu durumda, sorgu kullanarak üstünde oluşturabilirsiniz `Include` ilgili verileri döndürmek için işleci (bkz [ilgili verileri de dahil olmak üzere](#including-related-data)).
+* SQL sorgusu, ilgili verileri içeremez. Ancak, çoğu durumda, üzerinde sorgu kullanarak oluşturabileceğiniz `Include` ilgili verileri döndürmek için işleci (bkz [ilgili veriler dahil olmak üzere](#including-related-data)).
 
-* `SELECT` Bu yönteme geçirilen deyimleri genellikle birleştirilebilir olmalıdır: varsa EF çekirdek gereken sunucu üzerindeki Ek sorgu işleçleri değerlendirmek (örneğin sonra uygulanan LINQ işleçleri çevirmek için `FromSql`), sağlanan SQL alt sorgu kabul edilir. Başka bir deyişle, geçirilen SQL herhangi bir karakter veya gibi bir alt sorgu geçerli olmayan seçenekler içermemelidir:
+* `SELECT` Bu yönteme geçirilen deyimler genellikle birleştirilebilir olmalıdır: varsa EF Core gereken ek sorgu işleçleri sunucusunda değerlendirilecek (örneğin, LINQ işleçleri çevirmek için uygulanan sonra `FromSql`), sağlanan SQL alt sorgu kabul edilir. Bu, geçirilen SQL herhangi bir karakter veya gibi geçerli bir alt sorgu olmayan seçenekleri içermemelidir anlamına gelir:
   * sondaki noktalı virgül
-  * SQL Server'da sorgu düzeyi sondaki ipucu, örn. `OPTION (HASH JOIN)`
+  * SQL Server'da izleyen bir sorgu düzeyi İpucu (örneğin, `OPTION (HASH JOIN)`)
   * SQL Server'da bir `ORDER BY` , eşlik yan tümcesi `TOP 100 PERCENT` içinde `SELECT` yan tümcesi
 
-* SQL deyimleri dışında `SELECT` otomatik birleştirilebilir olmayan tanınır. Sonuç olarak, tam sonuçları saklı yordamlar, her zaman istemciye döndürülen ve sonra LINQ işleçleri uygulanan `FromSql` değerlendirilen bellek içi şunlardır. 
+* SQL deyimleri dışında `SELECT` otomatik birleştirilebilir olmayan tanınır. Sonuç olarak, saklı yordamları tam sonuçları her zaman istemciye döndürülen ve sonra herhangi bir LINQ işlecini uygulandı `FromSql` değerlendirilen bellek içi olduğu.
 
 ## <a name="basic-raw-sql-queries"></a>Temel ham SQL sorguları
 
-Kullanabileceğiniz *FromSql* ham SQL sorgu temelli bir LINQ Sorgu başlamak için genişletme yöntemi.
+Kullanabileceğiniz *SQL* ham SQL sorgu temelli bir LINQ Sorgu başlamak için genişletme yöntemi.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -59,9 +59,9 @@ var blogs = context.Blogs
 
 ## <a name="passing-parameters"></a>Parametreleri geçirme
 
-SQL kabul eden herhangi bir API'yi gibi ile giriş SQL ekleme saldırısına karşı korumak için herhangi bir kullanıcı Parametreleştirme önemlidir. SQL sorgu dizesinde parametre yer tutucuları içerir ve ek bağımsız değişkenler olarak parametre değerlerini sağlayın. Sağladığınız herhangi bir parametre değeri için otomatik olarak dönüştürülecek bir `DbParameter`.
+SQL kabul eden bir API ile gibi SQL ekleme saldırısına karşı korumak için tüm kullanıcı parametre haline getirmek önemlidir. SQL sorgu dizesi parametresi yer tutucular içerir ve sonra ek bağımsız değişkenler olarak parametre değerlerini sağlayın. Sağladığınız parametre değerlerini otomatik olarak dönüştürülür bir `DbParameter`.
 
-Aşağıdaki örnek, tek bir parametre saklı yordama geçirir. Bu görünebilir ancak ister `String.Format` sözdizimi, sağlanan değer kaydırılır içindeki bir parametre ve oluşturulan parametre adı eklenen nereye `{0}` yer tutucu belirtildi.
+Aşağıdaki örnek, bir saklı yordam için tek bir parametre geçirir. Bu görünebilir ancak ister `String.Format` söz dizimi, sağlanan değer kaydırılır bir parametre ve oluşturulan parametre adı eklenen nerede `{0}` yer tutucu belirtildi.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -72,7 +72,7 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-Bu aynı olduğundan sorgu ancak EF çekirdek 2.0 ve üzeri desteklenir dize ilişkilendirme sözdizimini kullanarak:
+Aynıdır, ancak EF Core 2.0 ve üzeri sürümlerde desteklenir. dize ilişkilendirme sözdizimini kullanarak sorgu:
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -83,7 +83,7 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-Ayrıca, bir DbParameter oluşturmak ve parametre değeri olarak sağlayın. Bu adlandırılmış parametreleri SQL sorgu dizesinde kullanmanıza olanak sağlar
+Ayrıca, bir DbParameter oluşturun ve parametre değeri olarak sağlayın. Bu sayede SQL sorgu dizesinde adlandırılmış parametreler kullanılacak
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -96,9 +96,9 @@ var blogs = context.Blogs
 
 ## <a name="composing-with-linq"></a>LINQ ile oluşturma
 
-Ardından SQL sorgusuna üzerinde veritabanında birleştirilebilen, LINQ işleçleri kullanarak ilk ham SQL sorgusu üstünde oluşturabilirsiniz. İle olan birleştirilebilen SQL sorguları `SELECT` anahtar sözcüğü.
+Ardından SQL sorgusuna üzerinde veritabanında kullanılıp kullanılamayacağı, LINQ işleçleri kullanarak ilk ham SQL sorgusunun üstüne oluşturabilirsiniz. Sahip olan oluşan SQL sorguları `SELECT` anahtar sözcüğü.
 
-Aşağıdaki örnek, bir tablo değerli fonksiyon (TVF) gelen seçer ve ardından oluşturur ham bir SQL sorgusu filtreleme ve sıralama gerçekleştirmek için LINQ kullanarak kullanır.
+Aşağıdaki örnek filtreleme ve sıralama gerçekleştirmek için LINQ kullanarak bir Table-Valued işlev (TVF) öğesinden seçer ve ardından ölçeklemesini ham bir SQL sorgusu kullanır.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -113,7 +113,7 @@ var blogs = context.Blogs
 
 ### <a name="including-related-data"></a>İlgili verileri de dahil olmak üzere
 
-LINQ işleçlerle oluşturma sorguda ilgili verileri dahil etmek için kullanılabilir.
+LINQ işleçleri ile oluşturma sorguda ilgili verileri dahil etmek için kullanılabilir.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -126,4 +126,4 @@ var blogs = context.Blogs
 ```
 
 > [!WARNING]  
-> **Her zaman parametrelemeyi ham SQL sorgular için kullanın:** ham SQL kabul API'leri dize gibi `FromSql` ve `ExecuteSqlCommand` parametre olarak kolayca geçirilecek değerlere izin. Kullanıcı girişini doğrulama yanı sıra, her zaman parametrelemeyi ham bir SQL sorgusu/komutta kullanılan herhangi bir değeri için kullanın. Dize birleştirme SQL yerleştirme saldırılarına karşı korumak için herhangi bir giriş doğrulamak için sorumlu sonra herhangi bir kısmını sorgu dizesini dinamik olarak oluşturmak için kullanıyorsanız.
+> **Her zaman için ham SQL sorguları Parametreleştirme kullanın:** ham SQL kabul API'leri gibi dize `FromSql` ve `ExecuteSqlCommand` değerleri kolayca parametre olarak geçirilmesine izin verin. Kullanıcı girişini doğrulama ek olarak, her zaman Parametreleştirme ham bir SQL sorgu/komutta kullanılan herhangi bir değeri için kullanın. Dize birleştirme SQL ekleme saldırılarına karşı korumak için herhangi bir giriş doğrulamak için sorumlu olursunuz herhangi bir bölümünü sorgu dizesini dinamik olarak oluşturmak için kullanıyorsanız.

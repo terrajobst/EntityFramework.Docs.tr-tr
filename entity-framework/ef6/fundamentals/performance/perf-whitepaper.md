@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: d6d5a465-6434-45fa-855d-5eb48c61a2ea
 caps.latest.revision: 4
-ms.openlocfilehash: 00a6194896370db2578dad21dc641bbb183aa3fb
-ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
+ms.openlocfilehash: c01cf2b28e56fb73783bd9ed0d133bffa0a7dbe7
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914321"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949337"
 ---
 # <a name="performance-considerations-for-ef-4-5-and-6"></a>EF 6 4 ve 5 için performans konuları
 David Obando, Eric Dettinger ve diğerleri
@@ -213,7 +213,7 @@ Entity Framework 6 kullanırken, geliştiricilerin AddRange işlemi ve RemoveRan
 
 ### <a name="32-query-plan-caching"></a>3.2 sorgu planı'önbelleğe alma
 
-İlk kez bir sorgu yürütülür, bu depolama komutu (örneğin T-SQL Server karşı çalıştırdığınızda yürütülür, SQL) kavramsal sorgu küçültmesini iç planı derleyici geçer.  Sorgu planını önbelleğe alma etkinse, sonraki açışınızda sorgu deposu yürütülen komut yürütme planı derleyici atlama için sorgu planı önbellek doğrudan alınır.
+İlk kez bir sorgu yürütülür, bu depolama komutu (örneğin, T-SQL Server karşı çalıştırdığınızda yürütülür, SQL) kavramsal sorgu küçültmesini iç planı derleyici geçer.  Sorgu planını önbelleğe alma etkinse, sonraki açışınızda sorgu deposu yürütülen komut yürütme planı derleyici atlama için sorgu planı önbellek doğrudan alınır.
 
 Sorgu planını önbelleğe aynı AppDomain içinde ObjectContext örnekleri arasında paylaşılır. Sorgu planını önbelleğe alma yararlanmak için bir ObjectContext örneği tutun gerek yoktur.
 
@@ -233,7 +233,7 @@ Sorgu planını önbelleğe aynı AppDomain içinde ObjectContext örnekleri ara
                     ObjectQuery oQuery = query as ObjectQuery;
                     oQuery.EnablePlanCaching = false;
 ```
--   Parametreli sorgular için parametrenin değerini değiştirerek önbelleğe alınmış sorgu hala ulaşırsınız. Ancak, bir parametrenin facets (örneğin boyut, duyarlık veya Ölçek) değiştirerek farklı bir önbellek girdisi ulaşırsınız.
+-   Parametreli sorgular için parametrenin değerini değiştirerek önbelleğe alınmış sorgu hala ulaşırsınız. Ancak, bir parametrenin facets (örneğin, boyutu, duyarlık veya Ölçek) değiştirerek farklı bir önbellek girdisi ulaşırsınız.
 -   Entity SQL kullanılırken, sorgu dizesi anahtarı bir parçasıdır. Sorgu hiç değiştirilmesi, sorguları işlevsel olarak eşdeğerdir olsa bile farklı bir önbellek girişlerinde neden olacak. Bu, büyük/küçük harf veya boşluk değişiklikleri içerir.
 -   LINQ kullanırken, bir anahtarın parçası oluşturmak için sorguyu işlenir. LINQ ifadesi değiştirilmesi, bu nedenle farklı bir anahtar oluşturur.
 -   Başka bir teknik kısıtlamalar geçerli olabilir; Autocompiled sorguları daha fazla ayrıntı için bkz.
@@ -403,7 +403,7 @@ Entity Framework meta verileri önbelleğe almayı da destekler. Bu temelde tür
 #### <a name="341-metadata-caching-algorithm"></a>3.4.1 meta verileri önbelleğe alma algoritması
 
 1.  Bir model için meta veri bilgileri için her bir EntityConnection bir ItemCollection içinde depolanır.
-    -   Yan Not olarak modelin farklı bölümleri için farklı ItemCollection nesneleri vardır, örneğin StoreItemCollections veritabanı modeli hakkında bilgi içerir; ObjectItemCollection veri modeli hakkında bilgi içerir. Edmıtemcollection kavramsal modelle ilgili bilgiler içerir.
+    -   Yan Not olarak modelin farklı bölümleri için farklı ItemCollection nesnesi vardır. Örneğin, StoreItemCollections veritabanı modeli hakkında bilgi içerir. ObjectItemCollection veri modeli hakkında bilgi içerir. Edmıtemcollection kavramsal modelle ilgili bilgiler içerir.
 
 2.  İki bağlantı aynı bağlantı dizesi kullanıyorsanız, bunlar aynı ItemCollection örneği paylaşır.
 3.  Eşdeğer işleve sahiptir ancak metin içeriğini eklemek farklı bağlantı dizeleri farklı meta veri önbelleği neden olabilir. Biz bağlantı dizelerini, bu nedenle yalnızca belirteçleri sırasını değiştirmek paylaşılan meta verilerinde sonuçlanmalıdır simgeleştirin. Ancak, işlevsel olarak aynı görünen iki bağlantı dizesi aynı sonra simgeleştirme değerlendirilmeyebilir.
@@ -893,7 +893,7 @@ TPT şemaya sahip mevcut bir veritabanı üzerinde bir modeli oluşturduğunuzda
 
 Varlık Tasarımcısı Sihirbazı'nda kullandığınız Model ilk zaman modelinize için herhangi bir devralma TPT alırsınız. TPH devralma strateji ile ilk Model geçmek istiyorsanız, Visual Studio Gallery'den "varlık Tasarımcısı veritabanı oluşturma Power paketi" kullanıma kullanabilirsiniz ( \< http://visualstudiogallery.msdn.microsoft.com/df3541c3-d833-4b65-b942-989e7ec74c87/>).
 
-Devralma ile bir modelin eşlemeyi yapılandırmak için Code First kullanarak EF TPH varsayılan olarak kullanır, yani devralma hiyerarşisindeki tüm varlıkları aynı tablonun eşlenir. MSDN magazine'de "Kod ilk olarak varlığın Framework4.1" makale "Eşleme ile Fluent API'si" bölümüne bakın ( [ http://msdn.microsoft.com/magazine/hh126815.aspx ](https://msdn.microsoft.com/magazine/hh126815.aspx)) daha fazla ayrıntı için.
+Devralma ile bir modelin eşlemeyi yapılandırmak için Code First kullanarak EF TPH varsayılan olarak kullanır, bu nedenle devralma hiyerarşisindeki tüm varlıkları aynı tablonun eşleştirilecek. MSDN magazine'de "Kod ilk olarak varlığın Framework4.1" makale "Eşleme ile Fluent API'si" bölümüne bakın ( [ http://msdn.microsoft.com/magazine/hh126815.aspx ](https://msdn.microsoft.com/magazine/hh126815.aspx)) daha fazla ayrıntı için.
 
 ### <a name="72-------upgrading-from-ef4-to-improve-model-generation-time"></a>7.2 model oluşturma geliştirmek için EF4 yükseltme zamanı
 
@@ -1105,7 +1105,7 @@ Daha fazla bilgi için [ilgili nesneler Yükleniyor](https://msdn.microsoft.com/
 
 Biz sunucu yanıt süresi sorunları ilgili performans sorular duyduğunuzda, sorunun sık birden çok içerik deyimleri sorgularla kaynağıdır. Bir sorguda ilgili varlıkları dahil olmak üzere güçlü olsa da, bu işlem arka planda neler olduğunu anlamak önemlidir.
 
-İçindeki depolama komutu oluşturmak için iç planı derleyicimiz gitmek için bir sorgu ile birden çok içerik deyimleri oldukça uzun bir süre sürer. Bu süre çoğu, sonuçta elde edilen sorgu iyileştirmeye çalışıyor harcanır. Oluşturulan depolama komutu, eşleştirme bağlı olarak her dahil etme için Outer JOIN veya birleşim içerecektir. Bu, özellikle yedeklilik yükte çok fazla olduğunda, bant genişliği sorunları acerbate olan tek bir yükte veritabanınızdan büyük bağlı grafiklerde çıkarır gibi sorgular (yani ekleme ilişkilendirmeler geçirmek için birden çok düzeyine sahip bire çok yönü).
+İçindeki depolama komutu oluşturmak için iç planı derleyicimiz gitmek için bir sorgu ile birden çok içerik deyimleri oldukça uzun bir süre sürer. Bu süre çoğu, sonuçta elde edilen sorgu iyileştirmeye çalışıyor harcanır. Oluşturulan depolama komutu, eşleştirme bağlı olarak her dahil etme için Outer JOIN veya birleşim içerecektir. Bu gibi sorguların büyük bağlı grafikler, özellikle yedeklilik (örneğin INCLUDE birden fazla düzeyde geçirmek için kullanıldığında, yükte çok fazla olduğunda, bant genişliği sorunları acerbate olan tek bir yükte veritabanınızdan Getir ilişkileri bir-çok yönde).
 
 Burada, sorgularınızı aşırı büyük yükleri ToTraceString kullanarak ve yükü boyutu görmek için SQL Server Management Studio içinde depolama komutu yürütülürken temel alınan bir TSQL sorgusu için erişerek iade ettiğiniz durumlarda kontrol edebilirsiniz. Azaltmak için yapabileceğiniz gibi durumlarda içerik deyimleri yalnızca sorgunuzda sayısını ihtiyacınız verilerinizi getirin. Veya örneğin alt sorgularda, daha küçük dizisine sorgunuzu bölüneceği mümkün olabilir:
 

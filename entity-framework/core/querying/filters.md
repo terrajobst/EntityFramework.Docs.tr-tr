@@ -5,12 +5,12 @@ ms.author: anpete
 ms.date: 11/03/2017
 ms.technology: entity-framework-core
 uid: core/querying/filters
-ms.openlocfilehash: 0c7858d660665b4f17aedea2101452048f9aff25
-ms.sourcegitcommit: fd50ac53b93a03825dcbb42ed2e7ca95ca858d5f
+ms.openlocfilehash: 2bb0666ba7b75a38e44a348aea735e6fe7eadb29
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/07/2018
-ms.locfileid: "37900297"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949420"
 ---
 # <a name="global-query-filters"></a>Genel sorgu filtreleri
 
@@ -30,7 +30,7 @@ Aşağıdaki örnek, basit bir blog oluşturma modelinde geçici silmeyi ve çok
 
 [!code-csharp[Main](../../../efcore-repo/samples/QueryFilters/Program.cs#Entities)]
 
-Bir _ bildirimi Not_Tenantıd_ alanını _Blog_ varlık. Bu, her Blog örneği belirli bir kiracı ile ilişkilendirmek için kullanılır. Ayrıca tanımlı olan bir _IsDeleted_ özelliği _Post_ varlık türü. Bu kullanılır olup izlenmesi için bir _Post_ örneği "geçici silinen". Yani Örnek, temel alınan verileri fiziksel olarak kaldırma silinen withouth işaretlenir.
+Bir _ bildirimi Not_Tenantıd_ alanını _Blog_ varlık. Bu, her Blog örneği belirli bir kiracı ile ilişkilendirmek için kullanılır. Ayrıca tanımlı olan bir _IsDeleted_ özelliği _Post_ varlık türü. Bu izlemenin olup için kullanılan bir _Post_ örneği "geçici silinen". Diğer bir deyişle, örnek, temel alınan verileri fiziksel olarak kaldırmadan silindi olarak işaretlenir.
 
 Ardından, sorgu filtreleri yapılandırma _OnModelCreating_ kullanarak ```HasQueryFilter``` API.
 
@@ -39,7 +39,7 @@ Ardından, sorgu filtreleri yapılandırma _OnModelCreating_ kullanarak ```HasQu
 Koşul ifadeleri geçirilen _HasQueryFilter_ çağrıları artık otomatik olarak uygulanacak LINQ sorguları bu türleri için.
 
 > [!TIP]
-> DbContext örnek düzeyinde bir alanı kullanımına dikkat edin: ```_tenantId``` geçerli Kiracı ayarlamak için kullanılır. Model düzeyinde filtreler doğru bağlam örneğinin değerini kullanır. Yani Sorgu yürütülürken örneği.
+> DbContext örnek düzeyinde bir alanı kullanımına dikkat edin: ```_tenantId``` geçerli Kiracı ayarlamak için kullanılır. Model düzeyi filtreleri (diğer bir deyişle, sorguyu yürüten örnek) doğru bağlam örneğinin değerini kullanır.
 
 ## <a name="disabling-filters"></a>Filtreleri devre dışı bırakma
 

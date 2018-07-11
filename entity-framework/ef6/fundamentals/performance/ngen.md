@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: dc6110a0-80a0-4370-8190-cea942841cee
 caps.latest.revision: 4
-ms.openlocfilehash: 18df636685da2373549437b4830e11ac8ad2d2ec
-ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
+ms.openlocfilehash: cffd2deea3148a16ed704d1e5e7b365eda06f72b
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914084"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949051"
 ---
 # <a name="improving-startup-performance-with-ngen"></a>NGen ile başlangıç performansı iyileştirme
 > [!NOTE]
@@ -28,7 +28,7 @@ EF çalışma zamanı derlemeleri, yerel görüntüler uygulama başlangıç zam
 
 ## <a name="how-to-use-ngenexe"></a>NGen.exe kullanma  
 
-NGen.exe Aracı'nın en temel işlev "yüklemek için" olan (yani oluşturun ve diske kaydet) bir derleme ve tüm doğrudan bağımlılıkları için yerel görüntüler. İşte, nasıl gerçekleştirebilirsiniz:  
+En temel NGen.exe Aracı'nın "yüklemek için" işlevidir (diğer bir deyişle, oluşturmak ve diske kalıcı hale getirmek için) bir derleme ve tüm doğrudan bağımlılıkları için yerel görüntüler. İşte, nasıl gerçekleştirebilirsiniz:  
 
 1. Yönetici olarak bir komut istemi penceresi açın  
 2. Geçerli çalışma dizini için yerel görüntüleri oluşturmak istediğiniz derlemelerin konumunu değiştirin:  
@@ -57,17 +57,17 @@ NGen.exe, birden çok resimler, vb. nesil queuing yüklü yerel görüntüleri g
 EF 6 veya üzeri bir sürümü üzerinde tabanlı bir uygulama için yerel görüntüleri oluşturmak için hangi derlemelerin karar vermek için söz konusu olduğunda, aşağıdaki seçenekleri dikkate almanız gerekir:  
 
 - **Ana EF çalışma zamanı derlemesi EntityFramework.dll**: genel bir temel EF uygulama yürütür veritabanında önemli miktarda kod başlangıç veya ilk erişimini, bu derlemedeki. Sonuç olarak, bu derlemenin yerel görüntüler oluşturma başlangıç performansı büyük kazanç oluşturur.  
-- **Uygulamanız tarafından kullanılan tüm EF sağlayıcı derlemesi**: başlangıç zamanı da avantajını biraz Örneğin bu, yerel görüntüler oluşturma uygulama istediğiniz için yerel bir görüntü oluşturmak için SQL Server için EF sağlayıcısı kullanıyorsa EntityFramework.SqlServer.dll.  
+- **Uygulamanız tarafından kullanılan tüm EF sağlayıcı derlemesi**: başlangıç zamanı da avantajını biraz oluşturmasını bu yerel görüntüler. Örneğin, uygulamanın EF sağlayıcısı için SQL Server kullanıyorsa, yerel görüntü için EntityFramework.SqlServer.dll oluşturmak isteyeceksiniz.  
 - **Uygulamanızın derlemeleri ve diğer bağımlılıklar**: [NGen.exe belgeleri](https://msdn.microsoft.com/library/6t9t5wcf.aspx) için yerel görüntüler ve güvenlik, yerel görüntüler etkisini oluşturmak için hangi derlemelerin seçmeye yönelik genel ölçüt kapsar Gelişmiş Seçenekleri "sıkı bağlama" gibi hata ayıklama ve profil oluşturma senaryoları, vb. yerel görüntüleri kullanan gibi senaryoları.  
 
 > [!TIP]
-> Dikkatli bir şekilde hem başlangıç performansını hem de uygulamanızın genel performansını yerel görüntüleri kullanan etkilerini ölçmek ve karşılaştırmak içinse karşı Gerçek gereksinimler emin olun. Yerel görüntüler genellikle performans dökümünü başlangıç artırmak ve bazı durumlarda bellek kullanımını azaltmaya yardımcı olur, ancak tüm senaryolarda eşit yararlı olacaktır. (Yani uygulama tarafından kullanılan tüm yöntemler en az bir kez çağrılabilir sonra), kararlı bir duruma yürütülmesine JIT derleyicisi tarafından üretilen kod aslında yerel görüntülerden biraz daha iyi performans sağlayabilir.  
+> Dikkatli bir şekilde hem başlangıç performansını hem de uygulamanızın genel performansını yerel görüntüleri kullanan etkilerini ölçmek ve karşılaştırmak içinse karşı Gerçek gereksinimler emin olun. Yerel görüntüler genellikle performans dökümünü başlangıç artırmak ve bazı durumlarda bellek kullanımını azaltmaya yardımcı olur, ancak tüm senaryolarda eşit yararlı olacaktır. (Diğer bir deyişle, uygulama tarafından kullanılan tüm yöntemler en az bir kez çağrılabilir sonra), kararlı bir duruma yürütülmesine JIT derleyicisi tarafından üretilen kod aslında yerel görüntülerden biraz daha iyi performans sağlayabilir.  
 
 ## <a name="using-ngenexe-in-a-development-machine"></a>NGen.exe bir geliştirme makinesinde kullanma  
 
 Geliştirme sırasında .NET JIT Derleyici sık değişen kod için en iyi genel artırabilen sunar. EF çalışma zamanı derlemeleri gibi derlenmiş bağımlılıkları için yerel görüntüler oluşturuluyor, geliştirme ve test birkaç saniye her yürütme başlangıcında kesme göre hızlandırın yardımcı olabilir.  
 
-EF çalışma zamanı derlemeleri bulmak için iyi bir örneğin EF 6.0.2 ile SQL Server kullanarak uygulama için bir çözüm için NuGet paket konumu yerdir ve .NET 4.5 veya üzeri hedefleyen bir komut istemi penceresinde aşağıdaki yazabilirsiniz (bir administr açmak unutmayın etmeni):  
+Çözüm için NuGet paket konumu EF çalışma zamanı derlemeleri bulmak için iyi bir yerdir. Örneğin, SQL Server ile EF 6.0.2 kullanma ve .NET 4.5 veya üzeri hedefleyen bir uygulama için aşağıdaki komut istemi penceresinde yazabilirsiniz (yönetici olarak açın unutmayın):  
 
 ``` console
 cd <Solution directory>\packages\EntityFramework.6.0.2\lib\net45
@@ -84,7 +84,7 @@ WiX araç destekler queuing yerel görüntülerin Kurulum sırasında oluşturma
 
 ## <a name="verifying-that-native-images-are-being-used-for-ef"></a>Yerel görüntüler için EF kullanıldığını doğrulanıyor  
 
-Uzantı yüklenen derlemeler için bakarak belirli bir uygulamanın yerel bir derleme kullandığından emin olun ". ni.dll"veya". ni.exe", örneğin EF'ın ana çalışma zamanı derlemesi için bir yerel görüntü EntityFramework.ni.dll çağrılır. Bir işlemin yüklenen .NET derlemeleri incelemek için kolay bir yol kullanmaktır [Process Explorer](https://technet.microsoft.com/sysinternals/bb896653).  
+Uzantı yüklenen derlemeler için bakarak belirli bir uygulamanın yerel bir derleme kullandığından emin olun ". ni.dll"veya". ni.exe". Örneğin, bir doğal görüntü EF'ın ana çalışma zamanı derlemesi için EntityFramework.ni.dll çağrılmaz. Bir işlemin yüklenen .NET derlemeleri incelemek için kolay bir yol kullanmaktır [Process Explorer](https://technet.microsoft.com/sysinternals/bb896653).  
 
 ## <a name="other-things-to-be-aware-of"></a>Dikkat edilmesi gereken diğer noktalar  
 

@@ -6,12 +6,12 @@ ms.date: 2/26/2018
 ms.assetid: 2B0BADCE-E23E-4B28-B8EE-537883E16DF3
 ms.technology: entity-framework-core
 uid: core/modeling/owned-entities
-ms.openlocfilehash: 768429b857b09c1974f4ade31b5bbb6b1c7e15c3
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 476a1dcaadcd99eba0cd4f5f0ac40c32a97af5c9
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912693"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949433"
 ---
 # <a name="owned-entity-types"></a>Sahip olunan varlık türleri
 
@@ -155,7 +155,7 @@ modelBuilder.Entity<Order>().OwnsOne(p => p.OrderDetails, od =>
 
 Kullanarak aynı şeyi elde etmek mümkündür `OwnedAttribute` OrderDetails hem StreetAdress.
 
-Ek olarak sahip olunan iç içe geçmiş türler, sahip olunan bir türü normal bir varlık başvurabilirsiniz. Aşağıdaki örnekte, bir normal (yani sahibi olmayan) varlık ülke verilmiştir:
+Ek olarak sahip olunan iç içe geçmiş türler, sahip olunan bir türü normal bir varlık başvurabilirsiniz. Aşağıdaki örnekte, bir normal ait olmayan varlık ülke verilmiştir:
 
 ``` csharp
 public class StreetAddress
@@ -182,7 +182,7 @@ modelBuilder.Entity<Order>().OwnsOne(p => p.OrderDetails, od =>
 
 ## <a name="querying-owned-types"></a>Sahip olunan türler sorgulanıyor
 
-Sahibi sorgulanırken ait türleri varsayılan olarak dahil edilir. Kullanmak için gerekli değil `Include` yöntemi olsa da sahibi türleri, ayrı bir tabloda depolanır. Önce belirtilen modeline bağlı olarak, aşağıdaki sorguyu sırası, OrderDetails ve veritabanından tüm bekleyen siparişleri için iki ait StreeAddresses çeker:
+Sahibi sorgulanırken ait türleri varsayılan olarak dahil edilir. Kullanmak için gerekli değil `Include` yöntemi olsa da sahibi türleri, ayrı bir tabloda depolanır. Önce belirtilen modeline bağlı olarak, aşağıdaki sorguyu sırası, OrderDetails ve veritabanından tüm bekleyen siparişleri için iki ait StreetAddresses çeker:
 
 ``` csharp
 var orders = context.Orders.Where(o => o.Status == OrderStatus.Pending);
@@ -194,11 +194,11 @@ Bu sınırlamaların bazıları nasıl sahip olunan varlık türleri iş temel a
 
 ### <a name="shortcomings-in-previous-versions"></a>Önceki sürümlerde eksiklikleri
 - EF Core 2.0 sürümünde, sahip olunan varlık sahibi hiyerarşiden açıkça ayrı bir tabloya eşlenmiş sürece, türetilen varlık türleri varlık türleri bildirilemez gezintiler için ait. Bu sınırlama EF Core 2.1 kaldırıldı
- 
+
 ### <a name="current-shortcomings"></a>Geçerli eksiklikleri
 - İçeren devralma hiyerarşilerini sahip olunan varlık türleri desteklenmez
 - Sahip olunan varlık türleri, bir koleksiyon gezinme özelliği (yalnızca başvuru gezintiler şu anda desteklenen) tarafından yönlendirilmesi olamaz
-- Gezintiler sahip olduğu için açıkça ayrı bir tabloya sahibinden eşleştirildikleri sürece varlık türleri null olamaz 
+- Gezintiler sahip olduğu için açıkça ayrı bir tabloya sahibinden eşleştirildikleri sürece varlık türleri null olamaz
 - (Bu, sahip olunan varlık türleri kullanılarak uygulanamaz değer nesneleri için iyi bilinen bir senaryo) birden çok sahipleri tarafından sahip olunan varlık türleri örneklerini paylaşılamaz.
 
 ### <a name="by-design-restrictions"></a>Tasarım kısıtlamaları

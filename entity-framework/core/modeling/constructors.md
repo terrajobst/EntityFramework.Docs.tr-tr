@@ -1,31 +1,31 @@
 ---
-title: Varlık türleriyle oluşturucular - EF çekirdek
+title: Oluşturucular - EF Core ile varlık türleri
 author: ajcvickers
 ms.author: divega
 ms.date: 02/23/2018
 ms.assetid: 420AFFE7-B709-4A68-9149-F06F8746FB33
 ms.technology: entity-framework-core
 uid: core/modeling/constructors
-ms.openlocfilehash: 8cea624c295f99ef54cb8b4758642eade03c235e
-ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
+ms.openlocfilehash: 80c7ee04d3bb0dd45b66ec7d6fec5ee7e3343026
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/26/2018
-ms.locfileid: "31812501"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949211"
 ---
-# <a name="entity-types-with-constructors"></a>Varlık türleriyle oluşturucular
+# <a name="entity-types-with-constructors"></a>Varlık oluşturuculara sahip türleri
 
 > [!NOTE]  
-> Bu özelliği EF çekirdek 2.1 içinde yeni bir özelliktir.
+> Bu özellik, EF Core 2.1 içinde yeni bir özelliktir.
 
-EF çekirdek 2.1 ile başlayarak, artık bir oluşturucu parametrelerle tanımlamasına ve EF varlık örneği oluştururken bu oluşturucuyu çağırmak çekirdek mümkündür. Oluşturucu parametreleri eşlenen özelliklerine bağlı olabilir veya çeşitli kolaylaştırmak için Hizmetleri davranışları yükleme yavaş ister.
+EF Core 2.1 ile başlayarak, artık parametrelere sahip bir oluşturucu tanımlayamaz ve EF Core varlık örneğini oluştururken bu oluşturucuyu çağırma mümkündür. Oluşturucu parametresi eşleşen özelliklere bağlanabilir veya çeşitli Hizmetleri kolaylaştırmak için davranışları yavaş yükleniyor ister.
 
 > [!NOTE]  
-> EF çekirdek 2.1 sürümünden itibaren tüm Oluşturucusu bağlama tarafından kuraldır. Kullanmak için belirli oluşturucular yapılandırmasını gelecekteki bir sürümde planlanmaktadır.
+> EF Core 2.1'ten itibaren tüm Oluşturucusu bağlama tarafından kuralıdır. Yapılandırma kullanmak için belirli oluşturucular gelecekteki sürümlerde sunulması planlanmaktadır.
 
-## <a name="binding-to-mapped-properties"></a>Bağlama için eşlenen özellikleri
+## <a name="binding-to-mapped-properties"></a>Eşlenen özellikler bağlama
 
-Tipik bir Blog/Post modeli göz önünde bulundurun:
+Tipik bir blogda/model göz önünde bulundurun:
 
 ```Csharp
 public class Blog
@@ -50,7 +50,7 @@ public class Post
 }
 ```
 
-EF çekirdek bu tür örnekleri oluşturduğunda, gibi bir sorgu sonuçları için bunu ilk varsayılan parametresiz bir kurucusu çağırın ve sonra her bir özellik veritabanından değerine ayarlayın. Ancak, parametreli bir oluşturucu EF çekirdek bulursa, parametre adları ve eşleşen türleri özellikleri eşlenen, ardından değerlerle parametreli Oluşturucusu bu özellikler için bunun yerine çağırır ve her bir özellik açıkça ayarlı değil. Örneğin:
+EF Core bu türlerin örneklerini oluşturduğunda, gibi bir sorgunun sonuçlarını için bunu varsayılan parametresiz bir oluşturucu çağırmanız ve ardından her bir özellik veritabanından değere ayarlayın. Ancak, EF Core ile parametreli bir kurucu bulursa parametre adları ve eşleşen türleri özellikleriyle eşleştirilmiş ve parametreli bir kurucu değerlerle bu özellikler için bunun yerine çağırır ve her bir özellik açıkça ayarlı değil. Örneğin:
 
 ```Csharp
 public class Blog
@@ -89,18 +89,18 @@ public class Post
 }
 ```
 Dikkat edilecek bazı noktalar:
-* Tüm özellikler Oluşturucu parametreleri olması gerekir. Örneğin, EF çekirdek Oluşturucusu normal şekilde çağrıldıktan sonra ayarlayın şekilde Post.Content özelliği herhangi bir oluşturucu parametre tarafından ayarlanmadı.
-* Parametreleri başlamalıdır durumdayken özellikler Pascal ortası olabilir ancak bu parametre türleri ve adları özellik türleri ve adları eşleşmelidir.
-* EF çekirdek ayarlayamıyor, gezinti özellikleri (veya Blog gönderileri yukarıdaki gibi) bir Oluşturucu kullanarak.
-* Oluşturucusu genel, özel veya diğer erişilebilirlik sahip.
+* Tüm özellikler Oluşturucu parametresi olmalıdır. Örneğin, EF Core, normal bir şekilde Oluşturucu çağrıldıktan sonra ayarlayacak şekilde Post.Content özelliği için herhangi bir oluşturucu parametresi ayarlanmadı.
+* Başlamalıdır olsa özellikler Pascal büyük küçük harfleri olabilir dışında parametre türleri ve adları özellik türleri ve adları eşleşmelidir.
+* EF Core Gezinti özelliklerini (örneğin, Blog veya yukarıdaki gönderileri) ayarlayamazsınız oluşturucu kullanılarak.
+* Kurucu ortak, özel veya diğer bir erişilebilirliğine sahip olmalıdır.
 
 ### <a name="read-only-properties"></a>Salt okunur özellikler
 
-Oluşturucu aracılığıyla özellikleri ayarladıktan sonra bazıları salt okunur anlamlı. EF çekirdek bu destekler, ancak için dikkat edilecek bazı noktalar vardır:
-* Kurala göre özellikleri ayarlayıcılar olmadan eşlenmedi. (Bunun yapılması, hesaplanan özellikleri gibi eşlenmelidir değil özellikleri eşlemek eğilimindedir.)
-* Otomatik olarak oluşturulan anahtar değerlerini kullanarak yeni varlıklar eklerken anahtar Oluşturucu tarafından ayarlanacak anahtar değeri gerektiğinden okuma-yazma, bir anahtar özelliği gerektirir.
+Oluşturucusu özellikler ayarlandıktan sonra bunlardan bazıları salt okunur hale getirmek için anlamlı olabilir. EF Core bu destekler, ancak bazı işlemler için dikkat edin:
+* Kural gereği özelliklerini ayarlayıcılar olmadan eşlenmedi. (Bunun yapılması harita, hesaplanan özellikler gibi eşlenmelidir değil özellikleri eğilimindedir.)
+* Otomatik olarak oluşturulan anahtar değerleri kullanılarak anahtar değerini temel oluşturucu tarafından yeni varlıklar eklerken ayarlanması gerekir bu yana, okunur-yazılır, bir anahtar özellik gerektirir.
 
-Bunlardan önlemek için kolay bir yol özel ayarlayıcılar kullanmaktır. Örneğin:
+Bu işlemleri önlemek için kolay bir yol özel ayarlayıcılar kullanmaktır. Örneğin:
 ```Csharp
 public class Blog
 {
@@ -137,9 +137,9 @@ public class Post
     public Blog Blog { get; set; }
 }
 ```
-EF çekirdek özel ayarlayıcı sahip bir özellik depoda oluşturulan tüm özellikleri eskisi eşleştirilir ve anahtar hala anlamına salt okunur, görür.
+EF Core ile özel bir ayarlayıcı bir özellik depoda üretilmiş anlamına gelir, tüm özellikler önceki gibi eşlenir ve anahtar yine de salt okunur, görür.
 
-Özel ayarlayıcılar kullanmaya alternatif özellikleri salt okunur gerçekten yapma ve daha açık eşleme içinde OnModelCreating eklemektir. Benzer şekilde, bazı özellikler tamamen kaldırılabilir veya yalnızca alanları ile değiştirilir. Örneğin, bu varlık türleri göz önünde bulundurun:
+Özel ayarlayıcılar kullanarak özellikleri salt okunur gerçekten yapıp daha açık OnModelCreating eklemesi alternatiftir. Benzer şekilde, bazı özellikler tamamen kaldırılır ve yalnızca alanları ile değiştirilmiştir. Örneğin, bu varlık türleri göz önünde bulundurun:
 
 ```Csharp
 public class Blog
@@ -197,25 +197,25 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 Dikkat edilecek noktalar:
-* "Özellik" anahtar şimdi bir alandır. Olmayan bir `readonly` böylece depoda üretilmiş anahtarlar kullanılabilir alan. 
-* Diğer özellikler yalnızca oluşturucuda ayarlamak salt okunur özelliklerdir.
-* Birincil anahtar değeri her zaman sadece EF tarafından ayarlayın veya veritabanından okunur oluşturucuda içerecek şekilde gerek yoktur. Bu basit bir alan olarak "özellik" anahtar bırakır ve onu açıkça oluştururken yeni Web günlükleri veya gönderileri ayarlanmamalıdır temizleyip kolaylaştırır.
+* ' % S'anahtarı "özelliği" şimdi bir alandır. Bu bir `readonly` depoda üretilmiş anahtarlar kullanılabilir alanın.
+* Diğer özellikler yalnızca oluşturucuda ayarlayın salt okunur özelliklerdir.
+* Birincil anahtar değeri her zaman sadece tarafından EF ayarlayın veya veritabanından okumak, oluşturucuda içerecek şekilde gerek yoktur. Bu anahtar "özelliği" basit bir alan olarak bırakır ve onu açıkça yeni Web günlükleri veya gönderiler oluştururken ayarlanmamalıdır temizleyip kolaylaştırır.
 
 > [!NOTE]  
-> Bu kod '169' gösteren alan hiçbir zaman kullanılır uyarı derleyicide neden olur. Gerçekte EF temel alan bir extralinguistic şekilde kullandığından bu yoksayılabilir.
+> Bu kod, alanın hiçbir zaman kullanılmaz '169' gösteren uyarı derleyicide neden olur. Gerçekte extralinguistic bir şekilde alan EF Core kullanmakta olduğundan bu yoksayılabilir.
 
-## <a name="injecting-services"></a>İnjecting Hizmetleri
+## <a name="injecting-services"></a>Hizmetleri ekleme
 
-EF çekirdek, ayrıca bir varlık türünün oluşturucuya "Hizmetler" ekleyemezsiniz. Örneğin, aşağıdaki yerleştirilebilir:
-* `DbContext` -türetilen DbContext tür olarak girilebilen geçerli bağlam örneği
-* `ILazyLoader` -yükleme yavaş hizmeti--bkz [yükleme yavaş belgelerine](../querying/related-data.md) daha fazla ayrıntı için
-* `Action<object, string>` -yükleme yavaş temsilci--bkz [yükleme yavaş belgelerine](../querying/related-data.md) daha fazla ayrıntı için
-* `IEntityType` -Bu varlık türüyle ilişkili EF çekirdek meta verileri
+EF Core, ayrıca bir varlık türü oluşturucusuna "Hizmetler" ekleyebilir. Örneğin, aşağıdaki yerleştirilebilir:
+* `DbContext` -türetilmiş DbContext tür olarak girilebilen geçerli bağlam örneği
+* `ILazyLoader` -yükleme yavaş hizmeti--bkz [yavaş yükleniyor belgeleri](../querying/related-data.md) daha fazla ayrıntı için
+* `Action<object, string>` -yükleme yavaş temsilci--bkz [yavaş yükleniyor belgeleri](../querying/related-data.md) daha fazla ayrıntı için
+* `IEntityType` -Bu varlık türüyle ilişkili EF Core meta verileri
 
 > [!NOTE]  
-> EF çekirdek 2.1 itibariyle yalnızca EF çekirdek tarafından bilinen hizmetleri yerleştirilebilir. Uygulama Hizmetleri injecting desteği için gelecekteki bir sürüm kabul edilir.
+> EF Core 2.1 itibarıyla EF Core tarafından bilinen hizmetleri yerleştirilebilir. Uygulama Hizmetleri ekleme desteği gelecekteki sürümlerde sunulması kabul edilir.
 
-Örneğin, eklenen bir DbContext seçmeli olarak tümünü yüklemeden ilgili varlıklar hakkında bilgi edinmek için veritabanına erişmek için kullanılabilir. Aşağıdaki örnekte bu gönderileri yüklemeden bir blog gönderilerinde sayısı elde etmek için kullanılır:
+Örneğin, eklenen bir DbContext seçerek tüm bunları yüklemeden ilgili varlıkları hakkında bilgi edinmek için veritabanına erişmek için kullanılabilir. Aşağıdaki örnekte bu gönderiler yüklemeden blog gönderilerinde sayısını almak için kullanılır:
 
 ```Csharp
 public class Blog
@@ -253,10 +253,10 @@ public class Post
     public Blog Blog { get; set; }
 }
 ```
-Bu konuda fark edilecek bazı noktalar:
-* Her zaman sadece EF çekirdek tarafından çağrılır ve genel kullanım için başka bir ortak oluşturucu olduğundan Oluşturucusu özeldir.
-* Eklenen hizmetini kullanarak (yani içerik) karşı savunma kodudur olan `null` nerede EF çekirdek değildir oluştururken örneği durumlarında.
-* Hizmet bir okuma/yazma özelliği depolandığı için varlığı yeni bir bağlam örneğine iliştirildiğinde sıfırlanır.
+Bu konuda fark gereken bazı noktalar:
+* Yalnızca şimdiye kadar EF Core tarafından çağrılır ve genel kullanım için başka bir Genel oluşturucu olduğundan Oluşturucu özeldir.
+* Eklenen hizmet (bağlam) kullanarak kodu karşı savunma olan `null` durumlarında olduğu EF Core değil oluşturduğundan örneği.
+* Hizmet bir okuma/yazma özelliği olarak depolandığından varlığı yeni bir bağlam örneğine bağlandığında sıfırlanacak.
 
 > [!WARNING]  
-> Doğrudan EF çekirdek varlık türlerinizi couples beri şöyle DbContext injecting genellikle bir koruma desen olarak kabul edilir. Bu gibi hizmeti ekleme kullanmadan önce tüm seçenekleri dikkatlice düşünün.
+> Doğrudan EF Core için varlık türlerinizi couples beri şöyle DbContext ekleme önleyici bir deseni genellikle kabul edilir. Bu gibi hizmet ekleme kullanmadan önce tüm seçenekleri dikkatlice düşünün.

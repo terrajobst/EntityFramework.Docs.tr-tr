@@ -1,73 +1,73 @@
 ---
-title: Paket Yöneticisi Konsolu (Visual Studio) - EF çekirdek
+title: Paket Yöneticisi Konsolu (Visual Studio) - EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
 ms.technology: entity-framework-core
-ms.openlocfilehash: a53455a78db4bc504c45abafdacf9a15381f608e
-ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
+ms.openlocfilehash: 0799b0cb7c5d837fdbb7a4af510a9a4d9d34ec1a
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/26/2018
-ms.locfileid: "31812566"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949044"
 ---
-<a name="ef-core-package-manager-console-tools"></a>EF çekirdek Paket Yöneticisi konsolu araçları
+<a name="ef-core-package-manager-console-tools"></a>EF Core Paket Yöneticisi konsolu araçları
 =====================================
-NuGet kullanarak Visual Studio içinde EF çekirdek Paket Yöneticisi Konsolu (PMC) araçları çalıştırmak [Paket Yöneticisi Konsolu][2].
-Bu araçlar, .NET Framework ve .NET Core projeleri ile çalışır.
+NuGet kullanarak EF Core Paket Yöneticisi Konsolu (PMC) araçları Visual Studio içinde çalıştırma [Paket Yöneticisi Konsolu][2].
+Bu araçlar, .NET Framework hem de .NET Core projeleriyle çalışır.
 
 > [!TIP]
-> Visual Studio kullanmıyor musunuz? [EF çekirdek komut satırı araçları] [ 1] platformlar arası ve bir komut istemi içinde çalıştırma.
+> Visual Studio kullanmıyor musunuz? [EF Core komut satırı araçları] [ 1] platformlar arası ve bir komut istemi içinde çalıştırın.
 
 <a name="installing-the-tools"></a>Araçları yükleme
 --------------------
-EF çekirdek Paket Yöneticisi konsolu araçları Microsoft.EntityFrameworkCore.Tools NuGet paketini yükleyerek yükleyin.
+EF Core Paket Yöneticisi konsolu araçları Microsoft.EntityFrameworkCore.Tools NuGet paketini yükleyerek yükleyin.
 İçinde aşağıdaki komutu çalıştırarak yükleyebilirsiniz [Paket Yöneticisi Konsolu][2].
 
 ``` powershell
 Install-Package Microsoft.EntityFrameworkCore.Tools
 ```
 
-Her şeyin doğru şekilde çalışan, bu komutu çalıştırmak yapabiliyor olmanız gerekir:
+Her şeyin düzgün çalıştığı, bu komutu çalıştırmak kullanabilirsiniz:
 
 ``` powershell
 Get-Help about_EntityFrameworkCore
 ```
 > [!TIP]
-> Başlangıç projeniz .NET standart hedefliyorsa [arası hedef desteklenen çerçevelerden] [ 3] araçları kullanmadan önce.
+> Başlangıç projeniz .NET Standard hedefliyorsa [desteklenen framework çapraz hedefleme] [ 3] Araçları'nı kullanmadan önce.
 
 > [!IMPORTANT]
-> Kullanıyorsanız, **Evrensel Windows** veya **Xamarin**, .NET standart bir sınıf kitaplığı'na EF kodunuzu taşıyın ve [arası hedef desteklenen çerçevelerden] [ 3] araçları kullanmadan önce. Sınıf kitaplığı başlangıç projesi olarak belirtin.
+> Kullanıyorsanız **Evrensel Windows** veya **Xamarin**, EF kodunuzu .NET Standard Sınıf Kitaplığı'na taşıyın ve [desteklenen framework çapraz hedefleme] [ 3] Araçları'nı kullanmadan önce. Sınıf kitaplığı, başlangıç projesi olarak belirtin.
 
 <a name="using-the-tools"></a>Araçlarını kullanma
 ---------------
-Bir komut çağırma her iki proje ilgili vardır:
+Bir komut çağırma her iki proje kullanılan vardır:
 
-Hedef dosyalar eklendiği (veya kaldırılan bazı durumlarda) projesidir. Hedef Proje Varsayılanları için **varsayılan proje** Paket Yöneticisi Konsolu'nda seçili ancak kullanılarak da belirtilebilir proje parametresi.
+Hedef dosyalar eklenir (veya bazı durumlarda kaldırıldı) projesidir. Hedef Proje Varsayılanları **varsayılan proje** Paket Yöneticisi Konsolu'nda seçildi, ancak kullanılarak da belirtilebilir proje parametresi.
 
-Başlangıç projesi projenizin kodu çalıştırırken araçları tarafından Öykünülen adrestir. Bir varsayılan olarak **başlangıç projesi olarak ayarla** Çözüm Gezgini'nde. Bu, - StartupProject parametresi kullanılarak da belirtilebilir.
+Başlangıç projesi, proje kodunuzun yürütülürken araçları tarafından Öykünülen bir bileşendir. İçin varsayılan olarak **başlangıç projesi olarak ayarla** Çözüm Gezgini'nde. Bu, - StartupProject parametresi kullanılarak da belirtilebilir.
 
-Ortak Parametreler:
+Ortak parametreleri:
 
 |                           |                             |
 |:--------------------------|:----------------------------|
-| -Context \<dize >        | Kullanılacak DbContext.       |
-| -Proje \<dize >        | Kullanmak için proje.         |
-| -StartupProject \<dize > | Kullanılacak başlangıç projesi. |
-| -Verbose                  | Ayrıntılı çıktıyı göster.        |
+| -Bağlam \<dizesi >        | Kullanılacak DbContext.       |
+| -Project \<dizesi >        | Kullanmak için proje.         |
+| -StartupProject \<dizesi > | Kullanılacak başlangıç projesi. |
+| -Verbose                  | Ayrıntılı çıktıyı gösterir.        |
 
-Bir komutla ilgili Yardım bilgilerini göstermek için PowerShell'ın kullanın `Get-Help` komutu.
-
-> [!TIP]
-> Bağlam, proje ve StartupProject parametreleri sekmesi genişletme destekler.
+Bir komut hakkında Yardım bilgilerini görüntülemek için PowerShell'in kullanın `Get-Help` komutu.
 
 > [!TIP]
-> Ayarlama **env:ASPNETCORE_ENVIRONMENT** ASP.NET Core ortam belirtmek için çalıştırmadan önce.
+> Bağlam, proje ve StartupProject parametreleri sekme genişletmeyi destekler.
+
+> [!TIP]
+> Ayarlama **env:ASPNETCORE_ENVIRONMENT** ASP.NET Core ortamını belirtmek için çalıştırmadan önce.
 
 <a name="commands"></a>Komutlar
 --------
 
-### <a name="add-migration"></a>Add-Migration
+### <a name="add-migration"></a>Geçiş Ekle
 
 Yeni bir geçiş ekler.
 
@@ -75,11 +75,11 @@ Parametreler:
 
 |                                   |                                                                                                                  |
 |:----------------------------------|:-----------------------------------------------------------------------------------------------------------------|
-| ***-Ad*** \<dize >             | Geçiş adı.                                                                                       |
-| <nobr>-OutputDir \<dize ></nobr> | Kullanılacak dizin (ve alt ad alanı). Proje dizininin göreli yollardır. Varsayılan olarak "Geçiş". |
+| ***-Ad*** \<dizesi >             | Geçiş adı.                                                                                       |
+| <nobr>-OutputDir \<dizesi ></nobr> | Kullanılacak dizin (ve alt ad alanı). Proje dizinine göreli yollardır. Varsayılan olarak "Geçişler". |
 
 > [!NOTE]
-> Parametrelerde **kalın** gereklidir ve olanları içinde *italik* konumsal şunlardır.
+> Parametrelerinde **kalın** gereklidir ve olanları içinde *italik* konumsal olan.
 
 ### <a name="drop-database"></a>Veritabanını silme
 
@@ -89,11 +89,11 @@ Parametreler:
 
 |         |                                                          |
 |:--------|:---------------------------------------------------------|
-| -WhatIf | Hangi veritabanı olduğundan bırakılamaz, ancak bırakma yok gösterir. |
+| -WhatIf | Hangi veritabanı bırakılan ancak açılan yoksa gösterir. |
 
 ### <a name="get-dbcontext"></a>Get-DbContext
 
-DbContext türü hakkındaki bilgileri alır.
+DbContext tür bilgilerini alır.
 
 ### <a name="remove-migration"></a>Remove-geçiş
 
@@ -103,7 +103,7 @@ Parametreler:
 
 |        |                                                              |
 |:-------|:-------------------------------------------------------------|
-| -Force | Veritabanına uyguladıysanız geçişi geri alın. |
+| -Force | Veritabanına uygulanmışsa, geçişi geri alın. |
 
 ### <a name="scaffold-dbcontext"></a>Scaffold-DbContext
 
@@ -113,18 +113,18 @@ Parametreler:
 
 |                                          |                                                                                                  |
 |:-----------------------------------------|:-------------------------------------------------------------------------------------------------|
-| <nobr>***-Bağlantı*** \<dize ></nobr> | Veritabanı bağlantı dizesi.                                                           |
-| ***-Sağlayıcısı*** \<dize >                | Kullanılacak sağlayıcısı. (Örn. Microsoft.EntityFrameworkCore.SqlServer)                              |
-| -OutputDir \<dize >                     | Dosyaları yerleştirmek için dizin. Proje dizininin göreli yollardır.                      |
-| -ContextDir \<dize >                    | DbContext dosyasını yerleştirmek için dizin. Proje dizininin göreli yollardır.             |
-| -Context \<dize >                       | Oluşturulacak DbContext adı.                                                           |
-| -Şemaları \<String [] >                     | Varlık türleri oluşturmak için tabloları şemalar.                                              |
-| -Tabloları \<String [] >                      | Varlık türleri için oluşturmak üzere tablolara.                                                         |
-| -DataAnnotations                         | Öznitelikler, model (mümkün olduğunda) yapılandırmak için kullanın. Atlanırsa, yalnızca fluent API kullanılır. |
+| <nobr>***-Bağlantı*** \<dizesi ></nobr> | Veritabanı bağlantı dizesi.                                                           |
+| ***-Provider*** \<dizesi >                | Kullanılacak sağlayıcı. (örneğin, Microsoft.EntityFrameworkCore.SqlServer)                      |
+| -OutputDir \<dizesi >                     | Dosyaları yerleştirmek için dizin. Proje dizinine göreli yollardır.                      |
+| -ContextDir \<dizesi >                    | DbContext dosya yerleştirmek için dizin. Proje dizinine göreli yollardır.             |
+| -Bağlam \<dizesi >                       | Oluşturulacak DbContext adı.                                                           |
+| -Şemaları \<String [] >                     | Şemaları için varlık türleri oluşturmak için tablo.                                              |
+| -Tablolar \<String [] >                      | Varlık türleri için oluşturmak üzere tablolara.                                                         |
+| -DataAnnotations                         | Öznitelikler, model (mümkünse) yapılandırmak için kullanın. Atlanırsa, yalnızca fluent API'si kullanılır. |
 | -UseDatabaseNames                        | Doğrudan veritabanından tablo ve sütun adları kullanın.                                           |
-| -Force                                   | Var olan dosyaların üzerine yazar.                                                                        |
+| -Force                                   | Varolan dosyaların üzerine yaz.                                                                        |
 
-### <a name="script-migration"></a>Komut dosyası geçişi
+### <a name="script-migration"></a>Geçiş betiği
 
 Bir SQL betiği geçişleri oluşturur.
 
@@ -132,22 +132,22 @@ Parametreler:
 
 |                   |                                                                    |
 |:------------------|:-------------------------------------------------------------------|
-| *-From* \<dize > | Başlangıç geçiş. Varsayılan ayar: 0 (ilk veritabanı).      |
-| *-Çok* \<dize >   | Bitiş geçiş. Son geçiş varsayılan olarak ayarlanır.              |
-| -Idempotent       | Bir veritabanında hiçbir geçiş sırasında kullanılan bir komut dosyası oluşturur. |
-| -Çıktı \<dize > | Sonucu yazmak için dosya.                                   |
+| *-From* \<dizesi > | Başlangıç geçiş. Varsayılan olarak 0 (ilk veritabanı).      |
+| *-Çok* \<dizesi >   | Bitiş geçiş. Son varsayılan olarak geçiş.              |
+| -Bir kez etkili       | Bir veritabanı herhangi bir geçiş sırasında kullanılan bir komut dosyası oluşturur. |
+| -Çıkış \<dizesi > | Yazma sonucu dosyası.                                   |
 
 > [!TIP]
-> Kime, ve çıkış parametreleri sekmesi genişletme desteği.
+> Kime, ve çıkış parametreleri sekme genişletmeyi destekler.
 
-### <a name="update-database"></a>Update-Database
+### <a name="update-database"></a>Veritabanını Güncelleştir
 
 |                                     |                                                                                                |
 |:------------------------------------|:-----------------------------------------------------------------------------------------------|
-| <nobr>*-Geçiş* \<dize ></nobr> | Hedef geçiş. '0 'ise, tüm geçişler geri alınacak. Son geçiş varsayılan olarak ayarlanır. |
+| <nobr>*-Geçiş* \<dizesi ></nobr> | Hedef geçiş. '0 'ise, tüm geçişler döndürülecek. Son varsayılan olarak geçiş. |
 
 > [!TIP]
-> Geçiş parametre sekmesini genişletme destekler.
+> Geçiş parametresi sekme genişletmeyi destekler.
 
 
   [1]: dotnet.md

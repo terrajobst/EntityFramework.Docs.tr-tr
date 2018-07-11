@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 56e00fa2-f9f0-48b3-8006-f8266ca7e74b
 caps.latest.revision: 3
-ms.openlocfilehash: e06dc1c35f8d74772e5c7d69b29553288fd652d0
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 8a656ca73a7e1a628f4053ff7ad47f5c1b17d878
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912711"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949185"
 ---
 # <a name="designer-code-generation-templates"></a>Tasarımcı kod oluşturma şablonları
 Entity Framework Designer kullanarak model oluşturduğunuzda sınıfları ve türetilmiş bağlamı otomatik olarak sizin için oluşturulur. Varsayılan kod oluşturma yanı sıra ayrıca çeşitli oluşturulan kod özelleştirmek için kullanılan şablonları sunuyoruz. Bu şablonlar, gerekirse şablonları özelleştirmenize olanak tanıyacak T4 metin şablonları sağlanır.
@@ -151,7 +151,7 @@ Seçmeniz gerekecek **çevrimiçi** sekmesinde Visual Studio Galerisi'nden yükl
 
 ### <a name="what-are-the-web-sites-templates"></a>"Web siteleri" şablonları nelerdir
 
-"Web siteleri" şablonları (yani **EF 5.x DbContext Oluşturucu c\# Web siteleri**) aracılığıyla oluşturulan Web sitesi projeleri kullanmak içindir **dosya -&gt; New -&gt; Web sitesi...** . Aracılığıyla oluşturulan Web uygulamaları, farklı bunlar **dosya -&gt; New -&gt; proje...** , standart şablonları kullanın. Visual Studio öğesi şablonu sistemde gerektirdiğinden ayrı şablonlar sunuyoruz.
+"Web siteleri" şablonları (örneğin, **EF 5.x DbContext Oluşturucu c\# Web siteleri**) aracılığıyla oluşturulan Web sitesi projeleri kullanmak içindir **dosya -&gt; New -&gt; Web sitesi...** . Aracılığıyla oluşturulan Web uygulamaları, farklı bunlar **dosya -&gt; New -&gt; proje...** , standart şablonları kullanın. Visual Studio öğesi şablonu sistemde gerektirdiğinden ayrı şablonlar sunuyoruz.
 
 ## <a name="using-a-template"></a>Şablon kullanma
 

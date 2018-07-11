@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: f0cc4f93-67dd-4664-9753-0a9f913814db
 caps.latest.revision: 3
-ms.openlocfilehash: 56a7179a522bc4d8eadf631b0db7be7b3fc9874e
-ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
+ms.openlocfilehash: 77e139a29bb4708b00fc6198a57780ce75197252
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914259"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949107"
 ---
 # <a name="code-first-migrations-with-an-existing-database"></a>Code First Migrations ile mevcut bir veritabanı
 > [!NOTE]
@@ -90,7 +90,7 @@ Bu durumun farkında olması gerektiğinde bazı örnekleri şunlardır:
 
 **Kullandıysanız ' seçeneği iki: bir başlangıç noktası olarak boş veritabanını kullan ' adım 3:**
 
--   Geçişleri dizinleri ve yanlış adları kullanarak yabancı anahtar kısıtlamalarını dener (yani geri alma için boş bir veritabanı) ilk geçiş aşağı yöntemi yerel veritabanınızda çalıştırılmaya çalışılırken başarısız olabilir. Diğer veritabanlarının ilk geçiş yukarı yöntemi kullanarak sıfırdan oluşturulacağından bu yalnızca yerel veritabanınızı etkiler.
+-   Geçişleri dizinleri ve yanlış adları kullanarak yabancı anahtar kısıtlamalarını dener (yani, boş bir veritabanı için geri alma olduğu gibi) ilk geçiş aşağı yöntemi yerel veritabanınızda çalıştırılmaya çalışılırken başarısız olabilir. Diğer veritabanlarının ilk geçiş yukarı yöntemi kullanarak sıfırdan oluşturulacağından bu yalnızca yerel veritabanınızı etkiler.
     Var olan yerel veritabanınızı boş bir duruma düşürmek istiyorsanız bunu el ile veritabanını silmek veya tüm tabloları bırakarak yapmak oldukça kolaydır. Varsayılan adlarla tüm veritabanı nesnelerinin oluşturulması bu ilk Sürüm Düşürme sonra bu nedenle bu sorunu kendisi yeniden sunacaktır değil.
 -   Modelinize ileride yapılacak değişikliklerin değiştirmek veya farklı şekilde adlandırılmış veritabanı nesnelerinden birine bırakarak gerektiriyorsa, varsayılan adları eşleşmeyecektir olduğundan bu var olan yerel veritabanınızda – çalışmaz. Ancak, geçişleri tarafından seçmiş varsayılan adları kullanmış olduğundan, 'sıfırdan' oluşturulan veritabanlarına karşı çalışır.
     Ya da bu değişiklikleri el ile yerel mevcut veritabanınızı yapmak veya diğer makinelere olacak şekilde veritabanınızı – sıfırdan yeniden geçişleri depolamayı düşünün.

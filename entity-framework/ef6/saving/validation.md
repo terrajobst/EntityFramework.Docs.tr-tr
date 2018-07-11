@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 77d6a095-c0d0-471e-80b9-8f9aea6108b2
 caps.latest.revision: 3
-ms.openlocfilehash: 7f0b778d45d0618c9ebfb5a34110c5094d133cc7
-ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
+ms.openlocfilehash: 758865255d7868337dc1d7801bd9ff77f0bb57a9
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914318"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949266"
 ---
 # <a name="data-validation"></a>Veri doğrulama
 > [!NOTE]
@@ -202,7 +202,7 @@ Bir DbEntityEntry ve tek bir varlık için ICollection, DbValidationErrors DbEnt
 
 Bu makalede ele alınan doğrulamaları tüm SaveChanges çağrısı tetikler. Ancak, üzerinde SaveChanges yararlanmayı gerekmez. Başka bir yerde uygulamanızda doğrulamak isteyebilirsiniz.
 
-DbContext.GetValidationErrors tüm doğrulamaları, ek açıklamalar ya da Fluent API'si tarafından tanımlanan, doğrulama IValidatableObject (örneğin, Blog.Validate) içinde oluşturulan ve DbContext.ValidateEntity yönteminde yapılan doğrulamaları tetikler.
+Tüm doğrulamaları, ek açıklamalar ya da Fluent API'si tarafından tanımlanan, doğrulama IValidatableObject (örneğin, Blog.Validate) içinde oluşturulan ve DbContext.ValidateEntity içinde gerçekleştirilen doğrulamaları DbContext.GetValidationErrors tetikler yöntem.
 
 Aşağıdaki kod geçerli bir DbContext örneğinde GetValidationErrors çağırır. ValidationErrors DbValidationRestuls varlık türüne göre gruplandırılır. Kod ilk yöntem tarafından döndürülen DbValidationResults ve ardından her ValidationError içinde aracılığıyla yinelenir.
 

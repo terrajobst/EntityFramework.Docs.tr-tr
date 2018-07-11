@@ -1,69 +1,69 @@
 ---
-title: EF çekirdek - EF6 bağlantı noktası oluşturma gereksinimlerini doğrulayın
+title: EF6'dan EF Core'a - taşıma gereksinimleri doğrulama
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: d3b66f3c-9d10-4974-a090-8ad093c9a53d
 uid: efcore-and-ef6/porting/ensure-requirements
-ms.openlocfilehash: 2f45039e63546d266ec6ce0bfa66ef7e9fb3d7e7
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 65bdc8bb9574d37db697aa47c8e8c480cefcb4f7
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054255"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949120"
 ---
-# <a name="before-porting-from-ef6-to-ef-core-validate-your-applications-requirements"></a>EF çekirdek EF6 bağlantı noktası oluşturma önce: uygulamanızın gereksinimlerini doğrulayın
+# <a name="before-porting-from-ef6-to-ef-core-validate-your-applications-requirements"></a>EF6'dan EF Core'a taşıma önce: uygulamanızın gereksinimlerini doğrulayın
 
-Taşıma işlemine başlamadan önce EF çekirdek uygulamanız için veri erişim gereksinimlerini karşıladığını doğrulamak önemlidir.
+Taşıma işlemine başlamadan önce EF Core uygulamanız için veri erişim gereksinimleri karşıladığını doğrulamak önemlidir.
 
-## <a name="missing-features"></a>Eksik Özellikler
+## <a name="missing-features"></a>Eksik özellikleri
 
-EF çekirdek, uygulamanızda kullanmak için gereken tüm özellikler sahip olduğundan emin olun. Bkz: [özellik karşılaştırması](../features.md) nasıl EF6 için özellik EF çekirdek kümesini karşılaştırır, ayrıntılı bir karşılaştırma için. Tüm gerekli özellikleri eksikse, bu özellikler olmaması için EF çekirdek taşıma önce dengeleyebilirsiniz emin olun.
+EF Core uygulamanızda kullanmak için ihtiyacınız olan tüm özellikleri sahip olduğundan emin olun. Bkz: [özellik karşılaştırması](../features.md) nasıl EF6 için özellik EF Core kümesini karşılaştırır, ayrıntılı bir karşılaştırması için. Tüm gerekli özellikleri yoksa, bu özelliklerin olmaması için önce EF Core'a taşıma dengeleyebilir emin olun.
 
 ## <a name="behavior-changes"></a>Davranış değişiklikleri
 
-Bu davranış EF6 EF çekirdek arasındaki bazı değişiklikler kapsamlı olmayan bir listesidir. Bunlar uygulamanızı davranır, ancak derleme hataları takas sonra EF çekirdek gösterilmez şekilde değişiklik gösterebileceği için bağlantı noktası olarak uygulamanız bu aklınızda tutmak önemlidir.
+Kapsamlı olmayan bazı değişiklikler EF6 ve EF Core arasındaki davranış listesini budur. Bunlar uygulamanızı davranır, ancak derleme değiştirdikten sonra EF Core gösterilmez şekilde değişiklik gösterebileceği için bağlantı noktası olarak uygulamanız bu aklınızda tutmanız önemlidir.
 
 ### <a name="dbsetaddattach-and-graph-behavior"></a>DbSet.Add/Attach ve grafik davranışı
 
-EF6 içinde arama `DbSet.Add()` Gezinti özelliklerini başvurulan tüm varlıklar için yinelemeli bir aramasını varlık sonuçlarında üzerinde. Bulunan ve bağlam tarafından izlenmez herhangi bir varlık da olduğu eklenmiş olarak işaretlenmelidir. `DbSet.Attach()`Tüm varlıklar işaretlenmiş dışında aynı şekilde davranır olarak değişmez.
+EF6 içinde arama `DbSet.Add()` yinelemeli arama Gezinti özelliklerini başvurulan tüm varlıklar için bir varlık sonuçları üzerinde. Aynı zamanda bulunur ve bağlam tarafından izlenmez herhangi bir varlık olan eklenen olarak işaretlenmelidir. `DbSet.Attach()` Tüm varlıklar işaretlenmiş dışında aynı şekilde davranır ancak olarak değişmez.
 
-**EF çekirdek benzer bir özyinelemeli arama gerçekleştirir, ancak bazı biraz farklı kuralları ile.**
+**EF Core benzer bir yinelemeli arama gerçekleştirir ancak bazı biraz farklı kuralları.**
 
-*  Kök varlık her zaman istenen durumda (için eklenen `DbSet.Add` ve için değişmemiştir `DbSet.Attach`).
+*  Kök varlığın her zaman istenen durumda (eklenen `DbSet.Add` ve için değişmemiştir `DbSet.Attach`).
 
-*  **Gezinti özellikleri özyinelemeli arama sırasında bulunan varlıklar için:**
+*  **Gezinti özellikleri yinelemeli arama sırasında bulunan varlıkları için:**
 
     *  **Varlığın birincil anahtarı oluşturulan depo ise**
 
-        * Birincil anahtar değerine ayarlı değilse durumu için eklenen ayarlanır. Özellik türü için CLR varsayılan değer atanmışsa birincil anahtar değerine "ayarlı değil" olarak kabul edilir (yani `0` için `int`, `null` için `string`, vb..).
+        * Birincil anahtar değerine ayarlanmazsa durum için eklenen ayarlanır. Özellik türü için CLR varsayılan değer atanmışsa birincil anahtar değeri "ayarlı değil" olarak kabul edilir (örneğin, `0` için `int`, `null` için `string`vb..).
 
-        * Birincil anahtar değerine ayarlı ise, durumu değişmeden ayarlanır.
+        * Birincil anahtarı bir değere ayarlarsanız, durumu değişmeden ayarlanır.
 
-    *  Birincil anahtar oluşturulan veritabanı değilse, varlık kök ile aynı duruma getirilir.
+    *  Birincil anahtarı oluşturulan veritabanı değil, varlığın kök ile aynı duruma konur.
 
-### <a name="code-first-database-initialization"></a>İlk veritabanı başlatma kod
+### <a name="code-first-database-initialization"></a>İlk veritabanı başlatma kodu
 
-**EF6 veritabanı bağlantısını seçerek ve veritabanı başlatılırken geçici gerçekleştirir Sihirli önemli miktarda sahiptir. Bu kurallar şunlardır:**
+**EF6 veritabanı bağlantısını seçerek ve veritabanı başlatma etrafında gerçekleştirir Sihirli önemli miktarda sahiptir. Bu kuralların bazıları şunlardır:**
 
-* Hiçbir yapılandırma gerçekleştirilirse, EF6 SQL Express veya yerel veritabanı bir veritabanı seçin.
+* Yapılandırma gerçekleştirilirse, bir veritabanında SQL Express ya da LocalDb EF6 seçer.
 
-* Bağlam aynı ada sahip bir bağlantı dizesi uygulamalarda ise `App/Web.config` dosyası, bu bağlantısı kullanılır.
+* İçerik olarak aynı ada sahip bir bağlantı dizesi uygulamalar ise `App/Web.config` dosya, bu bağlantı kullanılacak.
 
-* Veritabanı mevcut değilse oluşturulur.
+* Veritabanı yoksa, oluşturulur.
 
-* Model tablolardan hiçbiri veritabanında yoksa, geçerli model için şema veritabanına eklenir. Geçişler etkinleştirilirse, ardından bunlar veritabanı oluşturmak için kullanılır.
+* Modelden tablolardan veritabanında varsa, geçerli model için şema veritabanına eklenir. Geçişleri etkinse, sonra bunlar veritabanını oluşturmak için kullanılır.
 
-* Veritabanı varsa ve EF6 daha önce şema oluşturduysanız, geçerli model ile uyumluluk için şema denetlenir. Model şeması oluşturulmasından bu yana değiştiyse özel durum oluşur.
+* Veritabanı varsa ve EF6 şemayı daha önce oluşturmuştunuz şema geçerli modeli ile uyumluluk için denetlenir. Model şeması oluşturulmasından bu yana değişmişse bir özel durum oluşturulur.
 
-**EF çekirdek bu Sihirli gerçekleştirmez.**
+**EF Core bu Sihirli gerçekleştirmez.**
 
-* Veritabanı bağlantısı kodda açıkça yapılandırılmalıdır.
+* Veritabanı bağlantısı kodda açıkça yapılandırılması gerekir.
 
-* Hiçbir başlatma gerçekleştirilir. Kullanmalısınız `DbContext.Database.Migrate()` geçişleri uygulamak için (veya `DbContext.Database.EnsureCreated()` ve `EnsureDeleted()` oluşturma / veritabanı geçişler kullanmadan silme için).
+* Hiçbir başlatma gerçekleştirilmez. Kullanmalısınız `DbContext.Database.Migrate()` geçişler uygulamak için (veya `DbContext.Database.EnsureCreated()` ve `EnsureDeleted()` oluşturma / veritabanı geçişleri kullanmadan silme için).
 
-### <a name="code-first-table-naming-convention"></a>Kod ilk tablonun adlandırma
+### <a name="code-first-table-naming-convention"></a>Kod ilk tabloda adlandırma kuralı
 
-EF6 varlık sınıfı adı varlık eşlenmiş varsayılan tablo adı hesaplamak için çoğullaştırma hizmeti ile çalışır.
+EF6 varlık sınıfı adı varlığa eşlendi varsayılan tablo adı hesaplamak için çoğullaştırma hizmeti aracılığıyla çalıştırılır.
 
-EF çekirdek adını kullanan `DbSet` varlık de türetilmiş bağlamda sağlanmaktadır özelliği. Varlık yoksa bir `DbSet` özelliği, ardından sınıf adı kullanılır.
+EF Core kullanan adını `DbSet` varlık de türetilmiş bağlamda sağlanmaktadır özelliği. Varlık yoksa bir `DbSet` özelliği ve ardından sınıf adı kullanılır.

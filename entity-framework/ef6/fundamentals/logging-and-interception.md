@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: b5ee7eb1-88cc-456e-b53c-c67e24c3f8ca
 caps.latest.revision: 3
-ms.openlocfilehash: 9c95b7490c11a28524a1468518261aa4bc317262
-ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
+ms.openlocfilehash: 1d0e953309f3c81a2941d6850e169aaa31ae8de0
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914271"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949288"
 ---
 # <a name="logging-and-intercepting-database-operations"></a>Günlüğe kaydetme ve veritabanı işlemleri kesintiye
 > [!NOTE]
@@ -134,7 +134,7 @@ Yukarıdaki örnek çıktısına baktığınızda, her oturum dört komuttan bir
 
 Günlüğe kaydetme için yukarıda da gösterildiği gibi konsolun çok kolaydır. Bellek, dosya, vb. için farklı kullanarak oturum kolaydır, [TextWriter](https://msdn.microsoft.com/library/system.io.textwriter.aspx).  
 
-SQL ile LINQ hakkında bilginiz varsa LINQ to SQL günlüğü özelliği gerçek TextWriter nesneyi (örn. Console.Out) sırasında bir dize (örneğin Console.Write veya Console.Out.Write) kabul eden bir yönteme günlük özelliği ayarlanmış EF ayarlandığını görebilirsiniz. Bunun nedeni TextWriter'dan EF dizeleri için bir havuz olarak davranıp herhangi bir temsilci kabul ederek ayırmaktır. Örneğin, bazı günlüğe kaydetme çerçevesi zaten var ve bir günlük yöntemi tanımlar Imagine şu şekilde:  
+LINQ ile SQL, LINQ to SQL günlüğü özelliği gerçek TextWriter nesnesinde (örneğin, Console.Out) sırasında bir dize (örneğin kabul eden bir yönteme günlük özelliği ayarlanmış EF ayarlı görebilirsiniz biliyorsanız Console.Write veya Console.Out.Write). Bunun nedeni TextWriter'dan EF dizeleri için bir havuz olarak davranıp herhangi bir temsilci kabul ederek ayırmaktır. Örneğin, bazı günlüğe kaydetme çerçevesi zaten var ve bir günlük yöntemi tanımlar Imagine şu şekilde:  
 
 ``` csharp
 public class MyLogger
@@ -275,7 +275,7 @@ Herhangi bir dinleyiciyi arabirimleri üzerinde tanımlanan yöntemler, bakarak 
 
 ### <a name="result-handling"></a>Sonuç işleme  
 
-DbCommandInterceptionContext\< \> sınıfı sonucu, OriginalResult, özel durum ve özgün özel durum olarak adlandırılan bir özelliklerini içerir. Bu özellikler için null/sıfır işlemi executed—i.e. önce çağrılan durdurma yöntemlere yapılan çağrılar için ayarlanır... Yürütme yöntemleri. İşlemi yürütülür ve başarılı, işlemin sonucunu için sonuç ve OriginalResult ayarlanır. Bu değerler daha sonra işlem executed—i.e. sahip olduktan sonra çağrılan durdurma yöntemlere gösterilebilir... Yürütülen yöntemler. İşlemi oluşturursa, benzer şekilde, daha sonra özel durum ve özgün özel durum özellikleri ayarlanır.  
+DbCommandInterceptionContext\< \> sınıfı sonucu, OriginalResult, özel durum ve özgün özel durum olarak adlandırılan bir özelliklerini içerir. Bu özellikler için null/sıfır işlemi yürütülmeden önce çağrılan durdurma yöntemlere yapılan çağrılar için ayarlanan — diğer bir deyişle, için... Yürütme yöntemleri. İşlemi yürütülür ve başarılı, işlemin sonucunu için sonuç ve OriginalResult ayarlanır. Bu değerleri işlemi yürütüldükten sonra çağrılan durdurma yöntemlere sonra gözlenecek — diğer bir deyişle,... Yürütülen yöntemler. İşlemi oluşturursa, benzer şekilde, daha sonra özel durum ve özgün özel durum özellikleri ayarlanır.  
 
 #### <a name="suppressing-execution"></a>Yürütme gizleme  
 

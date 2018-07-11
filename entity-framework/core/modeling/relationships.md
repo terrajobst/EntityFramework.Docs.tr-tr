@@ -1,102 +1,102 @@
 ---
-title: İlişkileri - EF çekirdek
+title: İlişkiler - EF Core
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 0ff736a3-f1b0-4b58-a49c-4a7094bd6935
 ms.technology: entity-framework-core
 uid: core/modeling/relationships
-ms.openlocfilehash: 1732d32643effb0f12111191ed4ba3abb4182d93
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 0e60ade605ffb73b02934ea32f1c757affce970d
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054327"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949224"
 ---
-# <a name="relationships"></a>İlişkileri
+# <a name="relationships"></a>İlişkiler
 
-Bir ilişki nasıl iki varlık tanımlar birbirleri ile. İlişkisel bir veritabanında bu bir yabancı anahtar kısıtlaması ile temsil edilir.
+Bir ilişki nasıl iki varlıklar tanımlayan birbirleriyle. İlişkisel bir veritabanında bu bir yabancı anahtar kısıtlaması tarafından temsil edilir.
 
 > [!NOTE]  
-> Bu makaledeki örnekler çoğunu bir-çok ilişkisi kavramları göstermek için kullanın. Bire bir ve çok-çok ilişkileri örnekleri görmek için [diğer ilişki desenleri](#other-relationship-patterns) makalenin sonunda bölüm.
+> Bu makaledeki örnekleri çoğu bire çok ilişkisi kavramları göstermek için kullanın. Bire bir veya çoktan çoğa ilişkilerini örneklerini görmek için [diğer ilişki desenleri](#other-relationship-patterns) makalenin sonunda bölüm.
 
-## <a name="definition-of-terms"></a>Terimlerin tanımı
+## <a name="definition-of-terms"></a>Koşulları tanımı
 
-Birkaç ilişkileri tanımlamak için kullanılan terimler vardır
+Bir dizi ilişkileri tanımlamak için kullanılan terimler vardır.
 
-* **Bağımlı varlık:** bu yabancı anahtar özellik içeren bir varlıktır. Bazen 'alt' ilişkisinin olarak da adlandırılır.
+* **Bağımlı varlık:** yabancı anahtar özellik içeren varlık budur. Bazen 'alt' ilişkisinin olarak da adlandırılır.
 
-* **Asıl varlık:** bu birincil/alternatif temel özelliklerini içeren varlıktır. Bazen 'parent' ilişkisinin da adlandırılır.
+* **Asıl varlık:** birincil/diğer temel özelliklerini içeren varlık budur. Bazen 'parent' ilişkisinin da adlandırılır.
 
-* **Yabancı anahtar:** bağımlı varlığındaki için ilgili varlık asıl anahtar özellik değerlerini depolamak için kullanılan özellik.
+* **Yabancı anahtar:** bağımlı varlığındaki varlık ilgili asıl anahtar özellik değerlerini depolamak için kullanılan özellik.
 
-* **Asıl Anahtar:** asıl varlık benzersiz olarak tanımlayan özellik. Bu, birincil anahtar veya alternatif bir anahtarı olabilir.
+* **Birincil anahtar:** asıl varlığı benzersiz olarak tanımlayan özellik. Bu, birincil anahtar veya alternatif anahtar olabilir.
 
-* **Gezinti özelliği:** ilgili entity(s) alanlara içeren asıl ve/veya bağımlı varlık üzerinde tanımlanmış bir özellik.
+* **Gezinti özelliği:** ilgili entity(s) bir başvuruları içeren asıl ve/veya bağımlı varlık üzerinde tanımlanmış bir özellik.
 
-  * **Koleksiyon gezinti özelliği:** birçok ilgili varlık başvuruları içeren bir gezinme özelliği.
+  * **Koleksiyon gezinme özelliği:** birçok ilgili varlıklara başvurular içeren bir gezinme özelliği.
 
-  * **Başvuru gezinti özelliği:** ilgili tek bir varlığa bir başvuru içeren bir gezinme özelliği.
+  * **Gezinti özelliğinin başvuru:** tek bir ilgili varlığa bir başvuru tutan bir gezinme özelliği.
 
-  * **Ters gezinti özelliği:** belirli gezinti özelliği açıklanırken, bu terimi ilişkinin diğer ucundaki gezinti özelliği anlamına gelir.
+  * **Ters gezinti özelliği:** belirli gezinti özelliği ele alırken, diğer ucundaki ilişkinin gezinme özelliğini bu terim başvuruyor.
 
-Aşağıdaki kod listesi arasında bir-çok ilişkisi gösterir `Blog` ve`Post`
+Aşağıdaki kod listesi arasında bir-çok ilişkisi gösterilir `Blog` ve `Post`
 
-* `Post`bağımlı varlık
+* `Post` bağımlı bir varlık
 
-* `Blog`Asıl varlığı
+* `Blog` Asıl varlığı
 
-* `Post.BlogId`yabancı anahtar
+* `Post.BlogId` yabancı anahtar
 
-* `Blog.BlogId`(Bu durumda, alternatif bir anahtarı yerine bir birincil anahtar olan) asıl anahtarı
+* `Blog.BlogId` (Bu durumda alternatif anahtar yerine birincil anahtar olduğu) birincil anahtar
 
-* `Post.Blog`bir başvuru Gezinti özelliğidir
+* `Post.Blog` bir başvuru gezinti özelliği
 
-* `Blog.Posts`bir koleksiyon gezinti özelliği değil
+* `Blog.Posts` bir koleksiyon gezinme özelliği
 
-* `Post.Blog`Ters gezinti özelliği `Blog.Posts` (ve tersi)
+* `Post.Blog` Ters gezinti özelliği `Blog.Posts` (ve tersi)
 
 [!code-csharp[Main](../../../samples/core/Modeling/Conventions/Samples/Relationships/Full.cs#Entities)]
 
 ## <a name="conventions"></a>Kurallar
 
-Bir tür üzerinde bulunan bir gezinti özelliği olduğunda kurala göre bir ilişki oluşturulur. İşaret türü skaler bir tür geçerli veritabanı sağlayıcısı tarafından eşleştirilemez varsa bir özelliği bir gezinti özelliği olarak kabul edilir.
+Bir tür üzerinde bulunan bir gezinti özelliği olduğunda, kural olarak, bir ilişki oluşturulur. İşaret türü geçerli bir veritabanı sağlayıcısı tarafından skaler bir tür olarak eşleştirilemez bir özelliği bir gezinti özelliği kabul edilir.
 
 > [!NOTE]  
-> Kural tarafından bulunan ilişkileri her zaman asıl varlığın birincil anahtarı hedefleyecektir. Alternatif bir anahtarı hedeflemek için ek yapılandırma Fluent API kullanılarak gerçekleştirilmelidir.
+> Kural gereği bulunan ilişkiler her zaman asıl varlığın birincil anahtarı hedefleyecektir. Alternatif anahtar hedeflemek için ek yapılandırma Fluent API'sini kullanarak gerçekleştirilmesi gerekir.
 
-### <a name="fully-defined-relationships"></a>Tam olarak tanımlanmış ilişkileri
+### <a name="fully-defined-relationships"></a>Tam olarak tanımlanan ilişkileri
 
-En yaygın düzeni ilişkiler için Gezinti özellikleri ilişkinin ve yabancı anahtar özelliği bağımlı varlık sınıfında tanımlanmış iki ucunda tanımlanmış olmalıdır.
+İlişkiler için en yaygın desen, her iki ucunda da ilişki ve bağımlı varlık sınıfı içinde tanımlanan bir yabancı anahtar özellik tanımlanan Gezinti özelliklerini sağlamaktır.
 
-* Sonra Gezinti özellikleri çifti arasında iki tür bulunursa, aynı ilişki ters Gezinti özellikleri olarak yapılandırılır.
+* Ardından, gezinti özellikleri bir çift iki tür arasında bulunursa, aynı ilişki ters Gezinti özellikleri olarak yapılandırılır.
 
-* Bağımlı varlık adında bir özellik varsa `<primary key property name>`, `<navigation property name><primary key property name>`, veya `<principal entity name><primary key property name>` yabancı anahtar olarak yapılandırılacak sonra.
+* Bağımlı varlık adlı bir özellik varsa `<primary key property name>`, `<navigation property name><primary key property name>`, veya `<principal entity name><primary key property name>` havuzla yabancı anahtar olarak yapılandırılır.
 
 [!code-csharp[Main](../../../samples/core/Modeling/Conventions/Samples/Relationships/Full.cs?name=Entities&highlight=6,15,16)]
 
 > [!WARNING]  
-> Birden çok gezinti özellikleri arasında iki tür tanımlı olup olmadığını (yani birbirlerine noktası gezintilerini birden fazla ayrı çiftinin), ardından hiçbir ilişki kurala göre oluşturulur ve bunları tanımlamak için el ile yapılandırmanız gerekecektir nasıl Gezinti özellikleri çifti ayarlama.
+> İki tür arasında tanımlanan birden çok gezinti özellikleri olup olmadığını (diğer bir deyişle, birden fazla ayrı çiftinin birbirine noktası gezintiler), hiçbir ilişki kural tarafından oluşturulur ve bunları tanımlamak için el ile yapılandırmanız gerekecektir nasıl Gezinti özellikleri çifti ayarlama.
 
-### <a name="no-foreign-key-property"></a>Yabancı anahtar özellik
+### <a name="no-foreign-key-property"></a>Yabancı anahtar özelliği yok
 
-Yabancı anahtar özelliği bağımlı varlık sınıfında tanımlanmış önerilir, ancak gerekli değildir. Yabancı anahtar özellik bulunursa, bir gölge yabancı anahtar özellik adı ile görülecektir `<navigation property name><principal key property name>` (bkz [gölge özellikleri](shadow-properties.md) daha fazla bilgi için).
+Bağımlı varlık sınıfı içinde tanımlanan bir yabancı anahtarı özelliği olması önerilir, ancak gerekli değildir. Yabancı anahtar özellik bulunursa, bir gölge yabancı anahtar özellik adıyla tanıtılmak `<navigation property name><principal key property name>` (bkz [gölge Özellikler](shadow-properties.md) daha fazla bilgi için).
 
 [!code-csharp[Main](../../../samples/core/Modeling/Conventions/Samples/Relationships/NoForeignKey.cs?name=Entities&highlight=6,15)]
 
-### <a name="single-navigation-property"></a>Tek gezinme özelliği
+### <a name="single-navigation-property"></a>Gezinme özelliği
 
-Tek bir gezinti özelliği (hiçbir ters gezinti ve yabancı anahtar özellik) dahil olmak üzere kurala göre tanımlanan bir ilişki için yeterlidir. Tek bir gezinme özelliği ve yabancı anahtar özelliğine de sahip olabilir.
+Tek bir gezinti özelliği (ters hiçbir gezinti ve herhangi bir yabancı anahtar özelliği) dahil olmak üzere kural olarak tanımlanmış bir ilişkisi olması yeterlidir. Bir gezinme özelliği ve yabancı anahtar özelliğine de sahip olabilir.
 
 [!code-csharp[Main](../../../samples/core/Modeling/Conventions/Samples/Relationships/OneNavigation.cs?name=Entities&highlight=6)]
 
 ### <a name="cascade-delete"></a>Art arda silme
 
-Kurala göre art arda silme ayarlanacak *Cascade* gerekli ilişkiler ve *ClientSetNull* isteğe bağlı ilişkiler. *CASCADE* bağımlı varlıkları da silinir anlamına gelir. *ClientSetNull* belleğe yüklenmez bağımlı varlıkları kalacak anlamına gelir değişmeden ve el ile silinmiş veya gerekir geçerli bir asıl varlık işaret edecek şekilde güncelleştirildi. Belleğe yüklenen varlıklar için EF çekirdek yabancı anahtar özellikleri null olarak ayarlamanız dener.
+Kural gereği, art arda silme ayarlanacak *Cascade* gerekli ilişkileri ve *ClientSetNull* isteğe bağlı ilişkiler için. *Art arda* bağımlı varlıklar da silinir anlamına gelir. *ClientSetNull* belleğe yüklenmeyen bağımlı varlıkları kalacağı anlamına gelir değişmeden ve gereken el ile silinmesi veya geçerli bir asıl varlığa işaret edecek şekilde güncelleştirildi. Belleğe yüklenen varlıklar için yabancı anahtar özellikleri null olarak ayarlamak EF Core dener.
 
-Bkz: [gerekli ve isteğe bağlı ilişkileri](#required-and-optional-relationships) bölümü için gerekli ve isteğe bağlı ilişkileri arasındaki fark.
+Bkz: [gerekli ve isteğe bağlı ilişkileri](#required-and-optional-relationships) gerekli ve isteğe bağlı ilişkileri arasındaki fark için bölüm.
 
-Bkz: [art arda silme](../saving/cascade-delete.md) farklı hakkında daha fazla ayrıntı davranışları ve kural tarafından kullanılan varsayılan silmek için.
+Bkz: [art arda silme](../saving/cascade-delete.md) davranışları ve kuralı tarafından kullanılan varsayılan değerleri farklı hakkında daha fazla ayrıntı silin.
 
 ## <a name="data-annotations"></a>Veri ek açıklamaları
 
@@ -104,48 +104,48 @@ Bkz: [art arda silme](../saving/cascade-delete.md) farklı hakkında daha fazla 
 
 ### <a name="foreignkey"></a>[ForeignKey]
 
-Hangi özelliği için belirtilen bir ilişki yabancı anahtar özelliği olarak kullanılmalıdır yapılandırmak için veri ek açıklamaları kullanabilirsiniz. Yabancı anahtar özelliği kurala göre bulunmayan olduğunda bu genellikle gerçekleştirilir.
+Veri ek açıklamaları belirli bir ilişki için yabancı anahtar özellik olarak hangi özelliğinin kullanılması gerektiğini yapılandırmak için kullanabilirsiniz. Kural gereği yabancı anahtar özelliği bulunmayan olduğunda bu genellikle gerçekleştirilir.
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/Relationships/ForeignKey.cs?name=Entities&highlight=17)]
 
 > [!TIP]  
-> `[ForeignKey]` Ek açıklama ya da gezinti özelliği ilişkideki yerleştirilebilen. Bağımlı varlık sınıfı Gezinti özelliğinde gitmek gerekmez.
+> `[ForeignKey]` Ek açıklama ya da gezinti özelliğindeki ilişkisinde yerleştirilebilir. Gezinti özelliğindeki bağımlı varlık sınıfı içinde Git gerekmez.
 
 ### <a name="inverseproperty"></a>[InverseProperty]
 
-Veri ek açıklamaları nasıl bağımlı ve asıl varlık Gezinti özellikleri eşleştirin yapılandırmak için kullanabilirsiniz. İki varlık türleri arasında gezinti özellikleri birden fazla Çifti olduğunda bu genellikle gerçekleştirilir.
+Veri ek açıklamaları, bağımlı ve asıl varlık Gezinti özellikleri nasıl pair yapılandırmak için kullanabilirsiniz. Bu, genellikle birden fazla Çifti iki varlık türleri arasında gezinti özellikleri olduğunda gerçekleştirilir.
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/Relationships/InverseProperty.cs?name=Entities&highlight=20,23)]
 
 ## <a name="fluent-api"></a>Fluent API'si
 
-Bir ilişki Fluent API'si yapılandırmak için ilişkisi olun Gezinti özellikleri belirleyerek başlatın. `HasOne`veya `HasMany` , başlangıç yapılandırması üzerinde varlık türünün gezinti özelliği tanımlar. Ardından bir çağrı zincir `WithOne` veya `WithMany` ters gezinti tanımlamak için. `HasOne`/`WithOne`başvuru Gezinti özellikleri için kullanılır ve `HasMany` / `WithMany` koleksiyon Gezinti özellikleri için kullanılır.
+Bir ilişki Fluent API'si yapılandırmak için ilişkiyi gezinme özelliklerini belirleyerek başlayın. `HasOne` veya `HasMany` , başlangıç yapılandırması üzerinde varlık türünün gezinme özelliğini tanımlar. Ardından bir çağrı zinciri `WithOne` veya `WithMany` ters gezinti tanımlamak için. `HasOne`/`WithOne` başvuru Gezinti özellikleri için kullanılır ve `HasMany` / `WithMany` koleksiyon Gezinti özellikleri için kullanılır.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Relationships/NoForeignKey.cs?name=Model&highlight=8,9,10)]
 
-### <a name="single-navigation-property"></a>Tek gezinme özelliği
+### <a name="single-navigation-property"></a>Gezinme özelliği
 
-Yalnızca bir gezinti özelliğine sahip sonra parametresiz aşırı `WithOne` ve `WithMany`. Bu kavramsal olarak bir başvuru veya koleksiyon ilişkinin diğer ucundaki olmakla birlikte, varlık sınıfında dahil gezinti özelliği yok olduğunu gösterir.
+Yalnızca sahip olduğunuz bir gezinti özelliği sonra parametresiz aşırı yükleme `WithOne` ve `WithMany`. Bu, kavramsal olarak bir başvuru ya da koleksiyon ilişkinin diğer ucundaki olmakla birlikte, varlık sınıfı dahil bir gezinti özelliği yok, gösterir.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Relationships/OneNavigation.cs?name=Model&highlight=10)]
 
 ### <a name="foreign-key"></a>Yabancı anahtar
 
-Hangi özelliği için belirtilen bir ilişki yabancı anahtar özelliği olarak kullanılmalıdır yapılandırmak için Fluent API kullanabilirsiniz.
+Hangi özelliği için belirtilen bir ilişki yabancı anahtar özellik olarak kullanılmalıdır yapılandırmak için Fluent API'sini kullanabilirsiniz.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Relationships/ForeignKey.cs?name=Model&highlight=11)]
 
-Aşağıdaki kod listesi nasıl birleşik yabancı anahtar yapılandırılacağını göstermektedir.
+Aşağıdaki kod listesi, bileşik bir yabancı anahtar yapılandırma işlemi gösterilmektedir.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Relationships/CompositeForeignKey.cs?name=Model&highlight=13)]
 
-Dize aşırı yüklemesini kullanabilirsiniz `HasForeignKey(...)` gölge özelliğini yabancı anahtar olarak yapılandırmak için (bkz [gölge özellikleri](shadow-properties.md) daha fazla bilgi için). Yabancı anahtar olarak (aşağıda gösterildiği gibi) kullanmadan önce gölge özelliği modeline açıkça eklenmesi öneririz.
+Dize aşırı yüklemesini kullanabilirsiniz `HasForeignKey(...)` yabancı anahtar olarak bir gölge özelliğini yapılandırmak için (bkz [gölge Özellikler](shadow-properties.md) daha fazla bilgi için). Yabancı anahtar olarak (aşağıda gösterildiği gibi) kullanmadan önce gölge özellik modele açıkça eklemenizi öneririz.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Relationships/ShadowForeignKey.cs#Sample)]
 
-### <a name="principal-key"></a>Asıl anahtar
+### <a name="principal-key"></a>Sorumlusu anahtarı
 
-Birincil anahtar dışındaki bir özellik başvurmak için yabancı anahtarı istiyorsanız, asıl anahtar özelliği ilişki için yapılandırmak için Fluent API kullanabilirsiniz. Asıl Anahtar otomatik olarak yapılandırma özelliği tarafından Kurulum alternatif bir anahtar olarak (bkz [alternatif anahtarları](alternate-keys.md) daha fazla bilgi için).
+Birincil anahtarı dışında bir özellik başvurmak için yabancı anahtarı istiyorsanız, birincil anahtar özelliği ilişki için yapılandırmak için Fluent API'sini kullanabilirsiniz. Asıl Anahtar otomatik olarak yapılandırma özelliği alternatif anahtar olarak Kurulum olabilir (bakın [alternatif anahtarlar](alternate-keys.md) daha fazla bilgi için).
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/Relationships/PrincipalKey.cs?highlight=11)] -->
 ``` csharp
@@ -184,7 +184,7 @@ public class RecordOfSale
 }
 ```
 
-Aşağıdaki kod listesi, bileşik bir asıl anahtar yapılandırma gösterilmektedir.
+Aşağıdaki kod listesi, bileşik bir birincil anahtar yapılandırma işlemi gösterilmektedir.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/Relationships/CompositePrincipalKey.cs?highlight=11)] -->
 ``` csharp
@@ -226,11 +226,11 @@ public class RecordOfSale
 ```
 
 > [!WARNING]  
-> Asıl anahtar özelliklerini belirtmek için yabancı anahtar belirtilen sırada eşleşmesi gerekir.
+> Birincil anahtar özellikleri belirttiğiniz sırada yabancı anahtar için belirtilen sırayla eşleşmelidir.
 
-### <a name="required-and-optional-relationships"></a>Gerekli ve isteğe bağlı ilişkileri
+### <a name="required-and-optional-relationships"></a>Gerekli ve isteğe bağlı bir ilişki
 
-Fluent API ilişki gerekli veya isteğe bağlı olup olmadığını yapılandırmak için kullanabilirsiniz. Sonuç olarak bu yabancı anahtar özellik gerekli veya isteğe bağlı olup olmadığını denetler. Gölge durumu yabancı anahtar kullanırken bu kullanışlıdır. Varlık sınıfınızda bir yabancı anahtar özelliğine sahip sonra requiredness ilişkinin yabancı anahtar özellik gerekli veya isteğe bağlı olarak belirlenir (bkz [gerekli ve isteğe bağlı özellikler](required-optional.md) daha fazla bilgi için bilgileri).
+İlişkiyi gerekli veya isteğe bağlı olup olmadığını yapılandırmak için Fluent API'sini kullanabilirsiniz. Sonuç olarak bu yabancı anahtar özellik gerekli veya isteğe bağlı olup olmadığını denetler. Bu, bir gölge durum yabancı anahtarı kullanılırken en kullanışlıdır. Varlık Sınıfınız içinde bir yabancı anahtar özelliğine sahip sonra requiredness ilişkinin yabancı anahtar özellik gerekli veya isteğe bağlı olarak belirlenir (bkz [gerekli ve isteğe bağlı özellikler](required-optional.md) daha fazla bilgi için bilgiler).
 
 <!-- [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Relationships/Required.cs?highlight=11)] -->
 ``` csharp
@@ -268,9 +268,9 @@ public class Post
 
 ### <a name="cascade-delete"></a>Art arda silme
 
-Fluent API açıkça belirtilen bir ilişki için cascade delete davranışı yapılandırmak için kullanabilirsiniz.
+Fluent API'si, açıkça belirtilen bir ilişki art arda silme davranışını yapılandırmak için kullanabilirsiniz.
 
-Bkz: [art arda silme](../saving/cascade-delete.md) her seçenek hakkında ayrıntılı bilgi için verileri kaydetme bölümünde.
+Bkz: [art arda silme](../saving/cascade-delete.md) verileri kaydetme bölümünde ayrıntılı bir irdelemesi ve her seçeneği.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/Relationships/CascadeDelete.cs?highlight=11)] -->
 ``` csharp
@@ -311,7 +311,7 @@ public class Post
 
 ### <a name="one-to-one"></a>Bire bir
 
-Bire bir ilişkiler iki tarafta bir başvuru gezinti özelliği vardır. Bir-çok ilişkileri aynı kuralları izleyin, ancak benzersiz bir dizin, yalnızca bir bağımlı her asıl ilgili emin olmak için yabancı anahtar özellik sunulmuştur.
+Bire bir ilişkiler, her iki kenarı da bir başvuru Gezinti özelliğine sahiptir. Bire çok ilişkileri aynı kuralları takip etmeleri ancak benzersiz bir dizin üzerinde yalnızca bir bağımlı her asıl ilgili emin olmak için yabancı anahtar özellik sunulmuştur.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/Conventions/Samples/Relationships/OneToOne.cs?highlight=6,15,16)] -->
 ``` csharp
@@ -335,11 +335,11 @@ public class BlogImage
 ```
 
 > [!NOTE]  
-> EF yabancı anahtar özelliği algılamak için kendi yeteneği dayalı bağımlı olması için varlıkları birini seçeceksiniz. Yanlış varlık bağımlı seçilirse, bu sorunu gidermek için Fluent API kullanabilirsiniz.
+> EF bir yabancı anahtar özellik algılamak için yeteneklerine bağlı bağımlı olmasını varlıkları birini seçin. Yanlış varlık bağlı belirtildiyse, bu sorunu gidermek için Fluent API'sini kullanabilirsiniz.
 
 İlişki Fluent API'si ile yapılandırırken kullandığınız `HasOne` ve `WithOne` yöntemleri.
 
-Bağımlı varlık türü - belirtmeniz gerekir yabancı anahtar yapılandırırken genel parametresi için sağlanan fark `HasForeignKey` listesinde. Bir-çok ilişkisi içinde varlıkla başvuru Gezinti bağımlı ve koleksiyon ile bir asıl olduğunu işaretlenmemiştir. Ancak bu bire bir ilişkide - bu nedenle bunu açıkça tanımlamak için gereken.
+Sağlanan genel parametre - bağımlı varlık türünü belirtmek için yabancı anahtarı yapılandırırken fark `HasForeignKey` listesinde. Bir-çok ilişkisine başvuru Gezinti varlığa bağlıdır ve koleksiyon ile bir sorumlu olduğunu işaretlenmemiştir. Ancak bu bire bir ilişki - bu nedenle, bu nedenle açıkça tanımlamak için gerek.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/Relationships/OneToOne.cs?highlight=11)] -->
 ``` csharp
@@ -376,9 +376,9 @@ public class BlogImage
 }
 ```
 
-### <a name="many-to-many"></a>Çok-
+### <a name="many-to-many"></a>Çok-çok
 
-Çok-çok ilişkileri birleşim tablosundan temsil etmek için bir varlık sınıfı olmadan henüz desteklenmiyor. Ancak, bir varlık sınıfı birleşim tablosundan ve iki ayrı bir-çok ilişkileri eşleme için ekleyerek bir çok-çok ilişkisi temsil edebilir.
+Çoktan çoğa ilişkiler birleştirme tablosunu temsil edecek bir varlık sınıfı olmadan henüz desteklenmemektedir. Ancak, birleşim tablosu ve iki ayrı bir-çok ilişkileri eşleme için bir varlık sınıfı dahil ederek bir çoktan çoğa ilişki temsil edebilir.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/Relationships/ManyToMany.cs?highlight=11,12,13,14,16,17,18,19,39,40,41,42,43,44,45,46)] -->
 ``` csharp

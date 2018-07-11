@@ -1,32 +1,32 @@
 ---
-title: Sütun eşlemesi - EF çekirdek
+title: Sütun eşlemesi - EF Core
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 05a47de9-1078-488e-a823-b516a4208f33
 ms.technology: entity-framework-core
 uid: core/modeling/relational/columns
-ms.openlocfilehash: 697b966dbac892e332fe65feaa4dd11f00dd8298
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: ac3ab2ce3faa54eb8e862d01dcecb48cb0d1f811
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054270"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949417"
 ---
-# <a name="column-mapping"></a>Sütun eşlemesi
+# <a name="column-mapping"></a>Sütun eşleme
 
 > [!NOTE]  
-> Bu bölümdeki yapılandırma genel ilişkisel veritabanları için geçerlidir. İlişkisel veritabanı sağlayıcısı yüklediğinizde, burada gösterilen genişletme yöntemleri kullanılabilir olacağı (paylaşılan nedeniyle *Microsoft.EntityFrameworkCore.Relational* paketi).
+> Bu bölümdeki yapılandırma, genel olarak ilişkisel veritabanları için geçerlidir. İlişkisel veritabanı sağlayıcısı yüklediğinizde, burada gösterilen genişletme yöntemleri kullanılabilir hale gelir (paylaşılan nedeniyle *Microsoft.EntityFrameworkCore.Relational* paketi).
 
-Sütun eşlemesi sütun veri öğesinden sorgulanan ve gerekir veritabanında kaydedilmiş tanımlar.
+Sütun eşlemesi, hangi sütunun veri gelen sorgulanabilen ve veritabanında kaydedilmiş tanımlar.
 
 ## <a name="conventions"></a>Kurallar
 
-Kurala göre her bir özellik özelliği aynı ada sahip bir sütun eşlemek için Kur olacaktır.
+Kural gereği, her bir özellik özelliğiyle aynı ada sahip bir sütun eşlemek için ayarlanır.
 
 ## <a name="data-annotations"></a>Veri ek açıklamaları
 
-Bir özellik eşlenmiş sütun yapılandırmak için veri ek açıklamaları kullanabilirsiniz.
+Bir özellik için eşlenen sütun yapılandırmak için veri ek açıklamaları kullanabilirsiniz.
 
 <!-- [!code-csharp[Main](samples/core/relational/Modeling/DataAnnotations/Samples/Relational/Column.cs?highlight=3)] -->
 ``` csharp
@@ -40,7 +40,7 @@ public class Blog
 
 ## <a name="fluent-api"></a>Fluent API'si
 
-Bir özellik eşlenmiş sütunu yapılandırma Fluent API kullanabilirsiniz.
+Fluent API'si, bir özellik için eşlenen sütun yapılandırmak için kullanabilirsiniz.
 
 <!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Samples/Relational/Column.cs?highlight=7,8,9)] -->
 ``` csharp

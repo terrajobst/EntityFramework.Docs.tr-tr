@@ -1,57 +1,57 @@
 ---
-title: Entity Framework Çekirdek yol haritası
+title: Entity Framework Core yol haritası
 author: divega
 ms.author: divega
 ms.date: 02/20/2018
 ms.assetid: 834C9729-7F6E-4355-917D-DE3EE9FE149E
 ms.technology: entity-framework-core
 uid: core/what-is-new/roadmap
-ms.openlocfilehash: e23f5d7b1ff95bead310fa8e618a88c161a4e10c
-ms.sourcegitcommit: 72e59e6af86b568653e1b29727529dfd7f65d312
+ms.openlocfilehash: f319aabb53019e0f153c911dde5814328423081b
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 06/04/2018
-ms.locfileid: "34754450"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949172"
 ---
-# <a name="entity-framework-core-roadmap"></a>Entity Framework Çekirdek yol haritası
+# <a name="entity-framework-core-roadmap"></a>Entity Framework Core yol haritası
 
 > [!IMPORTANT]
-> Özellik kümeleri ve gelecek sürümlerin zamanlamaları her zaman değiştirilebilir ve bu sayfa, son planlarımızı hiç yansıtmayabilir güncelliğini deneyeceğiz rağmen zaman olmadığını unutmayın.
+> Özellik kümeleri ve zamanlamaları gelecek sürümlerin her zaman değişikliğe tabi olduğu ve bu sayfada en güncel, en son planlarımızı hiç yansıtmayabilir tutmak deneyeceğiz rağmen zaman lütfen unutmayın.
 
-EF çekirdek 2.1 kararlı sürümü 30 May 2018 üzerinde yayımlanmıştır. Bu sürüm hakkında daha fazla bilgi bulabilirsiniz [EF çekirdek 2.1 yenilikler](xref:core/what-is-new/ef-core-2.1).
+EF Core 2.1 kararlı sürümünü 30 Mayıs 2018 tarihinde yayınlanmıştır. Bu sürümde hakkında daha fazla bilgi bulabilirsiniz [EF Core 2.1 yenilikler](xref:core/what-is-new/ef-core-2.1).
 
-Biz tamamlanmamış [Planlama işlemi yayın](#release-planning-process) 2.1 sonra bir sonraki sürümü için.
+Biz tamamlanmamış [yayın Planlama işlemi](#release-planning-process) 2.1 sonraki sürümün için.
 
 ## <a name="schedule"></a>Zamanlama
 
--Sync EF çekirdek için zamanlama ile [.NET Core zamanlama](https://github.com/dotnet/core/blob/master/roadmap.md) ve [ASP.NET Core zamanlama](https://github.com/aspnet/Home/wiki/Roadmap).
+EF Core için zamanlamayı eşitlenmiş ile [.NET Core zamanlama](https://github.com/dotnet/core/blob/master/roadmap.md) ve [ASP.NET Core zamanlama](https://github.com/aspnet/Home/wiki/Roadmap).
 
 ## <a name="backlog"></a>Biriktirme
 
-Kullanırız [biriktirme listesi Kilometre Taşı](https://github.com/aspnet/EntityFrameworkCore/issues?q=is%3Aopen+is%3Aissue+milestone%3ABacklog+sort%3Areactions-%2B1-desc) bizim sorun İzleyicisi, sorunları ve özelliklerinin ayrıntılı bir liste korumak için de. Müşteriler açıklama ve bunlar yukarı oy.
+Kullandığımız [biriktirme listesi kilometre](https://github.com/aspnet/EntityFrameworkCore/issues?q=is%3Aopen+is%3Aissue+milestone%3ABacklog+sort%3Areactions-%2B1-desc) müşterilerimize sorun İzleyicisi, sorunları ve özelliklerinin ayrıntılı bir liste korumak için de. Müşteriler açıklama ve bunlar yukarı oy.
 
 Sorunları makul biz belirli bir noktada çalışır veya topluluktan birinin üstesinden gelmek, ancak, değil kapsıyor biz belirli bir aşama bizim birparçasıolarakatanıncayakadarbelirlibirzamançerçevesindeçözümleyinyapmabekliyoruzolduğunuaçıkbırakıneğilimindedir [Planlama işlemi yayın](#release-planning-process).
 
-Biz, herhangi bir özelliği uygulamak düşünmüyorsanız biz sorun büyük olasılıkla kapanacak. Biz bunu ilgili yeni bilgiler elde etmek, biz kapalı bir sorun sonraki bir noktada reconsidered.
+Biz, hiç bir özelliği uygulamak planlamıyorsanız şu sorun büyük olasılıkla sona erecektir. Biz bunu ilgili yeni bilgiler elde etmek, biz kapalı bir sorun, sonraki bir noktada reconsidered.
 
-Tüm, gelecekte bu özelliği X Saat/Sürüm Y çözümlenir söyleyin yapabilmek için yeterli bilgi yok mu belirtti. Tüm yazılım projeleri olduğu gibi herhangi bir noktada öncelikleri, yayın zamanlamaları ve kullanılabilir kaynakları değiştirebilirsiniz.
+Tüm bunları, biz bu özelliği X saat/yayın tarafından Y çözümlenir söyleyin yapabilmek için gelecek hakkında yeterli bilgi yok belirtti. Tüm yazılım projelerinde olduğu gibi herhangi bir noktada öncelikler, yayın ve kullanılabilir kaynaklar değiştirebilirsiniz.
 
-## <a name="release-planning-process"></a>Planlama işleminin sürüm
+## <a name="release-planning-process"></a>Yayın Planlama işlemi
 
-Biz genellikle belirli bir yayın içinde gitmek için belirli özellikler seçeneğini nasıl belirledik hakkında sorular alın. Bizim biriktirme listesi kesinlikle otomatik olarak sürüm planları tercüme etmez. Bir özellik EF6 varlığını de otomatik olarak özellik EF çekirdek uygulanması gerektiğini anlamına gelmez.
+Biz genellikle belirli bir sürüm Git belirli özellikleri nasıl Seçtiğimiz hakkında sorular alın. Çalışıyoruz kesinlikle otomatik olarak yayın planlarına anlamına gelmez. Bir özellik EF6 varlığını da otomatik olarak özellik EF Core uygulanması gerektiğini anlamına gelmez.
 
-Burada size çok miktarda belirli özellikler, fırsatları ve öncelikler kısmen tartışmak için ve kısmen işlemi her sürümle genellikle dönüşmesi çünkü bir yayın plana izleyin tüm işlem ayrıntı zordur. Ancak, sonraki çalışma gerekenler karar verirken yanıt deneyin sık sorulan sorular özetlemek oldukça kolaydır:
+Biz çok miktarda belirli özellikler, fırsatları ve öncelikler kısmen görüştükten olması ve işlemin kendisi genellikle her sürümle geliştikçe kısmen gibi nedenlerle bir yayın plana izleyin tüm işlem aşağıda ayrıntılı olarak zordur. Ancak, sonraki çalışma gerekenler verirken yanıt deneyin sık sorulan sorular özetlemek oldukça kolaydır:
 
-1. **Kaç tane geliştiriciler düşünüyoruz özelliğini kullanacak ve uygulamalar/deneyimlerini ne kadar daha iyi hale getirir?** Biz geri bildirim birçok kaynaktan bu toplama — açıklamaları ve sorunları oylar biridir bu kaynakları.
+1. **Düşünüyoruz kaç geliştiriciler özelliği kullanır ve uygulamaların/deneyimlerini ne kadar iyi hale getirir?** Biz geri bildirim pek çok kaynaktan bu toplama — yorumlar ve oyları sorunları, bu kaynakları biridir.
 
-2. **Bu özelliği henüz uygulamanız yok, geçici çözümler kişilerdir kullanabilir miyim?** Örneğin, çoğu geliştiricinin yerel çoktan çoğa destek eksikliği çalışması için bir birleşim tablosundan eşleyebilir. Belli ki, tüm geliştiriciler, bunu yapabilirsiniz ancak birçok olabilir ve sayıları bir faktörüyle budur.
+2. **Bu özelliği henüz uygulamanız yoksa, geçici çözümler kişilerdir kullanabilir miyim?** Örneğin, birçok geliştiricinin birleştirme tablo yerel çoktan çoğa destek eksikliği geçici olarak çalışması için eşleme olanağına sahip olursunuz. Kuşkusuz, tüm geliştiriciler, bunu yapabilirsiniz ancak çoğu olabilir ve sayan bir faktörüyle budur.
 
-3. **Bunu bize yakın diğer özelliklerini uygulama için taşır, bu özellik uygulama EF çekirdek mimarisini gelişmesi mu?** Diğer özellikler için yapı taşları gibi davranan özellikleri favor eğilimindedir — Örneğin, tablo ait türleri için yapılan bölme birleştirilmiş TPT destek hareket yardımcı olur.
+3. **Bu özelliği uygulamak, bize yakın diğer özelliklerini uygulama için taşıdığında, EF Core mimarisi gelişmek mu?** Diğer özellikler için yapı taşları gibi davranan özellikleri favor eğilimindedir — Örneğin, sahip olunan türleri için yapıldığı tablo bölme TPT destek hareket yardımcı olur.
 
-4. **Genişletilebilirlik noktası özelliğidir?** Biz, geliştiricilerin daha kolay kendi davranışlarının bağlayın ve eksik işlev bazıları bu şekilde alma etkinleştirmek için genişletilebilirlik noktaları favor olma eğilimi gösterir. Biz bu yavaş yükleniyor çalışmak için bir başlangıç olarak bazıları yapmayı planlamıyorsanız.
+4. **' % S'özelliği bir genişletilebilirlik noktası?** Bunlar daha kolay kendi davranışları bağlama ve eksik işlevlerinden bazıları bu şekilde almak geliştiricilerin çünkü genişletilebilirlik noktaları yerine boyuta ayrıcalık eğilimindedir. Bazı yavaş yükleniyor çalışmak için bir başlangıç olarak bunun yapmak planlıyoruz.
 
-5. **Diğer ürünleri ile birlikte kullanıldığında özelliği synergy nedir?** Biz EF çekirdek diğer ürünleri ile kullanılmak üzere veya .NET Core, en son sürümünü Visual Studio, Microsoft Azure, vb. gibi diğer ürünler kullanılarak deneyimini önemli ölçüde artırmak için olanak tanıyan özellikler favor eğilimindedir.
+5. **Diğer ürünleri ile birlikte kullanıldığında özelliğinin synergy nedir?** EF Core ile diğer ürünler kullanılacak veya .NET Core, en son sürümünü Visual Studio, Microsoft Azure, vb. gibi diğer ürünleri kullanma deneyimini önemli ölçüde geliştirmek için olanak tanıyan özellikler tanınacağını eğilimindedir.
 
-6. **Bir özellik ve bu kaynakları en iyi şekilde yararlanmak nasıl çalışmak için uygun kişilerin özellikleri nelerdir?** Her üyesine EF bile bizim topluluğa Katkıda Bulunanlar, farklı düzeylerde deneyimi alanında farklı alanlara sahip ve uygun şekilde planlamanız gerekir. Biz "deste tüm durum" olmasını istediğinizi olsa bile belirli bir özellik çalışmaları ister GroupBy çevirileri veya çok-çok, pratik olmayacaktır.
+6. **Bir özellik ve bu kaynakları en iyi şekilde yararlanmak nasıl çalışmak için uygun kişilerin özellikleri nelerdir?** EF takım ve topluluğa katkıda bulunanlar bile bizim her üyesi, farklı alanlarda farklı düzeylerde deneyimi sahip ve uygun şekilde planlamanız gerekir. "Tüm eller deste" olmasını istedik bile belirli bir özelliği çalışma ister GroupBy çevirileri veya çok çok, pratik olmaz mıydı.
 
-Önceden belirtildiği gibi her yayın üzerinde bu işlem dönüşmesi ve geliştirici topluluğu üyeleri için daha fazla fırsat girişleri sürüm planları örneğin önerilen Taslaklar Özellikler'in ve gözden geçirmek kolaylaştırarak sağlamak üzere eklemek gelecekte isteriz Yayın Planın kendisi.
+Daha önce belirtildiği gibi bu işlem her sürümdeki geliştikçe ve geliştirici Topluluğu'nun üyeleri için önerilen taslakları özelliklerini gözden geçirmek kolay hale getirerek sürüm planlarına, örneğin, giriş sağlamak için daha fazla fırsat eklemek gelecekte istiyoruz ve kendi sürümü planlayın.

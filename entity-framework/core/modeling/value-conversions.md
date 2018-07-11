@@ -1,34 +1,34 @@
 ---
-title: Değer dönüşümler - EF çekirdek
+title: Değer dönüştürmeleri - EF Core
 author: ajcvickers
 ms.author: divega
 ms.date: 02/19/2018
 ms.assetid: 3154BF3C-1749-4C60-8D51-AE86773AA116
 ms.technology: entity-framework-core
 uid: core/modeling/value-conversions
-ms.openlocfilehash: 3e97c05a87ad9b4817c03f446031ea6c74704f5b
-ms.sourcegitcommit: 605e42232854ce44bae09624a6eebc35b8e2473b
+ms.openlocfilehash: 5bfb6111ac450db91f3f1a7074a924a1c8400ce7
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 05/16/2018
-ms.locfileid: "34191122"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949098"
 ---
-# <a name="value-conversions"></a>Değer dönüşümler
+# <a name="value-conversions"></a>Değer dönüştürmeleri
 
 > [!NOTE]  
-> Bu özelliği EF çekirdek 2.1 içinde yeni bir özelliktir.
+> Bu özellik, EF Core 2.1 içinde yeni bir özelliktir.
 
-Değer dönüştürücüler okuma veya yazma veritabanına dönüştürülecek özellik değerlerini izin verin. Bu dönüştürme diğerine (örneğin, şifreleme dizeleri) aynı türde bir değer veya türünde bir değer tek bir değer için başka bir tür (örneğin, dönüştürme enum değerleri için ve veritabanı dizelerini.) olabilir
+Değer dönüştürücüler, veritabanına yazma veya okuma dönüştürülecek özellik değerlerini sağlar. Bu dönüştürme diğerine (örneğin, şifreleme dizeleri) aynı türde bir değer veya başka bir tür (örneğin, dönüştürme sabit listesi değerleri dizeleri veritabanındaki gelen ve giden.) bir değer için bir tür değeri olabilir.
 
 ## <a name="fundamentals"></a>Temeller
 
-Değer dönüştürücüler cinsinden belirtilen bir `ModelClrType` ve `ProviderClrType`. Model türü varlık türü özelliğinde .NET türüdür. Sağlayıcı türü sağlayıcısı tarafından anlaşılan .NET türüdür. Örneğin veritabanında dize olarak numaralandırmaları kaydetmek için model türü enum türünde ve sağlayıcı türü `String`. Bu iki tür aynı olabilir.
+Değer dönüştürücüler açısından belirtilen bir `ModelClrType` ve `ProviderClrType`. Model türü varlık türü özelliği .NET türüdür. Sağlayıcı türü, veritabanı sağlayıcısı tarafından anlaşılan .NET türüdür. Örneğin, numaralandırmalar veritabanında dize olarak kaydetmek için model türü sabit listesi türüdür ve sağlayıcı türüdür `String`. Bu iki tür aynı olabilir.
 
-Dönüşümleri, iki kullanılarak tanımlanır `Func` ifade ağaçları: birinden `ModelClrType` için `ProviderClrType` ve diğer `ProviderClrType` için `ModelClrType`. İfade ağaçları verimli dönüştürmeleri için veritabanı erişim koda derlenebilir için kullanılır. Karmaşık dönüştürmeleri için ifade ağacına basit bir dönüştürme gerçekleştirdiği bir yöntem çağrısı olabilir.
+Dönüştürme, iki kullanılarak tanımlanır `Func` ifade ağaçları: birinden `ModelClrType` için `ProviderClrType` ve diğer `ProviderClrType` için `ModelClrType`. İfade ağaçları verimli dönüştürmeler için veritabanı erişim kodun içine derlenebilir için kullanılır. İfade ağacı, karmaşık dönüştürmeleri için basit bir dönüştürme uygulayan bir yöntem çağrısı olabilir.
 
-## <a name="configuring-a-value-converter"></a>Değer dönüştürücüsü yapılandırma
+## <a name="configuring-a-value-converter"></a>Bir değer dönüştürücü yapılandırma
 
-Değer dönüşümler, DbContext OnModelCreating özelliklerinde tanımlanır. Örneğin, bir enum ve varlık türü olarak tanımlanmış göz önünde bulundurun:
+Değer dönüştürmeleri, DbContext, OnModelCreating özelliklerinde tanımlanır. Örneğin, bir sabit listesi ve varlık türü olarak tanımlanmış göz önünde bulundurun:
 ```Csharp
 public class Rider
 {
@@ -44,7 +44,7 @@ public enum EquineBeast
     Unicorn
 }
 ```
-Ardından dönüştürmeleri enum değerleri dize olarak (örneğin depolamak için OnModelCreating içinde tanımlanmış olması "Donkey", "Mule",...) Veritabanı:
+Ardından dönüştürmeleri OnModelCreating enum değerlerinden, dize (örneğin, "Donkey", "Mule",...) veritabanı olarak depolamak için tanımlanabilir:
 ```Csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
@@ -57,11 +57,11 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 > [!NOTE]  
-> A `null` değeri için bir değer dönüştürücüsü hiçbir zaman geçirilecektir. Bu dönüşümleri uygulama kolaylaştırır ve bunları boş değer atanabilir ve null özellikleri arasında paylaşılmasına izin verir.
+> A `null` değeri için bir değer dönüştürücü hiçbir zaman geçirilir. Bu dönüştürmeler uygulamasını kolaylaştırır ve boş değer atanabilir ve NULL olmayan özellikler arasında paylaşılmasına olanak sağlar.
 
 ## <a name="the-valueconverter-class"></a>ValueConverter sınıfı
 
-Çağırma `HasConversion` oluşturacak yukarıda gösterildiği gibi bir `ValueConverter` örneği ve özelliği ayarlayın. `ValueConverter` Yerine açıkça oluşturulabilir. Örneğin:
+Çağırma `HasConversion` oluşturacaktır yukarıda gösterildiği gibi bir `ValueConverter` örneği ve özelliği ayarlayın. `ValueConverter` Yerine açıkça oluşturulabilir. Örneğin:
 ```Csharp
 var converter = new ValueConverter<EquineBeast, string>(
     v => v.ToString(),
@@ -72,37 +72,37 @@ modelBuilder
     .Property(e => e.Mount)
     .HasConversion(converter);
 ```
-Birden çok özellikleri aynı dönüştürme kullandığınızda bu yararlı olabilir.
+Birden çok özellik aynı dönüştürme kullandığınızda bu yararlı olabilir.
 
 > [!NOTE]  
-> Şu anda tek bir yerde her özellik belirli bir türde aynı değer dönüştürücüsü kullanması gerektiğini belirtmek için bir yolu yoktur. Bu özellik için gelecekteki bir sürüm olarak kabul edilir.
+> Şu anda tek bir yerde, her özellik, belirli bir türde aynı değer dönüştürücü kullanması gerektiğini belirtmek için bir yolu yoktur. Bu özellik, gelecekteki sürümlerde sunulması kabul edilir.
 
 ## <a name="built-in-converters"></a>Yerleşik dönüştürücüler
 
-EF çekirdek gelir bir dizi önceden tanımlanmış `ValueConverter` bulunan sınıflar, `Microsoft.EntityFrameworkCore.Storage.ValueConversion` ad alanı. Bunlar:
-* `BoolToZeroOneConverter` -Bool sıfır ve
+EF Core yüklenebilen bir dizi önceden tanımlanmış `ValueConverter` bulunan sınıfları, `Microsoft.EntityFrameworkCore.Storage.ValueConversion` ad alanı. Bunlar:
+* `BoolToZeroOneConverter` -Sıfır ve Bool
 * `BoolToStringConverter` -"Y" ve "N" gibi dizelere Bool
-* `BoolToTwoValuesConverter` -Bool herhangi iki değer için
+* `BoolToTwoValuesConverter` -Her iki değer için Bool
 * `BytesToStringConverter` -Base64 ile kodlanmış dizeye bayt dizisi
-* `CastingConverter` -Yalnızca Csharp cast gerektiren dönüşümleri
-* `CharToStringConverter` -Tek bir karakter dizesine char
-* `DateTimeOffsetToBinaryConverter` -DateTimeOffset ikili olarak kodlanmış 64-bit değeri
-* `DateTimeOffsetToBytesConverter` -DateTimeOffset Bayt dizisine
+* `CastingConverter` -Yalnızca bir Csharp tür dönüştürme gerektiren dönüştürmeler
+* `CharToStringConverter` -Tek bir karakter dizesindeki bir karakter
+* `DateTimeOffsetToBinaryConverter` -İkili Kodlanmış 64-bit değere DateTimeOffset
+* `DateTimeOffsetToBytesConverter` -Bayt dizisine DateTimeOffset
 * `DateTimeOffsetToStringConverter` -DateTimeOffset dizeye
-* `DateTimeToBinaryConverter` -DateTimeKind dahil olmak üzere 64-bit değerine tarih saat
+* `DateTimeToBinaryConverter` -64-bit değere DateTimeKind dahil olmak üzere tarih saat
 * `DateTimeToStringConverter` -Dizeye tarih saat
-* `DateTimeToTicksConverter` -Ticks için tarih saat
-* `EnumToNumberConverter` -Temel alınan sayı Enum
-* `EnumToStringConverter` -Enum dizeye
-* `GuidToBytesConverter` -Guid Bayt dizisine
-* `GuidToStringConverter` -GUID dize olarak
-* `NumberToBytesConverter` -Herhangi bir sayısal değer Bayt dizisine
-* `NumberToStringConverter` -Herhangi bir sayısal dize değerine
-* `StringToBytesConverter` -UTF8 bayt dize
-* `TimeSpanToStringConverter` -TimeSpan dizeye
-* `TimeSpanToTicksConverter` -Çizgilerine TimeSpan
+* `DateTimeToTicksConverter` -Saat döngüsü için tarih saat
+* `EnumToNumberConverter` -Temel alınan sayı sabit listesi
+* `EnumToStringConverter` -Dize sabit listesi
+* `GuidToBytesConverter` -Bayt dizisine GUID
+* `GuidToStringConverter` -GUID dizesi
+* `NumberToBytesConverter` -Bayt dizisine herhangi bir sayısal değer
+* `NumberToStringConverter` -Herhangi bir sayısal değer dizesi
+* `StringToBytesConverter` -UTF8 baytı dize
+* `TimeSpanToStringConverter` -Dize zaman aralığı
+* `TimeSpanToTicksConverter` -TimeSpan işaretleri
 
-Dikkat `EnumToStringConverter` bu listede yer. Başka bir deyişle, dönüştürme yukarıda gösterildiği gibi açık olarak belirtmek için gerek yoktur. Bunun yerine, yalnızca yerleşik dönüştürücü kullanın:
+Dikkat `EnumToStringConverter` bu listede bulunuyor. Başka bir deyişle, dönüştürme açıkça, yukarıda gösterildiği gibi belirtmek için gerek yoktur. Bunun yerine, yalnızca yerleşik dönüştürücü kullanın:
 ```Csharp
 var converter = new EnumToStringConverter<EquineBeast>();
 
@@ -111,18 +111,18 @@ modelBuilder
     .Property(e => e.Mount)
     .HasConversion(converter);
 ```
-Tüm yerleşik dönüştürücüler durum bilgisiz ve bu nedenle tek bir örnek güvenli bir şekilde birden çok özellikleri tarafından paylaşılabilir unutmayın.
+Tüm yerleşik dönüştürücüler durum bilgisiz olduğundan ve bu nedenle tek bir örnek güvenli bir şekilde birden çok özellik tarafından paylaşılabilir unutmayın.
 
-## <a name="pre-defined-conversions"></a>Önceden tanımlanmış dönüşümleri
+## <a name="pre-defined-conversions"></a>Önceden tanımlı dönüştürmeler
 
-Yerleşik bir dönüştürücü bulunduğu ortak dönüştürmelerde dönüştürücü açıkça belirtmek için gerek yoktur. Bunun yerine, yalnızca hangi sağlayıcı türü kullanılmalıdır yapılandırın ve EF otomatik olarak uygun yapı dönüştürücü kullanır. Enum dize dönüştürmeleri için yukarıdaki örnek olarak kullanılır, ancak sağlayıcı türü yapılandırılmışsa EF gerçekte bu otomatik olarak yapar:
+Yerleşik bir dönüştürücü bulunduğu ortak dönüştürmeleri için dönüştürücü açıkça belirtmek için gerek yoktur. Bunun yerine, hangi sağlayıcı türü kullanılmalıdır yapılandırılması ve EF uygun yapı dönüştürücü otomatik olarak kullanacak. Enum dize dönüştürme için yukarıdaki örnek olarak kullanılır, ancak bu sağlayıcı türü yapılandırılmışsa EF aslında bu otomatik olarak yapar:
 ```Csharp
 modelBuilder
     .Entity<Rider>()
     .Property(e => e.Mount)
     .HasConversion<string>();
 ```
-Aynı şey açıkça sütun türü belirterek elde edilebilir. Örneğin, varlık türü tanımlanmışsa gibi şekilde:
+Sütun türünü açıkça belirterek aynı şeyi elde edilebilir. Örneğin, varlık türü tanımladıysanız gibi için:
 ```Csharp
 public class Rider
 {
@@ -132,12 +132,12 @@ public class Rider
     public EquineBeast Mount { get; set; }
 }
 ```
-Ardından enum değerleri, dize OnModelCreating içinde başka bir yapılandırma olmadan veritabanı olarak kaydedilir.
+Ardından enum değerlerinden, dize OnModelCreating içinde başka bir yapılandırma olmadan olarak kaydedilir.
 
 ## <a name="limitations"></a>Sınırlamalar
 
-Değer dönüştürmesi sistem birkaç bilinen geçerli sınırlamalar vardır:
-* Yukarıda belirtildiği gibi `null` dönüştürülemiyor.
-* Şu anda bir özellik dönüştürülmesi birden çok sütun ya da tam tersini yayılan mümkün değildir.
-* Değer dönüşümler kullanımını EF çekirdek SQL ifadeleri Çevir yeteneğini etkileyebilir. Bir uyarı için bu gibi durumlarda günlüğe kaydedilir.
-Bu sınırlamalara kaldırılması için gelecekteki bir sürüm kabul edilir.
+Değer dönüştürmeyle sistemin bazı bilinen geçerli sınırlamalar vardır:
+* Yukarıda belirtildiği gibi `null` dönüştürülemez.
+* Şu anda birden çok sütun veya tam tersi bir özelliğin dönüştürme yaymak için bir yolu yoktur.
+* Değer dönüştürmeleri kullanımını EF Core için SQL deyimleri Çevir yeteneğini etkileyebilir. Böyle durumlarda, bir uyarı günlüğe kaydedilir.
+Bu sınırlamalar kaldırılmasını gelecekteki sürümlerde sunulması kabul edilir.

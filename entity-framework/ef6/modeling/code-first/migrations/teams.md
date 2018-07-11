@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 4c2d9a95-de6f-4e97-9738-c1f8043eff69
 caps.latest.revision: 3
-ms.openlocfilehash: 76005fcf1a4a07f746da13cb1c67d8d185e675c6
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 6a29fe3ab3aa6b9a51bea54706490f143e860a48
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912732"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949307"
 ---
 # <a name="code-first-migrations-in-team-environments"></a>Takım ortamları Code First geçişleri
 > [!NOTE]
@@ -148,7 +148,7 @@ Aşağıdaki işlem, kaynak denetiminden eşitlenmesi gereken değişiklikleri o
 3.  Çalıştırma **veritabanını Güncelleştir** diğer geliştiriciler iade herhangi bir yeni geçişler uygulamak için.
     **
     *Not: *** tüm uyarılar veritabanını Güncelleştir komutundan elde etmezsiniz sonra hiçbir yeni geçiş diğer geliştiricilerden vardı ve herhangi ek birleştirme gerçekleştirmek için gerek yoktur.*
-4.  Çalıştırma **Ekle-geçiş &lt;çekme\_bir\_adı&gt; – IgnoreChanges** (örneğin **Ekle geçiş birleştirme – IgnoreChanges**). Bu (geçerli modelinkiyle anlık görüntüsünü dahil) tüm meta verileriyle bir geçiş oluşturur, ancak geçerli model için son geçişlerin anlık karşılaştırılırken algıladığı herhangi bir değişiklik göz ardı eder (boş alma anlamı **yukarı** ve **Aşağı** yöntemi).
+4.  Çalıştırma **Ekle geçiş &lt;çekme\_bir\_adı&gt; – IgnoreChanges** (örneğin, **Ekle geçiş birleştirme – IgnoreChanges**). Bu (geçerli modelinkiyle anlık görüntüsünü dahil) tüm meta verileriyle bir geçiş oluşturur, ancak geçerli model için son geçişlerin anlık karşılaştırılırken algıladığı herhangi bir değişiklik göz ardı eder (boş alma anlamı **yukarı** ve **Aşağı** yöntemi).
 5.  Geliştirmeye devam veya kaynak denetimi (birim Elbette testleri sonra) gönderin.
 
 İşte Geliştirici durumunu \#2 yerel kod bu yaklaşım kullandıktan sonra temel.
@@ -159,7 +159,7 @@ Aşağıdaki işlem, kaynak denetiminden eşitlenmesi gereken değişiklikleri o
 
 Bu seçenek seçeneği 1 çok benzer, ancak ek boş geçişi – çünkü kaldırır, ek bir kod dosyalarında çözüm isteyen şimdi yüz tanıma.
 
-**Bu yaklaşım yalnızca en son geçiş, yalnızca yerel kod tabanınızın var ve henüz (yani son geçiş oluşturulduğu birleştirme yapan kullanıcı tarafından) kaynak denetimine gönderilmedi uygulanabilirdir**. Diğer geliştiricilerin zaten kendi geliştirme veritabanı – veya hatta uyguladınız geçişleri meta verilerini düzenleme daha da kötüsü üretim veritabanına – uygulanan beklenmeyen etkilere neden olabilir. İşlem sırasında son geçişi yerel veritabanımızda yer geri ve güncelleştirilmiş meta verileriyle yeniden uygulamak için ekleyeceğiz.
+**Bu yaklaşım yalnızca en son geçiş, yalnızca yerel kod tabanınızın var ve (örneğin, son geçiş birleştirme yapan kullanıcı tarafından oluşturulmuşsa) henüz kaynak denetimine gönderilmedi uygulanabilirdir**. Diğer geliştiricilerin zaten kendi geliştirme veritabanı – veya hatta uyguladınız geçişleri meta verilerini düzenleme daha da kötüsü üretim veritabanına – uygulanan beklenmeyen etkilere neden olabilir. İşlem sırasında son geçişi yerel veritabanımızda yer geri ve güncelleştirilmiş meta verileriyle yeniden uygulamak için ekleyeceğiz.
 
 Yalnızca son geçiş gereksinimlerini yerel kod tabanı sayısı veya devam geçişleri sırasını kısıtlama yoktur olması. Birden çok geçiş birden çok farklı geliştiricilerden olabilir ve aynı adımları uygulayın: biz yalnızca iki basit tutmak için arıyorsunuz.
 

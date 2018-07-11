@@ -6,12 +6,12 @@ ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 ms.technology: entity-framework-core
 uid: core/saving/cascade-delete
-ms.openlocfilehash: 2c50d94aafb3788761efc4225b6340a8e0da712d
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 7e1c87ae3a955c22b267a108ea7c2bb504e9acc3
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37911566"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949292"
 ---
 # <a name="cascade-delete"></a>Art arda silme
 
@@ -28,7 +28,7 @@ EF sorumlusu/üst varlık silinmiş ya da alt ilişkinin yazıyordunuz üç eyle
 * Alt değişmeden kalır.
 
 > [!NOTE]  
-> EF Core modelinde yapılandırılmış silme davranışı, yalnızca bağımlı varlıkları bellekte (yani izlenen bağımlılıklar için) yüklenir ve EF Core kullanarak asıl varlık silinmiş uygulanır. Karşılık gelen bir cascade davranış bağlam tarafından izlenmiyor veri emin olmak için Veritabanı Kurulumu uygulanan gerekli eylem sahip olması gerekir. EF Core veritabanını oluşturmak için kullanıyorsanız, bu cascade davranışı için Kurulum olacaktır.
+> EF Core modelinde yapılandırılmış silme davranışı, yalnızca birincil varlık EF Core kullanarak silinir ve bağımlı varlıkları belleğe yüklenen uygulanır (yani, izlenen bağımlılıklar için). Karşılık gelen bir cascade davranış bağlam tarafından izlenmiyor veri emin olmak için Veritabanı Kurulumu uygulanan gerekli eylem sahip olması gerekir. EF Core veritabanını oluşturmak için kullanıyorsanız, bu cascade davranışı için Kurulum olacaktır.
 
 Bir yabancı anahtar değeri null olarak ayarlama özelliği Yukarıdaki ikinci eylem için yabancı anahtar null değilse geçerli değil. (Atanamaz yabancı anahtar gerekli bir ilişki eşdeğerdir.) Bu gibi durumlarda, değişiklik veritabanına kalıcı olamayacağından, aynı zamanda bir özel durum SaveChanges çağrılana kadar yabancı anahtar özelliği null işaretlenmiş olduğundan, EF Core izler. Bu, bir kısıtlama ihlali veritabanından alma için benzer.
 

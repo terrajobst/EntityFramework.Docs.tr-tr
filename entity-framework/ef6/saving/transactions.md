@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 0d0f1824-d781-4cb3-8fda-b7eaefced1cd
 caps.latest.revision: 3
-ms.openlocfilehash: 4f5408951f14d70a6f49818985f57c6ee88bfb5d
-ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
+ms.openlocfilehash: 4238c88cc149458ed11b96a0bf9aaed9aac40b2d
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914268"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949240"
 ---
 # <a name="working-with-transactions"></a>İşlemleri ile çalışma
 > [!NOTE]
@@ -110,7 +110,7 @@ Bazen bir işlem kapsam içinde bile daha geniş olduğu ve işlemleri aynı ver
 Bunu yapmak için tanımlayın ve mevcut i) bir bağlantı parametresi ve ii) contextOwnsConnection Boole alan DbContext oluşturucular birinden devralan bağlam sınıfınızın bir oluşturucu kullanın.  
 
 > [!NOTE]
-> Bu senaryoda çağrıldığında false contextOwnsConnection bayrağı ayarlanmalıdır. Entity Framework ile bittiğinde, bağlantı kapatmayın bildirir gibi önemli budur (örn: aşağıdaki 4 satır bakın):  
+> Bu senaryoda çağrıldığında false contextOwnsConnection bayrağı ayarlanmalıdır. Entity Framework ile bittiğinde, bağlantı kapatmayın bildirir gibi önemli budur (örneğin, aşağıdaki 4 satır bakın):  
 
 ``` csharp
 using (var conn = new SqlConnection("..."))
@@ -191,7 +191,7 @@ Geçerli işlem için Entity Framework'ün bilgisini temizlemek için Database.U
 İşlem başarılı olursa Database.UseTransaction() adresinden bir özel durum görürsünüz olduğunda:  
 - Entity Framework var olan bir işlem zaten var.  
 - Entity Framework bir TransactionScope içinde zaten çalışıyor  
-- Geçirilen işlemde bağlantı nesnesi null (yani bir tane olduğundan bu işlem zaten tamamlanmış bir oturum bağlantı – genellikle olan)  
+- Geçirilen işlemde bağlantı nesnesi null olur. Diğer bir deyişle, işlem bir bağlantıyla ilişkili değil: genellikle bu, işlem zaten tamamlanmış bir oturum açma adıdır.  
 - Geçirilen işlemde bağlantı nesnesi, Entity Framework'ün bağlantı eşleşmiyor.  
 
 ## <a name="using-transactions-with-other-features"></a>Diğer özelliklerle işlemleri kullanma  

@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 13886d24-2c74-4a00-89eb-aa0dee328d83
 caps.latest.revision: 3
-ms.openlocfilehash: da63d36e76b9658a17557707076073be4c1cd95e
-ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
+ms.openlocfilehash: d6a33434e582fcd7ce756b447d7f2cbab4ca43ec
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914235"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37949031"
 ---
 # <a name="code-based-configuration"></a>Kod tabanlı yapılandırma
 > [!NOTE]
@@ -126,6 +126,6 @@ MyProviderServices ve MyConnectionFactory üzerindeki kodda, hizmet uygulamalar�
 
 Ayrıca, aynı etkiyi görmek için ek bağımlılık işleyicileri ekleyebilirsiniz.  
 
-DbProviderFactory bu şekilde sarabilirsiniz, ancak bunun yapılması yalnızca EF etkili olur ve DbProviderFactory EF dışında kullanımları değil unutmayın. Bu nedenle büyük olasılıkla önce sahip olduğunuz DbProviderFactory sarmalamak devam etmek istersiniz.  
+DbProviderFactory bu şekilde sarabilirsiniz, ancak bunu yaparsanız bu nedenle yalnızca EF ve DbProviderFactory EF dışında kullanımları etkiler unutmayın. Bu nedenle büyük olasılıkla önce sahip olduğunuz DbProviderFactory sarmalamak devam etmek istersiniz.  
 
-Ayrıca, uygulamanıza - örneğin Paket Yöneticisi konsolundan geçişin çalıştırılması harici olarak çalışan hizmetlerin aklınızda tutmanız gerekir. Programını çalıştırdığınızda, DbConfiguration bulmayı dener konsoldan geçirin. Ancak alınıp alınmayacağını Sarmalanan hizmet alırsınız nerede bağlıdır kayıtlı olay işleyicisi. DbConfiguration, oluşumunu bir parçası olarak kayıtlı değilse kod yürütülmesi gerektiğini ve hizmet sarmalanmış. Genellikle bu durum olmaz ve bu araçları Sarmalanan hizmet vermeyeceğiz anlamına gelir.  
+Geçişler Paket Yöneticisi konsolundan çalıştırırken harici olarak uygulamanıza - Örneğin, çalışan hizmetleri de aklınızda tutmanız gerekir. Programını çalıştırdığınızda, DbConfiguration bulmayı dener konsoldan geçirin. Ancak alınıp alınmayacağını Sarmalanan hizmet alırsınız nerede bağlıdır kayıtlı olay işleyicisi. DbConfiguration, oluşumunu bir parçası olarak kayıtlı değilse kod yürütülmesi gerektiğini ve hizmet sarmalanmış. Genellikle bu durum olmaz ve bu araçları Sarmalanan hizmet vermeyeceğiz anlamına gelir.  

@@ -1,39 +1,39 @@
 ---
-title: Hızlı bir genel bakış - EF çekirdek
+title: Hızlı genel bakış - EF Core
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: bc2a2676-bc46-493f-bf49-e3cc97994d57
 ms.technology: entity-framework-core
 uid: core/index
-ms.openlocfilehash: 3befcbd3ff3da5dd159e6e6cb5fe7140c81317c2
-ms.sourcegitcommit: a2b38dedc88ca3ccbfe7b1db9602ca02da8294cd
+ms.openlocfilehash: 103e5e069687950a8411f2d92c7b5a191844e0ae
+ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 06/04/2018
-ms.locfileid: "34686668"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37948996"
 ---
-# <a name="entity-framework-core-quick-overview"></a>Entity Framework Çekirdek hızlı bir genel bakış
+# <a name="entity-framework-core-quick-overview"></a>Entity Framework Core hızlı genel bakış
 
-Hafif, Genişletilebilir, Entity Framework (EF) çekirdeği olur ve platformlar arası sürümü popüler Entity Framework verilerine erişim teknolojisini.
+Entity Framework (EF) Core hafif, Genişletilebilir, ve platformlar arası sürümüne popüler Entity Framework Veri erişim teknolojisi.
 
-EF çekirdek .NET nesneleri kullanarak bir veritabanı ile çalışmak .NET geliştiricilerinin etkinleştirme bir nesne ilişkisel Eşleyici (O/RM) olarak hizmet verebilir ve veri erişim kodu çoğunu gereksinimini genellikle yazma gerekir. 
+EF Core, .NET geliştiricilerinin .NET nesneleri kullanarak bir veritabanıyla çalışmasına etkinleştirme bir nesne ilişkisel eşleyicidir (O/RM) olarak hizmet verebilir ve çoğu veri erişim kodu gereksinimini ortadan bunlar genellikle yazmanız gerekir.
 
-EF çekirdek destekleyen birçok veritabanı motoru, bkz: [veritabanı sağlayıcıları](providers/index.md) Ayrıntılar için.
+EF Core birçok veritabanı altyapılarını destekleyen, bkz: [veritabanı sağlayıcıları](providers/index.md) Ayrıntılar için.
 
-Kod yazarak öğrenmek istiyorsanız, aşağıdakilerden birini öneririz bizim [Başlarken](get-started/index.md) elde kılavuzlara EF çekirdek ile başlatıldı.
+Kod yazarak öğrenmek istiyorsanız, aşağıdakilerden birini öneririz bizim [Başlarken](get-started/index.md) başlamanızı sağlayacak kılavuzları EF Core ile çalışmaya.
 
-## <a name="what-is-new-in-ef-core"></a>EF çekirdek yenilikler nelerdir?
+## <a name="what-is-new-in-ef-core"></a>EF Core yenilikleri
 
-EF çekirdek bilgi sahibiyseniz ve en son sürümlerini ayrıntılara düz atlamak istiyorsanız:
+EF Core ile ilgili bilgi sahibi olduğunuz ve doğrudan en son sürümlerine ayrıntılarına gitmek istediğiniz varsa:
 
-- **[EF çekirdek 2.1 yenilikler nelerdir?](xref:core/what-is-new/ef-core-2.1)**
-- **[EF çekirdek mevcut uygulamalarına yükseltme 2.x](xref:core/miscellaneous/1x-2x-upgrade)**
+- **[EF Core 2.1 yenilikler nelerdir?](xref:core/what-is-new/ef-core-2.1)**
+- **[EF Core için var olan uygulamaları yükseltme 2.x](xref:core/miscellaneous/1x-2x-upgrade)**
 
 
-## <a name="get-entity-framework-core"></a>Entity Framework Çekirdek Al
+## <a name="get-entity-framework-core"></a>Entity Framework Core Al
 
-[NuGet paket yüklemesi](https://docs.nuget.org/ndocs/quickstart/use-a-package) için kullanmak istediğiniz veritabanı sağlayıcısı. Örneğin platformlar arası geliştirme kullanarak SQL Server Sağlayıcısı'nı yüklemek için `dotnet` komut satırı aracı:
+[NuGet paketini yüklemek](https://docs.nuget.org/ndocs/quickstart/use-a-package) için kullanmak istediğiniz veritabanı sağlayıcısı. Örneğin, SQL Server sağlayıcısı platformlar arası geliştirme kullanarak yüklemek için `dotnet` aracında komut satırı:
 
 ``` Console
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
@@ -44,13 +44,13 @@ Veya Visual Studio'da Paket Yöneticisi konsolu kullanarak:
 ``` PowerShell
 Install-Package Microsoft.EntityFrameworkCore.SqlServer
 ```
-Bkz: [veritabanı sağlayıcıları](providers/index.md) kullanılabilir sağlayıcılar hakkında bilgi için ve [yükleme EF çekirdek](get-started/install/index.md) yükleme adımlarını ayrıntılı için.
+Bkz: [veritabanı sağlayıcıları](providers/index.md) yok sağlayıcıları hakkında daha fazla bilgi ve [yükleme EF Core](get-started/install/index.md) daha ayrıntılı yükleme adımları için.
 
-## <a name="the-model"></a>Modeli
+## <a name="the-model"></a>Model
 
-EF çekirdek ile veri erişim modeli kullanılarak gerçekleştirilir. Bir model sınıflar ve sorgu ve veri kaydetmenize olanak veren veritabanı, oturumla temsil eden bir türetilmiş bağlamı oluşur. Bkz: [bir Model oluşturma](modeling/index.md) daha fazla bilgi için.
+EF Core ile veri erişimi, bir modeli kullanılarak gerçekleştirilir. Bir modeli varlık sınıfları ve böylece sorgu ve veri kaydetmek, veritabanı ile bir oturumu temsil eden türetilmiş bir bağlam oluşur. Bkz: [Model oluşturma](modeling/index.md) daha fazla bilgi için.
 
-Varolan bir veritabanından bir model oluşturmak, veritabanınızı eşleştirmek için bir model kod el veya modelinizin dışında bir veritabanı oluşturmak için (ve modelinizi zaman içinde değiştikçe gelişmesi için) EF geçişler kullanın.
+Varolan bir veritabanından bir model oluşturmak, kod, veritabanıyla eşleşmesi için bir model el veya modelinizden bir veritabanı oluşturmak (ve modelinizi zamanla değiştikçe evrim geçiren için) EF geçişleri kullanın.
 
 ``` csharp
 using Microsoft.EntityFrameworkCore;
@@ -91,7 +91,7 @@ namespace Intro
 
 ## <a name="querying"></a>Sorgulama
 
-Varlık sınıfların örneklerini dil tümleşik sorgu (LINQ) kullanarak veritabanından alınır. Bkz: [veri sorgulama](querying/index.md) daha fazla bilgi için.
+Varlık sınıflarının örneklerini dil tümleşik sorgu (LINQ) kullanarak veritabanından alınır. Bkz: [veri sorgulama](querying/index.md) daha fazla bilgi için.
 
 ``` csharp
 using (var db = new BloggingContext())
@@ -105,7 +105,7 @@ using (var db = new BloggingContext())
 
 ## <a name="saving-data"></a>Verileri Kaydetme
 
-Veri oluşturulur, silinmiş ve varlık sınıfların örneklerini kullanarak veritabanında değiştirildi. Bkz: [verileri kaydetme](saving/index.md) daha fazla bilgi için.
+Veri oluşturulan, silinen ve örnekleri, varlık sınıfları kullanarak veritabanında değiştirildi. Bkz: [verileri kaydetme](saving/index.md) daha fazla bilgi için.
 
 ``` csharp
 using (var db = new BloggingContext())
