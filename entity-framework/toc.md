@@ -12,7 +12,7 @@
 
 ## [Entity Framework Core](core/index.md)
 
-### [EF Core yenilikleri](core/what-is-new/index.md)
+### [Yenilikler](core/what-is-new/index.md)
 #### [EF Core Roadmap](core/what-is-new/roadmap.md)
 #### [EF Core 2.1](core/what-is-new/ef-core-2.1.md)
 #### [EF Core 2.0](core/what-is-new/ef-core-2.0.md)
@@ -67,6 +67,16 @@
 ##### [Alternatif Anahtarlar (Benzersiz Kısıtlamalar)](core/modeling/relational/unique-constraints.md)
 ##### [Devralma (İlişkisel Veritabanı)](core/modeling/relational/inheritance.md)
 
+### [Veritabanı Şemalarını Yönetme](core/managing-schemas/index.md)
+#### [Geçişler](core/managing-schemas/migrations/index.md)
+##### [Takım Ortamları](core/managing-schemas/migrations/teams.md)
+##### [Özel İşlemler](core/managing-schemas/migrations/operations.md)
+##### [Ayrı Proje Kullanma](core/managing-schemas/migrations/projects.md)
+##### [Birden Çok Sağlayıcı](core/managing-schemas/migrations/providers.md)
+##### [Özel Geçmiş Tablosu](core/managing-schemas/migrations/history-table.md)
+#### [🔧 API Oluşturma ve Bırakma](core/managing-schemas/ensure-created.md)
+#### [🔧 Tersine Mühendislik](core/managing-schemas/scaffolding.md)
+
 ### [Verileri Sorgulama](core/querying/index.md)
 #### [Temel Sorgu](core/querying/basic.md)
 #### [İlgili Verileri Yükleme](core/querying/related-data.md)
@@ -97,23 +107,13 @@
 #### [InMemory (Test için)](core/providers/in-memory/index.md)
 #### [Veritabanı Sağlayıcısı Yazma](core/providers/writing-a-provider.md)
 
-### [Veritabanı Şemalarını Yönetme](core/managing-schemas/index.md)
-#### [Geçişler](core/managing-schemas/migrations/index.md)
-##### [Takım Ortamları](core/managing-schemas/migrations/teams.md)
-##### [Özel İşlemler](core/managing-schemas/migrations/operations.md)
-##### [Ayrı Proje Kullanma](core/managing-schemas/migrations/projects.md)
-##### [Birden Çok Sağlayıcı](core/managing-schemas/migrations/providers.md)
-##### [Özel Geçmiş Tablosu](core/managing-schemas/migrations/history-table.md)
-#### [🔧 API Oluşturma ve Bırakma](core/managing-schemas/ensure-created.md)
-#### [🔧 Tersine Mühendislik](core/managing-schemas/scaffolding.md)
+### [Araçlar ve Uzantılar](core/extensions/index.md)
 
 ### [Komut Satırı Başvurusu](core/miscellaneous/cli/index.md)
 #### [Paket Yöneticisi Konsolu (Visual Studio)](core/miscellaneous/cli/powershell.md)
 #### [.NET Core CLI](core/miscellaneous/cli/dotnet.md)
 #### [Tasarım Zamanında DbContext Oluşturma](core/miscellaneous/cli/dbcontext-creation.md)
 #### [Tasarım Zamanı Hizmetleri](core/miscellaneous/cli/services.md)
-
-### [Araçlar ve Uzantılar](core/extensions/index.md)
 
 ### Çeşitli
 #### [Bağlantı Dizeleri](core/miscellaneous/connection-strings.md)
@@ -127,8 +127,158 @@
 #### [1.0 RC2’den RTM’ye yükseltme](core/miscellaneous/rc2-rtm-upgrade.md)
 #### [EF Core 2.0 sürümüne yükseltme](core/miscellaneous/1x-2x-upgrade.md)
 
-### [⤤ API Başvurusu](https://docs.microsoft.com/dotnet/api/?view=efcore-2.1)
+### [⤤ EF Core API Başvurusu](https://docs.microsoft.com/dotnet/api/?view=efcore-2.1)
 
 ## [Entity Framework 6](ef6/index.md)
-### [⤤ Belgeleri](http://msdn.com/data/ef)
-### [⤤ API Başvurusu](https://msdn.microsoft.com/library/dn223258.aspx)
+
+### [Yenilikler](ef6/what-is-new/index.md)
+#### [Yol Haritası](ef6/what-is-new/roadmap.md)
+#### [Geçmiş Yayınlar](ef6/what-is-new/past-releases.md)
+#### [EF6 sürümüne yükseltme](ef6/what-is-new/upgrading-to-ef6.md)
+#### [Visual Studio Yayınları](ef6/what-is-new/visual-studio.md)
+
+### [Başlarken](ef6/get-started.md)
+
+### [Temeller](ef6/fundamentals/index.md)
+#### [Entity Framework Alma](ef6/fundamentals/install.md)
+#### [DbContext ile Çalışma](ef6/fundamentals/working-with-dbcontext.md)
+#### [İlişkileri Anlama](ef6/fundamentals/relationships.md)
+#### [Zaman Uyumsuz Sorgulama ve Kaydetme](ef6/fundamentals/async.md)
+#### Yapılandırma
+##### [Kod Tabanlı](ef6/fundamentals/configuring/code-based.md)
+##### [Yapılandırma Dosyası](ef6/fundamentals/configuring/config-file.md)
+##### [Bağlantı Dizeleri](ef6/fundamentals/configuring/connection-strings.md)
+##### [Bağımlılık Çözümlemesi](ef6/fundamentals/configuring/dependency-resolution.md)
+#### [Bağlantı Yönetimi](ef6/fundamentals/connection-management.md)
+#### Bağlantı Dayanıklılığı
+##### [Yeniden Deneme Mantığı](ef6/fundamentals/connection-resiliency/retry-logic.md)
+##### [İşlem Yürütme Hataları](ef6/fundamentals/connection-resiliency/commit-failures.md)
+#### Veri Bağlama
+##### [WinForms](ef6/fundamentals/databinding/winforms.md)
+##### [WPF](ef6/fundamentals/databinding/wpf.md)
+#### [Bağlantısı Kesilmiş Varlıklar](ef6/fundamentals/disconnected-entities/index.md)
+##### [Kendi Kendine İzleme Varlıkları](ef6/fundamentals/disconnected-entities/self-tracking-entities/index.md)
+###### [İzlenecek Yol](ef6/fundamentals/disconnected-entities/self-tracking-entities/walkthrough.md)
+#### [Günlüğe Kaydetme ve Durdurma](ef6/fundamentals/logging-and-interception.md)
+#### Performans
+##### [Performans Konuları (Teknik İnceleme)](ef6/fundamentals/performance/perf-whitepaper.md)
+##### [NGEN kullanma](ef6/fundamentals/performance/ngen.md)
+##### [Önceden Oluşturulmuş Görünümleri Kullanma](ef6/fundamentals/performance/pre-generated-views.md)
+#### [Sağlayıcılar](ef6/fundamentals/providers/index.md)
+##### [EF6 Sağlayıcı Modeli](ef6/fundamentals/providers/provider-model.md)
+##### [Sağlayıcılarda Uzamsal Destek](ef6/fundamentals/providers/spatial-support.md)
+#### [Proxy'leri Kullanma](ef6/fundamentals/proxies.md)
+#### EF6 ile Test Etme
+##### [Sahte İşlem Kullanma](ef6/fundamentals/testing/mocking.md)
+##### [Kendi Test Çiftlerinizi Yazma](ef6/fundamentals/testing/writing-test-doubles.md)
+##### [EF4 ile Test Edilebilirlik (Makale)](ef6/fundamentals/testing/testability-article.md)
+
+### [Model Oluşturma](ef6/modeling/index.md)
+#### Code First Kullanma
+##### İş Akışları
+###### [Yeni Veritabanı İle](ef6/modeling/code-first/workflows/new-database.md)
+###### [Mevcut Veritabanı İle](ef6/modeling/code-first/workflows/existing-database.md)
+##### [Veri Açıklamaları](ef6/modeling/code-first/data-annotations.md)
+##### [DbSets](ef6/modeling/code-first/dbsets.md)
+##### Veri Türleri
+###### [Sabit listeleri](ef6/modeling/code-first/data-types/enums.md)
+###### [Uzamsal](ef6/modeling/code-first/data-types/spatial.md)
+##### Kurallar
+###### [Yerleşik Kurallar](ef6/modeling/code-first/conventions/built-in.md)
+###### [Özel Kurallar](ef6/modeling/code-first/conventions/custom.md)
+###### [Model Kurallar](ef6/modeling/code-first/conventions/model.md)
+##### Fluent Yapılandırması
+###### [İlişkiler](ef6/modeling/code-first/fluent/relationships.md)
+###### [Türler ve Özellikler](ef6/modeling/code-first/fluent/types-and-properties.md)
+###### [Visual Basic'de Kullanma](ef6/modeling/code-first/fluent/vb.md)
+###### [Saklı Yordam Eşlemesi](ef6/modeling/code-first/fluent/cud-stored-procedures.md)
+##### [Geçişler](ef6/modeling/code-first/migrations/index.md)
+###### [Otomatik Geçişler](ef6/modeling/code-first/migrations/automatic.md)
+###### [Mevcut Veritabanlarıyla Çalışma](ef6/modeling/code-first/migrations/existing-database.md)
+###### [Geçiş Geçmişini Özelleştirme](ef6/modeling/code-first/migrations/history-customization.md)
+###### [Migrate.exe Kullanma](ef6/modeling/code-first/migrations/migrate-exe.md)
+###### [Takım Ortamlarında Geçişler](ef6/modeling/code-first/migrations/teams.md)
+
+#### EF Designer Kullanma
+##### İş Akışları
+###### [Model-First](ef6/modeling/designer/workflows/model-first.md)
+###### [Database-First](ef6/modeling/designer/workflows/database-first.md)
+##### Veri türleri
+###### [Karmaşık Türler](ef6/modeling/designer/data-types/complex-types.md)
+###### [Sabit listeleri](ef6/modeling/designer/data-types/enums.md)
+###### [Uzamsal](ef6/modeling/designer/data-types/spatial.md)
+##### Bölme Eşlemeleri
+###### [Varlık Bölme](ef6/modeling/designer/entity-splitting.md)
+###### [Tablo Bölme](ef6/modeling/designer/table-splitting.md)
+##### Devralma Eşlemeleri
+###### [Hiyerarşi Başına Tablo](ef6/modeling/designer/inheritance/tph.md)
+###### [Tür Başına Tablo](ef6/modeling/designer/inheritance/tpt.md)
+##### Saklı Yordamları Eşleme
+###### [Sorgu](ef6/modeling/designer/stored-procedures/query.md)
+###### [Güncelleştir](ef6/modeling/designer/stored-procedures/cud.md)
+##### [İlişkileri Eşleme](ef6/modeling/designer/relationships.md)
+##### [Birden Fazla Diyagram](ef6/modeling/designer/multiple-diagrams.md)
+##### [Çalışma Zamanı Sürümü Seçme](ef6/modeling/designer/select-runtime-version.md)
+##### [Kod Oluşturma](ef6/modeling/designer/codegen/index.md)
+###### [Eski ObjectContext ](ef6/modeling/designer/codegen/legacy-objectcontext.md)
+##### Gelişmiş
+###### EDMX Dosya Biçimi
+####### [CSDL Belirtimi](ef6/modeling/designer/advanced/edmx/csdl-spec.md)
+####### [MSL Belirtimi](ef6/modeling/designer/advanced/edmx/msl-spec.md)
+####### [SSDL Belirtimi](ef6/modeling/designer/advanced/edmx/ssdl-spec.md)
+###### [Tanımlama Sorgusu](ef6/modeling/designer/advanced/defining-query.md)
+###### [Birden Fazla Sonuç Kümesi](ef6/modeling/designer/advanced/multiple-result-sets.md)
+###### [Tablo Değerli İşlevler](ef6/modeling/designer/advanced/tvfs.md)
+##### [Klavye Kısayolları](ef6/modeling/designer/keyboard-shortcuts.md)
+
+### [Verileri Sorgulama](ef6/querying/index.md)
+#### [Load Metodu](ef6/querying/load-method.md)
+#### [Yerel Veriler](ef6/querying/local-data.md)
+#### [İzleme Yapan ve Yapmayan Sorgular](ef6/querying/no-tracking.md)
+#### [Ham SQL Sorgularını Kullanma](ef6/querying/raw-sql.md)
+#### [İlgili Verileri Sorgulama](ef6/querying/related-data.md)
+
+### [Verileri Kaydetme](ef6/saving/index.md)
+#### Değişiklik İzleme
+##### [Değişiklikleri Otomatik Algılama](ef6/saving/change-tracking/auto-detect-changes.md)
+##### [Varlık Durumu](ef6/saving/change-tracking/entity-state.md)
+##### [Özellik Değerleri](ef6/saving/change-tracking/property-values.md)
+#### [Eşzamanlılık Çakışmalarını İşleme](ef6/saving/concurrency.md)
+#### [İşlemleri Kullanma](ef6/saving/transactions.md)
+#### [Veri Doğrulama](ef6/saving/validation.md)
+
+### [Ek Kaynaklar](ef6/resources/index.md)
+#### [Bloglar](ef6/resources/blogs.md)
+#### [Örnek Olay İncelemeleri](ef6/resources/case-studies.md)
+#### [Yardım Alma](ef6/resources/get-help.md)
+#### [Sözlük](ef6/resources/glossary.md)
+#### [Örnek Okul Veritabanı](ef6/resources/school-database.md)
+#### [Araçlar ve Uzantılar](ef6/resources/tools.md)
+#### Lisanslar
+##### EF5
+###### [Basitleştirilmiş Çince](ef6/resources/licenses/ef5/chs.md)
+###### [Geleneksel Çince](ef6/resources/licenses/ef5/cht.md)
+###### [Almanca](ef6/resources/licenses/ef5/deu.md)
+###### [İngilizce](ef6/resources/licenses/ef5/enu.md)
+###### [İspanyolca](ef6/resources/licenses/ef5/esn.md)
+###### [Fransızca](ef6/resources/licenses/ef5/fra.md)
+###### [İtalyanca](ef6/resources/licenses/ef5/ita.md)
+###### [Japonca](ef6/resources/licenses/ef5/jpn.md)
+###### [Korece](ef6/resources/licenses/ef5/kor.md)
+###### [Rusça](ef6/resources/licenses/ef5/rus.md)
+##### EF6
+###### Ön sürüm
+####### [Alfa](ef6/resources/licenses/ef6/prerelease/alpha.md)
+####### [Beta - Sürüm Adayı](ef6/resources/licenses/ef6/prerelease/beta-rc.md)
+###### [Basitleştirilmiş Çince](ef6/resources/licenses/ef6/chs.md)
+###### [Geleneksel Çince](ef6/resources/licenses/ef6/cht.md)
+###### [Almanca](ef6/resources/licenses/ef6/deu.md)
+###### [İngilizce](ef6/resources/licenses/ef6/enu.md)
+###### [İspanyolca](ef6/resources/licenses/ef6/esn.md)
+###### [Fransızca](ef6/resources/licenses/ef6/fra.md)
+###### [İtalyanca](ef6/resources/licenses/ef6/ita.md)
+###### [Japonca](ef6/resources/licenses/ef6/jpn.md)
+###### [Korece](ef6/resources/licenses/ef6/kor.md)
+###### [Rusça](ef6/resources/licenses/ef6/rus.md)
+
+### [⤤ EF6 API Başvurusu](https://msdn.microsoft.com/library/dn223258.aspx)
