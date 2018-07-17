@@ -9,12 +9,12 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 65bb3db2-2226-44af-8864-caa575cf1b46
 caps.latest.revision: 3
-ms.openlocfilehash: f0319e97d8ca8cfc9c90dac51d2ecbe7a29c1929
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 92467e1a93f576eca627cf7b7d2351054a882c2c
+ms.sourcegitcommit: 00cb52625b57c1ea339ded1454179fe89b6bcfea
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912717"
+ms.lasthandoff: 07/16/2018
+ms.locfileid: "39067553"
 ---
 # <a name="querying-and-finding-entities"></a>Sorgulamak ve varlıkları bulma
 Bu konu LINQ ve bulma yöntemini de dahil olmak üzere, Entity Framework kullanarak verileri sorgulamak farklı yöntemleri kapsar. Bu konuda gösterilen teknikleri Code First ve EF Designer ile oluşturulan modeller için eşit oranda geçerlidir.  
@@ -41,7 +41,7 @@ using (var context = new BloggingContext())
 Olan DB ve IDbSet her zaman veritabanına karşı sorgular oluşturun ve zaten döndürülen varlıklara bağlamında bulunsa bile her zaman veritabanına gidiş dönüş içerecektir unutmayın. Bir sorgu veritabanında yürütüldüğü zaman:  
 
 - Tarafından numaralandırılmış bir **foreach** (C#) veya **her** deyimi (Visual Basic).  
-- Bir toplama işlemi tarafından gibi numaralandırılana [ToArray](https://msdn.microsoft.com/library/bb298736), [ToDictionary](https://msdn.microsoft.com/library/system.linq.enumerable.todictionary), veya ToList[bağlantı açıklamasını buraya girin](https://msdn.microsoft.com/library/bb342261).  
+- Bir toplama işlemi tarafından gibi numaralandırılana [ToArray](https://msdn.microsoft.com/library/bb298736), [ToDictionary](https://msdn.microsoft.com/library/system.linq.enumerable.todictionary), veya [ToList](https://msdn.microsoft.com/library/bb342261).  
 - Gibi LINQ işleçleri [ilk](https://msdn.microsoft.com/library/bb291976) veya [herhangi](https://msdn.microsoft.com/library/bb337697) en dıştaki sorgunun parçası belirtilir.  
 - Aşağıdaki yöntem de çağrıldığında: [yük](https://msdn.microsoft.com/library/system.data.entity.dbextensions.load) genişletme yöntemini bir olan DB [DbEntityEntry.Reload](https://msdn.microsoft.com/library/system.data.entity.infrastructure.dbentityentry.reload.aspx)ve Database.ExecuteSqlCommand.  
 

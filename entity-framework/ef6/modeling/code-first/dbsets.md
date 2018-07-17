@@ -9,15 +9,15 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 4528a509-ace7-4dfb-8065-1b833f5e03a0
 caps.latest.revision: 3
-ms.openlocfilehash: 7be31737ea2e0d321113d8f747fa219533087ad2
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 8a495c6ce74d9a346a84b0e10fb28395f4dce07b
+ms.sourcegitcommit: 00cb52625b57c1ea339ded1454179fe89b6bcfea
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912633"
+ms.lasthandoff: 07/16/2018
+ms.locfileid: "39067492"
 ---
 # <a name="defining-dbsets"></a>DbSets tanımlama
-Code First iş akışıyla geliştirirken, veritabanı oturumla temsil eder ve bir olan DB modelinizdeki her türü için ortaya çıkaran türetilmiş bir DbContext tanımlayın. Bu konu olan DB özelliklerini tanımlamak farklı yöntemleri kapsar.  
+Code First iş akışıyla geliştirirken, veritabanı, oturumla temsil eder ve bir olan DB modelinizdeki her türü için ortaya çıkaran türetilmiş bir DbContext tanımlayın. Bu konu olan DB özelliklerini tanımlamak farklı yöntemleri kapsar.  
 
 ## <a name="dbcontext-with-dbset-properties"></a>DbContext olan DB özellikleri  
 
@@ -31,11 +31,11 @@ public class BloggingContext : DbContext
 }
 ```  
 
-Code First modunda kullanıldığında, bu Unicorn, Princess LadyInWaiting ve Castle varlık türleri yanı sıra diğer türleri bu erişilebilir yapılandırma olarak yapılandırır. Buna ek olarak DbContext otomatik olarak ayarlayıcı uygun olan DB örneğini ayarlamak için bu özelliklerden her biri için çağırır.  
+Code First modunda kullanıldığında, bu blog ve gönderi varlık türleri yanı sıra diğer türleri bu erişilebilir yapılandırma olarak yapılandıracaksınız. Buna ek olarak DbContext otomatik olarak ayarlayıcı uygun olan DB örneğini ayarlamak için bu özelliklerden her biri için çağırır.  
 
 ## <a name="dbcontext-with-idbset-properties"></a>DbContext IDbSet özelliklere sahip  
 
-Ne zaman oluşturma veya mocks fakes, bir arabirim kullanarak kümesi özelliklerinizi bildirmek daha kullanışlı olduğu gibi durumlarda, bir vardır. Bu gibi durumlarda IDbSet arabirimi olan DB yerine kullanılabilir. Örneğin:  
+Ne zaman oluşturma veya mocks fakes, bir arabirim kullanarak kümesi özelliklerinizi bildirmek daha kullanışlı olduğu gibi durumlar vardır. Bu gibi durumlarda IDbSet arabirimi olan DB yerine kullanılabilir. Örneğin:  
 
 ``` csharp
 public class BloggingContext : DbContext

@@ -9,27 +9,27 @@ ms.technology: entity-framework-6
 ms.topic: article
 ms.assetid: 66ce9113-81d2-480f-8c16-d00ec405b2f7
 caps.latest.revision: 3
-ms.openlocfilehash: 7cdc2efc3e3f45e464728f0a17a120c6f0fc6e34
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 36857650bc546acd769e629a1e92948a63bfb786
+ms.sourcegitcommit: 00cb52625b57c1ea339ded1454179fe89b6bcfea
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912009"
+ms.lasthandoff: 07/16/2018
+ms.locfileid: "39067540"
 ---
 # <a name="get-started-with-entity-framework-6"></a>Entity Framework 6 ile çalışmaya başlama
 
 Bu kılavuzda seçili belgeleri makalelerin bağlantıları koleksiyonunu içerir, izlenecek yollar ve yardımcı olabilecek videoları hızlıca başlayın:
 
-## <a name="get-entity-frameworkef6fundamentalsinstallmd"></a>[Entity Framework Al](~/ef6/fundamentals/install.md)
+## <a name="get-entity-frameworkef6fundamentalsinstallmd"></a>[Entity Framework Alma](~/ef6/fundamentals/install.md)
 Burada, Entity Framework uygulamalarınıza ekleyin ve EF Designer kullanmak istiyorsanız, Visual Studio'da yüklü alacağınızdan emin olmak nasıl öğreneceksiniz.
 
 ## <a name="creating-a-model-code-first-the-ef-designer-and-the-ef-workflowsef6modelingindexmd"></a>[Model oluşturma: ilk olarak, kod EF Designer ve EF iş akışları](~/ef6/modeling/index.md)
 Kod veya çizim kutuları ve satırları yazma EF modelinizi belirtmeniz mi tercih ediyorsunuz?
-EF sürü var olan bir veritabanı nesnelerinizi eşleştirmek için kullanılacak oluşturacağınız veya nesneleriniz için uyarlanmış bir veritabanı oluşturmak için EF ister misiniz?
+Mevcut bir veritabanına nesnelerinizi eşlemek için EF kullanılacak oluşturacağınız veya nesneleriniz için uyarlanmış bir veritabanı oluşturmak için EF ister misiniz?
 Burada, EF6 kullanmaya ilişkin iki farklı yaklaşımları öğrenin: EF Designer ve Code First.
 Tartışmayı takip et ve başka ilgili bir video izleyin emin olun.
 
-## <a name="working-with-dbcontextef6fundamentalsworking-with-dbcontextmd"></a>[DbContext ile çalışma](~/ef6/fundamentals/working-with-dbcontext.md)
+## <a name="working-with-dbcontextef6fundamentalsworking-with-dbcontextmd"></a>[DbContext ile Çalışma](~/ef6/fundamentals/working-with-dbcontext.md)
 DbContext nasıl kullanılacağını öğrenmek için gereken ilk ve en önemli EF türüdür. Veritabanı sorguları için Git'i olarak görev yapar ve böylece veritabanına geri kalıcı nesneler için yaptığınız değişiklikleri izler.
 
 ## <a name="ask-a-questionef6resourcesget-helpmd"></a>[Bir soru sorun](~/ef6/resources/get-help.md)
@@ -60,8 +60,8 @@ Entity Framework 6 açık geliştirme modeli kullanır. Nasıl, GitHub depomuzda
   - [Tablo başına tür devralma eşlemesi](~/ef6/modeling/designer/inheritance/tpt.md)
   - [Saklı yordam için güncelleştirmeleri eşleme](~/ef6/modeling/designer/stored-procedures/cud.md)
   - [Depolanan yordam eşleştirme için sorgu](~/ef6/modeling/designer/stored-procedures/query.md)
-  - [Varlık bölme](~/ef6/modeling/designer/entity-splitting.md)
-  - [Tablo bölme](~/ef6/modeling/designer/table-splitting.md)
+  - [Varlık Bölme](~/ef6/modeling/designer/entity-splitting.md)
+  - [Tablo Bölme](~/ef6/modeling/designer/table-splitting.md)
   - [Sorgu tanımlama](~/ef6/modeling/designer/advanced/defining-query.md) (Gelişmiş)
   - [Tablo değerli işlevler](~/ef6/modeling/designer/advanced/tvfs.md) (Gelişmiş)
 

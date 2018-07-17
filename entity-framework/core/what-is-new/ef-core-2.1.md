@@ -6,12 +6,12 @@ ms.date: 2/20/2018
 ms.assetid: 585F90A3-4D5A-4DD1-92D8-5243B14E0FEC
 ms.technology: entity-framework-core
 uid: core/what-is-new/ef-core-2.1
-ms.openlocfilehash: 44cbbc965755a694772dc4336ca2c1efc51fd6cd
-ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
+ms.openlocfilehash: 660e2a9787b0a6d2544da785827caa20d51626c1
+ms.sourcegitcommit: 00cb52625b57c1ea339ded1454179fe89b6bcfea
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37949237"
+ms.lasthandoff: 07/16/2018
+ms.locfileid: "39067566"
 ---
 # <a name="new-features-in-ef-core-21"></a>EF Core 2.1 yeni özellikler
 
@@ -105,7 +105,7 @@ Okuma [System.Transactions bölüm](xref:core/saving/transactions#using-systemtr
 Müşteri geri bildirimi doğrultusunda, özellikleri, sınıflarda bildirilen başlangıçta tablolar için aynı sırada vygenerovat sloupce geçişlerini güncelleştirdik. EF Core ilk tablo oluşturulduktan sonra yeni üye eklendiğinde sipariş değiştiremeyeceğinizi unutmayın.
 
 ## <a name="optimization-of-correlated-subqueries"></a>Bağıntılı alt sorgularda en iyi duruma getirilmesi
-"N + 1" yürütme önlemek için sunduğumuz sorgu çevirisi geliştirildi SQL sorgularında projeksiyon Gezinti özelliğinde kullanımını müşteri adayları verilerle ilişkili alt sorgu kök sorgudan verileri birleştirme için birçok yaygın senaryo. En iyi duruma getirme, form alt sorgu sonuçları arabelleğe alma ve yeni davranış katılımı için sorguyu değiştirin gerektirir gerektirir.
+"N + 1" yürütme önlemek için sunduğumuz sorgu çevirisi geliştirildi SQL sorgularında projeksiyon Gezinti özelliğinde kullanımını müşteri adayları verilerle ilişkili alt sorgu kök sorgudan verileri birleştirme için birçok yaygın senaryo. Alt sorgu sonuçları arabelleğe alma iyileştirme gerektirir ve yeni davranış katılımı için sorguyu değiştirin gerektirir.
 
 Örnek olarak, aşağıdaki sorguyu normalde bir sorguya müşterileri, ayrıca (burada döndürülen müşteri sayısı, "N") N çevrilir sorguları siparişlerini ayırın:
 

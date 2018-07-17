@@ -1,41 +1,41 @@
 ---
-title: Tasarım zamanı DbContext oluşturma - EF çekirdek
+title: Tasarım zamanında DbContext oluşturma - EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 10/27/2017
 ms.technology: entity-framework-core
 uid: core/miscellaneous/cli/dbcontext-creation
-ms.openlocfilehash: 8b38d300d31038bdf5cd877aa3c42b7f5f97eabc
-ms.sourcegitcommit: 7113e8675f26cbb546200824512078bf360225df
+ms.openlocfilehash: 7c16017d3b97d115841050fe6ac0fdbeb5e71d94
+ms.sourcegitcommit: 00cb52625b57c1ea339ded1454179fe89b6bcfea
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/28/2018
-ms.locfileid: "30202490"
+ms.lasthandoff: 07/16/2018
+ms.locfileid: "39067537"
 ---
-<a name="design-time-dbcontext-creation"></a>Tasarım zamanı DbContext oluşturma
+<a name="design-time-dbcontext-creation"></a>Tasarım zamanında DbContext oluşturma
 ==============================
-Bazı EF çekirdek araçları komutlar (örneğin, [geçişler] [ 1] komutları) türetilmiş gerektiren `DbContext` uygulamanın ayrıntılarını toplama amacıyla tasarım zamanında oluşturulacak örneği varlık türlerini ve bunların bir veritabanı şeması nasıl eşleneceğine. Çoğu durumda, tercih edilir, `DbContext` böylece oluşturulan nasıl olacaktır için benzer bir şekilde yapılandırılmış [çalışma zamanında yapılandırılmış][2].
+EF Core araçları komutlardan bazıları (örneğin, [geçişler] [ 1] komutları) türetilmiş gerektiren `DbContext` uygulamanın ayrıntılarını toplamak için tasarım zamanında oluşturulacak örnek varlık türleri ve bunların veritabanı şemasına nasıl eşleneceğine. Çoğu durumda, tercih edilir, `DbContext` böylece oluşturulan nasıl olacaktır benzer bir biçimde yapılandırılmış [çalışma zamanında yapılandırılmış][2].
 
-Araçlar deneyin oluşturmak için çeşitli yolları vardır `DbContext`:
+Araçları deneyebilirsiniz oluşturmak için çeşitli yollar vardır `DbContext`:
 
-<a name="from-application-services"></a>Uygulama hizmetlerinden
+<a name="from-application-services"></a>Uygulama Hizmetleri'nden
 -------------------------
-Başlangıç projesi ASP.NET Core uygulama ise, uygulamanın hizmet sağlayıcısı'ndan DbContext nesnesi edinmek için Araçlar deneyin.
+Başlangıç projeniz bir ASP.NET Core uygulaması ise, uygulamanın hizmet sağlayıcısından DbContext nesnesini almak Araçlar'ı deneyin.
 
-Aracı ilk deneyin çağırarak hizmet sağlayıcısı edinmek `Program.BuildWebHost()` ve erişme `IWebHost.Services` özelliği.
+Aracı ilk deneyin çağırarak hizmet sağlayıcısı edinmek `Program.BuildWebHost()` erişerek `IWebHost.Services` özelliği.
 
 > [!NOTE]
-> Yeni bir ASP.NET Core 2.0 uygulaması oluşturduğunuzda, bu kanca varsayılan olarak dahil edilir. Önceki sürümlerinde EF Core ve ASP.NET Core, çağrılacak araçları deneyin `Startup.ConfigureServices` doğrudan uygulamanın hizmet sağlayıcısı, ancak bu deseni artık almak için düzgün şekilde ASP.NET Core 2.0 uygulamalarda çalışır. ASP.NET Core 1.x uygulamaya 2.0 yükseltiyorsanız, şunları yapabilirsiniz [değiştirmek, `Program` yeni deseni izlemesini sınıfı][3].
+> Yeni bir ASP.NET Core 2.0 uygulama oluşturduğunuzda, bu kanca varsayılan olarak dahil edilir. Önceki sürümlerinde EF Core ve ASP.NET Core, çağrılacak araçları deneyebilirsiniz `Startup.ConfigureServices` doğrudan uygulamanın hizmet sağlayıcısı, ancak bu düzen artık almak için düzgün şekilde ASP.NET Core 2.0 uygulamaları çalışır. ASP.NET Core 1.x uygulamaya 2.0 yükseltiyorsanız, şunları yapabilirsiniz [değiştirmek, `Program` yeni desende sınıfı][3].
 
-`DbContext` Kendisi ve bağımlılıkları kendi oluşturucusuna uygulamanın hizmet sağlayıcısı'nda Hizmetleri olarak kayıtlı olması gerekir. Bu kolayca sağlanarak elde edilebilir [bir oluşturucu `DbContext` örneği alır `DbContextOptions<TContext>` bağımsız değişkeni olarak] [ 4] ve kullanarak [ `AddDbContext<TContext>` yöntemi] [5].
+`DbContext` Kendisi ve herhangi bir bağımlılığın oluşturucusuna Hizmetleri'nde uygulamanın hizmet sağlayıcısı olarak kaydedilmesi gerekir. Bu kolayca sağlanarak elde edilebilir [bir oluşturucu `DbContext` örneğini alır `DbContextOptions<TContext>` bir bağımsız değişken olarak] [ 4] ve kullanarak [ `AddDbContext<TContext>` yöntemi] [5].
 
-<a name="using-a-constructor-with-no-parameters"></a>Parametresiz bir oluşturucu kullanma
+<a name="using-a-constructor-with-no-parameters"></a>Parametresiz bir oluşturucu kullanılarak
 --------------------------------------
-DbContext uygulama hizmet sağlayıcısından alınamıyorsa araçları türetilmiş için Ara `DbContext` projesi içinde türü. Ardından parametresiz bir Oluşturucu kullanarak bir örneğini oluşturmak deneyin. Bu varsayılan oluşturucu olabilir `DbContext` kullanılarak yapılandırılmış [ `OnConfiguring` ] [ 6] yöntemi.
+Uygulama hizmet sağlayıcısından DbContext alınamıyorsa araçları için türetilmiş Ara `DbContext` türü proje içinde. Ardından parametresiz bir Oluşturucusu kullanarak örneği oluşturmayı deneyin. Bu varsayılan oluşturucu olabilir `DbContext` kullanılarak yapılandırılan [ `OnConfiguring` ] [ 6] yöntemi.
 
-<a name="from-a-design-time-factory"></a>Tasarım zamanı fabrikası'ndan
+<a name="from-a-design-time-factory"></a>Tasarım zamanı fabrikadan
 --------------------------
-Araçlar uygulayarak, DbContext oluşturmak nasıl anlayabilirsiniz `IDesignTimeDbContextFactory<TContext>` arabirimi: Bu arabirimi uygulayan bir sınıf ya da aynı projesi türetilmiş olarak bulunursa `DbContext` veya uygulamanın başlangıç projesi araçları atla Bunun yerine DbContext ve kullanım tasarım zamanı Fabrika oluşturma diğer yolları.
+Uygulayarak, DbContext oluşturma araçları da söyleyebilirsiniz `IDesignTimeDbContextFactory<TContext>` arabirimi: Bu arabirimi uygulayan bir sınıfa veya türetilmiş projenin bulunursa `DbContext` veya uygulamanın başlangıç projesi araçları atlama DbContext ve tasarım zamanı Fabrika kullanmak yerine oluşturmanın diğer yolu.
 
 ``` csharp
 using Microsoft.EntityFrameworkCore;
@@ -58,10 +58,9 @@ namespace MyProject
 ```
 
 > [!NOTE]
-> `args` Parametresi şu anda kullanılmayan bağlıdır. Yoktur [bir sorun] [ 7] araçları tasarım zamanı bağımsız değişkenlerini belirtme olanağı izleme.
+> `args` Parametresi, şu anda kullanılmayan. Var. [soruna] [ 7] izleme araçları tasarım zamanı bağımsız değişkenleri belirtme olanağı.
 
-Tasarım zamanı Fabrika DbContext farklı çalışma zamanında tasarım zamanından yapılandırmak, gerekirse çok kullanışlı olabilir `DbContext` ek parametreler kaydedilmedi dı içinde dı hiç kullanmıyorsanız Oluşturucusu alır ya da Eğer bazı için tercih ettiğiniz yüklüyse neden bir `BuildWebHost` ASP.NET Core uygulamanızın yöntemi  
-`Main` Sınıf.
+Tasarım zamanı Fabrika DbContext çalışma zamanında tasarım zamanından farklı şekilde yapılandırmak, gerekirse özellikle kullanışlı olabilir `DbContext` ek parametreler kaydedilmedi DI içinde DI hiç kullanmıyorsanız Oluşturucusu alır ya da Eğer bazı için tercih ettiğiniz yüklüyse neden bir `BuildWebHost` ASP.NET Core uygulamanızın yönteminde `Main` sınıfı.
 
   [1]: xref:core/managing-schemas/migrations/index
   [2]: xref:core/miscellaneous/configuring-dbcontext
