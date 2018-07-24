@@ -5,12 +5,12 @@ ms.author: bricelam
 ms.date: 10/27/2017
 ms.technology: entity-framework-core
 uid: core/miscellaneous/cli/dbcontext-creation
-ms.openlocfilehash: 7c16017d3b97d115841050fe6ac0fdbeb5e71d94
-ms.sourcegitcommit: 00cb52625b57c1ea339ded1454179fe89b6bcfea
+ms.openlocfilehash: 648ca990252fb32d8cf181a7ae672d07a81f56bb
+ms.sourcegitcommit: 0935ff275ae739243297f5b97eb21414398125c6
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/16/2018
-ms.locfileid: "39067537"
+ms.lasthandoff: 07/23/2018
+ms.locfileid: "39201925"
 ---
 <a name="design-time-dbcontext-creation"></a>Tasarım zamanında DbContext oluşturma
 ==============================
@@ -27,7 +27,7 @@ Aracı ilk deneyin çağırarak hizmet sağlayıcısı edinmek `Program.BuildWeb
 > [!NOTE]
 > Yeni bir ASP.NET Core 2.0 uygulama oluşturduğunuzda, bu kanca varsayılan olarak dahil edilir. Önceki sürümlerinde EF Core ve ASP.NET Core, çağrılacak araçları deneyebilirsiniz `Startup.ConfigureServices` doğrudan uygulamanın hizmet sağlayıcısı, ancak bu düzen artık almak için düzgün şekilde ASP.NET Core 2.0 uygulamaları çalışır. ASP.NET Core 1.x uygulamaya 2.0 yükseltiyorsanız, şunları yapabilirsiniz [değiştirmek, `Program` yeni desende sınıfı][3].
 
-`DbContext` Kendisi ve herhangi bir bağımlılığın oluşturucusuna Hizmetleri'nde uygulamanın hizmet sağlayıcısı olarak kaydedilmesi gerekir. Bu kolayca sağlanarak elde edilebilir [bir oluşturucu `DbContext` örneğini alır `DbContextOptions<TContext>` bir bağımsız değişken olarak] [ 4] ve kullanarak [ `AddDbContext<TContext>` yöntemi] [5].
+`DbContext` Kendisi ve herhangi bir bağımlılığın oluşturucusuna Hizmetleri'nde uygulamanın hizmet sağlayıcısı olarak kaydedilmesi gerekir. Bu kolayca sağlanarak elde edilebilir [bir oluşturucu `DbContext` örneğini alır `DbContextOptions<TContext>` bağımsız değişken olarak] [ 4] ve kullanarak [ `AddDbContext<TContext>` yöntemi] [5].
 
 <a name="using-a-constructor-with-no-parameters"></a>Parametresiz bir oluşturucu kullanılarak
 --------------------------------------
