@@ -250,6 +250,7 @@
 ### [Ek Kaynaklar](ef6/resources/index.md)
 #### [Bloglar](ef6/resources/blogs.md)
 #### [Örnek Olay İncelemeleri](ef6/resources/case-studies.md)
+#### [Katkıda bulunun](ef6/resources/contribute.md)
 #### [Yardım Alma](ef6/resources/get-help.md)
 #### [Sözlük](ef6/resources/glossary.md)
 #### [Örnek Okul Veritabanı](ef6/resources/school-database.md)
