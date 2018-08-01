@@ -1,45 +1,45 @@
 ---
-title: .NET Framework - var olan veritabanı - EF Çekirdeğinde Başlarken
+title: .NET Framework - mevcut veritabanı - EF Core üzerinde çalışmaya başlama
 author: rowanmiller
 ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: a29a3d97-b2d8-4d33-9475-40ac67b3b2c6
 ms.technology: entity-framework-core
 uid: core/get-started/full-dotnet/existing-db
-ms.openlocfilehash: 3cd69109e3cf8dbc103f9eea6e2553df17f29a98
-ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
+ms.openlocfilehash: 39e77ab8c124df67458cc5fa6db2882b65943ebe
+ms.sourcegitcommit: 4467032fd6ca223e5965b59912d74cf88a1dd77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/26/2018
-ms.locfileid: "31812631"
+ms.lasthandoff: 08/01/2018
+ms.locfileid: "39388474"
 ---
-# <a name="getting-started-with-ef-core-on-net-framework-with-an-existing-database"></a>.NET Framework ile varolan bir veritabanını temel EF ile çalışmaya başlama
+# <a name="getting-started-with-ef-core-on-net-framework-with-an-existing-database"></a>.NET Framework ile varolan bir veritabanını EF Core ile çalışmaya başlama
 
-Bu kılavuzda, Entity Framework kullanarak bir Microsoft SQL Server veritabanında temel veri erişimi gerçekleştirdiği bir konsol uygulaması oluşturacaksınız. Varolan bir veritabanını temel alan bir Entity Framework modelini oluşturmak için ters mühendislik kullanır.
+Bu kılavuzda, Entity Framework kullanarak bir Microsoft SQL Server veritabanında temel veri erişimi gerçekleştirdiği bir konsol uygulaması oluşturacaksınız. Tersine mühendislik, varolan bir veritabanını temel alan bir Entity Framework modelini oluşturmak için kullanır.
 
 > [!TIP]  
-> Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb) github'da.
+> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb) GitHub üzerinde.
 
 ## <a name="prerequisites"></a>Önkoşullar
 
-Bu izlenecek yolu tamamlamak için aşağıdaki önkoşullar gerekir:
+Bu izlenecek yolu tamamlamak için aşağıdaki önkoşullar gereklidir:
 
-* [Visual Studio 2017](https://www.visualstudio.com/downloads/)
+* [Visual Studio 2017](https://www.visualstudio.com/downloads/) - en az sürüm 15.3
 
 * [NuGet Paket Yöneticisi'nin en son sürümü](https://dist.nuget.org/index.html)
 
 * [Windows PowerShell'in en son sürümünü](https://docs.microsoft.com/powershell/scripting/setup/installing-windows-powershell)
 
-* [Blog veritabanı](#blogging-database)
+* [Günlük veritabanı](#blogging-database)
 
-### <a name="blogging-database"></a>Blog veritabanı
+### <a name="blogging-database"></a>Günlük veritabanı
 
-Bu öğretici kullanan bir **blog** veritabanı, yerel veritabanı örneğinde var olan veritabanı olarak.
+Bu öğreticide bir **blog** LocalDb örneğiniz mevcut veritabanı olarak veritabanı.
 
 > [!TIP]  
-> Zaten oluşturduysanız **blog** veritabanı başka bir öğretici bir parçası olarak, bu adımı atlayabilirsiniz.
+> Zaten oluşturduysanız **blog** veritabanı başka bir öğreticinin bir parçası olarak, bu adımı atlayabilirsiniz.
 
-* Açık Visual Studio
+* Visual Studio'yu Aç
 
 * Araçlar > veritabanına bağlan...
 
@@ -53,15 +53,15 @@ Bu öğretici kullanan bir **blog** veritabanı, yerel veritabanı örneğinde v
 
 * Veritabanına sağ tıklayın **Sunucu Gezgini** seçip **yeni sorgu**
 
-* Aşağıda, sorgu Düzenleyicisi'ne komut dosyasını kopyalayın
+* Sorgu Düzenleyicisi'ne, aşağıda listelenen betiği kopyalayın
 
-* Üzerinde sorgu Düzenleyicisi'ni sağ tıklatın ve seçin **çalıştırma**
+* Sorgu düzenleyicisini sağ tıklayıp **Yürüt**
 
 [!code-sql[Main](../_shared/create-blogging-database-script.sql)]
 
 ## <a name="create-a-new-project"></a>Yeni bir proje oluşturma
 
-* Açık Visual Studio
+* Visual Studio'yu Aç
 
 * Dosya > Yeni > Proje...
 
@@ -69,25 +69,25 @@ Bu öğretici kullanan bir **blog** veritabanı, yerel veritabanı örneğinde v
 
 * Seçin **konsol uygulaması** proje şablonu
 
-* Hedefleme olun **.NET Framework 4.5.1** veya daha yenisi
+* Hedeflediğiniz olun **.NET Framework 4.6.1** veya üzeri
 
-* Proje bir ad verin ve tıklatın **Tamam**
+* Projeye bir ad verin ve tıklayın **Tamam**
 
 ## <a name="install-entity-framework"></a>Entity Framework'ü yükleme
 
-EF çekirdek kullanmak için hedeflemek istediğiniz veritabanı sağlayıcı(lar) için paketini yükleyin. Bu kılavuz, SQL Server kullanır. Kullanılabilir sağlayıcılar listesi için bkz: [veritabanı sağlayıcıları](../../providers/index.md).
+EF Core kullanmak için hedeflemek istediğiniz veritabanı şu sağlayıcı(lar) için paketi yükleyin. Bu izlenecek yol, SQL Server kullanır. Kullanılabilir sağlayıcılar listesi için bkz. [veritabanı sağlayıcıları](../../providers/index.md).
 
 * Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu
 
 * `Install-Package Microsoft.EntityFrameworkCore.SqlServer`'i çalıştırın.
 
-Varolan bir veritabanından ters mühendislik etkinleştirmek için sizi birkaç diğer paketleri çok yüklemeniz gerekir.
+Varolan bir veritabanından tersine mühendislik etkinleştirmek için biz çok birkaç diğer paketleri yüklemeniz gerekir.
 
 * `Install-Package Microsoft.EntityFrameworkCore.Tools`'i çalıştırın.
 
-## <a name="reverse-engineer-your-model"></a>Tersine mühendislik modelinizi
+## <a name="reverse-engineer-your-model"></a>Modelinizi tersine mühendislik
 
-Şimdi, varolan bir veritabanını temel alan EF modeli oluşturmak için zaman yapılır.
+Artık, mevcut bir veritabanını temel alan EF modeli oluşturma zamanı geldi.
 
 * Araçlar –> NuGet Paket Yöneticisi –> Paket Yöneticisi Konsolu
 
@@ -97,7 +97,7 @@ Varolan bir veritabanından ters mühendislik etkinleştirmek için sizi birkaç
 Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
 ```
 
-Ters mühendislik işlemi oluşturulan sınıflar ve var olan veritabanı şemasını temel alan bir türetilmiş bağlamı. Sınıflar, sorgulama kaydetme ve verilerini temsil eden basit C# nesneleridir.
+Ters mühendislik işlemi, varlık sınıfları ve var olan veritabanı şemasını temel alan türetilmiş bir bağlam oluşturuldu. Varlık sınıfları, sorgulama ve kaydetme verilerini temsil eden basit C# nesneleridir.
 
 <!-- [!code-csharp[Main](samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/Blog.cs)] -->
 ``` csharp
@@ -121,7 +121,7 @@ namespace EFGetStarted.ConsoleApp.ExistingDb
 }
 ```
 
-Bağlam veritabanı oturumla temsil eder ve sorgu ve varlık sınıfları kaydetmenize olanak sağlar.
+İçerik veritabanı ile bir oturumu temsil eder ve sorgu ve varlık sınıflarının örneklerini kaydetmenize olanak tanır.
 
 <!-- [!code-csharp[Main](samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/BloggingContext.cs)] -->
 ``` csharp
@@ -161,11 +161,11 @@ namespace EFGetStarted.ConsoleApp.ExistingDb
 
 ## <a name="use-your-model"></a>Modelinizi kullanın
 
-Veri erişimi gerçekleştirdiği modelinizi artık kullanabilirsiniz.
+Veri erişimi gerçekleştirdiği modeliniz artık kullanabilirsiniz.
 
 * Açık *Program.cs*
 
-* Dosyasının içeriğini aşağıdaki kodla değiştirin
+* Dosyanın içeriğini aşağıdaki kodla değiştirin.
 
 <!-- [!code-csharp[Main](samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/Program.cs)] -->
 ``` csharp
@@ -197,6 +197,6 @@ namespace EFGetStarted.ConsoleApp.ExistingDb
 
 * Hata ayıklama > hata ayıklama olmadan Başlat
 
-Bir blog veritabanına kaydedilir ve ardından tüm bloglar ayrıntılarını konsola yazdırılır görürsünüz.
+Bir blog veritabanına kaydedilir ve daha sonra tüm blogları ayrıntılarını konsola yazdırılır görürsünüz.
 
 ![görüntü](_static/output-existing-db.png)
