@@ -27,8 +27,8 @@ Yalnızca bağlam bir katmanda kullanılabilir değilse, burada Nesne grafiğini
 
 Bu şablonu öğesi iki .tt (metin şablonu) dosyaları oluşturur:  
 
-- ** \<Model adı\>.tt** varlık türleri ve kendi kendine varlıkları ve durumunun ayarlanması izin veren genişletme yöntemleri izleyerek kullanılan değişiklik izleme mantığı içeren bir yardımcı sınıfı dosyası oluşturur kendi kendine izleme varlıklarda.  
-- ** \<Model adı\>. Context.tt** dosyası oluşturur, türetilmiş bir bağlam ve içeren bir uzantı sınıfı **ApplyChanges** yöntemleri **ObjectContext** ve **ObjectSet** sınıfları. Bu yöntemler, değişiklikleri veritabanına kaydetmek için gerçekleştirilmesi gereken işlemler kümesini çıkarsanacak varlıkları kendi izleme Graph'te yer alan değişiklik izleme bilgileri inceleyin.  
+- **\<Model adı\>.tt** varlık türleri ve kendi kendine varlıkları ve durumunun ayarlanması izin veren genişletme yöntemleri izleyerek kullanılan değişiklik izleme mantığı içeren bir yardımcı sınıfı dosyası oluşturur kendi kendine izleme varlıklarda.  
+- **\<Model adı\>. Context.tt** dosyası oluşturur, türetilmiş bir bağlam ve içeren bir uzantı sınıfı **ApplyChanges** yöntemleri **ObjectContext** ve **ObjectSet** sınıfları. Bu yöntemler, değişiklikleri veritabanına kaydetmek için gerçekleştirilmesi gereken işlemler kümesini çıkarsanacak varlıkları kendi izleme Graph'te yer alan değişiklik izleme bilgileri inceleyin.  
 
 ## <a name="get-started"></a>Başlarken  
 
