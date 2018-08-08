@@ -1,165 +1,101 @@
 ---
-title: .NET Framework - yeni veritabanı - EF Çekirdeğinde Başlarken
+title: .NET Framework - yeni veritabanı - EF Core üzerinde çalışmaya başlama
 author: rowanmiller
 ms.author: divega
-ms.date: 10/27/2016
+ms.date: 08/06/2018
 ms.assetid: 52b69727-ded9-4a7b-b8d5-73f3acfbbad3
 ms.technology: entity-framework-core
 uid: core/get-started/full-dotnet/new-db
-ms.openlocfilehash: bd7054c6834ae11bfdc352d63654e4304771e432
-ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
+ms.openlocfilehash: 088ac915041489242eb8090e7bf3a2bdc8036534
+ms.sourcegitcommit: 902257be9c63c427dc793750a2b827d6feb8e38c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/26/2018
-ms.locfileid: "31812527"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39614434"
 ---
-# <a name="getting-started-with-ef-core-on-net-framework-with-a-new-database"></a>.NET Framework ile yeni bir veritabanı EF Çekirdeğinde ile çalışmaya başlama
+# <a name="getting-started-with-ef-core-on-net-framework-with-a-new-database"></a>.NET Framework ile yeni bir veritabanı üzerinde EF Core ile çalışmaya başlama
 
-Bu kılavuzda, Entity Framework kullanarak bir Microsoft SQL Server veritabanında temel veri erişimi gerçekleştirdiği bir konsol uygulaması oluşturacaksınız. Geçişler, modelden veritabanı oluşturmak için kullanır.
+Bu öğreticide, Entity Framework kullanarak bir Microsoft SQL Server veritabanında temel veri erişimi gerçekleştirdiği bir konsol uygulaması oluşturun. Bir modelden veritabanı oluşturmaya geçişleri kullanın.
 
-> [!TIP]  
-> Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/FullNet/ConsoleApp.NewDb) github'da.
+[Bu makaledeki örnek Github'da görüntüle](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/FullNet/ConsoleApp.NewDb).
 
 ## <a name="prerequisites"></a>Önkoşullar
 
-Bu izlenecek yolu tamamlamak için aşağıdaki önkoşullar gerekir:
-
-* [Visual Studio 2017](https://www.visualstudio.com/downloads/)
-
-* [NuGet Paket Yöneticisi'nin en son sürümü](https://dist.nuget.org/index.html)
-
-* [Windows PowerShell'in en son sürümünü](https://docs.microsoft.com/powershell/scripting/setup/installing-windows-powershell)
+* [Visual Studio 2017 sürüm 15.7 veya üzeri](https://www.visualstudio.com/downloads/)
 
 ## <a name="create-a-new-project"></a>Yeni bir proje oluşturma
 
-* Açık Visual Studio
+* Açık Visual Studio 2017
 
-* Dosya > Yeni > Proje...
+* **Dosya > Yeni > Proje...**
 
-* Sol menüden şablonları seçin > Visual C# > Klasik Windows Masaüstü
+* Sol menüden **yüklü > Visual C# > Windows Masaüstü**
 
 * Seçin **konsol uygulaması (.NET Framework)** proje şablonu
 
-* Hedefleme olun **.NET Framework 4.5.1** veya daha yenisi
+* Emin olun projenizin hedeflediği **.NET Framework 4.6.1** veya üzeri
 
-* Proje bir ad verin ve tıklatın **Tamam**
+* Projeyi adlandırın *ConsoleApp.NewDb* tıklatıp **Tamam**
 
 ## <a name="install-entity-framework"></a>Entity Framework'ü yükleme
 
-EF çekirdek kullanmak için hedeflemek istediğiniz veritabanı sağlayıcı(lar) için paketini yükleyin. Bu kılavuz, SQL Server kullanır. Kullanılabilir sağlayıcılar listesi için bkz: [veritabanı sağlayıcıları](../../providers/index.md).
+EF Core kullanmak için hedeflemek istediğiniz veritabanı şu sağlayıcı(lar) için paketi yükleyin. Bu öğreticide, SQL Server kullanır. Kullanılabilir sağlayıcılar listesi için bkz. [veritabanı sağlayıcıları](../../providers/index.md).
 
 * Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu
 
 * `Install-Package Microsoft.EntityFrameworkCore.SqlServer`'i çalıştırın.
 
-Bu kılavuzda daha sonra biz de bazı Entity Framework Araçları veritabanını korumak için kullanır. Böylece biz de araçları paketini yükler.
+Bu öğreticide daha sonra veritabanını korumak için bazı Entity Framework araçları kullanın. Bu nedenle de araçları paketini yükleyin.
 
 * `Install-Package Microsoft.EntityFrameworkCore.Tools`'i çalıştırın.
 
-## <a name="create-your-model"></a>Model oluşturma
+## <a name="create-the-model"></a>Model oluşturma
 
-Şimdi modelinizi yapmak bağlamını ve varlık sınıflarını tanımlamak için zaman yapılır.
+Artık modeli oluşturan bir bağlam ve varlık sınıflarını tanımlamak için zamanı geldi.
 
-* Proje > sınıfı Ekle...
+* **Proje > sınıfı Ekle...**
 
-* Girin *Model.cs* tıklatın ve adı olarak **Tamam**
+* Girin *Model.cs* tıklayın ve adı olarak **Tamam**
 
-* Dosyasının içeriğini aşağıdaki kodla değiştirin
+* Dosyanın içeriğini aşağıdaki kodla değiştirin.
 
-<!-- [!code-csharp[Main](samples/core/GetStarted/FullNet/ConsoleApp.NewDb/Model.cs)] -->
-``` csharp
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-
-namespace EFGetStarted.ConsoleApp
-{
-    public class BloggingContext : DbContext
-    {
-        public DbSet<Blog> Blogs { get; set; }
-        public DbSet<Post> Posts { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;");
-        }
-    }
-
-    public class Blog
-    {
-        public int BlogId { get; set; }
-        public string Url { get; set; }
-
-        public List<Post> Posts { get; set; }
-    }
-
-    public class Post
-    {
-        public int PostId { get; set; }
-        public string Title { get; set; }
-        public string Content { get; set; }
-
-        public int BlogId { get; set; }
-        public Blog Blog { get; set; }
-    }
-}
-```
+  [!code-csharp[Main](../../../../samples/core/GetStarted/FullNet/ConsoleApp.NewDb/Model.cs)] 
 
 > [!TIP]  
-> Gerçek bir uygulamada siz her sınıf ayrı bir dosyaya koymak ve bağlantı dizesini koyun `App.Config` dosya ve kullanılarak okunan `ConfigurationManager`. Basitleştirmek amacıyla, biz her şey tek kod dosyasında Bu öğretici için koyduğunuz.
+> Gerçek bir uygulamada ayrı bir dosyada her sınıf koyun ve bağlantı dizesini bir yapılandırma dosyası veya ortam değişkeninde yerleştirin. Basitleştirmek amacıyla, her şey Bu öğretici için bir tek bir kod dosyasında tutmaktır.
 
-## <a name="create-your-database"></a>Veritabanı oluşturma
+## <a name="create-the-database"></a>Veritabanı oluşturma
 
-Bir model sahip olduğunuza göre sizin için bir veritabanı oluşturmak için geçiş kullanabilirsiniz.
+Bir modeliniz olduğuna göre bir veritabanı oluşturmaya geçişleri kullanabilirsiniz.
 
-* Araçlar –> NuGet Paket Yöneticisi –> Paket Yöneticisi Konsolu
+* **Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu**
 
-* Çalıştırma `Add-Migration MyFirstMigration` tabloları modeliniz için ilk kümesi oluşturmak için bir geçiş için iskele kurmak.
+* Çalıştırma `Add-Migration InitialCreate` tablo modeli için başlangıç kümesi oluşturmak için bir geçiş iskele.
 
-* Çalıştırma `Update-Database` veritabanına yeni geçiş uygulanacak. Veritabanınız henüz var olmadığı için geçiş uygulanmadan önce onu sizin için oluşturulur.
+* Çalıştırma `Update-Database` veritabanına yeni geçiş uygulamak için. Veritabanı henüz mevcut olmadığından geçiş uygulanmadan önce oluşturulur.
 
 > [!TIP]  
-> Modelinize gelecekteki değişiklikler yapmak isterseniz, kullanabileceğiniz `Add-Migration` karşılık gelen şema yapmak için yeni bir geçiş için iskele kurmak komut veritabanına değiştirir. Gerekli kurulmuş kod iade (ve gerekli değişiklikleri yaptıktan sonra), kullanabileceğiniz `Update-Database` veritabanına değişiklikleri uygulamak için komutu.
+> Modele değişiklik yaparsanız, kullanabileceğiniz `Add-Migration` karşılık gelen şema yapmak için yeni bir geçiş iskele komut, veritabanına değiştirir. Gerekli iskele kurulmuş kod iade (ve gerekli değişiklikleri yaptıktan sonra), kullanabileceğiniz `Update-Database` veritabanına değişiklikleri uygulamak için komutu.
 >
->EF kullanan bir `__EFMigrationsHistory` hangi geçişleri veritabanına zaten uygulandı izlemek için veritabanı tablosunda.
+> EF kullanan bir `__EFMigrationsHistory` hangi geçişleri veritabanına zaten uygulanmış izlemek için veritabanı tablosunda.
 
-## <a name="use-your-model"></a>Modelinizi kullanın
+## <a name="use-the-model"></a>Kullanım modeli
 
-Veri erişimi gerçekleştirdiği modelinizi artık kullanabilirsiniz.
+Şimdi, veri erişimi gerçekleştirdiği modeli kullanabilirsiniz.
 
 * Açık *Program.cs*
 
-* Dosyasının içeriğini aşağıdaki kodla değiştirin
+* Dosyanın içeriğini aşağıdaki kodla değiştirin.
 
-<!-- [!code-csharp[Main](samples/core/GetStarted/FullNet/ConsoleApp.NewDb/Program.cs)] -->
-``` csharp
-using System;
+  [!code-csharp[Main](../../../../samples/core/GetStarted/FullNet/ConsoleApp.NewDb/Program.cs)]
 
-namespace EFGetStarted.ConsoleApp
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            using (var db = new BloggingContext())
-            {
-                db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
-                var count = db.SaveChanges();
-                Console.WriteLine("{0} records saved to database", count);
+* **Hata ayıklama > hata ayıklama olmadan Başlat**
 
-                Console.WriteLine();
-                Console.WriteLine("All blogs in database:");
-                foreach (var blog in db.Blogs)
-                {
-                    Console.WriteLine(" - {0}", blog.Url);
-                }
-            }
-        }
-    }
-}
-```
+  Bir blog veritabanına kaydedilir ve daha sonra tüm blogları ayrıntılarını konsola yazdırılır görürsünüz.
 
-* Hata ayıklama > hata ayıklama olmadan Başlat
+  ![görüntü](_static/output-new-db.png)
 
-Bir blog veritabanına kaydedilir ve ardından tüm bloglar ayrıntılarını konsola yazdırılır görürsünüz.
+## <a name="additional-resources"></a>Ek Kaynaklar
 
-![görüntü](_static/output-new-db.png)
+* [Mevcut bir veritabanı ile .NET Framework üzerinde EF Core](xref:core/get-started/full-dotnet/existing-db)
+* [EF Core ile yeni bir veritabanı - SQLite .NET core'da](xref:core/get-started/netcore/new-db-sqlite) -platformlar arası konsol EF öğretici.

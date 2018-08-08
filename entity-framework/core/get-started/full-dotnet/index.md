@@ -1,23 +1,23 @@
 ---
-title: .NET Framework - EF çekirdek Başlarken
+title: .NET Framework - EF Core kullanmaya başlama
 author: rowanmiller
 ms.author: divega
-ms.date: 10/27/2016
+ms.date: 08/06/2018
 ms.assetid: 06f1f18b-3267-4f79-b94e-173f9db0a7cb
 ms.technology: entity-framework-core
 uid: core/get-started/full-dotnet/index
-ms.openlocfilehash: b6b265ed8742459921b7ba4f3f04720eb43d06da
-ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
+ms.openlocfilehash: 410a8320d1e36c672f3d69a172719f8b8c47a152
+ms.sourcegitcommit: 902257be9c63c427dc793750a2b827d6feb8e38c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/12/2018
-ms.locfileid: "29152383"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39614392"
 ---
-# <a name="getting-started-with-ef-core-on-net-framework"></a>.NET Framework EF çekirdek ile çalışmaya başlama
+# <a name="getting-started-with-ef-core-on-net-framework"></a>.NET Framework EF Core ile çalışmaya başlama
 
-Bu 101 öğreticileri Entity Framework Çekirdek ya da Visual Studio önceki hiçbir bilgi gerektirir. Bunlar, basit bir .NET Framework konsol sorgular ve bir veritabanından veri kaydeden uygulaması oluşturma üzerinden adım adım olur. Bir model oluşturan bir Öğreticisi varolan bir veritabanını temel alan ya da size modelini temel alan bir veritabanı oluşturur seçerseniz kullanabilirsiniz.
+Bu düzey 101 öğreticileri Entity Framework Core veya Visual Studio, önceki hiçbir gerektirir. Bunlar, basit bir .NET Framework konsol sorgular ve verileri bir veritabanından kaydeden uygulaması oluşturma ile adım adım sürer. Varolan bir veritabanını temel alan bir model oluşturur veya, modelinize dayalı bir veritabanı oluşturur bir öğretici seçebilirsiniz.
 
-WPF ve WinForms dahil olmak üzere, .NET Framework hedefler herhangi bir uygulamanın bu öğreticileri öğrenilen teknikleri kullanabilirsiniz.
+WPF ve WinForms dahil olmak üzere .NET Framework'ü hedefleyen herhangi bir uygulamanın bu öğreticilerdeki öğrenilen teknikleri kullanabilirsiniz.
 
 > [!NOTE]  
-> Bu öğreticiler ve eşlik eden örnekleri EF çekirdek 2.0 kullanmak için güncelleştirilmiştir. Ancak, çoğu durumda yönergeleri için en az değişiklik ile önceki sürümlerde kullanan uygulamalar oluşturmak mümkün olmalıdır.
+> Bu öğreticileri ve eşlik eden örnekleri EF Core 2.1 kullanacak şekilde güncelleştirildi. Ancak, çoğu durumda en az değişiklik yönergeleri ile önceki sürümleri kullanan uygulamalar oluşturma olanağı olmalıdır.

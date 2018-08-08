@@ -1,126 +1,111 @@
 ---
-title: ASP.NET Core - yeni veritabanı - EF Çekirdeğinde Başlarken
+title: Üzerinde ASP.NET Core - yeni veritabanı - EF Core kullanmaya başlama
 author: rick-anderson
 ms.author: riande
 ms.author2: tdykstra
-ms.date: 04/07/2017
+ms.date: 08/03/2018
 ms.topic: get-started-article
 ms.assetid: e153627f-f132-4c11-b13c-6c9a607addce
 ms.technology: entity-framework-core
 uid: core/get-started/aspnetcore/new-db
-ms.openlocfilehash: 80477ca57b8b3df6de8ba3595c9056c6b8412040
-ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
+ms.openlocfilehash: 9e86bc9cff028ad9791f23cbb45f0a93110c0064
+ms.sourcegitcommit: 902257be9c63c427dc793750a2b827d6feb8e38c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/26/2018
-ms.locfileid: "31812579"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39614356"
 ---
-# <a name="getting-started-with-ef-core-on-aspnet-core-with-a-new-database"></a>ASP.NET Core EF Çekirdeğinde ile yeni bir veritabanı ile çalışmaya başlama
+# <a name="getting-started-with-ef-core-on-aspnet-core-with-a-new-database"></a>EF çekirdekli ASP.NET Core üzerinde yeni bir veritabanı ile çalışmaya başlama
 
-Bu kılavuzda, Entity Framework Çekirdek kullanarak temel veri erişimi gerçekleştirdiği bir ASP.NET Core MVC uygulaması oluşturacaksınız. EF çekirdek modelden veritabanı oluşturmak için geçişleri kullanır. Bkz: [ek kaynaklar](#additional-resources) daha fazla Entity Framework Çekirdek öğreticileri.
+Bu öğreticide, Entity Framework Core kullanarak basit veri erişimi gerçekleştirdiği bir ASP.NET Core MVC uygulaması oluşturun. EF Core modelinizden veritabanı oluşturmaya geçişleri kullanın.
 
-Bu öğretici gerektirir:
-* [Visual Studio 2017 15.3](https://www.visualstudio.com/downloads/) bu iş yükleri ile:
+[Bu makaledeki örnek Github'da görüntüle](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb).
+
+## <a name="prerequisites"></a>Önkoşullar
+
+Aşağıdaki yazılımları yükleyin:
+
+* [Visual Studio 2017 15.7](https://www.visualstudio.com/downloads/) bu iş yükleri ile:
   * **ASP.NET ve web geliştirme** (altında **Web ve bulut**)
-  * **.NET core platformlar arası geliştirme** (altında **diğer Toolsets**)
-* [.NET 2.0 SDK çekirdek](https://www.microsoft.com/net/download/core).
+  * **.NET core çoklu platform geliştirme** (altında **diğer araç takımları**)
+* [.NET core SDK'sını 2.1](https://www.microsoft.com/net/download/core).
 
-> [!TIP]  
-> Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb) github'da.
+## <a name="create-a-new-project-in-visual-studio-2017"></a>Visual Studio 2017'de yeni bir proje oluşturun
 
-## <a name="create-a-new-project-in-visual-studio-2017"></a>Visual Studio 2017 içinde yeni bir proje oluşturun
-
+* Açık Visual Studio 2017
 * **Dosya > Yeni > Proje**
-* Sol menüden seçin **yüklü > şablonları > Visual C# > .NET Core**.
+* Sol menüden **yüklü > Visual C# > .NET Core**.
 * Seçin **ASP.NET Core Web uygulaması**.
 * Girin **EFGetStarted.AspNetCore.NewDb** tıklayın ve ad için **Tamam**.
-* İçinde **çekirdek yeni bir ASP.NET Web uygulaması** iletişim:
-  * Seçenekleri olun **.NET Core** ve **ASP.NET Core 2.0** açılan listeleri seçilir
+* İçinde **yeni ASP.NET Core Web uygulaması** iletişim:
+  * Seçenekleri sağlamak **.NET Core** ve **ASP.NET Core 2.1** açılan listeleri seçili
   * Seçin **Web uygulaması (Model-View-Controller)** proje şablonu
-  * Emin **kimlik doğrulaması** ayarlanır **doğrulaması yok**
+  * Emin **kimlik doğrulaması** ayarlanır **kimlik doğrulaması yok**
   * **Tamam**’a tıklayın.
 
-Uyarı: kullanırsanız **tek tek kullanıcı hesaplarını** yerine **hiçbiri** için **kimlik doğrulaması** bir Entity Framework Çekirdek modeli projenizdeeklenirsonra`Models\IdentityModel.cs`. Bu kılavuzda öğreneceksiniz teknikleri kullanarak, ikinci bir model ekleyin ya da varlık sınıflarınızı içerecek şekilde bu varolan modelini seçebilirsiniz.
+Uyarı: kullanırsanız **bireysel kullanıcı hesapları** yerine **hiçbiri** için **kimlik doğrulaması** projenizdebirEntityFrameworkCoremodeliekleneceksonra`Models\IdentityModel.cs`. Bu öğreticide şunların tekniklerini kullanarak ikinci bir model eklemek veya var olan bu modeli, varlık sınıfları içeren genişletmek seçebilirsiniz.
 
-## <a name="install-entity-framework-core"></a>Entity Framework Çekirdek yükleyin
+## <a name="install-entity-framework-core"></a>Entity Framework Core yükleme
 
-Hedeflemek istediğiniz EF çekirdek veritabanı sağlayıcı(lar) için paketini yükleyin. Bu kılavuz, SQL Server kullanır. Kullanılabilir sağlayıcılar listesi için bkz: [veritabanı sağlayıcıları](../../providers/index.md).
+EF Core yüklemek için hedeflemek istediğiniz EF Core veritabanı sağlayıcı(lar) için paketi yükleyin. Kullanılabilir sağlayıcılar listesi için bkz. [veritabanı sağlayıcıları](../../providers/index.md). 
 
-* **Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu**
-
-* `Install-Package Microsoft.EntityFrameworkCore.SqlServer`'i çalıştırın.
-
-EF çekirdek modelinizin dışında bir veritabanı oluşturmak için size bazı Entity Framework Çekirdek araçları kullanarak. Böylece biz de araçları paketini yükleyecek:
-
-* `Install-Package Microsoft.EntityFrameworkCore.Tools`'i çalıştırın.
-
-Daha sonra denetleyicileri ve görünümleri oluşturmak için size bazı ASP.NET Core İskele araçlarını kullanma. Böylece biz de bu tasarım paket yükleyecek:
-
-* `Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design`'i çalıştırın.
+Bu öğreticide, öğretici, SQL Server kullandığından sağlayıcı paketi yüklemeniz gerekmez. SQL Server sağlayıcı paketi eklenmiştir [Microsoft.AspnetCore.App metapackage](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/metapackage-app?view=aspnetcore-2.1).
 
 ## <a name="create-the-model"></a>Model oluşturma
 
-Modeli olun bağlamını ve varlık sınıflarını tanımlayın:
+Bağlam sınıfı ve modelini yapmak bir varlık sınıfları tanımlayın:
 
 * Sağ **modelleri** klasörü ve select **Ekle > sınıfı**.
-* Girin **Model.cs** tıklatın ve adı olarak **Tamam**.
-* Dosyasının içeriğini aşağıdaki kodla değiştirin:
+* Girin **Model.cs** tıklayın ve adı olarak **Tamam**.
+* Dosyanın içeriğini aşağıdaki kodla değiştirin:
 
   [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Models/Model.cs)]
 
-Not: Gerçek bir uygulamada, genellikle her sınıf ayrı bir dosyada, modelden koyabilirsiniz. Basitleştirmek amacıyla, biz tüm sınıflar bir dosyada Bu öğretici için koyduğunuz.
+Gerçek bir uygulamada her sınıf genellikle ayrı bir dosyada modelinizdeki koyabilirsiniz. Basitleştirmek amacıyla, bu öğreticide tüm sınıflar tek dosyada koyar.
 
-## <a name="register-your-context-with-dependency-injection"></a>İçeriğiniz bağımlılık ekleme ile kaydetme
+## <a name="register-your-context-with-dependency-injection"></a>Bağlamınızı bağımlılık ekleme ile kaydetme
 
-Hizmetler (gibi `BloggingContext`) ile kayıtlı [bağımlılık ekleme](http://docs.asp.net/en/latest/fundamentals/dependency-injection.html) uygulama başlatma sırasında. Bu Hizmetleri (örneğin, MVC denetleyicileri) gerektiren bileşenler daha sonra bu hizmetlere Oluşturucu parametreleri veya özellikleri yoluyla sağlanır.
+Hizmetler (gibi `BloggingContext`) ile kaydedilen [bağımlılık ekleme](http://docs.asp.net/en/latest/fundamentals/dependency-injection.html) uygulama başlatma sırasında. Bu hizmetler (örneğin, MVC denetleyicileri) gerektiren bileşenler sonra hizmetlerin Oluşturucu parametresi veya özellikleri aracılığıyla sağlanır.
 
-Bizim MVC denetleyicileri yapmak için sırayla kullanımı `BloggingContext` sizi bir hizmet olarak kaydeder.
+Yapmak `BloggingContext` MVC denetleyicileri için kullanılabilir bir hizmet olarak kaydedin.
 
-* Açık **haline**
-* Aşağıdakileri ekleyin `using` deyimleri:
+* Açık **Startup.cs**
+* Aşağıdaki `using` ifadeleri:
 
   [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Startup.cs#AddedUsings)]
 
-Ekleme `AddDbContext` yöntemi bir hizmet olarak kaydetmek için:
+Çağrı `AddDbContext` bağlamı bir hizmet olarak kaydetmek için yöntemi.
 
-* Aşağıdaki kodu ekleyin `ConfigureServices` yöntemi:
+* Aşağıdaki vurgulanmış kodu ekleyin `ConfigureServices` yöntemi:
 
-  [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Startup.cs?name=ConfigureServices&highlight=7-8)]
+  [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.NewDb/Startup.cs?name=ConfigureServices&highlight=13-14)]
 
-Not: Gerçek bir uygulama yapılandırma dosyasında bağlantı dizesini genellikle koyabilirsiniz. Basitleştirmek amacıyla, biz bu kodda tanımlıyorsanız. Bkz: [bağlantı dizeleri](../../miscellaneous/connection-strings.md) daha fazla bilgi için.
+Not: Gerçek bir uygulamada genellikle bir yapılandırma dosyası veya ortam değişkenine bağlantı dizesini koyabilirsiniz. Basitleştirmek amacıyla, bu öğreticide kod tanımlar. Bkz: [bağlantı dizeleri](../../miscellaneous/connection-strings.md) daha fazla bilgi için.
 
-## <a name="create-your-database"></a>Veritabanı oluşturma
+## <a name="create-the-database"></a>Veritabanı oluşturma
 
-Bir modeli eğittikten sonra kullanabileceğiniz [geçişler](https://docs.microsoft.com/aspnet/core/data/ef-mvc/migrations#introduction-to-migrations) bir veritabanı oluşturmak için.
+Bir model açtıktan sonra kullanabileceğiniz [geçişler](https://docs.microsoft.com/aspnet/core/data/ef-mvc/migrations#introduction-to-migrations) bir veritabanı oluşturmak için.
 
-* PMC açın:
-
-  **Araçlar –> NuGet Paket Yöneticisi –> Paket Yöneticisi Konsolu**
-* Çalıştırma `Add-Migration InitialCreate` tabloları modeliniz için ilk kümesi oluşturmak için bir geçiş için iskele kurmak. Belirten bir hata alırsanız `The term 'add-migration' is not recognized as the name of a cmdlet`kapatın ve Visual Studio'yu yeniden açın.
-* Çalıştırma `Update-Database` veritabanına yeni geçiş uygulanacak. Bu komut, geçişler uygulamadan önce veritabanı oluşturur.
+* **Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu**
+* Çalıştırma `Add-Migration InitialCreate` tablolar, modelinize için başlangıç kümesi oluşturmak için bir geçiş iskele. Belirten bir hata alırsanız `The term 'add-migration' is not recognized as the name of a cmdlet`kapatın ve Visual Studio'yu yeniden açın.
+* Çalıştırma `Update-Database` veritabanına yeni geçiş uygulamak için. Bu komut, veritabanı geçişleri uygulamadan önce oluşturur.
 
 ## <a name="create-a-controller"></a>Bir denetleyici oluşturma
 
-Yapı iskelesi projesinde etkinleştirin:
+Bir denetleyici ve görünüm için iskele `Blog` varlık.
 
 * Sağ **denetleyicileri** klasöründe **Çözüm Gezgini** seçip **Ekle > denetleyicisi**.
-* Seçin **en az bağımlılıkları** tıklatıp **Ekle**.
-* Yoksay veya silme *ScaffoldingReadMe.txt* dosya.
-
-Askılama özelliğinin etkinleştirildiğinden, bir denetleyici için iskele `Blog` varlık.
-
-* Sağ **denetleyicileri** klasöründe **Çözüm Gezgini** seçip **Ekle > denetleyicisi**.
-* Seçin **görünümleri ile MVC Entity Framework kullanarak denetleyicisi** tıklatıp **Tamam**.
-* Ayarlama **Model sınıfı** için **Blog** ve **veri bağlamı sınıfı** için **BloggingContext**.
+* Seçin **MVC denetleyici Entity Framework kullanarak görünümler ile** tıklatıp **Ekle**.
+* Ayarlama **Model sınıfı** için **Blog** ve **veri bağlamı sınıfının** için **BloggingContext**.
 * **Ekle**'yi tıklatın.
 
 
 ## <a name="run-the-application"></a>Uygulamayı çalıştırın
 
-Ve uygulamayı test çalıştırmak için F5 tuşuna basın.
+Uygulamayı test etmek ve çalıştırmak için F5 tuşuna basın.
 
 * Gidin `/Blogs`
-* Bazı Web günlüğü girişleri oluşturmak için Oluştur bağlantısını kullanın. Sınama ayrıntıları ve bağlantıları silin.
+* Bazı blog girişleri oluşturmak için Oluştur bağlantısını kullanın. Test ayrıntıları ve bağlantılarını silin.
 
 ![görüntü](_static/create.png)
 
@@ -129,6 +114,6 @@ Ve uygulamayı test çalıştırmak için F5 tuşuna basın.
 ## <a name="additional-resources"></a>Ek Kaynaklar
 
 * [EF - yeni veritabanı SQLite ile](xref:core/get-started/netcore/new-db-sqlite) -platformlar arası konsol EF öğretici.
-* [ASP.NET Core Mac veya Linux MVC giriş](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app-xplat/index)
-* [ASP.NET Core Visual Studio ile MVC giriş](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/index)
+* [MVC Mac veya Linux'ta ASP.NET Core'a giriş](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app-xplat/index)
+* [Visual Studio ile MVC ASP.NET Core'a giriş](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/index)
 * [Visual Studio kullanarak ASP.NET Core ve Entity Framework Core ile çalışmaya başlama](https://docs.microsoft.com/aspnet/core/data/ef-mvc/index)

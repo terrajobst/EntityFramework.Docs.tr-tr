@@ -6,14 +6,14 @@ ms.date: 11/15/2016
 ms.assetid: e079d4af-c455-4a14-8e15-a8471516d748
 ms.technology: entity-framework-core
 uid: core/miscellaneous/connection-resiliency
-ms.openlocfilehash: 34ca1908257ed5544f2e134fa7686c9802fcebea
-ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
+ms.openlocfilehash: dae646e39b4dbd96b34f47582f9b2aa531cf88a7
+ms.sourcegitcommit: 902257be9c63c427dc793750a2b827d6feb8e38c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37949304"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39614343"
 ---
-# <a name="connection-resiliency"></a>Bağlantı dayanıklılığı
+# <a name="connection-resiliency"></a>Bağlantı Dayanıklılığı
 
 Bağlantı dayanıklılığı, başarısız olan veritabanı komutları otomatik olarak yeniden dener. Bu özellik ile herhangi bir veritabanı "hatalarını algılamak ve komutlar yeniden denemek gerekli mantığı kapsülleyen bir yürütme stratejisi", sağlanarak kullanılabilir. EF Core sağlayıcıları, belirli veritabanı hata koşulları ve en iyi bir yeniden deneme ilkeleri uyarlanmış yürütme stratejileri sağlayabilirsiniz.
 
@@ -39,7 +39,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
 ## <a name="execution-strategies-and-transactions"></a>Yürütme stratejileri ve işlemler
 
-Otomatik olarak hataları yeniden deneme bir yürütme stratejisi, her işlem başarısız bir yeniden deneme bloğunda oynatmak mümkün olması gerekiyor. Yeniden deneme etkinleştirildiğinde, EF Core ile gerçekleştirdiğiniz her işlem yeniden denenebilir kendi işlem olur. Diğer bir deyişle, her sorgu ve her çağrı `SaveChanges()` geçici bir hata oluşursa bir birim olarak yeniden denenecek.
+Otomatik olarak hataları yeniden deneme bir yürütme stratejisi, her işlem başarısız olursa yeniden deneme bloğunda oynatmak mümkün olması gerekiyor. Yeniden deneme etkinleştirildiğinde, EF Core ile gerçekleştirdiğiniz her işlem yeniden denenebilir kendi işlem olur. Diğer bir deyişle, her sorgu ve her çağrı `SaveChanges()` geçici bir hata oluşursa bir birim olarak yeniden denenecek.
 
 Ancak, kodunuzu kullanarak bir işlem başlatırsa `BeginTransaction()` tanımladığınız bir birim olarak kabul edilmesi için gereken işlemleri kendi grubu ve işlem içinde her şeyi bir arıza tekrarlanmasını gerekir. Bu yürütme stratejisi kullanılırken yapmayı denerseniz, aşağıdaki gibi bir özel durum alırsınız:
 

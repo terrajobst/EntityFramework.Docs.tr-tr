@@ -2,46 +2,34 @@
 title: .NET Framework - mevcut veritabanı - EF Core üzerinde çalışmaya başlama
 author: rowanmiller
 ms.author: divega
-ms.date: 10/27/2016
+ms.date: 08/06/2018
 ms.assetid: a29a3d97-b2d8-4d33-9475-40ac67b3b2c6
 ms.technology: entity-framework-core
 uid: core/get-started/full-dotnet/existing-db
-ms.openlocfilehash: 39e77ab8c124df67458cc5fa6db2882b65943ebe
-ms.sourcegitcommit: 4467032fd6ca223e5965b59912d74cf88a1dd77f
+ms.openlocfilehash: d5c548927b736199c7d6fddc9c74139ca5f6614e
+ms.sourcegitcommit: 902257be9c63c427dc793750a2b827d6feb8e38c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/01/2018
-ms.locfileid: "39388474"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39614421"
 ---
 # <a name="getting-started-with-ef-core-on-net-framework-with-an-existing-database"></a>.NET Framework ile varolan bir veritabanını EF Core ile çalışmaya başlama
 
-Bu kılavuzda, Entity Framework kullanarak bir Microsoft SQL Server veritabanında temel veri erişimi gerçekleştirdiği bir konsol uygulaması oluşturacaksınız. Tersine mühendislik, varolan bir veritabanını temel alan bir Entity Framework modelini oluşturmak için kullanır.
+Bu öğreticide, Entity Framework kullanarak bir Microsoft SQL Server veritabanında temel veri erişimi gerçekleştirdiği bir konsol uygulaması oluşturun. Bir Entity Framework modelini tarafından ters mühendislik mevcut bir veritabanı oluşturun.
 
-> [!TIP]  
-> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb) GitHub üzerinde.
+[Bu makaledeki örnek Github'da görüntüle](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb).
 
 ## <a name="prerequisites"></a>Önkoşullar
 
-Bu izlenecek yolu tamamlamak için aşağıdaki önkoşullar gereklidir:
+* [Visual Studio 2017 sürüm 15.7 veya üzeri](https://www.visualstudio.com/downloads/)
 
-* [Visual Studio 2017](https://www.visualstudio.com/downloads/) - en az sürüm 15.3
+## <a name="create-blogging-database"></a>Günlük veritabanı oluşturma
 
-* [NuGet Paket Yöneticisi'nin en son sürümü](https://dist.nuget.org/index.html)
-
-* [Windows PowerShell'in en son sürümünü](https://docs.microsoft.com/powershell/scripting/setup/installing-windows-powershell)
-
-* [Günlük veritabanı](#blogging-database)
-
-### <a name="blogging-database"></a>Günlük veritabanı
-
-Bu öğreticide bir **blog** LocalDb örneğiniz mevcut veritabanı olarak veritabanı.
-
-> [!TIP]  
-> Zaten oluşturduysanız **blog** veritabanı başka bir öğreticinin bir parçası olarak, bu adımı atlayabilirsiniz.
+Bu öğreticide bir **blog** LocalDb örneğinde var olan veritabanının veritabanı. Zaten oluşturduysanız **blog** veritabanı başka bir öğreticinin bir parçası olarak, bu adımı atlayın.
 
 * Visual Studio'yu Aç
 
-* Araçlar > veritabanına bağlan...
+* **Araçlar > veritabanına bağlan...**
 
 * Seçin **Microsoft SQL Server** tıklatıp **devam et**
 
@@ -53,7 +41,7 @@ Bu öğreticide bir **blog** LocalDb örneğiniz mevcut veritabanı olarak verit
 
 * Veritabanına sağ tıklayın **Sunucu Gezgini** seçip **yeni sorgu**
 
-* Sorgu Düzenleyicisi'ne, aşağıda listelenen betiği kopyalayın
+* Sorgu Düzenleyicisi'ne aşağıdaki betiği kopyalayın
 
 * Sorgu düzenleyicisini sağ tıklayıp **Yürüt**
 
@@ -61,142 +49,77 @@ Bu öğreticide bir **blog** LocalDb örneğiniz mevcut veritabanı olarak verit
 
 ## <a name="create-a-new-project"></a>Yeni bir proje oluşturma
 
-* Visual Studio'yu Aç
+* Açık Visual Studio 2017
 
-* Dosya > Yeni > Proje...
+* **Dosya > Yeni > Proje...**
 
-* Sol menüden şablonları seçin > Visual C# > Windows
+* Sol menüden **yüklü > Visual C# > Windows Masaüstü**
 
-* Seçin **konsol uygulaması** proje şablonu
+* Seçin **konsol uygulaması (.NET Framework)** proje şablonu
 
-* Hedeflediğiniz olun **.NET Framework 4.6.1** veya üzeri
+* Emin olun projenizin hedeflediği **.NET Framework 4.6.1** veya üzeri
 
-* Projeye bir ad verin ve tıklayın **Tamam**
+* Projeyi adlandırın *ConsoleApp.ExistingDb* tıklatıp **Tamam**
 
 ## <a name="install-entity-framework"></a>Entity Framework'ü yükleme
 
-EF Core kullanmak için hedeflemek istediğiniz veritabanı şu sağlayıcı(lar) için paketi yükleyin. Bu izlenecek yol, SQL Server kullanır. Kullanılabilir sağlayıcılar listesi için bkz. [veritabanı sağlayıcıları](../../providers/index.md).
+EF Core kullanmak için hedeflemek istediğiniz veritabanı şu sağlayıcı(lar) için paketi yükleyin. Bu öğreticide, SQL Server kullanır. Kullanılabilir sağlayıcılar listesi için bkz. [veritabanı sağlayıcıları](../../providers/index.md).
 
-* Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu
+* **Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu**
 
 * `Install-Package Microsoft.EntityFrameworkCore.SqlServer`'i çalıştırın.
 
-Varolan bir veritabanından tersine mühendislik etkinleştirmek için biz çok birkaç diğer paketleri yüklemeniz gerekir.
+Sonraki adımda, veritabanı tersine için bazı Entity Framework araçları kullanın. Bu nedenle de araçları paketini yükleyin.
 
 * `Install-Package Microsoft.EntityFrameworkCore.Tools`'i çalıştırın.
 
-## <a name="reverse-engineer-your-model"></a>Modelinizi tersine mühendislik
+## <a name="reverse-engineer-the-model"></a>Ters mühendislik modeli
 
-Artık, mevcut bir veritabanını temel alan EF modeli oluşturma zamanı geldi.
+Artık mevcut bir veritabanını temel alan EF modeli oluşturma zamanı geldi.
 
-* Araçlar –> NuGet Paket Yöneticisi –> Paket Yöneticisi Konsolu
+* **Araçlar –> NuGet Paket Yöneticisi –> Paket Yöneticisi Konsolu**
 
 * Varolan bir veritabanından bir model oluşturmak için aşağıdaki komutu çalıştırın
 
-``` powershell
-Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
-```
+  ``` powershell
+  Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
+  ```
 
-Ters mühendislik işlemi, varlık sınıfları ve var olan veritabanı şemasını temel alan türetilmiş bir bağlam oluşturuldu. Varlık sınıfları, sorgulama ve kaydetme verilerini temsil eden basit C# nesneleridir.
+> [!TIP]  
+> Varlıklar için ekleyerek oluşturmak üzere tablolara belirtebilirsiniz `-Tables` bağımsız değişkeni için yukarıdaki komutu. Örneğin, `-Tables Blog,Post`.
 
-<!-- [!code-csharp[Main](samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/Blog.cs)] -->
-``` csharp
-using System;
-using System.Collections.Generic;
+Oluşturulan varlık sınıfları ters mühendislik süreci (`Blog` ve `Post`) ve türetilmiş bir içerik (`BloggingContext`) var olan veritabanı şemasını temel alan.
 
-namespace EFGetStarted.ConsoleApp.ExistingDb
-{
-    public partial class Blog
-    {
-        public Blog()
-        {
-            Post = new HashSet<Post>();
-        }
+Varlık sınıfları, sorgulama ve kaydetme verilerini temsil eden basit C# nesneleridir. İşte `Blog` ve `Post` varlık sınıfları:
 
-        public int BlogId { get; set; }
-        public string Url { get; set; }
+ [!code-csharp[Main](../../../../samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/Blog.cs)]
 
-        public virtual ICollection<Post> Post { get; set; }
-    }
-}
-```
+[!code-csharp[Main](../../../../samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/Post.cs)]
 
-İçerik veritabanı ile bir oturumu temsil eder ve sorgu ve varlık sınıflarının örneklerini kaydetmenize olanak tanır.
+> [!TIP]  
+> Yavaş yükleniyor etkinleştirmek için Gezinti özellikleri yapabilirsiniz `virtual` (Blog.Post ve Post.Blog).
 
-<!-- [!code-csharp[Main](samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/BloggingContext.cs)] -->
-``` csharp
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+İçerik veritabanı ile bir oturumu temsil eder. Bu, sorgulama ve varlık sınıflarının örneklerini kaydetmek için kullanabileceğiniz yöntemleri vardır.
 
-namespace EFGetStarted.ConsoleApp.ExistingDb
-{
-    public partial class BloggingContext : DbContext
-    {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
-        }
+[!code-csharp[Main](../../../../samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/BloggingContext.cs)]
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Blog>(entity =>
-            {
-                entity.Property(e => e.Url).IsRequired();
-            });
+## <a name="use-the-model"></a>Kullanım modeli
 
-            modelBuilder.Entity<Post>(entity =>
-            {
-                entity.HasOne(d => d.Blog)
-                    .WithMany(p => p.Post)
-                    .HasForeignKey(d => d.BlogId);
-            });
-        }
-
-        public virtual DbSet<Blog> Blog { get; set; }
-        public virtual DbSet<Post> Post { get; set; }
-    }
-}
-```
-
-## <a name="use-your-model"></a>Modelinizi kullanın
-
-Veri erişimi gerçekleştirdiği modeliniz artık kullanabilirsiniz.
+Şimdi, veri erişimi gerçekleştirdiği modeli kullanabilirsiniz.
 
 * Açık *Program.cs*
 
 * Dosyanın içeriğini aşağıdaki kodla değiştirin.
 
-<!-- [!code-csharp[Main](samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/Program.cs)] -->
-``` csharp
-using System;
-
-namespace EFGetStarted.ConsoleApp.ExistingDb
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            using (var db = new BloggingContext())
-            {
-                db.Blog.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
-                var count = db.SaveChanges();
-                Console.WriteLine("{0} records saved to database", count);
-
-                Console.WriteLine();
-                Console.WriteLine("All blogs in database:");
-                foreach (var blog in db.Blog)
-                {
-                    Console.WriteLine(" - {0}", blog.Url);
-                }
-            }
-        }
-    }
-}
-```
+  [!code-csharp[Main](../../../../samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/Program.cs)] 
 
 * Hata ayıklama > hata ayıklama olmadan Başlat
 
-Bir blog veritabanına kaydedilir ve daha sonra tüm blogları ayrıntılarını konsola yazdırılır görürsünüz.
+  Bir blog veritabanına kaydedilir ve daha sonra tüm blogları ayrıntılarını konsola yazdırılır görürsünüz.
 
-![görüntü](_static/output-existing-db.png)
+  ![görüntü](_static/output-existing-db.png)
+
+## <a name="additional-resources"></a>Ek Kaynaklar
+
+* [.NET Framework ile yeni bir veritabanı üzerinde EF Core](xref:core/get-started/full-dotnet/new-db)
+* [EF Core ile yeni bir veritabanı - SQLite .NET core'da](xref:core/get-started/netcore/new-db-sqlite) -platformlar arası konsol EF öğretici.
