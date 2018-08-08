@@ -2,201 +2,124 @@
 title: .NET Framework - mevcut veritabanı - EF Core üzerinde çalışmaya başlama
 author: rowanmiller
 ms.author: divega
-ms.date: 10/27/2016
+ms.date: 08/06/2018
 ms.assetid: a29a3d97-b2d8-4d33-9475-40ac67b3b2c6
 ms.technology: entity-framework-core
 uid: core/get-started/full-dotnet/existing-db
-ms.openlocfilehash: 39e77ab8c124df67458cc5fa6db2882b65943ebe
-ms.sourcegitcommit: 4467032fd6ca223e5965b59912d74cf88a1dd77f
+ms.openlocfilehash: d5c548927b736199c7d6fddc9c74139ca5f6614e
+ms.sourcegitcommit: 902257be9c63c427dc793750a2b827d6feb8e38c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/01/2018
-ms.locfileid: "39388474"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39614421"
 ---
-# <a name="getting-started-with-ef-core-on-net-framework-with-an-existing-database"></a><span data-ttu-id="0a5d0-102">.NET Framework ile varolan bir veritabanını EF Core ile çalışmaya başlama</span><span class="sxs-lookup"><span data-stu-id="0a5d0-102">Getting started with EF Core on .NET Framework with an Existing Database</span></span>
+# <a name="getting-started-with-ef-core-on-net-framework-with-an-existing-database"></a><span data-ttu-id="bbcb2-102">.NET Framework ile varolan bir veritabanını EF Core ile çalışmaya başlama</span><span class="sxs-lookup"><span data-stu-id="bbcb2-102">Getting started with EF Core on .NET Framework with an Existing Database</span></span>
 
-<span data-ttu-id="0a5d0-103">Bu kılavuzda, Entity Framework kullanarak bir Microsoft SQL Server veritabanında temel veri erişimi gerçekleştirdiği bir konsol uygulaması oluşturacaksınız.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-103">In this walkthrough, you will build a console application that performs basic data access against a Microsoft SQL Server database using Entity Framework.</span></span> <span data-ttu-id="0a5d0-104">Tersine mühendislik, varolan bir veritabanını temel alan bir Entity Framework modelini oluşturmak için kullanır.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-104">You will use reverse engineering to create an Entity Framework model based on an existing database.</span></span>
+<span data-ttu-id="bbcb2-103">Bu öğreticide, Entity Framework kullanarak bir Microsoft SQL Server veritabanında temel veri erişimi gerçekleştirdiği bir konsol uygulaması oluşturun.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-103">In this tutorial, you build a console application that performs basic data access against a Microsoft SQL Server database using Entity Framework.</span></span> <span data-ttu-id="bbcb2-104">Bir Entity Framework modelini tarafından ters mühendislik mevcut bir veritabanı oluşturun.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-104">You create an Entity Framework model by reverse engineering an existing database.</span></span>
 
-> [!TIP]  
-> <span data-ttu-id="0a5d0-105">Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb) GitHub üzerinde.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-105">You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb) on GitHub.</span></span>
+<span data-ttu-id="bbcb2-105">[Bu makaledeki örnek Github'da görüntüle](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb).</span><span class="sxs-lookup"><span data-stu-id="bbcb2-105">[View this article's sample on GitHub](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="0a5d0-106">Önkoşullar</span><span class="sxs-lookup"><span data-stu-id="0a5d0-106">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="bbcb2-106">Önkoşullar</span><span class="sxs-lookup"><span data-stu-id="bbcb2-106">Prerequisites</span></span>
 
-<span data-ttu-id="0a5d0-107">Bu izlenecek yolu tamamlamak için aşağıdaki önkoşullar gereklidir:</span><span class="sxs-lookup"><span data-stu-id="0a5d0-107">The following prerequisites are needed to complete this walkthrough:</span></span>
+* [<span data-ttu-id="bbcb2-107">Visual Studio 2017 sürüm 15.7 veya üzeri</span><span class="sxs-lookup"><span data-stu-id="bbcb2-107">Visual Studio 2017 version 15.7 or later</span></span>](https://www.visualstudio.com/downloads/)
 
-* <span data-ttu-id="0a5d0-108">[Visual Studio 2017](https://www.visualstudio.com/downloads/) - en az sürüm 15.3</span><span class="sxs-lookup"><span data-stu-id="0a5d0-108">[Visual Studio 2017](https://www.visualstudio.com/downloads/) - at least version 15.3</span></span>
+## <a name="create-blogging-database"></a><span data-ttu-id="bbcb2-108">Günlük veritabanı oluşturma</span><span class="sxs-lookup"><span data-stu-id="bbcb2-108">Create Blogging database</span></span>
 
-* [<span data-ttu-id="0a5d0-109">NuGet Paket Yöneticisi'nin en son sürümü</span><span class="sxs-lookup"><span data-stu-id="0a5d0-109">Latest version of NuGet Package Manager</span></span>](https://dist.nuget.org/index.html)
+<span data-ttu-id="bbcb2-109">Bu öğreticide bir **blog** LocalDb örneğinde var olan veritabanının veritabanı.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-109">This tutorial uses a **Blogging** database on the LocalDb instance as the existing database.</span></span> <span data-ttu-id="bbcb2-110">Zaten oluşturduysanız **blog** veritabanı başka bir öğreticinin bir parçası olarak, bu adımı atlayın.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-110">If you have already created the **Blogging** database as part of another tutorial, skip these steps.</span></span>
 
-* [<span data-ttu-id="0a5d0-110">Windows PowerShell'in en son sürümünü</span><span class="sxs-lookup"><span data-stu-id="0a5d0-110">Latest version of Windows PowerShell</span></span>](https://docs.microsoft.com/powershell/scripting/setup/installing-windows-powershell)
+* <span data-ttu-id="bbcb2-111">Visual Studio'yu Aç</span><span class="sxs-lookup"><span data-stu-id="bbcb2-111">Open Visual Studio</span></span>
 
-* [<span data-ttu-id="0a5d0-111">Günlük veritabanı</span><span class="sxs-lookup"><span data-stu-id="0a5d0-111">Blogging database</span></span>](#blogging-database)
+* <span data-ttu-id="bbcb2-112">**Araçlar > veritabanına bağlan...**</span><span class="sxs-lookup"><span data-stu-id="bbcb2-112">**Tools > Connect to Database...**</span></span>
 
-### <a name="blogging-database"></a><span data-ttu-id="0a5d0-112">Günlük veritabanı</span><span class="sxs-lookup"><span data-stu-id="0a5d0-112">Blogging database</span></span>
+* <span data-ttu-id="bbcb2-113">Seçin **Microsoft SQL Server** tıklatıp **devam et**</span><span class="sxs-lookup"><span data-stu-id="bbcb2-113">Select **Microsoft SQL Server** and click **Continue**</span></span>
 
-<span data-ttu-id="0a5d0-113">Bu öğreticide bir **blog** LocalDb örneğiniz mevcut veritabanı olarak veritabanı.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-113">This tutorial uses a **Blogging** database on your LocalDb instance as the existing database.</span></span>
+* <span data-ttu-id="bbcb2-114">Girin **(localdb) \mssqllocaldb** olarak **sunucu adı**</span><span class="sxs-lookup"><span data-stu-id="bbcb2-114">Enter **(localdb)\mssqllocaldb** as the **Server Name**</span></span>
 
-> [!TIP]  
-> <span data-ttu-id="0a5d0-114">Zaten oluşturduysanız **blog** veritabanı başka bir öğreticinin bir parçası olarak, bu adımı atlayabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-114">If you have already created the **Blogging** database as part of another tutorial, you can skip these steps.</span></span>
+* <span data-ttu-id="bbcb2-115">Girin **ana** olarak **veritabanı adı** tıklatıp **Tamam**</span><span class="sxs-lookup"><span data-stu-id="bbcb2-115">Enter **master** as the **Database Name** and click **OK**</span></span>
 
-* <span data-ttu-id="0a5d0-115">Visual Studio'yu Aç</span><span class="sxs-lookup"><span data-stu-id="0a5d0-115">Open Visual Studio</span></span>
+* <span data-ttu-id="bbcb2-116">Ana veritabanı artık altında görüntülenen **veri bağlantıları** içinde **Sunucu Gezgini**</span><span class="sxs-lookup"><span data-stu-id="bbcb2-116">The master database is now displayed under **Data Connections** in **Server Explorer**</span></span>
 
-* <span data-ttu-id="0a5d0-116">Araçlar > veritabanına bağlan...</span><span class="sxs-lookup"><span data-stu-id="0a5d0-116">Tools > Connect to Database...</span></span>
+* <span data-ttu-id="bbcb2-117">Veritabanına sağ tıklayın **Sunucu Gezgini** seçip **yeni sorgu**</span><span class="sxs-lookup"><span data-stu-id="bbcb2-117">Right-click on the database in **Server Explorer** and select **New Query**</span></span>
 
-* <span data-ttu-id="0a5d0-117">Seçin **Microsoft SQL Server** tıklatıp **devam et**</span><span class="sxs-lookup"><span data-stu-id="0a5d0-117">Select **Microsoft SQL Server** and click **Continue**</span></span>
+* <span data-ttu-id="bbcb2-118">Sorgu Düzenleyicisi'ne aşağıdaki betiği kopyalayın</span><span class="sxs-lookup"><span data-stu-id="bbcb2-118">Copy the script listed below into the query editor</span></span>
 
-* <span data-ttu-id="0a5d0-118">Girin **(localdb) \mssqllocaldb** olarak **sunucu adı**</span><span class="sxs-lookup"><span data-stu-id="0a5d0-118">Enter **(localdb)\mssqllocaldb** as the **Server Name**</span></span>
-
-* <span data-ttu-id="0a5d0-119">Girin **ana** olarak **veritabanı adı** tıklatıp **Tamam**</span><span class="sxs-lookup"><span data-stu-id="0a5d0-119">Enter **master** as the **Database Name** and click **OK**</span></span>
-
-* <span data-ttu-id="0a5d0-120">Ana veritabanı artık altında görüntülenen **veri bağlantıları** içinde **Sunucu Gezgini**</span><span class="sxs-lookup"><span data-stu-id="0a5d0-120">The master database is now displayed under **Data Connections** in **Server Explorer**</span></span>
-
-* <span data-ttu-id="0a5d0-121">Veritabanına sağ tıklayın **Sunucu Gezgini** seçip **yeni sorgu**</span><span class="sxs-lookup"><span data-stu-id="0a5d0-121">Right-click on the database in **Server Explorer** and select **New Query**</span></span>
-
-* <span data-ttu-id="0a5d0-122">Sorgu Düzenleyicisi'ne, aşağıda listelenen betiği kopyalayın</span><span class="sxs-lookup"><span data-stu-id="0a5d0-122">Copy the script, listed below, into the query editor</span></span>
-
-* <span data-ttu-id="0a5d0-123">Sorgu düzenleyicisini sağ tıklayıp **Yürüt**</span><span class="sxs-lookup"><span data-stu-id="0a5d0-123">Right-click on the query editor and select **Execute**</span></span>
+* <span data-ttu-id="bbcb2-119">Sorgu düzenleyicisini sağ tıklayıp **Yürüt**</span><span class="sxs-lookup"><span data-stu-id="bbcb2-119">Right-click on the query editor and select **Execute**</span></span>
 
 [!code-sql[Main](../_shared/create-blogging-database-script.sql)]
 
-## <a name="create-a-new-project"></a><span data-ttu-id="0a5d0-124">Yeni bir proje oluşturma</span><span class="sxs-lookup"><span data-stu-id="0a5d0-124">Create a new project</span></span>
+## <a name="create-a-new-project"></a><span data-ttu-id="bbcb2-120">Yeni bir proje oluşturma</span><span class="sxs-lookup"><span data-stu-id="bbcb2-120">Create a new project</span></span>
 
-* <span data-ttu-id="0a5d0-125">Visual Studio'yu Aç</span><span class="sxs-lookup"><span data-stu-id="0a5d0-125">Open Visual Studio</span></span>
+* <span data-ttu-id="bbcb2-121">Açık Visual Studio 2017</span><span class="sxs-lookup"><span data-stu-id="bbcb2-121">Open Visual Studio 2017</span></span>
 
-* <span data-ttu-id="0a5d0-126">Dosya > Yeni > Proje...</span><span class="sxs-lookup"><span data-stu-id="0a5d0-126">File > New > Project...</span></span>
+* <span data-ttu-id="bbcb2-122">**Dosya > Yeni > Proje...**</span><span class="sxs-lookup"><span data-stu-id="bbcb2-122">**File > New > Project...**</span></span>
 
-* <span data-ttu-id="0a5d0-127">Sol menüden şablonları seçin > Visual C# > Windows</span><span class="sxs-lookup"><span data-stu-id="0a5d0-127">From the left menu select Templates > Visual C# > Windows</span></span>
+* <span data-ttu-id="bbcb2-123">Sol menüden **yüklü > Visual C# > Windows Masaüstü**</span><span class="sxs-lookup"><span data-stu-id="bbcb2-123">From the left menu select **Installed > Visual C# > Windows Desktop**</span></span>
 
-* <span data-ttu-id="0a5d0-128">Seçin **konsol uygulaması** proje şablonu</span><span class="sxs-lookup"><span data-stu-id="0a5d0-128">Select the **Console Application** project template</span></span>
+* <span data-ttu-id="bbcb2-124">Seçin **konsol uygulaması (.NET Framework)** proje şablonu</span><span class="sxs-lookup"><span data-stu-id="bbcb2-124">Select the **Console App (.NET Framework)** project template</span></span>
 
-* <span data-ttu-id="0a5d0-129">Hedeflediğiniz olun **.NET Framework 4.6.1** veya üzeri</span><span class="sxs-lookup"><span data-stu-id="0a5d0-129">Ensure you are targeting **.NET Framework 4.6.1** or later</span></span>
+* <span data-ttu-id="bbcb2-125">Emin olun projenizin hedeflediği **.NET Framework 4.6.1** veya üzeri</span><span class="sxs-lookup"><span data-stu-id="bbcb2-125">Make sure that the project targets **.NET Framework 4.6.1** or later</span></span>
 
-* <span data-ttu-id="0a5d0-130">Projeye bir ad verin ve tıklayın **Tamam**</span><span class="sxs-lookup"><span data-stu-id="0a5d0-130">Give the project a name and click **OK**</span></span>
+* <span data-ttu-id="bbcb2-126">Projeyi adlandırın *ConsoleApp.ExistingDb* tıklatıp **Tamam**</span><span class="sxs-lookup"><span data-stu-id="bbcb2-126">Name the project *ConsoleApp.ExistingDb* and click **OK**</span></span>
 
-## <a name="install-entity-framework"></a><span data-ttu-id="0a5d0-131">Entity Framework'ü yükleme</span><span class="sxs-lookup"><span data-stu-id="0a5d0-131">Install Entity Framework</span></span>
+## <a name="install-entity-framework"></a><span data-ttu-id="bbcb2-127">Entity Framework'ü yükleme</span><span class="sxs-lookup"><span data-stu-id="bbcb2-127">Install Entity Framework</span></span>
 
-<span data-ttu-id="0a5d0-132">EF Core kullanmak için hedeflemek istediğiniz veritabanı şu sağlayıcı(lar) için paketi yükleyin.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-132">To use EF Core, install the package for the database provider(s) you want to target.</span></span> <span data-ttu-id="0a5d0-133">Bu izlenecek yol, SQL Server kullanır.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-133">This walkthrough uses SQL Server.</span></span> <span data-ttu-id="0a5d0-134">Kullanılabilir sağlayıcılar listesi için bkz. [veritabanı sağlayıcıları](../../providers/index.md).</span><span class="sxs-lookup"><span data-stu-id="0a5d0-134">For a list of available providers see [Database Providers](../../providers/index.md).</span></span>
+<span data-ttu-id="bbcb2-128">EF Core kullanmak için hedeflemek istediğiniz veritabanı şu sağlayıcı(lar) için paketi yükleyin.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-128">To use EF Core, install the package for the database provider(s) you want to target.</span></span> <span data-ttu-id="bbcb2-129">Bu öğreticide, SQL Server kullanır.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-129">This tutorial uses SQL Server.</span></span> <span data-ttu-id="bbcb2-130">Kullanılabilir sağlayıcılar listesi için bkz. [veritabanı sağlayıcıları](../../providers/index.md).</span><span class="sxs-lookup"><span data-stu-id="bbcb2-130">For a list of available providers see [Database Providers](../../providers/index.md).</span></span>
 
-* <span data-ttu-id="0a5d0-135">Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu</span><span class="sxs-lookup"><span data-stu-id="0a5d0-135">Tools > NuGet Package Manager > Package Manager Console</span></span>
+* <span data-ttu-id="bbcb2-131">**Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu**</span><span class="sxs-lookup"><span data-stu-id="bbcb2-131">**Tools > NuGet Package Manager > Package Manager Console**</span></span>
 
-* <span data-ttu-id="0a5d0-136">`Install-Package Microsoft.EntityFrameworkCore.SqlServer`'i çalıştırın.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-136">Run `Install-Package Microsoft.EntityFrameworkCore.SqlServer`</span></span>
+* <span data-ttu-id="bbcb2-132">`Install-Package Microsoft.EntityFrameworkCore.SqlServer`'i çalıştırın.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-132">Run `Install-Package Microsoft.EntityFrameworkCore.SqlServer`</span></span>
 
-<span data-ttu-id="0a5d0-137">Varolan bir veritabanından tersine mühendislik etkinleştirmek için biz çok birkaç diğer paketleri yüklemeniz gerekir.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-137">To enable reverse engineering from an existing database we need to install a couple of other packages too.</span></span>
+<span data-ttu-id="bbcb2-133">Sonraki adımda, veritabanı tersine için bazı Entity Framework araçları kullanın.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-133">In the next step, you use some Entity Framework Tools to reverse engineer the database.</span></span> <span data-ttu-id="bbcb2-134">Bu nedenle de araçları paketini yükleyin.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-134">So install the tools package as well.</span></span>
 
-* <span data-ttu-id="0a5d0-138">`Install-Package Microsoft.EntityFrameworkCore.Tools`'i çalıştırın.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-138">Run `Install-Package Microsoft.EntityFrameworkCore.Tools`</span></span>
+* <span data-ttu-id="bbcb2-135">`Install-Package Microsoft.EntityFrameworkCore.Tools`'i çalıştırın.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-135">Run `Install-Package Microsoft.EntityFrameworkCore.Tools`</span></span>
 
-## <a name="reverse-engineer-your-model"></a><span data-ttu-id="0a5d0-139">Modelinizi tersine mühendislik</span><span class="sxs-lookup"><span data-stu-id="0a5d0-139">Reverse engineer your model</span></span>
+## <a name="reverse-engineer-the-model"></a><span data-ttu-id="bbcb2-136">Ters mühendislik modeli</span><span class="sxs-lookup"><span data-stu-id="bbcb2-136">Reverse engineer the model</span></span>
 
-<span data-ttu-id="0a5d0-140">Artık, mevcut bir veritabanını temel alan EF modeli oluşturma zamanı geldi.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-140">Now it's time to create the EF model based on your existing database.</span></span>
+<span data-ttu-id="bbcb2-137">Artık mevcut bir veritabanını temel alan EF modeli oluşturma zamanı geldi.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-137">Now it's time to create the EF model based on an existing database.</span></span>
 
-* <span data-ttu-id="0a5d0-141">Araçlar –> NuGet Paket Yöneticisi –> Paket Yöneticisi Konsolu</span><span class="sxs-lookup"><span data-stu-id="0a5d0-141">Tools –> NuGet Package Manager –> Package Manager Console</span></span>
+* <span data-ttu-id="bbcb2-138">**Araçlar –> NuGet Paket Yöneticisi –> Paket Yöneticisi Konsolu**</span><span class="sxs-lookup"><span data-stu-id="bbcb2-138">**Tools –> NuGet Package Manager –> Package Manager Console**</span></span>
 
-* <span data-ttu-id="0a5d0-142">Varolan bir veritabanından bir model oluşturmak için aşağıdaki komutu çalıştırın</span><span class="sxs-lookup"><span data-stu-id="0a5d0-142">Run the following command to create a model from the existing database</span></span>
+* <span data-ttu-id="bbcb2-139">Varolan bir veritabanından bir model oluşturmak için aşağıdaki komutu çalıştırın</span><span class="sxs-lookup"><span data-stu-id="bbcb2-139">Run the following command to create a model from the existing database</span></span>
 
-``` powershell
-Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
-```
+  ``` powershell
+  Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
+  ```
 
-<span data-ttu-id="0a5d0-143">Ters mühendislik işlemi, varlık sınıfları ve var olan veritabanı şemasını temel alan türetilmiş bir bağlam oluşturuldu.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-143">The reverse engineer process created entity classes and a derived context based on the schema of the existing database.</span></span> <span data-ttu-id="0a5d0-144">Varlık sınıfları, sorgulama ve kaydetme verilerini temsil eden basit C# nesneleridir.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-144">The entity classes are simple C# objects that represent the data you will be querying and saving.</span></span>
+> [!TIP]  
+> <span data-ttu-id="bbcb2-140">Varlıklar için ekleyerek oluşturmak üzere tablolara belirtebilirsiniz `-Tables` bağımsız değişkeni için yukarıdaki komutu.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-140">You can specify the tables to generate entities for by adding the `-Tables` argument to the command above.</span></span> <span data-ttu-id="bbcb2-141">Örneğin, `-Tables Blog,Post`.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-141">For example, `-Tables Blog,Post`.</span></span>
 
-<!-- [!code-csharp[Main](samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/Blog.cs)] -->
-``` csharp
-using System;
-using System.Collections.Generic;
+<span data-ttu-id="bbcb2-142">Oluşturulan varlık sınıfları ters mühendislik süreci (`Blog` ve `Post`) ve türetilmiş bir içerik (`BloggingContext`) var olan veritabanı şemasını temel alan.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-142">The reverse engineer process created entity classes (`Blog` and `Post`) and a derived context (`BloggingContext`) based on the schema of the existing database.</span></span>
 
-namespace EFGetStarted.ConsoleApp.ExistingDb
-{
-    public partial class Blog
-    {
-        public Blog()
-        {
-            Post = new HashSet<Post>();
-        }
+<span data-ttu-id="bbcb2-143">Varlık sınıfları, sorgulama ve kaydetme verilerini temsil eden basit C# nesneleridir.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-143">The entity classes are simple C# objects that represent the data you will be querying and saving.</span></span> <span data-ttu-id="bbcb2-144">İşte `Blog` ve `Post` varlık sınıfları:</span><span class="sxs-lookup"><span data-stu-id="bbcb2-144">Here are the `Blog` and `Post` entity classes:</span></span>
 
-        public int BlogId { get; set; }
-        public string Url { get; set; }
+ [!code-csharp[Main](../../../../samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/Blog.cs)]
 
-        public virtual ICollection<Post> Post { get; set; }
-    }
-}
-```
+[!code-csharp[Main](../../../../samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/Post.cs)]
 
-<span data-ttu-id="0a5d0-145">İçerik veritabanı ile bir oturumu temsil eder ve sorgu ve varlık sınıflarının örneklerini kaydetmenize olanak tanır.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-145">The context represents a session with the database and allows you to query and save instances of the entity classes.</span></span>
+> [!TIP]  
+> <span data-ttu-id="bbcb2-145">Yavaş yükleniyor etkinleştirmek için Gezinti özellikleri yapabilirsiniz `virtual` (Blog.Post ve Post.Blog).</span><span class="sxs-lookup"><span data-stu-id="bbcb2-145">To enable lazy loading, you can make navigation properties `virtual` (Blog.Post and Post.Blog).</span></span>
 
-<!-- [!code-csharp[Main](samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/BloggingContext.cs)] -->
-``` csharp
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+<span data-ttu-id="bbcb2-146">İçerik veritabanı ile bir oturumu temsil eder.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-146">The context represents a session with the database.</span></span> <span data-ttu-id="bbcb2-147">Bu, sorgulama ve varlık sınıflarının örneklerini kaydetmek için kullanabileceğiniz yöntemleri vardır.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-147">It has methods that you can use to query and save instances of the entity classes.</span></span>
 
-namespace EFGetStarted.ConsoleApp.ExistingDb
-{
-    public partial class BloggingContext : DbContext
-    {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;");
-        }
+[!code-csharp[Main](../../../../samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/BloggingContext.cs)]
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Blog>(entity =>
-            {
-                entity.Property(e => e.Url).IsRequired();
-            });
+## <a name="use-the-model"></a><span data-ttu-id="bbcb2-148">Kullanım modeli</span><span class="sxs-lookup"><span data-stu-id="bbcb2-148">Use the model</span></span>
 
-            modelBuilder.Entity<Post>(entity =>
-            {
-                entity.HasOne(d => d.Blog)
-                    .WithMany(p => p.Post)
-                    .HasForeignKey(d => d.BlogId);
-            });
-        }
+<span data-ttu-id="bbcb2-149">Şimdi, veri erişimi gerçekleştirdiği modeli kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-149">You can now use the model to perform data access.</span></span>
 
-        public virtual DbSet<Blog> Blog { get; set; }
-        public virtual DbSet<Post> Post { get; set; }
-    }
-}
-```
+* <span data-ttu-id="bbcb2-150">Açık *Program.cs*</span><span class="sxs-lookup"><span data-stu-id="bbcb2-150">Open *Program.cs*</span></span>
 
-## <a name="use-your-model"></a><span data-ttu-id="0a5d0-146">Modelinizi kullanın</span><span class="sxs-lookup"><span data-stu-id="0a5d0-146">Use your model</span></span>
+* <span data-ttu-id="bbcb2-151">Dosyanın içeriğini aşağıdaki kodla değiştirin.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-151">Replace the contents of the file with the following code</span></span>
 
-<span data-ttu-id="0a5d0-147">Veri erişimi gerçekleştirdiği modeliniz artık kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-147">You can now use your model to perform data access.</span></span>
+  [!code-csharp[Main](../../../../samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/Program.cs)] 
 
-* <span data-ttu-id="0a5d0-148">Açık *Program.cs*</span><span class="sxs-lookup"><span data-stu-id="0a5d0-148">Open *Program.cs*</span></span>
+* <span data-ttu-id="bbcb2-152">Hata ayıklama > hata ayıklama olmadan Başlat</span><span class="sxs-lookup"><span data-stu-id="bbcb2-152">Debug > Start Without Debugging</span></span>
 
-* <span data-ttu-id="0a5d0-149">Dosyanın içeriğini aşağıdaki kodla değiştirin.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-149">Replace the contents of the file with the following code</span></span>
+  <span data-ttu-id="bbcb2-153">Bir blog veritabanına kaydedilir ve daha sonra tüm blogları ayrıntılarını konsola yazdırılır görürsünüz.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-153">You see that one blog is saved to the database and then the details of all blogs are printed to the console.</span></span>
 
-<!-- [!code-csharp[Main](samples/core/GetStarted/FullNet/ConsoleApp.ExistingDb/Program.cs)] -->
-``` csharp
-using System;
+  ![görüntü](_static/output-existing-db.png)
 
-namespace EFGetStarted.ConsoleApp.ExistingDb
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            using (var db = new BloggingContext())
-            {
-                db.Blog.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
-                var count = db.SaveChanges();
-                Console.WriteLine("{0} records saved to database", count);
+## <a name="additional-resources"></a><span data-ttu-id="bbcb2-155">Ek Kaynaklar</span><span class="sxs-lookup"><span data-stu-id="bbcb2-155">Additional Resources</span></span>
 
-                Console.WriteLine();
-                Console.WriteLine("All blogs in database:");
-                foreach (var blog in db.Blog)
-                {
-                    Console.WriteLine(" - {0}", blog.Url);
-                }
-            }
-        }
-    }
-}
-```
-
-* <span data-ttu-id="0a5d0-150">Hata ayıklama > hata ayıklama olmadan Başlat</span><span class="sxs-lookup"><span data-stu-id="0a5d0-150">Debug > Start Without Debugging</span></span>
-
-<span data-ttu-id="0a5d0-151">Bir blog veritabanına kaydedilir ve daha sonra tüm blogları ayrıntılarını konsola yazdırılır görürsünüz.</span><span class="sxs-lookup"><span data-stu-id="0a5d0-151">You will see that one blog is saved to the database and then the details of all blogs are printed to the console.</span></span>
-
-![görüntü](_static/output-existing-db.png)
+* [<span data-ttu-id="bbcb2-156">.NET Framework ile yeni bir veritabanı üzerinde EF Core</span><span class="sxs-lookup"><span data-stu-id="bbcb2-156">EF Core on .NET Framework with a new database</span></span>](xref:core/get-started/full-dotnet/new-db)
+* <span data-ttu-id="bbcb2-157">[EF Core ile yeni bir veritabanı - SQLite .NET core'da](xref:core/get-started/netcore/new-db-sqlite) -platformlar arası konsol EF öğretici.</span><span class="sxs-lookup"><span data-stu-id="bbcb2-157">[EF Core on .NET Core with a new database - SQLite](xref:core/get-started/netcore/new-db-sqlite) -  a cross-platform console EF tutorial.</span></span>

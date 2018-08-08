@@ -1,165 +1,101 @@
 ---
-title: .NET Framework - yeni veritabanı - EF Çekirdeğinde Başlarken
+title: .NET Framework - yeni veritabanı - EF Core üzerinde çalışmaya başlama
 author: rowanmiller
 ms.author: divega
-ms.date: 10/27/2016
+ms.date: 08/06/2018
 ms.assetid: 52b69727-ded9-4a7b-b8d5-73f3acfbbad3
 ms.technology: entity-framework-core
 uid: core/get-started/full-dotnet/new-db
-ms.openlocfilehash: bd7054c6834ae11bfdc352d63654e4304771e432
-ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
+ms.openlocfilehash: 088ac915041489242eb8090e7bf3a2bdc8036534
+ms.sourcegitcommit: 902257be9c63c427dc793750a2b827d6feb8e38c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/26/2018
-ms.locfileid: "31812527"
+ms.lasthandoff: 08/07/2018
+ms.locfileid: "39614434"
 ---
-# <a name="getting-started-with-ef-core-on-net-framework-with-a-new-database"></a><span data-ttu-id="98e36-102">.NET Framework ile yeni bir veritabanı EF Çekirdeğinde ile çalışmaya başlama</span><span class="sxs-lookup"><span data-stu-id="98e36-102">Getting started with EF Core on .NET Framework with a New Database</span></span>
+# <a name="getting-started-with-ef-core-on-net-framework-with-a-new-database"></a><span data-ttu-id="16948-102">.NET Framework ile yeni bir veritabanı üzerinde EF Core ile çalışmaya başlama</span><span class="sxs-lookup"><span data-stu-id="16948-102">Getting started with EF Core on .NET Framework with a New Database</span></span>
 
-<span data-ttu-id="98e36-103">Bu kılavuzda, Entity Framework kullanarak bir Microsoft SQL Server veritabanında temel veri erişimi gerçekleştirdiği bir konsol uygulaması oluşturacaksınız.</span><span class="sxs-lookup"><span data-stu-id="98e36-103">In this walkthrough, you will build a console application that performs basic data access against a Microsoft SQL Server database using Entity Framework.</span></span> <span data-ttu-id="98e36-104">Geçişler, modelden veritabanı oluşturmak için kullanır.</span><span class="sxs-lookup"><span data-stu-id="98e36-104">You will use migrations to create the database from your model.</span></span>
+<span data-ttu-id="16948-103">Bu öğreticide, Entity Framework kullanarak bir Microsoft SQL Server veritabanında temel veri erişimi gerçekleştirdiği bir konsol uygulaması oluşturun.</span><span class="sxs-lookup"><span data-stu-id="16948-103">In this tutorial, you build a console application that performs basic data access against a Microsoft SQL Server database using Entity Framework.</span></span> <span data-ttu-id="16948-104">Bir modelden veritabanı oluşturmaya geçişleri kullanın.</span><span class="sxs-lookup"><span data-stu-id="16948-104">You use migrations to create the database from a model.</span></span>
 
-> [!TIP]  
-> <span data-ttu-id="98e36-105">Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/FullNet/ConsoleApp.NewDb) github'da.</span><span class="sxs-lookup"><span data-stu-id="98e36-105">You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/FullNet/ConsoleApp.NewDb) on GitHub.</span></span>
+<span data-ttu-id="16948-105">[Bu makaledeki örnek Github'da görüntüle](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/FullNet/ConsoleApp.NewDb).</span><span class="sxs-lookup"><span data-stu-id="16948-105">[View this article's sample on GitHub](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/FullNet/ConsoleApp.NewDb).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="98e36-106">Önkoşullar</span><span class="sxs-lookup"><span data-stu-id="98e36-106">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="16948-106">Önkoşullar</span><span class="sxs-lookup"><span data-stu-id="16948-106">Prerequisites</span></span>
 
-<span data-ttu-id="98e36-107">Bu izlenecek yolu tamamlamak için aşağıdaki önkoşullar gerekir:</span><span class="sxs-lookup"><span data-stu-id="98e36-107">The following prerequisites are needed to complete this walkthrough:</span></span>
+* [<span data-ttu-id="16948-107">Visual Studio 2017 sürüm 15.7 veya üzeri</span><span class="sxs-lookup"><span data-stu-id="16948-107">Visual Studio 2017 version 15.7 or later</span></span>](https://www.visualstudio.com/downloads/)
 
-* [<span data-ttu-id="98e36-108">Visual Studio 2017</span><span class="sxs-lookup"><span data-stu-id="98e36-108">Visual Studio 2017</span></span>](https://www.visualstudio.com/downloads/)
+## <a name="create-a-new-project"></a><span data-ttu-id="16948-108">Yeni bir proje oluşturma</span><span class="sxs-lookup"><span data-stu-id="16948-108">Create a new project</span></span>
 
-* [<span data-ttu-id="98e36-109">NuGet Paket Yöneticisi'nin en son sürümü</span><span class="sxs-lookup"><span data-stu-id="98e36-109">Latest version of NuGet Package Manager</span></span>](https://dist.nuget.org/index.html)
+* <span data-ttu-id="16948-109">Açık Visual Studio 2017</span><span class="sxs-lookup"><span data-stu-id="16948-109">Open Visual Studio 2017</span></span>
 
-* [<span data-ttu-id="98e36-110">Windows PowerShell'in en son sürümünü</span><span class="sxs-lookup"><span data-stu-id="98e36-110">Latest version of Windows PowerShell</span></span>](https://docs.microsoft.com/powershell/scripting/setup/installing-windows-powershell)
+* <span data-ttu-id="16948-110">**Dosya > Yeni > Proje...**</span><span class="sxs-lookup"><span data-stu-id="16948-110">**File > New > Project...**</span></span>
 
-## <a name="create-a-new-project"></a><span data-ttu-id="98e36-111">Yeni bir proje oluşturma</span><span class="sxs-lookup"><span data-stu-id="98e36-111">Create a new project</span></span>
+* <span data-ttu-id="16948-111">Sol menüden **yüklü > Visual C# > Windows Masaüstü**</span><span class="sxs-lookup"><span data-stu-id="16948-111">From the left menu select **Installed > Visual C# > Windows Desktop**</span></span>
 
-* <span data-ttu-id="98e36-112">Açık Visual Studio</span><span class="sxs-lookup"><span data-stu-id="98e36-112">Open Visual Studio</span></span>
+* <span data-ttu-id="16948-112">Seçin **konsol uygulaması (.NET Framework)** proje şablonu</span><span class="sxs-lookup"><span data-stu-id="16948-112">Select the **Console App (.NET Framework)** project template</span></span>
 
-* <span data-ttu-id="98e36-113">Dosya > Yeni > Proje...</span><span class="sxs-lookup"><span data-stu-id="98e36-113">File > New > Project...</span></span>
+* <span data-ttu-id="16948-113">Emin olun projenizin hedeflediği **.NET Framework 4.6.1** veya üzeri</span><span class="sxs-lookup"><span data-stu-id="16948-113">Make sure that the project targets **.NET Framework 4.6.1** or later</span></span>
 
-* <span data-ttu-id="98e36-114">Sol menüden şablonları seçin > Visual C# > Klasik Windows Masaüstü</span><span class="sxs-lookup"><span data-stu-id="98e36-114">From the left menu select Templates > Visual C# > Windows Classic Desktop</span></span>
+* <span data-ttu-id="16948-114">Projeyi adlandırın *ConsoleApp.NewDb* tıklatıp **Tamam**</span><span class="sxs-lookup"><span data-stu-id="16948-114">Name the project *ConsoleApp.NewDb* and click **OK**</span></span>
 
-* <span data-ttu-id="98e36-115">Seçin **konsol uygulaması (.NET Framework)** proje şablonu</span><span class="sxs-lookup"><span data-stu-id="98e36-115">Select the **Console App (.NET Framework)** project template</span></span>
+## <a name="install-entity-framework"></a><span data-ttu-id="16948-115">Entity Framework'ü yükleme</span><span class="sxs-lookup"><span data-stu-id="16948-115">Install Entity Framework</span></span>
 
-* <span data-ttu-id="98e36-116">Hedefleme olun **.NET Framework 4.5.1** veya daha yenisi</span><span class="sxs-lookup"><span data-stu-id="98e36-116">Ensure you are targeting **.NET Framework 4.5.1** or later</span></span>
+<span data-ttu-id="16948-116">EF Core kullanmak için hedeflemek istediğiniz veritabanı şu sağlayıcı(lar) için paketi yükleyin.</span><span class="sxs-lookup"><span data-stu-id="16948-116">To use EF Core, install the package for the database provider(s) you want to target.</span></span> <span data-ttu-id="16948-117">Bu öğreticide, SQL Server kullanır.</span><span class="sxs-lookup"><span data-stu-id="16948-117">This tutorial uses SQL Server.</span></span> <span data-ttu-id="16948-118">Kullanılabilir sağlayıcılar listesi için bkz. [veritabanı sağlayıcıları](../../providers/index.md).</span><span class="sxs-lookup"><span data-stu-id="16948-118">For a list of available providers see [Database Providers](../../providers/index.md).</span></span>
 
-* <span data-ttu-id="98e36-117">Proje bir ad verin ve tıklatın **Tamam**</span><span class="sxs-lookup"><span data-stu-id="98e36-117">Give the project a name and click **OK**</span></span>
+* <span data-ttu-id="16948-119">Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu</span><span class="sxs-lookup"><span data-stu-id="16948-119">Tools > NuGet Package Manager > Package Manager Console</span></span>
 
-## <a name="install-entity-framework"></a><span data-ttu-id="98e36-118">Entity Framework'ü yükleme</span><span class="sxs-lookup"><span data-stu-id="98e36-118">Install Entity Framework</span></span>
+* <span data-ttu-id="16948-120">`Install-Package Microsoft.EntityFrameworkCore.SqlServer`'i çalıştırın.</span><span class="sxs-lookup"><span data-stu-id="16948-120">Run `Install-Package Microsoft.EntityFrameworkCore.SqlServer`</span></span>
 
-<span data-ttu-id="98e36-119">EF çekirdek kullanmak için hedeflemek istediğiniz veritabanı sağlayıcı(lar) için paketini yükleyin.</span><span class="sxs-lookup"><span data-stu-id="98e36-119">To use EF Core, install the package for the database provider(s) you want to target.</span></span> <span data-ttu-id="98e36-120">Bu kılavuz, SQL Server kullanır.</span><span class="sxs-lookup"><span data-stu-id="98e36-120">This walkthrough uses SQL Server.</span></span> <span data-ttu-id="98e36-121">Kullanılabilir sağlayıcılar listesi için bkz: [veritabanı sağlayıcıları](../../providers/index.md).</span><span class="sxs-lookup"><span data-stu-id="98e36-121">For a list of available providers see [Database Providers](../../providers/index.md).</span></span>
+<span data-ttu-id="16948-121">Bu öğreticide daha sonra veritabanını korumak için bazı Entity Framework araçları kullanın.</span><span class="sxs-lookup"><span data-stu-id="16948-121">Later in this tutorial you use some Entity Framework Tools to maintain the database.</span></span> <span data-ttu-id="16948-122">Bu nedenle de araçları paketini yükleyin.</span><span class="sxs-lookup"><span data-stu-id="16948-122">So install the tools package as well.</span></span>
 
-* <span data-ttu-id="98e36-122">Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu</span><span class="sxs-lookup"><span data-stu-id="98e36-122">Tools > NuGet Package Manager > Package Manager Console</span></span>
+* <span data-ttu-id="16948-123">`Install-Package Microsoft.EntityFrameworkCore.Tools`'i çalıştırın.</span><span class="sxs-lookup"><span data-stu-id="16948-123">Run `Install-Package Microsoft.EntityFrameworkCore.Tools`</span></span>
 
-* <span data-ttu-id="98e36-123">`Install-Package Microsoft.EntityFrameworkCore.SqlServer`'i çalıştırın.</span><span class="sxs-lookup"><span data-stu-id="98e36-123">Run `Install-Package Microsoft.EntityFrameworkCore.SqlServer`</span></span>
+## <a name="create-the-model"></a><span data-ttu-id="16948-124">Model oluşturma</span><span class="sxs-lookup"><span data-stu-id="16948-124">Create the model</span></span>
 
-<span data-ttu-id="98e36-124">Bu kılavuzda daha sonra biz de bazı Entity Framework Araçları veritabanını korumak için kullanır.</span><span class="sxs-lookup"><span data-stu-id="98e36-124">Later in this walkthrough we will also be using some Entity Framework Tools to maintain the database.</span></span> <span data-ttu-id="98e36-125">Böylece biz de araçları paketini yükler.</span><span class="sxs-lookup"><span data-stu-id="98e36-125">So we will install the tools package as well.</span></span>
+<span data-ttu-id="16948-125">Artık modeli oluşturan bir bağlam ve varlık sınıflarını tanımlamak için zamanı geldi.</span><span class="sxs-lookup"><span data-stu-id="16948-125">Now it's time to define a context and entity classes that make up the model.</span></span>
 
-* <span data-ttu-id="98e36-126">`Install-Package Microsoft.EntityFrameworkCore.Tools`'i çalıştırın.</span><span class="sxs-lookup"><span data-stu-id="98e36-126">Run `Install-Package Microsoft.EntityFrameworkCore.Tools`</span></span>
+* <span data-ttu-id="16948-126">**Proje > sınıfı Ekle...**</span><span class="sxs-lookup"><span data-stu-id="16948-126">**Project > Add Class...**</span></span>
 
-## <a name="create-your-model"></a><span data-ttu-id="98e36-127">Model oluşturma</span><span class="sxs-lookup"><span data-stu-id="98e36-127">Create your model</span></span>
+* <span data-ttu-id="16948-127">Girin *Model.cs* tıklayın ve adı olarak **Tamam**</span><span class="sxs-lookup"><span data-stu-id="16948-127">Enter *Model.cs* as the name and click **OK**</span></span>
 
-<span data-ttu-id="98e36-128">Şimdi modelinizi yapmak bağlamını ve varlık sınıflarını tanımlamak için zaman yapılır.</span><span class="sxs-lookup"><span data-stu-id="98e36-128">Now it's time to define a context and entity classes that make up your model.</span></span>
+* <span data-ttu-id="16948-128">Dosyanın içeriğini aşağıdaki kodla değiştirin.</span><span class="sxs-lookup"><span data-stu-id="16948-128">Replace the contents of the file with the following code</span></span>
 
-* <span data-ttu-id="98e36-129">Proje > sınıfı Ekle...</span><span class="sxs-lookup"><span data-stu-id="98e36-129">Project > Add Class...</span></span>
-
-* <span data-ttu-id="98e36-130">Girin *Model.cs* tıklatın ve adı olarak **Tamam**</span><span class="sxs-lookup"><span data-stu-id="98e36-130">Enter *Model.cs* as the name and click **OK**</span></span>
-
-* <span data-ttu-id="98e36-131">Dosyasının içeriğini aşağıdaki kodla değiştirin</span><span class="sxs-lookup"><span data-stu-id="98e36-131">Replace the contents of the file with the following code</span></span>
-
-<!-- [!code-csharp[Main](samples/core/GetStarted/FullNet/ConsoleApp.NewDb/Model.cs)] -->
-``` csharp
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-
-namespace EFGetStarted.ConsoleApp
-{
-    public class BloggingContext : DbContext
-    {
-        public DbSet<Blog> Blogs { get; set; }
-        public DbSet<Post> Posts { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;");
-        }
-    }
-
-    public class Blog
-    {
-        public int BlogId { get; set; }
-        public string Url { get; set; }
-
-        public List<Post> Posts { get; set; }
-    }
-
-    public class Post
-    {
-        public int PostId { get; set; }
-        public string Title { get; set; }
-        public string Content { get; set; }
-
-        public int BlogId { get; set; }
-        public Blog Blog { get; set; }
-    }
-}
-```
+  [!code-csharp[Main](../../../../samples/core/GetStarted/FullNet/ConsoleApp.NewDb/Model.cs)] 
 
 > [!TIP]  
-> <span data-ttu-id="98e36-132">Gerçek bir uygulamada siz her sınıf ayrı bir dosyaya koymak ve bağlantı dizesini koyun `App.Config` dosya ve kullanılarak okunan `ConfigurationManager`.</span><span class="sxs-lookup"><span data-stu-id="98e36-132">In a real application you would put each class in a separate file and put the connection string in the `App.Config` file and read it out using `ConfigurationManager`.</span></span> <span data-ttu-id="98e36-133">Basitleştirmek amacıyla, biz her şey tek kod dosyasında Bu öğretici için koyduğunuz.</span><span class="sxs-lookup"><span data-stu-id="98e36-133">For the sake of simplicity, we are putting everything in a single code file for this tutorial.</span></span>
+> <span data-ttu-id="16948-129">Gerçek bir uygulamada ayrı bir dosyada her sınıf koyun ve bağlantı dizesini bir yapılandırma dosyası veya ortam değişkeninde yerleştirin.</span><span class="sxs-lookup"><span data-stu-id="16948-129">In a real application you would put each class in a separate file and put the connection string in a configuration file or environment variable.</span></span> <span data-ttu-id="16948-130">Basitleştirmek amacıyla, her şey Bu öğretici için bir tek bir kod dosyasında tutmaktır.</span><span class="sxs-lookup"><span data-stu-id="16948-130">For the sake of simplicity, everything is in a single code file for this tutorial.</span></span>
 
-## <a name="create-your-database"></a><span data-ttu-id="98e36-134">Veritabanı oluşturma</span><span class="sxs-lookup"><span data-stu-id="98e36-134">Create your database</span></span>
+## <a name="create-the-database"></a><span data-ttu-id="16948-131">Veritabanı oluşturma</span><span class="sxs-lookup"><span data-stu-id="16948-131">Create the database</span></span>
 
-<span data-ttu-id="98e36-135">Bir model sahip olduğunuza göre sizin için bir veritabanı oluşturmak için geçiş kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="98e36-135">Now that you have a model, you can use migrations to create a database for you.</span></span>
+<span data-ttu-id="16948-132">Bir modeliniz olduğuna göre bir veritabanı oluşturmaya geçişleri kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="16948-132">Now that you have a model, you can use migrations to create a database.</span></span>
 
-* <span data-ttu-id="98e36-136">Araçlar –> NuGet Paket Yöneticisi –> Paket Yöneticisi Konsolu</span><span class="sxs-lookup"><span data-stu-id="98e36-136">Tools –> NuGet Package Manager –> Package Manager Console</span></span>
+* <span data-ttu-id="16948-133">**Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu**</span><span class="sxs-lookup"><span data-stu-id="16948-133">**Tools > NuGet Package Manager > Package Manager Console**</span></span>
 
-* <span data-ttu-id="98e36-137">Çalıştırma `Add-Migration MyFirstMigration` tabloları modeliniz için ilk kümesi oluşturmak için bir geçiş için iskele kurmak.</span><span class="sxs-lookup"><span data-stu-id="98e36-137">Run `Add-Migration MyFirstMigration` to scaffold a migration to create the initial set of tables for your model.</span></span>
+* <span data-ttu-id="16948-134">Çalıştırma `Add-Migration InitialCreate` tablo modeli için başlangıç kümesi oluşturmak için bir geçiş iskele.</span><span class="sxs-lookup"><span data-stu-id="16948-134">Run `Add-Migration InitialCreate` to scaffold a migration to create the initial set of tables for the model.</span></span>
 
-* <span data-ttu-id="98e36-138">Çalıştırma `Update-Database` veritabanına yeni geçiş uygulanacak.</span><span class="sxs-lookup"><span data-stu-id="98e36-138">Run `Update-Database` to apply the new migration to the database.</span></span> <span data-ttu-id="98e36-139">Veritabanınız henüz var olmadığı için geçiş uygulanmadan önce onu sizin için oluşturulur.</span><span class="sxs-lookup"><span data-stu-id="98e36-139">Because your database doesn't exist yet, it will be created for you before the migration is applied.</span></span>
+* <span data-ttu-id="16948-135">Çalıştırma `Update-Database` veritabanına yeni geçiş uygulamak için.</span><span class="sxs-lookup"><span data-stu-id="16948-135">Run `Update-Database` to apply the new migration to the database.</span></span> <span data-ttu-id="16948-136">Veritabanı henüz mevcut olmadığından geçiş uygulanmadan önce oluşturulur.</span><span class="sxs-lookup"><span data-stu-id="16948-136">Because the database doesn't exist yet, it will be created before the migration is applied.</span></span>
 
 > [!TIP]  
-> <span data-ttu-id="98e36-140">Modelinize gelecekteki değişiklikler yapmak isterseniz, kullanabileceğiniz `Add-Migration` karşılık gelen şema yapmak için yeni bir geçiş için iskele kurmak komut veritabanına değiştirir.</span><span class="sxs-lookup"><span data-stu-id="98e36-140">If you make future changes to your model, you can use the `Add-Migration` command to scaffold a new migration to make the corresponding schema changes to the database.</span></span> <span data-ttu-id="98e36-141">Gerekli kurulmuş kod iade (ve gerekli değişiklikleri yaptıktan sonra), kullanabileceğiniz `Update-Database` veritabanına değişiklikleri uygulamak için komutu.</span><span class="sxs-lookup"><span data-stu-id="98e36-141">Once you have checked the scaffolded code (and made any required changes), you can use the `Update-Database` command to apply the changes to the database.</span></span>
+> <span data-ttu-id="16948-137">Modele değişiklik yaparsanız, kullanabileceğiniz `Add-Migration` karşılık gelen şema yapmak için yeni bir geçiş iskele komut, veritabanına değiştirir.</span><span class="sxs-lookup"><span data-stu-id="16948-137">If you make changes to the model, you can use the `Add-Migration` command to scaffold a new migration to make the corresponding schema changes to the database.</span></span> <span data-ttu-id="16948-138">Gerekli iskele kurulmuş kod iade (ve gerekli değişiklikleri yaptıktan sonra), kullanabileceğiniz `Update-Database` veritabanına değişiklikleri uygulamak için komutu.</span><span class="sxs-lookup"><span data-stu-id="16948-138">Once you have checked the scaffolded code (and made any required changes), you can use the `Update-Database` command to apply the changes to the database.</span></span>
 >
-><span data-ttu-id="98e36-142">EF kullanan bir `__EFMigrationsHistory` hangi geçişleri veritabanına zaten uygulandı izlemek için veritabanı tablosunda.</span><span class="sxs-lookup"><span data-stu-id="98e36-142">EF uses a `__EFMigrationsHistory` table in the database to keep track of which migrations have already been applied to the database.</span></span>
+> <span data-ttu-id="16948-139">EF kullanan bir `__EFMigrationsHistory` hangi geçişleri veritabanına zaten uygulanmış izlemek için veritabanı tablosunda.</span><span class="sxs-lookup"><span data-stu-id="16948-139">EF uses a `__EFMigrationsHistory` table in the database to keep track of which migrations have already been applied to the database.</span></span>
 
-## <a name="use-your-model"></a><span data-ttu-id="98e36-143">Modelinizi kullanın</span><span class="sxs-lookup"><span data-stu-id="98e36-143">Use your model</span></span>
+## <a name="use-the-model"></a><span data-ttu-id="16948-140">Kullanım modeli</span><span class="sxs-lookup"><span data-stu-id="16948-140">Use the model</span></span>
 
-<span data-ttu-id="98e36-144">Veri erişimi gerçekleştirdiği modelinizi artık kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="98e36-144">You can now use your model to perform data access.</span></span>
+<span data-ttu-id="16948-141">Şimdi, veri erişimi gerçekleştirdiği modeli kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="16948-141">You can now use the model to perform data access.</span></span>
 
-* <span data-ttu-id="98e36-145">Açık *Program.cs*</span><span class="sxs-lookup"><span data-stu-id="98e36-145">Open *Program.cs*</span></span>
+* <span data-ttu-id="16948-142">Açık *Program.cs*</span><span class="sxs-lookup"><span data-stu-id="16948-142">Open *Program.cs*</span></span>
 
-* <span data-ttu-id="98e36-146">Dosyasının içeriğini aşağıdaki kodla değiştirin</span><span class="sxs-lookup"><span data-stu-id="98e36-146">Replace the contents of the file with the following code</span></span>
+* <span data-ttu-id="16948-143">Dosyanın içeriğini aşağıdaki kodla değiştirin.</span><span class="sxs-lookup"><span data-stu-id="16948-143">Replace the contents of the file with the following code</span></span>
 
-<!-- [!code-csharp[Main](samples/core/GetStarted/FullNet/ConsoleApp.NewDb/Program.cs)] -->
-``` csharp
-using System;
+  [!code-csharp[Main](../../../../samples/core/GetStarted/FullNet/ConsoleApp.NewDb/Program.cs)]
 
-namespace EFGetStarted.ConsoleApp
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            using (var db = new BloggingContext())
-            {
-                db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
-                var count = db.SaveChanges();
-                Console.WriteLine("{0} records saved to database", count);
+* <span data-ttu-id="16948-144">**Hata ayıklama > hata ayıklama olmadan Başlat**</span><span class="sxs-lookup"><span data-stu-id="16948-144">**Debug > Start Without Debugging**</span></span>
 
-                Console.WriteLine();
-                Console.WriteLine("All blogs in database:");
-                foreach (var blog in db.Blogs)
-                {
-                    Console.WriteLine(" - {0}", blog.Url);
-                }
-            }
-        }
-    }
-}
-```
+  <span data-ttu-id="16948-145">Bir blog veritabanına kaydedilir ve daha sonra tüm blogları ayrıntılarını konsola yazdırılır görürsünüz.</span><span class="sxs-lookup"><span data-stu-id="16948-145">You see that one blog is saved to the database and then the details of all blogs are printed to the console.</span></span>
 
-* <span data-ttu-id="98e36-147">Hata ayıklama > hata ayıklama olmadan Başlat</span><span class="sxs-lookup"><span data-stu-id="98e36-147">Debug > Start Without Debugging</span></span>
+  ![görüntü](_static/output-new-db.png)
 
-<span data-ttu-id="98e36-148">Bir blog veritabanına kaydedilir ve ardından tüm bloglar ayrıntılarını konsola yazdırılır görürsünüz.</span><span class="sxs-lookup"><span data-stu-id="98e36-148">You will see that one blog is saved to the database and then the details of all blogs are printed to the console.</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="16948-147">Ek Kaynaklar</span><span class="sxs-lookup"><span data-stu-id="16948-147">Additional Resources</span></span>
 
-![görüntü](_static/output-new-db.png)
+* [<span data-ttu-id="16948-148">Mevcut bir veritabanı ile .NET Framework üzerinde EF Core</span><span class="sxs-lookup"><span data-stu-id="16948-148">EF Core on .NET Framework with an existing database</span></span>](xref:core/get-started/full-dotnet/existing-db)
+* <span data-ttu-id="16948-149">[EF Core ile yeni bir veritabanı - SQLite .NET core'da](xref:core/get-started/netcore/new-db-sqlite) -platformlar arası konsol EF öğretici.</span><span class="sxs-lookup"><span data-stu-id="16948-149">[EF Core on .NET Core with a new database - SQLite](xref:core/get-started/netcore/new-db-sqlite) -  a cross-platform console EF tutorial.</span></span>
