@@ -2,19 +2,13 @@
 title: Önceden oluşturulan eşleme görünümleri - EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 917ba9c8-6ddf-4631-ab8c-c4fb378c2fcd
-caps.latest.revision: 3
-ms.openlocfilehash: 9e74176d02afc424118219eec8e016843333cbb8
-ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
+ms.openlocfilehash: 397569ef374cb44d4938f9e201b588a26c408f6e
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914211"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42996478"
 ---
 # <a name="pre-generated-mapping-views"></a>Önceden oluşturulan eşleme görünümleri
 Entity Framework, bir sorgu yürütme veya değişiklikleri veri kaynağına kaydetmek için önce bunun veritabanına erişmek için eşleme görünümü kümesi oluşturmanız gerekir. Bu eşleme görünümler veritabanı soyut bir şekilde temsil eden varlık SQL deyimi bir dizi ve uygulama etki alanı başına önbelleğe alınan meta veriler bir parçasıdır. Aynı uygulama etki alanında birden fazla aynı bağlam oluşturursanız, bunları yeniden yerine önbelleğe alınan meta veri eşleme görünümleri yeniden kullanır. Eşleme görünümü oluşturma ilk sorgu yürütülürken ilişkin genel maliyeti önemli bir parçası olduğundan, Entity Framework, eşleme görünümleri önceden oluşturmak ve bunları derlenmiş projeye dahil etmek sağlar. Daha fazla bilgi için [başarım düşünceleri (Entity Framework)](~/ef6/fundamentals/performance/perf-whitepaper.md).

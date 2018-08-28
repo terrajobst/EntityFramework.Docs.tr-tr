@@ -1,33 +1,31 @@
 ---
-title: Dizinler - EF çekirdek
+title: Dizinleri - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 85b92003-b692-417d-ac1d-76d40dce664b
-ms.technology: entity-framework-core
 uid: core/modeling/indexes
-ms.openlocfilehash: f57b545d53613cec6887734bf434958ee8fff4d8
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 87fe893243377e3ab83d419ae9bedf813ca50c3f
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054078"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995486"
 ---
-# <a name="indexes"></a>Dizinler
+# <a name="indexes"></a>Dizinleri
 
-Dizinleri bir ortak birçok veri depoları arasında kavramıdır. Veri deposunda uygulamalarının farklılık gösterebilir, ancak daha fazla bir sütun (veya sütun kümesini) göre arama yapmak için kullanıldıkları verimli.
+Dizinleri birçok veri deposu arasında genel bir kavram olarak oldukça basittir. Veri deposundaki kendi uygulamalar farklılık gösterebilir ancak bunlar bir sütuna (veya sütun kümesini) dayalı aramalar daha fazlasını yapmak için kullanılır etkin.
 
 ## <a name="conventions"></a>Kurallar
 
-Kurala göre her özellik (veya özellikler kümesi) yabancı anahtar olarak kullanılan bir dizin oluşturulur.
+Kural gereği, her özellik (veya özellikler kümesi), yabancı anahtar olarak kullanılan bir dizin oluşturulur.
 
 ## <a name="data-annotations"></a>Veri ek açıklamaları
 
-Dizinleri veri ek açıklamaları kullanılarak oluşturulamaz.
+Veri ek açıklamalarını kullanma dizin oluşturulamaz.
 
 ## <a name="fluent-api"></a>Fluent API'si
 
-Fluent API, tek bir özellikte dizin belirtmek için kullanabilirsiniz. Varsayılan olarak, benzersiz olmayan dizinler.
+Fluent API'si, tek bir özellikte bir dizin belirtmek için kullanabilirsiniz. Varsayılan olarak, benzersiz olmayan dizinleri.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/Index.cs?highlight=7,8)] -->
 ``` csharp
@@ -49,7 +47,7 @@ public class Blog
 }
 ```
 
-Ayrıca bir dizini benzersiz olmalıdır iki varlık aynı değerleri belirtilen özellik için sağlayabilirsiniz anlamı belirtebilirsiniz.
+Bir dizini benzersiz olması iki varlık aynı değerleri belirtilen özellik için olabilir yani belirtebilirsiniz.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/IndexUnique.cs?highlight=3)] -->
 ``` csharp
@@ -58,7 +56,7 @@ Ayrıca bir dizini benzersiz olmalıdır iki varlık aynı değerleri belirtilen
             .IsUnique();
 ```
 
-Dizin birden fazla sütun üzerinde de belirtebilirsiniz.
+Birden fazla sütun üzerinde bir dizin de belirtebilirsiniz.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/IndexComposite.cs?highlight=7,8)] -->
 ``` csharp
@@ -82,4 +80,4 @@ public class Person
 ```
 
 > [!TIP]  
-> Farklı özellikler kümesi başına yalnızca bir dizin yok. Bir dizin zaten tanımlanmış bir dizin olan özellikler kümesi ya da kuralı veya önceki yapılandırma yapılandırmak için Fluent API kullanırsanız, bu dizin tanımını değiştirme. Bu kural tarafından oluşturulan bir dizin daha fazla yapılandırmak istiyorsanız kullanışlıdır.
+> Farklı özellikler kümesi başına yalnızca bir dizin yok. Önceden tanımlanmış bir dizin olan özellikler kümesi kuralı ya da önceki yapılandırma ya da dizin yapılandırmak için Fluent API'si kullanıyorsanız bu dizinin tanımını değiştirerek. Bu kural tarafından oluşturulan bir dizin daha fazla yapılandırmak istiyorsanız kullanışlıdır.

@@ -2,19 +2,13 @@
 title: -Yapılandırma ve özellikler ve türler eşleme - Fluent API'si EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 648ed274-c501-4630-88e0-d728ab5c4057
-caps.latest.revision: 3
-ms.openlocfilehash: ec8b484433d13899a88f44e37823dd1a4bed6530
-ms.sourcegitcommit: 390f3a37bc55105ed7cc5b0e0925b7f9c9e80ba6
+ms.openlocfilehash: e65a3f4721e5c28de63d143e1143f3584e145477
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914309"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42996993"
 ---
 # <a name="fluent-api---configuring-and-mapping-properties-and-types"></a>Fluent API'si - özellikler ve türler eşleme ve yapılandırma
 Entity Framework Code First ile çalışırken tablolarına desteklenmiş EF kuralları kümesi kullanarak POCO sınıflarınızı eşlemek için varsayılan davranış. Bazı durumlarda, ancak olamaz veya bu kuralları izleyin ve hangi kuralları dikte dışında bir şey varlıkları eşlemeniz istemediğiniz.  

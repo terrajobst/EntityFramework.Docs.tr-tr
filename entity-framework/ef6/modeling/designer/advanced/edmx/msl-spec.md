@@ -2,19 +2,13 @@
 title: MSL belirtimi - EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 13ae7bc1-74b4-4ee4-8d73-c337be841467
-caps.latest.revision: 4
-ms.openlocfilehash: 7448efc99f9fd9c6cdf930256a26347376fb354c
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 77dc7072c70b104188cd23974f32308960daebb6
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912786"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42996037"
 ---
 # <a name="msl-specification"></a>MSL belirtimi
 Eşleme belirtimi dili (MSL) kavramsal model ve depolama modeli bir Entity Framework uygulamasının arasındaki eşlemeyi açıklayan bir XML tabanlı dilidir.
@@ -207,7 +201,7 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **AssociationSetMapp
 | Öznitelik adı     | Gereklidir | Değer                                                                                       |
 |:-------------------|:------------|:--------------------------------------------------------------------------------------------|
 | **Ad**           | Evet         | Eşlenmekte olan kavramsal model ilişki kümesi adı.                      |
-| **TypeName**       | Hayır          | Eşlenmekte olan kavramsal model ilişkilendirme türü ad alanıyla nitelenen adı. |
+| **typeName**       | Hayır          | Eşlenmekte olan kavramsal model ilişkilendirme türü ad alanıyla nitelenen adı. |
 | **StoreEntitySet** | Hayır          | Eşlenmekte olan tablonun adı.                                                 |
 
 ### <a name="example"></a>Örnek
@@ -245,7 +239,7 @@ Aşağıdaki tabloda, geçerli olan öznitelikleri açıklar **ComplexProperty**
 | Öznitelik adı | Gereklidir | Değer                                                                                            |
 |:---------------|:------------|:-------------------------------------------------------------------------------------------------|
 | **Ad**       | Evet         | Eşlenmekte olan kavramsal modeldeki bir varlık türünün karmaşık özelliğin adı. |
-| **TypeName**   | Hayır          | Kavramsal model özellik türü ad alanıyla nitelenen adı.                              |
+| **typeName**   | Hayır          | Kavramsal model özellik türü ad alanıyla nitelenen adı.                              |
 
 ### <a name="example"></a>Örnek
 
@@ -314,7 +308,7 @@ Aşağıdaki tabloda, geçerli olan öznitelikleri açıklar **ComplexTypeMappin
 
 | Öznitelik adı | Gereklidir | Değer                                                                  |
 |:---------------|:------------|:-----------------------------------------------------------------------|
-| **TypeName**   | Evet         | Eşlenmekte olan bir karmaşık tür ad alanıyla nitelenen adı. |
+| **typeName**   | Evet         | Eşlenmekte olan bir karmaşık tür ad alanıyla nitelenen adı. |
 
 ### <a name="example"></a>Örnek
 
@@ -446,7 +440,7 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **DeleteFunction** i
 
 | Öznitelik adı            | Gereklidir | Değer                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **FunctionName**          | Evet         | Silme işlevi için eşlenmiş saklı yordam ad alanıyla nitelenen adı. Saklı yordam depolama modelinde bildirilmesi gerekir. |
+| **functionName**          | Evet         | Silme işlevi için eşlenmiş saklı yordam ad alanıyla nitelenen adı. Saklı yordam depolama modelinde bildirilmesi gerekir. |
 | **RowsAffectedParameter** | Hayır          | Etkilenen satırların sayısını veren çıkış parametresinin adı.                                                                               |
 
 #### <a name="example"></a>Örnek
@@ -510,7 +504,7 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **DeleteFunction** i
 
 | Öznitelik adı            | Gereklidir | Değer                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **FunctionName**          | Evet         | Silme işlevi için eşlenmiş saklı yordam ad alanıyla nitelenen adı. Saklı yordam depolama modelinde bildirilmesi gerekir. |
+| **functionName**          | Evet         | Silme işlevi için eşlenmiş saklı yordam ad alanıyla nitelenen adı. Saklı yordam depolama modelinde bildirilmesi gerekir. |
 | **RowsAffectedParameter** | Hayır          | Etkilenen satırların sayısını veren çıkış parametresinin adı.                                                                               |
 
 #### <a name="example"></a>Örnek
@@ -751,7 +745,7 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **EntityTypeMapping*
 
 | Öznitelik adı | Gereklidir | Değer                                                                                                                                                                                                |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **TypeName**   | Evet         | Eşlenmekte olan kavramsal model varlık türü ad alanıyla nitelenen adı. <br/> Tür abstract veya türetilmiş bir tür ise, değer olmalıdır `IsOfType(Namespace-qualified_type_name)`. |
+| **typeName**   | Evet         | Eşlenmekte olan kavramsal model varlık türü ad alanıyla nitelenen adı. <br/> Tür abstract veya türetilmiş bir tür ise, değer olmalıdır `IsOfType(Namespace-qualified_type_name)`. |
 
 ### <a name="example"></a>Örnek
 
@@ -838,7 +832,7 @@ Aşağıdaki tabloda, geçerli olan öznitelikleri açıklar **Functionımportma
 | Öznitelik adı         | Gereklidir | Değer                                                                                   |
 |:-----------------------|:------------|:----------------------------------------------------------------------------------------|
 | **FunctionImportName** | Evet         | Eşlenmekte olan kavramsal modeldeki işlevi içeri aktarma adı.           |
-| **FunctionName**       | Evet         | Eşlenmekte olan depolama modelinde işlevi ad alanıyla nitelenen adı. |
+| **functionName**       | Evet         | Eşlenmekte olan depolama modelinde işlevi ad alanıyla nitelenen adı. |
 
 ### <a name="example"></a>Örnek
 
@@ -895,7 +889,7 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **InsertFunction** u
 
 | Öznitelik adı            | Gereklidir | Değer                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **FunctionName**          | Evet         | INSERT işlevi için eşlenmiş saklı yordam ad alanıyla nitelenen adı. Saklı yordam depolama modelinde bildirilmesi gerekir. |
+| **functionName**          | Evet         | INSERT işlevi için eşlenmiş saklı yordam ad alanıyla nitelenen adı. Saklı yordam depolama modelinde bildirilmesi gerekir. |
 | **RowsAffectedParameter** | Hayır          | Etkilenen satır sayısını döndüren çıkış parametresinin adı.                                                                               |
 
 #### <a name="example"></a>Örnek
@@ -946,7 +940,7 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **InsertFunction** i
 
 | Öznitelik adı            | Gereklidir | Değer                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **FunctionName**          | Evet         | INSERT işlevi için eşlenmiş saklı yordam ad alanıyla nitelenen adı. Saklı yordam depolama modelinde bildirilmesi gerekir. |
+| **functionName**          | Evet         | INSERT işlevi için eşlenmiş saklı yordam ad alanıyla nitelenen adı. Saklı yordam depolama modelinde bildirilmesi gerekir. |
 | **RowsAffectedParameter** | Hayır          | Etkilenen satırların sayısını veren çıkış parametresinin adı.                                                                               |
 
 #### <a name="example"></a>Örnek
@@ -1003,7 +997,7 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **eşleme** öğesi.
 
 | Öznitelik adı | Gereklidir | Değer                                                 |
 |:---------------|:------------|:------------------------------------------------------|
-| **Alanı**      | Evet         | **C-S**. Bu, sabit bir değerdir ve değiştirilemez. |
+| **alanı**      | Evet         | **C-S**. Bu, sabit bir değerdir ve değiştirilemez. |
 
 ### <a name="example"></a>Örnek
 
@@ -1219,7 +1213,7 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **QueryView** öğes
 
 | Öznitelik adı | Gereklidir | Değer                                                                         |
 |:---------------|:------------|:------------------------------------------------------------------------------|
-| **TypeName**   | Hayır          | Sorgu Görünümü tarafından eşleştirilen kavramsal model türünün adı. |
+| **typeName**   | Hayır          | Sorgu Görünümü tarafından eşleştirilen kavramsal model türünün adı. |
 
 ### <a name="example"></a>Örnek
 
@@ -1493,7 +1487,7 @@ Aşağıdaki tabloda, geçerli olan öznitelikleri açıklar **ScalarProperty** 
 | Öznitelik adı    | Gereklidir | Değer                                                                                                                                           |
 |:------------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Ad**          | Evet         | Eşlenmekte olan kavramsal model özellik adı.                                                                                 |
-| **ParameterName** | Evet         | Eşlenmekte olan parametrenin adı.                                                                                                 |
+| **parameterName** | Evet         | Eşlenmekte olan parametrenin adı.                                                                                                 |
 | **Sürüm**       | Hayır          | **Geçerli** veya **özgün** geçerli veya özelliğin özgün değeri eşzamanlılık denetimlerinin için kullanılması gerekip gerekmediğini bağlı olarak. |
 
 ### <a name="example"></a>Örnek
@@ -1603,7 +1597,7 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **UpdateFunction** �
 
 | Öznitelik adı            | Gereklidir | Değer                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **FunctionName**          | Evet         | Güncelleştirme işlevi için eşlenmiş saklı yordam ad alanıyla nitelenen adı. Saklı yordam depolama modelinde bildirilmesi gerekir. |
+| **functionName**          | Evet         | Güncelleştirme işlevi için eşlenmiş saklı yordam ad alanıyla nitelenen adı. Saklı yordam depolama modelinde bildirilmesi gerekir. |
 | **RowsAffectedParameter** | Hayır          | Etkilenen satırların sayısını veren çıkış parametresinin adı.                                                                               |
 
 ### <a name="example"></a>Örnek

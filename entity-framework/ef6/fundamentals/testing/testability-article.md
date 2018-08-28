@@ -2,19 +2,13 @@
 title: Test Edilebilirlik ve Entity Framework 4.0
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 9430e2ab-261c-4e8e-8545-2ebc52d7a247
-caps.latest.revision: 3
-ms.openlocfilehash: 61773f8a23ff54ddb78aeeb5656c669b12f91478
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 17a9f09022531a81042979464de05fbbd2570759
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912825"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995235"
 ---
 # <a name="testability-and-entity-framework-40"></a>Test Edilebilirlik ve Entity Framework 4.0
 Scott Allen
@@ -979,8 +973,8 @@ Bu belgede size ADO.NET varlık çerçevesi veri kalıcılığını kullanırken
 -   Martin Fowler " [Mocks olmayan yer tutucular](http://martinfowler.com/articles/mocksArentStubs.html)"
 -   Martin Fowler " [Test çift](http://martinfowler.com/bliki/TestDouble.html)"
 -   Jeremy Miller, " [etkileşimini test etme ve durum](http://codebetter.com/blogs/jeremy.miller/articles/129544.aspx)"
--   Moq, \<http://code.google.com/p/moq/>
+-   [Moq](http://code.google.com/p/moq/)
 
 ### <a name="biography"></a>Biyografi
 
-Scott Allen, pluralsight teknik ekibi üyesi ve poshbeauty.com sitesinin OdeToCode.com ' dir. Ticari yazılım geliştirme 15 yıl içinde Scott yüksek düzeyde ölçeklenebilir bir ASP.NET web uygulamaları 8-bit katıştırılmış cihazlara kadar her şey için çözümler üzerinde çalışmıştır. Scott OdeToCode, blog veya Twitter'da ulaşabilir \< http://twitter.com/OdeToCode>.
+Scott Allen, pluralsight teknik ekibi üyesi ve poshbeauty.com sitesinin OdeToCode.com ' dir. Ticari yazılım geliştirme 15 yıl içinde Scott yüksek düzeyde ölçeklenebilir bir ASP.NET web uygulamaları 8-bit katıştırılmış cihazlara kadar her şey için çözümler üzerinde çalışmıştır. Scott OdeToCode, blog veya Twitter'da ulaşabilir [ http://twitter.com/OdeToCode ](http://twitter.com/OdeToCode).

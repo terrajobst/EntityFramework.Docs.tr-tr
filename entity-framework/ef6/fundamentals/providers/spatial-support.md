@@ -2,19 +2,13 @@
 title: Uzamsal türler - EF6 sağlayıcı desteği
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 1097cb00-15f5-453d-90ed-bff9403d23e3
-caps.latest.revision: 3
-ms.openlocfilehash: 76020e2a3127b1026a5cb8f032686cc8ce9c0c5f
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 07eeecb5f5e3e3eab8548c4c7c0ed55c5ffb4f31
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912087"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42998293"
 ---
 # <a name="provider-support-for-spatial-types"></a>Uzamsal türler için sağlayıcı desteği
 Entity Framework DbGeography veya DbGeometry sınıflarıyla uzamsal veri ile çalışma destekler. Bu sınıflar Entity Framework sağlayıcısı tarafından sunulan özel veritabanı işlevleri kullanır. Uzamsal veriler tüm sağlayıcıları destekler ve olmayanlar uzamsal türü derlemeler yüklenmesi gibi ek Önkoşullar var. Uzamsal türler için sağlayıcı desteği hakkında daha fazla bilgi aşağıda verilmiştir.  

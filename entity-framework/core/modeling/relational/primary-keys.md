@@ -1,36 +1,34 @@
 ---
-title: Birincil anahtarlar - EF çekirdek
+title: Birincil anahtarlar - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: c78f8f42-564a-45a4-aca7-3ede9f7ed2bc
-ms.technology: entity-framework-core
 uid: core/modeling/relational/primary-keys
-ms.openlocfilehash: fcb1871149c0f20a2576864028b4171904de1982
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 916f3adbcd08cb1037c7fbf68e99630feb321a61
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054180"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42998074"
 ---
 # <a name="primary-keys"></a>Birincil anahtarlar
 
 > [!NOTE]  
-> Bu bölümdeki yapılandırma genel ilişkisel veritabanları için geçerlidir. İlişkisel veritabanı sağlayıcısı yüklediğinizde, burada gösterilen genişletme yöntemleri kullanılabilir olacağı (paylaşılan nedeniyle *Microsoft.EntityFrameworkCore.Relational* paketi).
+> Bu bölümdeki yapılandırma, genel olarak ilişkisel veritabanları için geçerlidir. İlişkisel veritabanı sağlayıcısı yüklediğinizde, burada gösterilen genişletme yöntemleri kullanılabilir hale gelir (paylaşılan nedeniyle *Microsoft.EntityFrameworkCore.Relational* paketi).
 
-Bir birincil anahtar kısıtlaması her bir varlık türü anahtarı için sunulmuştur.
+Bir birincil anahtar kısıtlaması her varlık türü için anahtar sunulmuştur.
 
 ## <a name="conventions"></a>Kurallar
 
-Kurala göre veritabanı birincil anahtarda adlandırılacağını `PK_<type name>`.
+Kural gereği, veritabanının birincil anahtarı yeniden adlandırılacak `PK_<type name>`.
 
 ## <a name="data-annotations"></a>Veri ek açıklamaları
 
-Bir birincil anahtar yok ilişkisel veritabanı belirli yönlerini veri ek açıklamaları kullanılarak yapılandırılabilir.
+Bir birincil anahtar yok ilişkisel veritabanı belirli yönlerini veri ek açıklamalarını kullanma yapılandırılabilir.
 
 ## <a name="fluent-api"></a>Fluent API'si
 
-Fluent API veritabanında birincil anahtar kısıtlaması adını yapılandırmak için kullanabilirsiniz.
+Fluent API'si, birincil anahtar kısıtlaması adı veritabanında yapılandırmak için kullanabilirsiniz.
 
 <!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Samples/Relational/KeyName.cs?highlight=9)] -->
 ``` csharp

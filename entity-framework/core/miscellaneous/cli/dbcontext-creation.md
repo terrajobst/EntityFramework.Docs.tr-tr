@@ -3,14 +3,13 @@ title: Tasarım zamanında DbContext oluşturma - EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 10/27/2017
-ms.technology: entity-framework-core
 uid: core/miscellaneous/cli/dbcontext-creation
-ms.openlocfilehash: 648ca990252fb32d8cf181a7ae672d07a81f56bb
-ms.sourcegitcommit: 0935ff275ae739243297f5b97eb21414398125c6
+ms.openlocfilehash: 66fec7605b6ac2da0af1e801f8a1dca0789aea35
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/23/2018
-ms.locfileid: "39201925"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42993724"
 ---
 <a name="design-time-dbcontext-creation"></a>Tasarım zamanında DbContext oluşturma
 ==============================
@@ -22,7 +21,7 @@ Araçları deneyebilirsiniz oluşturmak için çeşitli yollar vardır `DbContex
 -------------------------
 Başlangıç projeniz bir ASP.NET Core uygulaması ise, uygulamanın hizmet sağlayıcısından DbContext nesnesini almak Araçlar'ı deneyin.
 
-Aracı ilk deneyin çağırarak hizmet sağlayıcısı edinmek `Program.BuildWebHost()` erişerek `IWebHost.Services` özelliği.
+Hizmet sağlayıcısı çağırarak elde etmek ilk araçları deneyebilirsiniz `Program.BuildWebHost()` erişerek `IWebHost.Services` özelliği.
 
 > [!NOTE]
 > Yeni bir ASP.NET Core 2.0 uygulama oluşturduğunuzda, bu kanca varsayılan olarak dahil edilir. Önceki sürümlerinde EF Core ve ASP.NET Core, çağrılacak araçları deneyebilirsiniz `Startup.ConfigureServices` doğrudan uygulamanın hizmet sağlayıcısı, ancak bu düzen artık almak için düzgün şekilde ASP.NET Core 2.0 uygulamaları çalışır. ASP.NET Core 1.x uygulamaya 2.0 yükseltiyorsanız, şunları yapabilirsiniz [değiştirmek, `Program` yeni desende sınıfı][3].

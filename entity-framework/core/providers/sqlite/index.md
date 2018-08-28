@@ -1,21 +1,19 @@
 ---
-title: SQLite veritabanı sağlayıcısı - EF çekirdek
+title: SQLite veritabanı sağlayıcısı - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 3e2f7698-fec2-4cec-9e2d-2e3e0074120c
-ms.technology: entity-framework-core
 uid: core/providers/sqlite/index
-ms.openlocfilehash: 2e392f382f0e6f4d092a362c44f2149eb336db17
-ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
+ms.openlocfilehash: 31de8449a12a10d4f98ebb4bb6125389606e9bbd
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/28/2018
-ms.locfileid: "29678754"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42994008"
 ---
-# <a name="sqlite-ef-core-database-provider"></a>SQLite EF çekirdek veritabanı sağlayıcısı
+# <a name="sqlite-ef-core-database-provider"></a>SQLite EF Core veritabanı sağlayıcısı
 
-Bu veritabanı sağlayıcısı ile SQLite kullanılacak Entity Framework Çekirdek sağlar. Sağlayıcı bir parçası olarak korunur [Entity Framework Çekirdek proje](https://github.com/aspnet/EntityFrameworkCore).
+Bu veritabanı sağlayıcısı SQLite ile kullanılacak Entity Framework Core sağlar. Sağlayıcı bir parçası olarak korunur [Entity Framework Core proje](https://github.com/aspnet/EntityFrameworkCore).
 
 ## <a name="install"></a>Yükleme
 
@@ -28,17 +26,17 @@ Install-Package Microsoft.EntityFrameworkCore.Sqlite
 ## <a name="get-started"></a>Başlarken
 
 Aşağıdaki kaynaklar bu sağlayıcı ile çalışmaya başlamanıza yardımcı olur.
-* [UWP üzerinde yerel SQLite](../../get-started/uwp/getting-started.md)
+* [UWP üzerinde yerel bir SQLite](../../get-started/uwp/getting-started.md)
 
-* [.NET core uygulamasına yeni SQLite veritabanı](../../get-started/netcore/new-db-sqlite.md)
+* [.NET core uygulaması için yeni bir SQLite veritabanı](../../get-started/netcore/new-db-sqlite.md)
 
-* [Unicorn Clicker örnek uygulama](https://github.com/rowanmiller/UnicornStore/tree/master/UnicornClicker/UWP)
+* [Unicorn Clicker örnek uygulaması](https://github.com/rowanmiller/UnicornStore/tree/master/UnicornClicker/UWP)
 
-* [Unicorn Packer örnek uygulama](https://github.com/rowanmiller/UnicornStore/tree/master/UnicornPacker)
+* [Unicorn Packer örnek uygulaması](https://github.com/rowanmiller/UnicornStore/tree/master/UnicornPacker)
 
-## <a name="supported-database-engines"></a>Veritabanı motoru desteklenen
+## <a name="supported-database-engines"></a>Veritabanı altyapıları desteklenir
 
-* SQLite (3.7 veya sonraki sürümleri)
+* SQLite (3.7 ve sonraki sürümler)
 
 ## <a name="supported-platforms"></a>Desteklenen Platformlar
 
@@ -46,10 +44,10 @@ Aşağıdaki kaynaklar bu sağlayıcı ile çalışmaya başlamanıza yardımcı
 
 * .NET Core
 
-* Mono (veya sonraki sürümleri 4.2.0)
+* Mono (4.2.0 ve sonraki sürümler)
 
 * Evrensel Windows Platformu
 
 ## <a name="limitations"></a>Sınırlamalar
 
-Bkz: [SQLite sınırlamalar](limitations.md) bazı önemli sınırlamalar SQLite sağlayıcısı için.
+Bkz: [SQLite sınırlamaları](limitations.md) bazılarında önemli sınırlamalar SQLite sağlayıcısı için.

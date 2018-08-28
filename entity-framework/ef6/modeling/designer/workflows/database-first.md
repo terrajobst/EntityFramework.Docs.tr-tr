@@ -2,19 +2,13 @@
 title: EF6 öncelikle - veritabanı
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: cc6ffdb3-388d-4e79-a201-01ec2577c949
-caps.latest.revision: 3
-ms.openlocfilehash: 17bba5fe9883a1bee0f8b9624dfa35da889e6005
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: c60108c09fcbaaa1f86e77fa52cb13fe018975e1
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912126"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995916"
 ---
 # <a name="database-first"></a>İlk veritabanı
 Bu video ve adım adım izlenecek yol, Entity Framework kullanarak veritabanı First geliştirmeye giriş sağlar. Veritabanı ilk ters mühendislik varolan bir veritabanını modelden sağlar. Model bir EDMX dosyası (.edmx uzantısı) depolanır ve görüntülenebilir ve Entity Framework Tasarımcısı'nda düzenlenebilir. Uygulamanıza etkileşim sınıfları EDMX dosyasından otomatik olarak oluşturulur.

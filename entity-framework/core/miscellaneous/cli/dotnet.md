@@ -1,20 +1,19 @@
 ---
-title: .NET core CLI - EF çekirdek
+title: .NET core CLI - EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
-ms.technology: entity-framework-core
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: 721235b07e695efd8df43294e1f4e90c28ae83d7
-ms.sourcegitcommit: 72e59e6af86b568653e1b29727529dfd7f65d312
+ms.openlocfilehash: 81427b010f63bdd591ffb9117c1556722313c3fa
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 06/04/2018
-ms.locfileid: "34754502"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995303"
 ---
-<a name="ef-core-net-command-line-tools"></a>EF çekirdek .NET komut satırı araçları
+<a name="ef-core-net-command-line-tools"></a>EF Core .NET komut satırı araçları
 ===============================
-Platformlar arası uzantısı Entity Framework Çekirdek .NET komut satırı araçları olan **dotnet** parçasıdır komutu, [.NET Core SDK][2].
+Entity Framework Core ve .NET komut satırı araçları, platformlar arası bir uzantısı olan **dotnet** parçası olan komut, [.NET Core SDK'sı][2].
 
 > [!TIP]
 > Öneririz Visual Studio kullanıyorsanız, [PMC Araçları] [ 1] yerine beri sağladıkları daha tümleşik bir deneyim.
@@ -22,11 +21,11 @@ Platformlar arası uzantısı Entity Framework Çekirdek .NET komut satırı ara
 <a name="installing-the-tools"></a>Araçları yükleme
 --------------------
 > [!NOTE]
-> .NET Core SDK'sı sürüm 2.1.300 ve daha yeni içerir **dotnet ef** EF çekirdek 2.0 ve sonraki sürümleri ile uyumlu olan komutları. Bu nedenle .NET Core SDK'sı ve EF çekirdeği çalışma zamanı en güncel sürümlerini kullanıyorsanız, herhangi bir yükleme gereklidir ve bu bölümde rest yoksayabilirsiniz.
+> .NET Core SDK'sı sürüm 2.1.300 ve yeni içerir **dotnet ef** EF Core 2.0 ve sonraki sürümler ile uyumlu olan komutları. Bu nedenle .NET Core SDK'sını ve EF Core çalışma zamanı son sürümlerini kullanıyorsanız, herhangi bir yükleme gereklidir ve bu bölümün geri kalanında yoksayabilirsiniz.
 >
-> Diğer taraftan, **dotnet ef** aracı .NET Core SDK sürüm 2.1.300 içerdiği ve daha yeni sürümü 1.0 ve 1.1 EF çekirdek sürümü ile uyumlu değil. .NET Core SDK 2.1.300 sahip bir bilgisayarda bu sürümlerde EF çekirdek kullanan bir proje ile çalışabilirsiniz ya da daha yeni yüklü önce sürüm 2.1.200 de yüklemeniz gerekir ya da SDK'ın eski ve uygulamayı değiştirerek, eski sürümünün kullanacak şekilde yapılandırın,  [global.json](https://docs.microsoft.com/en-us/dotnet/core/tools/global-json) dosya. Bu dosya, normalde çözüm dizini (bir proje üzerinde) bulunmaktadır. Ardından installlation talimatıyla devam edebilirsiniz.
+> Öte yandan, **dotnet ef** aracı .NET Core SDK'sı sürüm 2.1.300 içerdiği ve yeni EF Core 1.0 ve 1.1 sürümüyle uyumlu değil. .NET Core SDK'sı 2.1.300 olan bir bilgisayarda bu sürümlerde EF Core kullanan bir proje ile çalışabilir veya üzerinin yüklü önce sürüm 2.1.200 da yüklemeniz gerekir ya da SDK'ın eski ve değiştirerek, eski sürümünün kullanmak için uygulamayı yapılandırma,  [global.json](https://docs.microsoft.com/en-us/dotnet/core/tools/global-json) dosya. Normalde bu dosya çözüm dizini (bir proje üzerinde) dahildir. Ardından installlation talimatıyla geçebilirsiniz.
 
-.NET Core SDK önceki sürümleri için aşağıdaki adımları kullanarak EF çekirdek .NET komut satırı araçları yükleyebilirsiniz:
+.NET Core SDK'sının önceki sürümleri için aşağıdaki adımları kullanarak EF Core .NET komut satırı araçları yükleyebilirsiniz:
 
 1. Proje dosyasını düzenleyin ve Microsoft.EntityFrameworkCore.Tools.DotNet DotNetCliToolReference öğesi (aşağıya bakın) olarak Ekle
 2. Aşağıdaki komutları çalıştırın:
@@ -34,7 +33,7 @@ Platformlar arası uzantısı Entity Framework Çekirdek .NET komut satırı ara
        dotnet add package Microsoft.EntityFrameworkCore.Design
        dotnet restore
 
-Elde edilen proje aşağıdakine benzer görünmelidir:
+Elde edilen proje şunun gibi görünmelidir:
 
 ``` xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -55,9 +54,9 @@ Elde edilen proje aşağıdakine benzer görünmelidir:
 ```
 
 > [!NOTE]
-> Bir paket başvurusuyla `PrivateAssets="All"` değil sunulan genellikle yalnızca geliştirme sırasında kullanılan paketler için özellikle yararlıdır bu proje başvurusu projelerine anlamına gelir.
+> Bir paket başvurusu ile `PrivateAssets="All"` değilse ifşa genellikle yalnızca geliştirme sırasında kullanılan paketler için özellikle yararlıdır bu projeye başvuran projeler için anlamına gelir.
 
-Her şeyi doğru kaldırdıysanız, başarılı bir şekilde bir komut isteminde aşağıdaki komutu çalıştırın olmalıdır.
+Her şeyi doğru kaldırdıysanız, başarıyla bir komut isteminde aşağıdaki komutu çalıştırabilirsiniz.
 
 ``` Console
 dotnet ef
@@ -65,39 +64,39 @@ dotnet ef
 
 <a name="using-the-tools"></a>Araçlarını kullanma
 ---------------
-Bir komut çağırma her iki proje ilgili vardır:
+Bir komut çağırma her iki proje kullanılan vardır:
 
-Hedef dosyalar eklendiği (veya kaldırılan bazı durumlarda) projesidir. Hedef projeyi projenin geçerli dizinin varsayılan olarak, ancak kullanılarak değiştirilebilir <nobr> **--proje** </nobr> seçeneği.
+Hedef dosyalar eklenir (veya bazı durumlarda kaldırıldı) projesidir. Hedef proje geçerli dizinde proje için varsayılan olarak, ancak kullanılarak değiştirilebilir <nobr> **--proje** </nobr> seçeneği.
 
-Başlangıç projesi projenizin kodu çalıştırırken araçları tarafından Öykünülen adrestir. Ayrıca projenin geçerli dizinin varsayılan olarak, ancak kullanılarak değiştirilebilir **--başlangıç projesi** seçeneği.
+Başlangıç projesi, proje kodunuzun yürütülürken araçları tarafından Öykünülen bir bileşendir. Ayrıca geçerli dizinde proje için varsayılan olarak, ancak kullanılarak değiştirilebilir **--başlangıç projesi** seçeneği.
 
 > [!NOTE]
-> Örneğin, web uygulamanızın EF çekirdek farklı projede yüklü olan veritabanını güncelleştirme şuna benzer: `dotnet ef database update --project {project-path}` (dizininizden web uygulaması)
+> Örneğin, web uygulamanızın yüklü farklı bir projede EF Core sahip veritabanını güncelleme şuna benzer: `dotnet ef database update --project {project-path}` (dizininizden web uygulaması)
 
-Ortak seçenekleri:
+Genel Seçenekler:
 
 |    |                                  |                             |
 |:---|:---------------------------------|:----------------------------|
-|    | --json                           | JSON çıktısını gösterir.           |
+|    | --json                           | JSON çıktıyı gösterir.           |
 | -c | --bağlam \<DBCONTEXT >           | Kullanılacak DbContext.       |
 | -p | --Proje \<Proje >             | Kullanmak için proje.         |
 | -s | --başlangıç projesi \<Proje >     | Kullanılacak başlangıç projesi. |
-|    | --framework \<FRAMEWORK >         | Hedef çerçevesi.       |
+|    | --framework \<FRAMEWORK >         | Hedef Framework'ü.       |
 |    | --configuration \<yapılandırma > | Kullanılacak yapılandırma.   |
-|    | --çalışma zamanı \<TANIMLAYICISI >          | Çalışma zamanı.         |
+|    | --çalışma zamanı \<TANIMLAYICI >          | Kullanmak için çalışma zamanı.         |
 | -h | --Yardım                           | Yardım bilgilerini gösterir.      |
-| -v | --ayrıntılı                        | Ayrıntılı çıktıyı göster.        |
-|    | --renk yok                       | Çıktı renklendirme yok.      |
-|    | --önek çıktı                  | Düzeyiyle çıktı öneki.   |
+| -v | --verbose                        | Ayrıntılı çıktıyı gösterir.        |
+|    | --no-rengi                       | Çıkış renklendirmeye yok.      |
+|    | --Çıktı ön eki                  | Düzeyiyle çıkış öneki.   |
 
 
 > [!TIP]
-> ASP.NET Core ortam belirtmek için ayarlanmış **ASPNETCORE_ENVIRONMENT** çalıştırmadan önce ortam değişkeni.
+> ASP.NET Core ortamını belirtmek için ayarlanmış **ASPNETCORE_ENVIRONMENT** çalıştırmadan önce ortam değişkeni.
 
 <a name="commands"></a>Komutlar
 --------
 
-### <a name="dotnet-ef-database-drop"></a>DotNet ef veritabanı bırakma
+### <a name="dotnet-ef-database-drop"></a>DotNet ef veritabanını bırak
 
 Veritabanı bırakır.
 
@@ -105,56 +104,56 @@ Seçenekler:
 
 |    |           |                                                          |
 |:---|:----------|:---------------------------------------------------------|
-| -f | --zorla   | Onaylayın yok.                                           |
-|    | --çalıştırma | Hangi veritabanı olduğundan bırakılamaz, ancak bırakma yok gösterir. |
+| -f | --force   | Onay isteme.                                           |
+|    | --Prova amaçlı | Hangi veritabanı bırakılan ancak açılan yoksa gösterir. |
 
-### <a name="dotnet-ef-database-update"></a>DotNet ef veritabanı güncelleştirme
+### <a name="dotnet-ef-database-update"></a>DotNet ef veritabanı güncelleştirmesi
 
-Belirtilen geçiş için veritabanını güncelleştirir.
+Belirtilen geçiş veritabanını güncelleştirir.
 
-Bağımsız değişkenler:
+Bağımsız değişkenleri:
 
 |              |                                                                                              |
 |:-------------|:---------------------------------------------------------------------------------------------|
-| \<GEÇİŞ &GT; | Hedef geçiş. 0 ise, tüm geçişler geri alınacak. Son geçiş varsayılan olarak ayarlanır. |
+| \<GEÇİŞ &GT; | Hedef geçiş. 0 ise, tüm geçişler döndürülecek. Son varsayılan olarak geçiş. |
 
-### <a name="dotnet-ef-dbcontext-info"></a>DotNet ef dbcontext bilgisi
+### <a name="dotnet-ef-dbcontext-info"></a>DotNet ef dbcontext bilgileri
 
-DbContext türü hakkındaki bilgileri alır.
+DbContext tür bilgilerini alır.
 
 ### <a name="dotnet-ef-dbcontext-list"></a>DotNet ef dbcontext listesi
 
-Kullanılabilir DbContext türleri listelenmektedir.
+Kullanılabilir DbContext türlerini listeler.
 
 ### <a name="dotnet-ef-dbcontext-scaffold"></a>DotNet ef dbcontext iskele
 
 Bir veritabanı için bir DbContext ve varlık türleri iskelesini kurar.
 
-Bağımsız değişkenler:
+Bağımsız değişkenleri:
 
 |               |                                                                             |
 |:--------------|:----------------------------------------------------------------------------|
 | \<BAĞLANTI &GT; | Veritabanı bağlantı dizesi.                                      |
-| \<SAĞLAYICI &GT;   | Kullanılacak sağlayıcısı. (örneğin, Microsoft.EntityFrameworkCore.SqlServer) |
+| \<SAĞLAYICI &GT;   | Kullanılacak sağlayıcı. (örneğin, Microsoft.EntityFrameworkCore.SqlServer) |
 
 Seçenekler:
 
 |                 |                                         |                                                                                                  |
 |:----------------|:----------------------------------------|:-------------------------------------------------------------------------------------------------|
-| <nobr>-d</nobr> | --Veri ek açıklamaları                      | Öznitelikler, model (mümkün olduğunda) yapılandırmak için kullanın. Atlanırsa, yalnızca fluent API kullanılır. |
+| <nobr>-d</nobr> | --Veri ek açıklamaları                      | Öznitelikler, model (mümkünse) yapılandırmak için kullanın. Atlanırsa, yalnızca fluent API'si kullanılır. |
 | -c              | --bağlam \<adı >                       | DbContext adı.                                                                       |
-|                 | --bağlam dir \<yolu >                   | DbContext dosyasını yerleştirmek için dizin. Proje dizininin göreli yollardır.             |
-| -f              | --zorla                                 | Var olan dosyaların üzerine yazar.                                                                        |
-| -o              | --Çıkış dir \<yolu >                    | Dosyaları yerleştirmek için dizin. Proje dizininin göreli yollardır.                      |
-|                 | <nobr>--şema \<SCHEMA_NAME >...</nobr> | Varlık türleri oluşturmak için tabloları şemalar.                                              |
+|                 | --bağlam dir \<yolu >                   | DbContext dosya yerleştirmek için dizin. Proje dizinine göreli yollardır.             |
+| -f              | --force                                 | Varolan dosyaların üzerine yaz.                                                                        |
+| -o              | --çıktı dizini \<yolu >                    | Dosyaları yerleştirmek için dizin. Proje dizinine göreli yollardır.                      |
+|                 | <nobr>--şema \<SCHEMA_NAME >...</nobr> | Şemaları için varlık türleri oluşturmak için tablo.                                              |
 | -t              | --Tablo \<TABLE_NAME >...                | Varlık türleri için oluşturmak üzere tablolara.                                                         |
-|                 | --adları veritabanı kullan                    | Doğrudan veritabanından tablo ve sütun adları kullanın.                                           |
+|                 | --veritabanı adları kullan                    | Doğrudan veritabanından tablo ve sütun adları kullanın.                                           |
 
-### <a name="dotnet-ef-migrations-add"></a>DotNet ef geçişler ekleme
+### <a name="dotnet-ef-migrations-add"></a>DotNet ef geçişleri Ekle
 
 Yeni bir geçiş ekler.
 
-Bağımsız değişkenler:
+Bağımsız değişkenleri:
 
 |         |                            |
 |:--------|:---------------------------|
@@ -164,13 +163,13 @@ Seçenekler:
 
 |                 |                                   |                                                                                                                  |
 |:----------------|:----------------------------------|:-----------------------------------------------------------------------------------------------------------------|
-| <nobr>-o</nobr> | <nobr>--Çıkış dir \<yolu ></nobr> | Kullanılacak dizin (ve alt ad alanı). Proje dizininin göreli yollardır. Varsayılan olarak "Geçiş". |
+| <nobr>-o</nobr> | <nobr>--çıktı dizini \<yolu ></nobr> | Kullanılacak dizin (ve alt ad alanı). Proje dizinine göreli yollardır. Varsayılan olarak "Geçişler". |
 
-### <a name="dotnet-ef-migrations-list"></a>DotNet ef geçişler listesi
+### <a name="dotnet-ef-migrations-list"></a>DotNet ef geçişleri listesi
 
-Kullanılabilir geçişler listeler.
+Kullanılabilir geçişleri listeler.
 
-### <a name="dotnet-ef-migrations-remove"></a>DotNet ef geçişler Kaldır
+### <a name="dotnet-ef-migrations-remove"></a>DotNet ef geçişleri Kaldır
 
 Son geçiş kaldırır.
 
@@ -178,25 +177,25 @@ Seçenekler:
 
 |    |         |                                                                       |
 |:---|:--------|:----------------------------------------------------------------------|
-| -f | --zorla | Veritabanına uyguladıysanız geçişi geri alın. |
+| -f | --force | Veritabanına uygulanmışsa, geçişi geri alın. |
 
-### <a name="dotnet-ef-migrations-script"></a>DotNet ef geçişler komut dosyası
+### <a name="dotnet-ef-migrations-script"></a>DotNet ef geçişleri betiği
 
 Bir SQL betiği geçişleri oluşturur.
 
-Bağımsız değişkenler:
+Bağımsız değişkenleri:
 
 |         |                                                               |
 |:--------|:--------------------------------------------------------------|
-| \<GELEN &GT; | Başlangıç geçiş. Varsayılan ayar: 0 (ilk veritabanı). |
-| \<İÇİN &GT;   | Bitiş geçiş. Son geçiş varsayılan olarak ayarlanır.         |
+| \<GELEN &GT; | Başlangıç geçiş. Varsayılan olarak 0 (ilk veritabanı). |
+| \<İÇİN &GT;   | Bitiş geçiş. Son varsayılan olarak geçiş.         |
 
 Seçenekler:
 
 |    |                  |                                                                    |
 |:---|:-----------------|:-------------------------------------------------------------------|
-| -o | --Çıkış \<dosyası > | Sonucu yazmak için dosya.                                   |
-| -i | --ıdempotent     | Bir veritabanında hiçbir geçiş sırasında kullanılan bir komut dosyası oluşturur. |
+| -o | --Çıktı \<dosyası > | Yazma sonucu dosyası.                                   |
+| -i | ıdempotent--     | Bir veritabanı herhangi bir geçiş sırasında kullanılan bir komut dosyası oluşturur. |
 
 
   [1]: powershell.md

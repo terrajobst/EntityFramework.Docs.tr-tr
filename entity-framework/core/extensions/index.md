@@ -1,42 +1,40 @@
 ---
-title: Araçlar ve uzantılar - EF çekirdek
+title: Araçlar ve uzantılar - EF Core
 author: ErikEJ
-ms.author: divega
 ms.date: 7/3/2018
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
-ms.technology: entity-framework-core
 uid: core/extensions/index
-ms.openlocfilehash: 6c8cb3e0d8552f274118e4020b7e2e8009af7e11
-ms.sourcegitcommit: fc68321c211aca38f7b9dc3a75677c6ca1b2524b
+ms.openlocfilehash: e9f9a6cbbceeb0379ddb5588b564b0d2a962795f
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29769445"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995519"
 ---
-# <a name="ef-core-tools--extensions"></a>EF çekirdek Araçları & uzantıları
+# <a name="ef-core-tools--extensions"></a>EF Core Araçlar ve uzantılar
 
-Araçlar ve uzantılar Entity Framework Çekirdek için ek işlevsellik sağlar.
+Araçlar ve uzantılar için Entity Framework Core ek işlevsellik sağlar.
 
 > [!IMPORTANT]  
-> Uzantıları çeşitli kaynakları tarafından oluşturulan ve Entity Framework Çekirdek projenin bir parçası olarak tutulan değil. Bir üçüncü taraf uzantı değerlendirirken, kalite, lisans, uyumluluk, destek vb. gereksinimlerinizi karşıladıklarından emin olmak için değerlendirilecek emin olun.
+> Uzantıları çeşitli kaynaklardan tarafından oluşturulur ve Entity Framework Core projesinin bir parçası korunur değil. Bir üçüncü taraf uzantı dikkate alındığında, kalite, lisanslama, uyumluluk, destek vb. gereksinimlerinizi karşıladıklarından emin olmak için değerlendirilecek emin olun.
 
 ## <a name="tools"></a>Araçlar
 
 ### <a name="llblgen-pro"></a>LLBLGen Pro
 
-LLBLGen Pro Entity Framework ve Entity Framework Çekirdek desteği çözümüyle modelleme bir varlıktır. Kolayca varlık modeli tanımlamak ve veritabanı ilk kullanarak, veritabanı ile eşleniyor sağlar ya da ilk olarak, sorgu hemen yazma başlayabiliriz modelinizi.
+LLBLGen Pro çözüm Entity Framework ve Entity Framework Core desteğiyle birlikte modeling bir varlıktır. Kolayca varlık modelinizi tanımlayın ve veritabanınıza ilk kullanarak veritabanı eşleme sağlar veya sorgu hemen yazma başlangıç yapmanıza yardımcı olacak ilk olarak, model.
 
 [Web sitesi](https://www.llblgen.com/)
 
 ### <a name="devart-entity-developer"></a>Devart varlık Geliştirici
 
-Varlık Geliştirici ADO.NET Entity Framework, NHibernate, LinqConnect, Telerik veri erişimi ve LINQ-SQL için güçlü bir ORM Tasarımcısı ' dir. Model ilk kullanabilirsiniz ve ORM modelinizi tasarlamak ve C# veya Visual Basic .NET kodu için oluşturmak için veritabanı ilk yaklaşıyor. ORM modelleri tasarlamak için yeni yaklaşımlar tanıtır, verimliliği artırır ve veritabanı uygulamaların geliştirilmesini kolaylaştırır.
+Varlık, ADO.NET Entity Framework, NHibernate, LinqConnect, Telerik Data Access ve LINQ to SQL için güçlü bir ORM Tasarımcısı geliştiricidir. Model-First kullanabilirsiniz ve ORM modelinizi tasarlamak ve C# veya Visual Basic .NET kodunu oluşturmak için veritabanı ilk yaklaşır. ORM modelleri oluşturmaya yönelik yeni bir yaklaşım sunar, üretkenliği artırıyor ve veritabanı uygulamaların geliştirilmesini kolaylaştırır.
 
 [Web sitesi](https://www.devart.com/entitydeveloper/)
 
-### <a name="ef-core-power-tools"></a>EF çekirdek güç araçları
+### <a name="ef-core-power-tools"></a>EF Core güç araçları
 
-Visual Studio 2017+ extension. Varolan bir veritabanına veya SQL Server veritabanı projesi ters mühendislik DbContext ve POCO sınıflarının görselleştirin ve çeşitli yollarla, DbContext inceleyin.
+Visual Studio 2017 + uzantısı. Varolan bir veritabanına veya SQL Server veritabanı projesi tersine mühendislik DbContext ve POCO sınıfların görselleştirin ve çeşitli yollarla, DbContext inceleyin.
 
 [GitHub wiki](https://github.com/ErikEJ/SqlCeToolbox/wiki/EF-Core-Power-Tools)
 
@@ -46,88 +44,94 @@ Visual Studio 2017+ extension. Varolan bir veritabanına veya SQL Server veritab
 
 Bir eklenti için otomatik olarak veri kaydını desteklemek Microsoft.EntityFrameworkCore geçmişi değiştirir.
 
-[GitHub depo](https://github.com/Arch/AutoHistory/)
+[GitHub deposu](https://github.com/Arch/AutoHistory/)
 
 ### <a name="microsoftentityframeworkcoredynamiclinq"></a>Microsoft.EntityFrameworkCore.DynamicLinq
 
-Zaman uyumsuz desteği ekleyen Microsoft.EntityFrameworkCore için dinamik LINQ uzantıları
+Zaman uyumsuz destek ekleyen Microsoft.EntityFrameworkCore için dinamik LINQ uzantıları
 
- [GitHub depo](https://github.com/StefH/System.Linq.Dynamic.Core/)
+ [GitHub deposu](https://github.com/StefH/System.Linq.Dynamic.Core/)
 
 ### <a name="efcorepractices"></a>EFCore.Practices
 
-Sınama destekleyen bir API içinde – N + 1 sorgular için taramak için küçük bir çerçeve dahil olmak üzere bazı iyi veya en iyi yöntemler yakalama girişimi.
+Test destekleyen bir API – N + 1 sorgular için taramak için küçük bir çerçeve dahil olmak üzere bazı iyi ya da en iyi uygulamaları yakalamak çalışır.
 
-[GitHub depo](https://github.com/riezebosch/efcore-practices/tree/master/src/EFCore.Practices/)
+[GitHub deposu](https://github.com/riezebosch/efcore-practices/tree/master/src/EFCore.Practices/)
 
 ### <a name="efsecondlevelcachecore"></a>EFSecondLevelCache.Core
 
-İkinci düzey önbelleğe alma kitaplığı. İkinci düzey önbelleğe alma sorgusu bir önbelleğidir. EF komutları sonuçlarını önbelleğinde aynı EF komutlar kendi veri önbelleği yerine yeniden veritabanına karşı çalıştırma alacak depolanan.
+İkinci düzey önbelleğe alma kitaplığı. İkinci düzey önbelleğe alma sorgu bir önbellektir. Böylece aynı EF komutları, verileri alır, önbellek yerine yeniden veritabanına karşı yürütme EF komutlarının sonuçlarını önbellekte depolanır.
 
-[GitHub depo](https://github.com/VahidN/EFSecondLevelCache.Core/)
+[GitHub deposu](https://github.com/VahidN/EFSecondLevelCache.Core/)
 
 ### <a name="detachedentityframework"></a>Detached.EntityFramework
 
-Yükler ve tüm ayrılmış varlık grafikleri (kendi alt varlıkları ve listeleri olan varlık) kaydeder. Tarafından neden olacak [GraphDiff](https://github.com/refactorthis/GraphDiff/). Ayrıca bazı eklentiler için simplificate denetim ve sayfa numaralandırma gibi bazı yinelenen görevleri ekleyin olur.
+Yükler ve tüm ayrılmış varlık grafikleri (alt varlıklar ve liste varlığı) kaydeder. İlham [GraphDiff](https://github.com/refactorthis/GraphDiff/). Ayrıca bazı eklentiler için simplificate denetim ve sayfalandırma gibi bazı yinelenen görevleri ekleyin olur.
 
-[GitHub depo](https://github.com/leonardoporro/Detached/)
+[GitHub deposu](https://github.com/leonardoporro/Detached/)
 
 ### <a name="entityframeworkcoreprimarykey"></a>EntityFrameworkCore.PrimaryKey
 
-(Bileşik anahtarlar dahil) birincil anahtar herhangi bir varlığa bir sözlük olarak alır.
+Birincil anahtarı (bileşik anahtarlar dahil) herhangi bir varlığa bir sözlük olarak alın.
 
-[GitHub depo](https://github.com/NickStrupat/EntityFramework.PrimaryKey/)
+[GitHub deposu](https://github.com/NickStrupat/EntityFramework.PrimaryKey/)
 
 ### <a name="entityframeworkcorerx"></a>EntityFrameworkCore.Rx
 
-Entity Framework varlıkların etkin gözlemlenenler için geriye dönük uzantısı sarmalayıcıları.
+Sık erişimli gözlemlenenler Entity Framework varlık için reaktif uzantısı sarmalayıcıları.
 
-[GitHub depo](https://github.com/NickStrupat/EntityFramework.Rx/)
+[GitHub deposu](https://github.com/NickStrupat/EntityFramework.Rx/)
 
 ### <a name="entityframeworkcoretriggers"></a>EntityFrameworkCore.Triggers
 
-Varlıklarınızı ile tetikleyicilere ekleme, güncelleştirme ve olayları Sil ekleyin. Her üç olay vardır: önce sonra ve başarısızlık durumunda.
+Ekleme, güncelleştirme ve olayları Sil içeren varlıklarınız için Tetikleyiciler ekleyin. Her üç olaylar vardır: önce sonra ve başarısızlık durumunda.
 
-[GitHub depo](https://github.com/NickStrupat/EntityFramework.Triggers/)
+[GitHub deposu](https://github.com/NickStrupat/EntityFramework.Triggers/)
 
 ### <a name="entityframeworkcoretypedoriginalvalues"></a>EntityFrameworkCore.TypedOriginalValues
 
-Yazılı varlık özelliklerinizi OriginalValue erişin. Basit ve karmaşık özellikler desteklenmez, gezinti/koleksiyonları değildir.
+Türü belirlenmiş OriginalValue, varlık özelliklerini erişin. Basit ve karmaşık özellikler desteklenir, gezinti ve koleksiyonların değildir.
 
-[GitHub depo](https://github.com/NickStrupat/EntityFramework.TypedOriginalValues/)
+[GitHub deposu](https://github.com/NickStrupat/EntityFramework.TypedOriginalValues/)
 
 ### <a name="geco"></a>Geco
 
-Geco sağlar ters Model Oluşturucu desteği Çoğullaştırma/Singularization ve C# 6.0 ara değerli dizeler üzerinde bağlı ve .net çalıştıran düzenlenebilir şablonları ile çekirdek. Ayrıca bir çekirdek Kod Oluşturucu SQL birleştirme komut dosyaları ve komut dosyası Çalıştırıcısı sağlar.
+Geco bir ters Model Oluşturucu Çoğullaştırma/Singularization ve C# 6.0 ilişkilendirilmiş dizelerle tabanlı ve.Net Core üzerinde çalışan düzenlenebilir şablonlar için destek sağlar. Ayrıca bir çekirdek betiği Oluşturucu SQL birleştirme betikleri ve bir betik Çalıştırıcısı ile sağlar.
 
-[Github depo](https://github.com/iQuarc/Geco)
+[Github deposu](https://github.com/iQuarc/Geco)
 
 ### <a name="linqkitmicrosoftentityframeworkcore"></a>LinqKit.Microsoft.EntityFrameworkCore
 
-LinqKit.Microsoft.EntityFrameworkCore LINQ uzantıları SQL ve EntityFrameworkCore güç kullanıcılar için boş bir kümesidir. Include(...) ve IDbAsync desteğiyle.
+LinqKit.Microsoft.EntityFrameworkCore LINQ için uzantıları SQL ve EntityFrameworkCore ileri kullanıcılar için ücretsiz bir kümesidir. İle Include(...) ve IDbAsync desteği.
 
-[GitHub depo](https://github.com/scottksmith95/LINQKit/)
+[GitHub deposu](https://github.com/scottksmith95/LINQKit/)
 
 ### <a name="neinlinqentityframeworkcore"></a>NeinLinq.EntityFrameworkCore
 
-İşlevler, hatta bunları null güvenli ve yapı dinamik sorgular hale sorguları, yeniden yazma işlemi yeniden yalnızca küçük bir alt .NET işlevlerini destekleyen LINQ gibi sağlayıcıları Entity Framework kullanarak için faydalı uzantılar NeinLinq.EntityFrameworkCore sağlar çevrilebilir koşulları ve seçiciler kullanma.
+NeinLinq.EntityFrameworkCore İşlevler, bunları null için güvenli ve yapı dinamik sorgular yapma sorguları, yeniden yazma yeniden yalnızca küçük bir alt kümesini .NET işlevleri destekleyen LINQ sağlayıcıları gibi Entity Framework kullanarak için faydalı uzantılar sağlar. çevrilebilir doğrulamaları ve Seçici kullanıyor.
 
-[GitHub depo](https://github.com/axelheer/nein-linq/)
+[GitHub deposu](https://github.com/axelheer/nein-linq/)
 
 ### <a name="microsoftentityframeworkcoreunitofwork"></a>Microsoft.EntityFrameworkCore.UnitOfWork
 
-Havuz, iş desenleri birimidir ve birden çok veritabanı ile birlikte dağıtılmış işlem desteklenen desteklemek Microsoft.EntityFrameworkCore bir eklenti.
+Havuz, iş birimi desenleri ve birden çok veritabanı ile birlikte dağıtılmış işlem desteklenen desteklemek Microsoft.EntityFrameworkCore bir eklenti.
 
-[GitHub depo](https://github.com/Arch/UnitOfWork/)
+[GitHub deposu](https://github.com/Arch/UnitOfWork/)
 
 ### <a name="entityframeworklazyloading"></a>EntityFramework.LazyLoading
 
-Geç EF çekirdek 1.1 yükleme
+EF Core 1.1 yavaş yükleniyor
 
-[GitHub depo](https://github.com/darxis/EntityFramework.LazyLoading)
+[GitHub deposu](https://github.com/darxis/EntityFramework.LazyLoading)
 
 ### <a name="efcorebulkextensions"></a>EFCore.BulkExtensions
 
-Toplu işlemler (INSERT, Update, Delete) EntityFrameworkCore uzantıları.
+Toplu işlemleri (INSERT, Update, Delete) EntityFrameworkCore uzantıları.
 
-[GitHub depo](https://github.com/borisdj/EFCore.BulkExtensions)
+[GitHub deposu](https://github.com/borisdj/EFCore.BulkExtensions)
+
+### <a name="bricelamentityframeworkcorepluralizer"></a>Bricelam.EntityFrameworkCore.Pluralizer
+
+EF Core için tasarım zamanı çoğullaştırma ekler.
+
+[GitHub deposu](https://github.com/bricelam/EFCore.Pluralizer)

@@ -2,19 +2,13 @@
 title: Saklı yordamları birden çok sonuç kümesi - EF6 ile
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 1b3797f9-cd3d-4752-a55e-47b84b399dc1
-caps.latest.revision: 3
-ms.openlocfilehash: 68d544b0c553868ad1ff36cd24db19cff08db073
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: bb104ac5f584d26d279259a173de9afe3f018968
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912858"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42996181"
 ---
 # <a name="stored-procedures-with-multiple-result-sets"></a>Birden çok sonuç kümesi saklı yordamlar
 Bazen kullanarak saklı yordamları birden fazla sonuç döndürmesi gerekir ayarlanır. Bu senaryo veritabanı sayısını azaltmak için yaygın olarak kullanılan gidiş dönüş tek bir ekran oluşturmak için gereklidir. Entity Framework EF5 önce çağrılacak saklı yordamı çalıştırmasına olanak tanır ancak yalnızca ilk sonuç çağrıldığı koda kümesini döndürür.

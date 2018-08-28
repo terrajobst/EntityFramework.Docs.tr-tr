@@ -2,19 +2,13 @@
 title: Proxy - EF6 ile çalışma
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 869ee4dc-06f1-471d-8e0e-0a1a2bc59c30
-caps.latest.revision: 3
-ms.openlocfilehash: 4632e246d28a3cd53dabe5ac76e44f4538739abc
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: 7b82dd370e67d1622fc00ff5e5275721d0fc4fe1
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912066"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42997209"
 ---
 # <a name="working-with-proxies"></a>Proxy ile çalışma
 Entity Framework, genellikle POCO varlık türleri örneklerini oluştururken, varlık için bir proxy görevi gören dinamik olarak üretilen bir türetilmiş türün örneklerini oluşturur. Bu proxy özelliği erişildiğinde eylemlerini otomatik olarak gerçekleştirmek için kancaları eklenecek varlık sanal bazı özelliklerini geçersiz kılar. Örneğin, bu mekanizma, ilişkilerin yavaş yükleniyor desteklemek için kullanılır. Bu konuda gösterilen teknikleri Code First ve EF Designer ile oluşturulan modeller için eşit oranda geçerlidir.  

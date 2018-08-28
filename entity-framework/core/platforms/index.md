@@ -1,20 +1,20 @@
 ---
 title: Desteklenen .NET uygulamaları - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 08/30/2017
-ms.technology: entity-framework-core
 uid: core/platforms/index
-ms.openlocfilehash: 790628c407cc4374fee4ebde8201783955afdcc3
-ms.sourcegitcommit: fd50ac53b93a03825dcbb42ed2e7ca95ca858d5f
+ms.openlocfilehash: 347965818f0eab9a86411f66eaaf10cb3aa8d652
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/07/2018
-ms.locfileid: "37900336"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42996444"
 ---
 # <a name="net-implementations-supported-by-ef-core"></a>EF Core tarafından desteklenen .NET uygulamaları
 
 EF Core, .NET kodu yazabilirsiniz ve bu amaç doğrultusunda yine de çalışıyoruz her yerde kullanılabilir olmasını istiyoruz. EF Core'nın destek .NET Core ve .NET Framework, otomatikleştirilmiş test ederek ele alınmaktadır ancak ve başarılı bir şekilde kullanılmasını bilinen birçok uygulama, Mono, Xamarin ve UWP bazı sorunlar vardır.
+
+## <a name="overview"></a>Genel Bakış
 
 Aşağıdaki tabloda her bir .NET uygulaması için yönergeler sağlar:
 
@@ -31,6 +31,18 @@ Aşağıdaki tabloda her bir .NET uygulaması için yönergeler sağlar:
 
 <sup>(3) </sup> Sorunları ve bazı uygulamaların düzgün çalışmasını EF Core 2.0 kullanarak geliştirilen engelleyebilecek Xamarin ile bilinen sınırlamalar vardır. Listesini kontrol edin [etkin sorunlar](https://github.com/aspnet/entityframeworkCore/issues?q=is%3Aopen+is%3Aissue+label%3Aarea-xamarin) geçici çözümler için.
 
-<sup>(4) </sup> EF Core ve .NET UWP önceki sürümlerinde, özellikle .NET Native araç zinciri ile derlenmiş uygulamalar ile çeşitli uyumluluk sorunları vardı. Yeni bir .NET UWP sürümü, .NET Standard 2.0 için destek ekler ve .NET yerel, çoğu daha önce bildirilen uyumluluk sorunlarını giderir 2.0 içerir. EF Core 2.0.1 daha kapsamlı UWP ile test edilmiştir, ancak test otomatik.
+<sup>(4) </sup> Bkz [Evrensel Windows platformu](#universal-windows-platform) bu makalenin.
+
+## <a name="universal-windows-platform"></a>Evrensel Windows Platformu
+
+EF Core ve .NET UWP önceki sürümlerinde, özellikle .NET Native araç zinciri ile derlenmiş uygulamalar ile çeşitli uyumluluk sorunları vardı. Yeni bir .NET UWP sürümü, .NET Standard 2.0 için destek ekler ve .NET yerel, çoğu daha önce bildirilen uyumluluk sorunlarını giderir 2.0 içerir. EF Core 2.0.1 daha kapsamlı UWP ile test edilmiştir, ancak test otomatik.
+
+EF Core, UWP üzerinde kullanıldığında:
+
+* Sorgu performansını iyileştirmek için LINQ sorgularında anonim türler kaçının. Bir UWP uygulaması app Store'a dağıtma .NET Native ile derlenen bir uygulamanın gerektirir. Anonim türler sorgularla daha zayıf performans üzerinde .NET Native vardır.
+
+* En iyi duruma getirme `SaveChanges()` performansı, kullanım [ChangeTrackingStrategy.ChangingAndChangedNotifications](/dotnet/api/microsoft.entityframeworkcore.changetrackingstrategy) ve uygulama [INotifyPropertyChanged](https://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanged.aspx), [INotifyPropertyChanging ](https://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanging.aspx), ve [INotifyCollectionChanged](https://msdn.microsoft.com/en-us/library/system.collections.specialized.inotifycollectionchanged.aspx) , varlık türleri.
+
+## <a name="report-issues"></a>Rapor sorunları
 
 Beklendiği gibi çalışmıyor herhangi bir birleşimini için yeni sorunlar oluşturma konusunda olan öneriyoruz [EF Core sorun İzleyicisi](https://github.com/aspnet/entityframeworkcore/issues/new). İçin Xamarin özgü sorunlar için sorun İzleyicisi'ni kullanın. [Xamarin.Android](https://github.com/xamarin/xamarin-android/issues/new) veya [Xamarin.iOS](https://github.com/xamarin/xamarin-macios/issues/new).

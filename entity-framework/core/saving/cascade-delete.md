@@ -1,17 +1,15 @@
 ---
 title: Basamaklı silme - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
-ms.technology: entity-framework-core
 uid: core/saving/cascade-delete
-ms.openlocfilehash: 7e1c87ae3a955c22b267a108ea7c2bb504e9acc3
-ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
+ms.openlocfilehash: afe00ddb1b487c6b1b2ea42708c9967a57cea04b
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37949292"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995248"
 ---
 # <a name="cascade-delete"></a>Art arda silme
 
@@ -42,7 +40,7 @@ Dört Sil davranışları, aşağıdaki tablolarda listelenen gibi vardır.
 | **Basamakla**                 | Varlıkları silindi                   | Varlıkları silindi                   |
 | **ClientSetNull** (varsayılan) | Yabancı anahtar özellikleri null | Yok.                                   |
 | **SetNull**                 | Yabancı anahtar özellikleri null | Yabancı anahtar özellikleri null |
-| **Kısıtlama**                | Yok.                                   | Yok.                                   |
+| **kısıtlama**                | Yok.                                   | Yok.                                   |
 
 ### <a name="required-relationships"></a>Gerekli bir ilişki
 Gerekli ilişkileri (atanamaz yabancı anahtar) olduğu _değil_ olası aşağıdaki efektler sonuçlanır bir yabancı anahtar null ve kaydetmek:
@@ -52,7 +50,7 @@ Gerekli ilişkileri (atanamaz yabancı anahtar) olduğu _değil_ olası aşağı
 | **Art arda** (varsayılan) | Varlıkları silindi                | Varlıkları silindi                  |
 | **ClientSetNull**     | SaveChanges oluşturur                  | Yok.                                  |
 | **SetNull**           | SaveChanges oluşturur                  | SaveChanges oluşturur                    |
-| **Kısıtlama**          | Yok.                                | Yok.                                  |
+| **kısıtlama**          | Yok.                                | Yok.                                  |
 
 Yukarıdaki tablolarda *hiçbiri* kısıtlaması ihlali ile sonuçlanabilir. Örneğin, asıl/alt varlık silinmiş, ancak bir bağımlı/alt yabancı anahtarı değiştirmek için hiçbir işlem yapılmadı, ardından veritabanı büyük olasılıkla SaveChanges üzerinde bir yabancı kısıtlaması ihlali nedeniyle durum oluşturur.
 

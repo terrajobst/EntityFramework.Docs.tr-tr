@@ -1,43 +1,42 @@
 ---
-title: Komut satırı başvurusu - EF çekirdek
+title: Komut satırı başvurusu - EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
-ms.technology: entity-framework-core
-ms.openlocfilehash: db25ed55e3724ee71743e563f39a6e4b16c17589
-ms.sourcegitcommit: fc68321c211aca38f7b9dc3a75677c6ca1b2524b
+ms.openlocfilehash: 757d6562f5d3bcd4f026def02f208f5827786873
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29769429"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42997076"
 ---
-<a name="entity-framework-core-tools"></a>Entity Framework Çekirdek araçları
+<a name="entity-framework-core-tools"></a>Entity Framework Core araçları
 ===========================
-Entity Framework Çekirdek Araçlar EF çekirdek uygulamaları geliştirme sırasında yardımcı olur. Öncelikle bir veritabanı şeması mühendislik ters tarafından DbContext ve varlık türleri iskele ve geçişler yönetmek için kullanılırlar.
+Entity Framework Core araçları EF Core uygulamaları geliştirme sırasında yardımcı olur. Öncelikle bir DbContext ve varlık türleri tarafından ters mühendislik bir veritabanı şeması iskelesini kurmak ve geçişleri yönetmek için kullanılırlar.
 
-[EF çekirdek Paket Yöneticisi Konsolu (PMC) araçları] [ 1] Visual Studio içinde üst düzey bir deneyim sağlar. Bunları çalıştırma NuGet kullanarak [Paket Yöneticisi Konsolu][2]. Bu araçlar, .NET Framework ve .NET Core projeleri ile çalışır.
+[EF Core Paket Yöneticisi Konsolu (PMC) araçları] [ 1] Visual Studio içinde üstün bir deneyim sağlar. Bunları kullanarak NuGet [Paket Yöneticisi Konsolu][2]. Bu araçlar, .NET Framework hem de .NET Core projeleriyle çalışır.
 
-[EF çekirdek .NET komut satırı araçları] [ 3] bir uzantısı olan [.NET Core komut satırı arabirimi (CLI) araçları] [ 4] olan platformlar arası ve Visual Studio dışında çalıştırabilirsiniz. Bu araçlar .NET Core SDK projesi gerektirir (biriyle `Sdk="Microsoft.NET.Sdk"` veya proje dosyasında benzer).
+[EF Core .NET komut satırı araçları] [ 3] uzantısı olan [.NET Core komut satırı arabirimi (CLI) araçlarını] [ 4] olan platformlar arası ve Visual Studio'nun dışında çalıştırabilirsiniz. Bu araçları, .NET Core SDK projesindeki gerektirir (biriyle `Sdk="Microsoft.NET.Sdk"` veya proje dosyasında benzer).
 
-Her iki araçları aynı işlevselliği kullanıma sunar. Visual Studio'da geliştiriyorsanız daha tümleşik bir deneyim sağlamak beri PMC araçları kullanmanızı öneririz.
+Her iki araç aynı işlevselliği kullanıma sunar. Visual Studio'da geliştiriyorsanız, bunlar daha tümleşik bir deneyim sunmak olduğundan PMC Araçları'nı kullanmanızı öneririz.
 
-<a name="frameworks"></a>çerçeveler
+<a name="frameworks"></a>Çerçeveler
 ----------
-Proje .NET Framework veya .NET Core hedefleme destek araçları.
+Araçlar, .NET Framework veya .NET Core hedefleyen projeleri destekler.
 
-Ardından, bir sınıf kitaplığı kullanmak istiyorsanız, bir .NET Core veya .NET Framework sınıf kitaplığı mümkünse kullanmayı düşünün. Bu en az sorunları .NET araçları ile sonuçlanır. Sonra .NET standart bir sınıf kitaplığı kullanmak istiyorsanız bunun yerine, içine sınıf kitaplığı yükleyebilir conrete hedef platformu araçları sahip olması başlangıç projesi hedefleyen .NET Framework veya .NET Core kullanmanız gerekecektir. Bu başlangıç projesi kukla proje olabilir ile gerçek kodu yok--bunu yalnızca bir hedef için araç sağlamak için gereklidir.
+Ardından, bir sınıf kitaplığı kullanmak istiyorsanız, bir .NET Core veya .NET Framework sınıf kitaplığı mümkünse kullanmayı düşünün. Bu, .NET araçları ile en az sorunlarına neden olur. Ardından bunun yerine bir .NET Standard sınıf kitaplığı kullanmak istiyorsanız, içine, sınıf kitaplığı yükleyebilirsiniz conrete hedef platform araçlarına sahip olacak şekilde bir başlangıç projesi hedefleyen .NET Framework veya .NET Core kullanmanız gerekir. Bu başlangıç projesi işlevsiz bir proje olabilir ile gerçek kod--bu yalnızca bir hedef için bir araç sağlamak için gereklidir.
 
-Projenize başka bir framework (örneğin, Evrensel Windows veya Xamarin) hedefliyorsa, ayrı bir .NET standart sınıf kitaplığı oluşturmanız gerekir. Bu durumda, aynı zamanda araçları tarafından kullanılan bir başlangıç projesi oluşturmak için yukarıdaki yönergeleri izleyin.
+Projeniz başka bir framework (örneğin, Evrensel Windows veya Xamarin) hedefliyorsa, ayrı bir .NET Standard sınıf kitaplığı oluşturmak gerekir. Bu durumda, ayrıca araç tarafından kullanılabilmesi için bir başlangıç projesi oluşturmak için yukarıdaki yönergeleri izleyin.
 
-<a name="startup-and-target-projects"></a>Başlangıç ve hedef projeleri
+<a name="startup-and-target-projects"></a>Başlatma ve hedef projeleri
 ---------------------------
-Bir komut çağırma her iki proje dahil olan: hedef projeyi ve başlangıç projesi.
+Bir komut çağırma her iki proje kullanılan vardır: hedef projeye ve başlangıç projesi.
 
-Hedef dosyalar eklendiği (veya kaldırılan bazı durumlarda) projesidir.
+Hedef dosyalar eklenir (veya bazı durumlarda kaldırıldı) projesidir.
 
-Başlangıç projesi projenizin kodu çalıştırırken araçları tarafından Öykünülen adrestir.
+Başlangıç projesi, proje kodunuzun yürütülürken araçları tarafından Öykünülen bir bileşendir.
 
-Hedef projeyi ve başlangıç projesi aynı olabilir.
+Hedef proje hem başlangıç projesi aynı olabilir.
 
 
   [1]: powershell.md

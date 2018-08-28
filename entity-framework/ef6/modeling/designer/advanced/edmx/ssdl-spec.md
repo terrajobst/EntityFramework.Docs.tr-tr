@@ -2,19 +2,13 @@
 title: SSDL belirtimi - EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: a4af4b1a-40f4-48cc-b2e0-fa8f5d9d5419
-caps.latest.revision: 3
-ms.openlocfilehash: a9977c80d9a9401afdcad2284a705bcb28790fb8
-ms.sourcegitcommit: 9ae4473425c5e76337c9d032b0e5dbfedf1fcf57
+ms.openlocfilehash: 35c560d88e5078a7fc4c07b76020f3ad7d0735e1
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/09/2018
-ms.locfileid: "37914476"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995285"
 ---
 # <a name="ssdl-specification"></a>SSDL belirtimi
 Store şeması tanım dili (SSDL) açıklayan bir varlık çerçevesi uygulamasına depolama modelinin bir XML tabanlı bir dildir.
@@ -418,7 +412,7 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **EntitySet** öğes
 | Öznitelik adı | Gereklidir | Değer                                                                                    |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------|
 | **Ad**       | Evet         | Varlık kümesinin adı.                                                              |
-| **EntityType** | Evet         | Varlık türü için varlık kümesi tam olarak nitelenmiş adını örneklerini içerir. |
+| **entityType** | Evet         | Varlık türü için varlık kümesi tam olarak nitelenmiş adını örneklerini içerir. |
 | **Şema**     | Hayır          | Veritabanı şeması.                                                                     |
 | **Tablo**      | Hayır          | Veritabanı tablosu.                                                                      |
 
@@ -635,7 +629,7 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **parametre** öğes
 | **Ad**       | Evet         | Parametrenin adı.                                                                                                                                                                                                      |
 | **Türü**       | Evet         | Parametre türü.                                                                                                                                                                                                             |
 | **Modu**       | Hayır          | **İçinde**, **kullanıma**, veya **Inout** parametresi bir giriş, çıkış ve giriş/çıkış parametresi olmasına bağlı olarak.                                                                                                                |
-| **MaxLength**  | Hayır          | Parametresinin en büyük uzunluğu.                                                                                                                                                                                            |
+| **maxLength**  | Hayır          | Parametresinin en büyük uzunluğu.                                                                                                                                                                                            |
 | **Duyarlık**  | Hayır          | Parametre duyarlılığı.                                                                                                                                                                                                 |
 | **Ölçek**      | Hayır          | Parametre ölçeği.                                                                                                                                                                                                     |
 | **SRID**       | Hayır          | Sistem uzamsal başvuru tanımlayıcısı. Uzamsal tür parametreleri yalnızca için geçerlidir. Daha fazla bilgi için [SRID](http://en.wikipedia.org/wiki/SRID) ve [SRID (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
@@ -718,8 +712,8 @@ Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **özelliği** öğe
 | **Ad**                  | Evet         | Karşılık gelen sütunun adı.                                                                                                                                                                                           |
 | **Türü**                  | Evet         | Karşılık gelen sütun türü.                                                                                                                                                                                           |
 | **Boş değer atanabilir**              | Hayır          | **Doğru** (varsayılan değer) veya **False** karşılık gelen sütun null değere sahip olup olmadığına bağlı olarak.                                                                                                                  |
-| **DefaultValue**          | Hayır          | Karşılık gelen sütun varsayılan değeri.                                                                                                                                                                                  |
-| **MaxLength**             | Hayır          | Karşılık gelen sütunun maksimum uzunluğu.                                                                                                                                                                                 |
+| **defaultValue**          | Hayır          | Karşılık gelen sütun varsayılan değeri.                                                                                                                                                                                  |
+| **maxLength**             | Hayır          | Karşılık gelen sütunun maksimum uzunluğu.                                                                                                                                                                                 |
 | **FixedLength**           | Hayır          | **Doğru** veya **False** bağlı olup olmadığını karşılık gelen sütun değeri sabit uzunlukta bir dize olarak depolanır.                                                                                                              |
 | **Duyarlık**             | Hayır          | Karşılık gelen sütunun duyarlığını.                                                                                                                                                                                      |
 | **Ölçek**                 | Hayır          | Karşılık gelen sütunun ölçek.                                                                                                                                                                                          |
@@ -902,7 +896,7 @@ Aşağıdaki örnek, kullanır depo işlev gösterir. bir **CollectionType** iş
 **Şema** öğesi sıfır veya daha fazla şu alt öğelerden birini içerebilir:
 
 -   İlişkilendirme
--   EntityType
+-   entityType
 -   EntityContainer
 -   İşlev
 
@@ -1074,11 +1068,11 @@ Depo şeması tanım dili (SSDL), modelleri özelliği öğelerinde belirtilen s
 
 Aşağıdaki tabloda SSDL desteklenen özellikleri açıklanmaktadır:
 
-| Modeli           | Açıklama                                                                                                                                                                                                                                                 |
+| modeli           | Açıklama                                                                                                                                                                                                                                                 |
 |:----------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Harmanlama**   | Harmanlama dizisi (veya sıralama) yapılırken kullanılacak karşılaştırma gerçekleştirme ve özellik değerleri üzerinde işlem sıralama belirtir.                                                                                                             |
 | **FixedLength** | Sütun değeri uzunluğunu değişebilir olup olmadığını belirtir.                                                                                                                                                                                                  |
-| **MaxLength**   | Sütun değeri en büyük uzunluğunu belirtir.                                                                                                                                                                                                           |
+| **maxLength**   | Sütun değeri en büyük uzunluğunu belirtir.                                                                                                                                                                                                           |
 | **Duyarlık**   | Tür özellikleri için **ondalık**, bir özellik değeri olabilir basamak sayısını belirtir. Tür özellikleri için **zaman**, **DateTime**, ve **DateTimeOffset**, sütun değerinin saniye kesirli kısmını için basamak sayısını belirtir. |
 | **Ölçek**       | Sütun değeri ondalık noktasının sağındaki basamak sayısını belirtir.                                                                                                                                                                      |
 | **Unicode**     | Sütun değeri Unicode mi depolanacağını belirtir.                                                                                                                                                                                                    |

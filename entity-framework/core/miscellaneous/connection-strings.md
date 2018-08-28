@@ -1,25 +1,23 @@
 ---
-title: Bağlantı dizeleri - EF çekirdek
+title: Bağlantı dizelerini - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: aeb0f5f8-b212-4f89-ae83-c642a5190ba0
-ms.technology: entity-framework-core
 uid: core/miscellaneous/connection-strings
-ms.openlocfilehash: b4ed01f0452d74ac49d3fde780caa5f1b25a6e97
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 942865effba7b491dd950886ea30b69a86f1186c
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054099"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42997677"
 ---
 # <a name="connection-strings"></a>Bağlantı dizeleri
 
-Çoğu veritabanı sağlayıcısı veritabanına bağlanmak için bağlantı dizesi çeşit gerektirir. Bazen bu bağlantı dizesi korunması gereken hassas bilgiler içerir. Uygulamanızı geliştirme, test ve üretim gibi ortamlar arasında hareket ederken bağlantı dizesini değiştirin gerekebilir.
+Çoğu veritabanı sağlayıcısı veritabanına bağlanmak için bağlantı dizesi biçimi gerektirir. Bazen bu bağlantı dizesi, korunması gereken hassas bilgiler içerir. Uygulamanızı geliştirme, test ve üretim ortamları arasında taşırken bağlantı dizesini değiştirmeniz gerekebilir.
 
 ## <a name="net-framework-applications"></a>.NET framework uygulamaları
 
-WinForms, WPF, konsol ve ASP.NET 4 gibi .NET framework uygulamaları denenmiş ve test edilen bağlantı dizesi deseni vardır. Bağlantı dizesi uygulamaları App.config dosyasına (ASP.NET kullanıyorsanız, Web.config) eklenmesi gerekir. Bağlantı dizenizi kullanıcı adı ve parola gibi hassas bilgiler içeriyorsa yapılandırma dosyası kullanarak içerikleri koruyabilir [korumalı yapılandırma](https://docs.microsoft.com/dotnet/framework/data/adonet/connection-strings-and-configuration-files#encrypting-configuration-file-sections-using-protected-configuration).
+.NET framework uygulamaları, WinForms, WPF, konsol ve ASP.NET 4 gibi denenmiş ve test edilmiş bağlantı dize deseni vardır. Bağlantı dizesi, uygulamalar için sık sorulan sorular App.config dosyasında (Web.config ASP.NET kullanıyorsanız) eklenmesi gerekir. Bağlantı dizenizi kullanıcı adı ve parola gibi hassas bilgileri içeriyorsa yapılandırma dosyası kullanarak içerikleri koruyabilir [korumalı yapılandırma](https://docs.microsoft.com/dotnet/framework/data/adonet/connection-strings-and-configuration-files#encrypting-configuration-file-sections-using-protected-configuration).
 
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -33,9 +31,9 @@ WinForms, WPF, konsol ve ASP.NET 4 gibi .NET framework uygulamaları denenmiş v
 ```
 
 > [!TIP]  
-> `providerName` Ayarı veritabanı sağlayıcısı kodu aracılığıyla yapılandırıldığından App.config dosyasında depolanan EF çekirdek bağlantı dizelerini gerekli değildir.
+> `providerName` Ayarı veritabanı sağlayıcısı kod yapılandırıldığından App.config dosyasında depolanan EF Core bağlantı dizelerini gerekli değildir.
 
-Bağlantı dizesi kullanarak ardından okuyabilirsiniz `ConfigurationManager` , bağlamın API `OnConfiguring` yöntemi. Bir başvuru eklemeniz gerekebilir `System.Configuration` framework derleme bu API kullanmanız mümkün olmayacaktır.
+Daha sonra bağlantı dizesini kullanarak okuyabilir `ConfigurationManager` , bağlamı'nın API'SİNDE `OnConfiguring` yöntemi. Bir başvuru eklemeniz gerekebilir `System.Configuration` bu API'yi kullanabilmek için framework derlemesi.
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -52,7 +50,7 @@ public class BloggingContext : DbContext
 
 ## <a name="universal-windows-platform-uwp"></a>Evrensel Windows Platformu (UWP)
 
-Bağlantı bir UWP uygulamasında genellikle yalnızca yerel bir dosya adı belirten bir SQLite bağlantı dizelerdir. Bunlar genellikle hassas bilgileri içermez ve bir uygulamanın dağıtıldığını olarak değiştirilmesine gerek yoktur. Bu nedenle, bu bağlantı dizeleri aşağıda gösterildiği gibi kodda bırakılması genellikle iyi. Kodun dışına taşımak isterseniz, UWP ayarları kavramını destekler, bkz: [UWP belgelerine uygulama ayarları bölümünde](https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data) Ayrıntılar için.
+Bir UWP uygulamasındaki bağlantı dizeleri, genellikle yalnızca yerel bir dosya adı belirten bir SQLite bağlantı cihazlardır. Bunlar genellikle hassas bilgi içermez ve bir uygulama dağıtıldığında değiştirilmesi gerekmez. Bu nedenle, bu bağlantı dizeleri aşağıda gösterildiği gibi kodda bırakılması genellikle bir sakınca yoktur. Kodların dışına taşımak istiyorsanız UWP ayarları kavramını destekler, bkz: [UWP belgelerin uygulama ayarları bölümü](https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data) Ayrıntılar için.
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -67,9 +65,9 @@ public class BloggingContext : DbContext
 }
 ```
 
-## <a name="aspnet-core"></a>ASP.NET Çekirdeği
+## <a name="aspnet-core"></a>ASP.NET Core
 
-ASP.NET çekirdek yapılandırma sistemi çok esnektir ve bağlantı dizesini alanında depolanacak `appsettings.json`, bir ortam değişkeni, kullanıcı gizli deposu veya başka bir yapılandırma kaynağı. Bkz: [ASP.NET Core belgeleri yapılandırma bölümünü](https://docs.asp.net/en/latest/fundamentals/configuration.html) daha fazla ayrıntı için. Aşağıdaki örnek, depolanan bağlantı dizesini gösterir `appsettings.json`.
+ASP.NET Core yapılandırma sistemi çok esnektir ve bağlantı dizesini içinde depolanacak `appsettings.json`, bir ortam değişkeni, kullanıcı gizli dizi deposu veya başka bir yapılandırma kaynağı. Bkz: [yapılandırma bölümü, ASP.NET Core belgeleri](https://docs.asp.net/en/latest/fundamentals/configuration.html) daha fazla ayrıntı için. Aşağıdaki örnek, depolanan bağlantı dizesini gösterir `appsettings.json`.
 
 ``` json
 {

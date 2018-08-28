@@ -1,29 +1,27 @@
 ---
-title: Alma başlatıldı - EF çekirdek
+title: Alma başlatıldı - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 3c88427c-20c6-42ec-a736-22d3eccd5071
-ms.technology: entity-framework-core
 uid: core/get-started/index
-ms.openlocfilehash: 6bd9d9cc7dfc08261df2e066071632d9ecdfb548
-ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
+ms.openlocfilehash: 144cc8c8c9979e4ce24260c2975e6b10d4fdbb84
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/12/2018
-ms.locfileid: "29152409"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42994929"
 ---
-# <a name="getting-started-with-entity-framework-core"></a>Entity Framework Core'u kullanmaya başlama
+# <a name="getting-started-with-entity-framework-core"></a>Entity Framework Core ile çalışmaya başlama
 
 ## <a name="installing-ef-coreinstallindexmd"></a>[EF Core’u Yükleme](install/index.md)
 
-Farklı platformlar ve popüler IDE uygulamanızda EF çekirdek eklemek gerekli adımları özeti.
+Farklı platformlar ve popüler Ide'leri, uygulamanın EF Core eklemek gerekli adımları bir özeti.
 
 ## <a name="step-by-step-tutorials"></a>Adım adım öğreticiler
 
-Bu Tanıtım öğreticileri Entity Framework Çekirdek veya belirli bir IDE önceki hiçbir bilgi gerektirir. Bunlar, sorgular ve bir veritabanından veri kaydeden basit bir uygulama oluşturma üzerinden adım adım olur. Çeşitli işletim sistemleri ve uygulama türleri başlamanıza yardımcı olmak için öğreticileri sağladık.
+Bu Tanıtım öğreticilerine Entity Framework Core veya belirli bir IDE, önceki hiçbir gerektirir. Bunlar, sorgular ve verileri bir veritabanından kaydeden basit bir uygulama oluşturma ile adım adım sürer. Çeşitli işletim sistemlerini ve uygulama türleri üzerinde çalışmaya başlamanızı sağlayacak öğreticiler sağladık.
 
-Entity Framework Çekirdek varolan bir veritabanını temel alan bir model oluşturmak veya sizin modelini temel alan bir veritabanı oluşturun. Bu yaklaşım her ikisi de göstermek öğreticileri vardır.
+Entity Framework Core varolan bir veritabanını temel alan bir model oluşturmak veya size, modelinize dayalı bir veritabanı oluşturun. Bu yaklaşımların her ikisini de gösteren öğreticiler vardır.
 
 > [!NOTE]  
-> Bu öğreticiler ve eşlik eden örnekleri EF çekirdek 2.0 (EF çekirdek 1.1 kullanan UWP öğretici hariç olmak üzere) kullanmak için güncelleştirilmiştir. Ancak, çoğu durumda yönergeleri için en az değişiklik ile önceki sürümlerde kullanan uygulamalar oluşturmak mümkün olmalıdır. 
+> Bu öğreticileri ve eşlik eden örnekleri (EF Core 1.1 kullanan UWP öğretici hariç) EF Core 2.0 kullanmak için güncelleştirildi. Ancak, çoğu durumda en az değişiklik yönergeleri ile önceki sürümleri kullanan uygulamalar oluşturma olanağı olmalıdır. 

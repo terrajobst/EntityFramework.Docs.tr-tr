@@ -1,28 +1,26 @@
 ---
-title: İstemci vs. Sunucu değerlendirmesi - EF çekirdek
+title: İstemci vs. Server değerlendirmesi - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 8b6697cc-7067-4dc2-8007-85d80503d123
-ms.technology: entity-framework-core
 uid: core/querying/client-eval
-ms.openlocfilehash: e1852b780041e9e92fb4d25129175346e3a601a3
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 78f8d9576748a725634665f915def80b5a13820c
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054159"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42997883"
 ---
-# <a name="client-vs-server-evaluation"></a>İstemci vs. Sunucu değerlendirmesi
+# <a name="client-vs-server-evaluation"></a>İstemci vs. Server değerlendirmesi
 
-Entity Framework Çekirdek istemci ve veritabanına iletilmesini bölümleri değerlendirilen sorgunun bölümlerini destekler. Bu sorgu hangi kısımlarının veritabanında değerlendirilecek belirlemek için veritabanı sağlayıcısı kadar olur.
+Entity Framework Core istemcisi ve bunun veritabanına gönderilen parçalarını değerlendirilen sorgunun bölümlerini destekler. Bu veritabanında sorgu hangi parçalarının değerlendirileceğini belirlemek için veritabanı sağlayıcısı kadar olur.
 
 > [!TIP]  
-> Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) github'da.
+> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub üzerinde.
 
 ## <a name="client-evaluation"></a>İstemci değerlendirmesi
 
-Aşağıdaki örnekte yardımcı bir yöntem için bir SQL Server veritabanı tarafından döndürülen bloglar URL'leri standart hale getirmek için kullanılır. SQL Server sağlayıcısı bu yöntem nasıl uygulandığını içine hiçbir Insight olduğundan SQL'e Çevir mümkün değil. Tüm sorgu yönlerini değerlendirilir veritabanında ancak geçirme döndürülen `URL` bu yöntemle istemci üzerinde gerçekleştirilir.
+Aşağıdaki örnekte, bir yardımcı yöntem URL'leri farklı bir SQL Server veritabanından döndürülen Web günlükleri için standart hale getirmek için kullanılır. SQL Server sağlayıcısı bu yöntemin nasıl uygulandığını hiçbir Öngörüler olduğundan, SQL'e çevirmek mümkün değildir. Sorgu diğer tüm yönleri değerlendirilir veritabanındaki ancak geçirme döndürülen `URL` istemci üzerinde bu yöntem kullanılarak gerçekleştirilir.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/ClientEval/Sample.cs?highlight=6)] -->
 ``` csharp
@@ -53,7 +51,7 @@ public static string StandardizeUrl(string url)
 
 ## <a name="disabling-client-evaluation"></a>İstemci değerlendirmesi devre dışı bırakma
 
-İstemci değerlendirme çok kullanışlı olabilirler, ancak bazı durumlarda, performansın düşmesine neden olabilir. Burada bir filtrede kullanılan yardımcı yöntemi aşağıdaki sorgu, göz önünde bulundurun. Bu veritabanında gerçekleştirilemediğinden tüm verileri bellek ve ardından filtre çekilir istemcide uygulanır. Veri ve bu verilerin ne kadar filtre miktarına bağlı olarak, bu performansın düşmesine neden olabilir.
+İstemci değerlendirmesi çok kullanışlı olabilir, ancak bazı durumlarda, performansın düşmesine neden olabilir. Aşağıdaki sorgu, bir filtre yardımcı yöntemi artık kullanıldığı göz önünde bulundurun. Bu veritabanında gerçekleştirilemiyor çünkü tüm verileri, bellek ve ardından filtre çekilir istemcide uygulanır. Veri ve bu verilerin ne kadar filtrenin dışında kaldı miktarına bağlı olarak, bu performansın düşmesine neden olabilir.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/ClientEval/Sample.cs)] -->
 ``` csharp
@@ -62,7 +60,7 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-İstemci değerlendirme gerçekleştirildiğinde varsayılan olarak, bir uyarı EF çekirdek günlüğe kaydeder. Bkz: [günlüğü](../miscellaneous/logging.md) günlük çıktısı görüntüleme hakkında daha fazla bilgi. İstemci değerlendirme throw veya hiçbir şey yapma oluştuğunda davranışı değiştirebilirsiniz. Bu genellikle, içeriğiniz - seçeneklerini ayarlama zaman yapılır `DbContext.OnConfiguring`, veya `Startup.cs` ASP.NET Core kullanıyorsanız.
+İstemci değerlendirmesi gerçekleştirildiğinde varsayılan olarak, bir uyarı EF Core günlüğe kaydeder. Bkz: [günlüğü](../miscellaneous/logging.md) günlük çıktısı görüntüleme hakkında daha fazla bilgi. İstemci değerlendirmesi durum veya hiçbir şey yapma oluştuğunda davranışını değiştirebilirsiniz. Bağlamınızı - seçeneklerini normalde ayarlarken yapıldığını `DbContext.OnConfiguring`, veya `Startup.cs` ASP.NET Core kullanıyorsanız.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/ClientEval/ThrowOnClientEval/BloggingContext.cs?highlight=5)] -->
 ``` csharp

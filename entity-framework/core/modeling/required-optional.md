@@ -1,28 +1,26 @@
 ---
-title: Gerekli/isteğe bağlı özellikleri - EF çekirdek
+title: Gerekli/isteğe bağlı özellikleri - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: ddaa0a54-9f43-4c34-aae3-f95c96c69842
-ms.technology: entity-framework-core
 uid: core/modeling/required-optional
-ms.openlocfilehash: 2af1d49e12ef980f81cb9c00556dee471673ccae
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: b6716a5b03e1afc2933e317d606ef50f986c22c7
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054252"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995503"
 ---
 # <a name="required-and-optional-properties"></a>Gerekli ve isteğe bağlı özellikler
 
-Bir özellik içeren için geçerli olup olmadığını isteğe bağlı olarak kabul edilir `null`. Varsa `null` gerekli bir özellik olarak kabul edilir sonra bir özelliğe atanmak için geçerli bir değer değil.
+Bir özellik içeren için geçerli ise isteğe bağlı olarak sayılır `null`. Varsa `null` gerekli özelliği olduğu düşünülür sonra bir özelliğe atanacak geçerli bir değer değil.
 
 ## <a name="conventions"></a>Kurallar
 
-Kurala göre CLR türü, null içerebilir bir özellik isteğe bağlı olarak yapılandırılacak (`string`, `int?`, `byte[]`vb..). Özellikler, CLR türü, null içeremez yapılandırılması gerektiği gibi (`int`, `decimal`, `bool`vb..).
+Kural gereği, CLR türü, null içerebilir bir özellik isteğe bağlı olarak yapılandırılır (`string`, `int?`, `byte[]`vb..). CLR türü, null içeremez özellikleri yapılandırılması gerektiği gibi (`int`, `decimal`, `bool`vb..).
 
 > [!NOTE]  
-> Bir özellik, CLR türü null içeremez, isteğe bağlı olarak yapılandırılamaz. Özellik her zaman gerekli Entity Framework tarafından kabul edilir.
+> Bir özelliğin CLR türü null içeremez, isteğe bağlı olarak yapılandırılamaz. Entity Framework tarafından gerekli özellik her zaman değerlendirilir.
 
 ## <a name="data-annotations"></a>Veri ek açıklamaları
 
@@ -40,7 +38,7 @@ public class Blog
 
 ## <a name="fluent-api"></a>Fluent API'si
 
-Bir özelliğin gerekli olduğunu belirtmek için Fluent API'sini kullanın.
+Fluent API'si, bir özelliğin gerekli olduğunu belirtmek için kullanabilirsiniz.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/Required.cs?highlight=7,8,9)] -->
 ``` csharp

@@ -2,19 +2,13 @@
 title: Entity Framework Designer klavye kısayolları - EF6
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 3c76cdd5-17c5-4c54-a6a5-cf21b974636b
-caps.latest.revision: 3
-ms.openlocfilehash: a4ed95647872949d9e34a6bb5d83d5d6119b0022
-ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
+ms.openlocfilehash: 70c9705956b58f4d00908dd9cca6ad0e0a078fc6
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37949331"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42997769"
 ---
 # <a name="entity-framework-designer-keyboard-shortcuts"></a>Entity Framework Designer klavye kısayolları
 Bu sayfada Visual Studio için Entity Framework Araçları, çeşitli ekranlar kullanılabilen klavye kısayolları listesini sağlar.
@@ -68,9 +62,9 @@ Bu sayfada Visual Studio için Entity Framework Araçları, çeşitli ekranlar k
 | **Alt + k** | "Modelde yabancı anahtar sütunu Ekle" seçeneğini değiştirir                              | Model içeriğinin tüm seçimleri için kullanılamaz.                 |
 | **Alt + ı** | "İçeri aktarma saklı yordamları ve işlevleri varlık modele seçili" seçeneğini değiştirir | Model içeriğinin tüm seçimleri için kullanılamaz.                 |
 | **Alt + m** | "Modeli Namespace" metin alanı için anahtarları odağı                                        | Model içeriğinin tüm seçimleri için kullanılamaz.                 |
-| **Alanı** | Öğede Seçimi Değiştir                                                               | Alt öğe varsa, tüm alt öğeleri de açılıp |
+| **alanı** | Öğede Seçimi Değiştir                                                               | Alt öğe varsa, tüm alt öğeleri de açılıp |
 | **Sol**  | Alt ağacını Daralt                                                                       |                                                                     |
-| **Sağ** | Alt ağacı genişletin                                                                         |                                                                     |
+| **sağ** | Alt ağacı genişletin                                                                         |                                                                     |
 | **Ayarlama**    | Önceki öğeyle ağacında gidin                                                      |                                                                     |
 | **Aşağı**  | Ağacında sonraki öğeye gidin                                                          |                                                                     |
 
@@ -93,7 +87,7 @@ Bu sayfada Visual Studio için Entity Framework Araçları, çeşitli ekranlar k
 | **Son**                                                                                 | Son eş                   | Odağı ve eş düzeyde tasarım yüzeyinde son nesne seçimi.                                                                                                                                          |
 | **Ctrl + Home**                                                                         | İlk eş (odağı)          | İlk eş ancak odak taşıyıp seçimi yerine odağı aynıdır.                                                                                                                                                          |
 | **CTRL + End**                                                                          | Son eş (odağı)           | Son aynı eş ancak odak taşıyıp seçimi yerine odak taşır.                                                                                                                                                           |
-| **Sekmesi**                                                                                 | Sonraki eş                   | Odağı ve sonraki nesne eş düzeyde tasarım yüzeyinde seçimi.                                                                                                                                          |
+| **sekmesi**                                                                                 | Sonraki eş                   | Odağı ve sonraki nesne eş düzeyde tasarım yüzeyinde seçimi.                                                                                                                                          |
 | **Shift + Sekme**                                                                           | Önceki eş               | Odağı ve eş düzeyde tasarım yüzeyinde önceki Nesne Seçimi.                                                                                                                                      |
 | **Alt + Ctrl + sekme**                                                                        | Sonraki eş (odağı)           | Sonraki aynı eş ancak odak taşıyıp seçimi yerine odak taşır.                                                                                                                                                           |
 | **Alt + Ctrl + Shift + Sekme**                                                                  | Önceki eş (odağı)       | Önceki eş ancak odak taşıyıp seçimi yerine odağı aynıdır.                                                                                                                                                       |
@@ -123,9 +117,9 @@ Bu sayfada Visual Studio için Entity Framework Araçları, çeşitli ekranlar k
 
 | Kısayol                  | Eylem         | Notlar                                                                                                                                 |
 |:--------------------------|:---------------|:--------------------------------------------------------------------------------------------------------------------------------------|
-| **Sekmesi**                   | Anahtar bağlamı | Ana pencere alanını ve sol taraftaki araç çubuğu arasında geçiş yapar                                                                     |
+| **sekmesi**                   | Anahtar bağlamı | Ana pencere alanını ve sol taraftaki araç çubuğu arasında geçiş yapar                                                                     |
 | **Ok tuşları**            | Gezinti     | Ana pencere alanını Sütunlar arasında satır veya sağ ve sol yukarı ve Aşağı Taşı. Sol araç çubuğundaki düğmeler arasındaki taşıyın. |
-| **Girin** <br/> **Alanı** | Seçim         | Sol taraftaki araç çubuğunda bir düğmeyi seçtiğinde.                                                                                          |
+| **Girin** <br/> **alanı** | Seçim         | Sol taraftaki araç çubuğunda bir düğmeyi seçtiğinde.                                                                                          |
 | **Alt + Aşağı Ok**      | Listeyi Aç      | Açılan listeden sahip bir hücre seçildiğinde açılan bir liste.                                                                     |
 | **Girin**                 | Liste seçin    | Açılan listeden bir öğe seçer.                                                                                               |
 | **ESC**                   | Liste Kapat     | Açılan listeden kapatır.                                                                                                              |

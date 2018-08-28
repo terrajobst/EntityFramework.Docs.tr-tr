@@ -1,30 +1,28 @@
 ---
-title: Alternatif anahtarları - EF çekirdek
+title: Alternatif anahtarlar - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 8a5931d4-b480-4298-af36-0e29d74a37c0
-ms.technology: entity-framework-core
 uid: core/modeling/alternate-keys
-ms.openlocfilehash: 09f86a8932b71ec8f30ee90a088091a00233c20f
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: b26d8bc1630af9e811d9c4e7da850a618bc8042e
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054069"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42996977"
 ---
-# <a name="alternate-keys"></a>Alternatif anahtarları
+# <a name="alternate-keys"></a>Alternatif anahtarlar
 
-Diğer anahtar birincil anahtarı yanı sıra her varlık örneği için bir alternatif benzersiz tanımlayıcı olarak görev yapar. Alternatif anahtarları bir ilişki hedef olarak kullanılabilir. İlişkisel veritabanı kullanılırken bu kavramı benzersiz bir dizin/kısıtlama alternatif anahtar sütunları ve sütunlara başvuran bir veya daha fazla yabancı anahtar kısıtlamaları, eşler.
+Alternatif anahtar, birincil anahtar ek olarak her varlık örneği için bir alternatif benzersiz tanımlayıcısı olarak görev yapar. Alternatif anahtarlar bir ilişki hedefi olarak kullanılabilir. İlişkisel bir veritabanı kullanılırken bu kavramı benzersiz dizin/kısıtlama alternatif anahtar sütunların ve sütunların başvuran bir veya daha fazla yabancı anahtar kısıtlamaları, eşler.
 
 > [!TIP]  
-> Alternatif bir anahtarı yerine benzersiz bir dizin istediğiniz sonra bir sütunun benzersizlik istiyorsanız bkz [dizinleri](indexes.md). Çünkü bir yabancı anahtar hedef olarak kullanılabilir EF diğer anahtarları benzersiz dizinler daha büyük işlevsellik sağlar.
+> Alternatif anahtar yerine benzersiz bir dizin istediğiniz sonra bir sütunun benzersizlik istiyorsanız bkz [dizinleri](indexes.md). Yabancı anahtar hedefi olarak kullanılabildiğinden, EF alternatif anahtarlar benzersiz dizinler daha büyük işlevsellik sağlar.
 
-Alternatif anahtarlar genellikle sizin için gerekli olduğunda sunulur ve bunları el ile yapılandırmanız gerekmez. Bkz: [kuralları](#conventions) daha fazla ayrıntı için.
+Alternatif anahtarlar genellikle sizin için gerektiğinde sunulan ve bunları el ile yapılandırmanız gerekmez. Bkz: [kuralları](#conventions) daha fazla ayrıntı için.
 
 ## <a name="conventions"></a>Kurallar
 
-Birincil anahtar, bir ilişki hedefi değil bir özellik, tanımladığınızda, kurala göre sizin için bir alternatif anahtarı tanıtılmaktadır.
+Birincil anahtar, bir ilişki hedefi olarak değil bir özelliği, tanımladığınızda, kural olarak, alternatif anahtar sizin için kullanıma sunulmuştur.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/Conventions/Samples/AlternateKey.cs?highlight=12)] -->
 ``` csharp
@@ -64,11 +62,11 @@ public class Post
 
 ## <a name="data-annotations"></a>Veri ek açıklamaları
 
-Alternatif anahtarları veri ek açıklamaları kullanılarak yapılandırılamaz.
+Alternatif anahtarlar veri ek açıklamalarını kullanma yapılandırılamaz.
 
 ## <a name="fluent-api"></a>Fluent API'si
 
-Fluent API, alternatif bir anahtarı olması için tek bir özellikte yapılandırmak için kullanabilirsiniz.
+Fluent API'si alternatif anahtar tek bir özelliğini yapılandırmak için kullanabilirsiniz.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/AlternateKeySingle.cs?highlight=7,8)] -->
 ``` csharp
@@ -92,7 +90,7 @@ class Car
 }
 ```
 
-(Alternatif bir bileşik anahtarı da bilinir) bir alternatif anahtarı için birden çok özelliklerini yapılandırmak için Fluent API de kullanabilirsiniz.
+(Alternatif bir bileşik anahtarı bilinir) alternatif anahtar olarak birden çok özelliklerini yapılandırmak için Fluent API'si de kullanabilirsiniz.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/AlternateKeyComposite.cs?highlight=7,8)] -->
 ``` csharp

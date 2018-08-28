@@ -1,38 +1,36 @@
 ---
-title: DbContext - EF çekirdek yapılandırma
+title: EF Core - DbContext yapılandırma
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: d7a22b5a-4c5b-4e3b-9897-4d7320fcd13f
-ms.technology: entity-framework-core
 uid: core/miscellaneous/configuring-dbcontext
-ms.openlocfilehash: 6980acd53b0a74055af7a1e04b476f4625c327c9
-ms.sourcegitcommit: d2434edbfa6fbcee7287e33b4915033b796e417e
+ms.openlocfilehash: 393349c05ffaf42c6d2520e73abce23def6becc0
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/12/2018
-ms.locfileid: "29152396"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995944"
 ---
-# <a name="configuring-a-dbcontext"></a>Bir yapılandırma
+# <a name="configuring-a-dbcontext"></a>DbContext yapılandırma
 
-Bu makalede yapılandırma temel düzenlerden gösterilmektedir bir `DbContext` aracılığıyla bir `DbContextOptions` belirli EF çekirdek sağlayıcısını ve isteğe bağlı davranışları kullanarak bir veritabanına bağlanmak için.
+Yapılandırma temel düzenlerden Bu makale bir `DbContext` aracılığıyla bir `DbContextOptions` belirli bir EF Core sağlayıcısını ve isteğe bağlı davranışları kullanarak bir veritabanına bağlanmak için.
 
-## <a name="design-time-dbcontext-configuration"></a>Tasarım zamanı DbContext yapılandırma
+## <a name="design-time-dbcontext-configuration"></a>Tasarım zamanında DbContext yapılandırma
 
-EF çekirdek tasarım zamanı araçları gibi [geçişler](xref:core/managing-schemas/migrations/index) bulmak ve bir çalışma örneği oluşturmak gereken bir `DbContext` uygulamanın varlık türlerini ve bunların bir veritabanı şeması nasıl eşleneceğine ayrıntılarını toplama amacıyla türü. Aracı kolayca oluşturabilir sürece bu işlemi otomatik olabilir `DbContext` , benzer şekilde nasıl çalışma zamanında yapılandırılması için yapılandırılır şekilde.
+EF Core tasarım zamanı araçlarını gibi [geçişler](xref:core/managing-schemas/migrations/index) bulmak ve bir çalışma örneğini oluşturmak gereken bir `DbContext` uygulamanın varlık türleri ve bunların veritabanı şemasına nasıl eşleneceğine hakkındaki ayrıntıları toplamak için türü. Aracı bir kolayca oluşturabilir sürece bu işlem otomatik olabilir `DbContext` şekilde, benzer şekilde nasıl, çalışma zamanında yapılandırılır için yapılandırılır.
 
-While gerekli yapılandırma bilgileri sağlar düzeni `DbContext` çalışma zamanında, kullanmak için gerekli araçları çalışabilir bir `DbContext` tasarım zamanında yalnızca sınırlı sayıda desenler ile çalışabilirsiniz. Bunlar daha ayrıntılı olarak ele alınmıştır [tasarım zamanı bağlam oluşturma](xref:core/miscellaneous/cli/dbcontext-creation) bölümü.
+While için gerekli yapılandırma bilgileri sağlayan herhangi bir desen `DbContext` çalışma zamanında, kullanılmasını araçları çalışabilir bir `DbContext` tasarım zamanında yalnızca sınırlı sayıda desenleri ile çalışabilir. Bunlar daha ayrıntılı olarak ele alınmaktadır [tasarım zamanı bağlam oluşturma](xref:core/miscellaneous/cli/dbcontext-creation) bölümü.
 
 ## <a name="configuring-dbcontextoptions"></a>DbContextOptions yapılandırma
 
-`DbContext` bir örneği olmalıdır `DbContextOptions` herhangi bir iş gerçekleştirmek için. `DbContextOptions` Örneği yapılandırma bilgilerini aşağıdaki gibi yapar:
+`DbContext` bir örneğine sahip olması `DbContextOptions` herhangi bir çalışmayı gerçekleştirmek için. `DbContextOptions` Örneği yapılandırma bilgileri gibi yapar:
 
-- Genellikle seçili kullanmak için veritabanı sağlayıcısı gibi bir yöntemini çağırarak `UseSqlServer` veya `UseSqlite`
-- Tüm gerekli bağlantı dizesi veya veritabanı örneğinin tanıtıcısı genellikle geçirilen bağımsız değişken olarak yukarıda belirtilen sağlayıcı seçimi yöntemi
-- Sağlayıcı seçimi yöntem çağrısı içinde genellikle de zincirleme tüm sağlayıcısı düzeyi isteğe bağlı davranışını seçiciler
-- Sağlayıcı Seçici yöntemi önce veya sonra genellikle zincirleme tüm genel EF çekirdek davranışı seçiciler
+- Veritabanı sağlayıcısı kullanmak için genellikle seçili bir yöntemi çağırarak `UseSqlServer` veya `UseSqlite`
+- Herhangi bir gerekli bağlantı dizesini veya veritabanı örneğinin tanımlayıcı genellikle geçirilen bağımsız değişken olarak yukarıda belirtilen sağlayıcısı seçme yöntemi
+- Genellikle sağlayıcısı seçme yöntemi çağrısı içinde da zincirleme tüm sağlayıcısı düzeyi isteğe bağlı davranışını seçiciler
+- Sağlayıcı Seçici yöntemi önce veya sonra genellikle zincirleme tüm genel EF Core davranışı seçiciler
 
-Aşağıdaki örnek yapılandırır `DbContextOptions` SQL Server sağlayıcısı kullanmak için bir bağlantı içinde yer alan `connectionString` değişkeni, sağlayıcı düzeyi komut zaman aşımı ve içinde yürütülen tüm sorguları yapar EF çekirdek davranışı Seçici `DbContext` [Hayır izleme](xref:core/querying/tracking#no-tracking-queries) varsayılan olarak:
+Aşağıdaki örnek yapılandırır `DbContextOptions` ve SQL Server sağlayıcıyı kullanmak için bir bağlantı bulunan `connectionString` değişkeni, bir sağlayıcı düzeyi komut zaman aşımı ve içinde yürütülen tüm sorguları yapan bir EF Core davranışı Seçici `DbContext` [Hayır izleme](xref:core/querying/tracking#no-tracking-queries) varsayılan olarak:
 
 ``` csharp
 optionsBuilder
@@ -41,15 +39,15 @@ optionsBuilder
 ```
 
 > [!NOTE]  
-> Sağlayıcı Seçici ve yukarıda belirtilen diğer davranış Seçici yöntemleri olan genişletme yöntemleri `DbContextOptions` veya sağlayıcıya özgü seçenek sınıfları. Erişilebilmesi için bir ad alanı içerecek şekilde gerekebilir bu uzantı yöntemleri (genellikle `Microsoft.EntityFrameworkCore`) içinde kapsam ve ek paket bağımlılıklarını projeye ekleyin.
+> Sağlayıcı Seçici ve yukarıda belirtilen diğer davranışı Seçici yöntemleri üzerinde genişletme yöntemleri olan `DbContextOptions` veya sağlayıcıya özgü seçenek sınıfı. Bir ad alanı sağlamak için ihtiyacınız olan bu genişletme yöntemlerini erişimi için (genellikle `Microsoft.EntityFrameworkCore`), kapsam ve projede ek paket bağımlılıklarını içerir.
 
-`DbContextOptions` İçin sağlanan `DbContext` kılarak `OnConfiguring` yöntemi veya oluşturucu bağımsız değişkeni aracılığıyla harici olarak.
+`DbContextOptions` İçin sağlanan `DbContext` kılarak `OnConfiguring` yöntem veya oluşturucu bağımsız değişkeni aracılığıyla harici olarak.
 
-Her ikisi de kullanılıyorsa, `OnConfiguring` son olarak uygulanır ve oluşturucu bağımsız değişkeni için sağlanan seçenekleri geçersiz kılabilirsiniz.
+Her ikisi de kullanılıyorsa `OnConfiguring` son uygulanan ve oluşturucu bağımsız değişkeni için sağlanan seçenekleri geçersiz kılabilirsiniz.
 
 ### <a name="constructor-argument"></a>Oluşturucu bağımsız değişkeni
 
-Bağlam Kod Oluşturucusu ile:
+Bağlam Kod Oluşturucu ile:
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -63,9 +61,9 @@ public class BloggingContext : DbContext
 ```
 
 > [!TIP]  
-> Temel DbContext oluşturucusunun genel olmayan sürümünü de kabul eder `DbContextOptions`, ancak genel olmayan sürümüyle önerilmez birden fazla bağlam türü olan uygulamalar için.
+> DbContext, temel oluşturucu, genel olmayan sürümü de kabul eder `DbContextOptions`, ancak genel olmayan sürümüyle önerilmez birden çok içerik türü olan uygulamalar için.
 
-Oluşturucu bağımsız değişkenden başlatmak için uygulama kodu:
+Oluşturucu bağımsız değişkeninden başlatmak için uygulama kodu:
 
 ``` csharp
 var optionsBuilder = new DbContextOptionsBuilder<BloggingContext>();
@@ -103,17 +101,17 @@ using (var context = new BloggingContext())
 ```
 
 > [!TIP]
-> Tam veritabanı testleri hedef sürece bu yaklaşım kendisini test için ödünç değil.
+> Testlerin tam bir veritabanı hedef sürece bu yaklaşımın kendisi test için uygun olmayan.
 
-### <a name="using-dbcontext-with-dependency-injection"></a>DbContext ile bağımlılık ekleme kullanılarak
+### <a name="using-dbcontext-with-dependency-injection"></a>DbContext bağımlılık ekleme ile kullanma
 
-EF çekirdek destekleyen kullanarak `DbContext` bir bağımlılık ekleme kapsayıcısını ile. DbContext türü kullanarak hizmet kapsayıcısı eklenebilir `AddDbContext<TContext>` yöntemi.
+EF Core destekler kullanarak `DbContext` bağımlılık ekleme kapsayıcısına sahip. DbContext türünüz kullanarak hizmet kapsayıcıya eklenebilir `AddDbContext<TContext>` yöntemi.
 
-`AddDbContext<TContext>` hem sizin DbContext türü, yapacak `TContext`ve karşılık gelen `DbContextOptions<TContext>` hizmet kapsayıcısından yerleştirme için kullanılabilir.
+`AddDbContext<TContext>` Her iki DbContext türünüzü hale getirecek `TContext`ve karşılık gelen `DbContextOptions<TContext>` hizmet kapsayıcısından yerleştirme için kullanılabilir.
 
-Bkz: [daha fazla okuma](#more-reading) aşağıda bağımlılık ekleme hakkında daha fazla bilgi için.
+Bkz: [daha fazla okuma](#more-reading) aşağıdaki bağımlılık ekleme hakkında daha fazla bilgi için.
 
-Ekleme `Dbcontext` bağımlılık ekleme için:
+Ekleme `Dbcontext` bağımlılık ekleme:
 
 ``` csharp
 public void ConfigureServices(IServiceCollection services)
@@ -122,7 +120,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Bu ekleme gerektiren bir [oluşturucu bağımsız değişkeni](#constructor-argument) kabul eder, DbContext türü `DbContextOptions<TContext>`.
+Bu ekleme gerektirir bir [oluşturucu bağımsız değişkeni](#constructor-argument) kabul eden DbContext türünüz için `DbContextOptions<TContext>`.
 
 Bağlam kodu:
 
@@ -153,7 +151,7 @@ public class MyController
 }
 ```
 
-Uygulama kodu (ServiceProvider, daha az yaygın kullanarak doğrudan):
+Uygulama kodu (doğrudan kullanarak daha az ortak ServiceProvider):
 
 ``` csharp
 using (var context = serviceProvider.GetService<BloggingContext>())
@@ -166,6 +164,6 @@ var options = serviceProvider.GetService<DbContextOptions<BloggingContext>>();
 
 ## <a name="more-reading"></a>Daha fazla okuma
 
-* Okuma [Başlarken ASP.NET Core üzerinde](../get-started/aspnetcore/index.md) EF ASP.NET Core ile kullanma hakkında daha fazla bilgi için.
-* Okuma [bağımlılık ekleme](https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection) dı kullanma hakkında daha fazla bilgi edinmek için.
+* Okuma [Başlarken üzerinde ASP.NET Core](../get-started/aspnetcore/index.md) EF ASP.NET Core ile kullanma hakkında daha fazla bilgi için.
+* Okuma [bağımlılık ekleme](https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection) DI kullanma hakkında daha fazla bilgi edinmek için.
 * Okuma [test](testing/index.md) daha fazla bilgi için.

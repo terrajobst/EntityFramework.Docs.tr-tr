@@ -1,20 +1,19 @@
 ---
-title: "\U0001F527Oluşturma ve API - EF çekirdek bırakma"
+title: "\U0001F527 API - EF Core oluşturma ve bırakma"
 author: bricelam
 ms.author: bricelam
 ms.date: 11/10/2017
-ms.technology: entity-framework-core
-ms.openlocfilehash: 765a4322b5878fa51fe01a2a71bd265a39727e10
-ms.sourcegitcommit: b467368cc350e6059fdc0949e042a41cb11e61d9
+ms.openlocfilehash: 1e0d348d770982f22b558b92eb926d4b4b8547e9
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/15/2017
-ms.locfileid: "26054732"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42994156"
 ---
-# <a name="-create-and-drop-apis"></a>🔧Oluşturma ve API bırakma
+# <a name="-create-and-drop-apis"></a>🔧 API oluşturma ve bırakma
 
 > [!NOTE]
-> Bu konuda yazmadı! Bu durumu izleyebilirsiniz [sorunu] [ 1] bizim ortak GitHub sorun İzleyicisi aracılığıyla. Öğrenin [katkıda] [ 2] github'da.
+> Bu konuda yazmamış! Bu durumu izleyebilirsiniz [sorunu] [ 1] bizim genel GitHub sorun İzleyicisi aracılığıyla. Öğrenin [katkıda] [ 2] GitHub üzerinde.
 
 
   [1]: https://github.com/aspnet/EntityFramework.Docs/issues/549

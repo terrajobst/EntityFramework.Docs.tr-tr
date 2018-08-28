@@ -1,36 +1,34 @@
 ---
-title: Varsayılan değerleri - EF çekirdek
+title: Varsayılan değerleri - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: e541366a-130f-47dd-9997-1b110a11febe
-ms.technology: entity-framework-core
 uid: core/modeling/relational/default-values
-ms.openlocfilehash: 73b916b6d9f9c984c8ea010f2319eafa7d031a58
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 341f243ddddc345bb4236e5c34f814694b71e32a
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054192"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42996258"
 ---
 # <a name="default-values"></a>Varsayılan değerler
 
 > [!NOTE]  
-> Bu bölümdeki yapılandırma genel ilişkisel veritabanları için geçerlidir. İlişkisel veritabanı sağlayıcısı yüklediğinizde, burada gösterilen genişletme yöntemleri kullanılabilir olacağı (paylaşılan nedeniyle *Microsoft.EntityFrameworkCore.Relational* paketi).
+> Bu bölümdeki yapılandırma, genel olarak ilişkisel veritabanları için geçerlidir. İlişkisel veritabanı sağlayıcısı yüklediğinizde, burada gösterilen genişletme yöntemleri kullanılabilir hale gelir (paylaşılan nedeniyle *Microsoft.EntityFrameworkCore.Relational* paketi).
 
-Yeni bir satır eklenir, ancak hiçbir değer belirtilen sütun için eklenecek değer bir sütunun varsayılan değerdir.
+Yeni bir satır eklenir, ancak hiçbir değer belirtilen sütun için eklenecek değer sütunun varsayılan değerdir.
 
 ## <a name="conventions"></a>Kurallar
 
-Kurala göre varsayılan bir değer yapılandırılmamış.
+Kural gereği, varsayılan değer yapılandırılmadı.
 
 ## <a name="data-annotations"></a>Veri ek açıklamaları
 
-Veri ek açıklamaları kullanılarak varsayılan bir değer ayarlanmamış.
+Veri ek açıklamalarını kullanma, varsayılan bir değer ayarlayamazsınız.
 
 ## <a name="fluent-api"></a>Fluent API'si
 
-Bir özellik için varsayılan değer belirtmek için Fluent API kullanabilirsiniz.
+Fluent API'si, bir özellik için varsayılan değer belirtmek için kullanabilirsiniz.
 
 <!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Samples/Relational/DefaultValue.cs?highlight=9)] -->
 ``` csharp

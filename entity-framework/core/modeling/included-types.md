@@ -1,33 +1,31 @@
 ---
-title: Dahil olmak üzere & türlerini - EF çekirdek dışarıda
+title: Dahil olan ve dışlanan türler - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: cbe6935e-2679-4b77-8914-a8d772240cf1
-ms.technology: entity-framework-core
 uid: core/modeling/included-types
-ms.openlocfilehash: a8d7293a144968d2506bdcc76e55a1a0b1e3fd4b
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: a5a14f62524754fed179e9a41fac5e29faf185ca
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054129"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42996156"
 ---
-# <a name="including--excluding-types"></a>Dahil olmak üzere & türlerini dışarıda
+# <a name="including--excluding-types"></a>Dahil olan ve dışlanan türler
 
-Bir tür yazın ve okuma ve yazma örneklerine / veritabanı dener EF hakkında meta veri olan model anlamına gelir dahil olmak üzere.
+Bir tür yazın ve okuma ve yazma / için veritabanı örnekleri dener EF hakkında meta veriler içeren model anlamına gelir dahil olmak üzere.
 
 ## <a name="conventions"></a>Kurallar
 
-Kural, sunulan türleri tarafından `DbSet` içeriğiniz özellikleri modelinizde dahil edilir. Ayrıca, bölümünde belirtildiği türleri `OnModelCreating` yöntemi dahil de. Son olarak, gezinti özellikleri bulunan türlerinin keşfetme yinelemeli tarafından bulunan herhangi bir türünün modelde de dahil edilir.
+Kural, sunulan türleri tarafından `DbSet` Bağlamınızı özellikleri modelinizde dahil edilir. Ayrıca, belirtilmiştir türleri `OnModelCreating` yöntemi da dahil edilir. Son olarak, yinelemeli olarak bulunan türleri Gezinti özelliklerini keşfetme tarafından bulunan tüm türleri de modele dahil edilir.
 
-**Örneğin, aşağıdaki kod listesindeki tüm üç tür bulunur:**
+**Örneğin, aşağıdaki kod listesinde üç türü bulunur:**
 
-* `Blog`içinde sunulan çünkü bir `DbSet` bağlam özelliği
+* `Blog` olarak açığa çıkarıldığı bir `DbSet` bağlam özelliği
 
-* `Post`aracılığıyla bulunan çünkü `Blog.Posts` gezinti özelliği
+* `Post` aracılığıyla bulunan çünkü `Blog.Posts` gezinme özelliği
 
-* `AuditEntry`bölümünde belirtildiği için`OnModelCreating`
+* `AuditEntry` içinde bahsettiğiniz için `OnModelCreating`
 
 <!-- [!code-csharp[Main](samples/core/Modeling/Conventions/Samples/IncludedTypes.cs?highlight=3,7,16)] -->
 ``` csharp
@@ -89,7 +87,7 @@ public class BlogMetadata
 
 ## <a name="fluent-api"></a>Fluent API'si
 
-Modelden bir türü çıkarmak için Fluent API'sini kullanın.
+Modelden bir türü dışlanacak Fluent API'sini kullanabilirsiniz.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/IgnoreType.cs?highlight=7)] -->
 ``` csharp

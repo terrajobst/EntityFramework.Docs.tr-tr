@@ -2,19 +2,13 @@
 title: Eski sürümler - EF6 olan Entity Framework'ün
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 1060bb99-765f-4f32-aaeb-d6635d3dbd3e
-caps.latest.revision: 4
-ms.openlocfilehash: 5be3632fd3a3f04e12e2d3aa67de6c1d9c7b56a2
-ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
+ms.openlocfilehash: 01a73558f9a8ef49ef20e4673001fd096d2aafb8
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37949325"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42998280"
 ---
 # <a name="past-releases-of-entity-framework"></a>Eski sürümler Entity Framework'ün
 
@@ -140,7 +134,7 @@ Entity Framework Designer Visual Studio 2012'de de birden çok diyagramları, he
     -   [Uzamsal veri türleri kodda önce](~/ef6/modeling/code-first/data-types/spatial.md)
     -   [EF Designer uzamsal veri türleri](~/ef6/modeling/designer/data-types/spatial.md)
     -   [Uzamsal türler için sağlayıcı desteği](~/ef6/fundamentals/providers/spatial-support.md)
-    -   [Tablo değerli işlevler](~/ef6/modeling/designer/advanced/tvfs.md)
+    -   [Tablo Değerli İşlevler](~/ef6/modeling/designer/advanced/tvfs.md)
     -   [Model başına birden çok diyagramı](~/ef6/modeling/designer/multiple-diagrams.md)
 -   Modelinizi ayarlama
     -   [Model Oluşturma](~/ef6/modeling/index.md)
@@ -148,12 +142,12 @@ Entity Framework Designer Visual Studio 2012'de de birden çok diyagramları, he
     -   [Performans Konuları](~/ef6/fundamentals/performance/perf-whitepaper.md)
     -   [Microsoft SQL Azure ile çalışma](~/ef6/fundamentals/connection-resiliency/retry-logic.md)
     -   [Yapılandırma dosyası ayarları](~/ef6/fundamentals/configuring/config-file.md)
-    -   [Sözlüğü](~/ef6/resources/glossary.md)
+    -   [Sözlük](~/ef6/resources/glossary.md)
     -   İlk kod
         -   [Yeni bir veritabanına (gözden geçirme ve video) ilk kod](~/ef6/modeling/code-first/workflows/new-database.md)
         -   [Mevcut bir veritabanına (gözden geçirme ve video) ilk kod](~/ef6/modeling/code-first/workflows/existing-database.md)
         -   [Kurallar](~/ef6/modeling/code-first/conventions/built-in.md)
-        -   [Veri ek açıklamaları](~/ef6/modeling/code-first/data-annotations.md)
+        -   [Veri Açıklamaları](~/ef6/modeling/code-first/data-annotations.md)
         -   [Özellikleri & türlerini yapılandırma/eşleme Fluent API'si-](~/ef6/modeling/code-first/fluent/types-and-properties.md)
         -   [Fluent API'si - ilişkileri yapılandırma](~/ef6/modeling/code-first/fluent/relationships.md)
         -   [Fluent API'si ile VB.NET](~/ef6/modeling/code-first/fluent/vb.md)
@@ -164,7 +158,7 @@ Entity Framework Designer Visual Studio 2012'de de birden çok diyagramları, he
     -   EF Designer
         -   [Model ilk (gözden geçirme ve video)](~/ef6/modeling/designer/workflows/model-first.md)
         -   [İlk (gözden geçirme ve video) veritabanı](~/ef6/modeling/designer/workflows/database-first.md)
-        -   [Karmaşık türler](~/ef6/modeling/designer/data-types/complex-types.md)
+        -   [Karmaşık Türler](~/ef6/modeling/designer/data-types/complex-types.md)
         -   [İlişkilendirmeleri/ilişkileri](~/ef6/modeling/designer/relationships.md)
         -   [TPT devralma deseni](~/ef6/modeling/designer/inheritance/tpt.md)
         -   [TPH devralma deseni](~/ef6/modeling/designer/inheritance/tph.md)
@@ -177,7 +171,7 @@ Entity Framework Designer Visual Studio 2012'de de birden çok diyagramları, he
         -   [Kod oluşturma şablonları](~/ef6/modeling/designer/codegen/index.md)
         -   [Objectcontext'e döndürülüyor](~/ef6/modeling/designer/codegen/legacy-objectcontext.md)
 -   Modelinizi kullanma
-    -   [DbContext ile çalışma](~/ef6/fundamentals/working-with-dbcontext.md)
+    -   [DbContext ile Çalışma](~/ef6/fundamentals/working-with-dbcontext.md)
     -   [Varlıkları sorgulama bulma](~/ef6/querying/index.md)
     -   [İlişkilerle çalışma](~/ef6/fundamentals/relationships.md)
     -   [İlgili varlıklar yükleniyor](~/ef6/querying/related-data.md)

@@ -1,21 +1,19 @@
 ---
-title: Microsoft SQL Server veritabanı sağlayıcısı - EF çekirdek
+title: Microsoft SQL Server veritabanı sağlayıcısı - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 2e007c82-c6e4-45bb-8129-851b79ec1a0a
-ms.technology: entity-framework-core
 uid: core/providers/sql-server/index
-ms.openlocfilehash: 2ed7c0dd127db03d5e7340fde1ef83cf01b30135
-ms.sourcegitcommit: b2d94cebdc32edad4fecb07e53fece66437d1b04
+ms.openlocfilehash: a524794a61a9f5078998aea04b45c31c19357f2b
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/28/2018
-ms.locfileid: "29678656"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995675"
 ---
-# <a name="microsoft-sql-server-ef-core-database-provider"></a>Microsoft SQL Server EF çekirdek veritabanı sağlayıcısı
+# <a name="microsoft-sql-server-ef-core-database-provider"></a>Microsoft SQL Server EF Core veritabanı sağlayıcısı
 
-Bu veritabanı sağlayıcısı (SQL Azure dahil olmak üzere) Microsoft SQL Server ile birlikte kullanılacak Entity Framework Çekirdek sağlar. Sağlayıcı bir parçası olarak korunur [Entity Framework Çekirdek proje](https://github.com/aspnet/EntityFrameworkCore).
+Bu veritabanı sağlayıcısı (SQL Azure dahil olmak üzere) Microsoft SQL Server ile kullanılmak üzere Entity Framework Core sağlar. Sağlayıcı bir parçası olarak korunur [Entity Framework Core projesi](https://github.com/aspnet/EntityFrameworkCore).
 
 ## <a name="install"></a>Yükleme
 
@@ -30,13 +28,13 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer
 Aşağıdaki kaynaklar bu sağlayıcı ile çalışmaya başlamanıza yardımcı olur.
 * [.NET Framework (konsol, WinForms, WPF, vb.) kullanmaya başlama](../../get-started/full-dotnet/index.md)
 
-* [ASP.NET Core üzerinde çalışmaya başlama](../../get-started/aspnetcore/index.md)
+* [Üzerinde ASP.NET Core kullanmaya başlama](../../get-started/aspnetcore/index.md)
 
-* [UnicornStore örnek uygulama](https://github.com/rowanmiller/UnicornStore/tree/master/UnicornStore)
+* [UnicornStore örnek uygulaması](https://github.com/rowanmiller/UnicornStore/tree/master/UnicornStore)
 
-## <a name="supported-database-engines"></a>Veritabanı motoru desteklenen
+## <a name="supported-database-engines"></a>Veritabanı altyapıları desteklenir
 
-* Microsoft SQL Server (2008 veya sonraki sürümleri)
+* Microsoft SQL Server (2008 ve sonraki sürümler)
 
 ## <a name="supported-platforms"></a>Desteklenen Platformlar
 
@@ -44,6 +42,6 @@ Aşağıdaki kaynaklar bu sağlayıcı ile çalışmaya başlamanıza yardımcı
 
 * .NET Core
 
-* Mono (veya sonraki sürümleri 4.2.0)
+* Mono (4.2.0 ve sonraki sürümler)
 
       Caution: Using this provider on Mono will make use of the Mono SQL Client implementation, which has a number of known issues. For example, it does not support secure connections (SSL).

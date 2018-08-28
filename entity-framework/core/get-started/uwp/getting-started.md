@@ -1,157 +1,166 @@
 ---
-title: UWP - yeni veritabanı - EF Çekirdeğinde Başlarken
+title: UWP - yeni veritabanı - EF Core üzerinde çalışmaya başlama
 author: rowanmiller
-ms.author: divega
-ms.date: 10/27/2016
-ms.topic: get-started-article
+ms.date: 08/08/2018
 ms.assetid: a0ae2f21-1eef-43c6-83ad-92275f9c0727
-ms.technology: entity-framework-core
 uid: core/get-started/uwp/getting-started
-ms.openlocfilehash: f743ff5392d1f30283a13d2e7fb8029be88387aa
-ms.sourcegitcommit: 96324e58c02b97277395ed43173bf13ac80d2012
+ms.openlocfilehash: c243ef2a1940af9bf4f4b32f17acfcce7f972862
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/01/2017
-ms.locfileid: "26054816"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42996916"
 ---
-# <a name="getting-started-with-ef-core-on-universal-windows-platform-uwp-with-a-new-database"></a>Evrensel Windows Platformu (UWP) yeni bir veritabanı EF Çekirdeğinde ile çalışmaya başlama
+# <a name="getting-started-with-ef-core-on-universal-windows-platform-uwp-with-a-new-database"></a>Yeni bir veritabanı ile Evrensel Windows Platformu (UWP) üzerinde EF Core ile çalışmaya başlama
 
-> [!NOTE]
-> Bu öğretici EF çekirdek 2.0.1 (ASP.NET Core ve .NET Core SDK 2.0.3 yayımlanan) kullanır. EF çekirdek 2.0.0 iyi bir UWP deneyimi için gereken bazı önemli hata düzeltmeleri eksik.
+Bu öğreticide, Entity Framework Core kullanan yerel bir SQLite veritabanından karşı temel veri erişimi gerçekleştirdiği bir evrensel Windows Platformu (UWP) uygulaması oluşturun.
 
-Bu kılavuzda, Entity Framework kullanarak yerel bir SQLite veritabanı karşı temel veri erişimi gerçekleştirdiği bir evrensel Windows Platformu (UWP) uygulaması oluşturacaksınız.
-
-> [!IMPORTANT]
-> **Anonim türler UWP LINQ sorgularında önleme göz önünde bulundurun**. Bir UWP uygulamasını Uygulama mağazası dağıtılması .NET yerel ile derlenecek uygulamanız gerekir. Anonim türler sorgularıyla daha zayıf bir performans yerel .NET vardır.
-
-> [!TIP]
-> Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/UWP/UWP.SQLite) github'da.
+[Bu makaledeki örnek Github'da görüntüle](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/UWP).
 
 ## <a name="prerequisites"></a>Önkoşullar
 
-Aşağıdaki öğeler bu yönlendirmeyi tamamlamak için gereklidir:
+* [Windows 10 Fall Creators Update (10.0; 16299 yapı) veya üzeri](https://support.microsoft.com/en-us/help/4027667/windows-update-windows-10).
 
-* [Windows 10 sonbaharda oluşturucuları güncelleştirmesi](https://support.microsoft.com/en-us/help/4027667/windows-update-windows-10) (10.0.16299.0)
+* [Visual Studio 2017 sürüm 15.7 veya üzeri](https://www.visualstudio.com/downloads/) ile **Evrensel Windows platformu geliştirme** iş yükü.
 
-* [.NET core 2.0.0 SDK](https://www.microsoft.com/net/core) veya sonraki bir sürümü.
+* [.NET core 2.1 SDK veya üzeri](https://www.microsoft.com/net/core) veya üzeri.
 
-* [Visual Studio 2017](https://www.visualstudio.com/downloads/) 15.4 veya ile sonraki bir sürümü **Evrensel Windows platformu geliştirme** iş yükü.
+## <a name="create-a-model-project"></a>Bir model projesi oluşturma
 
-## <a name="create-a-new-model-project"></a>Yeni bir modeli projesi oluşturma
+> [!IMPORTANT]
+> Şekilde sınırlamaları nedeniyle modeli geçişleri komutları çalıştırmak için bir UWP olmayan proje yerleştirilmesi gerekir UWP projeleri .NET Core araçları etkileşim **Paket Yöneticisi Konsolu** (PMC)
 
-> [!WARNING]
-> Model Paket Yöneticisi konsolunda geçişler komutları çalıştırılabilmesi için UWP olmayan projesinde yerleştirilmesi gerekir UWP projeleri etkileşimde şekilde .NET Core araçlarında sınırlamaları nedeniyle
+* Visual Studio'yu Aç
 
-* Açık Visual Studio
+* **Dosya > Yeni > Proje**
 
-* Dosya > Yeni > Proje...
+* Sol menüden **yüklü > Visual C# > .NET Standard**.
 
-* Sol menüden şablonları seçin > Visual C#
+* Seçin **sınıf kitaplığı (.NET Standard)** şablonu.
 
-* Seçin **sınıf kitaplığı (.NET standart)** proje şablonu
+* Projeyi adlandırın *Blogging.Model*.
 
-* Proje bir ad verin ve tıklatın **Tamam**
+* Çözüm adı *blog*.
 
-## <a name="install-entity-framework"></a>Entity Framework'ü yükleme
+* **Tamam**'ı tıklatın.
 
-EF çekirdek kullanmak için hedeflemek istediğiniz veritabanı sağlayıcı(lar) için paketini yükleyin. Bu kılavuzda SQLite kullanılır. Kullanılabilir sağlayıcılar listesi için bkz: [veritabanı sağlayıcıları](../../providers/index.md).
+## <a name="install-entity-framework-core"></a>Entity Framework Core yükleme
 
-* Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu
+EF Core kullanmak için hedeflemek istediğiniz veritabanı şu sağlayıcı(lar) için paketi yükleyin. Bu öğreticide SQLite kullanılır. Kullanılabilir sağlayıcılar listesi için bkz. [veritabanı sağlayıcıları](../../providers/index.md).
 
-* Çalıştırma`Install-Package Microsoft.EntityFrameworkCore.Sqlite`
+* **Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu**.
 
-Bu kılavuzda daha sonra biz de bazı Entity Framework Araçları veritabanını korumak için kullanır. Böylece biz de araçları paketini yükler.
+* `Install-Package Microsoft.EntityFrameworkCore.Sqlite`'i çalıştırın.
 
-* Çalıştırma`Install-Package Microsoft.EntityFrameworkCore.Tools`
+Veritabanını korumak için bu öğreticinin ilerleyen bölümlerinde bazı Entity Framework Core araçları kullanacaksınız. Bu nedenle de araçları paketini yükleyin.
 
-* .Csproj dosyasını düzenleyin ve değiştirme `<TargetFramework>netstandard2.0</TargetFramework>` ile`<TargetFrameworks>netcoreapp2.0;netstandard2.0</TargetFrameworks>`
+* `Install-Package Microsoft.EntityFrameworkCore.Tools`'i çalıştırın.
 
-## <a name="create-your-model"></a>Model oluşturma
+## <a name="create-the-model"></a>Model oluşturma
 
-Şimdi modelinizi yapmak bağlamını ve varlık sınıflarını tanımlamak için zaman yapılır.
+Artık modeli oluşturan bir bağlam ve varlık sınıflarını tanımlamak için zamanı geldi.
 
-* Proje > sınıfı Ekle...
+* Silme *Class1.cs*.
 
-* Girin *Model.cs* tıklatın ve adı olarak **Tamam**
+* Oluşturma *Model.cs* aşağıdaki kod ile:
 
-* Dosyasının içeriğini aşağıdaki kodla değiştirin
-
-[!code-csharp[Main](../../../../samples/core/GetStarted/UWP/UWP.Model/Model.cs)]
+  [!code-csharp[Main](../../../../samples/core/GetStarted/UWP/Blogging.Model/Model.cs)]
 
 ## <a name="create-a-new-uwp-project"></a>Yeni bir UWP projesi oluşturma
 
-* Açık Visual Studio
+* İçinde **Çözüm Gezgini**, çözüme sağ tıklayın ve ardından **Ekle > Yeni proje**.
 
-* Dosya > Yeni > Proje...
+* Sol menüden **yüklü > Visual C# > Windows Evrensel**.
 
-* Sol menüden şablonları seçin > Visual C# > Windows Evrensel
+* Seçin **boş uygulama (Evrensel Windows)** proje şablonu.
 
-* Seçin **boş uygulama (Evrensel Windows)** proje şablonu
+* Projeyi adlandırın *Blogging.UWP*, tıklatıp **Tamam**
 
-* Proje bir ad verin ve tıklatın **Tamam**
+* En az bir hedef ve en düşük sürüm kümesine **Windows 10 Fall Creators Update (10.0; derleme 16299.0)**.
 
-* Hedef ve en düşük sürümler için en az ayarlayın`Windows 10 Fall Creators Update (10.0; build 16299.0)`
+## <a name="create-the-initial-migration"></a>İlk geçiş oluştur
 
-## <a name="create-your-database"></a>Veritabanı oluşturma
+Bir modeliniz olduğuna göre ilk çalıştığında bir veritabanı oluşturmak için uygulamasını ayarlama. Bu bölümde, ilk geçiş oluşturun. Aşağıdaki bölümde, uygulama başlatıldığında, bu geçiş uygulayan kodu ekleyin.
 
-Bir model sahip olduğunuza göre sizin için bir veritabanı oluşturmak için geçiş kullanabilirsiniz.
+Geçiş Araçları, UWP başlangıç projesi gerektirir, bu nedenle öncelikle oluşturun.
 
-* Araçlar –> NuGet Paket Yöneticisi –> Paket Yöneticisi Konsolu
+* İçinde **Çözüm Gezgini**, çözüme sağ tıklayın ve ardından **Ekle > Yeni proje**.
 
-* Modeli projesi varsayılan proje olarak seçin ve başlangıç projesi olarak ayarla
+* Sol menüden **yüklü > Visual C# > .NET Core**.
 
-* Çalıştırma `Add-Migration MyFirstMigration` tabloları modeliniz için ilk kümesi oluşturmak için bir geçiş için iskele kurmak.
+* Seçin **konsol uygulaması (.NET Core)** proje şablonu.
 
-Uygulamanın çalıştığı cihaz üzerinde oluşturulacak veritabanına istiyoruz olduğundan, uygulama başlatma yerel veritabanında bekleyen tüm geçişleri uygulamak için bazı kod ekleyeceğiz. Uygulama çalıştığında, ilk kez bu bize için yerel veritabanı oluşturmayı ilgilenebilmek.
+* Projeyi adlandırın *Blogging.Migrations.Startup*, tıklatıp **Tamam**.
 
-* Sağ **App.xaml** içinde **Çözüm Gezgini** seçip **görünümü kodu**
+* Proje Başvuru Ekle *Blogging.Migrations.Startup* için proje *Blogging.Model* proje.
 
-* Vurgulanan kullanma dosyasının başlangıcına ekleyin
+Şimdi ilk geçiş oluşturabilirsiniz.
 
-* Bekleyen tüm geçişleri uygulamak için vurgulanmış kodu ekleyin
+* **Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi Konsolu**
 
-[!code-csharp[Main](../../../../samples/core/GetStarted/UWP/UWP.SQLite/App.xaml.cs?highlight=1,25-28)]
+* Seçin *Blogging.Model* proje olarak **varsayılan proje**.
+
+* İçinde **Çözüm Gezgini**ayarlayın *Blogging.Migrations.Startup* projeyi başlangıç projesi olarak.
+
+* Çalıştırma `Add-Migration InitialCreate`.
+
+  Bu komut, tablolar, modelinize için başlangıç kümesi oluşturan bir geçiş iskele oluşturulduğunu.
+
+## <a name="create-the-database-on-app-startup"></a>Uygulama başlangıcında veritabanı oluşturma
+
+Uygulamanın üzerinde çalıştığı cihazda oluşturulacak veritabanının istediğinden, uygulama başlangıcından yerel veritabanında bekleyen tüm geçişler uygulamak için kod ekleyin. Uygulama çalışır, ilk kez bu yerel veritabanı oluşturmayı ilgileniriz.
+
+* Proje Başvuru Ekle *Blogging.UWP* için proje *Blogging.Model* proje.
+
+* Açık *App.xaml.cs*.
+
+* Bekleyen tüm geçişler uygulamak için vurgulanmış kodu ekleyin.
+
+  [!code-csharp[Main](../../../../samples/core/GetStarted/UWP/Blogging.UWP/App.xaml.cs?highlight=1-2,26-29)]
 
 > [!TIP]  
-> Modelinize gelecekteki değişiklikler yapmak isterseniz, kullanabileceğiniz `Add-Migration` karşılık gelen uygulamak için yeni bir geçiş için iskele kurmak komut veritabanına değiştirir. Uygulama başladığında bekleyen tüm geçişleri her cihazda yerel veritabanı uygulanır.
+> Modelinizi değiştirmek kullanırsanız `Add-Migration` karşılık gelen uygulamak için yeni bir geçiş iskele komut, veritabanına değiştirir. Uygulama başladığında bekleyen tüm geçişlerde, her cihazda yerel veritabanına uygulanır.
 >
->EF kullanan bir `__EFMigrationsHistory` hangi geçişleri veritabanına zaten uygulandı izlemek için veritabanı tablosunda.
+>EF kullanan bir `__EFMigrationsHistory` hangi geçişleri veritabanına zaten uygulanmış izlemek için veritabanı tablosunda.
 
-## <a name="use-your-model"></a>Modelinizi kullanın
+## <a name="use-the-model"></a>Kullanım modeli
 
-Veri erişimi gerçekleştirdiği modelinizi artık kullanabilirsiniz.
+Şimdi, veri erişimi gerçekleştirdiği modeli kullanabilirsiniz.
 
-* Açık *MainPage.xaml*
+* Açık *MainPage.xaml*.
 
-* Aşağıda vurgulanan UI içerik ve sayfa yükleme işleyici ekleme
+* UI içerik aşağıda belirtildiği ve sayfa yükleme işleyicisi ekleyin
 
-[!code-xml[Main](../../../../samples/core/GetStarted/UWP/UWP.SQLite/MainPage.xaml?highlight=9,11-23)]
+[!code-xml[Main](../../../../samples/core/GetStarted/UWP/Blogging.UWP/MainPage.xaml?highlight=9,11-23)]
 
-UI veritabanıyla kablo kod artık ekleyeceğiz
+Şimdi veritabanı ile kullanıcı arabirimini'kurmak wire için kod ekleyin
 
-* Sağ **MainPage.xaml** içinde **Çözüm Gezgini** seçip **görünümü kodu**
+* Açık *MainPage.xaml.cs*.
 
-* Aşağıdaki listeden vurgulanmış kodu ekleyin
+* Aşağıdaki listeden vurgulanmış kodu ekleyin:
 
-[!code-csharp[Main](../../../../samples/core/GetStarted/UWP/UWP.SQLite/MainPage.xaml.cs?highlight=30-48)]
+[!code-csharp[Main](../../../../samples/core/GetStarted/UWP/Blogging.UWP/MainPage.xaml.cs?highlight=1,31-49)]
 
-Şimdi eylemde görmek için uygulamayı çalıştırabilirsiniz.
+Şimdi nasıl çalıştığını görmek için uygulamayı çalıştırabilirsiniz.
 
-* Hata ayıklama > hata ayıklama olmadan Başlat
+* İçinde **Çözüm Gezgini**, sağ *Blogging.UWP* proje ve ardından **Dağıt**.
 
-* Uygulama oluşturma ve başlatma
+* Ayarlama *Blogging.UWP* başlangıç projesi olarak.
+
+* **Hata ayıklama > hata ayıklama olmadan Başlat**
+
+  Uygulamayı derler ve çalıştırır.
 
 * Bir URL girin ve tıklayın **Ekle** düğmesi
 
-![görüntü](_static/create.png)
+  ![görüntü](_static/create.png)
 
-![görüntü](_static/list.png)
+  ![görüntü](_static/list.png)
+
+  Tada! Entity Framework Core çalıştıran basit bir UWP uygulamasında artık var.
 
 ## <a name="next-steps"></a>Sonraki adımlar
 
-> [!TIP]
-> `SaveChanges()`Performans geliştirilmiş uygulayarak [ `INotifyPropertyChanged` ](https://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanged.aspx), [ `INotifyPropertyChanging` ](https://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanging.aspx), [ `INotifyCollectionChanged` ](https://msdn.microsoft.com/en-us/library/system.collections.specialized.inotifycollectionchanged.aspx) , varlık türleri ve kullanarak `ChangeTrackingStrategy.ChangingAndChangedNotifications`.
+EF Core ile UWP kullanırken bilmeniz gereken uyumluluk ve performans için bilgi [EF Core tarafından desteklenen .NET uygulamalarıyla](../../platforms/index.md#universal-windows-platform).
 
-Tada! Entity Framework çalışan basit bir UWP uygulamasında artık sahipsiniz.
-
-Entity Framework'ün özellikler hakkında daha fazla bilgi edinmek için bu belgeleri içindeki diğer makalelere göz atın.
+Entity Framework Core özellikler hakkında daha fazla bilgi edinmek için bu belgeleri içindeki diğer makalelere göz atın.

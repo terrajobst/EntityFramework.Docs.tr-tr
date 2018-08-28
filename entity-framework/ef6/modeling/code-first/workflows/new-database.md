@@ -2,19 +2,13 @@
 title: Yeni bir veritabanı - EF6 öncelikle kod
 author: divega
 ms.date: 2016-10-23
-ms.prod: entity-framework
-ms.author: divega
-ms.manager: avickers
-ms.technology: entity-framework-6
-ms.topic: article
 ms.assetid: 2df6cb0a-7d8b-4e28-9d05-e2b9a90125af
-caps.latest.revision: 3
-ms.openlocfilehash: 75057fc73b082f4c745171ed77cddc358229a130
-ms.sourcegitcommit: f05e7b62584cf228f17390bb086a61d505712e1b
+ms.openlocfilehash: bb44a3300bc8ffc9d7050c4784e7b76b29c61796
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/08/2018
-ms.locfileid: "37912123"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42994624"
 ---
 # <a name="code-first-to-a-new-database"></a>Yeni bir veritabanına ilk kod
 Bu video ve adım adım kılavuz, yeni bir veritabanını hedefleyen Code First geliştirmeye giriş sağlar. Bu senaryo, mevcut bir veritabanını hedefleyen içerir ve Code First oluşturur veya çok Code First yeni ekler için boş bir veritabanı tabloları. Kod ilk sağlar, C kullanarak modelinizi tanımlamanızı\# veya VB.Net sınıflar. Ek yapılandırma, sınıfları ve özellikleri ya da fluent API'sini kullanarak özniteliklerini kullanarak isteğe bağlı olarak gerçekleştirilebilir.

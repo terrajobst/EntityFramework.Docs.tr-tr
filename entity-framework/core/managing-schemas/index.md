@@ -1,25 +1,23 @@
 ---
-title: Veritabanı şemalarını - EF çekirdek yönetme
+title: EF Core - veritabanı şemalarını yönetme
 author: bricelam
-ms.author: divega
 ms.date: 10/30/2017
-ms.technology: entity-framework-core
-ms.openlocfilehash: 765c80f43832e51471928d5f653aa12c6bd7c7ac
-ms.sourcegitcommit: b467368cc350e6059fdc0949e042a41cb11e61d9
+ms.openlocfilehash: c1ebe33b5575cab76a54721ef86ecbcb7ff8b98b
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/15/2017
-ms.locfileid: "26054741"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42994391"
 ---
-# <a name="managing-database-schemas"></a>Veritabanı şemalarını yönetme
-EF çekirdek EF çekirdek modeli ve veritabanı şeması eşitlenmiş şekilde kalmasının iki birincil yolu sağlar. İkisi arasında seçmek için EF çekirdek modelinizi veya veritabanı şeması gerçekte kaynak olup olmadığına karar vermek.
+# <a name="managing-database-schemas"></a>Veritabanı Şemalarını Yönetme
+EF Core EF Core model ve veritabanı şemanızı eşitlenmiş durumda tutma iki birincil yöntem sağlar. İki tür arasında seçmek için EF Core modelinizi veya veritabanı şeması gerçeklik kaynağı olup olmadığına karar vermek.
 
-Gerçekte kaynağı olarak EF çekirdek modelinizi istiyorsanız kullanın [geçişler][1]. EF çekirdek modelinizi değişiklik gibi EF çekirdek modeliyle uyumlu kalmayacak şekilde bu yaklaşım karşılık gelen şema değişiklikleri veritabanınıza artımlı olarak uygulanır.
+EF Core modelinizin gerçeklik kaynağı olmasını istediğiniz kullanırsanız [geçişler][1]. EF Core modelinizi yaptığınız gibi EF Core modeliyle uyumlu kalmayacak şekilde bu yaklaşım karşılık gelen şema değişiklikleri veritabanınıza artımlı olarak uygulanır.
 
-Kullanım [ters mühendislik] [ 2] gerçekte kaynağı olarak veritabanı şemanızı istiyorsanız. Bu yaklaşım, bir DbContext ve varlık türü tersine veritabanı şemanızı EF çekirdek modeline mühendislik tarafından iskelesi olanak sağlar.
+Kullanım [ters mühendislik] [ 2] gerçeklik kaynağı olarak veritabanı şemanızı istiyorsanız. Bu yaklaşım, veritabanı Şemanızda bir EF Core modeline mühendislik ters tarafından bir DbContext ve varlık türü sınıfları iskelesini olanak tanır.
 
 > [!NOTE]
-> [Oluşturmak ve API bırakma] [ 3] veritabanı şeması EF çekirdek modelden de oluşturabilirsiniz. Ancak, bunlar öncelikli olarak sınama, prototipi oluşturulurken ve veritabanını silmek kabul edilebilir olduğu diğer senaryolar için değildir.
+> [API oluşturma ve bırakma] [ 3] veritabanı şeması EF Core modelinizden de oluşturabilirsiniz. Ancak, öncelikli olarak sınama, prototip oluşturma ve veritabanı bırakılırken kabul edilebilir olduğu diğer senaryolar için değildirler.
 
 
   [1]: migrations/index.md

@@ -1,29 +1,27 @@
 ---
-title: Dahil olmak üzere & özellikleri - EF çekirdek dışında
+title: Dahil olan ve dışlanan özellikler - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: e9dff604-3469-4a05-8f9e-18ac281d82a9
-ms.technology: entity-framework-core
 uid: core/modeling/included-properties
-ms.openlocfilehash: a6eaea4319f6a4d30c223265bf75a88731a38443
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: 07b70e4517b67490e04a9ec9fa22b9b5d5217681
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054075"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42998261"
 ---
-# <a name="including--excluding-properties"></a>Dahil olmak üzere & özellikleri dışında
+# <a name="including--excluding-properties"></a>Dahil olan ve dışlanan Özellikler
 
-Model bir özelliği de dahil olmak üzere EF bu özellik hakkında meta veriler sahip olduğu anlamına gelir ve okuma ve yazma veritabanı başlangıç/bitiş değerleri dener.
+Model bir özelliği dahil olmak üzere EF bu özellik hakkındaki meta veriler olduğunu gösterir ve okuma ve yazma veritabanı / için değerleri dener.
 
 ## <a name="conventions"></a>Kurallar
 
-Kurala göre bir alıcı ve ayarlayıcı ortak özelliklerle modele dahil edilir.
+Kural gereği, genel özellikleri bir alıcı ve ayarlayıcı ile modele dahil edilir.
 
 ## <a name="data-annotations"></a>Veri ek açıklamaları
 
-Modelden bir özelliği dışarıda tutması için veri ek açıklamaları kullanabilirsiniz.
+Modelden bir özelliği dışarıda için veri ek açıklamaları kullanabilirsiniz.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/DataAnnotations/Samples/IgnoreProperty.cs?highlight=6)] -->
 ``` csharp
@@ -39,7 +37,7 @@ public class Blog
 
 ## <a name="fluent-api"></a>Fluent API'si
 
-Modelden bir özelliği dışarıda tutması için Fluent API kullanabilirsiniz.
+Bir özellik modelden dışlanacak Fluent API'sini kullanabilirsiniz.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/IgnoreProperty.cs?highlight=7,8)] -->
 ``` csharp

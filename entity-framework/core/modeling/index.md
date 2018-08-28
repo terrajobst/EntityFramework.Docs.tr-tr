@@ -1,32 +1,30 @@
 ---
-title: EF Çekirdek - Model oluşturma
+title: EF Core - Model oluşturma
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 88253ff3-174e-485c-b3f8-768243d01ee1
-ms.technology: entity-framework-core
 uid: core/modeling/index
-ms.openlocfilehash: 1ad0f6891fbc8ba2e4d102cc9997f053a9dddb66
-ms.sourcegitcommit: 507a40ed050fee957bcf8cf05f6e0ec8a3b1a363
+ms.openlocfilehash: 9f702d5833b88e6eb77c0afefdae0ed3bc162ec8
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/26/2018
-ms.locfileid: "31812443"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42993939"
 ---
-# <a name="creating-a-model"></a>Model oluşturma
+# <a name="creating-a-model"></a>Model Oluşturma
 
-Entity Framework kuralları kümesi varlık sınıflarınızı şeklin dayalı bir model oluşturmak için kullanır. Ek niteliğindedir ve/veya hangi kural tarafından bulunan geçersiz kılmak için ek yapılandırma belirtebilirsiniz.
+Entity Framework, varlık sınıfları şeklinizde dayalı bir model oluşturmak için kuralları kümesi kullanır. Ek ve/veya ne kuralı tarafından bulunan geçersiz kılmak için ek yapılandırma belirtebilirsiniz.
 
-Bu makalede, tüm veri deposu ve olduğu herhangi bir ilişkisel veritabanı hedeflerken uygulanabilir hedefleyen bir model uygulanabilir yapılandırma kapsar. Sağlayıcıları, belirli veri deposu için özel yapılandırma da sağlayabilir. Belirli bir yapılandırma sağlayıcısı belgelerine bakın [veritabanı sağlayıcıları](../providers/index.md) bölümü.
+Bu makale, herhangi bir veri deposu ve herhangi bir ilişkisel veritabanı hedeflenirken uygulanabilen, hedefleyen bir model için uygulanabilir yapılandırmayı kapsar. Sağlayıcıları, belirli veri deposuna özgü yapılandırma da sağlayabilir. Belirli yapılandırma sağlayıcısı hakkında bilgi için bkz. [veritabanı sağlayıcıları](../providers/index.md) bölümü.
 
 > [!TIP]  
-> Bu makalenin görüntüleyebilirsiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples) github'da.
+> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples) GitHub üzerinde.
 
 ## <a name="methods-of-configuration"></a>Yapılandırma yöntemleri
 
 ### <a name="fluent-api"></a>Fluent API'si
 
-Geçersiz kılabilirsiniz `OnModelCreating` türetilmiş bağlamını ve kullanım yönteminde `ModelBuilder API` modelinizi yapılandırmak için. Bu yapılandırmanın en güçlü bir yöntemdir ve varlık sınıflarınızı değiştirmeden belirtilmesi için yapılandırmasını sağlar. Fluent API yapılandırmasını en yüksek önceliğe sahiptir ve kuralları ve veri ek açıklamaları geçersiz kılar.
+Geçersiz kılabilirsiniz `OnModelCreating` yöntemi türetilmiş bağlam ve kullanım `ModelBuilder API` modelinizi yapılandırmak için. Bu yapılandırmanın en güçlü bir yöntemdir ve yapılandırması, varlık sınıfları değiştirmeden belirtilmesine olanak sağlar. Fluent API configuration en yüksek önceliğe sahiptir ve kuralları ve veri ek açıklamalarını geçersiz kılar.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/FluentAPI/Samples/Required.cs?range=5-15&highlight=5-10)] -->
 
@@ -46,7 +44,7 @@ Geçersiz kılabilirsiniz `OnModelCreating` türetilmiş bağlamını ve kullan�
 
 ### <a name="data-annotations"></a>Veri ek açıklamaları
 
-Öznitelikleri (veri ek açıklamaları da bilinir) sınıfları ve özellikleri için geçerli olabilir. Veri ek açıklamaları kuralları geçersiz kılar, ancak tarafından Fluent API yapılandırmanın üzerine yazılır.
+Ayrıca, sınıfları ve özellikleri de (veri ek açıklamaları da bilinir) öznitelikleri uygulayabilirsiniz. Veri ek açıklamaları kuralları geçersiz kılar, ancak tarafından Fluent API'si yapılandırmanın üzerine yazılır.
 
 <!-- [!code-csharp[Main](samples/core/Modeling/DataAnnotations/Samples/Required.cs?range=11-16&highlight=4)] -->
 ``` csharp

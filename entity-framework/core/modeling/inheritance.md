@@ -1,42 +1,40 @@
 ---
-title: Devralma - EF çekirdek
+title: Devralma - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 754be334-dd21-450e-9d22-2591e80012a2
-ms.technology: entity-framework-core
 uid: core/modeling/inheritance
-ms.openlocfilehash: f0394bc55dfbfea8277b1ddf898361165dd1fe51
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: c5fa9d13dec8cfc3e1cac69e471f509cbbb9e4c5
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054198"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42995902"
 ---
 # <a name="inheritance"></a>Devralma
 
-Devralma EF modeldeki varlık sınıflarını devralma veritabanında nasıl temsil denetlemek için kullanılır.
+Devralma EF modeli, varlık sınıflarının Devralmada veritabanında nasıl temsil edildiğini denetlemek için kullanılır.
 
 ## <a name="conventions"></a>Kurallar
 
-Kurala göre bu veritabanında devralma nasıl gösterileceğini belirlemek için veritabanı sağlayıcısı kadar olur. Bkz: [devralma (ilişkisel veritabanı)](relational/inheritance.md) için bu bir ilişkisel veritabanı sağlayıcısı ile nasıl işlenir.
+Kural olarak, bu devralma veritabanında nasıl gösterileceğini belirlemek için veritabanı sağlayıcısı kadar olur. Bkz: [devralma (ilişkisel veritabanı)](relational/inheritance.md) için bu bir ilişkisel veritabanı sağlayıcısı ile nasıl işlenir.
 
-İki veya daha fazla devralınan türleri açıkça modelde varsa EF yalnızca devralma ayarlayın. EF modelinde bulunmayan temel veya türetilmiş türler için taramaz. Göstererek modelde türleri içerebilir bir *DbSet<TEntity>*  her türünün Devralma Hiyerarşisi.
+İki veya daha fazla devralınan türlerin açıkça modelde varsa EF yalnızca devralma ayarlayın. EF modeli bulunmayan temel veya türetilmiş türleri için taramaz. Göstererek modelde türleri içerebilir bir *olan DB<TEntity>*  devralma hiyerarşisinde her türü için.
 
 [!code-csharp[Main](../../../samples/core/Modeling/Conventions/Samples/InheritanceDbSets.cs?highlight=3-4&name=Model)]
 
-Kullanıma istemiyorsanız, bir *DbSet<TEntity>*  hiyerarşideki bir veya daha fazla varlıklar için Fluent API modele dahil bunlar emin olmak için kullanabilirsiniz.
-Ve kurallarına güvenmeyin, açıkça kullanarak temel türünü belirtebilirsiniz `HasBaseType`.
+Kullanıma sunmak istemiyorsanız bir *olan DB<TEntity>*  hiyerarşideki bir veya daha fazla varlık için modele dahil oldukları emin olmak için Fluent API'sini kullanabilirsiniz.
+Ve kurallarını güvenmeyin durumunda kullanarak açıkça temel tür belirtebilirsiniz `HasBaseType`.
 
 [!code-csharp[Main](../../../samples/core/Modeling/Conventions/Samples/InheritanceModelBuilder.cs?highlight=7&name=Context)]
 
 > [!NOTE]
-> Kullanabileceğiniz `.HasBaseType((Type)null)` hiyerarşisinden bir varlık türünü kaldırmak için.
+> Kullanabileceğiniz `.HasBaseType((Type)null)` bu hiyerarşisinden bir varlık türü kaldırılamadı.
 
 ## <a name="data-annotations"></a>Veri ek açıklamaları
 
-Devralma yapılandırmak için veri ek açıklamaları kullanamazsınız.
+Veri ek açıklamaları, devralmayı yapılandırmak için kullanamazsınız.
 
 ## <a name="fluent-api"></a>Fluent API'si
 
-Devralma Fluent API'si kullandığınız veritabanı sağlayıcısına bağlıdır. Bkz: [devralma (ilişkisel veritabanı)](relational/inheritance.md) gerçekleştirmek için bir ilişkisel veritabanı sağlayıcı yapılandırması için.
+Devralma Fluent API'si, kullanmakta olduğunuz veritabanı sağlayıcısına bağlıdır. Bkz: [devralma (ilişkisel veritabanı)](relational/inheritance.md) gerçekleştirmek için ilişkisel veritabanı sağlayıcısı yapılandırması.

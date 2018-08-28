@@ -1,28 +1,26 @@
 ---
-title: Dizileri - EF çekirdek
+title: Dizileri - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 94f81a92-3c72-4e14-912a-f99310374e42
-ms.technology: entity-framework-core
 uid: core/modeling/relational/sequences
-ms.openlocfilehash: 98a40aeecbec0fd9fb9cc108d6b5f98178dea403
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: eb9d9896966af0ad6b778047a1ed6af7358e8eb2
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054177"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42994522"
 ---
 # <a name="sequences"></a>Diziler
 
 > [!NOTE]  
-> Bu bölümdeki yapılandırma genel ilişkisel veritabanları için geçerlidir. İlişkisel veritabanı sağlayıcısı yüklediğinizde, burada gösterilen genişletme yöntemleri kullanılabilir olacağı (paylaşılan nedeniyle *Microsoft.EntityFrameworkCore.Relational* paketi).
+> Bu bölümdeki yapılandırma, genel olarak ilişkisel veritabanları için geçerlidir. İlişkisel veritabanı sağlayıcısı yüklediğinizde, burada gösterilen genişletme yöntemleri kullanılabilir hale gelir (paylaşılan nedeniyle *Microsoft.EntityFrameworkCore.Relational* paketi).
 
-Bir dizi veritabanında sıralı bir sayısal değer oluşturur. Dizileri, belirli bir tablo ile ilişkili değildir.
+Bir sıra veritabanında bir sıralı sayısal değerleri üretir. Dizileri belirli bir tabloyla ilişkili değildir.
 
 ## <a name="conventions"></a>Kurallar
 
-Kurala göre dizileri de modele sunulan değil.
+Kural gereği, dizileri modele de sunulan değil.
 
 ## <a name="data-annotations"></a>Veri ek açıklamaları
 
@@ -30,7 +28,7 @@ Veri ek açıklamaları kullanarak bir dizi yapılandırabilirsiniz değil.
 
 ## <a name="fluent-api"></a>Fluent API'si
 
-Modelde bir sıra oluşturmak için Fluent API'sini kullanın.
+Fluent API'si modelde bir sıra oluşturmak için kullanabilirsiniz.
 
 <!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Samples/Relational/Sequence.cs?highlight=7)] -->
 ``` csharp
@@ -52,7 +50,7 @@ public class Order
 }
 ```
 
-Şema, başlangıç değeri ve artış gibi dizisi ek boyutu da yapılandırabilirsiniz.
+Şema, başlangıç değeri ve artırma gibi dizisi ek yönüyle da yapılandırabilirsiniz.
 
 <!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Samples/Relational/SequenceConfigured.cs?highlight=7,8,9)] -->
 ``` csharp
@@ -69,7 +67,7 @@ class MyContext : DbContext
 }
 ```
 
-Bir dizi sunulan sonra özelliklerinin değerlerini modelinizi oluşturmak için kullanabilirsiniz. Örneğin, kullanabileceğiniz [varsayılan değerleri](default-values.md) dizisinden sonraki değeri eklemek için.
+Bir dizi sunulan sonra modelinizde özellik değerleri oluşturmak için kullanabilirsiniz. Örneğin, kullanabileceğiniz [varsayılan değerleri](default-values.md) dizisinden sonraki değeri eklemek için.
 
 <!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Samples/Relational/SequenceUsed.cs?highlight=11,12,13)] -->
 ``` csharp
