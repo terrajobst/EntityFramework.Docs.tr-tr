@@ -1,45 +1,43 @@
 ---
 title: Ham SQL sorguları - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
-ms.technology: entity-framework-core
 uid: core/querying/raw-sql
-ms.openlocfilehash: a1d554795dcd8a3e5b44e89ac014f538598461cc
-ms.sourcegitcommit: bdd06c9a591ba5e6d6a3ec046c80de98f598f3f3
+ms.openlocfilehash: 21cb688d6775039def3b0be12768da71b5d96531
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37949246"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42997150"
 ---
-# <a name="raw-sql-queries"></a><span data-ttu-id="64aea-102">Ham SQL sorguları</span><span class="sxs-lookup"><span data-stu-id="64aea-102">Raw SQL Queries</span></span>
+# <a name="raw-sql-queries"></a><span data-ttu-id="caeed-102">Ham SQL sorguları</span><span class="sxs-lookup"><span data-stu-id="caeed-102">Raw SQL Queries</span></span>
 
-<span data-ttu-id="64aea-103">Entity Framework Core, ilişkisel bir veritabanı ile çalışırken, ham SQL sorguları açılan olanak tanır.</span><span class="sxs-lookup"><span data-stu-id="64aea-103">Entity Framework Core allows you to drop down to raw SQL queries when working with a relational database.</span></span> <span data-ttu-id="64aea-104">Gerçekleştirmek istediğiniz sorguyu LINQ kullanılarak ifade edilemediğinde ya da bir LINQ Sorgu kullanarak verimsiz SQL veritabanına gönderilen kaynaklanan bu yararlı olabilir.</span><span class="sxs-lookup"><span data-stu-id="64aea-104">This can be useful if the query you want to perform can't be expressed using LINQ, or if using a LINQ query is resulting in inefficient SQL being sent to the database.</span></span> <span data-ttu-id="64aea-105">Ham SQL sorguları varlık türleri veya EF Core 2.1 ile başlayan döndürebilir [sorgu türü](xref:core/modeling/query-types) modelinizin bir parçası.</span><span class="sxs-lookup"><span data-stu-id="64aea-105">Raw SQL queries can return entity types or, starting with EF Core 2.1, [query types](xref:core/modeling/query-types) that are part of your model.</span></span>
+<span data-ttu-id="caeed-103">Entity Framework Core, ilişkisel bir veritabanı ile çalışırken, ham SQL sorguları açılan olanak tanır.</span><span class="sxs-lookup"><span data-stu-id="caeed-103">Entity Framework Core allows you to drop down to raw SQL queries when working with a relational database.</span></span> <span data-ttu-id="caeed-104">Gerçekleştirmek istediğiniz sorguyu LINQ kullanılarak ifade edilemediğinde ya da bir LINQ Sorgu kullanarak verimsiz SQL veritabanına gönderilen kaynaklanan bu yararlı olabilir.</span><span class="sxs-lookup"><span data-stu-id="caeed-104">This can be useful if the query you want to perform can't be expressed using LINQ, or if using a LINQ query is resulting in inefficient SQL being sent to the database.</span></span> <span data-ttu-id="caeed-105">Ham SQL sorguları varlık türleri veya EF Core 2.1 ile başlayan döndürebilir [sorgu türü](xref:core/modeling/query-types) modelinizin bir parçası.</span><span class="sxs-lookup"><span data-stu-id="caeed-105">Raw SQL queries can return entity types or, starting with EF Core 2.1, [query types](xref:core/modeling/query-types) that are part of your model.</span></span>
 
 > [!TIP]  
-> <span data-ttu-id="64aea-106">Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub üzerinde.</span><span class="sxs-lookup"><span data-stu-id="64aea-106">You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) on GitHub.</span></span>
+> <span data-ttu-id="caeed-106">Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub üzerinde.</span><span class="sxs-lookup"><span data-stu-id="caeed-106">You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) on GitHub.</span></span>
 
-## <a name="limitations"></a><span data-ttu-id="64aea-107">Sınırlamalar</span><span class="sxs-lookup"><span data-stu-id="64aea-107">Limitations</span></span>
+## <a name="limitations"></a><span data-ttu-id="caeed-107">Sınırlamalar</span><span class="sxs-lookup"><span data-stu-id="caeed-107">Limitations</span></span>
 
-<span data-ttu-id="64aea-108">Ham SQL sorguları kullanırken dikkat edilmesi gereken bazı sınırlamalar vardır:</span><span class="sxs-lookup"><span data-stu-id="64aea-108">There are a few limitations to be aware of when using raw SQL queries:</span></span>
+<span data-ttu-id="caeed-108">Ham SQL sorguları kullanırken dikkat edilmesi gereken bazı sınırlamalar vardır:</span><span class="sxs-lookup"><span data-stu-id="caeed-108">There are a few limitations to be aware of when using raw SQL queries:</span></span>
 
-* <span data-ttu-id="64aea-109">SQL sorgusu, veri varlığı veya sorguyu türü tüm özelliklerde için döndürmesi gerekir.</span><span class="sxs-lookup"><span data-stu-id="64aea-109">The SQL query must return data for all properties of the entity or query type.</span></span>
+* <span data-ttu-id="caeed-109">SQL sorgusu, veri varlığı veya sorguyu türü tüm özelliklerde için döndürmesi gerekir.</span><span class="sxs-lookup"><span data-stu-id="caeed-109">The SQL query must return data for all properties of the entity or query type.</span></span>
 
-* <span data-ttu-id="64aea-110">Sonuç kümesi sütun adları, özellikler için eşlenen sütun adları eşleşmelidir.</span><span class="sxs-lookup"><span data-stu-id="64aea-110">The column names in the result set must match the column names that properties are mapped to.</span></span> <span data-ttu-id="64aea-111">Bu özellik/sütun eşlemesi için ham SQL sorguları burada yoksayıldı EF6 farklı olduğuna dikkat edin ve sonuç kümesi sütun adları, özellik adlarının eşleşmesi gerekiyordu.</span><span class="sxs-lookup"><span data-stu-id="64aea-111">Note this is different from EF6 where property/column mapping was ignored for raw SQL queries and result set column names had to match the property names.</span></span>
+* <span data-ttu-id="caeed-110">Sonuç kümesi sütun adları, özellikler için eşlenen sütun adları eşleşmelidir.</span><span class="sxs-lookup"><span data-stu-id="caeed-110">The column names in the result set must match the column names that properties are mapped to.</span></span> <span data-ttu-id="caeed-111">Bu özellik/sütun eşlemesi için ham SQL sorguları burada yoksayıldı EF6 farklı olduğuna dikkat edin ve sonuç kümesi sütun adları, özellik adlarının eşleşmesi gerekiyordu.</span><span class="sxs-lookup"><span data-stu-id="caeed-111">Note this is different from EF6 where property/column mapping was ignored for raw SQL queries and result set column names had to match the property names.</span></span>
 
-* <span data-ttu-id="64aea-112">SQL sorgusu, ilgili verileri içeremez.</span><span class="sxs-lookup"><span data-stu-id="64aea-112">The SQL query cannot contain related data.</span></span> <span data-ttu-id="64aea-113">Ancak, çoğu durumda, üzerinde sorgu kullanarak oluşturabileceğiniz `Include` ilgili verileri döndürmek için işleci (bkz [ilgili veriler dahil olmak üzere](#including-related-data)).</span><span class="sxs-lookup"><span data-stu-id="64aea-113">However, in many cases you can compose on top of the query using the `Include` operator to return related data (see [Including related data](#including-related-data)).</span></span>
+* <span data-ttu-id="caeed-112">SQL sorgusu, ilgili verileri içeremez.</span><span class="sxs-lookup"><span data-stu-id="caeed-112">The SQL query cannot contain related data.</span></span> <span data-ttu-id="caeed-113">Ancak, çoğu durumda, üzerinde sorgu kullanarak oluşturabileceğiniz `Include` ilgili verileri döndürmek için işleci (bkz [ilgili veriler dahil olmak üzere](#including-related-data)).</span><span class="sxs-lookup"><span data-stu-id="caeed-113">However, in many cases you can compose on top of the query using the `Include` operator to return related data (see [Including related data](#including-related-data)).</span></span>
 
-* <span data-ttu-id="64aea-114">`SELECT` Bu yönteme geçirilen deyimler genellikle birleştirilebilir olmalıdır: varsa EF Core gereken ek sorgu işleçleri sunucusunda değerlendirilecek (örneğin, LINQ işleçleri çevirmek için uygulanan sonra `FromSql`), sağlanan SQL alt sorgu kabul edilir.</span><span class="sxs-lookup"><span data-stu-id="64aea-114">`SELECT` statements passed to this method should generally be composable: If EF Core needs to evaluate additional query operators on the server (for example, to translate LINQ operators applied after `FromSql`), the supplied SQL will be treated as a subquery.</span></span> <span data-ttu-id="64aea-115">Bu, geçirilen SQL herhangi bir karakter veya gibi geçerli bir alt sorgu olmayan seçenekleri içermemelidir anlamına gelir:</span><span class="sxs-lookup"><span data-stu-id="64aea-115">This means that the SQL passed should not contain any characters or options that are not valid on a subquery, such as:</span></span>
-  * <span data-ttu-id="64aea-116">sondaki noktalı virgül</span><span class="sxs-lookup"><span data-stu-id="64aea-116">a trailing semicolon</span></span>
-  * <span data-ttu-id="64aea-117">SQL Server'da izleyen bir sorgu düzeyi İpucu (örneğin, `OPTION (HASH JOIN)`)</span><span class="sxs-lookup"><span data-stu-id="64aea-117">On SQL Server, a trailing query-level hint (for example, `OPTION (HASH JOIN)`)</span></span>
-  * <span data-ttu-id="64aea-118">SQL Server'da bir `ORDER BY` , eşlik yan tümcesi `TOP 100 PERCENT` içinde `SELECT` yan tümcesi</span><span class="sxs-lookup"><span data-stu-id="64aea-118">On SQL Server, an `ORDER BY` clause that is not accompanied of `TOP 100 PERCENT` in the `SELECT` clause</span></span>
+* <span data-ttu-id="caeed-114">`SELECT` Bu yönteme geçirilen deyimler genellikle birleştirilebilir olmalıdır: varsa EF Core gereken ek sorgu işleçleri sunucusunda değerlendirilecek (örneğin, LINQ işleçleri çevirmek için uygulanan sonra `FromSql`), sağlanan SQL alt sorgu kabul edilir.</span><span class="sxs-lookup"><span data-stu-id="caeed-114">`SELECT` statements passed to this method should generally be composable: If EF Core needs to evaluate additional query operators on the server (for example, to translate LINQ operators applied after `FromSql`), the supplied SQL will be treated as a subquery.</span></span> <span data-ttu-id="caeed-115">Bu, geçirilen SQL herhangi bir karakter veya gibi geçerli bir alt sorgu olmayan seçenekleri içermemelidir anlamına gelir:</span><span class="sxs-lookup"><span data-stu-id="caeed-115">This means that the SQL passed should not contain any characters or options that are not valid on a subquery, such as:</span></span>
+  * <span data-ttu-id="caeed-116">sondaki noktalı virgül</span><span class="sxs-lookup"><span data-stu-id="caeed-116">a trailing semicolon</span></span>
+  * <span data-ttu-id="caeed-117">SQL Server'da izleyen bir sorgu düzeyi İpucu (örneğin, `OPTION (HASH JOIN)`)</span><span class="sxs-lookup"><span data-stu-id="caeed-117">On SQL Server, a trailing query-level hint (for example, `OPTION (HASH JOIN)`)</span></span>
+  * <span data-ttu-id="caeed-118">SQL Server'da bir `ORDER BY` , eşlik yan tümcesi `TOP 100 PERCENT` içinde `SELECT` yan tümcesi</span><span class="sxs-lookup"><span data-stu-id="caeed-118">On SQL Server, an `ORDER BY` clause that is not accompanied of `TOP 100 PERCENT` in the `SELECT` clause</span></span>
 
-* <span data-ttu-id="64aea-119">SQL deyimleri dışında `SELECT` otomatik birleştirilebilir olmayan tanınır.</span><span class="sxs-lookup"><span data-stu-id="64aea-119">SQL statements other than `SELECT` are recognized automatically as non-composable.</span></span> <span data-ttu-id="64aea-120">Sonuç olarak, saklı yordamları tam sonuçları her zaman istemciye döndürülen ve sonra herhangi bir LINQ işlecini uygulandı `FromSql` değerlendirilen bellek içi olduğu.</span><span class="sxs-lookup"><span data-stu-id="64aea-120">As a consequence, the full results of stored procedures are always returned to the client and any LINQ operators applied after `FromSql` are evaluated in-memory.</span></span>
+* <span data-ttu-id="caeed-119">SQL deyimleri dışında `SELECT` otomatik birleştirilebilir olmayan tanınır.</span><span class="sxs-lookup"><span data-stu-id="caeed-119">SQL statements other than `SELECT` are recognized automatically as non-composable.</span></span> <span data-ttu-id="caeed-120">Sonuç olarak, saklı yordamları tam sonuçları her zaman istemciye döndürülen ve sonra herhangi bir LINQ işlecini uygulandı `FromSql` değerlendirilen bellek içi olduğu.</span><span class="sxs-lookup"><span data-stu-id="caeed-120">As a consequence, the full results of stored procedures are always returned to the client and any LINQ operators applied after `FromSql` are evaluated in-memory.</span></span>
 
-## <a name="basic-raw-sql-queries"></a><span data-ttu-id="64aea-121">Temel ham SQL sorguları</span><span class="sxs-lookup"><span data-stu-id="64aea-121">Basic raw SQL queries</span></span>
+## <a name="basic-raw-sql-queries"></a><span data-ttu-id="caeed-121">Temel ham SQL sorguları</span><span class="sxs-lookup"><span data-stu-id="caeed-121">Basic raw SQL queries</span></span>
 
-<span data-ttu-id="64aea-122">Kullanabileceğiniz *SQL* ham SQL sorgu temelli bir LINQ Sorgu başlamak için genişletme yöntemi.</span><span class="sxs-lookup"><span data-stu-id="64aea-122">You can use the *FromSql* extension method to begin a LINQ query based on a raw SQL query.</span></span>
+<span data-ttu-id="caeed-122">Kullanabileceğiniz *SQL* ham SQL sorgu temelli bir LINQ Sorgu başlamak için genişletme yöntemi.</span><span class="sxs-lookup"><span data-stu-id="caeed-122">You can use the *FromSql* extension method to begin a LINQ query based on a raw SQL query.</span></span>
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -48,7 +46,7 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-<span data-ttu-id="64aea-123">Ham SQL sorguları bir saklı yordamı yürütmek için kullanılabilir.</span><span class="sxs-lookup"><span data-stu-id="64aea-123">Raw SQL queries can be used to execute a stored procedure.</span></span>
+<span data-ttu-id="caeed-123">Ham SQL sorguları bir saklı yordamı yürütmek için kullanılabilir.</span><span class="sxs-lookup"><span data-stu-id="caeed-123">Raw SQL queries can be used to execute a stored procedure.</span></span>
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -57,11 +55,11 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-## <a name="passing-parameters"></a><span data-ttu-id="64aea-124">Parametreleri geçirme</span><span class="sxs-lookup"><span data-stu-id="64aea-124">Passing parameters</span></span>
+## <a name="passing-parameters"></a><span data-ttu-id="caeed-124">Parametreleri geçirme</span><span class="sxs-lookup"><span data-stu-id="caeed-124">Passing parameters</span></span>
 
-<span data-ttu-id="64aea-125">SQL kabul eden bir API ile gibi SQL ekleme saldırısına karşı korumak için tüm kullanıcı parametre haline getirmek önemlidir.</span><span class="sxs-lookup"><span data-stu-id="64aea-125">As with any API that accepts SQL, it is important to parameterize any user input to protect against a SQL injection attack.</span></span> <span data-ttu-id="64aea-126">SQL sorgu dizesi parametresi yer tutucular içerir ve sonra ek bağımsız değişkenler olarak parametre değerlerini sağlayın.</span><span class="sxs-lookup"><span data-stu-id="64aea-126">You can include parameter placeholders in the SQL query string and then supply parameter values as additional arguments.</span></span> <span data-ttu-id="64aea-127">Sağladığınız parametre değerlerini otomatik olarak dönüştürülür bir `DbParameter`.</span><span class="sxs-lookup"><span data-stu-id="64aea-127">Any parameter values you supply will automatically be converted to a `DbParameter`.</span></span>
+<span data-ttu-id="caeed-125">SQL kabul eden bir API ile gibi SQL ekleme saldırısına karşı korumak için tüm kullanıcı parametre haline getirmek önemlidir.</span><span class="sxs-lookup"><span data-stu-id="caeed-125">As with any API that accepts SQL, it is important to parameterize any user input to protect against a SQL injection attack.</span></span> <span data-ttu-id="caeed-126">SQL sorgu dizesi parametresi yer tutucular içerir ve sonra ek bağımsız değişkenler olarak parametre değerlerini sağlayın.</span><span class="sxs-lookup"><span data-stu-id="caeed-126">You can include parameter placeholders in the SQL query string and then supply parameter values as additional arguments.</span></span> <span data-ttu-id="caeed-127">Sağladığınız parametre değerlerini otomatik olarak dönüştürülür bir `DbParameter`.</span><span class="sxs-lookup"><span data-stu-id="caeed-127">Any parameter values you supply will automatically be converted to a `DbParameter`.</span></span>
 
-<span data-ttu-id="64aea-128">Aşağıdaki örnek, bir saklı yordam için tek bir parametre geçirir.</span><span class="sxs-lookup"><span data-stu-id="64aea-128">The following example passes a single parameter to a stored procedure.</span></span> <span data-ttu-id="64aea-129">Bu görünebilir ancak ister `String.Format` söz dizimi, sağlanan değer kaydırılır bir parametre ve oluşturulan parametre adı eklenen nerede `{0}` yer tutucu belirtildi.</span><span class="sxs-lookup"><span data-stu-id="64aea-129">While this may look like `String.Format` syntax, the supplied value is wrapped in a parameter and the generated parameter name inserted where the `{0}` placeholder was specified.</span></span>
+<span data-ttu-id="caeed-128">Aşağıdaki örnek, bir saklı yordam için tek bir parametre geçirir.</span><span class="sxs-lookup"><span data-stu-id="caeed-128">The following example passes a single parameter to a stored procedure.</span></span> <span data-ttu-id="caeed-129">Bu görünebilir ancak ister `String.Format` söz dizimi, sağlanan değer kaydırılır bir parametre ve oluşturulan parametre adı eklenen nerede `{0}` yer tutucu belirtildi.</span><span class="sxs-lookup"><span data-stu-id="caeed-129">While this may look like `String.Format` syntax, the supplied value is wrapped in a parameter and the generated parameter name inserted where the `{0}` placeholder was specified.</span></span>
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -72,7 +70,7 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-<span data-ttu-id="64aea-130">Aynıdır, ancak EF Core 2.0 ve üzeri sürümlerde desteklenir. dize ilişkilendirme sözdizimini kullanarak sorgu:</span><span class="sxs-lookup"><span data-stu-id="64aea-130">This is the same query but using string interpolation syntax, which is supported in EF Core 2.0 and above:</span></span>
+<span data-ttu-id="caeed-130">Aynıdır, ancak EF Core 2.0 ve üzeri sürümlerde desteklenir. dize ilişkilendirme sözdizimini kullanarak sorgu:</span><span class="sxs-lookup"><span data-stu-id="caeed-130">This is the same query but using string interpolation syntax, which is supported in EF Core 2.0 and above:</span></span>
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -83,7 +81,7 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-<span data-ttu-id="64aea-131">Ayrıca, bir DbParameter oluşturun ve parametre değeri olarak sağlayın.</span><span class="sxs-lookup"><span data-stu-id="64aea-131">You can also construct a DbParameter and supply it as a parameter value.</span></span> <span data-ttu-id="64aea-132">Bu sayede SQL sorgu dizesinde adlandırılmış parametreler kullanılacak</span><span class="sxs-lookup"><span data-stu-id="64aea-132">This allows you to use named parameters in the SQL query string</span></span>
+<span data-ttu-id="caeed-131">Ayrıca, bir DbParameter oluşturun ve parametre değeri olarak sağlayın.</span><span class="sxs-lookup"><span data-stu-id="caeed-131">You can also construct a DbParameter and supply it as a parameter value.</span></span> <span data-ttu-id="caeed-132">Bu sayede SQL sorgu dizesinde adlandırılmış parametreler kullanılacak</span><span class="sxs-lookup"><span data-stu-id="caeed-132">This allows you to use named parameters in the SQL query string</span></span>
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -94,11 +92,11 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-## <a name="composing-with-linq"></a><span data-ttu-id="64aea-133">LINQ ile oluşturma</span><span class="sxs-lookup"><span data-stu-id="64aea-133">Composing with LINQ</span></span>
+## <a name="composing-with-linq"></a><span data-ttu-id="caeed-133">LINQ ile oluşturma</span><span class="sxs-lookup"><span data-stu-id="caeed-133">Composing with LINQ</span></span>
 
-<span data-ttu-id="64aea-134">Ardından SQL sorgusuna üzerinde veritabanında kullanılıp kullanılamayacağı, LINQ işleçleri kullanarak ilk ham SQL sorgusunun üstüne oluşturabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="64aea-134">If the SQL query can be composed on in the database, then you can compose on top of the initial raw SQL query using LINQ operators.</span></span> <span data-ttu-id="64aea-135">Sahip olan oluşan SQL sorguları `SELECT` anahtar sözcüğü.</span><span class="sxs-lookup"><span data-stu-id="64aea-135">SQL queries that can be composed on being with the `SELECT` keyword.</span></span>
+<span data-ttu-id="caeed-134">Ardından SQL sorgusuna üzerinde veritabanında kullanılıp kullanılamayacağı, LINQ işleçleri kullanarak ilk ham SQL sorgusunun üstüne oluşturabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="caeed-134">If the SQL query can be composed on in the database, then you can compose on top of the initial raw SQL query using LINQ operators.</span></span> <span data-ttu-id="caeed-135">Sahip olan oluşan SQL sorguları `SELECT` anahtar sözcüğü.</span><span class="sxs-lookup"><span data-stu-id="caeed-135">SQL queries that can be composed on being with the `SELECT` keyword.</span></span>
 
-<span data-ttu-id="64aea-136">Aşağıdaki örnek filtreleme ve sıralama gerçekleştirmek için LINQ kullanarak bir Table-Valued işlev (TVF) öğesinden seçer ve ardından ölçeklemesini ham bir SQL sorgusu kullanır.</span><span class="sxs-lookup"><span data-stu-id="64aea-136">The following example uses a raw SQL query that selects from a Table-Valued Function (TVF) and then composes on it using LINQ to perform filtering and sorting.</span></span>
+<span data-ttu-id="caeed-136">Aşağıdaki örnek filtreleme ve sıralama gerçekleştirmek için LINQ kullanarak bir Table-Valued işlev (TVF) öğesinden seçer ve ardından ölçeklemesini ham bir SQL sorgusu kullanır.</span><span class="sxs-lookup"><span data-stu-id="caeed-136">The following example uses a raw SQL query that selects from a Table-Valued Function (TVF) and then composes on it using LINQ to perform filtering and sorting.</span></span>
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -111,9 +109,9 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-### <a name="including-related-data"></a><span data-ttu-id="64aea-137">İlgili verileri de dahil olmak üzere</span><span class="sxs-lookup"><span data-stu-id="64aea-137">Including related data</span></span>
+### <a name="including-related-data"></a><span data-ttu-id="caeed-137">İlgili verileri de dahil olmak üzere</span><span class="sxs-lookup"><span data-stu-id="caeed-137">Including related data</span></span>
 
-<span data-ttu-id="64aea-138">LINQ işleçleri ile oluşturma sorguda ilgili verileri dahil etmek için kullanılabilir.</span><span class="sxs-lookup"><span data-stu-id="64aea-138">Composing with LINQ operators can be used to include related data in the query.</span></span>
+<span data-ttu-id="caeed-138">LINQ işleçleri ile oluşturma sorguda ilgili verileri dahil etmek için kullanılabilir.</span><span class="sxs-lookup"><span data-stu-id="caeed-138">Composing with LINQ operators can be used to include related data in the query.</span></span>
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -126,4 +124,4 @@ var blogs = context.Blogs
 ```
 
 > [!WARNING]  
-> <span data-ttu-id="64aea-139">**Her zaman için ham SQL sorguları Parametreleştirme kullanın:** ham SQL kabul API'leri gibi dize `FromSql` ve `ExecuteSqlCommand` değerleri kolayca parametre olarak geçirilmesine izin verin.</span><span class="sxs-lookup"><span data-stu-id="64aea-139">**Always use parameterization for raw SQL queries:** APIs that accept a raw SQL string such as `FromSql` and `ExecuteSqlCommand` allow values to be easily passed as parameters.</span></span> <span data-ttu-id="64aea-140">Kullanıcı girişini doğrulama ek olarak, her zaman Parametreleştirme ham bir SQL sorgu/komutta kullanılan herhangi bir değeri için kullanın.</span><span class="sxs-lookup"><span data-stu-id="64aea-140">In addition to validating user input, always use parameterization for any values used in a raw SQL query/command.</span></span> <span data-ttu-id="64aea-141">Dize birleştirme SQL ekleme saldırılarına karşı korumak için herhangi bir giriş doğrulamak için sorumlu olursunuz herhangi bir bölümünü sorgu dizesini dinamik olarak oluşturmak için kullanıyorsanız.</span><span class="sxs-lookup"><span data-stu-id="64aea-141">If you are using string concatenation to dynamically build any part of the query string then you are responsible for validating any input to protect against SQL injection attacks.</span></span>
+> <span data-ttu-id="caeed-139">**Her zaman için ham SQL sorguları Parametreleştirme kullanın:** ham SQL kabul API'leri gibi dize `FromSql` ve `ExecuteSqlCommand` değerleri kolayca parametre olarak geçirilmesine izin verin.</span><span class="sxs-lookup"><span data-stu-id="caeed-139">**Always use parameterization for raw SQL queries:** APIs that accept a raw SQL string such as `FromSql` and `ExecuteSqlCommand` allow values to be easily passed as parameters.</span></span> <span data-ttu-id="caeed-140">Kullanıcı girişini doğrulama ek olarak, her zaman Parametreleştirme ham bir SQL sorgu/komutta kullanılan herhangi bir değeri için kullanın.</span><span class="sxs-lookup"><span data-stu-id="caeed-140">In addition to validating user input, always use parameterization for any values used in a raw SQL query/command.</span></span> <span data-ttu-id="caeed-141">Dize birleştirme SQL ekleme saldırılarına karşı korumak için herhangi bir giriş doğrulamak için sorumlu olursunuz herhangi bir bölümünü sorgu dizesini dinamik olarak oluşturmak için kullanıyorsanız.</span><span class="sxs-lookup"><span data-stu-id="caeed-141">If you are using string concatenation to dynamically build any part of the query string then you are responsible for validating any input to protect against SQL injection attacks.</span></span>

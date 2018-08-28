@@ -1,59 +1,57 @@
 ---
-title: Eşzamanlılık belirteçleri - EF çekirdek
+title: Eşzamanlılık belirteçleri - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 03/03/2018
 ms.assetid: bc8b1cb0-befe-4b67-8004-26e6c5f69385
-ms.technology: entity-framework-core
 uid: core/modeling/concurrency
-ms.openlocfilehash: f3cf28d5c54e63aa76058e9fe1d9f3de5b37d579
-ms.sourcegitcommit: 8f3be0a2a394253efb653388ec66bda964e5ee1b
+ms.openlocfilehash: 0051d416544a11385f99d36e45843c5b20725af7
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/05/2018
-ms.locfileid: "29745499"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42994232"
 ---
-# <a name="concurrency-tokens"></a><span data-ttu-id="9afad-102">Eşzamanlılık belirteçleri</span><span class="sxs-lookup"><span data-stu-id="9afad-102">Concurrency Tokens</span></span>
+# <a name="concurrency-tokens"></a><span data-ttu-id="693ad-102">Eşzamanlılık belirteçleri</span><span class="sxs-lookup"><span data-stu-id="693ad-102">Concurrency Tokens</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="9afad-103">Bu sayfayı eşzamanlılık belirteçleri yapılandırma konusunda belgelenmiştir.</span><span class="sxs-lookup"><span data-stu-id="9afad-103">This page documents how to configure concurrency tokens.</span></span> <span data-ttu-id="9afad-104">Bkz: [eşzamanlılık çakışmalarını işleme](../saving/concurrency.md) EF çekirdek ve uygulamanızda eşzamanlılık çakışmaları nasıl ele alınacağını örnekleri eşzamanlılık denetimi nasıl çalışır, ayrıntılı bir açıklama için.</span><span class="sxs-lookup"><span data-stu-id="9afad-104">See [Handling Concurrency Conflicts](../saving/concurrency.md) for a detailed explanation of how concurrency control works on EF Core and examples of how to handle concurrency conflicts in your application.</span></span>
+> <span data-ttu-id="693ad-103">Bu sayfa, eşzamanlılık belirteçleri yapılandırma belgeler.</span><span class="sxs-lookup"><span data-stu-id="693ad-103">This page documents how to configure concurrency tokens.</span></span> <span data-ttu-id="693ad-104">Bkz: [eşzamanlılık çakışmalarını işleme](../saving/concurrency.md) EF Core ve uygulamanızdaki eşzamanlılık çakışmalarını nasıl ele alınacağını örnekleri eşzamanlılık denetimi nasıl çalışır, ayrıntılı bir açıklama.</span><span class="sxs-lookup"><span data-stu-id="693ad-104">See [Handling Concurrency Conflicts](../saving/concurrency.md) for a detailed explanation of how concurrency control works on EF Core and examples of how to handle concurrency conflicts in your application.</span></span>
 
-<span data-ttu-id="9afad-105">Eşzamanlılık belirteçleri yapılandırılmış özellikleri iyimser eşzamanlılık denetimini uygulamak için kullanılır.</span><span class="sxs-lookup"><span data-stu-id="9afad-105">Properties configured as concurrency tokens are used to implement optimistic concurrency control.</span></span>
+<span data-ttu-id="693ad-105">Eşzamanlılık belirteçleri yapılandırılmış özellikleri, iyimser eşzamanlılık denetimi uygulamak için kullanılır.</span><span class="sxs-lookup"><span data-stu-id="693ad-105">Properties configured as concurrency tokens are used to implement optimistic concurrency control.</span></span>
 
-## <a name="conventions"></a><span data-ttu-id="9afad-106">Kurallar</span><span class="sxs-lookup"><span data-stu-id="9afad-106">Conventions</span></span>
+## <a name="conventions"></a><span data-ttu-id="693ad-106">Kurallar</span><span class="sxs-lookup"><span data-stu-id="693ad-106">Conventions</span></span>
 
-<span data-ttu-id="9afad-107">Kurala göre hiçbir zaman eşzamanlılık belirteçleri yapılandırılır.</span><span class="sxs-lookup"><span data-stu-id="9afad-107">By convention, properties are never configured as concurrency tokens.</span></span>
+<span data-ttu-id="693ad-107">Kural gereği, özellikleri, hiçbir zaman eşzamanlılık belirteçleri yapılandırılır.</span><span class="sxs-lookup"><span data-stu-id="693ad-107">By convention, properties are never configured as concurrency tokens.</span></span>
 
-## <a name="data-annotations"></a><span data-ttu-id="9afad-108">Veri ek açıklamaları</span><span class="sxs-lookup"><span data-stu-id="9afad-108">Data Annotations</span></span>
+## <a name="data-annotations"></a><span data-ttu-id="693ad-108">Veri ek açıklamaları</span><span class="sxs-lookup"><span data-stu-id="693ad-108">Data Annotations</span></span>
 
-<span data-ttu-id="9afad-109">Bir özelliği bir eşzamanlılık belirteci olarak yapılandırmak için veri ek açıklamaları kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="9afad-109">You can use the Data Annotations to configure a property as a concurrency token.</span></span>
+<span data-ttu-id="693ad-109">Bir özelliğin eşzamanlı bir simge yapılandırmak için veri ek açıklamaları kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="693ad-109">You can use the Data Annotations to configure a property as a concurrency token.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/Concurrency.cs#ConfigureConcurrencyAnnotations)]
 
-## <a name="fluent-api"></a><span data-ttu-id="9afad-110">Fluent API'si</span><span class="sxs-lookup"><span data-stu-id="9afad-110">Fluent API</span></span>
+## <a name="fluent-api"></a><span data-ttu-id="693ad-110">Fluent API'si</span><span class="sxs-lookup"><span data-stu-id="693ad-110">Fluent API</span></span>
 
-<span data-ttu-id="9afad-111">Bir özelliği bir eşzamanlılık belirteci olarak yapılandırmak için Fluent API kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="9afad-111">You can use the Fluent API to configure a property as a concurrency token.</span></span>
+<span data-ttu-id="693ad-111">Fluent API'si, bir özelliğin eşzamanlı bir simge yapılandırmak için kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="693ad-111">You can use the Fluent API to configure a property as a concurrency token.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Concurrency.cs#ConfigureConcurrencyFluent)]
 
-## <a name="timestamprow-version"></a><span data-ttu-id="9afad-112">Zaman damgası/satır sürümü</span><span class="sxs-lookup"><span data-stu-id="9afad-112">Timestamp/row version</span></span>
+## <a name="timestamprow-version"></a><span data-ttu-id="693ad-112">Zaman damgası/satır sürümü</span><span class="sxs-lookup"><span data-stu-id="693ad-112">Timestamp/row version</span></span>
 
-<span data-ttu-id="9afad-113">Bir zaman damgası, yeni bir değer satır eklenmesi veya güncelleştirilmesi her zaman veritabanı tarafından oluşturulduğu bir özelliktir.</span><span class="sxs-lookup"><span data-stu-id="9afad-113">A timestamp is a property where a new value is generated by the database every time a row is inserted or updated.</span></span> <span data-ttu-id="9afad-114">Özelliği, ayrıca bir eşzamanlılık belirteci olarak kabul edilir.</span><span class="sxs-lookup"><span data-stu-id="9afad-114">The property is also treated as a concurrency token.</span></span> <span data-ttu-id="9afad-115">Bu, başka birisi için verileri sorgulanan beri güncelleştirmeye çalıştığınız bir satır değiştirmişse bir özel durum alırsınız sağlar.</span><span class="sxs-lookup"><span data-stu-id="9afad-115">This ensures you will get an exception if anyone else has modified a row that you are trying to update since you queried for the data.</span></span>
+<span data-ttu-id="693ad-113">Bir zaman damgası, yeni bir değer her zaman bir satır eklendiğinde veya veritabanı tarafından oluşturulduğu bir özelliktir.</span><span class="sxs-lookup"><span data-stu-id="693ad-113">A timestamp is a property where a new value is generated by the database every time a row is inserted or updated.</span></span> <span data-ttu-id="693ad-114">Özelliği, ayrıca bir eşzamanlılık belirteci olarak kabul edilir.</span><span class="sxs-lookup"><span data-stu-id="693ad-114">The property is also treated as a concurrency token.</span></span> <span data-ttu-id="693ad-115">Bu, başka hiç kimse verileri sorguladı güncelleştirilemiyor çalıştığınız bir satır değiştirildi, bir özel durum alırsınız sağlar.</span><span class="sxs-lookup"><span data-stu-id="693ad-115">This ensures you will get an exception if anyone else has modified a row that you are trying to update since you queried for the data.</span></span>
 
-<span data-ttu-id="9afad-116">Bu, nasıl sağlanır kullanılan veritabanı kadar sağlayıcıdır.</span><span class="sxs-lookup"><span data-stu-id="9afad-116">How this is achieved is up to the database provider being used.</span></span> <span data-ttu-id="9afad-117">SQL Server için zaman damgası genellikle kullanılan bir *byte []* olacaktır özelliği kurulumunu olarak bir *ROWVERSION* veritabanındaki sütun.</span><span class="sxs-lookup"><span data-stu-id="9afad-117">For SQL Server, timestamp is usually used on a *byte[]* property, which will be setup as a *ROWVERSION* column in the database.</span></span>
+<span data-ttu-id="693ad-116">Bunu nasıl elde edildiğini kullanılan veritabanı kadar sağlayıcısıdır.</span><span class="sxs-lookup"><span data-stu-id="693ad-116">How this is achieved is up to the database provider being used.</span></span> <span data-ttu-id="693ad-117">SQL Server için zaman damgası genellikle üzerinde kullanılan bir *byte []* olacağı özelliği kurulum olarak bir *ROWVERSION* veritabanındaki sütunu.</span><span class="sxs-lookup"><span data-stu-id="693ad-117">For SQL Server, timestamp is usually used on a *byte[]* property, which will be setup as a *ROWVERSION* column in the database.</span></span>
 
-### <a name="conventions"></a><span data-ttu-id="9afad-118">Kurallar</span><span class="sxs-lookup"><span data-stu-id="9afad-118">Conventions</span></span>
+### <a name="conventions"></a><span data-ttu-id="693ad-118">Kurallar</span><span class="sxs-lookup"><span data-stu-id="693ad-118">Conventions</span></span>
 
-<span data-ttu-id="9afad-119">Kurala göre hiçbir zaman zaman damgaları yapılandırılır.</span><span class="sxs-lookup"><span data-stu-id="9afad-119">By convention, properties are never configured as timestamps.</span></span>
+<span data-ttu-id="693ad-119">Kural gereği, özellikleri, hiçbir zaman zaman damgaları yapılandırılır.</span><span class="sxs-lookup"><span data-stu-id="693ad-119">By convention, properties are never configured as timestamps.</span></span>
 
-### <a name="data-annotations"></a><span data-ttu-id="9afad-120">Veri ek açıklamaları</span><span class="sxs-lookup"><span data-stu-id="9afad-120">Data Annotations</span></span>
+### <a name="data-annotations"></a><span data-ttu-id="693ad-120">Veri ek açıklamaları</span><span class="sxs-lookup"><span data-stu-id="693ad-120">Data Annotations</span></span>
 
-<span data-ttu-id="9afad-121">Bir özelliği bir zaman damgası yapılandırmak için veri ek açıklamaları kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="9afad-121">You can use Data Annotations to configure a property as a timestamp.</span></span>
+<span data-ttu-id="693ad-121">Veri ek olarak bir zaman damgası bir özelliğini yapılandırmak için kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="693ad-121">You can use Data Annotations to configure a property as a timestamp.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/Timestamp.cs#ConfigureTimestampAnnotations)]
 
-### <a name="fluent-api"></a><span data-ttu-id="9afad-122">Fluent API'si</span><span class="sxs-lookup"><span data-stu-id="9afad-122">Fluent API</span></span>
+### <a name="fluent-api"></a><span data-ttu-id="693ad-122">Fluent API'si</span><span class="sxs-lookup"><span data-stu-id="693ad-122">Fluent API</span></span>
 
-<span data-ttu-id="9afad-123">Fluent API bir zaman damgası bir özelliğini yapılandırmak için kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="9afad-123">You can use the Fluent API to configure a property as a timestamp.</span></span>
+<span data-ttu-id="693ad-123">Fluent API'si olarak bir zaman damgası bir özelliğini yapılandırmak için kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="693ad-123">You can use the Fluent API to configure a property as a timestamp.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Timestamp.cs#ConfigureTimestampFluent)]
