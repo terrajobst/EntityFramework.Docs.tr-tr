@@ -4,12 +4,12 @@ author: ErikEJ
 ms.date: 7/3/2018
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/extensions/index
-ms.openlocfilehash: e9f9a6cbbceeb0379ddb5588b564b0d2a962795f
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: e88bd01f79e05a9a3b0c0bbeecca89df178098a6
+ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995519"
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43152458"
 ---
 # <a name="ef-core-tools--extensions"></a>EF Core Araçlar ve uzantılar
 
@@ -37,6 +37,12 @@ Varlık, ADO.NET Entity Framework, NHibernate, LinqConnect, Telerik Data Access 
 Visual Studio 2017 + uzantısı. Varolan bir veritabanına veya SQL Server veritabanı projesi tersine mühendislik DbContext ve POCO sınıfların görselleştirin ve çeşitli yollarla, DbContext inceleyin.
 
 [GitHub wiki](https://github.com/ErikEJ/SqlCeToolbox/wiki/EF-Core-Power-Tools)
+
+### <a name="entity-framework-visual-editor"></a>Entity Framework Visual Düzenleyicisi
+
+Bir görsel tasarım sınıfların, Entity Framework 6, Core 2.0 ve Core 2.1 için ORM Tasarımcısı ekleyen bir Visual Studio 2017 uzantısı. Kod, her türlü ihtiyacı karşılamak için T4 şablonları tamamen özelleştirilebilir şekilde kullanarak oluşturulur. Numaralandırmalar ve sınıflarınızı renk kodu ve metin blokları tasarımınızı potansiyel olarak karıştıran bölümlerini açıklamak için ekleme olanağı gibi devralma, tek yönlü ve çift yönlü ilişkilendirmeleri tümü, desteklenir.
+
+[Market](https://marketplace.visualstudio.com/items?itemName=michaelsawczyn.EFDesigner)
 
 ## <a name="extensions"></a>Uzantıları
 

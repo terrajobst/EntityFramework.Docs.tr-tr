@@ -4,12 +4,12 @@ author: ajcvickers
 ms.date: 02/19/2018
 ms.assetid: 3154BF3C-1749-4C60-8D51-AE86773AA116
 uid: core/modeling/value-conversions
-ms.openlocfilehash: d6b51a0a70ee527844b6fe995f39bec534dbaba8
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 2a1956221ecc920feba796e4d95cc97259e89c53
+ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996294"
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43152516"
 ---
 # <a name="value-conversions"></a>Değer dönüştürmeleri
 
@@ -27,7 +27,7 @@ Dönüştürme, iki kullanılarak tanımlanır `Func` ifade ağaçları: birinde
 ## <a name="configuring-a-value-converter"></a>Bir değer dönüştürücü yapılandırma
 
 Değer dönüştürmeleri özellikler tanımlanmıştır `OnModelCreating` , uygulamanızın `DbContext`. Örneğin, bir sabit listesi ve varlık türü olarak tanımlanmış göz önünde bulundurun:
-```Csharp
+``` csharp
 public class Rider
 {
     public int Id { get; set; }
@@ -43,7 +43,7 @@ public enum EquineBeast
 }
 ```
 Dönüştürme tanımlanabilir sonra `OnModelCreating` enum değerlerinden, dize (örneğin, "Donkey", "Mule",...) veritabanı olarak depolamak için:
-```Csharp
+``` csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder
@@ -60,7 +60,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 ## <a name="the-valueconverter-class"></a>ValueConverter sınıfı
 
 Çağırma `HasConversion` oluşturacaktır yukarıda gösterildiği gibi bir `ValueConverter` örneği ve özelliği ayarlayın. `ValueConverter` Yerine açıkça oluşturulabilir. Örneğin:
-```Csharp
+``` csharp
 var converter = new ValueConverter<EquineBeast, string>(
     v => v.ToString(),
     v => (EquineBeast)Enum.Parse(typeof(EquineBeast), v));
@@ -82,7 +82,7 @@ EF Core yüklenebilen bir dizi önceden tanımlanmış `ValueConverter` bulunan 
 * `BoolToStringConverter` -"Y" ve "N" gibi dizelere Bool
 * `BoolToTwoValuesConverter` -Her iki değer için Bool
 * `BytesToStringConverter` -Base64 ile kodlanmış dizeye bayt dizisi
-* `CastingConverter` -Yalnızca bir Csharp tür dönüştürme gerektiren dönüştürmeler
+* `CastingConverter` -Yalnızca bir tür dönüştürme gerektiren dönüştürmeler
 * `CharToStringConverter` -Tek bir karakter dizesindeki bir karakter
 * `DateTimeOffsetToBinaryConverter` -İkili Kodlanmış 64-bit değere DateTimeOffset
 * `DateTimeOffsetToBytesConverter` -Bayt dizisine DateTimeOffset
@@ -101,7 +101,7 @@ EF Core yüklenebilen bir dizi önceden tanımlanmış `ValueConverter` bulunan 
 * `TimeSpanToTicksConverter` -TimeSpan işaretleri
 
 Dikkat `EnumToStringConverter` bu listede bulunuyor. Başka bir deyişle, dönüştürme açıkça, yukarıda gösterildiği gibi belirtmek için gerek yoktur. Bunun yerine, yalnızca yerleşik dönüştürücü kullanın:
-```Csharp
+``` csharp
 var converter = new EnumToStringConverter<EquineBeast>();
 
 modelBuilder
@@ -114,14 +114,14 @@ Tüm yerleşik dönüştürücüler durum bilgisiz olduğundan ve bu nedenle tek
 ## <a name="pre-defined-conversions"></a>Önceden tanımlı dönüştürmeler
 
 Yerleşik bir dönüştürücü bulunduğu ortak dönüştürmeleri için dönüştürücü açıkça belirtmek için gerek yoktur. Bunun yerine, hangi sağlayıcı türü kullanılmalıdır yapılandırılması ve EF uygun yerleşik dönüştürücü otomatik olarak kullanacak. Enum dize dönüştürme için yukarıdaki örnek olarak kullanılır, ancak bu sağlayıcı türü yapılandırılmışsa EF aslında bu otomatik olarak yapar:
-```Csharp
+``` csharp
 modelBuilder
     .Entity<Rider>()
     .Property(e => e.Mount)
     .HasConversion<string>();
 ```
 Sütun türünü açıkça belirterek aynı şeyi elde edilebilir. Örneğin, varlık türü tanımladıysanız gibi için:
-```Csharp
+``` csharp
 public class Rider
 {
     public int Id { get; set; }

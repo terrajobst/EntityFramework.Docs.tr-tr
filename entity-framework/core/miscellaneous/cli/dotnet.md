@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 11/6/2017
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: 81427b010f63bdd591ffb9117c1556722313c3fa
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: c70003fc7e2c5381a22d26baacd3d76f32489328
+ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995303"
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43152420"
 ---
 <a name="ef-core-net-command-line-tools"></a>EF Core .NET komut satırı araçları
 ===============================
@@ -66,9 +66,9 @@ dotnet ef
 ---------------
 Bir komut çağırma her iki proje kullanılan vardır:
 
-Hedef dosyalar eklenir (veya bazı durumlarda kaldırıldı) projesidir. Hedef proje geçerli dizinde proje için varsayılan olarak, ancak kullanılarak değiştirilebilir <nobr> **--proje** </nobr> seçeneği.
+Hedef dosyalar eklenir (veya bazı durumlarda kaldırıldı) projesidir. Hedef proje geçerli dizinde proje için varsayılan olarak, ancak kullanılarak değiştirilebilir <nobr> **`--project`** </nobr> seçeneği.
 
-Başlangıç projesi, proje kodunuzun yürütülürken araçları tarafından Öykünülen bir bileşendir. Ayrıca geçerli dizinde proje için varsayılan olarak, ancak kullanılarak değiştirilebilir **--başlangıç projesi** seçeneği.
+Başlangıç projesi, proje kodunuzun yürütülürken araçları tarafından Öykünülen bir bileşendir. Ayrıca geçerli dizinde proje için varsayılan olarak, ancak kullanılarak değiştirilebilir **`--startup-project`** seçeneği.
 
 > [!NOTE]
 > Örneğin, web uygulamanızın yüklü farklı bir projede EF Core sahip veritabanını güncelleme şuna benzer: `dotnet ef database update --project {project-path}` (dizininizden web uygulaması)
@@ -77,17 +77,17 @@ Genel Seçenekler:
 
 |    |                                  |                             |
 |:---|:---------------------------------|:----------------------------|
-|    | --json                           | JSON çıktıyı gösterir.           |
-| -c | --bağlam \<DBCONTEXT >           | Kullanılacak DbContext.       |
-| -p | --Proje \<Proje >             | Kullanmak için proje.         |
-| -s | --başlangıç projesi \<Proje >     | Kullanılacak başlangıç projesi. |
-|    | --framework \<FRAMEWORK >         | Hedef Framework'ü.       |
-|    | --configuration \<yapılandırma > | Kullanılacak yapılandırma.   |
-|    | --çalışma zamanı \<TANIMLAYICI >          | Kullanmak için çalışma zamanı.         |
-| -h | --Yardım                           | Yardım bilgilerini gösterir.      |
-| -v | --verbose                        | Ayrıntılı çıktıyı gösterir.        |
-|    | --no-rengi                       | Çıkış renklendirmeye yok.      |
-|    | --Çıktı ön eki                  | Düzeyiyle çıkış öneki.   |
+|    | `--json`                           | JSON çıktıyı gösterir.           |
+| -c | `--context <DBCONTEXT>`           | Kullanılacak DbContext.       |
+| -p | `--project <PROJECT>`             | Kullanmak için proje.         |
+| -s | `--startup-project <PROJECT>`     | Kullanılacak başlangıç projesi. |
+|    | `--framework <FRAMEWORK>`         | Hedef Framework'ü.       |
+|    | `--configuration <CONFIGURATION>` | Kullanılacak yapılandırma.   |
+|    | `--runtime <IDENTIFIER>`          | Kullanmak için çalışma zamanı.         |
+| -h | `--help`                           | Yardım bilgilerini gösterir.      |
+| -v | `--verbose`                        | Ayrıntılı çıktıyı gösterir.        |
+|    | `--no-color`                       | Çıkış renklendirmeye yok.      |
+|    | `--prefix-output`                  | Düzeyiyle çıkış öneki.   |
 
 
 > [!TIP]
@@ -104,8 +104,8 @@ Seçenekler:
 
 |    |           |                                                          |
 |:---|:----------|:---------------------------------------------------------|
-| -f | --force   | Onay isteme.                                           |
-|    | --Prova amaçlı | Hangi veritabanı bırakılan ancak açılan yoksa gösterir. |
+| -f | `--force`   | Onay isteme.                                           |
+|    | `--dry-run` | Hangi veritabanı bırakılan ancak açılan yoksa gösterir. |
 
 ### <a name="dotnet-ef-database-update"></a>DotNet ef veritabanı güncelleştirmesi
 
@@ -115,7 +115,7 @@ Bağımsız değişkenleri:
 
 |              |                                                                                              |
 |:-------------|:---------------------------------------------------------------------------------------------|
-| \<GEÇİŞ &GT; | Hedef geçiş. 0 ise, tüm geçişler döndürülecek. Son varsayılan olarak geçiş. |
+| `<MIGRATION>` | Hedef geçiş. 0 ise, tüm geçişler döndürülecek. Son varsayılan olarak geçiş. |
 
 ### <a name="dotnet-ef-dbcontext-info"></a>DotNet ef dbcontext bilgileri
 
@@ -133,21 +133,21 @@ Bağımsız değişkenleri:
 
 |               |                                                                             |
 |:--------------|:----------------------------------------------------------------------------|
-| \<BAĞLANTI &GT; | Veritabanı bağlantı dizesi.                                      |
-| \<SAĞLAYICI &GT;   | Kullanılacak sağlayıcı. (örneğin, Microsoft.EntityFrameworkCore.SqlServer) |
+| `<CONNECTION>` | Veritabanı bağlantı dizesi.                                      |
+| `<PROVIDER>`   | Kullanılacak sağlayıcı. (örneğin, Microsoft.EntityFrameworkCore.SqlServer) |
 
 Seçenekler:
 
 |                 |                                         |                                                                                                  |
 |:----------------|:----------------------------------------|:-------------------------------------------------------------------------------------------------|
-| <nobr>-d</nobr> | --Veri ek açıklamaları                      | Öznitelikler, model (mümkünse) yapılandırmak için kullanın. Atlanırsa, yalnızca fluent API'si kullanılır. |
-| -c              | --bağlam \<adı >                       | DbContext adı.                                                                       |
-|                 | --bağlam dir \<yolu >                   | DbContext dosya yerleştirmek için dizin. Proje dizinine göreli yollardır.             |
-| -f              | --force                                 | Varolan dosyaların üzerine yaz.                                                                        |
-| -o              | --çıktı dizini \<yolu >                    | Dosyaları yerleştirmek için dizin. Proje dizinine göreli yollardır.                      |
-|                 | <nobr>--şema \<SCHEMA_NAME >...</nobr> | Şemaları için varlık türleri oluşturmak için tablo.                                              |
-| -t              | --Tablo \<TABLE_NAME >...                | Varlık türleri için oluşturmak üzere tablolara.                                                         |
-|                 | --veritabanı adları kullan                    | Doğrudan veritabanından tablo ve sütun adları kullanın.                                           |
+| <nobr>-d</nobr> | `--data-annotations`                      | Öznitelikler, model (mümkünse) yapılandırmak için kullanın. Atlanırsa, yalnızca fluent API'si kullanılır. |
+| -c              | `--context <NAME>`                       | DbContext adı.                                                                       |
+|                 | `--context-dir <PATH>`                   | DbContext dosya yerleştirmek için dizin. Proje dizinine göreli yollardır.             |
+| -f              | `--force`                                 | Varolan dosyaların üzerine yaz.                                                                        |
+| -o              | `--output-dir <PATH>`                    | Dosyaları yerleştirmek için dizin. Proje dizinine göreli yollardır.                      |
+|                 | <nobr>`--schema <SCHEMA_NAME>...`</nobr> | Şemaları için varlık türleri oluşturmak için tablo.                                              |
+| -t              | `--table <TABLE_NAME>`...                | Varlık türleri için oluşturmak üzere tablolara.                                                         |
+|                 | `--use-database-names`                    | Doğrudan veritabanından tablo ve sütun adları kullanın.                                           |
 
 ### <a name="dotnet-ef-migrations-add"></a>DotNet ef geçişleri Ekle
 
@@ -157,13 +157,13 @@ Bağımsız değişkenleri:
 
 |         |                            |
 |:--------|:---------------------------|
-| \<ADI &GT; | Geçiş adı. |
+| `<NAME>` | Geçiş adı. |
 
 Seçenekler:
 
 |                 |                                   |                                                                                                                  |
 |:----------------|:----------------------------------|:-----------------------------------------------------------------------------------------------------------------|
-| <nobr>-o</nobr> | <nobr>--çıktı dizini \<yolu ></nobr> | Kullanılacak dizin (ve alt ad alanı). Proje dizinine göreli yollardır. Varsayılan olarak "Geçişler". |
+| <nobr>-o</nobr> | <nobr> `--output-dir <PATH>` </nobr> | Kullanılacak dizin (ve alt ad alanı). Proje dizinine göreli yollardır. Varsayılan olarak "Geçişler". |
 
 ### <a name="dotnet-ef-migrations-list"></a>DotNet ef geçişleri listesi
 
@@ -177,7 +177,7 @@ Seçenekler:
 
 |    |         |                                                                       |
 |:---|:--------|:----------------------------------------------------------------------|
-| -f | --force | Veritabanına uygulanmışsa, geçişi geri alın. |
+| -f | `--force` | Veritabanına uygulanmışsa, geçişi geri alın. |
 
 ### <a name="dotnet-ef-migrations-script"></a>DotNet ef geçişleri betiği
 
@@ -187,15 +187,15 @@ Bağımsız değişkenleri:
 
 |         |                                                               |
 |:--------|:--------------------------------------------------------------|
-| \<GELEN &GT; | Başlangıç geçiş. Varsayılan olarak 0 (ilk veritabanı). |
-| \<İÇİN &GT;   | Bitiş geçiş. Son varsayılan olarak geçiş.         |
+| `<FROM>` | Başlangıç geçiş. Varsayılan olarak 0 (ilk veritabanı). |
+| `<TO>`   | Bitiş geçiş. Son varsayılan olarak geçiş.         |
 
 Seçenekler:
 
 |    |                  |                                                                    |
 |:---|:-----------------|:-------------------------------------------------------------------|
-| -o | --Çıktı \<dosyası > | Yazma sonucu dosyası.                                   |
-| -i | ıdempotent--     | Bir veritabanı herhangi bir geçiş sırasında kullanılan bir komut dosyası oluşturur. |
+| -o | `--output <FILE>` | Yazma sonucu dosyası.                                   |
+| -i | `--idempotent`     | Bir veritabanı herhangi bir geçiş sırasında kullanılan bir komut dosyası oluşturur. |
 
 
   [1]: powershell.md

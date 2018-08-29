@@ -3,18 +3,18 @@ title: Yeni bir veritabanı - EF6 öncelikle kod
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 2df6cb0a-7d8b-4e28-9d05-e2b9a90125af
-ms.openlocfilehash: bb44a3300bc8ffc9d7050c4784e7b76b29c61796
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 50c6a4710bc50879304f64e781a46c4836f86882
+ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994624"
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43152484"
 ---
 # <a name="code-first-to-a-new-database"></a>Yeni bir veritabanına ilk kod
-Bu video ve adım adım kılavuz, yeni bir veritabanını hedefleyen Code First geliştirmeye giriş sağlar. Bu senaryo, mevcut bir veritabanını hedefleyen içerir ve Code First oluşturur veya çok Code First yeni ekler için boş bir veritabanı tabloları. Kod ilk sağlar, C kullanarak modelinizi tanımlamanızı\# veya VB.Net sınıflar. Ek yapılandırma, sınıfları ve özellikleri ya da fluent API'sini kullanarak özniteliklerini kullanarak isteğe bağlı olarak gerçekleştirilebilir.
+Bu video ve adım adım kılavuz, yeni bir veritabanını hedefleyen Code First geliştirmeye giriş sağlar. Mevcut bir veritabanını hedefleyen bu senaryo içerir ve Code First oluşturur ya da boş bir veritabanı, Code First yeni tablolara ekleyeceksiniz. Kod ilk sağlar, C kullanarak modelinizi tanımlamanızı\# veya VB.Net sınıflar. Ek yapılandırma, sınıfları ve özellikleri ya da fluent API'sini kullanarak özniteliklerini kullanarak isteğe bağlı olarak gerçekleştirilebilir.
 
 ## <a name="watch-the-video"></a>Videoyu izleyin
-Bu videoda yeni bir veritabanını hedefleyen Code First geliştirmeye giriş sağlar. Bu senaryo, mevcut bir veritabanını hedefleyen içerir ve Code First oluşturur veya çok Code First yeni ekler için boş bir veritabanı tabloları. Kod ilk C# veya VB.Net sınıflarını kullanarak modelinizi tanımlamanızı sağlar. Ek yapılandırma, sınıfları ve özellikleri ya da fluent API'sini kullanarak özniteliklerini kullanarak isteğe bağlı olarak gerçekleştirilebilir.
+Bu videoda yeni bir veritabanını hedefleyen Code First geliştirmeye giriş sağlar. Mevcut bir veritabanını hedefleyen bu senaryo içerir ve Code First oluşturur ya da boş bir veritabanı, Code First yeni tablolara ekleyeceksiniz. Kod ilk C# veya VB.Net sınıflarını kullanarak modelinizi tanımlamanızı sağlar. Ek yapılandırma, sınıfları ve özellikleri ya da fluent API'sini kullanarak özniteliklerini kullanarak isteğe bağlı olarak gerçekleştirilebilir.
 
 **Tarafından sunulan**: [Rowan Miller](http://romiller.com/)
 

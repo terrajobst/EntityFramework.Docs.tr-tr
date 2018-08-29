@@ -106,6 +106,7 @@
 ##### [SQLite Sınırlamaları](core/providers/sqlite/limitations.md)
 #### [InMemory (Test için)](core/providers/in-memory/index.md)
 #### [Veritabanı Sağlayıcısı Yazma](core/providers/writing-a-provider.md)
+#### [Sağlayıcıları etkileyen değişiklikler](core/providers/provider-log.md)
 
 ### [Araçlar ve Uzantılar](core/extensions/index.md)
 

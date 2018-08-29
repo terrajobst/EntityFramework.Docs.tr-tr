@@ -3,12 +3,12 @@ title: Zaman uyumsuz sorgulama ve Kaydet - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: d56e6f1d-4bd1-4b50-9558-9a30e04a8ec3
-ms.openlocfilehash: 758f8bc3d14fc1f60f14ff14f4251aeed057c518
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 64051dea740b2183cb904d7fb4293d7048c218ca
+ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994469"
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43152443"
 ---
 # <a name="async-query-and-save"></a>Zaman uyumsuz sorgulama ve kaydedin
 > [!NOTE]
@@ -137,7 +137,7 @@ EF modeli sahibiz, bazı veri erişimi gerçekleştirdiği kullanan biraz kod ya
 
 Bu kod **PerformDatabaseOperations** yeni kaydedileceği yöntemi **Blog** veritabanına ve ardından alır tüm **blogları** veritabanından ve bunlara yazdırır **Konsol**. Bundan sonra programı için günün bir teklif Yazar **konsol**.
 
-Kod eşitlenmiş olduğundan, biz programını çalıştırdığınızda, biz aşağıdaki yürütme akış görebilirsiniz:
+Kod zaman uyumlu olduğundan, biz programını çalıştırdığınızda, biz aşağıdaki yürütme akış görebilirsiniz:
 
 1.  **SaveChanges** yeni göndermeye başlar **Blog** veritabanı
 2.  **SaveChanges** tamamlar

@@ -4,12 +4,12 @@ author: ajcvickers
 ms.date: 02/23/2018
 ms.assetid: 420AFFE7-B709-4A68-9149-F06F8746FB33
 uid: core/modeling/constructors
-ms.openlocfilehash: 0536393d074d82583f47faae13cc22498193cb7e
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 1b36197465fb9a6571a306d36eb1e9d885a5399e
+ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994899"
+ms.lasthandoff: 08/29/2018
+ms.locfileid: "43152471"
 ---
 # <a name="entity-types-with-constructors"></a>Varlık oluşturuculara sahip türleri
 
@@ -25,7 +25,7 @@ EF Core 2.1 ile başlayarak, artık parametrelere sahip bir oluşturucu tanımla
 
 Tipik bir blogda/model göz önünde bulundurun:
 
-```Csharp
+``` csharp
 public class Blog
 {
     public int Id { get; set; }
@@ -50,7 +50,7 @@ public class Post
 
 EF Core bu türlerin örneklerini oluşturduğunda, gibi bir sorgunun sonuçlarını için bunu varsayılan parametresiz bir oluşturucu çağırmanız ve ardından her bir özellik veritabanından değere ayarlayın. Ancak, EF Core ile parametreli bir kurucu bulursa parametre adları ve eşleşen türleri özellikleriyle eşleştirilmiş ve parametreli bir kurucu değerlerle bu özellikler için bunun yerine çağırır ve her bir özellik açıkça ayarlı değil. Örneğin:
 
-```Csharp
+``` csharp
 public class Blog
 {
     public Blog(int id, string name, string author)
@@ -99,7 +99,7 @@ Oluşturucusu özellikler ayarlandıktan sonra bunlardan bazıları salt okunur 
 * Otomatik olarak oluşturulan anahtar değerleri kullanılarak anahtar değerini temel oluşturucu tarafından yeni varlıklar eklerken ayarlanması gerekir bu yana, okunur-yazılır, bir anahtar özellik gerektirir.
 
 Bu işlemleri önlemek için kolay bir yol özel ayarlayıcılar kullanmaktır. Örneğin:
-```Csharp
+``` csharp
 public class Blog
 {
     public Blog(int id, string name, string author)
@@ -139,7 +139,7 @@ EF Core ile özel bir ayarlayıcı bir özellik depoda üretilmiş anlamına gel
 
 Özel ayarlayıcılar kullanarak özellikleri salt okunur gerçekten yapıp daha açık OnModelCreating eklemesi alternatiftir. Benzer şekilde, bazı özellikler tamamen kaldırılır ve yalnızca alanları ile değiştirilmiştir. Örneğin, bu varlık türleri göz önünde bulundurun:
 
-```Csharp
+``` csharp
 public class Blog
 {
     private int _id;
@@ -174,7 +174,7 @@ public class Post
 }
 ```
 Ve bu yapılandırmada OnModelCreating:
-```Csharp
+``` csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder.Entity<Blog>(
@@ -215,7 +215,7 @@ EF Core, ayrıca bir varlık türü oluşturucusuna "Hizmetler" ekleyebilir. Ör
 
 Örneğin, eklenen bir DbContext seçerek tüm bunları yüklemeden ilgili varlıkları hakkında bilgi edinmek için veritabanına erişmek için kullanılabilir. Aşağıdaki örnekte bu gönderiler yüklemeden blog gönderilerinde sayısını almak için kullanılır:
 
-```Csharp
+``` csharp
 public class Blog
 {
     public Blog()
