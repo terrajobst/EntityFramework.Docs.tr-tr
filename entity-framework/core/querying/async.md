@@ -1,28 +1,26 @@
 ---
-title: Zaman uyumsuz sorguları - EF çekirdek
+title: Zaman uyumsuz sorgular - EF Core
 author: rowanmiller
-ms.author: divega
 ms.date: 01/24/2017
 ms.assetid: b6429b14-cba0-4af4-878f-b829777c89cb
-ms.technology: entity-framework-core
 uid: core/querying/async
-ms.openlocfilehash: 6554f04d0edfe0ca2ee72ebed8b878a1997a9500
-ms.sourcegitcommit: 01a75cd483c1943ddd6f82af971f07abde20912e
+ms.openlocfilehash: de00e25279e29355a4eb3e55597a8578ceccecb6
+ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/27/2017
-ms.locfileid: "26054168"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "42993571"
 ---
 # <a name="asynchronous-queries"></a>Zaman Uyumsuz Sorgular
 
-Zaman uyumsuz sorgular veritabanında sorgu yürütülür sırada bir iş parçacığı engelleme kaçının. Kalın istemci uygulamasının UI'ını dondurma önlemek yararlı olabilir. Zaman uyumsuz işlemleri de burada iş parçacığı veritabanı işlemi tamamlanırken diğer isteklere hizmet vermek için önbellekten silinebilir bir web uygulaması performansını artırabilir. Daha fazla bilgi için bkz: [zaman uyumsuz programlama C#](https://docs.microsoft.com/dotnet/csharp/async).
+Sorgu veritabanında yürütüldüğü sırada bir iş parçacığını engelleyen zaman uyumsuz sorgular kullanmayın. Bu, bir kalın istemci uygulamasının kullanıcı arabirimini dondurma önlemek yararlı olabilir. Zaman uyumsuz işlemler, ayrıca burada iş parçacığı oluşturan veritabanı işlemi tamamlanırken diğer isteklere hizmet vermek için serbest bırakılabilir bir web uygulaması performansını artırabilir. Daha fazla bilgi için [Asynchronous Programming C#](https://docs.microsoft.com/dotnet/csharp/async).
 
 > [!WARNING]  
-> EF çekirdek aynı bağlam örneğine üzerinde çalıştırılan birden çok paralel işlemleri desteklemez. Her zaman bir işlemin sonraki işlemi başlamadan önce tamamlanmasını beklemeniz gerekir. Bu genellikle kullanarak yapılır `await` anahtar sözcüğü her zaman uyumsuz işlem.
+> EF Core aynı bağlam örneğinde çalıştırılan birden çok paralel işlemleri desteklemez. Her zaman bir işlemin bir sonraki işlemi başlamadan önce tamamlanmasını beklemeniz gerekir. Bu genellikle kullanılarak yapılır `await` anahtar sözcüğü her zaman uyumsuz işlem.
 
-Entity Framework Çekirdek alternatif döndürülen sonuçları ve yürütülecek sorgu neden LINQ yöntemler olarak kullanılan zaman uyumsuz genişletme yöntemleri sağlar. Örnekler `ToListAsync()`, `ToArrayAsync()`, `SingleAsync()`vb. Olmadığından LINQ işleçleri zaman uyumsuz sürümlerini gibi `Where(...)`, `OrderBy(...)`vb. çünkü bu yöntem yalnızca LINQ ifadesi ağacı oluşturmak ve veritabanında yürütülecek sorgu neden olmaz.
+Entity Framework Core bir dizi yürütülecek sorgu neden LINQ yöntemleri ve döndürülen sonuçların bir alternatifi olarak kullanılan zaman uyumsuz bir genişletme yöntemleri sağlar. Örnekler `ToListAsync()`, `ToArrayAsync()`, `SingleAsync()`vb. Yoksa zaman uyumsuz sürümlerini LINQ işleçleri gibi `Where(...)`, `OrderBy(...)`vb. çünkü bu yöntem yalnızca LINQ ifade ağacı oluşturmak ve veritabanında yürütülecek sorgu neden olmaz.
 
 > [!IMPORTANT]  
-> EF çekirdek zaman uyumsuz genişletme yöntemleri tanımlanan `Microsoft.EntityFrameworkCore` ad alanı. Bu ad alanı yöntemleri kullanılabilir olması içeri aktarılmalıdır.
+> EF Core zaman uyumsuz genişletme yöntemleri, şurada tanımlanan `Microsoft.EntityFrameworkCore` ad alanı. Bu ad, kullanılabilir olması için yöntemleri aktarılmalıdır.
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/Async/Sample.cs#Sample)]
