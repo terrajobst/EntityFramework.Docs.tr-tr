@@ -3,12 +3,12 @@ title: İlişkiler, gezinti özellikleri ve yabancı anahtarlar - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 8a21ae73-6d9b-4b50-838a-ec1fddffcf37
-ms.openlocfilehash: c1d48f18a7dd25a6a48537f0de5379f861bf447a
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: a1653afd609280ab572ef88a9fcf8a6275b79fd6
+ms.sourcegitcommit: a81aed575372637997b18a0f9466d8fefb33350a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42998007"
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "43821406"
 ---
 # <a name="relationships-navigation-properties-and-foreign-keys"></a>İlişkiler, gezinti özellikleri ve yabancı anahtarlar
 Bu konu, Entity Framework varlıklar arasındaki ilişkilerin nasıl yönettiğine bir genel bakış sağlar. Ayrıca ilişkileri eşleyin ve düzenleme hakkında rehberlik sağlar.
@@ -71,59 +71,60 @@ Bu sayfanın geri kalanını erişmek ve ilişkileri kullanarak verileri işleme
 
 ## <a name="creating-and-modifying-relationships"></a>Oluşturma ve ilişkileri değiştirme
 
-İçinde bir *yabancı anahtar ilişkilendirmesi*, ilişki, durum değişikliklerini EntityState.Modified için bir EntityState.Unchanged ile bağımlı bir nesnenin durumu değiştiğinde. Bağımsız bir ilişkide, ilişkinin değiştirme bağımlı nesne durumunu güncelleştirmez.
+İçinde bir *yabancı anahtar ilişkilendirmesi*, ilişki ile bağımlı bir nesnenin durumu değiştiğinde bir `EntityState.Unchanged` durumu değişiklikleri `EntityState.Modified`. Bağımsız bir ilişkide, ilişkinin değiştirme bağımlı nesne durumunu güncelleştirmez.
 
 Aşağıdaki örnekler, yabancı anahtar özellikler ve gezinti özellikleri ilgili nesneleri ilişkilendirmek için nasıl kullanılacağını gösterir. Yabancı anahtar ilişkilerini değiştirme, oluşturmak veya ilişkileri değiştirmek için her iki yöntem kullanabilirsiniz. Bağımsız ilişkilerini, yabancı anahtar özelliği kullanılamaz.
 
--   Yeni bir değer aşağıdaki örnekte olduğu gibi bir yabancı anahtar özelliğine atayarak.  
-    ``` csharp
-    course.DepartmentID = newCourse.DepartmentID;
-    ```
+- Yeni bir değer aşağıdaki örnekte olduğu gibi bir yabancı anahtar özelliğine atayarak.  
+  ``` csharp
+  course.DepartmentID = newCourse.DepartmentID;
+  ```
 
--   Aşağıdaki kod bir ilişki, yabancı anahtarı ayarlayarak kaldırır **null**. Yabancı anahtar özelliği null olması gerektiğini unutmayın.  
-    ``` csharp
-    course.DepartmentID = null;
-    ```  
-    >[!NOTE]
-    > Başvuru (Bu örnekte, kurs nesnesi) eklenmiş durumda ise, SaveChanges çağrılana kadar başvuru gezinti özelliği yeni bir nesnenin anahtar değerleriyle eşitlenmez. Nesne bağlamı kaydedilmeden kadar eklenen nesneler için kalıcı anahtarlar içermediğinden eşitleme gerçekleşmez. Yeni nesneler ilişkisi hemen sonra tam olarak eşitlenmiş olması gerekir, aşağıdaki yöntemlerin birini kullanın.
+- Aşağıdaki kod bir ilişki, yabancı anahtarı ayarlayarak kaldırır **null**. Yabancı anahtar özelliği null olması gerektiğini unutmayın.  
+  ``` csharp
+  course.DepartmentID = null;
+  ```
 
--   Yeni bir nesne bir gezinti özelliğine atayarak. Aşağıdaki kod bir kurs arasında bir ilişki oluşturur ve bir `department`. Nesneleri bağlamına ekliyse `course` de eklenir `department.Courses` koleksiyonu ve yabancı karşılık gelen anahtar özellik üzerinde `course` nesne departmanı anahtar özellik değerine ayarlanır.  
-    ``` csharp
-    course.Department = department;
-    ```
+  >[!NOTE]
+  > Başvuru (Bu örnekte, kurs nesnesi) eklenmiş durumda ise, SaveChanges çağrılana kadar başvuru gezinti özelliği yeni bir nesnenin anahtar değerleriyle eşitlenmez. Nesne bağlamı kaydedilmeden kadar eklenen nesneler için kalıcı anahtarlar içermediğinden eşitleme gerçekleşmez. Yeni nesneler ilişkisi hemen sonra tam olarak eşitlenmiş olması gerekir, aşağıdaki yöntemlerin birini kullanın.
 
- -   İlişkiyi silmek için gezinme özelliğini ayarlamak `null`. Entity Framework, .NET 4.0 tabanlı ile çalışıyorsanız, ilgili uç, null olarak ayarlamadan önce yüklü olması gerekir. Örneğin:  
-    ``` chsarp
-    context.Entry(course).Reference(c => c.Department).Load();  
-    course.Department = null;
-    ```  
-    Entity Framework, .NET 4.5 üzerinde temel alınan 5.0 ile başlatma, ilişki null ilgili uç yüklemeden ayarlayabilirsiniz. Ayrıca, aşağıdaki yöntemi kullanarak null değeri ayarlayabilirsiniz.  
-    ``` csharp
-    context.Entry(course).Reference(c => c.Department).CurrentValue = null;
-    ```
+- Yeni bir nesne bir gezinti özelliğine atayarak. Aşağıdaki kod bir kurs arasında bir ilişki oluşturur ve bir `department`. Nesneleri bağlamına ekliyse `course` de eklenir `department.Courses` koleksiyonu ve yabancı karşılık gelen anahtar özellik üzerinde `course` nesne departmanı anahtar özellik değerine ayarlanır.  
+  ``` csharp
+  course.Department = department;
+  ```
 
--   Silme veya bir varlık koleksiyonu bir nesne ekleme. Örneğin, türü bir nesne ekleyebilirsiniz `Course` için `department.Courses` koleksiyonu. Bu işlem, belirli bir arasında bir ilişki oluşturur **kurs** ve belirli bir `department`. Nesneler üzerinde eklenmiş içerik, departman başvuru ve yabancı anahtar özelliği varsa **kurs** nesne ayarlanacak uygun `department`.  
-    ``` csharp
-    department.Courses.Add(newCourse);
-    ```
+- İlişkiyi silmek için gezinme özelliğini ayarlamak `null`. Entity Framework, .NET 4.0 tabanlı ile çalışıyorsanız, ilgili uç, null olarak ayarlamadan önce yüklü olması gerekir. Örneğin:   
+  ``` csharp
+  context.Entry(course).Reference(c => c.Department).Load();
+  course.Department = null;
+  ```
+
+  Entity Framework, .NET 4.5 üzerinde temel alınan 5.0 ile başlatma, ilişki null ilgili uç yüklemeden ayarlayabilirsiniz. Ayrıca, aşağıdaki yöntemi kullanarak null değeri ayarlayabilirsiniz.   
+  ``` csharp
+  context.Entry(course).Reference(c => c.Department).CurrentValue = null;
+  ```
+
+- Silme veya bir varlık koleksiyonu bir nesne ekleme. Örneğin, türü bir nesne ekleyebilirsiniz `Course` için `department.Courses` koleksiyonu. Bu işlem, belirli bir arasında bir ilişki oluşturur **kurs** ve belirli bir `department`. Nesneler üzerinde eklenmiş içerik, departman başvuru ve yabancı anahtar özelliği varsa **kurs** nesne ayarlanacak uygun `department`.  
+  ``` csharp
+  department.Courses.Add(newCourse);
+  ```
 
 - Kullanarak `ChangeRelationshipState` iki varlık nesnesi arasında belirtilen ilişki durumunu değiştirmek için yöntemi. Bu yöntem N katmanlı uygulamalar ile çalışırken en yaygın olarak kullanılır ve bir *bağımsız ilişkilendirme* (yabancı anahtar ilişkilendirmesi ile kullanılamaz). Ayrıca, bu yöntemi kullanmak için düşürmeli aşağı `ObjectContext`aşağıdaki örnekte gösterildiği gibi.  
 Aşağıdaki örnekte, eğitmenlerini ve dersleri arasında bir çoktan çoğa ilişki yoktur. Çağırma `ChangeRelationshipState` yöntemi ve geçirme `EntityState.Added` parametresi, sağlar `SchoolContext` iki nesne bir ilişki eklendiğini bildirin:
+  ``` csharp
 
-``` csharp
+  ((IObjectContextAdapter)context).ObjectContext.
+    ObjectStateManager.
+    ChangeRelationshipState(course, instructor, c => c.Instructor, EntityState.Added);
+  ```
 
-       ((IObjectContextAdapter)context).ObjectContext.
-                 ObjectStateManager.
-                  ChangeRelationshipState(course, instructor, c => c.Instructor, EntityState.Added);
-```
+  (Yalnızca ekleme) güncelleştiriyorsanız unutmayın bir ilişki eski ilişkiyi yeni bir tane ekledikten sonra silmeniz gerekir:
 
-    Note that if you are updating (not just adding) a relationship, you must delete the old relationship after adding the new one:
-
-``` csharp
-       ((IObjectContextAdapter)context).ObjectContext.
-                  ObjectStateManager.
-                  ChangeRelationshipState(course, oldInstructor, c => c.Instructor, EntityState.Deleted);
-```
+  ``` csharp
+  ((IObjectContextAdapter)context).ObjectContext.
+    ObjectStateManager.
+    ChangeRelationshipState(course, oldInstructor, c => c.Instructor, EntityState.Deleted);
+  ```
 
 ## <a name="synchronizing-the-changes-between-the-foreign-keys-and-navigation-properties"></a>Gezinti özellikleri ve yabancı anahtarlar arasındaki değişiklikleri eşitleme
 

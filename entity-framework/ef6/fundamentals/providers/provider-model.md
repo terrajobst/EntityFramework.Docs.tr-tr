@@ -3,12 +3,12 @@ title: Entity Framework 6 sağlayıcı modeli - EF6
 author: divega
 ms.date: 2018-06-27
 ms.assetid: 066832F0-D51B-4655-8BE7-C983C557E0E4
-ms.openlocfilehash: ebe9b426b164f619b716ac221d1d94354f8b1fe5
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: e8b0552ec083d8ab276aa9de109650f423160269
+ms.sourcegitcommit: a81aed575372637997b18a0f9466d8fefb33350a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997743"
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "43821393"
 ---
 # <a name="the-entity-framework-6-provider-model"></a>Entity Framework 6 sağlayıcı modeli
 
@@ -34,7 +34,7 @@ EF bağlıdır öğesinden türetilmiş bir tür olması [System.Data.Common.DbP
 
 ADO.NET sağlayıcısı tarafından zaten sağlanan işlevselliği üzerine EF tarafından gereken ek işlevsellik sağlamak için DbProviderServices türetilmiş bir tür EF bağlıdır. EF'ın eski sürümlerinde DbProviderServices sınıf .NET Framework'ün bir parçası olan ve System.Data.Common Ad alanında bulunamadı. Bu sınıf EF6'ile başlayan EntityFramework.dll artık parçasıdır ve System.Data.Entity.Core.Common ad alanındadır.
 
-Temel işlevselliğini DbProviderServices uygulama hakkında daha fazla ayrıntı bulunabilir [MSDN](http://msdn.microsoft.com/en-us/library/ee789835.aspx). Ancak, çoğu kavramları hala geçerli olduğu halde bu bilgileri yazma saati itibarıyla EF6 için güncelleştirilmez unutmayın. DbProviderServices SQL Server ve SQL Server Compact uygulamalarını da içinde denetlenmiş olan [açık kaynak kod tabanı](https://gihtub.com/aspnet/EntityFramework6/) ve diğer uygulamalar için kullanışlı bir başvuru olarak hizmet verebilir.
+Temel işlevselliğini DbProviderServices uygulama hakkında daha fazla ayrıntı bulunabilir [MSDN](http://msdn.microsoft.com/en-us/library/ee789835.aspx). Ancak, çoğu kavramları hala geçerli olduğu halde bu bilgileri yazma saati itibarıyla EF6 için güncelleştirilmez unutmayın. DbProviderServices SQL Server ve SQL Server Compact uygulamalarını da içinde denetlenmiş olan [açık kaynak kod tabanı](https://github.com/aspnet/EntityFramework6/) ve diğer uygulamalar için kullanışlı bir başvuru olarak hizmet verebilir.
 
 EF eski sürümlerinde DbProviderServices uygulamasını kullanmak için doğrudan bir ADO.NET Sağlayıcısı'ndan edinilen. Bu, DbProviderFactory IServiceProvider için atama ve GetService metodunu çağırarak yapıldı. Bu EF sağlayıcısı için DbProviderFactory sıkı şekilde bağlı. Bu bağlantı, .NET Framework dışında taşınmış EF engellendi, bu nedenle bu sıkı bağ EF6 için kaldırılmıştır ve DbProviderServices uygulaması artık doğrudan uygulamanın yapılandırma dosyası veya kod tabanlı kayıtlı daha ayrıntılı olarak açıklandığı gibi yapılandırma _kaydetme DbProviderServices_ bölümüne bakın.
 

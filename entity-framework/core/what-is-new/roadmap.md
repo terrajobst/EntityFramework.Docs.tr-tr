@@ -4,21 +4,33 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: 834C9729-7F6E-4355-917D-DE3EE9FE149E
 uid: core/what-is-new/roadmap
-ms.openlocfilehash: cd4b7ddaafe9501c4bb9f2496e87f619d239ab62
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: fd9086c9911cdb0890117d44c2787780aad9a7cb
+ms.sourcegitcommit: a81aed575372637997b18a0f9466d8fefb33350a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995266"
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "43821367"
 ---
 # <a name="entity-framework-core-roadmap"></a>Entity Framework Core yol haritası
 
 > [!IMPORTANT]
 > Özellik kümeleri ve zamanlamaları gelecek sürümlerin her zaman değişikliğe tabi olduğu ve bu sayfada en güncel, en son planlarımızı hiç yansıtmayabilir tutmak deneyeceğiz rağmen zaman lütfen unutmayın.
 
+## <a name="last-release-ef-core-21"></a>En son sürüm: EF Core 2.1
+
 EF Core 2.1 kararlı sürümünü 30 Mayıs 2018 tarihinde yayınlanmıştır. Bu sürümde hakkında daha fazla bilgi bulabilirsiniz [EF Core 2.1 yenilikler](xref:core/what-is-new/ef-core-2.1).
 
-Biz tamamlanmamış [yayın Planlama işlemi](#release-planning-process) 2.1 sonraki sürümün için.
+## <a name="future-releases"></a>Gelecek sürümler
+
+### <a name="ef-core-22"></a>EF Core 2.2
+
+Bu sürümde birçok hata düzeltmeleri ve görece daha az sayıda yeni özellik içerir. Bu sürüm hakkındaki ayrıntıları dahil edilecek [EF Core 2.2 yol haritası duyuru](https://github.com/aspnet/Announcements/issues/308). 
+
+### <a name="ef-core-30"></a>EF Core 3.0
+
+Ancak biz tamamlanmamış [yayın Planlama işlemi](#release-planning-process) 2.2 sonraki sürümün için biz şu anda, .NET Core 3.0 ve ASP.NET 3.0 ile algined önemli bir sürümünü planlanmaktadır. 
+
+Kullanabileceğiniz [müşterilerimize sorun İzleyicisi bu sorguda](https://github.com/aspnet/EntityFrameworkCore/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.0.0+sort%3Areactions-%2B1-desc) görmek için iş öğelerini tenatively gelecekte bu sürüm için atanmış.
 
 ## <a name="schedule"></a>Zamanlama
 
