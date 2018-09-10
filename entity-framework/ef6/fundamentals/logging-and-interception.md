@@ -3,12 +3,12 @@ title: Günlüğe kaydetme ve veritabanı işlemleri - EF6 kesintiye
 author: divega
 ms.date: 2016-10-23
 ms.assetid: b5ee7eb1-88cc-456e-b53c-c67e24c3f8ca
-ms.openlocfilehash: 2e16502abf54be3f3b2f63fe69d2605ef13dea27
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 9a8be81af45d9f27caa8c26f66d219dc568b6604
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994641"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251277"
 ---
 # <a name="logging-and-intercepting-database-operations"></a>Günlüğe kaydetme ve veritabanı işlemleri kesintiye
 > [!NOTE]
@@ -36,8 +36,6 @@ using (var context = new BlogContext())
 ```  
 
 Bu bağlamı dikkat edin. Database.Log Console.Write için ayarlanır. Tüm SQL konsolunda oturum için gereken budur.  
-
-### <a name="example-output"></a>Örnek çıktı  
 
 Biz bazı çıkış görebilmeniz için bazı basit sorgu/ekleme/güncelleştirme kod ekleyelim:  
 
@@ -98,7 +96,7 @@ WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()
 
 (Bu veritabanı sıfırlamaları çoktan olmuş varsayarsak çıkış olduğunu unutmayın. "Olacaktır sonra veritabanı başlatma zaten olmayan oluştuysa tüm iş geçişler gösteren çok daha fazla çıkış olup olmadığını denetleyin veya yeni bir veritabanı oluşturmak için arka planda gerçekleştirir.)  
 
-### <a name="what-gets-logged"></a>Oturum?  
+## <a name="what-gets-logged"></a>Oturum?  
 
 Günlük özelliği aşağıdakilerin tümü ayarlandığında kaydedilir:  
 
@@ -124,7 +122,7 @@ Yukarıdaki örnek çıktısına baktığınızda, her oturum dört komuttan bir
     - FK ve başlık özelliklerini parametre ayrıntılarını dikkat edin.  
     - Bu komutları yürütülürken zaman uyumsuz olarak dikkat edin.  
 
-### <a name="logging-to-different-places"></a>Farklı konumlara günlüğe kaydetme  
+## <a name="logging-to-different-places"></a>Farklı konumlara günlüğe kaydetme  
 
 Günlüğe kaydetme için yukarıda da gösterildiği gibi konsolun çok kolaydır. Bellek, dosya, vb. için farklı kullanarak oturum kolaydır, [TextWriter](https://msdn.microsoft.com/library/system.io.textwriter.aspx).  
 
@@ -147,7 +145,7 @@ var logger = new MyLogger();
 context.Database.Log = s => logger.Log("EFApp", s);
 ```  
 
-### <a name="result-logging"></a>Sonucu günlüğe kaydetme  
+## <a name="result-logging"></a>Sonucu günlüğe kaydetme  
 
 Komut veritabanına gönderilmeden önce varsayılan Günlükçü komut metni (SQL), parametreler ve "Executing" satırın zaman damgası ile kaydeder. Geçen süreyi içeren bir "tamamlandı" oturum aşağıdaki komutun yürütülmesi satırıdır.  
 
@@ -155,11 +153,11 @@ Zaman uyumsuz görev gerçekten tamamlandıktan, başarısız veya iptal kadar z
 
 "Tamamlandı" satırı komut ve yürütme başarılı olsun veya olmasın türüne bağlı olarak farklı bilgiler içerir.  
 
-#### <a name="successful-execution"></a>Başarılı yürütme  
+### <a name="successful-execution"></a>Başarılı yürütme  
 
 Çıkış başarıyla tamamlanması komutlar için "x sonucuyla ms içinde tamamlandı:" sonucu neydi bazı göstergesini tarafından izlenen. Bir veri okuyucu sonuç komutlarında türünü göstergesidir [dbdatareader öğesine dönüştürülemedi](https://msdn.microsoft.com/library/system.data.common.dbdatareader.aspx) döndürdü. Güncelleştirme gibi bir tamsayı değeri döndüren komutlar için gösterilen sonuç gösterilen komutu bu tamsayıdır.  
 
-#### <a name="failed-execution"></a>Başarısız yürütme  
+### <a name="failed-execution"></a>Başarısız yürütme  
 
 Bir özel durum ile başarısız komutları için çıkış özel durumdan ileti içerir. Örneğin, SqlQuery için var olan bir tablo sorgusu kullanarak günlük sonucunda aşağıdakine benzer çıktıyı verir:  
 
@@ -169,7 +167,7 @@ SELECT * from ThisTableIsMissing
 -- Failed in 1 ms with error: Invalid object name 'ThisTableIsMissing'.
 ```  
 
-#### <a name="canceled-execution"></a>Yürütme işlemi iptal edildi  
+### <a name="canceled-execution"></a>Yürütme işlemi iptal edildi  
 
 Bu iptal etme denemesi yapıldığında, temel alınan ADO.NET sağlayıcısı genellikle yaptığı olduğundan burada görev iptal zaman uyumsuz komutları için sonuç bir özel durum ile başarısız olabilir. Bu gerçekleşmez ve görev düzgün bir şekilde iptal çıktısı aşağıdakine benzer görünecektir:  
 
@@ -180,8 +178,6 @@ update Blogs set Title = 'No' where Id = -1
 ```  
 
 ## <a name="changing-log-content-and-formatting"></a>Günlük içeriği değiştirme ve biçimlendirme  
-
-### <a name="databaselogformatter"></a>DatabaseLogFormatter  
 
 Özelliğin sağlar Database.Log perde DatabaseLogFormatter nesnesinin kullanın. Bu nesne (aşağıya bakın) IDbCommandInterceptor uygulama dizeleri ve bir DbContext kabul eden bir temsilci etkili bir şekilde bağlar. Bu, DatabaseLogFormatter yöntemlerde önce ve sonra komutların yürütülmesini EF tarafından çağrılır, anlamına gelir. Bu DatabaseLogFormatter yöntemleri toplayın ve günlük çıktısı biçimlendirmek ve temsilciye gönderebilirsiniz.  
 

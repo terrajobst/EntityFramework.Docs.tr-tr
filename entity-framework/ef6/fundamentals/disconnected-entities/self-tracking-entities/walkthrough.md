@@ -3,12 +3,12 @@ title: Varlıkları izlenecek yol - EF6 Self izleme
 author: divega
 ms.date: 2016-10-23
 ms.assetid: b21207c9-1d95-4aa3-ae05-bc5fe300dab0
-ms.openlocfilehash: 64ca9ae42df1a1c740131e254b8f80f67b2f9f97
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 1c450bbb20c246d9b9d58707ac03eb48eadfa970
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995427"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251290"
 ---
 # <a name="self-tracking-entities-walkthrough"></a>Kendi kendine izleme varlıkları gözden geçirme
 > [!IMPORTANT]
@@ -142,7 +142,7 @@ Ardından, yeni bir proje ekleyin ve varlık sınıfları oluşturmak için kull
 -   Seçin **STETemplate.tt** dosyası
 -   Yanındaki aşağı açılan oka tıklayın **Ekle** düğmesini tıklatın ve seçin **bağlantı olarak Ekle**
 
-    ![AddLinkedTemplate](~/ef6/media/addlinkedtemplate.png)
+    ![Bağlantılı şablonu Ekle](~/ef6/media/addlinkedtemplate.png)
 
 Bunu varlık sınıflarının ad bağlamı olarak oluşturulmasını emin olmak için dağıtacağız. Bu, yalnızca using deyimlerini eklemek için uygulama genelinde ihtiyacımız sayısını azaltır.
 
@@ -552,4 +552,4 @@ WCF hizmetimiz bir hizmet başvurusu ihtiyacımız
 -   Sağ **STESample.WPFTest** projesi **Çözüm Gezgini** seçip **hata ayıklama -&gt; yeni örnek Başlat**
 -   Ekran'ı kullanarak verileri işlemek ve yoluyla kullanarak hizmet kaydetmeden **Kaydet** düğmesi
 
-![WPF](~/ef6/media/wpf.png)
+![WPF ana penceresi](~/ef6/media/wpf.png)

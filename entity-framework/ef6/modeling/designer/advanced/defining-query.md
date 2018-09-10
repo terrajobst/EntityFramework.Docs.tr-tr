@@ -3,12 +3,12 @@ title: Sorgu - EF Designer - EF6 tanımlama
 author: divega
 ms.date: 2016-10-23
 ms.assetid: e52a297e-85aa-42f6-a922-ba960f8a4b22
-ms.openlocfilehash: 60d5310589bb9bc3fdb971673422e80537357e55
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 8415a265cdbe078422e0467ee97da955a81b873d
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996313"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250978"
 ---
 # <a name="defining-query---ef-designer"></a>Sorgu - EF Designer tanımlama
 Bu kılavuzda bir tanımlama ekleneceği gösterilmektedir. sorgu ve karşılık gelen bir varlığın EF Designer kullanarak bir modele yazın. Tanımlayan bir sorgu için bir veritabanı görünümü tarafından sağlanan benzer işlevselliği sağlamak için yaygın olarak kullanılır, ancak görünüm modeli, veritabanı tanımlanır. Tanımlayan bir sorgu içinde belirtilen bir SQL deyimi yürütme sağlar **DefiningQuery** bir .edmx dosyası öğesidir. Daha fazla bilgi için **DefiningQuery** içinde [SSDL belirtimi](~/ef6/modeling/designer/advanced/edmx/ssdl-spec.md).
@@ -54,11 +54,11 @@ Bu izlenecek yol, Visual Studio 2012 veya daha yeni kullanıyor.
 -   Çözüm Gezgini'nde sağ **DefiningQueryModel.edmx** seçin ve dosya **birlikte Aç...** .
 -   Seçin **XML (metin) Düzenleyicisi**.
 
-    ![XMLEditor](~/ef6/media/xmleditor.png)
+    ![XML Düzenleyicisi](~/ef6/media/xmleditor.png)
 
 -   Tıklayın **Evet** şu ileti ile istenirse:
 
-    ![Warning2](~/ef6/media/warning2.png)
+    ![Uyarı 2](~/ef6/media/warning2.png)
 
  
 
@@ -136,7 +136,7 @@ Model EF Designer ile açın.
 -   DefiningQueryModel.edmx çift tıklayın.
 -   Söyleyin **Evet** aşağıdaki iletisi:
 
-    ![Warning2](~/ef6/media/warning2.png)
+    ![Uyarı 2](~/ef6/media/warning2.png)
 
  
 
@@ -172,7 +172,7 @@ Bu adımda, depolama varlık türleri ve eşleşme Ayrıntıları penceresi kavr
     **Eşleşme ayrıntıları** penceresi görüntülenir.
 -   Seçin **GradeReport** gelen **&lt;bir tablo veya Görünüm Ekle&gt;** açılır liste (altında bulunan **tablo**s).  
     Varsayılan kavramsal arasındaki eşlemeleri ve depolama **GradeReport** varlık türü görüntülenir.  
-    ![MappingDetails3](~/ef6/media/mappingdetails.png)
+    ![Details3 eşleme](~/ef6/media/mappingdetails.png)
 
 Sonuç olarak, **EntitySetMapping** öğesi .edmx dosyası için eşleme bölümüne eklenir. 
 

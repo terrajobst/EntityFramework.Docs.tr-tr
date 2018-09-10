@@ -3,12 +3,12 @@ title: Migrate.exe - EF6 kullanarak
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 989ea862-e936-4c85-926a-8cfbef5df5b8
-ms.openlocfilehash: 39740578e4a8c2d5400bcabbcb107baf0648fba5
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 8f0ff6d472c39eaf000c31783fe7a769c8746fec
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993505"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251121"
 ---
 # <a name="using-migrateexe"></a>Migrate.exe kullanma
 Code First geçişleri, bir veritabanında güncelleştirmek için kullanılabilir visual studio içinde ancak komut satırı aracı migrate.exe da yürütülebilir. Bu sayfa bir veritabanında geçişleri yürütülecek migrate.exe kullanma hakkında hızlı bir genel bakış sunar.
@@ -26,16 +26,14 @@ Uygulamanız .NET 4 hedefliyor ve 4.5 değil, ardından kopyalamak ihtiyacınız
 
 | .NET 4.5                                   | .NET 4.0                                   |
 |:-------------------------------------------|:-------------------------------------------|
-| ![Net45Files](~/ef6/media/net45files.png)  | ![Net40Files](~/ef6/media/net40files.png)  |
+| ![.NET 4.5 dosyaları](~/ef6/media/net45files.png)  | ![.NET 4.0 dosyaları](~/ef6/media/net40files.png)  |
 
 > [!NOTE]
 > migrate.exe x64 desteklemiyor derlemeler.
 
-## <a name="using-migrateexe"></a>Migrate.exe kullanma
-
 Ardından doğru klasöre migrate.exe taşıdığınızda geçişleri veritabanında yürütmek için kullanabilmek için olmalıdır. Yardımcı program yapmak için tasarlanmış olan geçişleri yürütün. Geçişleri oluşturmak veya bir SQL betiği oluşturun.
 
-### <a name="see-options"></a>Bkz. seçenekleri
+## <a name="see-options"></a>Bkz. seçenekleri
 
 ``` console
 Migrate.exe /?
@@ -43,7 +41,7 @@ Migrate.exe /?
 
 Yukarıdaki bu yardımcı programı, EntityFramework.dll migrate.exe Bunun çalışması sırayla çalıştırdığınız aynı konumda olması gerekecektir not ile ilişkili Yardım sayfası görüntülenir.
 
-### <a name="migrate-to-the-latest-migration"></a>En son geçiş için geçiş
+## <a name="migrate-to-the-latest-migration"></a>En son geçiş için geçiş
 
 ``` console
 Migrate.exe MyMvcApplication.dll /startupConfigurationFile=”..\\web.config”
@@ -51,7 +49,7 @@ Migrate.exe MyMvcApplication.dll /startupConfigurationFile=”..\\web.config”
 
 Yapılandırma dosyası belirtmezseniz, ne zaman migrate.exe yalnızca zorunlu bir parametre çalıştırmayı denediğiniz geçişleri içeren derlemenin, derleme çalışıyor ancak tüm kuralı kullanacağı ayarları temel.
 
-### <a name="migrate-to-a-specific-migration"></a>Belirli bir geçiş için geçiş
+## <a name="migrate-to-a-specific-migration"></a>Belirli bir geçiş için geçiş
 
 ``` console
 Migrate.exe MyApp.exe /startupConfigurationFile=”MyApp.exe.config” /targetMigration=”AddTitle”
@@ -59,7 +57,7 @@ Migrate.exe MyApp.exe /startupConfigurationFile=”MyApp.exe.config” /targetMi
 
 Ardından belirli bir geçiş kadar geçiş çalıştırmak istiyorsanız, geçiş adını belirtebilirsiniz. Bu tüm önceki geçişler gerektiği gibi çalışır belirtilen geçiş alma kadar.
 
-### <a name="specify-working-directory"></a>Çalışma dizini belirtin
+## <a name="specify-working-directory"></a>Çalışma dizini belirtin
 
 ``` console
 Migrate.exe MyApp.exe /startupConfigurationFile=”MyApp.exe.config” /startupDirectory=”c:\\MyApp”
@@ -67,7 +65,7 @@ Migrate.exe MyApp.exe /startupConfigurationFile=”MyApp.exe.config” /startupD
 
 Ardından, derleme bağımlılıkları içeriyorsa ya da çalışma dizinine göre dosyalarını okur startupDirectory ayarlamak almanız gerekir.
 
-### <a name="specify-migration-configuration-to-use"></a>Kullanmak için geçiş yapılandırmasını belirtin
+## <a name="specify-migration-configuration-to-use"></a>Kullanmak için geçiş yapılandırmasını belirtin
 
 ``` console
 Migrate.exe MyAssembly CustomConfig /startupConfigurationFile=”..\\web.config”
@@ -75,7 +73,7 @@ Migrate.exe MyAssembly CustomConfig /startupConfigurationFile=”..\\web.config�
 
 Birden fazla geçiş yapılandırma sınıfınız varsa, DbMigrationConfiguration devralan sınıflar sonra bu yürütme için kullanılacak olan belirtmeniz gerekir. Bu, isteğe bağlı ikinci parametre bir anahtar olmadan sağlayarak belirtilir.
 
-### <a name="provide-connection-string"></a>Bağlantı dizesini belirtin
+## <a name="provide-connection-string"></a>Bağlantı dizesini belirtin
 
 ``` console
 Migrate.exe BlogDemo.dll /connectionString=”Data Source=localhost;Initial Catalog=BlogDemo;Integrated Security=SSPI” /connectionProviderName=”System.Data.SqlClient”

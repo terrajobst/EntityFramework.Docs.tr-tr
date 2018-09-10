@@ -3,12 +3,12 @@ title: Özel kod öncelikli kurallar - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: dd2bdbd9-ae9e-470a-aeb8-d0ba160499b7
-ms.openlocfilehash: 79450790c6d3c8ce7fad209e3946e81d3fad4b75
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: a0e8080037cf86640275f498ed159c847ff5c057
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995834"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251069"
 ---
 # <a name="custom-code-first-conventions"></a>Özel kod öncelikli kurallar
 > [!NOTE]
@@ -115,7 +115,7 @@ Iskey yöntemi ilgi çekici bir özelliğidir, olmasıdır eklenebilir. Bu, bird
 
 Bu kod türlerine int anahtar sütunu ve dize adı sütunu oluşan bileşik anahtara sahip modelimizi yapılandıracaksınız. Biz modeli Tasarımcısı'nda görüntülediğinizde şöyle görünebilir:
 
-![compositeKey](~/ef6/media/compositekey.png)
+![bileşik anahtar](~/ef6/media/compositekey.png)
 
 Başka bir özellik kuralları my modeldeki datetime yerine SQL Server datetime2 türüne eşlemek için tüm DateTime özelliklerini yapılandırmak için örneğidir. Bunu aşağıdaki elde:
 
@@ -292,7 +292,7 @@ Varsayılan olarak, veritabanındaki (çalışan) aynı tabloya hem çalışan h
 
 Yukarıdaki kodu aşağıdakine benzer bir tablo yapısı için eşler:
 
-![tptExample](~/ef6/media/tptexample.jpg)
+![Tpt örneği](~/ef6/media/tptexample.jpg)
 
 Bu durumu önlemek ve birkaç yolla varsayılan TPH eşleme Koru:
 

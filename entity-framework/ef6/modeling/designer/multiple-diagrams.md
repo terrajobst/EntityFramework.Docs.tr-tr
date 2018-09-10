@@ -3,12 +3,12 @@ title: Model - EF6 başına birden çok diyagramı
 author: divega
 ms.date: 2016-10-23
 ms.assetid: b95db5c8-de8d-43bd-9ccc-5df6a5e25e1b
-ms.openlocfilehash: f27afbd3b44ff3eb8044ab960f10b2856a603ee3
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: e23bf92ce3199b2162ca9a42bd0f797375179d77
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993784"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250965"
 ---
 # <a name="multiple-diagrams-per-model"></a>Model başına birden çok diyagramı
 > [!NOTE]
@@ -39,7 +39,7 @@ Varlık veri modeli Sihirbazı tamamlandığında, görsel tasarım yüzeyi penc
 
 Aşağıdaki ekran görüntüsünde EF tasarımcıda açık bir .edmx dosyası gösterir. Ekran görüntüsünde gösterilmektedir (sağdan sola) görsel tasarım yüzeyi ve **Model tarayıcı** penceresi (sağına doğru).
 
-![EFDesigner2](~/ef6/media/efdesigner2.png)
+![EF Designer 2](~/ef6/media/efdesigner2.png)
 
 EF tasarımcıda yapılan bir işlemin geri alınması için Ctrl-Z'a tıklayın.
 

@@ -3,12 +3,12 @@ title: Saklı yordamları birden çok sonuç kümesi - EF6 ile
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 1b3797f9-cd3d-4752-a55e-47b84b399dc1
-ms.openlocfilehash: bb104ac5f584d26d279259a173de9afe3f018968
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 56c28f05bd7efe1b54d6cadd32afe0e9c6cf38b5
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996181"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251017"
 ---
 # <a name="stored-procedures-with-multiple-result-sets"></a>Birden çok sonuç kümesi saklı yordamlar
 Bazen kullanarak saklı yordamları birden fazla sonuç döndürmesi gerekir ayarlanır. Bu senaryo veritabanı sayısını azaltmak için yaygın olarak kullanılan gidiş dönüş tek bir ekran oluşturmak için gereklidir. Entity Framework EF5 önce çağrılacak saklı yordamı çalıştırmasına olanak tanır ancak yalnızca ilk sonuç çağrıldığı koda kümesini döndürür.
@@ -104,7 +104,7 @@ EF Designer kullanıyorsanız, böylece döndürülecek farklı sonuç kümeleri
 -   Bunu yapmak için tek bir sonuç kümesi sorguda yaptığınız gibi modelinize saklı yordamı eklemeniz gerekir.
 -   Modelinize göre sağ tıklatın ve seçin için ihtiyaç duyduğunuz sonra bunu aldıktan sonra **birlikte Aç...** ardından **Xml**
 
-    ![OpenAs](~/ef6/media/openas.png)
+    ![Açık olarak](~/ef6/media/openas.png)
 
 XML olarak aşağıdaki adımları gerçekleştirmeniz gereken sonra açılan modeli olduğunda:
 

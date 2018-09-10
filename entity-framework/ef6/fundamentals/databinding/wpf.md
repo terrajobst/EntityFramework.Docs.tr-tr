@@ -3,12 +3,12 @@ title: Veri bağlama WPF - EF6 ile
 author: divega
 ms.date: 2016-10-23
 ms.assetid: e90d48e6-bea5-47ef-b756-7b89cce4daf0
-ms.openlocfilehash: 0b1f4d5ea204cd80acf42caa499732610daa0e31
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: e6df90db17d39d3aa91275800a6414fed40fb5db
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994829"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251160"
 ---
 # <a name="databinding-with-wpf"></a>Veri bağlama WPF ile
 Bu adım adım kılavuzda, POCO türleri "ana öğe-ayrıntı" formunda WPF denetimleri bağlama işlemi gösterilmektedir. Uygulama, verileri veritabanından nesnelerle doldurmak, değişiklikleri izlemek ve veritabanına verileri kalıcı hale getirmek için Entity Framework API'leri kullanır.
@@ -142,17 +142,17 @@ Yeni bir ubuntu ve veritabanı oluşturun.
 -   Sağ tıklayın **veri bağlantıları -&gt; bağlantı ekle...**
 -   Sunucu gezgininden veritabanına bağlamadıysanız önce Microsoft SQL Server veri kaynağı olarak seçmeniz gerekir
 
-    ![ChangeDataSource](~/ef6/media/changedatasource.png)
+    ![Veri kaynağını Değiştir](~/ef6/media/changedatasource.png)
 
 -   LocalDB veya hangisinin bağlı olarak, yüklü, SQL Express için bağlanın ve girin **ürünleri** veritabanı adı
 
-    ![AddConnectionLocalDB](~/ef6/media/addconnectionlocaldb.png)
+    ![Bağlantı LocalDB Ekle](~/ef6/media/addconnectionlocaldb.png)
 
-    ![AddConnectionExpress](~/ef6/media/addconnectionexpress.png)
+    ![Bağlantı Express Ekle](~/ef6/media/addconnectionexpress.png)
 
 -   Seçin **Tamam** ve bir yeni bir veritabanı oluşturmak istiyorsanız istenir **Evet**
 
-    ![CreateDatabase](~/ef6/media/createdatabase.png)
+    ![Veritabanı oluşturma](~/ef6/media/createdatabase.png)
 
 -   Yeni veritabanı sunucu Gezgini'nde artık görünecek üzerinde sağ tıklayıp **yeni sorgu**
 -   Yeni bir sorguda aşağıdaki SQL kopyalayın, sonra sağ tıklatın ve sorgu **Yürüt**
@@ -186,15 +186,15 @@ Modelimiz oluşturmak için Entity Framework Visual Studio'nun bir parçası ola
 -   Böylece **varlık veri modeli Sihirbazı**
 -   Seçin **veritabanından Oluştur** tıklatıp **İleri**
 
-    ![ChooseModelContents](~/ef6/media/choosemodelcontents.png)
+    ![Model içeriğinin seçin](~/ef6/media/choosemodelcontents.png)
 
 -   İlk bölümde oluşturduğunuz veritabanı bağlantısı seçin, girin **ProductContext** tıklayın ve bağlantı dizesi adı olarak **İleri**
 
-    ![ChooseYourConnection](~/ef6/media/chooseyourconnection.png)
+    ![Bağlantınızı seçin](~/ef6/media/chooseyourconnection.png)
 
 -   'Tüm tabloları Al ve 'Son' tablolar' yanındaki onay kutusuna tıklayın.
 
-    ![ChooseYourObjects](~/ef6/media/chooseyourobjects.png)
+    ![Nesnelerinizi seçin](~/ef6/media/chooseyourobjects.png)
 
 Ters mühendislik işlemi tamamlandıktan sonra yeni modeli projenize eklenir ve Entity Framework Tasarımcısı'nda görüntülemeniz için açıldı. Bir App.config dosyası ayrıca veritabanı bağlantı ayrıntıları ile projenize eklendi.
 
@@ -213,7 +213,7 @@ EF modelinizden T4 şablonlarını kullanarak kod oluşturur. Şablonları Visua
 -   Açık **Çözüm Gezgini** ve bulma **ProductModel.edmx** dosyası
 -   Bulma **ProductModel.tt** ProductModel.edmx dosyayı içe dosyası
 
-    ![WpfProductModelTemplate](~/ef6/media/wpfproductmodeltemplate.png)
+    ![WPF ürün modeli şablonu](~/ef6/media/wpfproductmodeltemplate.png)
 
 -   Visual Studio Düzenleyicisi'nde açmak için ProductModel.tt dosyaya çift tıklayın
 -   Bul ve Değiştir iki örneği "**ICollection**"ile"**ObservableCollection**". Bu yaklaşık satırlar 296 ve 484 yer alır.
@@ -244,13 +244,13 @@ Modeldeki veri kaynağı için bu WPF uygulaması olarak tanımlanan sınıflar 
 -   Veri nesneleri iletişim seçin unfold **WPFwithEFSample** seçin ve iki kez **kategorisi**  
     *Seçilecek gerek yoktur **ürün** veri kaynağı için üzerinden alır çünkü **ürün**'s özelliği **kategori** veri kaynağı*  
 
-    ![SelectDataObjects](~/ef6/media/selectdataobjects.png)
+    ![Veri nesnelerini seçin](~/ef6/media/selectdataobjects.png)
 
 -   Tıklayın **son.**
 -   Veri kaynakları penceresi yanındaki MainWindow.xaml penceresi açıldığında *veri kaynakları penceresinden görüntülenmiyor, seçin **görünümü -&gt; diğer Windows -&gt; veri kaynakları***
 -   Raptiye simgesini, böylece veri kaynakları penceresi otomatik gizleme tuşuna basın. Pencere zaten görülebiliyorsa yenile düğmesine tıklama gerekebilir.
 
-    ![Veri kaynakları](~/ef6/media/datasources.png)
+    ![Data Sources](~/ef6/media/datasources.png)
 
 -   Seçin ** kategori ** veri kaynağı ve formda sürükleyin.
 
@@ -299,7 +299,7 @@ Bu, ana pencereyi bazı olay işleyicileri ekleme zamanı geldi.
 -   XAML penceresinde tıklayarak  **&lt;penceresi** öğesi, ana pencereyi seçer
 -   İçinde **özellikleri** penceresi seçin **olayları** sağ üst kısımdaki ardından metin kutusunun sağ tarafındaki çift **Loaded** etiketi
 
-    ![MainWindowProperties](~/ef6/media/mainwindowproperties.png)
+    ![Ana pencere özellikleri](~/ef6/media/mainwindowproperties.png)
 
 -   Ayrıca ekleyin **tıklayın** için olay **Kaydet** Tasarımcısı'nda Kaydet düğmesine çift tıklayarak düğmesi. 
 
@@ -385,10 +385,10 @@ Kod bir uzun süre çalışan örneğini bildirir **ProductContext**. **ProductC
 -   Derleme ve uygulamayı çalıştırın. Code First kullanılan sonra göreceksiniz bir **WPFwithEFSample.ProductContext** veritabanı sizin için oluşturulur.
 -   Alt kılavuzunda üst kılavuz ve ürün adlarını bir kategori adı girin *birincil anahtarı veritabanı tarafından oluşturulmuş olduğu için hiçbir şey kimliği sütunlarında girmeyin*
 
-    ![Screen1](~/ef6/media/screen1.png)
+    ![Yeni kategorilerini ve ürünler ile ana penceresi](~/ef6/media/screen1.png)
 
 -   Tuşuna **Kaydet** verileri veritabanına kaydetmek için düğme
 
 DbContext'ın çağrısından sonra **SaveChanges**(), kimlikler, oluşturulan veritabanı değerleri ile doldurulur. Biz denir çünkü **Yenile**sonra () **SaveChanges**() **DataGrid** denetimleri, yeni değerleri ile güncelleştirilir.
 
-![Screen2](~/ef6/media/screen2.png)
+![Ana pencere doldurulmuş kimlikleri](~/ef6/media/screen2.png)

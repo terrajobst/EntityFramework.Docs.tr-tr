@@ -3,12 +3,12 @@ title: İlişkiler, gezinti özellikleri ve yabancı anahtarlar - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 8a21ae73-6d9b-4b50-838a-ec1fddffcf37
-ms.openlocfilehash: a1653afd609280ab572ef88a9fcf8a6275b79fd6
-ms.sourcegitcommit: a81aed575372637997b18a0f9466d8fefb33350a
+ms.openlocfilehash: 53f428360be4ea2e11a42676d22e584633ceedbc
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/06/2018
-ms.locfileid: "43821406"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251225"
 ---
 # <a name="relationships-navigation-properties-and-foreign-keys"></a>İlişkiler, gezinti özellikleri ve yabancı anahtarlar
 Bu konu, Entity Framework varlıklar arasındaki ilişkilerin nasıl yönettiğine bir genel bakış sağlar. Ayrıca ilişkileri eşleyin ve düzenleme hakkında rehberlik sağlar.
@@ -19,7 +19,7 @@ Bu konu, Entity Framework varlıklar arasındaki ilişkilerin nasıl yönettiği
 
 Aşağıdaki görüntüde katılan iki tablo-çok ilişkisini gösterir. **Kurs** tablodur bağımlı tablo içerdiği için **DepartmentID** bağlantı sütunu **departmanı** tablo.
 
-![Veritabanı2](~/ef6/media/database2.png)
+![Bölüm ve kursu tabloları](~/ef6/media/database2.png)
 
 Varlık Çerçevesi'nde varlığın diğer varlıklarla ilişki veya ilişki ile ilgili olabilir. Her ilişki varlık türü ve tür (bir, sıfır veya bir veya birçok) Bu ilişki iki varlıktaki için Çokluk tanımlayan iki ucu içerir. İlişki hangi son ilişkisinde bir asıl rolüdür tanımlayan bir başvuru kısıtlamasını tarafından yönetilebilir ve bağımlı rol olduğu.
 
@@ -33,7 +33,7 @@ Modelinizde ilişkilendirmeleri birini veya ikisini türleri kullanmayı da terc
 
 Aşağıdaki görüntüde, Entity Framework Designer ile oluşturulmuş bir kavramsal model gösterilmektedir. Model-çok ilişkide yer alan iki varlık içerir. Her iki varlık Gezinti özellikleri vardır. **Kurs** bağımlı varlık ve **DepartmentID** tanımlı yabancı anahtar özelliği.
 
-![RelationshipEFDesigner](~/ef6/media/relationshipefdesigner.png)
+![Gezinti özellikleri içeren bölüm ve kurs tablolar](~/ef6/media/relationshipefdesigner.png)
 
 Aşağıdaki kod parçacığı, Code First ile oluşturulan aynı modelin gösterir.
 

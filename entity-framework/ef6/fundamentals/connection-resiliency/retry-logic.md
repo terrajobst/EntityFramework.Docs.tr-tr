@@ -3,12 +3,12 @@ title: Bağlantı dayanıklılığı ve yeniden deneme mantığı - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 47d68ac1-927e-4842-ab8c-ed8c8698dff2
-ms.openlocfilehash: 47181292873009c7bce2047787503258ffa35d9d
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: d7e58abfa17c5537cdc9b0068e7c2a3c2e390038
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997491"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250524"
 ---
 # <a name="connection-resiliency-and-retry-logic"></a>Bağlantı dayanıklılığı ve yeniden deneme mantığı
 > [!NOTE]
@@ -68,11 +68,9 @@ SqlAzureExecutionStrategy geçici bir hata meydana gelir, ancak ya da en fazla y
 
 Yürütme stratejileri yalnızca sınırlı sayıda tansient genellikle olan özel durumlar deneyecek, diğer hataları yanı sıra RetryLimitExceeded istisnayı çözmek burada bir hata geçici değilse veya çok uzun sürüyor durumu işlemek yine de gerekir kendisi.  
 
-## <a name="limitations"></a>Sınırlamalar  
-
 Yeniden denenirken bir yürütme stratejisi kullanarak oluşan bazı bilinen sınırlamalar vardır:  
 
-### <a name="streaming-queries-are-not-supported"></a>Akış sorgular desteklenmez  
+## <a name="streaming-queries-are-not-supported"></a>Akış sorgular desteklenmez  
 
 Varsayılan olarak, EF6 ve sonraki bir sürümü bunları akış yerine sorgu sonuçları arabellekte tutar. Sahip olmasını isterseniz sonuçları akış AsStreaming yöntemi bir LINQ to Entities sorgusunda akış değiştirmek için kullanabilirsiniz.  
 
@@ -88,11 +86,9 @@ using (var db = new BloggingContext())
 
 Yeniden denenirken bir yürütme stratejisi kaydedildiğinde akış desteklenmiyor. Bağlantı parçası şekilde döndürülen sonuç bırak çünkü bu sınırlama bulunmaktadır. Böyle bir durumda EF sorgunun tamamını yeniden çalıştırmak için gereken ancak hangi sonuçları zaten iade edilmiş olduğunu bilmesinin güvenilir bir yolu yoktur (veri değişmiş olabilir bu yana ilk sorgunun gönderildiği, sonuçları gelen geri farklı bir sırada, sonuçları benzersiz bir tanımlayıcı olmayabilir VS.).  
 
-### <a name="user-initiated-transactions-not-supported"></a>Kullanıcı tarafından başlatılan işlemleri desteklenmiyor  
+## <a name="user-initiated-transactions-are-not-supported"></a>Kullanıcı tarafından başlatılan işlemleri desteklenmez.  
 
 Yeniden denemeler sonuçları bir yürütme stratejisi yapılandırıldığında, işlem kullanımı geçici olarak bazı sınırlamalar vardır.  
-
-#### <a name="whats-supported-efs-default-transaction-behavior"></a>Desteklenen özellikler: EF'ın varsayılan işlem davranışı  
 
 Varsayılan olarak EF, bir işlem içinde herhangi bir veritabanı güncelleştirme gerçekleştirir. Bunu etkinleştirmek için herhangi bir şey yapmanız gerekmez, EF her zaman bunu otomatik olarak yapar.  
 
@@ -106,8 +102,6 @@ using (var db = new BloggingContext())
     db.SaveChanges();
 }
 ```  
-
-#### <a name="whats-not-supported-user-initiated-transactions"></a>Neler desteklenmiyor: kullanıcı tarafından başlatılan işlemleri  
 
 Birden çok işlem tek bir işlemde kayabilir yeniden denenirken bir yürütme stratejisi kullanılmadığında. Örneğin, aşağıdaki kod, tek bir işlemde iki SaveChanges çağrılarını sarmalar. Herhangi bir bölümünü ya da işlem değişikliklerin hiçbiri sonra başarısız olursa uygulanır.  
 
@@ -130,9 +124,7 @@ using (var db = new BloggingContext())
 
 Bu, EF önceki işlemleri ve bunları yeniden deneme işlemleri farkında olmadığından yeniden denenirken bir yürütme stratejisi kullanılırken desteklenmez. Örneğin, ikinci SaveChanges EF artık sonra başarısız olursa ilk SaveChanges çağrıyı yeniden denemesi için gerekli olan bilgileri vardır.  
 
-#### <a name="possible-workarounds"></a>Olası geçici çözümler  
-
-##### <a name="suspend-execution-strategy"></a>Yürütme stratejisini askıya alma  
+### <a name="workaround-suspend-execution-strategy"></a>Geçici çözüm: Yürütme stratejisini askıya alma  
 
 Olası bir geçici çözüm, bir kullanıcı kullanmak için gereken kod parçasını deneniyor yürütme stratejisini askıya alma işlemi tarafından başlatılan ' dir. Bunu yapmanın en kolay yolu, kodunuza SuspendExecutionStrategy bayrak yapılandırma sınıfı tabanlı ve bayrak ayarlandığında, varsayılan (retying olmayan) yürütme stratejisi döndürmek için yürütme stratejisi lambda değiştirme eklemektir.  
 
@@ -193,7 +185,7 @@ using (var db = new BloggingContext())
 }
 ```  
 
-##### <a name="manually-call-execution-strategy"></a>El ile yürütme stratejisi çağırın  
+### <a name="workaround-manually-call-execution-strategy"></a>Geçici çözüm: El ile yürütme stratejisi çağırın  
 
 Başka bir seçenek, el ile yürütme stratejisi kullanın ve böylece işlemlerden biri başarısız olursa her şeyi deneyebilirsiniz çalıştırılması için bir mantık kümesinin tamamını verin oluşturmaktır. Biz yine de tekniği kullanarak yürütme stratejisi - askıya gerekir, böylece yeniden denemek yeniden denenebilir kod bloğu içinde kullanılan bir bağlam çalışmayın - yukarıda gösterilen.  
 

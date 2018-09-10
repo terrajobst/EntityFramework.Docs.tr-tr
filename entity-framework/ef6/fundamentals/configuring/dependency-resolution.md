@@ -3,12 +3,12 @@ title: Bağımlılık çözümlemesi - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 32d19ac6-9186-4ae1-8655-64ee49da55d0
-ms.openlocfilehash: 45681bb0cedecd502b1968b90b7f682d3257dd23
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: c6c56c3048e17a5c888ffe564e7606abf8b0c4ed
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42998169"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251251"
 ---
 # <a name="dependency-resolution"></a>Bağımlılık çözümlemesi
 > [!NOTE]
@@ -25,13 +25,11 @@ public interface IDbDependencyResolver
 
 GetService yöntemi genellikle EF tarafından çağrılır ve EF veya uygulama tarafından sağlanan IDbDependencyResolver uygulaması tarafından işlenir. Çağrıldığında, tür bağımsız değişkeni istenen hizmet arabirimi veya temel sınıf türünde olduğundan ve anahtar nesnesi null ya da istenen hizmeti hakkında bağlamsal bilgiler sağlayan bir nesne değil.  
 
-Bu makalede IDbDependencyResolver uygulamak tam birleştiremiyorsa içermiyor, ancak bunun yerine, EF GetService anahtar nesnesi semantiği bunların her biri için çağırır ve hizmet türleri (diğer bir deyişle, arabirimi ve temel sınıf türleri) için bir başvuru olarak davranır çağırır. Ek hizmetler eklendikçe bu belgeyi güncel tutulacak.  
+Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçacığı açısından güvenli olmalıdır aksi belirtilmediği sürece. Çoğu durumda nesne bir factory, bu durumda, döndürülen iş parçacığı açısından güvenli Fabrika olmalıdır ancak fabrikadan döndürülen nesne, her kullanım için Fabrika öğesinden yeni bir örneğini istediğinden itibaren geçen iş parçacığı açısından güvenli olması gerekmez.
 
-## <a name="services-resolved"></a>Çözümlenen hizmetler  
+Bu makalede IDbDependencyResolver uygulamak tam birleştiremiyorsa içermiyor, ancak bunun yerine, EF GetService anahtar nesnesi semantiği bunların her biri için çağırır ve hizmet türleri (diğer bir deyişle, arabirimi ve temel sınıf türleri) için bir başvuru olarak davranır çağırır.
 
-Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçacığı açısından güvenli olmalıdır aksi belirtilmediği sürece. Çoğu durumda nesne bir factory, bu durumda, döndürülen iş parçacığı açısından güvenli Fabrika olmalıdır ancak fabrikadan döndürülen nesne, her kullanım için Fabrika öğesinden yeni bir örneğini istediğinden itibaren geçen iş parçacığı açısından güvenli olması gerekmez.  
-
-### <a name="systemdataentityidatabaseinitializertcontext"></a>System.Data.Entity.IDatabaseInitializer < TContext\>  
+## <a name="systemdataentityidatabaseinitializertcontext"></a>System.Data.Entity.IDatabaseInitializer < TContext\>  
 
 **Kullanıma sunulan sürümü**: EF6.0.0  
 
@@ -39,7 +37,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 
 **Anahtar**: kullanılan; null  
 
-### <a name="funcsystemdataentitymigrationssqlmigrationsqlgenerator"></a>FUNC < System.Data.Entity.Migrations.Sql.MigrationSqlGenerator\>  
+## <a name="funcsystemdataentitymigrationssqlmigrationsqlgenerator"></a>FUNC < System.Data.Entity.Migrations.Sql.MigrationSqlGenerator\>  
 
 **Kullanıma sunulan sürümü**: EF6.0.0
 
@@ -50,7 +48,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 >[!NOTE]
 > EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
 
-### <a name="systemdataentitycorecommondbproviderservices"></a>System.Data.Entity.Core.Common.DbProviderServices  
+## <a name="systemdataentitycorecommondbproviderservices"></a>System.Data.Entity.Core.Common.DbProviderServices  
 
 **Kullanıma sunulan sürümü**: EF6.0.0  
 
@@ -61,7 +59,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 >[!NOTE]
 > EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
 
-### <a name="systemdataentityinfrastructureidbconnectionfactory"></a>System.Data.Entity.Infrastructure.IDbConnectionFactory  
+## <a name="systemdataentityinfrastructureidbconnectionfactory"></a>System.Data.Entity.Infrastructure.IDbConnectionFactory  
 
 **Kullanıma sunulan sürümü**: EF6.0.0  
 
@@ -72,7 +70,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 >[!NOTE]
 > EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
 
-### <a name="systemdataentityinfrastructureimanifesttokenservice"></a>System.Data.Entity.Infrastructure.IManifestTokenService  
+## <a name="systemdataentityinfrastructureimanifesttokenservice"></a>System.Data.Entity.Infrastructure.IManifestTokenService  
 
 **Kullanıma sunulan sürümü**: EF6.0.0  
 
@@ -82,7 +80,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 
 **Anahtar**: kullanılan; null  
 
-### <a name="systemdataentityinfrastructureidbproviderfactoryservice"></a>System.Data.Entity.Infrastructure.IDbProviderFactoryService  
+## <a name="systemdataentityinfrastructureidbproviderfactoryservice"></a>System.Data.Entity.Infrastructure.IDbProviderFactoryService  
 
 **Kullanıma sunulan sürümü**: EF6.0.0  
 
@@ -90,7 +88,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 
 **Anahtar**: kullanılan; null  
 
-### <a name="funcdbcontext-systemdataentityinfrastructureidbmodelcachekey"></a>FUNC < DbContext, System.Data.Entity.Infrastructure.IDbModelCacheKey\>  
+## <a name="funcdbcontext-systemdataentityinfrastructureidbmodelcachekey"></a>FUNC < DbContext, System.Data.Entity.Infrastructure.IDbModelCacheKey\>  
 
 **Kullanıma sunulan sürümü**: EF6.0.0  
 
@@ -98,7 +96,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 
 **Anahtar**: kullanılan; null  
 
-### <a name="systemdataentityspatialdbspatialservices"></a>System.Data.Entity.Spatial.DbSpatialServices  
+## <a name="systemdataentityspatialdbspatialservices"></a>System.Data.Entity.Spatial.DbSpatialServices  
 
 **Kullanıma sunulan sürümü**: EF6.0.0  
 
@@ -109,7 +107,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 >[!NOTE]
 > EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
 
-### <a name="funcsystemdataentityinfrastructureidbexecutionstrategy"></a>FUNC < System.Data.Entity.Infrastructure.IDbExecutionStrategy\>  
+## <a name="funcsystemdataentityinfrastructureidbexecutionstrategy"></a>FUNC < System.Data.Entity.Infrastructure.IDbExecutionStrategy\>  
 
 **Kullanıma sunulan sürümü**: EF6.0.0  
 
@@ -120,7 +118,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 >[!NOTE]
 > EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
 
-### <a name="funcdbconnection-string-systemdataentitymigrationshistoryhistorycontext"></a>FUNC < DbConnection, dize, System.Data.Entity.Migrations.History.HistoryContext\>  
+## <a name="funcdbconnection-string-systemdataentitymigrationshistoryhistorycontext"></a>FUNC < DbConnection, dize, System.Data.Entity.Migrations.History.HistoryContext\>  
 
 **Kullanıma sunulan sürümü**: EF6.0.0  
 
@@ -131,7 +129,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 >[!NOTE]
 > EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
 
-### <a name="systemdatacommondbproviderfactory"></a>System.Data.Common.DbProviderFactory  
+## <a name="systemdatacommondbproviderfactory"></a>System.Data.Common.DbProviderFactory  
 
 **Kullanıma sunulan sürümü**: EF6.0.0  
 
@@ -142,7 +140,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 >[!NOTE]
 > Varsayılan uygulama normal ADO.NET Sağlayıcısı kaydı kullandığından bu hizmet genellikle doğrudan değiştirilemez. EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
 
-### <a name="systemdataentityinfrastructureiproviderinvariantname"></a>System.Data.Entity.Infrastructure.IProviderInvariantName  
+## <a name="systemdataentityinfrastructureiproviderinvariantname"></a>System.Data.Entity.Infrastructure.IProviderInvariantName  
 
 **Kullanıma sunulan sürümü**: EF6.0.0  
 
@@ -153,7 +151,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 >[!NOTE]
 > EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
 
-### <a name="systemdataentitycoremappingviewgenerationiviewassemblycache"></a>System.Data.Entity.Core.Mapping.ViewGeneration.IViewAssemblyCache  
+## <a name="systemdataentitycoremappingviewgenerationiviewassemblycache"></a>System.Data.Entity.Core.Mapping.ViewGeneration.IViewAssemblyCache  
 
 **Kullanıma sunulan sürümü**: EF6.0.0  
 
@@ -161,7 +159,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 
 **Anahtar**: kullanılan; null  
 
-### <a name="systemdataentityinfrastructurepluralizationipluralizationservice"></a>System.Data.Entity.Infrastructure.Pluralization.IPluralizationService
+## <a name="systemdataentityinfrastructurepluralizationipluralizationservice"></a>System.Data.Entity.Infrastructure.Pluralization.IPluralizationService
 
 **Kullanıma sunulan sürümü**: EF6.0.0  
 
@@ -169,7 +167,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 
 **Anahtar**: kullanılan; null  
 
-### <a name="systemdataentityinfrastructureinterceptionidbinterceptor"></a>System.Data.Entity.Infrastructure.Interception.IDbInterceptor  
+## <a name="systemdataentityinfrastructureinterceptionidbinterceptor"></a>System.Data.Entity.Infrastructure.Interception.IDbInterceptor  
 
 **Kullanıma sunulan sürümü**: EF6.0.0
 
@@ -177,7 +175,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 
 **Anahtar**: kullanılan; null olacaktır.  
 
-### <a name="funcsystemdataentitydbcontext-actionstring-systemdataentityinfrastructureinterceptiondatabaselogformatter"></a>FUNC < System.Data.Entity.DbContext, eylem < dize\>, System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter\>  
+## <a name="funcsystemdataentitydbcontext-actionstring-systemdataentityinfrastructureinterceptiondatabaselogformatter"></a>FUNC < System.Data.Entity.DbContext, eylem < dize\>, System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter\>  
 
 **Kullanıma sunulan sürümü**: EF6.0.0  
 
@@ -185,7 +183,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 
 **Anahtar**: kullanılan; null olacaktır.  
 
-### <a name="funcsystemdataentitydbcontext"></a>FUNC < System.Data.Entity.DbContext\>  
+## <a name="funcsystemdataentitydbcontext"></a>FUNC < System.Data.Entity.DbContext\>  
 
 **Kullanıma sunulan sürümü**: EF6.1.0  
 
@@ -193,7 +191,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 
 **Anahtar**: bir Fabrika gereklidir türetilmiş DbContext tür için tür nesnesi.  
 
-### <a name="funcsystemdataentitycoremetadataedmimetadataannotationserializer"></a>FUNC < System.Data.Entity.Core.Metadata.Edm.IMetadataAnnotationSerializer\>  
+## <a name="funcsystemdataentitycoremetadataedmimetadataannotationserializer"></a>FUNC < System.Data.Entity.Core.Metadata.Edm.IMetadataAnnotationSerializer\>  
 
 **Kullanıma sunulan sürümü**: EF6.1.0  
 
@@ -201,7 +199,7 @@ Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçac
 
 **Anahtar**: yüklenmekte olan ek açıklama adı serileştirilecek veya serisi.  
 
-### <a name="funcsystemdataentityinfrastructuretransactionhandler"></a>FUNC < System.Data.Entity.Infrastructure.TransactionHandler\>  
+## <a name="funcsystemdataentityinfrastructuretransactionhandler"></a>FUNC < System.Data.Entity.Infrastructure.TransactionHandler\>  
 
 **Kullanıma sunulan sürümü**: EF6.1.0  
 

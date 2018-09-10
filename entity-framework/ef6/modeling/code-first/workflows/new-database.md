@@ -3,12 +3,12 @@ title: Yeni bir veritabanı - EF6 öncelikle kod
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 2df6cb0a-7d8b-4e28-9d05-e2b9a90125af
-ms.openlocfilehash: 50c6a4710bc50879304f64e781a46c4836f86882
-ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
+ms.openlocfilehash: 8ed1bfbc3536acc0d83b9c8ecdd180aeb44eff83
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/29/2018
-ms.locfileid: "43152484"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251056"
 ---
 # <a name="code-first-to-a-new-database"></a>Yeni bir veritabanına ilk kod
 Bu video ve adım adım kılavuz, yeni bir veritabanını hedefleyen Code First geliştirmeye giriş sağlar. Mevcut bir veritabanını hedefleyen bu senaryo içerir ve Code First oluşturur ya da boş bir veritabanı, Code First yeni tablolara ekleyeceksiniz. Kod ilk sağlar, C kullanarak modelinizi tanımlamanızı\# veya VB.Net sınıflar. Ek yapılandırma, sınıfları ve özellikleri ya da fluent API'sini kullanarak özniteliklerini kullanarak isteğe bağlı olarak gerçekleştirilebilir.
@@ -199,13 +199,13 @@ Visual Studio'da Sunucu Gezgini kullanarak bu veritabanına bağlanabilir
 -   Sağ tıklayın **veri bağlantıları** seçip **bağlantı ekle...**
 -   Sunucu gezgininden veritabanına bağlamadıysanız önce Microsoft SQL Server veri kaynağı olarak seçmeniz gerekir
 
-    ![SelectDataSource](~/ef6/media/selectdatasource.png)
+    ![Veri kaynağını seçin](~/ef6/media/selectdatasource.png)
 
 -   LocalDB veya hangisinin bağlı olarak yüklediğiniz SQL Express için Bağlan
 
 Biz, artık Code First oluşturulan şema inceleyebilirsiniz.
 
-![SchemaInitial](~/ef6/media/schemainitial.png)
+![Şema başlangıç](~/ef6/media/schemainitial.png)
 
 Biz tanımlanmış olan DB özelliklerine bakarak tarafından modele dahil edilecek sınıfları dışarı DbContext çalışmıştır. Ardından kod öncelikli kurallar varsayılan kümesini kullanır tablo ve sütun adları belirlemek, veri türlerini belirlemek için birincil anahtarlar vb. bulun. Bu kuralları nasıl kılabilirsiniz Bu izlenecek yolda inceleyeceğiz.
 
@@ -266,7 +266,7 @@ namespace CodeFirstNewDatabaseSample.Migrations
 
 Yeni bir Url sütun artık veritabanı blogları tablosuna eklenir:
 
-![SchemaWithUrl](~/ef6/media/schemawithurl.png)
+![URL şeması](~/ef6/media/schemawithurl.png)
 
 ## <a name="6-data-annotations"></a>6. Veri ek açıklamaları
 
@@ -316,7 +316,7 @@ public class User
 
 Yeni tablo artık veritabanına eklenir:
 
-![SchemaWithUsers](~/ef6/media/schemawithusers.png)
+![Kullanıcı şeması](~/ef6/media/schemawithusers.png)
 
 EF tarafından desteklenen ek açıklamaları tam listesi verilmiştir:
 
@@ -365,7 +365,7 @@ public class BloggingContext : DbContext
 
 DisplayName sütun görüntülemek için şimdi adlandırılır\_adı:
 
-![SchemaWithDisplayNameRenamed](~/ef6/media/schemawithdisplaynamerenamed.png)
+![Yeniden adlandırılan görünen adı ile şema](~/ef6/media/schemawithdisplaynamerenamed.png)
 
 ## <a name="summary"></a>Özet
 

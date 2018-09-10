@@ -3,12 +3,12 @@ title: İşlem işleme hataları - EF6 işleme
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 5b1f7a7d-1b24-4645-95ec-5608a31ef577
-ms.openlocfilehash: a22a651851bc46e2bf1fe652b3b9a921ec22b70b
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: f912777104c2e925122c05046d4d65660de8b8a8
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996843"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250870"
 ---
 # <a name="handling-transaction-commit-failures"></a>İşlem işleme hatalarını işleme
 > [!NOTE]
@@ -50,23 +50,23 @@ EF artık ihtiyaç duyulmayan zaman çizelgesinden satırlar ayıklamak üzere e
 
 Önce EF 6.1 yoktu EF ürün hatalarını işleme mekanizması. EF6 önceki sürümleri için uygulanabilir bu durumla ilgilenmek için çeşitli yollar vardır:  
 
-### <a name="option-1---do-nothing"></a>1. seçenek - hiçbir şey yapma  
+* 1. seçenek - hiçbir şey yapma  
 
-İşlem işleme sırasında bağlantı hatası olasılığını düşük olduğundan aslında bu durum ortaya çıkarsa, yalnızca başarısız olmasına, uygulamanız için kabul edilebilir olabilir.  
+  İşlem işleme sırasında bağlantı hatası olasılığını düşük olduğundan aslında bu durum ortaya çıkarsa, yalnızca başarısız olmasına, uygulamanız için kabul edilebilir olabilir.  
 
-## <a name="option-2---use-the-database-to-reset-state"></a>2. seçenek - durumunu sıfırlamak için veritabanını kullan  
+* 2. seçenek - durumunu sıfırlamak için veritabanını kullan  
 
-1. Geçerli DbContext AT  
-2. Yeni bir DbContext oluşturma ve uygulama durumunu veritabanından geri yükleme  
-3. Son işlemi başarıyla tamamlanmamış, kullanıcıyı bilgilendirmeniz  
+  1. Geçerli DbContext AT  
+  2. Yeni bir DbContext oluşturma ve uygulama durumunu veritabanından geri yükleme  
+  3. Son işlemi başarıyla tamamlanmamış, kullanıcıyı bilgilendirmeniz  
 
-## <a name="option-3---manually-track-the-transaction"></a>3. seçenek - el ile işlem izleme  
+* 3. seçenek - el ile işlem izleme  
 
-1. İzlenen olmayan tablo işlemlerin durumunu izlemek için kullanılan veritabanı ekleyin.  
-2. Her işlem başındaki tabloya bir satır ekleyin.  
-3. Yürütme sırasında bağlantı başarısız olursa, veritabanı karşılık gelen satırı varlığını denetleyin.  
-    - Satır varsa, işlemin başarıyla yürütüldü gibi normal olarak devam eder  
-    - Satır yoksa, geçerli işlemi yeniden denemek için bir yürütme stratejisi kullanın.  
-4. Kaydetme başarılı olursa, tablonun büyümesini önlemek için karşılık gelen satırı silin.  
+  1. İzlenen olmayan tablo işlemlerin durumunu izlemek için kullanılan veritabanı ekleyin.  
+  2. Her işlem başındaki tabloya bir satır ekleyin.  
+  3. Yürütme sırasında bağlantı başarısız olursa, veritabanı karşılık gelen satırı varlığını denetleyin.  
+     - Satır varsa, işlemin başarıyla yürütüldü gibi normal olarak devam eder  
+     - Satır yoksa, geçerli işlemi yeniden denemek için bir yürütme stratejisi kullanın.  
+  4. Kaydetme başarılı olursa, tablonun büyümesini önlemek için karşılık gelen satırı silin.  
 
 [Bu blog gönderisini](http://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) SQL Azure üzerinde bu işlemi gerçekleştirmek için örnek kod içerir.  

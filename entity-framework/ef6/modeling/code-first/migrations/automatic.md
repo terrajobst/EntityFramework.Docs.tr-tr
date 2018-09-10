@@ -3,12 +3,12 @@ title: Otomatik Code First geçişleri - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 0eb86787-2161-4cb4-9cb8-67c5d6e95650
-ms.openlocfilehash: f358a4df04b03399e9e54ffdf0389e43d715af1c
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 256d1c774a2165dc12daf3d04550566c1a44b751
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996101"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250458"
 ---
 # <a name="automatic-code-first-migrations"></a>Otomatik Code First geçişleri
 Otomatik geçişleri yaptığınız her değişiklik için bir kod dosyası projenize zorunda kalmadan Code First Migrations kullanmanızı sağlar. Tüm değişiklikler otomatik olarak uygulanabilir; örneğin sütun yeniden adlandırma kod tabanlı bir geçiş kullanılmasını gerektirir.
@@ -85,7 +85,7 @@ Biz geçişleri kullanmaya başlamadan önce bir proje ve çalışmak için Code
 
 -   Uygulamanızı çalıştırın ve göreceksiniz bir **MigrationsAutomaticCodeDemo.BlogContext** veritabanı sizin için oluşturulur.
 
-    ![DatabaseLocalDB](~/ef6/media/databaselocaldb.png)
+    ![Veritabanı LocalDB](~/ef6/media/databaselocaldb.png)
 
 ## <a name="enabling-migrations"></a>Geçiş etkinleştiriliyor
 

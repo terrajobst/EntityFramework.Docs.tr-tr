@@ -3,12 +3,12 @@ title: İlişkiler - EF Designer - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 402fe960-754b-470f-976b-e5de3e9986b5
-ms.openlocfilehash: 72efe76956c930a787449e6cce453ab0317adc7c
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: e1912a5e00e51b4f07b1ac83848fdbe0aa4755aa
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994654"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250718"
 ---
 # <a name="relationships---ef-designer"></a>İlişkiler - EF Designer
 > [!NOTE]
@@ -16,7 +16,7 @@ ms.locfileid: "42994654"
 
 Bir modeldeki varlık türleri arasındaki ilişkileri ilişkileri tanımlayın. Bu konuda, Entity Framework Designer (EF Designer) ilişkilerini eşleme gösterilmektedir. EF Designer ile çalışırken, kullanılan ana windows aşağıdaki resimde gösterilmektedir.
 
-![EFDesigner](~/ef6/media/efdesigner.png)
+![EF Designer](~/ef6/media/efdesigner.png)
 
 > [!NOTE]
 > Kavramsal model oluşturduğunuzda, hata Listesi'nde eşlenmemiş varlıkları ve ilişkileri hakkında uyarılar görünebilir. Modelden veritabanını oluşturmak seçtikten sonra hatalar kaybolur çünkü bu uyarıları gözardı edebilirsiniz.
@@ -44,7 +44,7 @@ EF Designer güncelleştirmeleri ile ilişkilendirme .edmx dosyasını modeli i�
 1.  Tasarım yüzeyinde boş bir alana sağ tıklayın, fareyle **yeni Ekle**seçip **ilişki...** .
 2.  İlişkilendirmeyi ayarlarını doldurun **ekleme ilişkilendirme** iletişim.
 
-    ![AddAssociation](~/ef6/media/addassociation.png)
+    ![İlişkilendirme ekleyin](~/ef6/media/addassociation.png)
 
     > [!NOTE]
     > Gezinti özellikleri veya yabancı anahtar özelliklerini ilişkilendirmenin bir ucunda varlıklara temizleyerek eklememeyi seçebilirsiniz ** gezinti özelliği ** ve ** yabancı anahtar özellikleri &lt;varlık türü adı&gt; varlık ** onay kutuları. Yalnızca bir gezinti özelliği eklerseniz, ilişki sadece tek yöndedir traversable olacaktır. Gezinti özelliği eklerseniz, ilişkilendirmenin bir ucunda varlıklara erişmek için yabancı anahtar özelliklerini eklemek seçmeniz gerekir.
@@ -76,7 +76,7 @@ EF Designer eklemek veya bir başvuru kısıtlamasını düzenlemek için EF Des
 -   Gelen **bağımlı** aşağı açılan listesinde, başvuru kısıtlamasındaki bağımlı varlığı seçin.
 -   Bağımlı bir anahtara sahip her asıl anahtarı için aşağı açılan listelerden karşılık gelen bir bağımlı anahtarı seçin. **bağımlı anahtarı** sütun.
 
-    ![RefConstraint](~/ef6/media/refconstraint.png)
+    ![Başvuru kısıtlaması](~/ef6/media/refconstraint.png)
 
 -   **Tamam**'ı tıklatın.
 
@@ -97,7 +97,7 @@ Bir ilişkilendirme veritabanına eşlemelerini nasıl belirtebilirsiniz **eşle
     **Eşleşme ayrıntıları** pencere görüntüler her iki ucunda da ilişki ve varlık türü için anahtar özellikler her **son**.
 -   Her bir anahtar özellik için tıklatın **sütun** alan ve özelliği eşlemek istediğiniz sütunu seçin.
 
-    ![MappingDetails4](~/ef6/media/mappingdetails4.png)
+    ![Eşleme ayrıntıları 4](~/ef6/media/mappingdetails4.png)
 
 ### <a name="edit-an-association-mapping"></a>Bir ilişkilendirme eşlemeyi Düzenle
 

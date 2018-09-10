@@ -4,12 +4,12 @@ author: anpete
 ms.date: 2/26/2018
 ms.assetid: 9F4450C5-1A3F-4BB6-AC19-9FAC64292AAD
 uid: core/modeling/query-types
-ms.openlocfilehash: bacb121ca00a9b0aa00bfe201de4f95113472d70
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 54d960e2e2236e2d4185dedc48f51035f5c10e93
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996705"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250731"
 ---
 # <a name="query-types"></a>Sorgu türleri
 > [!NOTE]
@@ -17,12 +17,14 @@ ms.locfileid: "42996705"
 
 Varlık türlerine ek olarak, EF Core modeli içerebilir _sorgu türü_, varlık türlerine eşlenmediği verilere karşı veritabanı sorgularını yürütmek için kullanılabilir.
 
-Sorgu türleri varlık türleri ile birçok benzerlikler:
+## <a name="compare-query-types-to-entity-types"></a>Sorgu türleri varlık türleri için karşılaştırma
 
-- Bunlar ayrıca modele ya da eklenebilir, `OnModelCreating`, veya bir türetilen "Ayarla" özellik aracılığıyla _DbContext_.
-- Bunlar aynı Haritalama özellikleri, eşleme, gezinti özellikleri (bkz. aşağıdaki sınırlamalar) devralma gibi ve hedef veritabanı nesneleri ve sütunları fluent API yöntemleri veya veri ek açıklamaları aracılığıyla yapılandırabilir, ilişkisel depoları çoğunu destekler.
+Sorgu türleri gibi varlık türleri, bunlar:
 
-Ancak bunlar varlıktan farklıdır türleri, bunlar:
+- Modele ya da eklenebilir, `OnModelCreating` veya türetilmiş "set" özellik aracılığıyla _DbContext_.
+- Devralma eşleme ve gezinti özellikleri gibi aynı Haritalama özellikleri çoğunu destekler. İlişkisel depolarını, bunlar hedef veritabanı nesneleri ve sütunları fluent API yöntemleri veya veri ek açıklamaları üzerinden yapılandırabilirsiniz.
+
+Ancak, varlıktan farklı türlerden bunlar:
 
 - Tanımlanacak bir anahtarı gerektirmez.
 - Üzerinde değişiklikler için hiçbir zaman izlenir _DbContext_ ve bu nedenle hiçbir zaman eklenen, güncelleştirilen veya veritabanında silindi.
@@ -36,6 +38,8 @@ Ancak bunlar varlıktan farklıdır türleri, bunlar:
 - Kullanarak veritabanı nesneleri için eşlenmiş `ToView` yöntemi yerine `ToTable`.
 - Eşlenen bir _sorgu tanımlama_ - bir sorgu tanımlanıyor bir sorgu türü için bir veri kaynağı görevi gören modelinde bildirilen ikincil bir sorgu verilmiştir.
 
+## <a name="usage-scenarios"></a>Kullanım senaryoları
+
 Sorgu türleri için ana kullanım senaryoları bazıları şunlardır:
 
 - Dönüş türü için geçici hizmet `FromSql()` sorgular.
@@ -43,8 +47,9 @@ Sorgu türleri için ana kullanım senaryoları bazıları şunlardır:
 - Tanımlı bir birincil anahtarı olmayan tablolar için eşleme.
 - Eşleme için modelde tanımlı sorgular.
 
-> [!TIP]
-> Bir sorgu türü için bir veritabanı nesnesi eşleme gerçekleştirilir kullanarak `ToView` fluent API'si. EF Core açısından bakıldığında, bu yöntemde belirtilen veritabanı nesnesi olan bir _görünümü_, yani bir salt okunur sorgu kaynağı olarak kabul edilir ve güncelleştirme işleminin hedefi, ekleme ya da silme işlemleri. Ancak, bu gelmez veritabanı nesnesi veritabanı görünümü için gerçekten gerekli değildir - alternatif olarak salt okunur olarak kabul edilir bir veritabanınız olabilir. Buna karşılık, varlık türleri için bir veritabanı nesnesi içinde belirtilen EF Core varsayar `ToTable` yöntemi olarak kabul bir _tablo_, sorgu kaynağı olarak kullanılabilir olduğunu bildirir ancak aynı zamanda update tarafından hedeflenen Sil anlamına gelir ve Ekle işlemler. Aslında, bir veritabanı görünümü'nde adını belirtebilirsiniz. `ToTable` ve görünümü veritabanında güncelleştirilebilir olarak yapılandırılmış olduğu sürece her şeyin düzgün çalışmalıdır.
+## <a name="mapping-to-database-objects"></a>Veritabanı nesneleri eşleme
+
+Bir sorgu türü için bir veritabanı nesnesi eşleme gerçekleştirilir kullanarak `ToView` fluent API'si. EF Core açısından bakıldığında, bu yöntemde belirtilen veritabanı nesnesi olan bir _görünümü_, yani bir salt okunur sorgu kaynağı olarak kabul edilir ve güncelleştirme işleminin hedefi, ekleme ya da silme işlemleri. Ancak, bu gelmez veritabanı nesnesi veritabanı görünümü için gerçekten gerekli değildir - alternatif olarak salt okunur olarak kabul edilir bir veritabanınız olabilir. Buna karşılık, varlık türleri için bir veritabanı nesnesi içinde belirtilen EF Core varsayar `ToTable` yöntemi olarak kabul bir _tablo_, sorgu kaynağı olarak kullanılabilir olduğunu bildirir ancak aynı zamanda update tarafından hedeflenen Sil anlamına gelir ve Ekle işlemler. Aslında, bir veritabanı görünümü'nde adını belirtebilirsiniz. `ToTable` ve görünümü veritabanında güncelleştirilebilir olarak yapılandırılmış olduğu sürece her şeyin düzgün çalışmalıdır.
 
 ## <a name="example"></a>Örnek
 

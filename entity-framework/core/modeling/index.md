@@ -4,14 +4,14 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 88253ff3-174e-485c-b3f8-768243d01ee1
 uid: core/modeling/index
-ms.openlocfilehash: 9f702d5833b88e6eb77c0afefdae0ed3bc162ec8
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: e4eed480178ce43cbc5ece8db8e584032da7b2b9
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993939"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250354"
 ---
-# <a name="creating-a-model"></a>Model Oluşturma
+# <a name="creating-and-configuring-a-model"></a>Oluşturma ve yapılandırma modeli
 
 Entity Framework, varlık sınıfları şeklinizde dayalı bir model oluşturmak için kuralları kümesi kullanır. Ek ve/veya ne kuralı tarafından bulunan geçersiz kılmak için ek yapılandırma belirtebilirsiniz.
 
@@ -20,9 +20,7 @@ Bu makale, herhangi bir veri deposu ve herhangi bir ilişkisel veritabanı hedef
 > [!TIP]  
 > Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples) GitHub üzerinde.
 
-## <a name="methods-of-configuration"></a>Yapılandırma yöntemleri
-
-### <a name="fluent-api"></a>Fluent API'si
+## <a name="use-fluent-api-to-configure-a-model"></a>Bir modeli yapılandırmak için Fluent API'sini kullanın
 
 Geçersiz kılabilirsiniz `OnModelCreating` yöntemi türetilmiş bağlam ve kullanım `ModelBuilder API` modelinizi yapılandırmak için. Bu yapılandırmanın en güçlü bir yöntemdir ve yapılandırması, varlık sınıfları değiştirmeden belirtilmesine olanak sağlar. Fluent API configuration en yüksek önceliğe sahiptir ve kuralları ve veri ek açıklamalarını geçersiz kılar.
 
@@ -42,7 +40,7 @@ Geçersiz kılabilirsiniz `OnModelCreating` yöntemi türetilmiş bağlam ve kul
     }
 ```
 
-### <a name="data-annotations"></a>Veri ek açıklamaları
+## <a name="use-data-annotations-to-configure-a-model"></a>Bir modeli yapılandırmak için veri ek açıklamalarını kullanma
 
 Ayrıca, sınıfları ve özellikleri de (veri ek açıklamaları da bilinir) öznitelikleri uygulayabilirsiniz. Veri ek açıklamaları kuralları geçersiz kılar, ancak tarafından Fluent API'si yapılandırmanın üzerine yazılır.
 

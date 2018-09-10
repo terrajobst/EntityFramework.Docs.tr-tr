@@ -3,12 +3,12 @@ title: Code First geçişleri - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 36591d8f-36e1-4835-8a51-90f34f633d1e
-ms.openlocfilehash: 216f850fb906cfc4b68eae76ae11ff167ed835ea
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 6c530545968a26d13051d1e682557092bde13bb0
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993390"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251043"
 ---
 # <a name="code-first-migrations"></a>Code First geçişleri
 Code First geçişleri kod ilk iş akışınızı kullanıyorsa uygulamanın veritabanı şemasını gelişmek için önerilen yoldur. Geçişleri sağlayan araçlar sağlar:
@@ -84,7 +84,7 @@ Biz geçişleri kullanmaya başlamadan önce bir proje ve çalışmak için Code
 
 -   Uygulamanızı çalıştırın ve göreceksiniz bir **MigrationsCodeDemo.BlogContext** veritabanı sizin için oluşturulur.
 
-    ![DatabaseLocalDB](~/ef6/media/databaselocaldb.png)
+    ![Veritabanı LocalDB](~/ef6/media/databaselocaldb.png)
 
 ## <a name="enabling-migrations"></a>Geçiş etkinleştiriliyor
 

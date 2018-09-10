@@ -3,12 +3,12 @@ title: EF6 öncelikle - veritabanı
 author: divega
 ms.date: 2016-10-23
 ms.assetid: cc6ffdb3-388d-4e79-a201-01ec2577c949
-ms.openlocfilehash: c60108c09fcbaaa1f86e77fa52cb13fe018975e1
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 93ae5729e487ed9be3972ac78d599dbea19ed458
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995916"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251095"
 ---
 # <a name="database-first"></a>İlk veritabanı
 Bu video ve adım adım izlenecek yol, Entity Framework kullanarak veritabanı First geliştirmeye giriş sağlar. Veritabanı ilk ters mühendislik varolan bir veritabanını modelden sağlar. Model bir EDMX dosyası (.edmx uzantısı) depolanır ve görüntülenebilir ve Entity Framework Tasarımcısı'nda düzenlenebilir. Uygulamanıza etkileşim sınıfları EDMX dosyasından otomatik olarak oluşturulur.
@@ -46,17 +46,17 @@ Yeni bir ubuntu ve veritabanı oluşturun.
 -   Sağ tıklayın **veri bağlantıları -&gt; bağlantı ekle...**
 -   Sunucu gezgininden veritabanına bağlamadıysanız önce Microsoft SQL Server veri kaynağı olarak seçmeniz gerekir
 
-    ![SelectDataSource](~/ef6/media/selectdatasource.png)
+    ![Veri kaynağını seçin](~/ef6/media/selectdatasource.png)
 
 -   LocalDB veya hangisinin bağlı olarak, yüklü, SQL Express için bağlanın ve girin **DatabaseFirst.Blogging** veritabanı adı
 
-    ![SqlExpressConnectionDF](~/ef6/media/sqlexpressconnectiondf.png)
+    ![SQL Express bağlantısı SD](~/ef6/media/sqlexpressconnectiondf.png)
 
-    ![LocalDBConnectionDF](~/ef6/media/localdbconnectiondf.png)
+    ![LocalDB bağlantı SD](~/ef6/media/localdbconnectiondf.png)
 
 -   Seçin **Tamam** ve bir yeni bir veritabanı oluşturmak istiyorsanız istenir **Evet**
 
-    ![CreateDatabaseDialog](~/ef6/media/createdatabasedialog.png)
+    ![Veritabanı iletişim kutusu oluşturma](~/ef6/media/createdatabasedialog.png)
 
 -   Yeni veritabanı sunucu Gezgini'nde artık görünecek üzerinde sağ tıklayıp **yeni sorgu**
 -   Yeni bir sorguda aşağıdaki SQL kopyalayın, sonra sağ tıklatın ve sorgu **Yürüt**
@@ -101,21 +101,21 @@ Modelimiz oluşturmak için Entity Framework Visual Studio'nun bir parçası ola
 -   Böylece **varlık veri modeli Sihirbazı**
 -   Seçin **veritabanından Oluştur** tıklatıp **İleri**
 
-    ![WizardStep1](~/ef6/media/wizardstep1.png)
+    ![Adım 1'in Sihirbazı](~/ef6/media/wizardstep1.png)
 
 -   İlk bölümde oluşturduğunuz veritabanı bağlantısı seçin, girin **BloggingContext** tıklayın ve bağlantı dizesi adı olarak **İleri**
 
-    ![WizardStep2](~/ef6/media/wizardstep2.png)
+    ![Sihirbazı adımı 2](~/ef6/media/wizardstep2.png)
 
 -   'Tüm tabloları Al ve 'Son' tablolar' yanındaki onay kutusuna tıklayın.
 
-    ![WizardStep3](~/ef6/media/wizardstep3.png)
+    ![Sihirbazı adımı 3](~/ef6/media/wizardstep3.png)
 
  
 
 Ters mühendislik işlemi tamamlandıktan sonra yeni modeli projenize eklenir ve Entity Framework Tasarımcısı'nda görüntülemeniz için açıldı. Bir App.config dosyası ayrıca veritabanı bağlantı ayrıntıları ile projenize eklendi.
 
-![ModelInitial](~/ef6/media/modelinitial.png)
+![İlk model](~/ef6/media/modelinitial.png)
 
 ### <a name="additional-steps-in-visual-studio-2010"></a>Visual Studio 2010'daki ek adımlar
 
@@ -135,7 +135,7 @@ Ardından, Entity Framework'ün sonraki sürümlerinde sunulan DbContext API kul
 -   Seçin **çevrimiçi şablonlar** arayın ve sol menüden **DbContext**
 -   EF seçin **5.x DbContext Oluşturucu c\#**, girin **BloggingModel** tıklayın ve adı olarak **Ekle**
 
-    ![DbContextTemplate](~/ef6/media/dbcontexttemplate.png)
+    ![DbContext şablonu](~/ef6/media/dbcontexttemplate.png)
 
  
 
@@ -145,7 +145,7 @@ Biz bir modeliniz olduğuna göre bazı verilere erişmek için kullanılacak za
 
 *Visual Studio 2010 kullanıyorsanız bu ekran görüntüsü, Visual Studio 2012'den BloggingModel.tt olduğu ve BloggingModel.Context.tt dosyalarını doğrudan projenize altında yerine EDMX dosyasının altında iç içe geçmiş.*
 
-![GeneratedClassesDF](~/ef6/media/generatedclassesdf.png)
+![Oluşturulan sınıflar SD](~/ef6/media/generatedclassesdf.png)
 
  
 
@@ -217,7 +217,7 @@ CREATE TABLE [dbo].[Users]
 -   Güncelleştirme Sihirbazı onay tabloları yanındaki kutuyu Ekle sekmesinde bu şemadan herhangi bir yeni tablolar eklemek istediğimiz gösterir.
     *Yenileme sekmesi, güncelleştirme sırasında değişiklikleri için denetlenecek modelindeki mevcut tabloların gösterir. Delete sekmeler şemadan kaldırıldı ve modelden güncelleştirmenin bir parçası da kaldırılacak herhangi bir tablo gösterir. Bu iki sekmelerindeki bilgileri otomatik olarak algılanır ve yalnızca bilgilendirme amacıyla sağlanmıştır, herhangi bir ayarı değiştiremezsiniz.*
 
-    ![RefreshWizard](~/ef6/media/refreshwizard.png)
+    ![Yenileme Sihirbazı](~/ef6/media/refreshwizard.png)
 
 -   Güncelleştirme Sihirbazı'nı Son'a tıklayın
 
@@ -225,7 +225,7 @@ CREATE TABLE [dbo].[Users]
 
 Model veritabanına ekledik kullanıcılar tablo eşleşen yeni bir kullanıcı varlığı eklemek için güncelleştirilmiştir.
 
-![ModelUpdated](~/ef6/media/modelupdated.png)
+![Güncelleştirilmiş model](~/ef6/media/modelupdated.png)
 
 ## <a name="summary"></a>Özet
 

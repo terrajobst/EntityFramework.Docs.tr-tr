@@ -3,12 +3,12 @@ title: Test Edilebilirlik ve Entity Framework 4.0
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 9430e2ab-261c-4e8e-8545-2ebc52d7a247
-ms.openlocfilehash: 17a9f09022531a81042979464de05fbbd2570759
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 2a2384c7868ae3cf6af4f915c06ae9fdb622634c
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995235"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251329"
 ---
 # <a name="testability-and-entity-framework-40"></a>Test Edilebilirlik ve Entity Framework 4.0
 Scott Allen
@@ -194,13 +194,13 @@ Bu sınıf tanımları, biraz farklı yaklaşımlara ve EF4 özellikleri inceley
 
 Yerinde POCOs ile Visual Studio'da bir varlık veri modeli (EDM) oluşturabilir (bkz. Şekil 1). EDM bizim varlıklar için kod oluşturmak için kullanacağız değil. Bunun yerine, biz lovingly el ile oluşturabilir varlıkları kullanmak istiyoruz. Yalnızca EDM bizim veritabanı şeması oluşturmak ve EF4 veritabanına nesneleri eşleştirmek için gereken meta verilerini sağlamak için kullanacağız.
 
-![eftest_01](~/ef6/media/eftest-01.jpg)
+![EF test_01](~/ef6/media/eftest-01.jpg)
 
 **Şekil 1**
 
 Not: önce EDM modeli geliştirmek istiyorsanız, temiz, EDM POCO kod oluşturmak mümkündür. Veri programlama ekibi tarafından sağlanan bir Visual Studio 2010 uzantısı ile bunu yapabilirsiniz. Uzantı indirmek için Visual Studio'da Araçlar menüsünden Uzantı Yöneticisi'ni başlatın ve "POCO" (bkz: Şekil 2)'için çevrimiçi Galerisine arayın. EF için kullanılabilen çeşitli POCO şablonlar vardır. Şablon kullanma hakkında daha fazla bilgi için bkz. " [izlenecek yol: POCO varlık çerçevesi için şablon](http://blogs.msdn.com/adonet/pages/walkthrough-poco-template-for-the-entity-framework.aspx)".
 
-![eftest_02](~/ef6/media/eftest-02.png)
+![EF test_02](~/ef6/media/eftest-02.png)
 
 **Şekil 2**
 
@@ -415,13 +415,13 @@ Bazı ortak kurulum kodu için tüm bu ayrıntılı test sınıflarında ihtiyac
 
 (Bkz. Şekil 3) test armatürleri sayısı için EmployeeControllerTestBase temel sınıf olarak kullanabiliriz. Her test düzeni, belirli bir denetleyici eylemi test eder. Örneğin, bir test düzeni, oluşturma eylemini (bir çalışan oluşturmak için görüntülemek için) bir HTTP GET isteği sırasında kullanılan testlere olmadığını odaklanın ve farklı bir düzen, bir HTTP POST isteğinde kullanılan Oluştur eylemi odaklanacaktır (tarafından gönderilen bilgi almak için Kullanıcı) bir çalışan oluşturmak için kullanılır. Her bir türetilmiş sınıf, yalnızca belirli bağlamında ve sonuçlar belirli test bağlamını doğrulamak için gereken bir onayları sağlamak için gereken kurulum sorumludur.
 
-![eftest_03](~/ef6/media/eftest-03.png)
+![EF test_03](~/ef6/media/eftest-03.png)
 
 **Şekil 3**
 
 Burada sunulan adlandırma kuralı ve test stili test edilebilir kod için gerekli değildir-yalnızca bir yaklaşımdır. Şekil 4, test Çalıştırıcısı eklentisi Visual Studio 2010 için Jet Brains Resharper çalıştıran testleri gösterir.
 
-![eftest_04](~/ef6/media/eftest-04.png)
+![EF test_04](~/ef6/media/eftest-04.png)
 
 **Şekil 4**
 

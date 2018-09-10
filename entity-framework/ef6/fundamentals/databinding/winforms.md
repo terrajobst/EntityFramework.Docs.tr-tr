@@ -3,12 +3,12 @@ title: WinForms - EF6 ile veri bağlama
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 80fc5062-2f1c-4dbd-ab6e-b99496784b36
-ms.openlocfilehash: 7ceb8e85fe3d8f5ab9a5e58ef9c84599585d8f77
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 071172810f7dac45f42aca0efa7f329bac31e9cd
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994535"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251199"
 ---
 # <a name="databinding-with-winforms"></a>WinForms ile veri bağlama
 Bu adım adım kılavuzda, POCO türleri "ana öğe-ayrıntı" formunda (WinForms) Windows Formları denetimleri bağlama işlemi gösterilmektedir. Uygulama, verileri veritabanından nesnelerle doldurmak, değişiklikleri izlemek ve veritabanına verileri kalıcı hale getirmek için Entity Framework kullanır.
@@ -179,17 +179,17 @@ Yeni bir ubuntu ve veritabanı oluşturun.
 -   Sağ tıklayın **veri bağlantıları -&gt; bağlantı ekle...**
 -   Sunucu gezgininden veritabanına bağlamadıysanız önce Microsoft SQL Server veri kaynağı olarak seçmeniz gerekir
 
-    ![ChangeDataSource](~/ef6/media/changedatasource.png)
+    ![Veri kaynağını Değiştir](~/ef6/media/changedatasource.png)
 
 -   LocalDB veya hangisinin bağlı olarak, yüklü, SQL Express için bağlanın ve girin **ürünleri** veritabanı adı
 
-    ![AddConnectionLocalDB](~/ef6/media/addconnectionlocaldb.png)
+    ![Bağlantı LocalDB Ekle](~/ef6/media/addconnectionlocaldb.png)
 
-    ![AddConnectionExpress](~/ef6/media/addconnectionexpress.png)
+    ![Bağlantı Express Ekle](~/ef6/media/addconnectionexpress.png)
 
 -   Seçin **Tamam** ve bir yeni bir veritabanı oluşturmak istiyorsanız istenir **Evet**
 
-    ![CreateDatabase](~/ef6/media/createdatabase.png)
+    ![Veritabanı oluşturma](~/ef6/media/createdatabase.png)
 
 -   Yeni veritabanı sunucu Gezgini'nde artık görünecek üzerinde sağ tıklayıp **yeni sorgu**
 -   Yeni bir sorguda aşağıdaki SQL kopyalayın, sonra sağ tıklatın ve sorgu **Yürüt**
@@ -227,11 +227,11 @@ Modelimiz oluşturmak için Entity Framework Visual Studio'nun bir parçası ola
 
 -   İlk bölümde oluşturduğunuz veritabanı bağlantısı seçin, girin **ProductContext** tıklayın ve bağlantı dizesi adı olarak **İleri**
 
-    ![ChooseYourConnection](~/ef6/media/chooseyourconnection.png)
+    ![Bağlantınızı seçin](~/ef6/media/chooseyourconnection.png)
 
 -   'Tüm tabloları Al ve 'Son' tablolar' yanındaki onay kutusuna tıklayın.
 
-    ![ChooseYourObjects](~/ef6/media/chooseyourobjects.png)
+    ![Nesnelerinizi seçin](~/ef6/media/chooseyourobjects.png)
 
 Ters mühendislik işlemi tamamlandıktan sonra yeni modeli projenize eklenir ve Entity Framework Tasarımcısı'nda görüntülemeniz için açıldı. Bir App.config dosyası ayrıca veritabanı bağlantı ayrıntıları ile projenize eklendi.
 
@@ -250,7 +250,7 @@ EF modelinizden T4 şablonlarını kullanarak kod oluşturur. Şablonları Visua
 -   Açık **Çözüm Gezgini** ve bulma **ProductModel.edmx** dosyası
 -   Bulma **ProductModel.tt** ProductModel.edmx dosyayı içe dosyası
 
-    ![ProductModelTemplate](~/ef6/media/productmodeltemplate.png)
+    ![Ürün Model şablonu](~/ef6/media/productmodeltemplate.png)
 
 -   Visual Studio Düzenleyicisi'nde açmak için ProductModel.tt dosyaya çift tıklayın
 -   Bul ve Değiştir iki örneği "**ICollection**"ile"**ObservableListSource**". Bu yaklaşık satırlar 296 ve 484 yer alır.
@@ -278,13 +278,13 @@ Aplikace WinForms için veri kaynağı olarak modelde tanımlı sınıfları ekl
 -   Bir veri kaynağı türü penceresi Seç seçin **nesne** tıklatıp **İleri**
 -   Veri nesneleri iletişim seçin unfold **WinFormswithEFSample** seçin ve iki kez **kategori** ürün veri kaynağı seçmek için gerek yoktur çünkü biz için ürünün alırsınız Kategori veri kaynağı özelliği.
 
-    ![Veri kaynağı](~/ef6/media/datasource.png)
+    ![veri kaynağı](~/ef6/media/datasource.png)
 
 -   Tıklayın **son.** 
      *Veri kaynakları penceresinden görüntülenmiyor, seçin *** görünümü -&gt; diğer Windows -&gt; veri kaynakları**
 -   Raptiye simgesini, böylece veri kaynakları penceresi otomatik gizleme tuşuna basın. Pencere zaten görülebiliyorsa yenile düğmesine tıklama gerekebilir.
 
-    ![DataSource2](~/ef6/media/datasource2.png)
+    ![Veri kaynağı 2](~/ef6/media/datasource2.png)
 
 -   Çözüm Gezgini'nde çift tıklayarak **Form1.cs** dosyayı ana form Tasarımcısı'nda açın.
 -   Seçin **kategori** veri kaynağı ve formda sürükleyin. Varsayılan olarak, yeni DataGridView (**categoryDataGridView**) ve gezinti araç çubuğu denetimleri tasarımcıya eklendi. Bu denetimler için BindingSource bağlıdır (**categoryBindingSource**) ve Gezgin bağlama (**categoryBindingNavigator**) bileşenleri de oluşturulur.
@@ -302,7 +302,7 @@ Aplikace WinForms için veri kaynağı olarak modelde tanımlı sınıfları ekl
     Şu ana kadar biz Tasarımcısı'nda BindingSource bileşenleri ile bizim DataGridView denetimi ilişkili. Sonraki bölümde kod arkasındaki kodda şu anda DbContext tarafından izlenen varlık koleksiyonunu categoryBindingSource.DataSource koymak için ekleyeceğiz. Ne zaman biz sürüklediğiniz ve bırakılan ürün kategorisi, WinForms gezintisinde sürdü ürünleri categoryBindingSource ve productsBindingSource.DataMember özelliğini productsBindingSource.DataSource özelliğini ayarlama dikkat edin. Bu bağlama nedeniyle şu anda seçili kategoriye ait olan ürünleri productDataGridView içinde görüntülenir.
 -   Etkinleştirme **Kaydet** sağ fare düğmesine tıklayıp seçerek gezinti araç çubuğunda **etkin**.
 
-    ![Form1 Tasarımcısı](~/ef6/media/form1-designer.png)
+    ![1 Form Tasarımcısı](~/ef6/media/form1-designer.png)
 
 -   Kayıt için olay işleyicisi ekleme düğmesi düğmesine çift tıklayın. Olay işleyicisi eklemek ve form için arka plan kod için bilgisayarınızı getirin. Kodu **categoryBindingNavigatorSaveItem\_tıklayın** olay işleyicisi, sonraki bölümde eklenir.
 
@@ -401,12 +401,12 @@ Kod ProductContext uzun süre çalışan bir örneğini bildirir. ProductContext
 
 -   Derleme ve çalıştırma ve uygulama işlevini test edebilirsiniz.
 
-    ![Form1BeforeSave](~/ef6/media/form1beforesave.png)
+    ![Form 1 önce Kaydet](~/ef6/media/form1beforesave.png)
 
 -   Kaydettikten sonra ekranda oluşturulan depolama anahtarları gösterilmektedir.
 
-    ![Form1AfterSave](~/ef6/media/form1aftersave.png)
+    ![Form 1 sonra Kaydet](~/ef6/media/form1aftersave.png)
 
 -   Code First kullanılan sonra da göreceksiniz bir **WinFormswithEFSample.ProductContext** veritabanı sizin için oluşturulur.
 
-    ![ServerObjExplorer](~/ef6/media/serverobjexplorer.png)
+    ![Server Nesne Gezgini](~/ef6/media/serverobjexplorer.png)

@@ -3,12 +3,12 @@ title: Doğrulama - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 77d6a095-c0d0-471e-80b9-8f9aea6108b2
-ms.openlocfilehash: eec834888e2e3efaadc8acf9d4f64307f394ea4a
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 65639b0f91f54ee2cd1336f6b6cd4caf45ede680
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994451"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251030"
 ---
 # <a name="data-validation"></a>Veri doğrulama
 > [!NOTE]
@@ -54,7 +54,7 @@ Kod ek açıklamaları System.ComponentModel.DataAnnotations bütünleştirilmi�
 
 Hiçbir ek kod veya biçimlendirme değişikliklerini uygulama, var olan bir MVC uygulaması dinamik olarak bile özellik ve ek açıklama adları kullanarak bir ileti oluşturma, istemci tarafı doğrulama gerçekleştirir.
 
-![figure01](~/ef6/media/figure01.png)
+![Şekil 1](~/ef6/media/figure01.png)
 
 İletide back yöntemi bu Oluştur görünümünün, Entity Framework, yeni blog veritabanına kaydetmek için kullanılır, ancak uygulama kodu ulaşmadan önce MVC'ın istemci tarafı doğrulama tetiklenir.
 
@@ -153,7 +153,7 @@ ValidationResult oluşturucusu, hata iletisi ve doğrulama ile ilişkili olan ü
 
 Fluent API'si tarafından sağlanan doğrulama aksine bu doğrulama sonucu görünüm tarafından tanınır ve ben daha önce ModelState ekleme hatası kullanılacak özel durum işleyicisi gereksizdir. Her iki özellik adları ValidationResult ayarlandığından, MVC HtmlHelpers hem de bu özellikler hata iletisini görüntüler.
 
-![figure02](~/ef6/media/figure02.png)
+![Şekil 2](~/ef6/media/figure02.png)
 
 ## <a name="dbcontextvalidateentity"></a>DbContext.ValidateEntity
 

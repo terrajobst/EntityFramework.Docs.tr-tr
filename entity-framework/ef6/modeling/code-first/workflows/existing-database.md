@@ -3,12 +3,12 @@ title: Mevcut bir veritabanına - EF6 öncelikle kod
 author: divega
 ms.date: 2016-10-23
 ms.assetid: a7e60b74-973d-4480-868f-500a3899932e
-ms.openlocfilehash: 29f959265e0fd0d5e14c156519e6931fd8da0677
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: fedfb921919582e2cdb5f3bc497f11889b972ad6
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995096"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251082"
 ---
 # <a name="code-first-to-an-existing-database"></a>Mevcut bir veritabanına ilk kod
 Bu video ve adım adım izlenecek yol, var olan bir veritabanını hedefleyen Code First geliştirmeye giriş sağlar. Kod ilk sağlar, C kullanarak modelinizi tanımlamanızı\# veya VB.Net sınıflar. İsteğe bağlı olarak ek yapılandırma, sınıfları ve özellikleri ya da fluent API'sini kullanarak öznitelikleri kullanılarak gerçekleştirilebilir.
@@ -33,15 +33,15 @@ Yeni bir ubuntu ve veritabanı oluşturun.
 -   Sağ tıklayın **veri bağlantıları -&gt; bağlantı ekle...**
 -   Bir veritabanına bağlamadıysanız **Sunucu Gezgini** seçmeniz gerekir önce **Microsoft SQL Server** veri kaynağı
 
-    ![SelectDataSource](~/ef6/media/selectdatasource.png)
+    ![Veri kaynağını seçin](~/ef6/media/selectdatasource.png)
 
 -   LocalDB Örneğinize bağlanmak ve girin **blog** veritabanı adı
 
-    ![LocalDBConnection](~/ef6/media/localdbconnection.png)
+    ![LocalDB bağlantı](~/ef6/media/localdbconnection.png)
 
 -   Seçin **Tamam** ve bir yeni bir veritabanı oluşturmak istiyorsanız istenir **Evet**
 
-    ![CreateDatabaseDialog](~/ef6/media/createdatabasedialog.png)
+    ![Veritabanı iletişim kutusu oluşturma](~/ef6/media/createdatabasedialog.png)
 
 -   Yeni veritabanı sunucu Gezgini'nde artık görünecek üzerinde sağ tıklayıp **yeni sorgu**
 -   Yeni bir sorguda aşağıdaki SQL kopyalayın, sonra sağ tıklatın ve sorgu **Yürüt**
@@ -92,15 +92,15 @@ Visual Studio için Entity Framework Araçları, veritabanı için ilk kod oluş
 -   Böylece **varlık veri modeli Sihirbazı**
 -   Seçin **Code First veritabanından** tıklatıp **İleri**
 
-    ![WizardOneCFE](~/ef6/media/wizardonecfe.png)
+    ![Sihirbaz bir CFE](~/ef6/media/wizardonecfe.png)
 
 -   İlk bölümde oluşturduğunuz veritabanı bağlantısı seçin ve tıklayın **İleri**
 
-    ![WizardTwoCFE](~/ef6/media/wizardtwocfe.png)
+    ![İki CFE Sihirbazı](~/ef6/media/wizardtwocfe.png)
 
 -   Yanındaki onay kutusuna tıklayın **tabloları** tüm tabloları içeri aktarma ve tıklayın **son**
 
-    ![WizardThreeCFE](~/ef6/media/wizardthreecfe.png)
+    ![Üç CFE Sihirbazı](~/ef6/media/wizardthreecfe.png)
 
 Öğe sayısı ters mühendislik işlemi tamamlandıktan sonra projeye şimdi eklenecek ne eklenmiş bir göz atalım.
 

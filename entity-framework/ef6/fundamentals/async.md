@@ -3,12 +3,12 @@ title: Zaman uyumsuz sorgulama ve Kaydet - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: d56e6f1d-4bd1-4b50-9558-9a30e04a8ec3
-ms.openlocfilehash: 64051dea740b2183cb904d7fb4293d7048c218ca
-ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
+ms.openlocfilehash: 35604fc16ea37415d39801831aa162d0d42c2a2f
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/29/2018
-ms.locfileid: "43152443"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250757"
 ---
 # <a name="async-query-and-save"></a>Zaman uyumsuz sorgulama ve kaydedin
 > [!NOTE]
@@ -145,7 +145,7 @@ Kod zaman uyumlu olduğundan, biz programını çalıştırdığınızda, biz a�
 4.  Sorgu döndürür ve sonuçları yazılır **Konsolu**
 5.  Günün yazılır **Konsolu**
 
-![SyncOutput](~/ef6/media/syncoutput.png) 
+![Eşitleme çıkışı](~/ef6/media/syncoutput.png) 
 
  
 
@@ -227,7 +227,7 @@ Kod uyumsuz olduğuna göre biz programını çalıştırdığınızda, biz fark
 4.  Tüm sorgu **blogları** veritabanına gönderilen *yeniden yönetilen iş parçacığı veritabanında sorgu işlenirken başka işleri yapmak ücretsizdir. Diğer tüm yürütme tamamlandı olduğundan, iş parçacığı yalnızca bekleme çağrıda ancak durdurulur.*
 5.  Sorgu döndürür ve sonuçları yazılır **Konsolu**
 
-![AsyncOutput](~/ef6/media/asyncoutput.png) 
+![Zaman uyumsuz çıkış](~/ef6/media/asyncoutput.png) 
 
  
 

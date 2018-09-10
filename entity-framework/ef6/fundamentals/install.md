@@ -3,12 +3,12 @@ title: Entity Framework - EF6 Al
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 122c38a2-f9e8-4ecc-9c72-a83bc9af7814
-ms.openlocfilehash: 91b78e56f60edf7ebc8769b1c385f8547f63cd3d
-ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
+ms.openlocfilehash: 601f8d123d5494be6a658da1c4ad3743ed50385c
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/29/2018
-ms.locfileid: "43152394"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250887"
 ---
 # <a name="get-entity-framework"></a>Entity Framework Al
 Entity Framework EF araçlarını Visual Studio ve EF çalışma zamanı için oluşur.
@@ -27,7 +27,7 @@ Entity Framework'ün en son sürümü olarak kullanılabilir [EntityFramework Nu
 
 Sağ tıklayarak EntityFramework paketini yükleyebilirsiniz **başvuruları** projenizin klasörü seçerek **NuGet paketlerini Yönet...**
 
-![ManageNuGetPackages](~/ef6/media/managenugetpackages.png)
+![NuGet paketlerini Yönet](~/ef6/media/managenugetpackages.png)
 
 ### <a name="installing-from-package-manager-console"></a>Paket Yöneticisi konsolundan yükleme
 
@@ -55,7 +55,7 @@ Yukarıdaki yöntemleri en son verecektir Entity Framework'ün yayın'tam olarak
 
 EntityFramework seçebileceğiniz en son Önizlemesi'ni yüklemek için **öncesini** NuGet paketlerini Yönet penceresinde. Hiçbir yayın öncesi sürümler kullanılabilir olduğunda otomatik olarak en son erişmenizi sağlayacak tam olarak desteklenen Entity Framework sürümü.
 
-![IncludePreRelease](~/ef6/media/includeprerelease.png)
+![Ön sürümü dahil et](~/ef6/media/includeprerelease.png)
 
 Alternatif olarak, aşağıdaki komutu çalıştırabilirsiniz [Paket Yöneticisi Konsolu](http://docs.nuget.org/docs/start-here/using-the-package-manager-console).
 

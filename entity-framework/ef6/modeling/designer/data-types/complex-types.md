@@ -3,19 +3,19 @@ title: Karmaşık türler - EF Designer - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 9a8228ef-acfd-4575-860d-769d2c0e18a1
-ms.openlocfilehash: d35504cbe60823249d54385962568802b3e41308
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 2a516bd14131fd035a4d005e0fdf140f7ff4d65f
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994859"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250835"
 ---
 # <a name="complex-types---ef-designer"></a>Karmaşık türler - EF Designer
 Bu konuda, karmaşık türün özelliklerini içeren varlıklar için sorgulama ve karmaşık türler Entity Framework Designer (EF Designer) ile eşlemek nasıl gösterir.
 
 EF Designer ile çalışırken, kullanılan ana windows aşağıdaki resimde gösterilmektedir.
 
-![EFDesigner](~/ef6/media/efdesigner.png)
+![EF Designer](~/ef6/media/efdesigner.png)
 
 > [!NOTE]
 > Kavramsal model oluşturduğunuzda, hata Listesi'nde eşlenmemiş varlıkları ve ilişkileri hakkında uyarılar görünebilir. Modelden veritabanını oluşturmak seçtikten sonra hatalar kaybolur çünkü bu uyarıları gözardı edebilirsiniz.
@@ -45,7 +45,7 @@ Seçili özelliklere sahip yeni bir karmaşık türü eklenir **Model tarayıcı
 
 Yeni oluşturulan türü karmaşık bir özellik seçili nesnenin özelliklerini değiştirir. Tüm özellik eşlemeleri korunur.
 
-![Refactor2](~/ef6/media/refactor2.png)
+![2 yeniden düzenleyin](~/ef6/media/refactor2.png)
 
 ## <a name="create-a-new-complex-type"></a>Yeni bir karmaşık tür oluşturma
 
@@ -53,7 +53,7 @@ Var olan bir varlığa özelliklerini içermeyen yeni bir karmaşık türü de o
 
 Sağ **karmaşık türler** klasör modeli tarayıcıda işaret **AddNew karmaşık türü...** . Alternatif olarak, seçebileceğiniz **karmaşık türler** klasörü ve ENTER tuşuna **Ekle** klavyenizde anahtar.
 
-![AddNewComplextype](~/ef6/media/addnewcomplextype.png)
+![Yeni karmaşık tür ekleyin](~/ef6/media/addnewcomplextype.png)
 
 Yeni bir karmaşık türü bir varsayılan ada sahip klasör eklenir. Bu gibi durumlarda, özellikleri artık türüne ekleyebilirsiniz.
 
@@ -65,7 +65,7 @@ Aşağıda listelenen şekilde karmaşık bir tür için bir özelliği ekleyebi
 
 -   Model tarayıcı karmaşık tür sağ tıklatın, **Ekle**, gelin **skaler özelliği** veya **karmaşık özellik**, ardından istenen özellik türünü seçin. Alternatif olarak, bir karmaşık türü seçin ve sonra basın **Ekle** klavyenizde anahtar.  
 
-    ![AddPropertiestoComplexType](~/ef6/media/addpropertiestocomplextype.png)
+    ![Karmaşık tür için özellikleri ekleyin](~/ef6/media/addpropertiestocomplextype.png)
 
     Yeni bir özellik varsayılan ada sahip karmaşık tür eklenir.
 
@@ -108,7 +108,7 @@ Karmaşık bir tür yeniden adlandırdığınızda, tüm başvuruları türüne 
     Tüm skaler özellikler aşağı açılan listesi görüntülenir.
 7.  Uygun özelliğini seçin.
 
-    ![MapComplexType](~/ef6/media/mapcomplextype.png)
+    ![Karmaşık tür eşlemesi](~/ef6/media/mapcomplextype.png)
 
 8.  Her bir tablo sütunu için 6 ve 7. adımları tekrarlayın.
 
@@ -121,14 +121,14 @@ Karmaşık bir tür yeniden adlandırdığınızda, tüm başvuruları türüne 
 
 -   Karmaşık bir türü eşlemek istediğiniz içeri aktarılan bir işlevin çift tıklayın.
 
-    ![FunctionImports](~/ef6/media/functionimports.png)
+    ![İşlev içeri aktarmalar](~/ef6/media/functionimports.png)
 
 -   Yeni işlev içeri aktarma ayarlarını aşağıdaki gibi doldurun:
     -   Bir işlev alma oluşturma saklı yordamı belirtin **saklı yordam adı** alan. Depolama modelinde tüm saklı yordamları görüntüleyen bir açılır liste alandır.
     -   İşlev alma adını **işlev adı alma** alan.
     -   Seçin **karmaşık** dönüş olarak yazın ve ardından uygun türde aşağı açılan listeden seçim yaparak karmaşık belirli dönüş türü belirtin.
 
-        ![EditFunctionImport](~/ef6/media/editfunctionimport.png)
+        ![İşlev Düzenle](~/ef6/media/editfunctionimport.png)
 
 -   **Tamam**'ı tıklatın.
     Kavramsal modelde işlev içeri aktarma girişi oluşturulur.

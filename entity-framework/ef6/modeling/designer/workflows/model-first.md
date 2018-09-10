@@ -3,12 +3,12 @@ title: EF6 öncelikle - model
 author: divega
 ms.date: 2016-10-23
 ms.assetid: e1b9c319-bb8a-4417-ac94-7890f257e7f6
-ms.openlocfilehash: c21592b27fa752532f5ede5923d0bd751f0bf372
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 3dd0eba29619f09995d7009dd29462c14bde98c4
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42998121"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251147"
 ---
 # <a name="model-first"></a>İlk model
 Bu video ve adım adım izlenecek yol, Entity Framework kullanarak Model First geliştirmeye giriş sağlar. Model, Entity Framework Designer kullanarak yeni bir model oluşturmak ve ardından bir veritabanı şema modeli oluşturmak öncelikle sağlar. Model bir EDMX dosyası (.edmx uzantısı) depolanır ve görüntülenebilir ve Entity Framework Tasarımcısı'nda düzenlenebilir. Uygulamanıza etkileşim sınıfları EDMX dosyasından otomatik olarak oluşturulur.
@@ -45,7 +45,7 @@ Modelimiz oluşturmak için Entity Framework Visual Studio'nun bir parçası ola
 -   Girin **BloggingModel** tıklayın ve adı olarak **Tamam**, bu varlık veri modeli Sihirbazı başlatır
 -   Seçin **boş Model** tıklatıp **son**
 
-    ![CreateEmptyModel](~/ef6/media/createemptymodel.png)
+    ![Boş Model oluşturma](~/ef6/media/createemptymodel.png)
 
 Entity Framework Designer boş bir model ile açılır. Artık modele varlıklar, özellikleri ve ilişkileri ekleme başlayabilirsiniz.
 
@@ -55,7 +55,7 @@ Entity Framework Designer boş bir model ile açılır. Artık modele varlıklar
 -   Tasarım yüzeyi ve select sağ **Ekle - yeni&gt; varlık...**
 -   Girin **Blog** varlık adı olarak ve **BlogId** tıklatın ve anahtar adını olarak **Tamam**
 
-    ![AddBlogEntity](~/ef6/media/addblogentity.png)
+    ![Blog varlık ekleme](~/ef6/media/addblogentity.png)
 
 -   Yeni varlık tasarım yüzeyi ve select üzerinde sağ tıklayın **Ekle - yeni&gt; skaler özelliği**, girin **adı** özelliğinin adı.
 -   Eklemek için bu işlemi tekrarlamanız bir **Url** özelliği.
@@ -71,11 +71,11 @@ Birkaç varlık sahibiz, bunlar arasında bir ilişkilendirme (veya ilişki) ekl
      *Bu Blog birçok gönderileri ve bir gönderi bir Bloga ait olduğu anlamına gelir*
 -   Olun **'Posta' varlığa yabancı anahtar özelliklerini eklemek** kutusunda denetlenir ve tıklayın **Tamam**
 
-    ![AddAssociationMF](~/ef6/media/addassociationmf.png)
+    ![İlişkilendirme MF ekleyin](~/ef6/media/addassociationmf.png)
 
 Artık size bir veritabanından oluşturmak ve veri okuma ve yazma için kullanan basit bir model var.
 
-![ModelInitial](~/ef6/media/modelinitial.png)
+![İlk model](~/ef6/media/modelinitial.png)
 
 ### <a name="additional-steps-in-visual-studio-2010"></a>Visual Studio 2010'daki ek adımlar
 
@@ -95,7 +95,7 @@ Ardından, Entity Framework'ün sonraki sürümlerinde sunulan DbContext API kul
 -   Seçin **çevrimiçi şablonlar** arayın ve sol menüden **DbContext**
 -   EF seçin **5.x DbContext Oluşturucu c\#**, girin **BloggingModel** tıklayın ve adı olarak **Ekle**
 
-    ![DbContextTemplate](~/ef6/media/dbcontexttemplate.png)
+    ![DbContext şablonu](~/ef6/media/dbcontexttemplate.png)
 
 ## <a name="3-generating-the-database"></a>3. Veritabanı oluşturma
 
@@ -111,9 +111,9 @@ Yeni bir ubuntu ve veritabanı oluşturun.
 -   Tasarım yüzeyi ve select sağ **Model veritabanından oluştur...**
 -   Tıklayın **yeni bağlantı...** LocalDB veya Visual Studio sürümüne bağlı olarak kullandığınız SQL Express belirtin girin **ModelFirst.Blogging** veritabanı adı.
 
-    ![LocalDBConnectionMF](~/ef6/media/localdbconnectionmf.png)
+    ![LocalDB bağlantı MF](~/ef6/media/localdbconnectionmf.png)
 
-    ![SqlExpressConnectionMF](~/ef6/media/sqlexpressconnectionmf.png)
+    ![SQL Express bağlantısı MF](~/ef6/media/sqlexpressconnectionmf.png)
 
 -   Seçin **Tamam** ve bir yeni bir veritabanı oluşturmak istiyorsanız istenir **Evet**
 -   Seçin **sonraki** ve Entity Framework Designer veritabanı şeması oluşturmak için bir betik hesaplar
@@ -126,7 +126,7 @@ Biz bir modeliniz olduğuna göre bazı verilere erişmek için kullanılacak za
 
 *Visual Studio 2010 kullanıyorsanız bu ekran görüntüsü, Visual Studio 2012'den BloggingModel.tt olduğu ve BloggingModel.Context.tt dosyalarını doğrudan projenize altında yerine EDMX dosyasının altında iç içe geçmiş.*
 
-![GeneratedClasses](~/ef6/media/generatedclasses.png)
+![Oluşturulan sınıflar](~/ef6/media/generatedclasses.png)
 
 Main yöntemi program.cs'ye aşağıda gösterildiği gibi uygulayın. Bu kod, bizim bağlam yeni bir örneğini oluşturur ve yeni bir Blog eklemek için kullanır. Ardından veritabanından başlığa göre alfabetik olarak sıralanmış tüm blogları almak için LINQ sorgusu kullanır.
 
@@ -180,7 +180,7 @@ Modelimiz için yeni bir kullanıcı varlığı ekleyerek başlayacağız.
 
 -   Yeni bir **kullanıcı** varlık adı ile **kullanıcıadı** anahtar adı olarak ve **dize** anahtar özellik türü olarak
 
-    ![AddUserEntity](~/ef6/media/adduserentity.png)
+    ![Kullanıcı varlığı ekleyin](~/ef6/media/adduserentity.png)
 
 -   Sağ **kullanıcıadı** tasarım yüzeyi ve seçme özelliği **özellikleri**, Özellikler penceresinde değişiklik **MaxLength** ayarını **50 ** 
      *Bu kullanıcı adı 50 karakterden depolanabilir veri sınırlar*

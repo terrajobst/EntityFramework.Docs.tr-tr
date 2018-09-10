@@ -3,12 +3,12 @@ title: Takım ortamları - EF6 Code First geçişleri
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 4c2d9a95-de6f-4e97-9738-c1f8043eff69
-ms.openlocfilehash: 42f52e63fd6cfc1f02d6a721594f4a161eea9a7b
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 31f8476c64d36d4d1cf3d18deb59ebc482dcc975
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997305"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251238"
 ---
 # <a name="code-first-migrations-in-team-environments"></a>Takım ortamları Code First geçişleri
 > [!NOTE]
@@ -54,7 +54,7 @@ Anahtar başarıyla bir ekip ortamında migrations'ı kullanma, temel bir geçi�
 
 İlk geçiş projenizi için eklediğinizde, aşağıdaki gibi çalıştırın **Ekle geçiş ilk** Paket Yöneticisi konsolunda. Bu komut gerçekleştiren üst düzey adımlar aşağıda gösterilir.
 
-![FirstMigration](~/ef6/media/firstmigration.png)
+![İlk geçiş](~/ef6/media/firstmigration.png)
 
 Geçerli model kodunuzdan (1) olarak hesaplanır. Gerekli veritabanı nesnelerini ardından model farkları (2) hesaplanan – yalnızca kullanır, bu ilk geçiş modeli olduğundan, karşılaştırma için boş bir model farklılık gösterir. Visual Studio çözümünüzü (4) daha sonra eklenen gerekli geçiş kodu (3) derlemek için kod Oluşturucu için gerekli değişiklikleri geçirilir.
 
@@ -66,7 +66,7 @@ Bu noktada, büyük olasılıkla çalıştıracağınız **veritabanını Günce
 
 Daha sonra geri dönün ve modelinize bazı değişiklikler yapmanız – örneğimizde ekleyeceğiz bir **Url** özelliğini **Blog**. Bir komut gibi ardından vermek **Ekle geçiş AddUrl** karşılık gelen veritabanı uygulamak için bir geçiş iskelesini değişir. Bu komut gerçekleştiren üst düzey adımlar aşağıda gösterilir.
 
-![SecondMigration](~/ef6/media/secondmigration.png)
+![İkinci geçiş](~/ef6/media/secondmigration.png)
 
 Aynı geçen seferki gibi geçerli model koddan (1) olarak hesaplanır. Ancak bu kez var. mevcut geçişleri önceki modelde en son geçiş (2) alınır böylece Diff (3) gerekli veritabanı değişikliklerini bulmak için bu iki modeli olan ve işlemini'ı önceki gibi tamamlar.
 
@@ -96,14 +96,14 @@ EF modeli değişiklikleri yaptıktan ve aynı anda kaynak denetimine gönderme 
 
 EF modeli ve bir dizi değişiklik'ya kadar geçerli geçişleri izleriz. Bir başlangıç noktası için aşağıdaki grafikte gösterildiği gibi kaynak denetim deposu için hem geliştiriciler eşitlediyseniz.
 
-![StartingPoint](~/ef6/media/startingpoint.png)
+![Başlangıç noktası](~/ef6/media/startingpoint.png)
 
 Geliştirici \#1 ve geliştirici \#2 artık yapar bazı değişiklikleri kendi yerel kodda EF modeli temel. Geliştirici \#1 ekler bir **derecelendirme** özelliğini **Blog** – ve oluşturan bir **AddRating** veritabanına değişiklikleri uygulamak için geçiş. Geliştirici \#2 ekler bir **okuyucular** özelliğini **Blog** – ve karşılık gelen oluşturur **AddReaders** geçiş. Her iki geliştiriciler çalıştırma **veritabanını Güncelleştir**, değişiklikleri kendi yerel veritabanlarına uygulayın ve ardından uygulama geliştirme devam edin.
 
 > [!NOTE]
 > Geçişleri bizim grafiğini temsil eden için bir zaman damgası ile öneki AddReaders geçiş'geliştiriciden \#2 geliştiriciden AddRating geçişten sonra gelen \#1. Olmadığını Geliştirici \#1 veya \#takım ya da bunları sonraki bölümde bakacağız birleştirme işlemi çalışmanın sorunlara fark 2 oluşturulan geçiş ilk yapar.
 
-![LocalChanges](~/ef6/media/localchanges.png)
+![Yerel değişiklikleri](~/ef6/media/localchanges.png)
 
 Bir geliştiricinin lucky gündür \#1 gelişmelerden önce yaptıkları değişiklikleri göndermek için. Bunlar, depo eşitlenmiş olduğundan başka hiç kimse iade olduğundan, herhangi bir birleştirme işlemi yapmadan bunlar yalnızca değişikliklerini gönderebilirsiniz.
 
@@ -147,7 +147,7 @@ Aşağıdaki işlem, kaynak denetiminden eşitlenmesi gereken değişiklikleri o
 
 İşte Geliştirici durumunu \#2 yerel kod bu yaklaşım kullandıktan sonra temel.
 
-![MergeMigration](~/ef6/media/mergemigration.png)
+![Geçiş Birleştir](~/ef6/media/mergemigration.png)
 
 ### <a name="option-2-update-the-model-snapshot-in-the-last-migration"></a>2. seçenek: son geçiş modeli anlık güncelleştirme
 
@@ -176,7 +176,7 @@ Aşağıdaki işlem, kaynak denetiminden eşitlenmesi gereken değişiklikleri o
 
 İşte Geliştirici durumunu \#2 yerel kod bu yaklaşım kullandıktan sonra temel.
 
-![UpdatedMetadata](~/ef6/media/updatedmetadata.png)
+![Güncelleştirilmiş meta verileri](~/ef6/media/updatedmetadata.png)
 
 ## <a name="summary"></a>Özet
 

@@ -3,12 +3,12 @@ title: Tasarımcı kod oluşturma şablonlar - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 56e00fa2-f9f0-48b3-8006-f8266ca7e74b
-ms.openlocfilehash: 29e28dd4ebe0e5e6e3cddacb1d34202c2010f389
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: e4d4aaa647baca9f85b85db1aadaade37abd6ff2
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994877"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251173"
 ---
 # <a name="designer-code-generation-templates"></a>Tasarımcı kod oluşturma şablonları
 Entity Framework Designer kullanarak model oluşturduğunuzda sınıfları ve türetilmiş bağlamı otomatik olarak sizin için oluşturulur. Varsayılan kod oluşturma yanı sıra ayrıca çeşitli oluşturulan kod özelleştirmek için kullanılan şablonları sunuyoruz. Bu şablonlar, gerekirse şablonları özelleştirmenize olanak tanıyacak T4 metin şablonları sağlanır.
@@ -151,7 +151,7 @@ Seçmeniz gerekecek **çevrimiçi** sekmesinde Visual Studio Galerisi'nden yükl
 
 Kod oluşturma şablonu kullanmaya başlamak için EF tasarımcısında tasarım yüzeyinde boş bir nokta sağ tıklayıp **kod oluşturma öğesi Ekle...** .
 
-![Add_Code_Gen_Item](~/ef6/media/add-code-gen-item.png)
+![Kod Genel öğesi Ekle](~/ef6/media/add-code-gen-item.png)
 
 Şablon zaten yüklediyseniz, kullanmak istediğiniz (veya Visual Studio'ya dahil), ya da altında kullanılabilir olmayacaktır **kod** veya **veri** sol menüden bölümü.
 
@@ -166,8 +166,8 @@ Visual Studio 2012 kullanıyorsanız, .edmx file.* altında yeni .tt dosyaları 
 > [!NOTE]
 > Varsayılan kod oluşturma için kullanılan şablonları silmeniz gerekecektir Visual Studio 2012'de oluşturulan modeller için Aksi halde yinelenen sınıflar ve oluşturulan bağlam gerekir. Varsayılan dosyalar  **&lt;model adı&gt;.tt** ve  **&lt;model adı&gt;. context.tt**. 
 
-![VS2012_Templates](~/ef6/media/vs2012-templates.png)
+![VS2012 şablonları](~/ef6/media/vs2012-templates.png)
 
 Visual Studio 2010 kullanıyorsanız, tt dosyalarını doğrudan projenize eklenir.  
 
-![VS2010_Templates](~/ef6/media/vs2010-templates.png)
+![VS2010 şablonları](~/ef6/media/vs2010-templates.png)

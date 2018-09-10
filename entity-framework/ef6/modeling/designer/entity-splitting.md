@@ -3,19 +3,19 @@ title: Tasarımcı varlık bölme - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: aa2dd48a-1f0e-49dd-863d-d6b4f5834832
-ms.openlocfilehash: 214561f0a0381bced3ceae0b6acfcd45f5dd65c5
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 06199be977276cd3656e2550df79bac24276ec51
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995625"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250605"
 ---
 # <a name="designer-entity-splitting"></a>Tasarımcı varlık bölme
 Bu izlenecek yol, bir model Entity Framework Designer (EF Designer) ile değiştirerek, iki tabloya bir varlık türü eşlemeyle ilgili bilgi gösterir. Tablolar, bir ortak anahtar paylaştığınızda bir varlık için birden çok tablo eşleyebilirsiniz. İki tabloya bir varlık türü eşlemek için uygulanacak kavramları kolayca ikiden fazla tablolara eşleme bir varlık türü için genişletilir.
 
 EF Designer ile çalışırken, kullanılan ana windows aşağıdaki resimde gösterilmektedir.
 
-![EFDesigner](~/ef6/media/efdesigner.png)
+![EF Designer](~/ef6/media/efdesigner.png)
 
 ## <a name="prerequisites"></a>Önkoşullar
 
@@ -93,7 +93,7 @@ Bu adımda güncelleştireceğiz **kişi** alınan verileri birleştirmek varlı
 -   Tasarım yüzeyinde seçin **PersonInfo** varlık ve ENTER tuşuna **Sil** klavyedeki düğmesi.
 -   Tıklayın **Hayır** kaldırmak isteyip istemediğiniz sorulduğunda **PersonInfo** tablo hakkında eşlemek üzere duyuyoruz modelden **kişi** varlık.
 
-    ![DeleteTables](~/ef6/media/deletetables.png)
+    ![Tabloları Sil](~/ef6/media/deletetables.png)
 
 Sonraki adımlar gerektiren **eşleşme ayrıntıları** penceresi. Bu pencere göremiyorsanız, tasarım yüzeyi ve select sağ **eşleşme ayrıntıları**.
 
@@ -103,7 +103,7 @@ Sonraki adımlar gerektiren **eşleşme ayrıntıları** penceresi. Bu pencere g
 
 **Kişi** varlık türü için eşlenmiş artık **kişi** ve **PersonInfo** tablolar.
 
-![Mapping2](~/ef6/media/mapping2.png)
+![2 eşleme](~/ef6/media/mapping2.png)
 
 ## <a name="use-the-model"></a>Kullanım modeli
 
@@ -136,9 +136,9 @@ Bu uygulamayı çalıştıran sonucunda veritabanında aşağıdaki T-SQL deyiml
 
 -   Aşağıdaki iki **Ekle** deyimleri yürütülen bağlam yürütmenin sonucu olarak. SaveChanges(). Verilerden aldıkları **kişi** varlık ve arasında bölmek **kişi** ve **PersonInfo** tablolar.
 
-    ![Insert1](~/ef6/media/insert1.png)
+    ![1 Ekle](~/ef6/media/insert1.png)
 
-    ![Insert2](~/ef6/media/insert2.png)
+    ![2 Ekle](~/ef6/media/insert2.png)
 -   Aşağıdaki **seçin** veritabanında kişiler numaralandırma sonucu olarak yürütülmesi. Verileri birleştirir **kişi** ve **PersonInfo** tablo.
 
     ![Seçim](~/ef6/media/select.png)

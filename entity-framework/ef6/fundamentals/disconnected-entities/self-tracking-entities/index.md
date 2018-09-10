@@ -3,12 +3,12 @@ title: Varlıklar - EF6 Self izleme
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 5e60f5be-7bbb-4bf8-835e-0ac808d6c84a
-ms.openlocfilehash: 8b555d211facd737aedf120a1ecfdc88d3903107
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: bd22df9e14fe71ae065baf1d747b1642dd7bafce
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42998022"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250874"
 ---
 # <a name="self-tracking-entities"></a>Kendi kendine izleme varlıkları
 
@@ -28,7 +28,7 @@ Bu şablonu öğesi iki .tt (metin şablonu) dosyaları oluşturur:
 
 Başlamak için ziyaret [Self-Tracking varlıkları izlenecek](walkthrough.md) sayfası.  
 
-## <a name="considerations-when-working-with-self-tracking-entities"></a>Varlıkları kendi izleme ile çalışırken dikkat edilmesi gerekenler  
+## <a name="functional-considerations-when-working-with-self-tracking-entities"></a>Varlıkları kendi izleme ile çalışırken, işlevsel konular  
 > [!IMPORTANT]
 > Artık, self tracking varlıkları şablon kullanmanızı öneririz. Bu yalnızca var olan uygulamaları desteklemek kullanılabilir olmaya devam edecek. Uygulamanızın çalışma bağlantısı kesilmiş varlıklar grafikleriyle gerektiriyorsa, başka alternatifler gibi düşünün [izlenebilir varlıkları](http://trackableentities.github.io/), Self-Tracking-daha etkin bir şekilde tarafından geliştirilen varlıklara benzer bir teknoloji olan Topluluk veya alt düzey değişiklik API'leri izleme kullanarak özel kod yazma.
 
@@ -46,7 +46,7 @@ Aşağıdaki Self izleme varlıkları ile çalışırken göz önünde bulunduru
 - Kendi kendine izleme varlıkları yavaş yükleme gerçekleştirmek için etkin değil.  
 - İkili serileştirme ve seri hale getirme için ASP.NET durumu yönetim nesneleri desteklenmiyor varlıkları kendi kendine izleyerek. Ancak, ikili serileştirme desteği eklemek için şablonunu özelleştirebilirsiniz. Daha fazla bilgi için [kullanarak ikili serileştirme ve ViewState Self-Tracking varlıklarla](http://go.microsoft.com/fwlink/?LinkId=199208).  
 
-### <a name="security-considerations"></a>Güvenlik Değerlendirmeleri  
+## <a name="security-considerations"></a>Güvenlik Değerlendirmeleri  
 
 Aşağıdaki güvenlik konuları hesaba kendi izleme varlıkları ile çalışırken dikkat edilmelidir:  
 

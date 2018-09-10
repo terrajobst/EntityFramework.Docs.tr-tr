@@ -3,12 +3,12 @@ title: Tasarımcı TPH devralma - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 72d26a8e-20ab-4500-bd13-394a08e73394
-ms.openlocfilehash: 9a546f6450b5aa3b03c062d1ab2c6f9257ba8292
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 1eb935414b20d6e93e9d470ccc845bc13626ed3a
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995010"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250850"
 ---
 # <a name="designer-tph-inheritance"></a>Tasarımcı TPH devralma
 Bu adım adım kılavuzda, Entity Framework Designer (EF Designer) ile kavramsal modeldeki tablo başına hiyerarşi (TPH) devralma uygulamak gösterilmektedir. TPH devralma, varlık türleri bir devralma hiyerarşisindeki tüm verileri korumak için bir veritabanı tablosu kullanır.
@@ -54,7 +54,7 @@ Modelinizi düzenleme için bir tasarım yüzeyi sağlar, varlık Tasarımcısı
 
 Diğer bir deyişle nasıl **kişi** veritabanında tablo görünür.
 
-![PersonTable](~/ef6/media/persontable.png) 
+![Kişi tablosu](~/ef6/media/persontable.png) 
 
 ## <a name="implement-table-per-hierarchy-inheritance"></a>Tablo başına hiyerarşi devralma uygulama
 
@@ -94,14 +94,14 @@ Diğer bir deyişle nasıl **kişi** veritabanında tablo görünür.
 -   İçinde **işleci** sütununun **eşleşme ayrıntıları** penceresinde açılan listeden =.
 -   İçinde **değeri/özellik** sütununa, **Eğitmen**. Nihai sonucu şu şekilde görünmelidir:
 
-    ![MappingDetails2](~/ef6/media/mappingdetails2.png)
+    ![Eşleme ayrıntıları](~/ef6/media/mappingdetails2.png)
 
 -   Bu adımı yineleyin **Öğrenci** varlık türü, ancak yapma eşittir koşulu **Öğrenci** değeri.  
     *İstedik kaldırmak için neden **ayrıştırıcı** özelliğidir, çünkü bir tablo sütunu birden çok kez eşlenemez. Bu nedenle de özellik eşlemesi kullanılamaz bu sütun koşullu eşlemek için kullanılacaktır. Bu kullanılabilir her ikisi için de bir koşul kullanıyorsa tek yolu bir **Is Null** veya **Is Not Null** karşılaştırma.*
 
 Tablo başına hiyerarşi devralma artık uygulanır.
 
-![FinalTPH](~/ef6/media/finaltph.png)
+![Son TPH](~/ef6/media/finaltph.png)
 
 ## <a name="use-the-model"></a>Kullanım modeli
 

@@ -3,12 +3,12 @@ title: EF4 EF5 ve EF6 için performans konuları
 author: divega
 ms.date: 2016-10-23
 ms.assetid: d6d5a465-6434-45fa-855d-5eb48c61a2ea
-ms.openlocfilehash: f71a13ec06ad46259b3f33216367723b53314a5c
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 3ec061559f6ad7cbdce59118c13543d9993ec5a5
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996754"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251316"
 ---
 # <a name="performance-considerations-for-ef-4-5-and-6"></a>EF 6 4 ve 5 için performans konuları
 David Obando, Eric Dettinger ve diğerleri
@@ -181,7 +181,7 @@ Bul, bağlam tarafından izlenen bir varlığın bulmaya için birincil anahtar 
 
 Bul kullanırken gerçekleştirilecek bir performans artışı yoktur. Varsayılan olarak bu yöntem çağrılarına tamamlama veritabanı hala bekleyen değişikliklerini algılamak için nesne önbelleği doğrulanması tetikler. Bu işlem, nesne önbelleği veya nesne önbelleğe eklenen bir büyük nesne grafiği nesnelerin çok büyük bir sayı ise çok pahalı olabilir, ancak bunu ayrıca devre dışı bırakılabilir. Bazı durumlarda, büyüklük kertesinde otomatik devre dışı bıraktığınızda yöntemi algılamak Bul çağırma farkının üzerinden değişiklikleri algılayabileceğini dikkatle. Henüz veritabanından alınacak nesne sahip nesne aslında karşı önbelleğinde olduğunda ve ikinci bir büyüklük algılanır. 5000 varlıkların bir yük, milisaniye cinsinden, bizim microbenchmarks bazılarını kullanarak gerçekleştirilen ölçümleri ile örnek bir grafik aşağıda verilmiştir:
 
-![Net45LogScale](~/ef6/media/net45logscale.png ".NET 4.5 - Logaritmik ölçek")
+![.NET 4.5 Logaritmik ölçek](~/ef6/media/net45logscale.png ".NET 4.5 - Logaritmik ölçek")
 
 Devre dışı auto-detect değişikliklerle örnek bulabilirsiniz:
 
@@ -825,9 +825,9 @@ Burada içerik oluşturma değil uğradı basit microbenchmarks test yerleştiri
 | EF6 | DbContext LINQ sorgusu                 | 3420      | 47652864 |
 | EF6 | ObjectContext LINQ Sorgu izleme yok | 3593      | 45260800 |
 
-![EF5Micro5000Warm](~/ef6/media/ef5micro5000warm.png)
+![EF5 mikro kıyaslamaları, 5000 sıcak yinelemeler](~/ef6/media/ef5micro5000warm.png)
 
-![EF6Micro5000Warm](~/ef6/media/ef6micro5000warm.png)
+![EF6 mikro kıyaslamaları, 5000 sıcak yinelemeler](~/ef6/media/ef6micro5000warm.png)
 
 Microbenchmarks çok kodu küçük değişikliklere duyarlıdır. Bu durumda, Entity Framework 5 maliyetlerini ve Entity Framework 6 arasındaki farkı olan eklenmesi nedeniyle [durdurma](~/ef6/fundamentals/logging-and-interception.md) ve [işlem geliştirmeleri](~/ef6/saving/transactions.md). Bu microbenchmarks numaraları, ancak, yükseltilmiş bir işleme Entity Framework yapar, çok küçük bir parça halinde uygulanır. Orta Gecikmeli sorgular, gerçek hayat senaryolarında, Entity Framework 6 için Entity Framework 5'ten yükseltme yaparken performans regresyon açmamalıdır.
 
@@ -858,9 +858,9 @@ Farklı bir sorgu seçeneklerini gerçek performansını karşılaştırmak içi
 | EF6 | DbContext LINQ sorgusu                        | 1290      | 47529984 |
 
 
-![EF5WarmQuery1000](~/ef6/media/ef5warmquery1000.png)
+![EF5 sıcak sorgu 1000 yineleme](~/ef6/media/ef5warmquery1000.png)
 
-![EF6WarmQuery1000](~/ef6/media/ef6warmquery1000.png)
+![EF6 sıcak sorgu 1000 yineleme](~/ef6/media/ef6warmquery1000.png)
 
 > [!NOTE]
 > Eksiksiz olması için burada biz bir varlık SQL sorgusu üzerinde bir EntityCommand yürütme bir değişim ekledik. Sonuçları gibi sorgular için gerçekleştirilmiş değil, ancak karşılaştırma olmak zorunda değildir elma elma. Test karşılaştırması fairer yaparken denemek düzeniyle için bir Kapat yaklaşık içerir.

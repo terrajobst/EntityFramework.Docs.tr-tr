@@ -4,14 +4,16 @@ author: divega
 ms.date: 8/13/2017
 ms.assetid: 8BD43C8C-63D9-4F3A-B954-7BC518A1B7DB
 uid: core/miscellaneous/1x-2x-upgrade
-ms.openlocfilehash: 6df57b04808307238287094c285727ececc6c18d
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 18c7fc841affc2776d054e447aa231a5f4bcd585
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996820"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44251186"
 ---
 # <a name="upgrading-applications-from-previous-versions-to-ef-core-20"></a>Uygulamaları, EF Core 2.0 için önceki sürümlerinden yükseltme
+
+Biz, önemli ölçüde bizim mevcut API'lere ve 2.0 davranışlarını iyileştirmek için Fırsat yönlendirdik. Uygulamaların çoğu için inanıyoruz, ancak etkileri düşük yeniden derleme ve eski API'ler değiştirilecek destekli küçük değişiklikler gerektiren çoğu durumda, mevcut uygulama kodunun değiştirilmesi gereken birkaç geliştirmeleri vardır.
 
 ## <a name="procedures-common-to-all-applications"></a>Tüm uygulamalar için genel yordamlar
 
@@ -34,11 +36,7 @@ EF Core 2.0 için mevcut bir uygulamayı güncelleştirme gerektirebilir:
 
 2. ASP.NET Core 2.0 hedefleyen uygulamalar, üçüncü taraf veritabanı sağlayıcıları yanı sıra ek bağımlılıkları olmadan EF Core 2.0 kullanabilirsiniz. Ancak, ASP.NET Core'nın önceki sürümlerini hedefleyen uygulamalar EF Core 2.0 kullanmak için ASP.NET Core 2. 0'ı yükseltmeniz gerekir. ASP.NET Core 2.0 uygulamaları yükseltme hakkında daha fazla ayrıntı görmek için [konu üzerinde ASP.NET Core belgeleri](https://docs.microsoft.com/aspnet/core/migration/1x-to-2x/).
 
-## <a name="breaking-changes"></a>Yeni Değişiklikler
-
-Biz, önemli ölçüde bizim mevcut API'lere ve 2.0 davranışlarını iyileştirmek için Fırsat yönlendirdik. Uygulamaların çoğu için inanıyoruz, ancak etkileri düşük yeniden derleme ve eski API'ler değiştirilecek destekli küçük değişiklikler gerektiren çoğu durumda, mevcut uygulama kodunun değiştirilmesi gereken birkaç geliştirmeleri vardır.
-
-### <a name="new-way-of-getting-application-services"></a>Uygulama Hizmetleri yeni yöntemi
+## <a name="new-way-of-getting-application-services"></a>Uygulama Hizmetleri yeni yöntemi
 
 ASP.NET Core web uygulamaları için önerilen Düzen 2.0 EF Core 1.x içinde kullanılan tasarım zamanı mantığını kesildi şekilde güncelleştirildi. Tasarım zamanında, çağırmak daha önce EF Core isteriz `Startup.ConfigureServices` doğrudan uygulamanın hizmet sağlayıcısı erişebilmek için. ASP.NET Core 2.0 sürümünde, yapılandırma dışında başlatılır `Startup` sınıfı. EF Core genellikle kullanan uygulamalar, bağlantı dizesi bu nedenle yapılandırmasından erişim `Startup` kendisi tarafından artık yeterli değil. Bir ASP.NET Core 1.x uygulaması yükseltirseniz, EF Core araçlarını kullanırken aşağıdaki hatayı alabilirsiniz.
 
@@ -67,7 +65,7 @@ namespace AspNetCoreDotNetCore2._0App
 }
 ```
 
-### <a name="idbcontextfactory-renamed"></a>IDbContextFactory yeniden adlandırıldı
+## <a name="idbcontextfactory-renamed"></a>IDbContextFactory yeniden adlandırıldı
 
 Farklı uygulama kullanım düzenini ve kullanıcıların nasıl üzerinde daha fazla denetim sağlamak için bunların `DbContext` kullanılan tasarım zamanında, geçmişte, sağlanan sahibiz `IDbContextFactory<TContext>` arabirimi. Tasarım zamanında, EF Core araçları, projenizdeki bu arabirimin uygulamaları bulmak ve oluşturmak için bunu kullanın `DbContext` nesneleri.
 
@@ -77,7 +75,7 @@ Bu arabirim güçlü tasarım zamanı semantiği iletişim kurmak için biz olar
 
 2.0 sürüm `IDbContextFactory<TContext>` hala var, ancak eski olarak işaretlendi.
 
-### <a name="dbcontextfactoryoptions-removed"></a>DbContextFactoryOptions kaldırıldı
+## <a name="dbcontextfactoryoptions-removed"></a>DbContextFactoryOptions kaldırıldı
 
 Yukarıda açıklanan ASP.NET Core 2.0 değişiklikler nedeniyle, bulduk `DbContextFactoryOptions` artık yeni gerekti `IDesignTimeDbContextFactory<TContext>` arabirimi. Bunun yerine kullanarak seçenekleri aşağıda verilmiştir.
 
@@ -87,17 +85,17 @@ Yukarıda açıklanan ASP.NET Core 2.0 değişiklikler nedeniyle, bulduk `DbCont
 | ContentRootPath         | Directory.GetCurrentDirectory()                              |
 | EnvironmentName         | Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") |
 
-### <a name="design-time-working-directory-changed"></a>Tasarım zamanı çalışma dizini değiştirildi
+## <a name="design-time-working-directory-changed"></a>Tasarım zamanı çalışma dizini değiştirildi
 
 ASP.NET Core 2.0 değişiklikleri de kullandığı çalışma dizinini gerekli `dotnet ef` uygulamanız çalışırken Visual Studio tarafından kullanılan çalışma dizini ile hizalamak için. Bu gözlemlenebilir bir yan etkisi olması için kullandıkları gibi dosya adları şimdi proje dizinine ve çıkış dizini göreli olan bu SQLite ' dir.
 
-### <a name="ef-core-20-requires-a-20-database-provider"></a>EF Core 2.0 2.0 veritabanı sağlayıcısı gerektirir
+## <a name="ef-core-20-requires-a-20-database-provider"></a>EF Core 2.0 2.0 veritabanı sağlayıcısı gerektirir
 
 EF Core 2.0 için birçok basitleştirme ve çalışma biçimini veritabanı sağlayıcıları geliştirmeleri yaptık. Başka bir deyişle, 1.0.x kullanılır ve 1.1.x sağlayıcıları EF Core 2.0 ile çalışmaz.
 
 SQL Server ve SQLite sağlayıcıları EF ekibi tarafından sağlanan ve 2.0 sürümlerinde kullanılabilir 2.0 bir parçası olarak bırakın. Açık kaynak üçüncü taraf sağlayıcılar için [SQL Compact](https://github.com/ErikEJ/EntityFramework.SqlServerCompact), [PostgreSQL](https://github.com/npgsql/Npgsql.EntityFrameworkCore.PostgreSQL), ve [MySQL](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql) 2.0 için güncelleştirilir. Diğer tüm sağlayıcıları için sağlayıcı Yazar temasa geçin.
 
-### <a name="logging-and-diagnostics-events-have-changed"></a>Günlüğe kaydetme ve tanılama olayları değiştirildi
+## <a name="logging-and-diagnostics-events-have-changed"></a>Günlüğe kaydetme ve tanılama olayları değiştirildi
 
 Not: Bu değişikliklerin çoğu uygulama kodu etkilememesi gerekir.
 
@@ -111,7 +109,7 @@ Olay kimlikleri, yükü türleri ve kategorileri bölümünde belgelenmiştir [C
 
 Kimlikleri, ayrıca yeni Microsoft.EntityFrameworkCore.Diagnostics ad alanına Microsoft.EntityFrameworkCore.Infraestructure taşındı.
 
-### <a name="ef-core-relational-metadata-api-changes"></a>EF Core ilişkisel meta veri API'si değişiklikleri
+## <a name="ef-core-relational-metadata-api-changes"></a>EF Core ilişkisel meta veri API'si değişiklikleri
 
 EF Core 2.0 artık farklı bir derler [IModel](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/IModel.cs) için kullanılan her farklı bir sağlayıcı. Bu genellikle uygulamaya saydamdır. Tüm erişimi olacak şekilde bu düşük düzeyli meta verileri API'leri bir basitleştirme kolaylaştırılan _ortak ilişkisel meta veri kavramlarını_ her zaman bir çağrı yoluyla yapılan `.Relational` yerine `.SqlServer`, `.Sqlite`, vb. Örneğin, 1.1.x kodu şöyle:
 
@@ -134,13 +132,13 @@ modelBuilder.Entity<User>().ToTable(
 
 Bu değişiklik yalnızca tanımlanmış API'ler/meta geçerlidir Not _tüm_ ilişkisel sağlayıcıları. API ve meta verileri aynı kalır, yalnızca tek bir sağlayıcıya özel olduğunda. Örneğin, SQL Server için belirli Kümelenmiş dizinler için `ForSqlServerIsClustered` ve `.SqlServer().IsClustered()` yine de kullanılması gerekir.
 
-### <a name="dont-take-control-of-the-ef-service-provider"></a>EF hizmet sağlayıcısı'nın denetimini ele geçirmesine yok
+## <a name="dont-take-control-of-the-ef-service-provider"></a>EF hizmet sağlayıcısı'nın denetimini ele geçirmesine yok
 
 EF Core kullanan bir iç `IServiceProvider` (bir bağımlılık ekleme kapsayıcısını) için kendi iç uygulama. Uygulamaları oluşturmak ve özel durumlar dışında bu sağlayıcıyı yönetmek EF Core izin vermelidir. Çağrıları kaldırma kesin düşünün `UseInternalServiceProvider`. Bir uygulama çağırmak gerekli olmaması halinde `UseInternalServiceProvider`, lütfen göz önünde bulundurun [soruna dosyalama](https://github.com/aspnet/EntityFramework/Issues) biz senaryonuz işlemek için kullanabileceğiniz diğer yöntemler araştırabileceği şekilde.
 
 Çağırma `AddEntityFramework`, `AddEntityFrameworkSqlServer`, vb. gerekli değildir uygulama kodu tarafından sürece `UseInternalServiceProvider` olarak da adlandırılır. Mevcut tüm çağrıları kaldırın `AddEntityFramework` veya `AddEntityFrameworkSqlServer`, vs. `AddDbContext` yine de aynı şekilde önceki gibi kullanılmalıdır.
 
-### <a name="in-memory-databases-must-be-named"></a>Bellek içi veritabanı olarak adlandırılmalıdır
+## <a name="in-memory-databases-must-be-named"></a>Bellek içi veritabanı olarak adlandırılmalıdır
 
 Genel adlandırılmamış bellek içi veritabanı kaldırıldı ve bunun yerine tüm bellek içi veritabanı olarak adlandırılmalıdır. Örneğin:
 
@@ -150,17 +148,17 @@ optionsBuilder.UseInMemoryDatabase("MyDatabase");
 
 Bu oluşturur / "Veritabanım" adlı bir veritabanı kullanır. Varsa `UseInMemoryDatabase` aynı ada sahip birden fazla bağlam örneği tarafından paylaşılmasına izin vererek aynı bellek içi veritabanı kullanılır yeniden adlandırılır.
 
-### <a name="read-only-api-changes"></a>Salt okunur API'SİNDEKİ değişiklikler
+## <a name="read-only-api-changes"></a>Salt okunur API'SİNDEKİ değişiklikler
 
 `IsReadOnlyBeforeSave`, `IsReadOnlyAfterSave`, ve `IsStoreGeneratedAlways` geçersiz kılınmış ve yerine [BeforeSaveBehavior](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/IProperty.cs#L39) ve [AfterSaveBehavior](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/IProperty.cs#L55). Bu davranışların herhangi bir özelliği (yalnızca depoda üretilmiş Özellikler) uygulayın ve özelliğinin değeri bir veritabanı satır ekleme yaparken nasıl kullanılması gerektiği belirlemek (`BeforeSaveBehavior`) veya ne zaman mevcut bir veritabanı güncelleniyor satır (`AfterSaveBehavior`).
 
 Özellikler olarak işaretlenmiş [ValueGenerated.OnAddOrUpdate](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/ValueGenerated.cs) (örneğin, hesaplanan sütunlar) özelliği ayarlanmış herhangi bir değeri varsayılan olarak göz ardı eder. Bu depoda üretilmiş bir değer olup herhangi bir değere ayarlayın veya bırakıldığı izlenen varlık üzerinde değişiklik bakılmaksızın her zaman alınacaktır anlamına gelir. Bu farklı bir ayarlayarak değiştirilebilir `Before\AfterSaveBehavior`.
 
-### <a name="new-clientsetnull-delete-behavior"></a>Yeni ClientSetNull silme davranışı
+## <a name="new-clientsetnull-delete-behavior"></a>Yeni ClientSetNull silme davranışı
 
 Önceki sürümlerde, [DeleteBehavior.Restrict](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/DeleteBehavior.cs) sahip varlıklar için bir davranış izlenen bağlam tarafından daha fazla eşleşen kapalı `SetNull` semantiği. EF Core 2.0, yeni bir `ClientSetNull` davranışı, isteğe bağlı bir ilişki için varsayılan olarak sunulmuş. Bu davranışı `SetNull` izlenen varlık semantiği ve `Restrict` EF Core kullanılarak oluşturulan veritabanları için davranış. Deneyimimizde, bu izlenen varlıkları ve veritabanı için beklenen/faydalı davranışları vardır. `DeleteBehavior.Restrict` Şimdi isteğe bağlı ilişki için ayarlandığında izlenen varlıklar için uygulanır.
 
-### <a name="provider-design-time-packages-removed"></a>Sağlayıcı tasarım zamanı paketleri kaldırıldı
+## <a name="provider-design-time-packages-removed"></a>Sağlayıcı tasarım zamanı paketleri kaldırıldı
 
 `Microsoft.EntityFrameworkCore.Relational.Design` Paket kaldırıldı. İçeriğiyle birleştirilmiş içine `Microsoft.EntityFrameworkCore.Relational` ve `Microsoft.EntityFrameworkCore.Design`.
 

@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 3c88427c-20c6-42ec-a736-22d3eccd5071
 uid: core/get-started/index
-ms.openlocfilehash: 144cc8c8c9979e4ce24260c2975e6b10d4fdbb84
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: c8d53b47d215c0db673c9058e9d78a7e2e7b895f
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994929"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250744"
 ---
 # <a name="getting-started-with-entity-framework-core"></a>Entity Framework Core ile çalışmaya başlama
 
@@ -23,5 +23,17 @@ Bu Tanıtım öğreticilerine Entity Framework Core veya belirli bir IDE, öncek
 
 Entity Framework Core varolan bir veritabanını temel alan bir model oluşturmak veya size, modelinize dayalı bir veritabanı oluşturun. Bu yaklaşımların her ikisini de gösteren öğreticiler vardır.
 
+* .NET framework (konsol uygulamaları, WinForms, WPF)
+  * [Yeni veritabanı](full-dotnet/new-db.md)
+  * [Mevcut veritabanı](full-dotnet/existing-db.md)
+* .NET core (Windows, macOS, Linux)
+  * [Yeni veritabanı](netcore/new-db-sqlite.md)
+* ASP.NET Core
+  * [Yeni veritabanı](aspnetcore/new-db.md)
+  * [Mevcut veritabanı](aspnetcore/existing-db.md)
+  * [EF Core ve Razor Pages](/aspnet/core/data/ef-rp/intro)
+* Evrensel Windows Platformu (UWP)
+  * [Yeni veritabanı](uwp/getting-started.md)
+
 > [!NOTE]  
-> Bu öğreticileri ve eşlik eden örnekleri (EF Core 1.1 kullanan UWP öğretici hariç) EF Core 2.0 kullanmak için güncelleştirildi. Ancak, çoğu durumda en az değişiklik yönergeleri ile önceki sürümleri kullanan uygulamalar oluşturma olanağı olmalıdır. 
+> Bu öğreticileri ve eşlik eden örnekleri EF Core 2.1 kullanacak şekilde güncelleştirildi. Ancak, çoğu durumda en az değişiklik yönergeleri ile önceki sürümleri kullanan uygulamalar oluşturma olanağı olmalıdır. 

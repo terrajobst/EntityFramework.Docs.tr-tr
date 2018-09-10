@@ -3,12 +3,12 @@ title: Tasarımcı CUD saklı yordamları - EF6
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 1e773972-2da5-45e0-85a2-3cf3fbcfa5cf
-ms.openlocfilehash: 7a3176e1057816dd11ced5fc545aa3baa672bd03
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 36c9b97b77fec30136cba1d850a0259c689e69ae
+ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993895"
+ms.lasthandoff: 09/09/2018
+ms.locfileid: "44250926"
 ---
 # <a name="designer-cud-stored-procedures"></a>Tasarımcı CUD saklı yordamlar
 Bu adım adım kılavuzda oluşturma eşlemeyle ilgili bilgi göster\\ekleme, güncelleştirme ve silme (CUD) işlemleri saklı yordamlara Entity Framework Designer (EF Designer) kullanarak bir varlık türü.  Varsayılan olarak Entity Framework CUD işlemleri için SQL deyimleri otomatik olarak oluşturur, ancak saklı yordamlar bu işlemleri için eşleyebilirsiniz.  
@@ -54,7 +54,7 @@ Bu kılavuzu tamamlamak için şunlara ihtiyacınız olacak:
 -   Ayrıca, altında aşağıdaki saklı yordamları seçin **saklı yordamları ve işlevleri** düğüm: **DeletePerson**, **InsertPerson**, ve **UpdatePerson** . 
 -   EF Designer Visual Studio 2012'den itibaren saklı yordamlar toplu olarak içeri aktarma destekler. **Almak, varlık modele saklı yordamları ve işlevleri seçilen** varsayılan olarak işaretlidir. Bu örnekte biz, ekleme, güncelleştirme ve silme varlık türleri saklı yordamları olduğundan, biz bunları almak istiyor musunuz ve bu onay kutusunun işaretini kaldırın. 
 
-    ![ImportSProcs](~/ef6/media/importsprocs.jpg)
+    ![S yakalar içeri aktarma](~/ef6/media/importsprocs.jpg)
 
 -   **Son**'a tıklayın.
     Modelinizi düzenleme için bir tasarım yüzeyi sağlar, EF Designer görüntülenir.
@@ -72,7 +72,7 @@ Bu kılavuzu tamamlamak için şunlara ihtiyacınız olacak:
 -   Tuşuna **girin**.
 -   Varsayılan olarak, **NewPersonID** varlık anahtara eşlenen **Personıd**. Bir ok eşleme yönünü belirtir Not: sonuç sütunun değeri özelliği sağlandı.
 
-    ![MappingDetails](~/ef6/media/mappingdetails.png)
+    ![Eşleme ayrıntıları](~/ef6/media/mappingdetails.png)
 
 -   Tıklayın **&lt;güncelleştirme işlevini seçin&gt;** seçip **UpdatePerson** elde edilen aşağı açılan listeden.
 -   Varsayılan eşlemeleri saklı yordam parametreleri ve varlık özellikleri arasında görünür.
