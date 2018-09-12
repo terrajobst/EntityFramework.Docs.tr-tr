@@ -3,12 +3,12 @@ title: WinForms - EF6 ile veri bağlama
 author: divega
 ms.date: 2016-10-23
 ms.assetid: 80fc5062-2f1c-4dbd-ab6e-b99496784b36
-ms.openlocfilehash: 071172810f7dac45f42aca0efa7f329bac31e9cd
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: 48e6d997875a25a5954484f854953df69a267d05
+ms.sourcegitcommit: 8d04a2ad98036f32ca70c77ce3040c5edb1cdf82
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44251199"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44384858"
 ---
 # <a name="databinding-with-winforms"></a>WinForms ile veri bağlama
 Bu adım adım kılavuzda, POCO türleri "ana öğe-ayrıntı" formunda (WinForms) Windows Formları denetimleri bağlama işlemi gösterilmektedir. Uygulama, verileri veritabanından nesnelerle doldurmak, değişiklikleri izlemek ve veritabanına verileri kalıcı hale getirmek için Entity Framework kullanır.
@@ -71,7 +71,7 @@ Koleksiyon Özellikleri, Windows Forms kullanırken sıralama ile iki yönlü ve
 
             IList IListSource.GetList()
             {
-                return _bindingList  (_bindingList = this.ToBindingList());
+                return _bindingList ?? (_bindingList = this.ToBindingList());
             }
         }
     }
