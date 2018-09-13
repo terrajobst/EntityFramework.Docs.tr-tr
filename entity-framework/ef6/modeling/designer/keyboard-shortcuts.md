@@ -1,14 +1,14 @@
 ---
 title: Entity Framework Designer klavye kısayolları - EF6
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: 3c76cdd5-17c5-4c54-a6a5-cf21b974636b
-ms.openlocfilehash: e3a9d968c26841c143b1b7b0ba9a168ecd13f469
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: c75eafcca0863faa1ad64202e98b61832827377c
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44251134"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45490252"
 ---
 # <a name="entity-framework-designer-keyboard-shortcuts"></a>Entity Framework Designer klavye kısayolları
 Bu sayfada Visual Studio için Entity Framework Araçları, çeşitli ekranlar kullanılabilen klavye kısayolları listesini sağlar.

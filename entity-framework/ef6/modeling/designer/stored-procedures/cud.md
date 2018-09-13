@@ -1,14 +1,14 @@
 ---
 title: Tasarımcı CUD saklı yordamları - EF6
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: 1e773972-2da5-45e0-85a2-3cf3fbcfa5cf
-ms.openlocfilehash: 36c9b97b77fec30136cba1d850a0259c689e69ae
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: 35a00aa817c8643352c517c233977efd49e3baac
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44250926"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45489563"
 ---
 # <a name="designer-cud-stored-procedures"></a>Tasarımcı CUD saklı yordamlar
 Bu adım adım kılavuzda oluşturma eşlemeyle ilgili bilgi göster\\ekleme, güncelleştirme ve silme (CUD) işlemleri saklı yordamlara Entity Framework Designer (EF Designer) kullanarak bir varlık türü.  Varsayılan olarak Entity Framework CUD işlemleri için SQL deyimleri otomatik olarak oluşturur, ancak saklı yordamlar bu işlemleri için eşleyebilirsiniz.  

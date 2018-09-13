@@ -1,14 +1,14 @@
 ---
 title: EF6 öncelikle - model
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: e1b9c319-bb8a-4417-ac94-7890f257e7f6
-ms.openlocfilehash: 3dd0eba29619f09995d7009dd29462c14bde98c4
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: 8e010f95db40261073b4af80a3c0e3225a2cd1cf
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44251147"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45490486"
 ---
 # <a name="model-first"></a>İlk model
 Bu video ve adım adım izlenecek yol, Entity Framework kullanarak Model First geliştirmeye giriş sağlar. Model, Entity Framework Designer kullanarak yeni bir model oluşturmak ve ardından bir veritabanı şema modeli oluşturmak öncelikle sağlar. Model bir EDMX dosyası (.edmx uzantısı) depolanır ve görüntülenebilir ve Entity Framework Tasarımcısı'nda düzenlenebilir. Uygulamanıza etkileşim sınıfları EDMX dosyasından otomatik olarak oluşturulur.

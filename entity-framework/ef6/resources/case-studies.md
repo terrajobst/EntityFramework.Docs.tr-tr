@@ -1,14 +1,14 @@
 ---
 title: Entity Framework - EF6 için örnek olay incelemeleri
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: cd5d3ae3-717d-4095-a2ef-0e8fd72b1a2f
-ms.openlocfilehash: 5dcd19338d549c7ae798fdb3fc7677d8569b483f
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: d7982a3f89ac1e57b48039d828f287adf6dc5068
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995767"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45490889"
 ---
 # <a name="microsoft-case-studies-for-entity-framework"></a>Entity Framework için Microsoft incelemeleri
 Bu sayfadaki örnek olay incelemeleri, Entity Framework işe birkaç gerçek üretim projeleri vurgulayın.

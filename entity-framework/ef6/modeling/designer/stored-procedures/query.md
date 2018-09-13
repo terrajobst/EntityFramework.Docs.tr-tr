@@ -1,14 +1,14 @@
 ---
 title: Saklı yordamları - EF6 Sorgu Tasarımcısı
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: 9554ed25-c5c1-43be-acad-5da37739697f
-ms.openlocfilehash: 29b7745c2229ce4a38ad81e11406474424adfa24
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 6284b10261e6f3b9bf69d1c15e121988e4976d48
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994978"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45489953"
 ---
 # <a name="designer-query-stored-procedures"></a>Sorgu Tasarımcısı saklı yordamlar
 Bu adım adım bir modele saklı yordamlar içeri aktarmak için Entity Framework Designer (EF Designer) kullanın ve ardından sonuçları almak için içeri aktarılan saklı yordamları çağırmak nasıl gösterir. 

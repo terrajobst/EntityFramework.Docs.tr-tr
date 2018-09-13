@@ -1,14 +1,14 @@
 ---
 title: Varlıklar - EF6 yükleme ilgili
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: c8417e18-a2ee-499c-9ce9-2a48cc5b468a
-ms.openlocfilehash: 091493f60c732573ca63adb8c65bc28606453d34
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 1d59e6c079e306158ed918cde16e69c9cb084711
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995931"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45489056"
 ---
 # <a name="loading-related-entities"></a>İlgili varlıklar yükleniyor
 Entity Framework, ilgili verileri - yüklenirken eager, yavaş yükleniyor ve açık yükleme yüklemek için üç yol destekler. Bu konuda gösterilen teknikleri Code First ve EF Designer ile oluşturulan modeller için eşit oranda geçerlidir.  

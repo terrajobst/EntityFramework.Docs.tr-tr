@@ -1,14 +1,14 @@
 ---
 title: Tasarımcı kod oluşturma şablonlar - EF6
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: 56e00fa2-f9f0-48b3-8006-f8266ca7e74b
-ms.openlocfilehash: e4d4aaa647baca9f85b85db1aadaade37abd6ff2
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: 8479d4e76e6db43072c382792c69250ae032af62
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44251173"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45490206"
 ---
 # <a name="designer-code-generation-templates"></a>Tasarımcı kod oluşturma şablonları
 Entity Framework Designer kullanarak model oluşturduğunuzda sınıfları ve türetilmiş bağlamı otomatik olarak sizin için oluşturulur. Varsayılan kod oluşturma yanı sıra ayrıca çeşitli oluşturulan kod özelleştirmek için kullanılan şablonları sunuyoruz. Bu şablonlar, gerekirse şablonları özelleştirmenize olanak tanıyacak T4 metin şablonları sağlanır.

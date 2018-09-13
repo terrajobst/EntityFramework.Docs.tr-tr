@@ -6,12 +6,12 @@ ms.date: 08/08/2018
 ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
-ms.openlocfilehash: 5da1043310e2858638c81a0654a9cab23e39c220
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: a637e5e2f75e16bc7b11b1a51abcbe16274a1c75
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44250822"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45490778"
 ---
 # <a name="provider-impacting-changes"></a>Sağlayıcı etkileyen değişiklikler
 
@@ -52,3 +52,7 @@ Bu sayfa, çekme isteklerine tepki vermek için diğer veritabanı sağlayıcıl
   * Uzamsal desteği sağlayıcıları arasında tutarlıdır sağlayıcınız eklemek için bu desen izleyin.
 * https://github.com/aspnet/EntityFrameworkCore/pull/13199 -Hizmet sağlayıcısı oluşturmak için Gelişmiş hata ayıklama ekleme
   * Kişiler neden iç hizmet sağlayıcısı yeniden oluşturulmuş anlamanıza yardımcı olabilecek yeni bir arabirim uygulamak DbContextOptionsExtensions sağlar
+* https://github.com/aspnet/EntityFrameworkCore/pull/13289 -CanConnect API sistem durumu denetimleri tarafından kullanılmak üzere ekler
+  * Bu çekme isteği kavramını ekler `CanConnect` ASP.NET Core sistem tarafından kullanılacak veritabanını kullanılabilir olup olmadığını belirlemek için denetler. Varsayılan olarak, yalnızca ilişkisel uygulama çağrıları `Exist`, ancak sağlayıcıları uygulayabilirsiniz farklı bir şey gerekirse. İlişkisel olmayan sağlayıcıları kullanılabilir olması sistem durumu denetimi için sırayla yeni API uygulamanız gerekir.
+* https://github.com/aspnet/EntityFrameworkCore/pull/13306 -DbParameter boyutu ayarlamadığınızdan temel RelationalTypeMapping güncelleştirme
+  * Kesme neden olabilir, varsayılan olarak boyutunu ayarlama durdurun. Sağlayıcıları boyutunu ayarlamak gerekiyorsa kendi mantığınızı eklemek gerekebilir.

@@ -1,14 +1,14 @@
 ---
 title: Sorgu - EF Designer - EF6 tanımlama
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: e52a297e-85aa-42f6-a922-ba960f8a4b22
-ms.openlocfilehash: 8415a265cdbe078422e0467ee97da955a81b873d
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: b1589dc12ccb50754c2e950932a2d82bc4869f6b
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44250978"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45489485"
 ---
 # <a name="defining-query---ef-designer"></a>Sorgu - EF Designer tanımlama
 Bu kılavuzda bir tanımlama ekleneceği gösterilmektedir. sorgu ve karşılık gelen bir varlığın EF Designer kullanarak bir modele yazın. Tanımlayan bir sorgu için bir veritabanı görünümü tarafından sağlanan benzer işlevselliği sağlamak için yaygın olarak kullanılır, ancak görünüm modeli, veritabanı tanımlanır. Tanımlayan bir sorgu içinde belirtilen bir SQL deyimi yürütme sağlar **DefiningQuery** bir .edmx dosyası öğesidir. Daha fazla bilgi için **DefiningQuery** içinde [SSDL belirtimi](~/ef6/modeling/designer/advanced/edmx/ssdl-spec.md).
