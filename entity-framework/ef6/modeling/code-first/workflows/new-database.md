@@ -1,14 +1,14 @@
 ---
 title: Yeni bir veritabanı - EF6 öncelikle kod
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: 2df6cb0a-7d8b-4e28-9d05-e2b9a90125af
-ms.openlocfilehash: 8ed1bfbc3536acc0d83b9c8ecdd180aeb44eff83
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: 6572574ad36094ac0960c429cfa8606b6aebb492
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44251056"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45490760"
 ---
 # <a name="code-first-to-a-new-database"></a>Yeni bir veritabanına ilk kod
 Bu video ve adım adım kılavuz, yeni bir veritabanını hedefleyen Code First geliştirmeye giriş sağlar. Mevcut bir veritabanını hedefleyen bu senaryo içerir ve Code First oluşturur ya da boş bir veritabanı, Code First yeni tablolara ekleyeceksiniz. Kod ilk sağlar, C kullanarak modelinizi tanımlamanızı\# veya VB.Net sınıflar. Ek yapılandırma, sınıfları ve özellikleri ya da fluent API'sini kullanarak özniteliklerini kullanarak isteğe bağlı olarak gerçekleştirilebilir.
@@ -20,7 +20,7 @@ Bu videoda yeni bir veritabanını hedefleyen Code First geliştirmeye giriş sa
 
 **Video**: [WMV](http://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.wmv) | [MP4](http://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-mp4Video-CodeFirstNewDatabase.m4v) | [WMV (ZIP)](http://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.zip)
 
-# <a name="pre-requisites"></a>Ön koşullar
+## <a name="pre-requisites"></a>Ön koşullar
 
 Bu izlenecek yolu tamamlamak için Visual Studio 2012 yüklü veya en az Visual Studio 2010 olması gerekir.
 
