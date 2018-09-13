@@ -1,21 +1,21 @@
 ---
 title: -EF6 Load yöntemi
 author: divega
-ms.date: 2016-10-23
+ms.date: 10/23/2016
 ms.assetid: 03c5a069-b7b4-455f-a16f-ee3b96cc4e28
-ms.openlocfilehash: f7e8410b8fb8b5c3e86c51cd61868604a7566d0c
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 3a0d11552b6bfd8b83f15c58c6cb9f945d9d4536
+ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996657"
+ms.lasthandoff: 09/13/2018
+ms.locfileid: "45490902"
 ---
-# <a name="the-load-method"></a><span data-ttu-id="b607b-102">Load yöntemi</span><span class="sxs-lookup"><span data-stu-id="b607b-102">The Load Method</span></span>
-<span data-ttu-id="b607b-103">Burada bağlamına veritabanından hemen bu varlıklarla herhangi bir şey yapmadan varlıkları yükleme isteyebilirsiniz birkaç senaryo mevcuttur.</span><span class="sxs-lookup"><span data-stu-id="b607b-103">There are several scenarios where you may want to load entities from the database into the context without immediately doing anything with those entities.</span></span> <span data-ttu-id="b607b-104">Bunun iyi bir örnek veri bağlama için varlıklar açıklandığı Yükleniyor [yerel veri](~/ef6/querying/local-data.md).</span><span class="sxs-lookup"><span data-stu-id="b607b-104">A good example of this is loading entities for data binding as described in [Local Data](~/ef6/querying/local-data.md).</span></span> <span data-ttu-id="b607b-105">Bunu yapmanın yaygın bir yolu, LINQ sorgusu yazın ve ardından ToList üzerinde yalnızca oluşturulan listenin hemen atmak için çağrısından sağlamaktır.</span><span class="sxs-lookup"><span data-stu-id="b607b-105">One common way to do this is to write a LINQ query and then call ToList on it, only to immediately discard the created list.</span></span> <span data-ttu-id="b607b-106">Yük genişletme yöntemi yalnızca ToList gibi çalışır listesinin oluşturulması tamamen ortadan kaldırır.</span><span class="sxs-lookup"><span data-stu-id="b607b-106">The Load extension method works just like ToList except that it avoids the creation of the list altogether.</span></span>  
+# <a name="the-load-method"></a><span data-ttu-id="ed297-102">Load yöntemi</span><span class="sxs-lookup"><span data-stu-id="ed297-102">The Load Method</span></span>
+<span data-ttu-id="ed297-103">Burada bağlamına veritabanından hemen bu varlıklarla herhangi bir şey yapmadan varlıkları yükleme isteyebilirsiniz birkaç senaryo mevcuttur.</span><span class="sxs-lookup"><span data-stu-id="ed297-103">There are several scenarios where you may want to load entities from the database into the context without immediately doing anything with those entities.</span></span> <span data-ttu-id="ed297-104">Bunun iyi bir örnek veri bağlama için varlıklar açıklandığı Yükleniyor [yerel veri](~/ef6/querying/local-data.md).</span><span class="sxs-lookup"><span data-stu-id="ed297-104">A good example of this is loading entities for data binding as described in [Local Data](~/ef6/querying/local-data.md).</span></span> <span data-ttu-id="ed297-105">Bunu yapmanın yaygın bir yolu, LINQ sorgusu yazın ve ardından ToList üzerinde yalnızca oluşturulan listenin hemen atmak için çağrısından sağlamaktır.</span><span class="sxs-lookup"><span data-stu-id="ed297-105">One common way to do this is to write a LINQ query and then call ToList on it, only to immediately discard the created list.</span></span> <span data-ttu-id="ed297-106">Yük genişletme yöntemi yalnızca ToList gibi çalışır listesinin oluşturulması tamamen ortadan kaldırır.</span><span class="sxs-lookup"><span data-stu-id="ed297-106">The Load extension method works just like ToList except that it avoids the creation of the list altogether.</span></span>  
 
-<span data-ttu-id="b607b-107">Bu konuda gösterilen teknikleri Code First ve EF Designer ile oluşturulan modeller için eşit oranda geçerlidir.</span><span class="sxs-lookup"><span data-stu-id="b607b-107">The techniques shown in this topic apply equally to models created with Code First and the EF Designer.</span></span>  
+<span data-ttu-id="ed297-107">Bu konuda gösterilen teknikleri Code First ve EF Designer ile oluşturulan modeller için eşit oranda geçerlidir.</span><span class="sxs-lookup"><span data-stu-id="ed297-107">The techniques shown in this topic apply equally to models created with Code First and the EF Designer.</span></span>  
 
-<span data-ttu-id="b607b-108">Yük kullanarak iki örnek aşağıda verilmiştir.</span><span class="sxs-lookup"><span data-stu-id="b607b-108">Here are two examples of using Load.</span></span> <span data-ttu-id="b607b-109">İlk yük kullanıldığı bir Windows Forms veri bağlama uygulamasından alınan varlıklar yerel koleksiyonuna bağlama önce açıklanan şekilde sorgulamak için [yerel veri](~/ef6/querying/local-data.md):</span><span class="sxs-lookup"><span data-stu-id="b607b-109">The first is taken from a Windows Forms data binding application where Load is used to query for entities before binding to the local collection, as described in [Local Data](~/ef6/querying/local-data.md):</span></span>  
+<span data-ttu-id="ed297-108">Yük kullanarak iki örnek aşağıda verilmiştir.</span><span class="sxs-lookup"><span data-stu-id="ed297-108">Here are two examples of using Load.</span></span> <span data-ttu-id="ed297-109">İlk yük kullanıldığı bir Windows Forms veri bağlama uygulamasından alınan varlıklar yerel koleksiyonuna bağlama önce açıklanan şekilde sorgulamak için [yerel veri](~/ef6/querying/local-data.md):</span><span class="sxs-lookup"><span data-stu-id="ed297-109">The first is taken from a Windows Forms data binding application where Load is used to query for entities before binding to the local collection, as described in [Local Data](~/ef6/querying/local-data.md):</span></span>  
 
 ``` csharp
 protected override void OnLoad(EventArgs e)
@@ -29,7 +29,7 @@ protected override void OnLoad(EventArgs e)
 }
 ```  
 
-<span data-ttu-id="b607b-110">Bölümünde anlatıldığı gibi ilgili varlıkları filtrelenmiş koleksiyonu yüklemek için yük kullanarak ikinci örnekte gösterildiği [ilgili varlıkları yükleme](~/ef6/querying/related-data.md):</span><span class="sxs-lookup"><span data-stu-id="b607b-110">The second example shows using Load to load a filtered collection of related entities, as described in [Loading Related Entities](~/ef6/querying/related-data.md):</span></span>  
+<span data-ttu-id="ed297-110">Bölümünde anlatıldığı gibi ilgili varlıkları filtrelenmiş koleksiyonu yüklemek için yük kullanarak ikinci örnekte gösterildiği [ilgili varlıkları yükleme](~/ef6/querying/related-data.md):</span><span class="sxs-lookup"><span data-stu-id="ed297-110">The second example shows using Load to load a filtered collection of related entities, as described in [Loading Related Entities](~/ef6/querying/related-data.md):</span></span>  
 
 ``` csharp
 using (var context = new BloggingContext())
