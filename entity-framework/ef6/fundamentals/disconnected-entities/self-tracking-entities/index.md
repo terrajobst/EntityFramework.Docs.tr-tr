@@ -3,12 +3,12 @@ title: Varlıklar - EF6 Self izleme
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 5e60f5be-7bbb-4bf8-835e-0ac808d6c84a
-ms.openlocfilehash: 3575977ceabe7d93ac48d5fac253eac1341e2353
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: b098736ef47e79c916f4bf054716022d5032eee5
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489706"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283816"
 ---
 # <a name="self-tracking-entities"></a>Kendi kendine izleme varlıkları
 
@@ -39,12 +39,12 @@ Aşağıdaki Self izleme varlıkları ile çalışırken göz önünde bulunduru
 - Çağrı ve graph el ile yinelemek zorunda hizmeti istemcisi değiştirildiği graf gönderin ve istemcide aynı grafiğe çalışmaya devam etmek istiyorsanız, **AcceptChanges** her nesneye yöntemi değişiklik İzleyici sıfırlayın.  
 
     > Grafınızı nesneleri veritabanı tarafından oluşturulan değerleri (örneğin, kimlik veya eşzamanlılık) özellikleriyle içeriyorsa, Entity Framework bu özelliklerin değerlerini sonra veritabanı tarafından oluşturulan değerleri değiştirir **SaveChanges** yöntemi çağrılır. Kaydedilen nesneleri veya nesneler için oluşturulan özellik değerlerinin listesini istemciye geri dönmek için hizmet işlemi uygulayabilir. İstemci nesneleri veya özellik değerlerini hizmet işleminden döndürülen nesne örneklerini veya nesnesi özellik değerleri yerine gerekir.  
-- Birden çok hizmet istekleri grafiklerinden birleştirme, sonuçta elde edilen grafiğin yinelenen anahtar değerleri ile nesneler neden olabilir. Entity Framework çağırdığınızda yinelenen anahtarlarla nesneleri kaldırmaz **ApplyChanges** yöntemi ancak bunun yerine bir özel durum oluşturur. Yinelenen anahtar değerlerine sahip grafikler aşağıdaki blog içinde açıklanan desenlerden birini izleyin olmamasına özen gösterin: [Self-Tracking varlıklar: ApplyChanges ve yinelenen varlıkları](http://go.microsoft.com/fwlink/?LinkID=205119&clcid=0x409).  
+- Birden çok hizmet istekleri grafiklerinden birleştirme, sonuçta elde edilen grafiğin yinelenen anahtar değerleri ile nesneler neden olabilir. Entity Framework çağırdığınızda yinelenen anahtarlarla nesneleri kaldırmaz **ApplyChanges** yöntemi ancak bunun yerine bir özel durum oluşturur. Yinelenen anahtar değerlerine sahip grafikler aşağıdaki blog içinde açıklanan desenlerden birini izleyin olmamasına özen gösterin: [Self-Tracking varlıklar: ApplyChanges ve yinelenen varlıkları](https://go.microsoft.com/fwlink/?LinkID=205119&clcid=0x409).  
 - Yabancı anahtar özelliğini ayarlayarak nesneleri arasındaki ilişki değiştirdiğinizde, başvuru gezinti özelliği ayarlanmış null ve istemci üzerindeki uygun asıl varlığa eşitlenmiş değil. Grafik nesne bağlamına eklendikten sonra (örneğin, çağırdıktan sonra **ApplyChanges** yöntemi), yabancı anahtar özellikler ve gezinti özellikleri eşitlenir.  
 
     > Yabancı anahtar ilişkisine art arda silme belirttiyseniz, uygun asıl nesneyle eşitlenmiş başvuru gezinme özelliğinin olmaması bir sorun olabilir. Asıl silerseniz, bağımlı nesneleri silme dağıtılmaz. Belirtilen art arda silme varsa, yabancı anahtar özelliği ayarı yerine ilişkilerini değiştirmek için Gezinti özelliklerini kullanın.  
 - Kendi kendine izleme varlıkları yavaş yükleme gerçekleştirmek için etkin değil.  
-- İkili serileştirme ve seri hale getirme için ASP.NET durumu yönetim nesneleri desteklenmiyor varlıkları kendi kendine izleyerek. Ancak, ikili serileştirme desteği eklemek için şablonunu özelleştirebilirsiniz. Daha fazla bilgi için [kullanarak ikili serileştirme ve ViewState Self-Tracking varlıklarla](http://go.microsoft.com/fwlink/?LinkId=199208).  
+- İkili serileştirme ve seri hale getirme için ASP.NET durumu yönetim nesneleri desteklenmiyor varlıkları kendi kendine izleyerek. Ancak, ikili serileştirme desteği eklemek için şablonunu özelleştirebilirsiniz. Daha fazla bilgi için [kullanarak ikili serileştirme ve ViewState Self-Tracking varlıklarla](https://go.microsoft.com/fwlink/?LinkId=199208).  
 
 ## <a name="security-considerations"></a>Güvenlik Değerlendirmeleri  
 

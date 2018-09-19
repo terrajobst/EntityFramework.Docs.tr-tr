@@ -3,12 +3,12 @@ title: Geçişleri geçmiş tablosu - EF6 özelleştirme
 author: divega
 ms.date: 10/23/2016
 ms.assetid: ed5518f0-a9a6-454e-9e98-a4fa7748c8d0
-ms.openlocfilehash: 6644bf2b0ac703a9f3a779b17b31d79d40cc5b69
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: e3faefc4b812ec4bc440ed2bb48747053d8cb1b3
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489218"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283699"
 ---
 # <a name="customizing-the-migrations-history-table"></a>Geçişleri geçmiş tablosu özelleştirme
 > [!NOTE]
@@ -69,7 +69,7 @@ Geçişleri geçmişi tabloyu yeniden adlandırma ve "Yönetici" adlı bir özel
     }
 ```
 
-EF ile kaydederek bu haberdar olmak gerekir, özel HistoryContext hazır olduktan sonra [kod tabanlı yapılandırma](http://msdn.com/data/jj680699):
+EF ile kaydederek bu haberdar olmak gerekir, özel HistoryContext hazır olduktan sonra [kod tabanlı yapılandırma](https://msdn.com/data/jj680699):
 
 ``` csharp
     using System.Data.Entity;

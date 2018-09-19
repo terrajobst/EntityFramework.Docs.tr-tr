@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 11/15/2016
 ms.assetid: e079d4af-c455-4a14-8e15-a8471516d748
 uid: core/miscellaneous/connection-resiliency
-ms.openlocfilehash: d6e31cf2b9b783ea503703536d159b34bf2e18c0
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: d5101d0622ddc2c90ddded16b9ec6cc4eb814c36
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997196"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283842"
 ---
 # <a name="connection-resiliency"></a>Bağlantı Dayanıklılığı
 
@@ -49,7 +49,7 @@ El ile yürütülmesi gereken her şeyi temsil eden bir temsilci ile yürütme s
 
 ## <a name="transaction-commit-failure-and-the-idempotency-issue"></a>İşlem yürütme hatası ve Teklik sorunu
 
-Genel olarak, bir bağlantı hatası olduğunda geçerli işlem geri alınır. İşlem devam ederken bağlantı kesilirse ancak durdurulmasını ortaya çıkan kaydedilen işlem durumu bilinmiyor. Bkz. Bu [blog gönderisi](http://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) daha fazla ayrıntı için.
+Genel olarak, bir bağlantı hatası olduğunda geçerli işlem geri alınır. İşlem devam ederken bağlantı kesilirse ancak durdurulmasını ortaya çıkan kaydedilen işlem durumu bilinmiyor. Bkz. Bu [blog gönderisi](https://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) daha fazla ayrıntı için.
 
 Varsayılan olarak, yürütme stratejisi işlemin işlem geri alındı, ancak böyle değilse yeni bir veritabanı durumu uyumsuz ya da yol açabilir bunu bir özel durum neden olur, olarak yeniden **veri bozulması** varsa işlem otomatik olarak oluşturulan anahtar değerleri içeren yeni bir satır eklendiğinde örneğin belirli bir durumdaki bağımlı kalmayacak.
 

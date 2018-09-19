@@ -3,12 +3,12 @@ title: Yeni bir veritabanı - EF6 öncelikle kod
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 2df6cb0a-7d8b-4e28-9d05-e2b9a90125af
-ms.openlocfilehash: 6572574ad36094ac0960c429cfa8606b6aebb492
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: a19db575b685cde98509fff4a0efaf26106b26bc
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490760"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46284128"
 ---
 # <a name="code-first-to-a-new-database"></a>Yeni bir veritabanına ilk kod
 Bu video ve adım adım kılavuz, yeni bir veritabanını hedefleyen Code First geliştirmeye giriş sağlar. Mevcut bir veritabanını hedefleyen bu senaryo içerir ve Code First oluşturur ya da boş bir veritabanı, Code First yeni tablolara ekleyeceksiniz. Kod ilk sağlar, C kullanarak modelinizi tanımlamanızı\# veya VB.Net sınıflar. Ek yapılandırma, sınıfları ve özellikleri ya da fluent API'sini kullanarak özniteliklerini kullanarak isteğe bağlı olarak gerçekleştirilebilir.
@@ -18,13 +18,13 @@ Bu videoda yeni bir veritabanını hedefleyen Code First geliştirmeye giriş sa
 
 **Tarafından sunulan**: [Rowan Miller](http://romiller.com/)
 
-**Video**: [WMV](http://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.wmv) | [MP4](http://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-mp4Video-CodeFirstNewDatabase.m4v) | [WMV (ZIP)](http://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.zip)
+**Video**: [WMV](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.wmv) | [MP4](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-mp4Video-CodeFirstNewDatabase.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.zip)
 
 ## <a name="pre-requisites"></a>Ön koşullar
 
 Bu izlenecek yolu tamamlamak için Visual Studio 2012 yüklü veya en az Visual Studio 2010 olması gerekir.
 
-Visual Studio 2010 kullanıyorsanız, aynı zamanda sahip gerekecektir [NuGet](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklü.
+Visual Studio 2010 kullanıyorsanız, aynı zamanda sahip gerekecektir [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklü.
 
 ## <a name="1-create-the-application"></a>1. Uygulama oluşturma
 
@@ -71,7 +71,7 @@ Artık sorgu ve veri kaydetmek bize izin vererek, veritabanı ile bir oturumu te
 Şu anda yüzden EntityFramework NuGet paketini eklemek Entity Framework türlerinden kullanılacak başlatılıyor.
 
 -   **Proje –&gt; NuGet paketlerini Yönet...**
-    Not: yoksa **NuGet paketlerini Yönet...** seçeneğini yüklemelisiniz [en son NuGet sürümünü](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)
+    Not: yoksa **NuGet paketlerini Yönet...** seçeneğini yüklemelisiniz [en son NuGet sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)
 -   Seçin **çevrimiçi** sekmesi
 -   Seçin **EntityFramework** paket
 -   Tıklayın **yükleyin**

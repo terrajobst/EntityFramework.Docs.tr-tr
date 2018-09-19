@@ -4,39 +4,32 @@ author: divega
 ms.date: 08/13/2017
 ms.assetid: 8BD43C8C-63D9-4F3A-B954-7BC518A1B7DB
 uid: core/miscellaneous/1x-2x-upgrade
-ms.openlocfilehash: f0d85b3ba22c09d2bd48e8b34ed628a7474322d3
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 5371c8f3b7c6102c621296bbae145d13779e0c6e
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490499"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283777"
 ---
 # <a name="upgrading-applications-from-previous-versions-to-ef-core-20"></a>Uygulamaları, EF Core 2.0 için önceki sürümlerinden yükseltme
 
 Biz, önemli ölçüde bizim mevcut API'lere ve 2.0 davranışlarını iyileştirmek için Fırsat yönlendirdik. Uygulamaların çoğu için inanıyoruz, ancak etkileri düşük yeniden derleme ve eski API'ler değiştirilecek destekli küçük değişiklikler gerektiren çoğu durumda, mevcut uygulama kodunun değiştirilmesi gereken birkaç geliştirmeleri vardır.
 
-## <a name="procedures-common-to-all-applications"></a>Tüm uygulamalar için genel yordamlar
-
 EF Core 2.0 için mevcut bir uygulamayı güncelleştirme gerektirebilir:
 
-1. .NET Standard 2.0 destekleyen bir uygulamanın hedef .NET platformu yükseltiliyor. Bkz: [desteklenen platformlar](../platforms/index.md) daha fazla ayrıntı için.
+1. .NET Standard 2.0 destekleyen bir uygulamanın hedef .NET uygulamasından yükseltme. Bkz: [desteklenen .NET uygulamalarıyla](../platforms/index.md) daha fazla ayrıntı için.
 
 2. EF Core 2.0 ile uyumlu olan hedef veritabanı için bir sağlayıcı tanımlar. Bkz: [EF Core 2.0 gerektirir 2.0 veritabanı sağlayıcısı](#ef-core-20-requires-a-20-database-provider) aşağıda.
 
 3. Tüm EF Core paketleri (çalışma zamanı ve araç) 2.0 için yükseltiliyor. Başvurmak [yükleme EF Core](../get-started/install/index.md) daha fazla ayrıntı için.
 
-4. Önemli değişiklikler için dengelemek için gereken kod değişikliklerini yapın. Bkz: [bozucu değişiklikleri](#breaking-changes) bölümünde daha fazla ayrıntı için.
+4. Bu belgenin geri kalanında açıklanan bozucu değişiklikler için gereken kod değişikliklerini yapın.
 
-## <a name="aspnet-core-applications"></a>ASP.NET Core uygulamaları
+## <a name="aspnet-core-now-includes-ef-core"></a>ASP.NET Core EF Core artık içerir.
 
-1. Özellikle bkz [uygulamanın hizmet sağlayıcısı başlatılırken yeni Düzen](#new-way-of-getting-application-services) aşağıda açıklanmıştır.
+ASP.NET Core 2.0 hedefleyen uygulamalar, üçüncü taraf veritabanı sağlayıcıları yanı sıra ek bağımlılıkları olmadan EF Core 2.0 kullanabilirsiniz. Ancak, ASP.NET Core'nın önceki sürümlerini hedefleyen uygulamalar EF Core 2.0 kullanmak için ASP.NET Core 2. 0'ı yükseltmeniz gerekir. ASP.NET Core 2.0 uygulamaları yükseltme hakkında daha fazla ayrıntı görmek için [konu üzerinde ASP.NET Core belgeleri](https://docs.microsoft.com/aspnet/core/migration/1x-to-2x/).
 
-> [!TIP]  
-> 2.0 uygulamaları güncelleştirme önemle tavsiye edilir ve çalışılabilmesi Entity Framework Code Migrations gibi ürün özellikleri için gerekli olan bu yeni düzen benimsenmesini. Yaygın bir alternatif [uygulamak *IDesignTimeDbContextFactory\<TContext >*](xref:core/miscellaneous/cli/dbcontext-creation#from-a-design-time-factory).
-
-2. ASP.NET Core 2.0 hedefleyen uygulamalar, üçüncü taraf veritabanı sağlayıcıları yanı sıra ek bağımlılıkları olmadan EF Core 2.0 kullanabilirsiniz. Ancak, ASP.NET Core'nın önceki sürümlerini hedefleyen uygulamalar EF Core 2.0 kullanmak için ASP.NET Core 2. 0'ı yükseltmeniz gerekir. ASP.NET Core 2.0 uygulamaları yükseltme hakkında daha fazla ayrıntı görmek için [konu üzerinde ASP.NET Core belgeleri](https://docs.microsoft.com/aspnet/core/migration/1x-to-2x/).
-
-## <a name="new-way-of-getting-application-services"></a>Uygulama Hizmetleri yeni yöntemi
+## <a name="new-way-of-getting-application-services-in-aspnet-core"></a>Uygulama Hizmetleri ASP.NET Core yeni yöntemi
 
 ASP.NET Core web uygulamaları için önerilen Düzen 2.0 EF Core 1.x içinde kullanılan tasarım zamanı mantığını kesildi şekilde güncelleştirildi. Tasarım zamanında, çağırmak daha önce EF Core isteriz `Startup.ConfigureServices` doğrudan uygulamanın hizmet sağlayıcısı erişebilmek için. ASP.NET Core 2.0 sürümünde, yapılandırma dışında başlatılır `Startup` sınıfı. EF Core genellikle kullanan uygulamalar, bağlantı dizesi bu nedenle yapılandırmasından erişim `Startup` kendisi tarafından artık yeterli değil. Bir ASP.NET Core 1.x uygulaması yükseltirseniz, EF Core araçlarını kullanırken aşağıdaki hatayı alabilirsiniz.
 
@@ -64,6 +57,8 @@ namespace AspNetCoreDotNetCore2._0App
     }
 }
 ```
+
+2.0 uygulamaları güncelleştirme önemle tavsiye edilir ve çalışılabilmesi Entity Framework Code Migrations gibi ürün özellikleri için gerekli olan bu yeni düzen benimsenmesini. Yaygın bir alternatif [uygulamak *IDesignTimeDbContextFactory\<TContext >*](xref:core/miscellaneous/cli/dbcontext-creation#from-a-design-time-factory).
 
 ## <a name="idbcontextfactory-renamed"></a>IDbContextFactory yeniden adlandırıldı
 

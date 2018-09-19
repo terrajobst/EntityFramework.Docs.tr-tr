@@ -3,12 +3,12 @@ title: Model tabanlı kuralları - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 0fc4eef8-29b8-4192-9c77-08fd33d3db3a
-ms.openlocfilehash: fb79164f71cb3afff705a83f5078a13d043abca8
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 80b722730b4ca6c9d00a8611b6c9027e8bc9fe61
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490941"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283713"
 ---
 # <a name="model-based-conventions"></a>Model tabanlı kuralları
 > [!NOTE]
@@ -146,7 +146,7 @@ public class ForeignKeyNamingConvention : IStoreModelConvention<AssociationType>
 
 ## <a name="extending-existing-conventions"></a>Var olan kuralları genişletme   
 
-Entity Framework modelinize zaten uygulanan kuralları birini benzer bir kuralı yazmak gerekiyorsa, her zaman sıfırdan yeniden yazmak zorunda kalmamak için kuralı genişletebilirsiniz.  Buna örnek olarak mevcut kimliği ile özel bir kural eşleşen değiştirmektir.   Anahtar kuralı geçersiz kılma için ek bir avantaj, yalnızca zaten algılandığında veya açıkça yapılandırılmış anahtar ise metod çağrılmadığı ' dir. Kurallarının bir listesini Entity Framework tarafından kullanılan kullanılabilir buraya: [ http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx ](http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx).  
+Entity Framework modelinize zaten uygulanan kuralları birini benzer bir kuralı yazmak gerekiyorsa, her zaman sıfırdan yeniden yazmak zorunda kalmamak için kuralı genişletebilirsiniz.  Buna örnek olarak mevcut kimliği ile özel bir kural eşleşen değiştirmektir.   Anahtar kuralı geçersiz kılma için ek bir avantaj, yalnızca zaten algılandığında veya açıkça yapılandırılmış anahtar ise metod çağrılmadığı ' dir. Kurallarının bir listesini Entity Framework tarafından kullanılan kullanılabilir buraya: [ http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx ](https://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx).  
 
 ``` csharp
 using System.Data.Entity;
@@ -209,4 +209,4 @@ public class BlogContext : DbContext
 
 ## <a name="notes"></a>Notlar  
 
-Entity Framework tarafından uygulanmış kuralları listesini burada MSDN belgelerinde bulunabilir: [ http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx ](http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx).  Bu liste, doğrudan bizim kaynak koddan çekilir.  Entity Framework 6 için kaynak kodu kullanılabilir [GitHub](https://github.com/aspnet/entityframework6/) ve Entity Framework tarafından kullanılan kurallara birçoğu iyi başlangıç noktaları için özel model tabanlı kuralları.  
+Entity Framework tarafından uygulanmış kuralları listesini burada MSDN belgelerinde bulunabilir: [ http://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx ](https://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx).  Bu liste, doğrudan bizim kaynak koddan çekilir.  Entity Framework 6 için kaynak kodu kullanılabilir [GitHub](https://github.com/aspnet/entityframework6/) ve Entity Framework tarafından kullanılan kurallara birçoğu iyi başlangıç noktaları için özel model tabanlı kuralları.  

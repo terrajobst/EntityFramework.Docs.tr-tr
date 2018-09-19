@@ -3,12 +3,12 @@ title: EF6 öncelikle - veritabanı
 author: divega
 ms.date: 10/23/2016
 ms.assetid: cc6ffdb3-388d-4e79-a201-01ec2577c949
-ms.openlocfilehash: b499dea02cbeaa64f6ef87bf89cc739110c8b560
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: c81025fe7c3ad6398f003f7be2a3f9f072eec327
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490928"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46284089"
 ---
 # <a name="database-first"></a>İlk veritabanı
 Bu video ve adım adım izlenecek yol, Entity Framework kullanarak veritabanı First geliştirmeye giriş sağlar. Veritabanı ilk ters mühendislik varolan bir veritabanını modelden sağlar. Model bir EDMX dosyası (.edmx uzantısı) depolanır ve görüntülenebilir ve Entity Framework Tasarımcısı'nda düzenlenebilir. Uygulamanıza etkileşim sınıfları EDMX dosyasından otomatik olarak oluşturulur.
@@ -18,13 +18,13 @@ Bu videoda, Entity Framework kullanarak veritabanı ilk geliştirme tanıtılmak
 
 **Tarafından sunulan**: [Rowan Miller](http://romiller.com/)
 
-**Video**: [WMV](http://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.wmv) | [MP4](http://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-mp4video-databasefirst.m4v) | [WMV (ZIP)](http://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.zip)
+**Video**: [WMV](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.wmv) | [MP4](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-mp4video-databasefirst.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.zip)
 
 ## <a name="pre-requisites"></a>Ön koşullar
 
 Bu izlenecek yolu tamamlamak için Visual Studio 2012 yüklü veya en az Visual Studio 2010 olması gerekir.
 
-Visual Studio 2010 kullanıyorsanız, aynı zamanda sahip gerekecektir [NuGet](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklü.
+Visual Studio 2010 kullanıyorsanız, aynı zamanda sahip gerekecektir [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklü.
 
  
 
@@ -124,7 +124,7 @@ Visual Studio 2010'da çalışıyorsanız Entity Framework'ün en son sürüme y
 Öncelikle, Nuget'ten Entity Framework'ün en son sürümünü almak ihtiyacımız var.
 
 -   **Proje –&gt; NuGet paketlerini Yönet... ** 
-     *Yoksa **NuGet paketlerini Yönet... ** yüklemelisiniz seçeneği [en son NuGet sürümünü](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)*
+     *Yoksa **NuGet paketlerini Yönet... ** yüklemelisiniz seçeneği [en son NuGet sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)*
 -   Seçin **çevrimiçi** sekmesi
 -   Seçin **EntityFramework** paket
 -   Tıklayın **yükleyin**

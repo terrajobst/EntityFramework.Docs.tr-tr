@@ -3,12 +3,12 @@ title: Eski sürümler - EF6 olan Entity Framework'ün
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 1060bb99-765f-4f32-aaeb-d6635d3dbd3e
-ms.openlocfilehash: 4c711bb48938e5c0432881c61766b0bff66498f2
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 4fa27f8259ecc011d9d30080aee3c44353ef533d
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490150"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283998"
 ---
 # <a name="past-releases-of-entity-framework"></a>Eski sürümler Entity Framework'ün
 
@@ -127,7 +127,7 @@ Entity Framework Designer Visual Studio 2012'de de birden çok diyagramları, he
 
 Özellikle EF 5 sürüm için bir araya içerik listesi aşağıda verilmiştir.
 
--   [EF 5 yayın sonrası](http://blogs.msdn.com/b/adonet/archive/2012/08/15/ef5-released.aspx)
+-   [EF 5 yayın sonrası](https://blogs.msdn.com/b/adonet/archive/2012/08/15/ef5-released.aspx)
 -   EF5 yeni özellikler
     -   [Sabit listesi kod ilk desteği](~/ef6/modeling/code-first/data-types/enums.md)
     -   [EF Designer enum desteği](~/ef6/modeling/designer/data-types/enums.md)
@@ -194,16 +194,16 @@ Bu düzeltme eki sürümü dahil bazı EF 4.3 yayın yönelik hata düzeltmeleri
 
 Özellikle 4.3.1 EF yayın için bir araya içerik listesini burada, çoğu EF 4.1 için sağlanan içeriği hala geçerlidir EF 4.3 için de.
 
--   [EF 4.3.1 sürüm Blog Gönderisi](http://blogs.msdn.com/b/adonet/archive/2012/02/29/ef4-3-1-and-ef5-beta-1-available-on-nuget.aspx)
+-   [EF 4.3.1 sürüm Blog Gönderisi](https://blogs.msdn.com/b/adonet/archive/2012/02/29/ef4-3-1-and-ef5-beta-1-available-on-nuget.aspx)
 
 ## <a name="ef-43"></a>EF 4.3
 4.3.0 EF çalışma zamanı için NuGet'ın Şubat 2012'de bırakıldığını.
 Bu sürüm kodu, Code First modeli geliştikçe artımlı olarak değiştirilmesi ilk tarafından oluşturulmuş bir veritabanı sağlayan yeni bir Code First Migrations özelliği eklenmiştir.
 
 Özellikle EF 4.3 yayını için bir araya içerik listesini İşte, çoğu EF 4.1 için sağlanan içeriği hala geçerlidir EF 4.3 için de:
--   [EF 4.3 yayın sonrası](http://blogs.msdn.com/b/adonet/archive/2012/02/09/ef-4-3-released.aspx)
--   [EF 4.3 kod tabanlı geçişler gözden geçirme](http://blogs.msdn.com/b/adonet/archive/2012/02/09/ef-4-3-code-based-migrations-walkthrough.aspx)
--   [EF 4.3 otomatik geçişleri gözden geçirme](http://blogs.msdn.com/b/adonet/archive/2012/02/09/ef-4-3-automatic-migrations-walkthrough.aspx)
+-   [EF 4.3 yayın sonrası](https://blogs.msdn.com/b/adonet/archive/2012/02/09/ef-4-3-released.aspx)
+-   [EF 4.3 kod tabanlı geçişler gözden geçirme](https://blogs.msdn.com/b/adonet/archive/2012/02/09/ef-4-3-code-based-migrations-walkthrough.aspx)
+-   [EF 4.3 otomatik geçişleri gözden geçirme](https://blogs.msdn.com/b/adonet/archive/2012/02/09/ef-4-3-automatic-migrations-walkthrough.aspx)
 
 ## <a name="ef-42"></a>EF 4.2
 4.2.0 EF çalışma zamanı için NuGet'ın Kasım 2011'in bırakıldığını.
@@ -212,9 +212,9 @@ Bu sürüm yalnızca içerdiğinden, hata düzeltmeleri, olduğu EF 4.1.2 düzel
 
 Özellikle EF 4.2 sürümü için bir araya içerik listesini burada, EF 4.1 için sağlanan içerik yine de EF 4.2 için de geçerlidir.
 
--   [EF 4.2 yayın sonrası](http://blogs.msdn.com/b/adonet/archive/2011/11/01/ef-4-2-released.aspx)
--   [Kod ilk gözden geçirme](http://blogs.msdn.com/b/adonet/archive/2011/09/28/ef-4-2-code-first-walkthrough.aspx)
--   [Model & veritabanı ilk Kılavuzu](http://blogs.msdn.com/b/adonet/archive/2011/09/28/ef-4-2-model-amp-database-first-walkthrough.aspx)
+-   [EF 4.2 yayın sonrası](https://blogs.msdn.com/b/adonet/archive/2011/11/01/ef-4-2-released.aspx)
+-   [Kod ilk gözden geçirme](https://blogs.msdn.com/b/adonet/archive/2011/09/28/ef-4-2-code-first-walkthrough.aspx)
+-   [Model & veritabanı ilk Kılavuzu](https://blogs.msdn.com/b/adonet/archive/2011/09/28/ef-4-2-model-amp-database-first-walkthrough.aspx)
 
 ## <a name="ef-411"></a>EF 4.1.1
 4.1.10715 EF çalışma zamanı için NuGet Temmuz 2011'in bırakıldığını.
@@ -227,7 +227,7 @@ Bu sürüm EF 4.1 düzeltme eki 1 (veya EF 4.1.1) olarak düşünebilirsiniz.
 
 İşte biz put birlikte 4.1.1 için içerik listesini sürüm:
 
--   [EF 4.1.1 yayın sonrası](http://blogs.msdn.com/b/adonet/archive/2011/07/25/ef-4-1-update-1-released.aspx)
+-   [EF 4.1.1 yayın sonrası](https://blogs.msdn.com/b/adonet/archive/2011/07/25/ef-4-1-update-1-released.aspx)
 
 ## <a name="ef-41"></a>EF 4.1
 4.1.10331 EF çalışma zamanı, Nisan 2011'in NuGet üzerinde yayımlanacak ilk oluştu.
@@ -238,10 +238,10 @@ Benimsemeye karar vermeden tarihi düzeltme eki sürümleri kullanılacak kullan
 
 4.1 sürüm için bir araya içerik listesi aşağıda verilmiştir. Çoğu, Entity Framework daha sonraki sürümleri için hala geçerlidir:
 
--   [EF 4.1 yayın sonrası](http://blogs.msdn.com/b/adonet/archive/2011/04/11/ef-4-1-released.aspx)
--   [Kod ilk gözden geçirme](http://blogs.msdn.com/b/adonet/archive/2011/03/15/ef-4-1-code-first-walkthrough.aspx)
--   [Model & veritabanı ilk Kılavuzu](http://blogs.msdn.com/b/adonet/archive/2011/03/15/ef-4-1-model-amp-database-first-walkthrough.aspx)
--   [SQL Azure Federasyonlar ve Entity Framework](http://blogs.msdn.com/b/adonet/archive/2012/01/10/sql-azure-federations-and-the-entity-framework.aspx)
+-   [EF 4.1 yayın sonrası](https://blogs.msdn.com/b/adonet/archive/2011/04/11/ef-4-1-released.aspx)
+-   [Kod ilk gözden geçirme](https://blogs.msdn.com/b/adonet/archive/2011/03/15/ef-4-1-code-first-walkthrough.aspx)
+-   [Model & veritabanı ilk Kılavuzu](https://blogs.msdn.com/b/adonet/archive/2011/03/15/ef-4-1-model-amp-database-first-walkthrough.aspx)
+-   [SQL Azure Federasyonlar ve Entity Framework](https://blogs.msdn.com/b/adonet/archive/2012/01/10/sql-azure-federations-and-the-entity-framework.aspx)
 
 ## <a name="ef-40"></a>EF 4.0
 Bu sürümde, .NET Framework 4 ve Visual Studio 2010, Nisan 2010'da eklenmiştir.

@@ -3,12 +3,12 @@ title: -EF6 gibi sahte bir çerçeve ile test etme
 author: divega
 ms.date: 10/23/2016
 ms.assetid: bd66a638-d245-44d4-8e71-b9c6cb335cc7
-ms.openlocfilehash: b50d0afb52ae1c496f2734ecc015cdaaa060aff7
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 20799b55b2dffe27637c4fb84df06cee174e6dd9
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489979"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46284102"
 ---
 # <a name="testing-with-a-mocking-framework"></a>Sahte bir framework ile test etme
 > [!NOTE]
@@ -235,7 +235,7 @@ Entity Framework 6 zaman uyumsuz olarak bir sorgu yürütmek için kullanılan g
 
 Entity Framework sorguları LINQ yararlanması için genişletme yöntemleri Iqueryable ve IEnumerable tanımlanır. Ancak, yalnızca Entity Framework ile kullanılmak üzere tasarlandığından bir Entity Framework sorgu olmayan bir LINQ sorgusu kullanmayı denerseniz şu hatayı alabilirsiniz:
 
-> Iqueryable kaynak IDbAsyncEnumerable uygulamayan{0}. IDbAsyncEnumerable uygulayan kaynakları Entity Framework zaman uyumsuz işlemler için kullanılabilir. Daha fazla ayrıntı için bkz: [ http://go.microsoft.com/fwlink/?LinkId=287068 ](http://go.microsoft.com/fwlink/?LinkId=287068).  
+> Iqueryable kaynak IDbAsyncEnumerable uygulamayan{0}. IDbAsyncEnumerable uygulayan kaynakları Entity Framework zaman uyumsuz işlemler için kullanılabilir. Daha fazla ayrıntı için bkz: [ http://go.microsoft.com/fwlink/?LinkId=287068 ](https://go.microsoft.com/fwlink/?LinkId=287068).  
 
 Zaman uyumsuz yöntemler, yalnızca bir EF sorgusu çalıştırılırken desteklenir artırabileceksiniz çalışan bellek içi karşı test çift olan bir DB, birim testiniz kullanmak isteyebilirsiniz.  
 

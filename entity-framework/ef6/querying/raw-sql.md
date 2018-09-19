@@ -3,12 +3,12 @@ title: Ham SQL sorguları - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 9e1ee76e-2499-408c-81e8-9b6c5d1945a0
-ms.openlocfilehash: 6b00648939ccedffeed09b4e1d6e8d70fa262a36
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 168aee67186535bf2a50705e86bfc5a88147e369
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490590"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283790"
 ---
 # <a name="raw-sql-queries"></a>Ham SQL sorguları
 Entity Framework, varlık sınıfları ile LINQ kullanarak sorgulama sağlar. Ancak, kullanarak doğrudan veritabanında ham SQL sorguları çalıştırmak istediğiniz zamanlar olabilir. Bu, şu anda saklı yordamlar için eşleme desteklemeyen Code First modelleri için yararlı olabilir saklı yordam çağırma içerir. Bu konuda gösterilen teknikleri Code First ve EF Designer ile oluşturulan modeller için eşit oranda geçerlidir.  
@@ -82,4 +82,4 @@ Varlıkları yüklenen veya veritabanından yeniden kadar ExecuteSqlCommand kull
 
 ### <a name="output-parameters"></a>Çıktı Parametreleri  
 
-Çıktı parametreleri kullandıysanız değerleri sonuçları tamamen okunana kadar kullanılamaz. Bu dbdatareader öğesine dönüştürülemedi arka plandaki davranışı nedeniyle, bkz: [alma verileri kullanarak bir DataReader](http://go.microsoft.com/fwlink/?LinkID=398589) daha fazla ayrıntı için.  
+Çıktı parametreleri kullandıysanız değerleri sonuçları tamamen okunana kadar kullanılamaz. Bu dbdatareader öğesine dönüştürülemedi arka plandaki davranışı nedeniyle, bkz: [alma verileri kullanarak bir DataReader](https://go.microsoft.com/fwlink/?LinkID=398589) daha fazla ayrıntı için.  

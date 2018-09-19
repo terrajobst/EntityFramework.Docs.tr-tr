@@ -3,12 +3,12 @@ title: Saklı yordamları - EF6 Sorgu Tasarımcısı
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 9554ed25-c5c1-43be-acad-5da37739697f
-ms.openlocfilehash: 6284b10261e6f3b9bf69d1c15e121988e4976d48
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 04478ea1c8cd43a7ba4ee788e464992af3de7f64
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489953"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283907"
 ---
 # <a name="designer-query-stored-procedures"></a>Sorgu Tasarımcısı saklı yordamlar
 Bu adım adım bir modele saklı yordamlar içeri aktarmak için Entity Framework Designer (EF Designer) kullanın ve ardından sonuçları almak için içeri aktarılan saklı yordamları çağırmak nasıl gösterir. 
@@ -100,4 +100,4 @@ The department name is Engineering
 <a name="output-parameters"></a>Çıktı Parametreleri
 -----------------
 
-Çıktı parametreleri kullandıysanız değerleri sonuçları tamamen okunana kadar kullanılamaz. Bu dbdatareader öğesine dönüştürülemedi arka plandaki davranışı nedeniyle, bkz: [alma verileri kullanarak bir DataReader](http://go.microsoft.com/fwlink/?LinkID=398589) daha fazla ayrıntı için.
+Çıktı parametreleri kullandıysanız değerleri sonuçları tamamen okunana kadar kullanılamaz. Bu dbdatareader öğesine dönüştürülemedi arka plandaki davranışı nedeniyle, bkz: [alma verileri kullanarak bir DataReader](https://go.microsoft.com/fwlink/?LinkID=398589) daha fazla ayrıntı için.

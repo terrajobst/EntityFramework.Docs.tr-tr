@@ -3,12 +3,12 @@ title: EF6 öncelikle - model
 author: divega
 ms.date: 10/23/2016
 ms.assetid: e1b9c319-bb8a-4417-ac94-7890f257e7f6
-ms.openlocfilehash: 8e010f95db40261073b4af80a3c0e3225a2cd1cf
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: d429d5ea590b22c77f3f7f0bcfbd5dfc0a3e0049
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490486"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283881"
 ---
 # <a name="model-first"></a>İlk model
 Bu video ve adım adım izlenecek yol, Entity Framework kullanarak Model First geliştirmeye giriş sağlar. Model, Entity Framework Designer kullanarak yeni bir model oluşturmak ve ardından bir veritabanı şema modeli oluşturmak öncelikle sağlar. Model bir EDMX dosyası (.edmx uzantısı) depolanır ve görüntülenebilir ve Entity Framework Tasarımcısı'nda düzenlenebilir. Uygulamanıza etkileşim sınıfları EDMX dosyasından otomatik olarak oluşturulur.
@@ -18,13 +18,13 @@ Bu video ve adım adım izlenecek yol, Entity Framework kullanarak Model First g
 
 **Tarafından sunulan**: [Rowan Miller](http://romiller.com/)
 
-**Video**: [WMV](http://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-winvideo-modelfirst.wmv) | [MP4](http://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-mp4video-modelfirst.m4v) | [WMV (ZIP)](http://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-winvideo-modelfirst.zip)
+**Video**: [WMV](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-winvideo-modelfirst.wmv) | [MP4](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-mp4video-modelfirst.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-winvideo-modelfirst.zip)
 
 ## <a name="pre-requisites"></a>Ön koşullar
 
 Bu izlenecek yolu tamamlamak için Visual Studio 2012 yüklü veya Visual Studio 2010 olması gerekir.
 
-Visual Studio 2010 kullanıyorsanız, aynı zamanda sahip gerekecektir [NuGet](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklü.
+Visual Studio 2010 kullanıyorsanız, aynı zamanda sahip gerekecektir [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklü.
 
 ## <a name="1-create-the-application"></a>1. Uygulama oluşturma
 
@@ -84,7 +84,7 @@ Visual Studio 2010'da çalışıyorsanız Entity Framework'ün en son sürüme y
 Öncelikle, Nuget'ten Entity Framework'ün en son sürümünü almak ihtiyacımız var.
 
 -   **Proje –&gt; NuGet paketlerini Yönet... ** 
-     *Yoksa **NuGet paketlerini Yönet... ** yüklemelisiniz seçeneği [en son NuGet sürümünü](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)*
+     *Yoksa **NuGet paketlerini Yönet... ** yüklemelisiniz seçeneği [en son NuGet sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)*
 -   Seçin **çevrimiçi** sekmesi
 -   Seçin **EntityFramework** paket
 -   Tıklayın **yükleyin**

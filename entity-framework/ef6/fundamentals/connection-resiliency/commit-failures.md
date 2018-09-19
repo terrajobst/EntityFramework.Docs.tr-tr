@@ -3,18 +3,18 @@ title: İşlem işleme hataları - EF6 işleme
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 5b1f7a7d-1b24-4645-95ec-5608a31ef577
-ms.openlocfilehash: 71d5649dd993bb95e24165a55d812c71a37f03f3
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 27e75e6a1919ee2300fe76cfcdf67cceaad887b3
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489394"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283660"
 ---
 # <a name="handling-transaction-commit-failures"></a>İşlem işleme hatalarını işleme
 > [!NOTE]
 > **EF6.1 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb. Entity Framework 6.1 kullanıma sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.  
 
-6.1 bir parçası olarak yeni bir bağlantı dayanıklılığı özelliği için EF sunuyoruz: algılamak ve geçici bağlantı hataları hareket işleme bildirim zaman etkileyen otomatik olarak kurtarmak yeteneği. Senaryo tam ayrıntılarını en iyi blog gönderisinde açıklanan [SQL veritabanı bağlantısı ve Teklik sorunu](http://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx).  Özet olarak, bir işlem kaydı sırasında bir özel durum harekete geçirildiğinde, iki olası nedeni vardır senaryodur:  
+6.1 bir parçası olarak yeni bir bağlantı dayanıklılığı özelliği için EF sunuyoruz: algılamak ve geçici bağlantı hataları hareket işleme bildirim zaman etkileyen otomatik olarak kurtarmak yeteneği. Senaryo tam ayrıntılarını en iyi blog gönderisinde açıklanan [SQL veritabanı bağlantısı ve Teklik sorunu](https://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx).  Özet olarak, bir işlem kaydı sırasında bir özel durum harekete geçirildiğinde, iki olası nedeni vardır senaryodur:  
 
 1. İşlem yürütme sunucuda başarısız oldu
 2. İşlem işleme sunucu üzerinde başarılı ancak bir bağlantı sorunu başarı bildirimi, istemciye ulaşmasını önleyen  
@@ -69,4 +69,4 @@ EF artık ihtiyaç duyulmayan zaman çizelgesinden satırlar ayıklamak üzere e
      - Satır yoksa, geçerli işlemi yeniden denemek için bir yürütme stratejisi kullanın.  
   4. Kaydetme başarılı olursa, tablonun büyümesini önlemek için karşılık gelen satırı silin.  
 
-[Bu blog gönderisini](http://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) SQL Azure üzerinde bu işlemi gerçekleştirmek için örnek kod içerir.  
+[Bu blog gönderisini](https://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) SQL Azure üzerinde bu işlemi gerçekleştirmek için örnek kod içerir.  

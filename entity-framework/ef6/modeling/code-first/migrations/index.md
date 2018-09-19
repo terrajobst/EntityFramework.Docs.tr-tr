@@ -3,12 +3,12 @@ title: Code First geçişleri - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 36591d8f-36e1-4835-8a51-90f34f633d1e
-ms.openlocfilehash: 0e2f33d3402929c93a339ea26dcade875da52a61
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 389da6c54e063a5dc598f98f8ac92cfc0e686019
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490293"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283855"
 ---
 # <a name="code-first-migrations"></a>Code First geçişleri
 Code First geçişleri kod ilk iş akışınızı kullanıyorsa uygulamanın veritabanı şemasını gelişmek için önerilen yoldur. Geçişleri sağlayan araçlar sağlar:
@@ -96,7 +96,7 @@ Bu, bazı modelimiz için daha fazla değişiklik zamanı geldi.
     public string Url { get; set; }
 ```
 
-Uygulamayı çalıştırmak için olsaydı yeniden belirten bir InvalidOperationException elde edebileceğiniz *veritabanı oluşturulduktan sonra 'BlogContext' bağlam yedekleme modeli değişti. Veritabanını güncellemek için Code First Migrations'ı kullanmayı deneyin (* [ *http://go.microsoft.com/fwlink/?LinkId=238269* ](http://go.microsoft.com/fwlink/?LinkId=238269) *).*
+Uygulamayı çalıştırmak için olsaydı yeniden belirten bir InvalidOperationException elde edebileceğiniz *veritabanı oluşturulduktan sonra 'BlogContext' bağlam yedekleme modeli değişti. Veritabanını güncellemek için Code First Migrations'ı kullanmayı deneyin (* [ *http://go.microsoft.com/fwlink/?LinkId=238269* ](https://go.microsoft.com/fwlink/?LinkId=238269) *).*
 
 Özel durum da anlaşılacağı gibi Code First Migrations'ı kullanmaya başlamak için zaman var. İlk adım, geçişler için sunduğumuz bağlam etkinleştirmektir.
 

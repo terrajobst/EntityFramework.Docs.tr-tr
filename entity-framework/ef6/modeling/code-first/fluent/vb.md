@@ -3,12 +3,12 @@ title: Fluent API'si ile VB.NET - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 763dc6a2-764a-4600-896c-f6f13abf56ec
-ms.openlocfilehash: cbdd32696fb88d3de6cf1966040e5dda49fe19cd
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 6aa74fa72296f66f0b069b9b5ee7e2e016570525
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489478"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283751"
 ---
 # <a name="fluent-api-with-vbnet"></a>Fluent API'si ile VB.NET
 Kod ilk sağlar, C kullanarak modelinizi tanımlamanızı\# veya VB.NET sınıflar. Ek yapılandırma, sınıfları ve özellikleri ya da fluent API'sini kullanarak özniteliklerini kullanarak isteğe bağlı olarak gerçekleştirilebilir. Bu izlenecek yol VB.NET kullanarak fluent API'si yapılandırmasının nasıl yapıldığı gösterir.
@@ -22,7 +22,7 @@ Bu sayfa, Code First'ın temel bir anlayışa sahip varsayar. Code First hakkın
 
 Bu izlenecek yolu tamamlamak için Visual Studio 2012 yüklü veya en az Visual Studio 2010 olması gerekir.
 
-Visual Studio 2010 kullanıyorsanız, aynı zamanda sahip gerekecektir [NuGet](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklü
+Visual Studio 2010 kullanıyorsanız, aynı zamanda sahip gerekecektir [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklü
 
 ## <a name="create-the-application"></a>Uygulama oluşturma
 
@@ -139,7 +139,7 @@ Yüzden EntityFramework NuGet paketini eklemek Entity Framework türleri kullanm
 
 -   ** Proje –&gt; **NuGet paketlerini Yönet...**
 > [!NOTE]
-> Öğeniz yoksa **NuGet paketlerini Yönet...** seçeneğini yüklemelisiniz [en son NuGet sürümünü](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)
+> Öğeniz yoksa **NuGet paketlerini Yönet...** seçeneğini yüklemelisiniz [en son NuGet sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)
 -   Seçin **çevrimiçi** sekmesi
 -   Seçin **EntityFramework** paket
 -   Tıklayın **yükleyin**

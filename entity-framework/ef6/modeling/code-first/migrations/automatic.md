@@ -3,12 +3,12 @@ title: Otomatik Code First geçişleri - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 0eb86787-2161-4cb4-9cb8-67c5d6e95650
-ms.openlocfilehash: 21f77ef49db2485047292b3928b4f63d49dbb180
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 2713afaf09707b7696e90464aac9945c2d82d274
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489992"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283920"
 ---
 # <a name="automatic-code-first-migrations"></a>Otomatik Code First geçişleri
 Otomatik geçişleri yaptığınız her değişiklik için bir kod dosyası projenize zorunda kalmadan Code First Migrations kullanmanızı sağlar. Tüm değişiklikler otomatik olarak uygulanabilir; örneğin sütun yeniden adlandırma kod tabanlı bir geçiş kullanılmasını gerektirir.
@@ -97,7 +97,7 @@ Bu, bazı modelimiz için daha fazla değişiklik zamanı geldi.
     public string Url { get; set; }
 ```
 
-Uygulamayı çalıştırmak için olsaydı yeniden belirten bir InvalidOperationException elde edebileceğiniz *veritabanı oluşturulduktan sonra 'BlogContext' bağlam yedekleme modeli değişti. Veritabanını güncellemek için Code First Migrations'ı kullanmayı deneyin (* [ *http://go.microsoft.com/fwlink/?LinkId=238269* ](http://go.microsoft.com/fwlink/?LinkId=238269) *).*
+Uygulamayı çalıştırmak için olsaydı yeniden belirten bir InvalidOperationException elde edebileceğiniz *veritabanı oluşturulduktan sonra 'BlogContext' bağlam yedekleme modeli değişti. Veritabanını güncellemek için Code First Migrations'ı kullanmayı deneyin (* [ *http://go.microsoft.com/fwlink/?LinkId=238269* ](https://go.microsoft.com/fwlink/?LinkId=238269) *).*
 
 Özel durum da anlaşılacağı gibi Code First Migrations'ı kullanmaya başlamak için zaman var. Otomatik geçişleri kullanmak istediğimizden bunu belirtmek için dağıtacağız **– EnableAutomaticMigrations** geçin.
 
