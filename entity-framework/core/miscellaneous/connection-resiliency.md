@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 11/15/2016
 ms.assetid: e079d4af-c455-4a14-8e15-a8471516d748
 uid: core/miscellaneous/connection-resiliency
-ms.openlocfilehash: d6e31cf2b9b783ea503703536d159b34bf2e18c0
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: d5101d0622ddc2c90ddded16b9ec6cc4eb814c36
+ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997196"
+ms.lasthandoff: 09/18/2018
+ms.locfileid: "46283842"
 ---
 # <a name="connection-resiliency"></a><span data-ttu-id="e4c3b-102">Bağlantı Dayanıklılığı</span><span class="sxs-lookup"><span data-stu-id="e4c3b-102">Connection Resiliency</span></span>
 
@@ -49,7 +49,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
 ## <a name="transaction-commit-failure-and-the-idempotency-issue"></a><span data-ttu-id="e4c3b-122">İşlem yürütme hatası ve Teklik sorunu</span><span class="sxs-lookup"><span data-stu-id="e4c3b-122">Transaction commit failure and the idempotency issue</span></span>
 
-<span data-ttu-id="e4c3b-123">Genel olarak, bir bağlantı hatası olduğunda geçerli işlem geri alınır.</span><span class="sxs-lookup"><span data-stu-id="e4c3b-123">In general, when there is a connection failure the current transaction is rolled back.</span></span> <span data-ttu-id="e4c3b-124">İşlem devam ederken bağlantı kesilirse ancak durdurulmasını ortaya çıkan kaydedilen işlem durumu bilinmiyor.</span><span class="sxs-lookup"><span data-stu-id="e4c3b-124">However, if the connection is dropped while the transaction is being committed the resulting state of the transaction is unknown.</span></span> <span data-ttu-id="e4c3b-125">Bkz. Bu [blog gönderisi](http://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) daha fazla ayrıntı için.</span><span class="sxs-lookup"><span data-stu-id="e4c3b-125">See this [blog post](http://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) for more details.</span></span>
+<span data-ttu-id="e4c3b-123">Genel olarak, bir bağlantı hatası olduğunda geçerli işlem geri alınır.</span><span class="sxs-lookup"><span data-stu-id="e4c3b-123">In general, when there is a connection failure the current transaction is rolled back.</span></span> <span data-ttu-id="e4c3b-124">İşlem devam ederken bağlantı kesilirse ancak durdurulmasını ortaya çıkan kaydedilen işlem durumu bilinmiyor.</span><span class="sxs-lookup"><span data-stu-id="e4c3b-124">However, if the connection is dropped while the transaction is being committed the resulting state of the transaction is unknown.</span></span> <span data-ttu-id="e4c3b-125">Bkz. Bu [blog gönderisi](https://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) daha fazla ayrıntı için.</span><span class="sxs-lookup"><span data-stu-id="e4c3b-125">See this [blog post](https://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) for more details.</span></span>
 
 <span data-ttu-id="e4c3b-126">Varsayılan olarak, yürütme stratejisi işlemin işlem geri alındı, ancak böyle değilse yeni bir veritabanı durumu uyumsuz ya da yol açabilir bunu bir özel durum neden olur, olarak yeniden **veri bozulması** varsa işlem otomatik olarak oluşturulan anahtar değerleri içeren yeni bir satır eklendiğinde örneğin belirli bir durumdaki bağımlı kalmayacak.</span><span class="sxs-lookup"><span data-stu-id="e4c3b-126">By default, the execution strategy will retry the operation as if the transaction was rolled back, but if it's not the case this will result in an exception if the new database state is incompatible or could lead to **data corruption** if the operation does not rely on a particular state, for example when inserting a new row with auto-generated key values.</span></span>
 
