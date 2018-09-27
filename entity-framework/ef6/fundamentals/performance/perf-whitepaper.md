@@ -90,7 +90,7 @@ Küçük, basit modelleri için maliyet önceden üretilmiş görünümleri kull
 
 #### <a name="231-pre-generated-views-using-the-entity-framework-power-tools"></a>2.3.1 Entity Framework güç araçları kullanarak önceden üretilmiş görünümleri
 
-Ayrıca, model sınıfı dosyasını sağ tıklatın ve "Görünümleri Oluştur" seçmek için Entity Framework menüsünü kullanarak EDMX ve Code First modelleri, görünümleri oluşturmak için Entity Framework güç araçları kullanarak göz önünde bulundurun. Entity Framework güç araçları yalnızca DbContext türetilmiş bağlamları üzerinde çalışır ve adresinde bulunabilir \< http://visualstudiogallery.msdn.microsoft.com/72a60b14-1581-4b9b-89f2-846072eff19d>.
+Ayrıca, model sınıfı dosyasını sağ tıklatın ve "Görünümleri Oluştur" seçmek için Entity Framework menüsünü kullanarak EDMX ve Code First modelleri, görünümleri oluşturmak için Entity Framework güç araçları kullanarak göz önünde bulundurun. Entity Framework güç araçları yalnızca DbContext türetilmiş bağlamları üzerinde çalışır ve adresinde bulunabilir \<http://visualstudiogallery.msdn.microsoft.com/72a60b14-1581-4b9b-89f2-846072eff19d>.
 
 Entity Framework 6 üzerinde önceden üretilmiş görünümleri kullanma hakkında daha fazla bilgi için ziyaret [Pre-Generated eşleme görünümleri](~/ef6/fundamentals/performance/pre-generated-views.md).
 
@@ -106,16 +106,16 @@ Daha fazla başvuru için bkz. [nasıl yapılır: sorgu performansını artırma
 
 EDMGen görünümleri bir EDMX dosyası oluşturmak için de kullanabilirsiniz - daha önce başvurulan MSDN konusu - Bunu yapmak için bir derleme öncesi olay eklemeyi açıklar ancak bu karmaşık bir işlemdir ve burada mümkün olmayan bazı durumlar vardır. Genellikle, model bir edmx dosyası olduğunda görünümleri oluşturmak için T4 şablonu kullanmak daha kolaydır.
 
-Görünümü oluşturmak için T4 şablonu kullanmayı açıklayan bir gönderi ADO.NET ekibi blogu vardır ( \< http://blogs.msdn.com/b/adonet/archive/2008/06/20/how-to-use-a-t4-template-for-view-generation.aspx>). Bu gönderinin indirilir ve projenize eklediğiniz bir şablonu içerir. Entity Framework'ün en son sürümleri ile çalışmak için garantili olmayan şekilde şablonu, Entity Framework'ü ilk sürümü için yazılmıştır. Ancak, daha güncel bir görünüm oluşturma şablon yelpazesine Entity Framework 4 ve 5from için Visual Studio Galerisi indirebilirsiniz:
+Görünümü oluşturmak için T4 şablonu kullanmayı açıklayan bir gönderi ADO.NET ekibi blogu vardır ( \<http://blogs.msdn.com/b/adonet/archive/2008/06/20/how-to-use-a-t4-template-for-view-generation.aspx>). Bu gönderinin indirilir ve projenize eklediğiniz bir şablonu içerir. Entity Framework'ün en son sürümleri ile çalışmak için garantili olmayan şekilde şablonu, Entity Framework'ü ilk sürümü için yazılmıştır. Ancak, daha güncel bir görünüm oluşturma şablon yelpazesine Entity Framework 4 ve 5from için Visual Studio Galerisi indirebilirsiniz:
 
 -   VB.NET: \<http://visualstudiogallery.msdn.microsoft.com/118b44f2-1b91-4de2-a584-7a680418941d>
 -   C\#: \<http://visualstudiogallery.msdn.microsoft.com/ae7730ce-ddab-470f-8456-1b313cd2c44d>
 
-Entity Framework 6 kullanıyorsanız, görünüm oluşturma T4 şablonlarını konumundaki Visual Studio Galerisi'nden alabileceğiniz \< http://visualstudiogallery.msdn.microsoft.com/18a7db90-6705-4d19-9dd1-0a6c23d0751f>.
+Entity Framework 6 kullanıyorsanız, görünüm oluşturma T4 şablonlarını konumundaki Visual Studio Galerisi'nden alabileceğiniz \<http://visualstudiogallery.msdn.microsoft.com/18a7db90-6705-4d19-9dd1-0a6c23d0751f>.
 
 #### <a name="234-how-to-use-pre-generated-views-with-a-code-first-model"></a>2.3.4 nasıl bir Code First modeli Pre-Generated görünümlerini kullanma
 
-Ayrıca, önceden üretilmiş görünümleri Code First projesiyle kullanmak da mümkündür. Entity Framework güç araçları, kod ilk projeniz için bir görünüm dosyası oluşturmak için özelliğine sahiptir. Entity Framework güç araçları Visual Studio Galerisi bulabileceğiniz \< http://visualstudiogallery.msdn.microsoft.com/72a60b14-1581-4b9b-89f2-846072eff19d/>.
+Ayrıca, önceden üretilmiş görünümleri Code First projesiyle kullanmak da mümkündür. Entity Framework güç araçları, kod ilk projeniz için bir görünüm dosyası oluşturmak için özelliğine sahiptir. Entity Framework güç araçları Visual Studio Galerisi bulabileceğiniz \<http://visualstudiogallery.msdn.microsoft.com/72a60b14-1581-4b9b-89f2-846072eff19d/>.
 
 ### <a name="24-reducing-the-cost-of-view-generation"></a>2.4 azaltarak maliyet görünümü oluşturma
 
@@ -139,12 +139,12 @@ Entity Framework 4 ve 5'teki görünümleri önceden oluşturma EDMGen veya Enti
 
 Visual Studio'da EDMGen veya varlık Tasarımcısı kullanarak, varsayılan olarak FKs alın ve yalnızca IAS FKs arasında geçiş yapmak için tek bir onay kutusunun veya komut satırı bayrağı alır.
 
-Büyük bir Code First modeli varsa, bağımsız ilişkilerini kullanarak görünümü oluşturma hakkında aynı etkiye sahip. Bazı geliştiriciler kendi nesne modeli kirletmesini için bu düşünür ancak sınıflarda, bağımlı nesneler için yabancı anahtar özellikleri ekleyerek bu etkiyi önleyebilirsiniz. Bu konu hakkında daha fazla bilgi bulabilirsiniz \< http://blog.oneunicorn.com/2011/12/11/whats-the-deal-with-mapping-foreign-keys-using-the-entity-framework/>.
+Büyük bir Code First modeli varsa, bağımsız ilişkilerini kullanarak görünümü oluşturma hakkında aynı etkiye sahip. Bazı geliştiriciler kendi nesne modeli kirletmesini için bu düşünür ancak sınıflarda, bağımlı nesneler için yabancı anahtar özellikleri ekleyerek bu etkiyi önleyebilirsiniz. Bu konu hakkında daha fazla bilgi bulabilirsiniz \<http://blog.oneunicorn.com/2011/12/11/whats-the-deal-with-mapping-foreign-keys-using-the-entity-framework/>.
 
 | Kullanırken      | Bunu yapın                                                                                                                                                                                                                                                                                                                              |
 |:----------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Varlık Tasarımcısı | İki varlık arasında bir ilişki eklendikten sonra bir başvuru kısıtlaması olduğundan emin olun. Başvuru kısıtlamalarını yerine bağımsız ilişkilendirmeleri yabancı anahtarları kullanmak için Entity Framework söyleyin. Ek ayrıntılar için ziyaret edin \< http://blogs.msdn.com/b/efdesign/archive/2009/03/16/foreign-keys-in-the-entity-framework.aspx>. |
-| EDMGen          | EDMGen veritabanından dosyaları oluşturmak için kullanılırken, yabancı anahtarlar dikkate ve bu nedenle modele eklenir. EDMGen tarafından kullanıma sunulan farklı seçenekler hakkında daha fazla bilgi için ziyaret [ http://msdn.microsoft.com/library/bb387165.aspx ](https://msdn.microsoft.com/library/bb387165.aspx).                           |
+| Varlık Tasarımcısı | İki varlık arasında bir ilişki eklendikten sonra bir başvuru kısıtlaması olduğundan emin olun. Başvuru kısıtlamalarını yerine bağımsız ilişkilendirmeleri yabancı anahtarları kullanmak için Entity Framework söyleyin. Ek ayrıntılar için ziyaret edin \<http://blogs.msdn.com/b/efdesign/archive/2009/03/16/foreign-keys-in-the-entity-framework.aspx>. |
+| EDMGen          | EDMGen veritabanından dosyaları oluşturmak için kullanılırken, yabancı anahtarlar dikkate ve bu nedenle modele eklenir. EDMGen tarafından kullanıma sunulan farklı seçenekler hakkında daha fazla bilgi için ziyaret [http://msdn.microsoft.com/library/bb387165.aspx](https://msdn.microsoft.com/library/bb387165.aspx).                           |
 | İlk kod      | "İlişkisi kuralı" bölümüne bakın [kod öncelikli kurallar](~/ef6/modeling/code-first/conventions/built-in.md) Code First kullanarak bağımlı nesneler üzerinde yabancı anahtar özelliklerini eklemek hakkında daha fazla bilgi için konu.                                                                                              |
 
 #### <a name="242-moving-your-model-to-a-separate-assembly"></a>2.4.2 modeliniz için ayrı bir derleme taşıma
@@ -404,7 +404,7 @@ Entity Framework meta verileri önbelleğe almayı da destekler. Bu temelde tür
 4.  ItemCollection kullanım için düzenli olarak denetlenir. Bir çalışma alanı yakın zamanda eriştiğini değil belirlenirse sonraki önbellek Süpürme üzerinde Temizleme için işaretlenir.
 5.  Yalnızca bir EntityConnection oluşturma (bağlantı açılıncaya kadar içindeki öğe koleksiyonlarını başlatılmayacak rağmen) oluşturulması için bir meta veri önbelleği neden olur. Bu çalışma alanı bellek içi ermesine "kullanımda" değil, önbelleğe alma algoritmasını belirler.
 
-Müşteri danışma ekibi, "kullanımdan kaldırma" büyük modellerin kullanırken önlemek için bir ItemCollection bir başvuru tutan açıklayan bir blog gönderisi yazmıştır: \< http://blogs.msdn.com/b/appfabriccat/archive/2010/10/22/metadataworkspace-reference-in-wcf-services.aspx>.
+Müşteri danışma ekibi, "kullanımdan kaldırma" büyük modellerin kullanırken önlemek için bir ItemCollection bir başvuru tutan açıklayan bir blog gönderisi yazmıştır: \<http://blogs.msdn.com/b/appfabriccat/archive/2010/10/22/metadataworkspace-reference-in-wcf-services.aspx>.
 
 #### <a name="342-the-relationship-between-metadata-caching-and-query-plan-caching"></a>3.4.2 arasındaki ilişkiyi meta verileri önbelleğe alma ve sorgu planı önbelleğe alma
 
@@ -419,7 +419,7 @@ Bu uygulama, ikinci düzey önbelleğe alma ve sorgu yürütme planı hesaplanan
 #### <a name="351-additional-references-for-results-caching-with-the-wrapping-provider"></a>3.5.1 sonuçlar sarmalama sağlayıcısında önbelleğe alma için ek başvurular
 
 -   Windows Server AppFabric önbelleğe almayı kullanmak üzere örnek sarmalama sağlayıcı güncelleştirme içeren bir "İkinci düzey önbelleğe alma, Entity Framework ve Windows Azure" MSDN makalesi Julie Lerman yazmıştır: [https://msdn.microsoft.com/magazine/hh394143.aspx](https://msdn.microsoft.com/magazine/hh394143.aspx)
--   Entity Framework 5 ile çalışıyorsanız, önbelleğe alma sağlayıcısı için Entity Framework 5 ile çalışan gerçekleştirmeyi açıklayan bir gönderi ekibi blogu vardır: \< http://blogs.msdn.com/b/adonet/archive/2010/09/13/ef-caching-with-jarek-kowalski-s-provider.aspx>. 2. düzey projenize önbelleğe almanın eklenmesi otomatikleştirmeye yardımcı olmak için T4 şablonu da içerir.
+-   Entity Framework 5 ile çalışıyorsanız, önbelleğe alma sağlayıcısı için Entity Framework 5 ile çalışan gerçekleştirmeyi açıklayan bir gönderi ekibi blogu vardır: \<http://blogs.msdn.com/b/adonet/archive/2010/09/13/ef-caching-with-jarek-kowalski-s-provider.aspx>. 2. düzey projenize önbelleğe almanın eklenmesi otomatikleştirmeye yardımcı olmak için T4 şablonu da içerir.
 
 ## <a name="4-autocompiled-queries"></a>4 Autocompiled sorguları
 
@@ -879,15 +879,15 @@ Entity Framework kullanarak başka bir performans artışı, kullandığınız d
 
 Modelinizi TPT devralma kullanıyorsa, oluşturulan sorgular artık yürütme süresi Store'daki neden diğer devralma stratejileri ile oluşturulan olandan daha karmaşık olacaktır.  Genellikle TPT modeli üzerinde sorgular oluşturun ve elde edilen nesnelerini gerçekleştirmek için daha uzun sürer.
 
-"TPT (tablo başına tür) devralma varlık Çerçevesi'nde kullanırken performans konuları" Bkz MSDN blog gönderisi: \< http://blogs.msdn.com/b/adonet/archive/2010/08/17/performance-considerations-when-using-tpt-table-per-type-inheritance-in-the-entity-framework.aspx>.
+"TPT (tablo başına tür) devralma varlık Çerçevesi'nde kullanırken performans konuları" Bkz MSDN blog gönderisi: \<http://blogs.msdn.com/b/adonet/archive/2010/08/17/performance-considerations-when-using-tpt-table-per-type-inheritance-in-the-entity-framework.aspx>.
 
 #### <a name="711-------avoiding-tpt-in-model-first-or-code-first-applications"></a>7.1.1 TPT modeli ilk ya da Code First uygulamaları engelleme
 
 TPT şemaya sahip mevcut bir veritabanı üzerinde bir modeli oluşturduğunuzda, pek çok seçenek yok. Ancak, Model ilk ya da Code First kullanarak bir uygulama oluştururken, performans endişelerini TPT devralınmasını kaçınmanız gerekir.
 
-Varlık Tasarımcısı Sihirbazı'nda kullandığınız Model ilk zaman modelinize için herhangi bir devralma TPT alırsınız. TPH devralma strateji ile ilk Model geçmek istiyorsanız, Visual Studio Gallery'den "varlık Tasarımcısı veritabanı oluşturma Power paketi" kullanıma kullanabilirsiniz ( \< http://visualstudiogallery.msdn.microsoft.com/df3541c3-d833-4b65-b942-989e7ec74c87/>).
+Varlık Tasarımcısı Sihirbazı'nda kullandığınız Model ilk zaman modelinize için herhangi bir devralma TPT alırsınız. TPH devralma strateji ile ilk Model geçmek istiyorsanız, Visual Studio Gallery'den "varlık Tasarımcısı veritabanı oluşturma Power paketi" kullanıma kullanabilirsiniz ( \<http://visualstudiogallery.msdn.microsoft.com/df3541c3-d833-4b65-b942-989e7ec74c87/>).
 
-Devralma ile bir modelin eşlemeyi yapılandırmak için Code First kullanarak EF TPH varsayılan olarak kullanır, bu nedenle devralma hiyerarşisindeki tüm varlıkları aynı tablonun eşleştirilecek. MSDN magazine'de "Kod ilk olarak varlığın Framework4.1" makale "Eşleme ile Fluent API'si" bölümüne bakın ( [ http://msdn.microsoft.com/magazine/hh126815.aspx ](https://msdn.microsoft.com/magazine/hh126815.aspx)) daha fazla ayrıntı için.
+Devralma ile bir modelin eşlemeyi yapılandırmak için Code First kullanarak EF TPH varsayılan olarak kullanır, bu nedenle devralma hiyerarşisindeki tüm varlıkları aynı tablonun eşleştirilecek. MSDN magazine'de "Kod ilk olarak varlığın Framework4.1" makale "Eşleme ile Fluent API'si" bölümüne bakın ( [http://msdn.microsoft.com/magazine/hh126815.aspx](https://msdn.microsoft.com/magazine/hh126815.aspx)) daha fazla ayrıntı için.
 
 ### <a name="72-------upgrading-from-ef4-to-improve-model-generation-time"></a>7.2 model oluşturma geliştirmek için EF4 yükseltme zamanı
 
@@ -907,7 +907,7 @@ Bu istemci geliştirme makinesi beklerken SSDL oluştururken, yükü neredeyse t
 
 ### <a name="73-------splitting-large-models-with-database-first-and-model-first"></a>7.3 veritabanı ile büyük modeller ilk bölme ve ilk Model
 
-Model boyutu arttıkça, Tasarımcı yüzeyine anlaşılamayacak ve kullanmak daha zor hale gelir. Biz genellikle bir model Tasarımcısı etkili bir şekilde kullanmak için çok büyük olacak şekilde 300'den fazla varlıklarla göz önünde bulundurun. Büyük modellerin bölmek için çeşitli seçenekler şu blog gönderisinde açıklanmaktadır: \< http://blogs.msdn.com/b/adonet/archive/2008/11/25/working-with-large-models-in-entity-framework-part-2.aspx>.
+Model boyutu arttıkça, Tasarımcı yüzeyine anlaşılamayacak ve kullanmak daha zor hale gelir. Biz genellikle bir model Tasarımcısı etkili bir şekilde kullanmak için çok büyük olacak şekilde 300'den fazla varlıklarla göz önünde bulundurun. Büyük modellerin bölmek için çeşitli seçenekler şu blog gönderisinde açıklanmaktadır: \<http://blogs.msdn.com/b/adonet/archive/2008/11/25/working-with-large-models-in-entity-framework-part-2.aspx>.
 
 Post Entity Framework'ün ilk sürümü için yazılmıştır, ancak adımlar hala geçerlidir.
 
@@ -923,7 +923,7 @@ ContextTypeName alanını ayarlamak, işlevsel bir sorun olduğu yansıma yoluyl
 
 Varlık çerçevesi veri sınıfları için herhangi bir değişiklik yapmadan özel veri sınıfları, veri modeli ile birlikte kullanmanıza olanak sağlar. Başka bir deyişle, "düz eski" CLR nesnelerine (POCO), veri modelinizle var olan etki alanı nesnelerini gibi kullanabilirsiniz. Bir veri modelinde tanımlanan varlıklara eşlenmesi bu POCO veri sınıfları (olarak da bilinen Kalıcılık ignorant nesneler), aynı sorgu çoğunu destekler, ekleme, güncelleştirme ve varlık veri modeli araçlarının ürettiği varlık türleri olarak davranışları silme.
 
-Entity Framework, yavaş yükleniyor ve otomatik değişiklik izleme POCO varlıklarda gibi özellikleri etkinleştirmek istediğinizde, kullanılan POCO türlerinden türetilmiş proxy sınıfları da oluşturabilirsiniz. POCO sınıflarınızı proxy'ler kullanmanız Entity Framework, burada açıklandığı şekilde izin vermek için belirli gereksinimleri karşılamalıdır: [ http://msdn.microsoft.com/library/dd468057.aspx ](https://msdn.microsoft.com/library/dd468057.aspx).
+Entity Framework, yavaş yükleniyor ve otomatik değişiklik izleme POCO varlıklarda gibi özellikleri etkinleştirmek istediğinizde, kullanılan POCO türlerinden türetilmiş proxy sınıfları da oluşturabilirsiniz. POCO sınıflarınızı proxy'ler kullanmanız Entity Framework, burada açıklandığı şekilde izin vermek için belirli gereksinimleri karşılamalıdır: [http://msdn.microsoft.com/library/dd468057.aspx](https://msdn.microsoft.com/library/dd468057.aspx).
 
 Fırsat izleme proxy'leri varlıklarınızın özelliklerinden herhangi birini sahip değerine değiştirildi, Entity Framework, her zaman gerçek varlıklarınızın durumunu bilmesi için her zaman nesne durum Yöneticisi bildirir. Bu, ayarlayıcı yöntemlerinden birini özelliklerinizi gövdesine bildirim olaylar ekleme ve bu tür olayların işlenmesini nesne durum Yöneticisi sahip gerçekleştirilir. Proxy oluşturma varlık, genellikle görüntüler olmayan proxy'si POCO varlık eklenen Entity Framework tarafından oluşturulan olaylar nedeniyle oluşturmaya kıyasla daha pahalı unutmayın.
 
@@ -1149,7 +1149,7 @@ Gecikmeli yükleme gibi karşılıklı avantaj ve dezavantajlarını daha fazla 
 
 Entity Framework, şu anda skaler veya karmaşık özellikler yavaş yüklenmesini desteklemez. Ancak, bir BLOB gibi büyük bir nesne içeren bir tablo olduğu durumlarda, tablo bölme büyük özelliklerin ayrı bir varlığa ayırmak için kullanabilirsiniz. Örneğin, varbinary fotoğraf sütunu içeren bir ürün tablo olduğunu varsayalım. Sık sorgularınızı bu özellikte erişmeye ihtiyacınız yoksa, yalnızca, normalde varlığa bölümlerinde getirmek için bölme tablo kullanabilirsiniz. Ürün fotoğrafı temsil eden varlık yalnızca açıkça gerektiğinde yüklenecek.
 
-Gil Fink'ın "Tablo bölme, Entity Framework" blog gönderisine tablo bölme etkinleştirme gösteren makaleden faydalanabilirsiniz: \< http://blogs.microsoft.co.il/blogs/gilf/archive/2009/10/13/table-splitting-in-entity-framework.aspx>.
+Gil Fink'ın "Tablo bölme, Entity Framework" blog gönderisine tablo bölme etkinleştirme gösteren makaleden faydalanabilirsiniz: \<http://blogs.microsoft.co.il/blogs/gilf/archive/2009/10/13/table-splitting-in-entity-framework.aspx>.
 
 ## <a name="9-other-considerations"></a>9 diğer konular
 
@@ -1187,7 +1187,7 @@ finally
 }
 ```
 
-AutoDetectChanges kapatmadan önce bu Entity Framework, gerçekleşirken varlıklar üzerinde değişiklikler hakkındaki belirli bilgileri izlemek için güncelleyebileceği kaybetmesine neden olabilir anlamak uygundur. Hatalı olarak işlenir, bu uygulama veri tutarsızlığına neden olabilir. AutoDetectChanges kapatarak daha fazla bilgi için okuma \< http://blog.oneunicorn.com/2012/03/12/secrets-of-detectchanges-part-3-switching-off-automatic-detectchanges/>.
+AutoDetectChanges kapatmadan önce bu Entity Framework, gerçekleşirken varlıklar üzerinde değişiklikler hakkındaki belirli bilgileri izlemek için güncelleyebileceği kaybetmesine neden olabilir anlamak uygundur. Hatalı olarak işlenir, bu uygulama veri tutarsızlığına neden olabilir. AutoDetectChanges kapatarak daha fazla bilgi için okuma \<http://blog.oneunicorn.com/2012/03/12/secrets-of-detectchanges-part-3-switching-off-automatic-detectchanges/>.
 
 ### <a name="93------context-per-request"></a>9.3 istek başına bağlamı
 
@@ -1234,7 +1234,7 @@ Yukarıdaki örnek sorguda bir performans farkı küçüktür %2 denetimli bir o
 
 .NET 4.5 veya sonraki sürümlerde çalışan zaman uyumsuz işlemler Entity Framework 6 sunulan desteği. Çoğunlukla, g/ç uygulamaları Çekişme ilgili en çok zaman uyumsuz sorgu kullanma avantajını yakalayabilirler ve kaydetme işlemleri. Uygulamanızın g/ç kms'den kaynaklanan çakışmayı saptanmamış, zaman uyumsuz kullanımını en iyi durumda zaman uyumlu olarak çalışacak ve sonuç aynı süre içinde zaman uyumlu bir çağrı olarak ya da en kötü durumda, yalnızca zaman uyumsuz bir görev için yürütme ertele ve ek tim Ekle tamamlandığında, senaryonuz e.
 
-Zaman uyumsuz bir uygulamanızın performansını artıracak karar yardımcı olacak ne zaman uyumsuz programlama iş ziyaret bilgi [ http://msdn.microsoft.com/library/hh191443.aspx ](https://msdn.microsoft.com/library/hh191443.aspx). Entity Framework zaman uyumsuz işlemleri daha fazla bilgi için bkz. [zaman uyumsuz sorgu ve tasarruf](~/ef6/fundamentals/async.md
+Zaman uyumsuz bir uygulamanızın performansını artıracak karar yardımcı olacak ne zaman uyumsuz programlama iş ziyaret bilgi [http://msdn.microsoft.com/library/hh191443.aspx](https://msdn.microsoft.com/library/hh191443.aspx). Entity Framework zaman uyumsuz işlemleri daha fazla bilgi için bkz. [zaman uyumsuz sorgu ve tasarruf](~/ef6/fundamentals/async.md
 ).
 
 ### <a name="96------ngen"></a>9.6 NGEN
@@ -1255,7 +1255,7 @@ Code First karşı EDMX kullanmayı seçerken, Code First tarafından sunulan es
 
 ### <a name="101-using-the-visual-studio-profiler"></a>10.1 Visual Studio Profiler kullanma
 
-Entity Framework ile performans sorunları yaşıyorsanız, uygulamanızı kendi zaman harcadığı burada görmek için Visual Studio'da yerleşik olanlar gibi bir profil oluşturucu kullanabilirsiniz. Bu "Keşfetme - bölüm 1 ADO.NET Entity Framework performansının" blog gönderisinde pasta grafikler oluşturmak için kullandığımız aracıdır ( \< http://blogs.msdn.com/b/adonet/archive/2008/02/04/exploring-the-performance-of-the-ado-net-entity-framework-part-1.aspx>) Entity Framework, süre boyunca soğuk ve orta Gecikmeli sorgular nerede geçirdiği göster.
+Entity Framework ile performans sorunları yaşıyorsanız, uygulamanızı kendi zaman harcadığı burada görmek için Visual Studio'da yerleşik olanlar gibi bir profil oluşturucu kullanabilirsiniz. Bu "Keşfetme - bölüm 1 ADO.NET Entity Framework performansının" blog gönderisinde pasta grafikler oluşturmak için kullandığımız aracıdır ( \<http://blogs.msdn.com/b/adonet/archive/2008/02/04/exploring-the-performance-of-the-ado-net-entity-framework-part-1.aspx>) Entity Framework, süre boyunca soğuk ve orta Gecikmeli sorgular nerede geçirdiği göster.
 
 Profil Oluşturucu performans sorunu araştırmak için almaları bir gerçek örnek veri ve modelleme Müşteri danışma ekibi tarafından yazılan "profil oluşturma Entity Framework kullanarak Visual Studio 2010 Profiler" blog gönderisine gösterir.  \<http://blogs.msdn.com/b/dmcat/archive/2010/04/30/profiling-entity-framework-using-the-visual-studio-2010-profiler.aspx>. Bu gönderi, windows uygulaması için yazılmıştır. Bir web uygulamasının profilini çıkarmak gerekiyorsa Windows Performans kaydedici (WPR) ve Windows Performans Çözümleyicisi (WPA) araçları Visual Studio'dan çalışma daha iyi çalışabilir. Windows değerlendirme ve Dağıtım Seti ile dahil olan Windows Performans araç bir parçası olan WBT ve WPA ( [ http://www.microsoft.com/en-US/download/details.aspx?id=39982 ](https://www.microsoft.com/en-US/download/details.aspx?id=39982)).
 
@@ -1265,7 +1265,7 @@ Visual Studio'da yerleşik olarak bulunan profil oluşturucu gibi araçları uyg
 
 Piyasadaki iki profil oluşturucular olan Entity Framework Profiler ( \< http://efprof.com>) ve ORMProfiler ( \< http://ormprofiler.com>).
 
-Uygulamanız Code First kullanarak bir MVC uygulaması ise, StackExchange'nın MiniProfiler kullanabilirsiniz. Scott Hanselman blog bu araç açıklar: \< http://www.hanselman.com/blog/NuGetPackageOfTheWeek9ASPNETMiniProfilerFromStackExchangeRocksYourWorld.aspx>.
+Uygulamanız Code First kullanarak bir MVC uygulaması ise, StackExchange'nın MiniProfiler kullanabilirsiniz. Scott Hanselman blog bu araç açıklar: \<http://www.hanselman.com/blog/NuGetPackageOfTheWeek9ASPNETMiniProfilerFromStackExchangeRocksYourWorld.aspx>.
 
 Uygulamanızın veritabanı etkinliğini, Julie Lerman'ın MSDN Magazine makalesini başlıklı bkz: profil oluşturma hakkında daha fazla bilgi için [profil oluşturma, veritabanı etkinliğini içindeki varlık çerçevesi](https://msdn.microsoft.com/magazine/gg490349.aspx).
 
@@ -1296,7 +1296,7 @@ Etkinleştirmek istiyorsanız veritabanı günlüğü olmadan yeniden derlemeden
   </interceptors>
 ```
 
-Git yeniden derlemeye gerek kalmadan günlüğe kaydetme ekleme hakkında daha fazla bilgi için \< http://blog.oneunicorn.com/2014/02/09/ef-6-1-turning-on-logging-without-recompiling/>.
+Git yeniden derlemeye gerek kalmadan günlüğe kaydetme ekleme hakkında daha fazla bilgi için \<http://blog.oneunicorn.com/2014/02/09/ef-6-1-turning-on-logging-without-recompiling/>.
 
 ## <a name="11-appendix"></a>11 ek
 
