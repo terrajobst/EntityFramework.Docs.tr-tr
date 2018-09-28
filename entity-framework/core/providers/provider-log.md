@@ -6,12 +6,12 @@ ms.date: 08/08/2018
 ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
-ms.openlocfilehash: a637e5e2f75e16bc7b11b1a51abcbe16274a1c75
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: fa1362c84cb1954360d337670fb5fef21e5cf165
+ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490778"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47415750"
 ---
 # <a name="provider-impacting-changes"></a>Sağlayıcı etkileyen değişiklikler
 
@@ -56,3 +56,6 @@ Bu sayfa, çekme isteklerine tepki vermek için diğer veritabanı sağlayıcıl
   * Bu çekme isteği kavramını ekler `CanConnect` ASP.NET Core sistem tarafından kullanılacak veritabanını kullanılabilir olup olmadığını belirlemek için denetler. Varsayılan olarak, yalnızca ilişkisel uygulama çağrıları `Exist`, ancak sağlayıcıları uygulayabilirsiniz farklı bir şey gerekirse. İlişkisel olmayan sağlayıcıları kullanılabilir olması sistem durumu denetimi için sırayla yeni API uygulamanız gerekir.
 * https://github.com/aspnet/EntityFrameworkCore/pull/13306 -DbParameter boyutu ayarlamadığınızdan temel RelationalTypeMapping güncelleştirme
   * Kesme neden olabilir, varsayılan olarak boyutunu ayarlama durdurun. Sağlayıcıları boyutunu ayarlamak gerekiyorsa kendi mantığınızı eklemek gerekebilir.
+* https://github.com/aspnet/EntityFrameworkCore/pull/13372 -RevEng: Sütun türü ondalık sütunlar için her zaman belirtin.
+  * Kural gereği yapılandırma yerine iskele kurulan kodu ondalık sütunlar için sütun türü her zaman yapılandırın.
+  * Sağlayıcıları kendi tarafında herhangi bir değişiklik yapılması gerekmez.

@@ -3,12 +3,12 @@ title: İlk veri ek açıklamaları - EF6 kod
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 80abefbd-23c9-4fce-9cd3-520e5df9856e
-ms.openlocfilehash: 38ae52543ed99e5a1c1da7d19a2e15d168e3a1bd
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 54e27f1b866da14d68db66ca5eca5a6dde819e26
+ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490122"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47415815"
 ---
 # <a name="code-first-data-annotations"></a>Kod ilk veri ek açıklamaları
 > [!NOTE]
@@ -319,13 +319,13 @@ Yeniden oluşturulduğunda sonra tablosu aşağıdadır. Tablo adı için Intern
 Hesaplanan özellikler olanağı önemli veritabanı özellikleri var. Code First sınıflarınızı eşleniyorsa, hesaplanan sütunlar içeren tablolar, varlık Çerçevesi'bu sütunları güncelleştirmeye çalışmak istemediğiniz. Ancak, veritabanından eklenmiş veya güncelleştirilmiş verileri sonra bu değerleri döndürülecek EF istiyorsunuz. Sınıfınızda, hesaplanan enum yanı sıra özelliklere işaretleyemedi DatabaseGenerated ek açıklama kullanabilirsiniz. Diğer numaralandırmalar yok ve kimlik.
 
 ``` csharp
-    [DatabaseGenerated(DatabaseGenerationOption.Computed)]
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime DateCreated { get; set; }
 ```
 
 Kod ilk veritabanı oluşturulurken bayt veya zaman damgası sütuna oluşturulan veritabanı kullanabilir, aksi durumda yalnızca bu kod önce hesaplanan sütun için formülün belirlemek mümkün olmayacağından, mevcut veritabanlarının işaret ettiğinde kullanmanız gerekir.
 
-Varsayılan olarak, okuma, tamsayı olan bir anahtar özellik veritabanındaki bir kimlik anahtarı olur. DatabaseGenerated DatabaseGenerationOption.Identity için ayarı ile aynı olacaktır. Bir kimlik anahtarı olmasını istemiyorsanız DatabaseGenerationOption.None için değeri ayarlayabilirsiniz.
+Varsayılan olarak, okuma, tamsayı olan bir anahtar özellik veritabanındaki bir kimlik anahtarı olur. DatabaseGenerated DatabaseGeneratedOption.Identity için ayarı ile aynı olacaktır. Bir kimlik anahtarı olmasını istemiyorsanız DatabaseGeneratedOption.None için değeri ayarlayabilirsiniz.
 
  
 

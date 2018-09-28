@@ -6,12 +6,12 @@ description: .NET Core kullanarak Entity Framework Core ile çalışmaya başlam
 ms.date: 08/03/2018
 ms.assetid: 099d179e-dd7b-4755-8f3c-fcde914bf50b
 uid: core/get-started/netcore/new-db-sqlite
-ms.openlocfilehash: 69f7160cd82f2ec58e436a85369b52fe7c31040c
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: b30800afb63a51ab14aecb559dcc83fd89f71a71
+ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44250315"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47415776"
 ---
 # <a name="getting-started-with-ef-core-on-net-core-console-app-with-a-new-database"></a>EF Core üzerinde .NET Core konsol uygulaması ile yeni bir veritabanı ile çalışmaya başlama
 
@@ -77,7 +77,7 @@ Bir modeli oluşturduktan sonra kullandığınız [geçişler](https://docs.micr
 
   [!code-csharp[Main](../../../../samples/core/GetStarted/NetCore/ConsoleApp.SQLite/Program.cs)]
 
-* Uygulamayı test edin:
+* Konsolundan uygulamayı test etme. Bkz: [Visual Studio Not](#vs) uygulamayı Visual Studio'dan çalıştırmak için.
 
   `dotnet run`
 
@@ -96,6 +96,20 @@ Bir modeli oluşturduktan sonra kullandığınız [geçişler](https://docs.micr
 - Modele değişiklik yaparsanız, kullanabileceğiniz `dotnet ef migrations add` yeni iskele komut [geçiş](https://docs.microsoft.com/aspnet/core/data/ef-mvc/migrations#introduction-to-migrations). Gerekli iskele kurulmuş kod iade (ve gerekli değişiklikleri yaptıktan sonra), kullanabileceğiniz `dotnet ef database update` şema uygulamak için komut, veritabanına değiştirir.
 - EF Core kullanan bir `__EFMigrationsHistory` hangi geçişleri veritabanına zaten uygulanmış izlemek için veritabanı tablosunda.
 - SQLite veritabanı altyapısı, çoğu ilişkisel veritabanı tarafından desteklenen belirli şema değişiklikleri desteklemez. Örneğin, `DropColumn` işlemi desteklenmiyor. EF Core geçişleri bu işlemler için kod oluşturur. Ancak, bunları bir veritabanı için geçerli veya bir komut dosyası oluşturmayı denerseniz, EF Core özel durum oluşturur. Bkz: [SQLite sınırlamaları](../../providers/sqlite/limitations.md). Yeni geliştirme projeleri için veritabanı bırakmadan yeni bir tane oluşturmak yerine ve model değiştiğinde migrations'ı kullanma göz önünde bulundurun.
+- 
+
+<a name="vs"></a>
+
+### <a name="run-from-visual-studio"></a>Visual Studio'dan çalıştırma
+
+Visual Studio'dan Bu örneği çalıştırmak için çalışma dizini, proje kökündeki el ile olarak ayarlamanız gerekir. Çalışma dizini, aşağıdaki ayarlamazsanız `Microsoft.Data.Sqlite.SqliteException` oluşturulur: `SQLite Error 1: 'no such table: Blogs'`.
+
+Çalışma dizini ayarlamak için:
+
+* İçinde **Çözüm Gezgini**projeye sağ tıklayın ve ardından **özellikleri**.
+* Seçin **hata ayıklama** sol bölmede sekme.
+* Ayarlama **çalışma dizini** proje dizininin.
+* Değişiklikleri kaydedin.
 
 ## <a name="additional-resources"></a>Ek Kaynaklar
 

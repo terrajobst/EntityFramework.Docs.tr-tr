@@ -1,15 +1,15 @@
 ---
 title: Nasıl iş - EF Core sorgular
 author: rowanmiller
-ms.date: 10/27/2016
+ms.date: 09/26/2018
 ms.assetid: de2e34cd-659b-4cab-b5ed-7a979c6bf120
 uid: core/querying/overview
-ms.openlocfilehash: f1c23471bfbc998b2d4f9dc579d1404d6202e109
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 23d26f9c0ac17fc0df744f5339946947ea366911
+ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993209"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47415737"
 ---
 # <a name="how-queries-work"></a>Sorguları nasıl çalışır
 
@@ -45,4 +45,4 @@ Veritabanına gönderilen sorgu sonucunda en yaygın işlemler şunlardır:
 * Veri bağlama için bir kullanıcı Arabirimi bir sorgunun sonuçlarını
 
 > [!WARNING]  
-> **Her zaman kullanıcı girişini doğrulama:** sırada EF, SQL enjeksiyon saldırılarına karşı koruma sağlar, herhangi genel bir doğrulama giriş yapın. Varlık özellikleri, vs. için atanan, LINQ sorgularında kullanılan API'ler, geçirilen değerlerin bir güvenilmeyen kaynak sonra uygulama gereksinimlerinize göre uygun doğrulama gelir, bu nedenle gerçekleştirilmelidir. Bu sorguları dinamik olarak oluşturmak için kullanılan herhangi bir kullanıcı girişi içerir. Yalnızca hedeflenen ifadeleri emin olmanız gerekir ifadeleri oluşturmak için oluşturulan kullanıcı girişi kabul ediyorsanız, LINQ kullanırken bile.
+> **Her zaman kullanıcı girişini doğrulama:** sırada EF Core parametreleri kullanarak SQL ekleme saldırılarına karşı korur ve sorgularda değişmez değerleri kaçış, girişleri doğrulamaz. Güvenilir olmayan kaynaklardan gelen değerleri LINQ sorgularında kullanılan, varlık özelliklerine atanan veya geçirilen diğer EF Core API'leri için önce başına uygulama gereksinimlerine uygun doğrulama gerçekleştirilmesi gerekir. Bu sorguları dinamik olarak oluşturmak için kullanılan herhangi bir kullanıcı girişi içerir. İfadeleri oluşturmak için kullanıcı girişi kabul ediyorsanız, LINQ kullanırken bile, yalnızca hedeflenen ifadeleri oluşturulabilir emin olmanız gerekir.

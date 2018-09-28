@@ -3,12 +3,12 @@ title: Yapılandırma dosyası ayarlarının - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 000044c6-1d32-4cf7-ae1f-ea21d86ebf8f
-ms.openlocfilehash: 949ad4f030205753c5fbf9b95f4d183d8c0d1fe7
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: faba4e406b9f26f5bed6149f75c59da362d84692
+ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490882"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47415789"
 ---
 # <a name="configuration-file-settings"></a>Yapılandırma dosyası ayarları
 Entity Framework çeşitli ayarlar yapılandırma dosyasından belirtilmesine olanak sağlar. Genel 'kuralı yapılandırmanız üzerinde' İlkesi EF izler: Bu yayında tartışılan tüm ayarları varsayılan bir davranışa sahip, yalnızca varsayılan artık gereksinimlerinizi sağladığında ayarını değiştirme hakkında endişe etmeniz gerekir.  
@@ -153,7 +153,7 @@ Yapılandırma bölümü, Code First bağlam için kullanılacak bir veritabanı
 
 EF NuGet paketi yüklendiğinde varsayılan bağlantı üretecini SQL Express LocalDB, hangisinin bağlı olarak, yüklü olduğu için veya işaret eden kaydedildi.  
 
-Bağlantı üreteci ayarlamak için derleme nitelikli tür adı belirtin. **deafultConnectionFactory** öğesi.  
+Bağlantı üreteci ayarlamak için derleme nitelikli tür adı belirtin. **defaultConnectionFactory** öğesi.  
 
 > [!NOTE]
 > Bir bütünleştirilmiş kod adı türü bulunan derleme ardından virgül tarafından izlenen ad alanı tam adıdır. İsteğe bağlı olarak yapabilecekleriniz de derleme sürümü, kültürü ve genel anahtar belirtecini belirtin.  
