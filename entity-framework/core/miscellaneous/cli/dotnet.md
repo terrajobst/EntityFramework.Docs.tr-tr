@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 09/20/2018
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: a280aad0344a89c41c30be27a249df3c28c44c70
-ms.sourcegitcommit: ad1bdea58ed35d0f19791044efe9f72f94189c18
+ms.openlocfilehash: fad64c692273f58580c4b986e10f481402a222d8
+ms.sourcegitcommit: c568d33214fc25c76e02c8529a29da7a356b37b4
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47447176"
+ms.lasthandoff: 09/30/2018
+ms.locfileid: "47459569"
 ---
 # <a name="entity-framework-core-tools-reference---net-cli"></a>Entity Framework Core başvuru - .NET CLI araçları
 
@@ -39,17 +39,17 @@ Proje türü ve sürümü yükleme yordamını bağlıdır:
 
 * Geçerli yükleme [.NET Core SDK'sı](https://www.microsoft.com/net/download/core). SDK, Visual Studio 2017'in en son sürümü olsa bile yüklenmesi gerekir.
 
-* En son kararlı yükleme `Microsoft.EntityFrameworkCore.Design` paket. 
+* En son kararlı yükleme `Microsoft.EntityFrameworkCore.Design` paket.
 
-  ``` Console   
-  dotnet add package Microsoft.EntityFrameworkCore.Design   
+  ``` Console
+  dotnet add package Microsoft.EntityFrameworkCore.Design
   ```
 
 ### <a name="ef-core-1x"></a>EF Core 1.x
 
 * .NET Core SDK'sı sürüm 2.1.200 yükleyin. Sonraki sürümlerde EF Core 1.0 ve 1.1 için CLI araçları ile uyumlu değildir.
 
-* Değiştirerek kullanın 2.1.200 SDK sürümü için uygulama yapılandırma kendi [global.json](/dotnet/core/tools/global-json) dosya. Normalde bu dosya çözüm dizini (bir proje üzerinde) dahildir. 
+* Değiştirerek kullanın 2.1.200 SDK sürümü için uygulama yapılandırma kendi [global.json](/dotnet/core/tools/global-json) dosya. Normalde bu dosya çözüm dizini (bir proje üzerinde) dahildir.
 
 * Proje dosyasını düzenleyin ve ekleyin `Microsoft.EntityFrameworkCore.Tools.DotNet` olarak bir `DotNetCliToolReference` öğesi. En son 1.x sürümü belirtin, örneğin: 1.1.6. Bu bölümün sonunda proje dosyası örneğe bakın.
 
@@ -129,7 +129,7 @@ Ayrıca filtrelenebilir [EF Core bağlamdan ayrı bir sınıf kitaplığı'nda g
 
 CLI araçları, .NET Core projeleri ve .NET Framework projeleri ile çalışır. .NET Core veya .NET Framework projesi bir .NET standart sınıf kitaplığında EF Core modeli olan uygulamalara olmayabilir. Örneğin, bu Xamarin ve evrensel Windows platformu uygulamaları geçerlidir. Böyle durumlarda, araçları için başlangıç projesi olarak davranmak üzere tek amacı olan bir .NET Core konsol uygulaması projesi oluşturabilirsiniz. Proje Gerçek kod olmadan işlevsiz bir proje olabilir &mdash; yalnızca bir hedef için bir araç sağlamak için gereklidir.
 
-Neden gerekli işlevsiz bir proje mi? Daha önce bahsedildiği gibi tasarım zamanında uygulama kodu yürütmek araçlar vardır. Bunu yapmak için .NET Core çalışma zamanı kullanmak gerekir. EF Core model .NET Core veya .NET Framework hedefleyen bir proje içinde olduğunda, EF Core Araçları çalışma zamanı'projesinden ödünç alın. EF Core modeli bir .NET standart sınıf kitaplığında ise bunlar, yapamazsınız. .NET Standard gerçek bir .NET uygulaması değil; .NET uygulamaları desteklemelidir API'leri kümesinin bir özelliğidir. Bu nedenle .NET standart EF Core araçları için uygulama kodu yürütmek yeterli değil. Başlangıç projesi olarak kullanmak için oluşturduğunuz işlevsiz proje içine .NET Standard sınıf kitaplığı araçları yükleyebilir bir somut hedef platformu sağlar. 
+Neden gerekli işlevsiz bir proje mi? Daha önce bahsedildiği gibi tasarım zamanında uygulama kodu yürütmek araçlar vardır. Bunu yapmak için .NET Core çalışma zamanı kullanmak gerekir. EF Core model .NET Core veya .NET Framework hedefleyen bir proje içinde olduğunda, EF Core Araçları çalışma zamanı'projesinden ödünç alın. EF Core modeli bir .NET standart sınıf kitaplığında ise bunlar, yapamazsınız. .NET Standard gerçek bir .NET uygulaması değil; .NET uygulamaları desteklemelidir API'leri kümesinin bir özelliğidir. Bu nedenle .NET standart EF Core araçları için uygulama kodu yürütmek yeterli değil. Başlangıç projesi olarak kullanmak için oluşturduğunuz işlevsiz proje içine .NET Standard sınıf kitaplığı araçları yükleyebilir bir somut hedef platformu sağlar.
 
 ### <a name="aspnet-core-environment"></a>ASP.NET Core ortamı
 
@@ -137,19 +137,19 @@ ASP.NET Core projeleri için ortamını belirtmek için ayarlanmış **ASPNETCOR
 
 ## <a name="common-options"></a>Sık kullanılan seçenekler
 
-|                   | Seçenek                             | Açıklama                                                                                                                                                                                                                                                   |
-|-------------------|------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|                   | `--json`                           | JSON çıktıyı gösterir.                                                                                                                                                                                                                                             |
-| <nobr>`-c`</nobr> | `--context <DBCONTEXT>`            | `DbContext` Kullanılacak sınıfı. Yalnızca ya da ad alanları ile tam sınıf adı.  Bu seçeneği atlanırsa, bağlam sınıfını EF Core bulabilirsiniz. Birden çok bağlamı sınıfları varsa, bu seçenek gereklidir.                                            |
-| `-p`              | `--project <PROJECT>`              | Hedef proje proje klasörünün göreli yolu.  Varsayılan değer geçerli bir klasördür.                                                                                                                                                              |
-| `-s`              | `--startup-project <PROJECT>`      | Başlangıç projesi, proje klasöründen göreli yolu. Varsayılan değer geçerli bir klasördür.                                                                                                                                                              |
-|                   | `--framework <FRAMEWORK>`          | [Hedef çerçeve adı](/dotnet/standard/frameworks#supported-target-framework-versions) için [hedef Framework'ü](/dotnet/standard/frameworks).  Birden çok hedef çerçeve proje dosyasını belirtir ve bunlardan birini seçmek istediğinizde bu seçeneği kullanın. |
-|                   | `--configuration <CONFIGURATION>`  | Derleme yapılandırmasını, örneğin: `Debug` veya `Release`.                                                                                                                                                                                                   |
-|                   | `--runtime <IDENTIFIER>`           | Paketleri geri yüklemek için hedef çalışma zamanı tanımlayıcısı. Çalışma zamanı tanımlayıcılarının (RID'ler) bir listesi için bkz. [RID Kataloğu](/dotnet/core/rid-catalog).                                                                                                      |
-| `-h`              | `--help`                           | Yardım bilgilerini gösterir.                                                                                                                                                                                                                                        |
-| `-v`              | `--verbose`                        | Ayrıntılı çıktıyı gösterir.                                                                                                                                                                                                                                          |
-|                   | `--no-color`                       | Çıkış renklendirmeye yok.                                                                                                                                                                                                                                        |
-|                   | `--prefix-output`                  | Düzeyiyle çıkış öneki.                                                                                                                                                                                                                                     |
+|                   | Seçenek                            | Açıklama                                                                                                                                                                                                                                                   |
+|:------------------|:----------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                   | `--json`                          | JSON çıktıyı gösterir.                                                                                                                                                                                                                                             |
+| <nobr>`-c`</nobr> | `--context <DBCONTEXT>`           | `DbContext` Kullanılacak sınıfı. Yalnızca ya da ad alanları ile tam sınıf adı.  Bu seçeneği atlanırsa, bağlam sınıfını EF Core bulabilirsiniz. Birden çok bağlamı sınıfları varsa, bu seçenek gereklidir.                                            |
+| `-p`              | `--project <PROJECT>`             | Hedef proje proje klasörünün göreli yolu.  Varsayılan değer geçerli bir klasördür.                                                                                                                                                              |
+| `-s`              | `--startup-project <PROJECT>`     | Başlangıç projesi, proje klasöründen göreli yolu. Varsayılan değer geçerli bir klasördür.                                                                                                                                                              |
+|                   | `--framework <FRAMEWORK>`         | [Hedef çerçeve adı](/dotnet/standard/frameworks#supported-target-framework-versions) için [hedef Framework'ü](/dotnet/standard/frameworks).  Birden çok hedef çerçeve proje dosyasını belirtir ve bunlardan birini seçmek istediğinizde bu seçeneği kullanın. |
+|                   | `--configuration <CONFIGURATION>` | Derleme yapılandırmasını, örneğin: `Debug` veya `Release`.                                                                                                                                                                                                   |
+|                   | `--runtime <IDENTIFIER>`          | Paketleri geri yüklemek için hedef çalışma zamanı tanımlayıcısı. Çalışma zamanı tanımlayıcılarının (RID'ler) bir listesi için bkz. [RID Kataloğu](/dotnet/core/rid-catalog).                                                                                                      |
+| `-h`              | `--help`                          | Yardım bilgilerini gösterir.                                                                                                                                                                                                                                        |
+| `-v`              | `--verbose`                       | Ayrıntılı çıktıyı gösterir.                                                                                                                                                                                                                                          |
+|                   | `--no-color`                      | Çıkış renklendirmeye yok.                                                                                                                                                                                                                                        |
+|                   | `--prefix-output`                 | Düzeyiyle çıkış öneki.                                                                                                                                                                                                                                     |
 
 ## <a name="dotnet-ef-database-drop"></a>DotNet ef veritabanını bırak
 
@@ -157,10 +157,10 @@ Veritabanı bırakır.
 
 Seçenekler:
 
-|                   | Seçenek                   | Açıklama                                                |
-|-------------------|--------------------------|------------------------------------------------------------|
-| <nobr>`-f`</nobr> | <nobr>`--force`</nobr>   | Onay isteme.                                             |
-|                   | <nobr>`--dry-run`</nobr> | Hangi veritabanı bırakılan ancak açılan yoksa gösterir.   |
+|                   | Seçenek                   | Açıklama                                              |
+|:------------------|:-------------------------|:---------------------------------------------------------|
+| <nobr>`-f`</nobr> | <nobr>`--force`</nobr>   | Onay isteme.                                           |
+|                   | <nobr>`--dry-run`</nobr> | Hangi veritabanı bırakılan ancak açılan yoksa gösterir. |
 
 ## <a name="dotnet-ef-database-update"></a>DotNet ef veritabanı güncelleştirmesi
 
@@ -168,9 +168,9 @@ Son geçiş veya belirtilen bir geçiş için veritabanını güncelleştirir.
 
 Bağımsız değişkenleri:
 
-| Bağımsız Değişken       | Açıklama                                                                                                                                                                                                                                                     |
-|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `<MIGRATION>`  | Hedef geçiş. Geçişler, ada veya kimliğe göre tanımlanan Sayısı 0 anlamına gelen bir özel durumdur *ilk geçişten önce* ve tüm geçişler döndürülmesi neden olur. Geçiş belirtilmişse komutu son geçiş varsayılan olarak kullanır. |
+| Bağımsız Değişken      | Açıklama                                                                                                                                                                                                                                                     |
+|:--------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `<MIGRATION>` | Hedef geçiş. Geçişler, ada veya kimliğe göre tanımlanan Sayısı 0 anlamına gelen bir özel durumdur *ilk geçişten önce* ve tüm geçişler döndürülmesi neden olur. Geçiş belirtilmişse komutu son geçiş varsayılan olarak kullanır. |
 
 Aşağıdaki örnekler, belirtilen bir geçiş için veritabanı güncelleştirin. İlk geçiş adı ve ikinci geçiş kimliği kullanır:
 
@@ -193,23 +193,23 @@ Kullanılabilen listelerini `DbContext` türleri.
 
 Bağımsız değişkenleri:
 
-| Bağımsız Değişken        | Açıklama                                                                                                                                                                                                             |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `<CONNECTION>`  | Veritabanı bağlantı dizesi. ASP.NET Core 2.x projeleri için bir değer olabilir *adı =\<bağlantı dizesi adı >*. Bu durumda proje için ayarladığınız yapılandırma kaynaklarını adı gelir. |
-| `<PROVIDER>`    | Kullanılacak sağlayıcı. Genellikle bu NuGet paketi, örneğin adıdır: `Microsoft.EntityFrameworkCore.SqlServer`.                                                                                           |
+| Bağımsız Değişken       | Açıklama                                                                                                                                                                                                             |
+|:---------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `<CONNECTION>` | Veritabanı bağlantı dizesi. ASP.NET Core 2.x projeleri için bir değer olabilir *adı =\<bağlantı dizesi adı >*. Bu durumda proje için ayarladığınız yapılandırma kaynaklarını adı gelir. |
+| `<PROVIDER>`   | Kullanılacak sağlayıcı. Genellikle bu NuGet paketi, örneğin adıdır: `Microsoft.EntityFrameworkCore.SqlServer`.                                                                                           |
 
 Seçenekler:
 
-|                   | Seçenek                                    | Açıklama                                                                                                                                                                    |
-|-------------------|-------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <nobr>-d</nobr>   | `--data-annotations`                      | Öznitelikler, model (mümkünse) yapılandırmak için kullanın. Bu seçenek belirtilmezse, yalnızca fluent API'si kullanılır.                                                                |
-| `-c`              | `--context <NAME>`                        | Adını `DbContext` oluşturmak için sınıf.                                                                                                                                 |
-|                   | `--context-dir <PATH>`                    | Yerleştirileceği dizin `DbContext` sınıf dosyasında. Proje dizinine göreli yollardır. Ad alanları klasörü adlarından türetilir.                                 |
-| `-f`              | `--force`                                 | Varolan dosyaların üzerine yaz.                                                                                                                                                      |
-| `-o`              | `--output-dir <PATH>`                     | Varlık sınıf dosyaları yerleştirmek için dizin. Proje dizinine göreli yollardır.                                                                                       |
-|                   | <nobr>`--schema <SCHEMA_NAME>...`</nobr>  | Şemaları için varlık türleri oluşturmak için tablo. Birden çok şema belirtmek için yineleyin `--schema` her biri için. Bu seçenek belirtilmezse, tüm şemalar dahil edilir.          |
-| `-t`              | `--table <TABLE_NAME>`...                 | Varlık türleri için oluşturmak üzere tablolara. Birden çok tablo belirtmek için yineleyin `-t` veya `--table` her biri için. Bu seçenek belirtilmezse, tüm tabloları dahil edilir.                |
-|                   | `--use-database-names`                    | Veritabanında tam olarak göründükleri gibi tablo ve sütun adları kullanın. Bu seçenek belirtilmezse, daha yakından C# ad stil kurallarına uymak için veritabanı adları değiştirildi. |
+|                 | Seçenek                                   | Açıklama                                                                                                                                                                    |
+|:----------------|:-----------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <nobr>-d</nobr> | `--data-annotations`                     | Öznitelikler, model (mümkünse) yapılandırmak için kullanın. Bu seçenek belirtilmezse, yalnızca fluent API'si kullanılır.                                                                |
+| `-c`            | `--context <NAME>`                       | Adını `DbContext` oluşturmak için sınıf.                                                                                                                                 |
+|                 | `--context-dir <PATH>`                   | Yerleştirileceği dizin `DbContext` sınıf dosyasında. Proje dizinine göreli yollardır. Ad alanları klasörü adlarından türetilir.                                 |
+| `-f`            | `--force`                                | Varolan dosyaların üzerine yaz.                                                                                                                                                      |
+| `-o`            | `--output-dir <PATH>`                    | Varlık sınıf dosyaları yerleştirmek için dizin. Proje dizinine göreli yollardır.                                                                                       |
+|                 | <nobr>`--schema <SCHEMA_NAME>...`</nobr> | Şemaları için varlık türleri oluşturmak için tablo. Birden çok şema belirtmek için yineleyin `--schema` her biri için. Bu seçenek belirtilmezse, tüm şemalar dahil edilir.          |
+| `-t`            | `--table <TABLE_NAME>`...                | Varlık türleri için oluşturmak üzere tablolara. Birden çok tablo belirtmek için yineleyin `-t` veya `--table` her biri için. Bu seçenek belirtilmezse, tüm tabloları dahil edilir.                |
+|                 | `--use-database-names`                   | Veritabanında tam olarak göründükleri gibi tablo ve sütun adları kullanın. Bu seçenek belirtilmezse, daha yakından C# ad stil kurallarına uymak için veritabanı adları değiştirildi. |
 
 Aşağıdaki örnek, tüm şemaları ve tabloları iskele oluşturulduğunu ve yeni dosyaları yerleştirir *modelleri* klasör.
 
@@ -229,15 +229,15 @@ Yeni bir geçiş ekler.
 
 Bağımsız değişkenleri:
 
-| Bağımsız Değişken  | Açıklama                  |
-|-----------|------------------------------|
-| `<NAME>`  | Geçiş adı.   |
+| Bağımsız Değişken | Açıklama                |
+|:---------|:---------------------------|
+| `<NAME>` | Geçiş adı. |
 
 Seçenekler:
 
-|                   | Seçenek                              | Açıklama                                                                                                        |
-|-------------------|-------------------------------------|--------------------------------------------------------------------------------------------------------------------|
-| <nobr>`-o`</nobr> | <nobr>`--output-dir <PATH>`</nobr>  | Kullanılacak dizin (ve alt ad alanı). Proje dizinine göreli yollardır. Varsayılan olarak "Geçişler".   |
+|                   | Seçenek                             | Açıklama                                                                                                      |
+|:------------------|:-----------------------------------|:-----------------------------------------------------------------------------------------------------------------|
+| <nobr>`-o`</nobr> | <nobr>`--output-dir <PATH>`</nobr> | Kullanılacak dizin (ve alt ad alanı). Proje dizinine göreli yollardır. Varsayılan olarak "Geçişler". |
 
 ## <a name="dotnet-ef-migrations-list"></a>DotNet ef geçişleri listesi
 
@@ -245,13 +245,13 @@ Kullanılabilir geçişleri listeler.
 
 ## <a name="dotnet-ef-migrations-remove"></a>DotNet ef geçişleri Kaldır
 
-(Geçiş için yapıldığını kod değişiklikleri geri alır) son geçiş kaldırır. 
+(Geçiş için yapıldığını kod değişiklikleri geri alır) son geçiş kaldırır.
 
 Seçenekler:
 
-|                   | Seçenek    | Açıklama                                                                        |
-|-------------------|-----------|------------------------------------------------------------------------------------|
-| <nobr>`-f`</nobr> | `--force` | Geçişi geri döndürme (veritabanına uygulanan değişiklikleri geri alma).    |
+|                   | Seçenek    | Açıklama                                                                     |
+|:------------------|:----------|:--------------------------------------------------------------------------------|
+| <nobr>`-f`</nobr> | `--force` | Geçişi geri döndürme (veritabanına uygulanan değişiklikleri geri alma). |
 
 ## <a name="dotnet-ef-migrations-script"></a>DotNet ef geçişleri betiği
 
@@ -259,17 +259,17 @@ Bir SQL betiği geçişleri oluşturur.
 
 Bağımsız değişkenleri:
 
-| Bağımsız Değişken  | Açıklama                                                                                                                                                   |
-|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `<FROM>`  | Başlangıç geçiş. Geçişler, ada veya kimliğe göre tanımlanan Sayısı 0 anlamına gelen bir özel durumdur *ilk geçişten önce*. Varsayılan olarak 0. |
-| `<TO>`    | Bitiş geçiş. Son varsayılan olarak geçiş.                                                                                                         |
+| Bağımsız Değişken | Açıklama                                                                                                                                                   |
+|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `<FROM>` | Başlangıç geçiş. Geçişler, ada veya kimliğe göre tanımlanan Sayısı 0 anlamına gelen bir özel durumdur *ilk geçişten önce*. Varsayılan olarak 0. |
+| `<TO>`   | Bitiş geçiş. Son varsayılan olarak geçiş.                                                                                                         |
 
 Seçenekler:
 
-|                   | Seçenek             | Açıklama                                                          |
-|-------------------|--------------------|----------------------------------------------------------------------|
-| <nobr>`-o`</nobr> | `--output <FILE>`  | Komut dosyası yazmak için dosya.                                     |
-| `-i`              | `--idempotent`     | Bir veritabanı herhangi bir geçiş sırasında kullanılan bir komut dosyası oluşturur.   |
+|                   | Seçenek            | Açıklama                                                        |
+|:------------------|:------------------|:-------------------------------------------------------------------|
+| <nobr>`-o`</nobr> | `--output <FILE>` | Komut dosyası yazmak için dosya.                                   |
+| `-i`              | `--idempotent`    | Bir veritabanı herhangi bir geçiş sırasında kullanılan bir komut dosyası oluşturur. |
 
 Aşağıdaki örnek, InitialCreate geçiş için bir komut dosyası oluşturur:
 

@@ -3,12 +3,12 @@ title: EF4 EF5 ve EF6 için performans konuları
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d6d5a465-6434-45fa-855d-5eb48c61a2ea
-ms.openlocfilehash: a58461a6d18d9d53c002b5d45cecbff7b0cdf81e
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: fb184fe8720b552a2050607bb17648f0413c31d1
+ms.sourcegitcommit: c568d33214fc25c76e02c8529a29da7a356b37b4
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490265"
+ms.lasthandoff: 09/30/2018
+ms.locfileid: "47459597"
 ---
 # <a name="performance-considerations-for-ef-4-5-and-6"></a>EF 6 4 ve 5 için performans konuları
 David Obando, Eric Dettinger ve diğerleri
@@ -88,19 +88,17 @@ Küçük, basit modelleri için maliyet önceden üretilmiş görünümleri kull
 
 ### <a name="23-using-pre-generated-views-to-decrease-model-load-time"></a>2.3 kullanarak Pre-Generated modeli azaltmak için görünümleri yükleme süresi
 
-#### <a name="231-pre-generated-views-using-the-entity-framework-power-tools"></a>2.3.1 Entity Framework güç araçları kullanarak önceden üretilmiş görünümleri
+Entity Framework 6 üzerinde önceden üretilmiş görünümleri kullanma hakkında ayrıntılı bilgi için ziyaret [Pre-Generated eşleme görünümleri](~/ef6/fundamentals/performance/pre-generated-views.md)
 
-Ayrıca, model sınıfı dosyasını sağ tıklatın ve "Görünümleri Oluştur" seçmek için Entity Framework menüsünü kullanarak EDMX ve Code First modelleri, görünümleri oluşturmak için Entity Framework güç araçları kullanarak göz önünde bulundurun. Entity Framework güç araçları yalnızca DbContext türetilmiş bağlamları üzerinde çalışır ve adresinde bulunabilir \<http://visualstudiogallery.msdn.microsoft.com/72a60b14-1581-4b9b-89f2-846072eff19d>.
+#### <a name="231-pre-generated-views-using-the-entity-framework-power-tools-community-edition"></a>2.3.1 Entity Framework güç araçları Community Edition'ı kullanarak önceden üretilmiş görünümleri
 
-Entity Framework 6 üzerinde önceden üretilmiş görünümleri kullanma hakkında daha fazla bilgi için ziyaret [Pre-Generated eşleme görünümleri](~/ef6/fundamentals/performance/pre-generated-views.md).
+Kullanabileceğiniz [Entity Framework 6 güç araçları Community Edition](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition) EDMX ve Code First modelleri, görünümleri model sınıfı dosyasını sağ tıklatın ve "Görünümleri Oluştur" seçmek için Entity Framework menüsü kullanılarak oluşturulacak. Entity Framework güç araçları Community Edition yalnızca DbContext türetilmiş bağlamları üzerinde çalışır.
 
 #### <a name="232-how-to-use-pre-generated-views-with-a-model-created-by-edmgen"></a>2.3.2 nasıl EDMGen tarafından oluşturulan bir model ile önceden üretilmiş görünümleri kullanma
 
 EDMGen Entity Framework 4 ve 5, ancak değil, Entity Framework 6 ile çalışır ve .NET ile birlikte gelen bir yardımcı programdır. EDMGen komut satırından bir model dosyası, nesne katmanı ve görünümleri oluşturmanıza olanak sağlar. Çıktıları birini VB veya C istediğiniz dilde görünümleri dosyasında olacaktır\#. Her varlık kümesinin varlık SQL kod parçacıkları içeren bir kod dosyası budur. Önceden üretilmiş görünümleri etkinleştirmek için yalnızca dosyasını projenize ekleyin.
 
 Model için şema dosyalarını el ile yaptığınız düzenlemeler, görünümleri dosyanın yeniden oluşturmanız gerekir. EDMGen ile çalıştırarak bunu yapabilirsiniz **/mode:ViewGeneration** bayrağı.
-
-Daha fazla başvuru için bkz. [nasıl yapılır: sorgu performansını artırmak için Pre-Generate görünümleri](https://msdn.microsoft.com/library/bb896240.aspx).
 
 #### <a name="233-how-to-use-pre-generated-views-with-an-edmx-file"></a>2.3.3 nasıl Pre-Generated görünümlerini içeren bir EDMX dosyası kullanma
 
@@ -113,13 +111,9 @@ Görünümü oluşturmak için T4 şablonu kullanmayı açıklayan bir gönderi 
 
 Entity Framework 6 kullanıyorsanız, görünüm oluşturma T4 şablonlarını konumundaki Visual Studio Galerisi'nden alabileceğiniz \<http://visualstudiogallery.msdn.microsoft.com/18a7db90-6705-4d19-9dd1-0a6c23d0751f>.
 
-#### <a name="234-how-to-use-pre-generated-views-with-a-code-first-model"></a>2.3.4 nasıl bir Code First modeli Pre-Generated görünümlerini kullanma
-
-Ayrıca, önceden üretilmiş görünümleri Code First projesiyle kullanmak da mümkündür. Entity Framework güç araçları, kod ilk projeniz için bir görünüm dosyası oluşturmak için özelliğine sahiptir. Entity Framework güç araçları Visual Studio Galerisi bulabileceğiniz \<http://visualstudiogallery.msdn.microsoft.com/72a60b14-1581-4b9b-89f2-846072eff19d/>.
-
 ### <a name="24-reducing-the-cost-of-view-generation"></a>2.4 azaltarak maliyet görünümü oluşturma
 
-Önceden üretilmiş görünümleri kullanarak görünüm oluşturma maliyet modeli yüklenmesini (çalışma zamanı) derleme zamanı taşır. Bu çalışma zamanında başlatma performansını artırır, ancak, geliştirirken hala görünüm oluşturma sorunları yaşar. Görünüm oluşturma, hem derleme ve çalıştırma maliyetini azaltmaya yardımcı olabilecek birkaç ek püf noktaları vardır.
+Yükleme modelinden görünüm oluşturma (çalışma zamanı) maliyeti, önceden üretilmiş görünümleri kullanarak tasarım zamanına taşır. Bu çalışma zamanında başlatma performansını artırır, ancak, geliştirirken hala görünüm oluşturma sorunları yaşar. Görünüm oluşturma, hem derleme ve çalıştırma maliyetini azaltmaya yardımcı olabilecek birkaç ek püf noktaları vardır.
 
 #### <a name="241-using-foreign-key-associations-to-reduce-view-generation-cost"></a>2.4.1 görünüm oluşturma maliyetini azaltmak için yabancı anahtar ilişkilerini kullanma
 

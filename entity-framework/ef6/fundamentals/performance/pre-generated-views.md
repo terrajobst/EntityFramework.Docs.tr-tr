@@ -3,19 +3,19 @@ title: Önceden oluşturulan eşleme görünümleri - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 917ba9c8-6ddf-4631-ab8c-c4fb378c2fcd
-ms.openlocfilehash: da5d59ba5a899a0ee3a1eec3db0da1b4ece871d8
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: 1fda9fe9638adce9b24a6b81aa081effeb0def81
+ms.sourcegitcommit: c568d33214fc25c76e02c8529a29da7a356b37b4
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46284115"
+ms.lasthandoff: 09/30/2018
+ms.locfileid: "47459532"
 ---
 # <a name="pre-generated-mapping-views"></a>Önceden oluşturulan eşleme görünümleri
 Entity Framework, bir sorgu yürütme veya değişiklikleri veri kaynağına kaydetmek için önce bunun veritabanına erişmek için eşleme görünümü kümesi oluşturmanız gerekir. Bu eşleme görünümler veritabanı soyut bir şekilde temsil eden varlık SQL deyimi bir dizi ve uygulama etki alanı başına önbelleğe alınan meta veriler bir parçasıdır. Aynı uygulama etki alanında birden fazla aynı bağlam oluşturursanız, bunları yeniden yerine önbelleğe alınan meta veri eşleme görünümleri yeniden kullanır. Eşleme görünümü oluşturma ilk sorgu yürütülürken ilişkin genel maliyeti önemli bir parçası olduğundan, Entity Framework, eşleme görünümleri önceden oluşturmak ve bunları derlenmiş projeye dahil etmek sağlar. Daha fazla bilgi için [başarım düşünceleri (Entity Framework)](~/ef6/fundamentals/performance/perf-whitepaper.md).
 
-## <a name="generating-mapping-views-with-the-ef-power-tools"></a>EF güç araçları görünümleriyle eşleme oluşturma
+## <a name="generating-mapping-views-with-the-ef-power-tools-community-edition"></a>EF güç araçları Community Edition görünümleriyle eşleme oluşturma
 
-Görünümleri önceden oluşturulacak en kolay yolu kullanmaktır [EF Power Tools](https://visualstudiogallery.msdn.microsoft.com/72a60b14-1581-4b9b-89f2-846072eff19d). Güç araçlarının yüklü sonra aşağıda gösterildiği gibi görünümler oluşturmak için bir menü seçeneğine sahip olursunuz.
+Görünümleri önceden oluşturulacak en kolay yolu kullanmaktır [EF Power Tools Community Edition](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition). Güç araçlarının yüklü sonra aşağıda gösterildiği gibi görünümler oluşturmak için bir menü seçeneğine sahip olursunuz.
 
 -   İçin **Code First** modelleri DbContext sınıfınızı içeren kod dosyasını sağ tıklayın.
 -   İçin **EF Designer** modelleri EDMX dosyanız sağ tıklayın.

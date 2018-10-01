@@ -3,12 +3,12 @@ title: Migrate.exe - EF6 kullanarak
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 989ea862-e936-4c85-926a-8cfbef5df5b8
-ms.openlocfilehash: 6e9880523bbcf2fe55390a447241e59723a0967f
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: cf6c3a0a256730b24addf1012d6ff53b17035cd4
+ms.sourcegitcommit: c568d33214fc25c76e02c8529a29da7a356b37b4
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490232"
+ms.lasthandoff: 09/30/2018
+ms.locfileid: "47459545"
 ---
 # <a name="using-migrateexe"></a>Migrate.exe kullanma
 Code First geçişleri, bir veritabanında güncelleştirmek için kullanılabilir visual studio içinde ancak komut satırı aracı migrate.exe da yürütülebilir. Bu sayfa bir veritabanında geçişleri yürütülecek migrate.exe kullanma hakkında hızlı bir genel bakış sunar.
@@ -24,9 +24,9 @@ Migrate.exe sonra geçiş içeren derlemenin konumuna kopyalamanız gerekir.
 
 Uygulamanız .NET 4 hedefliyor ve 4.5 değil, ardından kopyalamak ihtiyacınız olacak **Redirect.config** konuma olarak yanı sıra ve yeniden adlandırmak **migrate.exe.config**. Bu, böylelikle Migrate.exe Entity Framework derlemeyi bulabilir olması için doğru bağlama yeniden yönlendirmeleri alır.
 
-| .NET 4.5                                   | .NET 4.0                                   |
-|:-------------------------------------------|:-------------------------------------------|
-| ![.NET 4.5 dosyaları](~/ef6/media/net45files.png)  | ![.NET 4.0 dosyaları](~/ef6/media/net40files.png)  |
+| .NET 4.5                                      | .NET 4.0                                      |
+|:----------------------------------------------|:----------------------------------------------|
+| ![.NET 4.5 dosyaları](~/ef6/media/net45files.png) | ![.NET 4.0 dosyaları](~/ef6/media/net40files.png) |
 
 > [!NOTE]
 > migrate.exe x64 desteklemiyor derlemeler.
