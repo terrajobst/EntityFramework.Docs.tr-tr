@@ -3,12 +3,12 @@ title: MSL belirtimi - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 13ae7bc1-74b4-4ee4-8d73-c337be841467
-ms.openlocfilehash: 9519155422d8542d4a14bc1c612e91ebc22bf15e
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 6bff1f5407bc0546e60b5bee1178be9aa4748bd8
+ms.sourcegitcommit: 29f928a6116771fe78f306846e6f2d45cbe8d1f4
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490564"
+ms.lasthandoff: 10/01/2018
+ms.locfileid: "47460143"
 ---
 # <a name="msl-specification"></a>MSL belirtimi
 Eşleme belirtimi dili (MSL) kavramsal model ve depolama modeli bir Entity Framework uygulamasının arasındaki eşlemeyi açıklayan bir XML tabanlı dilidir.
@@ -219,7 +219,7 @@ Aşağıdaki örnekte gösterildiği bir **AssociationSetMapping** hangi öğesi
      <ScalarProperty Name="CourseID" ColumnName="CourseID" />
    </EndProperty>
  </AssociationSetMapping>
-``` 
+```
 
 ## <a name="complexproperty-element-msl"></a>ComplexProperty öğesi (MSL)
 
