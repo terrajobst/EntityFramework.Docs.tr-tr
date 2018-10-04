@@ -3,12 +3,12 @@ title: Veri bağlama WPF - EF6 ile
 author: divega
 ms.date: 10/23/2016
 ms.assetid: e90d48e6-bea5-47ef-b756-7b89cce4daf0
-ms.openlocfilehash: 5bd4a9b98a12de41e4ec37c2cc7dbdc537210893
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 1933988277d3be8fecc02fced3293f2b7f80c901
+ms.sourcegitcommit: ae399f9f3d1bae2c446b552247bd3af3ca5a2cf9
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490239"
+ms.lasthandoff: 10/04/2018
+ms.locfileid: "48575671"
 ---
 # <a name="databinding-with-wpf"></a>Veri bağlama WPF ile
 Bu adım adım kılavuzda, POCO türleri "ana öğe-ayrıntı" formunda WPF denetimleri bağlama işlemi gösterilmektedir. Uygulama, verileri veritabanından nesnelerle doldurmak, değişiklikleri izlemek ve veritabanına verileri kalıcı hale getirmek için Entity Framework API'leri kullanır.
@@ -31,7 +31,7 @@ Gerekirse, [ObjectContext göre kod oluşturma için geri](~/ef6/modeling/design
 
 Visual Studio 2013 olması gerekir, bu izlenecek yolu tamamlamak için Visual Studio 2012 veya Visual Studio 2010 'un yüklü.
 
-Visual Studio 2010 kullanıyorsanız, aynı zamanda NuGet yüklemeniz gerekir. Daha fazla bilgi için [NuGet yükleme](http://docs.nuget.org/docs/start-here/installing-nuget).  
+Visual Studio 2010 kullanıyorsanız, aynı zamanda NuGet yüklemeniz gerekir. Daha fazla bilgi için [NuGet yükleme](https://docs.microsoft.com/nuget/install-nuget-client-tools).  
 
 ## <a name="create-the-application"></a>Uygulama oluşturma
 
@@ -252,12 +252,12 @@ Modeldeki veri kaynağı için bu WPF uygulaması olarak tanımlanan sınıflar 
 
     ![Data Sources](~/ef6/media/datasources.png)
 
--   Seçin ** kategori ** veri kaynağı ve formda sürükleyin.
+-   Seçin **kategori** veri kaynağı ve formda sürükleyin.
 
 Biz bu kaynağı sürüklendiğinde şu oldu:
 
--   **CategoryViewSource** kaynak ve ** categoryDataGrid ** denetimi için XAML eklendi. DataViewSources hakkında daha fazla bilgi için bkz: http://bea.stollnitz.com/blog/?p=387.
--   Üst kılavuz öğesi DataContext özelliği ayarlandı "{StaticResource **categoryViewSource** }".  **CategoryViewSource** bağlama kaynağı için dış kaynak görür\\üst kılavuz öğesi. İç kılavuz öğesi DataContext değeri ("{bağlama}" categoryDataGrid'ın ItemsSource özelliği ayarlı) Grid üst öğesinden sonra devralır. 
+-   **CategoryViewSource** kaynak ve **categoryDataGrid** için XAML denetimi eklendi 
+-   Üst kılavuz öğesi DataContext özelliği ayarlandı "{StaticResource **categoryViewSource** }". **CategoryViewSource** bağlama kaynağı için dış kaynak görür\\üst kılavuz öğesi. İç kılavuz öğeleri ardından üst kılavuz ("{bağlama}" categoryDataGrid'ın ItemsSource özelliği ayarlı) bir DataContext değeri devralacak.
 
 ``` xml
     <Window.Resources>
@@ -282,7 +282,7 @@ Biz bu kaynağı sürüklendiğinde şu oldu:
 
 Biz kategorilerini şimdi görüntülemek için bir kılavuz olduğuna göre ilişkili ürünleri görüntülemek için ayrıntıları kılavuz ekleyin.
 
--   Seçin ** ürünleri ** özelliği altındaki ** kategori ** veri kaynağı ve formda sürükleyin.
+-   Seçin **ürünleri** özelliği altındaki **kategori** veri kaynağı ve formda sürükleyin.
     -   **CategoryProductsViewSource** kaynak ve **productDataGrid** kılavuz için XAML eklendi
     -   Bu kaynak için bağlama yolunu ürünler için ayarlanır.
     -   WPF veri bağlama çerçevesi sağlar seçilen kategoriye ilgili yalnızca ürünleri gösterilmediğini **productDataGrid**
@@ -305,7 +305,7 @@ Bu, ana pencereyi bazı olay işleyicileri ekleme zamanı geldi.
 
 Bu, arka plan kod için form getirir, biz artık veri erişimi gerçekleştirdiği ProductContext kullanmak için kodu düzenleme. Kodu MainWindow için aşağıda gösterildiği gibi güncelleştirin.
 
-Kod bir uzun süre çalışan örneğini bildirir **ProductContext**. **ProductContext** nesnesi, sorgu ve veri veritabanına kaydetmek için kullanılır. **Dispose**() üzerinde **ProductContext** örneği adlı sonra geçersiz kılınan'den **OnClosing** yöntemi. Kod açıklamaları ne yaptığını hakkında ayrıntılar sağlanmaktadır.
+Kod bir uzun süre çalışan örneğini bildirir **ProductContext**. **ProductContext** nesnesi, sorgu ve veri veritabanına kaydetmek için kullanılır. **Dispose()** üzerinde **ProductContext** örneği adlı sonra geçersiz kılınan'den **OnClosing** yöntemi. Kod açıklamaları ne yaptığını hakkında ayrıntılar sağlanmaktadır.
 
 ``` csharp
     using System.Data.Entity;
@@ -389,6 +389,10 @@ Kod bir uzun süre çalışan örneğini bildirir **ProductContext**. **ProductC
 
 -   Tuşuna **Kaydet** verileri veritabanına kaydetmek için düğme
 
-DbContext'ın çağrısından sonra **SaveChanges**(), kimlikler, oluşturulan veritabanı değerleri ile doldurulur. Biz denir çünkü **Yenile**sonra () **SaveChanges**() **DataGrid** denetimleri, yeni değerleri ile güncelleştirilir.
+DbContext'ın çağrısından sonra **SaveChanges()**, kimlikleri oluşturulan veritabanı değerleri ile doldurulur. Biz denir çünkü **Refresh()** sonra **SaveChanges()** **DataGrid** denetimleri, yeni değerleri ile güncelleştirilir.
 
 ![Ana pencere doldurulmuş kimlikleri](~/ef6/media/screen2.png)
+
+## <a name="additional-resources"></a>Ek Kaynaklar
+
+Koleksiyonları kullanarak WPF verilerini bağlama hakkında daha fazla bilgi için bkz. [bu konuda](https://docs.microsoft.com/dotnet/framework/wpf/data/data-binding-overview#binding-to-collections) WPF belgelerinde.  
