@@ -5,12 +5,12 @@ ms.author: riande
 ms.date: 08/03/2018
 ms.assetid: e153627f-f132-4c11-b13c-6c9a607addce
 uid: core/get-started/aspnetcore/new-db
-ms.openlocfilehash: 803b0b71b2a2093432d76bc159875d65ab379b9a
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 878478099878e4a0bc65c44fef0609d28f39f2b8
+ms.sourcegitcommit: 7a7da65404c9338e1e3df42576a13be536a6f95f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489303"
+ms.lasthandoff: 10/06/2018
+ms.locfileid: "48834779"
 ---
 # <a name="getting-started-with-ef-core-on-aspnet-core-with-a-new-database"></a>EF çekirdekli ASP.NET Core üzerinde yeni bir veritabanı ile çalışmaya başlama
 
@@ -72,7 +72,7 @@ Uyarı: kullanırsanız **bireysel kullanıcı hesapları** yerine **hiçbiri** 
 
 ## <a name="install-entity-framework-core"></a>Entity Framework Core yükleme
 
-EF Core yüklemek için hedeflemek istediğiniz EF Core veritabanı sağlayıcı(lar) için paketi yükleyin. Kullanılabilir sağlayıcılar listesi için bkz. [veritabanı sağlayıcıları](../../providers/index.md). 
+EF Core yüklemek için hedeflemek istediğiniz EF Core veritabanı sağlayıcı(lar) için paketi yükleyin. Kullanılabilir sağlayıcılar listesi için bkz. [veritabanı sağlayıcıları](../../providers/index.md).
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -144,7 +144,7 @@ Bir üretim uygulaması, genellikle bir yapılandırma dosyası veya ortam deği
 
 ## <a name="create-the-database"></a>Veritabanı oluşturma
 
-Aşağıdaki adımları kullanın [geçişler](https://docs.microsoft.com/aspnet/core/data/ef-mvc/migrations#introduction-to-migrations) bir veritabanı oluşturmak için.
+Aşağıdaki adımları kullanın [geçişler](xref:core/managing-schemas/migrations/index) bir veritabanı oluşturmak için.
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -192,7 +192,7 @@ Bir denetleyici ve görünüm için iskele `Blog` varlık.
   dotnet tool install -g dotnet-aspnet-codegenerator
   dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
   dotnet restore
-  dotnet aspnet-codegenerator controller -name BlogsController -m Blog -dc BloggingContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries 
+  dotnet aspnet-codegenerator controller -name BlogsController -m Blog -dc BloggingContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
   ```
 
   `tool install` Ve `add package` komutları denetleyicileri ve görünümleri iskelesini oluşturabilirsiniz araçları yükleyin. `restore` Komut, tüm projenin paketlerin yüklenmesi, sağlar ve `aspnet-codegenerator` komutu iskele yapar.
@@ -228,7 +228,6 @@ dotnet run
 
 ## <a name="additional-resources"></a>Ek Kaynaklar
 
-* [EF - yeni veritabanı SQLite ile](xref:core/get-started/netcore/new-db-sqlite) -platformlar arası konsol EF öğretici.
-* [MVC Mac veya Linux'ta ASP.NET Core'a giriş](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app-xplat/index)
-* [Visual Studio ile MVC ASP.NET Core'a giriş](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/index)
-* [Visual Studio kullanarak ASP.NET Core ve Entity Framework Core ile çalışmaya başlama](https://docs.microsoft.com/aspnet/core/data/ef-mvc/index)
+* [Öğretici: .NET core'da EF Core ile SQLite kullanarak yeni bir veritabanı ile çalışmaya başlama](xref:core/get-started/netcore/new-db-sqlite)
+* [Öğretici: ASP.NET Core Razor sayfaları kullanmaya başlayın](https://docs.microsoft.com/aspnet/core/tutorials/razor-pages/razor-pages-start)
+* [Öğretici: ASP.NET Core, Entity Framework Core ile Razor sayfaları](https://docs.microsoft.com/aspnet/core/data/ef-rp/intro)

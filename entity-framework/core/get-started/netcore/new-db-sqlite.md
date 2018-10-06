@@ -6,12 +6,12 @@ description: .NET Core kullanarak Entity Framework Core ile çalışmaya başlam
 ms.date: 08/03/2018
 ms.assetid: 099d179e-dd7b-4755-8f3c-fcde914bf50b
 uid: core/get-started/netcore/new-db-sqlite
-ms.openlocfilehash: b30800afb63a51ab14aecb559dcc83fd89f71a71
-ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
+ms.openlocfilehash: ec20040917a2bca8177924b6905b1cd79e5cd9da
+ms.sourcegitcommit: 7a7da65404c9338e1e3df42576a13be536a6f95f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47415776"
+ms.lasthandoff: 10/06/2018
+ms.locfileid: "48834742"
 ---
 # <a name="getting-started-with-ef-core-on-net-core-console-app-with-a-new-database"></a>EF Core üzerinde .NET Core konsol uygulaması ile yeni bir veritabanı ile çalışmaya başlama
 
@@ -30,9 +30,9 @@ Bu makaledeki örnek Github'da görüntüleyin] (https://github.com/aspnet/Entit
   ``` Console
   dotnet new console -o ConsoleApp.SQLite
   ```
-## <a name="change-the-current-directory"></a>Geçerli dizin değiştirme 
+## <a name="change-the-current-directory"></a>Geçerli dizin değiştirme
 
-Verilecek ihtiyacımız sonraki adımlarda `dotnet` uygulama komutları. 
+Verilecek ihtiyacımız sonraki adımlarda `dotnet` uygulama komutları.
 
 * Biz bu gibi uygulamanın dizinine geçerli dizine değiştirin:
 
@@ -64,7 +64,7 @@ Modelinizi olun bağlamını ve varlık sınıfları tanımlar.
 
 ## <a name="create-the-database"></a>Veritabanı oluşturma
 
-Bir modeli oluşturduktan sonra kullandığınız [geçişler](https://docs.microsoft.com/aspnet/core/data/ef-mvc/migrations#introduction-to-migrations) bir veritabanı oluşturmak için.
+Bir modeli oluşturduktan sonra kullandığınız [geçişler](xref:core/managing-schemas/migrations/index) bir veritabanı oluşturmak için.
 
 * Çalıştırma `dotnet ef migrations add InitialCreate` geçiş iskelesini ve tablo modeli için başlangıç kümesi oluşturun.
 * Çalıştırma `dotnet ef database update` veritabanına yeni geçiş uygulamak için. Bu komut, veritabanı geçişleri uygulamadan önce oluşturur.
@@ -93,13 +93,11 @@ Bir modeli oluşturduktan sonra kullandığınız [geçişler](https://docs.micr
 
 ### <a name="changing-the-model"></a>Model değiştiriliyor:
 
-- Modele değişiklik yaparsanız, kullanabileceğiniz `dotnet ef migrations add` yeni iskele komut [geçiş](https://docs.microsoft.com/aspnet/core/data/ef-mvc/migrations#introduction-to-migrations). Gerekli iskele kurulmuş kod iade (ve gerekli değişiklikleri yaptıktan sonra), kullanabileceğiniz `dotnet ef database update` şema uygulamak için komut, veritabanına değiştirir.
+- Modele değişiklik yaparsanız, kullanabileceğiniz `dotnet ef migrations add` yeni iskele komut [geçiş](xref:core/managing-schemas/migrations/index). Gerekli iskele kurulmuş kod iade (ve gerekli değişiklikleri yaptıktan sonra), kullanabileceğiniz `dotnet ef database update` şema uygulamak için komut, veritabanına değiştirir.
 - EF Core kullanan bir `__EFMigrationsHistory` hangi geçişleri veritabanına zaten uygulanmış izlemek için veritabanı tablosunda.
 - SQLite veritabanı altyapısı, çoğu ilişkisel veritabanı tarafından desteklenen belirli şema değişiklikleri desteklemez. Örneğin, `DropColumn` işlemi desteklenmiyor. EF Core geçişleri bu işlemler için kod oluşturur. Ancak, bunları bir veritabanı için geçerli veya bir komut dosyası oluşturmayı denerseniz, EF Core özel durum oluşturur. Bkz: [SQLite sınırlamaları](../../providers/sqlite/limitations.md). Yeni geliştirme projeleri için veritabanı bırakmadan yeni bir tane oluşturmak yerine ve model değiştiğinde migrations'ı kullanma göz önünde bulundurun.
-- 
 
 <a name="vs"></a>
-
 ### <a name="run-from-visual-studio"></a>Visual Studio'dan çalıştırma
 
 Visual Studio'dan Bu örneği çalıştırmak için çalışma dizini, proje kökündeki el ile olarak ayarlamanız gerekir. Çalışma dizini, aşağıdaki ayarlamazsanız `Microsoft.Data.Sqlite.SqliteException` oluşturulur: `SQLite Error 1: 'no such table: Blogs'`.
@@ -113,6 +111,6 @@ Visual Studio'dan Bu örneği çalıştırmak için çalışma dizini, proje kö
 
 ## <a name="additional-resources"></a>Ek Kaynaklar
 
-* [MVC Mac veya Linux'ta ASP.NET Core'a giriş](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app-xplat/index)
-* [Visual Studio ile MVC ASP.NET Core'a giriş](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/index)
-* [Visual Studio kullanarak ASP.NET Core ve Entity Framework Core ile çalışmaya başlama](https://docs.microsoft.com/aspnet/core/data/ef-mvc/index)
+* [Öğretici: EF çekirdekli ASP.NET Core üzerinde SQLite kullanarak yeni bir veritabanı ile çalışmaya başlama](xref:core/get-started/aspnetcore/new-db)
+* [Öğretici: ASP.NET Core Razor sayfaları kullanmaya başlayın](https://docs.microsoft.com/aspnet/core/tutorials/razor-pages/razor-pages-start)
+* [Öğretici: ASP.NET Core, Entity Framework Core ile Razor sayfaları](https://docs.microsoft.com/aspnet/core/data/ef-rp/intro)
