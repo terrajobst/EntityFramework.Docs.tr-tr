@@ -3,12 +3,12 @@ title: Entity Framework Sözlüğü - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 3f05ffdd-49bc-499c-9732-4a368bf5d2d7
-ms.openlocfilehash: 298913891fb372bf57d7504c5a54f1dc83ea1a80
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 9ed7a2d841c625de35de57edb4e57e69b89a3db9
+ms.sourcegitcommit: 5d74ac575f813110db6d870720f50dd7606446bc
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490706"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48881273"
 ---
 # <a name="entity-framework-glossary"></a>Entity Framework Sözlüğü
 ## <a name="code-first"></a>İlk kod
@@ -60,7 +60,7 @@ EF Designer kullanarak bir Entity Framework modeli oluşturma, ardından yeni bi
 Başka bir varlığa başvuran bir varlığın bir özelliği. Örneğin, ürün kategorisi gezinti özelliği ve kategori ürünleri gezinme özelliğini içerir.
 
 ## <a name="poco"></a>POCO
-Düz eski CLR nesnesi kısaltması. Basit kullanıcı sınıf herhangi bir çerçeveyi ile bağımlılık yok. EF, bağlamında bir EntityObject türemiyor bir varlık sınıfı her arabirimlerini uygular veya EF tanımlı herhangi bir öznitelik taşır. Kalıcılık çerçevesinden bağımsız çalışabildiğinden böyle bir varlık sınıfları ayrıca "Kalıcılık ignorant" olduğu söylenir.  
+Düz eski CLR nesnesi kısaltması. Basit kullanıcı sınıf herhangi bir çerçeveyi ile bağımlılık yok. EF, EntityObject türemiyor, tüm arabirimlerini uygular veya EF tanımlı herhangi bir öznitelik taşıyan bir varlık sınıfı bağlamında. Kalıcılık çerçevesinden bağımsız çalışabildiğinden böyle bir varlık sınıfları ayrıca "Kalıcılık ignorant" olduğu söylenir.  
 
 ## <a name="relationship-inverse"></a>İlişki ters
 Örneğin, ürün bir ilişki karşı sonu. Kategori ve kategorisi. Ürün.
