@@ -2,8 +2,6 @@
 
 ## [EF Core ve EF6 Karşılaştırması](efcore-and-ef6/index.md)
 
-### [Sizin İçin En Uygun Sürüm](efcore-and-ef6/choosing.md)
-### [Özellik Karşılaştırması](efcore-and-ef6/features.md)
 ### [Aynı Uygulamada EF6 ve EF Core](efcore-and-ef6/side-by-side.md)
 ### [EF6’dan EF Core’a taşıma](efcore-and-ef6/porting/index.md)
 #### [Gereksinimleri Doğrulama](efcore-and-ef6/porting/ensure-requirements.md)

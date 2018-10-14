@@ -4,12 +4,12 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 8ae74d63-6bad-4686-b325-bbf9d68f3743
 uid: ef6/index
-ms.openlocfilehash: 35292d2a724d02ecdc96b53550858eb0b6dd79d1
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 1efadf4484a13d5df2a2f11aad3d0e8f9ceff543
+ms.sourcegitcommit: 8b42045cd21f80f425a92f5e4e9dd4972a31720b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489238"
+ms.lasthandoff: 10/14/2018
+ms.locfileid: "49315639"
 ---
 # <a name="entity-framework-6"></a>Entity Framework 6
 Entity Framework 6 (EF6) bir denenmiş ve test edilmiş nesne ilişkisel eşleyicidir (O/RM) .NET için yıllar boyunca özellik geliştirmeleri ve sabitleme ' dir.
@@ -37,7 +37,7 @@ EF6 birçok popüler O/RM özellikler uygular:
 
 EF Core çok benzer işlevler ve avantajlar EF6 için'olan Entity Framework'ün daha modern, basit ve Genişletilebilir bir sürümüdür.
 EF Core tamamını yeniden yazmak ve rağmen yine de bazı EF6'ın en gelişmiş eşleme özellikleri eksik EF6 içinde mevcut olmayan birçok yeni özellikler içerir.
-Özellik kümesini gereksinimlerinize uyan sürece yeni uygulamalarda EF Core kullanmanızı öneririz.
+Özellik kümesini gereksinimlerinizi eşleşiyorsa EF Core yeni uygulamalarda kullanmayı düşünün.
 [EF Core ve EF6 karşılaştırması](xref:efcore-and-ef6/index) bu seçenek daha ayrıntılı inceler.
 
 ## <a name="get-startedef6get-startedmd"></a>[Başlarken](~/ef6/get-started.md)

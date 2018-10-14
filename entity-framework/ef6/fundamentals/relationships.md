@@ -3,12 +3,12 @@ title: İlişkiler, gezinti özellikleri ve yabancı anahtarlar - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 8a21ae73-6d9b-4b50-838a-ec1fddffcf37
-ms.openlocfilehash: a98c1bf798a8a6d2c748408d7363d5f884e7e6e9
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 46c2d11b5704ec7ae82a423ae042b87f5efe436f
+ms.sourcegitcommit: 8b42045cd21f80f425a92f5e4e9dd4972a31720b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490551"
+ms.lasthandoff: 10/14/2018
+ms.locfileid: "49315665"
 ---
 # <a name="relationships-navigation-properties-and-foreign-keys"></a>İlişkiler, gezinti özellikleri ve yabancı anahtarlar
 Bu konu, Entity Framework varlıklar arasındaki ilişkilerin nasıl yönettiğine bir genel bakış sağlar. Ayrıca ilişkileri eşleyin ve düzenleme hakkında rehberlik sağlar.
@@ -153,7 +153,7 @@ En sık kullandığınız Entity Framework içinde tanımlanmış ilişki taraf�
 > Bağımlı bir nesne bir ilgili uç yüklediğinizde bir yabancı anahtar ilişkilendirmesine, ilgili nesneyi göre şu anda bellekte olmadığını bağımlı yabancı anahtar değeri olarak yüklenecektir:
 
 ``` csharp
-    // Get the course where currently DepartmentID = 1.
+    // Get the course where currently DepartmentID = 2.
     Course course2 = context.Courses.First(c=>c.DepartmentID == 2);
 
     // Use DepartmentID foreign key property
