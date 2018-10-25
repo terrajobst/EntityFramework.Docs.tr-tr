@@ -3,12 +3,12 @@ title: Uzamsal türler - EF6 sağlayıcı desteği
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 1097cb00-15f5-453d-90ed-bff9403d23e3
-ms.openlocfilehash: ffd22222f59a541d8135d3738d37a7e8f5dc5d7c
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 9c00e82c663daec219fe649a8d889afcc81564f7
+ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489758"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50022281"
 ---
 # <a name="provider-support-for-spatial-types"></a>Uzamsal türler için sağlayıcı desteği
 Entity Framework DbGeography veya DbGeometry sınıflarıyla uzamsal veri ile çalışma destekler. Bu sınıflar Entity Framework sağlayıcısı tarafından sunulan özel veritabanı işlevleri kullanır. Uzamsal veriler tüm sağlayıcıları destekler ve olmayanlar uzamsal türü derlemeler yüklenmesi gibi ek Önkoşullar var. Uzamsal türler için sağlayıcı desteği hakkında daha fazla bilgi aşağıda verilmiştir.  
@@ -56,4 +56,4 @@ SQL Server uzamsal destek alt düzey, SQL Server'a özgü SqlGeography ve SqlGeo
 
 Visual Studio yüklendiğinde, genellikle de bir SQL Server sürümü yükler ve bu Microsoft.SqlServer.Types.dll yüklenmesini içerir.  
 
-SQL Server uzamsal türler kullanmak istediğiniz makinede yüklü değil veya SQL Server yüklemesinden uzamsal türler dışlanan, bunları el ile yüklemeniz gerekir. Türleri kullanılarak yüklenebilir `SQLSysClrTypes.msi`, Microsoft SQL Server özellik Paketi'nin bir parçası değildir. Uzamsal türleridir öneririz, böylece SQL Server sürümü özgü ["SQL Server özellik paketi" için arama](https://www.microsoft.com/en-us/search/result.aspx?q=sql+server+feature+pack) Microsoft Download Center'daki sonra seçin ve karşılık gelen seçeneği için kullanacağınız SQL Server sürümünü indirin.
+SQL Server uzamsal türler kullanmak istediğiniz makinede yüklü değil veya SQL Server yüklemesinden uzamsal türler dışlanan, bunları el ile yüklemeniz gerekir. Türleri kullanılarak yüklenebilir `SQLSysClrTypes.msi`, Microsoft SQL Server özellik Paketi'nin bir parçası değildir. Uzamsal türleridir öneririz, böylece SQL Server sürümü özgü ["SQL Server özellik paketi" için arama](https://www.microsoft.com/search/result.aspx?q=sql+server+feature+pack) Microsoft Download Center'daki sonra seçin ve karşılık gelen seçeneği için kullanacağınız SQL Server sürümünü indirin.

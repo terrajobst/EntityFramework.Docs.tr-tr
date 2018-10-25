@@ -3,12 +3,12 @@ title: Entity Framework 6 sağlayıcı modeli - EF6
 author: divega
 ms.date: 06/27/2018
 ms.assetid: 066832F0-D51B-4655-8BE7-C983C557E0E4
-ms.openlocfilehash: de2e0a24f1b5f67d28cb831491b50d32f45af60a
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: d07a8689fe968bb1512095a59a61abc7ac346a31
+ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283933"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50022330"
 ---
 # <a name="the-entity-framework-6-provider-model"></a>Entity Framework 6 sağlayıcı modeli
 
@@ -28,13 +28,13 @@ EF sağlayıcısı gerçekten bu hizmetler gelen (için temel sınıf) genişlet
 
 ### <a name="dbproviderfactory"></a>DbProviderFactory
 
-EF bağlıdır öğesinden türetilmiş bir tür olması [System.Data.Common.DbProviderFactory](https://msdn.microsoft.com/en-us/library/system.data.common.dbproviderfactory.aspx) tüm alt düzey veritabanı erişimi gerçekleştirme. DbProviderFactory EF aslında bir parçası değil ancak bunun yerine bir giriş noktası için ADO.NET sağlayıcıları hizmet veren .NET Framework sınıfında EF, diğer O/RMs tarafından veya doğrudan bir uygulama tarafından bağlantıları, komutlar, Parametreler örneğini almak için kullanılabilir ve Diğer ADO.NET soyutlama sağlayıcıyıda dilden bağımsız bir şekilde. DbProviderFactory hakkında daha fazla bilgi bir bulunabilecek [ADO.NET için MSDN belgelerine](https://msdn.microsoft.com/en-us/library/a6cd7c08.aspx).
+EF bağlıdır öğesinden türetilmiş bir tür olması [System.Data.Common.DbProviderFactory](https://msdn.microsoft.com/library/system.data.common.dbproviderfactory.aspx) tüm alt düzey veritabanı erişimi gerçekleştirme. DbProviderFactory EF aslında bir parçası değil ancak bunun yerine bir giriş noktası için ADO.NET sağlayıcıları hizmet veren .NET Framework sınıfında EF, diğer O/RMs tarafından veya doğrudan bir uygulama tarafından bağlantıları, komutlar, Parametreler örneğini almak için kullanılabilir ve Diğer ADO.NET soyutlama sağlayıcıyıda dilden bağımsız bir şekilde. DbProviderFactory hakkında daha fazla bilgi bir bulunabilecek [ADO.NET için MSDN belgelerine](https://msdn.microsoft.com/library/a6cd7c08.aspx).
 
 ### <a name="dbproviderservices"></a>DbProviderServices
 
 ADO.NET sağlayıcısı tarafından zaten sağlanan işlevselliği üzerine EF tarafından gereken ek işlevsellik sağlamak için DbProviderServices türetilmiş bir tür EF bağlıdır. EF'ın eski sürümlerinde DbProviderServices sınıf .NET Framework'ün bir parçası olan ve System.Data.Common Ad alanında bulunamadı. Bu sınıf EF6'ile başlayan EntityFramework.dll artık parçasıdır ve System.Data.Entity.Core.Common ad alanındadır.
 
-Temel işlevselliğini DbProviderServices uygulama hakkında daha fazla ayrıntı bulunabilir [MSDN](https://msdn.microsoft.com/en-us/library/ee789835.aspx). Ancak, çoğu kavramları hala geçerli olduğu halde bu bilgileri yazma saati itibarıyla EF6 için güncelleştirilmez unutmayın. DbProviderServices SQL Server ve SQL Server Compact uygulamalarını da içinde denetlenmiş olan [açık kaynak kod tabanı](https://github.com/aspnet/EntityFramework6/) ve diğer uygulamalar için kullanışlı bir başvuru olarak hizmet verebilir.
+Temel işlevselliğini DbProviderServices uygulama hakkında daha fazla ayrıntı bulunabilir [MSDN](https://msdn.microsoft.com/library/ee789835.aspx). Ancak, çoğu kavramları hala geçerli olduğu halde bu bilgileri yazma saati itibarıyla EF6 için güncelleştirilmez unutmayın. DbProviderServices SQL Server ve SQL Server Compact uygulamalarını da içinde denetlenmiş olan [açık kaynak kod tabanı](https://github.com/aspnet/EntityFramework6/) ve diğer uygulamalar için kullanışlı bir başvuru olarak hizmet verebilir.
 
 EF eski sürümlerinde DbProviderServices uygulamasını kullanmak için doğrudan bir ADO.NET Sağlayıcısı'ndan edinilen. Bu, DbProviderFactory IServiceProvider için atama ve GetService metodunu çağırarak yapıldı. Bu EF sağlayıcısı için DbProviderFactory sıkı şekilde bağlı. Bu bağlantı, .NET Framework dışında taşınmış EF engellendi, bu nedenle bu sıkı bağ EF6 için kaldırılmıştır ve DbProviderServices uygulaması artık doğrudan uygulamanın yapılandırma dosyası veya kod tabanlı kayıtlı daha ayrıntılı olarak açıklandığı gibi yapılandırma _kaydetme DbProviderServices_ bölümüne bakın.
 

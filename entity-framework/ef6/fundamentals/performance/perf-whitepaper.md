@@ -3,12 +3,12 @@ title: EF4 EF5 ve EF6 için performans konuları
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d6d5a465-6434-45fa-855d-5eb48c61a2ea
-ms.openlocfilehash: fb184fe8720b552a2050607bb17648f0413c31d1
-ms.sourcegitcommit: c568d33214fc25c76e02c8529a29da7a356b37b4
+ms.openlocfilehash: c87c1412cb23abf232663d7e4f44eef5f7818ea2
+ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/30/2018
-ms.locfileid: "47459597"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50022395"
 ---
 # <a name="performance-considerations-for-ef-4-5-and-6"></a>EF 6 4 ve 5 için performans konuları
 David Obando, Eric Dettinger ve diğerleri
@@ -33,7 +33,7 @@ Entity Framework 6 bir bant sürüm olduğundan ve .NET ile birlikte gelen Entit
 
 ## <a name="2-cold-vs-warm-query-execution"></a>2. Soğuk vs. Orta Gecikmeli sorgu yürütme
 
-Herhangi bir sorgu, belirli bir model karşı yapılan ilk kez Entity Framework birçok iş yüklemek ve model doğrulamak için arka planda gerçekleştirir. Biz bu ilk sorgu için "soğuk" sorgu olarak sık bakın.  Daha önceden yüklenmiş bir modeli sorguları "sıcak" sorgu olarak bilinir ve çok daha hızlıdır.
+Herhangi bir sorgu, belirli bir model karşı yapılan ilk kez Entity Framework birçok iş yüklemek ve model doğrulamak için arka planda gerçekleştirir. Biz bu ilk sorgu için "soğuk" sorgu olarak sık bakın.  Daha önceden yüklenmiş bir modeli sorguları "sıcak" sorgu olarak bilinir ve çok daha hızlıdır.
 
 Şimdi Entity Framework kullanarak bir sorgu yürütülürken zaman nerede harcandığını bir üst düzey görünümü yararlanın ve şeyler Entity Framework 6'da burada geliştirdiğinizi bakın.
 
@@ -145,7 +145,7 @@ Büyük bir Code First modeli varsa, bağımsız ilişkilerini kullanarak görü
 
 Proje yeniden olduğunda bile modeli değişti değildi modelinizi doğrudan uygulamanızın projeye eklenir ve derleme öncesi olay veya T4 şablonu üzerinden görünümlerini oluşturmak, görünüm oluşturma ve doğrulama gerçekleşir. Model için ayrı bir derleme taşıyın ve uygulamanızın proje başvurusu, diğer uygulamanıza modeli içeren projeyi yeniden dağıtmaya gerek kalmadan değişiklik yapabilirsiniz.
 
-*Not:* derlemeleri ayırmak için modelinizi taşırken istemci projesinin uygulama yapılandırma dosyasına modeli için bağlantı dizelerini kopyalamayı unutmayın.
+*Not:*  derlemeleri ayırmak için modelinizi taşırken istemci projesinin uygulama yapılandırma dosyasına modeli için bağlantı dizelerini kopyalamayı unutmayın.
 
 #### <a name="243-disable-validation-of-an-edmx-based-model"></a>2.4.3 edmx tabanlı bir modeli doğrulaması devre dışı bırak
 
@@ -180,10 +180,10 @@ Bul kullanırken gerçekleştirilecek bir performans artışı yoktur. Varsayıl
 Devre dışı auto-detect değişikliklerle örnek bulabilirsiniz:
 
 ``` csharp
-    context.Configuration.AutoDetectChangesEnabled = false;
-    var product = context.Products.Find(productId);
-    context.Configuration.AutoDetectChangesEnabled = true;
-    ...
+    context.Configuration.AutoDetectChangesEnabled = false;
+    var product = context.Products.Find(productId);
+    context.Configuration.AutoDetectChangesEnabled = true;
+    ...
 ```
 
 Find yöntemi kullanırken dikkate alınması gereken sahip aşağıdaki gibidir:
@@ -201,7 +201,7 @@ Entity Framework 6 kullanırken, geliştiricilerin AddRange işlemi ve RemoveRan
 
 ### <a name="32-query-plan-caching"></a>3.2 sorgu planı'önbelleğe alma
 
-İlk kez bir sorgu yürütülür, bu depolama komutu (örneğin, T-SQL Server karşı çalıştırdığınızda yürütülür, SQL) kavramsal sorgu küçültmesini iç planı derleyici geçer.  Sorgu planını önbelleğe alma etkinse, sonraki açışınızda sorgu deposu yürütülen komut yürütme planı derleyici atlama için sorgu planı önbellek doğrudan alınır.
+İlk kez bir sorgu yürütülür, bu depolama komutu (örneğin, T-SQL Server karşı çalıştırdığınızda yürütülür, SQL) kavramsal sorgu küçültmesini iç planı derleyici geçer.  Sorgu planını önbelleğe alma etkinse, sonraki açışınızda sorgu deposu yürütülen komut yürütme planı derleyici atlama için sorgu planı önbellek doğrudan alınır.
 
 Sorgu planını önbelleğe aynı AppDomain içinde ObjectContext örnekleri arasında paylaşılır. Sorgu planını önbelleğe alma yararlanmak için bir ObjectContext örneği tutun gerek yoktur.
 
@@ -211,22 +211,22 @@ Sorgu planını önbelleğe aynı AppDomain içinde ObjectContext örnekleri ara
 -   Varsayılan olarak, sorgu planını önbelleğe alma varlık SQL sorgularında ObjectQuery veya bir EntityCommand aracılığıyla yürütülen olmadığını etkin. Ayrıca varsayılan için LINQ to Entities sorgularında Entity Framework, .NET 4.5 ve Entity Framework 6 etkin
     -   Sorgu planını önbelleğe alma (şirket EntityCommand veya ObjectQuery) EnablePlanCaching özelliği false olarak ayarlayarak devre dışı bırakılabilir. Örneğin:
 ``` csharp
-                    var query = from customer in context.Customer
-                                where customer.CustomerId == id
-                                select new
-                                {
-                                    customer.CustomerId,
-                                    customer.Name
-                                };
-                    ObjectQuery oQuery = query as ObjectQuery;
-                    oQuery.EnablePlanCaching = false;
+                    var query = from customer in context.Customer
+                                where customer.CustomerId == id
+                                select new
+                                {
+                                    customer.CustomerId,
+                                    customer.Name
+                                };
+                    ObjectQuery oQuery = query as ObjectQuery;
+                    oQuery.EnablePlanCaching = false;
 ```
 -   Parametreli sorgular için parametrenin değerini değiştirerek önbelleğe alınmış sorgu hala ulaşırsınız. Ancak, bir parametrenin facets (örneğin, boyutu, duyarlık veya Ölçek) değiştirerek farklı bir önbellek girdisi ulaşırsınız.
 -   Entity SQL kullanılırken, sorgu dizesi anahtarı bir parçasıdır. Sorgu hiç değiştirilmesi, sorguları işlevsel olarak eşdeğerdir olsa bile farklı bir önbellek girişlerinde neden olacak. Bu, büyük/küçük harf veya boşluk değişiklikleri içerir.
 -   LINQ kullanırken, bir anahtarın parçası oluşturmak için sorguyu işlenir. LINQ ifadesi değiştirilmesi, bu nedenle farklı bir anahtar oluşturur.
 -   Başka bir teknik kısıtlamalar geçerli olabilir; Autocompiled sorguları daha fazla ayrıntı için bkz.
 
-#### <a name="322------cache-eviction-algorithm"></a>3.2.2 önbellek çıkarma algoritması
+#### <a name="322-cache-eviction-algorithm"></a>3.2.2 önbellek çıkarma algoritması
 
 İç algoritmaya works etkinleştirebilir veya devre dışı bırakma sorgu planını önbelleğe alma, anlayabilir nasıl yardımcı olabileceğini anlama. Temizleme algoritması aşağıdaki gibidir:
 
@@ -238,11 +238,11 @@ Tüm önbellek girişlerinin, çıkarmak için hangi girişlerin belirlerken eş
 
 Önbellek çıkarma Zamanlayıcı önbellekte 800 varlık vardır, ancak önbellek yalnızca 60 saniye sonra bu Zamanlayıcı başlatıldığında gözden geçirilmiştir devreye girdi olmadığını unutmayın. Bu, çok büyük 60 saniye için önbelleğinizi büyüme anlamına gelir.
 
-#### <a name="323-------test-metrics-demonstrating-query-plan-caching-performance"></a>3.2.3 sorgu planını önbelleğe alma performans gösteren ölçümleri test
+#### <a name="323-test-metrics-demonstrating-query-plan-caching-performance"></a>3.2.3 sorgu planını önbelleğe alma performans gösteren ölçümleri test
 
 Sorgu planını önbelleğe alma, uygulamanızın performansı etkisini göstermek için bir test ediyoruz Navision model Entity SQL sorguları bir dizi yürütüldüğü gerçekleştirdiğimiz. Ek Navision modeli ve yürütüldü sorguları türde bir açıklaması için bkz. Bu test ediyoruz önce sorguları listesi boyunca yineleme yapmak ve her bir kez (önbelleğe alma etkinse) bunları önbelleğine eklemek için çalıştırın. Bu adım untimed bağlıdır. Ardından, ana iş parçacığı gerçekleşmesi için üst düzey önbellek izin vermek tekrar 60 saniye için uyku; Son olarak, önbelleğe alınan sorgularını yürütmek için 2. bir liste zaman yineleme. Ayrıca, böylece doğru bir şekilde elde zamanları sorgu planı önbelleği tarafından verilen avantajı sorgular kümelerine yürütülmeden önce yaptığı SQL Server planı önbellek temizlenir.
 
-##### <a name="3231-------test-results"></a>3.2.3.1 test sonuçları
+##### <a name="3231-test-results"></a>3.2.3.1 test sonuçları
 
 | Test                                                                   | EF5 önbellek yok | Önbelleğe alınmış EF5 | EF6 önbellek yok | Önbelleğe alınmış EF6 |
 |:-----------------------------------------------------------------------|:-------------|:-----------|:-------------|:-----------|
@@ -266,7 +266,7 @@ Oluşturma ve bir CompiledQuery çağırma hakkında daha fazla bilgi için bkz.
 
 CompiledQuery, sahip oldukları composability ile statik örnekleri ve sorunları kullanma özelliği gereksinimi kullanırken yapmanız gereken iki önemli noktalar vardır. Bu iki noktalar ayrıntılı bir açıklamasını buraya izler.
 
-#### <a name="331-------use-static-compiledquery-instances"></a>3.3.1 statik CompiledQuery örnekleri kullan
+#### <a name="331-use-static-compiledquery-instances"></a>3.3.1 statik CompiledQuery örnekleri kullan
 
 LINQ sorgusu derleme zaman alan bir işlem olduğundan, biz bunu yapmanın veritabanından veri getirme ihtiyacımız her zaman istemezsiniz. Bir kez derlemek ve birden çok kez çalıştırmak CompiledQuery örnekleri izin, ancak dikkatli olması ve aynı CompiledQuery örneği üzerinde yeniden derlemek yerine her zaman yeniden kullanmak için tedarik edin. Statik üyeleri CompiledQuery örneklerini depolamak için kullanımını gerekli hale gelir; Aksi takdirde, hiçbir avantajı görmezsiniz.
 
@@ -292,7 +292,7 @@ LINQ sorgusu derleme zaman alan bir işlem olduğundan, biz bunu yapmanın verit
 
 Bu durumda, yöntem her çağrıldığında, çalışma sırasında yeni bir CompiledQuery örneği oluşturacaksınız. Sorgu planı önbellekten depo komutu alarak performans avantajlarının görmenin yerine, yeni bir örneği oluşturulduğunda CompiledQuery planı derleyici geçer. Yöntem her çağrıldığında aslında, sorgu planı önbelleğinizi yeni CompiledQuery girdisi ile kirletmesini.
 
-Bunun yerine, yöntem her çağrıldığında aynı derlenmiş sorgu çağırdığınız şekilde derlenmiş sorgu statik bir örneğini oluşturmak istiyorsunuz. Yollarından biri bunu nesne Bağlamınızı bir üyesi olarak CompiledQuery örneği ekleyerek, bu nedenle.  Öğeleri küçük temizleyici CompiledQuery bir yardımcı yöntem aracılığıyla erişerek daha sonra yapabilirsiniz:
+Bunun yerine, yöntem her çağrıldığında aynı derlenmiş sorgu çağırdığınız şekilde derlenmiş sorgu statik bir örneğini oluşturmak istiyorsunuz. Yollarından biri bunu nesne Bağlamınızı bir üyesi olarak CompiledQuery örneği ekleyerek, bu nedenle.  Öğeleri küçük temizleyici CompiledQuery bir yardımcı yöntem aracılığıyla erişerek daha sonra yapabilirsiniz:
 
 ``` csharp
     public partial class NorthwindEntities : ObjectContext
@@ -311,10 +311,10 @@ Bunun yerine, yöntem her çağrıldığında aynı derlenmiş sorgu çağırdı
 Bu yardımcı yöntem şu şekilde çağrılması:
 
 ``` csharp
-    this.productsGrid.DataSource = context.GetProductsForCategory(selectedCategory);
+    this.productsGrid.DataSource = context.GetProductsForCategory(selectedCategory);
 ```
 
-#### <a name="332-------composing-over-a-compiledquery"></a>3.3.2 bir CompiledQuery oluşturma
+#### <a name="332-composing-over-a-compiledquery"></a>3.3.2 bir CompiledQuery oluşturma
 
 Özelliği herhangi bir LINQ sorgu oluşturmak için son derece kullanışlıdır. Bunu yapmak için yalnızca bir yöntem sonra Iqueryable gibi çağırma *Skip()* veya *Count()*. Ancak, girebiliyorsunuz yapılması, yeni bir Iqueryable nesnesi döndürür. Yeni bir Iqueryable nesne oluşturmayı, neden olacak, böylece varken bir CompiledQuery oluşturma gelen teknik olarak durdurmak için hiçbir şey, planı derleyici ölçeklendirilebilirlikten yeniden gerektirir.
 
@@ -345,7 +345,7 @@ Bir sorgu için aşamalı filtreler ekleyerek bu burada çalışabilir tek bir y
     }
 ```
 
- Bu yeniden derleme kaçınmak için mümkün filtreler dikkate almanız CompiledQuery yazabilirsiniz:
+ Bu yeniden derleme kaçınmak için mümkün filtreler dikkate almanız CompiledQuery yazabilirsiniz:
 
 ``` csharp
     private static readonly Func<NorthwindEntities, int, int?, string, IQueryable<Customer>> customersForEmployeeWithFiltersCQ = CompiledQuery.Compile(
@@ -377,7 +377,7 @@ Olduğu gibi kullanıcı arabiriminde çağrıldığı:
     }
 ```
 
- Oluşturulan depo komutu her zaman null denetimleri filtrelerle olacaktır, ancak bunlar veritabanı sunucusu için en iyi duruma getirmeyi oldukça basit olmalıdır bir tradeoff burada verilmiştir:
+ Oluşturulan depo komutu her zaman null denetimleri filtrelerle olacaktır, ancak bunlar veritabanı sunucusu için en iyi duruma getirmeyi oldukça basit olmalıdır bir tradeoff burada verilmiştir:
 
 ``` SQL
 ...
@@ -572,7 +572,7 @@ using (var context = new MyContext())
 
 ### <a name="51-disabling-change-tracking-to-reduce-state-management-overhead"></a>5.1 Durum Yönetim yükünü azaltmak için değişiklik devre dışı bırakma
 
-Salt okunur bir senaryoda ve yüklenen nesneler Objectstatemanager'da ek yükü ortadan kaldırmak istiyorsanız, "No izleme" sorgu iletebilirsiniz.  Değişiklik izleme sorgu düzeyinde devre dışı bırakılabilir.
+Salt okunur bir senaryoda ve yüklenen nesneler Objectstatemanager'da ek yükü ortadan kaldırmak istiyorsanız, "No izleme" sorgu iletebilirsiniz.  Değişiklik izleme sorgu düzeyinde devre dışı bırakılabilir.
 
 Ancak, değişiklik, izleme devre dışı bırakarak etkin nesne önbelleği devre dışı açıyorsunuz olduğunu unutmayın. Bir varlık için sorguladığınızda, biz ObjectStateManager daha önce gerçekleştirilmiş sorgu sonuçları çekerek materialization atlayamazsınız. Tekrar tekrar aynı içerik üzerinde aynı varlıklar için sorgu oluşturuyorsanız, değişiklik izleme kaldırmadan yararlanabilecek bir performans gerçekten görebilirsiniz.
 
@@ -610,7 +610,7 @@ Sorgudaki AsNoTracking() yönteme bir çağrı zinciri tarafından bir sorgu mod
                                 select p;
 ```
 
-### <a name="52-test-metrics-demonstrating-the-performance-benefit-of-notracking-queries"></a>5.2 NoTracking sorguların performans avantajı gösteren test ölçümleri
+### <a name="52test-metrics-demonstrating-the-performance-benefit-of-notracking-queries"></a>5.2 NoTracking sorguların performans avantajı gösteren test ölçümleri
 
 Bu sınamada Navision modelin NoTracking sorguları izleme karşılaştırarak ObjectStateManager doldurma karşılığında bakacağız. Ek Navision modeli ve yürütüldü sorguları türde bir açıklaması için bkz. Bu test sorguları listesi boyunca yineleme yapmak ve her birini bir kere yürütülen. Test, bir kez NoTracking sorgularla de iki çeşidi "AppendOnly" varsayılan birleştirme seçeneği ile karşılaştık. Biz, her 3 kez çalıştırıldı ve çalıştırmalar ortalama değerini alın. Testleri arasında SQL Server'da sorgu önbelleği temizlemek ve aşağıdaki komutları çalıştırarak tempdb Daralt:
 
@@ -643,7 +643,7 @@ Entity Framework, sorgu için çeşitli yollar sunar. Biz aşağıdaki seçenekl
 -   SqlQuery.
 -   CompiledQuery.
 
-### <a name="61-------linq-to-entities-queries"></a>6.1 LINQ to Entities sorgularında
+### <a name="61-linq-to-entities-queries"></a>6.1 LINQ to Entities sorgularında
 
 ``` csharp
 var q = context.Products.Where(p => p.Category.CategoryName == "Beverages");
@@ -662,7 +662,7 @@ var q = context.Products.Where(p => p.Category.CategoryName == "Beverages");
     -   OUTER JOIN varlık SQL deyimlerinde basit değerinden daha karmaşık sorgular için sorguların OUTER JOIN DefaultIfEmpty kullanarak desenlerini sonuçlanır.
     -   Hala kullanamazsınız genel desen eşleştirme ile benzer.
 
-### <a name="62-------no-tracking-linq-to-entities-queries"></a>6.2 hiçbir ' % s'izleme LINQ to Entities sorgularında
+### <a name="62-no-tracking-linq-to-entities-queries"></a>6.2 hiçbir ' % s'izleme LINQ to Entities sorgularında
 
 Ne zaman bağlamı ObjectContext türetilir:
 
@@ -699,7 +699,7 @@ var q = context.Products.Where(p => p.Category.CategoryName == "Beverages").Sele
 
 Bu belirli bir sorgu NoTracking olan açıkça belirtmeyen ancak değil düzeniyle beri gerçekleştirilmiş sonuç nesnesi durum Yöneticisi ardından bilinen tür değil izlenir.
 
-### <a name="63-------entity-sql-over-an-objectquery"></a>6.3 varlık ObjectQuery üzerinden SQL
+### <a name="63-entity-sql-over-an-objectquery"></a>6.3 varlık ObjectQuery üzerinden SQL
 
 ``` csharp
 ObjectQuery<Product> products = context.Products.Where("it.Category.CategoryName = 'Beverages'");
@@ -715,7 +715,7 @@ ObjectQuery<Product> products = context.Products.Where("it.Category.CategoryName
 
 -   Kullanıcı daha fazla hataya daha sorgu yapıları dilinde yerleşik olan metinsel sorgu dizelerini içerir.
 
-### <a name="64-------entity-sql-over-an-entity-command"></a>6.4 varlık varlığın komut üzerinden SQL
+### <a name="64-entity-sql-over-an-entity-command"></a>6.4 varlık varlığın komut üzerinden SQL
 
 ``` csharp
 EntityCommand cmd = eConn.CreateCommand();
@@ -740,7 +740,7 @@ using (EntityDataReader reader = cmd.ExecuteReader(CommandBehavior.SequentialAcc
 -   CUD işlemleri için uygun değildir.
 -   Sonuçları değil otomatik olarak gerçekleştirilmiş ve veri okuyucusundan okunması gerekir.
 
-### <a name="65-------sqlquery-and-executestorequery"></a>6.5 SqlQuery ve ExecuteStoreQuery
+### <a name="65-sqlquery-and-executestorequery"></a>6.5 SqlQuery ve ExecuteStoreQuery
 
 Veritabanında SqlQuery:
 
@@ -778,7 +778,7 @@ var beverages = context.ExecuteStoreQuery<Product>(
 -   Sorgu deposu semantiği yerine kavramsal semantiği kullanarak belirli bir arka uca bağlıdır.
 -   Devralma mevcut olduğunda, sorgu hale talep türü için eşleme koşulları için hesap gerekiyor.
 
-### <a name="66-------compiledquery"></a>6.6 CompiledQuery
+### <a name="66-compiledquery"></a>6.6 CompiledQuery
 
 ``` csharp
 private static readonly Func<NorthwindEntities, string, IQueryable<Product>> productsForCategoryCQ = CompiledQuery.Compile(
@@ -801,7 +801,7 @@ var q = context.InvokeProductsForCategoryCQ("Beverages");
 -   Performans iyileştirmesi üzerinde derlenmiş bir sorgu oluştururken kaybolur.
 -   Bazı LINQ sorguları bir CompiledQuery - Örneğin, anonim tür projeksiyonları yazılamaz.
 
-### <a name="67-------performance-comparison-of-different-query-options"></a>6.7 farklı bir sorgu seçenekleri performans karşılaştırması
+### <a name="67-performance-comparison-of-different-query-options"></a>6.7 farklı bir sorgu seçenekleri performans karşılaştırması
 
 Burada içerik oluşturma değil uğradı basit microbenchmarks test yerleştirilmiştir. Size bir dizi önbelleğe alınmamış varlık denetimli bir ortamda 5000 kez sorgulama ölçülür. Bu uyarı ile gerçekleştirilecek sayılardır: bir uygulama tarafından üretilen gerçek sayılar yansıtmaz, ancak bunun yerine bir performans farkı sorgulanırken farklı seçenekler karşılaştırıldığında yoktur ne kadar çok doğru ölçümü olur elma-için-yeni bir bağlam maliyetini hariç elma.
 
@@ -863,7 +863,7 @@ Bu uçtan uca durumda Entity Framework 6 Entity Framework 5 çeşitli parçalar�
 
 ## <a name="7-design-time-performance-considerations"></a>7 tasarım zamanı performans konuları
 
-### <a name="71-------inheritance-strategies"></a>7.1 devralma stratejileri
+### <a name="71-inheritance-strategies"></a>7.1 devralma stratejileri
 
 Entity Framework kullanarak başka bir performans artışı, kullandığınız devralma stratejisidir. Entity Framework, devralma ve bunların bileşimleri 3 temel türlerini destekler:
 
@@ -871,11 +871,11 @@ Entity Framework kullanarak başka bir performans artışı, kullandığınız d
 -   Tablo başına tür (her türü kendi tablo veritabanına sahip olduğu TPT) –; alt tablolar yalnızca üst tablo içermiyor sütunları tanımlar.
 -   Tablo başına sınıfı (her türü kendi tam tablo veritabanına sahip olduğu TPC) –; alt tablolar üst türlerinde tanımlanan dahil olmak üzere tüm bunların alanları tanımlayın.
 
-Modelinizi TPT devralma kullanıyorsa, oluşturulan sorgular artık yürütme süresi Store'daki neden diğer devralma stratejileri ile oluşturulan olandan daha karmaşık olacaktır.  Genellikle TPT modeli üzerinde sorgular oluşturun ve elde edilen nesnelerini gerçekleştirmek için daha uzun sürer.
+Modelinizi TPT devralma kullanıyorsa, oluşturulan sorgular artık yürütme süresi Store'daki neden diğer devralma stratejileri ile oluşturulan olandan daha karmaşık olacaktır.  Genellikle TPT modeli üzerinde sorgular oluşturun ve elde edilen nesnelerini gerçekleştirmek için daha uzun sürer.
 
 "TPT (tablo başına tür) devralma varlık Çerçevesi'nde kullanırken performans konuları" Bkz MSDN blog gönderisi: \<http://blogs.msdn.com/b/adonet/archive/2010/08/17/performance-considerations-when-using-tpt-table-per-type-inheritance-in-the-entity-framework.aspx>.
 
-#### <a name="711-------avoiding-tpt-in-model-first-or-code-first-applications"></a>7.1.1 TPT modeli ilk ya da Code First uygulamaları engelleme
+#### <a name="711-avoiding-tpt-in-model-first-or-code-first-applications"></a>7.1.1 TPT modeli ilk ya da Code First uygulamaları engelleme
 
 TPT şemaya sahip mevcut bir veritabanı üzerinde bir modeli oluşturduğunuzda, pek çok seçenek yok. Ancak, Model ilk ya da Code First kullanarak bir uygulama oluştururken, performans endişelerini TPT devralınmasını kaçınmanız gerekir.
 
@@ -883,7 +883,7 @@ Varlık Tasarımcısı Sihirbazı'nda kullandığınız Model ilk zaman modelini
 
 Devralma ile bir modelin eşlemeyi yapılandırmak için Code First kullanarak EF TPH varsayılan olarak kullanır, bu nedenle devralma hiyerarşisindeki tüm varlıkları aynı tablonun eşleştirilecek. MSDN magazine'de "Kod ilk olarak varlığın Framework4.1" makale "Eşleme ile Fluent API'si" bölümüne bakın ( [http://msdn.microsoft.com/magazine/hh126815.aspx](https://msdn.microsoft.com/magazine/hh126815.aspx)) daha fazla ayrıntı için.
 
-### <a name="72-------upgrading-from-ef4-to-improve-model-generation-time"></a>7.2 model oluşturma geliştirmek için EF4 yükseltme zamanı
+### <a name="72-upgrading-from-ef4-to-improve-model-generation-time"></a>7.2 model oluşturma geliştirmek için EF4 yükseltme zamanı
 
 Visual Studio 2010 SP1 yüklü olduğunda depolama katmanı (SSDL) oluşturan algoritma modelinin bir SQL Server'a özgü geliştirmeyi Entity Framework 5 ve 6 ve Entity Framework 4 için güncelleştirme olarak kullanılabilir. Bu çok büyük bir model oluşturma durumda olduğunda Navision model geliştirme aşağıdaki test sonuçlarını gösterir. Ek C ilgili daha fazla ayrıntı için bkz.
 
@@ -899,13 +899,13 @@ Visual Studio 2010 SP1 yüklü olduğunda depolama katmanı (SSDL) oluşturan al
 
 Bu istemci geliştirme makinesi beklerken SSDL oluştururken, yükü neredeyse tamamen SQL Server üzerinde harcadığı sunucudan geri dönmeniz sonuçları için boşta çarpmaktadır. Dba'lar, özellikle bu geliştirme yönetilmesinde. Ayrıca, temelde tüm maliyet modeli oluşturma görünüm oluşturma işlemi artık gerçekleştirilir hatalarının ayıklanabileceğini belirtmekte yarar.
 
-### <a name="73-------splitting-large-models-with-database-first-and-model-first"></a>7.3 veritabanı ile büyük modeller ilk bölme ve ilk Model
+### <a name="73-splitting-large-models-with-database-first-and-model-first"></a>7.3 veritabanı ile büyük modeller ilk bölme ve ilk Model
 
 Model boyutu arttıkça, Tasarımcı yüzeyine anlaşılamayacak ve kullanmak daha zor hale gelir. Biz genellikle bir model Tasarımcısı etkili bir şekilde kullanmak için çok büyük olacak şekilde 300'den fazla varlıklarla göz önünde bulundurun. Büyük modellerin bölmek için çeşitli seçenekler şu blog gönderisinde açıklanmaktadır: \<http://blogs.msdn.com/b/adonet/archive/2008/11/25/working-with-large-models-in-entity-framework-part-2.aspx>.
 
 Post Entity Framework'ün ilk sürümü için yazılmıştır, ancak adımlar hala geçerlidir.
 
-### <a name="74-------performance-considerations-with-the-entity-data-source-control"></a>7.4 varlık veri kaynak denetimi ile performans konuları
+### <a name="74-performance-considerations-with-the-entity-data-source-control"></a>7.4 varlık veri kaynak denetimi ile performans konuları
 
 Çok iş parçacıklı performans ve stres testleri durumlarda burada EntityDataSource denetimi kullanarak bir web uygulaması performansını önemli ölçüde deteriorates gördük. EntityDataSource art arda MetadataWorkspace.LoadFromAssembly varlıklar olarak kullanılacak türlerini bulmak için Web uygulaması tarafından başvurulan derlemeler üzerinde ProcessOrder temel nedeni.
 
@@ -913,7 +913,7 @@ Post Entity Framework'ün ilk sürümü için yazılmıştır, ancak adımlar ha
 
 ContextTypeName alanını ayarlamak, işlevsel bir sorun olduğu yansıma yoluyla bir derlemeden bir tür yüklenemiyor, .NET 4.0 EntityDataSource bir ReflectionTypeLoadException oluşturur engeller. Bu sorun, .NET 4.5 içinde düzeltilmiştir.
 
-### <a name="75-------poco-entities-and-change-tracking-proxies"></a>7.5 POCO varlık ve değişiklik izleme proxy'ler
+### <a name="75-poco-entities-and-change-tracking-proxies"></a>7.5 POCO varlık ve değişiklik izleme proxy'ler
 
 Varlık çerçevesi veri sınıfları için herhangi bir değişiklik yapmadan özel veri sınıfları, veri modeli ile birlikte kullanmanıza olanak sağlar. Başka bir deyişle, "düz eski" CLR nesnelerine (POCO), veri modelinizle var olan etki alanı nesnelerini gibi kullanabilirsiniz. Bir veri modelinde tanımlanan varlıklara eşlenmesi bu POCO veri sınıfları (olarak da bilinen Kalıcılık ignorant nesneler), aynı sorgu çoğunu destekler, ekleme, güncelleştirme ve varlık veri modeli araçlarının ürettiği varlık türleri olarak davranışları silme.
 
@@ -1089,7 +1089,7 @@ Daha fazla bilgi için [ilgili nesneler Yükleniyor](https://msdn.microsoft.com/
 | Kodunuzu veritabanınızı gölgeden uzak yürütüyor? (daha fazla ağ gecikmesi)  | **Hayır** - ağ gecikme süresi bir sorun olmadığında kullanılarak yavaş yükleniyor kodunuzu basitleştirin. Uygulamanızın topolojisini, verilen için veritabanı yakınlık yakalayana şekilde değiştirebileceğine unutmayın. <br/> <br/> **Evet** - ağ ne senaryonuz için daha iyi uyduğunu karar yalnızca bir sorun olduğunda. Genellikle daha az sayıda gidiş dönüş gerektirdiğinden istekli yükleme daha iyi olacaktır.                                                                                                                                                                                                      |
 
 
-#### <a name="822-------performance-concerns-with-multiple-includes"></a>8.2.2 performans endişelerini ile birden çok içerir
+#### <a name="822-performance-concerns-with-multiple-includes"></a>8.2.2 performans endişelerini ile birden çok içerir
 
 Biz sunucu yanıt süresi sorunları ilgili performans sorular duyduğunuzda, sorunun sık birden çok içerik deyimleri sorgularla kaynağıdır. Bir sorguda ilgili varlıkları dahil olmak üzere güçlü olsa da, bu işlem arka planda neler olduğunu anlamak önemlidir.
 
@@ -1147,7 +1147,7 @@ Gil Fink'ın "Tablo bölme, Entity Framework" blog gönderisine tablo bölme etk
 
 ## <a name="9-other-considerations"></a>9 diğer konular
 
-### <a name="91------server-garbage-collection"></a>9.1 sunucu çöp toplama
+### <a name="91-server-garbage-collection"></a>9.1 sunucu çöp toplama
 
 Bazı kullanıcılar, çöp toplayıcının düzgün şekilde yapılandırılmadığında, bunlar görmeyi paralellik sınırlar kaynak çekişmesini karşılaşabilirsiniz. EF birden çok iş parçacıklı bir senaryoda kullanılan veya herhangi bir uygulamada, bir sunucu tarafı sistemi benzer olduğunda, sunucu Çöp toplamayı etkinleştirmek emin olun. Bu, basit bir ayar, uygulama yapılandırma dosyasında aracılığıyla gerçekleştirilir:
 
@@ -1162,7 +1162,7 @@ Bazı kullanıcılar, çöp toplayıcının düzgün şekilde yapılandırılmad
 
 Bu, iş parçacığı çekişmeyi azaltmak ve % 30 oranında e doygun CPU senaryolarda aktarım hızınızı artırın gerekir. Genel koşullarını nasıl yanı sıra sunucu çöp toplama (Bu, daha iyi kullanıcı Arabirimi ve istemci tarafı senaryolar için ayarlanmıştır) Klasik çöp toplama kullanarak uygulamanızın davranışını her zaman test etmeniz gerekir.
 
-### <a name="92------autodetectchanges"></a>9.2 AutoDetectChanges
+### <a name="92-autodetectchanges"></a>9.2 AutoDetectChanges
 
 Daha önce belirtildiği gibi Entity Framework, nesne önbelleği birçok varlığın sahip olduğunda performans sorunlarını gösterebilir. Ekle, Kaldır, bulma, giriş ve SaveChanges, gibi bazı işlemleri, büyük miktarda CPU ne kadar büyük nesne önbelleği haline gelmiştir üzerinde tabanlı tüketebilir DetectChanges çağrıları tetikleyin. Bunun nedeni, nesne önbelleği ve Nesne Durum Yöneticisi'ni deneyin olarak kalır, böylece üretilen veri çeşit senaryo altında doğru olması garanti bir bağlam için gerçekleştirilen her işlem üzerinde mümkün olduğunca eşitlendiğini ' dir.
 
@@ -1183,11 +1183,11 @@ finally
 
 AutoDetectChanges kapatmadan önce bu Entity Framework, gerçekleşirken varlıklar üzerinde değişiklikler hakkındaki belirli bilgileri izlemek için güncelleyebileceği kaybetmesine neden olabilir anlamak uygundur. Hatalı olarak işlenir, bu uygulama veri tutarsızlığına neden olabilir. AutoDetectChanges kapatarak daha fazla bilgi için okuma \<http://blog.oneunicorn.com/2012/03/12/secrets-of-detectchanges-part-3-switching-off-automatic-detectchanges/>.
 
-### <a name="93------context-per-request"></a>9.3 istek başına bağlamı
+### <a name="93-context-per-request"></a>9.3 istek başına bağlamı
 
 Entity Framework'ün bağlamları en iyi performans sağlamak için kısa süreli örnekleri deneyimi gibi kullanılmaya yöneliktir. Bağlamları bekleniyor kısa olması beklenir ve atılır ve bu nedenle basit ve meta verileri mümkün olduğunca reutilize uygulanmıştır. Web senaryolarında bunu aklınızda bulundurun ve tek bir isteğin süresinden daha fazla bilgi için bir bağlam yok önemlidir. Benzer şekilde, web olmayan senaryolarda bağlam göre varlık Çerçevesi'nde önbelleğe alma düzeylerini anlama atılmalıdır. Genel olarak bakıldığında, bir uygulama hem de iş parçacığı başına bağlamları ve statik içerikleri ömrü boyunca bir bağlam örneği kaçınmanız gerekir.
 
-### <a name="94------database-null-semantics"></a>9.4 sürümünden veritabanı null semantikler
+### <a name="94-database-null-semantics"></a>9.4 sürümünden veritabanı null semantikler
 
 Varsayılan olarak Entity Framework C olan SQL kodu üretir\# null karşılaştırma semantiği. Aşağıdaki örnek sorgu göz önünde bulundurun:
 
@@ -1224,18 +1224,18 @@ Küçük ve orta ölçekli sorguları algılanabilir performans iyileştirmesi v
 
 Yukarıdaki örnek sorguda bir performans farkı küçüktür %2 denetimli bir ortamda çalışan bir microbenchmark içinde oluştu.
 
-### <a name="95------async"></a>9.5 zaman uyumsuz
+### <a name="95-async"></a>9.5 zaman uyumsuz
 
 .NET 4.5 veya sonraki sürümlerde çalışan zaman uyumsuz işlemler Entity Framework 6 sunulan desteği. Çoğunlukla, g/ç uygulamaları Çekişme ilgili en çok zaman uyumsuz sorgu kullanma avantajını yakalayabilirler ve kaydetme işlemleri. Uygulamanızın g/ç kms'den kaynaklanan çakışmayı saptanmamış, zaman uyumsuz kullanımını en iyi durumda zaman uyumlu olarak çalışacak ve sonuç aynı süre içinde zaman uyumlu bir çağrı olarak ya da en kötü durumda, yalnızca zaman uyumsuz bir görev için yürütme ertele ve ek tim Ekle tamamlandığında, senaryonuz e.
 
 Zaman uyumsuz bir uygulamanızın performansını artıracak karar yardımcı olacak ne zaman uyumsuz programlama iş ziyaret bilgi [http://msdn.microsoft.com/library/hh191443.aspx](https://msdn.microsoft.com/library/hh191443.aspx). Entity Framework zaman uyumsuz işlemleri daha fazla bilgi için bkz. [zaman uyumsuz sorgu ve tasarruf](~/ef6/fundamentals/async.md
 ).
 
-### <a name="96------ngen"></a>9.6 NGEN
+### <a name="96-ngen"></a>9.6 NGEN
 
 Entity Framework 6, .NET framework'ün varsayılan yüklemede gelmez. Bu nedenle, Entity Framework derlemeleri Entity Framework kodunun herhangi bir MSIL derleme olarak aynı JIT'ing maliyetleri tabi olduğu anlamına gelir varsayılan NGEN 'D değildir. Bu, geliştirme ve ayrıca, uygulamanızın üretim ortamlarında soğuk başlangıç F5 deneyimi düşebilir. JIT'ing CPU ve bellek maliyetlerini azaltmak için Entity Framework uygun şekilde görüntüleri NGEN için tavsiye edilir. Entity Framework 6 NGEN ile başlangıç performansını artırmak nasıl hakkında daha fazla bilgi için bkz. [NGen ile başlangıç performansı artırma](~/ef6/fundamentals/performance/ngen.md).
 
-### <a name="97------code-first-versus-edmx"></a>9.7 ilk EDMX karşı kodu
+### <a name="97-code-first-versus-edmx"></a>9.7 ilk EDMX karşı kodu
 
 Entity Framework nedeniyle nesne yönelimli programlama ve bir bellek içi temsillerinin kavramsal model (nesneler), depolama şemanın (veritabanı) ve arasında bir eşleme tarafından ilişkisel veritabanları arasında empedans uyuşmazlığı sorunu hakkında iki. Bu meta veriler için kısa bir varlık veri modeli veya EDM çağrılır. Bu EDM Entity Framework görünümleri gidiş dönüş verileri veritabanına bellekte nesnelerin türetilir ve yedekleyin.
 
@@ -1251,11 +1251,11 @@ Code First karşı EDMX kullanmayı seçerken, Code First tarafından sunulan es
 
 Entity Framework ile performans sorunları yaşıyorsanız, uygulamanızı kendi zaman harcadığı burada görmek için Visual Studio'da yerleşik olanlar gibi bir profil oluşturucu kullanabilirsiniz. Bu "Keşfetme - bölüm 1 ADO.NET Entity Framework performansının" blog gönderisinde pasta grafikler oluşturmak için kullandığımız aracıdır ( \<http://blogs.msdn.com/b/adonet/archive/2008/02/04/exploring-the-performance-of-the-ado-net-entity-framework-part-1.aspx>) Entity Framework, süre boyunca soğuk ve orta Gecikmeli sorgular nerede geçirdiği göster.
 
-Profil Oluşturucu performans sorunu araştırmak için almaları bir gerçek örnek veri ve modelleme Müşteri danışma ekibi tarafından yazılan "profil oluşturma Entity Framework kullanarak Visual Studio 2010 Profiler" blog gönderisine gösterir.  \<http://blogs.msdn.com/b/dmcat/archive/2010/04/30/profiling-entity-framework-using-the-visual-studio-2010-profiler.aspx>. Bu gönderi, windows uygulaması için yazılmıştır. Bir web uygulamasının profilini çıkarmak gerekiyorsa Windows Performans kaydedici (WPR) ve Windows Performans Çözümleyicisi (WPA) araçları Visual Studio'dan çalışma daha iyi çalışabilir. Windows değerlendirme ve Dağıtım Seti ile dahil olan Windows Performans araç bir parçası olan WBT ve WPA ( [ http://www.microsoft.com/en-US/download/details.aspx?id=39982 ](https://www.microsoft.com/en-US/download/details.aspx?id=39982)).
+Profil Oluşturucu performans sorunu araştırmak için almaları bir gerçek örnek veri ve modelleme Müşteri danışma ekibi tarafından yazılan "profil oluşturma Entity Framework kullanarak Visual Studio 2010 Profiler" blog gönderisine gösterir.  \<http://blogs.msdn.com/b/dmcat/archive/2010/04/30/profiling-entity-framework-using-the-visual-studio-2010-profiler.aspx>. Bu gönderi, windows uygulaması için yazılmıştır. Bir web uygulamasının profilini çıkarmak gerekiyorsa Windows Performans kaydedici (WPR) ve Windows Performans Çözümleyicisi (WPA) araçları Visual Studio'dan çalışma daha iyi çalışabilir. Windows değerlendirme ve Dağıtım Seti ile dahil olan Windows Performans araç bir parçası olan WBT ve WPA ( [ http://www.microsoft.com/download/details.aspx?id=39982 ](https://www.microsoft.com/download/details.aspx?id=39982)).
 
 ### <a name="102-applicationdatabase-profiling"></a>10.2 uygulama/veritabanı profil oluşturma
 
-Visual Studio'da yerleşik olarak bulunan profil oluşturucu gibi araçları uygulamanızın zaman harcadığı yerleri burada söyleyin.  Profil Oluşturucu başka türde kullanılabilir çalışan uygulamanızı, üretim veya üretim öncesi gereksinimlerine bağlı olarak dinamik analizini yapar ve yaygın görülen tehlikeleri ve veritabanı erişim ters desenler için arar.
+Visual Studio'da yerleşik olarak bulunan profil oluşturucu gibi araçları uygulamanızın zaman harcadığı yerleri burada söyleyin.  Profil Oluşturucu başka türde kullanılabilir çalışan uygulamanızı, üretim veya üretim öncesi gereksinimlerine bağlı olarak dinamik analizini yapar ve yaygın görülen tehlikeleri ve veritabanı erişim ters desenler için arar.
 
 Piyasadaki iki profil oluşturucular olan Entity Framework Profiler ( \< http://efprof.com>) ve ORMProfiler ( \< http://ormprofiler.com>).
 
@@ -1298,9 +1298,9 @@ Git yeniden derlemeye gerek kalmadan günlüğe kaydetme ekleme hakkında daha f
 
 Bu ortam, ayrı bir makineye istemci uygulamadan alınan veritabanı ile 2 makine Kurulum kullanır. Ağ gecikme süresi düşük, ancak daha gerçekçi bir tek makineli ortamından, bu nedenle aynı rafa makinelerdir.
 
-#### <a name="1111-------app-server"></a>11.1.1 uygulama sunucusu
+#### <a name="1111-app-server"></a>11.1.1 uygulama sunucusu
 
-##### <a name="11111------software-environment"></a>11.1.1.1 yazılım ortamı
+##### <a name="11111-software-environment"></a>11.1.1.1 yazılım ortamı
 
 -   Entity Framework 4 yazılım ortamı
     -   İşletim sistemi adı: Windows Server 2008 R2 Enterprise SP1.
@@ -1310,26 +1310,26 @@ Bu ortam, ayrı bir makineye istemci uygulamadan alınan veritabanı ile 2 makin
     -   İşletim sistemi adı: Windows 8.1 Enterprise
     -   Visual Studio 2013 – Ultimate.
 
-##### <a name="11112------hardware-environment"></a>11.1.1.2 donanım ortamı
+##### <a name="11112-hardware-environment"></a>11.1.1.2 donanım ortamı
 
 -   Çift işlemci: Intel(R) Xeon(R) CPU L5520 W3530 2.27 GHz @ 2261 Mhz8 GHz, 4 çekirdek, 84 mantıksal işlemci.
 -   2412 GB RamRAM.
 -   4 bölüme bölme 136 GB SCSI250GB SATA 7200 rpm 3 GB/sn sürücüsü.
 
-#### <a name="1112-------db-server"></a>11.1.2 DB sunucusu
+#### <a name="1112-db-server"></a>11.1.2 DB sunucusu
 
-##### <a name="11121------software-environment"></a>11.1.2.1 yazılım ortamı
+##### <a name="11121-software-environment"></a>11.1.2.1 yazılım ortamı
 
 -   İşletim sistemi adı: Windows Server 2008 R28.1 Enterprise SP1.
 -   SQL Server 2008 R22012.
 
-##### <a name="11122------hardware-environment"></a>11.1.2.2 donanım ortamı
+##### <a name="11122-hardware-environment"></a>11.1.2.2 donanım ortamı
 
 -   Tek bir işlemcinin: Intel(R) Xeon(R) CPU L5520 2.27 GHz @ 2261 MhzES-1620 0 @ 3.60 GHz, 4 çekirdek, 8 mantıksal işlemci.
 -   824 GB RamRAM.
 -   4 bölüme bölme 465 GB ATA500GB SATA 7200 rpm 6 GB/sn sürücüsü.
 
-### <a name="112------b-query-performance-comparison-tests"></a>11.2 sorgu b testleri karşılaştırma
+### <a name="112-b-query-performance-comparison-tests"></a>11.2 sorgu b testleri karşılaştırma
 
 Northwind modeli, bu testleri yürütmek için kullanıldı. Bu, Entity Framework designer kullanarak veritabanı oluşturuldu. Ardından, aşağıdaki kod, sorgu yürütme seçeneklerini performansını karşılaştırmak için kullanılan:
 
@@ -1519,7 +1519,7 @@ Basit arama sorgusuyla toplama
   </Query>
 ```
 
-##### <a name="11312-singleaggregating"></a>11.3.1.2 SingleAggregating
+##### <a name="11312singleaggregating"></a>11.3.1.2 SingleAggregating
 
 Normal bir BI sorgu birden çok toplama işlemi, ancak hiçbir alt toplamlar (tek sorgu)
 
@@ -1540,7 +1540,7 @@ Burada MDF\_SessionLogin\_zaman\_Max() model olarak tanımlanmıştır:
   </Function>
 ```
 
-##### <a name="11313-aggregatingsubtotals"></a>11.3.1.3 AggregatingSubtotals
+##### <a name="11313aggregatingsubtotals"></a>11.3.1.3 AggregatingSubtotals
 
 Bir BI sorgu toplamalar ve alt toplamlar (aracılığıyla tüm birleşimi)
 

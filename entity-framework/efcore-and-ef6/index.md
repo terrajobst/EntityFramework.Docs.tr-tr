@@ -5,12 +5,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: a6b9cd22-6803-4c6c-a4d4-21147c0a81cb
 uid: efcore-and-ef6/index
-ms.openlocfilehash: 8568f0a3c6c4585c4fe05508fd610614107c8f66
-ms.sourcegitcommit: 8b42045cd21f80f425a92f5e4e9dd4972a31720b
+ms.openlocfilehash: 0f9f0d4708fa283855eddf2cfc231b37356e413e
+ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/14/2018
-ms.locfileid: "49315652"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50022356"
 ---
 # <a name="compare-ef-core--ef6"></a>EF Core ve EF6 Karşılaştırması
 
@@ -73,7 +73,7 @@ EF Core sütunu, özelliği ilk kez göründü ürün sürümü gösterir.
 
 ### <a name="querying-data"></a>Verileri sorgulama
 
-| ** Özelliği                                             | **EF6**  | **EF Core**                           |
+| **Özelliği**                                           | **EF6**  | **EF Core**                           |
 |:------------------------------------------------------|:---------|:--------------------------------------|
 | LINQ sorguları                                          | Evet      | 1.0 (devam eden karmaşık sorgular için) |
 | Okunabilir oluşturulan SQL                                | Kötü     | 1.0                                   |
@@ -147,7 +147,7 @@ EF Core sütunu, özelliği ilk kez göründü ürün sürümü gösterir.
 ## <a name="guidance-for-new-applications"></a>Yeni uygulamalar için yönergeler
 
 Aşağıdaki koşulların her ikisi de doğruysa EF Core için yeni bir uygulama kullanmayı deneyin:
-* Uygulamanın, .NET Core yeteneklerini gerekir. Daha fazla bilgi için [sunucu uygulamaları için .NET Core ve .NET Framework arasında seçim](https://docs.microsoft.com/en-us/dotnet/standard/choosing-core-framework-server).
+* Uygulamanın, .NET Core yeteneklerini gerekir. Daha fazla bilgi için [sunucu uygulamaları için .NET Core ve .NET Framework arasında seçim](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server).
 * EF Core uygulamasını özelliklerin tümünü destekler. İstenen özellik eksik olursa denetleyin [EF Core yol haritası](xref:core/what-is-new/roadmap) gelecekte desteklemeye yönelik planlar olup olmadığını öğrenin. 
 
 Aşağıdaki koşulların her ikisi de doğruysa EF6 kullanarak göz önünde bulundurun:

@@ -3,12 +3,12 @@ title: Entity Framework sağlayıcıları - EF6
 author: divega
 ms.date: 06/27/2018
 ms.assetid: 7BFB7763-CD6C-4520-93A2-7B265F5FA586
-ms.openlocfilehash: c9afb32caeeef5111b32251c62019460b62f48b3
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 0cfe6c30d6533b0207f78a031d342847a7f68632
+ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489446"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50022229"
 ---
 # <a name="entity-framework-6-providers"></a>Entity Framework 6 sağlayıcıları
 > [!NOTE]
@@ -68,7 +68,7 @@ Bu kayıt "type" bütünleştirilmiş kodla nitelenen "System.Data.Entity.Core.C
 
 ### <a name="code-based-registration"></a>Kod tabanlı kayıt
 
-EF için birçok farklı uygulama yapılandırma Entity Framework 6 ile başlayarak, kod içinde belirtilebilir. Tam Ayrıntılar için bkz.  _[Entity Framework Code-Based yapılandırma](https://msdn.microsoft.com/en-us/data/jj680699)_. Kod tabanlı yapılandırma kullanarak bir EF sağlayıcısını kaydetmek için normal System.Data.Entity.DbConfiguration türeyen yeni bir sınıf oluşturun ve aynı bütünleştirilmiş kodun DbContext sınıfınıza olarak yerleştirme yoludur. DbConfiguration sınıfınıza ardından oluşturucusunda sağlayıcısını kaydetmeniz. Örneğin, SQL Compact kaydettirmek için sağlayıcı DbConfiguration sınıfı şu şekilde görünür:
+EF için birçok farklı uygulama yapılandırma Entity Framework 6 ile başlayarak, kod içinde belirtilebilir. Tam Ayrıntılar için bkz.  _[Entity Framework Code-Based yapılandırma](https://msdn.microsoft.com/data/jj680699)_. Kod tabanlı yapılandırma kullanarak bir EF sağlayıcısını kaydetmek için normal System.Data.Entity.DbConfiguration türeyen yeni bir sınıf oluşturun ve aynı bütünleştirilmiş kodun DbContext sınıfınıza olarak yerleştirme yoludur. DbConfiguration sınıfınıza ardından oluşturucusunda sağlayıcısını kaydetmeniz. Örneğin, SQL Compact kaydettirmek için sağlayıcı DbConfiguration sınıfı şu şekilde görünür:
 
 ``` csharp
     public class MyConfiguration : DbConfiguration

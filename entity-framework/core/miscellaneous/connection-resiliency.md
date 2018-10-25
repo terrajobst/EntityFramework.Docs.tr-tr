@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 11/15/2016
 ms.assetid: e079d4af-c455-4a14-8e15-a8471516d748
 uid: core/miscellaneous/connection-resiliency
-ms.openlocfilehash: d5101d0622ddc2c90ddded16b9ec6cc4eb814c36
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: 729cf9b8c038ea2adba8c79c68d9f6fb1676fefa
+ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283842"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50022190"
 ---
 # <a name="connection-resiliency"></a>Bağlantı Dayanıklılığı
 
@@ -46,6 +46,10 @@ Ancak, kodunuzu kullanarak bir işlem başlatırsa `BeginTransaction()` tanımla
 El ile yürütülmesi gereken her şeyi temsil eden bir temsilci ile yürütme stratejisi çağırmak için kullanılan çözümüdür. Geçici bir hata oluşursa yürütme stratejisi temsilciyi yeniden çağırır.
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/ConnectionResiliency/Program.cs#ManualTransaction)]
+
+Bu yaklaşım, ortam işlemleri ile de kullanılabilir.
+
+[!code-csharp[Main](../../../samples/core/Miscellaneous/ConnectionResiliency/Program.cs#AmbientTransaction)]
 
 ## <a name="transaction-commit-failure-and-the-idempotency-issue"></a>İşlem yürütme hatası ve Teklik sorunu
 

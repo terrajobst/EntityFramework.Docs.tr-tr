@@ -3,21 +3,21 @@ title: Bağlantısı kesilmiş varlıklar - EF6 ile çalışma
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 12138003-a373-4817-b1b7-724130202f5f
-ms.openlocfilehash: beb3847ce507a2112ac0d396a2023c7c4e2fca7d
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 11ca2a9a4161e02d32d98bf03dd4cf28545334b7
+ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489940"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50022177"
 ---
 # <a name="working-with-disconnected-entities"></a>Bağlantısı kesilmiş varlıklar ile çalışma
 Entity Framework tabanlı bir uygulama, izlenen varlıklarına uygulanan değişiklikler algılanıyor için bir bağlam sınıfını sorumludur. SaveChanges yöntemini çağırarak veritabanı için bağlam tarafından izlenen değişiklikleri devam ettirir. N katmanlı uygulamalar ile çalışırken, varlık nesnesi genellikle bağlamdan bağlı değilken değiştirilen ve değişiklikleri ve rapor bağlamına bu değişiklikleri izlemek nasıl karar vermeniz gerekir. Bu konu ile Entity Framework kullanarak varlıkları kesildiğinde kullanılabilir farklı seçenekler açıklanır.   
 
 ## <a name="web-service-frameworks"></a>Web hizmeti çerçeveleri
 
-Web hizmetleri teknolojileri genellikle ayrı ayrı bağlantısı kesilmiş nesnelerdeki değişiklikleri kalıcı hale getirmek için kullanılan desenleri destekler. Örneğin, ASP.NET Web API, bir nesne bir veritabanı üzerinde yapılan değişiklikleri kalıcı hale getirmek için EF çağrılar dahil edebilirsiniz kodunu denetleyici eylemleri için sağlar. Aslında, Visual Studio Araçları Web API'si, Entity Framework 6 modelinizi bir Web API denetleyicisi iskele oluşturmayı kolaylaştırır. Daha fazla bilgi için [Entity Framework 6 ile Web API kullanarak](https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-with-entity-framework/).   
+Web hizmetleri teknolojileri genellikle ayrı ayrı bağlantısı kesilmiş nesnelerdeki değişiklikleri kalıcı hale getirmek için kullanılan desenleri destekler. Örneğin, ASP.NET Web API, bir nesne bir veritabanı üzerinde yapılan değişiklikleri kalıcı hale getirmek için EF çağrılar dahil edebilirsiniz kodunu denetleyici eylemleri için sağlar. Aslında, Visual Studio Araçları Web API'si, Entity Framework 6 modelinizi bir Web API denetleyicisi iskele oluşturmayı kolaylaştırır. Daha fazla bilgi için [Entity Framework 6 ile Web API kullanarak](https://docs.microsoft.com/aspnet/web-api/overview/data/using-web-api-with-entity-framework/).   
 
-Tarihsel olarak, olmuştur Entity Framework ile tümleştirme gibi sunulan çeşitli diğer Web hizmetleri teknolojileri [WCF Veri Hizmetleri](https://docs.microsoft.com/dotnet/framework/data/wcf/create-a-data-service-using-an-adonet-ef-data-wcf) ve [RIA Services](https://docs.microsoft.com/en-us/previous-versions/dotnet/wcf-ria/ee707344(v=vs.91)).
+Tarihsel olarak, olmuştur Entity Framework ile tümleştirme gibi sunulan çeşitli diğer Web hizmetleri teknolojileri [WCF Veri Hizmetleri](https://docs.microsoft.com/dotnet/framework/data/wcf/create-a-data-service-using-an-adonet-ef-data-wcf) ve [RIA Services](https://docs.microsoft.com/previous-versions/dotnet/wcf-ria/ee707344(v=vs.91)).
 
 ## <a name="low-level-ef-apis"></a>Alt düzey EF API'leri
 
