@@ -3,12 +3,12 @@ title: -EF6 Load yöntemi
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 03c5a069-b7b4-455f-a16f-ee3b96cc4e28
-ms.openlocfilehash: 3a0d11552b6bfd8b83f15c58c6cb9f945d9d4536
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: bcea8ab2477f44281cd5de824457a72a84ccc766
+ms.sourcegitcommit: 4a795285004612ac03ab26532ac09ca333cb4c8f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490902"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50123823"
 ---
 # <a name="the-load-method"></a>Load yöntemi
 Burada bağlamına veritabanından hemen bu varlıklarla herhangi bir şey yapmadan varlıkları yükleme isteyebilirsiniz birkaç senaryo mevcuttur. Bunun iyi bir örnek veri bağlama için varlıklar açıklandığı Yükleniyor [yerel veri](~/ef6/querying/local-data.md). Bunu yapmanın yaygın bir yolu, LINQ sorgusu yazın ve ardından ToList üzerinde yalnızca oluşturulan listenin hemen atmak için çağrısından sağlamaktır. Yük genişletme yöntemi yalnızca ToList gibi çalışır listesinin oluşturulması tamamen ortadan kaldırır.  
@@ -40,7 +40,7 @@ using (var context = new BloggingContext())
     context.Entry(blog)
         .Collection(b => b.Posts)
         .Query()
-        .Where(p => p.Tags.Contains("entity-framework")
+        .Where(p => p.Tags.Contains("entity-framework"))
         .Load();
 }
 ```  
