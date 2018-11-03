@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 3c88427c-20c6-42ec-a736-22d3eccd5071
 uid: core/get-started/index
-ms.openlocfilehash: c8d53b47d215c0db673c9058e9d78a7e2e7b895f
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: 744ea587207775f3a5b9f7b14ba5959c55539c13
+ms.sourcegitcommit: 39080d38e1adea90db741257e60dc0e7ed08aa82
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44250744"
+ms.lasthandoff: 11/03/2018
+ms.locfileid: "50980021"
 ---
 # <a name="getting-started-with-entity-framework-core"></a>Entity Framework Core ile çalışmaya başlama
 
@@ -19,7 +19,7 @@ Farklı platformlar ve popüler Ide'leri, uygulamanın EF Core eklemek gerekli a
 
 ## <a name="step-by-step-tutorials"></a>Adım adım öğreticiler
 
-Bu Tanıtım öğreticilerine Entity Framework Core veya belirli bir IDE, önceki hiçbir gerektirir. Bunlar, sorgular ve verileri bir veritabanından kaydeden basit bir uygulama oluşturma ile adım adım sürer. Çeşitli işletim sistemlerini ve uygulama türleri üzerinde çalışmaya başlamanızı sağlayacak öğreticiler sağladık.
+Bu Tanıtım öğreticilerine önceki Entity Framework Core olanağıyla veya herhangi bir IDE'ye gerektirir. Bunlar, sorgular ve verileri bir veritabanından kaydeden basit bir uygulama oluşturmak adım adım sürer. Çeşitli işletim sistemlerini ve uygulama türleri üzerinde çalışmaya başlamanızı sağlayacak öğreticiler sağladık.
 
 Entity Framework Core varolan bir veritabanını temel alan bir model oluşturmak veya size, modelinize dayalı bir veritabanı oluşturun. Bu yaklaşımların her ikisini de gösteren öğreticiler vardır.
 

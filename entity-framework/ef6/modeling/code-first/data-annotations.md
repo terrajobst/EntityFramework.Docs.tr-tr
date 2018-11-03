@@ -3,12 +3,12 @@ title: İlk veri ek açıklamaları - EF6 kod
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 80abefbd-23c9-4fce-9cd3-520e5df9856e
-ms.openlocfilehash: 54e27f1b866da14d68db66ca5eca5a6dde819e26
-ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
+ms.openlocfilehash: 8d85ef85f56a23d9b3b526554417dc9dd360e139
+ms.sourcegitcommit: 39080d38e1adea90db741257e60dc0e7ed08aa82
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47415815"
+ms.lasthandoff: 11/03/2018
+ms.locfileid: "50980047"
 ---
 # <a name="code-first-data-annotations"></a>Kod ilk veri ek açıklamaları
 > [!NOTE]
@@ -30,26 +30,26 @@ Kod ilk DataAnnotations sınıfları basit çiftiyle kazandırabileceğinizi gö
 ``` csharp
     public class Blog
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string BloggerName { get; set;}
-        public virtual ICollection<Post> Posts { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string BloggerName { get; set;}
+        public virtual ICollection<Post> Posts { get; set; }
     }
 
     public class Post
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public DateTime DateCreated { get; set; }
-        public string Content { get; set; }
-        public int BlogId { get; set; }
-        public ICollection<Comment> Comments { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public DateTime DateCreated { get; set; }
+        public string Content { get; set; }
+        public int BlogId { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
 ```
 
 Olduğu gibi Blog ve gönderi sınıfları rahatça kod ilk kuralını izler ve EF uyumluluk etkinleştirmek için hiçbir tweaks gerektirir. Ancak, sınıfları ve bunların eşleneceğine veritabanı hakkında daha fazla bilgi için EF sağlamak için ek açıklamaları kullanabilirsiniz.
 
- 
+ 
 
 ## <a name="key"></a>Anahtar
 
@@ -60,11 +60,11 @@ Blog ve gönderi sınıfları bu kural izleyin. Bunlar ne oldu? Peki Blog kullan
 ``` csharp
     public class Blog
     {
-        [Key]
-        public int PrimaryTrackingKey { get; set; }
-        public string Title { get; set; }
-        public string BloggerName { get; set;}
-        public virtual ICollection<Post> Posts { get; set; }
+        [Key]
+        public int PrimaryTrackingKey { get; set; }
+        public string Title { get; set; }
+        public string BloggerName { get; set;}
+        public virtual ICollection<Post> Posts { get; set; }
     }
 ```
 
@@ -155,11 +155,11 @@ Gerekli öznitelik eşlenen özelliği null olamaz yapmanızı tarafından oluş
 >[!NOTE]
 > Bazı durumlarda veritabanını özelliği gerekli olsa bile null yapılamaz sütunda mümkün olmayabilir. Örneğin, ne zaman TPH devralma stratejisi veri için birden fazla türü kullanılarak tek bir tabloda depolanır. Gerekli bir özellik türetilmiş bir tür içeriyorsa, bu özellik hiyerarşideki tüm türleri olduğundan sütun atanamayan yapılamaz.
 
- 
+ 
 
 ![Bloglar tablo](~/ef6/media/jj591583-figure03.png)
 
- 
+ 
 
 ## <a name="maxlength-and-minlength"></a>MaxLength ve MinLength
 
@@ -187,7 +187,7 @@ Ayrıca, gerekli ek açıklamada ErrorMessage belirtebilirsiniz.
 
 ![Özel hata iletisiyle sayfası oluşturma](~/ef6/media/jj591583-figure05.png)
 
- 
+ 
 
 ## <a name="notmapped"></a>NotMapped
 
@@ -204,7 +204,7 @@ Kod ilk kuralı, veritabanında bir desteklenen veri türü her bir özellik tem
     }
 ```
 
- 
+ 
 
 ## <a name="complextype"></a>ComplexType
 
@@ -215,12 +215,12 @@ Etki alanı varlıklarınızı sınıf kümesi açıklamak ve eksiksiz bir varl�
     {
         public DateTime? DateCreated { get; set; }
 
-        [MaxLength(250)]
-        public string Description { get; set; }
+        [MaxLength(250)]
+        public string Description { get; set; }
     }
 ```
 
-Anahtar özelliği herhangi bir türde BlogDetails yok dikkat edin. Etki alanı Odaklı Tasarım içinde BlogDetails bir değer nesnesi olarak adlandırılır. Varlık çerçevesi karmaşık türler değer nesnelere başvurur.  Karmaşık türler, kendi izlenemez.
+Anahtar özelliği herhangi bir türde BlogDetails yok dikkat edin. Etki alanı Odaklı Tasarım içinde BlogDetails bir değer nesnesi olarak adlandırılır. Varlık çerçevesi karmaşık türler değer nesnelere başvurur.  Karmaşık türler, kendi izlenemez.
 
 Ancak, izleniyor Blog nesnesinin bir parçası BlogDetails Blog sınıf özelliği olarak. Bu ilk tanımak kod için sırada BlogDetails sınıfı bir ComplexType işaretlemeniz gerekir.
 
@@ -230,15 +230,15 @@ Ancak, izleniyor Blog nesnesinin bir parçası BlogDetails Blog sınıf özelli�
     {
         public DateTime? DateCreated { get; set; }
 
-        [MaxLength(250)]
-        public string Description { get; set; }
+        [MaxLength(250)]
+        public string Description { get; set; }
     }
 ```
 
 Artık bu blog BlogDetails temsil etmek için Blog sınıftaki bir özelliği ekleyebilirsiniz.
 
 ``` csharp
-        public BlogDetails BlogDetail { get; set; }
+        public BlogDetails BlogDetail { get; set; }
 ```
 
 Veritabanında Blog tablo adını BlogDetail özelliğinde yer alan özellikler dahil olmak üzere blog özelliklerin tümünü içerir. Varsayılan olarak, her biri ile BlogDetail karmaşık türün adı gelmelidir.
@@ -247,7 +247,7 @@ Veritabanında Blog tablo adını BlogDetail özelliğinde yer alan özellikler 
 
 Başka bir ilgi çekici Not Notes özelliği NULL olmayan bir DateTime sınıfında olarak tanımlandı ancak ilgili veritabanı alanını boş değer atanabilir olmasıdır. Veritabanı şeması etkilemek istiyorsanız, gerekli ek açıklama kullanmanız gerekir.
 
- 
+ 
 
 ## <a name="concurrencycheck"></a>ConcurrencyCheck
 
@@ -256,11 +256,11 @@ ConcurrencyCheck ek açıklama, veritabanında bir kullanıcı, düzenler veya b
 BloggerName özelliğini ekleyerek ConcurrencyCheck nasıl çalıştığını görelim.
 
 ``` csharp
-    [ConcurrencyCheck, MaxLength(10, ErrorMessage="BloggerName must be 10 characters or less"),MinLength(5)]
+    [ConcurrencyCheck, MaxLength(10, ErrorMessage="BloggerName must be 10 characters or less"),MinLength(5)]
     public string BloggerName { get; set; }
 ```
 
-SaveChanges çağrıldığında ConcurrencyCheck üzerindeki ek açıklama BloggerName alanı nedeniyle güncelleştirme bu özellik, özgün değer kullanılır. Komut doğru satır yalnızca anahtar değeri aynı zamanda BloggerName özgün değeri filtreleyerek bulmaya çalışır.  Komutu bir PrimaryTrackingKey sahip olan satırı güncelleştirin görebileceğiniz veritabanına gönderilen güncelleştirme komut kritik bölümleri, 1 ve "Bu blog veritabanından alınırken, özgün değer Julie", bir BloggerName şunlardır.
+SaveChanges çağrıldığında ConcurrencyCheck üzerindeki ek açıklama BloggerName alanı nedeniyle güncelleştirme bu özellik, özgün değer kullanılır. Komut doğru satır yalnızca anahtar değeri aynı zamanda BloggerName özgün değeri filtreleyerek bulmaya çalışır.  Komutu bir PrimaryTrackingKey sahip olan satırı güncelleştirin görebileceğiniz veritabanına gönderilen güncelleştirme komut kritik bölümleri, 1 ve "Bu blog veritabanından alınırken, özgün değer Julie", bir BloggerName şunlardır.
 
 ``` SQL
     where (([PrimaryTrackingKey] = @4) and ([BloggerName] = @5))
@@ -269,7 +269,7 @@ SaveChanges çağrıldığında ConcurrencyCheck üzerindeki ek açıklama Blogg
 
 Birisi bu blog blogger adı sırada değişti, bu güncelleştirme başarısız olur ve işlemek için gereken bir DbUpdateConcurrencyException elde edersiniz.
 
- 
+ 
 
 ## <a name="timestamp"></a>Zaman damgası
 
@@ -286,7 +286,7 @@ ilk veritabanı tablosu, bir NULL olmayan bir zaman damgası sütunu oluşturma 
 
 ![Zaman damgası sütunu tabloyla blogları](~/ef6/media/jj591583-figure07.png)
 
- 
+ 
 
 ## <a name="table-and-column"></a>Tablo ve sütun
 
@@ -302,7 +302,7 @@ My sınıfı Blog olarak adlandırılır ve bu blogları adlı bir tabloya eşle
 Sütun ek açıklama eşlenen sütun özniteliklerini belirtilirken bir daha fazla yatkın olduğu. Bir ad, veri türü veya hatta bir sütun tabloda göründüğü sırayı koşabilirsiniz. Sütun özniteliği örneği aşağıda verilmiştir.
 
 ``` csharp
-    [Column(“BlogDescription", TypeName="ntext")]
+    [Column("BlogDescription", TypeName="ntext")]
     public String Description {get;set;}
 ```
 
@@ -312,7 +312,7 @@ Yeniden oluşturulduğunda sonra tablosu aşağıdadır. Tablo adı için Intern
 
 ![Bloglar tablo ve sütun olarak yeniden adlandırıldı](~/ef6/media/jj591583-figure08.png)
 
- 
+ 
 
 ## <a name="databasegenerated"></a>DatabaseGenerated
 
@@ -327,7 +327,7 @@ Kod ilk veritabanı oluşturulurken bayt veya zaman damgası sütuna oluşturula
 
 Varsayılan olarak, okuma, tamsayı olan bir anahtar özellik veritabanındaki bir kimlik anahtarı olur. DatabaseGenerated DatabaseGeneratedOption.Identity için ayarı ile aynı olacaktır. Bir kimlik anahtarı olmasını istemiyorsanız DatabaseGeneratedOption.None için değeri ayarlayabilirsiniz.
 
- 
+ 
 
 ## <a name="index"></a>Dizin
 
@@ -389,7 +389,7 @@ Birden fazla sütuna yayılmış dizinler için belirli bir tabloda birden fazla
     }
 ```
 
- 
+ 
 
 ## <a name="relationship-attributes-inverseproperty-and-foreignkey"></a>İlişki öznitelikleri: InverseProperty ve ForeignKey
 
@@ -398,25 +398,25 @@ Birden fazla sütuna yayılmış dizinler için belirli bir tabloda birden fazla
 
 Kod ilk kuralı modelinizdeki en yaygın ilişki ölçeklendirilmesini, ancak Yardım gereken yere bazı durumlar vardır.
 
-Anahtar özelliği ilişkisini gönderi ile ilgili bir sorun oluşturulan Blog sınıfında adının değiştirilmesi. 
+Anahtar özelliği ilişkisini gönderi ile ilgili bir sorun oluşturulan Blog sınıfında adının değiştirilmesi. 
 
 Veritabanı oluşturma, kod ilk Post sınıfı BlogId özelliğinde görür ve, bir sınıf adına ve "Id" olarak Blog sınıfı için yabancı anahtar değeriyle aynı olduğunu kural olarak tanır. Ancak blog sınıfında BlogId özellik yok. Bu çözüm iletide bir gezinti özelliği oluşturun ve ilk iki sınıf arasında bir ilişki oluşturma işlemini anlama kod yardımcı olmak için yabancı DataAnnotation kullanmaktır — Post.BlogId özelliğini kullanarak — kısıtlamalarını belirleme yanı sıra Veritabanı.
 
 ``` csharp
     public class Post
     {
-            public int Id { get; set; }
-            public string Title { get; set; }
-            public DateTime DateCreated { get; set; }
-            public string Content { get; set; }
-            public int BlogId { get; set; }
-            [ForeignKey("BlogId")]
-            public Blog Blog { get; set; }
-            public ICollection<Comment> Comments { get; set; }
+            public int Id { get; set; }
+            public string Title { get; set; }
+            public DateTime DateCreated { get; set; }
+            public string Content { get; set; }
+            public int BlogId { get; set; }
+            [ForeignKey("BlogId")]
+            public Blog Blog { get; set; }
+            public ICollection<Comment> Comments { get; set; }
     }
 ```
 
-Veritabanı kısıtlamasındaki InternalBlogs.PrimaryTrackingKey Posts.BlogId arasında bir ilişki gösterilmektedir. 
+Veritabanı kısıtlamasındaki InternalBlogs.PrimaryTrackingKey Posts.BlogId arasında bir ilişki gösterilmektedir. 
 
 ![InternalBlogs.PrimaryTrackingKey Posts.BlogId arasındaki ilişki](~/ef6/media/jj591583-figure09.png)
 
@@ -434,10 +434,10 @@ Bu özellik tarafından başvurulan kişi sınıfı eklemek gerekir. Kişi sın�
 ``` csharp
     public class Person
     {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public List<Post> PostsWritten { get; set; }
-            public List<Post> PostsUpdated { get; set; }
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public List<Post> PostsWritten { get; set; }
+            public List<Post> PostsUpdated { get; set; }
     }
 ```
 
@@ -459,7 +459,7 @@ Bizzat PostsWritten özelliği bu Post türe başvurur bildiğinden Post.Created
 
 ![Ek yabancı anahtarlar tablosuz gönderir](~/ef6/media/jj591583-figure11.png)
 
- 
+ 
 
 ## <a name="summary"></a>Özet
 
