@@ -72,7 +72,7 @@
 ##### [Ayrı Proje Kullanma](core/managing-schemas/migrations/projects.md)
 ##### [Birden Çok Sağlayıcı](core/managing-schemas/migrations/providers.md)
 ##### [Özel Geçmiş Tablosu](core/managing-schemas/migrations/history-table.md)
-#### [🔧 API Oluşturma ve Bırakma](core/managing-schemas/ensure-created.md)
+#### [ API Oluşturma ve Bırakma](core/managing-schemas/ensure-created.md)
 #### [🔧 Tersine Mühendislik](core/managing-schemas/scaffolding.md)
 
 ### [Verileri Sorgulama](core/querying/index.md)
