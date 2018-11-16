@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 08/02/2018
 ms.assetid: 2bc68bea-ff77-4860-bf0b-cf00db6712a0
 uid: core/get-started/aspnetcore/existing-db
-ms.openlocfilehash: bba2742c3f3b6da93dd4b4f170a3878fc0473bc8
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.openlocfilehash: 23cd53b0e162afc5db0243b7032bb9c5f18bfb35
+ms.sourcegitcommit: b3c2b34d5f006ee3b41d6668f16fe7dcad1b4317
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022203"
+ms.lasthandoff: 11/15/2018
+ms.locfileid: "51688699"
 ---
 # <a name="getting-started-with-ef-core-on-aspnet-core-with-an-existing-database"></a>Mevcut bir veritabanı ile ASP.NET Core üzerinde EF Core ile çalışmaya başlama
 
@@ -178,5 +178,6 @@ Artık `AddDbContext(...)` hizmet olarak kaydetmek için yöntemi.
 ## <a name="next-steps"></a>Sonraki adımlar
 
 Bağlam ve varlık sınıfları iskelesinin nasıl kurulacağını hakkında daha fazla bilgi için aşağıdaki makalelere bakın:
+* [Tersine mühendislik](xref:core/managing-schemas/scaffolding)
 * [Entity Framework Core başvuru - .NET CLI araçları](xref:core/miscellaneous/cli/dotnet#dotnet-ef-dbcontext-scaffold)
 * [Entity Framework Core araçları başvurusu - Paket Yöneticisi Konsolu](xref:core/miscellaneous/cli/powershell#scaffold-dbcontext)

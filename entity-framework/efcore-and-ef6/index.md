@@ -5,12 +5,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: a6b9cd22-6803-4c6c-a4d4-21147c0a81cb
 uid: efcore-and-ef6/index
-ms.openlocfilehash: 0f9f0d4708fa283855eddf2cfc231b37356e413e
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.openlocfilehash: d5fe9b388707f653fdeb2d6a5daa7215ced71c1d
+ms.sourcegitcommit: b3c2b34d5f006ee3b41d6668f16fe7dcad1b4317
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022356"
+ms.lasthandoff: 11/15/2018
+ms.locfileid: "51688725"
 ---
 # <a name="compare-ef-core--ef6"></a>EF Core ve EF6 Karşılaştırması
 
@@ -57,7 +57,7 @@ EF Core sütunu, özelliği ilk kez göründü ürün sürümü gösterir.
 | Anahtar oluşturma: veritabanı                              | Evet      | 1.0                                   |
 | Anahtar oluşturma: istemci                                |          | 1.0                                   |
 | Karmaşık ve ait türleri                                   | Evet      | 2,0                                   |
-| Uzamsal veriler                                          | Evet      |                                       |
+| Uzamsal veriler                                          | Evet      | 2.2                                   |
 | Modelin grafik görselleştirmesi                      | Evet      |                                       |
 | Grafik model Düzenleyicisi                                | Evet      |                                       |
 | Model biçimi: kod                                    | Evet      | 1.0                                   |
@@ -108,7 +108,7 @@ EF Core sütunu, özelliği ilk kez göründü ürün sürümü gösterir.
 
 | **Özelliği**                                           | **EF6**  | **EF Core**                           |
 |:------------------------------------------------------|:---------|:--------------------------------------|
-| Geçişleri                                            | Evet      | 1.0                                   |
+| Geçişler                                            | Evet      | 1.0                                   |
 | Veritabanı oluşturma/silme API'leri                       | Evet      | 1.0                                   |
 | Veri kaynağı                                             | Evet      | 2.1                                   |
 | Bağlantı dayanıklılığı                                 | Evet      | 1.1                                   |
