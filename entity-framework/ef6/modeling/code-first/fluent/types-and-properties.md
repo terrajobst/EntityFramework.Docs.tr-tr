@@ -3,12 +3,12 @@ title: -Yapılandırma ve özellikler ve türler eşleme - Fluent API'si EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 648ed274-c501-4630-88e0-d728ab5c4057
-ms.openlocfilehash: 031376d2fc4778e6f0fa2434ab7ccfd45d436c4a
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 7371cc99142ccf8fc6bea237d7d58d1e67fcecec
+ms.sourcegitcommit: 75f8a179ac9a70ad390fc7ab2a6c5e714e701b8b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490208"
+ms.lasthandoff: 11/27/2018
+ms.locfileid: "52339809"
 ---
 # <a name="fluent-api---configuring-and-mapping-properties-and-types"></a>Fluent API'si - özellikler ve türler eşleme ve yapılandırma
 Entity Framework Code First ile çalışırken tablolarına desteklenmiş EF kuralları kümesi kullanarak POCO sınıflarınızı eşlemek için varsayılan davranış. Bazı durumlarda, ancak olamaz veya bu kuralları izleyin ve hangi kuralları dikte dışında bir şey varlıkları eşlemeniz istemediğiniz.  
@@ -24,7 +24,7 @@ Kod ilk fluent API'si geçersiz kılarak en sık erişilen [OnModelCreating](htt
 EF6 ile başlangıç HasDefaultSchema yöntemi, tüm tabloları, saklı yordamlar, vb. için kullanılacak veritabanı şemasını belirtmek için DbModelBuilder üzerinde kullanabilirsiniz. Bu varsayılan ayar için farklı bir şeması açıkça yapılandırdığınız herhangi bir nesne için geçersiz kılınır.  
 
 ``` csharp
-modelBuilder.HasDefaultSchema(“sales”);
+modelBuilder.HasDefaultSchema("sales");
 ```  
 
 ### <a name="custom-conventions-ef6-onwards"></a>Özel kuralları (EF6 sonrası)  
