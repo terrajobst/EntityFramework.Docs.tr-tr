@@ -86,7 +86,7 @@ Aşağıdaki örnekler, yabancı anahtar özellikler ve gezinti özellikleri ilg
   ```
 
   >[!NOTE]
-  > Başvuru (Bu örnekte, kurs nesnesi) eklenmiş durumda ise, SaveChanges çağrılana kadar başvuru gezinti özelliği yeni bir nesnenin anahtar değerleriyle eşitlenmez. Nesne bağlamı kaydedilmeden kadar eklenen nesneler için kalıcı anahtarlar içermediğinden eşitleme gerçekleşmez. Yeni nesneler ilişkisi hemen sonra tam olarak eşitlenmiş olması gerekir, aşağıdaki yöntemlerin birini kullanın.
+  > Başvuru (Bu örnekte, kurs nesnesi) eklenmiş durumda ise, SaveChanges çağrılana kadar başvuru gezinti özelliği yeni bir nesnenin anahtar değerleriyle eşitlenmez. Nesne bağlamı kaydedilmeden kadar eklenen nesneler için kalıcı anahtarlar içermediğinden eşitleme gerçekleşmez. Yeni nesneler ilişkisi hemen sonra tam olarak eşitlenmiş olması gerekir, aşağıdaki yöntemlerin birini kullanın.*
 
 - Yeni bir nesne bir gezinti özelliğine atayarak. Aşağıdaki kod bir kurs arasında bir ilişki oluşturur ve bir `department`. Nesneleri bağlamına ekliyse `course` de eklenir `department.Courses` koleksiyonu ve yabancı karşılık gelen anahtar özellik üzerinde `course` nesne departmanı anahtar özellik değerine ayarlanır.  
   ``` csharp
