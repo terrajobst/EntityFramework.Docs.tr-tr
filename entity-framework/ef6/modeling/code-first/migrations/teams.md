@@ -3,12 +3,12 @@ title: Takım ortamları - EF6 Code First geçişleri
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 4c2d9a95-de6f-4e97-9738-c1f8043eff69
-ms.openlocfilehash: f5216a80928625040d6719f0e97ae786e5e33e05
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 53460b6cdd454099ccf93b4e2133e4ea21278a64
+ms.sourcegitcommit: fa863883f1193d2118c2f9cee90808baa5e3e73e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490512"
+ms.lasthandoff: 12/04/2018
+ms.locfileid: "52857474"
 ---
 # <a name="code-first-migrations-in-team-environments"></a>Takım ortamları Code First geçişleri
 > [!NOTE]
@@ -82,7 +82,7 @@ Pek çok EF modeli anlık görüntü etrafında tutar vardır:
     -   Bir eklenen ve güncelleştirilen bir veya daha fazla tablolara sütun eklemek istediğiniz, ancak bu sütunların EF modele dahil etmek istemediğiniz. Geçişler veritabanını görünüyorsa bir geçiş iskele kurulmuş her zaman bu sütunları kaldırın sürekli isteriz. Model anlık görüntüyü kullanarak EF her zaman sadece modeline yasal değişiklikleri algılar.
     -   Güncelleştirmeler için bazı günlük dahil etmek için kullanılan bir saklı yordam gövde metni değiştirmek istediğinizde. Bu saklı yordamı, veritabanı geçişleri görünüyorsa, sürekli olarak deneyin ve geri EF bekliyor tanımına sıfırlama. Modeli anlık görüntü kullanarak EF yalnızca şimdiye kadar EF modeli yordamda şeklini değiştirdiğinizde saklı yordamı değiştirmek için kodunun iskelesini.
     -   Bu aynı ilkeler geçerlidir ek dizinleri ekleme, veritabanınızda ek tablolar da dahil olmak üzere, tablo, vb. üzerinde yer alan bir veritabanı görünümü EF eşleme.
--   EF modeli, veritabanı şeklini daha fazlasını içerir. Modelin tamamı modeliniz ve bunların tablolar ve sütunlar için nasıl eşleneceğine sınıfları ve özellikleri hakkındaki bilgilere bakmak geçişlerini sağlar. Bu bilgiler, geçişler, iskele oluşturulduğunu kodda daha akıllı olmasını sağlar. Örneğin, bir özellik geçişleri için eşlenen sütunun adını değiştirirseniz, aynı özellik – yalnızca veritabanı şeması varsa, sağlayan yapılamaz olmasını görüyorsunuz tarafından yeniden adlandırma algılayabilir. 
+-   EF modeli, veritabanı şeklini daha fazlasını içerir. Modelin tamamı modeliniz ve bunların tablolar ve sütunlar için nasıl eşleneceğine sınıfları ve özellikleri hakkındaki bilgilere bakmak geçişlerini sağlar. Bu bilgiler, geçişler, iskele oluşturulduğunu kodda daha akıllı olmasını sağlar. Örneğin, bir özellik geçişleri için eşlenen sütunun adını değiştirirseniz, aynı özellik – yalnızca veritabanı şeması varsa, sağlayan yapılamaz olmasını görüyorsunuz tarafından yeniden adlandırma algılayabilir. 
 
 ## <a name="what-causes-issues-in-team-environments"></a>Hangi sorunları takım ortamları neden olur
 
@@ -109,7 +109,7 @@ Bir geliştiricinin lucky gündür \#1 gelişmelerden önce yaptıkları değiş
 
 ![Gönder](~/ef6/media/submit.png)
 
-Geliştirici zamanı artık \#göndermek için 2. Bunlar, bu nedenle lucky değildir. Kullanıcılar eşitlenmiş olduğundan başkası değişiklikler gönderdi olduğundan, birleştirme ve değişiklikleri çekmek gerekir. Kaynak denetim sistemi, büyük olasılıkla çok basit olduğundan kod düzeyinde değişiklikleri otomatik olarak birleştirmek mümkün olacaktır. Geliştirici durumunu \#2 yerel aşağıdaki grafikte gösterilen eşitlemeden sonra depo. 
+Geliştirici zamanı artık \#göndermek için 2. Bunlar, bu nedenle lucky değildir. Kullanıcılar eşitlenmiş olduğundan başkası değişiklikler gönderdi olduğundan, birleştirme ve değişiklikleri çekmek gerekir. Kaynak denetim sistemi, büyük olasılıkla çok basit olduğundan kod düzeyinde değişiklikleri otomatik olarak birleştirmek mümkün olacaktır. Geliştirici durumunu \#2 yerel aşağıdaki grafikte gösterilen eşitlemeden sonra depo. 
 
 ![Çekme](~/ef6/media/pull.png)
 
@@ -140,8 +140,7 @@ Aşağıdaki işlem, kaynak denetiminden eşitlenmesi gereken değişiklikleri o
 1.  Tüm bekleyen model değişiklikleri yerel kod tabanınızın bir geçiş için yazılmış emin olun. Bu adım, boş bir geçiş oluşturmak için zaman geldiğinde yasal değişiklikleri kaçırmayın sağlar.
 2.  Kaynak denetimi ile eşitleyin.
 3.  Çalıştırma **veritabanını Güncelleştir** diğer geliştiriciler iade herhangi bir yeni geçişler uygulamak için.
-    **
-    *Not: *** tüm uyarılar veritabanını Güncelleştir komutundan elde etmezsiniz sonra hiçbir yeni geçiş diğer geliştiricilerden vardı ve herhangi ek birleştirme gerçekleştirmek için gerek yoktur.*
+    **_Not:_**  *tüm uyarılar veritabanını Güncelleştir komutundan elde etmezsiniz sonra hiçbir yeni geçiş diğer geliştiricilerden vardı ve herhangi ek birleştirme gerçekleştirmek için gerek yoktur.*
 4.  Çalıştırma **Ekle geçiş &lt;çekme\_bir\_adı&gt; – IgnoreChanges** (örneğin, **Ekle geçiş birleştirme – IgnoreChanges**). Bu (geçerli modelinkiyle anlık görüntüsünü dahil) tüm meta verileriyle bir geçiş oluşturur, ancak geçerli model için son geçişlerin anlık karşılaştırılırken algıladığı herhangi bir değişiklik göz ardı eder (boş alma anlamı **yukarı** ve **Aşağı** yöntemi).
 5.  Geliştirmeye devam veya kaynak denetimi (birim Elbette testleri sonra) gönderin.
 
@@ -162,14 +161,11 @@ Aşağıdaki işlem, kaynak denetiminden eşitlenmesi gereken değişiklikleri o
 1.  Tüm bekleyen model değişiklikleri yerel kod tabanınızın bir geçiş için yazılmış emin olun. Bu adım, boş bir geçiş oluşturmak için zaman geldiğinde yasal değişiklikleri kaçırmayın sağlar.
 2.  Kaynak denetimi ile eşitleyin.
 3.  Çalıştırma **veritabanını Güncelleştir** diğer geliştiriciler iade herhangi bir yeni geçişler uygulamak için.
-    **
-    *Not: *** tüm uyarılar veritabanını Güncelleştir komutundan elde etmezsiniz sonra hiçbir yeni geçiş diğer geliştiricilerden vardı ve herhangi ek birleştirme gerçekleştirmek için gerek yoktur.*
+    **_Not:_**  *tüm uyarılar veritabanını Güncelleştir komutundan elde etmezsiniz sonra hiçbir yeni geçiş diğer geliştiricilerden vardı ve herhangi ek birleştirme gerçekleştirmek için gerek yoktur.*
 4.  Çalıştırma **veritabanını güncelleştir – TargetMigration &lt;ikinci\_son\_geçiş&gt;**  (biz aşağıdaki örnekte bu olacaktır **-veritabanı – güncelleştirme TargetMigration AddRating**). Bu veritabanını yedeklemek için ikinci durumunu rolleri son geçişi – etkili bir şekilde 'beklemediğiniz uygulanan' veritabanından son geçiş.
-    **
-    *Not: *** olduğundan meta veriler de depolanan meta veriler geçişin düzenlemek güvenli hale getirmek için bu adım gereklidir \_ \_MigrationsHistoryTable veritabanı. Yalnızca son geçiş yalnızca yerel kodunuzda temel varsa bu seçeneği kullanmalısınız nedeni budur. Diğer veritabanlarının uygulanan son geçiş olsaydı geri alma ve meta verileri güncelleştirmek için son geçiş yeniden uygulamanız gerekir.* 
+    **_Not:_**  *olduğundan meta veriler de depolanan meta veriler geçişin düzenlemek güvenli hale getirmek için bu adım gereklidir \_ \_MigrationsHistoryTable veritabanı. Yalnızca son geçiş yalnızca yerel kodunuzda temel varsa bu seçeneği kullanmalısınız nedeni budur. Diğer veritabanlarının uygulanan son geçiş olsaydı geri alma ve meta verileri güncelleştirmek için son geçiş yeniden uygulamanız gerekir.* 
 5.  Çalıştırma **Ekle geçiş &lt;tam\_adı\_dahil olmak üzere\_zaman damgası\_,\_son\_geçiş** &gt; (örnekte Biz başlangıcındaki bu aşağıdakine benzer olacaktır **Ekle geçiş 201311062215252\_AddReaders**).
-    **
-    *Not: *** geçişleri bilebilmesi yeni bir yapı iskelesini oluşturmak yerine var olan geçiş düzenlemek istediğiniz zaman damgası eklemeniz gerekir.*
+    **_Not:_**  *geçişler bilebilmesi yeni bir yapı iskelesini oluşturmak yerine var olan geçiş düzenlemek istediğiniz zaman damgası eklemeniz gerekir.*
     Bu, geçerli model eşleşecek şekilde son geçiş için meta verileri güncelleştirir. Komut tamamlandıktan, ancak tam olarak istediğiniz zaman aşağıdaki uyarıyı alırsınız. "*Yalnızca geçiş ' 201311062215252 Tasarımcısı kodunu\_AddReaders yeniden iskele kurulmuş. Tüm geçiş yeniden iskelesini kullanın - Force parametresini. "*
 6.  Çalıştırma **veritabanını Güncelleştir** güncelleştirilmiş meta verilerin en son geçiş yeniden uygulamak için.
 7.  Geliştirmeye devam veya kaynak denetimi (birim Elbette testleri sonra) gönderin.

@@ -5,12 +5,12 @@ ms.author: ansvyryd
 ms.date: 11/02/2018
 ms.assetid: 3154BF3C-1749-4C60-8D51-AE86773AA116
 uid: core/modeling/data-seeding
-ms.openlocfilehash: 791f7afff36aac52fe2ffdc16ab580db22011b99
-ms.sourcegitcommit: 082946dcaa1ee5174e692dbfe53adeed40609c6a
+ms.openlocfilehash: 8f28dfea12461572ade8fbf3910ebd216dafb389
+ms.sourcegitcommit: fa863883f1193d2118c2f9cee90808baa5e3e73e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2018
-ms.locfileid: "51028102"
+ms.lasthandoff: 12/04/2018
+ms.locfileid: "52857435"
 ---
 # <a name="data-seeding"></a>Veri çekirdeği oluşturma
 
@@ -54,7 +54,7 @@ Veri modeline eklendikten sonra [geçişler](xref:core/managing-schemas/migratio
 > [!TIP]
 > Geçişleri otomatik bir dağıtımının bir parçası uygulamak gerekiyorsa [SQL komut dosyası oluşturma](xref:core/managing-schemas/migrations/index#generate-sql-scripts) , önizlemesi görüntülenemez yürütmeden önce.
 
-Alternatif olarak, `context.Database.EnsureCreated()` bellek içi sağlayıcısı veya herhangi bir ilişkisi olmayan veritabanı kullanırken veya örneğin, bir test veritabanı için çekirdek veri içeren yeni bir veritabanı oluşturmak için. Unutmayın veritabanı zaten var, `EnsureCreated()` ne ya da veritabanında çekirdek veri şemasını güncelleştirir. İlişkisel veritabanları için çağrı olmamalıdır `EnsureCreated()` geçişler kullanmayı planlıyorsanız.
+Alternatif olarak, `context.Database.EnsureCreated()` bellek içi sağlayıcısı veya herhangi bir ilişkisi olmayan veritabanı kullanırken veya örneğin, bir test veritabanı için çekirdek veri içeren yeni bir veritabanı oluşturmak için. Unutmayın veritabanı zaten var, `EnsureCreated()` ne veritabanında şema veya çekirdek verileri güncelleştirir. İlişkisel veritabanları için çağrı olmamalıdır `EnsureCreated()` geçişler kullanmayı planlıyorsanız.
 
 Bu tür verilerin çekirdek geçişleri tarafından yönetilir ve veritabanında zaten var olan verileri güncelleştirmek için komut veritabanına bağlanırken olmadan oluşturulması gereken. Bu, bazı kısıtlamaları getirir:
 * Birincil anahtar değeri bile genellikle veritabanı tarafından oluşturulan belirtilmesi gerekiyor. Geçişleri arasında veri değişikliklerini algılamak için kullanılır.
