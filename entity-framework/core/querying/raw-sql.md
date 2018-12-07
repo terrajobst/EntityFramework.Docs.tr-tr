@@ -4,16 +4,16 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
-ms.openlocfilehash: 21cb688d6775039def3b0be12768da71b5d96531
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 0ad9731840c5f72064f2f66932b9867a0144f437
+ms.sourcegitcommit: 2da6f9b05e1ce3a46491e5cc68f17758bdeb6b02
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997150"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53006875"
 ---
 # <a name="raw-sql-queries"></a>Ham SQL sorguları
 
-Entity Framework Core, ilişkisel bir veritabanı ile çalışırken, ham SQL sorguları açılan olanak tanır. Gerçekleştirmek istediğiniz sorguyu LINQ kullanılarak ifade edilemediğinde ya da bir LINQ Sorgu kullanarak verimsiz SQL veritabanına gönderilen kaynaklanan bu yararlı olabilir. Ham SQL sorguları varlık türleri veya EF Core 2.1 ile başlayan döndürebilir [sorgu türü](xref:core/modeling/query-types) modelinizin bir parçası.
+Entity Framework Core, ilişkisel bir veritabanı ile çalışırken, ham SQL sorguları açılan olanak tanır. Gerçekleştirmek istediğiniz sorguyu LINQ kullanılarak ifade edilemediğinde ya da verimsiz SQL sorgularında LINQ sorgusu kullanarak kaynaklanan bu yararlı olabilir. Ham SQL sorguları varlık türleri veya EF Core 2.1 ile başlayan döndürebilir [sorgu türü](xref:core/modeling/query-types) modelinizin bir parçası.
 
 > [!TIP]  
 > Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub üzerinde.
@@ -88,13 +88,13 @@ Ayrıca, bir DbParameter oluşturun ve parametre değeri olarak sağlayın. Bu s
 var user = new SqlParameter("user", "johndoe");
 
 var blogs = context.Blogs
-    .FromSql("EXECUTE dbo.GetMostPopularBlogsForUser @user", user)
+    .FromSql("EXECUTE dbo.GetMostPopularBlogsForUser @user", user)
     .ToList();
 ```
 
 ## <a name="composing-with-linq"></a>LINQ ile oluşturma
 
-Ardından SQL sorgusuna üzerinde veritabanında kullanılıp kullanılamayacağı, LINQ işleçleri kullanarak ilk ham SQL sorgusunun üstüne oluşturabilirsiniz. Sahip olan oluşan SQL sorguları `SELECT` anahtar sözcüğü.
+Ardından SQL sorgusuna üzerinde veritabanında kullanılıp kullanılamayacağı, LINQ işleçleri kullanarak ilk ham SQL sorgusunun üstüne oluşturabilirsiniz. Üzerinde oluşan SQL sorguları ile başlayan `SELECT` anahtar sözcüğü.
 
 Aşağıdaki örnek filtreleme ve sıralama gerçekleştirmek için LINQ kullanarak bir Table-Valued işlev (TVF) öğesinden seçer ve ardından ölçeklemesini ham bir SQL sorgusu kullanır.
 
@@ -118,8 +118,8 @@ LINQ işleçleri ile oluşturma sorguda ilgili verileri dahil etmek için kullan
 var searchTerm = ".NET";
 
 var blogs = context.Blogs
-    .FromSql($"SELECT * FROM dbo.SearchBlogs({searchTerm})")
-    .Include(b => b.Posts)
+    .FromSql($"SELECT * FROM dbo.SearchBlogs({searchTerm})")
+    .Include(b => b.Posts)
     .ToList();
 ```
 
