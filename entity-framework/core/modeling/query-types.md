@@ -4,12 +4,12 @@ author: anpete
 ms.date: 02/26/2018
 ms.assetid: 9F4450C5-1A3F-4BB6-AC19-9FAC64292AAD
 uid: core/modeling/query-types
-ms.openlocfilehash: 3328082dbc62aa80eb5fb29d2e57df1eef248d1f
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: cb391343e6f24092ae0874003c0ef2935dd4e03f
+ms.sourcegitcommit: 8dd71a57a01c439431164c163a0722877d0e5cd8
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489498"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53028186"
 ---
 # <a name="query-types"></a>Sorgu türleri
 > [!NOTE]
@@ -56,28 +56,28 @@ Bir sorgu türü için bir veritabanı nesnesi eşleme gerçekleştirilir kullan
 Aşağıdaki örnek bir veritabanı görünümü sorgulamak için sorgu türünü kullanmayı gösterir.
 
 > [!TIP]
-> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFrameworkCore/tree/master/samples/QueryTypes) GitHub üzerinde.
+> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/QueryTypes) GitHub üzerinde.
 
 İlk olarak, basit bir Blog ve gönderi modeli tanımlayın:
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryTypes/Program.cs#Entities)]
+[!code-csharp[Main](../../../samples/core/QueryTypes/Program.cs#Entities)]
 
 Ardından, bize her blog ile ilişkili gönderi sayısı sorgulamaya izin verecek basit veritabanı görünümü tanımlayın:
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryTypes/Program.cs#View)]
+[!code-csharp[Main](../../../samples/core/QueryTypes/Program.cs#View)]
 
 Ardından, veritabanı görünümü sonucu için bir sınıf tanımlayın:
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryTypes/Program.cs#QueryType)]
+[!code-csharp[Main](../../../samples/core/QueryTypes/Program.cs#QueryType)]
 
 Ardından, sorgu türünde yapılandırıyoruz _OnModelCreating_ kullanarak `modelBuilder.Query<T>` API.
 Sorgu türü için eşlemeyi yapılandırmak için standart fluent yapılandırma API'leri kullanın:
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryTypes/Program.cs#Configuration)]
+[!code-csharp[Main](../../../samples/core/QueryTypes/Program.cs#Configuration)]
 
 Son olarak, biz veritabanı görünümü standart şekilde sorgulayabilirsiniz:
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryTypes/Program.cs#Query)]
+[!code-csharp[Main](../../../samples/core/QueryTypes/Program.cs#Query)]
 
 > [!TIP]
 > Biz de içerik düzeyi sorgu özelliği (Bu tür sorgu için bir kök olarak görev yapacak DbQuery) tanımladığınız unutmayın.
