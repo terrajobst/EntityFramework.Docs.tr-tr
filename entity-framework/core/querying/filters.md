@@ -3,12 +3,12 @@ title: Genel sorgu filtreleri - EF Core
 author: anpete
 ms.date: 11/03/2017
 uid: core/querying/filters
-ms.openlocfilehash: 73efe62262cf45cc1841d7a86cf59249cf07c5ea
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 201292a440d37d240f31452eaebb23dcd4aee1a6
+ms.sourcegitcommit: 8dd71a57a01c439431164c163a0722877d0e5cd8
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996671"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53028173"
 ---
 # <a name="global-query-filters"></a>Genel sorgu filtreleri
 
@@ -22,17 +22,17 @@ Genel sorgu filtreleri olan LINQ Sorgu koşullarına (bir Boole ifadesi, LINQ to
 Aşağıdaki örnek, basit bir blog oluşturma modelinde geçici silmeyi ve çok kiracılılık sorgu davranışları uygulamak için genel sorgu filtreleri kullanmayı gösterir.
 
 > [!TIP]
-> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFrameworkCore/tree/master/samples/QueryFilters) GitHub üzerinde.
+> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/QueryFilters) GitHub üzerinde.
 
 İlk olarak, varlıklar tanımlayın:
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryFilters/Program.cs#Entities)]
+[!code-csharp[Main](../../../samples/core/QueryFilters/Program.cs#Entities)]
 
 Bir _ bildirimi Not_Tenantıd_ alanını _Blog_ varlık. Bu, her Blog örneği belirli bir kiracı ile ilişkilendirmek için kullanılır. Ayrıca tanımlı olan bir _IsDeleted_ özelliği _Post_ varlık türü. Bu izlemenin olup için kullanılan bir _Post_ örneği "geçici silinen". Diğer bir deyişle, örnek, temel alınan verileri fiziksel olarak kaldırmadan silindi olarak işaretlenir.
 
 Ardından, sorgu filtreleri yapılandırma _OnModelCreating_ kullanarak ```HasQueryFilter``` API.
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryFilters/Program.cs#Configuration)]
+[!code-csharp[Main](../../../samples/core/QueryFilters/Program.cs#Configuration)]
 
 Koşul ifadeleri geçirilen _HasQueryFilter_ çağrıları artık otomatik olarak uygulanacak LINQ sorguları bu türleri için.
 
@@ -43,7 +43,7 @@ Koşul ifadeleri geçirilen _HasQueryFilter_ çağrıları artık otomatik olara
 
 Filtreleri devre dışı bırakılabilir için tek tek LINQ sorgularını kullanarak ```IgnoreQueryFilters()``` işleci.
 
-[!code-csharp[Main](../../../efcore-repo/samples/QueryFilters/Program.cs#IgnoreFilters)]
+[!code-csharp[Main](../../../samples/core/QueryFilters/Program.cs#IgnoreFilters)]
 
 ## <a name="limitations"></a>Sınırlamalar
 
