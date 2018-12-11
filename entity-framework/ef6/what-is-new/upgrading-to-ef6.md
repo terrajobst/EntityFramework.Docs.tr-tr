@@ -3,12 +3,12 @@ title: Entity Framework 6 yükseltme
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 29958ae5-85d3-4585-9ba6-550b8ec9393a
-ms.openlocfilehash: 2e2dacfe67238bdb7fd1f31f784319049f0f2cb0
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 711f1940080de27bd23cb8f641a5c7f2711dd65b
+ms.sourcegitcommit: a6082a2caee62029f101eb1000656966195cd6ee
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490954"
+ms.lasthandoff: 12/10/2018
+ms.locfileid: "53182013"
 ---
 # <a name="upgrading-to-entity-framework-6"></a>Entity Framework 6 yükseltme
 
@@ -66,20 +66,20 @@ Daha önce System.Data.Entity.dll türlerini ObjectContext gibi yeni ad alanlar�
 
 Genel ad değişiklikleri için System.Data.* herhangi bir türü için System.Data.Entity.Core.* taşınır kuralıdır. Diğer bir deyişle, yalnızca eklemek **Entity.Core.** System.Data sonra. Örneğin:
 
-- System.Data.EntityException = > System.Data. **Entity.Core.** EntityException  
-- System.Data.Objects.ObjectContext = > System.Data. **Entity.Core.** Objects.ObjectContext  
-- System.Data.Objects.DataClasses.RelationshipManager = > System.Data. **Entity.Core.** Objects.DataClasses.RelationshipManager  
+- System.Data.EntityException = > System.Data. **Entity.Core**. EntityException  
+- System.Data.Objects.ObjectContext = > System.Data. **Entity.Core**. Objects.ObjectContext  
+- System.Data.Objects.DataClasses.RelationshipManager = > System.Data. **Entity.Core**. Objects.DataClasses.RelationshipManager  
 
 Bu tür bulunan *çekirdek* ad alanları doğrudan çoğu DbContext tabanlı uygulamalar için kullanılmadığından. System.Data.Entity.dll parçası olan bazı türleri hala yaygın olarak ve doğrudan DbContext tabanlı uygulamalar için kullanılır ve bu nedenle içine taşınmamış olan *çekirdek* ad alanları. Bunlar:
 
-- System.Data.EntityState = > System.Data. **Varlık.** EntityState  
+- System.Data.EntityState = > System.Data. **Varlık**. EntityState  
 - System.Data.Objects.DataClasses.EdmFunctionAttribute = > System.Data. **Entity.DbFunctionAttribute**  
   > [!NOTE]
   > Bu sınıf yeniden adlandırıldı; eski adıyla bir sınıf hala var olduğundan ve çalışır, ancak artık eski olarak işaretlendi.  
 - System.Data.Objects.EntityFunctions = > System.Data. **Entity.DbFunctions**  
   > [!NOTE]
   > Bu sınıf yeniden adlandırıldı; eski adıyla bir sınıf hala var olduğundan ve çalışır, ancak artık kullanılmayan olarak işaretlenmiş.)  
-- Uzamsal sınıfları (örneğin, DbGeography, DbGeometry) System.Data.Spatial taşınmış = > System.Data. **Varlık.** Uzamsal
+- Uzamsal sınıfları (örneğin, DbGeography, DbGeometry) System.Data.Spatial taşınmış = > System.Data. **Varlık**. Uzamsal
 
 > [!NOTE]
 > System.Data ad alanındaki bazı türleri, EF derleme olmayan System.Data.dll olabilir. Bu tür değil taşıdık ve bu nedenle, ad alanları değişmeden kalır.

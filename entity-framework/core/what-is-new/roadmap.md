@@ -4,27 +4,53 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: 834C9729-7F6E-4355-917D-DE3EE9FE149E
 uid: core/what-is-new/roadmap
-ms.openlocfilehash: a12d628a28515f0c6710bfa59bc6dcdf41fcb58b
-ms.sourcegitcommit: b3c2b34d5f006ee3b41d6668f16fe7dcad1b4317
+ms.openlocfilehash: f18de8e8cb4fbe81bb2f983a00c9dd2f46be6073
+ms.sourcegitcommit: a6082a2caee62029f101eb1000656966195cd6ee
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "51688595"
+ms.lasthandoff: 12/10/2018
+ms.locfileid: "53182026"
 ---
 # <a name="entity-framework-core-roadmap"></a>Entity Framework Core yol haritası
 
 > [!IMPORTANT]
 > Özellik kümeleri ve zamanlamaları gelecek sürümlerin her zaman değişikliğe tabi olduğu ve bu sayfada en güncel, en son planlarımızı hiç yansıtmayabilir tutmak deneyeceğiz rağmen zaman lütfen unutmayın.
 
-### <a name="ef-core-22"></a>EF Core 2.2
-
-Bu sürümde birçok hata düzeltmeleri ve görece daha az sayıda yeni özellik içerir. Bu sürüm için yıl 2018 sonuna planlanmaktadır. Bu sürüm hakkındaki ayrıntıları dahil edilecek [EF Core 2.2 içinde yenilikler](xref:core/what-is-new/ef-core-2.2). 
-
 ### <a name="ef-core-30"></a>EF Core 3.0
 
-.NET Core 3.0 ve ASP.NET 3.0 ile hizalanan ana EF Core sürümüne planlıyoruz, ancak biz tamamlamadıysanız [yayın Planlama işlemi](#release-planning-process) de.
+EF Core 2.2 kullanıma ile ana kazanmasının artık .NET Core 3. 0'ile uyumlu hale getirilerek EF Core 3.0 ve ASP.NET 3.0 serbest bırakır.
 
-Kullanım [bu bizim sorun İzleyicisi sorguda](https://github.com/aspnet/EntityFrameworkCore/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.0.0+sort%3Areactions-%2B1-desc) görmek için iş öğelerini 3.0 için geçici olarak atanmış.
+Şu yeni özellikleri henüz tamamlamadıysanız böylece [EF Core 3.0 Önizleme 1 paketleri için NuGet galerisinde yayımlanan](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/3.0.0-preview.18572.1) aralık 2018'de yalnızca içeren [hata düzeltmeleri, küçük iyileştirmeler ve biz yapılan değişiklikler 3.0 iş hazırlığı](https://github.com/aspnet/EntityFrameworkCore/issues?q=is%3Aissue+milestone%3A3.0.0+is%3Aclosed+label%3Aclosed-fixed).
+
+Aslında, yine de iyileştirmek ihtiyacımız bizim [planlama yayın](#release-planning-process) 3.0 için emin olmak için ayrılan süre içinde tamamlanması gereken özellikler doğru ortaklık kümesi sahibiz.
+Biz size daha fazla netlik alabilirsiniz, ama bazı üst düzey Temalar şunlardır daha fazla bilgi paylaşır ve biz üzerinde çalışmak için itend özellikleri:
+
+- **LINQ geliştirmeleri ([#12795](https://github.com/aspnet/EntityFrameworkCore/issues/12795))**: LINQ sayesinde, istediğiniz dilde çıkmadan veritabanı sorguları yazma yararlanarak zengin IntelliSense ve derleme zamanı tür denetimi alma bilgilerini yazın.
+  Ancak LINQ, sınırsız sayıda karmaşık sorgular yazmaya olanak tanır ve her zaman LINQ sağlayıcıları için çok zor olmuştur.
+  EF Core birkaç ilk sürümlerinde, biz, kısmi çıkış bir sorgu kısımlarını olabilir hesaplayarak Çözüldü SQL ve istemci üzerindeki bellekte yürütülecek sorgu geri kalanı sağlayarak çevrilir.
+  Bu istemci-tarafı yürütme, bazı durumlarda istenmez olabilir, ancak olmayabilir verimsiz sorgularda sonuçlanabilir çoğu durumda, bir uygulama üretime dağıtıldığında kadar tanımlanmış.
+  EF Core 3.0 sürümünde, çok büyük değişiklikler LINQ kararlılığımızın nasıl çalıştığını ve bunu nasıl test yapmak biz planlıyorsunuz.
+  Hedefleridir (örneğin sorguları düzeltme eki sürümlerde bozmayı önlemek için), daha sağlam hale getirmek için doğru SQL, daha fazla durumda verimli sorgular oluşturun ve verimsiz sorguları algılanmayan gitmesini önlemek için daha fazla ifadelere çevirmek için.
+
+- **Cosmos DB desteği ([#8443](https://github.com/aspnet/EntityFrameworkCore/issues/8443))**: Bir Cosmos DB sağlayıcısı için bir uygulama veritabanının olarak Azure Cosmos DB kolayca hedeflemek geliştiricilerin EF ölçeklenebilirliğinden modeli için EF Core üzerinde çalışıyoruz.
+  Hedef, Cosmos DB, küresel dağıtım gibi avantajlarından bazıları "her zaman açık" olmasını sağlamaktır kullanılabilirlik, esnek ölçeklenebilirlik ve düşük gecikme süresi, .NET geliştiricileri için daha erişilebilir.
+  EF Core gibi özelliklerin çoğu, Cosmos DB SQL API karşı değer dönüştürmeleri otomatik değişiklik izleme ve LINQ sağlayıcı etkinleştirir. EF Core 2.2 önce bu çalışmaların Başladık ve [bazı yaptık Önizleme sürümleri kullanılabilir sağlayıcısının](https://blogs.msdn.microsoft.com/dotnet/2018/10/17/announcing-entity-framework-core-2-2-preview-3/).
+  Yeni plan EF Core 3.0 yanı sıra sağlayıcı geliştirmeye devam sağlamaktır.   
+
+- **C#8.0 desteği ([#12047](https://github.com/aspnet/EntityFrameworkCore/issues/12047))**: Bazı yararlanmak için müşterilerimizin istiyoruz [gelen yeni özellikler C# 8.0](https://blogs.msdn.microsoft.com/dotnet/2018/11/12/building-c-8-0/) istediğiniz zaman uyumsuz akışlar (dahil olmak üzere await her biri için) ve EF Core kullanırken null başvuru türleri.
+
+- **Mühendislik veritabanı görünümleri ters sorgu türlerine ([#1679](https://github.com/aspnet/EntityFrameworkCore/issues/1679))**: EF Core 2.1 içinde veritabanından okunan ancak güncelleştirilemiyor verileri temsil etmek sorgu türleri için destek ekledik.
+  Sorgu türleri şunlardır: eşleme veritabanı için harika bir uygun görünümleri, bunu EF Core 3. 0'ı, veritabanı görünümleri için sorgu türleri oluşturulmasını otomatik hale getirmek istiyoruz.
+
+- **Özellik paketi varlıklar ([#13610](https://github.com/aspnet/EntityFrameworkCore/issues/13610) ve [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914))**: Dizinli Özellikler normal özellikleri yerine verileri depolayan varlıkları etkinleştirme ve ayrıca aynı .NET sınıf örnekleri kullanabilmek için hakkındaki bu özellik, (büyük olasılıkla bir şey kadar basit bir `Dictionary<string, object>`) farklı varlık türlerini temsil etmek için aynı EF Core modelinde.
+  EF Core için en çok istenen geliştirmeleri biri olan bir birleşim varlık olmadan çok-çok ilişkileri desteklemek için bir atlama taşı özelliğidir.
+
+- **.NET core'da EF 6.3 ([EF6 #271](https://github.com/aspnet/EntityFramework6/issues/271))**: Birçok mevcut uygulamaları EF'ın önceki sürümlerini kullanın ve bunları yalnızca .NET Core yararlanmak için EF Core'a taşıma bazen önemli bir efor gerektirebilir olduğunu biliyoruz.
+  Bu nedenle, biz .NET Core 3.0 üzerinde çalıştırılacak EF 6'ın sonraki sürümü adapte.
+  Biz bunu çok az değişiklikle taşıma mevcut uygulamaları kolaylaştırmak için yapıyor.
+  Var olan giderek bazı sınırlamalar olacak şekilde (örneğin, yeni sağlayıcıları gerekir, SQL Server uzamsal desteğiyle olmaz etkinleştirilmesi) ve EF 6 için planlanan yeni özellik yoktur.
+
+Bu arada, kullanabilirsiniz [müşterilerimize sorun İzleyicisi, bu sorgu](https://github.com/aspnet/EntityFrameworkCore/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.0.0+sort%3Areactions-%2B1-desc) görmek için iş öğelerini 3.0 için geçici olarak atanmış.
 
 ## <a name="schedule"></a>Zamanlama
 

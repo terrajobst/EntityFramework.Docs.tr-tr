@@ -4,12 +4,12 @@ author: ErikEJ
 ms.date: 07/03/2018
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/extensions/index
-ms.openlocfilehash: 1edc7a20f54b2d26f899c93e98dfaf6d62c29f86
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 67eae6cb943b974cc9cd581b8054836d2e37b1e9
+ms.sourcegitcommit: a6082a2caee62029f101eb1000656966195cd6ee
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490733"
+ms.lasthandoff: 12/10/2018
+ms.locfileid: "53182000"
 ---
 # <a name="ef-core-tools--extensions"></a>EF Core Araçlar ve uzantılar
 
@@ -43,6 +43,19 @@ Visual Studio 2017 + uzantısı. Varolan bir veritabanına veya SQL Server verit
 Bir görsel tasarım sınıfların, Entity Framework 6, Core 2.0 ve Core 2.1 için ORM Tasarımcısı ekleyen bir Visual Studio 2017 uzantısı. Kod, her türlü ihtiyacı karşılamak için T4 şablonları tamamen özelleştirilebilir şekilde kullanarak oluşturulur. Numaralandırmalar ve sınıflarınızı renk kodu ve metin blokları tasarımınızı potansiyel olarak karıştıran bölümlerini açıklamak için ekleme olanağı gibi devralma, tek yönlü ve çift yönlü ilişkilendirmeleri tümü, desteklenir.
 
 [Market](https://marketplace.visualstudio.com/items?itemName=michaelsawczyn.EFDesigner)
+
+### <a name="catfactory"></a>CatFactory
+
+CatFactory bir .NET Core ve Entity Framework Core için yapı iskelesi altyapısıdır. Mevcut bir veritabanını SQL Server örneğinden'a ve ardından veritabanı için modeller gösteriminde ile dışarı aktarma olduğu kavramı CatFactory arkasında; iskele varlıklar, yapılandırmalar, depolar ve daha fazlası.
+
+[GitHub deposu](https://github.com/hherzl/CatFactory.EntityFrameworkCore)
+
+### <a name="loresofts-entity-framework-core-generator"></a>LoreSoft'ın Entity Framework Core Oluşturucusu
+
+Entity Framework Core Generator (efg), EF Core modelleri çok gibi varolan bir veritabanından oluşturabilen bir .NET Core CLI aracı `dotnet ef dbcontext scaffold`. Ayrıca güvenli kod destekler, ancak farklı olduğu [anahtarınızın yeniden oluşturulması](https://efg.loresoft.com/en/latest/regeneration/). Anahtarınızın yeniden oluşturulması, bölge değiştirme aracılığıyla ya da eşleme dosyaları ayrıştırma gerçekleştirilir. Araç ayrıca oluşturma görünüm modelleri, doğrulama ve nesne Eşleyici kodu destekler. Daha fazla bilgi için öğretici ve ürün belge bağlantılarına bakın.
+
+[Öğretici](http://www.loresoft.com/Generate-ASP-NET-Web-API)
+[belgeleri](https://efg.loresoft.com/en/latest/)
 
 ## <a name="extensions"></a>Uzantıları
 
