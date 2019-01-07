@@ -3,12 +3,12 @@ title: Geçişleri geçmiş tablosu - EF6 özelleştirme
 author: divega
 ms.date: 10/23/2016
 ms.assetid: ed5518f0-a9a6-454e-9e98-a4fa7748c8d0
-ms.openlocfilehash: e3faefc4b812ec4bc440ed2bb48747053d8cb1b3
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: eb19f367611a86f685557a6741a5f2f0bad6b718
+ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283699"
+ms.lasthandoff: 01/06/2019
+ms.locfileid: "54058753"
 ---
 # <a name="customizing-the-migrations-history-table"></a>Geçişleri geçmiş tablosu özelleştirme
 > [!NOTE]
@@ -19,7 +19,7 @@ ms.locfileid: "46283699"
 
 ## <a name="what-is-migrations-history-table"></a>Geçişleri geçmiş tablosu nedir?
 
-Geçişleri geçmiş tablosu, Code First Migrations ile veritabanına uygulanan geçişleri ayrıntılarını depolamak için kullanılan bir tablodur. Varsayılan olarak veritabanındaki tablo adıdır. \_ \_MigrationHistory ve ilk veritabanı geçiş do uygularken oluşturulur. Uygulama, Microsoft Sql Server veritabanı kullandıysanız Entity Framework 5'te bu tabloda sistem tablosunda oluştu. Bu Entity Framework 6 ancak değişti ve geçişleri geçmiş tablosu bir sistem tablosu artık işaretlenir.
+Geçişleri geçmiş tablosu, Code First Migrations ile veritabanına uygulanan geçişleri ayrıntılarını depolamak için kullanılan bir tablodur. Varsayılan olarak veritabanındaki tablo adıdır. \_ \_MigrationHistory ve ilk geçiş veritabanına uygularken oluşturulur. Uygulama, Microsoft Sql Server veritabanı kullandıysanız Entity Framework 5'te bu tabloda sistem tablosunda oluştu. Bu Entity Framework 6 ancak değişti ve geçişleri geçmiş tablosu bir sistem tablosu artık işaretlenir.
 
 ## <a name="why-customize-migrations-history-table"></a>Neden geçişleri geçmiş tablosu özelleştirebilir?
 
@@ -43,7 +43,7 @@ Başlamadan önce ilk geçiş yalnızca uygulamadan önce geçişler geçmiş ta
 >[!NOTE]
 > Genellikle EF modeli yapılandırırken temel çağrı gerekmez. Geçersiz kılınan OnModelCreating yönteminden DbContext.OnModelCreating() beri OnModelCreating() boş bir gövdeye sahip. Bu durum geçişlerini geçmiş tablosu yapılandırırken değildir. Bu durumda ilk OnModelCreating() geçersiz kılmada yapılacak şey gerçekten temel çağırmaktır. OnModelCreating(). Bu geçersiz kılma yöntemi ince ayar varsayılan şekilde geçişleri geçmiş tablosu yapılandıracaksınız.
 
-Geçişleri geçmişi tabloyu yeniden adlandırma ve "Yönetici" adlı bir özel şemaya koymak istediğiniz varsayalım. Ayrıca, DBA geçiş MigrationId sütunu yeniden adlandırmak istediğiniz\_kimliği  Aşağıdaki HistoryContext türetilmiş sınıf oluşturarak bunu:
+Geçişleri geçmişi tabloyu yeniden adlandırma ve "Yönetici" adlı bir özel şemaya koymak istediğiniz varsayalım. Ayrıca, DBA geçiş MigrationId sütunu yeniden adlandırmak istediğiniz\_kimliği  Aşağıdaki HistoryContext türetilmiş sınıf oluşturarak bunu:
 
 ``` csharp
     using System.Data.Common;

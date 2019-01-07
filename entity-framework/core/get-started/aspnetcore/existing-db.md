@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 08/02/2018
 ms.assetid: 2bc68bea-ff77-4860-bf0b-cf00db6712a0
 uid: core/get-started/aspnetcore/existing-db
-ms.openlocfilehash: 23cd53b0e162afc5db0243b7032bb9c5f18bfb35
-ms.sourcegitcommit: b3c2b34d5f006ee3b41d6668f16fe7dcad1b4317
+ms.openlocfilehash: c8acb95395968f710e6b896de6c3598cb7b23676
+ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "51688699"
+ms.lasthandoff: 01/06/2019
+ms.locfileid: "54058792"
 ---
 # <a name="getting-started-with-ef-core-on-aspnet-core-with-an-existing-database"></a>Mevcut bir veritabanı ile ASP.NET Core üzerinde EF Core ile çalışmaya başlama
 
@@ -24,7 +24,7 @@ Aşağıdaki yazılımları yükleyin:
 * [Visual Studio 2017 15.7](https://www.visualstudio.com/downloads/) bu iş yükleri ile:
   * **ASP.NET ve web geliştirme** (altında **Web ve bulut**)
   * **.NET core çoklu platform geliştirme** (altında **diğer araç takımları**)
-* [.NET core SDK'sını 2.1](https://www.microsoft.com/net/download/core).
+* [.NET Core 2.1 SDK'sı](https://www.microsoft.com/net/download/core).
 
 ## <a name="create-blogging-database"></a>Günlük veritabanı oluşturma
 
@@ -48,7 +48,7 @@ Bu öğreticide bir **blog** LocalDb örneğiniz mevcut veritabanı olarak verit
 * **Dosya > Yeni > Proje...**
 * Sol menüden **yüklü > Visual C# > Web**
 * Seçin **ASP.NET Core Web uygulaması** proje şablonu
-* Girin **EFGetStarted.AspNetCore.ExistingDb** tıklayın ve adı olarak **Tamam**
+* Girin **EFGetStarted.AspNetCore.ExistingDb** tıklayın ve adı (Bu, tam olarak daha sonra kod içinde kullanılan ad alanı eşleşmelidir) olarak **Tamam** 
 * Bekle **yeni ASP.NET Core Web uygulaması** görüntülenecek iletişim
 * Hedef framework açılan ayarlandığından emin olun **.NET Core**, ve sürüm açılan kümesine **ASP.NET Core 2.1**
 * Seçin **Web uygulaması (Model-View-Controller)** şablonu
@@ -161,7 +161,7 @@ Artık `AddDbContext(...)` hizmet olarak kaydetmek için yöntemi.
 * Ayarlama **Model sınıfı** için **Blog** ve **veri bağlamı sınıfının** için **BloggingContext**
 * Tıklayın **Ekle**
 
-## <a name="run-the-application"></a>Uygulamayı çalıştırın
+## <a name="run-the-application"></a>Uygulamayı çalıştırma
 
 Şimdi nasıl çalıştığını görmek için uygulamayı çalıştırabilirsiniz.
 

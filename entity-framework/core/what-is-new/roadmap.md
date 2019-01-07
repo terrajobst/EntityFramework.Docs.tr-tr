@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: 834C9729-7F6E-4355-917D-DE3EE9FE149E
 uid: core/what-is-new/roadmap
-ms.openlocfilehash: f18de8e8cb4fbe81bb2f983a00c9dd2f46be6073
-ms.sourcegitcommit: a6082a2caee62029f101eb1000656966195cd6ee
+ms.openlocfilehash: 7eba9e1a8e145ef407f844ff3a3ab3069495b7ae
+ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53182026"
+ms.lasthandoff: 01/06/2019
+ms.locfileid: "54058740"
 ---
 # <a name="entity-framework-core-roadmap"></a>Entity Framework Core yol haritası
 
@@ -28,7 +28,7 @@ Biz size daha fazla netlik alabilirsiniz, ama bazı üst düzey Temalar şunlard
 - **LINQ geliştirmeleri ([#12795](https://github.com/aspnet/EntityFrameworkCore/issues/12795))**: LINQ sayesinde, istediğiniz dilde çıkmadan veritabanı sorguları yazma yararlanarak zengin IntelliSense ve derleme zamanı tür denetimi alma bilgilerini yazın.
   Ancak LINQ, sınırsız sayıda karmaşık sorgular yazmaya olanak tanır ve her zaman LINQ sağlayıcıları için çok zor olmuştur.
   EF Core birkaç ilk sürümlerinde, biz, kısmi çıkış bir sorgu kısımlarını olabilir hesaplayarak Çözüldü SQL ve istemci üzerindeki bellekte yürütülecek sorgu geri kalanı sağlayarak çevrilir.
-  Bu istemci-tarafı yürütme, bazı durumlarda istenmez olabilir, ancak olmayabilir verimsiz sorgularda sonuçlanabilir çoğu durumda, bir uygulama üretime dağıtıldığında kadar tanımlanmış.
+  Bazı durumlarda bu istemci-tarafı yürütme istenebilir ancak diğer birçok durumda, bir uygulama üretime dağıtıldığında kadar belirtilmemiş olabilecek verimsiz sorguları neden olabilir.
   EF Core 3.0 sürümünde, çok büyük değişiklikler LINQ kararlılığımızın nasıl çalıştığını ve bunu nasıl test yapmak biz planlıyorsunuz.
   Hedefleridir (örneğin sorguları düzeltme eki sürümlerde bozmayı önlemek için), daha sağlam hale getirmek için doğru SQL, daha fazla durumda verimli sorgular oluşturun ve verimsiz sorguları algılanmayan gitmesini önlemek için daha fazla ifadelere çevirmek için.
 

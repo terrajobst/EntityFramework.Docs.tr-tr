@@ -3,12 +3,12 @@ title: Zaman uyumsuz sorgulama ve Kaydet - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d56e6f1d-4bd1-4b50-9558-9a30e04a8ec3
-ms.openlocfilehash: 4ed4f5c13341f33ccff8325a5ddacd8f7b195a76
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: de702365251fd05c423c8590ccaefa7d8542ad02
+ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283829"
+ms.lasthandoff: 01/06/2019
+ms.locfileid: "54058766"
 ---
 # <a name="async-query-and-save"></a>Zaman uyumsuz sorgulama ve kaydedin
 > [!NOTE]
@@ -32,7 +32,7 @@ Zaman uyumsuz hakkında bilgi edinmek için daha fazla bazı kaynaklar aşağıd
 -   [Zaman uyumsuz programlama](https://msdn.microsoft.com/library/hh191443.aspx) MSDN Kitaplığı'nda sayfaları
 -   [ASP.NET Web uygulamaları kullanarak Async yapı nasıl](http://channel9.msdn.com/events/teched/northamerica/2013/dev-b337) (artan sunucusu verimliliği gösterimini içerir)
 
-## <a name="create-the-model"></a>Model oluşturma
+## <a name="create-the-model"></a>Modeli oluşturma
 
 Kullanacağız [kod ilk iş akışınızı](~/ef6/modeling/code-first/workflows/new-database.md) modelimizi oluşturun ve zaman uyumsuz işlevleri ile EF Designer oluşturulanlar dahil olmak üzere tüm EF modelleri ile çalışır ancak veritabanı oluşturmak için.
 
@@ -76,7 +76,7 @@ Kullanacağız [kod ilk iş akışınızı](~/ef6/modeling/code-first/workflows/
     }
 ```
 
- 
+ 
 
 ## <a name="create-a-synchronous-program"></a>Zaman uyumlu bir program oluşturma
 
@@ -96,7 +96,6 @@ EF modeli sahibiz, bazı veri erişimi gerçekleştirdiği kullanan biraz kod ya
             {
                 PerformDatabaseOperations();
 
-                Console.WriteLine();
                 Console.WriteLine("Quote of the day");
                 Console.WriteLine(" Don't worry about the world coming to an end today... ");
                 Console.WriteLine(" It's already tomorrow in Australia.");
@@ -115,16 +114,18 @@ EF modeli sahibiz, bazı veri erişimi gerçekleştirdiği kullanan biraz kod ya
                     {
                         Name = "Test Blog #" + (db.Blogs.Count() + 1)
                     });
+                    Console.WriteLine("Calling SaveChanges.");
                     db.SaveChanges();
+                    Console.WriteLine("SaveChanges completed.");
 
                     // Query for all blogs ordered by name
+                    Console.WriteLine("Executing query.");
                     var blogs = (from b in db.Blogs
                                 orderby b.Name
                                 select b).ToList();
 
                     // Write all blogs out to Console
-                    Console.WriteLine();
-                    Console.WriteLine("All blogs:");
+                    Console.WriteLine("Query completed with following results:");
                     foreach (var blog in blogs)
                     {
                         Console.WriteLine(" " + blog.Name);
@@ -145,20 +146,20 @@ Kod zaman uyumlu olduğundan, biz programını çalıştırdığınızda, biz a�
 4.  Sorgu döndürür ve sonuçları yazılır **Konsolu**
 5.  Günün yazılır **Konsolu**
 
-![Eşitleme çıkışı](~/ef6/media/syncoutput.png) 
+![Eşitleme çıkışı](~/ef6/media/syncoutput.png) 
 
- 
+ 
 
 ## <a name="making-it-asynchronous"></a>Zaman uyumsuz hale getirme
 
 Programımız çalıştırmaya sahibiz, biz yeni async ve await anahtar sözcükleri yapmadan başlayabilirsiniz. Program.cs'ye aşağıdaki değişiklikleri yaptık
 
-1.  2. satır: Kullanma bildirimi **System.Data.Entity** ad alanı sağladığı erişim için EF zaman uyumsuz genişletme yöntemleri.
-2.  4. satırı: Kullanma bildirimi **System.Threading.Tasks** bize kullanmak ad alanı sağlar **görev** türü.
-3.  Satır 12 & 18: biz ilerleme durumunu izleyen Görev yakalama **PerformSomeDatabaseOperations** (satır, 12) ve sonra bu program yürütme engelleme görev tam bir kez tüm işler için program (18. satır) gerçekleştirilir.
-4.  Satırı 25: Güncelleştirme yaptıklarımız **PerformSomeDatabaseOperations** olarak işaretlenecek **zaman uyumsuz** ve dönüş bir **görev**.
-5.  Satırı 35: Biz artık SaveChanges zaman uyumsuz sürümü çağırma ve onun tamamlanmasını bekleme.
-6.  Satırı 42: Biz artık ToList zaman uyumsuz sürümü çağırma ve sonucuna bekleniyor.
+1.  2. satır: Using deyimi için **System.Data.Entity** ad alanı sağladığı erişim için EF zaman uyumsuz genişletme yöntemleri.
+2.  4. satırı: Using deyimi için **System.Threading.Tasks** ad alanı kullanılacak bize sağlar **görev** türü.
+3.  12 & 18 satırı: Biz ilerleme durumunu izleyen Görev yakalama **PerformSomeDatabaseOperations** (satır, 12) ve sonra bu program yürütme engelleme görev tam bir kez tüm işler için program (18. satır) gerçekleştirilir.
+4.  25 satırı: Güncelleştirme yaptıklarımız **PerformSomeDatabaseOperations** olarak işaretlenecek **zaman uyumsuz** ve dönüş bir **görev**.
+5.  35 satırı: Biz artık SaveChanges zaman uyumsuz sürümü çağırma ve onun tamamlanmasını bekleme.
+6.  Satırı 42: Biz, artık ToList ve sonucunu bekleyen zaman uyumsuz sürümü numarasını arıyoruz.
 
 System.Data.Entity ad alanında kullanılabilir uzantı yöntemlerini kapsamlı bir listesi için QueryableExtensions sınıfına bakın. *Ayrıca "System.Data.Entity kullanma" eklemek kullanarak, gerekir deyimleri.*
 
@@ -227,9 +228,9 @@ Kod uyumsuz olduğuna göre biz programını çalıştırdığınızda, biz fark
 4.  Tüm sorgu **blogları** veritabanına gönderilen *yeniden yönetilen iş parçacığı veritabanında sorgu işlenirken başka işleri yapmak ücretsizdir. Diğer tüm yürütme tamamlandı olduğundan, iş parçacığı yalnızca bekleme çağrıda ancak durdurulur.*
 5.  Sorgu döndürür ve sonuçları yazılır **Konsolu**
 
-![Zaman uyumsuz çıkış](~/ef6/media/asyncoutput.png) 
+![Zaman uyumsuz çıkış](~/ef6/media/asyncoutput.png) 
 
- 
+ 
 
 ## <a name="the-takeaway"></a>Takeaway
 

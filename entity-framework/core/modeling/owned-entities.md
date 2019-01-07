@@ -5,12 +5,12 @@ ms.author: ansvyryd
 ms.date: 02/26/2018
 ms.assetid: 2B0BADCE-E23E-4B28-B8EE-537883E16DF3
 uid: core/modeling/owned-entities
-ms.openlocfilehash: 58da3b6b951b3fa4aa04ec75f5759555c1f0cde5
-ms.sourcegitcommit: 39080d38e1adea90db741257e60dc0e7ed08aa82
+ms.openlocfilehash: fe7e07b8bd483fb3f9b672ee78ef7541f06a21a4
+ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/03/2018
-ms.locfileid: "50980034"
+ms.lasthandoff: 01/06/2019
+ms.locfileid: "54058779"
 ---
 # <a name="owned-entity-types"></a>Sahip olunan varlık türleri
 
@@ -126,4 +126,4 @@ Bu sınırlamaların bazıları nasıl sahip olunan varlık türleri iş temel a
 
 ### <a name="shortcomings-in-previous-versions"></a>Önceki sürümlerde eksiklikleri
 - EF Core 2.0 sürümünde, sahip olunan varlık sahibi hiyerarşiden açıkça ayrı bir tabloya eşlenmiş sürece, türetilen varlık türleri varlık türleri bildirilemez gezintiler için ait. Bu sınırlama EF Core 2.1 kaldırıldı
-- Tr EF Core 2.0 ve 2.1 yalnızca başvuru gezintiler ait türlerine desteklendi. Bu sınırlama EF Core 2.2 kaldırıldı
+- EF Core 2.0 ve 2.1 yalnızca başvuru türlerine ait gezintiler desteklendi. Bu sınırlama EF Core 2.2 kaldırıldı

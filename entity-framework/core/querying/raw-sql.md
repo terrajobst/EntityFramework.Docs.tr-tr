@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
-ms.openlocfilehash: 0ad9731840c5f72064f2f66932b9867a0144f437
-ms.sourcegitcommit: 2da6f9b05e1ce3a46491e5cc68f17758bdeb6b02
+ms.openlocfilehash: 5bddddfbc2fe8d0ba99914f03b28bde4076fae42
+ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53006875"
+ms.lasthandoff: 01/06/2019
+ms.locfileid: "54058721"
 ---
 # <a name="raw-sql-queries"></a>Ham SQL sorguları
 
@@ -28,7 +28,7 @@ Ham SQL sorguları kullanırken dikkat edilmesi gereken bazı sınırlamalar var
 
 * SQL sorgusu, ilgili verileri içeremez. Ancak, çoğu durumda, üzerinde sorgu kullanarak oluşturabileceğiniz `Include` ilgili verileri döndürmek için işleci (bkz [ilgili veriler dahil olmak üzere](#including-related-data)).
 
-* `SELECT` Bu yönteme geçirilen deyimler genellikle birleştirilebilir olmalıdır: varsa EF Core gereken ek sorgu işleçleri sunucusunda değerlendirilecek (örneğin, LINQ işleçleri çevirmek için uygulanan sonra `FromSql`), sağlanan SQL alt sorgu kabul edilir. Bu, geçirilen SQL herhangi bir karakter veya gibi geçerli bir alt sorgu olmayan seçenekleri içermemelidir anlamına gelir:
+* `SELECT` Bu yönteme geçirilen deyimler genellikle birleştirilebilir olması gerekir: EF Core ek sorgu işleçleri sunucusunda değerlendirilecek gerekip gerekmediğini (örneğin, LINQ işleçleri çevirmek için uygulanan sonra `FromSql`), sağlanan SQL alt sorgu kabul edilir. Bu, geçirilen SQL herhangi bir karakter veya gibi geçerli bir alt sorgu olmayan seçenekleri içermemelidir anlamına gelir:
   * sondaki noktalı virgül
   * SQL Server'da izleyen bir sorgu düzeyi İpucu (örneğin, `OPTION (HASH JOIN)`)
   * SQL Server'da bir `ORDER BY` , eşlik yan tümcesi `TOP 100 PERCENT` içinde `SELECT` yan tümcesi
@@ -81,7 +81,7 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-Ayrıca, bir DbParameter oluşturun ve parametre değeri olarak sağlayın. Bu sayede SQL sorgu dizesinde adlandırılmış parametreler kullanılacak
+Ayrıca, bir DbParameter oluşturun ve parametre değeri olarak sağlayın. Bu, SQL sorgu dizesinde adlandırılmış parametreler kullanmanıza olanak sağlar.
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -124,4 +124,4 @@ var blogs = context.Blogs
 ```
 
 > [!WARNING]  
-> **Her zaman için ham SQL sorguları Parametreleştirme kullanın:** ham SQL kabul API'leri gibi dize `FromSql` ve `ExecuteSqlCommand` değerleri kolayca parametre olarak geçirilmesine izin verin. Kullanıcı girişini doğrulama ek olarak, her zaman Parametreleştirme ham bir SQL sorgu/komutta kullanılan herhangi bir değeri için kullanın. Dize birleştirme SQL ekleme saldırılarına karşı korumak için herhangi bir giriş doğrulamak için sorumlu olursunuz herhangi bir bölümünü sorgu dizesini dinamik olarak oluşturmak için kullanıyorsanız.
+> **Her zaman için ham SQL sorguları Parametreleştirme kullanın:** Ham SQL kabul API'leri gibi dize `FromSql` ve `ExecuteSqlCommand` değerleri kolayca parametre olarak geçirilmesine izin verin. Kullanıcı girişini doğrulama ek olarak, her zaman Parametreleştirme ham bir SQL sorgu/komutta kullanılan herhangi bir değeri için kullanın. Dize birleştirme SQL ekleme saldırılarına karşı korumak için herhangi bir giriş doğrulamak için sorumlu olursunuz herhangi bir bölümünü sorgu dizesini dinamik olarak oluşturmak için kullanıyorsanız.
