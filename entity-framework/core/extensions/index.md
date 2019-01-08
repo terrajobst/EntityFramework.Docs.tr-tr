@@ -1,22 +1,22 @@
 ---
 title: Araçlar ve uzantılar - EF Core
 author: ErikEJ
-ms.date: 07/03/2018
+ms.date: 01/07/2019
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/extensions/index
-ms.openlocfilehash: 67eae6cb943b974cc9cd581b8054836d2e37b1e9
-ms.sourcegitcommit: a6082a2caee62029f101eb1000656966195cd6ee
+ms.openlocfilehash: 414773284df7c208b9a2acf0536fda459bdf775b
+ms.sourcegitcommit: 7bde8e6ad3c4565a4638646ce04bcf5e66f7b5fd
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53182000"
+ms.lasthandoff: 01/07/2019
+ms.locfileid: "54069236"
 ---
 # <a name="ef-core-tools--extensions"></a>EF Core Araçlar ve uzantılar
 
-Araçlar ve uzantılar için Entity Framework Core ek işlevsellik sağlar.
+Bu araçlar ve uzantılar için Entity Framework Core 2.0 ve daha sonra ek işlevsellik sağlar.
 
 > [!IMPORTANT]  
-> Uzantıları çeşitli kaynaklardan tarafından oluşturulur ve Entity Framework Core projesinin bir parçası korunur değil. Bir üçüncü taraf uzantı dikkate alındığında, kalite, lisanslama, uyumluluk, destek vb. gereksinimlerinizi karşıladıklarından emin olmak için değerlendirilecek emin olun.
+> Uzantılar, çeşitli kaynaklardan tarafından oluşturulur ve Entity Framework Core projesinin bir parçası korunmaz. Bir üçüncü taraf uzantı dikkate alındığında, lisanslama, uyumluluk, destek, gereksinimlerinizi karşıladığından emin olmak için vb. kalitesini değerlendirmek emin olun.
 
 ## <a name="tools"></a>Araçlar
 
@@ -28,31 +28,31 @@ LLBLGen Pro çözüm Entity Framework ve Entity Framework Core desteğiyle birli
 
 ### <a name="devart-entity-developer"></a>Devart varlık Geliştirici
 
-Varlık, ADO.NET Entity Framework, NHibernate, LinqConnect, Telerik Data Access ve LINQ to SQL için güçlü bir ORM Tasarımcısı geliştiricidir. Model-First kullanabilirsiniz ve ORM modelinizi tasarlamak ve C# veya Visual Basic .NET kodunu oluşturmak için veritabanı ilk yaklaşır. ORM modelleri oluşturmaya yönelik yeni bir yaklaşım sunar, üretkenliği artırıyor ve veritabanı uygulamaların geliştirilmesini kolaylaştırır.
+Varlık, ADO.NET Entity Framework, NHibernate, LinqConnect, Telerik Data Access ve LINQ to SQL için güçlü bir ORM Tasarımcısı geliştiricidir. Bu görsel olarak EF Core modelleri tasarlama destekler, ilk modelini kullanarak veya veritabanı ilk yaklaşır, ve C# veya Visual Basic kod oluşturma. 
 
 [Web sitesi](https://www.devart.com/entitydeveloper/)
 
 ### <a name="ef-core-power-tools"></a>EF Core güç araçları
 
-Visual Studio 2017 + uzantısı. Varolan bir veritabanına veya SQL Server veritabanı projesi tersine mühendislik DbContext ve POCO sınıfların görselleştirin ve çeşitli yollarla, DbContext inceleyin.
+EF Core Power Tools çeşitli EF Core tasarım zamanı görevleri basit bir kullanıcı arabirimi kullanıma sunan bir Visual Studio 2017 uzantısıdır. DbContext ve varlık sınıflarını mevcut veritabanlarının tersine mühendisliğini içerir ve [SQL Server DACPACs](https://docs.microsoft.com/sql/relational-databases/data-tier-applications/data-tier-applications), veritabanı geçişlerini ve model görselleştirmeler yönetimi.
 
-[GitHub wiki](https://github.com/ErikEJ/SqlCeToolbox/wiki/EF-Core-Power-Tools)
+[GitHub wiki](https://github.com/ErikEJ/EFCorePowerTools/wiki)
 
 ### <a name="entity-framework-visual-editor"></a>Entity Framework Visual Düzenleyicisi
 
-Bir görsel tasarım sınıfların, Entity Framework 6, Core 2.0 ve Core 2.1 için ORM Tasarımcısı ekleyen bir Visual Studio 2017 uzantısı. Kod, her türlü ihtiyacı karşılamak için T4 şablonları tamamen özelleştirilebilir şekilde kullanarak oluşturulur. Numaralandırmalar ve sınıflarınızı renk kodu ve metin blokları tasarımınızı potansiyel olarak karıştıran bölümlerini açıklamak için ekleme olanağı gibi devralma, tek yönlü ve çift yönlü ilişkilendirmeleri tümü, desteklenir.
+Entity Framework Visual Düzenleyicisi bir görsel tasarım EF 6 ve EF Core sınıfları için ORM Tasarımcısı ekleyen bir Visual Studio 2017 uzantısıdır. Kod, her türlü ihtiyacı karşılamak için özelleştirilebilir için T4 şablonlarını kullanarak oluşturulur. Bu, devralma, tek yönlü ve çift yönlü ilişkilendirmeleri, numaralandırmalar ve sınıflarınızı renk kodu ve metin blokları ekleme olanağı tasarımınızı potansiyel olarak karıştıran bölümlerini açıklamak için destekler.
 
 [Market](https://marketplace.visualstudio.com/items?itemName=michaelsawczyn.EFDesigner)
 
 ### <a name="catfactory"></a>CatFactory
 
-CatFactory bir .NET Core ve Entity Framework Core için yapı iskelesi altyapısıdır. Mevcut bir veritabanını SQL Server örneğinden'a ve ardından veritabanı için modeller gösteriminde ile dışarı aktarma olduğu kavramı CatFactory arkasında; iskele varlıklar, yapılandırmalar, depolar ve daha fazlası.
+CatFactory DbContext sınıfları, varlıklar, eşleme yapılandırmalarını ve bir SQL Server veritabanı sınıflarından depo oluşturulmasını otomatik hale getirebilirsiniz .NET Core için yapı iskelesi altyapısıdır.
 
 [GitHub deposu](https://github.com/hherzl/CatFactory.EntityFrameworkCore)
 
 ### <a name="loresofts-entity-framework-core-generator"></a>LoreSoft'ın Entity Framework Core Oluşturucusu
 
-Entity Framework Core Generator (efg), EF Core modelleri çok gibi varolan bir veritabanından oluşturabilen bir .NET Core CLI aracı `dotnet ef dbcontext scaffold`. Ayrıca güvenli kod destekler, ancak farklı olduğu [anahtarınızın yeniden oluşturulması](https://efg.loresoft.com/en/latest/regeneration/). Anahtarınızın yeniden oluşturulması, bölge değiştirme aracılığıyla ya da eşleme dosyaları ayrıştırma gerçekleştirilir. Araç ayrıca oluşturma görünüm modelleri, doğrulama ve nesne Eşleyici kodu destekler. Daha fazla bilgi için öğretici ve ürün belge bağlantılarına bakın.
+Entity Framework Core Generator (efg), EF Core modelleri çok gibi varolan bir veritabanından oluşturabilen bir .NET Core CLI aracı `dotnet ef dbcontext scaffold`, ancak güvenli kod da destekler [anahtarınızın yeniden oluşturulması](https://efg.loresoft.com/en/latest/regeneration/) bölge değiştirme veya aracılığıyla ayrıştırma eşleme dosyaları. Bu araç, görünüm modelleri oluşturma ve doğrulama nesne Eşleyici kodu destekler. 
 
 [Öğretici](http://www.loresoft.com/Generate-ASP-NET-Web-API)
 [belgeleri](https://efg.loresoft.com/en/latest/)
@@ -61,73 +61,50 @@ Entity Framework Core Generator (efg), EF Core modelleri çok gibi varolan bir v
 
 ### <a name="microsoftentityframeworkcoreautohistory"></a>Microsoft.EntityFrameworkCore.AutoHistory
 
-Bir eklenti için otomatik olarak veri kaydını desteklemek Microsoft.EntityFrameworkCore geçmişi değiştirir.
+Bir eklenti kitaplık, EF Core tarafından gerçekleştirilen bir geçmiş tablosuna veri değişikliklerini kaydı otomatik olarak etkinleştirir.
 
 [GitHub deposu](https://github.com/Arch/AutoHistory/)
 
 ### <a name="microsoftentityframeworkcoredynamiclinq"></a>Microsoft.EntityFrameworkCore.DynamicLinq
 
-Zaman uyumsuz destek ekleyen Microsoft.EntityFrameworkCore için dinamik LINQ uzantıları
+.NET Core / .NET standart bağlantı noktası, EF Core ile zaman uyumsuz desteği içeren System.Linq.Dynamic.
+System.Linq.Dynamic dinamik olarak gelen kod yerine dize ifadeleri LINQ sorgularının nasıl oluşturulacağını gösteren bir Microsoft örnek olarak oluşturulur.
 
- [GitHub deposu](https://github.com/StefH/System.Linq.Dynamic.Core/)
-
-### <a name="efcorepractices"></a>EFCore.Practices
-
-Test destekleyen bir API – N + 1 sorgular için taramak için küçük bir çerçeve dahil olmak üzere bazı iyi ya da en iyi uygulamaları yakalamak çalışır.
-
-[GitHub deposu](https://github.com/riezebosch/efcore-practices/tree/master/src/EFCore.Practices/)
+[GitHub deposu](https://github.com/StefH/System.Linq.Dynamic.Core/)
 
 ### <a name="efsecondlevelcachecore"></a>EFSecondLevelCache.Core
 
-İkinci düzey önbelleğe alma kitaplığı. İkinci düzey önbelleğe alma sorgu bir önbellektir. Böylece aynı EF komutları, verileri alır, önbellek yerine yeniden veritabanına karşı yürütme EF komutlarının sonuçlarını önbellekte depolanır.
+Aynı sorgu sonraki yürütmeleri veritabanına erişirken önlemek ve doğrudan önbellekten veri almak, ikinci düzey önbelleğine, EF Core sorguların sonuçlarını depolamak sağlayan uzantısı.
 
 [GitHub deposu](https://github.com/VahidN/EFSecondLevelCache.Core/)
 
-### <a name="detachedentityframework"></a>Detached.EntityFramework
-
-Yükler ve tüm ayrılmış varlık grafikleri (alt varlıklar ve liste varlığı) kaydeder. İlham [GraphDiff](https://github.com/refactorthis/GraphDiff/). Ayrıca bazı eklentiler için simplificate denetim ve sayfalandırma gibi bazı yinelenen görevleri ekleyin olur.
-
-[GitHub deposu](https://github.com/leonardoporro/Detached/)
-
 ### <a name="entityframeworkcoreprimarykey"></a>EntityFrameworkCore.PrimaryKey
 
-Birincil anahtarı (bileşik anahtarlar dahil) herhangi bir varlığa bir sözlük olarak alın.
+Bu kitaplık (bileşik anahtarlar dahil) birincil anahtar değerlerini alınırken bir sözlük olarak herhangi bir varlık izin verir.
 
 [GitHub deposu](https://github.com/NickStrupat/EntityFramework.PrimaryKey/)
 
-### <a name="entityframeworkcorerx"></a>EntityFrameworkCore.Rx
-
-Sık erişimli gözlemlenenler Entity Framework varlık için reaktif uzantısı sarmalayıcıları.
-
-[GitHub deposu](https://github.com/NickStrupat/EntityFramework.Rx/)
-
-### <a name="entityframeworkcoretriggers"></a>EntityFrameworkCore.Triggers
-
-Ekleme, güncelleştirme ve olayları Sil içeren varlıklarınız için Tetikleyiciler ekleyin. Her üç olaylar vardır: önce sonra ve başarısızlık durumunda.
-
-[GitHub deposu](https://github.com/NickStrupat/EntityFramework.Triggers/)
-
 ### <a name="entityframeworkcoretypedoriginalvalues"></a>EntityFrameworkCore.TypedOriginalValues
 
-Türü belirlenmiş OriginalValue, varlık özelliklerini erişin. Basit ve karmaşık özellikler desteklenir, gezinti ve koleksiyonların değildir.
+Bu kitaplık, varlık özelliklerini öğesinin özgün değerleri kesin türü belirtilmiş erişim sağlar. 
 
 [GitHub deposu](https://github.com/NickStrupat/EntityFramework.TypedOriginalValues/)
 
 ### <a name="geco"></a>Geco
 
-Geco bir ters Model Oluşturucu Çoğullaştırma/Singularization ve C# 6.0 ilişkilendirilmiş dizelerle tabanlı ve.Net Core üzerinde çalışan düzenlenebilir şablonlar için destek sağlar. Ayrıca bir çekirdek betiği Oluşturucu SQL birleştirme betikleri ve bir betik Çalıştırıcısı ile sağlar.
+Geco (Oluşturucusu Konsolu) olan .NET Core üzerinde çalışır ve kullanan bir konsol projesi dayalı bir basit Kod Oluşturucu C# Ara değerli dizeler için kod oluşturma. Geco ters model Oluşturucu EF Core için çoğullaştırma singularization ve düzenlenebilir şablonlar için destek içerir. Ayrıca bir çekirdek veri betiği Oluşturucu, bir betik Çalıştırıcı ve bir veritabanı Temizleyicisi sağlar.
 
-[Github deposu](https://github.com/iQuarc/Geco)
+[GitHub deposu](https://github.com/iQuarc/Geco)
 
 ### <a name="linqkitmicrosoftentityframeworkcore"></a>LinqKit.Microsoft.EntityFrameworkCore
 
-LinqKit.Microsoft.EntityFrameworkCore LINQ için uzantıları SQL ve EntityFrameworkCore ileri kullanıcılar için ücretsiz bir kümesidir. İle Include(...) ve IDbAsync desteği.
+LinqKit.Microsoft.EntityFrameworkCore bir LINQKit kitaplığı EF Core ile uyumlu sürümüdür. LINQKit LINQ için uzantıları SQL ve Entity Framework ileri kullanıcılar için ücretsiz bir kümesidir. Bu, dinamik koşul ifadeleri oluşturmaya ve sorgularda ifade değişkenleri kullanma gibi gelişmiş işlevleri sağlar.  
 
 [GitHub deposu](https://github.com/scottksmith95/LINQKit/)
 
 ### <a name="neinlinqentityframeworkcore"></a>NeinLinq.EntityFrameworkCore
 
-NeinLinq.EntityFrameworkCore İşlevler, bunları null için güvenli ve yapı dinamik sorgular yapma sorguları, yeniden yazma yeniden yalnızca küçük bir alt kümesini .NET işlevleri destekleyen LINQ sağlayıcıları gibi Entity Framework kullanarak için faydalı uzantılar sağlar. çevrilebilir doğrulamaları ve Seçici kullanıyor.
+NeinLinq yeniden kullanma işlevleri etkinleştirmek için Entity Framework gibi sorguları yeniden yazmak ve çevrilebilir doğrulamaları ve Seçici kullanarak dinamik sorgular oluşturma LINQ sağlayıcıları genişletir.
 
 [GitHub deposu](https://github.com/axelheer/nein-linq/)
 
@@ -137,15 +114,9 @@ Havuz, iş birimi desenleri ve birden çok veritabanı ile birlikte dağıtılm�
 
 [GitHub deposu](https://github.com/Arch/UnitOfWork/)
 
-### <a name="entityframeworklazyloading"></a>EntityFramework.LazyLoading
-
-EF Core 1.1 yavaş yükleniyor
-
-[GitHub deposu](https://github.com/darxis/EntityFramework.LazyLoading)
-
 ### <a name="efcorebulkextensions"></a>EFCore.BulkExtensions
 
-Toplu işlemleri (INSERT, Update, Delete) EntityFrameworkCore uzantıları.
+EF Core uzantıları toplu işlemleri (INSERT, Update, Delete).
 
 [GitHub deposu](https://github.com/borisdj/EFCore.BulkExtensions)
 
@@ -154,3 +125,33 @@ Toplu işlemleri (INSERT, Update, Delete) EntityFrameworkCore uzantıları.
 EF Core için tasarım zamanı çoğullaştırma ekler.
 
 [GitHub deposu](https://github.com/bricelam/EFCore.Pluralizer)
+
+### <a name="pomelofoundationpomeloentityframeworkcoreextensionstosql"></a>PomeloFoundation/Pomelo.EntityFrameworkCore.Extensions.ToSql
+
+Basit senaryoda belirli bir LINQ Sorgu için SQL deyimi EF Core alır bir basit bir genişletme yöntemi oluşturur. EF Core tek bir LINQ Sorgu için birden fazla SQL deyimi ve parametre değerlerini bağlı olarak farklı SQL deyimleri oluşturabileceğinden ToSql yöntemi basit senaryolar için sınırlıdır.
+
+[GitHub deposu](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.Extensions.ToSql)
+
+### <a name="toolbeltentityframeworkcoreindexattribute"></a>Toolbelt.EntityFrameworkCore.IndexAttribute
+
+(Uzantılı modeli oluşturmak için) EF Core için revival [dizin] özniteliği.
+
+[GitHub deposu](https://github.com/jsakamoto/EntityFrameworkCore.IndexAttribute)
+
+### <a name="efcoreinmemoryhelpers"></a>EfCore.InMemoryHelpers
+
+EF Core bellek içi veritabanı sağlayıcısı çevresinde bir sarmalayıcı sağlar. Daha fazla ilişkisel bir sağlayıcı gibi davranmasını sağlar.
+
+[GitHub deposu](https://github.com/SimonCropp/EfCore.InMemoryHelpers)
+
+### <a name="efcoretemporalsupport"></a>EFCore.TemporalSupport
+
+EF Core için zamana bağlı desteği uygulaması.
+
+[GitHub deposu](https://github.com/cpoDesign/EFCore.TemporalSupport)
+
+### <a name="entityframeworkcorecacheable"></a>EntityFrameworkCore.Cacheable
+
+EF Core için yüksek performanslı ikinci düzey sorgu önbelleği.
+
+[GitHub deposu](https://github.com/SteffenMangold/EntityFrameworkCore.Cacheable)

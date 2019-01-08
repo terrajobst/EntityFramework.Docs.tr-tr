@@ -5,12 +5,12 @@ ms.author: ansvyryd
 ms.date: 02/26/2018
 ms.assetid: 2B0BADCE-E23E-4B28-B8EE-537883E16DF3
 uid: core/modeling/owned-entities
-ms.openlocfilehash: fe7e07b8bd483fb3f9b672ee78ef7541f06a21a4
-ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
+ms.openlocfilehash: b2d72b08de79939904bf4e726c695440c906a8aa
+ms.sourcegitcommit: 7bde8e6ad3c4565a4638646ce04bcf5e66f7b5fd
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/06/2019
-ms.locfileid: "54058779"
+ms.lasthandoff: 01/07/2019
+ms.locfileid: "54069210"
 ---
 # <a name="owned-entity-types"></a>Sahip olunan varlık türleri
 
@@ -52,7 +52,7 @@ EF Core bu nesnelerin nasıl izlediği anlamak için birincil anahtar olarak olu
 >[!NOTE]
 > Bu özellik, EF Core 2.2 içinde yeni bir özelliktir.
 
-Sahip olunan türleri koleksiyonu yapılandırmak için `OwnsMany` kullanılmalıdır `OnModelCreating`. Ancak açıkça belirtilmesi ihtiyaç duyduğunuz şekilde birincil anahtarı kuralı tarafından yapılandırılmaz. Bu tür bir sahibi ve de gölge durumda olabilecek ek benzersiz bir özellik için yabancı anahtarı bir araya getiren varlıklar karmaşık bir anahtar kullanmak yaygın bir uygulamadır:
+Sahip olunan türleri koleksiyonu yapılandırmak için `OwnsMany` kullanılmalıdır `OnModelCreating`. Ancak bunu açıkça belirtilmesi gerekir, böylece birincil anahtarı Kural gereği, yapılandırılmaz. Bu tür bir sahibi ve de gölge durumda olabilecek ek benzersiz bir özellik için yabancı anahtarı bir araya getiren varlıklar karmaşık bir anahtar kullanmak yaygın bir uygulamadır:
 
 [!code-csharp[OwnsMany](../../../samples/core/Modeling/OwnedEntities/OwnedEntityContext.cs?name=OwnsMany)]
 
