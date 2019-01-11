@@ -5,12 +5,12 @@ ms.author: riande
 ms.date: 08/03/2018
 ms.assetid: e153627f-f132-4c11-b13c-6c9a607addce
 uid: core/get-started/aspnetcore/new-db
-ms.openlocfilehash: 2248c60045a914c902f1c958a86c69b283abd722
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.openlocfilehash: 4734586adc89e9c1d866a1b4accd8b5e51fe2bb0
+ms.sourcegitcommit: ebf661025d2ad2b62466fa7bf0e0772a7811cbe7
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022242"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54211172"
 ---
 # <a name="getting-started-with-ef-core-on-aspnet-core-with-a-new-database"></a>EF çekirdekli ASP.NET Core üzerinde yeni bir veritabanı ile çalışmaya başlama
 
@@ -31,11 +31,11 @@ Aşağıdaki yazılımları yükleyin:
 * [Visual Studio 2017 sürüm 15.7 veya üzeri](https://www.visualstudio.com/downloads/) bu iş yükleri ile:
   * **ASP.NET ve web geliştirme** (altında **Web ve bulut**)
   * **.NET core çoklu platform geliştirme** (altında **diğer araç takımları**)
-* [.NET core SDK'sını 2.1](https://www.microsoft.com/net/download/core).
+* [.NET Core 2.1 SDK'sı](https://www.microsoft.com/net/download/core).
 
 # <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
-* [.NET core SDK'sını 2.1](https://www.microsoft.com/net/download/core).
+* [.NET Core 2.1 SDK'sı](https://www.microsoft.com/net/download/core).
 
 ---
 
@@ -54,7 +54,7 @@ Aşağıdaki yazılımları yükleyin:
   * Emin olun **kimlik doğrulaması** ayarlanır **kimlik doğrulaması yok**
   * **Tamam**’a tıklayın.
 
-Uyarı: kullanırsanız **bireysel kullanıcı hesapları** yerine **hiçbiri** için **kimlik doğrulaması** projedeEntityFrameworkCoremodeliekleneceksonra`Models\IdentityModel.cs`. Bu öğreticide şunların tekniklerini kullanarak ikinci bir model eklemek veya var olan bu modeli, varlık sınıfları içeren genişletmek seçebilirsiniz.
+Uyarı: Kullanırsanız **bireysel kullanıcı hesapları** yerine **hiçbiri** için **kimlik doğrulaması** projede Entity Framework Core modeli eklenecek sonra `Models\IdentityModel.cs`. Bu öğreticide şunların tekniklerini kullanarak ikinci bir model eklemek veya var olan bu modeli, varlık sınıfları içeren genişletmek seçebilirsiniz.
 
 # <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
@@ -90,7 +90,7 @@ Bu öğreticide, .NET Core destekleyen tüm platformlarda çalıştığı için 
 
 ---
 
-## <a name="create-the-model"></a>Model oluşturma
+## <a name="create-the-model"></a>Modeli oluşturma
 
 Bağlam sınıfı ve modelini olun varlık sınıfı tanımlar.
 
@@ -201,9 +201,9 @@ Bir denetleyici ve görünüm için iskele `Blog` varlık.
 Yapı iskelesi altyapısı aşağıdaki dosyaları oluşturur:
 
 * Bir denetleyici (*Controllers/BlogsController.cs*)
-* Oluşturma, silme, Ayrıntılar, düzenleme ve dizin sayfaları için Razor görünümleri (_Views/Movies/*.cshtml_)
+* Oluşturma, silme, Ayrıntılar, düzenleme ve dizin sayfaları için Razor görünümleri (_Views/Blogs/*.cshtml_)
 
-## <a name="run-the-application"></a>Uygulamayı çalıştırın
+## <a name="run-the-application"></a>Uygulamayı çalıştırma
 
 # <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -228,6 +228,6 @@ dotnet run
 
 ## <a name="additional-resources"></a>Ek Kaynaklar
 
-* [Öğretici: .NET core'da EF Core ile SQLite kullanarak yeni bir veritabanı ile çalışmaya başlama](xref:core/get-started/netcore/new-db-sqlite)
-* [Öğretici: ASP.NET Core Razor sayfaları kullanmaya başlayın](https://docs.microsoft.com/aspnet/core/tutorials/razor-pages/razor-pages-start)
+* [Öğretici: EF Core üzerinde .NET Core ile SQLite kullanarak yeni bir veritabanı ile çalışmaya başlama](xref:core/get-started/netcore/new-db-sqlite)
+* [Öğretici: ASP.NET Core Razor sayfaları kullanmaya başlama](https://docs.microsoft.com/aspnet/core/tutorials/razor-pages/razor-pages-start)
 * [Öğretici: ASP.NET Core, Entity Framework Core ile Razor sayfaları](https://docs.microsoft.com/aspnet/core/data/ef-rp/intro)
