@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: d3e6515b-8181-482c-a790-c4a6778748c1
 uid: core/saving/transactions
-ms.openlocfilehash: 7083a1228420416a1b60d9744ca2dad2339be53f
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 4c50d6694c6678678c0af8defe2601abee923af1
+ms.sourcegitcommit: 5f11a5fa5d2cde81a4e4d0d5c3a60aa74b83cbd4
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993611"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54226198"
 ---
 # <a name="using-transactions"></a>İşlemleri kullanma
 
@@ -99,7 +99,7 @@ Açık bir işleme mümkündür.
 
 ### <a name="limitations-of-systemtransactions"></a>System.Transactions sınırlamaları  
 
-1. EF Core System.Transactions için destek uygulamak için veritabanı sağlayıcıları kullanır. Destek .NET Framework için ADO.NET sağlayıcıları arasında oldukça sık kullanılan olsa da, API .NET Core için yalnızca bir son eklendi ve bu nedenle desteği gibi yaygın değildir. Bir sağlayıcı System.Transactions desteği uygulamaz, bu API'lere giden çağrıların tamamen yoksayılacak mümkündür. .NET Core için SqlClient 2.1 ve üzeri desteklemiyor. .NET Core 2.0 için SqlClient bir özel durum oluşturur, bu özellik kullanmayı deneyin. 
+1. EF Core System.Transactions için destek uygulamak için veritabanı sağlayıcıları kullanır. Destek .NET Framework için ADO.NET sağlayıcıları arasında oldukça sık kullanılan olsa da, API .NET Core için yalnızca bir son eklendi ve bu nedenle desteği gibi yaygın değildir. Bir sağlayıcı System.Transactions desteği uygulamaz, bu API'lere giden çağrıların tamamen yoksayılacak mümkündür. .NET Core için SqlClient 2.1 ve üzeri desteklemiyor. Bu özelliği kullanmayı denerseniz, .NET Core 2.0 için SqlClient bir özel durum oluşturur. 
 
    > [!IMPORTANT]  
    > Üzerinde işlemleri yönetmek için kullanan önce API sağlayıcınız ile düzgün şekilde davranan test önerilir. Veritabanı sağlayıcısı Bakımcı kullanmıyorsa başvurmaları. 
