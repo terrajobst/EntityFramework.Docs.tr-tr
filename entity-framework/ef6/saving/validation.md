@@ -3,46 +3,47 @@ title: Doğrulama - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 77d6a095-c0d0-471e-80b9-8f9aea6108b2
-ms.openlocfilehash: 3aeb33763819544618c4a3068bb278c9b23409b6
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 98d7bd08d841ee400afb62e1079f1a965f65e139
+ms.sourcegitcommit: b4a5ed177b86bf7f81602106dab6b4acc18dfc18
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490654"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54316653"
 ---
 # <a name="data-validation"></a>Veri doğrulama
 > [!NOTE]
 > **EF4.1 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb. Entity Framework 4.1 içinde kullanıma sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri uygulanmaz
 
-Bu sayfadaki içeriğin gelen uyarlanmış ve Julie Lerman tarafından başlangıçta yazılı makalesi ([http://thedatafarm.com](http://thedatafarm.com)).
+Bu sayfadaki içeriğin başlangıçta Julie Lerman tarafından yazılmış bir makaledeki uyarlanmış ([http://thedatafarm.com](http://thedatafarm.com)).
 
 Entity Framework ile istemci tarafı doğrulama için bir kullanıcı arabirimi için besleyebilecek veya sunucu tarafı doğrulama için kullanılan doğrulama özellikleri çok çeşitli sağlar. Kod ilk kez kullanırken, ek açıklama ya da fluent API'sini yapılandırmaları kullanarak doğrulamaları belirtebilirsiniz. Ek doğrulama ve daha karmaşık kod içinde belirtilebilir ve modelinizi koddan önce hails olmadığını çalışacak ilk model veya ilk veritabanı.
 
 ## <a name="the-model"></a>Model
 
-Sınıfları basit çiftiyle doğrulamaları kazandırabileceğinizi göstereceğiz: Blog ve gönderi.
+Ben sınıfları basit çiftiyle doğrulamaları kazandırabileceğinizi göstereceğiz: Blog ve gönderi.
 
 ``` csharp
     public class Blog
       {
-          public int Id { get; set; }
-          public string Title { get; set; }
-          public string BloggerName { get; set; }
-          public DateTime DateCreated { get; set; }
-          public virtual ICollection<Post> Posts { get; set; }
-          }
-      }
+          public int Id { get; set; }
+          public string Title { get; set; }
+          public string BloggerName { get; set; }
+          public DateTime DateCreated { get; set; }
+          public virtual ICollection<Post> Posts { get; set; }
+          }
+      }
 
-      public class Post
-      {
-          public int Id { get; set; }
-          public string Title { get; set; }
-          public DateTime DateCreated { get; set; }
-          public string Content { get; set; }
-          public int BlogId { get; set; }
-          public ICollection<Comment> Comments { get; set; }
-      }
+      public class Post
+      {
+          public int Id { get; set; }
+          public string Title { get; set; }
+          public DateTime DateCreated { get; set; }
+          public string Content { get; set; }
+          public int BlogId { get; set; }
+          public ICollection<Comment> Comments { get; set; }
+      }
 ```
+
 ## <a name="data-annotations"></a>Veri ek açıklamaları
 
 Kod ek açıklamaları System.ComponentModel.DataAnnotations bütünleştirilmiş koddan kod ilk sınıfları yapılandırma bir anlamına gelir ilk kullanır. Bu ek açıklamalar arasında gerekli MinLength ve MaxLength gibi kuralları sağlayan bağlantılardır. .NET istemci uygulama sayısı Ayrıca bu ek açıklamaları, örneğin, ASP.NET MVC tanır. Hem istemci tarafı ve sunucu tarafı doğrulama bu ek açıklamalar ile elde edebilirsiniz. Örneğin, Blog başlık özelliği gerekli bir özellik olacak şekilde zorlayabilirsiniz.
@@ -64,7 +65,7 @@ Bunu test etmek için basit bir yol, MVC'ın istemci tarafı doğrulama özelli�
 
 ``` xml
     <appSettings>
-        <add key="ClientValidationEnabled"value="false"/>
+        <add key="ClientValidationEnabled"value="false"/>
         ...
     </appSettings>
 ```
@@ -79,16 +80,16 @@ Kod ilk modeli sınıfları oluşturma gibi Fluent API'si yapılandırmaları uy
 
 ``` csharp
     public class BlogContext : DbContext
-      {
-          public DbSet<Blog> Blogs { get; set; }
-          public DbSet<Post> Posts { get; set; }
-          public DbSet<Comment> Comments { get; set; }
+      {
+          public DbSet<Blog> Blogs { get; set; }
+          public DbSet<Post> Posts { get; set; }
+          public DbSet<Comment> Comments { get; set; }
 
-          protected override void OnModelCreating(DbModelBuilder modelBuilder)
-          {
-              modelBuilder.Entity<Blog>().Property(p => p.BloggerName).HasMaxLength(10);
-          }
-        }
+          protected override void OnModelCreating(DbModelBuilder modelBuilder)
+          {
+              modelBuilder.Entity<Blog>().Property(p => p.BloggerName).HasMaxLength(10);
+          }
+        }
 ```
 
 Doğrulama hataları durum Fluent API'si yapılandırmalarına göre otomatik olarak ulaşma kullanıcı Arabirimi, ancak bu kodu ve ardından yanıt uygun şekilde yakalamaz.
@@ -99,18 +100,18 @@ Entity Framework 10 karakter üst sınırını aşıyor bir BloggerName ile blog
     [HttpPost]
     public ActionResult Edit(int id, Blog blog)
     {
-        try
-        {
-            db.Entry(blog).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-        catch(DbEntityValidationException ex)
-        {
-            var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-            this.ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
-            return View();
-        }
+        try
+        {
+            db.Entry(blog).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        catch(DbEntityValidationException ex)
+        {
+            var error = ex.EntityValidationErrors.First().ValidationErrors.First();
+            this.ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+            return View();
+        }
     }
 ```
 
@@ -130,23 +131,23 @@ Aşağıdaki örnekte, Blog sınıfı IValidatableObject uygulayın ve ardından
 
 ``` csharp
     public class Blog : IValidatableObject
-     {
-         public int Id { get; set; }
-         [Required]
-         public string Title { get; set; }
-         public string BloggerName { get; set; }
-         public DateTime DateCreated { get; set; }
-         public virtual ICollection<Post> Posts { get; set; }
+     {
+         public int Id { get; set; }
+         [Required]
+         public string Title { get; set; }
+         public string BloggerName { get; set; }
+         public DateTime DateCreated { get; set; }
+         public virtual ICollection<Post> Posts { get; set; }
 
-         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-         {
-             if (Title == BloggerName)
-             {
-                 yield return new ValidationResult
-                  ("Blog Title cannot match Blogger Name", new[] { "Title", “BloggerName” });
-             }
-         }
-     }
+         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+         {
+             if (Title == BloggerName)
+             {
+                 yield return new ValidationResult
+                  ("Blog Title cannot match Blogger Name", new[] { "Title", “BloggerName” });
+             }
+         }
+     }
 ```
 
 ValidationResult oluşturucusu, hata iletisi ve doğrulama ile ilişkili olan üye adlarından temsil eden bir dize dizisi temsil eden bir dize alır. Bu doğrulama başlığı hem BloggerName denetler olduğundan, her iki özellik adları döndürülür.
@@ -168,27 +169,27 @@ Bir DbEntityEntry ve tek bir varlık için ICollection, DbValidationErrors DbEnt
         System.Data.Entity.Infrastructure.DbEntityEntry entityEntry,
         IDictionary\<object, object> items)
     {
-        var result = new DbEntityValidationResult(entityEntry, new List<DbValidationError>());
-        if (entityEntry.Entity is Post && entityEntry.State == EntityState.Added)
-        {
-            Post post = entityEntry.Entity as Post;
-            //check for uniqueness of post title
-            if (Posts.Where(p => p.Title == post.Title).Count() > 0)
+        var result = new DbEntityValidationResult(entityEntry, new List<DbValidationError>());
+        if (entityEntry.Entity is Post && entityEntry.State == EntityState.Added)
+        {
+            Post post = entityEntry.Entity as Post;
+            //check for uniqueness of post title
+            if (Posts.Where(p => p.Title == post.Title).Count() > 0)
             {
-                result.ValidationErrors.Add(
-                        new System.Data.Entity.Validation.DbValidationError("Title",
-                        "Post title must be unique."));
+                result.ValidationErrors.Add(
+                        new System.Data.Entity.Validation.DbValidationError("Title",
+                        "Post title must be unique."));
             }
-        }
+        }
 
-        if (result.ValidationErrors.Count > 0)
+        if (result.ValidationErrors.Count > 0)
         {
-            return result;
-        }
-        else
+            return result;
+        }
+        else
         {
-         return base.ValidateEntity(entityEntry, items);
-        }
+         return base.ValidateEntity(entityEntry, items);
+        }
     }
 ```
 
@@ -198,19 +199,19 @@ Bu makalede ele alınan doğrulamaları tüm SaveChanges çağrısı tetikler. A
 
 Tüm doğrulamaları, ek açıklamalar ya da Fluent API'si tarafından tanımlanan, doğrulama IValidatableObject (örneğin, Blog.Validate) içinde oluşturulan ve DbContext.ValidateEntity içinde gerçekleştirilen doğrulamaları DbContext.GetValidationErrors tetikler yöntem.
 
-Aşağıdaki kod geçerli bir DbContext örneğinde GetValidationErrors çağırır. ValidationErrors DbValidationRestuls varlık türüne göre gruplandırılır. Kod ilk yöntem tarafından döndürülen DbValidationResults ve ardından her ValidationError içinde aracılığıyla yinelenir.
+Aşağıdaki kod geçerli bir DbContext örneğinde GetValidationErrors çağırır. ValidationErrors DbValidationResults varlık türüne göre gruplandırılır. Kod ilk yöntem tarafından döndürülen DbValidationResults ve ardından her ValidationError içinde aracılığıyla yinelenir.
 
 ``` csharp
     foreach (var validationResults in db.GetValidationErrors())
-        {
-            foreach (var error in validationResults.ValidationErrors)
-            {
-                Debug.WriteLine(
+        {
+            foreach (var error in validationResults.ValidationErrors)
+            {
+                Debug.WriteLine(
                                   "Entity Property: {0}, Error {1}",
-                                  error.PropertyName,
+                                  error.PropertyName,
                                   error.ErrorMessage);
-            }
-        }
+            }
+        }
 ```
 
 ## <a name="other-considerations-when-using-validation"></a>Doğrulama kullanmayla ilgili diğer konular
