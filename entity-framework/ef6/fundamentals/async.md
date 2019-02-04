@@ -3,12 +3,12 @@ title: Zaman uyumsuz sorgulama ve Kaydet - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d56e6f1d-4bd1-4b50-9558-9a30e04a8ec3
-ms.openlocfilehash: de702365251fd05c423c8590ccaefa7d8542ad02
-ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
+ms.openlocfilehash: 89c7b9d533d37b4c9e123f37d8ab27c67ba26cc8
+ms.sourcegitcommit: 159c2e9afed7745e7512730ffffaf154bcf2ff4a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/06/2019
-ms.locfileid: "54058766"
+ms.lasthandoff: 02/03/2019
+ms.locfileid: "55668719"
 ---
 # <a name="async-query-and-save"></a>Zaman uyumsuz sorgulama ve kaydedin
 > [!NOTE]
@@ -223,7 +223,7 @@ Kod uyumsuz olduğuna göre biz programını çalıştırdığınızda, biz fark
 
 1.  **SaveChanges** yeni göndermeye başlar **Blog** veritabanına *komutu artık işlem saati geçerli bir yönetilen iş parçacığı üzerinde gerekli veritabanı gönderildikten sonra. **PerformDatabaseOperations** yöntemi döndürür (Bu yürütme işlemi tamamlanmadı olsa bile) ve ana yöntem program akışında devam eder.*
 2.  **Günün konsoluna yazılan**
-    *Main yöntemine yapmak için daha fazla iş olduğundan, yönetilen iş parçacığı bekleme engellenir veritabanı işlemi tamamlanana kadar çağırın. İşlem tamamlandıktan sonra geri kalanında bizim **PerformDatabaseOperations** * yürütülür.
+    *Main yöntemine yapmak için daha fazla iş olduğundan, yönetilen iş parçacığı bekleme engellenir veritabanı işlemi tamamlanana kadar çağırın. İşlem tamamlandıktan sonra geri kalanında bizim **PerformDatabaseOperations** yürütülür.*
 3.  **SaveChanges** tamamlar
 4.  Tüm sorgu **blogları** veritabanına gönderilen *yeniden yönetilen iş parçacığı veritabanında sorgu işlenirken başka işleri yapmak ücretsizdir. Diğer tüm yürütme tamamlandı olduğundan, iş parçacığı yalnızca bekleme çağrıda ancak durdurulur.*
 5.  Sorgu döndürür ve sonuçları yazılır **Konsolu**

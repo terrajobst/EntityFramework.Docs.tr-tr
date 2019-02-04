@@ -3,12 +3,12 @@ title: Entity Framework 6 sağlayıcı modeli - EF6
 author: divega
 ms.date: 06/27/2018
 ms.assetid: 066832F0-D51B-4655-8BE7-C983C557E0E4
-ms.openlocfilehash: d07a8689fe968bb1512095a59a61abc7ac346a31
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.openlocfilehash: 8cbf6f87e0936f374c3d8a0c15a0e1d9c828f764
+ms.sourcegitcommit: 159c2e9afed7745e7512730ffffaf154bcf2ff4a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022330"
+ms.lasthandoff: 02/03/2019
+ms.locfileid: "55668758"
 ---
 # <a name="the-entity-framework-6-provider-model"></a>Entity Framework 6 sağlayıcı modeli
 
@@ -28,7 +28,7 @@ EF sağlayıcısı gerçekten bu hizmetler gelen (için temel sınıf) genişlet
 
 ### <a name="dbproviderfactory"></a>DbProviderFactory
 
-EF bağlıdır öğesinden türetilmiş bir tür olması [System.Data.Common.DbProviderFactory](https://msdn.microsoft.com/library/system.data.common.dbproviderfactory.aspx) tüm alt düzey veritabanı erişimi gerçekleştirme. DbProviderFactory EF aslında bir parçası değil ancak bunun yerine bir giriş noktası için ADO.NET sağlayıcıları hizmet veren .NET Framework sınıfında EF, diğer O/RMs tarafından veya doğrudan bir uygulama tarafından bağlantıları, komutlar, Parametreler örneğini almak için kullanılabilir ve Diğer ADO.NET soyutlama sağlayıcıyıda dilden bağımsız bir şekilde. DbProviderFactory hakkında daha fazla bilgi bir bulunabilecek [ADO.NET için MSDN belgelerine](https://msdn.microsoft.com/library/a6cd7c08.aspx).
+EF bağlıdır öğesinden türetilmiş bir tür olması [System.Data.Common.DbProviderFactory](https://msdn.microsoft.com/library/system.data.common.dbproviderfactory.aspx) tüm alt düzey veritabanı erişimi gerçekleştirme. DbProviderFactory EF aslında bir parçası değil ancak bunun yerine bir giriş noktası için ADO.NET sağlayıcıları hizmet veren .NET Framework sınıfında EF, diğer O/RMs tarafından veya doğrudan bir uygulama tarafından bağlantıları, komutlar, Parametreler örneğini almak için kullanılabilir ve Diğer ADO.NET soyutlama sağlayıcıyıda dilden bağımsız bir şekilde. DbProviderFactory hakkında daha fazla bilgi bulunabilir [ADO.NET için MSDN belgelerine](https://msdn.microsoft.com/library/a6cd7c08.aspx).
 
 ### <a name="dbproviderservices"></a>DbProviderServices
 

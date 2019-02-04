@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: f9fb64e2-6699-4d70-a773-592918c04c19
 uid: core/querying/related-data
-ms.openlocfilehash: 65cfea07a40939c1c3615c97ec785a4082b21de5
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 4e042acb805c743ee794f4e61105b8d2136973b1
+ms.sourcegitcommit: 159c2e9afed7745e7512730ffffaf154bcf2ff4a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994794"
+ms.lasthandoff: 02/03/2019
+ms.locfileid: "55668732"
 ---
 # <a name="loading-related-data"></a>İlgili verileri yükleme
 
@@ -52,7 +52,7 @@ Tüm bunlar aynı sorguda birden çok düzeyi ve birden çok kök ilgili veriler
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#IncludeTree)]
 
-Dahil varlıklardan biri için birden çok ilişkili varlıkları içermesi isteyebilirsiniz. Örneğin, sorgulanırken `Blog`s, eklediğiniz `Posts` ve ardından her ikisini dahil etmek istediğiniz `Author` ve `Tags` , `Posts`. Bunu yapmak için her ekleme kök dizininde başlangıç yolu belirtmeniz gerekir. Örneğin, `Blog -> Posts -> Author` ve `Blog -> Posts -> Tags`. Bu, SQL oluştururken birleştirmeler EF birleştirecek. çoğu durumda, yedekli birleştirmeler alırsınız gelmez.
+Dahil varlıklardan biri için birden çok ilişkili varlıkları içermesi isteyebilirsiniz. Örneğin, sorgulanırken `Blog`s, eklediğiniz `Posts` ve ardından her ikisini dahil etmek istediğiniz `Author` ve `Tags` , `Posts`. Bunu yapmak için her ekleme kök dizininde başlangıç yolu belirtmeniz gerekir. Örneğin, `Blog -> Posts -> Author` ve `Blog -> Posts -> Tags`. Bu, yedekli birleştirmeler erişmenizi sağlayacak gelmez; Çoğu durumda, SQL oluştururken, birleştirmeler EF birleştirecek.
 
 [!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#MultipleLeafIncludes)]
 

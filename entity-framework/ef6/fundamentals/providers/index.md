@@ -3,12 +3,12 @@ title: Entity Framework sağlayıcıları - EF6
 author: divega
 ms.date: 06/27/2018
 ms.assetid: 7BFB7763-CD6C-4520-93A2-7B265F5FA586
-ms.openlocfilehash: 0cfe6c30d6533b0207f78a031d342847a7f68632
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.openlocfilehash: f6e34d1273bd1004ce9d1610ce3613068088eb5e
+ms.sourcegitcommit: 159c2e9afed7745e7512730ffffaf154bcf2ff4a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022229"
+ms.lasthandoff: 02/03/2019
+ms.locfileid: "55668745"
 ---
 # <a name="entity-framework-6-providers"></a>Entity Framework 6 sağlayıcıları
 > [!NOTE]
@@ -31,13 +31,13 @@ Farkında duyuyoruz sağlayıcıları, yeniden EF6 içerir:
 *   [**CData yazılım sağlayıcıları**](http://www.cdata.com/ado/)
     *   Üçüncü taraf sağlayıcılarından vardır [CData yazılım](http://www.cdata.com/ado/) veri depoları, Salesforce, Azure Table Storage, MySql ve çok daha fazlası dahil olmak üzere çeşitli
 *   **Firebird sağlayıcısı**
-    *   Olarak kullanılabilir bir [NuGet paketi](http://www.nuget.org/packages/FirebirdSql.Data.FirebirdClient/)
+    *   Olarak kullanılabilir bir [NuGet paketi](https://www.nuget.org/packages/EntityFramework.Firebird/)
 *   **Görsel Fox Pro sağlayıcısı**
     *   Olarak kullanılabilir bir [NuGet paketi](https://www.nuget.org/packages/VFPEntityFrameworkProvider2/)
 *   **MySQL**
-    *   [MySQL Connector/Net](http://dev.mysql.com/downloads/connector/net/)
+    *   [MySQL Connector/NET Entity Framework için](https://dev.mysql.com/doc/connector-net/en/connector-net-entityframework60.html)
 *   **PostgreSQL**
-    *   Npgsql olarak kullanılabilir bir [NuGet paketi](http://www.nuget.org/packages/Npgsql.EF6/)
+    *   Npgsql olarak kullanılabilir bir [NuGet paketi](https://www.nuget.org/packages/EntityFramework6.Npgsql/)
 *   **Oracle**
     *   ODP.NET olarak kullanılabilir bir [NuGet paketi](https://www.nuget.org/packages/Oracle.ManagedDataAccess.EntityFramework/)
 

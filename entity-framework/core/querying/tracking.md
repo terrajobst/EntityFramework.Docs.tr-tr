@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: e17e060c-929f-4180-8883-40c438fbcc01
 uid: core/querying/tracking
-ms.openlocfilehash: 985adc795f379199a3bacc985843f32f3168cf64
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 6c5d516fcb3950ae168860029660e1b1061546b8
+ms.sourcegitcommit: 159c2e9afed7745e7512730ffffaf154bcf2ff4a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993361"
+ms.lasthandoff: 02/03/2019
+ms.locfileid: "55668784"
 ---
 # <a name="tracking-vs-no-tracking-queries"></a>İzleme ile Hayır-izleme sorguları
 
@@ -63,7 +63,7 @@ using (var context = new BloggingContext())
 ```
 
 > [!NOTE]  
-> Hiçbir izleme sorguları hala kimlik çözümlemesi yürütmeyi sorgu içinden gerçekleştirin. Sonuç kümesi birden çok kez aynı varlık içeriyorsa, sonuç kümesindeki her örneği için aynı varlık sınıfı örneği döndürülür. Bununla birlikte, zayıf başvurular zaten döndürülen varlıkları izlemek için kullanılır. Aynı kimliğe sahip bir önceki sonucu kapsam dışına gider ve atık toplama devam, yeni bir varlık örneği alabilirsiniz. Daha fazla bilgi için [nasıl sorgu çalışır](overview.md).
+> Hiçbir izleme sorguları hala sorgusunun yürütülmesi çözünürlüğüne kimliği gerçekleştirin. Sonuç kümesi birden çok kez aynı varlık içeriyorsa, sonuç kümesindeki her örneği için aynı varlık sınıfı örneği döndürülür. Bununla birlikte, zayıf başvurular zaten döndürülen varlıkları izlemek için kullanılır. Aynı kimliğe sahip bir önceki sonucu kapsam dışına gider ve atık toplama devam, yeni bir varlık örneği alabilirsiniz. Daha fazla bilgi için [nasıl sorgu çalışır](overview.md).
 
 ## <a name="tracking-and-projections"></a>İzleme ve tahminler
 

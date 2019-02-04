@@ -3,12 +3,12 @@ title: Code First geçişleri - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 36591d8f-36e1-4835-8a51-90f34f633d1e
-ms.openlocfilehash: f408ef861a2992783142fa1483d1433ca710399a
-ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
+ms.openlocfilehash: e5a91af73bab9d45b0f1f4242ce503c6b6f407f6
+ms.sourcegitcommit: 159c2e9afed7745e7512730ffffaf154bcf2ff4a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47415802"
+ms.lasthandoff: 02/03/2019
+ms.locfileid: "55668707"
 ---
 # <a name="code-first-migrations"></a>Code First geçişleri
 Code First geçişleri, Code First iş akışını kullanıyorsanız, uygulamanızın veritabanı şemasını geliştirilebilen önerilen bir yoldur. Geçişleri sağlayan araçlar sağlar:
@@ -300,7 +300,7 @@ Başka bir geliştiricinin kendi makinesinde bu değişiklikleri istiyorsa, biz 
 
 -   Çalıştırma **veritabanını Güncelleştir** komut ancak bu kez **– betik** değişiklikleri bir komut dosyasına yazılmış yerine böylece uygulanan bayrak. Biz de için komut dosyası oluşturmak için bir kaynak ve hedef geçiş belirteceksiniz. Boş bir veritabanından gitmek için bir betik istiyoruz (**$InitialDatabase**) en son sürüme (geçiş **AddPostAbstract**).
     *Bir hedef geçiş belirtmezseniz, geçişler son geçiş hedef olarak kullanın. Kaynak geçişleri belirtmezseniz, veritabanının geçerli durumu geçişleri kullanır.*
--   Çalıştırma **veritabanını güncelleştir-- SourceMigration betik: $InitialDatabase - TargetMigration: AddPostAbstract** komutunu Paket Yöneticisi Konsolu
+-   Çalıştırma **veritabanını güncelleştir-betik - SourceMigration: $InitialDatabase - TargetMigration: AddPostAbstract** komutunu Paket Yöneticisi Konsolu
 
 Code First geçişleri geçiş ardışık düzeni çalışacak ancak değişiklikleri uygulamak yerine, bunları .sql dosya sizin için yazamadı. Komut dosyası oluşturulduktan sonra Visual Studio, görüntülemek veya kaydetmek hazır açılır.
 
@@ -330,7 +330,7 @@ Biz güncelleştirebilirsiniz **Program.cs** ayarlamak için aşağıda gösteri
         {
             static void Main(string[] args)
             {
-                Database.SetInitializer(new MigrateDatabaseToLatestVersion\<BlogContext, Configuration>());
+                Database.SetInitializer(new MigrateDatabaseToLatestVersion<BlogContext, Configuration>());
 
                 using (var db = new BlogContext())
                 {
