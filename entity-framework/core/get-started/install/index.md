@@ -4,12 +4,12 @@ author: divega
 ms.date: 08/06/2017
 ms.assetid: 608cc774-c570-4809-8a3e-cd2c8446b8b2
 uid: core/get-started/install/index
-ms.openlocfilehash: 58c79d477d590eea355a922b3e1233bbecb305cc
-ms.sourcegitcommit: a6082a2caee62029f101eb1000656966195cd6ee
+ms.openlocfilehash: 5ebc4edba07063ad5e77154adcde5f2664c0d748
+ms.sourcegitcommit: 85d17524d8e022f933cde7fc848313f57dfd3eb8
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53181987"
+ms.lasthandoff: 02/06/2019
+ms.locfileid: "55760528"
 ---
 # <a name="installing-entity-framework-core"></a>Entity Framework Core yükleme
 
@@ -31,7 +31,7 @@ EF Core bir uygulamaya eklemek için kullanmak istediğiniz veritabanı sağlay�
 
 Bir ASP.NET Core uygulaması derliyorsanız, bellek ve SQL Server sağlayıcıları yüklemek gerekmez. Sağlayıcılar, ASP.NET Core, geçerli sürümlerinde EF Core çalışma zamanı ile birlikte eklenir.  
 
-NuGet paketlerini güncelleştirmek veya yüklemek için [.NET Core komut satırı arabirimi (CLI), Visual Studio Paket Yöneticisi iletişim kutusu veya Visual Studio Paket Yöneticisi konsolu. kullanabilirsiniz.
+NuGet paketlerini güncelleştirmek veya yüklemek için .NET Core komut satırı arabirimi (CLI), Visual Studio Paket Yöneticisi iletişim kutusu veya Visual Studio Paket Yöneticisi Konsolu'nu kullanabilirsiniz.
 
 ### <a name="net-core-cli"></a>.NET core CLI
 

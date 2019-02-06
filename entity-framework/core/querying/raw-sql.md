@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
-ms.openlocfilehash: 5bddddfbc2fe8d0ba99914f03b28bde4076fae42
-ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
+ms.openlocfilehash: 343162596780e6146b57f73a38221701009cd855
+ms.sourcegitcommit: 85d17524d8e022f933cde7fc848313f57dfd3eb8
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/06/2019
-ms.locfileid: "54058721"
+ms.lasthandoff: 02/06/2019
+ms.locfileid: "55760515"
 ---
 # <a name="raw-sql-queries"></a>Ham SQL sorguları
 
@@ -17,23 +17,6 @@ Entity Framework Core, ilişkisel bir veritabanı ile çalışırken, ham SQL so
 
 > [!TIP]  
 > Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub üzerinde.
-
-## <a name="limitations"></a>Sınırlamalar
-
-Ham SQL sorguları kullanırken dikkat edilmesi gereken bazı sınırlamalar vardır:
-
-* SQL sorgusu, veri varlığı veya sorguyu türü tüm özelliklerde için döndürmesi gerekir.
-
-* Sonuç kümesi sütun adları, özellikler için eşlenen sütun adları eşleşmelidir. Bu özellik/sütun eşlemesi için ham SQL sorguları burada yoksayıldı EF6 farklı olduğuna dikkat edin ve sonuç kümesi sütun adları, özellik adlarının eşleşmesi gerekiyordu.
-
-* SQL sorgusu, ilgili verileri içeremez. Ancak, çoğu durumda, üzerinde sorgu kullanarak oluşturabileceğiniz `Include` ilgili verileri döndürmek için işleci (bkz [ilgili veriler dahil olmak üzere](#including-related-data)).
-
-* `SELECT` Bu yönteme geçirilen deyimler genellikle birleştirilebilir olması gerekir: EF Core ek sorgu işleçleri sunucusunda değerlendirilecek gerekip gerekmediğini (örneğin, LINQ işleçleri çevirmek için uygulanan sonra `FromSql`), sağlanan SQL alt sorgu kabul edilir. Bu, geçirilen SQL herhangi bir karakter veya gibi geçerli bir alt sorgu olmayan seçenekleri içermemelidir anlamına gelir:
-  * sondaki noktalı virgül
-  * SQL Server'da izleyen bir sorgu düzeyi İpucu (örneğin, `OPTION (HASH JOIN)`)
-  * SQL Server'da bir `ORDER BY` , eşlik yan tümcesi `TOP 100 PERCENT` içinde `SELECT` yan tümcesi
-
-* SQL deyimleri dışında `SELECT` otomatik birleştirilebilir olmayan tanınır. Sonuç olarak, saklı yordamları tam sonuçları her zaman istemciye döndürülen ve sonra herhangi bir LINQ işlecini uygulandı `FromSql` değerlendirilen bellek içi olduğu.
 
 ## <a name="basic-raw-sql-queries"></a>Temel ham SQL sorguları
 
@@ -109,9 +92,25 @@ var blogs = context.Blogs
     .ToList();
 ```
 
-### <a name="including-related-data"></a>İlgili verileri de dahil olmak üzere
+## <a name="change-tracking"></a>Değişiklik İzleme
 
-LINQ işleçleri ile oluşturma sorguda ilgili verileri dahil etmek için kullanılabilir.
+Sorgular kullanan `FromSql()` EF Core, diğer bir LINQ sorgusu olarak kuralları izleme tam aynı değişikliği izleyin. Örneğin, sorgu varlık türleri projeleri sonuçları varsayılan olarak izlenir.  
+
+Aşağıdaki örnek, bir Table-Valued işlev (TVF) öğesinden seçer ham bir SQL sorgusu kullanır ve ardından değişiklik izleme çağrısıyla devre dışı bırakır. AsNoTracking():
+
+<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+``` csharp
+var searchTerm = ".NET";
+
+var blogs = context.Query<SearchBlogsDto>()
+    .FromSql($"SELECT * FROM dbo.SearchBlogs({searchTerm})")
+    .AsNoTracking()
+    .ToList();
+```
+
+## <a name="including-related-data"></a>İlgili verileri de dahil olmak üzere
+
+`Include()` Yöntemi, herhangi bir LINQ Sorgu ile olduğu gibi ilgili verileri dahil etmek için kullanılabilir:
 
 <!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
@@ -122,6 +121,23 @@ var blogs = context.Blogs
     .Include(b => b.Posts)
     .ToList();
 ```
+
+## <a name="limitations"></a>Sınırlamalar
+
+Ham SQL sorguları kullanırken dikkat edilmesi gereken bazı sınırlamalar vardır:
+
+* SQL sorgusu, veri varlığı veya sorguyu türü tüm özelliklerde için döndürmesi gerekir.
+
+* Sonuç kümesi sütun adları, özellikler için eşlenen sütun adları eşleşmelidir. Bu özellik/sütun eşlemesi için ham SQL sorguları burada yoksayıldı EF6 farklı olduğuna dikkat edin ve sonuç kümesi sütun adları, özellik adlarının eşleşmesi gerekiyordu.
+
+* SQL sorgusu, ilgili verileri içeremez. Ancak, çoğu durumda, üzerinde sorgu kullanarak oluşturabileceğiniz `Include` ilgili verileri döndürmek için işleci (bkz [ilgili veriler dahil olmak üzere](#including-related-data)).
+
+* `SELECT` Bu yönteme geçirilen deyimler genellikle birleştirilebilir olması gerekir: EF Core ek sorgu işleçleri sunucusunda değerlendirilecek gerekip gerekmediğini (örneğin, LINQ işleçleri çevirmek için uygulanan sonra `FromSql`), sağlanan SQL alt sorgu kabul edilir. Bu, geçirilen SQL herhangi bir karakter veya gibi geçerli bir alt sorgu olmayan seçenekleri içermemelidir anlamına gelir:
+  * sondaki noktalı virgül
+  * SQL Server'da izleyen bir sorgu düzeyi İpucu (örneğin, `OPTION (HASH JOIN)`)
+  * SQL Server'da bir `ORDER BY` , eşlik yan tümcesi `TOP 100 PERCENT` içinde `SELECT` yan tümcesi
+
+* SQL deyimleri dışında `SELECT` otomatik birleştirilebilir olmayan tanınır. Sonuç olarak, saklı yordamları tam sonuçları her zaman istemciye döndürülen ve sonra herhangi bir LINQ işlecini uygulandı `FromSql` değerlendirilen bellek içi olduğu.
 
 > [!WARNING]  
 > **Her zaman için ham SQL sorguları Parametreleştirme kullanın:** Ham SQL kabul API'leri gibi dize `FromSql` ve `ExecuteSqlCommand` değerleri kolayca parametre olarak geçirilmesine izin verin. Kullanıcı girişini doğrulama ek olarak, her zaman Parametreleştirme ham bir SQL sorgu/komutta kullanılan herhangi bir değeri için kullanın. Dize birleştirme SQL ekleme saldırılarına karşı korumak için herhangi bir giriş doğrulamak için sorumlu olursunuz herhangi bir bölümünü sorgu dizesini dinamik olarak oluşturmak için kullanıyorsanız.
