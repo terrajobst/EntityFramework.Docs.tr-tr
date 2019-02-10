@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: f6e35c6d-45b7-4258-be1d-87c1bb67438d
 uid: core/miscellaneous/logging
-ms.openlocfilehash: 65501b5ac03ae544c51b7fc1a07fa9eea849f1e3
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.openlocfilehash: 0a996403afdbe076b1690c98eeb305b40c4d1f4a
+ms.sourcegitcommit: 109a16478de498b65717a6e09be243647e217fb3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022151"
+ms.lasthandoff: 02/10/2019
+ms.locfileid: "55985580"
 ---
 # <a name="logging"></a>Günlüğe Kaydetme
 
@@ -24,12 +24,15 @@ EF Core ile ASP.NET Core günlüğe kaydetme sistemleri otomatik olarak tümleş
 
 Şu anda oturum EF Core kendisi ile bir veya daha fazla ILoggerProvider yapılandırılmış olan bir Iloggerfactory gerektirir. Ortak sağlayıcıları aşağıdaki paketlerde gönderilir:
 
-* [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/): basit bir konsol Günlükçü.
-* [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices/): destekleyen Azure uygulama Hizmetleri 'Tanılama günlükleri' ve 'akış oturum' özellikleri.
-* [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug/): System.Diagnostics.Debug.WriteLine() kullanarak bir hata ayıklayıcı izleme günlükleri.
+* [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/): Basit bir konsol Günlükçü.
+* [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices/): Azure uygulama Hizmetleri 'Tanılama günlükleri' ve 'akış oturum' özelliklerini destekler.
+* [Microsoft.Extensions.Logging.Debug](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug/): Bir hata ayıklayıcı günlükleri System.Diagnostics.Debug.WriteLine() kullanarak izleyin.
 * [Microsoft.Extensions.Logging.EventLog](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventLog/): Windows olay günlüğüne günlükleri.
 * [Microsoft.Extensions.Logging.EventSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.EventSource/): EventSource/EventListener destekler.
-* [Microsoft.Extensions.Logging.TraceSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.TraceSource/): System.Diagnostics.TraceSource.TraceEvent() kullanarak bir izleme dinleyicisi için günlükleri.
+* [Microsoft.Extensions.Logging.TraceSource](https://www.nuget.org/packages/Microsoft.Extensions.Logging.TraceSource/): Günlükleri System.Diagnostics.TraceSource.TraceEvent() kullanarak bir izleme dinleyicisi.
+
+> [!NOTE]
+> Aşağıdaki kod örneği kullanan bir `ConsoleLoggerProvider` 2.2 sürümünde geçersiz Oluşturucusu. Eski günlük API'leri için doğru değiştirmeler 3.0 sürümünde kullanılabilir. Bu arada, yoksaymak ve uyarıların görünmemesi güvenlidir.
 
 Uygun paket yüklendikten sonra uygulamayı bir LoggerFactory tekil/genel bir örneğini oluşturmanız gerekir. Örneğin, konsol günlüğe kullanarak:
 
@@ -43,6 +46,9 @@ Bu singleton/genel örnek ardından EF Core ile şirket kaydedilmelidir `DbConte
 > Uygulamalar her bağlam örneği için yeni bir Iloggerfactory örnek oluşturmayın çok önemlidir. Bunun yapılması, bir bellek sızıntısı ve performansın düşmesine neden olur.
 
 ## <a name="filtering-what-is-logged"></a>Günlüğe kaydedilenler filtreleme
+
+> [!NOTE]
+> Aşağıdaki kod örneği kullanan bir `ConsoleLoggerProvider` 2.2 sürümünde geçersiz Oluşturucusu. Eski günlük API'leri için doğru değiştirmeler 3.0 sürümünde kullanılabilir. Bu arada, yoksaymak ve uyarıların görünmemesi güvenlidir.
 
 Günlüğe kaydedilenler filtrelemek için en kolay yolu ILoggerProvider kaydederken yapılandırmaktır. Örneğin:
 
