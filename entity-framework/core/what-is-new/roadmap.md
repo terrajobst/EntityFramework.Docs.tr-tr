@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: 834C9729-7F6E-4355-917D-DE3EE9FE149E
 uid: core/what-is-new/roadmap
-ms.openlocfilehash: 7eba9e1a8e145ef407f844ff3a3ab3069495b7ae
-ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
+ms.openlocfilehash: 9064b323c11282418f2bedf70f874d45c18bb78a
+ms.sourcegitcommit: 735715f10cc8a231c213e4f055d79f0effd86570
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/06/2019
-ms.locfileid: "54058740"
+ms.lasthandoff: 02/16/2019
+ms.locfileid: "56325346"
 ---
 # <a name="entity-framework-core-roadmap"></a>Entity Framework Core yol haritası
 
@@ -23,7 +23,7 @@ EF Core 2.2 kullanıma ile ana kazanmasının artık .NET Core 3. 0'ile uyumlu h
 Şu yeni özellikleri henüz tamamlamadıysanız böylece [EF Core 3.0 Önizleme 1 paketleri için NuGet galerisinde yayımlanan](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/3.0.0-preview.18572.1) aralık 2018'de yalnızca içeren [hata düzeltmeleri, küçük iyileştirmeler ve biz yapılan değişiklikler 3.0 iş hazırlığı](https://github.com/aspnet/EntityFrameworkCore/issues?q=is%3Aissue+milestone%3A3.0.0+is%3Aclosed+label%3Aclosed-fixed).
 
 Aslında, yine de iyileştirmek ihtiyacımız bizim [planlama yayın](#release-planning-process) 3.0 için emin olmak için ayrılan süre içinde tamamlanması gereken özellikler doğru ortaklık kümesi sahibiz.
-Biz size daha fazla netlik alabilirsiniz, ama bazı üst düzey Temalar şunlardır daha fazla bilgi paylaşır ve biz üzerinde çalışmak için itend özellikleri:
+Biz üzerinde çalışmak istediğiniz daha fazla netlik aldığımız ancak üst düzey temalar ve özellikler gibi daha fazla bilgi paylaşır:
 
 - **LINQ geliştirmeleri ([#12795](https://github.com/aspnet/EntityFrameworkCore/issues/12795))**: LINQ sayesinde, istediğiniz dilde çıkmadan veritabanı sorguları yazma yararlanarak zengin IntelliSense ve derleme zamanı tür denetimi alma bilgilerini yazın.
   Ancak LINQ, sınırsız sayıda karmaşık sorgular yazmaya olanak tanır ve her zaman LINQ sağlayıcıları için çok zor olmuştur.

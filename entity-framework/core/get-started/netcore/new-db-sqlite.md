@@ -6,12 +6,12 @@ description: .NET Core kullanarak Entity Framework Core ile çalışmaya başlam
 ms.date: 08/03/2018
 ms.assetid: 099d179e-dd7b-4755-8f3c-fcde914bf50b
 uid: core/get-started/netcore/new-db-sqlite
-ms.openlocfilehash: 6cebe14e179cb6998592f5d3823c114b3bda0138
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.openlocfilehash: a0df80a8fe96be4f8cc3177919e2b087e14cb49c
+ms.sourcegitcommit: 735715f10cc8a231c213e4f055d79f0effd86570
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022317"
+ms.lasthandoff: 02/16/2019
+ms.locfileid: "56325333"
 ---
 # <a name="getting-started-with-ef-core-on-net-core-console-app-with-a-new-database"></a>EF Core üzerinde .NET Core konsol uygulaması ile yeni bir veritabanı ile çalışmaya başlama
 
@@ -52,7 +52,7 @@ EF Core kullanmak için hedeflemek istediğiniz veritabanı şu sağlayıcı(lar
 
 * Çalıştırma `dotnet restore` yeni paketlerini yükleyin.
 
-## <a name="create-the-model"></a>Model oluşturma
+## <a name="create-the-model"></a>Modeli oluşturma
 
 Modelinizi olun bağlamını ve varlık sınıfları tanımlar.
 
@@ -60,7 +60,7 @@ Modelinizi olun bağlamını ve varlık sınıfları tanımlar.
 
   [!code-csharp[Main](../../../../samples/core/GetStarted/NetCore/ConsoleApp.SQLite/Model.cs)]
 
-İpucu: Gerçek bir uygulamada, ayrı bir dosyada her sınıf koyun ve bağlantı dizesini bir yapılandırma dosyası veya ortam değişkeninde yerleştirin. Bu öğreticide basit tutmak için her şeyi bir dosyada yer alır.
+İpucu: Gerçek bir uygulamada ayrı bir dosyada her sınıf koyun ve bağlantı dizesini bir yapılandırma dosyası veya ortam değişkeninde yerleştirin. Bu öğreticide basit tutmak için her şeyi bir dosyada yer alır.
 
 ## <a name="create-the-database"></a>Veritabanı oluşturma
 
@@ -69,7 +69,7 @@ Bir modeli oluşturduktan sonra kullandığınız [geçişler](xref:core/managin
 * Çalıştırma `dotnet ef migrations add InitialCreate` geçiş iskelesini ve tablo modeli için başlangıç kümesi oluşturun.
 * Çalıştırma `dotnet ef database update` veritabanına yeni geçiş uygulamak için. Bu komut, veritabanı geçişleri uygulamadan önce oluşturur.
 
-*Blogging.db** SQLite DB proje dizininde olduğu.
+*Blogging.db* SQLite DB proje dizininde olduğu.
 
 ## <a name="use-the-model"></a>Kullanım modeli
 
@@ -112,5 +112,5 @@ Visual Studio'dan Bu örneği çalıştırmak için çalışma dizini, proje kö
 ## <a name="additional-resources"></a>Ek Kaynaklar
 
 * [Öğretici: EF çekirdekli ASP.NET Core üzerinde SQLite kullanarak yeni bir veritabanı ile çalışmaya başlama](xref:core/get-started/aspnetcore/new-db)
-* [Öğretici: ASP.NET Core Razor sayfaları kullanmaya başlayın](https://docs.microsoft.com/aspnet/core/tutorials/razor-pages/razor-pages-start)
+* [Öğretici: ASP.NET Core Razor sayfaları kullanmaya başlama](https://docs.microsoft.com/aspnet/core/tutorials/razor-pages/razor-pages-start)
 * [Öğretici: ASP.NET Core, Entity Framework Core ile Razor sayfaları](https://docs.microsoft.com/aspnet/core/data/ef-rp/intro)
