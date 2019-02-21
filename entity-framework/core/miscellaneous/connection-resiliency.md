@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 11/15/2016
 ms.assetid: e079d4af-c455-4a14-8e15-a8471516d748
 uid: core/miscellaneous/connection-resiliency
-ms.openlocfilehash: 729cf9b8c038ea2adba8c79c68d9f6fb1676fefa
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.openlocfilehash: 6d8cf117dfd94524a53e10bb4a23c2a44c4c8e7b
+ms.sourcegitcommit: 33b2e84dae96040f60a613186a24ff3c7b00b6db
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022190"
+ms.lasthandoff: 02/21/2019
+ms.locfileid: "56459178"
 ---
 # <a name="connection-resiliency"></a>Bağlantı Dayanıklılığı
 
@@ -17,9 +17,21 @@ Bağlantı dayanıklılığı, başarısız olan veritabanı komutları otomatik
 
 Örneğin, SQL Server (SQL Azure dahil) için özel olarak uyarlanmış bir yürütme stratejisi SQL Server sağlayıcısı içerir. Denenebilecek özel durum türlerini farkında olduğundan ve maksimum yeniden deneme sayısı, vb. yeniden denemeler arasındaki gecikme için mantıklı varsayılanlar sahiptir.
 
-Bir yürütme stratejisi, bağlamınızın seçeneklerini yapılandırırken belirtilir. Bu genellikle kullanımda `OnConfiguring` yöntemi veya türetilmiş bağlamınızın `Startup.cs` bir ASP.NET Core uygulaması.
+Bir yürütme stratejisi, bağlamınızın seçeneklerini yapılandırırken belirtilir. Bu genellikle kullanımda `OnConfiguring` türetilmiş bağlamınızın yöntemi:
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/ConnectionResiliency/Program.cs#OnConfiguring)]
+
+veya `Startup.cs` bir ASP.NET Core uygulaması için:
+
+``` csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext<PicnicContext>(
+        options => options.UseSqlServer(
+            "<connection string>",
+            providerOptions => providerOptions.EnableRetryOnFailure()));
+}
+```
 
 ## <a name="custom-execution-strategy"></a>Özel yürütme stratejisi
 
@@ -41,7 +53,7 @@ Otomatik olarak hataları yeniden deneme bir yürütme stratejisi, her işlem ba
 
 Ancak, kodunuzu kullanarak bir işlem başlatırsa `BeginTransaction()` tanımladığınız bir birim olarak kabul edilmesi için gereken işlemleri kendi grubu ve işlem içinde her şeyi bir arıza tekrarlanmasını gerekir. Bu yürütme stratejisi kullanılırken yapmayı denerseniz, aşağıdaki gibi bir özel durum alırsınız:
 
-> InvalidOperationException: 'SqlServerRetryingExecutionStrategy' yapılandırılmış yürütme stratejisi, kullanıcı tarafından başlatılan işlemleri desteklemez. İşlem yeniden denenebilir bir birim olarak tüm işlemleri yürütmek için 'DbContext.Database.CreateExecutionStrategy()' tarafından döndürülen yürütme stratejisi kullanın.
+> InvalidOperationException: 'SqlServerRetryingExecutionStrategy' yapılandırılmış yürütme stratejisi, kullanıcı tarafından başlatılan işlemleri desteklemiyor. İşlem yeniden denenebilir bir birim olarak tüm işlemleri yürütmek için 'DbContext.Database.CreateExecutionStrategy()' tarafından döndürülen yürütme stratejisi kullanın.
 
 El ile yürütülmesi gereken her şeyi temsil eden bir temsilci ile yürütme stratejisi çağırmak için kullanılan çözümüdür. Geçici bir hata oluşursa yürütme stratejisi temsilciyi yeniden çağırır.
 
