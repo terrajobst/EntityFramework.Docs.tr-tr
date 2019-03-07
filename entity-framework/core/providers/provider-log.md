@@ -6,12 +6,12 @@ ms.date: 08/08/2018
 ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
-ms.openlocfilehash: a87eca72aa58487415eea11e4f83de1a19e73506
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.openlocfilehash: cda5cc170646abc3e9d9a70d729237c01f028259
+ms.sourcegitcommit: a013e243a14f384999ceccaf9c779b8c1ae3b936
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022343"
+ms.lasthandoff: 03/06/2019
+ms.locfileid: "57463210"
 ---
 # <a name="provider-impacting-changes"></a>Sağlayıcı etkileyen değişiklikler
 
@@ -19,7 +19,15 @@ Bu sayfa, çekme isteklerine tepki vermek için diğer veritabanı sağlayıcıl
 
 2.2 2.1 değişikliklerle bu günlük başlıyoruz. 2.1 önce kullandığımız [ `providers-beware` ](https://github.com/aspnet/EntityFrameworkCore/labels/providers-beware) ve [ `providers-fyi` ](https://github.com/aspnet/EntityFrameworkCore/labels/providers-fyi) bizim sorunlar ve çekme istekleri etiketleri.
 
-## <a name="21-----22"></a>2.1 2.2--->
+## <a name="22-----30"></a>2.2 ---> 3.0
+
+* https://github.com/aspnet/EntityFrameworkCore/pull/14022
+  * Kaldırılan eski API'ler ve daraltılmış isteğe bağlı parametresi aşırı yüklemeler
+  * Removed DatabaseColumn.GetUnderlyingStoreType()
+* https://github.com/aspnet/EntityFrameworkCore/pull/14589
+  * Eski API'ler kaldırıldı
+
+## <a name="21-----22"></a>2.1 ---> 2.2
 
 ### <a name="test-only-changes"></a>Yalnızca test değişiklikleri
 
@@ -56,7 +64,7 @@ Bu sayfa, çekme isteklerine tepki vermek için diğer veritabanı sağlayıcıl
   * Bu çekme isteği kavramını ekler `CanConnect` ASP.NET Core sistem tarafından kullanılacak veritabanını kullanılabilir olup olmadığını belirlemek için denetler. Varsayılan olarak, yalnızca ilişkisel uygulama çağrıları `Exist`, ancak sağlayıcıları uygulayabilirsiniz farklı bir şey gerekirse. İlişkisel olmayan sağlayıcıları kullanılabilir olması sistem durumu denetimi için sırayla yeni API uygulamanız gerekir.
 * [https://github.com/aspnet/EntityFrameworkCore/pull/13306](https://github.com/aspnet/EntityFrameworkCore/pull/13306) -DbParameter boyutu ayarlamadığınızdan temel RelationalTypeMapping güncelleştirme
   * Kesme neden olabilir, varsayılan olarak boyutunu ayarlama durdurun. Sağlayıcıları boyutunu ayarlamak gerekiyorsa kendi mantığınızı eklemek gerekebilir.
-* [https://github.com/aspnet/EntityFrameworkCore/pull/13372](https://github.com/aspnet/EntityFrameworkCore/pull/13372) -RevEng: Sütun türü ondalık sütunlar için her zaman belirtin.
+* https://github.com/aspnet/EntityFrameworkCore/pull/13372 -RevEng: Her zaman ondalık sütunlar için sütun türü belirtin
   * Kural gereği yapılandırma yerine iskele kurulan kodu ondalık sütunlar için sütun türü her zaman yapılandırın.
   * Sağlayıcıları kendi tarafında herhangi bir değişiklik yapılması gerekmez.
 * [https://github.com/aspnet/EntityFrameworkCore/pull/13469](https://github.com/aspnet/EntityFrameworkCore/pull/13469) -SQL çalışması ifadeleri oluşturmak için CaseExpression ekler

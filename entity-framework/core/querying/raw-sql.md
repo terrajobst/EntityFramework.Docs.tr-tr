@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
-ms.openlocfilehash: 343162596780e6146b57f73a38221701009cd855
-ms.sourcegitcommit: 85d17524d8e022f933cde7fc848313f57dfd3eb8
+ms.openlocfilehash: ad7ac3099cfd4c49b88acfbbff61f2af9294b6ec
+ms.sourcegitcommit: a013e243a14f384999ceccaf9c779b8c1ae3b936
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55760515"
+ms.lasthandoff: 03/06/2019
+ms.locfileid: "57463249"
 ---
 # <a name="raw-sql-queries"></a>Ham SQL sorguları
 
@@ -140,4 +140,6 @@ Ham SQL sorguları kullanırken dikkat edilmesi gereken bazı sınırlamalar var
 * SQL deyimleri dışında `SELECT` otomatik birleştirilebilir olmayan tanınır. Sonuç olarak, saklı yordamları tam sonuçları her zaman istemciye döndürülen ve sonra herhangi bir LINQ işlecini uygulandı `FromSql` değerlendirilen bellek içi olduğu.
 
 > [!WARNING]  
-> **Her zaman için ham SQL sorguları Parametreleştirme kullanın:** Ham SQL kabul API'leri gibi dize `FromSql` ve `ExecuteSqlCommand` değerleri kolayca parametre olarak geçirilmesine izin verin. Kullanıcı girişini doğrulama ek olarak, her zaman Parametreleştirme ham bir SQL sorgu/komutta kullanılan herhangi bir değeri için kullanın. Dize birleştirme SQL ekleme saldırılarına karşı korumak için herhangi bir giriş doğrulamak için sorumlu olursunuz herhangi bir bölümünü sorgu dizesini dinamik olarak oluşturmak için kullanıyorsanız.
+> **Her zaman için ham SQL sorguları Parametreleştirme kullanın:** Kullanıcı girişini doğrulama ek olarak, her zaman Parametreleştirme ham bir SQL sorgu/komutta kullanılan herhangi bir değeri için kullanın. Ham SQL kabul API'leri gibi dize `FromSql` ve `ExecuteSqlCommand` değerleri kolayca parametre olarak geçirilmesine izin verin. Overloads biri `FromSql` ve `ExecuteSqlCommand` FormattableString kabul dize ilişkilendirme syntaxt SQL ekleme saldırılarına karşı korunmasına yardımcı olan bir şekilde kullanarak da izin. 
+> 
+> Dize birleştirme veya ilişkilendirme dinamik olarak herhangi bir sorgu dizesi bölümünü kullanarak veya deyimleri ya da bu girişleri dinamik SQL yürütebilir saklı yordamlar için kullanıcı girişi geçirerek, ardından herhangi bir giriş doğrulamak için sorumlu olursunuz SQL ekleme saldırılarına karşı koruyun.

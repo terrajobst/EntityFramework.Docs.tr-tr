@@ -3,12 +3,12 @@ title: İlk veri ek açıklamaları - EF6 kod
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 80abefbd-23c9-4fce-9cd3-520e5df9856e
-ms.openlocfilehash: 8d85ef85f56a23d9b3b526554417dc9dd360e139
-ms.sourcegitcommit: 39080d38e1adea90db741257e60dc0e7ed08aa82
+ms.openlocfilehash: e6b017306b4f66f5bac2a9964e11391da28ceb40
+ms.sourcegitcommit: a013e243a14f384999ceccaf9c779b8c1ae3b936
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/03/2018
-ms.locfileid: "50980047"
+ms.lasthandoff: 03/06/2019
+ms.locfileid: "57463288"
 ---
 # <a name="code-first-data-annotations"></a>Kod ilk veri ek açıklamaları
 > [!NOTE]
@@ -25,7 +25,7 @@ Bu makalede, en sık gerekli yapılandırmaları vurgulama – sınıflarınız�
 
 ## <a name="the-model"></a>Model
 
-Kod ilk DataAnnotations sınıfları basit çiftiyle kazandırabileceğinizi göstereceğiz: Blog ve gönderi.
+Ben sınıfları için basit bir çift kod ilk DataAnnotations kazandırabileceğinizi göstereceğiz: Blog ve gönderi.
 
 ``` csharp
     public class Blog
@@ -176,7 +176,7 @@ MaxLength ek açıklaması özelliğinin uzunluğu 10'a ayarlayarak veritabanı 
 
 ![En büyük uzunluk BloggerName sütunu gösteren blogları tablo](~/ef6/media/jj591583-figure04.png)
 
-MVC istemci-tarafı ek açıklama ve EF 4.1 sunucu tarafı ek açıklama hem de dikkate bir hata iletisi dinamik olarak yeniden oluşturma, bu doğrulama: "alanı BloggerName '10' en fazla uzunluğu bir dize veya dizi türü olmalıdır." Bu iletiyi biraz daha uzun. Birçok ek açıklamaları ErrorMessage özniteliğiyle bir hata iletisi belirtmenizi sağlar.
+MVC istemci-tarafı ek açıklama ve EF 4.1 sunucu tarafı ek açıklama hem de bir hata iletisi dinamik olarak yeniden oluşturma, bu doğrulama yerine getirir: "Alan BloggerName '10' en fazla uzunluğu bir dize veya dizi türü olmalıdır." Bu iletiyi biraz daha uzun. Birçok ek açıklamaları ErrorMessage özniteliğiyle bir hata iletisi belirtmenizi sağlar.
 
 ``` csharp
     [MaxLength(10, ErrorMessage="BloggerName must be 10 characters or less"),MinLength(5)]
@@ -245,9 +245,6 @@ Veritabanında Blog tablo adını BlogDetail özelliğinde yer alan özellikler 
 
 ![Karmaşık tür tabloyla blogu](~/ef6/media/jj591583-figure06.png)
 
-Başka bir ilgi çekici Not Notes özelliği NULL olmayan bir DateTime sınıfında olarak tanımlandı ancak ilgili veritabanı alanını boş değer atanabilir olmasıdır. Veritabanı şeması etkilemek istiyorsanız, gerekli ek açıklama kullanmanız gerekir.
-
- 
 
 ## <a name="concurrencycheck"></a>ConcurrencyCheck
 
@@ -374,7 +371,7 @@ Varsayılan olarak, dizinleri benzersiz olmayan, ancak kullanabileceğiniz **IsU
 
 ### <a name="multiple-column-indexes"></a>Birden çok sütun dizinleri
 
-Birden fazla sütuna yayılmış dizinler için belirli bir tabloda birden fazla dizin ek açıklamalar aynı adı kullanarak belirtilir. Çok sütunlu dizinleri oluşturduğunuzda, sipariş sütunlar için dizin belirtmeniz gerekir. Örneğin, aşağıdaki kod üzerinde çok sütunlu bir dizin oluşturur **derecelendirme** ve **BlogId** adlı **IX\_BlogAndRating**. **BlogId** dizini ilk sütunda ve **derecelendirme** saniyedir.
+Birden fazla sütuna yayılmış dizinler için belirli bir tabloda birden fazla dizin ek açıklamalar aynı adı kullanarak belirtilir. Çok sütunlu dizinleri oluşturduğunuzda, sipariş sütunlar için dizin belirtmeniz gerekir. Örneğin, aşağıdaki kod üzerinde çok sütunlu bir dizin oluşturur **derecelendirme** ve **BlogId** adlı **IX\_BlogIdAndRating**. **BlogId** dizini ilk sütunda ve **derecelendirme** saniyedir.
 
 ``` csharp
     public class Post
@@ -441,7 +438,7 @@ Bu özellik tarafından başvurulan kişi sınıfı eklemek gerekir. Kişi sın�
     }
 ```
 
-Kod ilk iki sınıf kendi özelliklerinde eşleştirilecek mümkün değil. Gönderiler için veritabanı tablosu oluşturan kişi için bir yabancı anahtar olmalıdır, biri UpdatedBy kişi ancak kod ilk oluşturacaktır dört yabancı anahtar özelliklerini: kişi\_kimliği, kişi\_ıd1, oluşturan\_kimliği ve UpdatedBy\_kimliği.
+Kod ilk iki sınıf kendi özelliklerinde eşleştirilecek mümkün değil. Gönderiler için veritabanı tablosu oluşturan kişi, diğeri UpdatedBy kişinin bir yabancı anahtar olması gerekir, ancak kod ilk dört yabancı anahtar özelliklerini oluşturur: Kişi\_kimliği, kişi\_ıd1, oluşturan\_kimliği ve UpdatedBy\_kimliği.
 
 ![Tablo fazladan yabancı anahtarlar ile gönderir.](~/ef6/media/jj591583-figure10.png)
 
