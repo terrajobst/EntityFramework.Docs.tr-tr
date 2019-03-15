@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: a7e1a03bf1131cd53123f5cc39b07bed94619b44
-ms.sourcegitcommit: a013e243a14f384999ceccaf9c779b8c1ae3b936
+ms.openlocfilehash: 748db8a71a04a2d696ef21a03319906b9fc776be
+ms.sourcegitcommit: a709054b2bc7a8365201d71f59325891aacd315f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2019
-ms.locfileid: "57463404"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "57829232"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil edilen değişiklikler
 
@@ -22,11 +22,10 @@ Bir 3.0 Önizlemesi'nden başka bir 3.0 Önizleme için kullanıma sunulan yeni 
 
 ## <a name="linq-queries-are-no-longer-evaluated-on-the-client"></a>LINQ sorguları, artık istemcide değerlendirilir
 
-[İzleme sorun #12795](https://github.com/aspnet/EntityFrameworkCore/issues/12795)
+[Sorun #14935 izleme](https://github.com/aspnet/EntityFrameworkCore/issues/14935)
+[sorun #12795 Ayrıca bkz:](https://github.com/aspnet/EntityFrameworkCore/issues/12795)
 
-> [!IMPORTANT]
-> Bu kesme önceden duyuruyoruz.
-Bunu henüz herhangi bir 3.0 Önizleme aşamasında kullanıma sunulduktan değil.
+Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
 
 **Eski davranışı**
 
@@ -98,8 +97,14 @@ Konumundaki paraziti azaltmak için bu değişiklik yapılmıştır `Info` günl
 **Risk azaltma işlemleri**
 
 Bu günlük olayı tarafından tanımlanan `RelationalEventId.CommandExecuting` 20100 olay kimliği.
-SQL oturum `Info` yeniden düzey, günlük kaydı üzerinde geçiş `Debug` düzeyi ve bu olay için yalnızca filtre.
-
+SQL oturum `Info` yeniden düzey, düzeyi açıkça yapılandırmanıza `OnConfiguring` veya `AddDbContext`.
+Örneğin:
+```C#
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    => optionsBuilder
+        .UseSqlServer(connectionString)
+        .ConfigureWarnings(c => c.Log((RelationalEventId.CommandExecuting, LogLevel.Info)));
+```
 
 ## <a name="temporary-key-values-are-no-longer-set-onto-entity-instances"></a>Geçici bir anahtar değere artık varlık örneklerini ayarlanır
 
@@ -439,6 +444,28 @@ modelBuilder
     .HasField("_id");
 ```
 
+## <a name="adddbcontextadddbcontextpool-no-longer-call-addlogging-and-addmemorycache"></a>AddDbContext/AddDbContextPool artık AddLogging ve AddMemoryCache çağırın
+
+[İzleme sorun #14756](https://github.com/aspnet/EntityFrameworkCore/issues/14756)
+
+Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+
+**Eski davranışı**
+
+EF Core 3.0, çağırma önce `AddDbContext` veya `AddDbContextPool` de günlüğe kaydetme ve bellek D.I hizmetleriyle yapılan çağrılar aracılığıyla önbelleğe kaydetmek [AddLogging](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.loggingservicecollectionextensions.addlogging) ve [AddMemoryCache](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.memorycacheservicecollectionextensions.addmemorycache).
+
+**Yeni davranış**
+
+EF Core 3.0 ile başlayan `AddDbContext` ve `AddDbContextPool` artık kayıt hizmetlerin bağımlılık ekleme (dı) sahip olur.
+
+**Neden**
+
+EF Core 3.0, bu hizmetler, uygulamanın DI cotainer olduğunu gerektirmez. Ancak, varsa `ILoggerFactory` uygulamanın DI kapsayıcısında kayıtlı EF Core tarafından kullanılır.
+
+**Risk azaltma işlemleri**
+
+Uygulamanız bu hizmetlere ihtiyacı varsa, sonra bunları açıkça DI kullanarak kapsayıcı kayıt [AddLogging](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.loggingservicecollectionextensions.addlogging) veya [AddMemoryCache](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.memorycacheservicecollectionextensions.addmemorycache).
+
 ## <a name="dbcontextentry-now-performs-a-local-detectchanges"></a>DbContext.Entry artık yerel DetectChanges gerçekleştirir
 
 [İzleme sorun #13552](https://github.com/aspnet/EntityFrameworkCore/issues/13552)
@@ -610,6 +637,43 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     optionsBuilder
         .ConfigureWarnings(w => w.Log(CoreEventId.ManyServiceProvidersCreatedWarning));
 }
+```
+
+## <a name="new-behavior-for-hasonehasmany-called-with-a-single-string"></a>Tek bir dize ile HasOne/çok ilişkin yeni davranış çağırılır
+
+[İzleme sorun #9171](https://github.com/aspnet/EntityFrameworkCore/issues/9171)
+
+Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+
+**Eski davranışı**
+
+EF Core 3.0 önce kod arama `HasOne` veya `HasMany` tek bir dize ile yorumlandığı kafa karıştırıcı bir şekilde oluştu.
+Örneğin:
+```C#
+modelBuilder.Entity<Samurai>().HasOne("Entrance").WithOne();
+```
+
+Kod ilgili Görülüyor `Samuri` bazı diğer varlık türü kullanarak `Entrance` özel gezinme özelliği.
+
+Bazı varlık türü olarak adlandırılan bir ilişki oluşturmak bu kodu gerçekte çalışır `Entrance` ile gezinti özelliği yok.
+
+**Yeni davranış**
+
+EF Core 3.0 ile başlayarak, yukarıdaki kod artık önce yapmakta gibi hangi Aranan yapar.
+
+**Neden**
+
+Eski davranışı özellikle yapılandırma kodu okurken ve hatalarını arayarak çok karmaşık.
+
+**Risk azaltma işlemleri**
+
+Bu, yalnızca tür adları ve gezinme özelliğini açıkça belirtmeden dizeleriyle ilişkileri açıkça yapılandırmakta olduğunuz uygulamalar keser.
+Bu yaygın değildir.
+Önceki davranışı açıkça geçirme aracılığıyla alınabilir `null` gezinme özelliğinin adı.
+Örneğin:
+
+```C#
+modelBuilder.Entity<Samurai>().HasOne("Some.Entity.Type.Name", null).WithOne();
 ```
 
 ## <a name="the-relationaltypemapping-annotation-is-now-just-typemapping"></a>İlişkisel: TypeMapping ek açıklama yalnızca TypeMapping sunulmuştur

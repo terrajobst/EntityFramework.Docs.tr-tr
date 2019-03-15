@@ -3,12 +3,12 @@ title: İlişkiler, gezinti özellikleri ve yabancı anahtarlar - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 8a21ae73-6d9b-4b50-838a-ec1fddffcf37
-ms.openlocfilehash: 46c2d11b5704ec7ae82a423ae042b87f5efe436f
-ms.sourcegitcommit: 8b42045cd21f80f425a92f5e4e9dd4972a31720b
+ms.openlocfilehash: 416eb1fb590330ba292a858347e26b83dddc74df
+ms.sourcegitcommit: a709054b2bc7a8365201d71f59325891aacd315f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/14/2018
-ms.locfileid: "49315665"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "57829206"
 ---
 # <a name="relationships-navigation-properties-and-foreign-keys"></a>İlişkiler, gezinti özellikleri ve yabancı anahtarlar
 Bu konu, Entity Framework varlıklar arasındaki ilişkilerin nasıl yönettiğine bir genel bakış sağlar. Ayrıca ilişkileri eşleyin ve düzenleme hakkında rehberlik sağlar.
@@ -29,7 +29,7 @@ Bir veritabanındaki yabancı anahtarlar eşleyen modelinde özellikler eklemek 
 
 Yabancı anahtar sütunları, modelde yer almaz, ilişki bilgilerini bağımsız bir nesne yönetilir. Yabancı anahtar özellikleri yerine nesne başvuruları arasında ilişkileri izlenir. Bu tür bir ilişkilendirme olarak adlandırılan bir *bağımsız ilişkilendirme*. Değiştirmek için en yaygın yolu bir *bağımsız ilişkilendirme* ilişkilendirmesine katılan her varlık için oluşturulan gezinti özelliklerini değiştirmek için.
 
-Modelinizde ilişkilendirmeleri birini veya ikisini türleri kullanmayı da tercih edebilirsiniz. Yalnızca yabancı anahtarları içeren bir birleştirme tablo bağlı saf bir çoktan çoğa ilişki varsa, ancak, EF bağımsız ilişkilendirme böyle çoktan çoğa ilişki yönetmek için kullanırsınız.   
+Modelinizde ilişkilendirmeleri birini veya ikisini türleri kullanmayı da tercih edebilirsiniz. Yalnızca yabancı anahtarları içeren bir birleştirme tablo bağlı saf bir çoktan çoğa ilişki varsa, ancak, EF bağımsız ilişkilendirme böyle çoktan çoğa ilişki yönetmek için kullanırsınız.   
 
 Aşağıdaki görüntüde, Entity Framework Designer ile oluşturulmuş bir kavramsal model gösterilmektedir. Model-çok ilişkide yer alan iki varlık içerir. Her iki varlık Gezinti özellikleri vardır. **Kurs** bağımlı varlık ve **DepartmentID** tanımlı yabancı anahtar özelliği.
 
@@ -51,7 +51,7 @@ public class Department
 {
    public Department()
    {
-     this.Course = new HashSet<Course>();
+     this.Courses = new HashSet<Course>();
    }  
    public int DepartmentID { get; set; }
    public string Name { get; set; }
