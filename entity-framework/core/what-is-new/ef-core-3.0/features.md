@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: 2EBE2CCC-E52D-483F-834C-8877F5EB0C0C
 uid: core/what-is-new/ef-core-3.0/features
-ms.openlocfilehash: cf0d2cf032b9aa319fe706aece5b1ea66a5d6251
-ms.sourcegitcommit: a013e243a14f384999ceccaf9c779b8c1ae3b936
+ms.openlocfilehash: b6774f615b04bf9579aac5dea217e7321631da0c
+ms.sourcegitcommit: a709054b2bc7a8365201d71f59325891aacd315f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2019
-ms.locfileid: "57463395"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "57829193"
 ---
 # <a name="new-features-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil olan yeni özellikler
 
@@ -75,7 +75,7 @@ Varlık türleri geriye doğru olduğunda veritabanı görünümleri mühendisli
 Bu özellik iş başlatıldı ancak geçerli önizlemede dahil değildir. 
 
 Dizinli Özellikler normal özellikleri yerine verileri depolayan varlıkları etkinleştirme ve ayrıca aynı .NET sınıf örnekleri kullanabilmek için hakkındaki bu özellik, (büyük olasılıkla bir şey kadar basit bir `Dictionary<string, object>`) farklı varlık türlerini temsil etmek için aynı EF Core modelinde.
-EF Core için en çok istenen geliştirmeleri biri olan bir birleşim varlık olmadan çok-çok ilişkileri desteklemek için bir atlama taşı özelliğidir.
+Bu özellik, birleştirme varlık olmadan çok-çok ilişkileri desteklemek için bir atlama taşı ([sorun #1368](https://github.com/aspnet/EntityFrameworkCore/issues/1368)), EF Core için en çok istenen geliştirmeleri birinde.
 
 ## <a name="ef-63-on-net-core"></a>.NET core'da EF 6.3 
 
