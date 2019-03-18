@@ -3,16 +3,16 @@ title: Entity Framework Sözlüğü - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 3f05ffdd-49bc-499c-9732-4a368bf5d2d7
-ms.openlocfilehash: 9ed7a2d841c625de35de57edb4e57e69b89a3db9
-ms.sourcegitcommit: 5d74ac575f813110db6d870720f50dd7606446bc
+ms.openlocfilehash: 4e42e5870879524b814cecdc361e688d36f0180f
+ms.sourcegitcommit: 6c4e06bc62d98442530e93a44725e38e59483d42
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48881273"
+ms.lasthandoff: 03/18/2019
+ms.locfileid: "58131383"
 ---
 # <a name="entity-framework-glossary"></a>Entity Framework Sözlüğü
 ## <a name="code-first"></a>İlk kod
-Kod kullanarak bir Entity Framework modelini oluşturma. Model hedefleyebilir ve var olan bir veritabanını veya yeni bir veritabanı.
+Kod kullanarak bir Entity Framework modelini oluşturma. Modeli, var olan bir veritabanını veya yeni bir veritabanı hedefleyebilirsiniz.
 
 ## <a name="context"></a>Bağlam
 Sorgu ve veri kaydetmenize olanak sağlayan, veritabanı ile bir oturumu temsil eden sınıf. Bir bağlam DbContext veya ObjectContext sınıfından türetilir.
