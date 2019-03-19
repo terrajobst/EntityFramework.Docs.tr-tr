@@ -15,7 +15,7 @@
 #### [EF Core 3.0 (önizlemede)](core/what-is-new/ef-core-3.0/index.md)
 ##### [Yeni özellikler](core/what-is-new/ef-core-3.0/features.md)
 ##### [Hataya neden olan değişiklikler](core/what-is-new/ef-core-3.0/breaking-changes.md)
-#### [EF Core 2.2 (en yeni kararlı sürüm)](core/what-is-new/ef-core-2.2.md)
+#### [EF Core 2.2 (son sürüm)](core/what-is-new/ef-core-2.2.md)
 #### [EF Core 2.1](core/what-is-new/ef-core-2.1.md)
 #### [EF Core 2.0](core/what-is-new/ef-core-2.0.md)
 #### [EF Core 1.1](core/what-is-new/ef-core-1.1.md)
