@@ -3,12 +3,12 @@ title: İlişkiler, gezinti özellikleri ve yabancı anahtarlar - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 8a21ae73-6d9b-4b50-838a-ec1fddffcf37
-ms.openlocfilehash: 416eb1fb590330ba292a858347e26b83dddc74df
-ms.sourcegitcommit: a709054b2bc7a8365201d71f59325891aacd315f
+ms.openlocfilehash: 8292ae7af8d760240715854611d92ab340bf1ca7
+ms.sourcegitcommit: eb8359b7ab3b0a1a08522faf67b703a00ecdcefd
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/14/2019
-ms.locfileid: "57829206"
+ms.lasthandoff: 03/21/2019
+ms.locfileid: "58319198"
 ---
 # <a name="relationships-navigation-properties-and-foreign-keys"></a>İlişkiler, gezinti özellikleri ve yabancı anahtarlar
 Bu konu, Entity Framework varlıklar arasındaki ilişkilerin nasıl yönettiğine bir genel bakış sağlar. Ayrıca ilişkileri eşleyin ve düzenleme hakkında rehberlik sağlar.
@@ -147,7 +147,7 @@ POCO varlık olmayan proxy'si kullanıyorsanız, emin olmanız gerekir **DetectC
 
 ## <a name="loading-related-objects"></a>Yükleme ile ilgili nesneler
 
-En sık kullandığınız Entity Framework içinde tanımlanmış ilişki tarafından döndürülen varlık ilgili varlıkları yükleme için gezinme özelliklerini kullanın. Daha fazla bilgi için [ilgili nesneler Yükleniyor](~/ef6/querying/related-data.md).
+Varlık Çerçevesi'nde, yaygın olarak Gezinti özellikleri tanımlanmış ilişki tarafından döndürülen varlık ilgili varlıkları yükleme için kullanırsınız. Daha fazla bilgi için [ilgili nesneler Yükleniyor](~/ef6/querying/related-data.md).
 
 > [!NOTE]
 > Bağımlı bir nesne bir ilgili uç yüklediğinizde bir yabancı anahtar ilişkilendirmesine, ilgili nesneyi göre şu anda bellekte olmadığını bağımlı yabancı anahtar değeri olarak yüklenecektir:

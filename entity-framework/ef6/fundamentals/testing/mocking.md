@@ -3,12 +3,12 @@ title: -EF6 gibi sahte bir çerçeve ile test etme
 author: divega
 ms.date: 10/23/2016
 ms.assetid: bd66a638-d245-44d4-8e71-b9c6cb335cc7
-ms.openlocfilehash: 80fd97073744be40d66c09706d3513dba18e724d
-ms.sourcegitcommit: 7a7da65404c9338e1e3df42576a13be536a6f95f
+ms.openlocfilehash: 3d39b41018beb70b72105dfb2fe4d61afc0b0525
+ms.sourcegitcommit: eb8359b7ab3b0a1a08522faf67b703a00ecdcefd
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/06/2018
-ms.locfileid: "48834727"
+ms.lasthandoff: 03/21/2019
+ms.locfileid: "58319211"
 ---
 # <a name="testing-with-a-mocking-framework"></a>Sahte bir framework ile test etme
 > [!NOTE]
@@ -21,7 +21,7 @@ Uygulamanız için testleri yazarken genellikle veritabanı ulaşmaktan kaçınm
 Bağlamınızı bir bellek içi sürümünü oluşturmak için kullanılan iki farklı yaklaşım vardır.  
 
 - **Kendi test double oluşturma** – bu yaklaşım, kendi bellek içi uygulama içeriği ve DbSets yazma içerir. Bu, çok nasıl sınıfları davranır ancak yazmayı ve makul bir kod sahip olan içerebilir denetim sağlar.  
-- **Sahte bir çerçeve test double oluşturulacağı** – sahte bir çerçeve (örneğin, Moq) kullanarak, bellek içi uygulamaları, içerik ve çalışma zamanında dinamik olarak için oluşturulan kümeleri olabilir.  
+- **Sahte bir çerçeve test double oluşturulacağı** – sahte bir çerçeve (örneğin, Moq) kullanarak bağlamı ve çalışma zamanında dinamik olarak için oluşturulan kümeleri bellek içi uygulamalara sahip olabilir.  
 
 Bu makalede sahte bir çerçeve kullanma ile ilgilenecektir. Kendi test double oluşturmak için bkz: [ile bilgisayarınızı kendi Test double test](writing-test-doubles.md).  
 

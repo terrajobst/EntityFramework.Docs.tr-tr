@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 748db8a71a04a2d696ef21a03319906b9fc776be
-ms.sourcegitcommit: a709054b2bc7a8365201d71f59325891aacd315f
+ms.openlocfilehash: 534ac95cccc03e9797ba766e601e2fe86eaf8061
+ms.sourcegitcommit: eb8359b7ab3b0a1a08522faf67b703a00ecdcefd
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/14/2019
-ms.locfileid: "57829232"
+ms.lasthandoff: 03/21/2019
+ms.locfileid: "58319224"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil edilen değişiklikler
 
@@ -653,7 +653,7 @@ EF Core 3.0 önce kod arama `HasOne` veya `HasMany` tek bir dize ile yorumlandı
 modelBuilder.Entity<Samurai>().HasOne("Entrance").WithOne();
 ```
 
-Kod ilgili Görülüyor `Samuri` bazı diğer varlık türü kullanarak `Entrance` özel gezinme özelliği.
+Kod ilgili Görülüyor `Samurai` bazı diğer varlık türü kullanarak `Entrance` özel gezinme özelliği.
 
 Bazı varlık türü olarak adlandırılan bir ilişki oluşturmak bu kodu gerçekte çalışır `Entrance` ile gezinti özelliği yok.
 
@@ -785,3 +785,83 @@ Diğer platformlar ile tutarlı ios'ta kullanılan SQLite sürümü, bu değişi
 **Risk azaltma işlemleri**
 
 İos'ta yerel bir SQLite sürümü kullanmak için yapılandırma `Microsoft.Data.Sqlite` farklı bir kullanılacak `SQLitePCLRaw` paket.
+
+## <a name="char-values-are-now-stored-as-text-on-sqlite"></a>Char değerleri artık SQLite metin olarak depolanır
+
+[İzleme sorun #15020](https://github.com/aspnet/EntityFrameworkCore/issues/15020)
+
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
+
+**Eski davranışı**
+
+Char değerleri daha önce SQLite tamsayı değerleri olarak sored. Örneğin, bir karakter değerini *A* 65 tamsayı değeri depolanmıştır.
+
+**Yeni davranış**
+
+Char değerleri sotred metin olarak sunulmuştur.
+
+**Neden**
+
+Değerlerin metin olarak depolanması daha doğal ve veritabanı diğer teknolojiler ile daha uyumlu olmasını sağlar.
+
+**Risk azaltma işlemleri**
+
+Aşağıdaki gibi SQL yürüterek veritabanlarında yeni biçime geçiş yapabilirsiniz.
+
+``` sql
+UPDATE MyTable
+SET CharColumn = char(CharColumn)
+WHERE typeof(CharColumn) = 'integer';
+```
+
+EF Core de önceki davranışı configuirng bir değer dönüştürücü bu özellikleri kullanmaya devam edebilirsiniz.
+
+``` csharp
+modelBuilder
+    .Entity<MyEntity>()
+    .Property(e => e.CharProperty)
+    .HasConversion(
+        c => (long)c,
+        i => (char)i);
+```
+
+Microsoft.Data.Sqlite Ayrıca belirli senaryoları herhangi bir eylem gerekli değil şekilde karakter değerleri hem tamsayı hem de metin sütunları, okuma özellikli kalır.
+
+## <a name="migration-ids-are-now-generated-using-the-invariant-cultures-calendar"></a>Geçiş kimlikleri, artık sabit kültürün takvimini kullanarak oluşturulur
+
+[İzleme sorun #12978](https://github.com/aspnet/EntityFrameworkCore/issues/12978)
+
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
+
+**Eski davranışı**
+
+Geçiş kimlikleri currret kültürün takvimini kullanarak oluşturulan inadvertantly yoktu.
+
+**Yeni davranış**
+
+Geçiş kimlikleri artık her zaman sabit kültürün takvimini (Gregoryen) kullanılarak oluşturulur.
+
+**Neden**
+
+Geçiş sırası önemlidir veritabanını güncelleştirmek ya da birleştirme çakışmalarını çözme. Sabit takvimi kullanılarak sıralama ekip üyelerinden farklı sistem takvimler sahip sonuçlanabilen sorunları önler.
+
+**Risk azaltma işlemleri**
+
+Bu değişiklik olmayan Gregoryen takvimdeki bir yılın Gregoryen takvimini (içeren Thai Budist takvimi gibi) daha büyük olduğu kullanan herkesin etkiler. Mevcut geçiş kimlikleri böylece mevcut sonra yeni geçişleri sıralı güncelleştirilmesi gerekiyor geçişler.
+
+Geçiş kimliği geçiş özniteliğinde geçişler Tasarımcı dosyalarında bulunabilir.
+
+``` diff
+ [DbContext(typeof(MyDbContext))]
+-[Migration("25620318122820_MyMigration")]
++[Migration("20190318122820_MyMigration")]
+ partial class MyMigration
+ {
+```
+
+Geçişleri geçmiş tablosu da güncelleştirilmesi gerekiyor.
+
+``` sql
+UPDATE __EFMigrationsHistory
+SET MigrationId = CONCAT(LEFT(MigrationId, 4)  - 543, SUBSTRING(MigrationId, 4, 150))
+```

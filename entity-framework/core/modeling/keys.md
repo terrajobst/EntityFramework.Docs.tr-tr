@@ -4,16 +4,18 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 912ffef7-86a0-4cdc-a776-55f907459d20
 uid: core/modeling/keys
-ms.openlocfilehash: 9e6946100ebabc6ba57cb792b3672219098b1e21
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 6272e323b83ccab2ed060a2ebbde1d1e8e353d66
+ms.sourcegitcommit: eb8359b7ab3b0a1a08522faf67b703a00ecdcefd
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994027"
+ms.lasthandoff: 03/21/2019
+ms.locfileid: "58319172"
 ---
 # <a name="keys-primary"></a>Anahtarlar (birincil)
 
-Bir anahtar, her varlık örneği için birincil benzersiz tanımlayıcısı olarak görev yapar. İlişkisel bir veritabanı kullanılırken bu kavramı, eşleyen bir *birincil anahtar*. Birincil anahtarı olmayan benzersiz bir tanımlayıcı da yapılandırabilirsiniz (bkz [alternatif anahtarlar](alternate-keys.md) daha fazla bilgi için).
+Bir anahtar, her varlık örneği için birincil benzersiz tanımlayıcısı olarak görev yapar. İlişkisel bir veritabanı kullanılırken bu kavramı, eşleyen bir *birincil anahtar*. Birincil anahtarı olmayan benzersiz bir tanımlayıcı da yapılandırabilirsiniz (bkz [alternatif anahtarlar](alternate-keys.md) daha fazla bilgi için). 
+
+Aşağıdaki yöntemlerden birini Kurulum/birincil bir anahtar oluşturmak için kullanılabilir.
 
 ## <a name="conventions"></a>Kurallar
 
