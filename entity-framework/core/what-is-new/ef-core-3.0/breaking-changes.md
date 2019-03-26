@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 534ac95cccc03e9797ba766e601e2fe86eaf8061
-ms.sourcegitcommit: eb8359b7ab3b0a1a08522faf67b703a00ecdcefd
+ms.openlocfilehash: 7ed55d4cae36f6b25059a5b218db4b0d5e2fb266
+ms.sourcegitcommit: 645785187ae23ddf7d7b0642c7a4da5ffb0c7f30
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/21/2019
-ms.locfileid: "58319224"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58419750"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil edilen değişiklikler
 
@@ -786,6 +786,56 @@ Diğer platformlar ile tutarlı ios'ta kullanılan SQLite sürümü, bu değişi
 
 İos'ta yerel bir SQLite sürümü kullanmak için yapılandırma `Microsoft.Data.Sqlite` farklı bir kullanılacak `SQLitePCLRaw` paket.
 
+## <a name="guid-values-are-now-stored-as-text-on-sqlite"></a>GUID değerlerinin artık SQLite metin olarak depolanır
+
+[İzleme sorun #15078](https://github.com/aspnet/EntityFrameworkCore/issues/15078)
+
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
+
+**Eski davranışı**
+
+GUID değerleri, daha önce SQLite değerlerine BLOB olarak sored.
+
+**Yeni davranış**
+
+GUID değerlerinin sotred metin olarak sunulmuştur.
+
+**Neden**
+
+İkili biçimi GUID'leri standartlaştırılmış değil. Değerlerin metin olarak depolanması veritabanı diğer teknolojiler ile daha uyumlu olmasını sağlar.
+
+**Risk azaltma işlemleri**
+
+Aşağıdaki gibi SQL yürüterek veritabanlarında yeni biçime geçiş yapabilirsiniz.
+
+``` sql
+UPDATE MyTable
+SET GuidColumn = hex(substr(GuidColumn, 4, 1)) ||
+                 hex(substr(GuidColumn, 3, 1)) ||
+                 hex(substr(GuidColumn, 2, 1)) ||
+                 hex(substr(GuidColumn, 1, 1)) || '-' ||
+                 hex(substr(GuidColumn, 6, 1)) ||
+                 hex(substr(GuidColumn, 5, 1)) || '-' ||
+                 hex(substr(GuidColumn, 8, 1)) ||
+                 hex(substr(GuidColumn, 7, 1)) || '-' ||
+                 hex(substr(GuidColumn, 9, 2)) || '-' ||
+                 hex(substr(GuidColumn, 11, 6))
+WHERE typeof(GuidColumn) == 'blob';
+```
+
+EF Core de önceki davranışı configuirng bir değer dönüştürücü bu özellikleri kullanmaya devam edebilirsiniz.
+
+``` csharp
+modelBuilder
+    .Entity<MyEntity>()
+    .Property(e => e.GuidProperty)
+    .HasConversion(
+        g => g.ToByteArray(),
+        b => new Guid(b));
+```
+
+Microsoft.Data.Sqlite GUID değerlerinin hem BLOB hem de metin sütunları okuma özellikli kalır; Parametreler ve sabitleri için varsayılan biçimi değiştiğinden ancak büyük olasılıkla GUID'leri içeren çoğu senaryo için bir eylem yapmanız gerekir.
+
 ## <a name="char-values-are-now-stored-as-text-on-sqlite"></a>Char değerleri artık SQLite metin olarak depolanır
 
 [İzleme sorun #15020](https://github.com/aspnet/EntityFrameworkCore/issues/15020)
@@ -865,3 +915,51 @@ Geçişleri geçmiş tablosu da güncelleştirilmesi gerekiyor.
 UPDATE __EFMigrationsHistory
 SET MigrationId = CONCAT(LEFT(MigrationId, 4)  - 543, SUBSTRING(MigrationId, 4, 150))
 ```
+
+## <a name="logquerypossibleexceptionwithaggregateoperator-has-been-renamed"></a>LogQueryPossibleExceptionWithAggregateOperator yeniden adlandırıldı
+
+[İzleme sorun #10985](https://github.com/aspnet/EntityFrameworkCore/issues/10985)
+
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
+
+**Değişiklik**
+
+`RelationalEventId.LogQueryPossibleExceptionWithAggregateOperator` yeniden adlandırıldı `RelationalEventId.LogQueryPossibleExceptionWithAggregateOperatorWarning`.
+
+**Neden**
+
+Bu uyarı olayı tüm uyarı olayları ile adlandırma hizalar.
+
+**Risk azaltma işlemleri**
+
+Yeni bir ad kullanın. (Olay kimliği numarasını değiştirilmedi unutmayın.)
+
+## <a name="clarify-api-for-foreign-key-constraint-names"></a>API açıklığa kavuşturmak için yabancı anahtar kısıtlaması adları
+
+[İzleme sorun #10730](https://github.com/aspnet/EntityFrameworkCore/issues/10730)
+
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
+
+**Eski davranışı**
+
+EF Core 3.0 önce yabancı anahtar kısıtlaması adları için yalnızca "adı olarak" adı veriliyordu. Örneğin:
+
+```C#
+var constraintName = myForeignKey.Name;
+```
+
+**Yeni davranış**
+
+EF Core 3.0 ile başlayarak, yabancı anahtar kısıtlaması adları şimdi de "kısıtlaması adı" olarak adlandırılır. Örneğin:
+
+```C#
+var constraintName = myForeignKey.ConstraintName;
+```
+
+**Neden**
+
+Bu değişiklik, bu alanda adlandırma için tutarlılık getirir ve ayrıca bu yabancı anahtarı üzerinde tanımlanan yabancı anahtar kısıtlaması ve olmayan sütun veya özellik adı adı olduğunu açıklar.
+
+**Risk azaltma işlemleri**
+
+Yeni bir ad kullanın.

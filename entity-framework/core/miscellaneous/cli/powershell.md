@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 09/18/2018
 uid: core/miscellaneous/cli/powershell
-ms.openlocfilehash: 468698d1bbd17d4ad10b1b1601bfbc315a01c1ff
-ms.sourcegitcommit: b3c2b34d5f006ee3b41d6668f16fe7dcad1b4317
+ms.openlocfilehash: cb05e3fb66adf96f8a6778711a76520d0be24c71
+ms.sourcegitcommit: 645785187ae23ddf7d7b0642c7a4da5ffb0c7f30
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "51688712"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58419776"
 ---
 # <a name="entity-framework-core-tools-reference---package-manager-console-in-visual-studio"></a>Entity Framework Core başvuru - Visual Studio'da Paket Yöneticisi konsolu araçları
 
@@ -163,7 +163,7 @@ Parametreler:
 
 ## <a name="get-dbcontext"></a>Get-DbContext
 
-Kullanılabilen listelerini `DbContext` türleri.
+Bilgi alır bir `DbContext` türü.
 
 ## <a name="remove-migration"></a>Remove-geçiş
 
@@ -188,7 +188,7 @@ Parametreler:
 | -OutputDir \<dizesi >               | Dosyaları yerleştirmek için dizin. Proje dizinine göreli yollardır.                                                                                                                                                                                             |
 | -ContextDir \<dizesi >              | Yerleştirileceği dizin `DbContext` dosyası. Proje dizinine göreli yollardır.                                                                                                                                                                              |
 | -Bağlam \<dizesi >                 | Adını `DbContext` oluşturmak için sınıf.                                                                                                                                                                                                                          |
-| -Şemaları \<String [] >               | Şemaları için varlık türleri oluşturmak için tablo. Bu parametre atlanırsa, tüm şemalar dahil edilir.                                                                                                                                                             |
+| -Schemas \<String[]>               | Şemaları için varlık türleri oluşturmak için tablo. Bu parametre atlanırsa, tüm şemalar dahil edilir.                                                                                                                                                             |
 | -Tablolar \<String [] >                | Varlık türleri için oluşturmak üzere tablolara. Bu parametre atlanırsa, tüm tabloları dahil edilir.                                                                                                                                                                         |
 | -DataAnnotations                   | Öznitelikler, model (mümkünse) yapılandırmak için kullanın. Bu parametre atlanırsa, yalnızca fluent API'si kullanılır.                                                                                                                                                      |
 | -UseDatabaseNames                  | Veritabanında tam olarak göründükleri gibi tablo ve sütun adları kullanın. Bu parametre atlanırsa, veritabanı adları daha yakından C# ad stil kurallarına uygun şekilde değiştirilir.                                                                                       |

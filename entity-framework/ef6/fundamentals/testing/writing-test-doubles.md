@@ -3,12 +3,12 @@ title: Kendi test double - EF6 ile test etme
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 16a8b7c0-2d23-47f4-9cc0-e2eb2e738ca3
-ms.openlocfilehash: 2158dc73585c2720e7293096b0478c73edf522d9
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 9db56e28cd89084fece36c3e5a2c1b4495991d01
+ms.sourcegitcommit: 645785187ae23ddf7d7b0642c7a4da5ffb0c7f30
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490915"
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58419737"
 ---
 # <a name="testing-with-your-own-test-doubles"></a>Kendi test Double ile test etme
 > [!NOTE]
@@ -43,7 +43,7 @@ Bu makalede istiyorsanız takip etmek için Visual Studio'ya kopyalayabilirsiniz
 
 ## <a name="creating-a-context-interface"></a>Bir bağlam arabirimi oluşturma  
 
-Bunu bir EF kullanan bir hizmet sınama sırasında aranacak dağıtacağız modeli. Test etmek için bir bellek içi sürüm bizim EF bağlam değiştirmek mümkün olması için size bir arabirim tanımlarsınız imeplement bizim EF bağlam (ve onun bellek içi çift) olur.  
+Bunu bir EF kullanan bir hizmet sınama sırasında aranacak dağıtacağız modeli. Test etmek için bir bellek içi sürüm bizim EF bağlam yerine oluşturabilmek, bizim EF bağlam (ve onun bellek içi çift) uygulayan bir arabirim tanımlarsınız.
 
 Test kullanacağız Hizmeti sorgu ve bizim bağlam olan DB özelliklerini kullanarak verileri değiştirme ve veritabanına değişiklikleri gönderme SaveChanges de çağırır. Biz bu üyeler arabirimde şekilde dahil.  
 
