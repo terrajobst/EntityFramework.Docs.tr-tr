@@ -99,7 +99,7 @@ Birçoğu Not [uygulama düzeyi bozucu değişiklikler](../what-is-new/ef-core-3
   * Bu çekme isteği kavramını ekler `CanConnect` ASP.NET Core sistem tarafından kullanılacak veritabanını kullanılabilir olup olmadığını belirlemek için denetler. Varsayılan olarak, yalnızca ilişkisel uygulama çağrıları `Exist`, ancak sağlayıcıları uygulayabilirsiniz farklı bir şey gerekirse. İlişkisel olmayan sağlayıcıları kullanılabilir olması sistem durumu denetimi için sırayla yeni API uygulamanız gerekir.
 * [https://github.com/aspnet/EntityFrameworkCore/pull/13306](https://github.com/aspnet/EntityFrameworkCore/pull/13306) -DbParameter boyutu ayarlamadığınızdan temel RelationalTypeMapping güncelleştirme
   * Kesme neden olabilir, varsayılan olarak boyutunu ayarlama durdurun. Sağlayıcıları boyutunu ayarlamak gerekiyorsa kendi mantığınızı eklemek gerekebilir.
-* https://github.com/aspnet/EntityFrameworkCore/pull/13372 -RevEng: Her zaman ondalık sütunlar için sütun türü belirtin
+* (https://github.com/aspnet/EntityFrameworkCore/pull/13372) -RevEng: Her zaman ondalık sütunlar için sütun türü belirtin
   * Kural gereği yapılandırma yerine iskele kurulan kodu ondalık sütunlar için sütun türü her zaman yapılandırın.
   * Sağlayıcıları kendi tarafında herhangi bir değişiklik yapılması gerekmez.
 * [https://github.com/aspnet/EntityFrameworkCore/pull/13469](https://github.com/aspnet/EntityFrameworkCore/pull/13469) -SQL çalışması ifadeleri oluşturmak için CaseExpression ekler
