@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 7ed55d4cae36f6b25059a5b218db4b0d5e2fb266
-ms.sourcegitcommit: 645785187ae23ddf7d7b0642c7a4da5ffb0c7f30
+ms.openlocfilehash: 199cc45e316e215b9b8e859700e4dc124de315b2
+ms.sourcegitcommit: a8b04050033c5dc46c076b7e21b017749e0967a8
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58419750"
+ms.lasthandoff: 04/02/2019
+ms.locfileid: "58867989"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil edilen değişiklikler
 
@@ -75,6 +75,46 @@ Geliştiriciler, tam olarak EF Core ve EF Core veri sağlayıcıları yükseltil
 **Risk azaltma işlemleri**
 
 EF çekirdekli ASP.NET Core 3.0 uygulama veya desteklenen başka bir uygulama içinde kullanmak için açıkça uygulamanızın kullanacağı EF Core veritabanı sağlayıcısı için bir paket başvurusu ekleyin.
+
+## <a name="fromsql-executesql-and-executesqlasync-have-been-renamed"></a>SQL ve ExecuteSql ExecuteSqlAsync yeniden adlandırıldı
+
+[İzleme sorun #10996](https://github.com/aspnet/EntityFrameworkCore/issues/10996)
+
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
+
+**Eski davranışı**
+
+EF Core 3.0 önce bu yöntem adlarının bir normal bir dize ya da SQL ve parametreleri ilişkilendirilmiş bir dize ile çalışmak için aşırı yüklenmiş.
+
+**Yeni davranış**
+
+EF Core 3.0 ile başlayarak, kullanmaktadır `FromSqlRaw`, `ExecuteSqlRaw`, ve `ExecuteSqlRawAsync` burada parametreleri geçirilir ayrı olarak Sorgu dizesinden parametreli bir sorgu oluşturun.
+Örneğin:
+
+```C#
+context.Products.FromSqlRaw(
+    "SELECT * FROM Products WHERE Name = {0}",
+    product.Name);
+```
+
+Kullanım `FromSqlInterpolated`, `ExecuteSqlInterpolated`, ve `ExecuteSqlInterpolatedAsync` burada parametreleri geçirilir ilişkilendirilmiş sorgu dizesinin parçası olarak parametreli bir sorgu oluşturun.
+Örneğin:
+
+```C#
+context.Products.FromSqlInterpolated(
+    $"SELECT * FROM Products WHERE Name = {product.Name}");
+```
+
+Yukarıdaki sorgu her ikisi de aynı SQL parametrelere sahip aynı parametreli SQL üretecektir unutmayın.
+
+**Neden**
+
+Yöntem aşırı yüklemeleri böyle güvenmelidir yanı sıra ilişkilendirilmiş dize yöntemini çağırmak için hedefi olduğu zaman yanlışlıkla ham srting yöntemini çağırmak çok kolay hale getirir.
+Bu, verilmiş olması, parametreli getirilemedi sorgularda neden olabilir.
+
+**Risk azaltma işlemleri**
+
+Yeni yöntem adları kullanılacak anahtar.
 
 ## <a name="query-execution-is-logged-at-debug-level"></a>Sorgu yürütme hata ayıklama düzeyinde günlüğe kaydedilir
 
@@ -291,6 +331,156 @@ Bu sırayla belirsizlik ve yöntemler gibi geçici karışıklık kaldırır `Ha
 
 Yukarıdaki örnekte gösterildiği gibi yeni bir API yüzeyi kullanmak için sahip olunan tür ilişkileri yapılandırmasını değiştirin.
 
+## <a name="dependent-entities-sharing-the-table-with-the-principal-are-now-optional"></a>Bağımlı varlıkları tablo sorumlusuyla paylaşımı artık isteğe bağlıdır
+
+[İzleme sorun #9005](https://github.com/aspnet/EntityFrameworkCore/issues/9005)
+
+Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+
+**Eski davranışı**
+
+Şu model göz önünde bulundurun:
+```C#
+public class Order
+{
+    public int Id { get; set; }
+    public int CustomerId { get; set; }
+    public OrderDetails Details { get; set; }
+}
+
+public class OrderDetails
+{
+    public int Id { get; set; }
+    public string ShippingAddress { get; set; }
+}
+```
+3.0, önce EF Core `OrderDetails` tarafından sahip olunan `Order` veya aynı tabloya açıkça eşleştirilmiş bir `OrderDetails` örneği her zaman gerekli yeni bir eklerken `Order`.
+
+
+**Yeni davranış**
+
+3.0 ile başlayarak, EF Core eklemek için sağlayan bir `Order` olmadan bir `OrderDetails` ve tüm eşler `OrderDetails` özellikleri hariç null yapılabilir sütunlar için birincil anahtarı.
+EF Core kümeleri sorgulanırken `OrderDetails` için `null` gerekli özelliklerinden birini yoksa, bir değer veya birincil anahtarı yanı sıra gereken özellikleri yoktur ve tüm özellikleri `null`.
+
+**Risk azaltma işlemleri**
+
+İsteğe bağlı tüm sütunlar eklenmiş bağımlı paylaşımı tablo modelinizi varken işaret Gezinti olması beklenmiyor `null` Gezinti olduğunda durumlarında uygulama değiştirilmelidir sonra `null`. Bu mümkün değilse, varlık türüne gerekli bir özellik eklenmesini veya en az bir özelliğine sahip olmayan bir`null` atanmış değer.
+
+## <a name="all-entities-sharing-a-table-with-a-concurrency-token-column-have-to-map-it-to-a-property"></a>Bir özelliğini eşleştirmek tüm varlıklar bir eşzamanlılık belirteci sütun içeren bir tablo paylaşımı sahip
+
+[İzleme sorun #14154](https://github.com/aspnet/EntityFrameworkCore/issues/14154)
+
+Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+
+**Eski davranışı**
+
+Şu model göz önünde bulundurun:
+```C#
+public class Order
+{
+    public int Id { get; set; }
+    public int CustomerId { get; set; }
+    public byte[] Version { get; set; }
+    public OrderDetails Details { get; set; }
+}
+
+public class OrderDetails
+{
+    public int Id { get; set; }
+    public string ShippingAddress { get; set; }
+}
+
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<Order>()
+        .Property(o => o.Version).IsRowVersion().HasColumnName("Version");
+}
+```
+3.0, önce EF Core `OrderDetails` tarafından sahip olunan `Order` veya yalnızca güncelleştirme aynı tabloya açıkça eşlenen `OrderDetails` değil güncelleştirecek `Version` değeri istemcisi ve İleri güncelleştirmeyi başarısız olur.
+
+
+**Yeni davranış**
+
+EF Core 3.0 ile başlayarak, yeni yayınlar `Version` değerini `Order` bunu sahipse `OrderDetails`. Aksi takdirde model doğrulama sırasında bir özel durum oluşturulur.
+
+**Neden**
+
+Eski eşzamanlılık belirteç değeri aynı tabloya eşlenen varlıkları yalnızca biri güncelleştirildiğinde önlemek için bu değişiklik yapılmıştır.
+
+**Risk azaltma işlemleri**
+
+Eşzamanlılık belirteci sütuna eşlenmiş bir özellik içerir tabloda paylaşımı tüm varlıklar gerekir. Mümkündür oluşturma bir gölge durumu:
+```C#
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<OrderDetails>()
+        .Property<byte[]>("Version").IsRowVersion().HasColumnName("Version");
+}
+```
+
+## <a name="inherited-properties-from-unmapped-types-are-now-mapped-to-a-single-column-for-all-derived-types"></a>Tüm türetilmiş türler için tek bir sütun eşlenmemiş türlerden devralınan özellikler artık eşlenir
+
+[İzleme sorun #13998](https://github.com/aspnet/EntityFrameworkCore/issues/13998)
+
+Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+
+**Eski davranışı**
+
+Şu model göz önünde bulundurun:
+```C#
+public abstract class EntityBase
+{
+    public int Id { get; set; }
+}
+
+public abstract class OrderBase : EntityBase
+{
+    public int ShippingAddress { get; set; }
+}
+
+public class BulkOrder : OrderBase
+{
+}
+
+public class Order : OrderBase
+{
+}
+
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Ignore<OrderBase>();
+    modelBuilder.Entity<EntityBase>();
+    modelBuilder.Entity<BulkOrder>();
+    modelBuilder.Entity<Order>();
+}
+```
+
+EF Core 3.0 önce `ShippingAddress` özelliği için sütunları ayırmak için eşlenebilir `BulkOrder` ve `Order` varsayılan olarak.
+
+**Yeni davranış**
+
+3.0 ile başlayarak, EF Core yalnızca bir sütun için oluşturur `ShippingAddress`.
+
+**Neden**
+
+Eski davranışı beklenmiyordu.
+
+**Risk azaltma işlemleri**
+
+Özellik sütunu türetilmiş türler üzerinde ayırmak için açıkça eşlenebilir:
+
+```C#
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Ignore<OrderBase>();
+    modelBuilder.Entity<EntityBase>();
+    modelBuilder.Entity<BulkOrder>()
+        .Property(o => o.ShippingAddress).HasColumnName("BulkShippingAddress");
+    modelBuilder.Entity<Order>()
+        .Property(o => o.ShippingAddress).HasColumnName("ShippingAddress");
+}
+```
+
 ## <a name="the-foreign-key-property-convention-no-longer-matches-same-name-as-the-principal-property"></a>Yabancı anahtar özellik kuralı asıl özelliğiyle aynı ada artık eşleşmiyor.
 
 [İzleme sorun #13274](https://github.com/aspnet/EntityFrameworkCore/issues/13274)
@@ -312,14 +502,13 @@ public class Order
     public int Id { get; set; }
     public int CustomerId { get; set; }
 }
-
 ```
 EF Core 3.0 önce `CustomerId` özelliği kullanılan Kural gereği için yabancı anahtarı.
 Ancak, varsa `Order` bu da yapacağı sonra sahip olunan bir türü olan `CustomerId` birincil anahtar ve bu değilse genellikle beklentisi.
 
 **Yeni davranış**
 
-3.0 ile başlayarak, EF Core asıl özelliğiyle aynı ada sahip oldukları özellikleri yabancı anahtarlar için kural olarak kullanılacak denemez.
+3.0 ile başlayarak, EF Core asıl özelliğiyle aynı ada sahip oldukları özellikleri için yabancı anahtarlar kurala göre kullanırsanız dener.
 Asıl tür adı asıl özellik adıyla birleştirilmiş ve asıl özellik adı desenleri ile birleştirilmiş gezinme adı hala eşleştirilir.
 Örneğin:
 
@@ -359,6 +548,58 @@ Bu değişikliği yanlışlıkla bir birincil anahtar özelliği sahip olunan t�
 **Risk azaltma işlemleri**
 
 Yabancı anahtar olması ve bu nedenle birincil anahtarın sonra açıkça bölüm özelliği isteniyorsa bu şekilde yapılandırın.
+
+## <a name="database-connection-is-now-closed-if-not-used-anymore-before-the-transactionscope-has-been-completed"></a>Veritabanı bağlantısı artık kapalı kullanılmazsa süresi TransactionScope tamamlanmadan önce artık
+
+[İzleme sorun #14218](https://github.com/aspnet/EntityFrameworkCore/issues/14218)
+
+Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+
+**Eski davranışı**
+
+EF Core bağlam içinde bağlantısına açarsa, 3.0 önce bir `TransactionScope`, bağlantı sırasında geçerli açık kalır `TransactionScope` etkindir.
+
+```C#
+using (new TransactionScope())
+{
+    using (AdventureWorks context = new AdventureWorks())
+    {
+        context.ProductCategories.Add(new ProductCategory());
+        context.SaveChanges();
+
+        // Old behavior: Connection is still open at this point
+        
+        var categories = context.ProductCategories().ToList();
+    }
+}
+```
+
+**Yeni davranış**
+
+Kullanmaya tamamladıktan hemen sonra 3.0 ile başlayarak, EF Core bağlantıyı kapatır.
+
+**Neden**
+
+Birden fazla bağlamı aynı kullanmak için bu değişiklik sağlayan `TransactionScope`. Yeni davranış alose EF6 eşleşir.
+
+**Risk azaltma işlemleri**
+
+Bağlantı açık çağrı açık kalması gerekiyorsa `OpenConnection()` EF Core, erken kapatmadığına emin olun:
+
+```C#
+using (new TransactionScope())
+{
+    using (AdventureWorks context = new AdventureWorks())
+    {
+        context.Database.OpenConnection();
+        context.ProductCategories.Add(new ProductCategory());
+        context.SaveChanges();
+        
+        var categories = context.ProductCategories().ToList();
+        context.Database.CloseConnection();
+    }
+}
+```
 
 ## <a name="each-property-uses-independent-in-memory-integer-key-generation"></a>Her bir özellik bağımsız bellek içi tamsayı anahtar oluşturma kullanır.
 
@@ -922,7 +1163,7 @@ SET MigrationId = CONCAT(LEFT(MigrationId, 4)  - 543, SUBSTRING(MigrationId, 4, 
 
 Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
-**Değişiklik**
+**Değiştir**
 
 `RelationalEventId.LogQueryPossibleExceptionWithAggregateOperator` yeniden adlandırıldı `RelationalEventId.LogQueryPossibleExceptionWithAggregateOperatorWarning`.
 

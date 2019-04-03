@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: 2EBE2CCC-E52D-483F-834C-8877F5EB0C0C
 uid: core/what-is-new/ef-core-3.0/features
-ms.openlocfilehash: b6774f615b04bf9579aac5dea217e7321631da0c
-ms.sourcegitcommit: a709054b2bc7a8365201d71f59325891aacd315f
+ms.openlocfilehash: 7501a806271c9734e85e31845f260f2d512da077
+ms.sourcegitcommit: a8b04050033c5dc46c076b7e21b017749e0967a8
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/14/2019
-ms.locfileid: "57829193"
+ms.lasthandoff: 04/02/2019
+ms.locfileid: "58867963"
 ---
 # <a name="new-features-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil olan yeni özellikler
 
@@ -50,6 +50,31 @@ EF Core gibi özelliklerin çoğu, Cosmos DB SQL API karşı değer dönüştür
 EF Core 2.2 önce bu çalışmaların Başladık ve [bazı yaptık Önizleme sürümleri kullanılabilir sağlayıcısının](https://blogs.msdn.microsoft.com/dotnet/2018/10/17/announcing-entity-framework-core-2-2-preview-3/).
 Yeni plan EF Core 3.0 yanı sıra sağlayıcı geliştirmeye devam sağlamaktır. 
 
+## <a name="dependent-entities-sharing-the-table-with-the-principal-are-now-optional"></a>Bağımlı varlıkları tablo sorumlusuyla paylaşımı artık isteğe bağlıdır
+
+[İzleme sorun #9005](https://github.com/aspnet/EntityFrameworkCore/issues/9005)
+
+EF Core 3.0-preview 4 sürümünde bu özellik sunulacaktır.
+
+Şu model göz önünde bulundurun:
+```C#
+public class Order
+{
+    public int Id { get; set; }
+    public int CustomerId { get; set; }
+    public OrderDetails Details { get; set; }
+}
+
+public class OrderDetails
+{
+    public int Id { get; set; }
+    public string ShippingAddress { get; set; }
+}
+```
+
+EF Core 3.0 ile başlatılmasının `OrderDetails` tarafından sahip olunan `Order` veya eklenmesi mümkün olacaktır aynı tabloya açıkça eşleştirilmiş bir `Order` olmadan bir `OrderDetails` ve tüm `OrderDetails` için özellikleri birincil anahtar dışındaki eşleştirilir boş değer atanabilir sütun.
+EF Core sorgulama ayarlandığında `OrderDetails` için `null` gerekli özelliklerinden birini yoksa, bir değer veya birincil anahtarı yanı sıra gereken özellikleri yoktur ve tüm özellikleri `null`.
+
 ## <a name="c-80-support"></a>C#8.0 desteği
 
 [Sorun #12047 izleme](https://github.com/aspnet/EntityFrameworkCore/issues/12047)
@@ -68,7 +93,7 @@ Bu özellik geçerli Önizleme sürümünde yer almıyor.
 [Sorgu türü](xref:core/modeling/query-types), EF Core 2.1 içinde tanıtılan ve kabul EF Core 3.0, veritabanından okunan ancak güncelleştirilemiyor temsil veri anahtarları olmadan varlık türleri.
 Varlık türleri geriye doğru olduğunda veritabanı görünümleri mühendislik anahtarları olmadan oluşturulmasını otomatik hale getirmek planlıyoruz için bu özellik, bunların veritabanı görünümleri için mükemmel bir uyum Çoğu senaryoda sağlar.
 
-## <a name="property-bag-entities"></a>Özellik paketi varlıklar 
+## <a name="property-bag-entities"></a>Özellik paketi varlıklar
 
 [Sorun #13610 izleme](https://github.com/aspnet/EntityFrameworkCore/issues/13610) ve [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914)
 
@@ -77,7 +102,7 @@ Bu özellik iş başlatıldı ancak geçerli önizlemede dahil değildir.
 Dizinli Özellikler normal özellikleri yerine verileri depolayan varlıkları etkinleştirme ve ayrıca aynı .NET sınıf örnekleri kullanabilmek için hakkındaki bu özellik, (büyük olasılıkla bir şey kadar basit bir `Dictionary<string, object>`) farklı varlık türlerini temsil etmek için aynı EF Core modelinde.
 Bu özellik, birleştirme varlık olmadan çok-çok ilişkileri desteklemek için bir atlama taşı ([sorun #1368](https://github.com/aspnet/EntityFrameworkCore/issues/1368)), EF Core için en çok istenen geliştirmeleri birinde.
 
-## <a name="ef-63-on-net-core"></a>.NET core'da EF 6.3 
+## <a name="ef-63-on-net-core"></a>.NET core'da EF 6.3
 
 [Sorunu EF6 izleme #271](https://github.com/aspnet/EntityFramework6/issues/271)
 
