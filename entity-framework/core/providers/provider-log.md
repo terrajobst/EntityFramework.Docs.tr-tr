@@ -6,12 +6,12 @@ ms.date: 08/08/2018
 ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
-ms.openlocfilehash: 229c15ec0402e1706318593a099236f723d80595
-ms.sourcegitcommit: ab847dd881d51122e695b7cd8c025fcf3a5a9033
+ms.openlocfilehash: 9ef87a737111053df0359f3b2d7a4f82d25c578a
+ms.sourcegitcommit: a8b04050033c5dc46c076b7e21b017749e0967a8
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/30/2019
-ms.locfileid: "58678387"
+ms.lasthandoff: 04/02/2019
+ms.locfileid: "58867950"
 ---
 # <a name="provider-impacting-changes"></a>Sağlayıcı etkileyen değişiklikler
 
@@ -43,9 +43,6 @@ Birçoğu Not [uygulama düzeyi bozucu değişiklikler](../what-is-new/ef-core-3
   * `IMigrationsSqlGenerator` kapsamlı bir hizmet için bir singleton hizmetinden değişti
 * https://github.com/aspnet/EntityFrameworkCore/pull/14706
   * Böylece onu güvenli bir şekilde sağlayıcıları tarafından kullanılan ve biraz yeniden düzenlenen ilişkisel komutlarını oluşturmak için altyapı genel yapıldı.
-  * `IRelationalCommandBuilderFactory`kapsamlı bir hizmet için singleton hizmetinden değişti
-  * `IShaperCommandContextFactory` kapsamlı bir hizmet için singleton hizmetinden değişti
-  * `ISelectExpressionFactory` kapsamlı bir hizmet için singleton hizmetinden değişti
 * https://github.com/aspnet/EntityFrameworkCore/pull/14733
   * `ILazyLoader` kapsamlı bir hizmet için geçici bir hizmet olarak değiştirildi
 * https://github.com/aspnet/EntityFrameworkCore/pull/14610

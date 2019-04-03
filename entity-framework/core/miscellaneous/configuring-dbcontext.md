@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: d7a22b5a-4c5b-4e3b-9897-4d7320fcd13f
 uid: core/miscellaneous/configuring-dbcontext
-ms.openlocfilehash: f5a9ae17471391442170d8c40264e4db6922cb08
-ms.sourcegitcommit: 39080d38e1adea90db741257e60dc0e7ed08aa82
+ms.openlocfilehash: 9400fe8ea817b6aca0fb63c1de05ffe1dc997b2f
+ms.sourcegitcommit: a8b04050033c5dc46c076b7e21b017749e0967a8
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/03/2018
-ms.locfileid: "50980008"
+ms.lasthandoff: 04/02/2019
+ms.locfileid: "58868015"
 ---
 # <a name="configuring-a-dbcontext"></a>DbContext yapılandırma
 
@@ -161,6 +161,27 @@ using (var context = serviceProvider.GetService<BloggingContext>())
 
 var options = serviceProvider.GetService<DbContextOptions<BloggingContext>>();
 ```
+## <a name="avoiding-dbcontext-threading-issues"></a>DbContext iş parçacığı oluşturma sorunları önleme
+
+Entity Framework Core aynı çalıştırılan birden çok paralel işlemleri desteklemez `DbContext` örneği. Eş zamanlı erişim tanımsız davranış, uygulama kilitlenmesi ve veri bozulması neden olabilir. Bu nedenle kullanılması her zaman önemlidir ayrı `DbContext` örnekleri, paralel olarak yürütülen işlemler için. 
+
+Aynı inadvernetly neden eş zamanlı erişim için yaygın hatalar vardır `DbContext` örneği:
+
+### <a name="forgetting-to-await-the-completion-of-an-asynchronous-operation-before-starting-any-other-operation-on-the-same-dbcontext"></a>Aynı Dbcontext'e üzerinde herhangi bir işlem başlatmadan önce zaman uyumsuz bir işlemin tamamlanmasını beklemek unutmak
+
+EF Core, engelleyici olmayan bir yolla veritabanına erişen işlemler başlatmak zaman uyumsuz yöntemler sağlar. Ancak bir çağıranın tamamlandığında, aşağıdaki yöntemlerden birini await değil ve diğer işlemleri gerçekleştirmeye devam eder, `DbContext`, durumu `DbContext` olabilir (ve büyük olasılıkla olabilir) bozuk. 
+
+Her zaman hemen EF Core zaman uyumsuz yöntemler bekler.  
+
+### <a name="implicitly-sharing-dbcontext-instances-across-multiple-threads-via-dependency-injection"></a>Örtük olarak bağımlılık ekleme aracılığıyla birden çok iş parçacığı arasında DbContext örnekleri paylaşma
+
+[ `AddDbContext` ](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) Genişletme yöntemi kaydeder `DbContext` ile türleri bir [kapsamlı ömrü](https://docs .microsoft.com/aspnet/core/fundamentals/dependency-injection#service-lifetimes) varsayılan olarak. 
+
+Bu yalnızca bir iş parçacığı belirli bir zamanda her istemci isteği yürütmeden olduğundan ve her isteğin ayrı bağımlılık ekleme kapsamı aldığından ASP.NET Core uygulamaları eş zamanlı erişim sorunları karşı (ve bu nedenle ayrı `DbContext` Örnek).
+
+Birden çok iş parçacığı içinde paralell açıkça yürütülen herhangi bir kod, ancak emin olmalısınız `DbContext` örnekleri olmayan hiç olmadığı kadar accesed eşzamanlı olarak.
+
+Bağımlılık ekleme kullanılarak, bu iki bağlam kapsamlı ve oluşturma kapsamı olarak kaydederek gerçekleştirilebilir (kullanarak `IServiceScopeFactory`) kaydederek veya her bir iş parçacığı için `DbContext` geçici olarak (aşırı yüklemesini kullanarak `AddDbContext` bir alır`ServiceLifetime` parametresi).
 
 ## <a name="more-reading"></a>Daha fazla okuma
 
