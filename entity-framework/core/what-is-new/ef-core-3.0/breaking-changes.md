@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 199cc45e316e215b9b8e859700e4dc124de315b2
-ms.sourcegitcommit: a8b04050033c5dc46c076b7e21b017749e0967a8
+ms.openlocfilehash: fd593b2832a5a6ffe27cd4493127b5d405f684ba
+ms.sourcegitcommit: ce44f85a5bce32ef2d3d09b7682108d3473511b3
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/02/2019
-ms.locfileid: "58867989"
+ms.lasthandoff: 04/04/2019
+ms.locfileid: "58914133"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil edilen değişiklikler
 
@@ -916,6 +916,36 @@ Bu yaygın değildir.
 ```C#
 modelBuilder.Entity<Samurai>().HasOne("Some.Entity.Type.Name", null).WithOne();
 ```
+
+## <a name="the-return-type-for-several-async-methods-has-been-changed-from-task-to-valuetask"></a>Birden çok zaman uyumsuz yöntemler için dönüş türü için ValueTask görevden değiştirildi
+
+[İzleme sorun #15184](https://github.com/aspnet/EntityFrameworkCore/issues/15184)
+
+Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+
+**Eski davranışı**
+
+Aşağıdaki zaman uyumsuz yöntemler daha önce döndürülen bir `Task<T>`:
+
+* `DbContext.FindAsync()`
+* `DbSet.FindAsync()`
+* `DbContext.AddAsync()`
+* `DbSet.AddAsync()`
+* `ValueGenerator.NextValueAsync()` (ve türetilen sınıflar)
+
+**Yeni davranış**
+
+Yukarıda sözü edilen yöntemleri artık döndürür bir `ValueTask<T>` aynı üzerinden `T` önceki gibi.
+
+**Neden**
+
+Bu değişiklik, yığın ayırmaları genel performansını iyileştirme, bu yöntemleri çağrılırken tahakkuk sayısını azaltır.
+
+**Risk azaltma işlemleri**
+
+Yalnızca yukarıdaki API'leri yalnızca bekleyen gerekir derlenmesi için - uygulamalar kaynak değişiklik gereklidir.
+Daha karmaşık bir kullanım (örneğin döndürülen geçirme `Task` için `Task.WhenAny()`) genellikle gerektiren döndürülen `ValueTask<T>` dönüştürülmesi bir `Task<T>` çağırarak `AsTask()` üzerindeki.
+Bu bu değişiklik getirir ayırma azaltma verilerek unutmayın.
 
 ## <a name="the-relationaltypemapping-annotation-is-now-just-typemapping"></a>İlişkisel: TypeMapping ek açıklama yalnızca TypeMapping sunulmuştur
 
