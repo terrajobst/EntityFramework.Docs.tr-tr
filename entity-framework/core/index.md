@@ -4,8 +4,13 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: bc2a2676-bc46-493f-bf49-e3cc97994d57
 uid: core/index
+ms.openlocfilehash: fa0695be29668789a179f9a0d6330f3361dbac29
+ms.sourcegitcommit: 6c4e06bc62d98442530e93a44725e38e59483d42
+ms.translationtype: MT
+ms.contentlocale: tr-TR
+ms.lasthandoff: 03/18/2019
+ms.locfileid: "58131425"
 ---
-
 # <a name="entity-framework-core"></a><span data-ttu-id="8c6fc-102">Entity Framework Core</span><span class="sxs-lookup"><span data-stu-id="8c6fc-102">Entity Framework Core</span></span>
 
 <span data-ttu-id="8c6fc-103">Entity Framework (EF) Core, hafif, Genişletilebilir, [açık kaynak](https://github.com/aspnet/EntityFrameworkCore) ve çoklu platform sürümünü teknoloji erişim popüler Entity Framework Veri.</span><span class="sxs-lookup"><span data-stu-id="8c6fc-103">Entity Framework (EF) Core is a lightweight, extensible, [open source](https://github.com/aspnet/EntityFrameworkCore) and cross-platform version of the popular Entity Framework data access technology.</span></span>

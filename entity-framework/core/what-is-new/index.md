@@ -4,8 +4,13 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: C21F89EE-FB08-4ED9-A2A0-76CB7656E6E4
 uid: core/what-is-new/index
+ms.openlocfilehash: 836e59cf44f38af32e2342da5d251fbcf218888c
+ms.sourcegitcommit: 645785187ae23ddf7d7b0642c7a4da5ffb0c7f30
+ms.translationtype: MT
+ms.contentlocale: tr-TR
+ms.lasthandoff: 03/25/2019
+ms.locfileid: "58419698"
 ---
-
 # <a name="what-is-new-in-ef-core"></a><span data-ttu-id="8f916-102">EF Core yenilikleri</span><span class="sxs-lookup"><span data-stu-id="8f916-102">What is new in EF Core</span></span>
 
 ## <a name="future-releases"></a><span data-ttu-id="8f916-103">Gelecek sürümler</span><span class="sxs-lookup"><span data-stu-id="8f916-103">Future releases</span></span>
