@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 7a2b75e2-1875-4487-9877-feff0651b5a6
 uid: core/miscellaneous/testing/sqlite
-ms.openlocfilehash: bc9d6768a90ce17160c4126d2a68fddaa30d63de
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: e8ff204a09d50064b4f0d4376f02b05c8681ac25
+ms.sourcegitcommit: 8f801993c9b8cd8a8fbfa7134818a8edca79e31a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996874"
+ms.lasthandoff: 04/14/2019
+ms.locfileid: "59562539"
 ---
 # <a name="testing-with-sqlite"></a>SQLite ile test etme
 
@@ -47,5 +47,8 @@ Kabul eden bir oluşturucu kullanıma sunmak için Bağlamınızı değiştirmek
 ## <a name="writing-tests"></a>Testleri yazma
 
 Bu sağlayıcıyla sınaması için SQLite kullanın ve bellek içi veritabanına kapsamını denetlemek için bağlam olanağından anahtardır. Veritabanı kapsamı, açma ve kapatma bağlantı denetlenir. Veritabanı bağlantı açıldıktan süre kapsamlıdır. Genellikle her bir test yöntemi için temiz bir veritabanı istersiniz.
+
+>[!TIP]
+> Kullanılacak `SqliteConnection()` ve `.UseSqlite()` genişletme yöntemi, NuGet paketi başvurusu [Microsoft.EntityFrameworkCore.Sqlite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite/).
 
 [!code-csharp[Main](../../../../samples/core/Miscellaneous/Testing/TestProject/SQLite/BlogServiceTests.cs)]

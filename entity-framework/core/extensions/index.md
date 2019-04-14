@@ -4,12 +4,12 @@ author: ErikEJ
 ms.date: 01/07/2019
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/extensions/index
-ms.openlocfilehash: 414773284df7c208b9a2acf0536fda459bdf775b
-ms.sourcegitcommit: 7bde8e6ad3c4565a4638646ce04bcf5e66f7b5fd
+ms.openlocfilehash: d432ca36c166f7baf71253709bf58b1f5428a11a
+ms.sourcegitcommit: 8f801993c9b8cd8a8fbfa7134818a8edca79e31a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/07/2019
-ms.locfileid: "54069236"
+ms.lasthandoff: 04/14/2019
+ms.locfileid: "59562513"
 ---
 # <a name="ef-core-tools--extensions"></a>EF Core Araçlar ve uzantılar
 
@@ -40,7 +40,7 @@ EF Core Power Tools çeşitli EF Core tasarım zamanı görevleri basit bir kull
 
 ### <a name="entity-framework-visual-editor"></a>Entity Framework Visual Düzenleyicisi
 
-Entity Framework Visual Düzenleyicisi bir görsel tasarım EF 6 ve EF Core sınıfları için ORM Tasarımcısı ekleyen bir Visual Studio 2017 uzantısıdır. Kod, her türlü ihtiyacı karşılamak için özelleştirilebilir için T4 şablonlarını kullanarak oluşturulur. Bu, devralma, tek yönlü ve çift yönlü ilişkilendirmeleri, numaralandırmalar ve sınıflarınızı renk kodu ve metin blokları ekleme olanağı tasarımınızı potansiyel olarak karıştıran bölümlerini açıklamak için destekler.
+Entity Framework Visual Düzenleyicisi bir görsel tasarım EF 6 ve EF Core sınıfları için ORM Tasarımcısı ekleyen bir Visual Studio uzantısıdır. Kod, her türlü ihtiyacı karşılamak için özelleştirilebilir için T4 şablonlarını kullanarak oluşturulur. Bu, devralma, tek yönlü ve çift yönlü ilişkilendirmeleri, numaralandırmalar ve sınıflarınızı renk kodu ve metin blokları ekleme olanağı tasarımınızı potansiyel olarak karıştıran bölümlerini açıklamak için destekler.
 
 [Market](https://marketplace.visualstudio.com/items?itemName=michaelsawczyn.EFDesigner)
 

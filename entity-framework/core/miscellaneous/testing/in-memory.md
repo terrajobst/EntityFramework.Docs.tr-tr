@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 0d0590f1-1ea3-4d5c-8f44-db17395cd3f3
 uid: core/miscellaneous/testing/in-memory
-ms.openlocfilehash: 2754d1deba98fcee0eb88669293b2197545c8874
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 8aaea52f22954ef6a2b7d9b9c5627597c61ac644
+ms.sourcegitcommit: 8f801993c9b8cd8a8fbfa7134818a8edca79e31a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997898"
+ms.lasthandoff: 04/14/2019
+ms.locfileid: "59562552"
 ---
 # <a name="testing-with-inmemory"></a>Inmemory ile test etme
 
@@ -64,6 +64,6 @@ Bu sağlayıcıyla sınaması için olanağından ve Inmemory sağlayıcıyı ku
 Inmemory veritabanı kullanan bir test sınıfı örneği aşağıda verilmiştir. Her test yönteminin her yöntemi kendi Inmemory veritabanı olduğu anlamına gelen bir benzersiz bir veritabanı adını belirtir.
 
 >[!TIP]
-> Kullanılacak `.UseInMemoryDatabase()` genişletme yöntemi, NuGet paketi başvurusu `Microsoft.EntityFrameworkCore.InMemory`.
+> Kullanılacak `.UseInMemoryDatabase()` genişletme yöntemi, NuGet paketi başvurusu [Microsoft.EntityFrameworkCore.InMemory](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory/).
 
 [!code-csharp[Main](../../../../samples/core/Miscellaneous/Testing/TestProject/InMemory/BlogServiceTests.cs)]

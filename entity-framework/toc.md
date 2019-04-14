@@ -65,6 +65,7 @@
 #### [Değer Dönüştürmeleri](core/modeling/value-conversions.md)
 #### [Veri Çekirdeği Oluşturma](core/modeling/data-seeding.md)
 #### [Varlık Türü Oluşturucuları](core/modeling/constructors.md)
+#### [Tablo Bölme](core/modeling/table-splitting.md)
 #### [Sahip Olunan Varlık Türleri](core/modeling/owned-entities.md)
 #### [Sorgu Türleri](core/modeling/query-types.md)
 #### [Aynı DbContext’e sahip alternatif modeller](core/modeling/dynamic-model.md)

@@ -4,14 +4,14 @@ author: bricelam
 ms.author: bricelam
 ms.date: 10/05/2018
 uid: core/managing-schemas/migrations/index
-ms.openlocfilehash: 5ae06a4342a556936dc44c5bf6622814eaad4733
-ms.sourcegitcommit: 7a7da65404c9338e1e3df42576a13be536a6f95f
+ms.openlocfilehash: b94ac567644a9d98a05a40857cc072c500203370
+ms.sourcegitcommit: 8f801993c9b8cd8a8fbfa7134818a8edca79e31a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/06/2018
-ms.locfileid: "48834753"
+ms.lasthandoff: 04/14/2019
+ms.locfileid: "59562565"
 ---
-<a name="migrations"></a>Geçişleri
+<a name="migrations"></a>Geçişler
 ==========
 
 Bir veri modeli, geliştirme sırasında değiştirir ve veritabanı ile eşitlenmemiş alır. Veritabanını bırakın ve EF modeli eşleşen yeni bir tane oluşturun sağlar, ancak bu yordamı veri kaybıyla sonuçlanır. EF Core geçişleri özelliği, veritabanındaki mevcut verileri korurken uygulamanın veri modeli ile eşitlenmiş saklamak için veritabanı şemasına artımlı olarak güncelleştirmek için bir yol sağlar.
@@ -47,8 +47,8 @@ dotnet ef migrations add InitialCreate
 
 Üç dosyayı projenize altında eklenir **geçişler** dizini:
 
-* **00000000000000_InitialCreate.cs**--ana geçişleri dosya. Geçiş uygulamak gerekli işlemleri içerir (içinde `Up()`) ve dönmek için (içinde `Down()`).
-* **00000000000000_InitialCreate.Designer.cs**--geçişleri meta veri dosyası. EF tarafından kullanılan bilgileri içerir.
+* **XXXXXXXXXXXXXX_InitialCreate.cs**--ana geçişleri dosya. Geçiş uygulamak gerekli işlemleri içerir (içinde `Up()`) ve dönmek için (içinde `Down()`).
+* **XXXXXXXXXXXXXX_InitialCreate.Designer.cs**--geçişleri meta veri dosyası. EF tarafından kullanılan bilgileri içerir.
 * **MyContextModelSnapshot.cs**--bir anlık görüntü geçerli modelinizin. Sonraki geçiş eklerken nelerin değiştiğini belirlemek için kullanılır.
 
 Zaman damgası dosya değişiklikleri ilerleyişini gördüğünüz şekilde kronolojik olarak sıralanan kalmalarını yardımcı olur.

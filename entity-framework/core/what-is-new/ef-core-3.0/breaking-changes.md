@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: fd593b2832a5a6ffe27cd4493127b5d405f684ba
-ms.sourcegitcommit: ce44f85a5bce32ef2d3d09b7682108d3473511b3
+ms.openlocfilehash: 6d78fc40fea210506235758bcd3613343ecabbcd
+ms.sourcegitcommit: 8f801993c9b8cd8a8fbfa7134818a8edca79e31a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/04/2019
-ms.locfileid: "58914133"
+ms.lasthandoff: 04/14/2019
+ms.locfileid: "59562578"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil edilen değişiklikler
 
@@ -685,6 +685,52 @@ modelBuilder
     .HasField("_id");
 ```
 
+## <a name="field-only-property-names-should-match-the-field-name"></a>Alan adı alanı-yalnızca özellik adlarının eşleşmesi gerekir
+
+Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+
+**Eski davranışı**
+
+EF Core 3.0 önce bir özellik bir dize değeri belirtilebilir ve bu ada sahip hiçbir özellik CLR türüne bulunduysa EF Core convetion kurallarını kullanarak bir alan için eşleşen deneyin.
+```C#
+private class Blog
+{
+    private int _id;
+    public string Name { get; set; }
+}
+```
+```C#
+modelBuilder
+    .Entity<Blog>()
+    .Property("Id");
+```
+
+**Yeni davranış**
+
+EF Core 3.0 ile başlayarak, bir alan özelliği salt okunur alan adı tam olarak eşleşmelidir.
+
+```C#
+modelBuilder
+    .Entity<Blog>()
+    .Property("_id");
+```
+
+**Neden**
+
+Benzer şekilde adlı iki özellik için aynı alanı kullanmaktan kaçınmak için bu değişiklik yapılmıştır, ayrıca eşleşen kuralları yalnızca alan özellikleri için CLR eşleniyor özellikleri aynıdır kolaylaştırır.
+
+**Risk azaltma işlemleri**
+
+Yalnızca alan özellikleri aynı eşleştirildikleri alan olarak adlandırılmalıdır.
+EF Core 3.0 daha yeni bir önizleme özelliği adından farklı bir alan adı açıkça yapılandırma yeniden etkinleştirmek planlıyoruz:
+
+```C#
+modelBuilder
+    .Entity<Blog>()
+    .Property("Id")
+    .HasField("_id");
+```
+
 ## <a name="adddbcontextadddbcontextpool-no-longer-call-addlogging-and-addmemorycache"></a>AddDbContext/AddDbContextPool artık AddLogging ve AddMemoryCache çağırın
 
 [İzleme sorun #14756](https://github.com/aspnet/EntityFrameworkCore/issues/14756)
@@ -1010,11 +1056,35 @@ Kullanım `HasIndex().ForSqlServerInclude()`.
 
 **Neden**
 
-API ile dizin için birleştirmek için bu değişiklik yapılmıştır `Includes` tüm sağlayıcıları veritabanı için içine yerleştirin.
+API ile dizin için birleştirmek için bu değişiklik yapılmıştır `Include` tüm sağlayıcıları veritabanı için içine yerleştirin.
 
 **Risk azaltma işlemleri**
 
 Yukarıda da gösterildiği gibi yeni API'yi kullanın.
+
+## <a name="metadata-api-changes"></a>Meta veri API'si değişiklikleri
+
+[İzleme sorun #214](https://github.com/aspnet/EntityFrameworkCore/issues/214)
+
+Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+
+**Yeni davranış**
+
+Aşağıdaki özellikler için genişletme yöntemleri dönüştürüldü:
+
+* `IEntityType.QueryFilter` -> `GetQueryFilter()`
+* `IEntityType.DefiningQuery` -> `GetDefiningQuery()`
+* `IProperty.IsShadowProperty` -> `IsShadowProperty()`
+* `IProperty.BeforeSaveBehavior` -> `GetBeforeSaveBehavior()`
+* `IProperty.AfterSaveBehavior` -> `GetAfterSaveBehavior()`
+
+**Neden**
+
+Bu değişiklik, yukarıda sözü edilen arabirimleri uygulamasını kolaylaştırır.
+
+**Risk azaltma işlemleri**
+
+Yeni uzantı yöntemlerini kullanın.
 
 ## <a name="ef-core-no-longer-sends-pragma-for-sqlite-fk-enforcement"></a>EF Core artık SQLite FK zorlama pragma gönderir
 
@@ -1193,7 +1263,7 @@ SET MigrationId = CONCAT(LEFT(MigrationId, 4)  - 543, SUBSTRING(MigrationId, 4, 
 
 Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
-**Değiştir**
+**Değişiklik**
 
 `RelationalEventId.LogQueryPossibleExceptionWithAggregateOperator` yeniden adlandırıldı `RelationalEventId.LogQueryPossibleExceptionWithAggregateOperatorWarning`.
 
