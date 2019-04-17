@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 6d78fc40fea210506235758bcd3613343ecabbcd
-ms.sourcegitcommit: 8f801993c9b8cd8a8fbfa7134818a8edca79e31a
+ms.openlocfilehash: 4b251638de43af6525f3e6faa0bd4113ab1714b9
+ms.sourcegitcommit: 5280dcac4423acad8b440143433459b18886115b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/14/2019
-ms.locfileid: "59562578"
+ms.lasthandoff: 04/16/2019
+ms.locfileid: "59619265"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil edilen değişiklikler
 
@@ -242,6 +242,28 @@ Davranış ayarları aracılığıyla geri yüklenebilir `context.ChangedTracker
 context.ChangeTracker.CascadeDeleteTiming = CascadeTiming.OnSaveChanges;
 context.ChangeTracker.DeleteOrphansTiming = CascadeTiming.OnSaveChanges;
 ```
+
+## <a name="deletebehaviorrestrict-has-cleaner-semantics"></a>DeleteBehavior.Restrict temizleyici semantiğe sahip
+
+[İzleme sorun #12661](https://github.com/aspnet/EntityFrameworkCore/issues/12661)
+
+Bu değişiklik, EF Core 3.0-preview 5'teki sunulacaktır.
+
+**Eski davranışı**
+
+3.0 önce `DeleteBehavior.Restrict` ile veritabanındaki yabancı anahtarlar oluşturulan `Restrict` semantiği, aynı zamanda açık olmayan bir şekilde değiştirilmiş iç düzeltme.
+
+**Yeni davranış**
+
+3.0 ile başlayan `DeleteBehavior.Restrict` yabancı anahtarlar ile oluşturulan sağlar `Restrict` semantiği--diğer bir deyişle, hiçbir basamaklar; throw EF iç düzeltme de etkilemeden kısıtlama ihlali üzerinde--.
+
+**Neden**
+
+Bu değişiklik deneyimini geliştirmek amacıyla kullanılarak yapıldığını `DeleteBehavior` beklenmeyen yan etkiler olmadan sezgisel bir şekilde.
+
+**Risk azaltma işlemleri**
+
+Kullanarak önceki davranış geri yüklenebilir `DeleteBehavior.ClientNoAction`.
 
 ## <a name="query-types-are-consolidated-with-entity-types"></a>Sorgu türleri varlık türleri ile birleştirilir.
 

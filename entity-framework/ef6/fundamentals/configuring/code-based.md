@@ -3,12 +3,12 @@ title: Kod tabanlı yapılandırma - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 13886d24-2c74-4a00-89eb-aa0dee328d83
-ms.openlocfilehash: c317f112f713612f7b9aef3764a0bd004fef5424
-ms.sourcegitcommit: 735715f10cc8a231c213e4f055d79f0effd86570
+ms.openlocfilehash: 079a4ab30af74eac8b1f51ece5801ff40a867a29
+ms.sourcegitcommit: 5280dcac4423acad8b440143433459b18886115b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/16/2019
-ms.locfileid: "56325359"
+ms.lasthandoff: 04/16/2019
+ms.locfileid: "59619291"
 ---
 # <a name="code-based-configuration"></a>Kod tabanlı yapılandırma
 > [!NOTE]
@@ -106,7 +106,7 @@ Bunun için aşağı kilitlenmeden önce geçmesi gereken, mevcut yapılandırma
 - Uygulama başlangıcında (EF kullanılmadan önce) eklentisi veya bu olayı için olay işleyicisi yöntemi sağlayıcısını kaydetmeniz. (Uygulamanın EF kullanan önce Bunun yapılması gerektiğini unutmayın.)  
 - Olay işleyicisi ReplaceService değiştirilmesi gereken her hizmet için bir çağrı yapar.  
 
-Örneğin, repalce IDbConnectionFactory ve DbProviderService şuna benzeyen bir işleyici kaydetmek:  
+Örneğin, IDbConnectionFactory ve DbProviderService değiştirmek şuna benzeyen bir işleyici kaydedin:  
 
 ``` csharp
 DbConfiguration.Loaded += (_, a) =>
