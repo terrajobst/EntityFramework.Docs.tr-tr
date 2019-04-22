@@ -5,10 +5,10 @@ ms.date: 02/23/2018
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/providers/index
 ms.openlocfilehash: 3748496db89c110d55a0876727e33e1f3ec987d9
-ms.sourcegitcommit: ce44f85a5bce32ef2d3d09b7682108d3473511b3
+ms.sourcegitcommit: 5280dcac4423acad8b440143433459b18886115b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/04/2019
+ms.lasthandoff: 04/18/2019
 ms.locfileid: "58914097"
 ---
 # <a name="database-providers"></a>Veritabanı Sağlayıcıları
@@ -34,7 +34,7 @@ Entity Framework Core birçok farklı veritabanı, veritabanı sağlayıcı olar
 | [EntityFrameworkCore.FirebirdSql](https://www.nuget.org/packages/EntityFrameworkCore.FirebirdSql/)                   | Firebird 2.5 ve 3.x       | [Rafael Almeida](https://github.com/ralmsdeveloper)                           |                      | [Wiki](https://github.com/ralmsdeveloper/EntityFrameworkCore.FirebirdSQL/wiki)                                                                                                                     |
 | [MySql.Data.EntityFrameworkCore](https://www.nuget.org/packages/MySql.Data.EntityFrameworkCore)                      | MySQL                      | [MySQL proje](http://dev.mysql.com) (Oracle)                                |                      | [Docs](https://dev.mysql.com/doc/connector-net/en/connector-net-entityframework-core.html)                                                                                                         |
 | [Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Oracle.EntityFrameworkCore/)                             | Oracle DB 11.2 ve sonraki sürümler     | [Oracle](https://www.oracle.com/technetwork/topics/dotnet/)                   | Ön sürüm           | [Web sitesi](https://www.oracle.com/technetwork/topics/dotnet/)                                                                                                                                       |
-| [IBM.EntityFrameworkCore](https://www.nuget.org/packages/IBM.EntityFrameworkCore)                                    | Db2 Informix              | [IBM](https://ibm.com)                                                        | Windows sürümü      | [blogu](https://www.ibm.com/developerworks/community/blogs/96960515-2ea1-4391-8170-b0515d08e4da/entry/Creating_Entity_Data_Model_using_IBM_Data_Server_providers_for_Entity_Framework_Core?lang=en) |
+| [IBM. EntityFrameworkCore](https://www.nuget.org/packages/IBM.EntityFrameworkCore)                                    | Db2 Informix              | [IBM](https://ibm.com)                                                        | Windows sürümü      | [blogu](https://www.ibm.com/developerworks/community/blogs/96960515-2ea1-4391-8170-b0515d08e4da/entry/Creating_Entity_Data_Model_using_IBM_Data_Server_providers_for_Entity_Framework_Core?lang=en) |
 | [IBM. EntityFrameworkCore lnx](https://www.nuget.org/packages/IBM.EntityFrameworkCore-lnx)                            | Db2 Informix              | [IBM](https://ibm.com)                                                        | Linux sürümü        | [blogu](https://www.ibm.com/developerworks/community/blogs/96960515-2ea1-4391-8170-b0515d08e4da/entry/Creating_Entity_Data_Model_using_IBM_Data_Server_providers_for_Entity_Framework_Core?lang=en) |
 | [IBM. EntityFrameworkCore osx](https://www.nuget.org/packages/IBM.EntityFrameworkCore-osx)                            | Db2 Informix              | [IBM](https://ibm.com)                                                        | macOS sürümü        | [blogu](https://www.ibm.com/developerworks/community/blogs/96960515-2ea1-4391-8170-b0515d08e4da/entry/Creating_Entity_Data_Model_using_IBM_Data_Server_providers_for_Entity_Framework_Core?lang=en) |
 | [EntityFrameworkCore.Jet](https://www.nuget.org/packages/EntityFrameworkCore.Jet/)                                   | Microsoft Access dosyası     | [Bubi](https://github.com/bubibubi)                                           | .NET Framework       | [Benioku dosyası](https://github.com/bubibubi/EntityFrameworkCore.Jet/blob/master/docs/README.md)                                                                                                           |
