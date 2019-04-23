@@ -6,12 +6,12 @@ ms.date: 08/08/2018
 ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
-ms.openlocfilehash: 9ef87a737111053df0359f3b2d7a4f82d25c578a
-ms.sourcegitcommit: 5280dcac4423acad8b440143433459b18886115b
+ms.openlocfilehash: 61a58bd6119763d90731fac62343b983af510cb6
+ms.sourcegitcommit: 87fcaba46535aa351db4bdb1231bd14b40e459b9
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/18/2019
-ms.locfileid: "58867950"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59929881"
 ---
 # <a name="provider-impacting-changes"></a>Sağlayıcı etkileyen değişiklikler
 
@@ -62,6 +62,7 @@ Birçoğu Not [uygulama düzeyi bozucu değişiklikler](../what-is-new/ef-core-3
   * Kural kümesi Hizmetleri değişti. Sağlayıcıları artık "ProviderConventionSet" veya "RelationalConventionSet" devralır.
   * Özelleştirmeleri aracılığıyla eklenebilir `IConventionSetCustomizer` Hizmetleri, ancak bu yok sağlayıcıları diğer uzantıları tarafından kullanılmak üzere tasarlanmıştır.
   * Çalışma zamanında kullanılan kuralları gelen çözümlenen `IConventionSetBuilder`.
+* https://github.com/aspnet/EntityFrameworkCore/pull/15288 -Dengeli dağıtım data iç türleri kullanmaya gerek önlemek için ortak bir API düzenlendi. Dengeli dağıtım tüm ilişkisel sağlayıcıları için ilişkisel taban sınıfı tarafından işlenir olduğundan bu ilişkisel olmayan sağlayıcıları yalnızca etkileyen.
 
 ## <a name="21-----22"></a>2.1 ---> 2.2
 
@@ -82,7 +83,6 @@ Birçoğu Not [uygulama düzeyi bozucu değişiklikler](../what-is-new/ef-core-3
   * Bu testleri kullanarak sağlayıcılarının react gerekebilir
 * [https://github.com/aspnet/EntityFrameworkCore/pull/12141](https://github.com/aspnet/EntityFrameworkCore/pull/12141) -Laboratuvardaki işlevsel testlere disposing yerine havuza bağlamını döndürür
   * Bu değişiklik, bazı test tepki vermek sağlayıcıları gerektirebilecek yeniden düzenleme içerir
-
 
 ### <a name="test-and-product-code-changes"></a>Test ve ürün kodu değişiklikleri
 
