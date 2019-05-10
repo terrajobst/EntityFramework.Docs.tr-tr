@@ -3,12 +3,12 @@ title: İşlemler - EF6 ile çalışma
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 0d0f1824-d781-4cb3-8fda-b7eaefced1cd
-ms.openlocfilehash: 7197733ab25c8475746e7863963384730919e3ff
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 96cfff4cca59ab27dd68f50d0260e90902e33a92
+ms.sourcegitcommit: eefcab31142f61a7aaeac03ea90dcd39f158b8b8
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489784"
+ms.lasthandoff: 04/29/2019
+ms.locfileid: "64873227"
 ---
 # <a name="working-with-transactions"></a>İşlemleri ile çalışma
 > [!NOTE]
@@ -39,7 +39,7 @@ Ancak bazı kullanıcılar işlemler üzerinde daha fazla denetim gerektiren –
 
 Framework EF6 ile başlayarak, artık sağlar:  
 
-1. **Database.BeginTransaction()** : başlatmak ve işlemleri kendileri aynı işlem içinde birleştirilmek üzere çeşitli işlemlere izin verme, var olan bir DbContext içinde– tamamlamak bir kullanıcı için daha kolay bir yöntem ve bu nedenle tüm kaydedilmiş veya tüm biri olarak geri alındı. Ayrıca, daha kolay işlemin yalıtım düzeyini belirtmek kullanıcı sağlar.  
+1. **Database.BeginTransaction()** : Başlatmak ve işlemleri kendileri aynı işlem içinde birleştirilmek üzere çeşitli işlemlere izin verme, var olan bir DbContext içinde– tamamlamak bir kullanıcı için daha kolay bir yöntem ve bu nedenle tüm kaydedilmiş veya tüm olarak geri alındı. Ayrıca, daha kolay işlemin yalıtım düzeyini belirtmek kullanıcı sağlar.  
 2. **Database.UseTransaction()** : Entity Framework dışında başlatıldı, bir işlem kullanmak DbContext sağlar.  
 
 ### <a name="combining-several-operations-into-one-transaction-within-the-same-context"></a>Çeşitli işlemler aynı bağlam içinde tek bir işleme birleştirme  
@@ -126,7 +126,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-sing System.Transactions;
+using System.Transactions;
 
 namespace TransactionsExamples
 {
@@ -200,7 +200,7 @@ Bu bölümde, yukarıdaki işlemleri nasıl etkileşim açıklanmaktadır:
 
 Yeni bağlantı dayanıklılığı özelliğini kullanıcı tarafından başlatılan işlemleri ile çalışmaz. Ayrıntılar için bkz [yeniden deneme yürütme stratejileri](~/ef6/fundamentals/connection-resiliency/retry-logic.md#user-initiated-transactions-are-not-supported).  
 
-### <a name="asynchronous-programming"></a>Zaman uyumsuz programlama  
+### <a name="asynchronous-programming"></a>Zaman Uyumsuz Programlama  
 
 Önceki bölümlerde açıklanan yaklaşımı hiçbir başka seçenekleri veya ayarları çalışmak için gereken [zaman uyumsuz yöntemleri kaydedin ve sorgu](~/ef6/fundamentals/async.md
 ). Ancak, zaman uyumsuz yöntemler içinde neler bağlı olarak, bu sırayla, kilitlenmeleri veya genel uygulama performansını için hatalı olduğu engelleme neden olabilir. uzun süre çalışan işlemler – neden olabilir, unutmayın.  

@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: d7a22b5a-4c5b-4e3b-9897-4d7320fcd13f
 uid: core/miscellaneous/configuring-dbcontext
-ms.openlocfilehash: 0350b25d0d0efe05df7cb9e93a3f4ae2d864fd63
-ms.sourcegitcommit: 5280dcac4423acad8b440143433459b18886115b
+ms.openlocfilehash: 316d363d4a1b8a909efc1c32b492280c0d16cb4e
+ms.sourcegitcommit: 960e42a01b3a2f76da82e074f64f52252a8afecc
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/18/2019
-ms.locfileid: "59363943"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "65405214"
 ---
 # <a name="configuring-a-dbcontext"></a>DbContext yapılandırma
 
@@ -163,7 +163,13 @@ var options = serviceProvider.GetService<DbContextOptions<BloggingContext>>();
 ```
 ## <a name="avoiding-dbcontext-threading-issues"></a>DbContext iş parçacığı oluşturma sorunları önleme
 
-Entity Framework Core aynı çalıştırılan birden çok paralel işlemleri desteklemez `DbContext` örneği. Eş zamanlı erişim tanımsız davranış, uygulama kilitlenmesi ve veri bozulması neden olabilir. Bu nedenle kullanılması her zaman önemlidir ayrı `DbContext` örnekleri, paralel olarak yürütülen işlemler için. 
+Entity Framework Core aynı çalıştırılan birden çok paralel işlemleri desteklemez `DbContext` örneği. Bu, hem zaman uyumsuz sorgu Paralel yürütme hem de açık eş zamanlı kullanım birden çok iş parçacığından içerir. Bu nedenle, her zaman `await` zaman uyumsuz hemen çağırır veya ayrı kullanın `DbContext` örnekleri, paralel olarak yürütülen işlemler için.
+
+EF Core kullanma girişimi algıladığında bir `DbContext` göreceğiniz eşzamanlı olarak, örnek bir `InvalidOperationException` şöyle bir ileti ile: 
+
+> Bu bağlamdaki bir önceki işlemi tamamlandı önce ikinci bir işlem başlatıldı. Bu genellikle farklı iş parçacıkları tarafından DbContext aynı örneği kullanarak, ancak örnek üyeleri iş parçacığı güvenli olduğu garanti edilmez neden olur.
+
+Eş zamanlı erişim algılanmayan gittiğinde, tanımsız davranış, uygulama kilitlenmesi ve veri bozulmasına neden olabilir.
 
 Aynı inadvernetly neden eş zamanlı erişim için yaygın hatalar vardır `DbContext` örneği:
 

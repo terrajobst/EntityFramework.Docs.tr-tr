@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 1c12abb31c82e603e0d694926f4c289908217778
-ms.sourcegitcommit: 87fcaba46535aa351db4bdb1231bd14b40e459b9
+ms.openlocfilehash: b1b5e286e08a8b6b4efe225a176e76023f9fdd20
+ms.sourcegitcommit: 960e42a01b3a2f76da82e074f64f52252a8afecc
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59929917"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "65405241"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil edilen değişiklikler
 
@@ -138,7 +138,7 @@ Yukarıdaki sorgu her ikisi de aynı SQL parametrelere sahip aynı parametreli S
 
 **Neden**
 
-Yöntem aşırı yüklemeleri böyle güvenmelidir yanı sıra ilişkilendirilmiş dize yöntemini çağırmak için hedefi olduğu zaman yanlışlıkla ham srting yöntemini çağırmak çok kolay hale getirir.
+Yöntem aşırı yüklemeleri böyle güvenmelidir yanı sıra ilişkilendirilmiş dize yöntemini çağırmak için hedefi olduğu zaman yanlışlıkla ham dize yöntemini çağırmak çok kolay hale getirir.
 Bu, verilmiş olması, parametreli getirilemedi sorgularda neden olabilir.
 
 **Risk azaltma işlemleri**
@@ -631,7 +631,7 @@ Kullanmaya tamamladıktan hemen sonra 3.0 ile başlayarak, EF Core bağlantıyı
 
 **Neden**
 
-Birden fazla bağlamı aynı kullanmak için bu değişiklik sağlayan `TransactionScope`. Yeni davranış alose EF6 eşleşir.
+Birden fazla bağlamı aynı kullanmak için bu değişiklik sağlayan `TransactionScope`. Yeni davranış da EF6 eşleşir.
 
 **Risk azaltma işlemleri**
 
@@ -689,7 +689,7 @@ Bunun özel durumu burada destek alanı doğrudan biliniyorsa ayarlamak sorgu y�
 
 **Yeni davranış**
 
-Bir özellik için destek alanı biliniyorsa, EF Core 3.0 ile başlayan sonra her zaman okuyabilmesini ve yazma yedekleme alanını kullanarak bu özelliği.
+Bir özellik için destek alanı biliniyorsa EF Core 3.0 ile başlayarak, ardından EF Core her zaman okuyabilmesini ve yazma yedekleme alanını kullanarak bu özelliği.
 Uygulama, alıcı veya ayarlayıcı yöntemleri kodlanmış ek davranış bağlı değilse bu bir uygulama sonu neden olabilir.
 
 **Neden**

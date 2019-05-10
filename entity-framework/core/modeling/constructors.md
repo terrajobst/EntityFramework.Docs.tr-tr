@@ -4,12 +4,12 @@ author: ajcvickers
 ms.date: 02/23/2018
 ms.assetid: 420AFFE7-B709-4A68-9149-F06F8746FB33
 uid: core/modeling/constructors
-ms.openlocfilehash: 1b36197465fb9a6571a306d36eb1e9d885a5399e
-ms.sourcegitcommit: 0cef7d448e1e47bdb333002e2254ed42d57b45b6
+ms.openlocfilehash: 5bf49718f02c1860871b1f4c255ec4d98fce2fc7
+ms.sourcegitcommit: 960e42a01b3a2f76da82e074f64f52252a8afecc
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/29/2018
-ms.locfileid: "43152471"
+ms.lasthandoff: 05/08/2019
+ms.locfileid: "65405255"
 ---
 # <a name="entity-types-with-constructors"></a>Varlık oluşturuculara sahip türleri
 
@@ -90,7 +90,7 @@ Dikkat edilecek bazı noktalar:
 * Tüm özellikler Oluşturucu parametresi olmalıdır. Örneğin, EF Core, normal bir şekilde Oluşturucu çağrıldıktan sonra ayarlayacak şekilde Post.Content özelliği için herhangi bir oluşturucu parametresi ayarlanmadı.
 * Başlamalıdır olsa özellikler Pascal büyük küçük harfleri olabilir dışında parametre türleri ve adları özellik türleri ve adları eşleşmelidir.
 * EF Core Gezinti özelliklerini (örneğin, Blog veya yukarıdaki gönderileri) ayarlayamazsınız oluşturucu kullanılarak.
-* Kurucu ortak, özel veya diğer bir erişilebilirliğine sahip olmalıdır.
+* Kurucu ortak, özel veya diğer bir erişilebilirliğine sahip olmalıdır. Oluşturucu türetilen proxy sınıfı erişilebilir olduğunu ancak yavaş yükleniyor proxy'leri gerektirir. Bu genellikle ortak veya korumalı hale getirme anlamına gelir.
 
 ### <a name="read-only-properties"></a>Salt okunur özellikler
 
