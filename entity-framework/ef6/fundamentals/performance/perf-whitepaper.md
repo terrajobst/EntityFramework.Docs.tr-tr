@@ -3,12 +3,12 @@ title: EF4 EF5 ve EF6 için performans konuları
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d6d5a465-6434-45fa-855d-5eb48c61a2ea
-ms.openlocfilehash: 4c1f03533cf6df49555c3ef8d09d5949b9a3335c
-ms.sourcegitcommit: 33b2e84dae96040f60a613186a24ff3c7b00b6db
+ms.openlocfilehash: f8fa1001c85366e169cf50e89efdb65bd92b671e
+ms.sourcegitcommit: f277883a5ed28eba57d14aaaf17405bc1ae9cf94
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/21/2019
-ms.locfileid: "56459217"
+ms.lasthandoff: 05/18/2019
+ms.locfileid: "65874607"
 ---
 # <a name="performance-considerations-for-ef-4-5-and-6"></a>EF 6 4 ve 5 için performans konuları
 David Obando, Eric Dettinger ve diğerleri
@@ -119,9 +119,9 @@ Yükleme modelinden görünüm oluşturma (çalışma zamanı) maliyeti, öncede
 
 Görünüm oluşturma işleminde harcanan süreyi önemli ölçüde ilişkilendirmeleri bağımsız ilişkileri modelden yabancı anahtar ilişkileri de geçiş burada geliştirilmiş çalışmalarını bir dizi gördük.
 
-Bu geliştirme göstermek için biz Navision modeli iki sürümünü EDMGen kullanarak oluşturulur. *Not: seeappendix Cfor Navision modelin bir açıklaması.* Varlıklar ve aralarındaki ilişkiler, çok büyük miktarda nedeniyle bu alıştırma için ilginç Navision modelidir.
+Bu geliştirme göstermek için biz Navision modeli iki sürümünü EDMGen kullanarak oluşturulur. *Not: Ek C Navision modelin bir açıklaması için bkz.* Varlıklar ve aralarındaki ilişkiler, çok büyük miktarda nedeniyle bu alıştırma için ilginç Navision modelidir.
 
-Bu çok büyük bir modelin bir sürümü yabancı anahtar ilişkilerini oluşturuldu ve diğer bağımsız ilişkilerini oluşturuldu. Biz sonra görünümlerin her model için ne kadar sürdüğünü zaman aşımına uğradı. Varlık Framework5 test sınıfı EntityViewGenerator GenerateViews() yöntemden Entity Framework 6 test sınıfı StorageMappingItemCollection GenerateViews() yöntemden kullanılabilir ancak görünümleri oluşturmak için kullanılır. Bu kod Entity Framework 6 kod temelinde oluşan alanlarını yeniden yapılandırma nedeniyle.
+Bu çok büyük bir modelin bir sürümü yabancı anahtar ilişkilerini oluşturuldu ve diğer bağımsız ilişkilerini oluşturuldu. Biz sonra görünümlerin her model için ne kadar sürdüğünü zaman aşımına uğradı. Entity Framework 5 test sınıfı EntityViewGenerator GenerateViews() yöntemden Entity Framework 6 test sınıfı StorageMappingItemCollection GenerateViews() yöntemden kullanılabilir ancak görünümleri oluşturmak için kullanılır. Bu kod Entity Framework 6 kod temelinde oluşan alanlarını yeniden yapılandırma nedeniyle.
 
 Entity Framework 5 kullanılarak, görünüm oluşturma yabancı anahtarlara sahip olan model için bir laboratuvar makinede 65 dakika sürdü. Cihazın bilinmeyen ne kadar bağımsız ilişkilendirmeleri kullandığınız modeline görünümleri oluşturmak için alacağı. Size sunduğumuz laboratuvarda aylık güncelleştirmeleri yüklemek için makine yeniden başlatılmış önce bir ay üzerinden çalışan test kalmadı.
 
@@ -240,7 +240,7 @@ Tüm önbellek girişlerinin, çıkarmak için hangi girişlerin belirlerken eş
 
 #### <a name="323-test-metrics-demonstrating-query-plan-caching-performance"></a>3.2.3 sorgu planını önbelleğe alma performans gösteren ölçümleri test
 
-Sorgu planını önbelleğe alma, uygulamanızın performansı etkisini göstermek için bir test ediyoruz Navision model Entity SQL sorguları bir dizi yürütüldüğü gerçekleştirdiğimiz. Ek Navision modeli ve yürütüldü sorguları türde bir açıklaması için bkz. Bu test ediyoruz önce sorguları listesi boyunca yineleme yapmak ve her bir kez (önbelleğe alma etkinse) bunları önbelleğine eklemek için çalıştırın. Bu adım untimed bağlıdır. Ardından, ana iş parçacığı gerçekleşmesi için üst düzey önbellek izin vermek tekrar 60 saniye için uyku; Son olarak, önbelleğe alınan sorgularını yürütmek için 2. bir liste zaman yineleme. Ayrıca, böylece doğru bir şekilde elde zamanları sorgu planı önbelleği tarafından verilen avantajı sorgular kümelerine yürütülmeden önce yaptığı SQL Server planı önbellek temizlenir.
+Sorgu planını önbelleğe alma, uygulamanızın performansı etkisini göstermek için bir test ediyoruz Navision model Entity SQL sorguları bir dizi yürütüldüğü gerçekleştirdiğimiz. Ek Navision modeli ve yürütüldü sorguları türde bir açıklaması için bkz. Bu test ediyoruz önce sorguları listesi boyunca yineleme yapmak ve her bir kez (önbelleğe alma etkinse) bunları önbelleğine eklemek için çalıştırın. Bu adım untimed bağlıdır. Ardından, ana iş parçacığı gerçekleşmesi için üst düzey önbellek izin vermek tekrar 60 saniye için uyku; Son olarak, önbelleğe alınan sorgularını yürütmek için 2. bir liste zaman yineleme. Ayrıca, böylece doğru bir şekilde elde zamanları sorgu planı önbelleği tarafından verilen avantajı sorgular kümelerine yürütülmeden önce SQL Server planı önbelleği temizlendi.
 
 ##### <a name="3231-test-results"></a>3.2.3.1 test sonuçları
 
@@ -487,7 +487,7 @@ Bir lambda ile Atla çağırma aynı bu kodu daha hızlı bir sürümünü içer
 
 ``` csharp
 var customers = context.Customers.OrderBy(c => c.LastName);
-for (var i = 0; i \< count; ++i)
+for (var i = 0; i < count; ++i)
 {
     var currentCustomer = customers.Skip(() => i).FirstOrDefault();
     ProcessCustomer(currentCustomer);
