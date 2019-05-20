@@ -30,6 +30,7 @@
 #### [.NET Core](core/get-started/netcore/index.md)
 ##### [Yeni Veritabanı](core/get-started/netcore/new-db-sqlite.md)
 #### [ASP.NET Core](core/get-started/aspnetcore/index.md)
+##### [⤤ Etkileşimli öğretici](/learn/modules/persist-data-ef-core/)
 ##### [Yeni Veritabanı](core/get-started/aspnetcore/new-db.md)
 ##### [Mevcut Veritabanı](core/get-started/aspnetcore/existing-db.md)
 ##### [⤤ EF Core ve Razor Pages](/aspnet/core/data/ef-rp/intro)
