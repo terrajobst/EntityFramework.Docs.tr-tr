@@ -62,7 +62,7 @@ Birçoğu Not [uygulama düzeyi bozucu değişiklikler](../what-is-new/ef-core-3
   * Kural kümesi Hizmetleri değişti. Sağlayıcıları artık "ProviderConventionSet" veya "RelationalConventionSet" devralır.
   * Özelleştirmeleri aracılığıyla eklenebilir `IConventionSetCustomizer` Hizmetleri, ancak bu yok sağlayıcıları diğer uzantıları tarafından kullanılmak üzere tasarlanmıştır.
   * Çalışma zamanında kullanılan kuralları gelen çözümlenen `IConventionSetBuilder`.
-* https://github.com/aspnet/EntityFrameworkCore/pull/15288 -Dengeli dağıtım data iç türleri kullanmaya gerek önlemek için ortak bir API düzenlendi. Dengeli dağıtım tüm ilişkisel sağlayıcıları için ilişkisel taban sınıfı tarafından işlenir olduğundan bu ilişkisel olmayan sağlayıcıları yalnızca etkileyen.
+* [https://github.com/aspnet/EntityFrameworkCore/pull/15288](https://github.com/aspnet/EntityFrameworkCore/pull/15288) -Dengeli dağıtım data iç türleri kullanmaya gerek önlemek için ortak bir API düzenlendi. Dengeli dağıtım tüm ilişkisel sağlayıcıları için ilişkisel taban sınıfı tarafından işlenir olduğundan bu ilişkisel olmayan sağlayıcıları yalnızca etkileyen.
 
 ## <a name="21-----22"></a>2.1 ---> 2.2
 
