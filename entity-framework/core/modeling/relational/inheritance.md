@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 9a7c5488-aaf4-4b40-b1ff-f435ff30f6ec
 uid: core/modeling/relational/inheritance
-ms.openlocfilehash: 2aaceb05bbc1b0eb5c116b3dc1fb33c90c115a70
-ms.sourcegitcommit: 645785187ae23ddf7d7b0642c7a4da5ffb0c7f30
+ms.openlocfilehash: 2d0a2abc554f5f115479f886ca3f9f4f01b80b5b
+ms.sourcegitcommit: ea1cdec0b982b922a59b9d9301d3ed2b94baca0f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58419685"
+ms.lasthandoff: 05/31/2019
+ms.locfileid: "66452286"
 ---
 # <a name="inheritance-relational-database"></a>Devralma (ilişkisel veritabanı)
 
@@ -52,7 +52,7 @@ public class RssBlog : Blog
 ![görüntü](_static/inheritance-tph-data.png)
 
 >[!NOTE]
-> Veritabanı colmmns otomatik olarak TPH eşleme kullanırken gerektiği gibi boş değer atanabilir yapılır.
+> Veritabanı sütunları otomatik olarak TPH eşleme kullanırken gerektiği gibi boş değer atanabilir yapılır.
 
 ## <a name="data-annotations"></a>Veri ek açıklamaları
 

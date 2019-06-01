@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: b1b5e286e08a8b6b4efe225a176e76023f9fdd20
-ms.sourcegitcommit: 960e42a01b3a2f76da82e074f64f52252a8afecc
+ms.openlocfilehash: faae0153e0f2bdd42d3b316582dfcab88d9ceb5b
+ms.sourcegitcommit: ea1cdec0b982b922a59b9d9301d3ed2b94baca0f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 05/08/2019
-ms.locfileid: "65405241"
+ms.lasthandoff: 05/31/2019
+ms.locfileid: "66452292"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil edilen değişiklikler
 
@@ -88,7 +88,7 @@ Bu değişiklik EF Core 3.0-preview 4 ve .NET Core SDK'sını ilgili sürümü k
 
 **Yeni davranış**
 
-3. 0'dan başlayarak .NET SDK'sını değil incude mu `dotnet ef` aracı kullanabilmeniz için önce açıkça yerel veya genel bir aracı yüklemek zorunda. 
+3. 0'dan başlayarak .NET SDK'sı yer almaz `dotnet ef` aracı kullanabilmeniz için önce açıkça yerel veya genel bir aracı yüklemek zorunda. 
 
 **Neden**
 
@@ -742,7 +742,7 @@ Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
 
 **Eski davranışı**
 
-EF Core 3.0 önce bir özellik bir dize değeri belirtilebilir ve bu ada sahip hiçbir özellik CLR türüne bulunduysa EF Core convetion kurallarını kullanarak bir alan için eşleşen deneyin.
+EF Core 3.0 önce bir özellik bir dize değeri belirtilebilir ve bu ada sahip hiçbir özellik CLR türüne bulunduysa EF Core kuralı kurallarını kullanarak bir alan için eşleşen deneyin.
 ```C#
 private class Blog
 {
@@ -798,7 +798,7 @@ EF Core 3.0 ile başlayan `AddDbContext` ve `AddDbContextPool` artık kayıt hiz
 
 **Neden**
 
-EF Core 3.0, bu hizmetler, uygulamanın DI cotainer olduğunu gerektirmez. Ancak, varsa `ILoggerFactory` uygulamanın DI kapsayıcısında kayıtlı EF Core tarafından kullanılır.
+EF Core 3.0, bu hizmetler uygulamanın DI kapsayıcısında olduğunu gerektirmez. Ancak, varsa `ILoggerFactory` uygulamanın DI kapsayıcısında kayıtlı EF Core tarafından kullanılır.
 
 **Risk azaltma işlemleri**
 
@@ -985,7 +985,7 @@ Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
 
 **Eski davranışı**
 
-EF Core 3.0 önce kod arama `HasOne` veya `HasMany` tek bir dize ile yorumlandığı kafa karıştırıcı bir şekilde oluştu.
+EF Core 3.0 önce kod arama `HasOne` veya `HasMany` tek bir dize ile kafa karıştırıcı bir şekilde yorumlanır.
 Örneğin:
 ```C#
 modelBuilder.Entity<Samurai>().HasOne("Entrance").WithOne();
@@ -1215,7 +1215,7 @@ SET GuidColumn = hex(substr(GuidColumn, 4, 1)) ||
 WHERE typeof(GuidColumn) == 'blob';
 ```
 
-EF Core de önceki davranışı configuirng bir değer dönüştürücü bu özellikleri kullanmaya devam edebilirsiniz.
+EF Core de bir değer dönüştürücü bu özelliklerini yapılandırarak önceki davranışı kullanarak devam edemedi.
 
 ``` csharp
 modelBuilder
@@ -1240,7 +1240,7 @@ Char değerleri daha önce SQLite tamsayı değerleri olarak sored. Örneğin, b
 
 **Yeni davranış**
 
-Char değerleri sotred metin olarak sunulmuştur.
+Char değerleri artık metin olarak depolanır.
 
 **Neden**
 
@@ -1256,7 +1256,7 @@ SET CharColumn = char(CharColumn)
 WHERE typeof(CharColumn) = 'integer';
 ```
 
-EF Core de önceki davranışı configuirng bir değer dönüştürücü bu özellikleri kullanmaya devam edebilirsiniz.
+EF Core de bir değer dönüştürücü bu özelliklerini yapılandırarak önceki davranışı kullanarak devam edemedi.
 
 ``` csharp
 modelBuilder
@@ -1277,7 +1277,7 @@ Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
-Geçiş kimlikleri currret kültürün takvimini kullanarak oluşturulan inadvertantly yoktu.
+Geçiş kimlikleri, geçerli kültürün takvimini kullanarak yanlışlıkla üretildi.
 
 **Yeni davranış**
 
@@ -1289,7 +1289,7 @@ Geçiş sırası önemlidir veritabanını güncelleştirmek ya da birleştirme 
 
 **Risk azaltma işlemleri**
 
-Bu değişiklik olmayan Gregoryen takvimdeki bir yılın Gregoryen takvimini (içeren Thai Budist takvimi gibi) daha büyük olduğu kullanan herkesin etkiler. Mevcut geçiş kimlikleri böylece mevcut sonra yeni geçişleri sıralı güncelleştirilmesi gerekiyor geçişler.
+Bu değişiklik, olmayan-Gregoryen takvim yılı Gregoryen takvimini (içeren Thai Budist takvimi gibi) daha büyük olduğu kullanan herkesin etkiler. Mevcut geçiş kimlikleri böylece mevcut sonra yeni geçişleri sıralı güncelleştirilmesi gerekiyor geçişler.
 
 Geçiş kimliği geçiş özniteliğinde geçişler Tasarımcı dosyalarında bulunabilir.
 
@@ -1342,7 +1342,7 @@ var constraintName = myForeignKey.Name;
 
 **Yeni davranış**
 
-EF Core 3.0 ile başlayarak, yabancı anahtar kısıtlaması adları şimdi de "kısıtlaması adı" olarak adlandırılır. Örneğin:
+EF Core 3.0 ile başlayarak, yabancı anahtar kısıtlaması adları şimdi de "kısıtlama adı" adlandırılır. Örneğin:
 
 ```C#
 var constraintName = myForeignKey.ConstraintName;
