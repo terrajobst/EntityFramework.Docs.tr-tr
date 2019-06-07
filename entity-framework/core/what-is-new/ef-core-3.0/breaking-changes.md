@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: faae0153e0f2bdd42d3b316582dfcab88d9ceb5b
-ms.sourcegitcommit: ea1cdec0b982b922a59b9d9301d3ed2b94baca0f
+ms.openlocfilehash: 656a6187c1572746e3f28961b3df3268e611ce99
+ms.sourcegitcommit: 119058fefd7f35952048f783ada68be9aa612256
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 05/31/2019
-ms.locfileid: "66452292"
+ms.lasthandoff: 06/06/2019
+ms.locfileid: "66749722"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil edilen değişiklikler
 
@@ -698,7 +698,7 @@ Bu değişiklik iş mantığı deneyebileceğinizi olarak tetikleyen EF Core ön
 
 **Risk azaltma işlemleri**
 
-ModelBuilder fluent API'si özellik erişim modunda yapılandırmasını aracılığıyla öncesi 3.0 davranış geri yüklenebilir.
+Öncesi 3.0 davranışı özellik erişim modu konfigürasyonuyla geri yüklenebilir `ModelBuilder`.
 Örneğin:
 
 ```C#
@@ -1190,7 +1190,7 @@ GUID değerleri, daha önce SQLite değerlerine BLOB olarak sored.
 
 **Yeni davranış**
 
-GUID değerlerinin sotred metin olarak sunulmuştur.
+GUID değerleri, artık metin olarak depolanır.
 
 **Neden**
 
