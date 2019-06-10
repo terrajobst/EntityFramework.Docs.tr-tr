@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 656a6187c1572746e3f28961b3df3268e611ce99
-ms.sourcegitcommit: 119058fefd7f35952048f783ada68be9aa612256
+ms.openlocfilehash: 0b36571dfe9e462be3aa818b72b5a38b9573410c
+ms.sourcegitcommit: 1e44721cd0903b08781b78eb398d2a9b13a46db9
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 06/06/2019
-ms.locfileid: "66749722"
+ms.lasthandoff: 06/08/2019
+ms.locfileid: "66815644"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil edilen değişiklikler
 
@@ -25,7 +25,7 @@ Bir 3.0 Önizlemesi'nden başka bir 3.0 Önizleme için kullanıma sunulan yeni 
 [Sorun #14935 izleme](https://github.com/aspnet/EntityFrameworkCore/issues/14935)
 [sorun #12795 Ayrıca bkz:](https://github.com/aspnet/EntityFrameworkCore/issues/12795)
 
-Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
@@ -276,7 +276,7 @@ context.ChangeTracker.DeleteOrphansTiming = CascadeTiming.OnSaveChanges;
 
 [İzleme sorun #12661](https://github.com/aspnet/EntityFrameworkCore/issues/12661)
 
-Bu değişiklik, EF Core 3.0-preview 5'teki sunulacaktır.
+Bu değişiklik, EF Core 3.0-preview 5'teki sunulmuştur.
 
 **Eski davranışı**
 
@@ -386,7 +386,7 @@ Yukarıdaki örnekte gösterildiği gibi yeni bir API yüzeyi kullanmak için sa
 
 [İzleme sorun #9005](https://github.com/aspnet/EntityFrameworkCore/issues/9005)
 
-Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
@@ -421,7 +421,7 @@ EF Core kümeleri sorgulanırken `OrderDetails` için `null` gerekli özellikler
 
 [İzleme sorun #14154](https://github.com/aspnet/EntityFrameworkCore/issues/14154)
 
-Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
@@ -473,7 +473,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 [İzleme sorun #13998](https://github.com/aspnet/EntityFrameworkCore/issues/13998)
 
-Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
@@ -604,7 +604,7 @@ Yabancı anahtar olması ve bu nedenle birincil anahtarın sonra açıkça böl�
 
 [İzleme sorun #14218](https://github.com/aspnet/EntityFrameworkCore/issues/14218)
 
-Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
@@ -656,7 +656,7 @@ using (new TransactionScope())
 
 [İzleme sorun #6872](https://github.com/aspnet/EntityFrameworkCore/issues/6872)
 
-Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
@@ -709,7 +709,7 @@ modelBuilder.UsePropertyAccessMode(PropertyAccessMode.PreferFieldDuringConstruct
 
 [İzleme sorun #12523](https://github.com/aspnet/EntityFrameworkCore/issues/12523)
 
-Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
@@ -738,7 +738,7 @@ modelBuilder
 
 ## <a name="field-only-property-names-should-match-the-field-name"></a>Alan adı alanı-yalnızca özellik adlarının eşleşmesi gerekir
 
-Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
@@ -786,7 +786,7 @@ modelBuilder
 
 [İzleme sorun #14756](https://github.com/aspnet/EntityFrameworkCore/issues/14756)
 
-Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
@@ -836,7 +836,7 @@ Kullanmanın varsayılan performansını artırmak için bu değişiklik yapılm
 
 [İzleme sorun #14617](https://github.com/aspnet/EntityFrameworkCore/issues/14617)
 
-Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
@@ -922,7 +922,7 @@ Tüm uygulamaları `IDbContextOptionsExtension` yeni üye destekleyecek şekilde
 
 [İzleme sorun #12780](https://github.com/aspnet/EntityFrameworkCore/issues/12780)
 
-Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
@@ -981,7 +981,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
 [İzleme sorun #9171](https://github.com/aspnet/EntityFrameworkCore/issues/9171)
 
-Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
@@ -1018,7 +1018,7 @@ modelBuilder.Entity<Samurai>().HasOne("Some.Entity.Type.Name", null).WithOne();
 
 [İzleme sorun #15184](https://github.com/aspnet/EntityFrameworkCore/issues/15184)
 
-Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
@@ -1117,7 +1117,7 @@ Yukarıda da gösterildiği gibi yeni API'yi kullanın.
 
 [İzleme sorun #214](https://github.com/aspnet/EntityFrameworkCore/issues/214)
 
-Bu değişiklik, EF Core 3.0-preview 4 sürümünde sunulacaktır.
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
 
 **Yeni davranış**
 
@@ -1132,6 +1132,28 @@ Aşağıdaki özellikler için genişletme yöntemleri dönüştürüldü:
 **Neden**
 
 Bu değişiklik, yukarıda sözü edilen arabirimleri uygulamasını kolaylaştırır.
+
+**Risk azaltma işlemleri**
+
+Yeni uzantı yöntemlerini kullanın.
+
+## <a name="provider-specific-metadata-api-changes"></a>Sağlayıcıya özgü meta veriler API'SİNDEKİ değişiklikler
+
+[İzleme sorun #214](https://github.com/aspnet/EntityFrameworkCore/issues/214)
+
+Bu değişiklik, EF Core 3.0-Önizleme 6 sunulmuştur.
+
+**Yeni davranış**
+
+Sağlayıcıya özgü genişletme yöntemlerini düzleştirilmiş:
+
+* `IProperty.Relational().ColumnName` -> `IProperty.GetColumnName()`
+* `IEntityType.SqlServer().IsMemoryOptimized` -> `IEntityType.GetSqlServerIsMemoryOptimized()`
+* `PropertyBuilder.UseSqlServerIdentityColumn()` -> `PropertyBuilder.ForSqlServerUseIdentityColumn()`
+
+**Neden**
+
+Bu değişiklik, yukarıda sözü edilen genişletme yöntemleri uygulamasını kolaylaştırır.
 
 **Risk azaltma işlemleri**
 
