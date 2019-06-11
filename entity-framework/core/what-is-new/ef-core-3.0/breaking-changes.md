@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 0b36571dfe9e462be3aa818b72b5a38b9573410c
-ms.sourcegitcommit: 1e44721cd0903b08781b78eb398d2a9b13a46db9
+ms.openlocfilehash: 9112d8d235237e68232aac54453d584af0edb524
+ms.sourcegitcommit: b188194a1901f4d086d05765cbc5c9b8c9dc5eed
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 06/08/2019
-ms.locfileid: "66815644"
+ms.lasthandoff: 06/11/2019
+ms.locfileid: "66829490"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil edilen değişiklikler
 
@@ -144,6 +144,28 @@ Bu, verilmiş olması, parametreli getirilemedi sorgularda neden olabilir.
 **Risk azaltma işlemleri**
 
 Yeni yöntem adları kullanılacak anahtar.
+
+## <a name="fromsql-methods-can-only-be-specified-on-query-roots"></a>SQL yöntemleri yalnızca sorgu kökleri üzerinde belirtilebilir
+
+[İzleme sorun #15704](https://github.com/aspnet/EntityFrameworkCore/issues/15704)
+
+Bu değişiklik, EF Core 3.0-Önizleme 6 sunulmuştur.
+
+**Eski davranışı**
+
+EF Core 3.0 önce `FromSql` yöntemi belirtilebilir herhangi bir sorgu.
+
+**Yeni davranış**
+
+EF Core 3.0 ile başlayan yeni `FromSqlRaw` ve `FromSqlInterpolated` yöntemleri (hangi Değiştir `FromSql`) yalnızca sorgu kökleri üzerinde yani doğrudan belirtilebilir `DbSet<>`. Başka bir yerde bunları denemek, bir derleme hatasına neden olur.
+
+**Neden**
+
+Belirtme `FromSql` herhangi bir yere dışında üzerinde bir `DbSet` hiçbir anlamı eklendi veya değer ve belirli senaryolarda karışıklığa neden olabilir.
+
+**Risk azaltma işlemleri**
+
+`FromSql` çağrıları doğrudan açık olmasını taşınması gereken `DbSet` hangi uygulanır.
 
 ## <a name="query-execution-is-logged-at-debug-level"></a>Sorgu yürütme hata ayıklama düzeyinde günlüğe kaydedilir
 
