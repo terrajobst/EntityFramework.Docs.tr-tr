@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: bc2a2676-bc46-493f-bf49-e3cc97994d57
 uid: core/index
-ms.openlocfilehash: fa0695be29668789a179f9a0d6330f3361dbac29
-ms.sourcegitcommit: 6c4e06bc62d98442530e93a44725e38e59483d42
+ms.openlocfilehash: 0e35a2b3f89c92b717b8e05c8fa3ae5af5ce8fd3
+ms.sourcegitcommit: 06073f8efde97dd5f540dbfb69f574d8380566fe
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/18/2019
-ms.locfileid: "58131425"
+ms.lasthandoff: 06/24/2019
+ms.locfileid: "67333774"
 ---
 # <a name="entity-framework-core"></a>Entity Framework Core
 
@@ -23,7 +23,7 @@ EF Core birçok veritabanı altyapılarını destekleyen, bkz: [veritabanı sağ
 
 EF Core ile veri erişimi, bir modeli kullanılarak gerçekleştirilir. Bir modeli varlık sınıfları ve böylece sorgu ve veri kaydetmek, veritabanı ile bir oturumu temsil eden bir bağlam nesnesi oluşur. Bkz: [Model oluşturma](modeling/index.md) daha fazla bilgi için.
 
-Model veritabanınızın eşleşen veya EF geçişleri modelinizden bir veritabanı oluşturmak için kullanın ve modelinizi evrim Geçiren zaman içindeki değişimini elle kod mevcut bir veritabanından, bir model oluşturabilirsiniz.
+Varolan bir veritabanından bir model oluşturmak, kod, veritabanıyla eşleşmesi veya kullanmak için bir model el [EF geçişleri](managing-schemas/migrations/index.md) modelinizden bir veritabanı oluşturup modelinizi zamanla değiştikçe gelişmek için.
 
 ``` csharp
 using Microsoft.EntityFrameworkCore;

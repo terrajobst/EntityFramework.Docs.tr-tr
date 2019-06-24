@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 9112d8d235237e68232aac54453d584af0edb524
-ms.sourcegitcommit: b188194a1901f4d086d05765cbc5c9b8c9dc5eed
+ms.openlocfilehash: 1d2853cfc7f6eadfc76000f91a723f8b0b8c201f
+ms.sourcegitcommit: 06073f8efde97dd5f540dbfb69f574d8380566fe
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 06/11/2019
-ms.locfileid: "66829490"
+ms.lasthandoff: 06/24/2019
+ms.locfileid: "67333835"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil edilen değişiklikler
 
@@ -34,7 +34,7 @@ Varsayılan olarak, istemci değerlendirmesi yüksek maliyetlere neden olabilece
 
 **Yeni davranış**
 
-3.0 ile başlayarak, EF Core yalnızca ifadeleri üst düzey projeksiyon izin verir (son `Select()` sorguda çağrısı) istemcide değerlendirilecek.
+3\.0 ile başlayarak, EF Core yalnızca ifadeleri üst düzey projeksiyon izin verir (son `Select()` sorguda çağrısı) istemcide değerlendirilecek.
 İfadeleri herhangi bir sorgunun parçası olarak SQL veya bir parametre olarak dönüştürülemez, bir özel durum oluşturulur.
 
 **Neden**
@@ -63,7 +63,7 @@ ASP.NET Core 3.0 Paketi başvurusu eklendiğinde önce `Microsoft.AspNetCore.App
 
 **Yeni davranış**
 
-3. 0'dan başlayarak, ASP.NET Core paylaşılan çerçeve EF Core veya tüm EF Core veri sağlayıcıları içermez.
+3\. 0'dan başlayarak, ASP.NET Core paylaşılan çerçeve EF Core veya tüm EF Core veri sağlayıcıları içermez.
 
 **Neden**
 
@@ -84,11 +84,11 @@ Bu değişiklik EF Core 3.0-preview 4 ve .NET Core SDK'sını ilgili sürümü k
 
 **Eski davranışı**
 
-3.0 önce `dotnet ef` aracı, .NET Core SDK'yı eklenmiştir ve ek adımlar gerek kalmadan, herhangi bir projeyi komut satırından kullanmaya hazır. 
+3\.0 önce `dotnet ef` aracı, .NET Core SDK'yı eklenmiştir ve ek adımlar gerek kalmadan, herhangi bir projeyi komut satırından kullanmaya hazır. 
 
 **Yeni davranış**
 
-3. 0'dan başlayarak .NET SDK'sı yer almaz `dotnet ef` aracı kullanabilmeniz için önce açıkça yerel veya genel bir aracı yüklemek zorunda. 
+3\. 0'dan başlayarak .NET SDK'sı yer almaz `dotnet ef` aracı kullanabilmeniz için önce açıkça yerel veya genel bir aracı yüklemek zorunda. 
 
 **Neden**
 
@@ -167,34 +167,18 @@ Belirtme `FromSql` herhangi bir yere dışında üzerinde bir `DbSet` hiçbir an
 
 `FromSql` çağrıları doğrudan açık olmasını taşınması gereken `DbSet` hangi uygulanır.
 
-## <a name="query-execution-is-logged-at-debug-level"></a>Sorgu yürütme hata ayıklama düzeyinde günlüğe kaydedilir
+## <a name="query-execution-is-logged-at-debug-level-reverted"></a>~~Sorgu yürütme hata ayıklama düzeyinde günlüğe~~ geri Dönüldü
 
 [İzleme sorun #14523](https://github.com/aspnet/EntityFrameworkCore/issues/14523)
 
-Bu değişiklik, EF Core 3.0-preview 3 sunulmuştur.
+Bu değişiklik, EF Core 3.0-Önizleme 7 döndürülür.
 
-**Eski davranışı**
-
-EF Core 3.0 önce sorgu ve diğer komutları yürütme sırasında günlüğe kaydedilen `Info` düzeyi.
-
-**Yeni davranış**
-
-EF Core 3.0 ile başlayarak, komut/SQL yürütme günlüğe kaydetme sırasında işlemi `Debug` düzeyi.
-
-**Neden**
-
-Konumundaki paraziti azaltmak için bu değişiklik yapılmıştır `Info` günlük düzeyi.
-
-**Risk azaltma işlemleri**
-
-Bu günlük olayı tarafından tanımlanan `RelationalEventId.CommandExecuting` 20100 olay kimliği.
-SQL oturum `Info` yeniden düzey, düzeyi açıkça yapılandırmanıza `OnConfiguring` veya `AddDbContext`.
-Örneğin:
+EF Core 3. 0'ı yeni yapılandırma günlük düzeyi için herhangi bir olay uygulama tarafından belirtilmesine izin verdiği için Biz bu değişiklik geri alınır. Örneğin, SQL günlüğü geçiş için `Debug`, açıkça düzeyinde yapılandırma `OnConfiguring` veya `AddDbContext`:
 ```C#
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     => optionsBuilder
         .UseSqlServer(connectionString)
-        .ConfigureWarnings(c => c.Log((RelationalEventId.CommandExecuting, LogLevel.Info)));
+        .ConfigureWarnings(c => c.Log((RelationalEventId.CommandExecuting, LogLevel.Debug)));
 ```
 
 ## <a name="temporary-key-values-are-no-longer-set-onto-entity-instances"></a>Geçici bir anahtar değere artık varlık örneklerini ayarlanır
@@ -210,7 +194,7 @@ Genellikle bu geçici değerleri büyük negatif sayılar yoktu.
 
 **Yeni davranış**
 
-3.0 ile başlayarak, EF Core, varlığın izleme bilgilerini bir parçası olarak geçici bir anahtar değeri depolar ve anahtar özelliği kendisini değiştirmeden bırakır.
+3\.0 ile başlayarak, EF Core, varlığın izleme bilgilerini bir parçası olarak geçici bir anahtar değeri depolar ve anahtar özelliği kendisini değiştirmeden bırakır.
 
 **Neden**
 
@@ -302,11 +286,11 @@ Bu değişiklik, EF Core 3.0-preview 5'teki sunulmuştur.
 
 **Eski davranışı**
 
-3.0 önce `DeleteBehavior.Restrict` ile veritabanındaki yabancı anahtarlar oluşturulan `Restrict` semantiği, aynı zamanda açık olmayan bir şekilde değiştirilmiş iç düzeltme.
+3\.0 önce `DeleteBehavior.Restrict` ile veritabanındaki yabancı anahtarlar oluşturulan `Restrict` semantiği, aynı zamanda açık olmayan bir şekilde değiştirilmiş iç düzeltme.
 
 **Yeni davranış**
 
-3.0 ile başlayan `DeleteBehavior.Restrict` yabancı anahtarlar ile oluşturulan sağlar `Restrict` semantiği--diğer bir deyişle, hiçbir basamaklar; throw EF iç düzeltme de etkilemeden kısıtlama ihlali üzerinde--.
+3\.0 ile başlayan `DeleteBehavior.Restrict` yabancı anahtarlar ile oluşturulan sağlar `Restrict` semantiği--diğer bir deyişle, hiçbir basamaklar; throw EF iç düzeltme de etkilemeden kısıtlama ihlali üzerinde--.
 
 **Neden**
 
@@ -427,12 +411,12 @@ public class OrderDetails
     public string ShippingAddress { get; set; }
 }
 ```
-3.0, önce EF Core `OrderDetails` tarafından sahip olunan `Order` veya aynı tabloya açıkça eşleştirilmiş bir `OrderDetails` örneği her zaman gerekli yeni bir eklerken `Order`.
+3\.0, önce EF Core `OrderDetails` tarafından sahip olunan `Order` veya aynı tabloya açıkça eşleştirilmiş bir `OrderDetails` örneği her zaman gerekli yeni bir eklerken `Order`.
 
 
 **Yeni davranış**
 
-3.0 ile başlayarak, EF Core eklemek için sağlayan bir `Order` olmadan bir `OrderDetails` ve tüm eşler `OrderDetails` özellikleri hariç null yapılabilir sütunlar için birincil anahtarı.
+3\.0 ile başlayarak, EF Core eklemek için sağlayan bir `Order` olmadan bir `OrderDetails` ve tüm eşler `OrderDetails` özellikleri hariç null yapılabilir sütunlar için birincil anahtarı.
 EF Core kümeleri sorgulanırken `OrderDetails` için `null` gerekli özelliklerinden birini yoksa, bir değer veya birincil anahtarı yanı sıra gereken özellikleri yoktur ve tüm özellikleri `null`.
 
 **Risk azaltma işlemleri**
@@ -469,7 +453,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
         .Property(o => o.Version).IsRowVersion().HasColumnName("Version");
 }
 ```
-3.0, önce EF Core `OrderDetails` tarafından sahip olunan `Order` veya yalnızca güncelleştirme aynı tabloya açıkça eşlenen `OrderDetails` değil güncelleştirecek `Version` değeri istemcisi ve İleri güncelleştirmeyi başarısız olur.
+3\.0, önce EF Core `OrderDetails` tarafından sahip olunan `Order` veya yalnızca güncelleştirme aynı tabloya açıkça eşlenen `OrderDetails` değil güncelleştirecek `Version` değeri istemcisi ve İleri güncelleştirmeyi başarısız olur.
 
 
 **Yeni davranış**
@@ -532,7 +516,7 @@ EF Core 3.0 önce `ShippingAddress` özelliği için sütunları ayırmak için 
 
 **Yeni davranış**
 
-3.0 ile başlayarak, EF Core yalnızca bir sütun için oluşturur `ShippingAddress`.
+3\.0 ile başlayarak, EF Core yalnızca bir sütun için oluşturur `ShippingAddress`.
 
 **Neden**
 
@@ -581,7 +565,7 @@ Ancak, varsa `Order` bu da yapacağı sonra sahip olunan bir türü olan `Custom
 
 **Yeni davranış**
 
-3.0 ile başlayarak, EF Core asıl özelliğiyle aynı ada sahip oldukları özellikleri için yabancı anahtarlar kurala göre kullanırsanız dener.
+3\.0 ile başlayarak, EF Core asıl özelliğiyle aynı ada sahip oldukları özellikleri için yabancı anahtarlar kurala göre kullanırsanız dener.
 Asıl tür adı asıl özellik adıyla birleştirilmiş ve asıl özellik adı desenleri ile birleştirilmiş gezinme adı hala eşleştirilir.
 Örneğin:
 
@@ -706,7 +690,7 @@ Bu değişiklik EF Core 3.0-preview 2 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
-3.0 önce bir özellik için destek alanı biliniyordu olsa bile, EF Core yine de varsayılan olarak okuma ve özellik alıcı ve ayarlayıcı yöntemleri kullanarak özellik değeri yazma.
+3\.0 önce bir özellik için destek alanı biliniyordu olsa bile, EF Core yine de varsayılan olarak okuma ve özellik alıcı ve ayarlayıcı yöntemleri kullanarak özellik değeri yazma.
 Bunun özel durumu burada destek alanı doğrudan biliniyorsa ayarlamak sorgu yürütme oluştu.
 
 **Yeni davranış**
@@ -917,28 +901,6 @@ Bu ortak değildir.
 Bu durumlarda, bilgilerin çoğunu hala çalışır, ancak bağlı olarak herhangi bir tekil hizmeti olacak `ILoggerFactory` almak için değiştirilmesi gerekecektir `ILoggerFactory` farklı bir yolla.
 
 Bu gibi durumlarda karşılaşırsanız lütfen sırasında bir sorun üzerinde dosya [EF Core GitHub sorun İzleyicisi](https://github.com/aspnet/EntityFrameworkCore/issues) nasıl kullandığınızı bize bildirmek `ILoggerFactory` sağlayacak şekilde biz bunu gelecekte kesmemesi nasıl daha iyi anlamak.
-
-## <a name="idbcontextoptionsextensionwithdebuginfo-merged-into-idbcontextoptionsextension"></a>IDbContextOptionsExtensionWithDebugInfo IDbContextOptionsExtension birleştirilir.
-
-[İzleme sorun #13552](https://github.com/aspnet/EntityFrameworkCore/issues/13552)
-
-Bu değişiklik, EF Core 3.0-preview 3 sunulmuştur.
-
-**Eski davranışı**
-
-`IDbContextOptionsExtensionWithDebugInfo` ek isteğe bağlı bir arabirim gelen genişletilmişse `IDbContextOptionsExtension` arabirimine 2.x sürüm döngüsü sırasında değiştirme bir hataya neden önlemek için.
-
-**Yeni davranış**
-
-Arabirimler artık birlikte birleştirilir `IDbContextOptionsExtension`.
-
-**Neden**
-
-Arabirimler kavramsal olarak biri olduğundan, bu değişiklik yapılmıştır.
-
-**Risk azaltma işlemleri**
-
-Tüm uygulamaları `IDbContextOptionsExtension` yeni üye destekleyecek şekilde güncelleştirilmesi gerekir.
 
 ## <a name="lazy-loading-proxies-no-longer-assume-navigation-properties-are-fully-loaded"></a>Gezinti özellikleri tam olarak yüklü olduğundan yükleme Lazy proxy'leri artık varsayılır
 
@@ -1352,6 +1314,30 @@ UPDATE __EFMigrationsHistory
 SET MigrationId = CONCAT(LEFT(MigrationId, 4)  - 543, SUBSTRING(MigrationId, 4, 150))
 ```
 
+## <a name="extension-infometadata-has-been-removed-from-idbcontextoptionsextension"></a>Uzantı bilgileri/meta verileri IDbContextOptionsExtension kaldırıldı
+
+[İzleme sorun #16119](https://github.com/aspnet/EntityFrameworkCore/issues/16119)
+
+Bu değişiklik, EF Core 3.0-Önizleme 7 sunulmuştur.
+
+**Eski davranışı**
+
+`IDbContextOptionsExtension` uzantı hakkında meta veri sağlamak için yöntemleri içeriyordu.
+
+**Yeni davranış**
+
+Bu yöntemler, yeni bir taşınmış `DbContextOptionsExtensionInfo` soyut temel sınıf yeni bir döndürülen `IDbContextOptionsExtension.Info` özelliği.
+
+**Neden**
+
+2\.0 sürümlerinden 3.0 üzerinden ekleyin veya bu yöntemleri birkaç kez değiştirmek ihtiyacımız var.
+Yeni bir soyut temel sınıf bozucu mevcut uzantılar bozup olmadan bu tür değişiklikler yapmaya kolaylaştırır.
+
+**Risk azaltma işlemleri**
+
+Yeni desende uzantıları güncelleştirin.
+Örnekler birçok uygulamalarında bulunan `IDbContextOptionsExtension` EF Core uzantılarında farklı türleri için kaynak kodu.
+
 ## <a name="logquerypossibleexceptionwithaggregateoperator-has-been-renamed"></a>LogQueryPossibleExceptionWithAggregateOperator yeniden adlandırıldı
 
 [İzleme sorun #10985](https://github.com/aspnet/EntityFrameworkCore/issues/10985)
@@ -1399,3 +1385,29 @@ Bu değişiklik, bu alanda adlandırma için tutarlılık getirir ve ayrıca bu 
 **Risk azaltma işlemleri**
 
 Yeni bir ad kullanın.
+
+## <a name="irelationaldatabasecreatorhastableshastablesasync-have-been-made-public"></a>IRelationalDatabaseCreator.HasTables/HasTablesAsync yapıldı genel
+
+[İzleme sorun #15997](https://github.com/aspnet/EntityFrameworkCore/issues/15997)
+
+Bu değişiklik, EF Core 3.0-Önizleme 7 sunulmuştur.
+
+**Eski davranışı**
+
+EF Core 3.0 önce bu yöntemleri korunmuş.
+
+```C#
+var constraintName = myForeignKey.Name;
+```
+
+**Yeni davranış**
+
+EF Core 3.0 ile başlayarak, bu yöntemleri herkese açık.
+
+**Neden**
+
+Bu yöntemler, bir veritabanı oluşturuldu ancak boş olup olmadığını belirlemek için EF tarafından kullanılır. Ayrıca geçişleri uygulanacağını belirleyen olduğunda bu EF dışında yararlı olabilir.
+
+**Risk azaltma işlemleri**
+
+Herhangi bir geçersiz kılma erişilebilirliğini değiştirin.
