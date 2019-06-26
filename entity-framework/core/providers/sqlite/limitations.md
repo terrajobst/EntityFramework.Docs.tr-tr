@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 04/09/2017
 ms.assetid: 94ab4800-c460-4caa-a5e8-acdfee6e6ce2
 uid: core/providers/sqlite/limitations
-ms.openlocfilehash: ce834d60b9ceb4c414f097f2d86254cc5edd958f
-ms.sourcegitcommit: 645785187ae23ddf7d7b0642c7a4da5ffb0c7f30
+ms.openlocfilehash: eaa7d5b1496172e4f3821433a1cd098ee7e8b737
+ms.sourcegitcommit: 9bd64a1a71b7f7aeb044aeecc7c4785b57db1ec9
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58419711"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67394795"
 ---
 # <a name="sqlite-ef-core-database-provider-limitations"></a>SQLite EF Core veritabanı sağlayıcısı sınırlamaları
 
@@ -22,6 +22,25 @@ SQLite sağlayıcısı, bir dizi geçişleri sınırlandırması vardır. Bu sı
 * Şemaları
 * Diziler
 * Hesaplanan sütunlar
+
+## <a name="query-limitations"></a>Sorgu sınırlamaları
+
+SQLite yerel olarak aşağıdaki veri türlerini desteklemiyor. EF Core okuma ve yazma değerlerini ve bu tür, eşitlik için sorgulama (`where e.Property == value`) de desteğidir. Diğer işlemler, ancak karşılaştırma ister ve sıralama istemcide değerlendirme gerektirir.
+
+* DateTimeOffset
+* Ondalık
+* TimeSpan
+* UInt64
+
+Yerine `DateTimeOffset`, DateTime değerleri kullanmanızı öneririz. Birden fazla saat dilimlerini işlerken, kaydetme ve ardından uygun saat dilimine dönüştürme önce UTC'ye değerleri dönüştürmenizi öneririz.
+
+`Decimal` Türü, yüksek düzeyde bir duyarlık sağlar. Ancak, duyarlık düzeyini gerekmiyorsa, çift kullanmayı öneririz. Kullanabileceğiniz bir [değer dönüştürücü](../../modeling/value-conversions.md) ondalık sınıflarınızdaki kullanmaya devam etmek için.
+
+``` csharp
+modelBuilder.Entity<MyEntity>()
+    .Property(e => e.DecimalProperty)
+    .HasConversion<double>();
+```
 
 ## <a name="migrations-limitations"></a>Geçiş sınırlamaları
 

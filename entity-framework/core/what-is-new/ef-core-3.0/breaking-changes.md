@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 1d2853cfc7f6eadfc76000f91a723f8b0b8c201f
-ms.sourcegitcommit: 06073f8efde97dd5f540dbfb69f574d8380566fe
+ms.openlocfilehash: 96586808862c4373168dcd34a5f00c9f2f7563c3
+ms.sourcegitcommit: 9bd64a1a71b7f7aeb044aeecc7c4785b57db1ec9
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 06/24/2019
-ms.locfileid: "67333835"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67394823"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil edilen değişiklikler
 
@@ -34,7 +34,7 @@ Varsayılan olarak, istemci değerlendirmesi yüksek maliyetlere neden olabilece
 
 **Yeni davranış**
 
-3\.0 ile başlayarak, EF Core yalnızca ifadeleri üst düzey projeksiyon izin verir (son `Select()` sorguda çağrısı) istemcide değerlendirilecek.
+3.0 ile başlayarak, EF Core yalnızca ifadeleri üst düzey projeksiyon izin verir (son `Select()` sorguda çağrısı) istemcide değerlendirilecek.
 İfadeleri herhangi bir sorgunun parçası olarak SQL veya bir parametre olarak dönüştürülemez, bir özel durum oluşturulur.
 
 **Neden**
@@ -63,7 +63,7 @@ ASP.NET Core 3.0 Paketi başvurusu eklendiğinde önce `Microsoft.AspNetCore.App
 
 **Yeni davranış**
 
-3\. 0'dan başlayarak, ASP.NET Core paylaşılan çerçeve EF Core veya tüm EF Core veri sağlayıcıları içermez.
+3. 0'dan başlayarak, ASP.NET Core paylaşılan çerçeve EF Core veya tüm EF Core veri sağlayıcıları içermez.
 
 **Neden**
 
@@ -84,11 +84,11 @@ Bu değişiklik EF Core 3.0-preview 4 ve .NET Core SDK'sını ilgili sürümü k
 
 **Eski davranışı**
 
-3\.0 önce `dotnet ef` aracı, .NET Core SDK'yı eklenmiştir ve ek adımlar gerek kalmadan, herhangi bir projeyi komut satırından kullanmaya hazır. 
+3.0 önce `dotnet ef` aracı, .NET Core SDK'yı eklenmiştir ve ek adımlar gerek kalmadan, herhangi bir projeyi komut satırından kullanmaya hazır. 
 
 **Yeni davranış**
 
-3\. 0'dan başlayarak .NET SDK'sı yer almaz `dotnet ef` aracı kullanabilmeniz için önce açıkça yerel veya genel bir aracı yüklemek zorunda. 
+3. 0'dan başlayarak .NET SDK'sı yer almaz `dotnet ef` aracı kullanabilmeniz için önce açıkça yerel veya genel bir aracı yüklemek zorunda. 
 
 **Neden**
 
@@ -194,7 +194,7 @@ Genellikle bu geçici değerleri büyük negatif sayılar yoktu.
 
 **Yeni davranış**
 
-3\.0 ile başlayarak, EF Core, varlığın izleme bilgilerini bir parçası olarak geçici bir anahtar değeri depolar ve anahtar özelliği kendisini değiştirmeden bırakır.
+3.0 ile başlayarak, EF Core, varlığın izleme bilgilerini bir parçası olarak geçici bir anahtar değeri depolar ve anahtar özelliği kendisini değiştirmeden bırakır.
 
 **Neden**
 
@@ -286,11 +286,11 @@ Bu değişiklik, EF Core 3.0-preview 5'teki sunulmuştur.
 
 **Eski davranışı**
 
-3\.0 önce `DeleteBehavior.Restrict` ile veritabanındaki yabancı anahtarlar oluşturulan `Restrict` semantiği, aynı zamanda açık olmayan bir şekilde değiştirilmiş iç düzeltme.
+3.0 önce `DeleteBehavior.Restrict` ile veritabanındaki yabancı anahtarlar oluşturulan `Restrict` semantiği, aynı zamanda açık olmayan bir şekilde değiştirilmiş iç düzeltme.
 
 **Yeni davranış**
 
-3\.0 ile başlayan `DeleteBehavior.Restrict` yabancı anahtarlar ile oluşturulan sağlar `Restrict` semantiği--diğer bir deyişle, hiçbir basamaklar; throw EF iç düzeltme de etkilemeden kısıtlama ihlali üzerinde--.
+3.0 ile başlayan `DeleteBehavior.Restrict` yabancı anahtarlar ile oluşturulan sağlar `Restrict` semantiği--diğer bir deyişle, hiçbir basamaklar; throw EF iç düzeltme de etkilemeden kısıtlama ihlali üzerinde--.
 
 **Neden**
 
@@ -411,12 +411,12 @@ public class OrderDetails
     public string ShippingAddress { get; set; }
 }
 ```
-3\.0, önce EF Core `OrderDetails` tarafından sahip olunan `Order` veya aynı tabloya açıkça eşleştirilmiş bir `OrderDetails` örneği her zaman gerekli yeni bir eklerken `Order`.
+3.0, önce EF Core `OrderDetails` tarafından sahip olunan `Order` veya aynı tabloya açıkça eşleştirilmiş bir `OrderDetails` örneği her zaman gerekli yeni bir eklerken `Order`.
 
 
 **Yeni davranış**
 
-3\.0 ile başlayarak, EF Core eklemek için sağlayan bir `Order` olmadan bir `OrderDetails` ve tüm eşler `OrderDetails` özellikleri hariç null yapılabilir sütunlar için birincil anahtarı.
+3.0 ile başlayarak, EF Core eklemek için sağlayan bir `Order` olmadan bir `OrderDetails` ve tüm eşler `OrderDetails` özellikleri hariç null yapılabilir sütunlar için birincil anahtarı.
 EF Core kümeleri sorgulanırken `OrderDetails` için `null` gerekli özelliklerinden birini yoksa, bir değer veya birincil anahtarı yanı sıra gereken özellikleri yoktur ve tüm özellikleri `null`.
 
 **Risk azaltma işlemleri**
@@ -453,7 +453,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
         .Property(o => o.Version).IsRowVersion().HasColumnName("Version");
 }
 ```
-3\.0, önce EF Core `OrderDetails` tarafından sahip olunan `Order` veya yalnızca güncelleştirme aynı tabloya açıkça eşlenen `OrderDetails` değil güncelleştirecek `Version` değeri istemcisi ve İleri güncelleştirmeyi başarısız olur.
+3.0, önce EF Core `OrderDetails` tarafından sahip olunan `Order` veya yalnızca güncelleştirme aynı tabloya açıkça eşlenen `OrderDetails` değil güncelleştirecek `Version` değeri istemcisi ve İleri güncelleştirmeyi başarısız olur.
 
 
 **Yeni davranış**
@@ -516,7 +516,7 @@ EF Core 3.0 önce `ShippingAddress` özelliği için sütunları ayırmak için 
 
 **Yeni davranış**
 
-3\.0 ile başlayarak, EF Core yalnızca bir sütun için oluşturur `ShippingAddress`.
+3.0 ile başlayarak, EF Core yalnızca bir sütun için oluşturur `ShippingAddress`.
 
 **Neden**
 
@@ -565,7 +565,7 @@ Ancak, varsa `Order` bu da yapacağı sonra sahip olunan bir türü olan `Custom
 
 **Yeni davranış**
 
-3\.0 ile başlayarak, EF Core asıl özelliğiyle aynı ada sahip oldukları özellikleri için yabancı anahtarlar kurala göre kullanırsanız dener.
+3.0 ile başlayarak, EF Core asıl özelliğiyle aynı ada sahip oldukları özellikleri için yabancı anahtarlar kurala göre kullanırsanız dener.
 Asıl tür adı asıl özellik adıyla birleştirilmiş ve asıl özellik adı desenleri ile birleştirilmiş gezinme adı hala eşleştirilir.
 Örneğin:
 
@@ -690,7 +690,7 @@ Bu değişiklik EF Core 3.0-preview 2 sürümünde kullanıma sunulmuştur.
 
 **Eski davranışı**
 
-3\.0 önce bir özellik için destek alanı biliniyordu olsa bile, EF Core yine de varsayılan olarak okuma ve özellik alıcı ve ayarlayıcı yöntemleri kullanarak özellik değeri yazma.
+3.0 önce bir özellik için destek alanı biliniyordu olsa bile, EF Core yine de varsayılan olarak okuma ve özellik alıcı ve ayarlayıcı yöntemleri kullanarak özellik değeri yazma.
 Bunun özel durumu burada destek alanı doğrudan biliniyorsa ayarlamak sorgu yürütme oluştu.
 
 **Yeni davranış**
@@ -1330,7 +1330,7 @@ Bu yöntemler, yeni bir taşınmış `DbContextOptionsExtensionInfo` soyut temel
 
 **Neden**
 
-2\.0 sürümlerinden 3.0 üzerinden ekleyin veya bu yöntemleri birkaç kez değiştirmek ihtiyacımız var.
+2.0 sürümlerinden 3.0 üzerinden ekleyin veya bu yöntemleri birkaç kez değiştirmek ihtiyacımız var.
 Yeni bir soyut temel sınıf bozucu mevcut uzantılar bozup olmadan bu tür değişiklikler yapmaya kolaylaştırır.
 
 **Risk azaltma işlemleri**
@@ -1411,3 +1411,55 @@ Bu yöntemler, bir veritabanı oluşturuldu ancak boş olup olmadığını belir
 **Risk azaltma işlemleri**
 
 Herhangi bir geçersiz kılma erişilebilirliğini değiştirin.
+
+## <a name="microsoftentityframeworkcoredesign-is-now-a-developmentdependency-package"></a>Microsoft.EntityFrameworkCore.Design artık DevelopmentDependency pakettir
+
+[İzleme sorun #11506](https://github.com/aspnet/EntityFrameworkCore/issues/11506)
+
+Bu değişiklik EF Core 3.0-preview 4 sürümünde kullanıma sunulmuştur.
+
+**Eski davranışı**
+
+EF Core 3.0 önce derleme, ona bağımlı olan projeler tarafından başvurulan, normal bir NuGet paketi Microsoft.EntityFrameworkCore.Design oluştu.
+
+**Yeni davranış**
+
+EF Core 3.0 ile başlayarak, bunu bir DevelopmentDependency paketidir. Bağımlılık geçişli diğer projelere akış olmaz ve, varsayılan olarak, artık anlamına gelir, bütünleştirilmiş koda başvurun.
+
+**Neden**
+
+Bu paket, yalnızca tasarım zamanında kullanılmak üzere tasarlanmıştır. Dağıtılan uygulamalar ona başvuran olmamalıdır. Paket bir DevelopmentDependency yaparak bu öneriyi çalışacak şekilde güçlendirir.
+
+**Risk azaltma işlemleri**
+
+Bu paketi, EF Core'nın tasarım zamanı davranışını geçersiz kılmak için başvurmanız gerekiyorsa, güncelleştirme güncelleştirebilirsiniz PackageReference öğe meta verileri, projenizdeki. Paketi Microsoft.EntityFrameworkCore.Tools geçişli başvuruluyor, açık bir PackageReference meta verilerini değiştirmek için paketi eklemek gerekir.
+
+``` xml
+<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.0-preview4.19216.3">
+  <PrivateAssets>all</PrivateAssets>
+  <!-- Remove IncludeAssets to allow compiling against the assembly -->
+  <!--<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>-->
+</PackageReference>
+```
+
+## <a name="sqlitepclraw-updated-to-version-200"></a>SQLitePCL.raw 2.0.0 sürümüne güncelleştirildi
+
+[İzleme sorun #14824](https://github.com/aspnet/EntityFrameworkCore/issues/14824)
+
+Bu değişiklik, EF Core 3.0-Önizleme 7 sunulmuştur.
+
+**Eski davranışı**
+
+Microsoft.EntityFrameworkCore.Sqlite önceden SQLitePCL.raw sürüm 1.1.12 bağlıydı.
+
+**Yeni davranış**
+
+Olduğunuz güncelleştiriyoruz bizim paketini 2.0.0 sürümüne bağlı.
+
+**Neden**
+
+.NET Standard 2.0 SQLitePCL.raw 2.0.0 sürümünü hedefler. Daha önce .NET standart, geçişli paket çalışmak için büyük bir kapanış gerekli 1.1 hedeflenen.
+
+**Risk azaltma işlemleri**
+
+SQLitePCL.raw sürüm 2.0.0 bazı önemli değişiklikler içerir. Bkz: [sürüm notları](https://github.com/ericsink/SQLitePCL.raw/blob/v2/v2.md) Ayrıntılar için.
