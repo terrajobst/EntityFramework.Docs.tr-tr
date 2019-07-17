@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: dcbea1a2aab5baea35f81500bb7bb5482695d778
-ms.sourcegitcommit: 812010a35afe902d8c4bb03a67d575f8e91b5ec0
+ms.openlocfilehash: 7cc0bd3946be2e63d9fb46a023bf6abe750ae0e3
+ms.sourcegitcommit: e90d6cfa3e96f10b8b5275430759a66a0c714ed1
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/02/2019
-ms.locfileid: "67506256"
+ms.lasthandoff: 07/17/2019
+ms.locfileid: "68286489"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil edilen değişiklikler
 
@@ -96,11 +96,10 @@ Bu değişiklik dağıtmak ve güncelleştirmek sağlıyor `dotnet ef` bir düze
 
 **Risk azaltma işlemleri**
 
-Geçişleri veya iskele yönetebilmek için bir `DbContext`, yükleme `dotnet-ef` kullanarak `dotnet tool install` komutu.
-Örneğin, bir genel araç olarak yüklemek için şu komutu yazabilirsiniz:
+Geçişleri veya iskele yönetebilmek için bir `DbContext`, yükleme `dotnet-ef` genel bir aracı olarak:
 
   ``` console
-  $ dotnet tool install --global dotnet-ef --version <exact-version>
+    $ dotnet tool install --global dotnet-ef --version 3.0.0-*
   ```
 
 Aletle şekillerini kullanan bağımlılık olarak bildiren bir proje bağımlılıklarını geri yüklediğinizde de, yerel aracı edinebilirsiniz bir [aracı bildirim dosyası](https://github.com/dotnet/cli/issues/10288).
@@ -1313,6 +1312,28 @@ Geçişleri geçmiş tablosu da güncelleştirilmesi gerekiyor.
 UPDATE __EFMigrationsHistory
 SET MigrationId = CONCAT(LEFT(MigrationId, 4)  - 543, SUBSTRING(MigrationId, 4, 150))
 ```
+
+## <a name="userownumberforpaging-has-been-removed"></a>UseRowNumberForPaging kaldırıldı
+
+[İzleme sorun #16400](https://github.com/aspnet/EntityFrameworkCore/issues/16400)
+
+Bu değişiklik, EF Core 3.0-Önizleme 6 sunulmuştur.
+
+**Eski davranışı**
+
+EF Core 3.0 önce `UseRowNumberForPaging` SQL Server 2008 ile uyumlu sayfalama SQL oluşturmak için kullanılabilir.
+
+**Yeni davranış**
+
+EF Core 3.0 ile başlayarak, EF yalnızca SQL yalnızca sonraki SQL Server sürümleriyle uyumludur sayfalama oluşturur. 
+
+**Neden**
+
+Çünkü bu değişiklik yapıyoruz [SQL Server 2008 olup artık desteklenen bir ürün](https://blogs.msdn.microsoft.com/sqlreleaseservices/end-of-mainstream-support-for-sql-server-2008-and-sql-server-2008-r2/) ve EF Core 3. 0'yaptığınız sorgu değişikliklerini çalışmak için bu özelliği güncelleştirmek, önemli iş kullanılır.
+
+**Risk azaltma işlemleri**
+
+Böylece oluşturulan SQL desteklenen SQL Server'ın daha yeni bir sürüme güncelleştirmek ya da daha yüksek bir uyumluluk düzeyi öneririz. Bununla, bunu yapmanız mümkün değilse lütfen [izleme soruna açıklama](https://github.com/aspnet/EntityFrameworkCore/issues/16400) ayrıntılarla. Biz geri bildirimine göre bu kararı yeniden ziyaret.
 
 ## <a name="extension-infometadata-has-been-removed-from-idbcontextoptionsextension"></a>Uzantı bilgileri/meta verileri IDbContextOptionsExtension kaldırıldı
 

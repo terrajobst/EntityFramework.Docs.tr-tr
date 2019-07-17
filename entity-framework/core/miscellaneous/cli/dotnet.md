@@ -2,14 +2,14 @@
 title: EF Core araçları başvurusu (.NET CLI) - EF Core
 author: bricelam
 ms.author: bricelam
-ms.date: 09/20/2018
+ms.date: 07/11/2019
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: 959785c7b10ca668f3691106f62076d538978c03
-ms.sourcegitcommit: b3c2b34d5f006ee3b41d6668f16fe7dcad1b4317
+ms.openlocfilehash: 05c5f89fc79556e72a7e629c147aa817fe7d1a6b
+ms.sourcegitcommit: e90d6cfa3e96f10b8b5275430759a66a0c714ed1
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "51688673"
+ms.lasthandoff: 07/17/2019
+ms.locfileid: "68286460"
 ---
 # <a name="entity-framework-core-tools-reference---net-cli"></a>Entity Framework Core başvuru - .NET CLI araçları
 
@@ -23,9 +23,28 @@ Entity Framework Core için komut satırı arabirimi (CLI) araçları tasarım z
 
 Proje türü ve sürümü yükleme yordamını bağlıdır:
 
+* EF Core 3.x
 * ASP.NET Core sürüm 2.1 ve üzeri
 * EF Core 2.x
 * EF Core 1.x
+
+### <a name="ef-core-3x"></a>EF Core 3.x
+
+* `dotnet ef` Genel veya yerel bir araç olarak yüklenmesi gerekir. Çoğu geliştirici yükleyecek `dotnet ef` aşağıdaki komutla bir genel araç olarak:
+
+  ``` console
+    $ dotnet tool install --global dotnet-ef --version 3.0.0-*
+  ```
+
+  Ayrıca `dotnet ef` yerel aracı olarak. Yerel bir araç olarak kullanmak için Araçlar kullanarak bağımlılık olarak bildiren bir proje bağımlılıklarını geri bir [aracı bildirim dosyası](https://github.com/dotnet/cli/issues/10288).
+
+* Yükleme [.NET Core SDK 3.0](https://dotnet.microsoft.com/download/dotnet-core/3.0)). SDK, Visual Studio'nun en son sürümü olsa bile yüklenmesi gerekir.
+
+* Son yükleme `Microsoft.EntityFrameworkCore.Design` paket.
+
+  ``` Console
+  dotnet add package Microsoft.EntityFrameworkCore.Design
+  ```
 
 ### <a name="aspnet-core-21"></a>ASP.NET Core 2.1 +
 
@@ -37,7 +56,7 @@ Proje türü ve sürümü yükleme yordamını bağlıdır:
 
 `dotnet ef` Komutları, .NET Core SDK'sı dahil edilir, ancak yüklemeniz gereken komutları etkinleştirmek için `Microsoft.EntityFrameworkCore.Design` paket.
 
-* Geçerli yükleme [.NET Core SDK'sı](https://www.microsoft.com/net/download/core). SDK, Visual Studio 2017'in en son sürümü olsa bile yüklenmesi gerekir.
+* Geçerli yükleme [.NET Core SDK'sı](https://www.microsoft.com/net/download/core). SDK, Visual Studio'nun en son sürümü olsa bile yüklenmesi gerekir.
 
 * En son kararlı yükleme `Microsoft.EntityFrameworkCore.Design` paket.
 
@@ -51,7 +70,7 @@ Proje türü ve sürümü yükleme yordamını bağlıdır:
 
 * Değiştirerek kullanın 2.1.200 SDK sürümü için uygulama yapılandırma kendi [global.json](/dotnet/core/tools/global-json) dosya. Normalde bu dosya çözüm dizini (bir proje üzerinde) dahildir.
 
-* Proje dosyasını düzenleyin ve ekleyin `Microsoft.EntityFrameworkCore.Tools.DotNet` olarak bir `DotNetCliToolReference` öğesi. En son 1.x sürümü belirtin, örneğin: 1.1.6. Bu bölümün sonunda proje dosyası örneğe bakın.
+* Proje dosyasını düzenleyin ve ekleyin `Microsoft.EntityFrameworkCore.Tools.DotNet` olarak bir `DotNetCliToolReference` öğesi. Örneğin, en son 1.x sürümü belirtin: 1.1.6. Bu bölümün sonunda proje dosyası örneğe bakın.
 
 * En son 1.x sürümünü `Microsoft.EntityFrameworkCore.Design` paketini, örneğin:
 
@@ -195,7 +214,7 @@ Bağımsız değişkenleri:
 
 | Bağımsız Değişken       | Açıklama                                                                                                                                                                                                             |
 |:---------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `<CONNECTION>` | Veritabanı bağlantı dizesi. ASP.NET Core 2.x projeleri için bir değer olabilir *adı =\<bağlantı dizesi adı >*. Bu durumda proje için ayarladığınız yapılandırma kaynaklarını adı gelir. |
+| `<CONNECTION>` | Veritabanı bağlantı dizesi. ASP.NET Core 2.x projeleri için bir değer olabilir *adı =\<bağlantı dizesi adı >* . Bu durumda proje için ayarladığınız yapılandırma kaynaklarını adı gelir. |
 | `<PROVIDER>`   | Kullanılacak sağlayıcı. Genellikle bu NuGet paketi, örneğin adıdır: `Microsoft.EntityFrameworkCore.SqlServer`.                                                                                           |
 
 Seçenekler:

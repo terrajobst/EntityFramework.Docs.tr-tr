@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: aeb0f5f8-b212-4f89-ae83-c642a5190ba0
 uid: core/miscellaneous/connection-strings
-ms.openlocfilehash: 52a8527170845d3e73ebcec518713ade3f3844f0
-ms.sourcegitcommit: 06073f8efde97dd5f540dbfb69f574d8380566fe
+ms.openlocfilehash: c306f9ca7a51fc9e3db18e883fd44f56dd1a3cb4
+ms.sourcegitcommit: e90d6cfa3e96f10b8b5275430759a66a0c714ed1
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 06/24/2019
-ms.locfileid: "67333847"
+ms.lasthandoff: 07/17/2019
+ms.locfileid: "68286456"
 ---
 # <a name="connection-strings"></a>Bağlantı Dizeleri
 
@@ -17,7 +17,7 @@ ms.locfileid: "67333847"
 
 ## <a name="net-framework-applications"></a>.NET framework uygulamaları
 
-.NET framework uygulamaları, WinForms, WPF, konsol ve ASP.NET 4 gibi denenmiş ve test edilmiş bağlantı dize deseni vardır. Bağlantı dizesi, uygulamalar için sık sorulan sorular App.config dosyasında (Web.config ASP.NET kullanıyorsanız) eklenmesi gerekir. Bağlantı dizenizi kullanıcı adı ve parola gibi hassas bilgileri içeriyorsa yapılandırma dosyası kullanarak içerikleri koruyabilir [korumalı yapılandırma](https://docs.microsoft.com/dotnet/framework/data/adonet/connection-strings-and-configuration-files#encrypting-configuration-file-sections-using-protected-configuration).
+.NET framework uygulamaları, WinForms, WPF, konsol ve ASP.NET 4 gibi denenmiş ve test edilmiş bağlantı dize deseni vardır. Bağlantı dizesi (ASP.NET kullanıyorsanız, Web.config), uygulamanızın App.config dosyasına eklenmelidir. Bağlantı dizenizi kullanıcı adı ve parola gibi hassas bilgileri içeriyorsa yapılandırma dosyası kullanarak içerikleri koruyabilir [korumalı yapılandırma](https://docs.microsoft.com/dotnet/framework/data/adonet/connection-strings-and-configuration-files#encrypting-configuration-file-sections-using-protected-configuration).
 
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>

@@ -3,12 +3,12 @@ title: İlk veri ek açıklamaları - EF6 kod
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 80abefbd-23c9-4fce-9cd3-520e5df9856e
-ms.openlocfilehash: e6b017306b4f66f5bac2a9964e11391da28ceb40
-ms.sourcegitcommit: a013e243a14f384999ceccaf9c779b8c1ae3b936
+ms.openlocfilehash: fcd01aef7303573001460b352f8099b2cc6e224a
+ms.sourcegitcommit: e90d6cfa3e96f10b8b5275430759a66a0c714ed1
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2019
-ms.locfileid: "57463288"
+ms.lasthandoff: 07/17/2019
+ms.locfileid: "68286475"
 ---
 # <a name="code-first-data-annotations"></a>Kod ilk veri ek açıklamaları
 > [!NOTE]
@@ -146,7 +146,7 @@ Başlık özelliği için gerekli ekleme özelliği veri içerdiğinden emin olm
     public string Title { get; set; }
 ```
 
-Hiçbir ek olmadan uygulamada başladığınız kodun veya değişiklikler, bir MVC uygulaması dinamik olarak bile özellik ve ek açıklama adları kullanarak bir ileti oluşturma, istemci tarafı doğrulama gerçekleştirir.
+Hiçbir ek kod veya uygulama biçimlendirme değişikliklerle, bir MVC uygulaması dinamik olarak bile özellik ve ek açıklama adları kullanarak bir ileti oluşturma, istemci tarafı doğrulama gerçekleştirir.
 
 ![Oluşturma sayfasıdır başlıklı gerekli hata](~/ef6/media/jj591583-figure02.png)
 
