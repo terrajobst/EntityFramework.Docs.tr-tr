@@ -1,52 +1,52 @@
 ---
-title: İşlemler - EF6 ile çalışma
+title: Işlemlerle çalışma-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 0d0f1824-d781-4cb3-8fda-b7eaefced1cd
-ms.openlocfilehash: 96cfff4cca59ab27dd68f50d0260e90902e33a92
-ms.sourcegitcommit: eefcab31142f61a7aaeac03ea90dcd39f158b8b8
+ms.openlocfilehash: 7030dc675993339f72c935f6b430cead85fecb7f
+ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/29/2019
-ms.locfileid: "64873227"
+ms.lasthandoff: 07/18/2019
+ms.locfileid: "68306518"
 ---
-# <a name="working-with-transactions"></a>İşlemleri ile çalışma
+# <a name="working-with-transactions"></a>Işlemlerle çalışma
 > [!NOTE]
-> **EF6 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb., Entity Framework 6'da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.  
+> **Yalnızca EF6** , bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 6 ' da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.  
 
-Bu belgede EF6 işlemleri ile çalışmayı kolaylaştırmak için bu yana EF5 ekledik geliştirmeler dahil olmak üzere işlemlerde kullanarak açıklanmıştır.  
+Bu belge, EF6 ' deki işlemler kullanılarak, işlemler ile çalışmayı kolaylaştırmak için EF5 bu yana eklediğimiz iyileştirmeler dahil olmak üzere açıklanır.  
 
-## <a name="what-ef-does-by-default"></a>Varsayılan olarak EF yapar  
+## <a name="what-ef-does-by-default"></a>Varsayılan olarak ne kadar EF  
 
-Entity Framework tüm sürümlerinde yürüttüğünüz her **SaveChanges()** eklemek, güncelleştirmek veya framework veritabanını silmek için bu işlem, bir işlem içinde kaydırılır. Bu işlem işlemi yürütmek için yalnızca yeteri kadar sürer ve ardından tamamlar. Başka bir işlem yürüttüğünüzde, yeni bir işlem başlatıldı.  
+Tüm Entity Framework sürümlerinde, her **SaveChanges ()** işlemini veritabanı üzerinde eklemek, güncelleştirmek veya silmek için çalıştırdığınızda Framework bu işlemi bir işlem içinde saracaktır. Bu işlem yalnızca işlemi yürütmek için yeterince uzun sürer ve sonra tamamlanır. Bu gibi başka bir işlem yürüttüğünüzde yeni bir işlem başlatılır.  
 
-EF6'ile başlayan **Database.ExecuteSqlCommand()** zaten mevcut değilse varsayılan olarak bir işlem içinde komut kaydırılır. Bu yöntemin istiyorsanız bu davranışı geçersiz kılma olanak tanıyan aşırı vardır. API'ler aracılığıyla modeline gibi dahil saklı yordamların EF6 yürütmesinde ayrıca **ObjectContext.ExecuteFunction()** (varsayılan davranış şu anda değiştirilemiyor, dışında) aynı yapar.  
+EF6 veritabanı ile başlangıç **. ExecuteSqlCommand ()** varsayılan olarak, bir işlem zaten mevcut değilse komutu bir işlem içinde saracaktır. İsterseniz bu davranışı geçersiz kılmanıza izin veren bu yöntemin aşırı yüklemeleri vardır. Ayrıca, EF6 **. ExecuteFunction ()** gibi API 'ler aracılığıyla modelde bulunan saklı yordamların yürütülmesi de aynı olur (varsayılan davranışın Şu anda geçersiz kılınamaması hariç).  
 
-Her iki durumda da, yalıtım düzeyi veritabanı sağlayıcısı varsayılan ayar olarak değerlendirir. işlemin yalıtım düzeyini olduğu. Varsayılan olarak, örneğin, SQL Server'da READ COMMITTED budur.  
+Her iki durumda da, işlemin yalıtım düzeyi, veritabanı sağlayıcının varsayılan ayarını düşündüğü her türlü yalıtım düzeyidir. Varsayılan olarak, örneğin SQL Server, bu okundu olarak kaydedilir.  
 
-Entity Framework, bir işlemde sorguları sarmalamanız değil.  
+Entity Framework bir işlemdeki sorguları sarmaz.  
 
-Bu varsayılan işlevi, çok fazla kullanıcılar ve bu nedenle olup olmadığını EF6 içinde farklı bir şey yapmanıza gerek yoktur uygundur; her zaman yaptığınız gibi kod yazmanız yeterlidir.  
+Bu varsayılan işlevsellik çok sayıda kullanıcı için uygundur ve EF6 içinde farklı bir şey yapmanız gerekmez; her zaman yaptığınız gibi kodu yazmanız yeterlidir.  
 
-Ancak bazı kullanıcılar işlemler üzerinde daha fazla denetim gerektiren – bu aşağıdaki bölümlerde ele alınmıştır.  
+Ancak bazı kullanıcılar işlemleri üzerinde daha fazla denetim gerektirir. Bu, aşağıdaki bölümlerde ele alınmıştır.  
 
-## <a name="how-the-apis-work"></a>API'leri nasıl çalışır?  
+## <a name="how-the-apis-work"></a>API 'Ler nasıl çalışır?  
 
-(Zaten açık bir bağlantı aktarılırsa bir özel durum oluşturuyordu) veritabanı bağlantısı kendisini açarken önce EF6 Entity Framework insisted. Bir işlem açık bir bağlantı üzerinde yalnızca başlatılabilir olduğundan, bu tek yolu bir kullanıcı birden çok işlem tek bir işleme kaydırma ya da kullanılacak olduğunu geliyordu bir [TransactionScope](https://msdn.microsoft.com/library/system.transactions.transactionscope.aspx) veya  **ObjectContext.Connection** özelliği ve başlangıç çağırma **Open()** ve **BeginTransaction()** doğrudan üzerinde döndürülen **EntityConnection** nesne. Ayrıca, kendi temel alınan veritabanı bağlantısında bir işlem başlatıldı, API çağrıları, bir veritabanı iletişim başarısız olur.  
+EF6 ' dan önce, veritabanı bağlantısının kendisini açmaya yönelik olarak Entity Framework, (zaten açık olan bir bağlantıyı geçirmişse bir özel durum oluşturdu). Bir işlem yalnızca açık bir bağlantı üzerinde başlatılacağından, bu, bir kullanıcının birkaç işlemi tek bir işlemde kaydıracağından, bir [TransactionScope](https://msdn.microsoft.com/library/system.transactions.transactionscope.aspx) kullanmanın veya **ObjectContext. Connection** özelliğini kullanırken ve Başlarken doğrudan döndürülen **EntityConnection** nesnesinde **Open ()** ve **BeginTransaction ()** çağrılıyor. Buna ek olarak, kendi üzerinde temel alınan veritabanı bağlantısında bir işlem başladıysanız veritabanıyla iletişim kurulan API çağrıları başarısız olur.  
 
 > [!NOTE]
-> Yalnızca kapalı bağlantılarını kabul sınırlaması, Entity Framework 6'da kaldırıldı. Ayrıntılar için bkz [bağlantı yönetimi](~/ef6/fundamentals/connection-management.md).  
+> Yalnızca kapalı bağlantıları kabul etme sınırlaması Entity Framework 6 ' da kaldırılmıştır. Ayrıntılar için bkz. [bağlantı yönetimi](~/ef6/fundamentals/connection-management.md).  
 
-Framework EF6 ile başlayarak, artık sağlar:  
+EF6 ile başlayarak Framework artık şunları sağlar:  
 
-1. **Database.BeginTransaction()** : Başlatmak ve işlemleri kendileri aynı işlem içinde birleştirilmek üzere çeşitli işlemlere izin verme, var olan bir DbContext içinde– tamamlamak bir kullanıcı için daha kolay bir yöntem ve bu nedenle tüm kaydedilmiş veya tüm olarak geri alındı. Ayrıca, daha kolay işlemin yalıtım düzeyini belirtmek kullanıcı sağlar.  
-2. **Database.UseTransaction()** : Entity Framework dışında başlatıldı, bir işlem kullanmak DbContext sağlar.  
+1. **Database. BeginTransaction ()** : Bir kullanıcının mevcut bir DbContext içinde kendi işlemlerini başlatması ve tamamlaması için daha kolay bir yöntem vardır. birkaç işlemin aynı işlem içinde birleştirilmesi ve bu nedenle tümü kaydedilmiş ya da tümünün bir tane olarak geri alınması sağlanır. Ayrıca, kullanıcının işlem için yalıtım düzeyini daha kolay belirlemesine izin verir.  
+2. **Database. UseTransaction ()** : dbcontext 'in Entity Framework dışında başlatılan bir işlem kullanmasına izin verir.  
 
-### <a name="combining-several-operations-into-one-transaction-within-the-same-context"></a>Çeşitli işlemler aynı bağlam içinde tek bir işleme birleştirme  
+### <a name="combining-several-operations-into-one-transaction-within-the-same-context"></a>Birkaç işlemi aynı bağlam içindeki tek bir işlemde birleştirme  
 
-**Database.BeginTransaction()** iki geçersiz kılmaları – bir açık bir alan olan [IsolationLevel](https://msdn.microsoft.com/library/system.data.isolationlevel.aspx) ve olan hiçbir bağımsız değişkeni alır ve temel alınan veritabanı sağlayıcısından IsolationLevel varsayılan kullanır. Her iki geçersiz kılmaları dönüş bir **DbContextTransaction** sağlayan nesne **Commit()** ve **Rollback()** kaydetme ve geri alma, temel alınan mağaza gerçekleştiren yöntemler işlem.  
+**Database. BeginTransaction ()** iki geçersiz kılmaya sahiptir: bir açık [IsolationLevel](https://msdn.microsoft.com/library/system.data.isolationlevel.aspx) ve bağımsız değişken alan ve temel alınan veritabanı sağlayıcısından varsayılan IsolationLevel 'ı kullanan bir tane. Her iki geçersiz kılma de, temel alınan depolama işleminde COMMIT ve Rollback gerçekleştiren **COMMIT ()** ve **Rollback ()** yöntemlerini sağlayan bir **dbcontexttransaction** nesnesi döndürür.  
 
-**DbContextTransaction** kaydedilmiş veya geri alınmış sonra çıkarılması için tasarlanmıştır. Bir yolla bunu yapmanın kolay **using(...) {...}** otomatik olarak çağırma söz dizimi **Dispose()** kullanarak engelliyken tamamlar:  
+**Dbcontexttransaction** , kaydedildikten veya geri alındıktan sonra atılmalıdır. Bunu yapmanın kolay bir yolu, **using (...) {...}** using bloğu tamamlandığında **Dispose ()** öğesini otomatik olarak çağıran sözdizimi:  
 
 ``` csharp
 using System;
@@ -66,27 +66,20 @@ namespace TransactionsExamples
             {
                 using (var dbContextTransaction = context.Database.BeginTransaction())
                 {
-                    try
+                    context.Database.ExecuteSqlCommand(
+                        @"UPDATE Blogs SET Rating = 5" +
+                            " WHERE Name LIKE '%Entity Framework%'"
+                        );
+
+                    var query = context.Posts.Where(p => p.Blog.Rating >= 5);
+                    foreach (var post in query)
                     {
-                        context.Database.ExecuteSqlCommand(
-                            @"UPDATE Blogs SET Rating = 5" +
-                                " WHERE Name LIKE '%Entity Framework%'"
-                            );
-
-                        var query = context.Posts.Where(p => p.Blog.Rating >= 5);
-                        foreach (var post in query)
-                        {
-                            post.Title += "[Cool Blog]";
-                        }
-
-                        context.SaveChanges();
-
-                        dbContextTransaction.Commit();
+                        post.Title += "[Cool Blog]";
                     }
-                    catch (Exception)
-                    {
-                        dbContextTransaction.Rollback();
-                    }
+
+                    context.SaveChanges();
+
+                    dbContextTransaction.Commit();
                 }
             }
         }
@@ -95,16 +88,16 @@ namespace TransactionsExamples
 ```  
 
 > [!NOTE]
-> Bir işlem başlatılmasına izin gerektirir temel alınan depolama bağlantı açıktır. Önceden açılmış olursa Database.BeginTransaction() yöntemini çağırır; dolayısıyla bağlantıyı açın. DbContextTransaction bağlantı açtıysanız Dispose() çağrıldığında ardından bunu, sona erecektir.  
+> Bir işlemin başlangıcında, temeldeki depo bağlantısının açık olması gerekir. Bu nedenle, zaten açılmadıysa Database. BeginTransaction () çağrılırken bağlantı açılır. DbContextTransaction bağlantıyı açtıysa, Dispose () çağrıldığında onu kapatır.  
 
-### <a name="passing-an-existing-transaction-to-the-context"></a>Var olan bir işlem bağlamına geçirme  
+### <a name="passing-an-existing-transaction-to-the-context"></a>Varolan bir işlemi bağlama geçirme  
 
-Bazen bir işlem kapsam içinde bile daha geniş olduğu ve işlemleri aynı veritabanında ancak EF dışında tamamen içeren ister. Bunu gerçekleştirmek için bağlantıyı açın ve kendiniz bir hareket başlatır ve gerekir sonra EF zaten açık veritabanı bağlantısı (a) kullanmayı ve mevcut işlem, bağlantıda b) kullanmaya söyleyin.  
+Bazen kapsamda daha geniş olan ve aynı veritabanı üzerinde işlemler içeren, ancak EF 'in tamamen dışında bir işlem istersiniz. Bunu gerçekleştirmek için bağlantıyı açmanız ve işlemi kendiniz başlatmanız ve sonra da bu bağlantı üzerinde var olan işlemi kullanmak üzere zaten açık olan veritabanı bağlantısını (b) kullanmak için EF 'e söylemeniz gerekir.  
 
-Bunu yapmak için tanımlayın ve mevcut i) bir bağlantı parametresi ve ii) contextOwnsConnection Boole alan DbContext oluşturucular birinden devralan bağlam sınıfınızın bir oluşturucu kullanın.  
+Bunu yapmak için, bağlam sınıfınız üzerinde, var olan bir bağlantı parametresi ve II) contextOwnsConnection Boole değeri olan DbContext oluşturucularından birinden devralan bir Oluşturucu tanımlamanız ve kullanmanız gerekir.  
 
 > [!NOTE]
-> Bu senaryoda çağrıldığında false contextOwnsConnection bayrağı ayarlanmalıdır. Entity Framework ile bittiğinde, bağlantı kapatmayın bildirir gibi önemli budur (örneğin, aşağıdaki 4 satır bakın):  
+> Bu senaryoda çağrıldığında contextOwnsConnection bayrağının false olarak ayarlanması gerekir. Bu, ile işiniz bittiğinde bağlantıyı kapatmaması gerektiğini Entity Framework bilgilendirdiğinden önemlidir (örneğin, aşağıdaki satır 4 ' ü inceleyin):  
 
 ``` csharp
 using (var conn = new SqlConnection("..."))
@@ -116,9 +109,9 @@ using (var conn = new SqlConnection("..."))
 }
 ```  
 
-Ayrıca, işlem kendiniz (varsayılan ayar kaçınmak istiyorsanız IsolationLevel dahil) başlatmalı ve Entity Framework bağlantıda zaten başlatılmış olan bir işlem olduğunu bilmesini sağlar (satır 33 aşağıya bakın).  
+Ayrıca, işlemi kendiniz başlatmanız gerekir (varsayılan ayarı önlemek istiyorsanız IsolationLevel dahil olmak üzere) ve bağlantı üzerinde zaten başlatılmış olan mevcut bir işlem olduğunu bildirmek Entity Framework (bkz. Line 33).  
 
-Ardından doğrudan SqlConnection veya DbContext üzerinde veritabanı işlemleri yürütmek ücretsizdir. Tüm işlemler bir işlem içinde yürütülür. Sorumluluk işleniyor veya işlemi geri alınıyor ve üzerinde Dispose() çağırma yanı sıra kapatma ve veritabanı bağlantısı kesilirken alır. Örneğin:  
+Daha sonra, veritabanı işlemlerini doğrudan SqlConnection üzerinde ya da DbContext üzerinde yürütebilirsiniz. Bu gibi tüm işlemler tek bir işlem içinde yürütülür. İşlemin uygulanması veya geri alınması ve üzerinde Dispose () çağrısı yapmak ve veritabanı bağlantısını kapatmak ve elden atmak için sorumluluğu vardır. Örneğin:  
 
 ``` csharp
 using System;
@@ -140,35 +133,28 @@ namespace TransactionsExamples
 
                using (var sqlTxn = conn.BeginTransaction(System.Data.IsolationLevel.Snapshot))
                {
-                   try
-                   {
-                       var sqlCommand = new SqlCommand();
-                       sqlCommand.Connection = conn;
-                       sqlCommand.Transaction = sqlTxn;
-                       sqlCommand.CommandText =
-                           @"UPDATE Blogs SET Rating = 5" +
-                            " WHERE Name LIKE '%Entity Framework%'";
-                       sqlCommand.ExecuteNonQuery();
+                   var sqlCommand = new SqlCommand();
+                   sqlCommand.Connection = conn;
+                   sqlCommand.Transaction = sqlTxn;
+                   sqlCommand.CommandText =
+                       @"UPDATE Blogs SET Rating = 5" +
+                        " WHERE Name LIKE '%Entity Framework%'";
+                   sqlCommand.ExecuteNonQuery();
 
-                       using (var context =  
-                         new BloggingContext(conn, contextOwnsConnection: false))
-                        {
-                            context.Database.UseTransaction(sqlTxn);
-
-                            var query =  context.Posts.Where(p => p.Blog.Rating >= 5);
-                            foreach (var post in query)
-                            {
-                                post.Title += "[Cool Blog]";
-                            }
-                           context.SaveChanges();
-                        }
-
-                        sqlTxn.Commit();
-                    }
-                    catch (Exception)
+                   using (var context =  
+                     new BloggingContext(conn, contextOwnsConnection: false))
                     {
-                        sqlTxn.Rollback();
+                        context.Database.UseTransaction(sqlTxn);
+
+                        var query =  context.Posts.Where(p => p.Blog.Rating >= 5);
+                        foreach (var post in query)
+                        {
+                            post.Title += "[Cool Blog]";
+                        }
+                       context.SaveChanges();
                     }
+
+                    sqlTxn.Commit();
                 }
             }
         }
@@ -176,21 +162,21 @@ namespace TransactionsExamples
 }
 ```  
 
-### <a name="clearing-up-the-transaction"></a>Temizleme işlemi ayarlama
+### <a name="clearing-up-the-transaction"></a>İşlem temizleniyor
 
-Geçerli işlem için Entity Framework'ün bilgisini temizlemek için Database.UseTransaction() için null değeri geçirebilirsiniz. Entity Framework ne yürütme veya geri alma mevcut işlem, bu nedenle dikkatli kullanın ve yalnızca eminseniz bu yapmak istediğiniz olur.  
+Entity Framework geçerli işlem bilgisini temizlemek için Database. UseTransaction () öğesine null geçirebilirsiniz. Entity Framework bunu yaptığınızda, mevcut işlemi ne yapmalı ne de geri almaz, bu nedenle dikkatli olun ve yalnızca bunun yapmak istediğiniz şeydir.  
 
 ### <a name="errors-in-usetransaction"></a>UseTransaction hataları
 
-İşlem başarılı olursa Database.UseTransaction() adresinden bir özel durum görürsünüz olduğunda:  
-- Entity Framework var olan bir işlem zaten var.  
-- Entity Framework bir TransactionScope içinde zaten çalışıyor  
-- Geçirilen işlemde bağlantı nesnesi null olur. Diğer bir deyişle, işlem bir bağlantıyla ilişkili değil: genellikle bu, işlem zaten tamamlanmış bir oturum açma adıdır.  
-- Geçirilen işlemde bağlantı nesnesi, Entity Framework'ün bağlantı eşleşmiyor.  
+Şu durumlarda bir işlem geçirirseniz Database. UseTransaction () için bir özel durum görürsünüz:  
+- Entity Framework zaten mevcut bir işlem var  
+- Entity Framework zaten bir TransactionScope içinde çalışıyor  
+- Geçirilen işlemdeki bağlantı nesnesi null. Diğer bir deyişle, işlem bir bağlantıyla ilişkili değildir, genellikle bu işlemin zaten tamamlandığını belirten bir imzadır  
+- Geçirilen işlemdeki bağlantı nesnesi Entity Framework bağlantısıyla eşleşmiyor.  
 
 ## <a name="using-transactions-with-other-features"></a>Diğer özelliklerle işlemleri kullanma  
 
-Bu bölümde, yukarıdaki işlemleri nasıl etkileşim açıklanmaktadır:  
+Bu bölüm, yukarıdaki işlemlerin nasıl etkileşime gireceğini ayrıntılarıyla açıklamaktadır:  
 
 - Bağlantı dayanıklılığı  
 - Zaman uyumsuz yöntemler  
@@ -198,16 +184,16 @@ Bu bölümde, yukarıdaki işlemleri nasıl etkileşim açıklanmaktadır:
 
 ### <a name="connection-resiliency"></a>Bağlantı Dayanıklılığı  
 
-Yeni bağlantı dayanıklılığı özelliğini kullanıcı tarafından başlatılan işlemleri ile çalışmaz. Ayrıntılar için bkz [yeniden deneme yürütme stratejileri](~/ef6/fundamentals/connection-resiliency/retry-logic.md#user-initiated-transactions-are-not-supported).  
+Yeni bağlantı dayanıklılığı özelliği, Kullanıcı tarafından başlatılan işlemlerle çalışmaz. Ayrıntılar için bkz. [yürütme stratejilerini yeniden deneme](~/ef6/fundamentals/connection-resiliency/retry-logic.md#user-initiated-transactions-are-not-supported).  
 
 ### <a name="asynchronous-programming"></a>Zaman Uyumsuz Programlama  
 
-Önceki bölümlerde açıklanan yaklaşımı hiçbir başka seçenekleri veya ayarları çalışmak için gereken [zaman uyumsuz yöntemleri kaydedin ve sorgu](~/ef6/fundamentals/async.md
-). Ancak, zaman uyumsuz yöntemler içinde neler bağlı olarak, bu sırayla, kilitlenmeleri veya genel uygulama performansını için hatalı olduğu engelleme neden olabilir. uzun süre çalışan işlemler – neden olabilir, unutmayın.  
+Önceki bölümlerde özetlenen yaklaşımın, [zaman uyumsuz sorgu ve kaydetme yöntemleriyle](~/ef6/fundamentals/async.md
+)birlikte çalışması için başka seçenekler veya ayarlar olması gerekir. Ancak, zaman uyumsuz yöntemlerde yaptığınız işlemlere bağlı olarak, bu durum uzun süre çalışan işlemler oluşmasına neden olabilir. bu durum, genel uygulamanın performansı için bozuk olan kilitlenmeleri veya engellemeye yol açabilir.  
 
-### <a name="transactionscope-transactions"></a>TransactionScope işlemleri  
+### <a name="transactionscope-transactions"></a>TransactionScope Işlemleri  
 
-EF6 önce TransactionScope nesnesini kullanmak için önerilen yöntem, daha büyük kapsam işlemler sağlama şöyleydi:  
+EF6 öncesinde, daha büyük kapsam işlemleri sağlamanın önerilen yolu bir TransactionScope nesnesi kullanmaktır:  
 
 ``` csharp
 using System.Collections.Generic;
@@ -254,9 +240,9 @@ namespace TransactionsExamples
 }
 ```  
 
-SqlConnection ve Entity Framework hem ortam TransactionScope işlem kullanın ve bu nedenle birlikte yürütülmesi.  
+SqlConnection ve Entity Framework her ikisi de çevresel TransactionScope işlemini kullanır ve bu nedenle birlikte işlenir.  
 
-.NET 4.5.1 TransactionScope kullanımı aracılığıyla zaman uyumsuz yöntemler de çalışmak üzere güncelleştirilmiştir başlayarak [TransactionScopeAsyncFlowOption](https://msdn.microsoft.com/library/system.transactions.transactionscopeasyncflowoption.aspx) sabit listesi:  
+.NET 4.5.1 TransactionScope ile çalışmaya başlamak, [TransactionScopeAsyncFlowOption](https://msdn.microsoft.com/library/system.transactions.transactionscopeasyncflowoption.aspx) numaralandırması kullanılarak zaman uyumsuz yöntemlerle de çalışacak şekilde güncelleştirilmiştir:  
 
 ``` csharp
 using System.Collections.Generic;
@@ -301,16 +287,16 @@ namespace TransactionsExamples
 }
 ```  
 
-Yine de bazı sınırlamalar TransactionScope yaklaşım vardır:  
+TransactionScope yaklaşımına yönelik bazı sınırlamalar vardır:  
 
-- .NET 4.5.1 gerektirir veya zaman uyumsuz yöntemler ile çalışmak daha büyük.  
-- Bir ve yalnızca bir bağlantı olduğundan emin değilseniz bulut senaryolarda kullanılamaz (bulut senaryolarına dağıtılmış işlemler desteklemez).  
-- Önceki bölümlerde Database.UseTransaction() yaklaşımıyla birleştirilemez.  
-- Bir DDL vermek ve MSDTC hizmeti aracılığıyla dağıtılmış işlemler etkinleştirmediniz özel durumlar.  
+- Zaman uyumsuz yöntemlerle çalışmak için .NET 4.5.1 veya üstünü gerektirir.  
+- Tek bir bağlantınızın olduğundan ve yalnızca bir bağlantınız olduğundan (bulut senaryoları dağıtılmış işlemleri desteklemediğinden), bulut senaryolarında kullanılamaz.  
+- Önceki bölümlerin Database. UseTransaction () yaklaşımıyla birleştirilemez.  
+- Herhangi bir DDL 'ye sahipseniz ve dağıtılmış işlemleri MSDTC hizmeti aracılığıyla etkinleştirmediyseniz, bu durum özel durumlar oluşturur.  
 
-TransactionScope yaklaşımın avantajları:  
+TransactionScope yaklaşımının avantajları:  
 
-- Birden fazla belirli bir veritabanı bağlantısı veya aynı işlem içinde farklı bir veritabanı bağlantısı olan bir veritabanına bir bağlantı birleştirmek, otomatik olarak yerel bir işlem için Dağıtılmış bir işlem yükseltir (Not: olması gerekir Dağıtılmış işlemler için bunun çalışmasına izin verecek şekilde yapılandırılmış MSDTC hizmetinin).  
-- Kodlama kolaylığı. Tercih ettiğiniz ortam ve örtük olarak arka planda ile dağıtılmış işlem yerine, açıkça altında denetim ardından TransactionScope yaklaşımı, daha iyi uygun.  
+- Belirli bir veritabanına birden fazla bağlantı yaparsanız veya aynı işlem içindeki farklı bir veritabanıyla bağlantı ile bir bağlantıyı birleştiren bir yerel işlemi otomatik olarak dağıtılmış bir işlem olarak yükseltir (unutmayın: Bu işlemin çalışması için dağıtılmış işlemlere izin vermek üzere yapılandırılan MSDTC hizmeti.  
+- Kodlama kolaylığı. İşlemin doğrudan kontrol altına almak yerine, bir hareketin çevresel hale ve arka planda bir şekilde karşılanmayı tercih ediyorsanız, TransactionScope yaklaşımı daha iyi bir şekilde gelebilir.  
 
-Özet olarak, yeni Database.BeginTransaction() ve yukarıdaki Database.UseTransaction() API'leri ile TransactionScope yaklaşım artık çoğu kullanıcı için gerekli değildir. TransactionScope kullanmaya devam ederseniz ardından yukarıdaki sınırlamaları unutmayın. Mümkün olduğunda bunun yerine önceki bölümlerde açıklanan yaklaşımı kullanmanızı öneririz.  
+Özet olarak, yukarıdaki yeni Database. BeginTransaction () ve Database. UseTransaction () API 'Lerinde, TransactionScope yaklaşımı çoğu kullanıcı için artık gerekli değildir. TransactionScope kullanmaya devam ederseniz yukarıdaki kısıtlamaların farkında olun. Mümkün olduğunda, önceki bölümlerde özetlenen yaklaşımı kullanmanızı öneririz.  

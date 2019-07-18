@@ -1,30 +1,30 @@
 ---
-title: Günlüğe kaydetme ve veritabanı işlemleri - EF6 kesintiye
+title: Günlüğe kaydetme ve veritabanı işlemlerini kesintiye alma-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: b5ee7eb1-88cc-456e-b53c-c67e24c3f8ca
-ms.openlocfilehash: 3f06e073f3ab6e46883663620219e302d5db1d60
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: be32ed114269543ac36b256a202e0494d466e4f7
+ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490097"
+ms.lasthandoff: 07/18/2019
+ms.locfileid: "68306540"
 ---
-# <a name="logging-and-intercepting-database-operations"></a>Günlüğe kaydetme ve veritabanı işlemleri kesintiye
+# <a name="logging-and-intercepting-database-operations"></a>Veritabanı işlemlerini günlüğe kaydetme ve önleme
 > [!NOTE]
-> **EF6 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb., Entity Framework 6'da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.  
+> **Yalnızca EF6** , bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 6 ' da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.  
 
-Entity Framework veritabanı için bir komutu, bu komut gönderir. herhangi bir zamanda Entity Framework 6 ile başlayarak, uygulama kodu tarafından yakalanabilir. SQL günlüğü için en yaygın olarak kullanılır, ancak değiştirmek veya komutu durdurun için de kullanılabilir.  
+Entity Framework 6 ' dan başlayarak, her zaman Entity Framework veritabanına bir komut gönderir bu komut uygulama kodu tarafından yakalanabilir. Bu, yaygın olarak SQL günlüğü için kullanılır, ancak komutu değiştirmek veya durdurmak için de kullanılabilir.  
 
-Özellikle, EF içerir:  
+Özel olarak, EF şunları içerir:  
 
-- LINQ to SQL'de DataContext.Log benzer bağlamı için bir günlük özelliği  
-- İçerik ve'ına gönderilen çıktı biçimlendirme özelleştirmek için bir mekanizma  
-- Daha fazla denetim/esnekliğini durdurma için alt düzey yapı taşları  
+- LINQ to SQL DataContext. log dosyasına benzer bağlam için bir günlük özelliği  
+- Günlüğe gönderilen çıktının içeriğini ve biçimlendirmesini özelleştirmek için bir mekanizma  
+- Daha fazla denetim/esneklik sağlayan, ele geçirme için düşük düzey yapı taşları  
 
-## <a name="context-log-property"></a>İçerik günlüğü özelliği  
+## <a name="context-log-property"></a>Bağlam günlüğü özelliği  
 
-DbContext.Database.Log özelliği bir dize alır herhangi bir yöntem için temsilci olarak ayarlanabilir. En yaygın olarak ayarlayarak bu TextWriter "Yazma" yöntemi için herhangi bir TextWriter ile kullanılır. Geçerli bağlam tarafından oluşturulan tüm SQL yazıcının için günlüğe kaydedilir. Örneğin, aşağıdaki kod, konsola SQL başlar.SSH:  
+DbContext. Database. Log özelliği, bir dize alan herhangi bir yöntem için bir temsilciye ayarlanabilir. En yaygın olarak, bu TextWriter 'ın "yazma" yöntemine ayarlanarak herhangi bir TextWriter ile birlikte kullanılır. Geçerli bağlam tarafından oluşturulan tüm SQL bu yazıcıya kaydedilir. Örneğin, aşağıdaki kod SQL 'i konsola kaydeder:  
 
 ``` csharp
 using (var context = new BlogContext())
@@ -35,9 +35,9 @@ using (var context = new BlogContext())
 }
 ```  
 
-Bu bağlamı dikkat edin. Database.Log Console.Write için ayarlanır. Tüm SQL konsolunda oturum için gereken budur.  
+Bağlam olduğuna dikkat edin. Database. log, Console. Write olarak ayarlanır. Bu, SQL 'i konsolunda günlüğe kaydetmek için gereklidir.  
 
-Biz bazı çıkış görebilmeniz için bazı basit sorgu/ekleme/güncelleştirme kod ekleyelim:  
+Bazı çıktıları görebilmemiz için bazı basit sorgu/ekleme/güncelleştirme kodu ekleyelim:  
 
 ``` csharp
 using (var context = new BlogContext())
@@ -54,7 +54,7 @@ using (var context = new BlogContext())
 }
 ```  
 
-Bu, aşağıdaki çıktıyı üretir:  
+Bu, aşağıdaki çıktıyı oluşturur:  
 
 ``` SQL
 SELECT TOP (1)
@@ -94,39 +94,39 @@ WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()
 -- Completed in 2 ms with result: SqlDataReader
 ```  
 
-(Bu veritabanı sıfırlamaları çoktan olmuş varsayarsak çıkış olduğunu unutmayın. "Olacaktır sonra veritabanı başlatma zaten olmayan oluştuysa tüm iş geçişler gösteren çok daha fazla çıkış olup olmadığını denetleyin veya yeni bir veritabanı oluşturmak için arka planda gerçekleştirir.)  
+(Bu, herhangi bir veritabanı başlatmasının zaten gerçekleştiğini kabul eden çıkış olduğunu unutmayın. Veritabanı başlatma işlemi henüz gerçekleşmiyorsa, tüm çalışma geçişlerinin, yeni bir veritabanını denetlemeye veya oluşturmaya yönelik kapakların altında olduğunu gösteren çok daha fazla çıkış olacaktır.)  
 
-## <a name="what-gets-logged"></a>Oturum?  
+## <a name="what-gets-logged"></a>Ne günlüğe kaydedilir?  
 
-Günlük özelliği aşağıdakilerin tümü ayarlandığında kaydedilir:  
+Log özelliği ayarlandığında, aşağıdakilerin tümü günlüğe kaydedilir:  
 
-- SQL komutları tüm farklı türleri için. Örneğin:  
-    - Normal LINQ sorguları, eSQL sorgular ve ham sorgularından SqlQuery gibi yöntemleri dahil olmak üzere sorgular  
-    - Ekleme, güncelleştirme ve silme SaveChanges bir parçası olarak oluşturulan  
-    - İlişki sorgular tarafından Gecikmeli yükleme oluşturulanların gibi yükleniyor  
+- Tüm farklı komut türleri için SQL. Örneğin:  
+    - Normal LINQ sorguları, eSQL sorguları ve SqlQuery gibi yöntemlerden ham sorgular da dahil olmak üzere sorgular  
+    - SaveChanges 'un bir parçası olarak oluşturulan ekler, güncelleştirmeler ve siler  
+    - Geç yükleme tarafından oluşturulanlar gibi ilişki yükleme sorguları  
 - Parametreler  
-- Bir komut olup olmadığını zaman uyumsuz olarak yürütülüyor  
-- Komut yürütme başlatıldığında belirten bir zaman damgası  
-- Komut başarıyla tamamlandı, özel bir durum yaratarak veya, zaman uyumsuz başarısız olsun veya olmasın, iptal edildi  
-- Sonuç değeri bazı göstergesi  
-- Bu komutu yürütmek için geçen süre yaklaşık miktarı. Bu sonuç nesnesi geri almak için komut göndermesini saat olduğuna dikkat edin. Sonuçları okuma süresi içermez.  
+- Komutun zaman uyumsuz olarak yürütülüp yürütülmediğini belirtir  
+- Komutun ne zaman yürütülmeye başlatıldığını belirten bir zaman damgası  
+- Komutun başarıyla tamamlanıp tamamlanmayacağı, bir özel durum oluşturan veya zaman uyumsuz olarak iptal edildiği  
+- Sonuç değerinin bir göstergesi  
+- Komutu yürütmek için geçen sürenin yaklaşık miktarı. Bu, sonuç nesnesini geri almak için komutunu göndermenin zamanı olduğunu unutmayın. Sonuçların okunması zaman içermez.  
 
-Yukarıdaki örnek çıktısına baktığınızda, her oturum dört komuttan biri şunlardır:  
+Yukarıdaki örnek çıktıya bakarak günlüğe yazılan dört komutun her biri şu şekilde yapılır:  
 
-- Bağlam çağrısından kaynaklanan sorgu. Blogs.First  
-    - ToString çağrılabilir Iqueryable SQL alma ToString yöntemini beri bu sorgu için öğrenmeniz gerekir bildirimi "First" sağlamaz  
-- Yavaş-yüklenmesini blog sonuçlanan sorgu. Gönderiler  
-    - Bildirimi anahtar değeri geç hangi yükleme için parametre ayrıntılarını olmuyor.  
-    - Varsayılan olmayan değerlere ayarlanır özellikleri parametresinin günlüğe kaydedilir. Örneğin, boyut özelliği yalnızca sıfır olup olmadığını gösterilir.  
-- İki komuttan SaveChangesAsync kaynaklanan; bir güncelleştirme sonrası başlık, yeni bir gönderi eklemek bir ekleme için diğer değiştirmek için  
-    - FK ve başlık özelliklerini parametre ayrıntılarını dikkat edin.  
-    - Bu komutları yürütülürken zaman uyumsuz olarak dikkat edin.  
+- Sorgu bağlama çağrısının sonucu. Ilk blog.  
+    - "First", ToString 'in çağrılabilecek bir IQueryable sağlamamasından bu yana, SQL 'i alma ToString yönteminin bu sorgu için çalışmadığına dikkat edin  
+- Sorgu, blogun geç yükleme işleminden elde edilir. Nakil  
+    - Yavaş yüklemenin gerçekleştiği anahtar değer için parametre ayrıntılarına dikkat edin  
+    - Yalnızca varsayılan olmayan değerlere ayarlanan parametrelerin özellikleri günlüğe kaydedilir. Örneğin, size özelliği yalnızca sıfır dışında bir değer olarak gösterilir.  
+- SaveChangesAsync 'den kaynaklanan iki komut Bunlardan biri, bir posta başlığını değiştirmek için bir INSERT, diğeri yeni gönderi eklemek için  
+    - FK ve title özelliklerine ilişkin parametre ayrıntılarına dikkat edin  
+    - Bu komutların zaman uyumsuz olarak yürütülebileceğini unutmayın  
 
-## <a name="logging-to-different-places"></a>Farklı konumlara günlüğe kaydetme  
+## <a name="logging-to-different-places"></a>Farklı yerlere kaydetme  
 
-Günlüğe kaydetme için yukarıda da gösterildiği gibi konsolun çok kolaydır. Bellek, dosya, vb. için farklı kullanarak oturum kolaydır, [TextWriter](https://msdn.microsoft.com/library/system.io.textwriter.aspx).  
+Yukarıdaki konsolda gösterildiği gibi, daha kolay bir işlemdir. Ayrıca, farklı tür [TextWriter](https://msdn.microsoft.com/library/system.io.textwriter.aspx)kullanarak bellek, dosya vb. günlük kaydı da kolaydır.  
 
-LINQ ile SQL, LINQ to SQL günlüğü özelliği gerçek TextWriter nesnesinde (örneğin, Console.Out) sırasında bir dize (örneğin kabul eden bir yönteme günlük özelliği ayarlanmış EF ayarlı görebilirsiniz biliyorsanız Console.Write veya Console.Out.Write). Bunun nedeni TextWriter'dan EF dizeleri için bir havuz olarak davranıp herhangi bir temsilci kabul ederek ayırmaktır. Örneğin, bazı günlüğe kaydetme çerçevesi zaten var ve bir günlük yöntemi tanımlar Imagine şu şekilde:  
+LINQ to SQL biliyorsanız, log özelliğinin gerçek TextWriter nesnesine (örneğin, Console. out) ayarlandığını, EF 'teki log özelliğinin ise bir dizeyi kabul eden bir yönteme ayarlandığını LINQ to SQL fark edebilirsiniz (örneğin, , Console. Write veya Console. out. Write). Bunun nedeni, dizeler için havuz görevi gören herhangi bir temsilciyi kabul ederek TextWriter 'dan EF 'e ayrılmalıdır. Örneğin, bir günlük çerçevesini zaten kullandığınızı ve bunun gibi bir günlüğe kaydetme yöntemi tanımladığınızı düşünün:  
 
 ``` csharp
 public class MyLogger
@@ -138,28 +138,28 @@ public class MyLogger
 }
 ```  
 
-Bu gibi bu EF günlük özelliğine ölçekledikçe:  
+Bu, EF Log özelliğine şu şekilde erişilebilir:  
 
 ``` csharp
 var logger = new MyLogger();
 context.Database.Log = s => logger.Log("EFApp", s);
 ```  
 
-## <a name="result-logging"></a>Sonucu günlüğe kaydetme  
+## <a name="result-logging"></a>Sonuç günlüğü  
 
-Komut veritabanına gönderilmeden önce varsayılan Günlükçü komut metni (SQL), parametreler ve "Executing" satırın zaman damgası ile kaydeder. Geçen süreyi içeren bir "tamamlandı" oturum aşağıdaki komutun yürütülmesi satırıdır.  
+Varsayılan günlükçü komut metnini (SQL), parametreleri ve "yürütülüyor" satırını komut veritabanına gönderilmeden önce bir zaman damgasıyla günlüğe kaydeder. Geçen süreyi içeren "tamamlandı" satırı komutun yürütülmesi için günlüğe kaydedilir.  
 
-Zaman uyumsuz görev gerçekten tamamlandıktan, başarısız veya iptal kadar zaman uyumsuz komutları için "tamamlandı" satırı kaydedilmez unutmayın.  
+Zaman uyumsuz komutlar için "tamamlandı" satırının, zaman uyumsuz görev gerçekten tamamlanana, başarısız olmasına veya iptal edilene kadar günlüğe kaydedilmeyeceğini unutmayın.  
 
-"Tamamlandı" satırı komut ve yürütme başarılı olsun veya olmasın türüne bağlı olarak farklı bilgiler içerir.  
+"Tamamlandı" satırı, komutun türüne ve yürütmenin başarılı olup olmadığına bağlı olarak farklı bilgiler içerir.  
 
 ### <a name="successful-execution"></a>Başarılı yürütme  
 
-Çıkış başarıyla tamamlanması komutlar için "x sonucuyla ms içinde tamamlandı:" sonucu neydi bazı göstergesini tarafından izlenen. Bir veri okuyucu sonuç komutlarında türünü göstergesidir [dbdatareader öğesine dönüştürülemedi](https://msdn.microsoft.com/library/system.data.common.dbdatareader.aspx) döndürdü. Güncelleştirme gibi bir tamsayı değeri döndüren komutlar için gösterilen sonuç gösterilen komutu bu tamsayıdır.  
+Başarılı bir şekilde tamamlanan komutlar için, çıkış "x MS 'de şu sonuçla tamamlandı:" sözcüğünün ardından sonucun ne olduğuna ilişkin bir bildirim gelir. Bir veri okuyucusu döndüren komutlar için sonuç göstergesi döndürülen [DbDataReader](https://msdn.microsoft.com/library/system.data.common.dbdatareader.aspx) türüdür. Gösterilen sonucun yukarıda gösterilen Update komutu gibi bir tamsayı değer döndüren komutlar için bu tamsayıdır.  
 
-### <a name="failed-execution"></a>Başarısız yürütme  
+### <a name="failed-execution"></a>Yürütme başarısız oldu  
 
-Bir özel durum ile başarısız komutları için çıkış özel durumdan ileti içerir. Örneğin, SqlQuery için var olan bir tablo sorgusu kullanarak günlük sonucunda aşağıdakine benzer çıktıyı verir:  
+Özel durum oluşturan komutlar için, çıkış özel durumdan gelen iletiyi içerir. Örneğin, var olan bir tabloya karşı sorgulamak için SqlQuery kullanmak şuna benzer bir şekilde günlük çıkışı oluşmasına neden olur:  
 
 ``` SQL
 SELECT * from ThisTableIsMissing
@@ -167,9 +167,9 @@ SELECT * from ThisTableIsMissing
 -- Failed in 1 ms with error: Invalid object name 'ThisTableIsMissing'.
 ```  
 
-### <a name="canceled-execution"></a>Yürütme işlemi iptal edildi  
+### <a name="canceled-execution"></a>Yürütme iptal edildi  
 
-Bu iptal etme denemesi yapıldığında, temel alınan ADO.NET sağlayıcısı genellikle yaptığı olduğundan burada görev iptal zaman uyumsuz komutları için sonuç bir özel durum ile başarısız olabilir. Bu gerçekleşmez ve görev düzgün bir şekilde iptal çıktısı aşağıdakine benzer görünecektir:  
+Görevin iptal edildiği zaman uyumsuz komutlar için, bu, temel alınan ADO.NET sağlayıcının genellikle iptal için bir deneme yapıldığında yaptığı durumlar olduğundan, bir özel durumla başarısız olabilir. Bu durum gerçekleşmezse ve görev düzgün şekilde iptal edilirse, çıkış şuna benzer şekilde görünür:  
 
 ```  
 update Blogs set Title = 'No' where Id = -1
@@ -177,24 +177,24 @@ update Blogs set Title = 'No' where Id = -1
 -- Canceled in 1 ms
 ```  
 
-## <a name="changing-log-content-and-formatting"></a>Günlük içeriği değiştirme ve biçimlendirme  
+## <a name="changing-log-content-and-formatting"></a>Günlük içeriğini ve biçimlendirmeyi değiştirme  
 
-Özelliğin sağlar Database.Log perde DatabaseLogFormatter nesnesinin kullanın. Bu nesne (aşağıya bakın) IDbCommandInterceptor uygulama dizeleri ve bir DbContext kabul eden bir temsilci etkili bir şekilde bağlar. Bu, DatabaseLogFormatter yöntemlerde önce ve sonra komutların yürütülmesini EF tarafından çağrılır, anlamına gelir. Bu DatabaseLogFormatter yöntemleri toplayın ve günlük çıktısı biçimlendirmek ve temsilciye gönderebilirsiniz.  
+Öğesinin altında Database. Log özelliği bir DatabaseLogFormatter nesnesinin kullanımını sağlar. Bu nesne, dize ve DbContext kabul eden bir temsilciye bir ıdbcommandyakalayıcısı uygulamasını (aşağıya bakın) etkin bir şekilde bağlar. Bu, DatabaseLogFormatter üzerindeki yöntemlerin, komutların EF tarafından yürütülmesinden önce ve sonra çağrıldığı anlamına gelir. Bu DatabaseLogFormatter yöntemleri, günlük çıktısını toplayıp biçimlendirir ve temsilciye gönderir.  
 
-### <a name="customizing-databaselogformatter"></a>DatabaseLogFormatter özelleştirme  
+### <a name="customizing-databaselogformatter"></a>DatabaseLogFormatter 'ı özelleştirme  
 
-Günlüğe kaydedilenler ve nasıl biçimlendirildiğini değiştirme, DatabaseLogFormatter türetir ve uygun yöntemleri geçersiz kılan bir yeni sınıf oluşturarak gerçekleştirilebilir. Geçersiz kılmak için en yaygın yöntemler şunlardır:  
+Günlüğe kaydedilen ve nasıl biçimlendirildiğine yönelik değişiklik, DatabaseLogFormatter 'dan türeyen yeni bir sınıf oluşturularak ve uygun şekilde Yöntemler geçersiz kılınarak elde edilebilir. Geçersiz kılınacak en yaygın yöntemler şunlardır:  
 
-- LogCommand – bu komutları nasıl bunlar yürütülmeden önce günlüğe kaydedildiğini değiştirmek için geçersiz. Varsayılan olarak, her parametre için LogParameter LogCommand çağırır; geçersiz kılma aynı yapın veya bunun yerine parametreleri farklı şekilde işlemek tercih edebilirsiniz.  
-- LogResult – bir komutun yürütülmesini sonucu nasıl kaydedilir değiştirmek için geçersiz kılar.  
-- LogParameter – bu biçimlendirme ve parametre günlük içeriğini değiştirmek için geçersiz.  
+- LogCommand: komutları yürütülmeden önce günlüğe kaydetme şeklini değiştirmek için bunu geçersiz kılın. Varsayılan olarak, LogCommand her parametre için LogParameter çağırır; Bunun yerine, geçersiz kılmanızda veya parametreleri farklı şekilde işleyebilir.  
+- LogResult: bir komutu yürütme sonucunun günlüğe nasıl kaydedileceğini değiştirmek için bunu geçersiz kılın.  
+- LogParameter: parametre günlüğünün biçimlendirmesini ve içeriğini değiştirmek için bunu geçersiz kılın.  
 
-Örneğin, her komut veritabanına gönderilmeden önce tek bir satır oturum istedik varsayalım. Bu iki geçersiz kılma ile yapılabilir:  
+Örneğin, her komut veritabanına gönderilmeden önce yalnızca tek bir satırı günlüğe kaydetmek istediğinizi varsayalım. Bu, iki geçersiz kılma ile yapılabilir:  
 
-- Biçimlendirme ve tek satırlık bir SQL yazma LogCommand geçersiz kıl  
-- Hiçbir şey yapmıyor LogResult geçersiz kılar.  
+- Tek SQL satırını biçimlendirmek ve yazmak için LogCommand 'i geçersiz kıl  
+- Hiçbir şey yapmak için LogResult 'ı geçersiz kılın.  
 
-Kod aşağıdaki gibi görünür:
+Kod şuna benzer:
 
 ``` csharp
 public class OneLineFormatter : DatabaseLogFormatter
@@ -221,13 +221,13 @@ public class OneLineFormatter : DatabaseLogFormatter
 }
 ```  
 
-Oturum çıktı yapılandırılmış yazma temsilciye gönderir yazma yönteminin yalnızca çağrı çıktı.  
+Çıktıyı günlüğe kaydetmek için, yapılandırılan yazma temsilcisine çıktı gönderecek olan Write metodunu çağırın.  
 
-(Bu kodu satır sonları alıyormuş kaldırılmasını yalnızca örnek olarak yaptığı unutmayın. Bu büyük olasılıkla iyi karmaşık SQL görüntülemek için çalışmaz.)  
+(Bu kodun bir örnek olarak satır sonlarının uyarlaması kaldırdığına göz önünde kısınız. Büyük olasılıkla karmaşık SQL görüntülemek için iyi çalışmaz.)  
 
-### <a name="setting-the-databaselogformatter"></a>DatabaseLogFormatter ayarlama  
+### <a name="setting-the-databaselogformatter"></a>DatabaseLogFormatter ayarlanıyor  
 
-Yeni bir DatabaseLogFormatter sınıf oluşturulduktan sonra EF ile kayıtlı olması gerekir. Bu yapılır kod tabanlı yapılandırma kullanarak. Buna koysalar bu aynı bütünleştirilmiş kodun DbContext sınıfınıza olarak DbConfiguration türeyen yeni bir sınıf oluşturursunuz ve ardından bu yeni sınıfın oluşturucusunda SetDatabaseLogFormatter arama anlamına gelir. Örneğin:  
+Yeni bir DatabaseLogFormatter sınıfı oluşturulduktan sonra, EF ile kaydedilmesi gerekir. Bu, kod tabanlı yapılandırma kullanılarak yapılır. Bir kısaca 'de bu, DbContext sınıfınız ile aynı derlemede bulunan DBConfiguration 'dan türetilmiş yeni bir sınıf oluşturma ve ardından bu yeni sınıfın oluşturucusunda setdatabaselogformatter çağırma anlamına gelir. Örneğin:  
 
 ``` csharp
 public class MyDbConfiguration : DbConfiguration
@@ -240,9 +240,9 @@ public class MyDbConfiguration : DbConfiguration
 }
 ```  
 
-### <a name="using-the-new-databaselogformatter"></a>Yeni DatabaseLogFormatter kullanma  
+### <a name="using-the-new-databaselogformatter"></a>Yeni DatabaseLogFormatter 'ı kullanma  
 
-Bu yeni DatabaseLogFormatter artık Database.Log ayarlanmış herhangi bir zamanda kullanılır. Bu nedenle, bölüm 1 ' kodu çalıştıran artık aşağıdaki çıktıda sonuçlanır:  
+Bu yeni DatabaseLogFormatter artık her zaman veritabanı için kullanılacaktır. log ayarlandı. Bu nedenle, kod 1 ' den kodu çalıştırmak şu çıkışa neden olur:  
 
 ```  
 Context 'BlogContext' is executing command 'SELECT TOP (1) [Extent1].[Id] AS [Id], [Extent1].[Title] AS [Title]FROM [dbo].[Blogs] AS [Extent1]WHERE (N'One Unicorn' = [Extent1].[Title]) AND ([Extent1].[Title] IS NOT NULL)'
@@ -251,60 +251,60 @@ Context 'BlogContext' is executing command 'update [dbo].[Posts]set [Title] = @0
 Context 'BlogContext' is executing command 'insert [dbo].[Posts]([Title], [BlogId])values (@0, @1)select [Id]from [dbo].[Posts]where @@rowcount > 0 and [Id] = scope_identity()'
 ```  
 
-## <a name="interception-building-blocks"></a>Durdurma yapı taşları  
+## <a name="interception-building-blocks"></a>Yakalaşmayı oluşturma blokları  
 
-Şu ana kadar EF tarafından oluşturulan SQL oturum DbContext.Database.Log kullanmayı inceledik. Ancak bu kodu görece basit bir cephe gerçekten daha genel durdurma için bazı alt düzey yapı taşları üzerinden.  
+Şu ana kadar, EF tarafından oluşturulan SQL 'i günlüğe kaydetmek için DbContext. Database. log ' un nasıl kullanılacağını inceledik. Ancak bu kod, daha genel bir ele alma için bazı düşük düzeyli yapı taşları üzerinde görece ince façlşdir.  
 
-### <a name="interception-interfaces"></a>Durdurma arabirimleri  
+### <a name="interception-interfaces"></a>Araya geçirme arabirimleri  
 
-Durdurma kodu durdurma arabirimleri kavramı üretilmiştir. Bu arabirimler IDbInterceptor devralır ve EF bazı eylem gerçekleştirdiğinde çağrılan yöntemlere tanımlayın. Amaç, bir arabirim başına geçirilmesinin nesne türü olmasını sağlamaktır. Örneğin, önce EF ExecuteNonQuery, ExecuteScalar, ExecuteReader ve ilişkili yöntemleri çağrıda çağrılan yöntemlere IDbCommandInterceptor arabirimi tanımlar. Benzer şekilde, bu işlemlerin her biri tamamlandığında çağrılan yöntemlere arabirimi tanımlar. Yukarıda inceledik DatabaseLogFormatter sınıfı komutları için bu arabirimi uygular.  
+Yakasyon kodu, ele geçirme arabirimleri kavramı etrafında oluşturulmuştur. Bu arabirimler, ıdbyakalayıcıyı sınıfından devralınır ve EF bir işlem gerçekleştirdiğinde çağrılan yöntemleri tanımlar. Amaç, her nesne türü için bir arabirime sahip olmak için kullanılır. Örneğin, ıdbcommandyakalayıcısı arabirimi, bir ExecuteNonQuery, ExecuteReader metodunu, ExecuteReader ve ilgili yöntemlere çağrı yapmadan önce çağrılan yöntemleri tanımlar. Benzer şekilde, arabirim, bu işlemlerin her biri tamamlandığında çağrılan yöntemleri tanımlar. Yukarıda incelediğimiz DatabaseLogFormatter sınıfı bu arabirimi günlüğe kaydetmek için uygular.  
 
-### <a name="the-interception-context"></a>Durdurma bağlamı  
+### <a name="the-interception-context"></a>Yakalenme bağlamı  
 
-Herhangi bir dinleyiciyi arabirimleri üzerinde tanımlanan yöntemler, bakarak her çağrı DbInterceptionContext türünde bir nesne veya bazı tür bu gibi DbCommandInterceptionContext türetildiğine emin görünen\<\>. Bu nesne EF sürüyor eylem hakkında bağlamsal bilgiler içerir. Örneğin, bir DbContext adına yapılan eylemi, DbContext DbInterceptionContext dahildir. Benzer şekilde, zaman uyumsuz olarak yürütülen komutlar için üzerinde DbCommandInterceptionContext Isasync bayrağı ayarlanır.  
+Herhangi bir dinleyici için tanımlanan yöntemlere bakarak, her çağrıya Dbyakationcontext türünde bir nesne veya Dbcommandyakationcontext\<\>gibi bu türden türetilmiş bir tür verilmiştir. Bu nesne, EF 'in aldığı eylem hakkında bağlamsal bilgiler içerir. Örneğin, eylem bir DbContext adına götürülüiyorsa DbContext Dbyakationcontext içine dahil edilir. Benzer şekilde, zaman uyumsuz olarak yürütülen komutlar için, Dbcommandyakationcontext üzerinde IsAsync bayrağı ayarlanır.  
 
 ### <a name="result-handling"></a>Sonuç işleme  
 
-DbCommandInterceptionContext\< \> sınıfı sonucu, OriginalResult, özel durum ve özgün özel durum olarak adlandırılan bir özelliklerini içerir. Bu özellikler için null/sıfır işlemi yürütülmeden önce çağrılan durdurma yöntemlere yapılan çağrılar için ayarlanan — diğer bir deyişle, için... Yürütme yöntemleri. İşlemi yürütülür ve başarılı, işlemin sonucunu için sonuç ve OriginalResult ayarlanır. Bu değerleri işlemi yürütüldükten sonra çağrılan durdurma yöntemlere sonra gözlenecek — diğer bir deyişle,... Yürütülen yöntemler. İşlemi oluşturursa, benzer şekilde, daha sonra özel durum ve özgün özel durum özellikleri ayarlanır.  
+Dbcommandyakationcontext\< \> sınıfı result, originalresult, Exception ve OriginalException adlı bir özellik içerir. Bu özellikler, işlem yürütülmeden önce çağrılan çağrı yöntemlerine yapılan çağrılar için null/sıfır olarak ayarlanır; Yani,.................. Yöntemler yürütülüyor. İşlem yürütülürse ve başarılı olursa Result ve OriginalResult işlemin sonucuna ayarlanır. Bu değerler daha sonra, işlem yürütüldükten sonra çağrılan (...... Çalıştırılan Yöntemler. Benzer şekilde, işlem oluşturursa, Exception ve OriginalException özellikleri ayarlanır.  
 
-#### <a name="suppressing-execution"></a>Yürütme gizleme  
+#### <a name="suppressing-execution"></a>Yürütmeyi gizleme  
 
-Komutu yürüttüğünü önce bir dinleyiciyi sonucu özelliği ayarlar varsa (birinde... Yürütme yöntemleri) sonra EF gerçekten komutu yürütmek çalışmaz, ancak bunun yerine yalnızca sonuç kümesini kullanacak. Diğer bir deyişle, dinleyiciyi de komutu yürütmeye bastır ancak komutu yürüttüğünü gibi devam EF sahip.  
+Bir dinleyici, komut yürütülmeden önce sonuç özelliğini ayarlarsa (bir... Yöntemler yürütülüyor), AŞV gerçekten komutu yürütmeye çalışmaz, ancak bunun yerine yalnızca sonuç kümesini kullanacaktır. Diğer bir deyişle, yakalayıcısı komutun yürütülmesini engelleyebilir, ancak komutun yürütüldüğünden EF ile devam eder.  
 
-Bu nasıl kullanılabileceğine ilişkin bir örnek, bir sarmalama sağlayıcısıyla, toplu işleme komut geleneksel olarak Tamamlandı ' dir. Dinleyiciyi komut daha sonra yürütmek için bir toplu iş olarak saklayacağından, ancak "komutu normal olarak yürütülen EF görünen". Toplu işleme uygulamak için bu birden fazla gerektiriyor, ancak durdurma sonucu değiştirme nasıl kullanılabileceğine ilişkin bir örnek budur unutmayın.  
+Bunun nasıl kullanılacağına ilişkin bir örnek, bir sarmalama sağlayıcısıyla geleneksel olarak gerçekleştirilen komut toplu işi örneğidir. Yakalayıcısı, sonraki yürütme için komutu bir toplu iş olarak depolar, ancak komutun normal olarak yürütüldüğünü, "pretend" olması gerekir. Toplu işlem uygulamak için bundan daha fazlasını gerektirdiğini unutmayın, ancak bu durum, ayırma sonucunun nasıl kullanıldığına ilişkin bir örnektir.  
 
-Yürütme ayrıca gizlenebilir birinde özel durum özelliğini ayarlayarak... Yürütme yöntemleri. Bu, EF yürütme işlemi, belirtilen özel durum tarafından doğrulayamadı gibi devam etmesine neden olur. Bu, uygulamanın çökmesine neden neden olabilir ancak geçici bir özel durum veya EF tarafından işlenen bazı bir durum olabilir. Örneğin, bu test ortamlarında komut yürütme başarısız olduğunda uygulamanın davranışını test etmek için kullanılabilir.  
+Yürütme aynı zamanda özel durum özelliği bir... ile ayarlanarak de gizlenebilir. Yöntemler yürütülüyor. Bu, işlemin yürütülmesi verilen özel durumu oluşturarak başarısız olmaya devam etmesine neden olur. Bu, kuşkusuz uygulamanın kilitlenmesine neden olabilir, ancak başka bir özel durum veya EF tarafından işlenen diğer özel durumlar da olabilir. Örneğin, bu, komut yürütme başarısız olduğunda bir uygulamanın davranışını test etmek için test ortamlarında kullanılabilir.  
 
 #### <a name="changing-the-result-after-execution"></a>Yürütmeden sonra sonucu değiştirme  
 
-Komut yürütüldükten sonra bir dinleyiciyi sonucu özelliği ayarlar varsa (birinde... Yöntemleri yürütülür) EF işlemi gerçekte döndürülen sonuç yerine değişen sonucu kullanır. Komut yürütüldükten sonra özel durum özelliği bir dinleyiciyi ayarlar, işlemi özel durum gibi benzer şekilde, ardından EF kümesi özel durum oluşturur.  
+Bir dinleyici, komut yürütüldükten sonra Result özelliğini ayarlarsa (bir... Yürütülen Yöntemler) ardından EF, işlemden aslında döndürülen sonuç yerine değiştirilen sonucu kullanır. Benzer şekilde, bir dinleyici, komut yürütüldükten sonra özel durum özelliğini ayarlarsa EF, işlem özel durumu oluşturdu gibi set özel durumunu oluşturur.  
 
-Bir dinleyiciyi, ayrıca özel durum özelliği hiçbir özel durum olduğunu göstermek için null olarak ayarlayabilirsiniz. Yürütme işlemi başarısız oldu, ancak EF işlemi başarılı olursa devam etmek için dinleyiciyi istediği, bu yararlı olabilir. Bu genellikle ayrıca EF devam olarak çalışmak için bazı sonuç değeri olan sonuç ayarını içerir.  
+Bir dinleyici, özel durum oluşturulması gerektiğini belirtmek için özel durum özelliğini null olarak da ayarlayabilir. Bu işlem, işlemin yürütülmesi başarısız olursa, ancak bu işlem başarılı olmuş gibi devam etmek için bu yararlı olabilir. Bu genellikle, sonucun devam ettiği için birlikte çalışmak üzere bir sonuç değeri olması için sonucu ayarlamayı da içerir.  
 
-#### <a name="originalresult-and-originalexception"></a>OriginalResult ve özgün özel durum  
+#### <a name="originalresult-and-originalexception"></a>OriginalResult ve OriginalException  
 
-EF bir işlemi yürütüldükten sonra yürütme bir özel durumla başarısız olursa, yürütme başarısız olmadı, sonuç ve OriginalResult özellikleri ya da özel durum ve özgün özel durum özelliklerini ayarlar.  
+EF bir işlem çalıştırdıktan sonra, yürütme başarısız olduysa Result ve OriginalResult özelliklerini ayarlar ve yürütme bir özel durumla başarısız olursa, Exception ve OriginalException özellikleri ayarlanır.  
 
-OriginalResult ve özgün özel durum özellikleri salt okunurdur ve yalnızca EF tarafından bir işlemi yürütüldükten sonra ayarlanır. Bu özellikler dinleyicileri tarafından ayarlanamaz. Başka bir deyişle, dinleyiciyi herhangi bir özel durum veya diğer bazı dinleyiciyi gerçek özel durumun aksine tarafından ayarlanan sonuç ya da işlemi çalıştırıldığında oluşan sonuç arasında ayırt edebilir.  
+OriginalResult ve OriginalException özellikleri salt okunurdur ve yalnızca bir işlem yürütüldükten sonra EF tarafından ayarlanır. Bu özellikler, yakalayıcılar tarafından ayarlanamaz. Bu, herhangi bir yakacının, bir özel durumun veya işlem yürütüldüğünde oluşan sonucun aksine, başka bir dinleyici tarafından ayarlanan bir özel durum ya da sonuç arasında ayrım yaptığı anlamına gelir.  
 
-### <a name="registering-interceptors"></a>Kesiciler kaydediliyor  
+### <a name="registering-interceptors"></a>Kayıt yaptırıcılar  
 
-Bir veya daha fazla durdurma arabirimleri uygulayan bir sınıf oluşturulduktan sonra DbInterception sınıfını kullanarak EF ile kaydedilebilir. Örneğin:  
+Bir veya daha fazla savunma arabirimini uygulayan bir sınıf oluşturulduktan sonra, Dbyakaısyon sınıfı kullanılarak EF ile kaydedilebilir. Örneğin:  
 
 ``` csharp
 DbInterception.Add(new NLogCommandInterceptor());
 ```  
 
-Kesiciler, DbConfiguration kod tabanlı yapılandırma mekanizmasını kullanma uygulama etki alanı düzeyinde de kaydedilebilir.  
+Ayrıca, uygulama etki alanı düzeyinde DbConfiguration kod tabanlı yapılandırma mekanizması kullanılarak da kayıt yapılabilir.  
 
-### <a name="example-logging-to-nlog"></a>Örnek: NLog için günlüğe kaydetme  
+### <a name="example-logging-to-nlog"></a>Örnek: NLog dosyasına kaydetme  
 
-Şimdi tüm bunları bir örnek kullanarak, bir araya IDbCommandInterceptor ve [NLog](http://nlog-project.org/) için:  
+Bunu, ıdbcommandyakalayıcısı ve [NLog](http://nlog-project.org/) ' un kullanıldığı bir örneğe bir araya koyalım:  
 
-- Günlüğe bir uyarı olmayan-zaman uyumsuz olarak yürütülür herhangi bir komutun  
-- Yürütüldüğünde oluşturan herhangi bir komut için hata günlüğü  
+- Zaman uyumsuz olarak yürütülen her komut için bir uyarı Kaydet  
+- Yürütüldüğünde oluşturan herhangi bir komut için bir hata günlüğe kaydet  
 
-Yukarıda da gösterildiği gibi kaydedilmelidir günlük kaydı yapar sınıfı şöyledir:  
+Aşağıda gösterildiği gibi kaydedilmesi gereken günlüğe kaydetme sınıfı aşağıda verilmiştir:  
 
 ``` csharp
 public class NLogCommandInterceptor : IDbCommandInterceptor
@@ -368,4 +368,4 @@ public class NLogCommandInterceptor : IDbCommandInterceptor
 }
 ```  
 
-Bir komut uyumsuz olmayan yürütülürken bulmak ve bir komut yürütülürken bir hata olduğunda bulmak için bu kodu durdurma bağlam nasıl kullandığına dikkat edin.  
+Bu kodun, zaman uyumsuz olmayan bir komutun yürütüldüğü ve bir komutun yürütüldüğü bir hata olduğunda keşfedildiğinde bulması için yakalanmış bağlamını nasıl kullandığını fark edin.  
