@@ -1,48 +1,48 @@
 ---
-title: Zaman uyumsuz sorgulama ve Kaydet - EF6
+title: Async sorgusu ve Save-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d56e6f1d-4bd1-4b50-9558-9a30e04a8ec3
-ms.openlocfilehash: 8c72012be4b77ff31faf909bf02035865521a640
-ms.sourcegitcommit: 7c5c5e09a4d2671d7461e027837966c4ff91e398
+ms.openlocfilehash: bf2039110962e8dd114242dcd0b9454963750774
+ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 06/15/2019
-ms.locfileid: "67148494"
+ms.lasthandoff: 07/18/2019
+ms.locfileid: "68306591"
 ---
-# <a name="async-query-and-save"></a>Zaman uyumsuz sorgulama ve kaydedin
+# <a name="async-query-and-save"></a>Zaman uyumsuz sorgu ve Kaydet
 > [!NOTE]
-> **EF6 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb., Entity Framework 6'da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.
+> **Yalnızca EF6** , bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 6 ' da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.
 
-EF6 kullanarak kaydetmek ve zaman uyumsuz sorgu için destek sunmuştur [async ve await anahtar sözcükleri](https://msdn.microsoft.com/library/vstudio/hh191443.aspx) .NET 4. 5 ' sunulmuştur. Tüm uygulamalar için faaliyetler avantajlı olabilir ancak uzun süre çalışan, ağ veya miyim/O-bağlı görevler ele alırken istemci yanıt verme becerisini ve sunucu ölçeklenebilirliğini geliştirmek için kullanılabilir.
+EF6, zaman uyumsuz sorgu için destek sunmuştur ve .NET 4,5 ' de tanıtılan [zaman uyumsuz ve await anahtar sözcüklerini](https://msdn.microsoft.com/library/vstudio/hh191443.aspx) kullanarak kaydeder. Tüm uygulamalar asynchrony 'den faydalanabilir olsa da, uzun süre çalışan, ağ veya g/ç ile bağlantılı görevleri gerçekleştirirken istemci yanıt hızını ve sunucu ölçeklenebilirliğini artırmak için kullanılabilir.
 
-## <a name="when-to-really-use-async"></a>Zaman uyumsuz gerçekten kullanan
+## <a name="when-to-really-use-async"></a>Zaman uyumsuz olarak ne zaman kullanılır?
 
-Bu kılavuzun amacı, zaman uyumsuz ve zaman uyumlu programın yürütülmesi arasındaki farkı görmek kolay bir şekilde zaman uyumsuz kavramları tanıtan sağlamaktır. Bu izlenecek yol herhangi birini senaryoları göstermek için zaman uyumsuz programlama avantajları burada tasarlanmamıştır.
+Bu izlenecek yol, zaman uyumsuz kavramları, zaman uyumsuz ve zaman uyumlu program yürütme arasındaki farkı gözlemlemeye olanak verecek şekilde sağlamaktır. Bu izlenecek yol, zaman uyumsuz programlama avantajlarının sağladığı önemli senaryolardan herhangi birini göstermeye yönelik değildir.
 
-Zaman uyumsuz programlama öncelikle herhangi bir işlem süresi gerektirmeyen bir işlem için beklediği sırada başka işleri yapmak için geçerli yönetilen iş parçacığı (iş parçacığı çalışan .NET kodu) boşaltma üzerinde yönetilen bir iş parçacığından odaklanır. Örneğin, veritabanı motoru sorgu işlenirken bir şey yok .NET kodu tarafından yapılacak.
+Zaman uyumsuz programlama öncelikle, yönetilen bir iş parçacığından işlem süresi gerektirmeyen bir işlemi beklediği sırada başka çalışma yapmak için geçerli yönetilen iş parçacığını (.NET kodu çalıştıran iş parçacığı) boşaltmaya odaklanır. Örneğin, veritabanı altyapısı bir sorguyu işliyor, .NET kodu tarafından yapılacak bir şey yoktur.
 
-İstemci uygulamalarında (WinForms, WPF vb.), geçerli iş parçacığı UI esnek, zaman uyumsuz işlem gerçekleştirildiği sırada tutmak için kullanılabilir. Diğer gelen istekleri - iş parçacığı kullanılabilir sunucu uygulamalarında (ASP.NET, vb.) bu bellek kullanımını azaltmak ve/veya sunucusunun aktarım hızını artırın.
+İstemci uygulamalarında (WinForms, WPF vb.) geçerli iş parçacığı, zaman uyumsuz işlem gerçekleştirilirken Kullanıcı arabirimini yanıt verecek şekilde korumak için kullanılabilir. Sunucu uygulamalarında (ASP.NET vb.), iş parçacığı diğer gelen istekleri işlemek için kullanılabilir-Bu, bellek kullanımını azaltabilir ve/veya sunucunun verimini artırabilir.
 
-Zaman uyumsuz kullanarak çoğu uygulamada belirgin faydalı olacaktır ve hatta zarar. Testler, profil oluşturma ve sağduyunuzu yapmadan önce zaman uyumsuz belirli senaryonuza etkisini ölçmek için kullanın.
+Zaman uyumsuz kullanan çoğu uygulama, dikkat çekici bir avantaja sahip olmayacaktır ve hatta büyük olasılıkla olabilir. Test, profil oluşturma ve ortak anlamda, zaman uyumsuz olarak belirli senaryonuza uygulamadan önce etkisini ölçmek için kullanın.
 
-Zaman uyumsuz hakkında bilgi edinmek için daha fazla bazı kaynaklar aşağıda verilmiştir:
+Zaman uyumsuz hakkında bilgi edinmek için daha fazla kaynak aşağıda verilmiştir:
 
--   [.NET 4.5 içinde async/await Brandon Bray'nın genel bakış](https://blogs.msdn.com/b/dotnet/archive/2012/04/03/async-in-4-5-worth-the-await.aspx)
--   [Zaman uyumsuz programlama](https://msdn.microsoft.com/library/hh191443.aspx) MSDN Kitaplığı'nda sayfaları
--   [ASP.NET Web uygulamaları kullanarak Async yapı nasıl](http://channel9.msdn.com/events/teched/northamerica/2013/dev-b337) (artan sunucusu verimliliği gösterimini içerir)
+-   [Brandon Bray, .NET 4,5 ' de Async/Await öğesine genel bakış](https://blogs.msdn.com/b/dotnet/archive/2012/04/03/async-in-4-5-worth-the-await.aspx)
+-   MSDN kitaplığındaki [zaman uyumsuz programlama](https://msdn.microsoft.com/library/hh191443.aspx) sayfaları
+-   [Zaman uyumsuz kullanarak ASP.NET Web uygulamaları oluşturma](http://channel9.msdn.com/events/teched/northamerica/2013/dev-b337) (artan sunucu aktarım hızı hakkında bir tanıtım içerir)
 
 ## <a name="create-the-model"></a>Modeli oluşturma
 
-Kullanacağız [kod ilk iş akışınızı](~/ef6/modeling/code-first/workflows/new-database.md) modelimizi oluşturun ve zaman uyumsuz işlevleri ile EF Designer oluşturulanlar dahil olmak üzere tüm EF modelleri ile çalışır ancak veritabanı oluşturmak için.
+Modelimizi oluşturmak ve veritabanını oluşturmak için [Code First iş akışını](~/ef6/modeling/code-first/workflows/new-database.md) kullanacağız, ancak zaman uyumsuz Işlevi EF Designer ile oluşturulanlar dahil olmak üzere tüm EF modelleriyle çalışır.
 
--   Bir konsol uygulaması oluşturun ve adlandırın **AsyncDemo**
--   EntityFramework NuGet paketi ekleme
-    -   Çözüm Gezgini'nde sağ **AsyncDemo** proje
-    -   Seçin **NuGet paketlerini Yönet...**
-    -   NuGet paketlerini Yönet iletişim kutusunda, seçmek **çevrimiçi** sekmesini **EntityFramework** paket
-    -   Tıklayın **yükleyin**
--   Ekleme bir **Model.cs** aşağıdaki uygulama ile sınıfı
+-   Bir konsol uygulaması oluşturun ve bunu **AsyncDemo** olarak çağırın
+-   EntityFramework NuGet paketini ekleme
+    -   Çözüm Gezgini, **AsyncDemo** projesine sağ tıklayın
+    -   **NuGet Paketlerini Yönet...** seçeneğini belirleyin.
+    -   NuGet Paketlerini Yönet iletişim kutusunda **çevrimiçi** sekmesini seçin ve **EntityFramework** paketini seçin
+    -   **Install** 'a tıklayın
+-   Aşağıdaki uygulamayla bir **model.cs** sınıfı ekleyin
 
 ``` csharp
     using System.Collections.Generic;
@@ -78,11 +78,11 @@ Kullanacağız [kod ilk iş akışınızı](~/ef6/modeling/code-first/workflows/
 
  
 
-## <a name="create-a-synchronous-program"></a>Zaman uyumlu bir program oluşturma
+## <a name="create-a-synchronous-program"></a>Zaman uyumlu program oluşturma
 
-EF modeli sahibiz, bazı veri erişimi gerçekleştirdiği kullanan biraz kod yazalım.
+Artık bir EF modelimiz olduğuna göre, bazı veri erişimi gerçekleştirmek için onu kullanan bir kod yazalım.
 
--   Öğesinin içeriğini değiştirin **Program.cs** aşağıdaki kodla
+-   **Program.cs** içeriğini aşağıdaki kodla değiştirin
 
 ``` csharp
     using System;
@@ -136,15 +136,15 @@ EF modeli sahibiz, bazı veri erişimi gerçekleştirdiği kullanan biraz kod ya
     }
 ```
 
-Bu kod **PerformDatabaseOperations** yeni kaydedileceği yöntemi **Blog** veritabanına ve ardından alır tüm **blogları** veritabanından ve bunlara yazdırır **Konsol**. Bundan sonra programı için günün bir teklif Yazar **konsol**.
+Bu kod, veritabanına yeni bir **Blog** kaydeden ve sonra tüm **blogları** veritabanından alıp **konsola**yazdıran **performdatabaseoperations** yöntemini çağırır. Bundan sonra program, günün bir teklifini **konsola**yazar.
 
-Kod zaman uyumlu olduğundan, biz programını çalıştırdığınızda, biz aşağıdaki yürütme akış görebilirsiniz:
+Kod zaman uyumlu olduğundan, programı çalıştırdığımızda aşağıdaki yürütme akışını gözlemlebiliriz:
 
-1.  **SaveChanges** yeni göndermeye başlar **Blog** veritabanı
-2.  **SaveChanges** tamamlar
-3.  Tüm sorgu **blogları** veritabanına gönderilir
-4.  Sorgu döndürür ve sonuçları yazılır **Konsolu**
-5.  Günün yazılır **Konsolu**
+1.  **SaveChanges** yeni **blogunuzu** veritabanına göndermeye başlıyor
+2.  **SaveChanges** tamamlandı
+3.  Tüm blogların  sorgusu veritabanına gönderiliyor
+4.  Sorgu dönüşleri ve sonuçlar **konsola** yazılır
+5.  Günün teklifi **konsola** yazılır
 
 ![Eşitleme çıkışı](~/ef6/media/syncoutput.png) 
 
@@ -152,16 +152,16 @@ Kod zaman uyumlu olduğundan, biz programını çalıştırdığınızda, biz a�
 
 ## <a name="making-it-asynchronous"></a>Zaman uyumsuz hale getirme
 
-Programımız çalıştırmaya sahibiz, biz yeni async ve await anahtar sözcükleri yapmadan başlayabilirsiniz. Program.cs'ye aşağıdaki değişiklikleri yaptık
+Programımızın çalışır duruma getirdiğimiz ve bu aşamada, yeni Async ve await anahtar sözcüklerini kullanmaya başlayabiliriz. Program.cs için aşağıdaki değişiklikleri yaptık
 
-1.  2\. satır: Using deyimi için **System.Data.Entity** ad alanı sağladığı erişim için EF zaman uyumsuz genişletme yöntemleri.
-2.  4\. satırı: Using deyimi için **System.Threading.Tasks** ad alanı kullanılacak bize sağlar **görev** türü.
-3.  12 & 18 satırı: Biz ilerleme durumunu izleyen Görev yakalama **PerformSomeDatabaseOperations** (satır, 12) ve sonra bu program yürütme engelleme görev tam bir kez tüm işler için program (18. satır) gerçekleştirilir.
-4.  25 satırı: Güncelleştirme yaptıklarımız **PerformSomeDatabaseOperations** olarak işaretlenecek **zaman uyumsuz** ve dönüş bir **görev**.
-5.  35 satırı: Biz artık SaveChanges zaman uyumsuz sürümü çağırma ve onun tamamlanmasını bekleme.
-6.  Satırı 42: Biz, artık ToList ve sonucunu bekleyen zaman uyumsuz sürümü numarasını arıyoruz.
+1.  2\. satır: **System. Data. Entity** ad alanı için using metodu, EF Async Extension yöntemlerine bize erişim sağlar.
+2.  4\. satır: **System. Threading. Tasks** ad alanı için using ifadesinin **görev** türünü kullanmamızı sağlar.
+3.  Satır 12 & 18: **Performsomedatabaseoperations** (12. satır) ilerleme durumunu izleyen ve sonra bu görevin tüm işleri tamamlandığında bu görevin tamamlanması için program yürütmeyi engelleyen bir görev olarak yakalıyoruz (satır 18).
+4.  25. satır: **Zaman uyumsuz** olarak işaretlenecek ve bir **görev**döndüren **performsomedatabaseoperations** güncelleştirdik.
+5.  Satır 35: Şimdi SaveChanges 'un zaman uyumsuz sürümünü çağırıyor ve tamamlanmasını bekliyor.
+6.  Satır 42: Artık ToList 'in zaman uyumsuz sürümünü çağırıyor ve sonuç üzerinde bekleniyor.
 
-System.Data.Entity ad alanında kullanılabilir uzantı yöntemlerini kapsamlı bir listesi için QueryableExtensions sınıfına bakın. *Ayrıca "System.Data.Entity kullanma" eklemek kullanarak, gerekir deyimleri.*
+System. Data. Entity ad alanındaki kullanılabilir uzantı yöntemlerinin kapsamlı bir listesi için, QueryableExtensions sınıfına bakın. *Ayrıca, using deyimlerine "System. Data. Entity kullanma" eklemeniz gerekecektir.*
 
 ``` csharp
     using System;
@@ -219,19 +219,19 @@ System.Data.Entity ad alanında kullanılabilir uzantı yöntemlerini kapsamlı 
     }
 ```
 
-Kod uyumsuz olduğuna göre biz programını çalıştırdığınızda, biz farklı yürütme akış görebilirsiniz:
+Artık kod zaman uyumsuz olduğuna göre, programı çalıştırdığımızda farklı bir yürütme akışını gözlemlebiliriz:
 
-1.  **SaveChanges** yeni göndermeye başlar **Blog** veritabanına *komutu artık işlem saati geçerli bir yönetilen iş parçacığı üzerinde gerekli veritabanı gönderildikten sonra. **PerformDatabaseOperations** yöntemi döndürür (Bu yürütme işlemi tamamlanmadı olsa bile) ve ana yöntem program akışında devam eder.*
-2.  **Günün konsoluna yazılan**
-    *Main yöntemine yapmak için daha fazla iş olduğundan, yönetilen iş parçacığı bekleme engellenir veritabanı işlemi tamamlanana kadar çağırın. İşlem tamamlandıktan sonra geri kalanında bizim **PerformDatabaseOperations** yürütülür.*
-3.  **SaveChanges** tamamlar
-4.  Tüm sorgu **blogları** veritabanına gönderilen *yeniden yönetilen iş parçacığı veritabanında sorgu işlenirken başka işleri yapmak ücretsizdir. Diğer tüm yürütme tamamlandı olduğundan, iş parçacığı yalnızca bekleme çağrıda ancak durdurulur.*
-5.  Sorgu döndürür ve sonuçları yazılır **Konsolu**
+1.  **SaveChanges** komutu veritabanına gönderildikten sonra, geçerli yönetilen iş parçacığında *daha fazla işlem süresi gerekmiyorsa, SaveChanges yeni **blogunuzu** veritabanına göndermeye başlıyor. **Performdatabaseoperations** yöntemi döndürür (yürütmeyi bitirmemiş olsa da) ve Main yönteminde Program Flow devam eder.*
+2.  **Günün teklifi**
+    konsola*yazılır çünkü ana yöntemde başka iş yapılamaz, ancak veritabanı işlemi tamamlanana kadar, yönetilen iş parçacığı bekleme çağrısında engellenir. Tamamlandıktan sonra, **Performdatabaseoperations** 'imizin geri kalanı yürütülür.*
+3.  **SaveChanges** tamamlandı
+4.  Tüm blogların  sorgusu veritabanına *yeniden gönderilir, yönetilen iş parçacığı sorgu veritabanında işlendiği sırada başka bir iş yapmak için ücretsizdir. Diğer tüm yürütme tamamlandığından iş parçacığı de yalnızca bekleme çağrısında durabilir.*
+5.  Sorgu dönüşleri ve sonuçlar **konsola** yazılır
 
 ![Zaman uyumsuz çıkış](~/ef6/media/asyncoutput.png) 
 
  
 
-## <a name="the-takeaway"></a>Takeaway
+## <a name="the-takeaway"></a>Kalkış
 
-Artık hale getirmek için ne kadar kolay olduğunu gördük EF'ın zaman uyumsuz yöntemleri kullanın. Zaman uyumsuz avantajları ile basit bir konsol uygulaması oldukça belirgin olmayabilir rağmen bu aynı stratejiler burada uzun süreli veya ağa bağlı etkinlik Aksi takdirde uygulama önleyebilir, veya çok sayıda iş parçacığı neden durumlarda uygulanabilir bellek Ayak izi artırın.
+Artık EF 'in zaman uyumsuz yöntemlerinin ne kadar kolay olduğunu gördük. Zaman uyumsuz 'nin avantajları basit bir konsol uygulamasıyla çok açık olmayabilir, ancak uzun süreli veya ağ bağlantılı etkinliklerin uygulamayı engelleyebileceği veya çok sayıda iş parçacığına neden olabileceği durumlarda aynı stratejiler uygulanabilir. bellek parmak izini artırın.
