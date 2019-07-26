@@ -1,94 +1,95 @@
 ---
-title: Üzerinde ASP.NET Core - mevcut veritabanı - EF Core kullanmaya başlama
+title: ASP.NET Core var olan veritabanı ile çalışmaya başlama-EF Core
 author: rowanmiller
+description: Mevcut bir veritabanıyla ASP.NET Core EF Core kullanmaya başlama
 ms.date: 08/02/2018
 ms.assetid: 2bc68bea-ff77-4860-bf0b-cf00db6712a0
 uid: core/get-started/aspnetcore/existing-db
-ms.openlocfilehash: c8acb95395968f710e6b896de6c3598cb7b23676
-ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
+ms.openlocfilehash: 6b0ed0a9222644bee31d23234aa27b2084137f4a
+ms.sourcegitcommit: 755a15a789631cc4ea581e2262a2dcc49c219eef
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/06/2019
-ms.locfileid: "54058792"
+ms.lasthandoff: 07/25/2019
+ms.locfileid: "68497520"
 ---
-# <a name="getting-started-with-ef-core-on-aspnet-core-with-an-existing-database"></a>Mevcut bir veritabanı ile ASP.NET Core üzerinde EF Core ile çalışmaya başlama
+# <a name="get-started-with-ef-core-on-aspnet-core-with-an-existing-database"></a>Mevcut bir veritabanıyla ASP.NET Core EF Core kullanmaya başlama
 
-Bu öğreticide, Entity Framework Core kullanarak basit veri erişimi gerçekleştirdiği bir ASP.NET Core MVC uygulaması oluşturun. Entity Framework modelini oluşturmak için varolan bir veritabanını mühendisi ters.
+Bu öğreticide, Entity Framework Core kullanarak temel veri erişimi gerçekleştiren bir ASP.NET Core MVC uygulaması oluşturacaksınız. Bir Entity Framework modeli oluşturmak için var olan bir veritabanına ters mühendislik uygulamalısınız.
 
-[Bu makaledeki örnek Github'da görüntüle](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb).
+[Bu makalenin örneğini GitHub 'Da görüntüleyin](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb).
 
 ## <a name="prerequisites"></a>Önkoşullar
 
-Aşağıdaki yazılımları yükleyin:
+Aşağıdaki yazılımı yükler:
 
-* [Visual Studio 2017 15.7](https://www.visualstudio.com/downloads/) bu iş yükleri ile:
-  * **ASP.NET ve web geliştirme** (altında **Web ve bulut**)
-  * **.NET core çoklu platform geliştirme** (altında **diğer araç takımları**)
+* Bu iş yükleriyle [Visual Studio 2017 15,7](https://www.visualstudio.com/downloads/) :
+  * **ASP.net ve Web geliştirme** ( **Web & bulutu**altında)
+  * **.NET Core platformlar arası geliştirme** ( **diğer araç kümeleri**altında)
 * [.NET Core 2.1 SDK'sı](https://www.microsoft.com/net/download/core).
 
-## <a name="create-blogging-database"></a>Günlük veritabanı oluşturma
+## <a name="create-blogging-database"></a>Blog veritabanı oluşturma
 
-Bu öğreticide bir **blog** LocalDb örneğiniz mevcut veritabanı olarak veritabanı. Zaten oluşturduysanız **blog** veritabanı başka bir öğreticinin bir parçası olarak, bu adımı atlayın.
+Bu öğretici, LocalDb örneğinizdeki bir **Blog** veritabanını var olan veritabanı olarak kullanır. **Blog** veritabanını başka bir öğreticinin parçası olarak zaten oluşturduysanız, bu adımları atlayın.
 
-* Visual Studio'yu Aç
-* **Araçlar -> veritabanına bağlan...**
-* Seçin **Microsoft SQL Server** tıklatıp **devam et**
-* Girin **(localdb) \mssqllocaldb** olarak **sunucu adı**
-* Girin **ana** olarak **veritabanı adı** tıklatıp **Tamam**
-* Ana veritabanı artık altında görüntülenen **veri bağlantıları** içinde **Sunucu Gezgini**
-* Veritabanına sağ tıklayın **Sunucu Gezgini** seçip **yeni sorgu**
-* Sorgu Düzenleyicisi'ne aşağıdaki betiği kopyalayın
-* Sorgu düzenleyicisini sağ tıklayıp **Yürüt**
+* Visual Studio 'Yu aç
+* **Araçlar-> veritabanına bağlan...**
+* **Microsoft SQL Server** seçin ve **devam** ' a tıklayın
+* **Sunucu adı** olarak **(LocalDB) \mssqllocaldb** yazın
+* **Asıl** **veritabanı adı** olarak girin ve **Tamam 'a** tıklayın
+* Ana veritabanı artık **Sunucu Gezgini** Içindeki **veri bağlantıları** altında görüntülenir
+* **Sunucu Gezgini** veritabanında veritabanına sağ tıklayın ve **Yeni sorgu** ' yı seçin.
+* Aşağıda listelenen betiği sorgu düzenleyicisine Kopyala
+* Sorgu düzenleyicisine sağ tıklayıp **Yürüt** ' ü seçin.
 
 [!code-sql[Main](../_shared/create-blogging-database-script.sql)]
 
 ## <a name="create-a-new-project"></a>Yeni bir proje oluşturma
 
-* Açık Visual Studio 2017
-* **Dosya > Yeni > Proje...**
-* Sol menüden **yüklü > Visual C# > Web**
-* Seçin **ASP.NET Core Web uygulaması** proje şablonu
-* Girin **EFGetStarted.AspNetCore.ExistingDb** tıklayın ve adı (Bu, tam olarak daha sonra kod içinde kullanılan ad alanı eşleşmelidir) olarak **Tamam** 
-* Bekle **yeni ASP.NET Core Web uygulaması** görüntülenecek iletişim
-* Hedef framework açılan ayarlandığından emin olun **.NET Core**, ve sürüm açılan kümesine **ASP.NET Core 2.1**
-* Seçin **Web uygulaması (Model-View-Controller)** şablonu
-* Emin **kimlik doğrulaması** ayarlanır **kimlik doğrulaması yok**
-* **Tamam**’a tıklayın.
+* Visual Studio 2017 'yi açın
+* **Dosya yeni > projesi >...**
+* Soldaki menüden, **Visual C# > Web > yüklü** ' i seçin
+* **ASP.NET Core Web uygulaması** proje şablonunu seçin
+* Ad olarak **Efgetstarted. AspNetCore. ExistingDb** yazın (kodda daha sonra kullanılan ad alanıyla tam olarak eşleşmelidir) ve **Tamam** ' a tıklayın. 
+* **Yeni ASP.NET Core Web uygulaması** iletişim kutusunun görüntülenmesini bekleyin
+* Hedef çerçeve açılan menüsünün **.NET Core**olarak ayarlandığından ve sürüm açılan menüsünün **ASP.NET Core 2,1** olarak ayarlandığından emin olun
+* **Web uygulaması (Model-View-Controller)** şablonunu seçin
+* **Kimlik doğrulamasının** **kimlik doğrulaması yok** olarak ayarlandığından emin olun
+*           **Tamam**’a tıklayın.
 
-## <a name="install-entity-framework-core"></a>Entity Framework Core yükleme
+## <a name="install-entity-framework-core"></a>Entity Framework Core yüklensin
 
-EF Core yüklemek için hedeflemek istediğiniz EF Core veritabanı sağlayıcı(lar) için paketi yükleyin. Kullanılabilir sağlayıcılar listesi için bkz. [veritabanı sağlayıcıları](../../providers/index.md). 
+EF Core yüklemek için, hedeflemek istediğiniz EF Core veritabanı sağlayıcılarının paketini yüklersiniz. Kullanılabilir sağlayıcıların listesi için bkz. [veritabanı sağlayıcıları](../../providers/index.md). 
 
-Bu öğreticide, öğretici, SQL Server kullandığından sağlayıcı paketi yüklemeniz gerekmez. SQL Server sağlayıcı paketi eklenmiştir [Microsoft.AspnetCore.App metapackage](https://docs.microsoft.com/aspnet/core/fundamentals/metapackage-app?view=aspnetcore-2.1).
+Öğretici SQL Server kullandığından, bu öğretici için bir sağlayıcı paketi yüklemenize gerek yoktur. SQL Server sağlayıcısı paketi [Microsoft. AspnetCore. app metapackage](https://docs.microsoft.com/aspnet/core/fundamentals/metapackage-app?view=aspnetcore-2.1)'e dahildir.
 
-## <a name="reverse-engineer-your-model"></a>Modelinizi tersine mühendislik
+## <a name="reverse-engineer-your-model"></a>Modelinize ters mühendislik
 
-Artık, mevcut bir veritabanını temel alan EF modeli oluşturma zamanı geldi.
+Şimdi de mevcut veritabanınıza göre EF modeli oluşturma zamanı.
 
-* **Araçlar –> NuGet Paket Yöneticisi –> Paket Yöneticisi Konsolu**
-* Varolan bir veritabanından bir model oluşturmak için aşağıdaki komutu çalıştırın:
+* **Araçlar – > NuGet Paket Yöneticisi – > Paket Yöneticisi konsolu**
+* Varolan veritabanından bir model oluşturmak için aşağıdaki komutu çalıştırın:
 
 ``` powershell
 Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
 ```
 
-Belirten bir hata alırsanız `The term 'Scaffold-DbContext' is not recognized as the name of a cmdlet`, ardından kapatın ve Visual Studio'yu yeniden açın.
+Belirten `The term 'Scaffold-DbContext' is not recognized as the name of a cmdlet`bir hata alırsanız Visual Studio 'yu kapatıp yeniden açın.
 
 > [!TIP]  
-> Varlıklar için ekleyerek oluşturmak istediğiniz tabloları belirtebilirsiniz `-Tables` bağımsız değişkeni için yukarıdaki komutu. Örneğin: `-Tables Blog,Post`
+> Yukarıdaki komuta `-Tables` bağımsız değişkenini ekleyerek hangi tabloları için varlık oluşturmak istediğinizi belirtebilirsiniz. Örneğin: `-Tables Blog,Post`.
 
-Oluşturulan varlık sınıfları ters mühendislik süreci (`Blog.cs` & `Post.cs`) ve türetilmiş bir içerik (`BloggingContext.cs`) var olan veritabanı şemasını temel alan.
+Tersine mühendislik işlemi, mevcut veritabanının şemasına bağlı`Blog.cs`olarak varlık sınıfları ( & `Post.cs`) ve`BloggingContext.cs`türetilmiş bir bağlam () oluşturdu.
 
- Varlık sınıfları, sorgulama ve kaydetme verilerini temsil eden basit C# nesneleridir. İşte `Blog` ve `Post` varlık sınıfları:
+ Varlık sınıfları, sorguladığınız C# ve kaydedilecektir verileri temsil eden basit nesnelerdir. `Blog` Ve`Post` varlık sınıfları şunlardır:
 
  [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb/Models/Blog.cs)]
 
 [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb/Models/Post.cs)]
 
 > [!TIP]  
-> Yavaş yükleniyor etkinleştirmek için Gezinti özellikleri yapabilirsiniz `virtual` (Blog.Post ve Post.Blog).
+> Yavaş yüklemeyi etkinleştirmek için, gezinti özelliklerini `virtual` (blog.Post ve post. blog) yapabilirsiniz.
 
- İçerik veritabanı ile bir oturumu temsil eder ve sorgu ve varlık sınıflarının örneklerini kaydetmenize olanak tanır.
+ Bağlam, veritabanı ile bir oturumu temsil eder ve varlık sınıflarının örneklerini sorgulamanızı ve kaydetmenizi sağlar.
 
 <!-- Static code listing, rather than a linked file, because the tutorial modifies the context file heavily -->
  ``` csharp
@@ -132,52 +133,52 @@ public partial class BloggingContext : DbContext
 }
 ```
 
-## <a name="register-your-context-with-dependency-injection"></a>Bağlamınızı bağımlılık ekleme ile kaydetme
+## <a name="register-your-context-with-dependency-injection"></a>Bağlama ekleme ile bağlamını kaydetme
 
-ASP.NET Core için bağımlılık ekleme kavramının taşımaktadır. Hizmetler (gibi `BloggingContext`) uygulama başlatma sırasında bağımlılık ekleme ile kaydedilir. Bu hizmetler (örneğin, MVC denetleyicileri) gerektiren bileşenler sonra hizmetlerin Oluşturucu parametresi veya özellikleri aracılığıyla sağlanır. Bağımlılık ekleme hakkında daha fazla bilgi için bkz. [bağımlılık ekleme](http://docs.asp.net/en/latest/fundamentals/dependency-injection.html) ASP.NET sitesinde makalesi.
+Bağımlılık ekleme kavramı ASP.NET Core merkezidir. Hizmetler (gibi `BloggingContext`), uygulama başlatma sırasında bağımlılık ekleme ile kaydedilir. Bu hizmetleri gerektiren bileşenler (MVC denetleyicileriniz gibi), daha sonra bu hizmetleri Oluşturucu parametreleri veya özellikleri aracılığıyla sağlıyordu. Bağımlılık ekleme hakkında daha fazla bilgi için ASP.NET sitesindeki [bağımlılık ekleme](http://docs.asp.net/en/latest/fundamentals/dependency-injection.html) makalesine bakın.
 
-### <a name="register-and-configure-your-context-in-startupcs"></a>Kaydetme ve Bağlamınızı Startup.cs içinde yapılandırma
+### <a name="register-and-configure-your-context-in-startupcs"></a>Startup.cs 'de bağlamını kaydetme ve yapılandırma
 
-Yapmak `BloggingContext` MVC denetleyicileri için kullanılabilir bir hizmet olarak kaydedin.
+MVC denetleyicileri `BloggingContext` için kullanılabilir hale getirmek için bir hizmet olarak kaydedin.
 
 * Açık **Startup.cs**
-* Aşağıdaki `using` deyimlerini dosyanın başında
+* Aşağıdaki `using` deyimlerini dosyanın başlangıcına ekleyin
 
 [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb/Startup.cs#AddedUsings)]
 
-Artık `AddDbContext(...)` hizmet olarak kaydetmek için yöntemi.
-* Bulun `ConfigureServices(...)` yöntemi
-* Bağlam bir hizmet olarak kaydetmek için aşağıdaki vurgulanmış kodu ekleyin
+Artık `AddDbContext(...)` yöntemi bir hizmet olarak kaydetmek için kullanabilirsiniz.
+* `ConfigureServices(...)` Yöntemi bulun
+* Bağlamı hizmet olarak kaydetmek için aşağıdaki vurgulanmış kodu ekleyin
 
 [!code-csharp[Main](../../../../samples/core/GetStarted/AspNetCore/EFGetStarted.AspNetCore.ExistingDb/Startup.cs?name=ConfigureServices&highlight=14-15)]
 
 > [!TIP]  
-> Gerçek bir uygulamada genellikle bir yapılandırma dosyası veya ortam değişkenine bağlantı dizesini koyabilirsiniz. Basitleştirmek amacıyla, Bu öğretici, kod içinde tanımlamanıza sahiptir. Daha fazla bilgi için [bağlantı dizeleri](../../miscellaneous/connection-strings.md).
+> Gerçek bir uygulamada, genellikle bağlantı dizesini bir yapılandırma dosyasına veya ortam değişkenine yerleştirebilirsiniz. Kolaylık sağlaması için, bu öğretici kodu kod içinde tanımlamanızı ister. Daha fazla bilgi için bkz. [bağlantı dizeleri](../../miscellaneous/connection-strings.md).
 
-## <a name="create-a-controller-and-views"></a>Bir denetleyici ve görünümler oluşturma
+## <a name="create-a-controller-and-views"></a>Denetleyici ve görünüm oluşturma
 
-* Sağ **denetleyicileri** klasöründe **Çözüm Gezgini** seçip **Ekle -> denetleyicisi...**
-* Seçin **MVC denetleyici Entity Framework kullanarak görünümler ile** tıklatıp **Tamam**
-* Ayarlama **Model sınıfı** için **Blog** ve **veri bağlamı sınıfının** için **BloggingContext**
-* Tıklayın **Ekle**
+* **Çözüm Gezgini** ' de **denetleyiciler** klasörüne sağ tıklayın ve **Ekle-> denetleyicisi ' ni seçin...**
+* **Görünümler Ile MVC denetleyicisi ' ni seçin, Entity Framework kullanarak** **Tamam** ' a tıklayın.
+* **Model sınıfını** **Blog** ve **veri bağlamı sınıfına** **BloggingContext** olarak ayarla
+* **Ekle** 'ye tıklayın
 
 ## <a name="run-the-application"></a>Uygulamayı çalıştırma
 
-Şimdi nasıl çalıştığını görmek için uygulamayı çalıştırabilirsiniz.
+Artık uygulamayı çalışır durumda görmek için çalıştırabilirsiniz.
 
-* **Hata ayıklama, hata ayıklama olmadan Başlat ->**
-* Uygulama oluşturur ve bir web tarayıcısında açılır
+* **Hata ayıklama-> hata ayıklama olmadan Başlat**
+* Uygulama bir Web tarayıcısında oluşturulup açılıyor
 * Gidin `/Blogs`
-* Tıklayın **Yeni Oluştur**
-* Girin bir **Url** tıklayın ve yeni blog için **oluştur**
+* **Yeni oluştur** ' a tıklayın
+* Yeni blog için bir **URL** girin ve **Oluştur** ' a tıklayın.
 
   ![sayfası oluşturma](_static/create.png)
 
-  ![Dizin Sayfası](_static/index-existing-db.png)
+  ![Dizin sayfası](_static/index-existing-db.png)
 
 ## <a name="next-steps"></a>Sonraki adımlar
 
-Bağlam ve varlık sınıfları iskelesinin nasıl kurulacağını hakkında daha fazla bilgi için aşağıdaki makalelere bakın:
+Bağlam ve varlık sınıflarının nasıl kullanılacağı hakkında daha fazla bilgi için aşağıdaki makalelere bakın:
 * [Tersine mühendislik](xref:core/managing-schemas/scaffolding)
-* [Entity Framework Core başvuru - .NET CLI araçları](xref:core/miscellaneous/cli/dotnet#dotnet-ef-dbcontext-scaffold)
-* [Entity Framework Core araçları başvurusu - Paket Yöneticisi Konsolu](xref:core/miscellaneous/cli/powershell#scaffold-dbcontext)
+* [Entity Framework Core araçları başvurusu-.NET CLı](xref:core/miscellaneous/cli/dotnet#dotnet-ef-dbcontext-scaffold)
+* [Entity Framework Core araçları başvurusu-Paket Yöneticisi konsolu](xref:core/miscellaneous/cli/powershell#scaffold-dbcontext)
