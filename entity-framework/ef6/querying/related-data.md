@@ -1,21 +1,21 @@
 ---
-title: Varlıklar - EF6 yükleme ilgili
+title: Ilgili varlıkları yükleme-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: c8417e18-a2ee-499c-9ce9-2a48cc5b468a
-ms.openlocfilehash: 2d33d9db8acc61f7d556e3eca46b1ea90198723e
-ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
+ms.openlocfilehash: f40034475ed6659b60ab4317605fd1d802218d69
+ms.sourcegitcommit: 7b7f774a5966b20d2aed5435a672a1edbe73b6fb
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47415763"
+ms.lasthandoff: 08/17/2019
+ms.locfileid: "69565324"
 ---
-# <a name="loading-related-entities"></a>İlgili varlıklar yükleniyor
-Entity Framework, ilgili verileri - yüklenirken eager, yavaş yükleniyor ve açık yükleme yüklemek için üç yol destekler. Bu konuda gösterilen teknikleri Code First ve EF Designer ile oluşturulan modeller için eşit oranda geçerlidir.  
+# <a name="loading-related-entities"></a>Ilgili varlıkları yükleme
+Entity Framework, ilgili veri yükleme, yavaş yükleme ve açık yükleme gibi üç yolu destekler. Bu konu başlığında gösterilen teknikler Code First ve EF Designer ile oluşturulan modellere eşit olarak uygulanır.  
 
-## <a name="eagerly-loading"></a>Eagerly yükleniyor  
+## <a name="eagerly-loading"></a>Ekip yükleme  
 
-İstekli yükleme alınabildiği bir varlık türü için bir sorgu ayrıca ilgili varlıkları sorgunun bir parçası yükleyen bir işlemdir. İstekli yükleme dahil etme yöntemini kullanarak elde edilir. Örneğin, aşağıdaki sorguları, bloglar ve her blog için ilgili tüm gönderileri yükler.  
+Eager yüklemesi, bir varlık türü için bir sorgunun aynı zamanda ilgili varlıkları sorgunun bir parçası olarak yüklediği işlemdir. Eager yüklemesi, Include yönteminin kullanımı ile elde edilir. Örneğin, aşağıdaki sorgular blogların ve her blogun ilgili tüm gönderilerin yükünü yükler.  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -25,7 +25,7 @@ using (var context = new BloggingContext())
                         .Include(b => b.Posts)
                         .ToList();
 
-    // Load one blogs and its related posts
+    // Load one blog and its related posts
     var blog1 = context.Blogs
                        .Where(b => b.Name == "ADO.NET Blog")
                        .Include(b => b.Posts)
@@ -46,11 +46,11 @@ using (var context = new BloggingContext())
 }
 ```  
 
-INCLUDE System.Data.Entity ad alanındaki bir genişletme yöntemi olduğunu unutmayın kadar bu ad alanı kullanıyorsanız emin olun.  
+Include 'in System. Data. Entity ad alanındaki bir genişletme yöntemi olduğunu unutmayın, bu nedenle bu ad alanını kullandığınızdan emin olun.  
 
-### <a name="eagerly-loading-multiple-levels"></a>Birden çok düzeyi eagerly yükleniyor  
+### <a name="eagerly-loading-multiple-levels"></a>Birden çok düzey yükleme  
 
-İlgili varlıkları birden fazla düzeyde eagerly yüklemek mümkündür. Aşağıdaki sorgu, toplama ve başvuru Gezinti özellikleri için bunun nasıl yapılacağını örnekleri gösterir.  
+Ayrıca, birden çok ilgili varlık düzeyini de yüklemek mümkündür. Aşağıdaki sorgularda, hem koleksiyon hem de başvuru gezinti özellikleri için bunu nasıl yapabilinin örnekleri gösterilmektedir.  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -79,11 +79,11 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Şu anda hangi ilgili varlıkları yüklenen filtre mümkün olmadığı anlamına unutmayın. Dahil ilgili tüm varlıklar her zaman getirin.  
+Şu anda hangi ilgili varlıkların yüklendiğini filtrelemek mümkün değildir. Dahil etme her zaman ilgili varlıkların tümünü alacak.  
 
-## <a name="lazy-loading"></a>Yavaş yükleniyor  
+## <a name="lazy-loading"></a>Geç yükleme  
 
-Yavaş yükleniyor verebileceğiniz bir varlık veya varlık koleksiyonunu otomatik olarak veritabanından varlık/varlıkları başvuran bir özelliğine erişinceye ilk kez yüklenen bir işlemdir. POCO varlık türleri kullanırken, yavaş yükleniyor proxy türetilen türlerin örneklerini oluşturmak ve ardından yükleme kanca eklemek için sanal özellikleri geçersiz kılma tarafından sağlanır. Örneğin, aşağıda tanımlanan Blog varlık sınıfı kullanırken gönderileri Gezinti özelliğine erişinceye ilk kez ilgili gönderileri yüklenecektir:  
+Geç yükleme, varlığa/varlıklara başvuran bir özelliğe ilk kez erişildiğinde bir varlık veya varlık koleksiyonunun veritabanından otomatik olarak yüklendiğine yönelik bir işlemdir. POCO varlık türlerini kullanırken, yavaş yükleme türetilmiş proxy türlerinin örnekleri oluşturularak ve sonra yükleme kancasını eklemek için sanal özellikleri geçersiz kılarak elde edilir. Örneğin, aşağıda tanımlanan blog varlık sınıfı kullanılırken, gönderi gezintisi özelliği ilk kez erişildiğinde ilgili postalar yüklenir:  
 
 ``` csharp
 public class Blog
@@ -97,13 +97,13 @@ public class Blog
 }
 ```  
 
-### <a name="turn-lazy-loading-off-for-serialization"></a>Kapatmak için serileştirme yüklenirken yavaş Aç  
+### <a name="turn-lazy-loading-off-for-serialization"></a>Serileştirme için yavaş yüklemeyi kapat  
 
-Yavaş yükleniyor ve Serileştirme iyi karıştırmayın ve dikkatli olmazsanız veritabanınız için sorgulama yavaş yükleniyor yalnızca etkin olduğundan yukarı sonlandırabilirsiniz. Çoğu seri hale getiricileri genişletme türünün bir örneğinde her bir özellik erişerek çalışır. Daha fazla varlık serileştirilen şekilde yavaş yükleniyor, özellik erişimi tetikler. Daha fazla varlık yüklendi ve bu varlıkların özellikleri erişilir. Kapalı bir varlık seri hale getirme önce yükleme yavaş etkinleştirmek için iyi bir uygulamadır. Aşağıdaki bölümlerde bunun nasıl yapılacağı gösterilmektedir.  
+Geç yükleme ve serileştirme iyi bir şekilde karıştırmayın ve unutmayın, yavaş yükleme etkin olduğundan, veritabanınızın tamamına yönelik sorgulama yapabilirsiniz. Çoğu serileştiriciler, bir tür örneğindeki her özelliğe erişerek çalışır. Özellik erişimi, yavaş yüklemeyi tetikler, bu nedenle daha fazla varlık serileştirilmiş hale alınır. Bu varlıklar özelliklerine erişilir, hatta daha fazla varlık yüklenir. Bir varlığı seri hale gelmeden önce yavaş yüklemeyi kapatmak iyi bir uygulamadır. Aşağıdaki bölümlerde bunun nasıl yapılacağı gösterilmektedir.  
 
-### <a name="turning-off-lazy-loading-for-specific-navigation-properties"></a>Belirli bir gezinti özellikleri yükleniyor yavaş kapatma  
+### <a name="turning-off-lazy-loading-for-specific-navigation-properties"></a>Belirli gezinti özellikleri için yavaş yüklemeyi kapatma  
 
-Yavaş yükleniyor gönderileri koleksiyonun gönderileri özelliği sanal olmayan hale getirerek kapatılabilir:  
+Gönderi özelliğinin geç yüklemesi, gönderimler özelliği sanal olmayan bir hale getirilerek kapatılabilir:  
 
 ``` csharp
 public class Blog
@@ -117,11 +117,11 @@ public class Blog
 }
 ```  
 
-Yükleniyor gönderiler koleksiyon hala istekli yükleme kullanarak gerçekleştirilebilir (bkz *Eagerly Yükleniyor* yukarıda) veya Load yöntemi (bkz *açıkça Yükleniyor* aşağıda).  
+Gönderi koleksiyonu yüklemesi yine de Eager yüklemesi (bkz. yukarıya *yükleme* ) veya Load yöntemi (bkz. aşağıda *açıkça yükleme* ) kullanılarak elde edilebilir.  
 
-### <a name="turn-off-lazy-loading-for-all-entities"></a>Tüm varlıklar için yükleme yavaş Kapat  
+### <a name="turn-off-lazy-loading-for-all-entities"></a>Tüm varlıklar için yavaş yüklemeyi kapat  
 
-Gecikmeli yükleme bağlamı tüm varlıklar için yapılandırma özelliği bir bayrak ayarlayarak kapatılabilir. Örneğin:  
+Yapılandırma özelliğinde bir bayrak ayarlanarak, bağlam içindeki tüm varlıklar için yavaş yükleme kapatılabilir. Örneğin:  
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -133,11 +133,11 @@ public class BloggingContext : DbContext
 }
 ```  
 
-İlgili varlıkları yükleme yine de gerçekleştirilebilir istekli yükleme kullanarak (bkz *Eagerly Yükleniyor* yukarıda) veya Load yöntemi (bkz *açıkça yüklenirken* aşağıda).  
+İlgili varlıkların yüklenmesi yine de Eager yüklemesi (bkz. yukarıya *yükleme* ) veya Load yöntemi (bkz. aşağıda *açıkça yükleme* ) kullanılarak elde edilebilir.  
 
-## <a name="explicitly-loading"></a>Açıkça yükleniyor  
+## <a name="explicitly-loading"></a>Açıkça yükleme  
 
-Devre dışı bile yavaş yükleyerek, gevşek ilgili varlıkları yükleme yine de mümkündür, ancak açık bir çağrı ile yapılmalıdır. Bunu yapmak için ilgili varlığın girişinde yükleme yöntemi kullanın. Örneğin:  
+Yavaş yükleme devre dışı bırakılmış olsa bile, ilgili varlıkların geç yüklenmeye devam edebilir, ancak açık bir çağrıyla yapılması gerekir. Bunu yapmak için, ilgili varlığın girişinde Load yöntemini kullanırsınız. Örneğin:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -161,11 +161,11 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Bir varlık başka bir tek bir varlık Gezinti özelliğine sahip olduğunda başvuru yöntemi kullanılması gerektiğini unutmayın. Öte yandan, bir varlığın bir gezinti özelliği için diğer varlıklar koleksiyonu olduğunda koleksiyon yöntemi kullanılmalıdır.  
+Bir varlığın başka bir varlığa bir gezinti özelliği olduğunda başvuru yönteminin kullanılması gerektiğini unutmayın. Diğer taraftan, bir varlık başka varlıkların koleksiyonuna bir gezinti özelliği olduğunda, koleksiyon yöntemi kullanılmalıdır.  
 
-### <a name="applying-filters-when-explicitly-loading-related-entities"></a>Açıkça ilgili varlıkları yüklenirken uygulanan filtreler  
+### <a name="applying-filters-when-explicitly-loading-related-entities"></a>İlgili varlıkları açıkça yüklerken filtre uygulama  
 
-Sorgu yöntemine, Entity Framework, ilgili varlıkları yüklerken kullanacağınız temel alınan sorgunun erişim sağlar. Ardından LINQ ToList, yük, vb. gibi LINQ genişletme yöntemine bir çağrıyla yürütmeden önce sorguya filtre uygulamak için de kullanabilirsiniz. Sorgu yöntemi ile başvuru hem koleksiyon Gezinti özellikleri kullanılabilir, ancak burada bu koleksiyonun parçası yalnızca yüklenecek kullanılabilir koleksiyonlar için en kullanışlıdır. Örneğin:  
+Sorgu yöntemi, ilgili varlıklar yüklenirken Entity Framework kullanacağı temel sorguya erişim sağlar. Daha sonra, ToList, Load, vb. gibi bir LINQ genişletme yöntemine yapılan bir çağrıyla yürütmeden önce sorguya filtre uygulamak için LINQ kullanabilirsiniz. Sorgu yöntemi hem başvuru hem de koleksiyon gezinme özellikleriyle birlikte kullanılabilir, ancak koleksiyonun yalnızca bir bölümünü yüklemek için kullanılabilecek olan koleksiyonlar için en yararlı seçenektir. Örneğin:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -189,13 +189,13 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Sorgu yöntemini kullanırken gezinti özelliği için yükleme yavaş kapatmak en iyisidir. Bu durum, aksi takdirde tüm koleksiyon otomatik olarak yavaş yükleme mekanizması tarafından önce veya filtrelenmiş sorgu yürütüldükten sonra yüklenir çünkü.  
+Sorgu yöntemi kullanılırken, gezinti özelliği için yavaş yüklemeyi devre dışı bırakmak genellikle en iyisidir. Bunun nedeni, tersi durumda, filtre uygulanmış Sorgu yürütüldükten önce veya sonra yavaş yükleme mekanizması tarafından otomatik olarak yüklenemeyebilir.  
 
-İlişki yerine bir lambda ifadesi bir dize olarak belirtilebilir, ancak döndürülen Iqueryable dize kullanıldığında ve faydalı bir şey ile yapılabilir önce Cast yöntemi genellikle gerekli genel olmadığına dikkat edin.  
+İlişki bir lambda ifadesi yerine bir dize olarak belirtilebildiği sürece, döndürülen IQueryable bir dize kullanıldığında genel değildir ve bu nedenle, bu durumda herhangi bir şeyin yararlı olması için atama yöntemi gerekir.  
 
-## <a name="using-query-to-count-related-entities-without-loading-them"></a>İlgili varlıkları yükleme olmadan saymak için sorgu kullanma  
+## <a name="using-query-to-count-related-entities-without-loading-them"></a>Sorgu kullanarak ilgili varlıkları yüklemeden Sayın  
 
-Bazen kaç varlıkları veritabanında başka bir varlık yüklenirken bu varlıkların maliyeti olmaksızın ilgili bilmek de yararlı olabilir. Bunu yapmak için sorgu yöntemi ile LINQ Count yöntemi kullanılabilir. Örneğin:  
+Bazen, tüm bu varlıkları yükleme maliyetini karşılamak zorunda kalmadan veritabanında bulunan başka bir varlıkla ilgili kaç varlık olduğunu öğrenmek faydalı olur. Bunu yapmak için LINQ Count yöntemine sahip sorgu yöntemi kullanılabilir. Örneğin:  
 
 ``` csharp
 using (var context = new BloggingContext())

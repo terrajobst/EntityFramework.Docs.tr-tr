@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: c73663412efcd93c04892f193d4f5a2485724e22
-ms.sourcegitcommit: 755a15a789631cc4ea581e2262a2dcc49c219eef
+ms.openlocfilehash: 884cc6611b986fb213d99d3d2fc69d7bebe34aa2
+ms.sourcegitcommit: 7b7f774a5966b20d2aed5435a672a1edbe73b6fb
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/25/2019
-ms.locfileid: "68497523"
+ms.lasthandoff: 08/17/2019
+ms.locfileid: "69565317"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3,0 ' de yer alan son değişiklikler (Şu anda önizlemede)
 
@@ -25,6 +25,7 @@ Bir 3,0 önizlemeden başka bir 3,0 önizlemeye sunulan yeni özelliklerde kesin
 | **Yeni değişiklik**                                                                                               | **Etkisi** |
 |:------------------------------------------------------------------------------------------------------------------|------------|
 | [LINQ sorguları artık istemcide değerlendirilmedi](#linq-queries-are-no-longer-evaluated-on-the-client)         | Yüksek       |
+| [EF Core 3,0 hedefi .NET Standard 2,0 değil .NET Standard 2,1](#netstandard21) | Yüksek      |
 | [EF Core komut satırı aracı, DotNet EF, artık .NET Core SDK bir parçası değil](#dotnet-ef) | Yüksek      |
 | [FromSql, ExecuteSql ve ExecuteSqlAsync yeniden adlandırıldı](#fromsql) | Yüksek      |
 | [Sorgu türleri varlık türleriyle birleştirilir](#qt) | Yüksek      |
@@ -33,6 +34,7 @@ Bir 3,0 önizlemeden başka bir 3,0 önizlemeye sunulan yeni özelliklerde kesin
 | [DeleteBehavior. restrict Temizleme semantiğine sahip](#deletebehavior) | Orta      |
 | [Sahip olunan tür ilişkilerinin Yapılandırma API 'SI değişti](#config) | Orta      |
 | [Her özellik bağımsız bellek içi tamsayı anahtar oluşturma kullanır](#each) | Orta      |
+| [Hiçbir izleme sorgusu artık kimlik çözümlemesi gerçekleştirmesiz](#notrackingresolution) | Orta      |
 | [Meta veri API 'SI değişiklikleri](#metadata-api-changes) | Orta      |
 | [Sağlayıcıya özel meta veri API 'SI değişiklikleri](#provider) | Orta      |
 | [UseRowNumberForPaging kaldırıldı](#urn) | Orta      |
@@ -102,6 +104,29 @@ Bunun yanı sıra, otomatik istemci değerlendirmesi, sürümler arasında isten
 **Karşı**
 
 Bir sorgu tam olarak çevrilemeyecek şekilde, sorguyu çevrilebilen bir biçimde yeniden yazın ya da verileri açıkça istemciye, LINQ- `AsEnumerable()`Objects `ToList()`kullanılarak daha sonra işlenebileceği istemciye geri getirmek için, veya kullanın.
+
+<a name="netstandard21"></a>
+### <a name="ef-core-30-targets-net-standard-21-rather-than-net-standard-20"></a>EF Core 3,0 hedefi .NET Standard 2,0 değil .NET Standard 2,1
+
+[Sorun izleniyor #15498](https://github.com/aspnet/EntityFrameworkCore/issues/15498)
+
+Bu değişiklik EF Core 3,0-Preview 7 ' de kullanıma sunulmuştur.
+
+**Eski davranış**
+
+3,0 öncesinde, EF Core .NET Standard 2,0 ' i hedefledi ve .NET Framework dahil olmak üzere bu standardı destekleyen tüm platformlarda çalışacaktır.
+
+**Yeni davranış**
+
+3,0 ' den başlayarak, .NET Standard 2,1 ' EF Core ve bu standardı destekleyen tüm platformlarda çalışır. Bu, .NET Framework içermez.
+
+**Kaydol**
+
+Bu, .NET Core ve Xamarin gibi diğer modern .NET platformlarına enerji tasarrufu sağlamak için .NET teknolojilerinde stratejik bir kararın bir parçasıdır.
+
+**Karşı**
+
+Modern bir .NET platformuna geçmeyi düşünün. Bu mümkün değilse, her ikisi de .NET Framework EF Core 2,1 veya EF Core 2,2 ' i kullanmaya devam edin.
 
 <a name="no-longer"></a>
 ### <a name="entity-framework-core-is-no-longer-part-of-the-aspnet-core-shared-framework"></a>Entity Framework Core artık ASP.NET Core paylaşılan Framework 'ün bir parçası değil
@@ -222,6 +247,34 @@ EF Core 3,0 ' den başlayarak, yeni `FromSqlRaw` ve `FromSqlInterpolated` Yönte
 **Karşı**
 
 `FromSql`etkinleştirmeleri, `DbSet` uygulandıkları üzerinde doğrudan taşınmalıdır.
+
+<a name="notrackingresolution"></a>
+### <a name="no-tracking-queries-no-longer-perform-identity-resolution"></a>Hiçbir izleme sorgusu artık kimlik çözümlemesi gerçekleştirmesiz
+
+[Sorun izleniyor #13518](https://github.com/aspnet/EntityFrameworkCore/issues/13518)
+
+Bu değişiklik EF Core 3,0-Preview 6 ' da sunulmuştur.
+
+**Eski davranış**
+
+EF Core 3,0 ' dan önce, belirli bir tür ve KIMLIĞE sahip bir varlığın her oluşumu için aynı varlık örneği kullanılacaktır. Bu, sorguları izleme davranışıyla eşleşir. Örneğin, bu sorgu:
+
+```C#
+var results = context.Products.Include(e => e.Category).AsNoTracking().ToList();
+```
+, belirtilen kategori ile `Category` ilişkili her biri `Product` için aynı örneği döndürür.
+
+**Yeni davranış**
+
+EF Core 3,0 ' den başlayarak, döndürülen grafikte farklı yerlerde verilen tür ve KIMLIĞE sahip bir varlık ile karşılaşıldığında farklı varlık örnekleri oluşturulacaktır. Örneğin, yukarıdaki sorgu artık aynı kategori ile iki ürün ilişkilendirildiğinde `Category` bile, her `Product` biri için yeni bir örnek döndürür.
+
+**Kaydol**
+
+Kimlik çözümlemesi (diğer bir deyişle, bir varlığın daha önce karşılaşılan varlıkla aynı türe ve KIMLIĞE sahip olduğunu belirlemek) ek performans ve bellek yükü ekler. Bu genellikle, ilk yerde hiçbir izleme sorgusunun neden kullanıldığına ilişkin sayacı çalıştırır. Ayrıca, kimlik çözümlemesi bazen faydalı olabilirken, varlıkların serileştirilmek ve bir istemciye gönderilmesi, hiçbir izleme sorgusu için ortak olan bir istemciye gönderiliyorsa, bu gerekli değildir.
+
+**Karşı**
+
+Kimlik çözümlemesi gerekiyorsa izleme sorgusu kullanın.
 
 <a name="qe"></a>
 
@@ -1222,8 +1275,8 @@ Bu değişiklik EF Core 3,0-Preview 6 ' da sunulmuştur.
 Sağlayıcıya özgü uzantı yöntemleri düzleştirilecektir:
 
 * `IProperty.Relational().ColumnName` -> `IProperty.GetColumnName()`
-* `IEntityType.SqlServer().IsMemoryOptimized` -> `IEntityType.GetSqlServerIsMemoryOptimized()`
-* `PropertyBuilder.UseSqlServerIdentityColumn()` -> `PropertyBuilder.ForSqlServerUseIdentityColumn()`
+* `IEntityType.SqlServer().IsMemoryOptimized` -> `IEntityType.IsMemoryOptimized()`
+* `PropertyBuilder.UseSqlServerIdentityColumn()` -> `PropertyBuilder.UseIdentityColumn()`
 
 **Kaydol**
 
@@ -1260,7 +1313,7 @@ Diğer durumlarda, yabancı anahtarlar bağlantı dizeniz belirtilerek `Foreign 
 
 <a name="sqlite3"></a>
 
-### <a name="microsoftentityframeworkcoresqlite-now-depends-on-sqlitepclrawbundleesqlite3"></a>Microsoft. EntityFrameworkCore. SQLite artık SQLitePCLRaw. bundle_e_sqlite3 öğesine bağımlıdır
+### <a name="microsoftentityframeworkcoresqlite-now-depends-on-sqlitepclrawbundle_e_sqlite3"></a>Microsoft. EntityFrameworkCore. SQLite artık SQLitePCLRaw. bundle_e_sqlite3 öğesine bağımlıdır
 
 **Eski davranış**
 

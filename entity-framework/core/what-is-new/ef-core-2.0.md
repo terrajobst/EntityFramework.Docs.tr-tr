@@ -1,29 +1,29 @@
 ---
-title: EF Core 2.0 - EF Core yenilikleri
+title: EF Core 2,0 ' deki yenilikler-EF Core
 author: divega
 ms.date: 02/20/2018
 ms.assetid: 2CB5809E-0EFB-44F6-AF14-9D5BFFFBFF9D
 uid: core/what-is-new/ef-core-2.0
-ms.openlocfilehash: b5ac31722f49589f1494a3d8d1c8a7011a4cf9ce
-ms.sourcegitcommit: a013e243a14f384999ceccaf9c779b8c1ae3b936
+ms.openlocfilehash: 2712845512d9eb349ef3a7e14f4365327db0fcd6
+ms.sourcegitcommit: 7b7f774a5966b20d2aed5435a672a1edbe73b6fb
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2019
-ms.locfileid: "57463275"
+ms.lasthandoff: 08/17/2019
+ms.locfileid: "69565331"
 ---
-# <a name="new-features-in-ef-core-20"></a>EF Core 2.0 yenilikleri
+# <a name="new-features-in-ef-core-20"></a>EF Core 2,0 ' deki yeni özellikler
 
-## <a name="net-standard-20"></a>.NET Standard 2.0
-EF Core, .NET Core 2.0, .NET Framework 4.6.1 ve .NET Standard 2.0 uygulayan diğer kitaplıkları ile çalışabilir yani .NET Standard 2.0, artık hedefler.
-Bkz: [desteklenen .NET uygulamalarıyla](../platforms/index.md) desteklenen özellikler hakkında daha fazla bilgi.
+## <a name="net-standard-20"></a>.NET Standard 2,0
+EF Core artık .NET Standard 2,0 ' i hedeflediğinden, .NET Core 2,0, .NET Framework 4.6.1 ve .NET Standard 2,0 uygulayan diğer kitaplıklarla birlikte çalışabilir.
+Desteklenen özellikler hakkında daha fazla bilgi için bkz. [desteklenen .NET uygulamaları](../platforms/index.md) .
 
 ## <a name="modeling"></a>Modelleme
 
 ### <a name="table-splitting"></a>Tablo bölme
 
-Şimdi, burada birincil anahtar sütunları paylaşılır ve her satır için iki veya daha fazla varlık karşılık gelen aynı tabloya iki veya daha fazla varlık türleri eşleştirmek mümkündür.
+Artık iki veya daha fazla varlık türünü birincil anahtar sütunların paylaşılacağını ve her satırın iki veya daha fazla varlığa karşılık geldiğini aynı tabloyla eşleştirmek mümkündür.
 
-Tablosunu kullanmak için (burada yabancı anahtar özellikleri birincil anahtar oluşturmak) tanımlayan bir ilişki bölme tüm tablo paylaşımı varlık türleri arasında yapılandırılması gerekir:
+Tabloyu kullanarak bir tanımlayıcı ilişkiyi (birincil anahtar olan yabancı anahtar özellikler formu) kullanmak için tabloyu paylaşan tüm varlık türleri arasında yapılandırılması gerekir:
 
 ``` csharp
 modelBuilder.Entity<Product>()
@@ -32,12 +32,13 @@ modelBuilder.Entity<Product>()
 modelBuilder.Entity<Product>().ToTable("Products");
 modelBuilder.Entity<ProductDetails>().ToTable("Products");
 ```
+Bu özellik hakkında daha fazla bilgi için [tablo bölme bölümündeki bölümü](xref:core/modeling/table-splitting) okuyun.
 
-### <a name="owned-types"></a>Sahip olunan türleri
+### <a name="owned-types"></a>Sahip olunan türler
 
-Sahip olunan varlık türü aynı CLR türü başka bir sahip olunan varlık türü ile paylaşabilir, ancak yalnızca CLR türü tanımlanamıyor beri olmalıdır bir gezinti için başka bir varlık türü. Tanımlama Gezinti içeren varlık sahibi değil. Sahibi sorgulanırken ait türleri varsayılan olarak dahil edilir.
+Sahip olunan bir varlık türü, sahip olduğu başka bir varlık türüyle aynı CLR türünü paylaşabilir, ancak yalnızca CLR türü tarafından tanımlanamıyorsa, başka bir varlık türünden buna bir gezinti olması gerekir. Tanımlama gezintisini içeren varlık, sahibidir. Sahibi sorgulanırken sahip olan türler varsayılan olarak dahil edilir.
 
-Kural gereği sahip olunan türü için gölge birincil bir anahtar oluşturulur ve onu aynı tablonun sahibi olarak tablo bölmeyi kullanarak eşleneceğini. Bu olanak için nasıl karmaşık türler içinde EF6 kullanılan ait kullanım benzer şekilde türleri:
+Kurala göre, sahip olunan tür için bir gölge birincil anahtar oluşturulur ve tablo bölme kullanılarak aynı tabloyla aynı tabloyla eşleştirilir. Bu, EF6 ' de karmaşık türlerin kullanılmasına benzer şekilde sahip olan türleri kullanılmasına izin verir:
 
 ``` csharp
 modelBuilder.Entity<Order>().OwnsOne(p => p.OrderDetails, cb =>
@@ -64,16 +65,16 @@ public class StreetAddress
     public string City { get; set; }
 }
 ```
-Okuma [bölümüne sahip olunan varlık türleri](xref:core/modeling/owned-entities) bu özellik hakkında daha fazla bilgi için.
+Bu özellik hakkında daha fazla bilgi için, [sahip olduğunuz varlık türlerindeki bölümü](xref:core/modeling/owned-entities) okuyun.
 
 ### <a name="model-level-query-filters"></a>Model düzeyi sorgu filtreleri
 
-EF Core 2.0 Model düzeyi sorgu filtreleri diyoruz yeni bir özellik içerir. LINQ Sorgu koşullarına (genellikle nereye LINQ sorgu işleci için geçirilen bir Boole ifadesi) bu özelliği sağlar (genellikle, OnModelCreating) meta veri modeli varlık türleri üzerinde doğrudan tanımlanmalıdır. Bu filtreler, varlık türleri Ekle kullanarak dolaylı olarak gibi başvurulan veya doğrudan bir gezinti özelliği başvuruları dahil olmak üzere bu varlık türleriyle ilgili herhangi bir LINQ sorguları için otomatik olarak uygulanır. Bu özelliğin bazı ortak uygulamalar şunlardır:
+EF Core 2,0, model düzeyi sorgu filtrelerini çağırdığımız yeni bir özellik içeriyor. Bu özellik LINQ sorgu koşullarına (genellikle LINQ WHERE sorgu işlecine geçirilen bir Boole ifadesi) meta veri modelindeki varlık türlerinde (genellikle Onmodeloluþturma 'da) doğrudan tanımlanacak şekilde izin verir. Bu filtreler, varlık türleri Ekle kullanarak dolaylı olarak gibi başvurulan veya doğrudan bir gezinti özelliği başvuruları dahil olmak üzere bu varlık türleriyle ilgili herhangi bir LINQ sorguları için otomatik olarak uygulanır. Bu özelliğin bazı ortak uygulamalar şunlardır:
 
-- Geçici silme - IsDeleted özelliği bir varlık türlerini tanımlar.
-- -Çok kiracılı bir varlık türü bir Tenantıd özelliği tanımlar.
+- Geçici silme-bir varlık türü, IsDeleted özelliğini tanımlar.
+- Çok kiracılı-varlık türü bir Tenantıd özelliğini tanımlar.
 
-Yukarıda listelenen iki senaryo için özellik gösteren basit bir örnek aşağıda verilmiştir:
+Aşağıda listelenen iki senaryo için özelliği gösteren basit bir örnek aşağıda verilmiştir:
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -91,22 +92,22 @@ public class BloggingContext : DbContext
     }
 }
 ```
-Çok kiracılılık ve geçici silme için uygulayan bir model düzeyi filtresi tanımlarız örneklerini ```Post``` varlık türü. DbContext örnek düzeyi özelliği kullanımına dikkat edin: ```TenantId```. Model düzeyi filtreleri (diğer bir deyişle, sorguyu yürüten bağlam örnek) doğru bağlam örneğinin değerini kullanır.
+`Post` Varlık türü örnekleri için çok kiracılı ve geçici silme uygulayan model düzeyi bir filtre tanımlandık. DbContext örnek düzeyi özelliğinin kullanımını aklınızda: `TenantId`. Model düzeyi filtreleri doğru bağlam örneğindeki değeri kullanır (diğer bir deyişle, sorguyu yürüten bağlam örneği).
 
-Filtreler IgnoreQueryFilters() işlecini kullanarak tek tek LINQ sorguları için devre dışı bırakılabilir.
+Filtreler, IgnoreQueryFilters () işleci kullanılarak tekil LINQ sorguları için devre dışı bırakılabilir.
 
 #### <a name="limitations"></a>Sınırlamalar
 
-- Gezinti başvurulara izin verilmez. Bu özellik, geri bildirim göre eklenebilir.
-- Filtreler yalnızca kök varlık türü bir hiyerarşinin tanımlanabilir.
+- Gezinti başvurularına izin verilmiyor. Bu özellik geri bildirime göre eklenebilir.
+- Filtreler yalnızca bir hiyerarşinin kök varlık türünde tanımlanabilir.
 
-### <a name="database-scalar-function-mapping"></a>Veritabanı skaler bir işlev eşlemesi
+### <a name="database-scalar-function-mapping"></a>Veritabanı skaler işlev eşlemesi
 
-EF Core 2.0 içeren gelen önemli bir katkı [Paul Middleton](https://github.com/pmiddleton) böylece bunlar, LINQ sorgularında kullanılan ve SQL çevrilmiş Saplamaları yöntemi için eşleme veritabanı skaler işlevler sağlar.
+EF Core 2,0, [Paul Middleton](https://github.com/pmiddleton) 'TAN, LINQ sorgularında KULLANıLABILMESI ve SQL 'e çevrilebilmesi için, veritabanı skaler işlevlerinin Yöntem saplamalarla eşleştirilmesini sağlayan önemli bir katkı içerir.
 
-Aşağıda, özellikle nasıl kullanılabileceği hakkında kısa bir açıklaması verilmiştir:
+Özelliğin nasıl kullanılabileceği hakkında kısa bir açıklama aşağıda verilmiştir:
 
-Üzerinde statik bir yöntemi bildirmek, `DbContext` ve onunla açıklama `DbFunctionAttribute`:
+Uygulamanızda bir statik yöntem bildirin ve `DbContext` bununla birlikte `DbFunctionAttribute`not edin:
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -119,7 +120,7 @@ public class BloggingContext : DbContext
 }
 ```
 
-Bu gibi yöntemleri otomatik olarak kaydedilir. Kaydedildikten sonra bir LINQ Sorgu yöntemine yönelik çağrılar işlev çağrıları SQL çevrilebilir:
+Bunun gibi yöntemler otomatik olarak kaydedilir. Kaydedildikten sonra, LINQ sorgusundaki yöntemine yapılan çağrılar SQL 'de işlev çağrılarına çevrilebilir:
 
 ``` csharp
 var query =
@@ -128,15 +129,15 @@ var query =
     select p;
 ```
 
-Dikkat edilecek bazı noktalar:
+Dikkat etmeniz gereken birkaç nokta:
 
-- Yöntemin adı (Bu durumda bir işlevde kullanıcı tanımlı) bir işlev adı olarak kullanıldığında Kural gereği SQL, ancak oluşturma adını ve şemayı yöntemi kayıt sırasında geçersiz kılabilirsiniz
-- Şu anda yalnızca skaler işlevler desteklenir
-- Veritabanında eşleşen işlev oluşturmanız gerekir. EF Core geçişleri oluşturma ilgileniriz değil
+- Kurala göre yöntemin adı, SQL oluştururken bir işlevin adı (Bu örnekte Kullanıcı tanımlı bir işlev) olarak kullanılır, ancak yöntem kaydı sırasında adı ve şemayı geçersiz kılabilirsiniz
+- Şu anda yalnızca skaler işlevler destekleniyor
+- Eşlenmiş işlevi veritabanında oluşturmanız gerekir. EF Core geçişleri oluşturma işlemini gerçekleşmeyecek
 
-### <a name="self-contained-type-configuration-for-code-first"></a>Kod için kendi içinde bulunan tür yapılandırma ilk
+### <a name="self-contained-type-configuration-for-code-first"></a>Önce kod için kendi kendine içerilen tür yapılandırması
 
-EF6 içinde kod ilk yapılandırma bir özel varlık türünün türeterek yalıtılacak olası *EntityTypeConfiguration*. EF Core 2.0 sürümünde Biz bu düzen geri getirme:
+EF6 içinde, *EntityTypeConfiguration*'dan türeterek belirli bir varlık türünün kod ilk yapılandırmasını kapsüllemek mümkün. EF Core 2,0 ' de bu kalıbı geri sunuyoruz:
 
 ``` csharp
 class CustomerConfiguration : IEntityTypeConfiguration<Customer>
@@ -157,33 +158,33 @@ builder.ApplyConfiguration(new CustomerConfiguration());
 
 ### <a name="dbcontext-pooling"></a>DbContext havuzu
 
-EF Core ASP.NET Core uygulaması genellikle kullanmak için temel düzeni, özel bir DbContext tür bağımlılık ekleme sistemine kaydetme ve daha sonra denetleyicileri Oluşturucusu parametrelerinde aracılığıyla bu türün örneklerini alma içerir. Başka bir deyişle, her istek için yeni bir örneğini DbContext oluşturulur.
+Bir ASP.NET Core uygulamasındaki EF Core kullanmanın temel deseninin genellikle özel bir DbContext türünün bağımlılık ekleme sistemine kaydedilmesi ve daha sonra bu türün örneklerini denetleyicilerde Oluşturucu parametreleri aracılığıyla elde edilmesi gerekir. Bu, her istek için yeni bir DbContext örneği oluşturulduğu anlamına gelir.
 
-Sürüm 2.0 şeffaf bir şekilde yeniden kullanılabilir DbContext örneklerinden oluşan bir havuz tanıtan bağımlılık ekleme özel DbContext türleri kaydetmek için yeni bir yolunu sunuyoruz. DbContext havuzu kullanmak için ```AddDbContextPool``` yerine ```AddDbContext``` hizmeti kaydı sırasında:
+Sürüm 2,0 ' de, özel DbContext türlerini, bir yeniden kullanılabilir DbContext örnekleri havuzunu saydam bir şekilde sunan bağımlılık ekleme 'ye kaydetmek için yeni bir yol sunuyoruz. DbContext havuzunu kullanmak için hizmet kaydı `AddDbContextPool` `AddDbContext` sırasında yerine kullanın:
 
 ``` csharp
 services.AddDbContextPool<BloggingContext>(
     options => options.UseSqlServer(connectionString));
 ```
 
-Bu yöntem kullanılıyorsa, zaman biz olup olmadığını örneği kullanılabilir havuzda ilk denetleyecek denetleyicisi tarafından bir DbContext örneği istenir. İstek işleme sonlandırır örneğinde herhangi bir durumu sıfırlanır ve kendisini havuza geri döner örnektir.
+Bu yöntem kullanılırsa, bir DbContext örneği bir denetleyici tarafından istendiğinde, önce havuzda kullanılabilir bir örnek olup olmadığını kontrol edeceğiz. İstek işleme sonlandırıldıktan sonra, örnekteki herhangi bir durum sıfırlanır ve örnek havuza döndürülür.
 
-Bu, kavramsal olarak benzer nasıl bağlantı havuzu ADO.NET sağlayıcıları çalışır ve bazı DbContext örneğinin başlatma maliyetini kaydetme avantajına sahiptir.
+Bu, ADO.NET sağlayıcıları 'nda bağlantı havuzunun nasıl çalıştığı ve DbContext örneği başlatma maliyetinin bir kısmını kaydetme avantajına benzer.
 
 ### <a name="limitations"></a>Sınırlamalar
 
-Yöntem ne yapılabilir bazı sınırlamalar sunar ```OnConfiguring()``` DbContext yöntemi.
+Yeni yöntem, DbContext `OnConfiguring()` yönteminde neler yapabileceğinize ilişkin birkaç sınırlama getirir.
 
 > [!WARNING]  
-> DbContext havuzu istekler genelinde Paylaşılmaması gereken, türetilmiş bir DbContext sınıfı içinde kendi durumu (örneğin, özel alanları) korur kullanmaktan kaçının. EF Core, yalnızca bir DbContext örneği havuza eklemeden önce farkında durumuna sıfırlar.
+> İstek genelinde paylaşılmaması gereken türetilmiş DbContext sınıfınıza kendi eyaletinizi (örneğin, özel alanlar) korumanız durumunda DbContext havuzlamayı kullanmaktan kaçının. EF Core, havuza bir DbContext örneği eklemeden önce yalnızca farkında olan durumu sıfırlayacaktır.
 
 ### <a name="explicitly-compiled-queries"></a>Açıkça derlenmiş sorgular
 
-Bu, büyük ölçekli senaryolar avantajları sunmak için tasarlanan ikinci katılımı performans özelliğidir.
+Bu, yüksek ölçekli senaryolarda avantajlar sunmak için tasarlanan ikinci bir katılım performansı özelliğidir.
 
-API'leri EF'ın önceki sürümlerini hem de LINQ to SQL sorguları çevirisi önbelleğe alınması yalnızca bir kez hesaplanabilir uygulamalarının izin vermek için kullanılabilir ve birçok kez yürütülen el ile veya açıkça derlenmiş sorgusu.
+El ile veya açıkça derlenmiş sorgu API 'Leri, daha önceki EF sürümlerinde ve ayrıca, uygulamaların yalnızca bir kez hesaplanabilmesi ve birçok kez yürütülebilmeleri için sorguların çevirisini önbelleğe almak üzere LINQ to SQL ' de kullanıma sunulmuştur.
 
-Önbellek araması ve karma hesaplama atlayarak bir küçük bir performans kazancı elde etmek için genel EF Core otomatik olarak derleyin ve önbelleğe alma, karma bir sorgu ifadeleri gösterimini üzerinde temel alan sorguları olsa da, bu mekanizma kullanılabilir izin verme önceden derlenmiş bir sorgu bir temsilcinin Çağırma ile kullanmak için uygulama.
+Genel EF Core, sorgu ifadelerinin karma hale getirilmiş bir gösterimine göre sorguları otomatik olarak derleyip önbelleğe alabilir, bu mekanizma, karma ve önbellek araması hesaplamasını atlayarak küçük bir performans kazancı elde etmek için kullanılabilir ve buna izin verebilir bir temsilci çağrısı aracılığıyla zaten derlenmiş bir sorguyu kullanacak şekilde uygulama.
 
 ``` csharp
 // Create an explicitly compiled query
@@ -202,23 +203,23 @@ using (var db = new CustomerContext())
 
 ## <a name="change-tracking"></a>Değişiklik İzleme
 
-### <a name="attach-can-track-a-graph-of-new-and-existing-entities"></a>Ekleme yeni ve var olan varlıkları grafiğini izleyebilirsiniz
+### <a name="attach-can-track-a-graph-of-new-and-existing-entities"></a>Attach, yeni ve var olan varlıkların bir grafiğini izleyebilir
 
-EF Core çeşitli mekanizmalar aracılığıyla anahtar değerlerini otomatik olarak oluşturulmasını destekler. Anahtar özelliği CLR varsayılan--genellikle sıfır ya da null ise bu özelliği kullanırken, bir değer oluşturulur. Bu varlıkların bir grafik için geçirilebilir anlamına gelir `DbContext.Attach` veya `DbSet.Attach` ve EF Core zaten olarak ayarlanmış bir anahtara sahip kişilikleri işaretleyecek `Unchanged` kişilikleri anahtar kümesi olmayan olarak işaretlenir ancak `Added`. Bu karma, yeni bir grafik eklemek kolaylaştırır ve kullanırken var olan varlıkları anahtarları oluşturulur. `DbContext.Update` ve `DbSet.Update` anahtar kümesi ile varlıkları olarak işaretlenmiş dışında aynı şekilde, iş `Modified` yerine `Unchanged`.
+EF Core, çeşitli mekanizmalarda anahtar değerlerini otomatik olarak oluşturmayı destekler. Bu özellik kullanılırken, anahtar özelliği CLR varsayılan ise (genellikle sıfır veya null) bir değer oluşturulur. Bu, `DbContext.Attach` bir varlık grafiğinin veya `DbSet.Attach` EF Core ' ye geçirilebileceği, bir anahtar kümesi olmayan varlıklar olarak `Unchanged` işaretlenirken, bir anahtara sahip olan varlıkların olarak `Added`işaretleneceği anlamına gelir. Bu, oluşturulan anahtarlar kullanılırken karışık yeni ve var olan varlıkların bir grafiğini eklemeyi kolaylaştırır. `DbContext.Update`ve `DbSet.Update` , anahtar kümesi olan varlıkların yerine `Unchanged`olarak `Modified` işaretlenmesi dışında, aynı şekilde çalışır.
 
 ## <a name="query"></a>Sorgu
 
-### <a name="improved-linq-translation"></a>Gelişmiş LINQ çeviri
+### <a name="improved-linq-translation"></a>Geliştirilmiş LINQ çevirisi
 
-Daha fazla sorgu başarılı bir şekilde, daha fazla mantıksal veritabanı (yerine bellek içi) ve daha az gereksiz yere veritabanından alınan veri değerlendirilen çalışmasına olanak tanır.
+Veritabanında daha fazla mantığın (bellek içi değil) ve veritabanından gereksiz bir şekilde veri alınmasından daha fazla mantığı olan başarılı şekilde yürütmek için daha fazla sorgu sağlar.
 
-### <a name="groupjoin-improvements"></a>GroupJoin geliştirmeleri
+### <a name="groupjoin-improvements"></a>Groupjoın geliştirmeleri
 
-Bu iş grup birleştirmeleri için oluşturulan SQL artırır. Grup birleştirmeleri çoğunlukla bir isteğe bağlı Gezinti özellikleri üzerinde alt sorgularda sonucudur.
+Bu çalışma, Grup birleşimleri için oluşturulan SQL 'i geliştirir. Grup birleştirmeleri genellikle isteğe bağlı gezinme özelliklerindeki alt sorguların bir sonucudur.
 
-### <a name="string-interpolation-in-fromsql-and-executesqlcommand"></a>SQL ve ExecuteSqlCommand dize ilişkilendirme
+### <a name="string-interpolation-in-fromsql-and-executesqlcommand"></a>FromSql ve ExecuteSqlCommand 'da dize ilişkilendirme
 
-C# 6 yapı dizeleri çalışma zamanında iyi bir yol sağlayarak, dize ilişkilendirme dize değişmez değerleri, doğrudan gömülü olması C# ifadelerini sağlayan bir özelliği kullanıma sunuldu. EF Core 2.0 sürümünde ham SQL dizeleri kabul iki birincil Apı'lerimizi için ilişkilendirilmiş dizeler için özel destek eklendi: ```FromSql``` ve ```ExecuteSqlCommand```. Bu yeni Destek 'güvenli' bir şekilde kullanılacak C# dize ilişkilendirme sağlar. Diğer bir deyişle, dinamik olarak oluşabilir ortak SQL ekleme hatalarına karşı koruyan bir şekilde çalışma zamanında SQL oluşturma.
+C#6, C# ifadelerin dize değişmez değerlerinde doğrudan gömülmesini sağlayan, çalışma zamanında dizeler oluşturmanın iyi bir yolunu sağlayan bir özellik olan dize ilişkilendirmeyi sunmuştur. EF Core 2,0 ' de, ham SQL dizelerini kabul eden iki birincil API 'imize enterpolasyonlu dizeler için `FromSql` özel `ExecuteSqlCommand`destek ekledik: ve. Bu yeni destek, C# dize ilişkilendirme ' güvenli ' bir biçimde kullanılmasına izin verir. Diğer bir deyişle, çalışma zamanında dinamik olarak SQL oluştururken ortaya çıkabilecek yaygın SQL ekleme hatalarına karşı koruma sağlar.
 
 Aşağıda bir örnek verilmiştir:
 
@@ -238,7 +239,7 @@ using (var context = CreateContext())
   }
 ```
 
-Bu örnekte, iki değişken SQL Biçim dizesinde katıştırılmış vardır. EF Core aşağıdaki SQL oluşturacak:
+Bu örnekte, SQL biçim dizesinde gömülü iki değişken vardır. EF Core aşağıdaki SQL 'i oluşturacak:
 
 ```sql
 @p0='London' (Size = 4000)
@@ -250,9 +251,9 @@ WHERE ""City"" = @p0
     AND ""ContactTitle"" = @p1
 ```
 
-### <a name="effunctionslike"></a>EF. Functions.Like()
+### <a name="effunctionslike"></a>Aşv. Functions. like ()
 
-EF ekledik. EF Core veya sağlayıcıları tarafından veritabanı işlevleri veya işleçler eşlemek ve böylece bunlar, LINQ sorgularında çağrılabilir yöntemleri tanımlamak için kullanılabilecek işlevleri özelliği. İlk tür bir yöntem Like() örneğidir:
+EF 'i ekledik. İşlev özelliği, LINQ sorgularında çağrılabilecek şekilde veritabanı işlevleri veya işleçleriyle eşlenen yöntemleri tanımlamak için EF Core veya sağlayıcılar tarafından kullanılabilir. Bu tür bir yöntemin ilk örneği () gibidir:
 
 ``` csharp
 var aCustomers =
@@ -261,15 +262,15 @@ var aCustomers =
     select c;
 ```
 
-Bir bellek içi veritabanına karşı çalışırken veya değerlendirme, koşulun istemci tarafında ortaya gerektiğinde yararlı olabilen Like() bir bellek içi uygulamasıyla geldiğini unutmayın.
+Örneğin (), bellek içi bir veritabanına göre çalışırken veya koşulun değerlendirmesi istemci tarafında gerçekleşeceği zaman yararlı olabilecek, bellek içi bir uygulamayla birlikte geldiğini unutmayın.
 
-## <a name="database-management"></a>Veritabanı Yönetimi
+## <a name="database-management"></a>Veritabanı yönetimi
 
-### <a name="pluralization-hook-for-dbcontext-scaffolding"></a>Çoğullaştırmayı kanca DbContext yapı İskelesi için
+### <a name="pluralization-hook-for-dbcontext-scaffolding"></a>DbContext Scafkatlaması için pluralization kancası
 
-EF Core 2.0 tanıtır, yeni bir *IPluralizer* varlık singularize için kullanılan hizmet adlarını yazabilir ve pluralize olan DB adları. Varsayılan uygulaması bir İşlemsiz olduğundan burada istedim kendi pluralizer kolayca takılabilir bir kanca budur.
+EF Core 2,0, varlık türü adlarını ve pluri DbSet adlarını bir kez eklemek için kullanılan yeni bir *ıpluralizer* hizmeti sunar. Varsayılan uygulama bir op değildir, bu nedenle bu yalnızca katlara kendi pluralizer 'ı kolayca ekleyebileceğiniz bir kanca olur.
 
-İşte bu şekilde kendi pluralizer yeteneklerinizi bir geliştiricinin görünür:
+Geliştirici kendi pluralizer ' de kanca için aşağıdaki gibidir:
 
 ``` csharp
 public class MyDesignTimeServices : IDesignTimeServices
@@ -296,20 +297,20 @@ public class MyPluralizer : IPluralizer
 
 ## <a name="others"></a>Diğerleri
 
-### <a name="move-adonet-sqlite-provider-to-sqlitepclraw"></a>ADO.NET SQLite sağlayıcısına SQLitePCL.raw Taşı
-Bu daha sağlam bir çözüm içinde Microsoft.Data.Sqlite farklı platformlarda yerel bir SQLite ikili dağıtılmasında sağlıyor.
+### <a name="move-adonet-sqlite-provider-to-sqlitepclraw"></a>ADO.NET SQLite sağlayıcısını SQLitePCL. RAW öğesine taşı
+Bu, yerel SQLite ikililerini farklı platformlarda dağıtmak için Microsoft. Data. sqlite ' da daha sağlam bir çözüm sunar.
 
-### <a name="only-one-provider-per-model"></a>Model başına yalnızca bir sağlayıcı
-Önemli ölçüde artırmaktadır sağlayıcıları modeli ile nasıl etkileşim kurabileceğine ve kuralları, ek açıklamalar ve fluent API'ler farklı sağlayıcıları ile nasıl çalıştığını basitleştirir.
+### <a name="only-one-provider-per-model"></a>Her model için yalnızca bir sağlayıcı
+Sağlayıcıların modelle nasıl etkileşime gireceğini önemli ölçüde genişlettiğini ve kuralların, ek açıklamaların ve akıcı API 'Lerin farklı sağlayıcılarla nasıl çalıştığını basitleştirir.
 
-EF Core 2.0 artık farklı bir derler [IModel](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/IModel.cs) için kullanılan her farklı bir sağlayıcı. Bu genellikle uygulamaya saydamdır. Tüm erişimi olacak şekilde bu düşük düzeyli meta verileri API'leri bir basitleştirme kolaylaştırılan *ortak ilişkisel meta veri kavramlarını* her zaman bir çağrı yoluyla yapılan `.Relational` yerine `.SqlServer`, `.Sqlite`, vb.
+EF Core 2,0, artık kullanılan her farklı sağlayıcı için farklı bir [IModel](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/IModel.cs) oluşturacak. Bu genellikle uygulama için saydamdır. Bu, alt düzey meta veri API 'lerinin basitleştirdiğini, *ortak ilişkisel meta veri kavramlarının* her zaman `.Relational` `.SqlServer`, `.Sqlite`, vb. bir çağrısıyla yapılan bir çağrı aracılığıyla yapılması için kolaylaştırmıştır.
 
 ### <a name="consolidated-logging-and-diagnostics"></a>Birleştirilmiş günlüğe kaydetme ve tanılama
 
-(Üzerinde ILogger göre) günlüğe kaydetme ve tanılama (üzerinde DiagnosticSource göre) mekanizmaları artık daha fazla kod paylaşın.
+Günlüğe kaydetme (ILogger tabanlı) ve tanılama (DiagnosticSource tabanlı) mekanizmalarına artık daha fazla kod paylaşmalıdır.
 
-2. 0'için bir ILogger gönderilen iletiler için olay kimlikleri değişti. Olay kimlikleri, artık EF Core kod arasında benzersizdir. Bu iletiler şimdi de, örneğin, MVC kullanılan yapılandırılmış günlük kaydı için standart deseni izleyin.
+Bir ILogger 'a gönderilen iletiler için olay kimlikleri 2,0 içinde değişmiştir. Olay kimlikleri artık EF Core kod genelinde benzersizdir. Bu iletiler artık, örneğin MVC gibi kullanılan yapılandırılmış günlük için standart kalıbı de izler.
 
-Günlükçü kategoriler de değiştirilmiştir. İyi bilinen bir kategori kümesini aracılığıyla erişilen artık yoktur [DbLoggerCategory](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/DbLoggerCategory.cs).
+Günlükçü kategorileri de değişmiştir. Artık [Dbloggercategory](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/DbLoggerCategory.cs)aracılığıyla erişilen iyi bilinen bir kategori kümesi vardır.
 
-DiagnosticSource olayları artık ilgili olarak aynı olay kimliği adları kullanma `ILogger` iletileri.
+Diagnosticsource olayları artık karşılık gelen `ILogger` iletilerle aynı olay kimliği adlarını kullanır.

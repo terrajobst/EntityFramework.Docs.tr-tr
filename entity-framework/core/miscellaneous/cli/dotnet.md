@@ -1,46 +1,46 @@
 ---
-title: EF Core araçları başvurusu (.NET CLI) - EF Core
+title: EF Core araçları başvurusu (.NET CLı)-EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 07/11/2019
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: 05c5f89fc79556e72a7e629c147aa817fe7d1a6b
-ms.sourcegitcommit: e90d6cfa3e96f10b8b5275430759a66a0c714ed1
+ms.openlocfilehash: 0278353640ea242df9e6ee5278c9dda78bfd341b
+ms.sourcegitcommit: 7b7f774a5966b20d2aed5435a672a1edbe73b6fb
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/17/2019
-ms.locfileid: "68286460"
+ms.lasthandoff: 08/17/2019
+ms.locfileid: "69565274"
 ---
-# <a name="entity-framework-core-tools-reference---net-cli"></a>Entity Framework Core başvuru - .NET CLI araçları
+# <a name="entity-framework-core-tools-reference---net-cli"></a>Entity Framework Core araçları başvurusu-.NET CLı
 
-Entity Framework Core için komut satırı arabirimi (CLI) araçları tasarım zamanı geliştirme görevlerini gerçekleştirin. Örneğin, oluşturdukları [geçişler](/aspnet/core/data/ef-mvc/migrations?view=aspnetcore-2.0#introduction-to-migrations), geçişler uygulamak ve var olan bir veritabanını temel alan bir modeli için kod oluşturur. Platformlar arası bir uzantısı olan komutlardır [dotnet](/dotnet/core/tools) parçası olan komut, [.NET Core SDK'sı](https://www.microsoft.com/net/core). Bu araçlar, .NET Core projeleriyle çalışır.
+Entity Framework Core için komut satırı arabirimi (CLı) araçları tasarım zamanı geliştirme görevlerini gerçekleştirmeye yöneliktir. Örneğin, [geçişler](/aspnet/core/data/ef-mvc/migrations?view=aspnetcore-2.0#introduction-to-migrations)oluşturur, geçişleri uygular ve var olan bir veritabanını temel alan bir model için kod oluşturur. Komutlar, [.NET Core SDK](https://www.microsoft.com/net/core)bir parçası olan platformlar arası [DotNet](/dotnet/core/tools) komutuna bir uzantıdır. Bu araçlar .NET Core projeleriyle birlikte çalışır.
 
-Öneririz Visual Studio kullanıyorsanız, [Paket Yöneticisi konsolu Araçları](powershell.md) bunun yerine:
-* Otomatik olarak seçilen geçerli proje ile çalıştıkları **Paket Yöneticisi Konsolu** gerektirmeden dizinleri el ile değiştirin.
-* Bunlar, komut tamamlandıktan sonra bir komut tarafından üretilen dosyalar otomatik olarak açılır.
+Visual Studio kullanıyorsanız, bunun yerine [Paket Yöneticisi konsol araçları](powershell.md) önerilir:
+* Bunlar, el ile dizin geçmeniz gerekmeden, **Paket Yöneticisi konsolunda** seçilen geçerli projeyle otomatik olarak çalışır.
+* Komut tamamlandıktan sonra komut tarafından oluşturulan dosyaları otomatik olarak açar.
 
 ## <a name="installing-the-tools"></a>Araçları yükleme
 
-Proje türü ve sürümü yükleme yordamını bağlıdır:
+Yükleme yordamı proje türüne ve sürümüne bağlıdır:
 
-* EF Core 3.x
-* ASP.NET Core sürüm 2.1 ve üzeri
-* EF Core 2.x
-* EF Core 1.x
+* EF Core 3. x
+* ASP.NET Core sürüm 2,1 ve üzeri
+* EF Core 2. x
+* EF Core 1. x
 
-### <a name="ef-core-3x"></a>EF Core 3.x
+### <a name="ef-core-3x"></a>EF Core 3. x
 
-* `dotnet ef` Genel veya yerel bir araç olarak yüklenmesi gerekir. Çoğu geliştirici yükleyecek `dotnet ef` aşağıdaki komutla bir genel araç olarak:
+* `dotnet ef`Genel veya yerel bir araç olarak yüklenmelidir. Çoğu geliştirici aşağıdaki komutla `dotnet ef` küresel bir araç olarak yüklenir:
 
   ``` console
-    $ dotnet tool install --global dotnet-ef --version 3.0.0-*
+  dotnet tool install --global dotnet-ef --version 3.0.0-*
   ```
 
-  Ayrıca `dotnet ef` yerel aracı olarak. Yerel bir araç olarak kullanmak için Araçlar kullanarak bağımlılık olarak bildiren bir proje bağımlılıklarını geri bir [aracı bildirim dosyası](https://github.com/dotnet/cli/issues/10288).
+  Yerel araç olarak da `dotnet ef` kullanabilirsiniz. Bunu yerel bir araç olarak kullanmak için, bir [araç bildirim dosyası](https://github.com/dotnet/cli/issues/10288)kullanarak bunu araç bağımlılığı olarak bildiren bir projenin bağımlılıklarını geri yükleyin.
 
-* Yükleme [.NET Core SDK 3.0](https://dotnet.microsoft.com/download/dotnet-core/3.0)). SDK, Visual Studio'nun en son sürümü olsa bile yüklenmesi gerekir.
+* [.NET Core SDK 3,0](https://dotnet.microsoft.com/download/dotnet-core/3.0)) yüklemesini yapın. Visual Studio 'nun en son sürümüne sahip olsanız bile SDK 'nın yüklenmesi gerekir.
 
-* Son yükleme `Microsoft.EntityFrameworkCore.Design` paket.
+* En son `Microsoft.EntityFrameworkCore.Design` paketi yükler.
 
   ``` Console
   dotnet add package Microsoft.EntityFrameworkCore.Design
@@ -48,37 +48,37 @@ Proje türü ve sürümü yükleme yordamını bağlıdır:
 
 ### <a name="aspnet-core-21"></a>ASP.NET Core 2.1 +
 
-* Geçerli yükleme [.NET Core SDK'sı](https://www.microsoft.com/net/download/core). SDK, Visual Studio 2017'in en son sürümü olsa bile yüklenmesi gerekir.
+* Geçerli [.NET Core SDK](https://www.microsoft.com/net/download/core)'yi yükler. Visual Studio 2017 ' nin en son sürümüne sahip olsanız bile SDK 'nın yüklenmesi gerekir.
 
-  Tüm için ASP.NET Core 2.1 + için gereken budur `Microsoft.EntityFrameworkCore.Design` paket dahil [Microsoft.AspNetCore.App metapackage](/aspnet/core/fundamentals/metapackage-app).
+  Bu, `Microsoft.EntityFrameworkCore.Design` paketi [Microsoft. aspnetcore. app metapackage](/aspnet/core/fundamentals/metapackage-app)'e dahil edildiğinden ASP.NET Core 2.1 + için gereklidir.
 
-### <a name="ef-core-2x-not-aspnet-core"></a>EF Core 2.x (ASP.NET Core değil)
+### <a name="ef-core-2x-not-aspnet-core"></a>EF Core 2. x (ASP.NET Core değil)
 
-`dotnet ef` Komutları, .NET Core SDK'sı dahil edilir, ancak yüklemeniz gereken komutları etkinleştirmek için `Microsoft.EntityFrameworkCore.Design` paket.
+Komutlar .NET Core SDK eklenmiştir, ancak `Microsoft.EntityFrameworkCore.Design` paketini yüklemek için sahip olduğunuz komutları etkinleştirir. `dotnet ef`
 
-* Geçerli yükleme [.NET Core SDK'sı](https://www.microsoft.com/net/download/core). SDK, Visual Studio'nun en son sürümü olsa bile yüklenmesi gerekir.
+* Geçerli [.NET Core SDK](https://www.microsoft.com/net/download/core)'yi yükler. Visual Studio 'nun en son sürümüne sahip olsanız bile SDK 'nın yüklenmesi gerekir.
 
-* En son kararlı yükleme `Microsoft.EntityFrameworkCore.Design` paket.
+* En son kararlı `Microsoft.EntityFrameworkCore.Design` paketi yükler.
 
   ``` Console
   dotnet add package Microsoft.EntityFrameworkCore.Design
   ```
 
-### <a name="ef-core-1x"></a>EF Core 1.x
+### <a name="ef-core-1x"></a>EF Core 1. x
 
-* .NET Core SDK'sı sürüm 2.1.200 yükleyin. Sonraki sürümlerde EF Core 1.0 ve 1.1 için CLI araçları ile uyumlu değildir.
+* .NET Core SDK sürümünü 2.1.200 ' ü yükler. Sonraki sürümler EF Core 1,0 ve 1,1 için CLı araçlarıyla uyumlu değildir.
 
-* Değiştirerek kullanın 2.1.200 SDK sürümü için uygulama yapılandırma kendi [global.json](/dotnet/core/tools/global-json) dosya. Normalde bu dosya çözüm dizini (bir proje üzerinde) dahildir.
+* Uygulamayı, [genel. JSON](/dotnet/core/tools/global-json) dosyasını DEĞIŞTIREREK 2.1.200 SDK sürümünü kullanacak şekilde yapılandırın. Bu dosya normalde çözüm dizinine eklenir (projenin üzerinde bir tane).
 
-* Proje dosyasını düzenleyin ve ekleyin `Microsoft.EntityFrameworkCore.Tools.DotNet` olarak bir `DotNetCliToolReference` öğesi. Örneğin, en son 1.x sürümü belirtin: 1.1.6. Bu bölümün sonunda proje dosyası örneğe bakın.
+* Proje dosyasını düzenleyin ve `Microsoft.EntityFrameworkCore.Tools.DotNet` `DotNetCliToolReference` öğe olarak ekleyin. En son 1. x sürümünü belirtin, örneğin: 1.1.6. Bu bölümün sonundaki proje dosyası örneğine bakın.
 
-* En son 1.x sürümünü `Microsoft.EntityFrameworkCore.Design` paketini, örneğin:
+* `Microsoft.EntityFrameworkCore.Design` Paketin en son 1. x sürümünü yükler, örneğin:
 
   ```console
   dotnet add package Microsoft.EntityFrameworkCore.Design -v 1.1.6
   ```
 
-  Eklenen her iki paket başvuruları proje dosyası şuna benzer:
+  Paket başvurularının her ikisi de eklendikçe, proje dosyası şuna benzer:
 
   ``` xml
   <Project Sdk="Microsoft.NET.Sdk">
@@ -98,18 +98,18 @@ Proje türü ve sürümü yükleme yordamını bağlıdır:
   </Project>
   ```
 
-  Bir paket başvurusu ile `PrivateAssets="All"` bu projeye başvuran projeler için açık değil. Bu kısıtlama, genellikle yalnızca geliştirme sırasında kullanılan paketler için özellikle yararlıdır.
+  Bu projeye başvuran projelere `PrivateAssets="All"` açık olmayan bir paket başvurusu. Bu kısıtlama özellikle yalnızca geliştirme sırasında kullanılan paketler için yararlıdır.
 
-### <a name="verify-installation"></a>Yüklemesini doğrulama
+### <a name="verify-installation"></a>Yüklemeyi doğrula
 
-EF Core CLI araçları düzgün yüklendiğini doğrulamak için aşağıdaki komutları çalıştırın:
+EF Core CLı araçlarının düzgün yüklendiğini doğrulamak için aşağıdaki komutları çalıştırın:
 
   ``` Console
   dotnet restore
   dotnet ef
   ```
 
-Komut çıktısı, kullanılan araçları sürümünü tanımlar:
+Komutun çıktısı kullanımdaki araçların sürümünü tanımlar:
 
 ```console
 
@@ -125,178 +125,178 @@ Entity Framework Core .NET Command-line Tools 2.1.3-rtm-32065
 <Usage documentation follows, not shown.>
 ```
 
-## <a name="using-the-tools"></a>Araçlarını kullanma
+## <a name="using-the-tools"></a>Araçları kullanma
 
-Araçları'nı kullanmadan önce bir başlangıç projesi oluşturun veya ortamı gerekebilir.
+Araçları kullanmadan önce, bir başlangıç projesi oluşturmanız veya ortamı ayarlamanız gerekebilir.
 
 ### <a name="target-project-and-startup-project"></a>Hedef proje ve başlangıç projesi
 
-Komutlar başvurduğu bir *proje* ve *başlangıç projesi*.
+Komutlar bir *projeye* ve bir *başlangıç projesine*başvurur.
 
-* *Proje* olarak da bilinen *hedef proje* olduğundan burada komutlar dosyası ekleyebilir veya kaldırabilirsiniz. Varsayılan olarak, hedef proje geçerli dizinde projedir. Hedef projesi olarak farklı bir proje kullanarak belirtebilirsiniz <nobr> `--project` </nobr> seçeneği.
+* Ayrıca, komutların dosya eklemesi veya kaldırması nedeniyle *Proje* *hedef proje* olarak da bilinir. Varsayılan olarak, geçerli dizindeki proje hedef projem tir. Seçeneğini kullanarak, <nobr>`--project`</nobr> hedef proje olarak farklı bir proje belirtebilirsiniz.
 
-* *Başlangıç projesi* araçları derlemek ve çalıştırmak sunucudur. Veritabanı bağlantı dizesi ve modelin yapılandırması gibi proje hakkında bilgi almak için tasarım zamanında uygulama kodu yürütmek araçlar vardır. Varsayılan olarak, başlangıç projesi geçerli dizinde projedir. Başlangıç projesi olarak farklı bir proje kullanarak belirtebilirsiniz <nobr> `--startup-project` </nobr> seçeneği.
+* *Başlangıç projesi* , araçların oluşturup çalıştırdığı bir. Araçlar, veritabanı bağlantı dizesi ve modelin yapılandırması gibi proje hakkında bilgi almak için tasarım zamanında uygulama kodu yürütmeniz gerekir. Varsayılan olarak, geçerli dizindeki proje başlangıç projem ' dir. Seçeneğini kullanarak, <nobr>`--startup-project`</nobr> başlangıç projesi olarak farklı bir proje belirtebilirsiniz.
 
-Hedef proje ve başlangıç projesi çoğunlukla aynı proje olur. Ayrı projeler oldukları tipik bir senaryo olduğunda:
+Başlangıç projesi ve hedef proje genellikle aynı projem. Farklı projeler oldukları tipik bir senaryo şunlardır:
 
-* EF Core bağlamını ve varlık içinde bir .NET Core sınıf kitaplığı sınıflardır.
-* Sınıf kitaplığı bir .NET Core konsol uygulaması veya web uygulamasına başvuruyor.
+* EF Core bağlamı ve varlık sınıfları bir .NET Core sınıf kitaplığında bulunur.
+* .NET Core konsol uygulaması veya Web uygulaması, sınıf kitaplığına başvurur.
 
-Ayrıca filtrelenebilir [EF Core bağlamdan ayrı bir sınıf kitaplığı'nda geçiş kodu koyun](xref:core/managing-schemas/migrations/projects).
+[Geçiş kodunu, EF Core bağlamından ayrı bir sınıf kitaplığına yerleştirmek](xref:core/managing-schemas/migrations/projects)de mümkündür.
 
-### <a name="other-target-frameworks"></a>Diğer hedef çerçeveleri
+### <a name="other-target-frameworks"></a>Diğer hedef çerçeveler
 
-CLI araçları, .NET Core projeleri ve .NET Framework projeleri ile çalışır. .NET Core veya .NET Framework projesi bir .NET standart sınıf kitaplığında EF Core modeli olan uygulamalara olmayabilir. Örneğin, bu Xamarin ve evrensel Windows platformu uygulamaları geçerlidir. Böyle durumlarda, araçları için başlangıç projesi olarak davranmak üzere tek amacı olan bir .NET Core konsol uygulaması projesi oluşturabilirsiniz. Proje Gerçek kod olmadan işlevsiz bir proje olabilir &mdash; yalnızca bir hedef için bir araç sağlamak için gereklidir.
+CLı araçları .NET Core projeleriyle ve .NET Framework projeleriyle çalışır. .NET Standard Sınıf kitaplığındaki EF Core modeli olan uygulamalarda .NET Core veya .NET Framework projesi bulunmayabilir. Örneğin, bu, Xamarin ve Evrensel Windows Platformu uygulamaları için geçerlidir. Bu gibi durumlarda, yalnızca amacı araçlar için başlangıç projesi olarak davranacak bir .NET Core konsol uygulaması projesi oluşturabilirsiniz. Proje, gerçek kod &mdash; içermeyen bir kukla proje olabilir ve yalnızca araç için bir hedef sağlamanız gerekir.
 
-Neden gerekli işlevsiz bir proje mi? Daha önce bahsedildiği gibi tasarım zamanında uygulama kodu yürütmek araçlar vardır. Bunu yapmak için .NET Core çalışma zamanı kullanmak gerekir. EF Core model .NET Core veya .NET Framework hedefleyen bir proje içinde olduğunda, EF Core Araçları çalışma zamanı'projesinden ödünç alın. EF Core modeli bir .NET standart sınıf kitaplığında ise bunlar, yapamazsınız. .NET Standard gerçek bir .NET uygulaması değil; .NET uygulamaları desteklemelidir API'leri kümesinin bir özelliğidir. Bu nedenle .NET standart EF Core araçları için uygulama kodu yürütmek yeterli değil. Başlangıç projesi olarak kullanmak için oluşturduğunuz işlevsiz proje içine .NET Standard sınıf kitaplığı araçları yükleyebilir bir somut hedef platformu sağlar.
+İşlevsiz bir proje neden gereklidir? Daha önce belirtildiği gibi, araçların uygulama kodunu tasarım zamanında yürütmesi gerekir. Bunu yapmak için .NET Core çalışma zamanını kullanmaları gerekir. EF Core modeli .NET Core veya .NET Framework hedefleyen bir projede olduğunda, EF Core araçları projeden çalışma zamanını ödünç. EF Core modeli .NET Standard bir sınıf kitaplığınlarsa bunu yapamazlar. .NET Standard gerçek bir .NET uygulamasını değil; .NET uygulamalarının desteklemesi gereken bir API kümesine yönelik bir belirtimdir. Bu nedenle .NET Standard uygulama kodunu yürütmek için EF Core araçları yeterli değildir. Başlangıç projesi olarak kullanmak için oluşturduğunuz kukla proje, araçların .NET Standard sınıf kitaplığını yükleyebileceği somut bir hedef platform sağlar.
 
 ### <a name="aspnet-core-environment"></a>ASP.NET Core ortamı
 
-ASP.NET Core projeleri için ortamını belirtmek için ayarlanmış **ASPNETCORE_ENVIRONMENT** komutları çalıştırmadan önce ortam değişkeni.
+ASP.NET Core projelerine yönelik ortamı belirtmek için, komutları çalıştırmadan önce **ASPNETCORE_ENVIRONMENT** ortam değişkenini ayarlayın.
 
-## <a name="common-options"></a>Sık kullanılan seçenekler
+## <a name="common-options"></a>Ortak seçenekler
 
 |                   | Seçenek                            | Açıklama                                                                                                                                                                                                                                                   |
 |:------------------|:----------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|                   | `--json`                          | JSON çıktıyı gösterir.                                                                                                                                                                                                                                             |
-| <nobr>`-c`</nobr> | `--context <DBCONTEXT>`           | `DbContext` Kullanılacak sınıfı. Yalnızca ya da ad alanları ile tam sınıf adı.  Bu seçeneği atlanırsa, bağlam sınıfını EF Core bulabilirsiniz. Birden çok bağlamı sınıfları varsa, bu seçenek gereklidir.                                            |
-| `-p`              | `--project <PROJECT>`             | Hedef proje proje klasörünün göreli yolu.  Varsayılan değer geçerli bir klasördür.                                                                                                                                                              |
-| `-s`              | `--startup-project <PROJECT>`     | Başlangıç projesi, proje klasöründen göreli yolu. Varsayılan değer geçerli bir klasördür.                                                                                                                                                              |
-|                   | `--framework <FRAMEWORK>`         | [Hedef çerçeve adı](/dotnet/standard/frameworks#supported-target-framework-versions) için [hedef Framework'ü](/dotnet/standard/frameworks).  Birden çok hedef çerçeve proje dosyasını belirtir ve bunlardan birini seçmek istediğinizde bu seçeneği kullanın. |
-|                   | `--configuration <CONFIGURATION>` | Derleme yapılandırmasını, örneğin: `Debug` veya `Release`.                                                                                                                                                                                                   |
-|                   | `--runtime <IDENTIFIER>`          | Paketleri geri yüklemek için hedef çalışma zamanı tanımlayıcısı. Çalışma zamanı tanımlayıcılarının (RID'ler) bir listesi için bkz. [RID Kataloğu](/dotnet/core/rid-catalog).                                                                                                      |
-| `-h`              | `--help`                          | Yardım bilgilerini gösterir.                                                                                                                                                                                                                                        |
-| `-v`              | `--verbose`                       | Ayrıntılı çıktıyı gösterir.                                                                                                                                                                                                                                          |
-|                   | `--no-color`                      | Çıkış renklendirmeye yok.                                                                                                                                                                                                                                        |
-|                   | `--prefix-output`                 | Düzeyiyle çıkış öneki.                                                                                                                                                                                                                                     |
+|                   | `--json`                          | JSON çıkışını göster.                                                                                                                                                                                                                                             |
+| <nobr>`-c`</nobr> | `--context <DBCONTEXT>`           | Kullanılacak `DbContext` sınıf. Yalnızca sınıf adı veya ad alanları ile tam nitelikli.  Bu seçenek atlanırsa, EF Core bağlam sınıfını bulur. Birden çok bağlam sınıfı varsa, bu seçenek gereklidir.                                            |
+| `-p`              | `--project <PROJECT>`             | Hedef projenin proje klasörünün göreli yolu.  Varsayılan değer geçerli klasördür.                                                                                                                                                              |
+| `-s`              | `--startup-project <PROJECT>`     | Başlangıç projesinin proje klasörünün göreli yolu. Varsayılan değer geçerli klasördür.                                                                                                                                                              |
+|                   | `--framework <FRAMEWORK>`         | [Hedef çerçeve](/dotnet/standard/frameworks)Için [hedef çerçeve bilinen](/dotnet/standard/frameworks#supported-target-framework-versions) adı.  Proje dosyası birden çok hedef çerçeve belirttiğinde ve bunlardan birini seçmek istediğinizde kullanın. |
+|                   | `--configuration <CONFIGURATION>` | Derleme yapılandırması, örneğin: `Debug` veya. `Release`                                                                                                                                                                                                   |
+|                   | `--runtime <IDENTIFIER>`          | Paketlerinin geri yükleneceği hedef çalışma zamanının tanımlayıcısı. Çalışma zamanı tanımlayıcıları (RID 'Ler) listesi için bkz. [RID kataloğu](/dotnet/core/rid-catalog).                                                                                                      |
+| `-h`              | `--help`                          | Yardım bilgilerini göster.                                                                                                                                                                                                                                        |
+| `-v`              | `--verbose`                       | Ayrıntılı çıktıyı göster.                                                                                                                                                                                                                                          |
+|                   | `--no-color`                      | Çıktıyı renklendirme.                                                                                                                                                                                                                                        |
+|                   | `--prefix-output`                 | Düzeydeki ön ek çıkışı.                                                                                                                                                                                                                                     |
 
-## <a name="dotnet-ef-database-drop"></a>DotNet ef veritabanını bırak
+## <a name="dotnet-ef-database-drop"></a>DotNet EF veritabanı bırakma
 
-Veritabanı bırakır.
+Veritabanını bırakır.
 
 Seçenekler:
 
 |                   | Seçenek                   | Açıklama                                              |
 |:------------------|:-------------------------|:---------------------------------------------------------|
-| <nobr>`-f`</nobr> | <nobr>`--force`</nobr>   | Onay isteme.                                           |
-|                   | <nobr>`--dry-run`</nobr> | Hangi veritabanı bırakılan ancak açılan yoksa gösterir. |
+| <nobr>`-f`</nobr> | <nobr>`--force`</nobr>   | Onaylama.                                           |
+|                   | <nobr>`--dry-run`</nobr> | Hangi veritabanının bırakılacağını gösterir, ancak onları düşürüyor. |
 
-## <a name="dotnet-ef-database-update"></a>DotNet ef veritabanı güncelleştirmesi
+## <a name="dotnet-ef-database-update"></a>DotNet EF veritabanı güncelleştirmesi
 
-Son geçiş veya belirtilen bir geçiş için veritabanını güncelleştirir.
+Veritabanını son geçişe veya belirtilen bir geçişe güncelleştirir.
 
-Bağımsız değişkenleri:
+Değişkenlerinden
 
 | Bağımsız Değişken      | Açıklama                                                                                                                                                                                                                                                     |
 |:--------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `<MIGRATION>` | Hedef geçiş. Geçişler, ada veya kimliğe göre tanımlanan Sayısı 0 anlamına gelen bir özel durumdur *ilk geçişten önce* ve tüm geçişler döndürülmesi neden olur. Geçiş belirtilmişse komutu son geçiş varsayılan olarak kullanır. |
+| `<MIGRATION>` | Hedef geçişi. Geçişler, ada veya KIMLIĞE göre tanımlanabilir. 0 sayısı, *ilk geçişten önceki* ve tüm geçişlerin geri alınmasına neden olan özel bir durumdur. Hiçbir geçiş belirtilmemişse, komut en son geçişe varsayılan olarak ayarlanır. |
 
-Aşağıdaki örnekler, belirtilen bir geçiş için veritabanı güncelleştirin. İlk geçiş adı ve ikinci geçiş kimliği kullanır:
+Aşağıdaki örnekler veritabanını belirtilen bir geçişe güncelleştirir. İlki geçiş adını, ikincisi ise geçiş KIMLIĞINI kullanır:
 
 ```console
 dotnet ef database update InitialCreate
 dotnet ef database update 20180904195021_InitialCreate
 ```
 
-## <a name="dotnet-ef-dbcontext-info"></a>DotNet ef dbcontext bilgileri
+## <a name="dotnet-ef-dbcontext-info"></a>DotNet EF DbContext bilgisi
 
-Bilgi alır bir `DbContext` türü.
+Bir `DbContext` tür hakkında bilgi alır.
 
-## <a name="dotnet-ef-dbcontext-list"></a>DotNet ef dbcontext listesi
+## <a name="dotnet-ef-dbcontext-list"></a>DotNet EF DbContext listesi
 
-Kullanılabilen listelerini `DbContext` türleri.
+Kullanılabilir `DbContext` türleri listeler.
 
-## <a name="dotnet-ef-dbcontext-scaffold"></a>DotNet ef dbcontext iskele
+## <a name="dotnet-ef-dbcontext-scaffold"></a>DotNet EF DbContext iskele
 
-İçin kod oluşturur bir `DbContext` ve varlık türleri için bir veritabanı. Bir varlık türü oluşturmak için bu komutu için sırada veritabanı tablosunun birincil anahtarı olmalıdır.
+Bir veritabanı için `DbContext` ve varlık türleri için kod üretir. Bu komutun bir varlık türü oluşturması için, veritabanı tablosunun bir birincil anahtarı olmalıdır.
 
-Bağımsız değişkenleri:
+Değişkenlerinden
 
 | Bağımsız Değişken       | Açıklama                                                                                                                                                                                                             |
 |:---------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `<CONNECTION>` | Veritabanı bağlantı dizesi. ASP.NET Core 2.x projeleri için bir değer olabilir *adı =\<bağlantı dizesi adı >* . Bu durumda proje için ayarladığınız yapılandırma kaynaklarını adı gelir. |
-| `<PROVIDER>`   | Kullanılacak sağlayıcı. Genellikle bu NuGet paketi, örneğin adıdır: `Microsoft.EntityFrameworkCore.SqlServer`.                                                                                           |
+| `<CONNECTION>` | Veritabanına bağlantı dizesi. ASP.NET Core 2. x projeleri için, değer *Name =\<bağlantı dizesinin adı >* olabilir. Bu durumda, ad proje için ayarlanan yapılandırma kaynaklarından gelir. |
+| `<PROVIDER>`   | Kullanılacak sağlayıcı. Genellikle bu, NuGet paketinin adıdır, örneğin: `Microsoft.EntityFrameworkCore.SqlServer`.                                                                                           |
 
 Seçenekler:
 
 |                 | Seçenek                                   | Açıklama                                                                                                                                                                    |
 |:----------------|:-----------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <nobr>-d</nobr> | `--data-annotations`                     | Öznitelikler, model (mümkünse) yapılandırmak için kullanın. Bu seçenek belirtilmezse, yalnızca fluent API'si kullanılır.                                                                |
-| `-c`            | `--context <NAME>`                       | Adını `DbContext` oluşturmak için sınıf.                                                                                                                                 |
-|                 | `--context-dir <PATH>`                   | Yerleştirileceği dizin `DbContext` sınıf dosyasında. Proje dizinine göreli yollardır. Ad alanları klasörü adlarından türetilir.                                 |
+| <nobr>-d</nobr> | `--data-annotations`                     | Modeli yapılandırmak için öznitelikleri kullanın (mümkün olduğunda). Bu seçenek atlanırsa yalnızca Fluent API kullanılır.                                                                |
+| `-c`            | `--context <NAME>`                       | Oluşturulacak `DbContext` sınıfın adı.                                                                                                                                 |
+|                 | `--context-dir <PATH>`                   | `DbContext` Sınıf dosyasının içine yerleştirilecek dizin. Yollar proje dizinine göredir. Ad alanları, Klasör adlarından türetilir.                                 |
 | `-f`            | `--force`                                | Varolan dosyaların üzerine yaz.                                                                                                                                                      |
-| `-o`            | `--output-dir <PATH>`                    | Varlık sınıf dosyaları yerleştirmek için dizin. Proje dizinine göreli yollardır.                                                                                       |
-|                 | <nobr>`--schema <SCHEMA_NAME>...`</nobr> | Şemaları için varlık türleri oluşturmak için tablo. Birden çok şema belirtmek için yineleyin `--schema` her biri için. Bu seçenek belirtilmezse, tüm şemalar dahil edilir.          |
-| `-t`            | `--table <TABLE_NAME>`...                | Varlık türleri için oluşturmak üzere tablolara. Birden çok tablo belirtmek için yineleyin `-t` veya `--table` her biri için. Bu seçenek belirtilmezse, tüm tabloları dahil edilir.                |
-|                 | `--use-database-names`                   | Veritabanında tam olarak göründükleri gibi tablo ve sütun adları kullanın. Bu seçenek belirtilmezse, daha yakından C# ad stil kurallarına uymak için veritabanı adları değiştirildi. |
+| `-o`            | `--output-dir <PATH>`                    | İçinde varlık sınıfı dosyalarını yerleştirmek için dizin. Yollar proje dizinine göredir.                                                                                       |
+|                 | <nobr>`--schema <SCHEMA_NAME>...`</nobr> | İçin varlık türleri oluşturulacak tablo şemaları. Birden çok şema belirtmek için, `--schema` her biri için yineleyin. Bu seçenek atlanırsa, tüm şemalar dahil edilir.          |
+| `-t`            | `--table <TABLE_NAME>`...                | İçin varlık türleri oluşturulacak tablolar. Birden çok tablo belirtmek için, `-t` veya `--table` her biri için yineleyin. Bu seçenek atlanırsa, tüm tablolar dahil edilir.                |
+|                 | `--use-database-names`                   | Tablo ve sütun adlarını tam olarak veritabanında göründükleri gibi kullanın. Bu seçenek atlanırsa, veritabanı adları C# ad stili kurallarıyla daha yakından uyumlu olacak şekilde değiştirilir. |
 
-Aşağıdaki örnek, tüm şemaları ve tabloları iskele oluşturulduğunu ve yeni dosyaları yerleştirir *modelleri* klasör.
+Aşağıdaki örnek, tüm şemaları ve tabloları uygular ve yeni dosyaları *modeller* klasörüne koyar.
 
 ```console
 dotnet ef dbcontext scaffold "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models
 ```
 
-Aşağıdaki örnek, yalnızca seçilen tabloları iskele oluşturulduğunu ve ayrı bir klasörde belirtilen ada sahip bir bağlam oluşturur:
+Aşağıdaki örnek yalnızca seçili tabloları ve bağlamı belirtilen bir ada sahip ayrı bir klasörde oluşturur:
 
 ```console
 dotnet ef dbcontext scaffold "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -t Blog -t Post --context-dir Context -c BlogContext
 ```
 
-## <a name="dotnet-ef-migrations-add"></a>DotNet ef geçişleri Ekle
+## <a name="dotnet-ef-migrations-add"></a>DotNet EF geçişleri ekleme
 
 Yeni bir geçiş ekler.
 
-Bağımsız değişkenleri:
+Değişkenlerinden
 
 | Bağımsız Değişken | Açıklama                |
 |:---------|:---------------------------|
-| `<NAME>` | Geçiş adı. |
+| `<NAME>` | Geçişin adı. |
 
 Seçenekler:
 
 |                   | Seçenek                             | Açıklama                                                                                                      |
 |:------------------|:-----------------------------------|:-----------------------------------------------------------------------------------------------------------------|
-| <nobr>`-o`</nobr> | <nobr>`--output-dir <PATH>`</nobr> | Kullanılacak dizin (ve alt ad alanı). Proje dizinine göreli yollardır. Varsayılan olarak "Geçişler". |
+| <nobr>`-o`</nobr> | <nobr>`--output-dir <PATH>`</nobr> | Kullanılacak dizin (ve alt ad alanı). Yollar proje dizinine göredir. Varsayılan olarak "geçişler" olur. |
 
-## <a name="dotnet-ef-migrations-list"></a>DotNet ef geçişleri listesi
+## <a name="dotnet-ef-migrations-list"></a>DotNet EF geçişleri listesi
 
 Kullanılabilir geçişleri listeler.
 
-## <a name="dotnet-ef-migrations-remove"></a>DotNet ef geçişleri Kaldır
+## <a name="dotnet-ef-migrations-remove"></a>DotNet EF geçişleri kaldır
 
-(Geçiş için yapıldığını kod değişiklikleri geri alır) son geçiş kaldırır.
+Son geçişi kaldırır (geçiş için yapılan kod değişikliklerini geri kaydeder).
 
 Seçenekler:
 
 |                   | Seçenek    | Açıklama                                                                     |
 |:------------------|:----------|:--------------------------------------------------------------------------------|
-| <nobr>`-f`</nobr> | `--force` | Geçişi geri döndürme (veritabanına uygulanan değişiklikleri geri alma). |
+| <nobr>`-f`</nobr> | `--force` | Geçişi geri alma (veritabanına uygulanan değişiklikleri geri alın). |
 
-## <a name="dotnet-ef-migrations-script"></a>DotNet ef geçişleri betiği
+## <a name="dotnet-ef-migrations-script"></a>DotNet EF geçişleri betiği
 
-Bir SQL betiği geçişleri oluşturur.
+Geçişlerden bir SQL betiği oluşturur.
 
-Bağımsız değişkenleri:
+Değişkenlerinden
 
 | Bağımsız Değişken | Açıklama                                                                                                                                                   |
 |:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `<FROM>` | Başlangıç geçiş. Geçişler, ada veya kimliğe göre tanımlanan Sayısı 0 anlamına gelen bir özel durumdur *ilk geçişten önce*. Varsayılan olarak 0. |
-| `<TO>`   | Bitiş geçiş. Son varsayılan olarak geçiş.                                                                                                         |
+| `<FROM>` | Geçiş başlatılıyor. Geçişler, ada veya KIMLIĞE göre tanımlanabilir. 0 sayısı, *ilk geçişten önceki*anlamına gelen özel bir durumdur. Varsayılan değer 0 ' dır. |
+| `<TO>`   | Son geçiş. Son geçişin varsayılan değeri.                                                                                                         |
 
 Seçenekler:
 
 |                   | Seçenek            | Açıklama                                                        |
 |:------------------|:------------------|:-------------------------------------------------------------------|
-| <nobr>`-o`</nobr> | `--output <FILE>` | Komut dosyası yazmak için dosya.                                   |
-| `-i`              | `--idempotent`    | Bir veritabanı herhangi bir geçiş sırasında kullanılan bir komut dosyası oluşturur. |
+| <nobr>`-o`</nobr> | `--output <FILE>` | Betiğe yazılacak dosya.                                   |
+| `-i`              | `--idempotent`    | Herhangi bir geçişte veritabanında kullanılabilecek bir betik oluşturun. |
 
-Aşağıdaki örnek, InitialCreate geçiş için bir komut dosyası oluşturur:
+Aşağıdaki örnek, ınitialcreate geçişi için bir komut dosyası oluşturur:
 
 ```console
 dotnet ef migrations script 0 InitialCreate
 ```
 
-Aşağıdaki örnek, InitialCreate geçişten sonra tüm geçişler için bir komut dosyası oluşturur.
+Aşağıdaki örnek, ınitialcreate geçişinden sonra tüm geçişler için bir komut dosyası oluşturur.
 
 ```console
 dotnet ef migrations script 20180904195021_InitialCreate
