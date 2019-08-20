@@ -1,62 +1,62 @@
 ---
-title: EF Core 3.0 - EF Core yenilikleri
+title: EF Core 3,0 ' deki yeni özellikler EF Core
 author: divega
 ms.date: 02/19/2019
 ms.assetid: 2EBE2CCC-E52D-483F-834C-8877F5EB0C0C
 uid: core/what-is-new/ef-core-3.0/features
-ms.openlocfilehash: 7501a806271c9734e85e31845f260f2d512da077
-ms.sourcegitcommit: 5280dcac4423acad8b440143433459b18886115b
+ms.openlocfilehash: a71aa01e81d9830d7b9e6cb01c200851100a15df
+ms.sourcegitcommit: 87e72899d17602f7526d6ccd22f3c8ee844145df
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/18/2019
-ms.locfileid: "58867963"
+ms.lasthandoff: 08/20/2019
+ms.locfileid: "69628423"
 ---
-# <a name="new-features-included-in-ef-core-30-currently-in-preview"></a>EF Core 3. 0 ' (şu anda Önizleme aşamasında) dahil olan yeni özellikler
+# <a name="new-features-included-in-ef-core-30-currently-in-preview"></a>EF Core 3,0 ' de bulunan yeni özellikler (Şu anda önizlemede)
 
 > [!IMPORTANT]
-> Özellik kümeleri ve zamanlamaları gelecek sürümlerin her zaman değişikliğe tabi olduğu ve bu sayfada en güncel, en son planlarımızı hiç yansıtmayabilir tutmak deneyeceğiz rağmen zaman lütfen unutmayın.
+> Gelecekteki sürümlerin özellik kümelerinin ve zamanlamalarının her zaman değişikliğe tabi olduğunu ve bu sayfayı güncel tutmaya deneydiğimiz halde, her zaman en son planlarımızı yansıtmadığımızdan emin olun.
 
-Aşağıdaki liste, EF Core 3.0 için planlanan önemli yeni özellikler içerir.
-Bu özelliklerin çoğu geçerli Önizleme sürümünde yer almaz, ancak RTM ilerlemeyi vermiyoruz olarak kullanılabilir hale gelir.
+Aşağıdaki listede EF Core 3,0 için planlanmış olan başlıca yeni özellikler yer almaktadır.
+Bu özelliklerin çoğu geçerli önizlemeye dahil edilmez, ancak RTM 'ye doğru ilerleme yaptığımız için kullanılabilir hale gelir.
 
-Biz odaklanarak uygulamaya planlanan yayın başındaki olan nedeni [bozucu değişiklikler](xref:core/what-is-new/ef-core-3.0/breaking-changes).
-En son değişikliklerin birçoğu EF core'a kendi geliştirmeleridir.
-Diğer birçok ek geliştirmeler engelini kaldırmak için gereklidir. 
+Bunun nedeni, yayının başlangıcında planlanmış [son değişiklikleri](xref:core/what-is-new/ef-core-3.0/breaking-changes)uygulamaya odaklanmaktadır.
+Bu önemli değişikliklerden çoğu, kendi EF Core geliştirmelerdir.
+Diğer iyileştirmeler, daha fazla geliştirmelerin engelini kaldırmak için gereklidir. 
 
-Hata düzeltmeleri ve geliştirmeleri tam listesi için devam ettiği, gördüğünüz [bu bizim sorun İzleyicisi sorguda](https://github.com/aspnet/EntityFrameworkCore/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.0.0+sort%3Areactions-%2B1-desc).
+Hata düzeltmelerinin ve geliştirmelerin tüm listesi için [Bu sorguyu sorun izleyicimizde](https://github.com/aspnet/EntityFrameworkCore/issues?q=is%3Aopen+is%3Aissue+milestone%3A3.0.0+sort%3Areactions-%2B1-desc)görebilirsiniz.
 
 ## <a name="linq-improvements"></a>LINQ geliştirmeleri 
 
-[İzleme sorun #12795](https://github.com/aspnet/EntityFrameworkCore/issues/12795)
+[Sorun izleniyor #12795](https://github.com/aspnet/EntityFrameworkCore/issues/12795)
 
-Bu özellik iş başlatıldı ancak geçerli önizlemede dahil değildir.
+Bu özellik üzerinde çalışma başlatıldı, ancak geçerli önizlemeye dahil değildir.
 
-LINQ sayesinde, istediğiniz dilde çıkmadan veritabanı sorguları yazma yararlanarak zengin IntelliSense ve derleme zamanı tür denetimi alma bilgilerini yazın.
-Ancak LINQ, sınırsız sayıda karmaşık sorgular yazmaya olanak tanır ve her zaman LINQ sağlayıcıları için çok zor olmuştur.
-EF Core birkaç ilk sürümlerinde, biz, kısmi çıkış bir sorgu kısımlarını olabilir hesaplayarak Çözüldü SQL ve istemci üzerindeki bellekte yürütülecek sorgu geri kalanı sağlayarak çevrilir.
-Bazı durumlarda bu istemci-tarafı yürütme istenebilir ancak diğer birçok durumda, bir uygulama üretime dağıtıldığında kadar belirtilmemiş olabilecek verimsiz sorguları neden olabilir.
-EF Core 3.0 sürümünde, çok büyük değişiklikler LINQ kararlılığımızın nasıl çalıştığını ve bunu nasıl test yapmak planlıyoruz.
-Hedefleridir (örneğin sorguları düzeltme eki sürümlerde bozmayı önlemek için), daha sağlam hale getirmek için SQL, daha fazla durumda verimli sorgular oluşturun ve verimsiz sorguları algılanmayan gitmesini önlemek için doğru olarak daha fazla ifade çevirme etkinleştirmek için.
+LINQ, IntelliSense ve derleme zamanı tür denetimi almak için zengin tür bilgilerinizin avantajlarından yararlanarak, seçtiğiniz dilden çıkmadan veritabanı sorguları yazmanızı sağlar.
+Ancak LINQ Ayrıca sınırsız sayıda karmaşık sorgu yazmanızı sağlar ve bu, LINQ sağlayıcıları için her zaman çok büyük bir zorluk olmuştur.
+EF Core ilk birkaç sürümünde, bir sorgunun hangi bölümlerinin SQL 'e çevrilebileceğini öğrenerek ve sonra sorgunun geri kalanının istemci üzerinde bellekte yürütülmesine izin vererek bu bölümü çözeceğiz.
+Bu istemci tarafı yürütme bazı durumlarda istenebilir, ancak çoğu durumda, bir uygulama üretime dağıtılana kadar belirlenemeyebilir verimsiz sorgulara yol açabilir.
+EF Core 3,0 ' de, LINQ uygulamanızın nasıl çalıştığı ve nasıl test ettiğimiz üzerinde yapılan değişiklikleri yapmayı planlıyoruz.
+Hedefler daha sağlam hale gelir (örneğin, düzeltme eki sürümlerindeki sorguların kesilmesini önlemek için), daha fazla ifadeyi SQL 'e doğru çevirmeyi etkinleştirmek, daha fazla durumda etkili sorgular oluşturmak ve verimsiz sorguların algılanmasını önlemek için.
 
 ## <a name="cosmos-db-support"></a>Cosmos DB desteği 
 
-[İzleme sorun #8443](https://github.com/aspnet/EntityFrameworkCore/issues/8443)
+[Sorun izleniyor #8443](https://github.com/aspnet/EntityFrameworkCore/issues/8443)
 
-Bu özellik geçerli Önizleme'de dahil, ancak henüz tamamlanmadı. 
+Bu özellik geçerli önizlemeye dahildir, ancak henüz tamamlanmadı. 
 
-Bir Cosmos DB sağlayıcısı için bir uygulama veritabanının olarak Azure Cosmos DB kolayca hedeflemek geliştiricilerin EF ölçeklenebilirliğinden modeli için EF Core üzerinde çalışıyoruz.
-Hedef, Cosmos DB, küresel dağıtım gibi avantajlarından bazıları "her zaman açık" olmasını sağlamaktır kullanılabilirlik, esnek ölçeklenebilirlik ve düşük gecikme süresi, .NET geliştiricileri için daha erişilebilir.
-EF Core gibi özelliklerin çoğu, Cosmos DB SQL API karşı değer dönüştürmeleri otomatik değişiklik izleme ve LINQ sağlayıcı etkinleştirir.
-EF Core 2.2 önce bu çalışmaların Başladık ve [bazı yaptık Önizleme sürümleri kullanılabilir sağlayıcısının](https://blogs.msdn.microsoft.com/dotnet/2018/10/17/announcing-entity-framework-core-2-2-preview-3/).
-Yeni plan EF Core 3.0 yanı sıra sağlayıcı geliştirmeye devam sağlamaktır. 
+EF Core için bir Cosmos DB sağlayıcı üzerinde çalışıyoruz, böylece bir uygulama veritabanı olarak Azure Cosmos DB kolayca hedeflemek için EF programlama modeliyle tanıdık geliştiricilerin kolayca hedeflemesini sağlar.
+Amaç, küresel dağıtım, "her zaman açık" kullanılabilirlik, elastik ölçeklenebilirlik ve düşük gecikme süresi gibi Cosmos DB avantajlarından bazılarını, hatta .NET geliştiricilerine daha erişilebilir hale getirmek için kullanılır.
+Sağlayıcı, Cosmos DB içindeki SQL API 'sine karşı otomatik değişiklik izleme, LINQ ve değer dönüştürmeleri gibi EF Core özelliklerinin çoğunu etkinleştirir.
+Bu çabadan önce 2,2 EF Core önce başladık ve [sağlayıcının bazı önizleme sürümlerini kullanıma](https://blogs.msdn.microsoft.com/dotnet/2018/10/17/announcing-entity-framework-core-2-2-preview-3/)sunuyoruz.
+Yeni plan, sağlayıcıyı EF Core 3,0 ' de geliştirmeye devam etmek için kullanılır. 
 
-## <a name="dependent-entities-sharing-the-table-with-the-principal-are-now-optional"></a>Bağımlı varlıkları tablo sorumlusuyla paylaşımı artık isteğe bağlıdır
+## <a name="dependent-entities-sharing-the-table-with-the-principal-are-now-optional"></a>Tabloyu sorumlu ile paylaşan bağımlı varlıklar artık isteğe bağlıdır
 
-[İzleme sorun #9005](https://github.com/aspnet/EntityFrameworkCore/issues/9005)
+[Sorun izleniyor #9005](https://github.com/aspnet/EntityFrameworkCore/issues/9005)
 
-EF Core 3.0-preview 4 sürümünde bu özellik sunulacaktır.
+Bu özellik EF Core 3,0-Preview 4 ' te tanıtılacaktır.
 
-Şu model göz önünde bulundurun:
+Aşağıdaki modeli göz önünde bulundurun:
 ```C#
 public class Order
 {
@@ -65,6 +65,7 @@ public class Order
     public OrderDetails Details { get; set; }
 }
 
+[Owned]
 public class OrderDetails
 {
     public int Id { get; set; }
@@ -72,47 +73,48 @@ public class OrderDetails
 }
 ```
 
-EF Core 3.0 ile başlatılmasının `OrderDetails` tarafından sahip olunan `Order` veya eklenmesi mümkün olacaktır aynı tabloya açıkça eşleştirilmiş bir `Order` olmadan bir `OrderDetails` ve tüm `OrderDetails` için özellikleri birincil anahtar dışındaki eşleştirilir boş değer atanabilir sütun.
-EF Core sorgulama ayarlandığında `OrderDetails` için `null` gerekli özelliklerinden birini yoksa, bir değer veya birincil anahtarı yanı sıra gereken özellikleri yoktur ve tüm özellikleri `null`.
+EF Core 3,0 ' den başlayarak, `OrderDetails` aynı tabloya `Order` ait veya açıkça eşlenmiş ise, birincil anahtar ile eşleştirilecektir, ancak tüm özellikler olmadan `Order` `OrderDetails` bir eklenebilir. `OrderDetails` null yapılabilir sütunlar.
 
-## <a name="c-80-support"></a>C#8.0 desteği
+Sorgulama yaparken, gerekli özelliklerinden herhangi `OrderDetails` birinin `null` bir değeri yoksa veya birincil `null`anahtar ve tüm Özellikler ' in yanı sıra gerekli özellikleri yoksa EF Core olarak ayarlanır.
 
-[Sorun #12047 izleme](https://github.com/aspnet/EntityFrameworkCore/issues/12047)
-[sorun #10347 izleme](https://github.com/aspnet/EntityFrameworkCore/issues/10347)
+## <a name="c-80-support"></a>C#8,0 desteği
 
-Bu özellik iş başlatıldı ancak geçerli önizlemede dahil değildir.
+[](https://github.com/aspnet/EntityFrameworkCore/issues/12047)
+Sorun izleme #12047 izleme sorunu[#10347](https://github.com/aspnet/EntityFrameworkCore/issues/10347)
 
-Bazı yararlanmak için müşterilerimizin istiyoruz [gelen yeni özellikler C# 8.0](https://blogs.msdn.microsoft.com/dotnet/2018/11/12/building-c-8-0/) istediğiniz zaman uyumsuz akışlar (dahil olmak üzere `await foreach`) ve EF Core kullanırken null başvuru türleri.
+Bu özellik üzerinde çalışma başlatıldı, ancak geçerli önizlemeye dahil değildir.
 
-## <a name="reverse-engineering-of-database-views"></a>Tersine mühendislik veritabanı görünümü
+Müşterilerimizin, EF Core kullanılırken zaman uyumsuz akışlar (dahil `await foreach`) ve null yapılabilir başvuru türleri gibi [8,0 ' de C# gelen yeni özelliklerden](https://blogs.msdn.microsoft.com/dotnet/2018/11/12/building-c-8-0/) yararlanabilmeleri istiyoruz.
 
-[İzleme sorun #1679](https://github.com/aspnet/EntityFrameworkCore/issues/1679)
+## <a name="reverse-engineering-of-database-views"></a>Veritabanı görünümlerinin tersine mühendislik
 
-Bu özellik geçerli Önizleme sürümünde yer almıyor.
+[Sorun izleniyor #1679](https://github.com/aspnet/EntityFrameworkCore/issues/1679)
 
-[Sorgu türü](xref:core/modeling/query-types), EF Core 2.1 içinde tanıtılan ve kabul EF Core 3.0, veritabanından okunan ancak güncelleştirilemiyor temsil veri anahtarları olmadan varlık türleri.
-Varlık türleri geriye doğru olduğunda veritabanı görünümleri mühendislik anahtarları olmadan oluşturulmasını otomatik hale getirmek planlıyoruz için bu özellik, bunların veritabanı görünümleri için mükemmel bir uyum Çoğu senaryoda sağlar.
+Bu özellik geçerli önizlemeye dahil değildir.
 
-## <a name="property-bag-entities"></a>Özellik paketi varlıklar
+EF Core 2,1 ' de tanıtılan ve EF Core 3,0 ' de anahtarlar olmadan varlık türlerini kabul eden [sorgu türleri](xref:core/modeling/query-types), veritabanından okunabilecek verileri temsil eder, ancak güncelleştirilemez.
+Bu özellik, Çoğu senaryoda veritabanı görünümlerine mükemmel bir uyum sağlar. bu nedenle, tersine mühendislik veritabanı görünümlerinde, anahtar olmadan varlık türlerinin oluşturulmasını otomatikleştirmeyi planlıyoruz.
 
-[Sorun #13610 izleme](https://github.com/aspnet/EntityFrameworkCore/issues/13610) ve [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914)
+## <a name="property-bag-entities"></a>Özellik paketi varlıkları
 
-Bu özellik iş başlatıldı ancak geçerli önizlemede dahil değildir. 
+[Sorun #13610](https://github.com/aspnet/EntityFrameworkCore/issues/13610) ve [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914) izleniyor
 
-Dizinli Özellikler normal özellikleri yerine verileri depolayan varlıkları etkinleştirme ve ayrıca aynı .NET sınıf örnekleri kullanabilmek için hakkındaki bu özellik, (büyük olasılıkla bir şey kadar basit bir `Dictionary<string, object>`) farklı varlık türlerini temsil etmek için aynı EF Core modelinde.
-Bu özellik, birleştirme varlık olmadan çok-çok ilişkileri desteklemek için bir atlama taşı ([sorun #1368](https://github.com/aspnet/EntityFrameworkCore/issues/1368)), EF Core için en çok istenen geliştirmeleri birinde.
+Bu özellik üzerinde çalışma başlatıldı, ancak geçerli önizlemeye dahil değildir. 
 
-## <a name="ef-63-on-net-core"></a>.NET core'da EF 6.3
+Bu özellik, verileri düzenli özellikler yerine dizini oluşturulmuş özelliklerde depolayan varlıkların etkinleştirilmesi ve ayrıca, farklı varlık türlerini temsil etmek için aynı .net sınıfının (potansiyel olarak basit gibi `Dictionary<string, object>`) örneklerini kullanabilmekle ilgilidir. aynı EF Core modelinde.
+Bu özellik, EF Core için en çok istenen geliştirmelerden biri olan bir JOIN varlığı ([sorun #1368](https://github.com/aspnet/EntityFrameworkCore/issues/1368)) olmadan çok-çok ilişkilerini desteklemeye yönelik bir atlama Stone ' dir.
 
-[Sorunu EF6 izleme #271](https://github.com/aspnet/EntityFramework6/issues/271)
+## <a name="ef-63-on-net-core"></a>.NET Core üzerinde EF 6,3
 
-Bu özellik iş başlatıldı ancak geçerli önizlemede dahil değildir. 
+[Sorun izleme EF6 # 271](https://github.com/aspnet/EntityFramework6/issues/271)
 
-Birçok mevcut uygulamaları EF'ın önceki sürümlerini kullanın ve bunları yalnızca .NET Core yararlanmak için EF Core'a taşıma bazen önemli bir efor gerektirebilir olduğunu biliyoruz.
-Bu nedenle, biz .NET Core 3.0 üzerinde çalıştırılacak EF 6'ın sonraki sürümü adapte.
-Biz bunu çok az değişiklikle taşıma mevcut uygulamaları kolaylaştırmak için yapıyor.
-Olan oraya giden bazı sınırlamalar olacak. Örneğin:
-- Diğer veritabanlarını dahil edilen SQL Server destek yanı sıra .NET Core üzerinde çalışmak yeni sağlayıcılar gerekir
-- SQL Server uzamsal desteği etkinleştirilemez
+Bu özellik üzerinde çalışma başlatıldı, ancak geçerli önizlemeye dahil değildir. 
 
-Ayrıca, bu noktada EF 6 için planlanan yeni özellik olduğunu unutmayın.
+Mevcut birçok uygulamanın önceki EF sürümlerini kullandığını anladık ve yalnızca .NET Core 'un avantajlarından yararlanmak için EF Core 'e taşıma işlemleri bazen önemli bir çaba gerektirebilir.
+Bu nedenle, .NET Core 3,0 ' de çalışacak EF 6 ' nın bir sonraki sürümünü uyarlarız.
+Bunu, mevcut uygulamaların en az değişiklikle yapılmasını kolaylaştırmak için yapıyoruz.
+Bazı sınırlamalar olacak. Örneğin:
+- .NET Core 'da eklenen SQL Server desteğinin yanı sıra yeni sağlayıcıların diğer veritabanlarıyla çalışması gerekir
+- SQL Server ile uzamsal destek etkinleştirilmeyecek
+
+Ayrıca, bu noktada EF 6 için planlanmış yeni bir özellik olmadığını unutmayın.
