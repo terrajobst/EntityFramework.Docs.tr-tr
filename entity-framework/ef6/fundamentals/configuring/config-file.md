@@ -1,27 +1,27 @@
 ---
-title: Yapılandırma dosyası ayarlarının - EF6
+title: Yapılandırma dosyası ayarları-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 000044c6-1d32-4cf7-ae1f-ea21d86ebf8f
-ms.openlocfilehash: faba4e406b9f26f5bed6149f75c59da362d84692
-ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
+ms.openlocfilehash: 86389e4a3a3bac46e2a4cf2da648a4b19e29f3c3
+ms.sourcegitcommit: 299011fc4bd576eed58a4274f967639fa13fec53
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47415789"
+ms.lasthandoff: 08/21/2019
+ms.locfileid: "69886561"
 ---
 # <a name="configuration-file-settings"></a>Yapılandırma dosyası ayarları
-Entity Framework çeşitli ayarlar yapılandırma dosyasından belirtilmesine olanak sağlar. Genel 'kuralı yapılandırmanız üzerinde' İlkesi EF izler: Bu yayında tartışılan tüm ayarları varsayılan bir davranışa sahip, yalnızca varsayılan artık gereksinimlerinizi sağladığında ayarını değiştirme hakkında endişe etmeniz gerekir.  
+Entity Framework, yapılandırma dosyasından bir dizi ayar belirtilmesini sağlar. Genel EF ' de bir ' yapılandırma üzerinden kural ' prensibi: bu gönderide ele alınan tüm ayarların varsayılan bir davranışı vardır; yalnızca varsayılan değer gereksinimlerinizi karşılamıyorsa ayarı değiştirme konusunda endişelenmeniz gerekir.  
 
-## <a name="a-code-based-alternative"></a>Bir kod tabanlı alternatif  
+## <a name="a-code-based-alternative"></a>Kod tabanlı alternatif  
 
-Tüm bu ayarlar, kod kullanarak da uygulanabilir. İçinde kullanıma sunduk EF6 başlangıç [kod tabanlı yapılandırma](code-based.md), uygulama kodu yapılandırma merkezi bir yolu sağlar. EF6 önce yapılandırma hala koddan uygulanabilir ancak farklı alanları yapılandırmak için çeşitli API'leri kullanmanız gerekir. Dağıtım sırasında kodu güncelleştirmeden kolayca değiştirilmesi için bu ayarları yapılandırma dosyası seçeneği sağlar.
+Bu ayarların tümü kod kullanılarak da uygulanabilir. EF6 ' den itibaren, koddan yapılandırma uygulamanın merkezi bir yolunu sağlayan [kod tabanlı yapılandırma](code-based.md)ekledik. EF6 ' dan önce yapılandırma yine koddan uygulanabilir, ancak farklı bölgeleri yapılandırmak için çeşitli API 'Ler kullanmanız gerekir. Yapılandırma dosyası seçeneği, kodunuzun güncelleştirilmesi gerekmeden dağıtım sırasında bu ayarların kolayca değiştirilmesine izin verir.
 
 ## <a name="the-entity-framework-configuration-section"></a>Entity Framework yapılandırma bölümü  
 
-EF4.1 ile başlangıç bağlamı kullanarak veritabanı Başlatıcı ayarlayabilirsiniz **appSettings** yapılandırma dosyasının. EF 4.3 içinde özel sunduk **entityFramework** yeni ayarları işlemek için bölüm. Entity Framework hala eski biçimi kullanılarak ayarlanan veritabanı başlatıcılar algılar, ancak mümkün olduğunca yeni biçime geçmeniz önerilir.
+EF 4.1 ile başlayarak, yapılandırma dosyasının **appSettings** bölümünü kullanarak bir bağlam için veritabanı başlatıcısı ayarlayabilirsiniz. EF 4,3 ' de, yeni ayarları işlemek için özel **EntityFramework** bölümünü kullanıma sunduk. Entity Framework, eski biçimi kullanarak veritabanı başlatıcıları kümesini tanımaya devam eder, ancak mümkün olduğunda yeni biçime geçmeyi öneririz.
 
-**EntityFramework** EntityFramework NuGet paketi yüklendiğinde bölümünde projenizin yapılandırma dosyasına otomatik olarak eklendiğinden.  
+EntityFramework NuGet paketini yüklediğinizde **EntityFramework** bölümü projenizin yapılandırma dosyasına otomatik olarak eklenmiştir.  
 
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -34,13 +34,13 @@ EF4.1 ile başlangıç bağlamı kullanarak veritabanı Başlatıcı ayarlayabil
 </configuration>
 ```  
 
-## <a name="connection-strings"></a>Bağlantı dizeleri  
+## <a name="connection-strings"></a>Bağlantı Dizeleri  
 
-[Bu sayfa](~/ef6/fundamentals/configuring/connection-strings.md) yapılandırma dosyasında bağlantı dizeleri dahil olmak üzere daha fazla ayrıntı Entity Framework veritabanı kullanılmak üzere nasıl belirlediğini sağlar.  
+[Bu sayfada](~/ef6/fundamentals/configuring/connection-strings.md) , yapılandırma dosyasındaki bağlantı dizeleri de dahil olmak üzere, kullanılacak veritabanını Entity Framework nasıl belirlediği hakkında daha fazla bilgi verilmektedir.  
 
-Bağlantı dizeleri, standart go **connectionStrings** öğesi ve gerekli olmayan **entityFramework** bölümü.  
+Bağlantı dizeleri standart **ConnectionString** öğesine gider ve **EntityFramework** bölümünü gerektirmez.  
 
-İlk göre kod modelleri normal ADO.NET bağlantı dizesi kullanır. Örneğin:  
+Code First tabanlı modeller normal ADO.NET bağlantı dizelerini kullanır. Örneğin:  
 
 ``` xml
 <connectionStrings>
@@ -50,7 +50,7 @@ Bağlantı dizeleri, standart go **connectionStrings** öğesi ve gerekli olmaya
 </connectionStrings>
 ```  
 
-EF Designer modelleri kullanım özel EF bağlantı dizelerini temel. Örneğin:  
+EF Designer tabanlı modeller özel EF bağlantı dizeleri kullanır. Örneğin:  
 
 ``` xml  
 <connectionStrings>
@@ -60,7 +60,7 @@ EF Designer modelleri kullanım özel EF bağlantı dizelerini temel. Örneğin:
         res://*/BloggingModel.csdl|
         res://*/BloggingModel.ssdl|
         res://*/BloggingModel.msl;
-      provider=System.Data.SqlClient
+      provider=System.Data.SqlClient;
       provider connection string=
         &quot;data source=(localdb)\mssqllocaldb;
         initial catalog=Blogging;
@@ -70,35 +70,35 @@ EF Designer modelleri kullanım özel EF bağlantı dizelerini temel. Örneğin:
 </connectionStrings>
 ```
 
-## <a name="code-based-configuration-type-ef6-onwards"></a>Kod tabanlı yapılandırma türü (EF6 sonrası)  
+## <a name="code-based-configuration-type-ef6-onwards"></a>Kod tabanlı yapılandırma türü (EF6 Onsürümleri)  
 
-EF6 ile başlayarak, kullanılacak EF için DbConfiguration belirtebilirsiniz [kod tabanlı yapılandırma](code-based.md) uygulamanızdaki. Çoğu durumda EF, DbConfiguration otomatik olarak bulmak gibi bu ayarı belirtmeniz gerekmez. Ne zaman yapılandırma dosyanızda DbConfiguration belirtmeniz gerekebilir, Ayrıntılar için bkz. **taşıma DbConfiguration** bölümünü [kod tabanlı yapılandırma](code-based.md).  
+EF6 ile başlayarak, uygulamanızda [kod tabanlı yapılandırma](code-based.md) için kullanmak üzere, EF Için DBConfiguration belirtebilirsiniz. Çoğu durumda, EF otomatik olarak DbConfiguration 'ı bulacaktır bu ayarı belirtmeniz gerekmez. Yapılandırma dosyanızda DbConfiguration 'ı ne zaman belirtmeniz gerektiği hakkında ayrıntılı bilgi için [kod tabanlı yapılandırmanın](code-based.md) **hareketli DBConfiguration** bölümüne bakın.  
 
-DbConfiguration türünü belirlemek için derleme nitelikli tür adı belirtin. **codeConfigurationType** öğesi.  
+Bir DbConfiguration türü ayarlamak için **Codeconfigurationtype** öğesinde derleme nitelikli tür adını belirtirsiniz.  
 
 > [!NOTE]
-> Bir bütünleştirilmiş kod adı türü bulunan derleme ardından virgül tarafından izlenen ad alanı tam adıdır. İsteğe bağlı olarak yapabilecekleriniz de derleme sürümü, kültürü ve genel anahtar belirtecini belirtin.  
+> Bütünleştirilmiş kod nitelikli adı ad alanı nitelenmiş addır, ardından virgül ve türün bulunduğu derleme. İsteğe bağlı olarak, derleme sürümünü, kültürü ve ortak anahtar belirtecini de belirtebilirsiniz.  
 
 ``` xml
 <entityFramework codeConfigurationType="MyNamespace.MyConfiguration, MyAssembly">
 </entityFramework>
 ```  
 
-## <a name="ef-database-providers-ef6-onwards"></a>EF veritabanı sağlayıcıları (EF6 sonrası)  
+## <a name="ef-database-providers-ef6-onwards"></a>EF veritabanı sağlayıcıları (EF6 sürümleri)  
 
-EF6 önce veritabanı sağlayıcısı Entity Framework özgü bölümlerini çekirdek ADO.NET sağlayıcısı bir parçası olarak dahil edilmesi gerekti. EF6 ile başlayarak, EF belirli kısımlarını artık yönetilir ve ayrı olarak kayıtlı.  
+EF6 'ten önce, bir veritabanı sağlayıcısının Entity Framework özgü bölümlerinin çekirdek ADO.NET sağlayıcısı 'nın bir parçası olarak eklenmesi gerekiyordu. EF6 ile başlayarak, EF 'e özgü parçalar artık yönetilir ve ayrı olarak kaydedilir.  
 
-Normalde kendiniz sağlayıcılarını kaydetme gerekmez. Yüklediğinizde bu genellikle sağlayıcı tarafından gerçekleştirilir.  
+Normalde, sağlayıcıları kendiniz kaydetmeniz gerekmez. Bu işlem genellikle sağlayıcı tarafından yüklendiğinde yapılır.  
 
-Sağlayıcılar dahil ederek kayıtlı bir **sağlayıcısı** öğesi altında **sağlayıcıları** alt kısmında **entityFramework** bölümü. Sağlayıcı girişi için gerekli iki öznitelikleri vardır:  
+Sağlayıcılar, **EntityFramework** bölümünün **sağlayıcılar** alt bölümü altına bir **sağlayıcı** öğesi eklenerek kaydedilir. Sağlayıcı girişi için iki gerekli öznitelik vardır:  
 
-- **Invariantname** temel ADO.NET sağlayıcısı tanımlayan bu EF sağlayıcısı hedefleri  
-- **tür** EF sağlayıcı uygulaması derleme nitelikli tür adı  
+- **InvariantName** , bu EF sağlayıcının hedeflediği Core ADO.net sağlayıcısını tanımlar  
+- **tür** , EF sağlayıcı uygulamasının derleme nitelikli tür adıdır  
 
 > [!NOTE]
-> Bir bütünleştirilmiş kod adı türü bulunan derleme ardından virgül tarafından izlenen ad alanı tam adıdır. İsteğe bağlı olarak yapabilecekleriniz de derleme sürümü, kültürü ve genel anahtar belirtecini belirtin.  
+> Bütünleştirilmiş kod nitelikli adı ad alanı nitelenmiş addır, ardından virgül ve türün bulunduğu derleme. İsteğe bağlı olarak, derleme sürümünü, kültürü ve ortak anahtar belirtecini de belirtebilirsiniz.  
 
-Örneğin, Entity Framework yüklediğinizde, varsayılan SQL Server sağlayıcıyı kaydetmek için oluşturulan girişi aşağıda verilmiştir.  
+Bir örnek olarak, Entity Framework yüklediğinizde varsayılan SQL Server sağlayıcıyı kaydetmek için oluşturulan girdidir.  
 
 ``` xml  
 <providers>
@@ -106,11 +106,11 @@ Sağlayıcılar dahil ederek kayıtlı bir **sağlayıcısı** öğesi altında 
 </providers>
 ```  
 
-## <a name="interceptors-ef61-onwards"></a>Dinleyiciler (EF6.1 ve sonraki sürümler)  
+## <a name="interceptors-ef61-onwards"></a>Yakalayıcılar (EF 6.1 ve sonraki sürümler)  
 
-Kesiciler, EF6.1 ile başlayan yapılandırma dosyasında kaydedebilirsiniz. Kesiciler, EF açılış bağlantıları, vb. veritabanı sorguları, yürütme gibi bazı işlemleri gerçekleştirirken ek mantık çalıştırmanıza olanak tanır.  
+EF 6.1 ile başlayarak, yapılandırma dosyasına dinleyici kaydedebilirsiniz. Yakalayıcılar, veritabanı sorguları yürütme, bağlantılar açma vb. gibi belirli işlemleri gerçekleştirdiğinde, ek mantık çalıştırmanızı sağlar.  
 
-Kesiciler dahil ederek kayıtlı bir **dinleyiciyi** öğesi altında **dinleyicileri** alt kısmında **entityFramework** bölümü. Örneğin, aşağıdaki yapılandırma yerleşik kaydeder **DatabaseLogger** tüm veritabanı işlemleri konsola oturum dinleyiciyi.  
+Dinleyici oluşturma, **EntityFramework** bölümünün alt bölümünün altına bir **yakalayıcısı** öğesi eklenerek kaydedilir. Örneğin, aşağıdaki yapılandırma, tüm veritabanı işlemlerini konsola kaydedecek yerleşik **Databasegünlükçü** yakalayıcısını kaydeder.  
 
 ``` xml  
 <interceptors>
@@ -118,9 +118,9 @@ Kesiciler dahil ederek kayıtlı bir **dinleyiciyi** öğesi altında **dinleyic
 </interceptors>
 ```  
 
-### <a name="logging-database-operations-to-a-file-ef61-onwards"></a>Günlük veritabanı işlemleri bir dosyaya (EF6.1 ve sonraki sürümler)  
+### <a name="logging-database-operations-to-a-file-ef61-onwards"></a>Veritabanı Işlemlerini bir dosyaya kaydetme (EF 6.1 ve sonraki sürümler)  
 
-Günlük bir sorunla ilgili hataları ayıklamak yardımcı olmak için mevcut bir uygulamaya eklemek istediğiniz yapılandırma dosyası aracılığıyla dinleyicileri kaydetme özellikle yararlı olur. **DatabaseLogger** Oluşturucu parametresi olarak dosya adı sağlayarak dosyaya günlük kaydı destekler.  
+Bir sorunu ayıklamanıza yardımcı olması için, mevcut bir uygulamaya günlük eklemek istediğinizde özellikle de yapılandırma dosyası aracılığıyla kayıt yaptırıcılar yararlı olur. **Databasegünlükçü** , dosya adını bir oluşturucu parametresi olarak sağlayarak bir dosyaya günlük kaydını destekler.  
 
 ``` xml  
 <interceptors>
@@ -132,7 +132,7 @@ Günlük bir sorunla ilgili hataları ayıklamak yardımcı olmak için mevcut b
 </interceptors>
 ```  
 
-Varsayılan olarak bu günlük dosyası, uygulama her başlatıldığında yeni bir dosya ile üzerine yazılmasına neden olur. Bunun yerine'ına eklenecek dosya zaten varsa kullanın aşağıdakine benzer:  
+Bu, varsayılan olarak, uygulama her başlatıldığında günlük dosyasının üzerine yazılmasına neden olur. Bunun yerine, zaten varsa günlük dosyasına ekleyin, örneğin:  
 
 ``` xml  
 <interceptors>
@@ -145,20 +145,20 @@ Varsayılan olarak bu günlük dosyası, uygulama her başlatıldığında yeni 
 </interceptors>
 ```  
 
-Hakkında daha fazla bilgi için **DatabaseLogger** ve dinleyicileri kayıt, blog gönderisine bakın [EF 6.1: derlemeden günlüğünü açma](https://blog.oneunicorn.com/2014/02/09/ef-6-1-turning-on-logging-without-recompiling/).  
+**Databasegünlükçü** ve kayıt yaptırıcılar hakkında daha fazla bilgi için, bkz. Web [günlüğü gönderi aşv 6,1: Yeniden derleme](https://blog.oneunicorn.com/2014/02/09/ef-6-1-turning-on-logging-without-recompiling/)olmadan günlüğe kaydetme açılıyor.  
 
-## <a name="code-first-default-connection-factory"></a>Kod ilk varsayılan bağlantı üretecini  
+## <a name="code-first-default-connection-factory"></a>Code First varsayılan bağlantı fabrikası  
 
-Yapılandırma bölümü, Code First bağlam için kullanılacak bir veritabanı bulmak için kullanacağı varsayılan bağlantı üretecini belirtmenizi sağlar. Bağlantı dizesi yapılandırma dosyasının bir bağlam için eklendiğinde varsayılan bağlantı üretecini yalnızca kullanılır.  
+Yapılandırma bölümü, Code First bir bağlam için kullanılacak veritabanını bulmak için kullanması gereken varsayılan bir bağlantı fabrikası belirtmenize olanak tanır. Varsayılan bağlantı fabrikası yalnızca bir bağlam için yapılandırma dosyasına bir bağlantı dizesi eklendiğinde kullanılır.  
 
-EF NuGet paketi yüklendiğinde varsayılan bağlantı üretecini SQL Express LocalDB, hangisinin bağlı olarak, yüklü olduğu için veya işaret eden kaydedildi.  
+EF NuGet paketini yüklediğinizde, hangisinin yüklü olduğuna bağlı olarak SQL Express veya LocalDB 'ye işaret eden bir varsayılan bağlantı fabrikası kayıtlı olmalıdır.  
 
-Bağlantı üreteci ayarlamak için derleme nitelikli tür adı belirtin. **defaultConnectionFactory** öğesi.  
+Bir bağlantı fabrikası ayarlamak için, **Defaultconnectionfactory** öğesinde derleme nitelikli tür adını belirtirsiniz.  
 
 > [!NOTE]
-> Bir bütünleştirilmiş kod adı türü bulunan derleme ardından virgül tarafından izlenen ad alanı tam adıdır. İsteğe bağlı olarak yapabilecekleriniz de derleme sürümü, kültürü ve genel anahtar belirtecini belirtin.  
+> Bütünleştirilmiş kod nitelikli adı ad alanı nitelenmiş addır, ardından virgül ve türün bulunduğu derleme. İsteğe bağlı olarak, derleme sürümünü, kültürü ve ortak anahtar belirtecini de belirtebilirsiniz.  
 
-Kendi varsayılan bağlantı üretecini ayarlamanın bir örnek aşağıda verilmiştir:  
+Kendi varsayılan bağlantı fabrikanızı ayarlamaya bir örnek aşağıda verilmiştir:  
 
 ``` xml  
 <entityFramework>
@@ -166,9 +166,9 @@ Kendi varsayılan bağlantı üretecini ayarlamanın bir örnek aşağıda veril
 </entityFramework>
 ```  
 
-Yukarıdaki örnekte, parametresiz bir oluşturucu özel fabrika gerektirir. Gerekirse, oluşturucu parametresi kullanarak belirtebilirsiniz **parametreleri** öğesi.  
+Yukarıdaki örnek, özel fabrikasının parametresiz bir oluşturucuya sahip olmasını gerektirir. Gerekirse, **Parameters** öğesini kullanarak Oluşturucu parametreleri belirtebilirsiniz.  
 
-Örneğin, varlık Çerçevesi'nde bulunan SqlCeConnectionFactory, oluşturucusuna bir sağlayıcının değişmez adı sağlamanız gerekir. Sağlayıcının değişmez adı kullanmak istediğiniz SQL Compact sürümünü tanımlar. Aşağıdaki yapılandırma, SQL Compact sürüm 4. 0'ın varsayılan olarak kullanılacak bağlamları neden olur.  
+Örneğin, Entity Framework dahil olan SqlCeConnectionFactory, oluşturucuya bir sağlayıcı sabit adı sağlamanız gerekir. Sağlayıcı sabit adı, kullanmak istediğiniz SQL Compact sürümünü tanımlar. Aşağıdaki yapılandırma, bağlamların SQL Compact sürüm 4,0 ' i varsayılan olarak kullanmasına neden olur.  
 
 ``` xml  
 <entityFramework>
@@ -180,9 +180,9 @@ Yukarıdaki örnekte, parametresiz bir oluşturucu özel fabrika gerektirir. Ger
 </entityFramework>
 ```  
 
-Varsayılan bağlantı üretecini ayarlamazsanız, Code First işaret SqlConnectionFactory kullanan `.\SQLEXPRESS`. SqlConnectionFactory, ayrıca bağlantı dizesi bölümleri geçersiz kılmak izin veren bir oluşturucusu vardır. Başka bir SQL Server örneğini kullanmak istiyorsanız `.\SQLEXPRESS` sunucusu için bu oluşturucu kullanabilirsiniz.  
+Varsayılan bir bağlantı fabrikası ayarlamazsanız Code First, ' nin üzerine gelip `.\SQLEXPRESS`SqlConnectionFactory 'yi kullanır. SqlConnectionFactory ayrıca bağlantı dizesinin parçalarını geçersiz kılmanızı sağlayan bir oluşturucuya sahiptir. Dışında SQL Server bir örnek `.\SQLEXPRESS` kullanmak istiyorsanız, bu oluşturucuyu sunucuyu ayarlamak için kullanabilirsiniz.  
 
-Aşağıdaki yapılandırmayı kullanmak Code First neden **MyDatabaseServer** için ayarlanmış bir açık bir bağlantı dizesi yok bağlamı.  
+Aşağıdaki yapılandırma, Code First bir açık bağlantı dizesi kümesi olmayan bağlamlarda **MyDatabaseServer** 'ı kullanmasına neden olur.  
 
 ``` xml  
 <entityFramework>
@@ -194,7 +194,7 @@ Aşağıdaki yapılandırmayı kullanmak Code First neden **MyDatabaseServer** i
 </entityFramework>
 ```  
 
-Varsayılan olarak, oluşturucu bağımsız değişkenleri dize türünde olduğu varsayılır. Bunu değiştirmek için type özniteliği kullanabilirsiniz.  
+Varsayılan olarak, Oluşturucu bağımsız değişkenlerinin dize türünde olduğu varsayılır. Bunu değiştirmek için Type özniteliğini kullanabilirsiniz.  
 
 ``` xml
 <parameter value="2" type="System.Int32" />
@@ -202,11 +202,11 @@ Varsayılan olarak, oluşturucu bağımsız değişkenleri dize türünde olduğ
 
 ## <a name="database-initializers"></a>Veritabanı başlatıcıları  
 
-Veritabanı başlatıcılar bağlam içi olarak yapılandırılır. Kullanılarak yapılandırma dosyasında ayarlanabilir **bağlam** öğesi. Bu öğesi derleme nitelenmiş adı yapılandırılmakta içeriği tanımlamak için kullanır.  
+Veritabanı başlatıcıları bağlam temelinde yapılandırılır. **Bağlam** öğesi kullanılarak yapılandırma dosyasında ayarlanamazlar. Bu öğe, yapılandırılmakta olan bağlamı tanımlamak için derleme nitelikli adını kullanır.  
 
-Varsayılan olarak, Code First bağlamları Createdatabaseıfnotexists Başlatıcı kullanmak üzere yapılandırılmış. Var olan bir **disableDatabaseInitialization** özniteliği **bağlam** veritabanı başlatma devre dışı bırakmak için kullanılabilir öğe.  
+Varsayılan olarak, Code First bağlamları CreateDatabaseIfNotExists başlatıcısı 'nı kullanacak şekilde yapılandırılır. **Bağlam** öğesinde, veritabanı başlatmasını devre dışı bırakmak için kullanılabilecek bir **disabledatabaseınitialization** özniteliği vardır.  
 
-Örneğin, aşağıdaki yapılandırma veritabanı başlatma da MyAssembly.dll tanımlanan Blogging.BlogContext bağlamı için devre dışı bırakır.  
+Örneğin, aşağıdaki yapılandırma MyAssembly. dll içinde tanımlanan blog. BlogContext bağlamı için veritabanını başlatmayı devre dışı bırakır.  
 
 ``` xml  
 <contexts>
@@ -214,7 +214,7 @@ Varsayılan olarak, Code First bağlamları Createdatabaseıfnotexists Başlatı
 </contexts>
 ```  
 
-Kullanabileceğiniz **databaseInitializer** özel bir başlatıcı ayarlamak için öğesi.  
+Özel bir başlatıcı ayarlamak için **Databaseınitializer** öğesini kullanabilirsiniz.  
 
 ``` xml
 <contexts>
@@ -224,7 +224,7 @@ Kullanabileceğiniz **databaseInitializer** özel bir başlatıcı ayarlamak iç
 </contexts>
 ```  
 
-Oluşturucu parametresi varsayılan bağlantı fabrikaları aynı sözdizimini kullanır.  
+Oluşturucu parametreleri varsayılan bağlantı fabrikaları ile aynı sözdizimini kullanır.  
 
 ``` xml  
 <contexts>
@@ -238,9 +238,9 @@ Oluşturucu parametresi varsayılan bağlantı fabrikaları aynı sözdizimini k
 </contexts>
 ```  
 
-Entity Framework'e dahil edilen genel veritabanı başlatıcılar birini yapılandırabilirsiniz. **Türü** özniteliği, genel türler için .NET Framework biçimi kullanır.  
+Entity Framework bulunan genel veritabanı başlatıcılarının birini yapılandırabilirsiniz. **Tür** özniteliği genel türler için .NET Framework biçimini kullanır.  
 
-Örneğin, Code First Migrations'ı kullanıyorsanız, veritabanı kullanılarak otomatik olarak geçirilecek yapılandırabilirsiniz `MigrateDatabaseToLatestVersion<TContext, TMigrationsConfiguration>` Başlatıcı.  
+Örneğin, Code First Migrations kullanıyorsanız, veritabanını `MigrateDatabaseToLatestVersion<TContext, TMigrationsConfiguration>` Başlatıcı kullanılarak otomatik olarak geçirilecek şekilde yapılandırabilirsiniz.  
 
 ``` xml
 <contexts>
