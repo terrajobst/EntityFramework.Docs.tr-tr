@@ -1,27 +1,27 @@
 ---
-title: Yapılandırma dosyası ayarlarının - EF6
+title: Yapılandırma dosyası ayarları-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 000044c6-1d32-4cf7-ae1f-ea21d86ebf8f
-ms.openlocfilehash: faba4e406b9f26f5bed6149f75c59da362d84692
-ms.sourcegitcommit: 15022dd06d919c29b1189c82611ea32f9fdc6617
+ms.openlocfilehash: 86389e4a3a3bac46e2a4cf2da648a4b19e29f3c3
+ms.sourcegitcommit: 299011fc4bd576eed58a4274f967639fa13fec53
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47415789"
+ms.lasthandoff: 08/21/2019
+ms.locfileid: "69886561"
 ---
-# <a name="configuration-file-settings"></a><span data-ttu-id="4c783-102">Yapılandırma dosyası ayarları</span><span class="sxs-lookup"><span data-stu-id="4c783-102">Configuration File Settings</span></span>
-<span data-ttu-id="4c783-103">Entity Framework çeşitli ayarlar yapılandırma dosyasından belirtilmesine olanak sağlar.</span><span class="sxs-lookup"><span data-stu-id="4c783-103">Entity Framework allows a number of settings to be specified from the configuration file.</span></span> <span data-ttu-id="4c783-104">Genel 'kuralı yapılandırmanız üzerinde' İlkesi EF izler: Bu yayında tartışılan tüm ayarları varsayılan bir davranışa sahip, yalnızca varsayılan artık gereksinimlerinizi sağladığında ayarını değiştirme hakkında endişe etmeniz gerekir.</span><span class="sxs-lookup"><span data-stu-id="4c783-104">In general EF follows a ‘convention over configuration’ principle: all the settings discussed in this post have a default behavior, you only need to worry about changing the setting when the default no longer satisfies your requirements.</span></span>  
+# <a name="configuration-file-settings"></a><span data-ttu-id="96908-102">Yapılandırma dosyası ayarları</span><span class="sxs-lookup"><span data-stu-id="96908-102">Configuration File Settings</span></span>
+<span data-ttu-id="96908-103">Entity Framework, yapılandırma dosyasından bir dizi ayar belirtilmesini sağlar.</span><span class="sxs-lookup"><span data-stu-id="96908-103">Entity Framework allows a number of settings to be specified from the configuration file.</span></span> <span data-ttu-id="96908-104">Genel EF ' de bir ' yapılandırma üzerinden kural ' prensibi: bu gönderide ele alınan tüm ayarların varsayılan bir davranışı vardır; yalnızca varsayılan değer gereksinimlerinizi karşılamıyorsa ayarı değiştirme konusunda endişelenmeniz gerekir.</span><span class="sxs-lookup"><span data-stu-id="96908-104">In general EF follows a ‘convention over configuration’ principle: all the settings discussed in this post have a default behavior, you only need to worry about changing the setting when the default no longer satisfies your requirements.</span></span>  
 
-## <a name="a-code-based-alternative"></a><span data-ttu-id="4c783-105">Bir kod tabanlı alternatif</span><span class="sxs-lookup"><span data-stu-id="4c783-105">A Code-Based Alternative</span></span>  
+## <a name="a-code-based-alternative"></a><span data-ttu-id="96908-105">Kod tabanlı alternatif</span><span class="sxs-lookup"><span data-stu-id="96908-105">A Code-Based Alternative</span></span>  
 
-<span data-ttu-id="4c783-106">Tüm bu ayarlar, kod kullanarak da uygulanabilir.</span><span class="sxs-lookup"><span data-stu-id="4c783-106">All of these settings can also be applied using code.</span></span> <span data-ttu-id="4c783-107">İçinde kullanıma sunduk EF6 başlangıç [kod tabanlı yapılandırma](code-based.md), uygulama kodu yapılandırma merkezi bir yolu sağlar.</span><span class="sxs-lookup"><span data-stu-id="4c783-107">Starting in EF6 we introduced [code-based configuration](code-based.md), which provides a central way of applying configuration from code.</span></span> <span data-ttu-id="4c783-108">EF6 önce yapılandırma hala koddan uygulanabilir ancak farklı alanları yapılandırmak için çeşitli API'leri kullanmanız gerekir.</span><span class="sxs-lookup"><span data-stu-id="4c783-108">Prior to EF6, configuration can still be applied from code but you need to use various APIs to configure different areas.</span></span> <span data-ttu-id="4c783-109">Dağıtım sırasında kodu güncelleştirmeden kolayca değiştirilmesi için bu ayarları yapılandırma dosyası seçeneği sağlar.</span><span class="sxs-lookup"><span data-stu-id="4c783-109">The configuration file option allows these settings to be easily changed during deployment without updating your code.</span></span>
+<span data-ttu-id="96908-106">Bu ayarların tümü kod kullanılarak da uygulanabilir.</span><span class="sxs-lookup"><span data-stu-id="96908-106">All of these settings can also be applied using code.</span></span> <span data-ttu-id="96908-107">EF6 ' den itibaren, koddan yapılandırma uygulamanın merkezi bir yolunu sağlayan [kod tabanlı yapılandırma](code-based.md)ekledik.</span><span class="sxs-lookup"><span data-stu-id="96908-107">Starting in EF6 we introduced [code-based configuration](code-based.md), which provides a central way of applying configuration from code.</span></span> <span data-ttu-id="96908-108">EF6 ' dan önce yapılandırma yine koddan uygulanabilir, ancak farklı bölgeleri yapılandırmak için çeşitli API 'Ler kullanmanız gerekir.</span><span class="sxs-lookup"><span data-stu-id="96908-108">Prior to EF6, configuration can still be applied from code but you need to use various APIs to configure different areas.</span></span> <span data-ttu-id="96908-109">Yapılandırma dosyası seçeneği, kodunuzun güncelleştirilmesi gerekmeden dağıtım sırasında bu ayarların kolayca değiştirilmesine izin verir.</span><span class="sxs-lookup"><span data-stu-id="96908-109">The configuration file option allows these settings to be easily changed during deployment without updating your code.</span></span>
 
-## <a name="the-entity-framework-configuration-section"></a><span data-ttu-id="4c783-110">Entity Framework yapılandırma bölümü</span><span class="sxs-lookup"><span data-stu-id="4c783-110">The Entity Framework Configuration Section</span></span>  
+## <a name="the-entity-framework-configuration-section"></a><span data-ttu-id="96908-110">Entity Framework yapılandırma bölümü</span><span class="sxs-lookup"><span data-stu-id="96908-110">The Entity Framework Configuration Section</span></span>  
 
-<span data-ttu-id="4c783-111">EF4.1 ile başlangıç bağlamı kullanarak veritabanı Başlatıcı ayarlayabilirsiniz **appSettings** yapılandırma dosyasının.</span><span class="sxs-lookup"><span data-stu-id="4c783-111">Starting with EF4.1 you could set the database initializer for a context using the **appSettings** section of the configuration file.</span></span> <span data-ttu-id="4c783-112">EF 4.3 içinde özel sunduk **entityFramework** yeni ayarları işlemek için bölüm.</span><span class="sxs-lookup"><span data-stu-id="4c783-112">In EF 4.3 we introduced the custom **entityFramework** section to handle the new settings.</span></span> <span data-ttu-id="4c783-113">Entity Framework hala eski biçimi kullanılarak ayarlanan veritabanı başlatıcılar algılar, ancak mümkün olduğunca yeni biçime geçmeniz önerilir.</span><span class="sxs-lookup"><span data-stu-id="4c783-113">Entity Framework will still recognize database initializers set using the old format, but we recommend moving to the new format where possible.</span></span>
+<span data-ttu-id="96908-111">EF 4.1 ile başlayarak, yapılandırma dosyasının **appSettings** bölümünü kullanarak bir bağlam için veritabanı başlatıcısı ayarlayabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="96908-111">Starting with EF4.1 you could set the database initializer for a context using the **appSettings** section of the configuration file.</span></span> <span data-ttu-id="96908-112">EF 4,3 ' de, yeni ayarları işlemek için özel **EntityFramework** bölümünü kullanıma sunduk.</span><span class="sxs-lookup"><span data-stu-id="96908-112">In EF 4.3 we introduced the custom **entityFramework** section to handle the new settings.</span></span> <span data-ttu-id="96908-113">Entity Framework, eski biçimi kullanarak veritabanı başlatıcıları kümesini tanımaya devam eder, ancak mümkün olduğunda yeni biçime geçmeyi öneririz.</span><span class="sxs-lookup"><span data-stu-id="96908-113">Entity Framework will still recognize database initializers set using the old format, but we recommend moving to the new format where possible.</span></span>
 
-<span data-ttu-id="4c783-114">**EntityFramework** EntityFramework NuGet paketi yüklendiğinde bölümünde projenizin yapılandırma dosyasına otomatik olarak eklendiğinden.</span><span class="sxs-lookup"><span data-stu-id="4c783-114">The **entityFramework** section was automatically added to the configuration file of your project when you installed the EntityFramework NuGet package.</span></span>  
+<span data-ttu-id="96908-114">EntityFramework NuGet paketini yüklediğinizde **EntityFramework** bölümü projenizin yapılandırma dosyasına otomatik olarak eklenmiştir.</span><span class="sxs-lookup"><span data-stu-id="96908-114">The **entityFramework** section was automatically added to the configuration file of your project when you installed the EntityFramework NuGet package.</span></span>  
 
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -34,13 +34,13 @@ ms.locfileid: "47415789"
 </configuration>
 ```  
 
-## <a name="connection-strings"></a><span data-ttu-id="4c783-115">Bağlantı dizeleri</span><span class="sxs-lookup"><span data-stu-id="4c783-115">Connection Strings</span></span>  
+## <a name="connection-strings"></a><span data-ttu-id="96908-115">Bağlantı Dizeleri</span><span class="sxs-lookup"><span data-stu-id="96908-115">Connection Strings</span></span>  
 
-<span data-ttu-id="4c783-116">[Bu sayfa](~/ef6/fundamentals/configuring/connection-strings.md) yapılandırma dosyasında bağlantı dizeleri dahil olmak üzere daha fazla ayrıntı Entity Framework veritabanı kullanılmak üzere nasıl belirlediğini sağlar.</span><span class="sxs-lookup"><span data-stu-id="4c783-116">[This page](~/ef6/fundamentals/configuring/connection-strings.md) provides more details on how Entity Framework determines the database to be used, including connection strings in the configuration file.</span></span>  
+<span data-ttu-id="96908-116">[Bu sayfada](~/ef6/fundamentals/configuring/connection-strings.md) , yapılandırma dosyasındaki bağlantı dizeleri de dahil olmak üzere, kullanılacak veritabanını Entity Framework nasıl belirlediği hakkında daha fazla bilgi verilmektedir.</span><span class="sxs-lookup"><span data-stu-id="96908-116">[This page](~/ef6/fundamentals/configuring/connection-strings.md) provides more details on how Entity Framework determines the database to be used, including connection strings in the configuration file.</span></span>  
 
-<span data-ttu-id="4c783-117">Bağlantı dizeleri, standart go **connectionStrings** öğesi ve gerekli olmayan **entityFramework** bölümü.</span><span class="sxs-lookup"><span data-stu-id="4c783-117">Connection strings go in the standard **connectionStrings** element and do not require the **entityFramework** section.</span></span>  
+<span data-ttu-id="96908-117">Bağlantı dizeleri standart **ConnectionString** öğesine gider ve **EntityFramework** bölümünü gerektirmez.</span><span class="sxs-lookup"><span data-stu-id="96908-117">Connection strings go in the standard **connectionStrings** element and do not require the **entityFramework** section.</span></span>  
 
-<span data-ttu-id="4c783-118">İlk göre kod modelleri normal ADO.NET bağlantı dizesi kullanır.</span><span class="sxs-lookup"><span data-stu-id="4c783-118">Code First based models use normal ADO.NET connection strings.</span></span> <span data-ttu-id="4c783-119">Örneğin:</span><span class="sxs-lookup"><span data-stu-id="4c783-119">For example:</span></span>  
+<span data-ttu-id="96908-118">Code First tabanlı modeller normal ADO.NET bağlantı dizelerini kullanır.</span><span class="sxs-lookup"><span data-stu-id="96908-118">Code First based models use normal ADO.NET connection strings.</span></span> <span data-ttu-id="96908-119">Örneğin:</span><span class="sxs-lookup"><span data-stu-id="96908-119">For example:</span></span>  
 
 ``` xml
 <connectionStrings>
@@ -50,7 +50,7 @@ ms.locfileid: "47415789"
 </connectionStrings>
 ```  
 
-<span data-ttu-id="4c783-120">EF Designer modelleri kullanım özel EF bağlantı dizelerini temel.</span><span class="sxs-lookup"><span data-stu-id="4c783-120">EF Designer based models use special EF connection strings.</span></span> <span data-ttu-id="4c783-121">Örneğin:</span><span class="sxs-lookup"><span data-stu-id="4c783-121">For example:</span></span>  
+<span data-ttu-id="96908-120">EF Designer tabanlı modeller özel EF bağlantı dizeleri kullanır.</span><span class="sxs-lookup"><span data-stu-id="96908-120">EF Designer based models use special EF connection strings.</span></span> <span data-ttu-id="96908-121">Örneğin:</span><span class="sxs-lookup"><span data-stu-id="96908-121">For example:</span></span>  
 
 ``` xml  
 <connectionStrings>
@@ -60,7 +60,7 @@ ms.locfileid: "47415789"
         res://*/BloggingModel.csdl|
         res://*/BloggingModel.ssdl|
         res://*/BloggingModel.msl;
-      provider=System.Data.SqlClient
+      provider=System.Data.SqlClient;
       provider connection string=
         &quot;data source=(localdb)\mssqllocaldb;
         initial catalog=Blogging;
@@ -70,35 +70,35 @@ ms.locfileid: "47415789"
 </connectionStrings>
 ```
 
-## <a name="code-based-configuration-type-ef6-onwards"></a><span data-ttu-id="4c783-122">Kod tabanlı yapılandırma türü (EF6 sonrası)</span><span class="sxs-lookup"><span data-stu-id="4c783-122">Code-Based Configuration Type (EF6 Onwards)</span></span>  
+## <a name="code-based-configuration-type-ef6-onwards"></a><span data-ttu-id="96908-122">Kod tabanlı yapılandırma türü (EF6 Onsürümleri)</span><span class="sxs-lookup"><span data-stu-id="96908-122">Code-Based Configuration Type (EF6 Onwards)</span></span>  
 
-<span data-ttu-id="4c783-123">EF6 ile başlayarak, kullanılacak EF için DbConfiguration belirtebilirsiniz [kod tabanlı yapılandırma](code-based.md) uygulamanızdaki.</span><span class="sxs-lookup"><span data-stu-id="4c783-123">Starting with EF6, you can specify the DbConfiguration for EF to use for [code-based configuration](code-based.md) in your application.</span></span> <span data-ttu-id="4c783-124">Çoğu durumda EF, DbConfiguration otomatik olarak bulmak gibi bu ayarı belirtmeniz gerekmez.</span><span class="sxs-lookup"><span data-stu-id="4c783-124">In most cases you don't need to specify this setting as EF will automatically discover your DbConfiguration.</span></span> <span data-ttu-id="4c783-125">Ne zaman yapılandırma dosyanızda DbConfiguration belirtmeniz gerekebilir, Ayrıntılar için bkz. **taşıma DbConfiguration** bölümünü [kod tabanlı yapılandırma](code-based.md).</span><span class="sxs-lookup"><span data-stu-id="4c783-125">For details of when you may need to specify DbConfiguration in your config file see the **Moving DbConfiguration** section of [Code-Based Configuration](code-based.md).</span></span>  
+<span data-ttu-id="96908-123">EF6 ile başlayarak, uygulamanızda [kod tabanlı yapılandırma](code-based.md) için kullanmak üzere, EF Için DBConfiguration belirtebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="96908-123">Starting with EF6, you can specify the DbConfiguration for EF to use for [code-based configuration](code-based.md) in your application.</span></span> <span data-ttu-id="96908-124">Çoğu durumda, EF otomatik olarak DbConfiguration 'ı bulacaktır bu ayarı belirtmeniz gerekmez.</span><span class="sxs-lookup"><span data-stu-id="96908-124">In most cases you don't need to specify this setting as EF will automatically discover your DbConfiguration.</span></span> <span data-ttu-id="96908-125">Yapılandırma dosyanızda DbConfiguration 'ı ne zaman belirtmeniz gerektiği hakkında ayrıntılı bilgi için [kod tabanlı yapılandırmanın](code-based.md) **hareketli DBConfiguration** bölümüne bakın.</span><span class="sxs-lookup"><span data-stu-id="96908-125">For details of when you may need to specify DbConfiguration in your config file see the **Moving DbConfiguration** section of [Code-Based Configuration](code-based.md).</span></span>  
 
-<span data-ttu-id="4c783-126">DbConfiguration türünü belirlemek için derleme nitelikli tür adı belirtin. **codeConfigurationType** öğesi.</span><span class="sxs-lookup"><span data-stu-id="4c783-126">To set a DbConfiguration type, you specify the assembly qualified type name in the **codeConfigurationType** element.</span></span>  
+<span data-ttu-id="96908-126">Bir DbConfiguration türü ayarlamak için **Codeconfigurationtype** öğesinde derleme nitelikli tür adını belirtirsiniz.</span><span class="sxs-lookup"><span data-stu-id="96908-126">To set a DbConfiguration type, you specify the assembly qualified type name in the **codeConfigurationType** element.</span></span>  
 
 > [!NOTE]
-> <span data-ttu-id="4c783-127">Bir bütünleştirilmiş kod adı türü bulunan derleme ardından virgül tarafından izlenen ad alanı tam adıdır.</span><span class="sxs-lookup"><span data-stu-id="4c783-127">An assembly qualified name is the namespace qualified name, followed by a comma, then the assembly that the type resides in.</span></span> <span data-ttu-id="4c783-128">İsteğe bağlı olarak yapabilecekleriniz de derleme sürümü, kültürü ve genel anahtar belirtecini belirtin.</span><span class="sxs-lookup"><span data-stu-id="4c783-128">You can optionally also specify the assembly version, culture and public key token.</span></span>  
+> <span data-ttu-id="96908-127">Bütünleştirilmiş kod nitelikli adı ad alanı nitelenmiş addır, ardından virgül ve türün bulunduğu derleme.</span><span class="sxs-lookup"><span data-stu-id="96908-127">An assembly qualified name is the namespace qualified name, followed by a comma, then the assembly that the type resides in.</span></span> <span data-ttu-id="96908-128">İsteğe bağlı olarak, derleme sürümünü, kültürü ve ortak anahtar belirtecini de belirtebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="96908-128">You can optionally also specify the assembly version, culture and public key token.</span></span>  
 
 ``` xml
 <entityFramework codeConfigurationType="MyNamespace.MyConfiguration, MyAssembly">
 </entityFramework>
 ```  
 
-## <a name="ef-database-providers-ef6-onwards"></a><span data-ttu-id="4c783-129">EF veritabanı sağlayıcıları (EF6 sonrası)</span><span class="sxs-lookup"><span data-stu-id="4c783-129">EF Database Providers (EF6 Onwards)</span></span>  
+## <a name="ef-database-providers-ef6-onwards"></a><span data-ttu-id="96908-129">EF veritabanı sağlayıcıları (EF6 sürümleri)</span><span class="sxs-lookup"><span data-stu-id="96908-129">EF Database Providers (EF6 Onwards)</span></span>  
 
-<span data-ttu-id="4c783-130">EF6 önce veritabanı sağlayıcısı Entity Framework özgü bölümlerini çekirdek ADO.NET sağlayıcısı bir parçası olarak dahil edilmesi gerekti.</span><span class="sxs-lookup"><span data-stu-id="4c783-130">Prior to EF6, Entity Framework-specific parts of a database provider had to be included as part of the core ADO.NET provider.</span></span> <span data-ttu-id="4c783-131">EF6 ile başlayarak, EF belirli kısımlarını artık yönetilir ve ayrı olarak kayıtlı.</span><span class="sxs-lookup"><span data-stu-id="4c783-131">Starting with EF6, the EF specific parts are now managed and registered separately.</span></span>  
+<span data-ttu-id="96908-130">EF6 'ten önce, bir veritabanı sağlayıcısının Entity Framework özgü bölümlerinin çekirdek ADO.NET sağlayıcısı 'nın bir parçası olarak eklenmesi gerekiyordu.</span><span class="sxs-lookup"><span data-stu-id="96908-130">Prior to EF6, Entity Framework-specific parts of a database provider had to be included as part of the core ADO.NET provider.</span></span> <span data-ttu-id="96908-131">EF6 ile başlayarak, EF 'e özgü parçalar artık yönetilir ve ayrı olarak kaydedilir.</span><span class="sxs-lookup"><span data-stu-id="96908-131">Starting with EF6, the EF specific parts are now managed and registered separately.</span></span>  
 
-<span data-ttu-id="4c783-132">Normalde kendiniz sağlayıcılarını kaydetme gerekmez.</span><span class="sxs-lookup"><span data-stu-id="4c783-132">Normally you won't need to register providers yourself.</span></span> <span data-ttu-id="4c783-133">Yüklediğinizde bu genellikle sağlayıcı tarafından gerçekleştirilir.</span><span class="sxs-lookup"><span data-stu-id="4c783-133">This will typically be done by the provider when you install it.</span></span>  
+<span data-ttu-id="96908-132">Normalde, sağlayıcıları kendiniz kaydetmeniz gerekmez.</span><span class="sxs-lookup"><span data-stu-id="96908-132">Normally you won't need to register providers yourself.</span></span> <span data-ttu-id="96908-133">Bu işlem genellikle sağlayıcı tarafından yüklendiğinde yapılır.</span><span class="sxs-lookup"><span data-stu-id="96908-133">This will typically be done by the provider when you install it.</span></span>  
 
-<span data-ttu-id="4c783-134">Sağlayıcılar dahil ederek kayıtlı bir **sağlayıcısı** öğesi altında **sağlayıcıları** alt kısmında **entityFramework** bölümü.</span><span class="sxs-lookup"><span data-stu-id="4c783-134">Providers are registered by including a **provider** element under the **providers** child section of the **entityFramework** section.</span></span> <span data-ttu-id="4c783-135">Sağlayıcı girişi için gerekli iki öznitelikleri vardır:</span><span class="sxs-lookup"><span data-stu-id="4c783-135">There are two required attributes for a provider entry:</span></span>  
+<span data-ttu-id="96908-134">Sağlayıcılar, **EntityFramework** bölümünün **sağlayıcılar** alt bölümü altına bir **sağlayıcı** öğesi eklenerek kaydedilir.</span><span class="sxs-lookup"><span data-stu-id="96908-134">Providers are registered by including a **provider** element under the **providers** child section of the **entityFramework** section.</span></span> <span data-ttu-id="96908-135">Sağlayıcı girişi için iki gerekli öznitelik vardır:</span><span class="sxs-lookup"><span data-stu-id="96908-135">There are two required attributes for a provider entry:</span></span>  
 
-- <span data-ttu-id="4c783-136">**Invariantname** temel ADO.NET sağlayıcısı tanımlayan bu EF sağlayıcısı hedefleri</span><span class="sxs-lookup"><span data-stu-id="4c783-136">**invariantName** identifies the core ADO.NET provider that this EF provider targets</span></span>  
-- <span data-ttu-id="4c783-137">**tür** EF sağlayıcı uygulaması derleme nitelikli tür adı</span><span class="sxs-lookup"><span data-stu-id="4c783-137">**type** is the assembly qualified type name of the EF provider implementation</span></span>  
+- <span data-ttu-id="96908-136">**InvariantName** , bu EF sağlayıcının hedeflediği Core ADO.net sağlayıcısını tanımlar</span><span class="sxs-lookup"><span data-stu-id="96908-136">**invariantName** identifies the core ADO.NET provider that this EF provider targets</span></span>  
+- <span data-ttu-id="96908-137">**tür** , EF sağlayıcı uygulamasının derleme nitelikli tür adıdır</span><span class="sxs-lookup"><span data-stu-id="96908-137">**type** is the assembly qualified type name of the EF provider implementation</span></span>  
 
 > [!NOTE]
-> <span data-ttu-id="4c783-138">Bir bütünleştirilmiş kod adı türü bulunan derleme ardından virgül tarafından izlenen ad alanı tam adıdır.</span><span class="sxs-lookup"><span data-stu-id="4c783-138">An assembly qualified name is the namespace qualified name, followed by a comma, then the assembly that the type resides in.</span></span> <span data-ttu-id="4c783-139">İsteğe bağlı olarak yapabilecekleriniz de derleme sürümü, kültürü ve genel anahtar belirtecini belirtin.</span><span class="sxs-lookup"><span data-stu-id="4c783-139">You can optionally also specify the assembly version, culture and public key token.</span></span>  
+> <span data-ttu-id="96908-138">Bütünleştirilmiş kod nitelikli adı ad alanı nitelenmiş addır, ardından virgül ve türün bulunduğu derleme.</span><span class="sxs-lookup"><span data-stu-id="96908-138">An assembly qualified name is the namespace qualified name, followed by a comma, then the assembly that the type resides in.</span></span> <span data-ttu-id="96908-139">İsteğe bağlı olarak, derleme sürümünü, kültürü ve ortak anahtar belirtecini de belirtebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="96908-139">You can optionally also specify the assembly version, culture and public key token.</span></span>  
 
-<span data-ttu-id="4c783-140">Örneğin, Entity Framework yüklediğinizde, varsayılan SQL Server sağlayıcıyı kaydetmek için oluşturulan girişi aşağıda verilmiştir.</span><span class="sxs-lookup"><span data-stu-id="4c783-140">As an example here is the entry created to register the default SQL Server provider when you install Entity Framework.</span></span>  
+<span data-ttu-id="96908-140">Bir örnek olarak, Entity Framework yüklediğinizde varsayılan SQL Server sağlayıcıyı kaydetmek için oluşturulan girdidir.</span><span class="sxs-lookup"><span data-stu-id="96908-140">As an example here is the entry created to register the default SQL Server provider when you install Entity Framework.</span></span>  
 
 ``` xml  
 <providers>
@@ -106,11 +106,11 @@ ms.locfileid: "47415789"
 </providers>
 ```  
 
-## <a name="interceptors-ef61-onwards"></a><span data-ttu-id="4c783-141">Dinleyiciler (EF6.1 ve sonraki sürümler)</span><span class="sxs-lookup"><span data-stu-id="4c783-141">Interceptors (EF6.1 Onwards)</span></span>  
+## <a name="interceptors-ef61-onwards"></a><span data-ttu-id="96908-141">Yakalayıcılar (EF 6.1 ve sonraki sürümler)</span><span class="sxs-lookup"><span data-stu-id="96908-141">Interceptors (EF6.1 Onwards)</span></span>  
 
-<span data-ttu-id="4c783-142">Kesiciler, EF6.1 ile başlayan yapılandırma dosyasında kaydedebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="4c783-142">Starting with EF6.1 you can register interceptors in the configuration file.</span></span> <span data-ttu-id="4c783-143">Kesiciler, EF açılış bağlantıları, vb. veritabanı sorguları, yürütme gibi bazı işlemleri gerçekleştirirken ek mantık çalıştırmanıza olanak tanır.</span><span class="sxs-lookup"><span data-stu-id="4c783-143">Interceptors allow you to run additional logic when EF performs certain operations, such as executing database queries, opening connections, etc.</span></span>  
+<span data-ttu-id="96908-142">EF 6.1 ile başlayarak, yapılandırma dosyasına dinleyici kaydedebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="96908-142">Starting with EF6.1 you can register interceptors in the configuration file.</span></span> <span data-ttu-id="96908-143">Yakalayıcılar, veritabanı sorguları yürütme, bağlantılar açma vb. gibi belirli işlemleri gerçekleştirdiğinde, ek mantık çalıştırmanızı sağlar.</span><span class="sxs-lookup"><span data-stu-id="96908-143">Interceptors allow you to run additional logic when EF performs certain operations, such as executing database queries, opening connections, etc.</span></span>  
 
-<span data-ttu-id="4c783-144">Kesiciler dahil ederek kayıtlı bir **dinleyiciyi** öğesi altında **dinleyicileri** alt kısmında **entityFramework** bölümü.</span><span class="sxs-lookup"><span data-stu-id="4c783-144">Interceptors are registered by including an **interceptor** element under the **interceptors** child section of the **entityFramework** section.</span></span> <span data-ttu-id="4c783-145">Örneğin, aşağıdaki yapılandırma yerleşik kaydeder **DatabaseLogger** tüm veritabanı işlemleri konsola oturum dinleyiciyi.</span><span class="sxs-lookup"><span data-stu-id="4c783-145">For example, the following configuration registers the built-in **DatabaseLogger** interceptor that will log all database operations to the Console.</span></span>  
+<span data-ttu-id="96908-144">Dinleyici oluşturma, **EntityFramework** bölümünün alt bölümünün altına bir **yakalayıcısı** öğesi eklenerek kaydedilir.</span><span class="sxs-lookup"><span data-stu-id="96908-144">Interceptors are registered by including an **interceptor** element under the **interceptors** child section of the **entityFramework** section.</span></span> <span data-ttu-id="96908-145">Örneğin, aşağıdaki yapılandırma, tüm veritabanı işlemlerini konsola kaydedecek yerleşik **Databasegünlükçü** yakalayıcısını kaydeder.</span><span class="sxs-lookup"><span data-stu-id="96908-145">For example, the following configuration registers the built-in **DatabaseLogger** interceptor that will log all database operations to the Console.</span></span>  
 
 ``` xml  
 <interceptors>
@@ -118,9 +118,9 @@ ms.locfileid: "47415789"
 </interceptors>
 ```  
 
-### <a name="logging-database-operations-to-a-file-ef61-onwards"></a><span data-ttu-id="4c783-146">Günlük veritabanı işlemleri bir dosyaya (EF6.1 ve sonraki sürümler)</span><span class="sxs-lookup"><span data-stu-id="4c783-146">Logging Database Operations to a File (EF6.1 Onwards)</span></span>  
+### <a name="logging-database-operations-to-a-file-ef61-onwards"></a><span data-ttu-id="96908-146">Veritabanı Işlemlerini bir dosyaya kaydetme (EF 6.1 ve sonraki sürümler)</span><span class="sxs-lookup"><span data-stu-id="96908-146">Logging Database Operations to a File (EF6.1 Onwards)</span></span>  
 
-<span data-ttu-id="4c783-147">Günlük bir sorunla ilgili hataları ayıklamak yardımcı olmak için mevcut bir uygulamaya eklemek istediğiniz yapılandırma dosyası aracılığıyla dinleyicileri kaydetme özellikle yararlı olur.</span><span class="sxs-lookup"><span data-stu-id="4c783-147">Registering interceptors via the config file is especially useful when you want to add logging to an existing application to help debug an issue.</span></span> <span data-ttu-id="4c783-148">**DatabaseLogger** Oluşturucu parametresi olarak dosya adı sağlayarak dosyaya günlük kaydı destekler.</span><span class="sxs-lookup"><span data-stu-id="4c783-148">**DatabaseLogger** supports logging to a file by supplying the file name as a constructor parameter.</span></span>  
+<span data-ttu-id="96908-147">Bir sorunu ayıklamanıza yardımcı olması için, mevcut bir uygulamaya günlük eklemek istediğinizde özellikle de yapılandırma dosyası aracılığıyla kayıt yaptırıcılar yararlı olur.</span><span class="sxs-lookup"><span data-stu-id="96908-147">Registering interceptors via the config file is especially useful when you want to add logging to an existing application to help debug an issue.</span></span> <span data-ttu-id="96908-148">**Databasegünlükçü** , dosya adını bir oluşturucu parametresi olarak sağlayarak bir dosyaya günlük kaydını destekler.</span><span class="sxs-lookup"><span data-stu-id="96908-148">**DatabaseLogger** supports logging to a file by supplying the file name as a constructor parameter.</span></span>  
 
 ``` xml  
 <interceptors>
@@ -132,7 +132,7 @@ ms.locfileid: "47415789"
 </interceptors>
 ```  
 
-<span data-ttu-id="4c783-149">Varsayılan olarak bu günlük dosyası, uygulama her başlatıldığında yeni bir dosya ile üzerine yazılmasına neden olur.</span><span class="sxs-lookup"><span data-stu-id="4c783-149">By default this will cause the log file to be overwritten with a new file each time the app starts.</span></span> <span data-ttu-id="4c783-150">Bunun yerine'ına eklenecek dosya zaten varsa kullanın aşağıdakine benzer:</span><span class="sxs-lookup"><span data-stu-id="4c783-150">To instead append to the log file if it already exists use something like:</span></span>  
+<span data-ttu-id="96908-149">Bu, varsayılan olarak, uygulama her başlatıldığında günlük dosyasının üzerine yazılmasına neden olur.</span><span class="sxs-lookup"><span data-stu-id="96908-149">By default this will cause the log file to be overwritten with a new file each time the app starts.</span></span> <span data-ttu-id="96908-150">Bunun yerine, zaten varsa günlük dosyasına ekleyin, örneğin:</span><span class="sxs-lookup"><span data-stu-id="96908-150">To instead append to the log file if it already exists use something like:</span></span>  
 
 ``` xml  
 <interceptors>
@@ -145,20 +145,20 @@ ms.locfileid: "47415789"
 </interceptors>
 ```  
 
-<span data-ttu-id="4c783-151">Hakkında daha fazla bilgi için **DatabaseLogger** ve dinleyicileri kayıt, blog gönderisine bakın [EF 6.1: derlemeden günlüğünü açma](https://blog.oneunicorn.com/2014/02/09/ef-6-1-turning-on-logging-without-recompiling/).</span><span class="sxs-lookup"><span data-stu-id="4c783-151">For additional information on **DatabaseLogger** and registering interceptors, see the blog post [EF 6.1: Turning on logging without recompiling](https://blog.oneunicorn.com/2014/02/09/ef-6-1-turning-on-logging-without-recompiling/).</span></span>  
+<span data-ttu-id="96908-151">**Databasegünlükçü** ve kayıt yaptırıcılar hakkında daha fazla bilgi için, bkz. Web [günlüğü gönderi aşv 6,1: Yeniden derleme](https://blog.oneunicorn.com/2014/02/09/ef-6-1-turning-on-logging-without-recompiling/)olmadan günlüğe kaydetme açılıyor.</span><span class="sxs-lookup"><span data-stu-id="96908-151">For additional information on **DatabaseLogger** and registering interceptors, see the blog post [EF 6.1: Turning on logging without recompiling](https://blog.oneunicorn.com/2014/02/09/ef-6-1-turning-on-logging-without-recompiling/).</span></span>  
 
-## <a name="code-first-default-connection-factory"></a><span data-ttu-id="4c783-152">Kod ilk varsayılan bağlantı üretecini</span><span class="sxs-lookup"><span data-stu-id="4c783-152">Code First Default Connection Factory</span></span>  
+## <a name="code-first-default-connection-factory"></a><span data-ttu-id="96908-152">Code First varsayılan bağlantı fabrikası</span><span class="sxs-lookup"><span data-stu-id="96908-152">Code First Default Connection Factory</span></span>  
 
-<span data-ttu-id="4c783-153">Yapılandırma bölümü, Code First bağlam için kullanılacak bir veritabanı bulmak için kullanacağı varsayılan bağlantı üretecini belirtmenizi sağlar.</span><span class="sxs-lookup"><span data-stu-id="4c783-153">The configuration section allows you to specify a default connection factory that Code First should use to locate a database to use for a context.</span></span> <span data-ttu-id="4c783-154">Bağlantı dizesi yapılandırma dosyasının bir bağlam için eklendiğinde varsayılan bağlantı üretecini yalnızca kullanılır.</span><span class="sxs-lookup"><span data-stu-id="4c783-154">The default connection factory is only used when no connection string has been added to the configuration file for a context.</span></span>  
+<span data-ttu-id="96908-153">Yapılandırma bölümü, Code First bir bağlam için kullanılacak veritabanını bulmak için kullanması gereken varsayılan bir bağlantı fabrikası belirtmenize olanak tanır.</span><span class="sxs-lookup"><span data-stu-id="96908-153">The configuration section allows you to specify a default connection factory that Code First should use to locate a database to use for a context.</span></span> <span data-ttu-id="96908-154">Varsayılan bağlantı fabrikası yalnızca bir bağlam için yapılandırma dosyasına bir bağlantı dizesi eklendiğinde kullanılır.</span><span class="sxs-lookup"><span data-stu-id="96908-154">The default connection factory is only used when no connection string has been added to the configuration file for a context.</span></span>  
 
-<span data-ttu-id="4c783-155">EF NuGet paketi yüklendiğinde varsayılan bağlantı üretecini SQL Express LocalDB, hangisinin bağlı olarak, yüklü olduğu için veya işaret eden kaydedildi.</span><span class="sxs-lookup"><span data-stu-id="4c783-155">When you installed the EF NuGet package a default connection factory was registered that points to either SQL Express or LocalDB, depending on which one you have installed.</span></span>  
+<span data-ttu-id="96908-155">EF NuGet paketini yüklediğinizde, hangisinin yüklü olduğuna bağlı olarak SQL Express veya LocalDB 'ye işaret eden bir varsayılan bağlantı fabrikası kayıtlı olmalıdır.</span><span class="sxs-lookup"><span data-stu-id="96908-155">When you installed the EF NuGet package a default connection factory was registered that points to either SQL Express or LocalDB, depending on which one you have installed.</span></span>  
 
-<span data-ttu-id="4c783-156">Bağlantı üreteci ayarlamak için derleme nitelikli tür adı belirtin. **defaultConnectionFactory** öğesi.</span><span class="sxs-lookup"><span data-stu-id="4c783-156">To set a connection factory, you specify the assembly qualified type name in the **defaultConnectionFactory** element.</span></span>  
+<span data-ttu-id="96908-156">Bir bağlantı fabrikası ayarlamak için, **Defaultconnectionfactory** öğesinde derleme nitelikli tür adını belirtirsiniz.</span><span class="sxs-lookup"><span data-stu-id="96908-156">To set a connection factory, you specify the assembly qualified type name in the **defaultConnectionFactory** element.</span></span>  
 
 > [!NOTE]
-> <span data-ttu-id="4c783-157">Bir bütünleştirilmiş kod adı türü bulunan derleme ardından virgül tarafından izlenen ad alanı tam adıdır.</span><span class="sxs-lookup"><span data-stu-id="4c783-157">An assembly qualified name is the namespace qualified name, followed by a comma, then the assembly that the type resides in.</span></span> <span data-ttu-id="4c783-158">İsteğe bağlı olarak yapabilecekleriniz de derleme sürümü, kültürü ve genel anahtar belirtecini belirtin.</span><span class="sxs-lookup"><span data-stu-id="4c783-158">You can optionally also specify the assembly version, culture and public key token.</span></span>  
+> <span data-ttu-id="96908-157">Bütünleştirilmiş kod nitelikli adı ad alanı nitelenmiş addır, ardından virgül ve türün bulunduğu derleme.</span><span class="sxs-lookup"><span data-stu-id="96908-157">An assembly qualified name is the namespace qualified name, followed by a comma, then the assembly that the type resides in.</span></span> <span data-ttu-id="96908-158">İsteğe bağlı olarak, derleme sürümünü, kültürü ve ortak anahtar belirtecini de belirtebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="96908-158">You can optionally also specify the assembly version, culture and public key token.</span></span>  
 
-<span data-ttu-id="4c783-159">Kendi varsayılan bağlantı üretecini ayarlamanın bir örnek aşağıda verilmiştir:</span><span class="sxs-lookup"><span data-stu-id="4c783-159">Here is an example of setting your own default connection factory:</span></span>  
+<span data-ttu-id="96908-159">Kendi varsayılan bağlantı fabrikanızı ayarlamaya bir örnek aşağıda verilmiştir:</span><span class="sxs-lookup"><span data-stu-id="96908-159">Here is an example of setting your own default connection factory:</span></span>  
 
 ``` xml  
 <entityFramework>
@@ -166,9 +166,9 @@ ms.locfileid: "47415789"
 </entityFramework>
 ```  
 
-<span data-ttu-id="4c783-160">Yukarıdaki örnekte, parametresiz bir oluşturucu özel fabrika gerektirir.</span><span class="sxs-lookup"><span data-stu-id="4c783-160">The above example requires the custom factory to have a parameterless constructor.</span></span> <span data-ttu-id="4c783-161">Gerekirse, oluşturucu parametresi kullanarak belirtebilirsiniz **parametreleri** öğesi.</span><span class="sxs-lookup"><span data-stu-id="4c783-161">If needed, you can specify constructor parameters using the **parameters** element.</span></span>  
+<span data-ttu-id="96908-160">Yukarıdaki örnek, özel fabrikasının parametresiz bir oluşturucuya sahip olmasını gerektirir.</span><span class="sxs-lookup"><span data-stu-id="96908-160">The above example requires the custom factory to have a parameterless constructor.</span></span> <span data-ttu-id="96908-161">Gerekirse, **Parameters** öğesini kullanarak Oluşturucu parametreleri belirtebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="96908-161">If needed, you can specify constructor parameters using the **parameters** element.</span></span>  
 
-<span data-ttu-id="4c783-162">Örneğin, varlık Çerçevesi'nde bulunan SqlCeConnectionFactory, oluşturucusuna bir sağlayıcının değişmez adı sağlamanız gerekir.</span><span class="sxs-lookup"><span data-stu-id="4c783-162">For example, the SqlCeConnectionFactory, that is included in Entity Framework, requires you to supply a provider invariant name to the constructor.</span></span> <span data-ttu-id="4c783-163">Sağlayıcının değişmez adı kullanmak istediğiniz SQL Compact sürümünü tanımlar.</span><span class="sxs-lookup"><span data-stu-id="4c783-163">The provider invariant name identifies the version of SQL Compact you want to use.</span></span> <span data-ttu-id="4c783-164">Aşağıdaki yapılandırma, SQL Compact sürüm 4. 0'ın varsayılan olarak kullanılacak bağlamları neden olur.</span><span class="sxs-lookup"><span data-stu-id="4c783-164">The following configuration will cause contexts to use SQL Compact version 4.0 by default.</span></span>  
+<span data-ttu-id="96908-162">Örneğin, Entity Framework dahil olan SqlCeConnectionFactory, oluşturucuya bir sağlayıcı sabit adı sağlamanız gerekir.</span><span class="sxs-lookup"><span data-stu-id="96908-162">For example, the SqlCeConnectionFactory, that is included in Entity Framework, requires you to supply a provider invariant name to the constructor.</span></span> <span data-ttu-id="96908-163">Sağlayıcı sabit adı, kullanmak istediğiniz SQL Compact sürümünü tanımlar.</span><span class="sxs-lookup"><span data-stu-id="96908-163">The provider invariant name identifies the version of SQL Compact you want to use.</span></span> <span data-ttu-id="96908-164">Aşağıdaki yapılandırma, bağlamların SQL Compact sürüm 4,0 ' i varsayılan olarak kullanmasına neden olur.</span><span class="sxs-lookup"><span data-stu-id="96908-164">The following configuration will cause contexts to use SQL Compact version 4.0 by default.</span></span>  
 
 ``` xml  
 <entityFramework>
@@ -180,9 +180,9 @@ ms.locfileid: "47415789"
 </entityFramework>
 ```  
 
-<span data-ttu-id="4c783-165">Varsayılan bağlantı üretecini ayarlamazsanız, Code First işaret SqlConnectionFactory kullanan `.\SQLEXPRESS`.</span><span class="sxs-lookup"><span data-stu-id="4c783-165">If you don’t set a default connection factory, Code First uses the SqlConnectionFactory, pointing to `.\SQLEXPRESS`.</span></span> <span data-ttu-id="4c783-166">SqlConnectionFactory, ayrıca bağlantı dizesi bölümleri geçersiz kılmak izin veren bir oluşturucusu vardır.</span><span class="sxs-lookup"><span data-stu-id="4c783-166">SqlConnectionFactory also has a constructor that allows you to override parts of the connection string.</span></span> <span data-ttu-id="4c783-167">Başka bir SQL Server örneğini kullanmak istiyorsanız `.\SQLEXPRESS` sunucusu için bu oluşturucu kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="4c783-167">If you want to use a SQL Server instance other than `.\SQLEXPRESS` you can use this constructor to set the server.</span></span>  
+<span data-ttu-id="96908-165">Varsayılan bir bağlantı fabrikası ayarlamazsanız Code First, ' nin üzerine gelip `.\SQLEXPRESS`SqlConnectionFactory 'yi kullanır.</span><span class="sxs-lookup"><span data-stu-id="96908-165">If you don’t set a default connection factory, Code First uses the SqlConnectionFactory, pointing to `.\SQLEXPRESS`.</span></span> <span data-ttu-id="96908-166">SqlConnectionFactory ayrıca bağlantı dizesinin parçalarını geçersiz kılmanızı sağlayan bir oluşturucuya sahiptir.</span><span class="sxs-lookup"><span data-stu-id="96908-166">SqlConnectionFactory also has a constructor that allows you to override parts of the connection string.</span></span> <span data-ttu-id="96908-167">Dışında SQL Server bir örnek `.\SQLEXPRESS` kullanmak istiyorsanız, bu oluşturucuyu sunucuyu ayarlamak için kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="96908-167">If you want to use a SQL Server instance other than `.\SQLEXPRESS` you can use this constructor to set the server.</span></span>  
 
-<span data-ttu-id="4c783-168">Aşağıdaki yapılandırmayı kullanmak Code First neden **MyDatabaseServer** için ayarlanmış bir açık bir bağlantı dizesi yok bağlamı.</span><span class="sxs-lookup"><span data-stu-id="4c783-168">The following configuration will cause Code First to use **MyDatabaseServer** for contexts that don’t have an explicit connection string set.</span></span>  
+<span data-ttu-id="96908-168">Aşağıdaki yapılandırma, Code First bir açık bağlantı dizesi kümesi olmayan bağlamlarda **MyDatabaseServer** 'ı kullanmasına neden olur.</span><span class="sxs-lookup"><span data-stu-id="96908-168">The following configuration will cause Code First to use **MyDatabaseServer** for contexts that don’t have an explicit connection string set.</span></span>  
 
 ``` xml  
 <entityFramework>
@@ -194,19 +194,19 @@ ms.locfileid: "47415789"
 </entityFramework>
 ```  
 
-<span data-ttu-id="4c783-169">Varsayılan olarak, oluşturucu bağımsız değişkenleri dize türünde olduğu varsayılır.</span><span class="sxs-lookup"><span data-stu-id="4c783-169">By default, it’s assumed that constructor arguments are of type string.</span></span> <span data-ttu-id="4c783-170">Bunu değiştirmek için type özniteliği kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="4c783-170">You can use the type attribute to change this.</span></span>  
+<span data-ttu-id="96908-169">Varsayılan olarak, Oluşturucu bağımsız değişkenlerinin dize türünde olduğu varsayılır.</span><span class="sxs-lookup"><span data-stu-id="96908-169">By default, it’s assumed that constructor arguments are of type string.</span></span> <span data-ttu-id="96908-170">Bunu değiştirmek için Type özniteliğini kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="96908-170">You can use the type attribute to change this.</span></span>  
 
 ``` xml
 <parameter value="2" type="System.Int32" />
 ```  
 
-## <a name="database-initializers"></a><span data-ttu-id="4c783-171">Veritabanı başlatıcıları</span><span class="sxs-lookup"><span data-stu-id="4c783-171">Database Initializers</span></span>  
+## <a name="database-initializers"></a><span data-ttu-id="96908-171">Veritabanı başlatıcıları</span><span class="sxs-lookup"><span data-stu-id="96908-171">Database Initializers</span></span>  
 
-<span data-ttu-id="4c783-172">Veritabanı başlatıcılar bağlam içi olarak yapılandırılır.</span><span class="sxs-lookup"><span data-stu-id="4c783-172">Database initializers are configured on a per-context basis.</span></span> <span data-ttu-id="4c783-173">Kullanılarak yapılandırma dosyasında ayarlanabilir **bağlam** öğesi.</span><span class="sxs-lookup"><span data-stu-id="4c783-173">They can be set in the configuration file using the **context** element.</span></span> <span data-ttu-id="4c783-174">Bu öğesi derleme nitelenmiş adı yapılandırılmakta içeriği tanımlamak için kullanır.</span><span class="sxs-lookup"><span data-stu-id="4c783-174">This element uses the assembly qualified name to identify the context being configured.</span></span>  
+<span data-ttu-id="96908-172">Veritabanı başlatıcıları bağlam temelinde yapılandırılır.</span><span class="sxs-lookup"><span data-stu-id="96908-172">Database initializers are configured on a per-context basis.</span></span> <span data-ttu-id="96908-173">**Bağlam** öğesi kullanılarak yapılandırma dosyasında ayarlanamazlar.</span><span class="sxs-lookup"><span data-stu-id="96908-173">They can be set in the configuration file using the **context** element.</span></span> <span data-ttu-id="96908-174">Bu öğe, yapılandırılmakta olan bağlamı tanımlamak için derleme nitelikli adını kullanır.</span><span class="sxs-lookup"><span data-stu-id="96908-174">This element uses the assembly qualified name to identify the context being configured.</span></span>  
 
-<span data-ttu-id="4c783-175">Varsayılan olarak, Code First bağlamları Createdatabaseıfnotexists Başlatıcı kullanmak üzere yapılandırılmış.</span><span class="sxs-lookup"><span data-stu-id="4c783-175">By default, Code First contexts are configured to use the CreateDatabaseIfNotExists initializer.</span></span> <span data-ttu-id="4c783-176">Var olan bir **disableDatabaseInitialization** özniteliği **bağlam** veritabanı başlatma devre dışı bırakmak için kullanılabilir öğe.</span><span class="sxs-lookup"><span data-stu-id="4c783-176">There is a **disableDatabaseInitialization** attribute on the **context** element that can be used to disable database initialization.</span></span>  
+<span data-ttu-id="96908-175">Varsayılan olarak, Code First bağlamları CreateDatabaseIfNotExists başlatıcısı 'nı kullanacak şekilde yapılandırılır.</span><span class="sxs-lookup"><span data-stu-id="96908-175">By default, Code First contexts are configured to use the CreateDatabaseIfNotExists initializer.</span></span> <span data-ttu-id="96908-176">**Bağlam** öğesinde, veritabanı başlatmasını devre dışı bırakmak için kullanılabilecek bir **disabledatabaseınitialization** özniteliği vardır.</span><span class="sxs-lookup"><span data-stu-id="96908-176">There is a **disableDatabaseInitialization** attribute on the **context** element that can be used to disable database initialization.</span></span>  
 
-<span data-ttu-id="4c783-177">Örneğin, aşağıdaki yapılandırma veritabanı başlatma da MyAssembly.dll tanımlanan Blogging.BlogContext bağlamı için devre dışı bırakır.</span><span class="sxs-lookup"><span data-stu-id="4c783-177">For example, the following configuration disables database initialization for the Blogging.BlogContext context defined in MyAssembly.dll.</span></span>  
+<span data-ttu-id="96908-177">Örneğin, aşağıdaki yapılandırma MyAssembly. dll içinde tanımlanan blog. BlogContext bağlamı için veritabanını başlatmayı devre dışı bırakır.</span><span class="sxs-lookup"><span data-stu-id="96908-177">For example, the following configuration disables database initialization for the Blogging.BlogContext context defined in MyAssembly.dll.</span></span>  
 
 ``` xml  
 <contexts>
@@ -214,7 +214,7 @@ ms.locfileid: "47415789"
 </contexts>
 ```  
 
-<span data-ttu-id="4c783-178">Kullanabileceğiniz **databaseInitializer** özel bir başlatıcı ayarlamak için öğesi.</span><span class="sxs-lookup"><span data-stu-id="4c783-178">You can use the **databaseInitializer** element to set a custom initializer.</span></span>  
+<span data-ttu-id="96908-178">Özel bir başlatıcı ayarlamak için **Databaseınitializer** öğesini kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="96908-178">You can use the **databaseInitializer** element to set a custom initializer.</span></span>  
 
 ``` xml
 <contexts>
@@ -224,7 +224,7 @@ ms.locfileid: "47415789"
 </contexts>
 ```  
 
-<span data-ttu-id="4c783-179">Oluşturucu parametresi varsayılan bağlantı fabrikaları aynı sözdizimini kullanır.</span><span class="sxs-lookup"><span data-stu-id="4c783-179">Constructor parameters use the same syntax as default connection factories.</span></span>  
+<span data-ttu-id="96908-179">Oluşturucu parametreleri varsayılan bağlantı fabrikaları ile aynı sözdizimini kullanır.</span><span class="sxs-lookup"><span data-stu-id="96908-179">Constructor parameters use the same syntax as default connection factories.</span></span>  
 
 ``` xml  
 <contexts>
@@ -238,9 +238,9 @@ ms.locfileid: "47415789"
 </contexts>
 ```  
 
-<span data-ttu-id="4c783-180">Entity Framework'e dahil edilen genel veritabanı başlatıcılar birini yapılandırabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="4c783-180">You can configure one of the generic database initializers that are included in Entity Framework.</span></span> <span data-ttu-id="4c783-181">**Türü** özniteliği, genel türler için .NET Framework biçimi kullanır.</span><span class="sxs-lookup"><span data-stu-id="4c783-181">The **type** attribute uses the .NET Framework format for generic types.</span></span>  
+<span data-ttu-id="96908-180">Entity Framework bulunan genel veritabanı başlatıcılarının birini yapılandırabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="96908-180">You can configure one of the generic database initializers that are included in Entity Framework.</span></span> <span data-ttu-id="96908-181">**Tür** özniteliği genel türler için .NET Framework biçimini kullanır.</span><span class="sxs-lookup"><span data-stu-id="96908-181">The **type** attribute uses the .NET Framework format for generic types.</span></span>  
 
-<span data-ttu-id="4c783-182">Örneğin, Code First Migrations'ı kullanıyorsanız, veritabanı kullanılarak otomatik olarak geçirilecek yapılandırabilirsiniz `MigrateDatabaseToLatestVersion<TContext, TMigrationsConfiguration>` Başlatıcı.</span><span class="sxs-lookup"><span data-stu-id="4c783-182">For example, if you are using Code First Migrations, you can configure the database to be migrated automatically using the `MigrateDatabaseToLatestVersion<TContext, TMigrationsConfiguration>` initializer.</span></span>  
+<span data-ttu-id="96908-182">Örneğin, Code First Migrations kullanıyorsanız, veritabanını `MigrateDatabaseToLatestVersion<TContext, TMigrationsConfiguration>` Başlatıcı kullanılarak otomatik olarak geçirilecek şekilde yapılandırabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="96908-182">For example, if you are using Code First Migrations, you can configure the database to be migrated automatically using the `MigrateDatabaseToLatestVersion<TContext, TMigrationsConfiguration>` initializer.</span></span>  
 
 ``` xml
 <contexts>
