@@ -3,12 +3,12 @@ title: WinForms ile veri bağlama-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 80fc5062-2f1c-4dbd-ab6e-b99496784b36
-ms.openlocfilehash: ad55ef4d496bbfe30eafcab9811c92989066519f
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
+ms.openlocfilehash: 3c7c58f5ded29c136bbdca1d81c64b07c53ce583
+ms.sourcegitcommit: 7391cc31193c1216ec9ed485709042ad0c2106cf
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306559"
+ms.lasthandoff: 08/23/2019
+ms.locfileid: "69985476"
 ---
 # <a name="databinding-with-winforms"></a>WinForms ile veri bağlama
 Bu adım adım izlenecek yol, POCO türlerinin bir "ana-ayrıntı" formunda pencere formları (WinForms) denetimlerine nasıl bağlanacağını gösterir. Uygulama, nesneleri veritabanındaki verilerle doldurmak, değişiklikleri izlemek ve verileri veritabanına kalıcı hale getirmek için Entity Framework kullanır.
@@ -267,7 +267,7 @@ Projeyi derleyin.
 
 EF, gezinti özelliğine ilk kez eriştiğinizde ilgili varlıkları veritabanından otomatik olarak yükleme seçeneği sunar. Bu yükleme türü (yavaş yükleme olarak adlandırılır) ile, her gezinti özelliğine ilk kez eriştiğinizde, içerik bağlamda değilse veritabanına karşı ayrı bir sorgu yürütülecektir.
 
-POCO varlık türleri kullanılırken, EF, çalışma zamanı sırasında türetilmiş proxy türlerinin örneklerini oluşturarak ve sonra yükleme kancasını eklemek için sınıflarınızda sanal özellikleri geçersiz kılarak geç yüklemeye erişir. İlgili nesnelerin geç yüklemesini almak için, gezinti özelliği alıcıları ' ı **Public** ve **Virtual** **(Visual Basic** ) olarak bildirmeniz ve sınıfınız mühürlenmemelidir (Visual Basic içinde**NotOverridable** ) . Database First gezinti özelliklerinin kullanılması, yavaş yüklemeyi etkinleştirmek için otomatik olarak sanal hale getirilir. Code First bölümünde, aynı nedenden dolayı gezinti özelliklerini sanal hale getirmeyi seçtik
+POCO varlık türleri kullanılırken, EF, çalışma zamanı sırasında türetilmiş proxy türlerinin örneklerini oluşturarak ve sonra yükleme kancasını eklemek için sınıflarınızda sanal özellikleri geçersiz kılarak geç yüklemeye erişir. İlgili nesnelerin geç yüklemesini almak için, gezinti özelliği alıcıları ' ı **Public** ve **Virtual** (Visual Basic) olarak bildirmeniz ve sınıfınız mühürlenmemelidir (Visual Basic içinde**NotOverridable** ) . Database First gezinti özelliklerinin kullanılması, yavaş yüklemeyi etkinleştirmek için otomatik olarak sanal hale getirilir. Code First bölümünde, aynı nedenden dolayı gezinti özelliklerini sanal hale getirmeyi seçtik
 
 ## <a name="bind-object-to-controls"></a>Nesneyi denetimlere bağlama
 
@@ -280,8 +280,8 @@ Bu WinForms uygulaması için modelde tanımlanan sınıfları veri kaynağı ol
 
     ![veri kaynağı](~/ef6/media/datasource.png)
 
--   Son ' a tıklayın **.** Veri kaynakları *penceresi gösterilmiyorsa, * * * Görünüm-&gt; diğer Windows-&gt; veri kaynakları ' nı seçin* . 
-    *
+-   Son ' a tıklayın **.**
+    Veri kaynakları penceresi görüntülenmiyorsa, **Görünüm-&gt; diğer Windows&gt; -veri kaynakları** ' nı seçin.
 -   Veri kaynakları penceresi otomatik olarak gizlenmemesi için Sabitle simgesine basın. Pencere zaten görünür durumdaysa Yenile düğmesine vurması gerekebilir.
 
     ![Veri kaynağı 2](~/ef6/media/datasource2.png)
