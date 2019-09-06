@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: 2CB5809E-0EFB-44F6-AF14-9D5BFFFBFF9D
 uid: core/what-is-new/ef-core-2.0
-ms.openlocfilehash: 2712845512d9eb349ef3a7e14f4365327db0fcd6
-ms.sourcegitcommit: 7b7f774a5966b20d2aed5435a672a1edbe73b6fb
+ms.openlocfilehash: 28b2180e898b91d233b590b1639674a464f8c679
+ms.sourcegitcommit: 0cc9578fd49802789a00c0044b4e57325476ca2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/17/2019
-ms.locfileid: "69565331"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70271428"
 ---
 # <a name="new-features-in-ef-core-20"></a>EF Core 2,0 ' deki yeni özellikler
 
@@ -303,7 +303,7 @@ Bu, yerel SQLite ikililerini farklı platformlarda dağıtmak için Microsoft. D
 ### <a name="only-one-provider-per-model"></a>Her model için yalnızca bir sağlayıcı
 Sağlayıcıların modelle nasıl etkileşime gireceğini önemli ölçüde genişlettiğini ve kuralların, ek açıklamaların ve akıcı API 'Lerin farklı sağlayıcılarla nasıl çalıştığını basitleştirir.
 
-EF Core 2,0, artık kullanılan her farklı sağlayıcı için farklı bir [IModel](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/IModel.cs) oluşturacak. Bu genellikle uygulama için saydamdır. Bu, alt düzey meta veri API 'lerinin basitleştirdiğini, *ortak ilişkisel meta veri kavramlarının* her zaman `.Relational` `.SqlServer`, `.Sqlite`, vb. bir çağrısıyla yapılan bir çağrı aracılığıyla yapılması için kolaylaştırmıştır.
+EF Core 2,0, artık kullanılan her farklı sağlayıcı için farklı bir [IModel](https://github.com/aspnet/EntityFramework/blob/master/src/EFCore/Metadata/IModel.cs) oluşturacak. Bu genellikle uygulama için saydamdır. Bu, alt düzey meta veri API 'lerinin basitleştirdiğini, *ortak ilişkisel meta veri kavramlarının* her zaman `.Relational` `.SqlServer`, `.Sqlite`, vb. bir çağrısıyla yapılan bir çağrı aracılığıyla yapılması için kolaylaştırmıştır.
 
 ### <a name="consolidated-logging-and-diagnostics"></a>Birleştirilmiş günlüğe kaydetme ve tanılama
 
@@ -311,6 +311,6 @@ Günlüğe kaydetme (ILogger tabanlı) ve tanılama (DiagnosticSource tabanlı) 
 
 Bir ILogger 'a gönderilen iletiler için olay kimlikleri 2,0 içinde değişmiştir. Olay kimlikleri artık EF Core kod genelinde benzersizdir. Bu iletiler artık, örneğin MVC gibi kullanılan yapılandırılmış günlük için standart kalıbı de izler.
 
-Günlükçü kategorileri de değişmiştir. Artık [Dbloggercategory](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/DbLoggerCategory.cs)aracılığıyla erişilen iyi bilinen bir kategori kümesi vardır.
+Günlükçü kategorileri de değişmiştir. Artık [Dbloggercategory](https://github.com/aspnet/EntityFramework/blob/master/src/EFCore/DbLoggerCategory.cs)aracılığıyla erişilen iyi bilinen bir kategori kümesi vardır.
 
 Diagnosticsource olayları artık karşılık gelen `ILogger` iletilerle aynı olay kimliği adlarını kullanır.

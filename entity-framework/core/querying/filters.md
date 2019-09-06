@@ -3,12 +3,12 @@ title: Genel sorgu filtreleri - EF Core
 author: anpete
 ms.date: 11/03/2017
 uid: core/querying/filters
-ms.openlocfilehash: e1cb9f5afc54aaa12e5880ace606277b00911c06
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
+ms.openlocfilehash: c9bbb8a5889834ea078ddb7e432863b3d0cf2ffe
+ms.sourcegitcommit: 0cc9578fd49802789a00c0044b4e57325476ca2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306466"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70271452"
 ---
 # <a name="global-query-filters"></a>Genel sorgu filtreleri
 
@@ -41,6 +41,9 @@ Koşul ifadeleri geçirilen _HasQueryFilter_ çağrıları artık otomatik olara
 
 > [!TIP]
 > DbContext örnek düzeyinde bir alanı kullanımına dikkat edin: `_tenantId` geçerli Kiracı ayarlamak için kullanılır. Model düzeyi filtreleri (diğer bir deyişle, sorguyu yürüten örnek) doğru bağlam örneğinin değerini kullanır.
+
+> [!NOTE]
+> Aynı varlık üzerinde birden çok sorgu filtresi tanımlamak mümkün değildir; yalnızca en son bir değer geçerli olur. Ancak, mantıksal _ve_ işlecini kullanarak birden çok koşuldan oluşan tek bir filtre tanımlayabilirsiniz ([ `&&` içinde C# ](https://docs.microsoft.com/dotnet/csharp/language-reference/operators/boolean-logical-operators#conditional-logical-and-operator-)).
 
 ## <a name="disabling-filters"></a>Filtreleri devre dışı bırakma
 

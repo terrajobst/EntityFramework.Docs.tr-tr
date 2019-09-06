@@ -1,56 +1,56 @@
 ---
-title: -Yenilikler EF6
+title: Yenilikler-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 41d1f86b-ce66-4bf2-8963-48514406fb4c
-ms.openlocfilehash: fcd6339f67a1512dd66220c59537d12cf0b22620
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 01dc618954da5dbd12fbd37c2c47701ce251be92
+ms.sourcegitcommit: 0cc9578fd49802789a00c0044b4e57325476ca2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490304"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70271439"
 ---
-# <a name="whats-new-in-ef6"></a>EF6 yenilikler
+# <a name="whats-new-in-ef6"></a>EF6 'deki yenilikler
 
-En son özellikleri ve kararlılığı en yüksek alma emin olmak için Entity Framework ' son yayınlanan sürümünü kullanmanızı öneririz.
-Ancak, önceki bir sürümü kullanmanız gerekebilir veya yeni yayın öncesi en son yenilikleri denemek isteyebilirsiniz unutmayın.
-EF belirli sürümlerini yüklemek için bkz: [alma Entity Framework](~/ef6/fundamentals/install.md).
+En son özellikleri ve en yüksek kararlılığı elde etmenizi sağlamak için en son yayınlanan Entity Framework sürümünü kullanmanızı kesinlikle öneririz.
+Bununla birlikte, önceki bir sürümü kullanmanız gerektiğini veya en son yayın öncesi sürümde yeni geliştirmeler yapmak isteyebileceğiniz hakkında fark ediyoruz.
+EF 'in belirli sürümlerini yüklemek için bkz. [Get Entity Framework](~/ef6/fundamentals/install.md).
 
-Bu sayfa, her yeni yayın üzerinde dahil özelliklerini içermektedir.
+Bu sayfa, her yeni sürümde bulunan özellikleri belgeler.
 
-## <a name="recent-releases"></a>Yeni sürümler
+## <a name="recent-releases"></a>Son yayınlar
 
-### <a name="ef-tools-update-in-visual-studio-2017-157"></a>Visual Studio 2017 15.7 EF araçları güncelleştirme
+### <a name="ef-tools-update-in-visual-studio-2017-157"></a>Visual Studio 'da EF araçları güncelleştirmesi 2017 15,7
 
-Mayıs 2018'de Visual Studio 2017 15.7 bir parçası olarak EF Araçları'nın güncelleştirilmiş bir sürümünü çıkardık.
-Sık karşılaşılan bazı sorunlu noktaları için geliştirmeler içerir:
+Mayıs 2018 ' de, Visual Studio 2017 15,7 kapsamında EF araçlarının güncelleştirilmiş bir sürümünü yayımladık.
+Bu, bazı yaygın sorun noktaları için iyileştirmeler içerir:
 
-- Birkaç kullanıcı arabirimi erişilebilirliği hata düzeltmeleri
-- Geçici çözüm için mevcut veritabanlarından modelleri oluştururken, SQL Server performans regresyon [#4](https://github.com/aspnet/entityframework6/issues/4)
-- SQL Server'da büyük modeller için modelleri güncelleştirme desteği [#185](https://github.com/aspnet/EntityFramework6/issues/185)
+- Birkaç kullanıcı arabirimi erişilebilirlik hatası düzeltmeleri
+- Mevcut veritabanlarından model oluştururken SQL Server performans gerileme için geçici çözüm [#4](https://github.com/aspnet/entityframework6/issues/4)
+- SQL Server [#185](https://github.com/aspnet/EntityFramework6/issues/185) daha büyük modellerin modellerini güncelleştirme desteği
 
-Başka bir geliştirme bu EF Araçları'nın bu yeni sürümün bu EF 6.2 çalışma zamanı bir modeli içerisinde yeni bir proje oluştururken yüklemesidir. Visual Studio'nun eski sürümleriyle ilgili NuGet paketi sürümünü yükleyerek EF 6.2 çalışma zamanı (aynı zamanda EF'ın önceki bir sürümü) kullanmak da mümkündür.
+EF araçları 'nın bu yeni sürümündeki diğer bir geliştirme, yeni bir projede model oluştururken EF 6,2 çalışma zamanını yüklemektedir. Visual Studio 'nun eski sürümlerinde, NuGet paketinin karşılık gelen sürümünü yükleyerek EF 6,2 çalışma zamanının (EF 'in geçmiş sürümleri) kullanılması mümkündür.
 
-### <a name="ef-62-runtime"></a>EF 6.2 çalışma zamanı
+### <a name="ef-62-runtime"></a>EF 6,2 çalışma zamanı
 
-EF 6.2 çalışma zamanı için NuGet'ın Ekim 2017'de yayınlanmıştır.
-Harika, teşekkür ederiz. topluluğumuza açık kaynağa katkıda bulunanlar, çalışmalarınızda kullanmanız için bölüm, çok sayıda EF 6.2 içerir [düzeltmeleri hataları](https://github.com/aspnet/entityframework6/issues?utf8=%E2%9C%93&q=is%3Aissue%20milestone%3A6.2.0%20is%3Aclosed%20label%3Aclosed-fixed%20-label%3Aarea-tools%20label%3Atype-bug) ve [Ürün geliştirmeleri](https://github.com/aspnet/entityframework6/issues?utf8=%E2%9C%93&q=is%3Aissue%20milestone%3A6.2.0%20is%3Aclosed%20label%3Aclosed-fixed%20-label%3Aarea-tools%20label%3Atype-enhancement%20).
+EF 6,2 çalışma zamanı, Ekim 2017 ' de NuGet 'e yayımlandı.
+Açık kaynak katkıda bulunanlar topluluğumuza yönelik harika bir bölümde Teşekkür ederiz, EF 6,2 birçok [hata](https://github.com/aspnet/entityframework6/issues?utf8=%E2%9C%93&q=is%3Aissue%20milestone%3A6.2.0%20is%3Aclosed%20label%3Aclosed-fixed%20-label%3Aarea-tools%20label%3Atype-bug) düzeltmesi ve [ürün geliştirmesi](https://github.com/aspnet/entityframework6/issues?utf8=%E2%9C%93&q=is%3Aissue%20milestone%3A6.2.0%20is%3Aclosed%20label%3Aclosed-fixed%20-label%3Aarea-tools%20label%3Atype-enhancement%20)içerir.
 
-EF 6.2 çalışma zamanı etkileyen en önemli değişikliklerin kısa bir listesi aşağıda verilmiştir:
+EF 6,2 çalışma zamanını etkileyen en önemli değişikliklerin kısa bir listesi aşağıdadır:
 
-- Başlatma süresi yükleyerek azaltmak tamamlandı ilk kod modelleri kalıcı önbellekten [#275](https://github.com/aspnet/EntityFramework6/issues/275)
-- Dizinleri tanımlamak için Fluent API'si [#274](https://github.com/aspnet/EntityFramework6/issues/274)
-- SQL BENZERİ Çevir LINQ sorguları yazma etkinleştirmek için DbFunctions.Like() [#241](https://github.com/aspnet/EntityFramework6/issues/241)
-- Migrate.exe artık destekliyor - komut dosyası seçeneği [#240](https://github.com/aspnet/EntityFramework6/issues/240)
-- EF6 bir sırada bir SQL Server tarafından oluşturulan anahtar değerleri artık çalışabilir [#165](https://github.com/aspnet/EntityFramework6/issues/165)
-- SQL Azure yürütme stratejisi için geçici hataları güncelleştirme listesi [#83](https://github.com/aspnet/EntityFramework6/issues/83)
-- Hata: "SqlParameter zaten başka bir SqlParameterCollection tarafından yer ile" sorguları veya SQL komutları yeniden deneme başarısız [#81](https://github.com/aspnet/EntityFramework6/issues/81)
-- Hata: DbQuery.ToString() değerlendirmesini sık hata ayıklayıcıda zaman aşımına [#73](https://github.com/aspnet/EntityFramework6/issues/73)
+- Kalıcı bir önbellekten tamamlanan kod ilk modellerini yükleyerek başlangıç süresini düşürün [#275](https://github.com/aspnet/EntityFramework6/issues/275)
+- Dizinleri tanımlamak için akıcı API [#274](https://github.com/aspnet/EntityFramework6/issues/274)
+- SQL [#241](https://github.com/aspnet/EntityFramework6/issues/241) gıbı çeviren LINQ sorguları yazmayı etkinleştirmek Için dbfunctions. like ()
+- Migrate. exe artık-Script seçeneğini destekliyor [#240](https://github.com/aspnet/EntityFramework6/issues/240)
+- EF6, artık SQL Server bir sıra tarafından oluşturulan anahtar değerleriyle çalışabilir [#165](https://github.com/aspnet/EntityFramework6/issues/165)
+- SQL Azure yürütme stratejisi için geçici hataların listesini güncelleştirin [#83](https://github.com/aspnet/EntityFramework6/issues/83)
+- Tiva Sorgular veya SQL komutlarının yeniden denenme işlemi "SqlParameter zaten başka bir SqlParameterCollection tarafından bulunuyor" [#81](https://github.com/aspnet/EntityFramework6/issues/81)
+- Tiva DbQuery. ToString (), hata ayıklayıcıda sıklıkla zaman aşımına uğruyor [#73](https://github.com/aspnet/EntityFramework6/issues/73)
 
-## <a name="future-releases"></a>Gelecek sürümler
+## <a name="future-releases"></a>Gelecek yayınlar
 
-EF6'ın gelecek sürümünde hakkında daha fazla bilgi için lütfen bakmak bizim [yol haritası](roadmap.md).
+EF6 'in gelecek sürümü hakkında daha fazla bilgi için lütfen [yol haritası](roadmap.md)' na bakın.
 
-## <a name="past-releases"></a>Eski sürümler
+## <a name="past-releases"></a>Geçmiş yayınlar
 
-[Geçmiş sunumlar](past-releases.md) sayfası bir arşiv EF ve her bir yayının sunulan büyük özelliklerin tüm önceki sürümlerini içerir.
+[Eski yayınlar](past-releases.md) sayfası, tüm önceki EF sürümlerinin ve her yayında tanıtılan ana özelliklerin bir arşivini içerir.
