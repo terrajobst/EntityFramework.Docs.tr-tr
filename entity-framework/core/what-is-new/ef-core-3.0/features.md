@@ -79,8 +79,8 @@ Sorgulama yaparken, gerekli özelliklerinden herhangi `OrderDetails` birinin `nu
 
 ## <a name="c-80-support"></a>C#8,0 desteği
 
-[](https://github.com/aspnet/EntityFrameworkCore/issues/12047)
-Sorun izleme #12047 izleme sorunu[#10347](https://github.com/aspnet/EntityFrameworkCore/issues/10347)
+[Sorun izleme #12047](https://github.com/aspnet/EntityFrameworkCore/issues/12047)
+[izleme sorunu#10347](https://github.com/aspnet/EntityFrameworkCore/issues/10347)
 
 Bu özellik üzerinde çalışma başlatıldı, ancak geçerli önizlemeye dahil değildir.
 
