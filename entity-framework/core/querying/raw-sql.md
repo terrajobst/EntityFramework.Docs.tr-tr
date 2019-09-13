@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
-ms.openlocfilehash: 91592ea9f7c73f10446993282c1874c852000871
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
+ms.openlocfilehash: 7a0df6fb656be58103971f45b9e12e9f1383311f
+ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306554"
+ms.lasthandoff: 09/12/2019
+ms.locfileid: "70921713"
 ---
 # <a name="raw-sql-queries"></a>Ham SQL sorguları
 
@@ -22,7 +22,7 @@ Entity Framework Core, ilişkisel bir veritabanıyla çalışırken ham SQL sorg
 
 Bir ham SQL sorgusuna dayalı bir LINQ sorgusuna başlamak için *fromsql* Extension yöntemini kullanabilirsiniz.
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var blogs = context.Blogs
     .FromSql("SELECT * FROM dbo.Blogs")
@@ -31,7 +31,7 @@ var blogs = context.Blogs
 
 Ham SQL sorguları, saklı bir yordamı yürütmek için kullanılabilir.
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var blogs = context.Blogs
     .FromSql("EXECUTE dbo.GetMostPopularBlogs")
@@ -44,7 +44,7 @@ SQL 'i kabul eden herhangi bir API 'de olduğu gibi, bir SQL ekleme saldırısı
 
 Aşağıdaki örnek, saklı yordama tek bir parametre geçirir. Bu, söz dizimi gibi `String.Format` görünebilir, ancak sağlanan değer bir parametreye sarmalanır ve `{0}` yer tutucunun belirtildiği yerde oluşturulan parametre adı eklenir.
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var user = "johndoe";
 
@@ -55,7 +55,7 @@ var blogs = context.Blogs
 
 Bu sorgu, ancak EF Core 2,0 ve üzeri sürümlerde desteklenen dize ilişkilendirme sözdizimi kullanılarak aynıdır:
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var user = "johndoe";
 
@@ -66,7 +66,7 @@ var blogs = context.Blogs
 
 Ayrıca bir DbParameter oluşturup bunu bir parametre değeri olarak sağlayabilirsiniz:
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var user = new SqlParameter("user", "johndoe");
 
@@ -77,7 +77,7 @@ var blogs = context.Blogs
 
 Bu, bir saklı yordam isteğe bağlı parametrelere sahip olduğunda yararlı olan SQL sorgu dizesinde adlandırılmış parametreleri kullanmanıza olanak sağlar:
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var user = new SqlParameter("user", "johndoe");
 
@@ -92,7 +92,7 @@ SQL sorgusu veritabanında yer alıyorsa, LINQ işleçlerini kullanarak ilk ham 
 
 Aşağıdaki örnek, tablo değerli bir Işlevden (TVF) seçen ham bir SQL sorgusu kullanır ve ardından filtreleme ve sıralamayı gerçekleştirmek için LINQ kullanarak buna dayanır.
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var searchTerm = ".NET";
 
@@ -109,7 +109,7 @@ Kullanan sorgular, `FromSql()` EF Core ' deki diğer LINQ sorgularıyla tam olar
 
 Aşağıdaki örnek, bir tablo değerli Işlevden (TVF) seçim yapan ham bir SQL sorgusu kullanır ve sonra yapılan çağrısıyla değişiklik izlemeyi devre dışı bırakır. AsNoTracking ():
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var searchTerm = ".NET";
 
@@ -123,7 +123,7 @@ var blogs = context.Query<SearchBlogsDto>()
 
 `Include()` Yöntemi, diğer herhangi bir LINQ sorgusuyla olduğu gibi ilgili verileri dahil etmek için kullanılabilir:
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/RawSQL/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/RawSQL/Sample.cs)] -->
 ``` csharp
 var searchTerm = ".NET";
 

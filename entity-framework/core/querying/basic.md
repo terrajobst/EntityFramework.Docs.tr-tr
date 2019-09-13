@@ -1,30 +1,30 @@
 ---
-title: Temel sorgular - EF Core
+title: Temel sorgular-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: ab6e35f1-397f-41c0-9ef4-85aec5466377
 uid: core/querying/basic
-ms.openlocfilehash: 6a381f419cb0958ea0835070e22fe7a3212457d7
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 49daa0d37175244617993cc6e911cbd59d27079f
+ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993711"
+ms.lasthandoff: 09/12/2019
+ms.locfileid: "70921748"
 ---
 # <a name="basic-queries"></a>Temel sorgular
 
-Dil tümleşik sorgu (LINQ) kullanarak bir veritabanından varlıklar yükleme hakkında bilgi edinin.
+Dil ile tümleşik sorgu (LINQ) kullanarak veritabanından varlık yüklemeyi öğrenin.
 
 > [!TIP]  
 > Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub üzerinde.
 
-## <a name="101-linq-samples"></a>101 LINQ örneği
+## <a name="101-linq-samples"></a>101 LINQ örnekleri
 
-Bu sayfa, Entity Framework Core ile ortak görevler elde etmek için bazı örnekler göstermektedir. LINQ ile neler yapılabileceğini gösteren örnekleri kapsamlı bir dizi için bkz: [101 LINQ örnekleri](https://code.msdn.microsoft.com/101-LINQ-Samples-3fb9811b).
+Bu sayfada, Entity Framework Core ortak görevleri elde etmek için birkaç örnek gösterilmektedir. LINQ ile nelerin mümkün olduğunu gösteren kapsamlı bir örnek kümesi için bkz. [101 LINQ Samples](https://code.msdn.microsoft.com/101-LINQ-Samples-3fb9811b).
 
-## <a name="loading-all-data"></a>Tüm veri yükleme
+## <a name="loading-all-data"></a>Tüm veriler yükleniyor
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/Basics/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/Basics/Sample.cs)] -->
 ``` csharp
 using (var context = new BloggingContext())
 {
@@ -32,9 +32,9 @@ using (var context = new BloggingContext())
 }
 ```
 
-## <a name="loading-a-single-entity"></a>Tek bir varlık yüklenirken
+## <a name="loading-a-single-entity"></a>Tek bir varlık yükleme
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/Basics/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/Basics/Sample.cs)] -->
 ``` csharp
 using (var context = new BloggingContext())
 {
@@ -45,7 +45,7 @@ using (var context = new BloggingContext())
 
 ## <a name="filtering"></a>Filtreleme
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/Basics/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/Basics/Sample.cs)] -->
 ``` csharp
 using (var context = new BloggingContext())
 {

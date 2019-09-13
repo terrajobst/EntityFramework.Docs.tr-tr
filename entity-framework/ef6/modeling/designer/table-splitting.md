@@ -1,91 +1,91 @@
 ---
-title: Tasarlayıcı tablosu bölme - EF6
+title: Tasarımcı tablosu bölme-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 452f17c3-9f26-4de4-9894-8bc036e23b0f
-ms.openlocfilehash: 8b0ca6778a06ed43b1365d2e5969ff15948f8004
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: f5e7532e6c0b473d8ce77cbd11e3e673b0af6cbe
+ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490707"
+ms.lasthandoff: 09/12/2019
+ms.locfileid: "70921778"
 ---
-# <a name="designer-table-splitting"></a>Bölme tasarlayıcı tablosu
-Bu izlenecek yol, birden çok varlık türleri tek bir tabloya bir model Entity Framework Designer (EF Designer) ile değiştirerek eşlemeyle ilgili bilgi gösterir.
+# <a name="designer-table-splitting"></a>Tasarımcı tablosu bölme
+Bu izlenecek yol, bir modeli Entity Framework Designer (EF Designer) ile değiştirerek birden çok varlık türünün tek bir tabloya nasıl eşlendiğini gösterir.
 
-Bölme tablosunu kullanmak isteyebileceğiniz nedenlerinden biri nesnelerinizi yüklemek için yükleme yavaş kullanırken bazı özellikler yüklenmesini geciktirme. Ayrı bir varlık çok büyük miktarda veri içeren ve yalnızca gerekli olduğunda, yükleme özelliklerini ayırabilirsiniz.
+Tablo bölmeyi kullanmak isteyebileceğiniz bir nedenden dolayı, nesnelerinizi yüklemek için yavaş yükleme kullandığınızda bazı özelliklerin yüklenmesi ertelenebilir. Büyük miktarda veri içerebilen özellikleri ayrı bir varlıkta ayırabilir ve yalnızca gerektiğinde yükleyebilirsiniz.
 
-EF Designer ile çalışırken, kullanılan ana windows aşağıdaki resimde gösterilmektedir.
+Aşağıdaki görüntüde, EF Designer ile çalışırken kullanılan ana pencereler gösterilmektedir.
 
-![EF Designer](~/ef6/media/efdesigner.png)
+![EF Tasarımcısı](~/ef6/media/efdesigner.png)
 
 ## <a name="prerequisites"></a>Önkoşullar
 
 Bu kılavuzu tamamlamak için şunlara ihtiyacınız olacak:
 
-- Visual Studio'nun en son sürümü.
-- [School örnek veritabanını](~/ef6/resources/school-database.md).
+- Visual Studio 'nun son sürümü.
+- [Okul örnek veritabanı](~/ef6/resources/school-database.md).
 
-## <a name="set-up-the-project"></a>Projesi kurun
+## <a name="set-up-the-project"></a>Projeyi ayarlama
 
-Bu izlenecek yol, Visual Studio 2012 kullanıyor.
+Bu izlenecek yol, Visual Studio 2012 ' i kullanıyor.
 
--   Visual Studio 2012'yi açın.
--   Üzerinde **dosya** menüsünde **yeni**ve ardından **proje**.
--   Sol bölmede, Visual C tıklayın\#ve ardından konsol uygulaması şablonu seçin.
--   Girin **TableSplittingSample** tıklayın ve proje adı olarak **Tamam**.
+-   Visual Studio 2012 ' i açın.
+-   **Dosya** menüsünde, **Yeni**' nin üzerine gelin ve ardından **Proje**' ye tıklayın.
+-   Sol bölmede, Visual C\#' ye tıklayın ve ardından konsol uygulaması şablonunu seçin.
+-   Projenin adı olarak **Tablespttingsample** girin ve **Tamam**' a tıklayın.
 
-## <a name="create-a-model-based-on-the-school-database"></a>School veritabanını temel alan bir Model oluşturma
+## <a name="create-a-model-based-on-the-school-database"></a>Okul veritabanına dayalı bir model oluşturma
 
--   Çözüm Gezgini'nde proje adına sağ tıklayın, fareyle **Ekle**ve ardından **yeni öğe**.
--   Seçin **veri** seçin ve soldaki menüden **ADO.NET varlık veri modeli** Şablonlar bölmesinde.
--   Girin **TableSplittingModel.edmx** dosya adı ve ardından **Ekle**.
--   Choose Model Contents iletişim kutusunda **veritabanından Oluştur**ve ardından **sonraki.**
--   Yeni bağlantı tıklayın. Bağlantı Özellikleri iletişim kutusuna sunucu adını girin (örneğin, **(localdb)\\ifadesini mssqllocaldb**) seçin kimlik doğrulama yöntemi, tür **Okul** veritabanı adı ve ardından tıklayın **Tamam**.
-    Veri bağlantınızı seçin iletişim kutusunda, veritabanı bağlantı ayarı ile güncelleştirilir.
--   Veritabanı nesnelerinizi seçin iletişim kutusunda, düzleştirme **tabloları** düğüm ve onay **kişi** tablo. Bu belirtilen tabloya ekler **Okul** modeli.
--   **Son**'a tıklayın.
+-   Çözüm Gezgini ' de proje adına sağ tıklayın, **Ekle**' nin üzerine gelin ve ardından **Yeni öğe**' ye tıklayın.
+-   Sol menüden **verileri** seçin ve ardından şablonlar bölmesinde **ADO.net varlık veri modeli** öğesini seçin.
+-   Dosya adı için **TableSplittingModel. edmx** girin ve ardından **Ekle**' ye tıklayın.
+-   Model Içeriğini seçin iletişim kutusunda, **veritabanından oluştur**' u seçin ve ardından İleri ' ye tıklayın **.**
+-   Yeni bağlantı ' ya tıklayın. Bağlantı özellikleri iletişim kutusunda sunucu adını (örneğin, **\\(LocalDB) mssqllocaldb**) girin, kimlik doğrulama yöntemini seçin, veritabanı adı için **okul** yazın ve ardından **Tamam**' a tıklayın.
+    Veri bağlantınızı seçin iletişim kutusu, veritabanı bağlantı ayarınız ile güncelleştirilir.
+-   Veritabanı nesnelerinizi seçin iletişim kutusunda **Tablolar** düğümünün katlamayı kaldırın ve **kişi** tablosuna bakın. Bu, belirtilen tabloyu **okul** modeline ekler.
+-    **Son**' a tıklayın.
 
-Modelinizi düzenleme için bir tasarım yüzeyi sağlar, varlık Tasarımcısı görüntülenir. Seçtiğiniz tüm nesneleri **veritabanı nesnelerinizi seçin** iletişim kutusu, modele eklenir.
+Modelinizi düzenlemekte bir tasarım yüzeyi sağlayan Entity Desisgner görüntülenir.  **Veritabanı nesnelerinizi** seçin iletişim kutusunda seçtiğiniz tüm nesneler modele eklenir.
 
-## <a name="map-two-entities-to-a-single-table"></a>Tek bir tabloya iki varlıkları Eşle
+## <a name="map-two-entities-to-a-single-table"></a>Iki varlığı tek bir tabloyla eşleyin
 
-Bu bölümde, bölecek **kişi** iki varlık varlığa ve ardından bunları tek bir tabloya eşleyin.
+Bu bölümde, **kişi** varlığını iki varlığa bölecektir ve sonra bunları tek bir tabloyla eşleştirirsiniz.
 
 > [!NOTE]
-> **Kişi** varlık büyük miktarda veriler içeren tüm özellikleri içermez; yalnızca örnek olarak kullanılır.
+> **Kişi** varlığı, büyük miktarda veri içerebilen herhangi bir özellik içermez; yalnızca örnek olarak kullanılır.
 
--   Tasarım yüzeyinde boş bir alana sağ tıklayın, fareyle **yeni Ekle**, tıklatıp **varlık**.
-    **Yeni varlık** iletişim kutusu görüntülenir.
--   Tür **HireInfo** için **varlık adı** ve **Personıd** için **anahtar özellik** adı.
--   **Tamam**'ı tıklatın.
--   Yeni bir varlık türü oluşturulur ve tasarım yüzeyinde görüntülenir.
--   Seçin **İşeAlmaTarihi** özelliği **kişi** varlık yazın ve ENTER tuşuna **Ctrl + X** anahtarları.
--   Seçin **HireInfo** varlık ve ENTER tuşuna **Ctrl + V** anahtarları.
--   Arasında ilişkilendirme oluşturma **kişi** ve **HireInfo**. Bunu yapmak için tasarım yüzeyinde boş bir alana sağ tıklayın, işaret **yeni Ekle**, tıklatıp **ilişkilendirme**.
--   **Ekleme ilişkilendirme** iletişim kutusu görüntülenir. **PersonHireInfo** adı varsayılan olarak verilir.
--   Çokluk belirtin **1(One)** ilişkinin her iki ucunda.
+-   Tasarım yüzeyinde boş bir alana sağ tıklayın, **Yeni Ekle**' nin üzerine gelin ve **varlık**' a tıklayın.
+     **Yeni varlık** iletişim kutusu görüntülenir.
+-   **Anahtar özellik** adı için **varlık adı** ve **PersonID** için **hireınfo** yazın.
+-    **Tamam**' a tıklayın.
+-   Tasarım yüzeyinde yeni bir varlık türü oluşturulur ve görüntülenir.
+-     **Kişi** **** varlıktürününHireDateözelliğiniseçinveCTRL+Xtuşlarına basın.
+-   **Hireınfo** varlığını seçin ve **CTRL + V** tuşlarına basın.
+-   **Kişi** ve **hireınfo**arasında bir ilişki oluşturun. Bunu yapmak için tasarım yüzeyinde boş bir alana sağ tıklayın, **Yeni Ekle**' nin üzerine gelin ve **ilişkilendirme**' ye tıklayın.
+-    **** İlişki Ekle iletişim kutusu görüntülenir. **Personhireınfo** adı varsayılan olarak verilir.
+-   İlişkinin her iki ucunda çeşitlilik **1 (bir)** belirtin.
 -   Tuşuna **Tamam**.
 
-Sonraki adım gerektirir **eşleşme ayrıntıları** penceresi. Bu pencere göremiyorsanız, tasarım yüzeyi ve select sağ **eşleşme ayrıntıları**.
+Sonraki adım, **eşleme ayrıntıları** penceresini gerektirir. Bu pencereyi göremiyorsanız, tasarım yüzeyine sağ tıklayıp **eşleme ayrıntıları**' nı seçin.
 
--   Seçin **HireInfo** varlık türü ve tıklatın **&lt;bir tablo veya Görünüm Ekle&gt;** içinde **eşleşme ayrıntıları** penceresi.
--   Seçin **kişi** gelen **&lt;bir tablo veya Görünüm Ekle&gt;** alan açılan listesi. Listenin tabloları içeren veya seçilen varlığın hangi eşlenebilir için görüntüler.
-    Uygun özellikleri varsayılan olarak eşlenmesi gerekir.
+-    **Hireınfo** varlık türünü seçin ve  **eşleme ayrıntıları** **&lt;&gt;** penceresindetabloveyaGörünümEkle'yetıklayın. 
+-   **Tablo &lt;Ekle veyaGörünüm&gt;** alanıaçılırlistesindenkişi'yi seçin. Liste, seçilen varlığın eşleştiribileceği tabloları veya görünümleri içerir.
+    Uygun özellikler varsayılan olarak eşlenmelidir.
 
     ![Eşleme](~/ef6/media/mapping.png)
 
--   Seçin **PersonHireInfo** tasarım yüzeyinde ilişkilendirme.
--   Tasarım yüzeyi ve select ilişkilendirmenin sağ **özellikleri**.
--   İçinde **özellikleri** penceresinde **başvuru kısıtlamalarını** özelliği ve üç nokta düğmesine tıklayın.
--   Seçin **kişi** gelen **asıl** aşağı açılan listesi.
+-   Tasarım yüzeyinde **Personhireınfo** ilişkilendirmesini seçin.
+-   Tasarım yüzeyinde ilişkiye sağ tıklayın ve **Özellikler**' i seçin.
+-   **Özellikler** penceresinde **başvurusal kısıtlamalar** özelliğini seçin ve üç nokta düğmesine tıklayın.
+-   **Sorumlu** açılan listesinden **kişi** ' yi seçin.
 -   Tuşuna **Tamam**.
 
- 
+ 
 
-## <a name="use-the-model"></a>Kullanım modeli
+## <a name="use-the-model"></a>Modeli kullanma
 
--   Main yöntemine aşağıdaki kodu yapıştırın.
+-   Aşağıdaki kodu Main yöntemine yapıştırın.
 
 ``` csharp
     using (var context = new SchoolEntities())
@@ -120,18 +120,18 @@ Sonraki adım gerektirir **eşleşme ayrıntıları** penceresi. Bu pencere gör
             existingPerson.LastName, hireInfo.HireDate);
     }
 ```
--   Derleme ve uygulamayı çalıştırın.
+-   Uygulamayı derleyin ve çalıştırın.
 
-Aşağıdaki T-SQL deyimlerini karşı yürütüldü **Okul** sonucunda bu uygulamayı çalıştırmadan veritabanı. 
+Aşağıdaki T-SQL deyimleri, bu uygulamayı çalıştırmanın bir sonucu olarak **okul** veritabanına karşı yürütüldü. 
 
--   Aşağıdaki **Ekle** bağlam yürütmenin sonucu olarak yürütülmesi. SaveChanges() ve birleştirir verilerinden **kişi** ve **HireInfo** varlıklar
+-   Aşağıdaki **ekleme** bağlam yürütmenin sonucu olarak yürütüldü. SaveChanges () ve **kişi** ve **hireınfo** varlıklarındaki verileri birleştirir
 
     ![Ekleme](~/ef6/media/insert.png)
 
--   Aşağıdaki **seçin** bağlam yürütmenin sonucu olarak yürütülmesi. People.FirstOrDefault() ve sütunları eşlenen seçer **kişi**
+-   Aşağıdaki **seçim** , bağlam yürütmenin sonucu olarak yürütüldü. Kişiler. FirstOrDefault () ve yalnızca **kişiyle** eşleştirilmiş sütunları seçer
 
-    ![1'i seçin](~/ef6/media/select1.png)
+    ![1 seçin](~/ef6/media/select1.png)
 
--   Aşağıdaki **seçin** gezinti özelliği existingPerson.Instructor erişme sonucu olarak çalıştırılan ve yalnızca eşlenen sütun seçer **HireInfo**
+-   Şu **Select** , Existingperson. eğitmeni gezinti özelliğine erişmenin ve yalnızca **hireınfo** ile eşleştirilmiş sütunları seçen bir sonuç olarak yürütüldü
 
-    ![2'yi seçin](~/ef6/media/select2.png)
+    ![2 seçin](~/ef6/media/select2.png)

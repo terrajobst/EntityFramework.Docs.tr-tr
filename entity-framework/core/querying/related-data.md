@@ -1,66 +1,66 @@
 ---
-title: İlgili verileri - EF Core yükleme
+title: Ilgili verileri yükleme-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: f9fb64e2-6699-4d70-a773-592918c04c19
 uid: core/querying/related-data
-ms.openlocfilehash: 590d16902329ffb3fff8026f8dfdcfc887f6dea3
-ms.sourcegitcommit: eefcab31142f61a7aaeac03ea90dcd39f158b8b8
+ms.openlocfilehash: 4bf9598f9b7e74c2835d3926215de9a7ef4e6f96
+ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/29/2019
-ms.locfileid: "64873199"
+ms.lasthandoff: 09/12/2019
+ms.locfileid: "70921799"
 ---
-# <a name="loading-related-data"></a>İlgili verileri yükleme
+# <a name="loading-related-data"></a>Ilgili verileri yükleme
 
-Entity Framework Core ilgili varlıkları yükleme için modelinizde gezinme özelliklerini kullanmanıza olanak tanır. İlgili verileri yüklemek için kullanılan üç genel O/RM Düzen vardır.
-* **İstekli yükleme** ilgili verileri veritabanından ilk sorgunun bir parçası yüklendiğini anlamına gelir.
-* **Açık yükleme** daha sonraki bir zamanda veritabanından, ilgili veriler açıkça yüklendikten anlamına gelir.
-* **Yavaş Yükleniyor** gezinme özelliğini erişildiğinde ilgili verileri veritabanından şeffaf bir şekilde yüklendiğini anlamına gelir.
+Entity Framework Core, ilişkili varlıkları yüklemek için modelinizdeki gezinti özelliklerini kullanmanıza olanak sağlar. İlgili verileri yüklemek için kullanılan üç ortak O/RM deseni vardır.
+* **Eager yüklemesi** , ilgili verilerin ilk sorgunun parçası olarak veritabanından yüklendiği anlamına gelir.
+* **Açık yükleme** , ilgili verilerin daha sonra veritabanından açıkça yüklendiği anlamına gelir.
+* **Yavaş yükleme** , gezinti özelliğine erişildiğinde ilgili verilerin veritabanından saydam olarak yüklendiği anlamına gelir.
 
 > [!TIP]  
 > Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub üzerinde.
 
-## <a name="eager-loading"></a>İstekli yükleme
+## <a name="eager-loading"></a>ekip yükleme
 
-Kullanabileceğiniz `Include` sorgu sonuçlarında eklenecek ilgili verileri belirtmek için yöntemi. Aşağıdaki örnekte, döndürülen sonuçlarda blogları olacaktır kendi `Posts` özelliği ile ilgili gönderileri doldurulur.
+Sorgu sonuçlarına dahil edilecek `Include` ilgili verileri belirtmek için yöntemini kullanabilirsiniz. Aşağıdaki örnekte, sonuçlarda döndürülen blogların `Posts` özelliği ilgili gönderileriyle doldurulmuş olacaktır.
 
-[!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#SingleInclude)]
+[!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#SingleInclude)]
 
 > [!TIP]  
-> Entity Framework Core olacak otomatik olarak düzeltme yukarı Gezinti özellikleri bağlam örneğine önceden yüklenmiş herhangi bir varlık için. Bu nedenle açıkça bir gezinme özelliği için bir veri içermez olsa bile, özellik hala bazıları doldurulabilir veya tüm ilişkili varlıkları önceden yüklenen.
+> Entity Framework Core, gezinti özelliklerini daha önce bağlam örneğine yüklenmiş diğer varlıklara otomatik olarak düzeltir. Bu nedenle, bir gezinti özelliği için verileri açıkça bulundurmasanız bile, ilgili varlıkların bazıları veya tümü daha önce yüklenmişse Özellik yine de doldurulmuş olabilir.
 
 
-Tek bir sorguda birden çok ilişki ilgili verileri içerebilir.
+Tek bir sorgudaki birden fazla ilişkilerden ilgili verileri dahil edebilirsiniz.
 
-[!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#MultipleIncludes)]
+[!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#MultipleIncludes)]
 
-### <a name="including-multiple-levels"></a>Birden çok düzeyleri dahil
+### <a name="including-multiple-levels"></a>Birden çok düzey dahil
 
-İlgili verileri kullanarak, birden çok düzeyi içerecek şekilde ilişkileri detaya gidebilirsiniz `ThenInclude` yöntemi. Aşağıdaki örnek, tüm blogları, kendi ilgili gönderileri ve her bir gönderi yazarı yükler.
+`ThenInclude` Yöntemini kullanarak ilgili verilerin birden fazla düzeyini dahil etmek için ilişkilerde ayrıntıya gidebilirsiniz. Aşağıdaki örnek tüm blogları, ilgili yayınlarını ve her gönderiye ait yazarı yükler.
 
-[!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#SingleThenInclude)]
+[!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#SingleThenInclude)]
 
 > [!NOTE]  
-> Visual Studio'nun geçerli sürümleri yanlış kod tamamlama seçenekleri sunar ve söz dizimi hataları ile kullanırken işaretlenmesini doğru ifadeleri neden olabilir `ThenInclude` sonrasına bir koleksiyon gezinme özelliği. Bu, izlenen bir IntelliSense hatanın belirtisidir https://github.com/dotnet/roslyn/issues/8237. Kod doğru olduğundan ve başarıyla derlenen sürece bu alacaklardır söz dizimi hataları yoksaymak güvenlidir. 
+> Visual Studio 'nun geçerli sürümleri yanlış kod tamamlama seçenekleri sunar ve bir koleksiyon gezintisi özelliğinden sonra `ThenInclude` yöntemi kullanılırken, doğru ifadelerin sözdizimi hatalarıyla işaretlenmesine neden olabilir. Bu, tarihinde https://github.com/dotnet/roslyn/issues/8237 izlenen bir IntelliSense hata belirtisidir. Kodun doğru olduğu ve başarıyla derlenemediği sürece bu, söz dizimi hatalarının yoksayılıp yoksayılması güvenlidir. 
 
-Birden çok çağrı zincirleyebilirsiniz `ThenInclude` başka ilgili verileri düzeyini de dahil olmak üzere devam etmek için.
+Daha fazla ilgili veri düzeyi dahil `ThenInclude` devam etmek için birden çok çağrısı zincirleyebilirsiniz.
 
-[!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#MultipleThenIncludes)]
+[!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#MultipleThenIncludes)]
 
-Tüm bunlar aynı sorguda birden çok düzeyi ve birden çok kök ilgili verileri içerecek şekilde birleştirebilirsiniz.
+Aynı sorguda birden çok düzeyden ve birden çok kökten ilgili verileri dahil etmek için tüm bunları birleştirebilirsiniz.
 
-[!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#IncludeTree)]
+[!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#IncludeTree)]
 
-Dahil varlıklardan biri için birden çok ilişkili varlıkları içermesi isteyebilirsiniz. Örneğin, sorgulanırken `Blogs`, dahil `Posts` ve ardından her ikisini dahil etmek istediğiniz `Author` ve `Tags` , `Posts`. Bunu yapmak için her ekleme kök dizininde başlangıç yolu belirtmeniz gerekir. Örneğin, `Blog -> Posts -> Author` ve `Blog -> Posts -> Tags`. Bu, yedekli birleştirmeler erişmenizi sağlayacak gelmez; Çoğu durumda, SQL oluştururken, birleştirmeler EF birleştirecek.
+Dahil edilen varlıklardan biri için birden fazla ilgili varlık eklemek isteyebilirsiniz. Örneğin `Blogs`, sorgulama `Author` `Tags` yaparken, ve ' nin`Posts`her ikisini de dahil etmek istersiniz. `Posts` Bunu yapmak için, kökden başlayarak her bir içerme yolunu belirtmeniz gerekir. Örneğin, `Blog -> Posts -> Author` ve `Blog -> Posts -> Tags`. Bu, gereksiz birleşimler alacağınız anlamına gelmez; Çoğu durumda, SQL oluştururken EF birleştirmeleri birleştirecek.
 
-[!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#MultipleLeafIncludes)]
+[!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#MultipleLeafIncludes)]
 
-### <a name="include-on-derived-types"></a>Türetilmiş türler
+### <a name="include-on-derived-types"></a>Türetilmiş türlere dahil et
 
-Yalnızca bir türetilmiş bir tür kullanarak tanımlanan gezintiler ilgili verileri içerebilir `Include` ve `ThenInclude`. 
+Yalnızca ve `Include` `ThenInclude`kullanarak türetilmiş bir tür üzerinde tanımlanan gezintilerden ilgili verileri dahil edebilirsiniz. 
 
-Şu model verilen:
+Aşağıdaki model veriliyor:
 
 ```csharp
 public class SchoolContext : DbContext
@@ -94,77 +94,77 @@ public class School
 }
 ```
 
-İçeriğini `School` Öğrenciler tüm kişilerin Gezinti eagerly yüklenebilir bir desenlerinin kullanarak:
+Öğrenciler olan tüm kişilerin gezinmesininiçerikleri,çeşitlidesenlerkullanılarakoluşturulabilir:`School`
 
-- Cast kullanma
+- cast kullanma
   ```csharp
   context.People.Include(person => ((Student)person).School).ToList()
   ```
 
-- kullanarak `as` işleci
+- Using `as` işleci
   ```csharp
   context.People.Include(person => (person as Student).School).ToList()
   ```
 
-- aşırı yüklemesini kullanarak `Include` türünde parametre almayan `string`
+- türü parametre alan `Include` aşırı yüklemesini kullanma`string`
   ```csharp
   context.People.Include("School").ToList()
   ```
 
-### <a name="ignored-includes"></a>Yoksayılan içerir
+### <a name="ignored-includes"></a>Yoksayılan ekler
 
-Sorgu değiştirirseniz, böylece artık sorgu başlamış varlık türü örneklerini döndürür içerme işleçleri göz ardı edilir.
+Sorguyu artık sorgunun başladığı varlık türünün örneklerini döndürmez şekilde değiştirirseniz, içerme işleçleri yok sayılır.
 
-Ekleme işleçleri dayalı aşağıdaki örnekte, `Blog`, ancak ardından `Select` işleci, anonim bir tür sorguyu değiştirmek için kullanılır. Bu durumda, INCLUDE işleçleri hiçbir etkisi yoktur.
+Aşağıdaki örnekte, Include işleçleri öğesine dayalıdır `Blog`, ancak `Select` sonra işleci, anonim bir tür döndürecek şekilde sorgu değiştirmek için kullanılır. Bu durumda, içerme işleçlerinin hiçbir etkisi yoktur.
 
-[!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#IgnoredInclude)]
+[!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#IgnoredInclude)]
 
-Varsayılan olarak, bir uyarı EF Core başlar.SSH zaman dahil işleçleri yok sayılır. Bkz: [günlüğü](../miscellaneous/logging.md) günlük çıktısı görüntüleme hakkında daha fazla bilgi. Ekle işleci throw veya hiçbir şey yapma göz ardı edilir olduğunda davranışı değiştirebilirsiniz. Bağlamınızı - seçeneklerini normalde ayarlarken yapıldığını `DbContext.OnConfiguring`, veya `Startup.cs` ASP.NET Core kullanıyorsanız.
+Varsayılan olarak, içerme işleçleri göz ardı edildiğinde EF Core bir uyarı kaydeder. Günlüğe kaydetme çıkışını görüntüleme hakkında daha fazla bilgi için [günlüğe](../miscellaneous/logging.md) bakın. Ekleme veya hiçbir şey yapma için bir içerme işlecinin yoksayılması durumunda davranışı değiştirebilirsiniz. Bu işlem, bağlam için seçenekleri ayarlarken yapılır-içinde `DbContext.OnConfiguring` `Startup.cs` veya ASP.NET Core kullanıyorsanız.
 
-[!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/ThrowOnIgnoredInclude/BloggingContext.cs#OnConfiguring)]
+[!code-csharp[Main](../../../samples/core/Querying/RelatedData/ThrowOnIgnoredInclude/BloggingContext.cs#OnConfiguring)]
 
 ## <a name="explicit-loading"></a>açık yükleme
 
 > [!NOTE]  
-> Bu özellik, EF Core 1.1 içinde kullanılmaya başlandı.
+> Bu özellik EF Core 1,1 ' de tanıtılmıştı.
 
-Bir gezinme özelliği aracılığıyla açıkça yüklemek `DbContext.Entry(...)` API.
+`DbContext.Entry(...)` API aracılığıyla bir gezinti özelliğini açıkça yükleyebilirsiniz.
 
-[!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#Eager)]
+[!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#Eager)]
 
-Bir gezinme özelliği, ilgili varlıkları döndürür, ayrı bir sorgu yürüterek de açıkça yükleyebilirsiniz. Değişiklik izleme etkin sonra bir varlık yüklenirken, EF Core otomatik olarak önceden yüklenmiş tüm varlıklara başvurmak için yeni yüklenen varlık Gezinti özelliklerini ayarlayın ve başvurmak için önceden yüklenmiş varlıkları Gezinti özelliklerini ayarlama Yeni yüklenen varlık.
+Ayrıca, ilişkili varlıkları döndüren ayrı bir sorgu yürüterek bir gezinti özelliğini açıkça yükleyebilirsiniz. Değişiklik izleme etkinse, bir varlık yüklenirken EF Core, önceden yüklenmiş olan varlıkların gezinti özelliklerini otomatik olarak ayarlar ve bu, önceden yüklenmiş varlıkların gezinti özelliklerini, daha önce yüklenmiş varlıklara başvuracak şekilde ayarlar. Yeni yüklenen varlık.
 
 ### <a name="querying-related-entities"></a>İlgili varlıkları sorgulama
 
-Ayrıca, bir gezinti özelliği içeriğini temsil eden bir LINQ Sorgu alabilirsiniz.
+Ayrıca, bir gezinti özelliğinin içeriğini temsil eden bir LINQ sorgusu da edinebilirsiniz.
 
-Bu belleğe yüklemeden ilgili varlıklar üzerinde bir toplama işleci çalıştırma gibi şeyleri yapmanıza olanak sağlar.
+Bu, ilgili varlıklar üzerinde bir toplama işlecini belleğe yüklemeden çalıştırmak gibi işlemleri yapmanızı sağlar.
 
-[!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#NavQueryAggregate)]
+[!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#NavQueryAggregate)]
 
-Ayrıca, hangi ilgili varlıkları belleğe yüklenen filtreleyebilirsiniz.
+Ayrıca, hangi ilgili varlıkların belleğe yükleneceğini de filtreleyebilirsiniz.
 
-[!code-csharp[Main](../../../samples/core/Querying/Querying/RelatedData/Sample.cs#NavQueryFiltered)]
+[!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#NavQueryFiltered)]
 
-## <a name="lazy-loading"></a>Yavaş yükleniyor
+## <a name="lazy-loading"></a>geç yükleme
 
 > [!NOTE]  
-> Bu özellik, EF Core 2.1 içinde kullanılmaya başlandı.
+> Bu özellik EF Core 2,1 ' de tanıtılmıştı.
 
-Yavaş yükleniyor kullanmanın en basit yolu yüklemektir [Microsoft.EntityFrameworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) paket ve çağrısıyla etkinleştirme `UseLazyLoadingProxies`. Örneğin:
+Geç yüklemeyi kullanmanın en basit yolu, [Microsoft. EntityFrameworkCore. proxy](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) paketini yüklemek ve ' a çağrı `UseLazyLoadingProxies`yaparak bunu yapmanızı sağlar. Örneğin:
 ```csharp
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     => optionsBuilder
         .UseLazyLoadingProxies()
         .UseSqlServer(myConnectionString);
 ```
-Veya AddDbContext kullanırken:
+AddDbContext kullanırken:
 ```csharp
 .AddDbContext<BloggingContext>(
     b => b.UseLazyLoadingProxies()
           .UseSqlServer(myConnectionString));
 ```
-EF Core olacak etkinleştir--diğer bir deyişle, geçersiz kılınabilir herhangi bir gezinti özelliği için yükleme yavaş olması gerektiğini sonra `virtual` ve öğesinden devralınan bir sınıf. Örneğin, aşağıdaki varlıkların içinde `Post.Blog` ve `Blog.Posts` Gezinti özellikleri, yüklenen yavaş olacaktır.
+EF Core, geçersiz kılınabilen herhangi bir gezinti özelliği için yavaş yüklemeyi etkinleştirir-Yani, `virtual` ve öğesinden devralınabilen bir sınıf üzerinde olmalıdır. Örneğin, aşağıdaki varlıklarda `Post.Blog` ve `Blog.Posts` gezinti özellikleri yavaş yüklenir.
 ```csharp
 public class Blog
 {
@@ -183,9 +183,9 @@ public class Post
     public virtual Blog Blog { get; set; }
 }
 ```
-### <a name="lazy-loading-without-proxies"></a>Lazy proxy'si yükleme
+### <a name="lazy-loading-without-proxies"></a>Proxy olmadan yavaş yükleme
 
-Lazy yükleme proxy'leri iş ekleyerek `ILazyLoader` açıklandığı bir varlığa hizmet [varlık türü oluşturucuları](../modeling/constructors.md). Örneğin:
+Yavaş yükleme proxy 'leri, `ILazyLoader` [varlık türü oluşturucuları](../modeling/constructors.md)bölümünde açıklandığı gibi hizmeti bir varlığa ekleme. Örneğin:
 ```csharp
 public class Blog
 {
@@ -238,7 +238,7 @@ public class Post
     }
 }
 ```
-Bu devralınan için varlık türleri veya gezinti özelliklerini sanal gerektirmez ve ile oluşturulan varlık örnekleri sağlar `new` yavaş bir kez yük için bir bağlamına bağlı. Ancak, bir başvuru gerektirir `ILazyLoader` tanımlanan hizmet [Microsoft.EntityFrameworkCore.Abstractions](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Abstractions/) paket. Çok az etkisi bağlı olarak, yani bu paket türleri en az bir kümesini içerir. Ancak, tüm varlık türlerini EF Core paketlerinde bağlı olarak tamamen önlemek için eklemesine mümkündür `ILazyLoader.Load` yöntemi temsilci olarak. Örneğin:
+Bu, varlık türlerinin veya gezinti özelliklerinden devralınmasını gerektirmez ve ile `new` oluşturulan varlık örneklerinin bir içeriğe eklendikten sonra geç yükleme yapmasına izin verir. Ancak, `ILazyLoader` [Microsoft. entityframeworkcore. soyutlamalar](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Abstractions/) paketinde tanımlanan hizmete bir başvuru gerektirir. Bu paket, buna bağlı olarak çok az etkisi olması için en az bir tür kümesi içerir. Ancak, varlık türlerindeki tüm EF Core paketlerine bağlı olarak tamamen kaçınmak için, `ILazyLoader.Load` yöntemi bir temsilci olarak eklemek mümkündür. Örneğin:
 ```csharp
 public class Blog
 {
@@ -291,7 +291,7 @@ public class Post
     }
 }
 ```
-Yukarıdaki kullanan kodu bir `Load` temsilci biraz Temizleyicisi hale getirmek için genişletme yöntemi:
+Yukarıdaki kod, temsilciyi bir `Load` bit temizleyici kullanarak yapmak için bir genişletme yöntemi kullanır:
 ```csharp
 public static class PocoLoadingExtensions
 {
@@ -309,17 +309,17 @@ public static class PocoLoadingExtensions
 }
 ```
 > [!NOTE]  
-> Yavaş yükleniyor temsilci Oluşturucu parametresi "lazyLoader" çağrılmalıdır. Bu, gelecekteki sürümlerde sunulması planlanmaktadır olandan farklı bir ad kullanmak için yapılandırma.
+> Yavaş yükleme temsilcisinin Oluşturucu parametresine "lazyLoader" adı verilmelidir. Daha sonraki bir sürüm için bu değerden farklı bir ad kullanacak şekilde yapılandırma.
 
-## <a name="related-data-and-serialization"></a>İlgili verileri ve Serileştirme
+## <a name="related-data-and-serialization"></a>İlgili veriler ve serileştirme
 
-EF Core otomatik olarak düzeltme yukarı Gezinti özelliklerini, döngüleriyle nesne graftaki kalabilirsiniz olduğundan. Örneğin, blog ve kendi ilgili gönderileri yükleme gönderileri koleksiyonunu başvuran bir blog nesneyle sonuçlanacak. Bu gönderilerin her blog geri başvuru gerekir.
+EF Core, gezinti özelliklerini otomatik olarak düzeltiğinden, nesne grafiğinizde döngülerle bitilecektir. Örneğin, bir blog ve ilgili gönderimler yükleme, bir gönderi koleksiyonuna başvuran bir blog nesnesine neden olur. Bu gönderilerin her birinin bloguna bir başvurusu olacaktır.
 
-Bazı serileştirme çerçeveleri gibi döngüleri izin vermez. Örneğin, bir döngüye ile karşılaşılırsa Json.NET şu özel durum oluşturur.
+Bazı serileştirme çerçeveleri bu tür döngülerine izin vermez. Örneğin, bir döngüyle karşılaşılırsa Json.NET aşağıdaki özel durumu oluşturur.
 
-> Newtonsoft.Json.JsonSerializationException: Kendi kendine başvuran döngü 'Blog' özelliği için 'MyApplication.Models.Blog' türüyle algılandı.
+> Newtonsoft. JSON. JsonSerializationException: ' MyApplication. modeller. blog ' türündeki ' blog ' özelliği için kendine başvuran bir döngü algılandı.
 
-ASP.NET Core kullanıyorsanız, nesne grafiğinde bulduğu döngüleri yok saymak için Json.NET yapılandırabilirsiniz. Bu yapılır `ConfigureServices(...)` yönteminde `Startup.cs`.
+ASP.NET Core kullanıyorsanız, Json.NET 'ı nesne grafiğinde bulduğu döngüleri yoksayacak şekilde yapılandırabilirsiniz. Bu, içindeki `ConfigureServices(...)` `Startup.cs`yönteminde yapılır.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -335,4 +335,4 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Gezinti özellikleri ile birini donatmak için başka bir alternatiftir `[JsonIgnore]` özniteliği, bu gezinme özelliğinin serileştirirken gezeceği değil Json.NET bildirir.
+Diğer bir seçenek de, bir gezinti özelliklerinden `[JsonIgnore]` birini, JSON.net, serileştirilirken Bu gezinti özelliğinde çapraz geçiş yapmasına yönlendiren özniteliğiyle süslemesine yönelik bir alternatiftir.

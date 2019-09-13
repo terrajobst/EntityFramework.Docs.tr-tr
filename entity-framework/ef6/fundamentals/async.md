@@ -3,12 +3,12 @@ title: Async sorgusu ve Save-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d56e6f1d-4bd1-4b50-9558-9a30e04a8ec3
-ms.openlocfilehash: bf2039110962e8dd114242dcd0b9454963750774
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
+ms.openlocfilehash: ae578976ffc88b407ef0aaa0017935005bedd093
+ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306591"
+ms.lasthandoff: 09/12/2019
+ms.locfileid: "70921624"
 ---
 # <a name="async-query-and-save"></a>Zaman uyumsuz sorgu ve Kaydet
 > [!NOTE]
@@ -142,7 +142,7 @@ Kod zaman uyumlu olduğundan, programı çalıştırdığımızda aşağıdaki y
 
 1.  **SaveChanges** yeni **blogunuzu** veritabanına göndermeye başlıyor
 2.  **SaveChanges** tamamlandı
-3.  Tüm blogların  sorgusu veritabanına gönderiliyor
+3.  Tüm blogların sorgusu veritabanına gönderiliyor
 4.  Sorgu dönüşleri ve sonuçlar **konsola** yazılır
 5.  Günün teklifi **konsola** yazılır
 
@@ -221,12 +221,14 @@ System. Data. Entity ad alanındaki kullanılabilir uzantı yöntemlerinin kapsa
 
 Artık kod zaman uyumsuz olduğuna göre, programı çalıştırdığımızda farklı bir yürütme akışını gözlemlebiliriz:
 
-1.  **SaveChanges** komutu veritabanına gönderildikten sonra, geçerli yönetilen iş parçacığında *daha fazla işlem süresi gerekmiyorsa, SaveChanges yeni **blogunuzu** veritabanına göndermeye başlıyor. **Performdatabaseoperations** yöntemi döndürür (yürütmeyi bitirmemiş olsa da) ve Main yönteminde Program Flow devam eder.*
-2.  **Günün teklifi**
-    konsola*yazılır çünkü ana yöntemde başka iş yapılamaz, ancak veritabanı işlemi tamamlanana kadar, yönetilen iş parçacığı bekleme çağrısında engellenir. Tamamlandıktan sonra, **Performdatabaseoperations** 'imizin geri kalanı yürütülür.*
-3.  **SaveChanges** tamamlandı
-4.  Tüm blogların  sorgusu veritabanına *yeniden gönderilir, yönetilen iş parçacığı sorgu veritabanında işlendiği sırada başka bir iş yapmak için ücretsizdir. Diğer tüm yürütme tamamlandığından iş parçacığı de yalnızca bekleme çağrısında durabilir.*
-5.  Sorgu dönüşleri ve sonuçlar **konsola** yazılır
+1. **SaveChanges** yeni **blogunuzu** veritabanına göndermeye başlıyor  
+    *Komut veritabanına gönderildikten sonra, geçerli yönetilen iş parçacığında daha fazla işlem süresi gerekmez. **Performdatabaseoperations** yöntemi döndürür (yürütmeyi bitirmemiş olsa da) ve Main yönteminde Program Flow devam eder.*
+2. **Günün teklifi konsola yazılır**  
+    *Main yönteminde yapılacak başka bir iş olmadığından, veritabanı işlemi tamamlanana kadar, yönetilen iş parçacığı bekleme çağrısında engellenir. Tamamlandıktan sonra, **Performdatabaseoperations** 'imizin geri kalanı yürütülür.*
+3.  **SaveChanges** tamamlandı  
+4.  Tüm blogların sorgusu veritabanına gönderiliyor  
+    *Bu durumda, sorgu veritabanında işlendiği sırada yönetilen iş parçacığı başka bir iş yapmak için ücretsizdir. Diğer tüm yürütme tamamlandığından iş parçacığı de yalnızca bekleme çağrısında durabilir.*
+5.  Sorgu dönüşleri ve sonuçlar **konsola** yazılır  
 
 ![Zaman uyumsuz çıkış](~/ef6/media/asyncoutput.png) 
 

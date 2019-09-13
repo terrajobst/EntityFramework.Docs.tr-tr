@@ -1,44 +1,44 @@
 ---
-title: Uzamsal veriler - EF Core
+title: Uzamsal veriler-EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 11/01/2018
 ms.assetid: 2BDE29FC-4161-41A0-841E-69F51CCD9341
 uid: core/modeling/spatial
-ms.openlocfilehash: cf488c6b7d94ca19018efe1c23ff410fe7eb594b
-ms.sourcegitcommit: 81c53ac43d8f15b900f117294ec71dc49fe028fa
+ms.openlocfilehash: 026df735473e31f1c1463c1fbc6f46c4fd6dfd4f
+ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/16/2018
-ms.locfileid: "51817916"
+ms.lasthandoff: 09/12/2019
+ms.locfileid: "70921729"
 ---
 # <a name="spatial-data"></a>Uzamsal veriler
 
 > [!NOTE]
-> Bu özellik, EF Core 2.2 içinde yeni bir özelliktir.
+> Bu özellik EF Core 2,2 ' ye eklenmiştir.
 
-Uzamsal veriler fiziksel konuma ve nesnelerin şeklini temsil eder. Çok sayıda veritabanı bu tür veriler için destek sağlar, böylece dizine ve yanı sıra diğer veriler sorgulandı. Bir konumdan belirli bir uzaklık içindeki nesneler için sorgulama ve belirli bir konuma kenarlığını içeren nesneyi yaygın senaryolar şunlardır. EF Core destekler kullanarak uzamsal veri türleri için eşleme [NetTopologySuite](https://github.com/NetTopologySuite/NetTopologySuite) uzamsal kitaplığı.
+Uzamsal veriler, fiziksel konumu ve nesnelerin şeklini temsil eder. Birçok veritabanı, bu tür veriler için destek sağlar, böylece diğer verilerle birlikte dizinlenebilir ve sorgulanabilir. Yaygın senaryolar, bir konumdan belirli bir uzaklıkta bulunan nesnelerin sorgulanmasını veya kenarlığını belirli bir konumu içeren nesneyi seçmeyi içerir. EF Core, [Nettopologyısuite](https://github.com/NetTopologySuite/NetTopologySuite) uzamsal kitaplığı kullanılarak uzamsal veri türlerine eşlemeyi destekler.
 
-## <a name="installing"></a>Yükleme
+## <a name="installing"></a>Yüklemenin
 
-Uzamsal veriler EF Core ile kullanmak için uygun destek NuGet paketini yüklemeniz gerekir. Hangi paketini yüklemeniz gerekir, kullanmakta olduğunuz sağlayıcısına bağlıdır.
+Uzamsal verileri EF Core kullanmak için, uygun destekleyici NuGet paketini yüklemeniz gerekir. Yüklemeniz gereken paket, kullanmakta olduğunuz sağlayıcıya bağlıdır.
 
-EF Core sağlayıcısı                        | Uzamsal NuGet paketi
+EF Core sağlayıcı                        | Uzamsal NuGet paketi
 --------------------------------------- | ---------------------
-Microsoft.EntityFrameworkCore.SqlServer | [Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite)
-Microsoft.EntityFrameworkCore.Sqlite    | [Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite)
-Microsoft.EntityFrameworkCore.InMemory  | [NetTopologySuite](https://www.nuget.org/packages/NetTopologySuite)
-Npgsql.EntityFrameworkCore.PostgreSQL   | [Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite](https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite)
+Microsoft. EntityFrameworkCore. SqlServer | [Microsoft. EntityFrameworkCore. SqlServer. Nettopologyısuite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite)
+Microsoft. EntityFrameworkCore. SQLite    | [Microsoft. EntityFrameworkCore. SQLite. Nettopologyısuite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite)
+Microsoft. EntityFrameworkCore. InMemory  | [Nettopologyısuite](https://www.nuget.org/packages/NetTopologySuite)
+Npgsql. EntityFrameworkCore. PostgreSQL   | [Npgsql. EntityFrameworkCore. PostgreSQL. Nettopologyısuite](https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite)
 
 ## <a name="reverse-engineering"></a>Tersine mühendislik
 
-Uzamsal NuGet ayrıca etkinleştir paketleri [tersine mühendislik](../managing-schemas/scaffolding.md) uzamsal özellikler, ancak modelleriyle gereksinim paketi yüklemek ***önce*** çalıştıran `Scaffold-DbContext` veya `dotnet ef dbcontext scaffold`. Aksi takdirde, türü eşlemeleri sütunlarını paylaşımın hakkında uyarılar alırsınız ve sütunları atlanacak.
+Uzamsal NuGet paketleri de uzamsal özelliklerle [ters mühendislik](../managing-schemas/scaffolding.md) modellerini etkinleştirir, ancak veya `dotnet ef dbcontext scaffold`çalıştırmadan `Scaffold-DbContext` ***önce*** paketi yüklemeniz gerekir. Bunu yapmazsanız, sütunlar için tür eşlemelerini bulmayın hakkında uyarılar alırsınız ve sütunlar atlanır.
 
-## <a name="nettopologysuite-nts"></a>NetTopologySuite (NTS)
+## <a name="nettopologysuite-nts"></a>Nettopologyısuite (bir)
 
-NetTopologySuite, .NET için uzamsal bir kitaplıktır. EF Core modelinizde NTS türlerini kullanarak uzamsal veri türleri veritabanındaki eşleme sağlar.
+Nettopologyısuite, .NET için uzamsal bir kitaplıktır. EF Core, modelinizdeki türler türlerini kullanarak veritabanındaki uzamsal veri türlerine eşlemeyi sağlar.
 
-Kesme noktalarını aracılığıyla uzamsal türler için eşleme etkinleştirmek için sağlayıcının DbContext seçenekleri Oluşturucusu'UseNetTopologySuite yöntemi çağırın. Örneğin, SQL Server ile Bunu şöyle çağırmanız.
+Uzamsal türlere, HI aracılığıyla eşlemeyi etkinleştirmek için, sağlayıcının DbContext seçenekleri oluşturucusunda Usenettopologyısuite yöntemini çağırın. Örneğin, SQL Server ile bu şekilde çağrmış olursunuz.
 
 ``` csharp
 optionsBuilder.UseSqlServer(
@@ -46,23 +46,23 @@ optionsBuilder.UseSqlServer(
     x => x.UseNetTopologySuite());
 ```
 
-Birkaç uzamsal veri türleri vardır. Hangi türü kullandığınız izin vermek istediğiniz şekillerinin türlerine bağlıdır. Modelinizde özellikleri için kullanabileceğiniz NTS türlerin hiyerarşisi aşağıda verilmiştir. Bunlar içinde bulunduğu `NetTopologySuite.Geometries` ad alanı. İlgili arabirimlere GeoAPI paketindeki (`GeoAPI.Geometries` ad alanı) de kullanılabilir.
+Birçok uzamsal veri türü vardır. Kullandığınız tür, izin vermek istediğiniz şekillerin türüne bağlıdır. Modelinizdeki özellikler için kullanabileceğiniz, bu türlerin hiyerarşisi aşağıda verilmiştir. `NetTopologySuite.Geometries` Ad alanı içinde bulunur.
 
-* Geometri
-  * Noktası
+* Geometrisi
+  * Seçeneğinin
   * LineString
-  * Çokgen
+  * Gen
   * GeometryCollection
-    * MultiPoint
+    * Noktalı
     * MultiLineString
     * MultiPolygon
 
 > [!WARNING]
-> CircularString, CompoundCurve ve CurePolygon NTS tarafından desteklenmez.
+> CurePolygon,, CompoundCurve ve tarafından desteklenmez.
 
-Temel geometrik türünü kullanarak her türlü özelliği tarafından belirtilen şeklin sağlar.
+Temel geometri türünü kullanmak, özelliği tarafından herhangi bir tür şeklin belirtilmesini sağlar.
 
-Aşağıdaki varlık sınıflarının tabloları eşleştirmek için kullanılabilecek [Wide World Importers örnek veritabanını](http://go.microsoft.com/fwlink/?LinkID=800630).
+Aşağıdaki varlık sınıfları, [geniş dünya içe örnek veritabanındaki](http://go.microsoft.com/fwlink/?LinkID=800630)tablolarla eşlemek için kullanılabilir.
 
 ``` csharp
 [Table("Cities", Schema = "Application"))]
@@ -72,7 +72,7 @@ class City
 
     public string CityName { get; set; }
 
-    public IPoint Location { get; set; }
+    public Point Location { get; set; }
 }
 
 [Table("Countries", Schema = "Application"))]
@@ -83,13 +83,13 @@ class Country
     public string CountryName { get; set; }
 
     // Database includes both Polygon and MultiPolygon values
-    public IGeometry Border { get; set; }
+    public Geometry Border { get; set; }
 }
 ```
 
-### <a name="creating-values"></a>Değerleri oluşturma
+### <a name="creating-values"></a>Değer oluşturma
 
-Oluşturucular, geometri nesneleri oluşturmak için kullanabilirsiniz; Ancak, geometri Fabrika kullanmayı NTS önerir. Bu varsayılan SRID (koordinatları tarafından kullanılan uzamsal başvuru sistemi) belirtmenize olanak tanır ve size (hesaplama sırasında kullanılır) duyarlılığı modeli ve (hangi ordinates--boyutları belirler koordinat dizisi gibi daha gelişmiş işlemler üzerinde denetim ve ölçüler--kullanılabilir).
+Geometri nesneleri oluşturmak için oluşturucuları kullanabilirsiniz; Ancak, bunun yerine bir geometri fabrikası kullanılması önerilir. Bu, varsayılan bir SRID (Koordinatlar tarafından kullanılan uzamsal başvuru sistemi) belirtmenizi sağlar ve duyarlık modeli (hesaplamalar sırasında kullanılır) ve koordinat sırası gibi daha gelişmiş şeyler üzerinde denetim sağlar (bu boyutları belirler ve ölçüler--kullanılabilir).
 
 ``` csharp
 var geometryFactory = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326);
@@ -97,25 +97,24 @@ var currentLocation = geometryFactory.CreatePoint(-122.121512, 47.6739882);
 ```
 
 > [!NOTE]
-> 4326 WGS 84, GPS ve diğer coğrafi sistemlerinde kullanılan standart bir ifade eder.
+> 4326, GPS ve diğer coğrafi sistemlerde kullanılan standart olan WGS 84 ' e başvurur.
 
-### <a name="longitude-and-latitude"></a>Boylam ve enlem
+### <a name="longitude-and-latitude"></a>Boylam ve Enlem
 
-Kesme noktalarını koordinatlarında olan açısından X ve Y değerleri. Enlemini ve boylamını temsil etmek için X boylam ve Y enlem için kullanın. Bu Not **geriye doğru** gelen `latitude, longitude` bu değerleri genellikle görebileceğiniz biçimi.
+Ormallardaki koordinatlar X ve Y değerleri bakımından yapılır. Boylam ve enlem 'yi göstermek için boylam için X kullanın ve enlem için Y kullanın. Bunun, genellikle bu değerleri görebileceğiniz `latitude, longitude` biçimden **geriye doğru** olduğunu unutmayın.
 
 ### <a name="srid-ignored-during-client-operations"></a>İstemci işlemleri sırasında SRID yoksayıldı
 
-Kesme noktalarını işlemleri sırasında SRID değerleri yok sayar. Bu, bir düzlem koordinat sistemi varsayar. Boylam ve enlem, olmayan ölçümleri derece cinsinden uzaklık ve uzunluk alanı gibi bazı istemci hesaplanan değerler açısından koordinatları belirtirseniz anlamına gelir. Daha anlamlı değerleri için önce kullanarak bir kitaplığı gibi başka bir koordinat sistemini koordinatları proje gerekir [ProjNet4GeoAPI](https://github.com/NetTopologySuite/ProjNet4GeoAPI) önce bu değerleri hesaplama.
+, İşlemler sırasında SRID değerlerini yoksayar. Bir düzlem koordinat sistemi olduğunu varsayar. Diğer bir deyişle, boylam ve enlem açısından koordinatları belirtirseniz, uzaklık, uzunluk ve alan gibi istemci tarafından değerlendirilen bazı değerler, ölçü cinsinden değil, derece cinsinden olacaktır. Daha anlamlı değerler için, önce bu değerleri hesaplamadan önce [ProjNet4GeoAPI](https://github.com/NetTopologySuite/ProjNet4GeoAPI) gibi bir kitaplık kullanarak koordinatları başka bir koordinat sistemine proje yapmanız gerekir.
 
-Bir işlem tarafından EF Core ile SQL server olarak değerlendirilen olursa sonucunun birim veritabanı tarafından belirlenir.
+Bir işlem SQL üzerinden EF Core tarafından değerlendiriliyorsa, sonucun birimi veritabanı tarafından belirlenir.
 
-İki şehirler arasındaki uzaklığı hesaplamak için ProjNet4GeoAPI kullanmaya bir örnek aşağıda verilmiştir.
+İki şehir arasındaki mesafeyi hesaplamak için ProjNet4GeoAPI kullanılmasına bir örnek aşağıda verilmiştir.
 
 ``` csharp
 static class GeometryExtensions
 {
-    static readonly IGeometryServices _geometryServices = NtsGeometryServices.Instance;
-    static readonly ICoordinateSystemServices _coordinateSystemServices
+    static readonly CoordinateSystemServices _coordinateSystemServices
         = new CoordinateSystemServices(
             new CoordinateSystemFactory(),
             new CoordinateTransformationFactory(),
@@ -123,7 +122,7 @@ static class GeometryExtensions
             {
                 // Coordinate systems:
 
-                // (3857 and 4326 included automatically)
+                [4326] = GeographicCoordinateSystem.WGS84.WKT,
 
                 // This coordinate system covers the area of our data.
                 // Different data requires a different coordinate system.
@@ -153,15 +152,37 @@ static class GeometryExtensions
                 "
             });
 
-    public static IGeometry ProjectTo(this IGeometry geometry, int srid)
+    public static Geometry ProjectTo(this Geometry geometry, int srid)
     {
-        var geometryFactory = _geometryServices.CreateGeometryFactory(srid);
         var transformation = _coordinateSystemServices.CreateTransformation(geometry.SRID, srid);
 
-        return GeometryTransform.TransformGeometry(
-            geometryFactory,
-            geometry,
-            transformation.MathTransform);
+        var result = geometry.Copy();
+        result.Apply(new MathTransformFilter(transformation.MathTransform));
+
+        return result;
+    }
+
+    class MathTransformFilter : ICoordinateSequenceFilter
+    {
+        readonly MathTransform _transform;
+
+        public MathTransformFilter(MathTransform transform)
+            => _transform = transform;
+
+        public bool Done => false;
+        public bool GeometryChanged => true;
+
+        public void Filter(CoordinateSequence seq, int i)
+        {
+            var result = _transform.Transform(
+                new[]
+                {
+                    seq.GetOrdinate(i, Ordinate.X),
+                    seq.GetOrdinate(i, Ordinate.Y)
+                });
+            seq.SetOrdinate(i, Ordinate.X, result[0]);
+            seq.SetOrdinate(i, Ordinate.Y, result[1]);
+        }
     }
 }
 ```
@@ -175,7 +196,7 @@ var distance = seattle.ProjectTo(2855).Distance(redmond.ProjectTo(2855));
 
 ## <a name="querying-data"></a>Veri Sorgulama
 
-LINQ to SQL NTS yöntemleri ve özellikleri veritabanı işlevleri kullanılabilir çevrilir. Örneğin, içerir ve uzaklık yöntemleri aşağıdaki sorgularda çevrilir. Bu makalenin sonundaki tabloda, çeşitli EF Core sağlayıcıları tarafından desteklenen üyeleri gösterir.
+LINQ 'ta, veritabanı işlevleri olarak kullanılabilen tüm yöntemler ve özellikler SQL 'e çevrilir. Örneğin, uzaklık ve Contains yöntemleri aşağıdaki sorgularda çevrilir. Bu makalenin sonundaki tabloda, çeşitli EF Core sağlayıcıları tarafından hangi üyelerin desteklendiği gösterilmektedir.
 
 ``` csharp
 var nearestCity = db.Cities
@@ -188,30 +209,30 @@ var currentCountry = db.Countries
 
 ## <a name="sql-server"></a>SQL Server
 
-SQL Server kullanıyorsanız, bilmeniz gereken bazı ek işlemler vardır.
+SQL Server kullanıyorsanız, bilmeniz gereken bazı ek şeyler vardır.
 
 ### <a name="geography-or-geometry"></a>Coğrafya veya geometri
 
-Varsayılan olarak, uzamsal özellikler için eşlenen `geography` SQL Server'daki sütun. Kullanılacak `geometry`, [sütun türü yapılandırma](xref:core/modeling/relational/data-types) modelinizdeki.
+Varsayılan olarak, uzamsal özellikler SQL Server `geography` sütunlara eşlenir. Kullanmak `geometry`için, modelinizdeki [sütun türünü yapılandırın](xref:core/modeling/relational/data-types) .
 
-### <a name="geography-polygon-rings"></a>Coğrafya Çokgen halkaları
+### <a name="geography-polygon-rings"></a>Coğrafi Çokgen halkaları
 
-Kullanırken `geography` sütun türü, SQL Server, dış halkası (veya kabuk) ek gereksinimler uygular ve iç halkaları (veya açıkları). Halkasının saat yönünün tersine yönelimli olması gerekir ve iç saat yönünde halkası. Kesme noktalarını bu değerleri veritabanına göndermeden önce doğrular.
+`geography` Sütun türü kullanılırken, SQL Server dış halkada (veya kabukta) ve iç halkalarda (veya delikleri) ek gereksinimler uygular. Dış halkasının saatin tersi yönde ve iç halkalar saat yönünde yönlendirilmelidir. Bu, verileri veritabanına göndermeden önce bunu doğrular.
 
 ### <a name="fullglobe"></a>FullGlobe
 
-SQL Server kullanırken tam dünya temsil etmek için bir standart geometri türü var. `geography` sütun türü. Ayrıca, tam dünya (olmadan bir halkasının) göre çokgenleri temsil etmek için bir yol vardır. Hiçbirini NTS tarafından desteklenir.
+SQL Server, `geography` sütun türü kullanılırken tam dünyayı temsil eden standart olmayan bir geometri türüne sahiptir. Ayrıca, tam dünyaya göre (dış halka olmadan) çokgenler temsil etmenin bir yolu vardır. Bunlardan hiçbiri bu şekilde desteklenmez.
 
 > [!WARNING]
-> FullGlobe ve temel alan çokgenler NTS tarafından desteklenmez.
+> Bu temel alan Fulldünya ve çokgenler, bu şekilde desteklenmez.
 
 ## <a name="sqlite"></a>SQLite
 
-SQLite kullananlar için bazı ek bilgiler aşağıda verilmiştir.
+SQLite kullanarak bunlar için bazı ek bilgiler aşağıda verilmiştir.
 
-### <a name="installing-spatialite"></a>SpatiaLite yükleme
+### <a name="installing-spatialite"></a>Gereksiz Ignite yükleniyor
 
-Windows üzerinde yerel mod_spatialite kitaplığı NuGet paket bağımlılık olarak dağıtılır. Diğer platformlar ayrı olarak yüklemeniz gerekir. Bu genellikle yapılır bir yazılım paketi Yöneticisi'ni kullanarak. Örneğin, Ubuntu ve MacOS üzerinde Homebrew APT kullanabilirsiniz.
+Windows 'da yerel mod_spatialite kitaplığı, bir NuGet paketi bağımlılığı olarak dağıtılır. Diğer platformların da ayrı olarak yüklenmesi gerekir. Bu, genellikle bir yazılım paketi Yöneticisi kullanılarak yapılır. Örneğin, MacOS 'ta Ubuntu ve Homebrew üzerinde APT ' i kullanabilirsiniz.
 
 ``` sh
 # Ubuntu
@@ -223,7 +244,7 @@ brew install libspatialite
 
 ### <a name="configuring-srid"></a>SRID yapılandırma
 
-SpatiaLite içinde sütunlar sütun başına bir SRID belirtmeniz gerekir. SRID olan varsayılan `0`. ForSqliteHasSrid yöntemi kullanarak farklı bir SRID belirtin.
+Gereksiz bir şekilde sütun başına bir SRID belirtmesi gerekir. Varsayılan SRID `0`. ForSqliteHasSrid yöntemini kullanarak farklı bir SRID belirtin.
 
 ``` csharp
 modelBuilder.Entity<City>().Property(c => c.Location)
@@ -232,83 +253,83 @@ modelBuilder.Entity<City>().Property(c => c.Location)
 
 ### <a name="dimension"></a>Boyut
 
-Benzer şekilde SRID, bir sütunun boyut (veya ordinates) da sütunu bir parçası olarak belirtilir. Varsayılan ordinates olduğu X ve y etkinleştir ek ordinates (Z ve M) kullanarak ForSqliteHasDimension yöntemi.
+SRID 'e benzer şekilde sütunun boyutu (veya ordinkılanan) de sütunun bir parçası olarak belirtilir. Varsayılan ordintlar X ve Y 'tir. ForSqliteHasDimension metodunu kullanarak ek ordinları (Z ve d) etkinleştirin.
 
 ``` csharp
 modelBuilder.Entity<City>().Property(c => c.Location)
     .ForSqliteHasDimension(Ordinates.XYZ);
 ```
 
-## <a name="translated-operations"></a>Çevrilmiş işlemleri
+## <a name="translated-operations"></a>Çevrilmiş Işlemler
 
-Bu tablo, hangi NTS üyeleri SQL'e her EF Core sağlayıcısı tarafından çevrilir gösterir.
+Bu tabloda, her bir EF Core sağlayıcısı tarafından SQL 'e çevrilen her bir bu üye gösterilmektedir.
 
-NetTopologySuite | SQL Server (geometri) | SQL Server (regioncountryname) | SQLite | Npgsql
+Nettopologyısuite | SQL Server (geometri) | SQL Server (coğrafya) | SQLite | Npgsql
 --- |:---:|:---:|:---:|:---:
-Geometry.Area | ✔ | ✔ | ✔ | ✔
-Geometry.AsBinary() | ✔ | ✔ | ✔ | ✔
-Geometry.AsText() | ✔ | ✔ | ✔ | ✔
-Geometry.Boundary | ✔ | | ✔ | ✔
-Geometry.Buffer(double) | ✔ | ✔ | ✔ | ✔
-Geometry.Buffer (double, int) | | | ✔
-Geometry.Centroid | ✔ | | ✔ | ✔
-Geometry.Contains(Geometry) | ✔ | ✔ | ✔ | ✔
-Geometry.ConvexHull() | ✔ | ✔ | ✔ | ✔
-Geometry.CoveredBy(Geometry) | | | ✔ | ✔
-Geometry.Covers(Geometry) | | | ✔ | ✔
-Geometry.Crosses(Geometry) | ✔ | | ✔ | ✔
-Geometry.Difference(Geometry) | ✔ | ✔ | ✔ | ✔
-Geometry.Dimension | ✔ | ✔ | ✔ | ✔
-Geometry.Disjoint(Geometry) | ✔ | ✔ | ✔ | ✔
-Geometry.Distance(Geometry) | ✔ | ✔ | ✔ | ✔
-Geometry.Envelope | ✔ | | ✔ | ✔
-Geometry.EqualsExact(Geometry) | | | | ✔
-Geometry.EqualsTopologically(Geometry) | ✔ | ✔ | ✔ | ✔
-Geometry.GeometryType | ✔ | ✔ | ✔ | ✔
-Geometry.GetGeometryN(int) | ✔ | | ✔ | ✔
-Geometry.InteriorPoint | ✔ | | ✔
-Geometry.Intersection(Geometry) | ✔ | ✔ | ✔ | ✔
-Geometry.Intersects(Geometry) | ✔ | ✔ | ✔ | ✔
-Geometry.IsEmpty | ✔ | ✔ | ✔ | ✔
-Geometry.IsSimple | ✔ | | ✔ | ✔
-Geometry.IsValid | ✔ | ✔ | ✔ | ✔
-Geometry.IsWithinDistance (geometri, çift) | ✔ | | ✔
-Geometry.Length | ✔ | ✔ | ✔ | ✔
-Geometry.NumGeometries | ✔ | ✔ | ✔ | ✔
-Geometry.NumPoints | ✔ | ✔ | ✔ | ✔
-Geometry.OgcGeometryType | ✔ | ✔ | ✔
-Geometry.Overlaps(Geometry) | ✔ | ✔ | ✔ | ✔
-Geometry.PointOnSurface | ✔ | | ✔ | ✔
-Geometry.Relate (geometri, string) | ✔ | | ✔ | ✔
-Geometry.Reverse() | | | ✔ | ✔
-Geometry.SRID | ✔ | ✔ | ✔ | ✔
-Geometry.SymmetricDifference(Geometry) | ✔ | ✔ | ✔ | ✔
-Geometry.ToBinary() | ✔ | ✔ | ✔ | ✔
-Geometry.ToText() | ✔ | ✔ | ✔ | ✔
-Geometry.Touches(Geometry) | ✔ | | ✔ | ✔
-Geometry.Union() | | | ✔
-Geometry.Union(Geometry) | ✔ | ✔ | ✔ | ✔
-Geometry.Within(Geometry) | ✔ | ✔ | ✔ | ✔
-GeometryCollection.Count | ✔ | ✔ | ✔ | ✔
+Geometry. alan | ✔ | ✔ | ✔ | ✔
+Geometry. AsBinary () | ✔ | ✔ | ✔ | ✔
+Geometry. AsText () | ✔ | ✔ | ✔ | ✔
+Geometry. sınır | ✔ | | ✔ | ✔
+Geometry. Buffer (Double) | ✔ | ✔ | ✔ | ✔
+Geometry. Buffer (Double, int) | | | ✔
+Geometry. Centroıd | ✔ | | ✔ | ✔
+Geometry. Contains (geometri) | ✔ | ✔ | ✔ | ✔
+Geometry. ConvexHull () | ✔ | ✔ | ✔ | ✔
+Geometry. kapak Edby (geometri) | | | ✔ | ✔
+Geometry. kapsıyorsa (geometri) | | | ✔ | ✔
+Geometry. Kesişmeleri (geometri) | ✔ | | ✔ | ✔
+Geometry. fark (geometri) | ✔ | ✔ | ✔ | ✔
+Geometry. Dimension | ✔ | ✔ | ✔ | ✔
+Geometry. ayrık (geometri) | ✔ | ✔ | ✔ | ✔
+Geometry. mesafe (geometri) | ✔ | ✔ | ✔ | ✔
+Geometry. Envelope | ✔ | | ✔ | ✔
+Geometry. Equalsexyasası (geometri) | | | | ✔
+Geometry. EqualsTopologically (geometri) | ✔ | ✔ | ✔ | ✔
+Geometry. GeometryType | ✔ | ✔ | ✔ | ✔
+Geometry. Getgeometrik YN (int) | ✔ | | ✔ | ✔
+Geometri. ınteriorpoint | ✔ | | ✔
+Geometry. kesişmesi (geometri) | ✔ | ✔ | ✔ | ✔
+Geometry. kesişme (geometri) | ✔ | ✔ | ✔ | ✔
+Geometry. IsEmpty | ✔ | ✔ | ✔ | ✔
+Geometry. IsSimple | ✔ | | ✔ | ✔
+Geometry. IsValid | ✔ | ✔ | ✔ | ✔
+Geometry. ıswithındistance (geometri, Double) | ✔ | | ✔
+Geometry. length | ✔ | ✔ | ✔ | ✔
+Geometry. Numgeometrileri | ✔ | ✔ | ✔ | ✔
+Geometry. NumPoints | ✔ | ✔ | ✔ | ✔
+Geometry. OgcGeometryType | ✔ | ✔ | ✔
+Geometry. örtüşüyor (geometri) | ✔ | ✔ | ✔ | ✔
+Geometry. PointOnSurface | ✔ | | ✔ | ✔
+Geometry. Ilişkilendir (geometri, dize) | ✔ | | ✔ | ✔
+Geometry. Reverse () | | | ✔ | ✔
+Geometry. SRID | ✔ | ✔ | ✔ | ✔
+Geometry. SymmetricDifference (geometri) | ✔ | ✔ | ✔ | ✔
+Geometry. ToBinary () | ✔ | ✔ | ✔ | ✔
+Geometry. ToText () | ✔ | ✔ | ✔ | ✔
+Geometry. dokunuşları (geometri) | ✔ | | ✔ | ✔
+Geometry. Union () | | | ✔
+Geometry. Union (geometri) | ✔ | ✔ | ✔ | ✔
+Geometri. Içinde (geometri) | ✔ | ✔ | ✔ | ✔
+GeometryCollection. Count | ✔ | ✔ | ✔ | ✔
 GeometryCollection [int] | ✔ | ✔ | ✔ | ✔
-LineString.Count | ✔ | ✔ | ✔ | ✔
-LineString.EndPoint | ✔ | ✔ | ✔ | ✔
-LineString.GetPointN(int) | ✔ | ✔ | ✔ | ✔
-LineString.IsClosed | ✔ | ✔ | ✔ | ✔
-LineString.IsRing | ✔ | | ✔ | ✔
-LineString.StartPoint | ✔ | ✔ | ✔ | ✔
-MultiLineString.IsClosed | ✔ | ✔ | ✔ | ✔
-Point.M | ✔ | ✔ | ✔ | ✔
-Point.X | ✔ | ✔ | ✔ | ✔
-Point.Y | ✔ | ✔ | ✔ | ✔
-Point.Z | ✔ | ✔ | ✔ | ✔
-Polygon.ExteriorRing | ✔ | ✔ | ✔ | ✔
-Polygon.GetInteriorRingN(int) | ✔ | ✔ | ✔ | ✔
-Polygon.NumInteriorRings | ✔ | ✔ | ✔ | ✔
+LineString. Count | ✔ | ✔ | ✔ | ✔
+LineString. EndPoint | ✔ | ✔ | ✔ | ✔
+LineString. GetPointN (int) | ✔ | ✔ | ✔ | ✔
+LineString. IsClosed | ✔ | ✔ | ✔ | ✔
+LineString. IsRing | ✔ | | ✔ | ✔
+LineString. StartPoint | ✔ | ✔ | ✔ | ✔
+MultiLineString. IsClosed | ✔ | ✔ | ✔ | ✔
+Nokta. d | ✔ | ✔ | ✔ | ✔
+Point. X | ✔ | ✔ | ✔ | ✔
+Nokta. Y | ✔ | ✔ | ✔ | ✔
+Point. Z | ✔ | ✔ | ✔ | ✔
+Çokgen. ExteriorRing | ✔ | ✔ | ✔ | ✔
+Çokgen. Getınteriorringn (int) | ✔ | ✔ | ✔ | ✔
+Çokgen. Numinteriorhalkalar | ✔ | ✔ | ✔ | ✔
 
 ## <a name="additional-resources"></a>Ek kaynaklar
 
-* [SQL Server uzamsal verileri](https://docs.microsoft.com/sql/relational-databases/spatial/spatial-data-sql-server)
-* [SpatiaLite giriş sayfası](https://www.gaia-gis.it/fossil/libspatialite)
+* [SQL Server uzamsal veriler](https://docs.microsoft.com/sql/relational-databases/spatial/spatial-data-sql-server)
+* [Spaıalite ana sayfası](https://www.gaia-gis.it/fossil/libspatialite)
 * [Npgsql uzamsal belgeleri](http://www.npgsql.org/efcore/mapping/nts.html)
 * [PostGIS belgeleri](http://postgis.net/documentation/)

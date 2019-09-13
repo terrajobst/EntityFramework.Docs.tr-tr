@@ -4,12 +4,12 @@ author: divega
 ms.date: 08/06/2017
 ms.assetid: 608cc774-c570-4809-8a3e-cd2c8446b8b2
 uid: core/get-started/install/index
-ms.openlocfilehash: db1b83a9222e00a5e226a134085b18247b31f29a
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
+ms.openlocfilehash: 62194d1db4efcdaed53ca0e14f160315f8e3cf03
+ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306479"
+ms.lasthandoff: 09/12/2019
+ms.locfileid: "70921752"
 ---
 # <a name="installing-entity-framework-core"></a>Entity Framework Core yükleniyor
 
@@ -19,9 +19,9 @@ ms.locfileid: "68306479"
 
 * Örneğin, .NET Core 'u hedefleyen uygulamalar geliştirmek için EF Core kullanabilirsiniz. .NET Core uygulamaları oluşturmak için [.NET Core SDK](https://dotnet.microsoft.com/download)gerekir. İsteğe bağlı olarak, Visual Studio, Mac için Visual Studio veya Visual Studio Code gibi bir geliştirme ortamı da kullanabilirsiniz. Daha fazla bilgi için [.NET Core Ile çalışmaya](/dotnet/core/get-started)başlama konusuna bakın.
 
-* Visual Studio 'Yu kullanarak Windows 'da .NET Framework 4.6.1 veya üstünü hedefleyen uygulamalar geliştirmek için EF Core kullanabilirsiniz. Visual Studio 'nun en son sürümü önerilir. Visual Studio 2015 gibi eski bir sürümü kullanmak istiyorsanız, NuGet istemcisini, .NET Standard 2,0 kitaplıklarıyla çalışmak üzere [3.6.0 sürümüne yükseltdiğinizden](https://www.nuget.org/downloads) emin olun.
+* Visual Studio 'Yu kullanarak Windows 'da .NET Framework 4.6.1 veya üstünü hedefleyen uygulamalar geliştirmek için EF Core kullanabilirsiniz. [Visual Studio](https://visualstudio.microsoft.com/vs) 'nun en son sürümü önerilir. Visual Studio 2015 gibi eski bir sürümü kullanmak istiyorsanız, NuGet istemcisini, .NET Standard 2,0 kitaplıklarıyla çalışmak üzere [3.6.0 sürümüne yükseltdiğinizden](https://www.nuget.org/downloads) emin olun.
 
-* EF Core, Xamarin ve .NET Native gibi diğer .NET uygulamalarında çalıştırılabilir. Ancak uygulamada bu uygulamalar, EF Core uygulamanızın ne kadar iyi çalıştığını etkileyebilecek çalışma zamanı kısıtlamalarına sahiptir. Daha fazla bilgi için bkz. [EF Core tarafından desteklenen .NET uygulamaları](xref:core/platforms/index).
+* EF Core, [Xamarin](https://dotnet.microsoft.com/apps/xamarin) ve .NET Native gibi diğer .NET uygulamalarında çalıştırılabilir. Ancak uygulamada bu uygulamalar, EF Core uygulamanızın ne kadar iyi çalıştığını etkileyebilecek çalışma zamanı kısıtlamalarına sahiptir. Daha fazla bilgi için bkz. [EF Core tarafından desteklenen .NET uygulamaları](xref:core/platforms/index).
 
 * Son olarak, farklı veritabanı sağlayıcıları belirli veritabanı altyapısı sürümleri, .NET uygulamaları veya işletim sistemleri gerektirebilir. Uygulamanız için doğru ortamı destekleyen bir [EF Core veritabanı sağlayıcısının](xref:core/providers/index) bulunduğundan emin olun.
 

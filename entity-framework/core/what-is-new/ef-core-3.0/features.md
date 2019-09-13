@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: 2EBE2CCC-E52D-483F-834C-8877F5EB0C0C
 uid: core/what-is-new/ef-core-3.0/features
-ms.openlocfilehash: a71aa01e81d9830d7b9e6cb01c200851100a15df
-ms.sourcegitcommit: 87e72899d17602f7526d6ccd22f3c8ee844145df
+ms.openlocfilehash: d61fa884f4669daa220ffc96ae59dd63518e6d5a
+ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/20/2019
-ms.locfileid: "69628423"
+ms.lasthandoff: 09/12/2019
+ms.locfileid: "70921683"
 ---
 # <a name="new-features-included-in-ef-core-30-currently-in-preview"></a>EF Core 3,0 ' de bulunan yeni özellikler (Şu anda önizlemede)
 
@@ -94,15 +94,6 @@ Bu özellik geçerli önizlemeye dahil değildir.
 
 EF Core 2,1 ' de tanıtılan ve EF Core 3,0 ' de anahtarlar olmadan varlık türlerini kabul eden [sorgu türleri](xref:core/modeling/query-types), veritabanından okunabilecek verileri temsil eder, ancak güncelleştirilemez.
 Bu özellik, Çoğu senaryoda veritabanı görünümlerine mükemmel bir uyum sağlar. bu nedenle, tersine mühendislik veritabanı görünümlerinde, anahtar olmadan varlık türlerinin oluşturulmasını otomatikleştirmeyi planlıyoruz.
-
-## <a name="property-bag-entities"></a>Özellik paketi varlıkları
-
-[Sorun #13610](https://github.com/aspnet/EntityFrameworkCore/issues/13610) ve [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914) izleniyor
-
-Bu özellik üzerinde çalışma başlatıldı, ancak geçerli önizlemeye dahil değildir. 
-
-Bu özellik, verileri düzenli özellikler yerine dizini oluşturulmuş özelliklerde depolayan varlıkların etkinleştirilmesi ve ayrıca, farklı varlık türlerini temsil etmek için aynı .net sınıfının (potansiyel olarak basit gibi `Dictionary<string, object>`) örneklerini kullanabilmekle ilgilidir. aynı EF Core modelinde.
-Bu özellik, EF Core için en çok istenen geliştirmelerden biri olan bir JOIN varlığı ([sorun #1368](https://github.com/aspnet/EntityFrameworkCore/issues/1368)) olmadan çok-çok ilişkilerini desteklemeye yönelik bir atlama Stone ' dir.
 
 ## <a name="ef-63-on-net-core"></a>.NET Core üzerinde EF 6,3
 

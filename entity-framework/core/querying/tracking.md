@@ -1,30 +1,30 @@
 ---
-title: İzleme ile Hayır-izleme sorguları - EF Core
+title: İzleme vs. Izleme sorguları yok-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: e17e060c-929f-4180-8883-40c438fbcc01
 uid: core/querying/tracking
-ms.openlocfilehash: 6c5d516fcb3950ae168860029660e1b1061546b8
-ms.sourcegitcommit: 159c2e9afed7745e7512730ffffaf154bcf2ff4a
+ms.openlocfilehash: d93be5c2b727d8fbaddd103f8f367c699ae80a7c
+ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/03/2019
-ms.locfileid: "55668784"
+ms.lasthandoff: 09/12/2019
+ms.locfileid: "70921650"
 ---
-# <a name="tracking-vs-no-tracking-queries"></a>İzleme ile Hayır-izleme sorguları
+# <a name="tracking-vs-no-tracking-queries"></a>İzleme vs. Izleme sorguları yok
 
-Entity Framework Core, değişiklik İzleyici'varlık örneği hakkında bilgi tutar olup olmadığını davranışı denetimleri izleme. Bir varlık izleniyorsa varlık içinde algılanan herhangi bir değişiklik sırasında veritabanını kalıcıdır `SaveChanges()`. Entity Framework Core olacaktır ayrıca düzeltme yukarı Gezinti özellikleri izleme sorgudan elde edilen varlıkları ve DbContext örneğine önceden yüklenmiş varlıklar arasındaki.
+İzleme davranışı, Entity Framework Core değişiklik izleyicide bir varlık örneği hakkındaki bilgileri tutup tutamayacağını denetler. Bir varlık izleniyorsa, varlıkta algılanan tüm değişiklikler sırasında `SaveChanges()`veritabanında kalıcı olur. Entity Framework Core Ayrıca, izleme sorgusundan alınan varlıklar ve daha önce DbContext örneğine yüklenmiş varlıklar arasındaki gezinti özelliklerini de düzeltir.
 
 > [!TIP]  
 > Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub üzerinde.
 
-## <a name="tracking-queries"></a>İzleme sorguları
+## <a name="tracking-queries"></a>Sorguları izleme
 
-Varsayılan olarak, varlık türleri döndüren sorgular izlediğiniz. Yani bu varlık örneği için değişiklik yapabilirsiniz ve bu değişiklikleri tarafından kalıcı `SaveChanges()`.
+Varsayılan olarak, varlık türleri döndüren sorgular izliyor. Bu, bu varlık örneklerinde değişiklik yapabileceğiniz ve bu değişiklikleri tarafından `SaveChanges()`kalıcı hale oluşturabileceğiniz anlamına gelir.
 
-Aşağıdaki örnekte, bloglar derecelendirme değişiklik algılanır ve veritabanı sırasında kalıcı `SaveChanges()`.
+Aşağıdaki örnekte, bloglarda yapılan değişiklik, sırasında `SaveChanges()`veritabanı tarafından algılanır ve kalıcı hale getirilir.
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/Tracking/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/Tracking/Sample.cs)] -->
 ``` csharp
 using (var context = new BloggingContext())
 {
@@ -34,13 +34,13 @@ using (var context = new BloggingContext())
 }
 ```
 
-## <a name="no-tracking-queries"></a>Hayır-izleme sorguları
+## <a name="no-tracking-queries"></a>İzleme sorguları yok
 
-Hiçbir izleme sorguları sonuçları salt okunur bir senaryoda kullanıldığında yararlıdır. Bunlar Kurulum değişiklik izleme bilgilerini gerek yoktur çünkü yürütülecek oluşturulurlar.
+Bir salt okuma senaryosunda sonuçlar kullanıldığında hiçbir izleme sorgusu yararlı değildir. Değişiklik izleme bilgilerini ayarlamaya gerek olmadığından, bunlar yürütülmeye daha hızlıdır.
 
-Hayır-izleme için bir sorguyu değiştirebilir:
+Tek bir sorguyu bir izleme olmayacak şekilde takas edebilirsiniz:
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/Tracking/Sample.cs?highlight=4)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/Tracking/Sample.cs?highlight=4)] -->
 ``` csharp
 using (var context = new BloggingContext())
 {
@@ -50,9 +50,9 @@ using (var context = new BloggingContext())
 }
 ```
 
-Varsayılan davranış bağlam örnek düzeyinde izleme da değiştirebilirsiniz:
+Bağlam örneği düzeyinde varsayılan izleme davranışını da değiştirebilirsiniz:
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/Tracking/Sample.cs?highlight=3)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/Tracking/Sample.cs?highlight=3)] -->
 ``` csharp
 using (var context = new BloggingContext())
 {
@@ -63,13 +63,13 @@ using (var context = new BloggingContext())
 ```
 
 > [!NOTE]  
-> Hiçbir izleme sorguları hala sorgusunun yürütülmesi çözünürlüğüne kimliği gerçekleştirin. Sonuç kümesi birden çok kez aynı varlık içeriyorsa, sonuç kümesindeki her örneği için aynı varlık sınıfı örneği döndürülür. Bununla birlikte, zayıf başvurular zaten döndürülen varlıkları izlemek için kullanılır. Aynı kimliğe sahip bir önceki sonucu kapsam dışına gider ve atık toplama devam, yeni bir varlık örneği alabilirsiniz. Daha fazla bilgi için [nasıl sorgu çalışır](overview.md).
+> Yürütülen sorgu içinde hiçbir izleme sorgusu hala kimlik çözümlemesi gerçekleştirmez. Sonuç kümesi aynı varlığı birden çok kez içeriyorsa, sonuç kümesindeki her bir oluşum için varlık sınıfının aynı örneği döndürülür. Ancak, daha önce döndürülmüş varlıkların izlenmesini sağlamak için zayıf başvurular kullanılır. Aynı kimliğe sahip önceki bir sonuç kapsam dışına gittiğinde ve çöp toplama işlemi çalıştırıyorsa, yeni bir varlık örneği alabilirsiniz. Daha fazla bilgi için bkz. [sorgunun nasıl çalıştığı](overview.md).
 
 ## <a name="tracking-and-projections"></a>İzleme ve tahminler
 
-Sonuç varlık türleri içeriyorsa sorgunun sonuç türü bir varlık türü olmasa bile varsayılan olarak hala izlenir. Aşağıdaki sorguda örneklerini anonim bir tür döndürür `Blog` sonuç kümesi izlenir.
+Sorgunun sonuç türü bir varlık türü olmasa bile, sonuç varlık türleri içeriyorsa, bunlar varsayılan olarak yine de izlenir. Bir anonim tür döndüren aşağıdaki sorguda, sonuç kümesindeki örnekleri `Blog` izlenir.
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/Tracking/Sample.cs?highlight=7)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/Tracking/Sample.cs?highlight=7)] -->
 ``` csharp
 using (var context = new BloggingContext())
 {
@@ -83,9 +83,9 @@ using (var context = new BloggingContext())
 }
 ```
 
-Sonuç kümesi herhangi bir varlık türünün içermiyorsa, ardından hiçbir izleme gerçekleştirilir. Aşağıdaki sorguda, anonim bir tür döndürür varlık (ancak gerçek varlık türü örneği) değerlerden bazıları ile yoktur hiçbir izleme gerçekleştirilir.
+Sonuç kümesi herhangi bir varlık türü içermiyorsa, izleme yapılmaz. Aşağıdaki sorguda, varlıktan bazı değerler içeren anonim bir tür döndüren (ancak gerçek varlık türünün örneği olmadığında), hiçbir izleme yapılmaz.
 
-<!-- [!code-csharp[Main](samples/core/Querying/Querying/Tracking/Sample.cs)] -->
+<!-- [!code-csharp[Main](samples/core/Querying/Tracking/Sample.cs)] -->
 ``` csharp
 using (var context = new BloggingContext())
 {
