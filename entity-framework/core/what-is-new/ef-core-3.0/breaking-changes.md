@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 884cc6611b986fb213d99d3d2fc69d7bebe34aa2
-ms.sourcegitcommit: 7b7f774a5966b20d2aed5435a672a1edbe73b6fb
+ms.openlocfilehash: 10a0f0edc5f98baea26b1a5b9c0aa869b1df01af
+ms.sourcegitcommit: df181e201365c20610ba56dcd5c5ed30cfda00c2
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/17/2019
-ms.locfileid: "69565317"
+ms.lasthandoff: 09/15/2019
+ms.locfileid: "70997851"
 ---
 # <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3,0 ' de yer alan son değişiklikler (Şu anda önizlemede)
 
@@ -908,7 +908,7 @@ Benzer şekilde adlandırılan iki özellik için aynı alanı kullanmaktan kaç
 **Karşı**
 
 Yalnızca alan özellikleri, eşlendiği alanla aynı olarak adlandırılmalıdır.
-EF Core 3,0 ' nin sonraki önizlemede, özellik adından farklı olan bir alan adını açıkça yapılandırmayı yeniden etkinleştirmeyi planlıyoruz:
+3,0 sonrasında EF Core gelecek bir sürümünde, özellik adından farklı olan bir alan adını açıkça yapılandırmayı yeniden etkinleştirmeyi planlıyoruz (bkz. sorun [#15307](https://github.com/aspnet/EntityFrameworkCore/issues/15307)):
 
 ```C#
 modelBuilder
