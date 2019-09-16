@@ -4,21 +4,17 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 10a0f0edc5f98baea26b1a5b9c0aa869b1df01af
-ms.sourcegitcommit: df181e201365c20610ba56dcd5c5ed30cfda00c2
+ms.openlocfilehash: 04487291f24bb702dad4b497c34234afdd5e3c9a
+ms.sourcegitcommit: d01fc19aa42ca34c3bebccbc96ee26d06fcecaa2
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/15/2019
-ms.locfileid: "70997851"
+ms.lasthandoff: 09/16/2019
+ms.locfileid: "71005582"
 ---
-# <a name="breaking-changes-included-in-ef-core-30-currently-in-preview"></a>EF Core 3,0 ' de yer alan son değişiklikler (Şu anda önizlemede)
-
-> [!IMPORTANT]
-> Gelecekteki sürümlerin özellik kümelerinin ve zamanlamalarının her zaman değişikliğe tabi olduğunu ve bu sayfayı güncel tutmaya deneydiğimiz halde, her zaman en son planlarımızı yansıtmadığımızdan emin olun.
-
-Aşağıdaki API ve davranış değişiklikleri, 3.0.0 sürümüne yükseltirken EF Core 2.2. x için geliştirilen uygulamaları kesme potansiyeline sahiptir.
+# <a name="breaking-changes-included-in-ef-core-30"></a>EF Core 3,0 ' de yer alan son değişiklikler
+Aşağıdaki API ve davranış değişiklikleri, 3.0.0 sürümüne yükseltirken mevcut uygulamaları bozmak için olası bir davranıştır.
 Veritabanı sağlayıcılarını yalnızca etkilemek için beklediğimiz değişiklikler, [sağlayıcı değişiklikleri](../../providers/provider-log.md)altında belgelenmiştir.
-Bir 3,0 önizlemeden başka bir 3,0 önizlemeye sunulan yeni özelliklerde kesintiler burada açıklanmamıştır.
+Bir 3,0 önizlemeden başka bir 3,0 önizlemeye olan kesintiler burada açıklanmamıştır.
 
 ## <a name="summary"></a>Özet
 

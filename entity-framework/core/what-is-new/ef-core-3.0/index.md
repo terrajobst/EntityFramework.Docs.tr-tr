@@ -1,23 +1,19 @@
 ---
-title: EF Core 3.0 - EF Core yenilikleri
+title: EF Core 3,0 ' deki yenilikler-EF Core
 author: divega
 ms.date: 02/19/2019
 ms.assetid: 8C90C074-0A5B-4567-AF79-799B7BC78062
 uid: core/what-is-new/ef-core-3.0/index
-ms.openlocfilehash: 9490b0377a383e3ea7c7e70da33799b25e04395a
-ms.sourcegitcommit: a013e243a14f384999ceccaf9c779b8c1ae3b936
+ms.openlocfilehash: 611689b23bfea7e4597466129b2a0e5d4afb6d96
+ms.sourcegitcommit: d01fc19aa42ca34c3bebccbc96ee26d06fcecaa2
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2019
-ms.locfileid: "57463402"
+ms.lasthandoff: 09/16/2019
+ms.locfileid: "71005571"
 ---
-# <a name="what-is-new-in-ef-core-30-currently-in-preview"></a>(Şu anda Önizleme aşamasında) EF Core 3. 0'yenilikler nelerdir?
+# <a name="what-is-new-in-ef-core-30"></a>EF Core 3,0 ' deki yenilikler
 
-> [!IMPORTANT]
-> Özellik kümeleri ve zamanlamaları gelecek sürümlerin her zaman değişikliğe tabi olduğu ve bu sayfada en güncel, en son planlarımızı hiç yansıtmayabilir tutmak deneyeceğiz rağmen zaman lütfen unutmayın.
+EF Core 3,0, [NuGet.org Içinde NuGet paketleri](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/)olarak sunulmaktadır. 
 
-EF Core 3.0 şu anda geliştirilmekte ve kullanılabilir olarak [Önizleme NuGet Galerisi'nde yayımlanmış paketleri](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/). 
+[Yeni özellikler](xref:core/what-is-new/ef-core-3.0/features) ve [son değişiklikleri](xref:core/what-is-new/ef-core-3.0/breaking-changes)içerir. 
 
-EF Core 3.0 geçerli önizlemeleri, yalnızca küçük iyileştirmeler içerir ve [bozucu değişiklikler](xref:core/what-is-new/ef-core-3.0/breaking-changes) 3.0 gerisini hazırlığında yaptık. 
-
-Art arda gelen Önizleme sürümleri, daha fazlasını içerecek [özellikleri EF Core 3.0 için planlanan](xref:core/what-is-new/ef-core-3.0/features).
