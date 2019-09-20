@@ -1,43 +1,43 @@
 ---
-title: EF Core 2.1 - EF Core yenilikleri
+title: EF Core 2,1 ' deki yenilikler-EF Core
 author: divega
 ms.date: 02/20/2018
 ms.assetid: 585F90A3-4D5A-4DD1-92D8-5243B14E0FEC
 uid: core/what-is-new/ef-core-2.1
-ms.openlocfilehash: 16600ccbb1194d584fae15671118d9c046f1f637
-ms.sourcegitcommit: 06073f8efde97dd5f540dbfb69f574d8380566fe
+ms.openlocfilehash: 5f97015f0228387574e3a19fb20cae1bdb403410
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 06/24/2019
-ms.locfileid: "67333852"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149174"
 ---
-# <a name="new-features-in-ef-core-21"></a>EF Core 2.1 yeni özellikler
+# <a name="new-features-in-ef-core-21"></a>EF Core 2,1 ' deki yeni özellikler
 
-EF Core 2.1, çeşitli hata düzeltmeleri ve küçük işlevsel ve performans iyileştirmeleri yanı sıra, bazı ilgi çekici yeni özellikler içerir:
+Çok sayıda hata düzeltmesi ve küçük işlevsellik ve performans geliştirmelerinin yanı sıra EF Core 2,1 bazı etkileyici yeni özellikler içerir:
 
-## <a name="lazy-loading"></a>Yavaş yükleniyor
-EF Core artık herkes Gezinti özelliklerini isteğe bağlı olarak yükleyebilir, varlık sınıfları yazmak gerekli yapı taşlarını içerir. Ayrıca yeni bir paket, bu yapı taşlarını yararlanan Microsoft.EntityFrameworkCore.Proxies oluşturduk yavaş yükleniyor proxy oluşturmak için en düşük düzeyde temel sınıfları varlık sınıflarının (örneğin, sanal Gezinti özellikleri ile sınıflar) değiştirdi.
+## <a name="lazy-loading"></a>geç yükleme
+EF Core artık, herhangi bir kişinin gezinti özelliklerini isteğe bağlı olarak yükleyebilen varlık sınıfları yazmak için gerekli yapı taşlarını içerir. Ayrıca, en düşük düzeyde değiştirilen varlık sınıflarına (örneğin, sanal gezinti özelliklerine sahip sınıflar) göre yavaş yükleme proxy sınıfları oluşturmak için bu yapı taşlarından yararlanan yeni bir Microsoft. EntityFrameworkCore. proxy paketi oluşturduk.
 
-Okuma [yavaş yükleme bölümünde](xref:core/querying/related-data#lazy-loading) Bu konu hakkında daha fazla bilgi için.
+Bu konu hakkında daha fazla bilgi için, [yavaş yükleme bölümündeki bölümü](xref:core/querying/related-data#lazy-loading) okuyun.
 
-## <a name="parameters-in-entity-constructors"></a>Varlık Yapıcılardaki parametreleri
-Gecikmeli yükleme için gerekli yapı taşlarını biri olarak kendi oluşturucularda parametre alan bir varlık oluşturma etkinleştirdik. Özellik değerleri, yavaş yükleniyor Temsilciler ve Hizmetleri ekleme için parametreleri kullanabilirsiniz.
+## <a name="parameters-in-entity-constructors"></a>Varlık oluşturuculardaki parametreler
+Yavaş yükleme için gereken yapı taşlarından biri olarak, kurucularında parametre alan varlıkların oluşturulmasını etkinleştirdik. Özellik değerlerini eklemek, yavaş yükleme temsilcileri ve hizmetleri eklemek için parametreleri kullanabilirsiniz.
 
-Okuma [varlık Oluşturucu parametrelere sahip bölüm](xref:core/modeling/constructors) Bu konu hakkında daha fazla bilgi için.
+Bu konu hakkında daha fazla bilgi için, [parametrelere sahip varlık Oluşturucu bölümünü](xref:core/modeling/constructors) okuyun.
 
 ## <a name="value-conversions"></a>Değer dönüştürmeleri
-Şimdiye kadar EF Core, yalnızca yerel olarak temel alınan veritabanı sağlayıcısı tarafından desteklenen tür özellikleri eşleyebilirsiniz. Değerleri sütunlar ve herhangi bir dönüştürme olmadan özellikler arasında ileri ve geri kopyalandı. EF Core 2.1 ile başlayarak, değer dönüştürmeleri özelliklerine ve tam tersi uygulanmadan önce sütunlarından elde edilen değerleri dönüştürmek için uygulanabilir. Sütunları ve özellikleri arasında özel dönüştürmeler kaydetme izin veren açık yapılandırma API yanı sıra, gerektiğinde kural tarafından uygulanan dönüştürmeler bir dizi sahibiz. Bu özellik uygulamanın bazıları şunlardır:
+Artık EF Core, yalnızca temel alınan veritabanı sağlayıcısı tarafından desteklenen türlerin özelliklerini eşleyebilir. Değerler, herhangi bir dönüştürme olmadan sütunlar ve özellikler arasında geri ve ileri kopyalandı. EF Core 2,1 ' den başlayarak, değerlere uygulanmadan önce sütunlardan elde edilen değerleri dönüştürmek için değer dönüştürmeleri uygulanabilir ve tam tersi de geçerlidir. Kural ve özellikler arasında özel dönüştürmeleri kaydetmeye izin veren bir açık yapılandırma API 'SI de olmak üzere kurala göre uygulanabilen birkaç dönüştürmemiz vardır. Bu özelliğin bazı uygulamaları şunlardır:
 
-- Numaralandırmalar dize olarak depolama
-- Eşleme işaretsiz tamsayılar SQL Server ile
-- Otomatik şifreleme ve şifre çözme özellik değerleri
+- Numaralandırmaların dizeler olarak depolanması
+- İşaretsiz tamsayılar SQL Server ile eşleme
+- Özellik değerlerinin otomatik şifrelenmesi ve şifresinin çözülmesi
 
-Okuma [değer dönüştürmeleri bölüm](xref:core/modeling/value-conversions) Bu konu hakkında daha fazla bilgi için.  
+Bu konu hakkında daha fazla bilgi için [değer dönüştürmeleriyle ilgili bölümü](xref:core/modeling/value-conversions) okuyun.  
 
-## <a name="linq-groupby-translation"></a>LINQ GroupBy çeviri
-Sürüm 2.1 önce EF Core GroupBy LINQ işlecini her zaman bellekte değerlendirilmesi. GROUP BY yan tümcesine en yaygın durumlarda çevirme artık desteklenmektedir.
+## <a name="linq-groupby-translation"></a>LINQ GroupBy çevirisi
+Sürüm 2,1 ' den önce, EF Core GroupBy LINQ operatörü her zaman bellekte değerlendirilir. Artık en yaygın durumlarda bunu SQL GROUP BY yan tümcesine çevirmeyi destekliyoruz.
 
-Bu örnek bir sorgu ile çeşitli toplama işlevleri hesaplamak için kullanılan GroupBy gösterir:
+Bu örnek, çeşitli toplama işlevlerini hesaplamak için kullanılan GroupBy ile bir sorgu gösterir:
 
 ``` csharp
 var query = context.Orders
@@ -53,7 +53,7 @@ var query = context.Orders
         });
 ```
 
-Karşılık gelen SQL çeviri şöyle görünür:
+Karşılık gelen SQL çevirisi şuna benzer:
 
 ``` SQL
 SELECT [o].[CustomerId], [o].[EmployeeId],
@@ -62,29 +62,29 @@ FROM [Orders] AS [o]
 GROUP BY [o].[CustomerId], [o].[EmployeeId];
 ```
 
-## <a name="data-seeding"></a>Veri çekirdeği oluşturma
-Yeni sürümle birlikte bir veritabanını doldurmak için ilk veri sağlamak mümkün olacaktır. Farklı EF6 içinde veri dengeli dağıtım modeli yapılandırmasının bir parçası olarak bir varlık türü için ilişkilidir. EF Core geçişleri sonra otomatik olarak ne ekleme, güncelleştirme veya silme işlemleri veritabanı modelin yeni bir sürüme yükseltirken uygulanmasına gerek hesaplayabilirsiniz.
+## <a name="data-seeding"></a>Veri dengeli dağıtımı
+Yeni sürüm ile bir veritabanını doldurmak için ilk verileri sağlamak mümkün olacaktır. EF6 'in aksine, dengeli dağıtım verileri model yapılandırmasının bir parçası olarak bir varlık türü ile ilişkilendirilir. Daha sonra EF Core geçişler, veritabanının yeni bir sürümüne yükseltilirken ekleme, güncelleştirme veya silme işlemlerinin uygulanması gerektiğini otomatik olarak hesaplar.
 
-Örnek olarak, bu veri kaynağı bir Post yapılandırmak için kullanabileceğiniz `OnModelCreating`:
+Örnek olarak bunu, içinde `OnModelCreating`bir gönderi için çekirdek verileri yapılandırmak üzere kullanabilirsiniz:
 
 ``` csharp
 modelBuilder.Entity<Post>().HasData(new Post{ Id = 1, Text = "Hello World!" });
 ```
 
-Okuma [veri üretme bölümü](xref:core/modeling/data-seeding) Bu konu hakkında daha fazla bilgi için.  
+Bu konu hakkında daha fazla bilgi için [veri dengeli dağıtım bölümünü](xref:core/modeling/data-seeding) okuyun.  
 
 ## <a name="query-types"></a>Sorgu türleri
-EF Core model artık sorgu türleri içerebilir. Varlık türlerinden farklı olarak, sorgu türleri değil üzerinde tanımlanmış tuşu ve eklenmiş, silinmiş veya güncelleştirilmiş olamaz (diğer bir deyişle, bunlar salt okunur), ancak doğrudan sorgular tarafından döndürülebilir. Sorgu türleri için kullanım senaryoları bazıları şunlardır:
+EF Core modeli artık sorgu türlerini içerebilir. Varlık türlerinden farklı olarak, sorgu türlerinde tanımlanmış anahtarlar yoktur ve eklenemez, silinemez veya güncelleştirilemez (yani, salt okunurdur), ancak sorgular tarafından doğrudan döndürülebilecek. Sorgu türleri için kullanım senaryolarından bazıları şunlardır:
 
-- Birincil anahtarları olmadan görünümlerine eşleme
-- Tabloların birincil anahtarları olmadan eşleme
-- Modelde tanımlanan sorguları eşleme
-- İçin dönüş türü olarak hizmet veren `FromSql()` sorguları
+- Birincil anahtarlar olmadan görünümlere eşleme
+- Birincil anahtarlar olmadan tablolarla eşleme
+- Modelde tanımlanan sorgularla eşleme
+- Sorgular için `FromSql()` dönüş türü olarak sunma
 
-Okuma [sorgu türleri bölümüne](xref:core/modeling/query-types) Bu konu hakkında daha fazla bilgi için.
+Bu konu hakkında daha fazla bilgi için [sorgu türleri bölümünü](xref:core/modeling/keyless-entity-types) okuyun.
 
-## <a name="include-for-derived-types"></a>Türetilmiş türler
-Türetilmiş türler için ifadeleri yazarken yalnızca tanımlanan Gezinti özelliklerini tanıyabilir artık olacaktır `Include` yöntemi. Kesin türü belirtilmiş sürümünü için `Include`, açık bir yayın kullanarak destekliyoruz veya `as` işleci. Ayrıca artık türetilmiş türler dize sürümünde tanımlanan gezinti özelliği adlarını başvuran destekliyoruz `Include`:
+## <a name="include-for-derived-types"></a>Türetilmiş türler için bulundur
+Artık `Include` Yöntem için ifadeler yazılırken türetilmiş türlerde tanımlanmış olan gezinti özelliklerini belirtmek mümkün olacaktır. Türü kesin belirlenmiş olan `Include`sürümü için, açık bir dönüştürme `as` veya işleç kullanmayı destekliyoruz. Ayrıca, öğesinin `Include`dize sürümündeki türetilmiş türlerde tanımlanan gezinti özelliği adlarına başvurmayı de destekliyoruz.
 
 ``` csharp
 var option1 = context.People.Include(p => ((Student)p).School);
@@ -92,38 +92,38 @@ var option2 = context.People.Include(p => (p as Student).School);
 var option3 = context.People.Include("School");
 ```
 
-Okuma [INCLUDE bölüm türetilen türlerle](xref:core/querying/related-data#include-on-derived-types) Bu konu hakkında daha fazla bilgi için.
+Bu konu hakkında daha fazla bilgi için [türetilmiş türlerle birlikte ekle bölümündeki bölümü](xref:core/querying/related-data#include-on-derived-types) okuyun.
 
-## <a name="systemtransactions-support"></a>System.Transactions desteği
-TransactionScope gibi System.Transactions özelliklerle çalışma olanağı ekledik. Bu hem .NET Framework hem de .NET Core destekleyen veritabanı sağlayıcıları kullanırken çalışır.
+## <a name="systemtransactions-support"></a>System. Transactions desteği
+TransactionScope gibi System. Transactions özellikleriyle çalışma yeteneği ekledik. Bu, bunu destekleyen veritabanı sağlayıcıları kullanılırken hem .NET Framework hem de .NET Core üzerinde çalışır.
 
-Okuma [System.Transactions bölüm](xref:core/saving/transactions#using-systemtransactions) Bu konu hakkında daha fazla bilgi için.
+Bu konu hakkında daha fazla bilgi için [System. Transactions bölümündeki bölümü](xref:core/saving/transactions#using-systemtransactions) okuyun.
 
-## <a name="better-column-ordering-in-initial-migration"></a>İlk geçişinde sıralama daha iyi sütun
-Müşteri geri bildirimi doğrultusunda, özellikleri, sınıflarda bildirilen başlangıçta tablolar için aynı sırada vygenerovat sloupce geçişlerini güncelleştirdik. EF Core ilk tablo oluşturulduktan sonra yeni üye eklendiğinde sipariş değiştiremeyeceğinizi unutmayın.
+## <a name="better-column-ordering-in-initial-migration"></a>İlk geçişte daha iyi sütun sıralaması
+Müşteri geri bildirimlerine bağlı olarak, Özellikler sınıflarda bildirildiği sırada tablolar için ilk olarak sütunlar oluşturmak üzere geçişleri güncelleştirdik. İlk tablo oluşturulduktan sonra yeni üyeler eklendiğinde EF Core sırayı değiştiremediğini unutmayın.
 
-## <a name="optimization-of-correlated-subqueries"></a>Bağıntılı alt sorgularda en iyi duruma getirilmesi
-"N + 1" yürütme önlemek için sunduğumuz sorgu çevirisi geliştirildi SQL sorgularında projeksiyon Gezinti özelliğinde kullanımını müşteri adayları verilerle ilişkili alt sorgu kök sorgudan verileri birleştirme için birçok yaygın senaryo. Alt sorgu sonuçları arabelleğe alma iyileştirme gerektirir ve yeni davranış katılımı için sorguyu değiştirin gerektirir.
+## <a name="optimization-of-correlated-subqueries"></a>Bağıntılı alt sorgular iyileştirmesi
+"N + 1" SQL sorgularını, projeksiyondaki bir gezinti özelliğinin kullanımının, kök sorgudan bağıntılı bir alt sorgudan verilerle katılmasını sağlayan çok sayıda yaygın senaryoda yürütmemek için geliştirdik. İyileştirme, sorgunun sonuçlarını arabelleğe almayı gerektirir ve yeni davranışı kabul etmek için sorguyu değiştirmenizi gerektirir.
 
-Örnek olarak, aşağıdaki sorguyu normalde bir sorguya müşterileri, ayrıca (burada döndürülen müşteri sayısı, "N") N çevrilir sorguları siparişlerini ayırın:
+Örnek olarak, aşağıdaki sorgu normal olarak müşteriler için tek bir sorguya çevrilir, ek olarak N ("N" döndürülen müşterilerin sayısı) siparişlerin ayrı sorgularını alır:
 
 ``` csharp
 var query = context.Customers.Select(
     c => c.Orders.Where(o => o.Amount  > 100).Select(o => o.Amount));
 ```
 
-Ekleyerek `ToList()` doğru yerde arabelleğe alma iyileştirmeyi etkinleştirme siparişleri için uygun olduğunu gösterir:
+Doğru yere `ToList()` dahil ederek, arabelleğe alma işleminin, en iyi duruma getirmeyi sağlayan siparişlere uygun olduğunu belirtirsiniz:
 
 ``` csharp
 var query = context.Customers.Select(
     c => c.Orders.Where(o => o.Amount  > 100).Select(o => o.Amount).ToList());
 ```
 
-Bu sorgu için yalnızca iki SQL sorguları çevrilir dikkat edin: Biri müşteriler ve siparişler için sonraki komutu.
+Bu sorgunun yalnızca iki SQL sorgusuna çevrildiğine unutmayın: Biri müşteriler ve bir sonraki siparişler için.
 
-## <a name="owned-attribute"></a>[Ait] özniteliği
+## <a name="owned-attribute"></a>[Sahipli] özniteliği
 
-Şimdi yapılandırmak mümkün [varlık türlerine ait](xref:core/modeling/owned-entities) yalnızca türüyle yorumlama tarafından `[Owned]` ve sahibi varlık emin olduktan sonra modele eklenir:
+Artık türe `[Owned]` açıklama ekleyerek ve sonra sahip varlığın modele eklendiğinden emin olarak sahip olan [varlık türlerini](xref:core/modeling/owned-entities) yapılandırmak mümkündür:
 
 ``` csharp
 [Owned]
@@ -140,22 +140,22 @@ public class Order
 }
 ```
 
-## <a name="command-line-tool-dotnet-ef-included-in-net-core-sdk"></a>Komut satırı aracı dotnet-ef .NET Core SDK'sına dahil
+## <a name="command-line-tool-dotnet-ef-included-in-net-core-sdk"></a>Komut satırı aracı DotNet-.NET Core SDK içinde yer alan EF
 
-_Dotnet-ef_ komutları artık .NET Core SDK'sının parçası, bu nedenle, artık DotNetCliToolReference geçişler kullanın veya var olan bir veritabanından bir DbContext iskelesini kullanabilmek için projede kullanmak için gerekli olacaktır.
+_DotNet-EF_ komutları artık .NET Core SDK bir parçasıdır. bu nedenle, geçişleri kullanabilmeniz veya var olan bir veritabanından bir DbContext 'i kullanmak için artık projede Dotnetclientoolreference kullanılması gerekli olmayacaktır.
 
-Bölümüne [araçlarını yükleme](xref:core/miscellaneous/cli/dotnet#installing-the-tools) EF Core ve .NET Core SDK'ün farklı sürümleri için komut satırı araçları'nı etkinleştirme hakkında daha fazla ayrıntı için.
+Farklı .NET Core SDK ve EF Core sürümleri için komut satırı araçlarının nasıl etkinleştirileceği hakkında daha fazla bilgi için [araçları yükleme](xref:core/miscellaneous/cli/dotnet#installing-the-tools) bölümüne bakın.
 
-## <a name="microsoftentityframeworkcoreabstractions-package"></a>Microsoft.EntityFrameworkCore.Abstractions paket
-Yeni paket öznitelikleri ve projelerinizde kullanan bir bütün olarak EF Core üzerinde bir bağımlılık almadan EF Core özellikleri açık arabirimler içerir. Örneğin, [ait] özniteliği ve ILazyLoader arabirimi burada yer alır.
+## <a name="microsoftentityframeworkcoreabstractions-package"></a>Microsoft. EntityFrameworkCore. soyutlamalar paketi
+Yeni paket, bir bütün olarak EF Core bağımlılığı almadan EF Core özellikleri açmak için projelerinizde kullanabileceğiniz öznitelikleri ve arabirimleri içerir. Örneğin, [sahip] özniteliği ve ılazyloader arabirimi burada bulunur.
 
 ## <a name="state-change-events"></a>Durum değişikliği olayları
 
-Yeni `Tracked` ve `StateChanged` olaylarına `ChangeTracker` DbContext girme ve durumlarını değiştirerek varlıklara tepki verdiğini mantığı yazmak için kullanılır.
+' Deki `StateChanged` `Tracked` Yeni`ChangeTracker` ve olaylar, DbContext ' i girerek veya durumlarını değiştirerek varlıklara yeniden davranan mantığı yazmak için kullanılabilir.
 
-## <a name="raw-sql-parameter-analyzer"></a>Ham SQL parametresi Çözümleyicisi
+## <a name="raw-sql-parameter-analyzer"></a>Ham SQL parametre Çözümleyicisi
 
-Yeni bir kod Çözümleyicisi EF Core ile SQL ham apı'lerimizi güvensiz kullanımı gibi algılar dahil edilen `FromSql` veya `ExecuteSqlCommand`. Örneğin, aşağıdaki sorgu için bir uyarı çünkü göreceğiniz _minAge_ değil parametreli:
+Yeni bir kod Çözümleyicisi, veya `FromSql` `ExecuteSqlCommand`gibi ham SQL API 'lerimizin güvensiz kullanımlarını algılayan EF Core dahildir. Örneğin, aşağıdaki sorgu için bir uyarı görürsünüz çünkü _Minage_ parametreli değil:
 
 ``` csharp
 var sql = $"SELECT * FROM People WHERE Age > {minAge}";
@@ -164,7 +164,7 @@ var query = context.People.FromSql(sql);
 
 ## <a name="database-provider-compatibility"></a>Veritabanı sağlayıcısı uyumluluğu
 
-Güncelleştirilen veya EF Core 2.1 ile çalışmak üzere en az test sağlayıcıları ile EF Core 2.1 kullanmanız önerilir.
+EF Core 2,1 ' i güncelleştirilmiş veya en az test edilmiş EF Core 2,1 ile çalışacak şekilde kullanmanız önerilir.
 
 > [!TIP]
-> Herhangi bir beklenmeyen bulursanız uyumsuzluk herhangi sorun yeni özellikler veya bunlar üzerinde geri bildirimde bulunmak istiyorsanız lütfen kullanarak rapor [müşterilerimize sorun İzleyicisi](https://github.com/aspnet/EntityFrameworkCore/issues/new).
+> Yeni özelliklerde beklenmeyen bir uyumsuzluk veya herhangi bir sorun bulursanız veya bunlarla ilgili geri bildiriminiz varsa, lütfen [sorun İzleyicisi](https://github.com/aspnet/EntityFrameworkCore/issues/new)'ni kullanarak bildirin.

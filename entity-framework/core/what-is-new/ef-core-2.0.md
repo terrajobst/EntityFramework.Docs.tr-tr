@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: 2CB5809E-0EFB-44F6-AF14-9D5BFFFBFF9D
 uid: core/what-is-new/ef-core-2.0
-ms.openlocfilehash: 28b2180e898b91d233b590b1639674a464f8c679
-ms.sourcegitcommit: 0cc9578fd49802789a00c0044b4e57325476ca2e
+ms.openlocfilehash: 781578d9de05895cdbc777aa53c3f6d6f9777869
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70271428"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149047"
 ---
 # <a name="new-features-in-ef-core-20"></a>EF Core 2,0 ' deki yeni özellikler
 
@@ -36,7 +36,7 @@ Bu özellik hakkında daha fazla bilgi için [tablo bölme bölümündeki bölü
 
 ### <a name="owned-types"></a>Sahip olunan türler
 
-Sahip olunan bir varlık türü, sahip olduğu başka bir varlık türüyle aynı CLR türünü paylaşabilir, ancak yalnızca CLR türü tarafından tanımlanamıyorsa, başka bir varlık türünden buna bir gezinti olması gerekir. Tanımlama gezintisini içeren varlık, sahibidir. Sahibi sorgulanırken sahip olan türler varsayılan olarak dahil edilir.
+Sahip olunan bir varlık türü, aynı .NET türünü sahip olan başka bir varlık türüyle paylaşabilir, ancak yalnızca .NET türü tarafından tanımlanamıyorsa, başka bir varlık türünden bir gezinti olması gerekir. Tanımlama gezintisini içeren varlık, sahibidir. Sahibi sorgulanırken sahip olan türler varsayılan olarak dahil edilir.
 
 Kurala göre, sahip olunan tür için bir gölge birincil anahtar oluşturulur ve tablo bölme kullanılarak aynı tabloyla aynı tabloyla eşleştirilir. Bu, EF6 ' de karmaşık türlerin kullanılmasına benzer şekilde sahip olan türleri kullanılmasına izin verir:
 

@@ -1,23 +1,23 @@
 ---
-title: Inmemory veritabanı sağlayıcısı - EF Core
+title: InMemory veritabanı sağlayıcısı-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 9af0cba7-7605-4f8f-9cfa-dd616fcb880c
 uid: core/providers/in-memory/index
-ms.openlocfilehash: ca802f55d973b9f79073c2507c1e0c7a853a1fce
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 28f5f262b41cbc1f196e41d75c8b88ca60e678fe
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993326"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149242"
 ---
-# <a name="ef-core-in-memory-database-provider"></a>EF Core bellek içi veritabanı sağlayıcısı
+# <a name="ef-core-in-memory-database-provider"></a>Bellek Içi veritabanı sağlayıcısını EF Core
 
-Bu veritabanı sağlayıcısı, bir bellek içi veritabanı ile kullanılacak Entity Framework Core sağlar. Bellek içi modunda SQLite sağlayıcısı test yerine ilişkisel veritabanları için daha uygun olabilir ancak bu test etmek için yararlı olabilir. Sağlayıcı bir parçası olarak korunur [Entity Framework Core projesi](https://github.com/aspnet/EntityFrameworkCore).
+Bu veritabanı sağlayıcısı, Entity Framework Core bellek içi veritabanıyla birlikte kullanılmasına izin verir. Bu, sınama için faydalı olabilir, ancak bellek içi moddaki SQLite sağlayıcı, ilişkisel veritabanları için daha uygun bir test değişikliği olabilir. Sağlayıcı [Entity Framework Core projenin](https://github.com/aspnet/EntityFrameworkCore)bir parçası olarak tutulur.
 
 ## <a name="install"></a>Yükleme
 
-Yükleme [Microsoft.EntityFrameworkCore.InMemory NuGet paketi](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory/).
+[Microsoft. EntityFrameworkCore. InMemory NuGet paketini](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory/)yükler.
 
 ``` powershell
 Install-Package Microsoft.EntityFrameworkCore.InMemory
@@ -25,21 +25,11 @@ Install-Package Microsoft.EntityFrameworkCore.InMemory
 
 ## <a name="get-started"></a>Başlarken
 
-Aşağıdaki kaynaklar bu sağlayıcı ile çalışmaya başlamanıza yardımcı olur.
+Aşağıdaki kaynaklar, bu sağlayıcıyı kullanmaya başlamanıza yardımcı olur.
 * [InMemory ile test etme](../../miscellaneous/testing/in-memory.md)
 
-* [UnicornStore örnek uygulama testi](https://github.com/rowanmiller/UnicornStore/blob/master/UnicornStore/src/UnicornStore.Tests/Controllers/ShippingControllerTests.cs)
+* [UnicornStore örnek uygulama testleri](https://github.com/rowanmiller/UnicornStore/blob/master/UnicornStore/src/UnicornStore.Tests/Controllers/ShippingControllerTests.cs)
 
-## <a name="supported-database-engines"></a>Veritabanı altyapıları desteklenir
+## <a name="supported-database-engines"></a>Desteklenen veritabanı motorları
 
-* Yerleşik bellek içi veritabanına (yalnızca test amacıyla tasarlanmış)
-
-## <a name="supported-platforms"></a>Desteklenen Platformlar
-
-* .NET framework (4.5.1 veya sonraki sürümleri)
-
-* .NET Core
-
-* Mono (4.2.0 ve sonraki sürümler)
-
-* Evrensel Windows Platformu
+* Yerleşik bellek içi veritabanı (yalnızca test amaçlı olarak tasarlanmıştır)

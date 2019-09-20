@@ -1,39 +1,169 @@
 ---
-title: Alma başlatıldı - EF Core
-author: rowanmiller
-ms.date: 10/27/2016
+title: Başlarken-EF Core
+author: rick-anderson
+ms.date: 09/17/2019
 ms.assetid: 3c88427c-20c6-42ec-a736-22d3eccd5071
 uid: core/get-started/index
-ms.openlocfilehash: b846d63f2c285a43d60eecfb2be3d460a5d31924
-ms.sourcegitcommit: 064b09431f05848830e145a6cd65cad58881557c
+ms.openlocfilehash: b921d1e99b07bdeb24fb81e16f65d9fef444bd33
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52552600"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149005"
 ---
-# <a name="getting-started-with-entity-framework-core"></a>Entity Framework Core ile çalışmaya başlama
+# <a name="getting-started-with-ef-core"></a>EF Core kullanmaya başlama
 
-## <a name="installing-ef-coreinstallindexmd"></a>[EF Core’u Yükleme](install/index.md)
+Bu öğreticide, Entity Framework Core kullanarak bir SQLite veritabanına yönelik veri erişimi gerçekleştiren bir .NET Core konsol uygulaması oluşturacaksınız.
 
-Farklı platformlar ve popüler Ide'leri, uygulamanın EF Core eklemek gerekli adımları bir özeti.
+Windows üzerinde Visual Studio 'yu kullanarak veya Windows, macOS veya Linux üzerinde .NET Core CLI kullanarak öğreticiyi izleyebilirsiniz.
 
-## <a name="step-by-step-tutorials"></a>Adım adım öğreticiler
+[Bu makalenin örneğini GitHub 'Da görüntüleyin](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted).
 
-Bu Tanıtım öğreticilerine önceki Entity Framework Core olanağıyla veya herhangi bir IDE'ye gerektirir. Bunlar, sorgular ve verileri bir veritabanından kaydeden basit bir uygulama oluşturmak adım adım sürer. Çeşitli işletim sistemlerini ve uygulama türleri üzerinde çalışmaya başlamanızı sağlayacak öğreticiler sağladık.
+## <a name="prerequisites"></a>Önkoşullar
 
-Entity Framework Core varolan bir veritabanını temel alan bir model oluşturmak veya size, modelinize dayalı bir veritabanı oluşturun. Bu yaklaşımların her ikisini de gösteren öğreticiler vardır.
+Aşağıdaki yazılımı yükler:
 
-* .NET core konsol uygulamaları
-  * [Yeni Veritabanı](netcore/new-db-sqlite.md)
-* ASP.NET Core uygulamaları
-  * [Yeni Veritabanı](aspnetcore/new-db.md)
-  * [Mevcut Veritabanı](aspnetcore/existing-db.md)
-  * [EF Core ve Razor Pages](/aspnet/core/data/ef-rp/intro)
-* Evrensel Windows Platformu (UWP) uygulamaları
-  * [Yeni Veritabanı](uwp/getting-started.md)
-* .NET framework uygulamaları
-  * [Yeni Veritabanı](full-dotnet/new-db.md)
-  * [Mevcut Veritabanı](full-dotnet/existing-db.md)
+# <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
-> [!NOTE]  
-> Bu öğreticileri ve eşlik eden örnekleri EF Core 2.1 kullanacak şekilde güncelleştirildi. Ancak, çoğu durumda en az değişiklik yönergeleri ile önceki sürümleri kullanan uygulamalar oluşturma olanağı olmalıdır. 
+* [.NET Core 3,0 SDK](https://www.microsoft.com/net/download/core).
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* [Visual Studio 2019 sürüm 16,3 veya üzeri](https://www.visualstudio.com/downloads/) bu iş yükü:
+  * **.NET Core platformlar arası geliştirme** ( **diğer araç kümeleri**altında)
+
+---
+
+## <a name="create-a-new-project"></a>Yeni bir proje oluşturma
+
+# <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+
+``` Console
+dotnet new console -o EFGetStarted
+cd EFGetStarted
+```
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* Visual Studio 'Yu aç
+* **Yeni proje oluştur ' a** tıklayın
+* Etiketi ile **konsol uygulaması (.NET Core)** seçeneğini belirleyin ve ileri ' ye tıklayın. **C#**
+* Ad için **Efgetstarted** girin ve **Oluştur** ' a tıklayın.
+
+---
+
+## <a name="install-entity-framework-core"></a>Entity Framework Core yüklensin
+
+EF Core yüklemek için, hedeflemek istediğiniz EF Core veritabanı sağlayıcılarının paketini yüklersiniz. Bu öğretici, .NET Core 'un desteklediği tüm platformlarda çalıştığı için SQLite kullanır. Kullanılabilir sağlayıcıların bir listesi için bkz. [veritabanı sağlayıcıları](../providers/index.md).
+
+# <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+
+``` Console
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+```
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* **Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi konsolu**
+* Aşağıdaki komutları çalıştırın:
+
+  ``` PowerShell
+  Install-Package Microsoft.EntityFrameworkCore.Sqlite
+  ```
+
+İpucuyla Ayrıca, projeye sağ tıklayıp **NuGet Paketlerini Yönet** ' i seçerek paketleri yükleyebilirsiniz.
+
+---
+
+## <a name="create-the-model"></a>Modeli oluşturma
+
+Modeli oluşturan bir bağlam sınıfı ve varlık sınıfları tanımlayın.
+
+# <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+
+* Proje dizininde aşağıdaki kodla **model.cs** oluşturun
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* Projeye sağ tıklayın ve **> sınıfı Ekle** ' yi seçin.
+* Ad olarak **model.cs** girin ve **Ekle** ' ye tıklayın.
+* Dosyanın içeriğini aşağıdaki kodla değiştirin
+
+---
+
+[!code-csharp[Main](../../../samples/core/GetStarted/Model.cs)]
+
+EF Core Ayrıca, varolan bir veritabanından bir modele [ters mühendislik](../managing-schemas/scaffolding.md) uygulanabilir.
+
+İpucuyla Gerçek bir uygulamada, her bir sınıfı ayrı bir dosyaya yerleştirip [bağlantı dizesini](../miscellaneous/connection-strings.md) bir yapılandırma dosyasına veya ortam değişkenine yerleştirebilirsiniz. Öğreticiyi bir şekilde korumak için her şey tek bir dosyada yer alır.
+
+## <a name="create-the-database"></a>Veritabanını oluşturma
+
+Aşağıdaki adımlar bir veritabanı oluşturmak için [geçişleri](xref:core/managing-schemas/migrations/index) kullanır.
+
+# <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+
+* Aşağıdaki komutları çalıştırın:
+
+  ``` Console
+  dotnet tool install --global dotnet-ef --version 3.0.0-*
+  dotnet add package Microsoft.EntityFrameworkCore.Design
+  dotnet ef migrations add InitialCreate
+  dotnet ef database update
+  ```
+
+  Bu, bir projede komutu çalıştırmak için gerekli olan [DotNet EF](../miscellaneous/cli/dotnet.md) ve tasarım paketini de yüklüyor. Bu `migrations` komut, model için ilk tablo kümesini oluşturmak üzere bir geçişi bir geçişe kattı. `database update` Komut veritabanını oluşturur ve yeni geçişi uygular.
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* **Paket Yöneticisi konsolunda** aşağıdaki komutları çalıştırın
+
+  ``` PowerShell
+  Install-Package Microsoft.EntityFrameworkCore.Tools
+  Add-Migration InitialCreate
+  Update-Database
+  ```
+
+  Bu, [EF Core Için PMC araçlarını](../miscellaneous/cli/powershell.md)kurar. Bu `Add-Migration` komut, model için ilk tablo kümesini oluşturmak üzere bir geçişi bir geçişe kattı. `Update-Database` Komut veritabanını oluşturur ve yeni geçişi uygular.
+
+---
+
+## <a name="create-read-update--delete"></a>Oluşturma, okuma, güncelleştirme & silme
+
+* *Program.cs* açın ve içeriğini şu kodla değiştirin:
+
+  [!code-csharp[Main](../../../samples/core/GetStarted/Program.cs)]
+
+## <a name="run-the-app"></a>Uygulamayı çalıştırma
+
+# <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+
+``` Console
+dotnet run
+```
+
+# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+Visual Studio, .NET Core konsol uygulamaları çalıştırırken tutarsız bir çalışma dizini kullanır. (bkz. [DotNet/Project-System # 3619](https://github.com/dotnet/project-system/issues/3619)) Bu durum, oluşan bir özel durumla sonuçlanır *: böyle bir tablo yok: Blogları*. Çalışma dizinini güncelleştirmek için:
+
+* Projeye sağ tıklayın ve **Proje dosyasını Düzenle** ' yi seçin.
+* *TargetFramework* özelliğinin hemen altında aşağıdakileri ekleyin:
+
+  ``` XML
+  <StartWorkingDirectory>$(MSBuildProjectDirectory)</StartWorkingDirectory>
+  ```
+
+* Dosyayı kaydedin
+
+Artık uygulamayı çalıştırabilirsiniz:
+
+* **Hata ayıklama > hata ayıklama olmadan Başlat**
+
+---
+
+# <a name="next-steps"></a>Sonraki adımlar
+
+* Bir Web uygulamasında EF Core kullanmak için [ASP.NET Core öğreticisini](/aspnet/core/data/ef-rp/intro) izleyin
+* [LINQ sorgu ifadeleri](/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations) hakkında daha fazla bilgi edinin
+* [Gerekli](xref:core/modeling/required-optional) ve [en fazla uzunluk](xref:core/modeling/max-length) gibi Işlemleri belirtmek için [modelinizi yapılandırın](xref:core/modeling/index)
+* Modelinizi değiştirdikten sonra veritabanı şemasını güncelleştirmek için [geçişleri](xref:core/managing-schemas/migrations/index) kullanma

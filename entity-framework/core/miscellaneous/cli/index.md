@@ -1,27 +1,27 @@
 ---
-title: Entity Framework Core araçları başvurusu - EF Core
+title: Entity Framework Core araçları başvurusu-EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 09/19/2018
 uid: core/miscellaneous/cli/index
-ms.openlocfilehash: 13e80f740bc5ce3404e8dba40b65ec872c5e3f90
-ms.sourcegitcommit: ea1cdec0b982b922a59b9d9301d3ed2b94baca0f
+ms.openlocfilehash: 237192c55ea3542521a7a292ac8550d72e4ef82c
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 05/31/2019
-ms.locfileid: "66452260"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149086"
 ---
 # <a name="entity-framework-core-tools-reference"></a>Entity Framework Core araçları başvurusu
 
-Entity Framework Core araçları tasarım zamanı geliştirme görevleriyle yardımcı olur. Öncelikle geçişleri yönetmek ve iskelesini için kullanıldıklarından bir `DbContext` ve varlık türleri tarafından tersine mühendislik bir veritabanı şeması.
+Entity Framework Core araçları tasarım zamanı geliştirme görevleriyle yardımcı olur. Bunlar, birincil olarak geçişleri yönetmek ve bir veritabanının şemasına ters mühendislik uygulayarak `DbContext` bir ve varlık türlerini dolandırmakta kullanılır.
 
-* [EF Core Paket Yöneticisi konsolu Araçları](powershell.md) Çalıştır [Paket Yöneticisi Konsolu](https://docs.microsoft.com/nuget/tools/package-manager-console) Visual Studio'da. Bu araçlar, .NET Framework hem de .NET Core projeleriyle çalışır.
+* [EF Core Paket Yöneticisi konsol araçları](powershell.md) , Visual Studio 'Da [Paket Yöneticisi konsolunda](https://docs.microsoft.com/nuget/tools/package-manager-console) çalışır.
 
-* [EF Core .NET komut satırı arabirimi (CLI) araçlarını](dotnet.md) için platformlar arası bir uzantıdır [.NET Core CLI Araçları](https://docs.microsoft.com/dotnet/core/tools/). Bu araçları, .NET Core SDK projesindeki gerektirir (biriyle `Sdk="Microsoft.NET.Sdk"` veya proje dosyasında benzer).
+* [EF Core .NET komut satırı arabirimi (CLI) araçları](dotnet.md) , platformlar arası [.NET Core CLI araçları](https://docs.microsoft.com/dotnet/core/tools/)için bir uzantıdır. Bu araçlar, bir .NET Core SDK projesi gerektirir (proje `Sdk="Microsoft.NET.Sdk"` dosyasında bir tane veya buna benzer).
 
-Her iki araç aynı işlevselliği kullanıma sunar. Visual Studio'da geliştiriyorsanız kullanmanızı öneririz **Paket Yöneticisi Konsolu** daha tümleşik bir deneyim sağladıkları beri araçları.
+Her iki araç de aynı işlevselliği sunar. Visual Studio 'da geliştiriyorsanız, daha tümleşik bir deneyim sundukları için **Paket Yöneticisi konsol** araçlarını kullanmanızı öneririz.
 
 ## <a name="next-steps"></a>Sonraki adımlar
 
-* [EF Core Paket Yöneticisi konsolu araçları başvurusu](powershell.md)
-* [EF Core .NET CLI araçları başvurusu](dotnet.md)
+* [EF Core Paket Yöneticisi konsol araçları başvurusu](powershell.md)
+* [EF Core .NET CLı araçları başvurusu](dotnet.md)

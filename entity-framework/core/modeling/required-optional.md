@@ -1,36 +1,36 @@
 ---
-title: Gerekli/isteğe bağlı özellikleri - EF Core
+title: Gerekli/isteğe bağlı özellikler-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: ddaa0a54-9f43-4c34-aae3-f95c96c69842
 uid: core/modeling/required-optional
-ms.openlocfilehash: 564d9e62e2ed4f1a52b569630ed4994529e31dc1
-ms.sourcegitcommit: 87fcaba46535aa351db4bdb1231bd14b40e459b9
+ms.openlocfilehash: 7200cd2eeeba2f22365ef09b1f50edd077240130
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59929816"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149152"
 ---
-# <a name="required-and-optional-properties"></a>Gerekli ve isteğe bağlı özellikler
+# <a name="required-and-optional-properties"></a>Gerekli ve Isteğe bağlı özellikler
 
-Bir özellik içeren için geçerli ise isteğe bağlı olarak sayılır `null`. Varsa `null` gerekli özelliği olduğu düşünülür sonra bir özelliğe atanacak geçerli bir değer değil.
+Özelliği, içermesi `null`için geçerliyse, isteğe bağlı olarak kabul edilir. `null` Bir özelliğe atanacak geçerli bir değer değilse, gerekli bir özellik olarak kabul edilir.
 
 ## <a name="conventions"></a>Kurallar
 
-Kural gereği, CLR türü, null içerebilir bir özellik isteğe bağlı olarak yapılandırılır (`string`, `int?`, `byte[]`vb..). CLR türü, null içeremez özellikleri yapılandırılması gerektiği gibi (`int`, `decimal`, `bool`vb..).
+Kurala göre, .NET türü null içerebilen bir özellik isteğe bağlı (`string` `byte[]`, `int?`,, vb.) olarak yapılandırılır. CLR türü null değer içermeyen özellikler, gerekli (`int`, `decimal`, `bool`vb.) olarak yapılandırılır.
 
 > [!NOTE]  
-> Bir özelliğin CLR türü null içeremez, isteğe bağlı olarak yapılandırılamaz. Entity Framework tarafından gerekli özellik her zaman değerlendirilir.
+> .NET türü null değer içermeyen bir özellik isteğe bağlı olarak yapılandırılamaz. Özellik her zaman Entity Framework için gerekli kabul edilir.
 
-## <a name="data-annotations"></a>Veri ek açıklamaları
+## <a name="data-annotations"></a>Veri açıklamaları
 
-Bir özelliğin gerekli olduğunu belirtmek için veri ek açıklamaları kullanabilirsiniz.
+Bir özelliğin gerekli olduğunu göstermek için, veri açıklamalarını kullanabilirsiniz.
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/Required.cs?highlight=14)]
 
-## <a name="fluent-api"></a>Fluent API'si
+## <a name="fluent-api"></a>Akıcı API
 
-Fluent API'si, bir özelliğin gerekli olduğunu belirtmek için kullanabilirsiniz.
+Bir özelliğin gerekli olduğunu göstermek için Floent API 'sini kullanabilirsiniz.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Required.cs?highlight=11-13)]
 

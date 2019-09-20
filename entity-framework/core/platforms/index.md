@@ -1,48 +1,76 @@
 ---
-title: Desteklenen .NET uygulamaları - EF Core
+title: Desteklenen .NET uygulamaları-EF Core
 author: rowanmiller
 ms.date: 08/30/2017
 uid: core/platforms/index
-ms.openlocfilehash: 8fc25f4a35794162c92fd292990c24e977d1bf1b
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.openlocfilehash: ac3cf3d0a84200bbf4ba7ec18b9115e06d1748f4
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022268"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149215"
 ---
 # <a name="net-implementations-supported-by-ef-core"></a>EF Core tarafından desteklenen .NET uygulamaları
 
-EF Core, .NET kodu yazabilirsiniz ve bu amaç doğrultusunda yine de çalışıyoruz her yerde kullanılabilir olmasını istiyoruz. EF Core'nın destek .NET Core ve .NET Framework, otomatikleştirilmiş test ederek ele alınmaktadır ancak ve başarılı bir şekilde kullanılmasını bilinen birçok uygulama, Mono, Xamarin ve UWP bazı sorunlar vardır.
+EF Core tüm modern .NET uygulamalarındaki geliştiriciler için kullanılabilir olmasını istiyoruz ve bu hedefle çalışmaya devam ediyoruz. EF Core .NET Core üzerinde destek, otomatik test ve başarıyla kullanılması bilinen birçok uygulama tarafından ele alınmıştır, mono, Xamarin ve UWP bazı sorunlar yaşıyor.
 
 ## <a name="overview"></a>Genel Bakış
 
-Aşağıdaki tabloda her bir .NET uygulaması için yönergeler sağlar:
+Aşağıdaki tabloda her .NET uygulamasına yönelik rehberlik sunulmaktadır:
 
-| .NET uygulaması                                                                                                  | Durum                                                             | EF Core 1.x gereksinimleri                                                                                | EF Core 2.x gereksinimleri <sup>(1)</sup>                                                                 |
-|:---------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|
-| **.NET core** ([ASP.NET Core](../get-started/aspnetcore/index.md), [konsol](../get-started/netcore/index.md)vb..) | Tam olarak desteklenen ve önerilen                                    | [.NET core SDK'sı 1.x](https://www.microsoft.com/net/core/)                                                | [.NET core SDK 2.x](https://www.microsoft.com/net/core/)                                                |
-| **.NET framework** (WinForms, WPF, ASP.NET, [konsol](../get-started/full-dotnet/index.md)vb..)                    | Tam olarak desteklenen ve önerilen. Ayrıca kullanılabilir EF6 <sup>(2)</sup> | .NET Framework 4.5.1                                                                                    | .NET Framework 4.6.1                                                                                    |
-| **Mono ve Xamarin**                                                                                                   | Devam eden <sup>(3)</sup>                                         | Mono 4.6 <br/> Xamarin.iOS 10 <br/> Xamarin.Mac 3 <br/> Xamarin.Android 7                               | Mono 5.4 <br/> Xamarin.iOS 10.14 <br/> Xamarin.Mac 3.8 <br/> Xamarin.Android 7.5                        |
-| [**Evrensel Windows platformu**](../get-started/uwp/index.md)                                                        | EF Core önerilen 2.0.1 <sup>(4)</sup>                           | [.NET core UWP 5.x paketi](https://www.nuget.org/packages/Microsoft.NETCore.UniversalWindowsPlatform/) | [.NET core UWP 6.x paket](https://www.nuget.org/packages/Microsoft.NETCore.UniversalWindowsPlatform/) |
+| EF Core                       | 'in    | 2.x        | 3.x             |
+|:------------------------------|:-------|:-----------|:----------------|
+| .NET Standard                 | 1.3    | 2,0        | 2.1             |
+| .NET Core                     | 1.0    | 2,0        | 3.0             |
+| .NET Framework<sup>(1)</sup>  | 4.5.1  | 4.7.2      | (desteklenmiyor) |
+| Mono                          | 4.6    | 5,4        | 6.4             |
+| Xamarin. iOS<sup>(2)</sup>     | 10.0   | 10,14      | 12,16           |
+| Xamarin. Android<sup>(2)</sup> | 7.0    | 8.0        | 10.0            |
+| UWP<sup>(3)</sup>             | 10.0   | 10.0.16299 | TBD             |
+| Unity<sup>(4)</sup>           | 2018,1 | 2018,1     | TBD             |
 
-<sup>(1) </sup> EF Core 2.0 hedefler ve bu nedenle destekleyen .NET uygulamaları [.NET Standard 2.0](https://docs.microsoft.com/dotnet/standard/net-standard).
+<sup>(1)</sup> aşağıdaki [.NET Framework](#net-framework) bölümüne bakın.
 
-<sup>(2) </sup> Bkz [karşılaştırma EF Core ve EF6](../../efcore-and-ef6/index.md) doğru teknolojiyi seçme.
+<sup>(2)</sup> Xamarin ile ilgili sorunlar ve bilinen sınırlamalar vardır ve EF Core kullanılarak geliştirilen bazı uygulamaların doğru şekilde çalışmasını engelleyebilir. Geçici çözümler için [etkin sorunlar](https://github.com/aspnet/entityframeworkCore/issues?q=is%3Aopen+is%3Aissue+label%3Aarea-xamarin) listesini denetleyin.
 
-<sup>(3) </sup> Sorunları ve bazı uygulamaların düzgün çalışmasını EF Core 2.0 kullanarak geliştirilen engelleyebilecek Xamarin ile bilinen sınırlamalar vardır. Listesini kontrol edin [etkin sorunlar](https://github.com/aspnet/entityframeworkCore/issues?q=is%3Aopen+is%3Aissue+label%3Aarea-xamarin) geçici çözümler için.
+<sup>(3)</sup> EF Core 2.0.1 ve daha yeni önerilir. [.NET Core UWP 6. x paketini](https://www.nuget.org/packages/Microsoft.NETCore.UniversalWindowsPlatform/)yükler. Bu makalenin [Evrensel Windows platformu](#universal-windows-platform) bölümüne bakın.
 
-<sup>(4) </sup> Bkz [Evrensel Windows platformu](#universal-windows-platform) bu makalenin.
+<sup>(4)</sup> Unity ile ilgili sorunlar ve bilinen sınırlamalar vardır. [Etkin sorunlar](https://github.com/aspnet/entityframeworkCore/issues?q=is%3Aopen+is%3Aissue+label%3Aarea-unity)listesini denetleyin.
+
+## <a name="net-framework"></a>.NET Framework
+
+.NET Framework hedef uygulamaların .NET Standard kitaplıklarıyla çalışması için değişiklikler gerekebilir:
+
+Proje dosyasını düzenleyin ve aşağıdaki girdinin ilk özellik grubunda göründüğünden emin olun:
+
+``` xml
+<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+```
+
+Test projeleri için aşağıdaki girişin mevcut olduğundan da emin olun:
+
+``` xml
+<GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+```
+
+Visual Studio 'nun eski bir sürümünü kullanmak istiyorsanız, NuGet istemcisini .NET Standard 2,0 kitaplıklarıyla çalışmak üzere [3.6.0 sürümüne yükseltdiğinizden](https://www.nuget.org/downloads) emin olun.
+
+Ayrıca, NuGet paketleri. config ' den, mümkünse PackageReference 'a geçiş yapmanızı öneririz. Aşağıdaki özelliği proje dosyanıza ekleyin:
+
+``` xml
+<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+```
 
 ## <a name="universal-windows-platform"></a>Evrensel Windows Platformu
 
-EF Core ve .NET UWP önceki sürümlerinde, özellikle .NET Native araç zinciri ile derlenmiş uygulamalar ile çeşitli uyumluluk sorunları vardı. Yeni bir .NET UWP sürümü, .NET Standard 2.0 için destek ekler ve .NET yerel, çoğu daha önce bildirilen uyumluluk sorunlarını giderir 2.0 içerir. EF Core 2.0.1 daha kapsamlı UWP ile test edilmiştir, ancak test otomatik.
+EF Core ve .NET UWP 'nin önceki sürümlerinde, özellikle .NET Native araç zinciri ile derlenen uygulamalarla çok sayıda uyumluluk sorunu vardı. Yeni .NET UWP sürümü, .NET Standard 2,0 için destek ekler ve daha önce bildirilen uyumluluk sorunlarının çoğunu düzelten .NET Native 2,0 içerir. EF Core 2.0.1 UWP ile daha kapsamlı bir şekilde sınanmıştır ancak test otomatik değildir.
 
-EF Core, UWP üzerinde kullanıldığında:
+UWP üzerinde EF Core kullanırken:
 
-* Sorgu performansını iyileştirmek için LINQ sorgularında anonim türler kaçının. Bir UWP uygulaması app Store'a dağıtma .NET Native ile derlenen bir uygulamanın gerektirir. Anonim türler sorgularla daha zayıf performans üzerinde .NET Native vardır.
+* Sorgu performansını iyileştirmek için LINQ sorgularında anonim türlerden kaçının. Bir UWP uygulamasını App Store 'a dağıtmak için bir uygulamanın .NET Native ile derlenmesi gerekir. Anonim türlere sahip sorguların .NET Native performansı kötüleştiğini.
 
-* En iyi duruma getirme `SaveChanges()` performansı, kullanım [ChangeTrackingStrategy.ChangingAndChangedNotifications](/dotnet/api/microsoft.entityframeworkcore.changetrackingstrategy) ve uygulama [INotifyPropertyChanged](https://msdn.microsoft.com/library/system.componentmodel.inotifypropertychanged.aspx), [INotifyPropertyChanging ](https://msdn.microsoft.com/library/system.componentmodel.inotifypropertychanging.aspx), ve [INotifyCollectionChanged](https://msdn.microsoft.com/library/system.collections.specialized.inotifycollectionchanged.aspx) , varlık türleri.
+* Performansı iyileştirmek `SaveChanges()` için, [changetrackingstrateji. changingandchangednotifications](/dotnet/api/microsoft.entityframeworkcore.changetrackingstrategy) kullanın ve [INotifyPropertyChanged](https://msdn.microsoft.com/library/system.componentmodel.inotifypropertychanged.aspx), [INotifyPropertyChanging](https://msdn.microsoft.com/library/system.componentmodel.inotifypropertychanging.aspx)ve [INotifyCollectionChanged](https://msdn.microsoft.com/library/system.collections.specialized.inotifycollectionchanged.aspx) ' yi uygulayın. varlık türleri.
 
-## <a name="report-issues"></a>Rapor sorunları
+## <a name="report-issues"></a>Sorunları raporla
 
-Beklendiği gibi çalışmıyor herhangi bir birleşimini için yeni sorunlar oluşturma konusunda olan öneriyoruz [EF Core sorun İzleyicisi](https://github.com/aspnet/entityframeworkcore/issues/new). İçin Xamarin özgü sorunlar için sorun İzleyicisi'ni kullanın. [Xamarin.Android](https://github.com/xamarin/xamarin-android/issues/new) veya [Xamarin.iOS](https://github.com/xamarin/xamarin-macios/issues/new).
+Beklendiği gibi çalışmayan hiçbir birleşim için [EF Core sorunu izleyicide](https://github.com/aspnet/entityframeworkcore/issues/new)yeni sorunlar oluşturulmasını öneririz. Xamarin 'e özgü sorunlarda, [Xamarin. Android](https://github.com/xamarin/xamarin-android/issues/new) veya [Xamarin. iOS](https://github.com/xamarin/xamarin-macios/issues/new)için sorun izleyicisini kullanın.

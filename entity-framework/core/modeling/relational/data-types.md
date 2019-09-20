@@ -1,39 +1,39 @@
 ---
-title: Veri türleri - EF Core
+title: Veri türleri-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 9d2e647f-29e4-483b-af00-74269eb06e8f
 uid: core/modeling/relational/data-types
-ms.openlocfilehash: 9060f66c752be01090ce40be6bf3a32f348ce571
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: d667cbcb821e321faed36d097b531c7c55b81248
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993527"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149162"
 ---
 # <a name="data-types"></a>Veri Türleri
 
 > [!NOTE]  
-> Bu bölümdeki yapılandırma, genel olarak ilişkisel veritabanları için geçerlidir. İlişkisel veritabanı sağlayıcısı yüklediğinizde, burada gösterilen genişletme yöntemleri kullanılabilir hale gelir (paylaşılan nedeniyle *Microsoft.EntityFrameworkCore.Relational* paketi).
+> Bu bölümdeki yapılandırma genel olarak ilişkisel veritabanları için geçerlidir. Burada gösterilen uzantı yöntemleri, bir ilişkisel veritabanı sağlayıcısı yüklediğinizde (paylaşılan *Microsoft. EntityFrameworkCore. ilişkisel* paketi nedeniyle) kullanılabilir hale gelir.
 
-Veri türü için bir özellik eşlendi sütun veritabanı belirli türüne başvuruyor.
+Veri türü, bir özelliğin eşlendiği sütunun veritabanına özgü türünü ifade eder.
 
 ## <a name="conventions"></a>Kurallar
 
-Kural gereği, veritabanı sağlayıcısı özelliğin CLR türüne göre bir veri türünü seçer. Hesaba katar yapılandırılmış gibi diğer meta veriler [en fazla uzunluk](../max-length.md), özelliğin bir birincil anahtar, vb. bir parçası olup.
+Kural gereği, veritabanı sağlayıcısı özelliğin .NET türüne göre bir veri türü seçer. Ayrıca, yapılandırılmış [Maksimum uzunluk](../max-length.md), özelliğin birincil bir anahtarın parçası olup olmadığı gibi diğer meta veriler de hesaba girer.
 
-Örneğin, SQL Server'ı kullanır `datetime2(7)` için `DateTime` özellikleri ve `nvarchar(max)` için `string` özelliklerini (veya `nvarchar(450)` için `string` bir anahtar olarak kullanılan özellikleri).
+Örneğin, SQL Server `DateTime` özellikler için `datetime2(7)` `nvarchar(max)` ve `string` özellikler için (veya `nvarchar(450)` anahtar olarak kullanılan özellikler `string` için) kullanılır.
 
-## <a name="data-annotations"></a>Veri ek açıklamaları
+## <a name="data-annotations"></a>Veri açıklamaları
 
-Bir sütun için bir tam veri türünü belirtmek için veri ek açıklamaları kullanabilirsiniz.
+Bir sütun için tam bir veri türü belirtmek için veri açıklamalarını kullanabilirsiniz.
 
-Örneğin aşağıdaki kod yapılandırır `Url` uzunluğu en fazla bir unicode olmayan dize olarak `200` ve `Rating` duyarlığını ile ondalık `5` ve, ölçeği `2`.
+Örneğin, aşağıdaki kod, en `Url` fazla `200` uzunluğu olan Unicode olmayan bir dize olarak ve `Rating` kesinliği `5` ve ölçeği `2`ile ondalık olarak yapılandırılır.
 
 [!code-csharp[Main](../../../../samples/core/Modeling/DataAnnotations/Samples/Relational/DataType.cs?name=Entities&highlight=4,6)]
 
-## <a name="fluent-api"></a>Fluent API'si
+## <a name="fluent-api"></a>Akıcı API
 
-Fluent API'si, sütunlar için aynı veri türlerini belirtmek için de kullanabilirsiniz.
+Ayrıca, sütunlar için aynı veri türlerini belirtmek üzere Floent API 'sini de kullanabilirsiniz.
 
 [!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/Samples/Relational/DataType.cs?name=Model&highlight=9-10)]

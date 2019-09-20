@@ -4,22 +4,22 @@ author: divega
 ms.date: 08/06/2017
 ms.assetid: 608cc774-c570-4809-8a3e-cd2c8446b8b2
 uid: core/get-started/install/index
-ms.openlocfilehash: 62194d1db4efcdaed53ca0e14f160315f8e3cf03
-ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
+ms.openlocfilehash: eb808dd9d9b1b214947524cd83999f67be9cc0ff
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/12/2019
-ms.locfileid: "70921752"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149078"
 ---
 # <a name="installing-entity-framework-core"></a>Entity Framework Core yükleniyor
 
 ## <a name="prerequisites"></a>Önkoşullar
 
-* EF Core bir [.NET Standard 2,0](/dotnet/standard/net-standard) kitaplığı. EF Core .NET Standard 2,0 ' i destekleyen bir .NET uygulamasının çalışmasını gerektirir. EF Core diğer .NET Standard 2,0 kitaplıkları tarafından da başvurulabilirler. 
+* EF Core bir [.NET Standard 2,1](/dotnet/standard/net-standard) kitaplığı. EF Core .NET Standard 2,1 ' i destekleyen bir .NET uygulamasının çalışmasını gerektirir. EF Core diğer .NET Standard 2,1 kitaplıkları tarafından da başvurulabilirler. 
 
 * Örneğin, .NET Core 'u hedefleyen uygulamalar geliştirmek için EF Core kullanabilirsiniz. .NET Core uygulamaları oluşturmak için [.NET Core SDK](https://dotnet.microsoft.com/download)gerekir. İsteğe bağlı olarak, Visual Studio, Mac için Visual Studio veya Visual Studio Code gibi bir geliştirme ortamı da kullanabilirsiniz. Daha fazla bilgi için [.NET Core Ile çalışmaya](/dotnet/core/get-started)başlama konusuna bakın.
 
-* Visual Studio 'Yu kullanarak Windows 'da .NET Framework 4.6.1 veya üstünü hedefleyen uygulamalar geliştirmek için EF Core kullanabilirsiniz. [Visual Studio](https://visualstudio.microsoft.com/vs) 'nun en son sürümü önerilir. Visual Studio 2015 gibi eski bir sürümü kullanmak istiyorsanız, NuGet istemcisini, .NET Standard 2,0 kitaplıklarıyla çalışmak üzere [3.6.0 sürümüne yükseltdiğinizden](https://www.nuget.org/downloads) emin olun.
+* Visual Studio 'Yu kullanarak Windows 'da uygulama geliştirmek için EF Core kullanabilirsiniz. [Visual Studio](https://visualstudio.microsoft.com/vs) 'nun en son sürümü önerilir.
 
 * EF Core, [Xamarin](https://dotnet.microsoft.com/apps/xamarin) ve .NET Native gibi diğer .NET uygulamalarında çalıştırılabilir. Ancak uygulamada bu uygulamalar, EF Core uygulamanızın ne kadar iyi çalıştığını etkileyebilecek çalışma zamanı kısıtlamalarına sahiptir. Daha fazla bilgi için bkz. [EF Core tarafından desteklenen .NET uygulamaları](xref:core/platforms/index).
 
@@ -133,16 +133,3 @@ ASP.NET Core uygulamalar için bu paket otomatik olarak eklenir.
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
     ```
 
-* .NET Framework hedef uygulamaların .NET Standard 2,0 kitaplıklarıyla çalışması için değişiklikler gerekebilir:
-
-  * Proje dosyasını düzenleyin ve aşağıdaki girdinin ilk özellik grubunda göründüğünden emin olun:
-
-    ``` xml
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    ```
-
-  * Test projeleri için aşağıdaki girişin mevcut olduğundan da emin olun:
-
-    ``` xml
-    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-    ```

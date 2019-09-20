@@ -1,32 +1,32 @@
 ---
-title: EF Core tersine mühendislik-
+title: Tersine mühendislik-EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 11/13/2018
 ms.assetid: 6263EF7D-4989-42E6-BDEE-45DA770342FB
 uid: core/managing-schemas/scaffolding
-ms.openlocfilehash: 6e61d2ebcf5ada365dcdb264bc371199574e12fa
-ms.sourcegitcommit: 33b2e84dae96040f60a613186a24ff3c7b00b6db
+ms.openlocfilehash: 775a929982b9f4fb10aad9cd43bbb555ce632ad1
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/21/2019
-ms.locfileid: "56459191"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149016"
 ---
 # <a name="reverse-engineering"></a>Tersine mühendislik
 
-Tersine mühendislik varlık türü sınıfları ve veritabanı şemasını temel alan bir DbContext sınıfı iskele kurma özelliği işlemidir. Kullanılarak gerçekleştirilebilir `Scaffold-DbContext` EF Core Paket Yöneticisi Konsolu (PMC) Araçları'nın komutunu veya `dotnet ef dbcontext scaffold` .NET komut satırı arabirimi (CLI) araçlarını komutu.
+Tersine mühendislik, yapı iskelesi varlık türü sınıfları ve veritabanı şemasını temel alan bir DbContext sınıfı işlemidir. EF Core Paket Yöneticisi Konsolu (PMC `Scaffold-DbContext` ) araçlarının komutu `dotnet ef dbcontext scaffold` veya .NET komut satırı arabirimi (CLI) araçlarının komutu kullanılarak gerçekleştirilebilir.
 
-## <a name="installing"></a>Yükleme
+## <a name="installing"></a>Yüklemenin
 
-Tersine mühendislik önce ya da yüklemeniz gerekir [PMC Araçları](xref:core/miscellaneous/cli/powershell) (yalnızca Visual Studio) veya [CLI Araçları](xref:core/miscellaneous/cli/dotnet). Ayrıntılar için bağlantılara bakın.
+Ters mühendisden önce, [PMC araçları](xref:core/miscellaneous/cli/powershell) 'nı (yalnızca Visual Studio) veya [CLI araçlarını](xref:core/miscellaneous/cli/dotnet)yüklemeniz gerekir. Ayrıntılar için bkz. bağlantılar.
 
-Uygun bir yüklemek gerekecektir [veritabanı sağlayıcısı](xref:core/providers/index) tersine mühendislik istediğiniz veritabanı şeması.
+Ayrıca, ters mühendislik uygulamak istediğiniz veritabanı şeması için uygun bir [veritabanı sağlayıcısı](xref:core/providers/index) yüklemeniz gerekir.
 
 ## <a name="connection-string"></a>Bağlantı dizesi
 
-İlk bağımsız değişkeni komut, veritabanına bir bağlantı dizesidir. Araçları, veritabanı şemasını okumak için bu bağlantı dizesini kullanır.
+Komutun ilk bağımsız değişkeni veritabanına yönelik bir bağlantı dizesidir. Araçlar, veritabanı şemasını okumak için bu bağlantı dizesini kullanır.
 
-Nasıl teklif ve bağlantı dizesini kaçış hangi Kabuk komutu yürütmek için kullandığınız bağlıdır. Özellikleri için kabuğunuzun belgelerine bakın. Örneğin, PowerShell, kaçış gerektirir `$` karakter ancak `\`.
+Bağlantı dizesini nasıl teklifiniz ve kaçış, komutu yürütmek için kullandığınız kabuğa bağlıdır. Ayrıntılar için kabuğunuzun belgelerine bakın. Örneğin, PowerShell `$` karakterden kaçar, ancak içermemelidir `\`.
 
 ``` powershell
 Scaffold-DbContext 'Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook' Microsoft.EntityFrameworkCore.SqlServer
@@ -36,11 +36,11 @@ Scaffold-DbContext 'Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook' 
 dotnet ef dbcontext scaffold "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook" Microsoft.EntityFrameworkCore.SqlServer
 ```
 
-### <a name="configuration-and-user-secrets"></a>Yapılandırma ve kullanıcı parolaları
+### <a name="configuration-and-user-secrets"></a>Yapılandırma ve Kullanıcı gizli dizileri
 
-Bir ASP.NET Core projesi varsa, kullanabileceğiniz `Name=<connection-string>` yapılandırmasından bağlantı dizesini okumayı söz dizimi.
+Bir ASP.NET Core projeniz varsa, yapılandırmadan bağlantı dizesini okumak için `Name=<connection-string>` söz dizimini kullanabilirsiniz.
 
-Bu şununla düzgün çalışır [gizli dizi Yöneticisi aracını](https://docs.microsoft.com/aspnet/core/security/app-secrets#secret-manager) veritabanı parolanızı kod temelinizde ayrı tutmak için.
+Bu, veritabanı parolanızı kod tabanınızdan ayrı tutmak için [gizli dizi yöneticisi aracıyla](https://docs.microsoft.com/aspnet/core/security/app-secrets#secret-manager) iyi bir şekilde çalışacaktır.
 
 ``` Console
 dotnet user-secrets set ConnectionStrings.Chinook "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook"
@@ -49,23 +49,23 @@ dotnet ef dbcontext scaffold Name=Chinook Microsoft.EntityFrameworkCore.SqlServe
 
 ## <a name="provider-name"></a>Sağlayıcı adı
 
-İkinci bağımsız değişkeni sağlayıcı adıdır. Sağlayıcı adı genellikle sağlayıcının NuGet paket adı ile aynıdır.
+İkinci bağımsız değişken sağlayıcı adıdır. Sağlayıcı adı, genellikle sağlayıcının NuGet paket adıyla aynıdır.
 
-## <a name="specifying-tables"></a>Tabloları belirleme
+## <a name="specifying-tables"></a>Tabloları belirtme
 
-Veritabanı şema tüm tabloları, varsayılan olarak varlık türleriyle mühendislik ters. Tabloları ters mühendislik şemaları ve tabloları belirterek sınırlayabilirsiniz.
+Veritabanı şemasındaki tüm tablolar varsayılan olarak varlık türlerine ters mühendislik yapılır. Şemaları ve tabloları belirterek hangi tabloların tersine mühendislik uygulanabilir olduğunu sınırlayabilirsiniz.
 
-`-Schemas` PMC parametresinde ve `--schema` CLI seçeneğinde, bir şema içinde her tablo eklemek için kullanılabilir.
+`--schema` PMC içindeki `-Schemas` parametresi ve CLI 'daki seçeneği, bir şema içindeki her tabloyu dahil etmek için kullanılabilir.
 
-`-Tables` (PMC) ve `--table` (CLI), belirli tablolar eklemek için kullanılabilir.
+`-Tables`(PMC) ve `--table` (CLI), belirli tabloları dahil etmek için kullanılabilir.
 
-Birden çok tablo PMC'de dahil etmek için bir dizi kullanın.
+PMC 'de birden çok tablo eklemek için bir dizi kullanın.
 
 ``` powershell
 Scaffold-DbContext ... -Tables Artist, Album
 ```
 
-Birden çok tablo CLI'daki dahil etmek için birden çok kez seçeneğini belirtin.
+CLı 'ya birden çok tablo eklemek için, seçeneği birden çok kez belirtin.
 
 ``` Console
 dotnet ef dbcontext scaffold ... --table Artist --table Album
@@ -73,13 +73,13 @@ dotnet ef dbcontext scaffold ... --table Artist --table Album
 
 ## <a name="preserving-names"></a>Adları koruma
 
-Tablo ve sütun adları türleri ve özellikleri için .NET adlandırma kuralları daha iyi eşleşecek şekilde varsayılan olarak sabit. Belirtme `-UseDatabaseNames` geçiş PMC'de veya `--use-database-names` CLI seçeneğinde özgün veritabanı adları mümkün olduğunca koruyarak bu davranışı devre dışı bırakır. Geçersiz .NET tanımlayıcıları yine de sabit ve Sentezlenen adları Gezinti özellikleri gibi .NET adlandırma kuralları için yine de uyumlu olacaktır.
+Tablo ve sütun adları, varsayılan olarak türler ve özellikler için .NET adlandırma kurallarıyla daha iyi eşleşecek şekilde düzeltilir. Anahtarın PMC 'de `--use-database-names` veya CLI 'deki seçeneğinde belirtilmesi, özgün veritabanı adlarını mümkün olduğunca korumak için bu davranışı devre dışı bırakır. `-UseDatabaseNames` Geçersiz .NET tanımlayıcıları düzeltilmeye devam eder ve gezinme özellikleri gibi birleştirilmiş adlar yine de .NET adlandırma kurallarıyla uyumlu olacaktır.
 
-## <a name="fluent-api-or-data-annotations"></a>Fluent API'si veya veri ek açıklamaları
+## <a name="fluent-api-or-data-annotations"></a>Akıcı API veya veri ek açıklamaları
 
-Varlık türleri Fluent API'sini kullanarak, varsayılan olarak yapılandırılır. Belirtin `-DataAnnotations` (PMC) veya `--data-annotations` (Bunun yerine, mümkün olduğunda veri ek açıklamaları kullanmak için CLI).
+Varlık türleri, varsayılan olarak akıcı API kullanılarak yapılandırılır. Bunun `-DataAnnotations` yerine, mümkün olduğunda `--data-annotations` veri ek açıklamalarını kullanmak için (PMC) veya (CLI) belirtin.
 
-Örneğin, Fluent API'sini kullanarak bu iskelesini:
+Örneğin, akıcı API 'YI kullanmak bu şekilde ele alınacaktır:
 
 ``` csharp
 entity.Property(e => e.Title)
@@ -87,7 +87,7 @@ entity.Property(e => e.Title)
     .HasMaxLength(160);
 ```
 
-Veri ek açıklamaları kullanırken bu iskelesini:
+Veri ek açıklamalarını kullanırken bu işlem aşağıdaki şekilde ele alınacaktır:
 
 ``` csharp
 [Required]
@@ -97,13 +97,13 @@ public string Title { get; set; }
 
 ## <a name="dbcontext-name"></a>DbContext adı
 
-İskele kurulmuş DbContext sınıfı adı ile ve sonra veritabanının adı olacaktır *bağlam* varsayılan olarak. Farklı bir belirtmek için kullanın `-Context` PMC içinde ve `--context` CLI.
+Scafkatlı DbContext sınıfı adı, varsayılan olarak *bağlam* ile düzeltilen veritabanı adının adı olacaktır. Farklı bir tane belirtmek için, PMC `-Context` 'de ve `--context` CLI içinde kullanın.
 
-## <a name="directories-and-namespaces"></a>Dizinleri ve ad alanları
+## <a name="directories-and-namespaces"></a>Dizinler ve ad alanları
 
-Varlık sınıfları ve bir DbContext sınıfı projenin kök dizinine başladınız ve projenin varsayılan ad alanı kullanın. Dizini belirtebilirsiniz sınıfları kullanarak iskele kurulmuş burada `-OutputDir` (PMC) veya `--output-dir` (CLI). Ad alanı, kök ad alanlarının herhangi bir alt dizini proje kök dizininin altında adlarını olacaktır.
+Varlık sınıfları ve bir DbContext sınıfı, projenin kök dizinine yönelik yapı ve projenin varsayılan ad alanını kullanır. Sınıfların (PMC) veya `-OutputDir` `--output-dir` (CLI) kullanarak yapı iskelesi olduğu dizini belirtebilirsiniz. Ad alanı, kök ad alanı ve projenin kök dizini altındaki tüm alt dizinlerin adları olacaktır.
 
-Ayrıca `-ContextDir` (PMC) ve `--context-dir` varlık türü sınıflardan ayrı bir dizine DbContext sınıfı iskelesini kurmak (CLI).
+DbContext sınıfını varlık `-ContextDir` türü sınıflarından ayrı bir `--context-dir` dizine dönüştürmek için (PMC) ve (CLI) de kullanabilirsiniz.
 
 ``` powershell
 Scaffold-DbContext ... -ContextDir Data -OutputDir Models
@@ -115,37 +115,35 @@ dotnet ef dbcontext scaffold ... --context-dir Data --output-dir Models
 
 ## <a name="how-it-works"></a>Nasıl çalışır?
 
-Tersine mühendislik, veritabanı şemasını okuyarak başlatır. Bu, tablolar, sütunlar, kısıtlamalar ve dizinler ilişkin bilgileri okur.
+Tersine mühendislik, veritabanı şemasını okuyarak başlar. Tablolar, sütunlar, kısıtlamalar ve dizinler hakkında bilgi okur.
 
-Ardından, EF Core modeli oluşturmak için şema bilgileri kullanır. Tablolar, varlık türleri oluşturmak için kullanılır; sütun özellikleri oluşturmak için kullanılır; ve yabancı anahtarlar ilişkiler oluşturmak için kullanılır.
+Daha sonra, şema bilgilerini bir EF Core modeli oluşturmak için kullanır. Tablolar varlık türleri oluşturmak için kullanılır; sütunları özellik oluşturmak için kullanılır; ve yabancı anahtarlar ilişki oluşturmak için kullanılır.
 
-Son olarak, model, kodu oluşturmak için kullanılır. İlgili varlık türü sınıfları, Fluent API'si ve veri ek açıklamaları, aynı modelden uygulamanızı yeniden oluşturmak için başladınız.
+Son olarak, model kod oluşturmak için kullanılır. Aynı modeli uygulamanızdan yeniden oluşturmak için karşılık gelen varlık türü sınıfları, akıcı API ve veri ek açıklamaları yapı iskelesi yapılır.
 
-## <a name="what-doesnt-work"></a>İşe yaramazsa
+## <a name="what-doesnt-work"></a>Ne işe yaramıyor
 
-Her şey hakkında bir model kullanarak veritabanı şemasını temsil edilebilir. Örneğin, hakkında bilgi **devralma hiyerarşilerini**, **türlerine ait**, ve **tablo bölme** veritabanı şemasında mevcut değildir. Bu nedenle, bu yapıları hiçbir zaman olması ters mühendislik uygulanan.
+Bir modelle ilgili her şey, bir veritabanı şeması kullanılarak gösterilebilir. Örneğin, [**Devralma hiyerarşileri**](../modeling/inheritance.md), [**sahip olunan türler**](../modeling/owned-entities.md)ve [**tablo bölme**](../modeling/table-splitting.md) hakkında bilgiler veritabanı şemasında yok. Bu nedenle, bu yapılar hiçbir şekilde tersine mühendislik olmayacaktır.
 
-Ayrıca, **bazı sütun türleri** EF Core sağlayıcı tarafından desteklenmiyor olabilir. Bu sütunlar, modele dahil edilmeyecektir.
+Ayrıca, **bazı sütun türleri** EF Core sağlayıcısı tarafından desteklenmeyebilir. Bu sütunlar modele eklenmeyecek.
 
-EF Core anahtara sahip her varlık türü gerektirir. Tablolar, ancak birincil anahtarın belirtilmesi gerekmez. **Birincil anahtarı olmayan tablolar** olan şu an ters mühendislik.
+Aynı anda iki kullanıcının aynı varlığı güncelleştirmesini engellemek için bir EF Core modelinde [**eşzamanlılık belirteçleri**](../modeling/concurrency.md)tanımlayabilirsiniz. Bazı veritabanlarının bu tür bir sütunu (örneğin, SQL Server) temsil etmesi için özel bir türü vardır; bu durumda bu bilgilere ters mühendislik uygulanabilir. Ancak, diğer eşzamanlılık belirteçleri tersine mühendislik uygulanmaz.
 
-Tanımlayabileceğiniz **eşzamanlılık belirteçleri** iki kullanıcı aynı anda aynı varlık güncelleştirmesini engellemek için bir EF Core modelinde. Bazı veritabanları, sütun (örneğin, SQL Server'da rowversion) bu tür, bu durumda biz ters mühendislik bu bilgileri temsil etmek için özel bir türüne sahip; Ancak, diğer eşzamanlılık belirteçleri değil olması ters mühendislik uygulanan.
+## <a name="customizing-the-model"></a>Modeli özelleştirme
 
-## <a name="customizing-the-model"></a>Model özelleştirme
+EF Core tarafından oluşturulan kod kodunuz. Bunu değiştirebilirsiniz. Yalnızca aynı modele yeniden mühendislik uygulamanız durumunda yeniden oluşturulur. Yapı iskelesi kodu, veritabanına erişmek için kullanılabilecek *bir* modeli temsil eder, ancak *yalnızca kullanılabilecek tek* model değildir.
 
-EF Core tarafından oluşturulan kodu, kodudur. Bunu değiştirmek çekinmeyin. Yalnızca, aynı modelin yeniden tersine mühendislik, oluşturulacak. İskele kurulan kodu temsil eden *bir* veritabanı, ancak erişmek için kullanılan model değil kesinlikle *yalnızca* kullanılabilmesi için modeli.
+Varlık türü sınıflarını ve DbContext sınıfını gereksinimlerinize uyacak şekilde özelleştirin. Örneğin, türleri ve özellikleri yeniden adlandırmayı, devralma hiyerarşileri tanıtmanızı veya bir tabloyu birden çok varlığa bölmeyi seçebilirsiniz. Ayrıca, benzersiz olmayan dizinleri, kullanılmayan dizileri ve gezinti özelliklerini, isteğe bağlı skaler özellikleri ve modelden kısıtlama adlarını da kaldırabilirsiniz.
 
-Varlık türü sınıfları ve DbContext sınıfı kendi gereksinimlerinize uyacak şekilde özelleştirin. Örneğin, türleri ve özellikleri yeniden adlandır, devralma hiyerarşilerini tanıtmak veya birden fazla varlık için bir tabloya bölme tercih edebilirsiniz. Benzersiz olmayan dizinleri, kullanılmayan dizileri ve gezinti özellikleri, isteğe bağlı bir skaler özellikler ve kısıtlama adları modelden kaldırabilirsiniz.
+Ayrıca ek oluşturucular, Yöntemler, özellikler vb. ekleyebilirsiniz. ayrı bir dosyada başka bir kısmi sınıf kullanılıyor. Bu yaklaşım, modele geri dönmek istediğinizde bile geçerlidir.
 
-Ayrıca ekleyebileceğiniz ek Oluşturucular, yöntemler, özellikler, vb. ayrı bir dosyada başka bir kısmi sınıf kullanarak. Bu yaklaşım ters mühendislik modeli yeniden istiyorsanız bile, çalışır.
+## <a name="updating-the-model"></a>Model güncelleştiriliyor
 
-## <a name="updating-the-model"></a>Bir modeli güncelleştirme
+Veritabanında değişiklik yaptıktan sonra, EF Core modelinizi bu değişiklikleri yansıtacak şekilde güncelleştirmeniz gerekebilir. Veritabanı değişiklikleri basittir, değişiklikleri EF Core modelinizde el ile yapmak en kolay olabilir. Örneğin, bir tabloyu veya sütunu yeniden adlandırma, bir sütunu kaldırma veya bir sütunun türünü güncelleştirme, kodda yapılacak basit değişikliklerdir.
 
-Veritabanına değişiklikleri yaptıktan sonra EF Core modelinizi bu değişiklikleri yansıtacak şekilde güncelleştirmeniz gerekebilir. Veritabanı değişikliklerini basittir, yalnızca değişiklikleri EF Core modelinizi el ile yapmak kolay olabilir. Örneğin, bir tabloyu veya sütunu yeniden adlandırma, bir sütunu kaldırarak veya bir sütunun türünü güncelleştirme Önemsiz kodlarında değişiklik olur.
+Ancak, daha önemli değişiklikler, el ile hızlı bir şekilde yapılır. Yaygın olarak kullanılan bir iş akışı, var olan modeli güncelleştirilmiş bir dosyanın üzerine `-Force` yazmak için (PMC `--force` ) veya (CLI) kullanarak modele geri doğru mühendislik kullanmaktır.
 
-Önemli değişiklikler, ancak kolay olun el ile değildir. Veritabanını yeniden kullanarak modeli bir ortak iş akışı, ters çevirmek için mühendislik `-Force` (PMC) veya `--force` varolan modeli güncelleştirilmiş bir olanın üzerine yazmak (CLI).
-
-Başka bir yaygın olarak istenen özellik yeniden adlandırma, tür hiyerarşileri, vb. özelleştirme korurken veritabanından modeli güncelleştirmek için yeteneğidir. Sorunu kullanın [#831](https://github.com/aspnet/EntityFrameworkCore/issues/831) bu özelliğin ilerlemesini izleyebilirsiniz.
+Diğer bir yaygın olarak istenen özellik, yeniden adlandırmalar, tür hiyerarşileri vs. gibi özelleştirmeyi korurken modeli veritabanından güncelleştirebilme yeteneğidir. Bu özelliğin ilerlemesini izlemek için sorun [#831](https://github.com/aspnet/EntityFrameworkCore/issues/831) kullanın.
 
 > [!WARNING]
-> Veritabanı modeli yeniden, ters mühendislik, dosyalarda yaptığınız tüm değişiklikler kaybolacak.
+> Modele yeniden veritabanından geri dönmek isterseniz, dosyalarda yaptığınız tüm değişiklikler kaybedilir.

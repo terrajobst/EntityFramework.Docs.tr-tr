@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: 2EBE2CCC-E52D-483F-834C-8877F5EB0C0C
 uid: core/what-is-new/ef-core-3.0/features
-ms.openlocfilehash: 528733d6eec33de2c9538541a6ed5be704b9d433
-ms.sourcegitcommit: d01fc19aa42ca34c3bebccbc96ee26d06fcecaa2
+ms.openlocfilehash: d938f17daecd5031147951d0018602c5635de41d
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/16/2019
-ms.locfileid: "71005564"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149101"
 ---
 # <a name="new-features-included-in-ef-core-30"></a>EF Core 3,0 ' de bulunan yeni özellikler
 
@@ -57,7 +57,7 @@ var orders =
 
 await foreach(var o in orders)
 {
-  Proccess(o);
+  Process(o);
 } 
 ```
 
@@ -71,7 +71,7 @@ EF Core 3,0 ' deki yeni yakama API 'SI, bağlantı açma, işlemleri başlatma v
 
 ## <a name="reverse-engineering-of-database-views"></a>Veritabanı görünümlerinin tersine mühendislik
 
-Anahtarsız varlık türleri (daha önce [sorgu türleri](xref:core/modeling/query-types)olarak bilinirdi), veritabanından okunabilecek verileri temsil eder, ancak güncelleştirilemez.
+Anahtarsız varlık türleri (daha önce [sorgu türleri](xref:core/modeling/keyless-entity-types)olarak bilinirdi), veritabanından okunabilecek verileri temsil eder, ancak güncelleştirilemez.
 Bu özellik, Çoğu senaryoda veritabanı görünümlerini eşlemek için mükemmel bir uyum sağlar. bu nedenle, ters mühendislik veritabanı görünümlerinde, anahtar olmadan varlık türlerinin oluşturulmasını otomatik hale aldık.
 
 ## <a name="dependent-entities-sharing-the-table-with-the-principal-are-now-optional"></a>Tabloyu sorumlu ile paylaşan bağımlı varlıklar artık isteğe bağlıdır
@@ -108,5 +108,5 @@ Bazı sınırlamalar vardır, örneğin:
 
 EF Core 3,0 için başlangıçta planlanmış bazı özellikler gelecek sürümlere ertelendi: 
 
-- [#2725](https://github.com/aspnet/EntityFrameworkCore/issues/2725)tarafından izlenen geçişlerde bir modelin parçalarını alma özelliği.
-- İki ayrı sorun tarafından izlenen özellik paketi varlıkları: paylaşılan türdeki varlıklar hakkında [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914) ve dizinli özellik eşleme desteği hakkında [#13610](https://github.com/aspnet/EntityFrameworkCore/issues/13610) .
+- Geçiş sırasında bir modelin parçalarını alma özelliği, [#2725](https://github.com/aspnet/EntityFrameworkCore/issues/2725)olarak izlenir.
+- İki ayrı sorun olarak izlenen özellik paketi varlıkları: paylaşılan türdeki varlıklar hakkında [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914) ve dizinli özellik eşleme desteği hakkında [#13610](https://github.com/aspnet/EntityFrameworkCore/issues/13610) .

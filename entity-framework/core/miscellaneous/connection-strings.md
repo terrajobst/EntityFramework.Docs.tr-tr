@@ -1,23 +1,23 @@
 ---
-title: Bağlantı dizelerini - EF Core
+title: Bağlantı dizeleri-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: aeb0f5f8-b212-4f89-ae83-c642a5190ba0
 uid: core/miscellaneous/connection-strings
-ms.openlocfilehash: c306f9ca7a51fc9e3db18e883fd44f56dd1a3cb4
-ms.sourcegitcommit: e90d6cfa3e96f10b8b5275430759a66a0c714ed1
+ms.openlocfilehash: ed89d6d09b15b0dea7fd8bc3ff3e3f631495ecb7
+ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/17/2019
-ms.locfileid: "68286456"
+ms.lasthandoff: 09/20/2019
+ms.locfileid: "71149124"
 ---
 # <a name="connection-strings"></a>Bağlantı Dizeleri
 
-Çoğu veritabanı sağlayıcısı veritabanına bağlanmak için bağlantı dizesi biçimi gerektirir. Bazen bu bağlantı dizesi, korunması gereken hassas bilgiler içerir. Uygulamanızı geliştirme, test ve üretim ortamları arasında taşırken bağlantı dizesini değiştirmeniz gerekebilir.
+Veritabanı sağlayıcılarının çoğu, veritabanına bağlanmak için bir bağlantı dizesi biçimi gerektirir. Bazen bu bağlantı dizesi korunması gereken hassas bilgiler içerir. Uygulamanızı geliştirme, test ve üretim gibi ortamlar arasında taşırken bağlantı dizesini de değiştirmeniz gerekebilir.
 
-## <a name="net-framework-applications"></a>.NET framework uygulamaları
+## <a name="winforms--wpf-applications"></a>WinForms & WPF uygulamaları
 
-.NET framework uygulamaları, WinForms, WPF, konsol ve ASP.NET 4 gibi denenmiş ve test edilmiş bağlantı dize deseni vardır. Bağlantı dizesi (ASP.NET kullanıyorsanız, Web.config), uygulamanızın App.config dosyasına eklenmelidir. Bağlantı dizenizi kullanıcı adı ve parola gibi hassas bilgileri içeriyorsa yapılandırma dosyası kullanarak içerikleri koruyabilir [korumalı yapılandırma](https://docs.microsoft.com/dotnet/framework/data/adonet/connection-strings-and-configuration-files#encrypting-configuration-file-sections-using-protected-configuration).
+WinForms, WPF ve ASP.NET 4 uygulamaları, denenen ve sınanan bir bağlantı dizesi düzenine sahiptir. Bağlantı dizesi uygulamanızın App. config dosyasına eklenmelidir (ASP.NET kullanıyorsanız Web. config). Bağlantı dizeniz Kullanıcı adı ve parola gibi hassas bilgiler içeriyorsa, yapılandırma dosyasının içeriğini [gizli yönetici aracını](https://docs.microsoft.com/aspnet/core/security/app-secrets#secret-manager)kullanarak koruyabilirsiniz.
 
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -31,9 +31,9 @@ ms.locfileid: "68286456"
 ```
 
 > [!TIP]  
-> `providerName` Ayarı veritabanı sağlayıcısı kod yapılandırıldığından App.config dosyasında depolanan EF Core bağlantı dizelerini gerekli değildir.
+> Veritabanı sağlayıcısı kod aracılığıyla yapılandırıldığı için App. config dosyasında depolanan EF Core bağlantı dizeleri üzerinde bu ayargereklideğildir.`providerName`
 
-Daha sonra bağlantı dizesini kullanarak okuyabilir `ConfigurationManager` , bağlamı'nın API'SİNDE `OnConfiguring` yöntemi. Bir başvuru eklemeniz gerekebilir `System.Configuration` bu API'yi kullanabilmek için framework derlemesi.
+Daha sonra bağlantı dizesini `ConfigurationManager` `OnConfiguring` bağlam yöntemindeki API 'yi kullanarak okuyabilirsiniz. Bu API 'yi kullanabilmeniz için `System.Configuration` Framework derlemesine bir başvuru eklemeniz gerekebilir.
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -50,7 +50,7 @@ public class BloggingContext : DbContext
 
 ## <a name="universal-windows-platform-uwp"></a>Evrensel Windows Platformu (UWP)
 
-Bir UWP uygulamasındaki bağlantı dizeleri, genellikle yalnızca yerel bir dosya adı belirten bir SQLite bağlantı cihazlardır. Bunlar genellikle hassas bilgi içermez ve bir uygulama dağıtıldığında değiştirilmesi gerekmez. Bu nedenle, bu bağlantı dizeleri aşağıda gösterildiği gibi kodda bırakılması genellikle bir sakınca yoktur. Kodların dışına taşımak istiyorsanız UWP ayarları kavramını destekler, bkz: [UWP belgelerin uygulama ayarları bölümü](https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data) Ayrıntılar için.
+UWP uygulamasındaki bağlantı dizeleri genellikle yerel bir dosya adı belirten bir SQLite bağlantıdır. Genellikle hassas bilgiler içermez ve bir uygulama dağıtıldığında değiştirilmeleri gerekmez. Bu şekilde, bu bağlantı dizeleri genellikle aşağıda gösterildiği gibi, kodda ayrılmalıdır. Kod dışına taşımak isterseniz, UWP ayar kavramını destekler, Ayrıntılar için [UWP belgelerinin uygulama ayarları bölümüne](https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data) bakın.
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -67,7 +67,7 @@ public class BloggingContext : DbContext
 
 ## <a name="aspnet-core"></a>ASP.NET Core
 
-ASP.NET Core yapılandırma sistemi çok esnektir ve bağlantı dizesini içinde depolanacak `appsettings.json`, bir ortam değişkeni, kullanıcı gizli dizi deposu veya başka bir yapılandırma kaynağı. Bkz: [yapılandırma bölümü, ASP.NET Core belgeleri](https://docs.asp.net/en/latest/fundamentals/configuration.html) daha fazla ayrıntı için. Aşağıdaki örnek, depolanan bağlantı dizesini gösterir `appsettings.json`.
+ASP.NET Core yapılandırma sistemi çok esnektir ve bağlantı dizesi, bir ortam değişkeni, Kullanıcı gizli dizisi veya `appsettings.json`başka bir yapılandırma kaynağı içinde depolanabilir. Daha fazla bilgi için [ASP.NET Core belgelerinin yapılandırma bölümüne](https://docs.asp.net/en/latest/fundamentals/configuration.html) bakın. Aşağıdaki örnek, içinde `appsettings.json`depolanan bağlantı dizesini gösterir.
 
 ``` json
 {
@@ -77,7 +77,7 @@ ASP.NET Core yapılandırma sistemi çok esnektir ve bağlantı dizesini içinde
 }
 ```
 
-Bağlam genellikle yapılandırılan `Startup.cs` yapılandırmasından okunan bağlantı dizesine sahip. Not `GetConnectionString()` yöntemi görünür olan anahtar için bir yapılandırma değeri `ConnectionStrings:<connection string name>`. İçeri aktarmak gereken [Microsoft.Extensions.Configuration](https://docs.microsoft.com/dotnet/api/microsoft.extensions.configuration) bu genişletme yöntemi için kullanılacak ad.
+Bağlam genellikle, ' de `Startup.cs` yapılandırmadan okunmakta olan bağlantı dizesi ile yapılandırılır. Yöntemi, `GetConnectionString()` `ConnectionStrings:<connection string name>`anahtarı olan bir yapılandırma değeri arar. Bu genişletme yöntemini kullanmak için [Microsoft. Extensions. Configuration](https://docs.microsoft.com/dotnet/api/microsoft.extensions.configuration) ad alanını içeri aktarmanız gerekir.
 
 ``` csharp
 public void ConfigureServices(IServiceCollection services)
