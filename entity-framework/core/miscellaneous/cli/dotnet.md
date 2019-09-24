@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 07/11/2019
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: 0278353640ea242df9e6ee5278c9dda78bfd341b
-ms.sourcegitcommit: 7b7f774a5966b20d2aed5435a672a1edbe73b6fb
+ms.openlocfilehash: 910136871cce5818b8e70a012e5132259b66e4c1
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/17/2019
-ms.locfileid: "69565274"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197585"
 ---
 # <a name="entity-framework-core-tools-reference---net-cli"></a>Entity Framework Core araçları başvurusu-.NET CLı
 
@@ -33,7 +33,7 @@ Yükleme yordamı proje türüne ve sürümüne bağlıdır:
 * `dotnet ef`Genel veya yerel bir araç olarak yüklenmelidir. Çoğu geliştirici aşağıdaki komutla `dotnet ef` küresel bir araç olarak yüklenir:
 
   ``` console
-  dotnet tool install --global dotnet-ef --version 3.0.0-*
+  dotnet tool install --global dotnet-ef
   ```
 
   Yerel araç olarak da `dotnet ef` kullanabilirsiniz. Bunu yerel bir araç olarak kullanmak için, bir [araç bildirim dosyası](https://github.com/dotnet/cli/issues/10288)kullanarak bunu araç bağımlılığı olarak bildiren bir projenin bağımlılıklarını geri yükleyin.

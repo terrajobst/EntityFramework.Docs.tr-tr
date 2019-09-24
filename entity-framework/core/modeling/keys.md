@@ -1,27 +1,27 @@
 ---
-title: Anahtarlar (birincil) - EF Core
+title: Anahtarlar (birincil)-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 912ffef7-86a0-4cdc-a776-55f907459d20
 uid: core/modeling/keys
-ms.openlocfilehash: 51d163b867085f42f415dbd7afa9e311ab1781a0
-ms.sourcegitcommit: 87fcaba46535aa351db4bdb1231bd14b40e459b9
+ms.openlocfilehash: 8b32bf6417890a954c933a5973a2c90c609beeca
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59929842"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197274"
 ---
 # <a name="keys-primary"></a>Anahtarlar (birincil)
 
-Bir anahtar, her varlık örneği için birincil benzersiz tanımlayıcısı olarak görev yapar. İlişkisel bir veritabanı kullanılırken bu kavramı, eşleyen bir *birincil anahtar*. Birincil anahtarı olmayan benzersiz bir tanımlayıcı da yapılandırabilirsiniz (bkz [alternatif anahtarlar](alternate-keys.md) daha fazla bilgi için). 
+Bir anahtar, her varlık örneği için birincil benzersiz tanımlayıcı işlevi görür. İlişkisel bir veritabanı kullanılırken bu, *birincil anahtar*kavramıyla eşlenir. Birincil anahtar olmayan benzersiz bir tanımlayıcı da yapılandırabilirsiniz (daha fazla bilgi için bkz. [Alternatif anahtarlar](alternate-keys.md) ). 
 
-Aşağıdaki yöntemlerden birini Kurulum/birincil bir anahtar oluşturmak için kullanılabilir.
+Aşağıdaki yöntemlerden biri, bir birincil anahtar ayarlamak/oluşturmak için kullanılabilir.
 
 ## <a name="conventions"></a>Kurallar
 
-Kural gereği, bir özellik adında `Id` veya `<type name>Id` bir varlığın anahtarı yapılandırılır.
+Kurala göre, veya `Id` `<type name>Id` adlı bir özellik bir varlığın anahtarı olarak yapılandırılır.
 
-<!-- [!code-csharp[Main](samples/core/Modeling/Conventions/Samples/KeyId.cs?highlight=3)] -->
+<!-- [!code-csharp[Main](samples/core/Modeling/Conventions/KeyId.cs?highlight=3)] -->
 ``` csharp
 class Car
 {
@@ -32,7 +32,7 @@ class Car
 }
 ```
 
-<!-- [!code-csharp[Main](samples/core/Modeling/Conventions/Samples/KeyTypeNameId.cs?highlight=3)] -->
+<!-- [!code-csharp[Main](samples/core/Modeling/Conventions/KeyTypeNameId.cs?highlight=3)] -->
 ``` csharp
 class Car
 {
@@ -43,18 +43,18 @@ class Car
 }
 ```
 
-## <a name="data-annotations"></a>Veri ek açıklamaları
+## <a name="data-annotations"></a>Veri Açıklamaları
 
-Bir varlığın anahtarı olarak tek bir özelliğini yapılandırmak için veri ek açıklamaları kullanabilirsiniz.
+Tek bir özelliği bir varlığın anahtarı olacak şekilde yapılandırmak için, veri açıklamalarını kullanabilirsiniz.
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/KeySingle.cs?highlight=13)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/KeySingle.cs?highlight=13)]
 
-## <a name="fluent-api"></a>Fluent API'si
+## <a name="fluent-api"></a>Akıcı API
 
-Fluent API'si, bir varlığın anahtarı olarak tek bir özelliğini yapılandırmak için kullanabilirsiniz.
+Tek bir özelliği bir varlığın anahtarı olacak şekilde yapılandırmak için Floent API 'sini kullanabilirsiniz.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/KeySingle.cs?highlight=11,12)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/KeySingle.cs?highlight=11,12)]
 
-(Bir bileşik anahtarı bilinir) bir varlığın anahtarı birden çok özelliklerini yapılandırmak için Fluent API'si de kullanabilirsiniz. Bileşik anahtarlar yalnızca Fluent API'sini kullanarak yapılandırılabilir - kuralları hiçbir zaman bir bileşik anahtarı Kurulum ve bir yapılandırma için veri ek açıklamaları kullanamazsınız.
+Ayrıca, birden çok özelliği bir varlığın anahtarı olacak şekilde (bileşik anahtar olarak bilinir) yapılandırmak için akıcı API 'yi de kullanabilirsiniz. Bileşik anahtarlar yalnızca akıcı API kullanılarak yapılandırılabilir-kurallar hiçbir şekilde bir bileşik anahtar kurmayacaktır ve veri açıklamalarını yapılandırmak için kullanamazsınız.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/KeyComposite.cs?highlight=11,12)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/KeyComposite.cs?highlight=11,12)]

@@ -1,140 +1,140 @@
 ---
-title: Bağlantısı kesilmiş varlıklar - EF Core
+title: Bağlantısı kesilen varlıklar-EF Core
 author: ajcvickers
 ms.author: avickers
 ms.date: 10/27/2016
 ms.assetid: 2533b195-d357-4056-b0e0-8698971bc3b0
 uid: core/saving/disconnected-entities
-ms.openlocfilehash: 51367d2619b1943c300f8954123f70b909ad96e7
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 070f2ad396ec21858096c29413ac80bdf8547328
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994405"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197804"
 ---
-# <a name="disconnected-entities"></a>Bağlantısı kesilmiş varlıklar
+# <a name="disconnected-entities"></a>Bağlantısı kesilen varlıklar
 
-DbContext örneği veritabanından döndürülen varlıkları otomatik olarak izler. Bu varlıklar için yapılan değişiklikler SaveChanges çağrılır ve gerektiği şekilde veritabanını güncelleştirilecek algılanır. Bkz: [temel Kaydet](basic.md) ve [ilgili verileri](related-data.md) Ayrıntılar için.
+DbContext örneği veritabanından döndürülen varlıkları otomatik olarak izler. Bu varlıklarda yapılan değişiklikler, SaveChanges çağrıldığında ve veritabanı gerektiği şekilde güncelleniyorsa algılanır. Ayrıntılar için bkz. [temel kaydetme](basic.md) ve [ilgili veriler](related-data.md) .
 
-Ancak, bazen varlıklar bir bağlam örneğini kullanma ve ardından farklı bir örneği kullanılarak kaydedilmiş sorgulanır. Bu genellikle "bağlantısız" senaryolarında burada varlıkları sorgulanan, istemciye gönderilen, değişiklik, bir istek sunucuya geri gönderilen ve ardından kaydedilebilir bir web uygulaması gibi gerçekleşir. Bu durumda, ikinci bağlam (güncelleştirme) mevcut veya yeni varlıklar olup olmadığını bilmek (eklenmesi gereken) gereksinimlerini örneği.
+Ancak, bazen varlıklar bir bağlam örneği kullanılarak sorgulanır ve sonra farklı bir örnek kullanılarak kaydedilir. Bu genellikle varlıkların sorgulandığı, istemciye gönderildiği, değiştirildiği, bir istekte sunucuya geri gönderildiği ve ardından kaydedildiği bir Web uygulaması gibi "bağlantısı kesik" senaryolarda meydana gelir. Bu durumda, ikinci bağlam örneğinin varlıkların yeni (eklenmelidir) mi yoksa mevcut mi (güncelleştirilmesi gerekir) olduğunu bilmeleri gerekir.
 
 > [!TIP]  
-> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/Disconnected/) GitHub üzerinde.
+> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Disconnected/) GitHub üzerinde.
 
 > [!TIP]
-> EF Core, yalnızca belirli bir birincil anahtar değeri ile herhangi bir varlık örneği takip edebilirsiniz. Bu bağlam boş olarak başlar, kısa süreli bir bağlam her birim iş için kullanılacak bir sorun olduğu durumda önlemek için en iyi yolu olarak bağlanmış varlıklar kişilikleri ve bu bağlam atıldı ve atılan kaydeder sahiptir.
+> EF Core, belirli bir birincil anahtar değeri olan herhangi bir varlığın yalnızca bir örneğini izleyebilir. Bu sorunu önlemenin en iyi yolu, her iş birimi için, içeriğin boş başlaması, kendisine iliştirilmiş varlıklar olması, bu varlıkları kaydettiğinden ve sonra bağlamın atılacağını ve atılmasına yönelik kısa süreli bir bağlam kullanmaktır.
 
-## <a name="identifying-new-entities"></a>Yeni varlıklar tanımlayan
+## <a name="identifying-new-entities"></a>Yeni varlıkları tanımlama
 
-### <a name="client-identifies-new-entities"></a>İstemci yeni varlıklar tanımlayan
+### <a name="client-identifies-new-entities"></a>İstemci yeni varlıkları tanımlar
 
-İstemci sunucuya varlık yeni veya mevcut olup olmadığını bildirir uğraşmanız basit durumdur. Örneğin, genellikle yeni bir varlık eklemek için mevcut bir varlığı güncelleştirmek için istekte farklı isteğidir.
+En basit durum, istemcinin, varlığın yeni mi yoksa mevcut mi olduğunu bildirir. Örneğin, genellikle yeni bir varlık ekleme isteği, var olan bir varlığı güncelleştirmek için istekten farklıdır.
 
-Bu bölümün geri kalanında durumları kapsayan burada da eklemek veya güncelleştirmek başka bir şekilde karar vermek gerekli.
+Bu bölümün geri kalanında, ekleme veya güncelleştirme yapıp etmeksizin başka bir şekilde belirlenmesi gereken durumlar ele alınmaktadır.
 
-### <a name="with-auto-generated-keys"></a>Otomatik olarak oluşturulan anahtarları
+### <a name="with-auto-generated-keys"></a>Otomatik olarak oluşturulan anahtarlarla
 
-Otomatik olarak oluşturulan bir anahtarın değeri, genellikle bir varlık eklenmesi veya güncelleştirilmesi gerekip gerekmediğini belirlemek için kullanılabilir. Anahtarı ayarlanmamış olması halinde (diğer bir deyişle, hala CLR varsayılan değeri null, sıfır, vb.) olan varlık yeni ve gereken ekleme. Öte yandan, anahtar değerini ayarlarsanız sonra zaten daha önce kaydedilmiş olması gerekir ve artık güncelleştirilmesi gerekiyor. Diğer bir deyişle, anahtar varsa, bir değer ve varlık, istemciye gönderilen sorgulandı dönüp kodu artık güncelleştirilecek.
+Otomatik olarak oluşturulan bir anahtarın değeri, genellikle bir varlığın eklenmesi veya güncelleştirilmesi gerekip gerekmediğini belirlemede kullanılabilir. Anahtar ayarlanmamışsa (diğer bir deyişle, hala CLR varsayılan değeri null, sıfır vb.), varlık yeni ve ekleme gerekiyor olmalıdır. Diğer taraftan, anahtar değeri ayarlandıysa, daha önce kaydedilmiş ve şimdi güncelleştirilmesi gerekiyor olmalıdır. Diğer bir deyişle, anahtarın bir değeri varsa, varlık sorgulanmıştı, istemciye gönderilir ve şimdi güncelleştirilmesini geri gelir.
 
-Varlık türü bilinen bir unset anahtarı için denetimi daha kolaydır:
+Varlık türü bilindiğinde, bir ayarı kontrol etmek kolaydır:
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/Disconnected/Sample.cs#IsItNewSimple)]
+[!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#IsItNewSimple)]
 
-Ancak, EF ayrıca herhangi bir varlık türü ve anahtar türü için bunu yapmak için yerleşik bir yolu vardır:
+Bununla birlikte, EF aynı zamanda herhangi bir varlık türü ve anahtar türü için yerleşik bir yönteme sahiptir:
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/Disconnected/Sample.cs#IsItNewGeneral)]
+[!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#IsItNewGeneral)]
 
 > [!TIP]  
-> Varlıkları bağlam tarafından izlenen hemen sonra varlık Added durumda olsa bile anahtarları ayarlanır. Bu, bir grafik varlıkları ve her biri, bu tür olduğu gibi TrackGraph API'sini kullanarak ne yapılması gerektiğine karar verme geçiş sırasında yardımcı olur. Anahtar değeri yalnızca burada gösterilen şekilde kullanılmalıdır _önce_ varlık izlemek için bir çağrı yapılır.
+> Varlık eklenen durumda olsa bile, varlıklar bağlam tarafından izlendiğinde, anahtarlar hemen ayarlanır. Bu, bir varlık grafiğinde geçiş yaparken ve her biriyle ne yapacağına karar verirken (TrackGraph API 'SI kullanılırken olduğu gibi) yardımcı olur. Anahtar değeri yalnızca varlığı izlemek için herhangi bir çağrı _yapılmadan önce_ burada gösterildiği gibi kullanılmalıdır.
 
-### <a name="with-other-keys"></a>İle diğer anahtarlar
+### <a name="with-other-keys"></a>Diğer anahtarlarla
 
-Başka bir mekanizma, anahtar değerlerini otomatik olarak oluşturulmaz yeni varlıklar belirlemek için gereklidir. Bu iki genel yaklaşım vardır:
+Anahtar değerleri otomatik olarak oluşturulmadığında yeni varlıkları tanımlamak için başka bir mekanizma gerekir. Bunun için iki genel yaklaşım vardır:
  * Varlık için sorgu
  * İstemciden bir bayrak geçirin
 
-Varlık için sorgu için hemen bulma yöntemi kullanın:
+Varlığı sorgulamak için Find metodunu kullanmanız yeterlidir:
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/Disconnected/Sample.cs#IsItNewQuery)]
+[!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#IsItNewQuery)]
 
-Bir istemciden bir bayrak geçirmek için tam kod göstermek için bu belgenin kapsamı dışındadır. Bir web uygulamasında bu genellikle farklı eylemler için farklı istek yapma veya bazı istek durumuna geçirmeden sonra denetleyicide ayıklama anlamına gelir.
+Bir istemciden bayrak geçirmenin tam kodunu göstermek için bu belgenin kapsamı dışındadır. Bir Web uygulamasında, genellikle farklı eylemler için farklı istekler yapılması veya istekte bir durum iletilmesi ve sonra denetleyiciye ayıklanması anlamına gelir.
 
-## <a name="saving-single-entities"></a>Tek varlık kaydediliyor
+## <a name="saving-single-entities"></a>Tek varlıkları kaydetme
 
-Bir ekleme veya güncelleştirme gerektiği ve ardından uygun şekilde ekleme veya güncelleştirme kullanılabilir olup olmadığını bilinen varsa:
+Bir ekleme veya güncelleştirme gerekip gerekmediğini bilindiğinde, ekleme veya güncelleştirme uygun şekilde kullanılabilir:
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/Disconnected/Sample.cs#InsertAndUpdateSingleEntity)]
+[!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#InsertAndUpdateSingleEntity)]
 
-Ancak, anahtar değerlerini otomatik olarak oluşturulan varlık kullanıyorsa, güncelleştirme yöntemi için her iki durumda kullanılabilir:
+Ancak, varlık otomatik üretilen anahtar değerlerini kullanıyorsa, her iki durumda da güncelleştirme yöntemi kullanılabilir:
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/Disconnected/Sample.cs#InsertOrUpdateSingleEntity)]
+[!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#InsertOrUpdateSingleEntity)]
 
-Güncelleştirme yöntemi, update, INSERT değil varlığın normal olarak işaretler. Ancak, varlık otomatik olarak oluşturulmuş bir anahtar varsa ve varlık bunun yerine otomatik olarak için işaretlenmiş sonra anahtar değer ayarlandı ekleyin.
-
-> [!TIP]  
-> Bu davranış EF Core 2.0 sürümünde kullanıma sunulmuştur. Önceki sürümler için her zaman açıkça ekleme veya güncelleştirme seçmek gereklidir.
-
-Varlık anahtarları otomatik olarak oluşturulan kullanmayan sonra uygulamanın varlık eklenmesi veya güncelleştirilmesi karar vermeniz gerekir: Örnek:
-
-[!code-csharp[Main](../../../samples/core/Saving/Saving/Disconnected/Sample.cs#InsertOrUpdateSingleEntityWithFind)]
-
-Buradaki adımları şunlardır:
-* Bul döndürür dediğimiz bu nedenle veritabanı zaten bu Kimliğe sahip blog içermiyor sonra null eklerseniz ekleme için işaretleyin.
-* Bul varlığın döndürürse, veritabanında var ve bağlam artık mevcut varlık izleme
-  * Ardından SetValues Bu istemciden gelen değişiklikleri varlığa tüm özelliklerin değerlerini ayarlamak için kullanırız.
-  * Gerektiği şekilde güncelleştirilecek varlık SetValues çağrı işaretler.
+Update yöntemi, normal olarak güncelleştirme için varlığı, INSERT değil olarak işaretler. Ancak, varlık otomatik olarak oluşturulmuş bir anahtara sahipse ve anahtar değeri ayarlanmamışsa, bu durumda varlık otomatik olarak ekleme için işaretlenir.
 
 > [!TIP]  
-> Yalnızca SetValues izlenen varlık öğesindekilerle farklı değerlere sahip özellikleri değiştirilmiş olarak işaretlenmesine neden olur. Bu, gerçekten değişmiş olan sütunları güncelleştirme gönderildiğinde, güncelleştirilecek anlamına gelir. (Ve hiçbir şey değişmediyse, ardından hiçbir güncelleştirme hiç gönderilir.)
+> Bu davranış EF Core 2,0 ' de tanıtılmıştı. Daha önceki sürümlerde, açıkça Ekle veya Güncelleştir ' i seçmek için her zaman gereklidir.
 
-## <a name="working-with-graphs"></a>Grafikler ile çalışma
+Varlık otomatik olarak oluşturulan anahtarları kullanmıyor ise, uygulamanın varlığın eklenip eklenmeyeceğine veya güncelleştirilmesine karar vermelidir: Örneğin:
+
+[!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#InsertOrUpdateSingleEntityWithFind)]
+
+Buradaki adımlar şunlardır:
+* Find null döndürürse, veritabanı bu KIMLIĞE sahip blogu zaten içermez, bu nedenle ekleme öğesini çağırıyoruz.
+* Bul bir varlık döndürürse, veritabanında bulunur ve bağlam artık var olan varlığı izliyor
+  * Daha sonra bu varlıktaki tüm özelliklerin değerlerini istemciden gelen değerlere ayarlamak için SetValues kullanılır.
+  * SetValues çağrısı, varlığı gerektiği şekilde güncelleştiren şekilde işaretleyecek.
+
+> [!TIP]  
+> SetValues yalnızca, izlenen varlıktaki farklı değerlere sahip özellikleri değiştirilmiş olarak işaretlenecektir. Bu, güncelleştirme gönderildiğinde yalnızca gerçekten değiştirilen sütunlar güncelleştirilecek anlamına gelir. (Ve hiçbir şey değiştirilmezse hiçbir güncelleştirme gönderilmez.)
+
+## <a name="working-with-graphs"></a>Grafiklerle çalışma
 
 ### <a name="identity-resolution"></a>Kimlik çözümlemesi
 
-Yukarıda belirtildiği gibi EF Core yalnızca belirli bir birincil anahtar değeri ile herhangi bir varlık örneği takip edebilirsiniz. Grafiklerle çalışırken graf ideal olarak bu sabit tutulur ve içeriği tek bir birim iş için kullanılması gereken şekilde oluşturulmalıdır. Ardından grafiğin, yinelenenleri içeriyorsa, grafik EF birden çok örneği tek bir araya getirmek için göndermeden önce işlemek için gerekli olacaktır. Bu şekilde yinelemeleri sağlamlaştırmak olabildiğince çabuk çakışma önlemek için uygulama ardışık düzeninizde yapılmalıdır örnekleri çakışan değerler ve ilişkileri, sahip olduğu Önemsiz olmayabilir.
+Yukarıda belirtildiği gibi, EF Core yalnızca belirli bir birincil anahtar değeri olan herhangi bir varlığın bir örneğini izleyebilir. Grafiklerle çalışırken, grafik ideal bir şekilde oluşturulmalıdır ve bağlam yalnızca bir iş birimi için kullanılmalıdır. Grafik yinelenen öğeler içeriyorsa, birden çok örneği birleştirmek için bir grafik için EF 'e göndermeden önce grafiğin işlenmesi gerekir. Bu, örneklerin çakışan değerler ve ilişkilerin bulunduğu önemsiz olmayabilir, bu nedenle yinelenenleri birleştirme, uygulama ardışık düzeninde çakışma çözümünden kaçınmak için mümkün olan en kısa sürede yapılmalıdır.
 
-### <a name="all-newall-existing-entities"></a>Tüm yeni/tüm var olan varlıkları
+### <a name="all-newall-existing-entities"></a>Tüm yeni/tüm mevcut varlıklar
 
-Grafikler ile çalışmaya ilişkin bir örnek ekleme veya blog ilişkili gönderileri kendi koleksiyonunu birlikte güncelleştiriliyor. Graftaki tüm varlıkları eklenmesi gereken ya da tüm güncelleştirilmelidir ardından aynı tek varlıklar için yukarıda açıklandığı gibi işlemidir. Örneğin, bir grafiğini blog ve gönderi şu şekilde oluşturulur:
+Grafiklerle çalışmaya bir örnek, bir blogu ilişkili gönderilerin koleksiyonuyla birlikte ekleme veya güncelleştirme. Grafikteki tüm varlıkların eklenmesi veya tümünün güncellenmesi gerekiyorsa, işlem yukarıda açıklanan tek varlıklar için aynı olur. Örneğin, aşağıdaki gibi oluşturulan blogların ve gönderilerin bir grafiği:
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/Disconnected/Sample.cs#CreateBlogAndPosts)]
+[!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#CreateBlogAndPosts)]
 
-şu şekilde eklenebilir:
+şöyle eklenebilir:
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/Disconnected/Sample.cs#InsertGraph)]
+[!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#InsertGraph)]
 
-Eklenecek çağrı blog ve tüm gönderileri eklenecek işaretler.
+Eklenecek çağrı blogunu ve eklenecek tüm gönderileri işaretleyecek.
 
-Bir grafikteki tüm varlıkları güncelleştirilmesi gerekiyorsa, benzer şekilde, daha sonra güncelleştirme kullanılabilir:
+Benzer şekilde, bir grafikteki tüm varlıkların güncelleştirilmesi gerekiyorsa, güncelleştirme kullanılabilir:
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/Disconnected/Sample.cs#UpdateGraph)]
+[!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#UpdateGraph)]
 
-Güncelleştirilecek blog ve tüm gönderileri işaretlenir.
+Blog ve tüm gönderimler güncellenmeyecek şekilde işaretlenir.
 
-### <a name="mix-of-new-and-existing-entities"></a>Yeni ve var olan varlıkları karışımı
+### <a name="mix-of-new-and-existing-entities"></a>Yeni ve mevcut varlıkların karışımı
 
-Graf ekleme gerektiren varlıkları ve bu güncelleştirme gerektiren bir karışımını içeriyorsa bile otomatik olarak oluşturulan anahtarları ile güncelleştirme yeniden eklemeler ve güncelleştirmeler için kullanılabilir:
+Otomatik olarak oluşturulan anahtarlarla, grafik ekleme ve güncelleştirme gerektiren varlıkların bir karışımını içerse bile, güncelleştirme her iki ekleme ve güncelleştirme için de kullanılabilir:
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/Disconnected/Sample.cs#InsertOrUpdateGraph)]
+[!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#InsertOrUpdateGraph)]
 
-Güncelleştirme, grafik, blog veya post, diğer tüm varlıklar için güncelleştirme olarak işaretlenir ancak bir anahtar değer kümesi olmaması durumunda ekleme için herhangi bir varlık olarak işaretler.
+Güncelleştirme, bir anahtar değer kümesi yoksa, diğer tüm varlıklar güncelleştirme için işaretlenirken grafik, blog veya gönderi içindeki herhangi bir varlığı, ekleme için bir anahtar değeri ayarlanmamışsa işaretler.
 
-Olarak daha önce otomatik olarak oluşturulan anahtarları, kullanılmadığında bir sorgu ve bazı kullanılabilir:
+Daha önce olduğu gibi, otomatik olarak oluşturulan anahtarlar kullanılmazsa bir sorgu ve bir işlem kullanılabilir:
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/Disconnected/Sample.cs#InsertOrUpdateGraphWithFind)]
+[!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#InsertOrUpdateGraphWithFind)]
 
-## <a name="handling-deletes"></a>İşleme siler
+## <a name="handling-deletes"></a>Silmeleri işleme
 
-Delete beri işlemek zor olabilir, silinmesi gerektiğini genellikle bir varlığın olmaması anlamına gelir. Bu ayarı kullanarak çıkılacağını bir varlık gerçekten silinmesini yerine silinmiş olarak işaretlenmiş şekilde "geçici silme" kullanmaktır. Siler ve ardından güncelleştirmeleri ile aynı olur. Geçici silme kullanarak uygulanabilir [sorgu filtreleri](xref:core/querying/filters).
+Genellikle bir varlık yokluğu, silinmesi gerektiği anlamına gelir. Bunu yapmanın bir yolu, varlığın gerçekten silinmesi yerine silinmiş olarak işaretlenmesi için "geçici silme" kullanmaktır. Sonra siler, güncelleştirmelerle aynı olur. Geçici silme, [sorgu filtreleri](xref:core/querying/filters)kullanılarak uygulanabilir.
 
-Silme işlemi için true, aslında graf farkı nedir gerçekleştirmek için sorgu deseninin bir uzantı kullanmak için yaygın bir düzen tutulmasıdır. Örneğin:
+Doğru silme işlemleri için genel bir model, temel bir grafik farkı olan bir sorgu deseninin uzantısını kullanmaktır. Örneğin:
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/Disconnected/Sample.cs#InsertUpdateOrDeleteGraphWithFind)]
+[!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#InsertUpdateOrDeleteGraphWithFind)]
 
 ## <a name="trackgraph"></a>TrackGraph
 
-Dahili olarak, Ekle, ekleme ve güncelleştirme olup olmadığını onu (eklemek için) eklenen (güncelleştirmek için) değiştirilen işaretlenmelidir seçeceğine her varlık için Unchanged yapılan bir belirleme ile grafik çapraz geçişi kullanın (hiçbir şey yapma), veya silinen (silmek için). Bu mekanizma TrackGraph API aracılığıyla kullanıma sunulur. Örneğin, istemci bir grafik varlıkları geri gönderdiğinde, her varlığın nasıl işleneceğini belirten bazı bayrağını ayarlar varsayalım. TrackGraph, ardından bu bayrağı işlemek için kullanılabilir:
+Dahili, ekleme, Iliştirme ve güncelleştirme, her varlık için eklenen (ekleme), değiştirme (güncelleştirme), değiştirilmemiş (hiçbir şey yapma) veya silinmiş (silmek için) olarak işaretlenme gibi bir belirleme ile grafik çapraz geçişi kullanın. Bu mekanizma, TrackGraph API 'SI aracılığıyla sunulur. Örneğin, istemci bir varlık grafiğini geri gönderdiğinde, her bir varlıkta nasıl işleneceğini gösteren bir bayrak ayarladığını varsayalım. TrackGraph, daha sonra bu bayrağı işlemek için kullanılabilir:
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/Disconnected/Sample.cs#TrackGraph)]
+[!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#TrackGraph)]
 
-Bayraklar yalnızca varlık örneğin kolaylık olması için bir parçası olarak gösterilir. Genelde bayrakları bir DTO veya istekte bulunan başka bir duruma parçası olacaktır.
+Bayraklar, örneğin basitliği için varlığın bir parçası olarak gösterilir. Genellikle bayraklar bir DTO veya istekte bulunan başka bir durumun parçası olur.

@@ -4,16 +4,16 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 1f63593631017a61c39ccab9216adbc4663700e7
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: f7c241159c689d4648b2778b53e50c22f580deb0
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71148900"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197930"
 ---
 # <a name="breaking-changes-included-in-ef-core-30"></a>EF Core 3,0 ' de yer alan son değişiklikler
 Aşağıdaki API ve davranış değişiklikleri, 3.0.0 sürümüne yükseltirken mevcut uygulamaları bozmak için olası bir davranıştır.
-Veritabanı sağlayıcılarını yalnızca etkilemek için beklediğimiz değişiklikler, [sağlayıcı değişiklikleri](../../providers/provider-log.md)altında belgelenmiştir.
+Veritabanı sağlayıcılarını yalnızca etkilemek için beklediğimiz değişiklikler, [sağlayıcı değişiklikleri](xref:core/providers/provider-log)altında belgelenmiştir.
 Bir 3,0 önizlemeden başka bir 3,0 önizlemeye olan kesintiler burada açıklanmamıştır.
 
 ## <a name="summary"></a>Özet
@@ -23,6 +23,7 @@ Bir 3,0 önizlemeden başka bir 3,0 önizlemeye olan kesintiler burada açıklan
 | [LINQ sorguları artık istemcide değerlendirilmedi](#linq-queries-are-no-longer-evaluated-on-the-client)         | Yüksek       |
 | [EF Core 3,0 hedefi .NET Standard 2,0 değil .NET Standard 2,1](#netstandard21) | Yüksek      |
 | [EF Core komut satırı aracı, DotNet EF, artık .NET Core SDK bir parçası değil](#dotnet-ef) | Yüksek      |
+| [DetectChanges, Store tarafından oluşturulan anahtar değerlerini](#dc) | Yüksek      |
 | [FromSql, ExecuteSql ve ExecuteSqlAsync yeniden adlandırıldı](#fromsql) | Yüksek      |
 | [Sorgu türleri varlık türleriyle birleştirilir](#qt) | Yüksek      |
 | [Entity Framework Core artık ASP.NET Core paylaşılan Framework 'ün bir parçası değil](#no-longer) | Orta      |
@@ -37,7 +38,6 @@ Bir 3,0 önizlemeden başka bir 3,0 önizlemeye olan kesintiler burada açıklan
 | [FromSql metotları yalnızca sorgu köklerine göre belirtilebilir](#fromsql) | Düşük      |
 | [~~Sorgu yürütme hata ayıklama düzeyinde günlüğe kaydedilir~~ Çevrildi](#qe) | Düşük      |
 | [Geçici anahtar değerleri artık varlık örneklerine ayarlı değil](#tkv) | Düşük      |
-| [DetectChanges, Store tarafından oluşturulan anahtar değerlerini](#dc) | Düşük      |
 | [Tabloyu sorumlu ile paylaşan bağımlı varlıklar artık isteğe bağlıdır](#de) | Düşük      |
 | [Bir eşzamanlılık belirteci sütunuyla bir tabloyu paylaşan tüm varlıkların onu bir özellik ile eşlemesi gerekir](#aes) | Düşük      |
 | [Eşlenmemiş türlerden devralınan özellikler artık tüm türetilmiş türler için tek bir sütunla eşleştirilir](#ip) | Düşük      |
@@ -69,6 +69,7 @@ Bir 3,0 önizlemeden başka bir 3,0 önizlemeye olan kesintiler burada açıklan
 | [SQLitePCL. RAW, 2.0.0 sürümüne güncelleştirildi](#SQLitePCL) | Düşük      |
 | [Nettopologyısuite, 2.0.0 sürümüne güncelleştirildi](#NetTopologySuite) | Düşük      |
 | [Birden çok belirsiz kendine başvuran ilişki yapılandırılması gerekiyor](#mersa) | Düşük      |
+| [DbFunction. Schema null ya da boş dize, modeli varsayılan şemasında olacak şekilde yapılandırır](#udf-empty-string) | Düşük      |
 
 ### <a name="linq-queries-are-no-longer-evaluated-on-the-client"></a>LINQ sorguları artık istemcide değerlendirilmedi
 
@@ -174,7 +175,7 @@ Bu değişiklik, NuGet üzerinde düzenli bir .net `dotnet ef` CLI aracı olarak
 Geçişleri veya yapı iskelesi `DbContext`'ni yönetebilmek için genel bir araç olarak yüklemek `dotnet-ef` için:
 
   ``` console
-    $ dotnet tool install --global dotnet-ef --version 3.0.0-*
+    $ dotnet tool install --global dotnet-ef
   ```
 
 Ayrıca, bir [araç bildirim dosyası](https://github.com/dotnet/cli/issues/10288)kullanarak araç bağımlılığı olarak bildiren bir projenin bağımlılıklarını geri yüklediğinizde de bunu yerel bir araç edinebilirsiniz.
@@ -1714,4 +1715,39 @@ modelBuilder
      .Entity<User>()
      .HasOne(e => e.UpdatedBy)
      .WithMany();
+```
+
+<a name="udf-empty-string"></a>
+### <a name="dbfunctionschema-being-null-or-empty-string-configures-it-to-be-in-models-default-schema"></a>DbFunction. Schema null ya da boş dize, modeli varsayılan şemasında olacak şekilde yapılandırır
+
+[Sorun izleniyor #12757](https://github.com/aspnet/EntityFrameworkCore/issues/12757)
+
+Bu değişiklik EF Core 3,0-Preview 7 ' de kullanıma sunulmuştur.
+
+**Eski davranış**
+
+Şema ile boş bir dize olarak yapılandırılmış bir DbFunction, şema olmadan yerleşik işlev olarak değerlendirildi. Örneğin, aşağıdaki kod, clr `DatePart` işlevini SqlServer üzerinde `DATEPART` yerleşik işlev olarak eşleştirir.
+
+```C#
+[DbFunction("DATEPART", Schema = "")]
+public static int? DatePart(string datePartArg, DateTime? date) => throw new Exception();
+
+```
+
+**Yeni davranış**
+
+Tüm DbFunction eşlemeleri Kullanıcı tanımlı işlevlere eşlenildiği kabul edilir. Bu nedenle boş dize değeri, işlevi model için varsayılan şemanın içine yerleştirir. Şema, Fluent API `modelBuilder.HasDefaultSchema()` aracılığıyla açıkça yapılandırılabilir veya `dbo` Aksi halde.
+
+**Kaydol**
+
+Daha önceden şemanın boş olması, işlevin yerleşik olduğunu değerlendirmek için bir yoldur, ancak bu mantık yalnızca yerleşik işlevlerin herhangi bir şemaya ait olmadığı SqlServer için geçerlidir.
+
+**Karşı**
+
+DbFunction 'ın çevirisini yerleşik bir işlevle eşlemek için el ile yapılandırın.
+
+```C#
+modelBuilder
+    .HasDbFunction(typeof(MyContext).GetMethod(nameof(MyContext.DatePart)))
+    .HasTranslation(args => SqlFunctionExpression.Create("DatePart", args, typeof(int?), null));
 ```

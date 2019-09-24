@@ -1,82 +1,82 @@
 ---
-title: Basamaklı silme - EF Core
+title: Basamaklı silme-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 uid: core/saving/cascade-delete
-ms.openlocfilehash: 15b7e69676ef9aeb70121fcec404c34a17e5e2bb
-ms.sourcegitcommit: 8d04a2ad98036f32ca70c77ce3040c5edb1cdf82
+ms.openlocfilehash: ec04de4eab2a28e3aa81ff27accef4fc11c83995
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44384845"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197797"
 ---
-# <a name="cascade-delete"></a>Art arda silme
+# <a name="cascade-delete"></a>Basamaklı Silme
 
-Art arda silme, Veritabanı terminolojisinde otomatik olarak ilişkili satırları silme işlemi tetiklemek için bir satır silinmesini sağlayan bir özellik tanımlamak için yaygın olarak kullanılır. Onun üst ilişkisi yazıyordunuz--ayrıca EF Core silme davranışları tarafından kapsanan yakından ilgili bir kavram alt varlık otomatik olarak silinmesini olduğunda bu genellikle "artık silinmesi" adı verilir.
+Art arda silme, bir satırı silmenin ilgili satırların silinmesini otomatik olarak tetiklemesine izin veren bir özelliği anlatmak için Veritabanı terminolojisinde yaygın olarak kullanılır. EF Core Delete davranışları tarafından ele alınan yakından ilgili bir kavram, bir üst öğe ile ilişkisi olduğu zaman bir alt varlığın otomatik olarak silinmesinden sonra bu, yaygın olarak "artık silme" olarak bilinir.
 
-EF Core, birkaç farklı silme davranışları uygular ve tek tek ilişkileri silme davranışlarını yapılandırmasını sağlar. EF Core de otomatik olarak yararlı varsayılan silme davranışları göre her ilişki için yapılandırma kuralları uygular [requiredness ilişkinin](../modeling/relationships.md#required-and-optional-relationships).
+EF Core birkaç farklı silme davranışı uygular ve tek tek ilişkilerin silme davranışlarının yapılandırılmasına izin verir. EF Core Ayrıca, [ilişkinin gerekliğine](../modeling/relationships.md#required-and-optional-relationships)göre her ilişki için yararlı varsayılan silme davranışlarını otomatik olarak yapılandıran kuralları uygular.
 
-## <a name="delete-behaviors"></a>Davranışlar Sil
-Silme davranışları tanımlanmış *DeleteBehavior* Numaralandırıcı yazın ve geçirilebilir *OnDelete* denetimine fluent API'si olup olmadığını sorumlusu/üst varlık veya, severing silinmesini İlişki bağımlı/alt varlıklar için bir yan etkisi bağımlı/alt varlıklar üzerinde olmalıdır.
+## <a name="delete-behaviors"></a>Davranışları Sil
+Silme davranışları *DeleteBehavior* Numaralandırıcı türünde tanımlanır ve bir sorumlu/üst varlığın silinmesini veya bağımlı/alt varlıklara olan ilişkinin ne kadar olduğunu denetlemek Için *OnDelete* Fluent API geçirilebilir bağımlı/alt varlıklar üzerinde yan etkisi vardır.
 
-EF sorumlusu/üst varlık silinmiş ya da alt ilişkinin yazıyordunuz üç eylemleri vardır:
-* Alt/bağımlı silinebilir
-* Çocuğun yabancı anahtar değerler olarak ayarlanabilir null
-* Alt değişmeden kalır.
+Bir asıl/üst varlık silindiğinde veya alt öğeyle olan ilişki bırakıldığında, EF 'in gerçekleştirebileceği üç eylem vardır:
+* Alt/Bağımlı öğe silinebilir
+* Çocuğun yabancı anahtar değerleri null olarak ayarlanabilir
+* Alt öğe değişmeden kalır
 
 > [!NOTE]  
-> EF Core modelinde yapılandırılmış silme davranışı, yalnızca birincil varlık EF Core kullanarak silinir ve bağımlı varlıkları belleğe yüklenen uygulanır (yani, izlenen bağımlılıklar için). Karşılık gelen bir cascade davranış bağlam tarafından izlenmiyor veri emin olmak için Veritabanı Kurulumu uygulanan gerekli eylem sahip olması gerekir. EF Core veritabanını oluşturmak için kullanıyorsanız, bu cascade davranışı için Kurulum olacaktır.
+> EF Core modelinde yapılandırılan silme davranışı yalnızca asıl varlık EF Core kullanılarak silindiğinde ve bağımlı varlıkların belleğe yüklenmesi durumunda (izlenen bağımlılar için) uygulanır. Bağlam tarafından izlenmeyen verilerin uygulanmış olduğundan emin olmak için, karşılık gelen bir Cascade davranışının veritabanında kurulması gerekir. Veritabanını oluşturmak için EF Core kullanırsanız, bu basamaklı davranış sizin için kurulum olacaktır.
 
-Bir yabancı anahtar değeri null olarak ayarlama özelliği Yukarıdaki ikinci eylem için yabancı anahtar null değilse geçerli değil. (Atanamaz yabancı anahtar gerekli bir ilişki eşdeğerdir.) Bu gibi durumlarda, değişiklik veritabanına kalıcı olamayacağından, aynı zamanda bir özel durum SaveChanges çağrılana kadar yabancı anahtar özelliği null işaretlenmiş olduğundan, EF Core izler. Bu, bir kısıtlama ihlali veritabanından alma için benzer.
+Yukarıdaki ikinci eylem için yabancı anahtar null yapılabilir değilse, yabancı anahtar değerini null olarak ayarlama geçerli değildir. (Null yapılamayan yabancı anahtar, gerekli bir ilişkiye eşdeğerdir.) Bu durumlarda EF Core, SaveChanges çağrılmadan önce yabancı anahtar özelliğinin null olarak işaretlendiğinden, değişikliğin veritabanına kalıcı hale uğradığından bir özel durum oluşturulduğu anlamına gelir. Bu, veritabanından bir kısıtlama ihlali almaya benzer.
 
-Dört Sil davranışları, aşağıdaki tablolarda listelenen gibi vardır.
+Aşağıdaki tablolarda listelendiği gibi dört silme davranışı vardır.
 
-### <a name="optional-relationships"></a>İsteğe bağlı bir ilişki
-İsteğe bağlı ilişkiler (boş değer atanabilir yabancı anahtar) için bunu _olduğu_ olası aşağıdaki efektler sonuçlanır bir yabancı anahtar null ve kaydetmek:
+### <a name="optional-relationships"></a>İsteğe bağlı ilişkiler
+İsteğe bağlı ilişkiler için (boş değer atanabilir yabancı anahtar), aşağıdaki etkilere neden olan bir boş yabancı anahtar değeri _kaydetmek mümkündür:_
 
-| Davranış adı               | Bağımlı/alt bellekte etkisi    | Bağımlı/alt veritabanı üzerindeki etkisi  |
+| Davranış adı               | Bellekte bağımlı/alt öğe üzerindeki etki    | Veritabanında bağımlı/alt öğe üzerindeki etki  |
 |:----------------------------|:---------------------------------------|:---------------------------------------|
-| **Basamakla**                 | Varlıkları silindi                   | Varlıkları silindi                   |
-| **ClientSetNull** (varsayılan) | Yabancı anahtar özellikleri null | Yok.                                   |
-| **SetNull**                 | Yabancı anahtar özellikleri null | Yabancı anahtar özellikleri null |
-| **kısıtlama**                | Yok.                                   | Yok.                                   |
+| **Seçilemez**                 | Varlıklar silindi                   | Varlıklar silindi                   |
+| **Clientsetnull** Varsayılanını | Yabancı anahtar özellikleri null olarak ayarlandı | Yok.                                   |
+| **SetNull**                 | Yabancı anahtar özellikleri null olarak ayarlandı | Yabancı anahtar özellikleri null olarak ayarlandı |
+| **Girmesini**                | Yok.                                   | Yok.                                   |
 
-### <a name="required-relationships"></a>Gerekli bir ilişki
-Gerekli ilişkileri (atanamaz yabancı anahtar) olduğu _değil_ olası aşağıdaki efektler sonuçlanır bir yabancı anahtar null ve kaydetmek:
+### <a name="required-relationships"></a>Gerekli ilişkiler
+Gerekli ilişkiler (null yapılamayan yabancı anahtar) için, bir boş yabancı anahtar değeri kaydetmek mümkün _değildir_ , bu durum aşağıdaki etkilere neden olur:
 
-| Davranış adı         | Bağımlı/alt bellekte etkisi | Bağımlı/alt veritabanı üzerindeki etkisi |
+| Davranış adı         | Bellekte bağımlı/alt öğe üzerindeki etki | Veritabanında bağımlı/alt öğe üzerindeki etki |
 |:----------------------|:------------------------------------|:--------------------------------------|
-| **Art arda** (varsayılan) | Varlıkları silindi                | Varlıkları silindi                  |
-| **ClientSetNull**     | SaveChanges oluşturur                  | Yok.                                  |
-| **SetNull**           | SaveChanges oluşturur                  | SaveChanges oluşturur                    |
-| **kısıtlama**          | Yok.                                | Yok.                                  |
+| **Basamakla** Varsayılanını | Varlıklar silindi                | Varlıklar silindi                  |
+| **ClientSetNull**     | SaveChanges atar                  | Yok.                                  |
+| **SetNull**           | SaveChanges atar                  | SaveChanges atar                    |
+| **Girmesini**          | Yok.                                | Yok.                                  |
 
-Yukarıdaki tablolarda *hiçbiri* kısıtlaması ihlali ile sonuçlanabilir. Örneğin, asıl/alt varlık silinmiş, ancak bir bağımlı/alt yabancı anahtarı değiştirmek için hiçbir işlem yapılmadı, ardından veritabanı büyük olasılıkla SaveChanges üzerinde bir yabancı kısıtlaması ihlali nedeniyle durum oluşturur.
+Yukarıdaki tablolarda, *none* bir kısıtlama ihlaline yol açabilir. Örneğin, bir asıl/alt varlık silinirse ancak bağımlı/alt öğenin yabancı anahtarını değiştirmek için herhangi bir eylem yapılmaz, veritabanı büyük olasılıkla yabancı bir kısıtlama ihlali nedeniyle SaveChanges üzerinde oluşturulur.
 
 Yüksek düzeyde:
-* Bir üst sınıf olmadan var olamaz varlıkları varsa ve alt otomatik silerken halletmeniz için EF istediğiniz sonra kullanın *Cascade*.
-  * Bir üst genellikle olun olmadan var olamaz varlıklar için gerekli ilişkilerini, kullandığınız *Cascade* varsayılandır.
-* Bir üst öğeye sahip olmayabilir veya varlıkları varsa ve yabancı anahtarı sizin için nulling halletmeniz için EF istediğiniz sonra kullanın *ClientSetNull*
-  * Bir üst genellikle olun olmadan bulunabilir varlıklar için isteğe bağlı ilişkilerini, kullandığınız *ClientSetNull* varsayılandır.
-  * Veritabanı alt yabancı anahtarlar için null değerler bile yaymak ayrıca denemek isterseniz, alt varlık yüklenmedi, ardından *SetNull*. Ancak, bu veritabanını desteklemesi gerekir ve böyle veritabanını yapılandırma diğer kısıtlamaları neden olabilir, uygulamada genellikle bu seçenek pratik hale getirir unutmayın. Bu nedenle, *SetNull* varsayılan olarak etkin değildir.
-* Şimdiye kadar otomatik olarak bir varlığı silmek veya otomatik olarak yabancı anahtar null ardından kullanarak EF Core istemiyorsanız *kısıtlama*. Bu kodunuzu alt varlıklar ve yabancı anahtar değerlerini el ile eşitleyin, gerektiğini unutmayın, aksi takdirde kısıtlaması özel durumları oluşturulacaktır.
+* Üst öğesi olmadan var olmayan varlıklarınız varsa ve alt öğeleri otomatik olarak silmek için EF 'i istiyorsanız, *Cascade*kullanın.
+  * Üst öğe olmadan mevcut olmayan varlıklar genellikle, *Cascade* varsayılan değer olan gerekli ilişkilerden birini kullanır.
+* Bir üst öğeye sahip olabilecek veya olmayan varlıklarınız varsa ve yabancı anahtarı sizin yerinize dışarıda bırakmak istiyorsanız, bu durumda *Clientsetnull* kullanın
+  * Bir üst öğesi olmadan var olabilen varlıklar genellikle isteğe bağlı ilişkilerden ( *Clientsetnull* değeri için varsayılan değer) kullanır.
+  * Ayrıca, alt varlık yüklü olmasa bile veritabanının null değerleri alt yabancı anahtarlara yaymasını istiyorsanız, *SetNull*' ı kullanın. Bununla birlikte, veritabanının bunu desteklemesi gerektiğini ve bu şekilde veritabanının yapılandırılmasını unutmayın. Bu, uygulamada genellikle bu seçeneği pratik hale getirir. Bu, *SetNull* varsayılan değer değildir.
+* EF Core bir varlığı otomatik olarak silmek veya yabancı anahtarı otomatik olarak boş bırakmak istemiyorsanız *kısıtla*' yı kullanın. Bunun için, kodunuzun alt varlıkları ve yabancı anahtar değerlerini el ile eşitlenmiş halde tutmasını, aksi takdirde kısıtlama özel durumları oluşturulur.
 
 > [!NOTE]
-> EF6, aksine, EF Core, basamaklı etkileri hemen, ancak bunun yerine yalnızca SaveChanges zaman çağrıldığını durum değil.
+> EF Core ' de, EF6 aksine, geçişli efektler hemen gerçekleşmez, ancak bunun yerine SaveChanges çağrılır.
 
 > [!NOTE]  
-> **EF Core 2.0 içindeki değişiklikleri:** önceki sürümlerde, *kısıtlama* isteğe bağlı bir yabancı anahtar özelliklerini ayarlamak için izlenen bağımlı varlıklarda neden boş ve varsayılan davranışı için isteğe bağlı ilişkileri silme idi. EF Core 2.0 *ClientSetNull* bu davranışı temsil etmek için sunulmuştur ve isteğe bağlı bir ilişki için varsayılan hale geldi. Davranışını *kısıtlama* hiçbir zaman bağımlı varlıkların herhangi yan etkileri olduğu ayarlanır.
+> **EF Core 2,0 değişiklikleri:** Önceki sürümlerde *kısıtlama* , izlenen bağımlı varlıklarda isteğe bağlı yabancı anahtar özelliklerinin null olarak ayarlanmasına ve isteğe bağlı ilişkiler için varsayılan silme davranışına neden olur. EF Core 2,0 ' de, bu davranışı temsil eden ve isteğe bağlı ilişkiler için varsayılan değer haline getirilen *Clientsetnull* eklenmiştir. *Kısıtlama* davranışı, bağımlı varlıklar üzerinde hiçbir bir yan etkiye hiçbir şekilde ayarlanmıştı.
 
 ## <a name="entity-deletion-examples"></a>Varlık silme örnekleri
 
-Aşağıdaki kod parçası olan bir [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/CascadeDelete/) , indirilebilen ve çalıştırın. Örnek bir üst varlık silindiğinde her isteğe bağlıdır ve gerekli ilişkileri silme davranışı için ne olacağını gösterir.
+Aşağıdaki kod, indirilebilen ve çalıştırılabilen bir [Örneğin](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/CascadeDelete/) parçasıdır. Örnek, bir üst varlık silindiğinde hem isteğe bağlı hem de gerekli ilişkilerin her silme davranışı için ne olacağını gösterir.
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/CascadeDelete/Sample.cs#DeleteBehaviorVariations)]
+[!code-csharp[Main](../../../samples/core/Saving/CascadeDelete/Sample.cs#DeleteBehaviorVariations)]
 
-Neler olduğunu anlamak için her değişim atalım.
+Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
-### <a name="deletebehaviorcascade-with-required-or-optional-relationship"></a>Gerekli veya isteğe bağlı bir ilişki ile DeleteBehavior.Cascade
+### <a name="deletebehaviorcascade-with-required-or-optional-relationship"></a>DeleteBehavior. Cascade, gerekli veya isteğe bağlı ilişki
 
 ```
   After loading entities:
@@ -100,12 +100,12 @@ Neler olduğunu anlamak için her değişim atalım.
       Post '2' is in state Detached with FK '1' and no reference to a blog.
 ```
 
-* Blog silindi işaretlendi
-* Basamaklar SaveChanges kadar gerçekleşecek değil beri gönderileri Unchanged başlangıçta kalır.
-* Silme işlemi için hem bağımlılıklar/alt (posta) ve ardından asıl/üst (blog) SaveChanges gönderir
-* Artık veritabanından silinmiş olduğundan kaydettikten sonra tüm varlıkları ayrılır
+* Blog silindi olarak işaretlendi
+* SaveChanges, SaveChanges 'e kadar basamaklar olmadığı için başlangıçta değiştirilmeden kalır
+* SaveChanges hem bağımlılar/alt öğe (gönderiler) hem de asıl/üst öğe (blog) için silme gönderir
+* Kaydettikten sonra, veritabanından silindiklerinden beri tüm varlıklar ayrılır
 
-### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-required-relationship"></a>DeleteBehavior.ClientSetNull ya da gerekli bir ilişki ile DeleteBehavior.SetNull
+### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-required-relationship"></a>Gerekli ilişki ile DeleteBehavior. ClientSetNull veya DeleteBehavior. SetNull
 
 ```
   After loading entities:
@@ -124,11 +124,11 @@ Neler olduğunu anlamak için her değişim atalım.
   SaveChanges threw DbUpdateException: Cannot insert the value NULL into column 'BlogId', table 'EFSaving.CascadeDelete.dbo.Posts'; column does not allow nulls. UPDATE fails. The statement has been terminated.
 ```
 
-* Blog silindi işaretlendi
-* Basamaklar SaveChanges kadar gerçekleşecek değil beri gönderileri Unchanged başlangıçta kalır.
-* FK post null olarak ayarlamak SaveChanges çalışır, ancak FK boş değer atanabilir olmadığından bu işlem başarısız
+* Blog silindi olarak işaretlendi
+* SaveChanges, SaveChanges 'e kadar basamaklar olmadığı için başlangıçta değiştirilmeden kalır
+* SaveChanges Post FK 'ı null olarak ayarlamaya çalışır, ancak FK null değer atanabilir olmadığından bu başarısız olur
 
-### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-optional-relationship"></a>DeleteBehavior.ClientSetNull veya isteğe bağlı bir ilişki ile DeleteBehavior.SetNull
+### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-optional-relationship"></a>İsteğe bağlı ilişki ile DeleteBehavior. ClientSetNull veya DeleteBehavior. SetNull
 
 ```
   After loading entities:
@@ -152,13 +152,13 @@ Neler olduğunu anlamak için her değişim atalım.
       Post '2' is in state Unchanged with FK 'null' and no reference to a blog.
 ```
 
-* Blog silindi işaretlendi
-* Basamaklar SaveChanges kadar gerçekleşecek değil beri gönderileri Unchanged başlangıçta kalır.
-* SaveChanges denemeleri ayarlar hem bağımlılıklar/alt (posta) FK null (blog) asıl/üst silmeden önce
-* Kaydetme sonra asıl/üst (blog) silindiği ancak bağımlılıklar/alt (posta) hala izlenir
-* İzlenen bağımlılıklar/alt (yazıları), artık null FK değerlere sahip ve Silinen sorumlusu/üst (blog) kendi başvurusu kaldırıldı
+* Blog silindi olarak işaretlendi
+* SaveChanges, SaveChanges 'e kadar basamaklar olmadığı için başlangıçta değiştirilmeden kalır
+* SaveChanges denemesi, asıl/üst öğeyi (blog) silmeden önce hem bağımlıların hem de alt öğelerin (gönderilerin) FK değerini null olarak ayarlar
+* Kaydettikten sonra asıl/üst öğe (blog) silinir, ancak bağımlılar/alt öğeler (gönderiler) hala izlenir
+* İzlenen bağımlılar/alt öğeler (gönderiler) artık null FK değerlerine sahiptir ve silinen asıl/üst öğeye (blog) başvuruları kaldırılmıştır
 
-### <a name="deletebehaviorrestrict-with-required-or-optional-relationship"></a>Gerekli veya isteğe bağlı bir ilişki ile DeleteBehavior.Restrict
+### <a name="deletebehaviorrestrict-with-required-or-optional-relationship"></a>DeleteBehavior. gerekli veya isteğe bağlı ilişki ile kısıtla
 
 ```
   After loading entities:
@@ -175,19 +175,19 @@ Neler olduğunu anlamak için her değişim atalım.
   SaveChanges threw InvalidOperationException: The association between entity types 'Blog' and 'Post' has been severed but the foreign key for this relationship cannot be set to null. If the dependent entity should be deleted, then setup the relationship to use cascade deletes.
 ```
 
-* Blog silindi işaretlendi
-* Basamaklar SaveChanges kadar gerçekleşecek değil beri gönderileri Unchanged başlangıçta kalır.
-* Bu yana *kısıtlama* FK otomatik olarak null olarak ayarlamak için EF söyler, null olmayan kalır ve SaveChanges kaydetmeden oluşturur
+* Blog silindi olarak işaretlendi
+* SaveChanges, SaveChanges 'e kadar basamaklar olmadığı için başlangıçta değiştirilmeden kalır
+* *Restrict* , EF 'in FK otomatik olarak null olarak ayarlanmayacağını söylediğinden, null olmayan ve SaveChanges, kaydetmeden önce
 
-## <a name="delete-orphans-examples"></a>Artık örnekler delete
+## <a name="delete-orphans-examples"></a>Artık örnekleri Sil örnekleri
 
-Aşağıdaki kod parçası olan bir [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Saving/CascadeDelete/) , indirilebilen ve çalıştırın. Örnek, bir üst/sorumlusu ve onun alt öğeleri/dependents arasındaki ilişkiyi yazıyordunuz her isteğe bağlıdır ve gerekli ilişkileri silme davranışı için neler gösterir. Bu örnekte, ilişki (blog) asıl/üst koleksiyon gezinme özelliği gelen bağımlılıklar/alt (posta) kaldırarak yazıyordunuz. Bağımlı/alt öğe başvuru sorumlusu/üst olarak bunun yerine çıkış nulled, ancak aynı davranıştır.
+Aşağıdaki kod, indirilebilen ve çalıştırılabilen bir [Örneğin](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/CascadeDelete/) parçasıdır. Örnek, bir üst/birincil ve alt öğeleri/bağımlılığının arasındaki ilişki olmadığında, hem isteğe bağlı hem de gerekli ilişkiler için her silme davranışının ne olacağını gösterir. Bu örnekte, birincil/üst öğe (blog) üzerindeki koleksiyon gezintisi özelliğinden bağımlılar/alt öğeler (postalar) kaldırılarak ilişki ortadan kaldırılır. Ancak, bağımlı/alt ile asıl/üst öğeye yapılan başvurunun null olarak dışına çıkar olması durumunda davranış aynıdır.
 
-[!code-csharp[Main](../../../samples/core/Saving/Saving/CascadeDelete/Sample.cs#DeleteOrphansVariations)]
+[!code-csharp[Main](../../../samples/core/Saving/CascadeDelete/Sample.cs#DeleteOrphansVariations)]
 
-Neler olduğunu anlamak için her değişim atalım.
+Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
-### <a name="deletebehaviorcascade-with-required-or-optional-relationship"></a>Gerekli veya isteğe bağlı bir ilişki ile DeleteBehavior.Cascade
+### <a name="deletebehaviorcascade-with-required-or-optional-relationship"></a>DeleteBehavior. Cascade, gerekli veya isteğe bağlı ilişki
 
 ```
   After loading entities:
@@ -210,12 +210,12 @@ Neler olduğunu anlamak için her değişim atalım.
       Post '2' is in state Detached with FK '1' and no reference to a blog.
 ```
 
-* İlişki severing FK null olarak işaretlenmesine neden olduğundan gönderileri değiştirilen işaretlenmiş
-  * FK null olabilir değil, null olarak işaretlenmiş olsa bile ardından gerçek değer değişmez
-* Silme işlemi için bağımlılıklar/alt (posta) SaveChanges gönderir
-* Artık veritabanından silinmiş olduğundan kaydettikten sonra bağımlılıklar/alt (posta) ayrılmış
+* Gönderi, FK 'in null olarak işaretlendiğinden ilişki kesilmesine neden olduğu için değiştirilmiş olarak işaretlenir
+  * FK null yapılabilir değilse, gerçek değer null olarak işaretlenmiş olsa bile değişmeyecektir
+* SaveChanges, bağımlılar/çocuklar için silme gönderir (gönderiler)
+* Kaydettikten sonra, bağımlılıklar/alt öğeler (postalar) veritabanından silindiği için ayrılır
 
-### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-required-relationship"></a>DeleteBehavior.ClientSetNull ya da gerekli bir ilişki ile DeleteBehavior.SetNull
+### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-required-relationship"></a>Gerekli ilişki ile DeleteBehavior. ClientSetNull veya DeleteBehavior. SetNull
 
 ```
   After loading entities:
@@ -234,11 +234,11 @@ Neler olduğunu anlamak için her değişim atalım.
   SaveChanges threw DbUpdateException: Cannot insert the value NULL into column 'BlogId', table 'EFSaving.CascadeDelete.dbo.Posts'; column does not allow nulls. UPDATE fails. The statement has been terminated.
 ```
 
-* İlişki severing FK null olarak işaretlenmesine neden olduğundan gönderileri değiştirilen işaretlenmiş
-  * FK null olabilir değil, null olarak işaretlenmiş olsa bile ardından gerçek değer değişmez
-* FK post null olarak ayarlamak SaveChanges çalışır, ancak FK boş değer atanabilir olmadığından bu işlem başarısız
+* Gönderi, FK 'in null olarak işaretlendiğinden ilişki kesilmesine neden olduğu için değiştirilmiş olarak işaretlenir
+  * FK null yapılabilir değilse, gerçek değer null olarak işaretlenmiş olsa bile değişmeyecektir
+* SaveChanges Post FK 'ı null olarak ayarlamaya çalışır, ancak FK null değer atanabilir olmadığından bu başarısız olur
 
-### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-optional-relationship"></a>DeleteBehavior.ClientSetNull veya isteğe bağlı bir ilişki ile DeleteBehavior.SetNull
+### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-optional-relationship"></a>İsteğe bağlı ilişki ile DeleteBehavior. ClientSetNull veya DeleteBehavior. SetNull
 
 ```
   After loading entities:
@@ -261,12 +261,12 @@ Neler olduğunu anlamak için her değişim atalım.
       Post '2' is in state Unchanged with FK 'null' and no reference to a blog.
 ```
 
-* İlişki severing FK null olarak işaretlenmesine neden olduğundan gönderileri değiştirilen işaretlenmiş
-  * FK null olabilir değil, null olarak işaretlenmiş olsa bile ardından gerçek değer değişmez
-* Her iki bağımlılıklar/alt (posta) FK SaveChanges null olarak ayarlar
-* Kaydetme sonra bağımlılıklar/alt (yazıları), artık null FK değerlere sahip ve Silinen sorumlusu/üst (blog) kendi başvurusu kaldırıldı
+* Gönderi, FK 'in null olarak işaretlendiğinden ilişki kesilmesine neden olduğu için değiştirilmiş olarak işaretlenir
+  * FK null yapılabilir değilse, gerçek değer null olarak işaretlenmiş olsa bile değişmeyecektir
+* SaveChanges hem bağımlılığının hem de alt öğelerin (gönderilerin) FK değerini null olarak ayarlar
+* Kaydedildikten sonra, bağımlılar/alt öğeler (gönderimler) artık null FK değerlerine sahiptir ve silinen asıl/üst öğeye (blog) başvuruları kaldırılmıştır
 
-### <a name="deletebehaviorrestrict-with-required-or-optional-relationship"></a>Gerekli veya isteğe bağlı bir ilişki ile DeleteBehavior.Restrict
+### <a name="deletebehaviorrestrict-with-required-or-optional-relationship"></a>DeleteBehavior. gerekli veya isteğe bağlı ilişki ile kısıtla
 
 ```
   After loading entities:
@@ -283,13 +283,13 @@ Neler olduğunu anlamak için her değişim atalım.
   SaveChanges threw InvalidOperationException: The association between entity types 'Blog' and 'Post' has been severed but the foreign key for this relationship cannot be set to null. If the dependent entity should be deleted, then setup the relationship to use cascade deletes.
 ```
 
-* İlişki severing FK null olarak işaretlenmesine neden olduğundan gönderileri değiştirilen işaretlenmiş
-  * FK null olabilir değil, null olarak işaretlenmiş olsa bile ardından gerçek değer değişmez
-* Bu yana *kısıtlama* FK otomatik olarak null olarak ayarlamak için EF söyler, null olmayan kalır ve SaveChanges kaydetmeden oluşturur
+* Gönderi, FK 'in null olarak işaretlendiğinden ilişki kesilmesine neden olduğu için değiştirilmiş olarak işaretlenir
+  * FK null yapılabilir değilse, gerçek değer null olarak işaretlenmiş olsa bile değişmeyecektir
+* *Restrict* , EF 'in FK otomatik olarak null olarak ayarlanmayacağını söylediğinden, null olmayan ve SaveChanges, kaydetmeden önce
 
-## <a name="cascading-to-untracked-entities"></a>İzlenmeyen varlıklara geçişli
+## <a name="cascading-to-untracked-entities"></a>İzlenmeyen varlıklara basamaklandırın
 
-Çağırdığınızda *SaveChanges*, bağlam tarafından izlenen herhangi bir varlık art arda silme kuralları uygulanır. Bu durum tüm, yukarıda gösterilen örnek olduğu SQL hem sorumlusu/üst (blog) ve tüm bağımlılıklar/alt öğeler (posta) silmek için oluşturulan neden:
+*SaveChanges*öğesini çağırdığınızda, Cascade silme kuralları bağlam tarafından izlenmekte olan tüm varlıklara uygulanır. Bu durum yukarıda gösterilen tüm örneklerde, SQL 'in hem asıl/üst öğeyi (blog) hem de tüm bağımlıları/alt öğeleri (gönderiler) silmek için oluşturulmasının durumdur:
 
 ```sql
     DELETE FROM [Posts] WHERE [PostId] = 1
@@ -297,10 +297,10 @@ Neler olduğunu anlamak için her değişim atalım.
     DELETE FROM [Blogs] WHERE [BlogId] = 1
 ```
 
-Asıl yüklenen--yalnızca örneğin, ne zaman bir sorgu yapılır bir blog bir `Include(b => b.Posts)` gönderileri--de içerecek şekilde sonra SaveChanges yalnızca asıl/üst silmek için SQL oluşturur:
+Yalnızca asıl öğe yüklüyse (örneğin, bir blog `Include(b => b.Posts)` için bir sorgu yapıldığında, gönderiler de dahil olmak üzere),--sonra SaveChanges yalnızca asıl/üst öğeyi silmek için SQL üretir:
 
 ```sql
     DELETE FROM [Blogs] WHERE [BlogId] = 1
 ```
 
-Bağımlılıklar/alt (posta), yalnızca yapılandırılan karşılık gelen bir cascade davranışına veritabanı varsa, silinecek. EF veritabanını oluşturmak için kullanıyorsanız, bu cascade davranışı için Kurulum olacaktır.
+Bağımlılar/alt öğeler (gönderimler) yalnızca, veritabanında karşılık gelen bir Cascade davranışı yapılandırıldıysa silinir. Veritabanını oluşturmak için EF kullanırsanız, bu basamaklı davranış sizin için kurulum olacaktır.

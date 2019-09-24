@@ -1,57 +1,57 @@
 ---
-title: Eşzamanlılık belirteçleri - EF Core
+title: Eşzamanlılık belirteçleri-EF Core
 author: rowanmiller
 ms.date: 03/03/2018
 ms.assetid: bc8b1cb0-befe-4b67-8004-26e6c5f69385
 uid: core/modeling/concurrency
-ms.openlocfilehash: 0051d416544a11385f99d36e45843c5b20725af7
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: db768c1de99000be91d33764ccd3c3924237f8bb
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994232"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197459"
 ---
-# <a name="concurrency-tokens"></a>Eşzamanlılık belirteçleri
+# <a name="concurrency-tokens"></a>Eşzamanlılık Belirteçleri
 
 > [!NOTE]
-> Bu sayfa, eşzamanlılık belirteçleri yapılandırma belgeler. Bkz: [eşzamanlılık çakışmalarını işleme](../saving/concurrency.md) EF Core ve uygulamanızdaki eşzamanlılık çakışmalarını nasıl ele alınacağını örnekleri eşzamanlılık denetimi nasıl çalışır, ayrıntılı bir açıklama.
+> Bu sayfa eşzamanlılık belirteçlerinin nasıl yapılandırılacağını belgeler. Eşzamanlılık denetiminin EF Core nasıl çalıştığı hakkında ayrıntılı bir açıklama ve uygulamanızda eşzamanlılık çakışmalarını nasıl işleyeceğinizi gösteren örnekler için bkz. [eşzamanlılık çakışmalarını işleme](../saving/concurrency.md) .
 
-Eşzamanlılık belirteçleri yapılandırılmış özellikleri, iyimser eşzamanlılık denetimi uygulamak için kullanılır.
+Eşzamanlılık belirteçleri olarak yapılandırılan özellikler, iyimser eşzamanlılık denetimini uygulamak için kullanılır.
 
 ## <a name="conventions"></a>Kurallar
 
-Kural gereği, özellikleri, hiçbir zaman eşzamanlılık belirteçleri yapılandırılır.
+Kurala göre, Özellikler hiçbir şekilde eşzamanlılık belirteçleri olarak yapılandırılmamıştır.
 
-## <a name="data-annotations"></a>Veri ek açıklamaları
+## <a name="data-annotations"></a>Veri Açıklamaları
 
-Bir özelliğin eşzamanlı bir simge yapılandırmak için veri ek açıklamaları kullanabilirsiniz.
+Bir özelliği eşzamanlılık belirteci olarak yapılandırmak için veri açıklamalarını kullanabilirsiniz.
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/Concurrency.cs#ConfigureConcurrencyAnnotations)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Concurrency.cs#ConfigureConcurrencyAnnotations)]
 
-## <a name="fluent-api"></a>Fluent API'si
+## <a name="fluent-api"></a>Akıcı API
 
-Fluent API'si, bir özelliğin eşzamanlı bir simge yapılandırmak için kullanabilirsiniz.
+Bir özelliği eşzamanlılık belirteci olarak yapılandırmak için Floent API 'sini kullanabilirsiniz.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Concurrency.cs#ConfigureConcurrencyFluent)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Concurrency.cs#ConfigureConcurrencyFluent)]
 
 ## <a name="timestamprow-version"></a>Zaman damgası/satır sürümü
 
-Bir zaman damgası, yeni bir değer her zaman bir satır eklendiğinde veya veritabanı tarafından oluşturulduğu bir özelliktir. Özelliği, ayrıca bir eşzamanlılık belirteci olarak kabul edilir. Bu, başka hiç kimse verileri sorguladı güncelleştirilemiyor çalıştığınız bir satır değiştirildi, bir özel durum alırsınız sağlar.
+Zaman damgası, her satır eklendiğinde veya güncelleştirilirken veritabanı tarafından yeni bir değerin oluşturulduğu bir özelliktir. Özelliği de eşzamanlılık belirteci olarak değerlendirilir. Bu, verileri sorguladığınız tarihten sonra güncelleştirmeye çalıştığınız bir satırı değiştirmişse bir özel durum almanızı sağlar.
 
-Bunu nasıl elde edildiğini kullanılan veritabanı kadar sağlayıcısıdır. SQL Server için zaman damgası genellikle üzerinde kullanılan bir *byte []* olacağı özelliği kurulum olarak bir *ROWVERSION* veritabanındaki sütunu.
+Bu nasıl elde edilir, kullanılan veritabanı sağlayıcısına kadar olur. SQL Server, zaman damgası genellikle veritabanında *ROWVERSION* sütunu olarak oluşturulacak *Byte []* özelliğinde kullanılır.
 
 ### <a name="conventions"></a>Kurallar
 
-Kural gereği, özellikleri, hiçbir zaman zaman damgaları yapılandırılır.
+Kurala göre, Özellikler hiçbir zaman zaman damgası olarak yapılandırılmamıştır.
 
-### <a name="data-annotations"></a>Veri ek açıklamaları
+### <a name="data-annotations"></a>Veri Açıklamaları
 
-Veri ek olarak bir zaman damgası bir özelliğini yapılandırmak için kullanabilirsiniz.
+Bir özelliği zaman damgası olarak yapılandırmak için, veri açıklamalarını kullanabilirsiniz.
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/Timestamp.cs#ConfigureTimestampAnnotations)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Timestamp.cs#ConfigureTimestampAnnotations)]
 
-### <a name="fluent-api"></a>Fluent API'si
+### <a name="fluent-api"></a>Akıcı API
 
-Fluent API'si olarak bir zaman damgası bir özelliğini yapılandırmak için kullanabilirsiniz.
+Bir özelliği zaman damgası olarak yapılandırmak için Floent API 'sini kullanabilirsiniz.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Timestamp.cs#ConfigureTimestampFluent)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Timestamp.cs#ConfigureTimestampFluent)]

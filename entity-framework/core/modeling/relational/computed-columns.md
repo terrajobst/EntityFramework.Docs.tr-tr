@@ -1,36 +1,36 @@
 ---
-title: Hesaplanan sütunlar - EF Core
+title: Hesaplanan sütunlar-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: e9d81f06-805d-45c9-97c2-3546df654829
 uid: core/modeling/relational/computed-columns
-ms.openlocfilehash: b88efdf69e5100e4eff55f3a41925d2d8e7c3178
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: da106c94698a202744d7cd465aa84d0d72802833
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993959"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197237"
 ---
-# <a name="computed-columns"></a>Hesaplanan sütunlar
+# <a name="computed-columns"></a>Hesaplanan Sütunlar
 
 > [!NOTE]  
-> Bu bölümdeki yapılandırma, genel olarak ilişkisel veritabanları için geçerlidir. İlişkisel veritabanı sağlayıcısı yüklediğinizde, burada gösterilen genişletme yöntemleri kullanılabilir hale gelir (paylaşılan nedeniyle *Microsoft.EntityFrameworkCore.Relational* paketi).
+> Bu bölümdeki yapılandırma genel olarak ilişkisel veritabanları için geçerlidir. Burada gösterilen uzantı yöntemleri, bir ilişkisel veritabanı sağlayıcısı yüklediğinizde (paylaşılan *Microsoft. EntityFrameworkCore. ilişkisel* paketi nedeniyle) kullanılabilir hale gelir.
 
-Hesaplanmış bir sütun değeri veritabanında hesaplanan bir sütundur. Hesaplanmış bir sütun diğer sütunları tabloda değerini hesaplamak için kullanabilirsiniz.
+Hesaplanan sütun, değeri veritabanında hesaplanan bir sütundur. Hesaplanan bir sütun, değerini hesaplamak için tablodaki diğer sütunları kullanabilir.
 
 ## <a name="conventions"></a>Kurallar
 
-Kural gereği, hesaplanan sütunlar, modele oluşturulmaz.
+Kurala göre, hesaplanan sütunlar modelde oluşturulmaz.
 
-## <a name="data-annotations"></a>Veri ek açıklamaları
+## <a name="data-annotations"></a>Veri Açıklamaları
 
-Hesaplanan sütunlar ile veri ek açıklamaları yapılandırılamaz.
+Hesaplanan sütunlar, veri açıklamaları ile yapılandırılamaz.
 
-## <a name="fluent-api"></a>Fluent API'si
+## <a name="fluent-api"></a>Akıcı API
 
-Fluent API'si, bir özellik için hesaplanan bir sütunu eşlemelisiniz belirtmek için kullanabilirsiniz.
+Bir özelliğin hesaplanan bir sütuna eşlenmesi gerektiğini belirtmek için Floent API 'sini kullanabilirsiniz.
 
-<!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Samples/Relational/ComputedColumn.cs?highlight=9)] -->
+<!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Relational/ComputedColumn.cs?highlight=9)] -->
 ``` csharp
 class MyContext : DbContext
 {

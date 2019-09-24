@@ -5,12 +5,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: a6b9cd22-6803-4c6c-a4d4-21147c0a81cb
 uid: efcore-and-ef6/index
-ms.openlocfilehash: ad0807a3cfd62c6c09a97df1a45134db7a538623
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: 3d2f72e64e6846d2d8bb6d4d507e04090287114d
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71149056"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71198015"
 ---
 # <a name="compare-ef-core--ef6"></a>EF Core ve EF6 Karşılaştırması
 
@@ -148,7 +148,7 @@ EF Core sütunu, özelliğin ilk göründüğü ürün sürümünü belirtir.
 
 Aşağıdaki koşulların her ikisi de doğruysa yeni bir uygulama için EF Core kullanmayı düşünün:
 * Uygulamanın .NET Core 'un özelliklerine ihtiyacı vardır. Daha fazla bilgi için bkz. [sunucu uygulamaları için .NET Core ve .NET Framework seçme](https://docs.microsoft.com/dotnet/standard/choosing-core-framework-server).
-* EF Core, uygulamanın gerektirdiği tüm özellikleri destekler. İstenen bir özellik eksikse, daha sonra bunu desteklemeye yönelik planlar olup olmadığını öğrenmek için [EF Core yol haritasını](xref:core/what-is-new/roadmap) denetleyin.
+* EF Core, uygulamanın gerektirdiği tüm özellikleri destekler. İstenen bir özellik eksikse, daha sonra bunu desteklemeye yönelik planlar olup olmadığını öğrenmek için [EF Core yol haritasını](xref:core/what-is-new/index) denetleyin. 
 
 Aşağıdaki koşulların her ikisi de doğruysa EF6 kullanmayı düşünün:
 * Uygulama Windows ve .NET Framework 4,0 veya üzeri sürümlerde çalışır.

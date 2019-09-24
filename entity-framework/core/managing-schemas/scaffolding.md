@@ -5,12 +5,12 @@ ms.author: bricelam
 ms.date: 11/13/2018
 ms.assetid: 6263EF7D-4989-42E6-BDEE-45DA770342FB
 uid: core/managing-schemas/scaffolding
-ms.openlocfilehash: 775a929982b9f4fb10aad9cd43bbb555ce632ad1
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: afe2c865305ade93dd10c8838b80c8b4177e7e8e
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71149016"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197202"
 ---
 # <a name="reverse-engineering"></a>Tersine mühendislik
 
@@ -121,13 +121,12 @@ Daha sonra, şema bilgilerini bir EF Core modeli oluşturmak için kullanır. Ta
 
 Son olarak, model kod oluşturmak için kullanılır. Aynı modeli uygulamanızdan yeniden oluşturmak için karşılık gelen varlık türü sınıfları, akıcı API ve veri ek açıklamaları yapı iskelesi yapılır.
 
-## <a name="what-doesnt-work"></a>Ne işe yaramıyor
+## <a name="limitations"></a>Sınırlamalar
 
-Bir modelle ilgili her şey, bir veritabanı şeması kullanılarak gösterilebilir. Örneğin, [**Devralma hiyerarşileri**](../modeling/inheritance.md), [**sahip olunan türler**](../modeling/owned-entities.md)ve [**tablo bölme**](../modeling/table-splitting.md) hakkında bilgiler veritabanı şemasında yok. Bu nedenle, bu yapılar hiçbir şekilde tersine mühendislik olmayacaktır.
-
-Ayrıca, **bazı sütun türleri** EF Core sağlayıcısı tarafından desteklenmeyebilir. Bu sütunlar modele eklenmeyecek.
-
-Aynı anda iki kullanıcının aynı varlığı güncelleştirmesini engellemek için bir EF Core modelinde [**eşzamanlılık belirteçleri**](../modeling/concurrency.md)tanımlayabilirsiniz. Bazı veritabanlarının bu tür bir sütunu (örneğin, SQL Server) temsil etmesi için özel bir türü vardır; bu durumda bu bilgilere ters mühendislik uygulanabilir. Ancak, diğer eşzamanlılık belirteçleri tersine mühendislik uygulanmaz.
+* Bir modelle ilgili her şey, bir veritabanı şeması kullanılarak gösterilebilir. Örneğin, [**Devralma hiyerarşileri**](../modeling/inheritance.md), [**sahip olunan türler**](../modeling/owned-entities.md)ve [**tablo bölme**](../modeling/table-splitting.md) hakkında bilgiler veritabanı şemasında yok. Bu nedenle, bu yapılar hiçbir şekilde tersine mühendislik olmayacaktır.
+* Ayrıca, **bazı sütun türleri** EF Core sağlayıcısı tarafından desteklenmeyebilir. Bu sütunlar modele eklenmeyecek.
+* Aynı anda iki kullanıcının aynı varlığı güncelleştirmesini engellemek için bir EF Core modelinde [**eşzamanlılık belirteçleri**](../modeling/concurrency.md)tanımlayabilirsiniz. Bazı veritabanlarının bu tür bir sütunu (örneğin, SQL Server) temsil etmesi için özel bir türü vardır; bu durumda bu bilgilere ters mühendislik uygulanabilir. Ancak, diğer eşzamanlılık belirteçleri tersine mühendislik uygulanmaz.
+* [8 Nullable başvuru türü özelliği şu anda ters mühendislik içinde desteklenmiyor: C# ](/dotnet/csharp/tutorials/nullable-reference-types) EF Core her zaman C# özelliğin devre dışı olduğunu varsayan kodu üretir. Örneğin, null yapılabilir metin sütunları, bir özelliğin gerekli olup olmadığını yapılandırmak için kullanılan akıcı `string` API veya `string?`veri ek açıklamaları ile değil, türünde bir özellik olarak yapı haline getirilecektir. Yapı iskelesi kodunu düzenleyebilir ve bunları C# null yapılabilir ek açıklamalarla değiştirebilirsiniz. Null yapılabilir başvuru türleri için yapı iskelesi desteği [#15520](https://github.com/aspnet/EntityFrameworkCore/issues/15520)soruna göre izlenir.
 
 ## <a name="customizing-the-model"></a>Modeli özelleştirme
 

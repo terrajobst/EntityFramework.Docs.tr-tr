@@ -1,65 +1,65 @@
 ---
-title: Destek alanları - EF Core
+title: Alanları yedekleme-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: a628795e-64df-4f24-a5e8-76bc261e7ed8
 uid: core/modeling/backing-field
-ms.openlocfilehash: 79221b6f7968675ff10f80d5df181b674b6a20c9
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: c3ca8bb97992c192672e8c2f2040b0de029df68d
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994099"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197485"
 ---
-# <a name="backing-fields"></a>Destek alanları
+# <a name="backing-fields"></a>Destek Alanları
 
 > [!NOTE]  
-> Bu özellik, EF Core 1.1 içinde yeni bir özelliktir.
+> Bu özellik EF Core 1,1 ' de yenidir.
 
-Destek alanları okuyun ve/veya bir özelliği yerine bir alan yazma EF izin verir. Bu sınıf kapsülleme kullanılan kısıtlama ve/veya verilere erişim semantiğini geliştirmek için uygulama kodu tarafından ancak değeri okuma ve/veya bu kısıtlamaları kullanmadan veritabanına yazılan kullanışlı olabilir / geliştirmeleri.
+Yedekleme alanları, EF 'in bir özellik yerine bir alanı okumasına ve/veya yazmasına izin verir. Bu, sınıfın kapsüllenmesi ve/veya kullanımını kısıtlamak için kullanılırken ve/veya, uygulama koduna göre verilere erişim semantiğinin geliştirilmesine yardımcı olabilir, ancak değer bu kısıtlamaları kullanmadan veritabanına okunmalı ve/veya yazılabilir olmalıdır/ gelişmeleri.
 
 ## <a name="conventions"></a>Kurallar
 
-Kural gereği, alanlar (öncelik sırasına göre listelenmiş) verilen bir özellik için yedekleme olarak aşağıdaki alanları bulunur. Alanlar yalnızca modele dahil edilen özellikleri bulunur. Üzerinde özellikler dahil edilecek model içinde daha fazla bilgi için bkz. [dahil olan ve dışlanan Özellikler](included-properties.md).
+Kurala göre, aşağıdaki alanlar belirli bir özellik için (öncelik sırasıyla listelenmiştir) yedekleme alanları olarak keşfedilir. Alanlar yalnızca modelde bulunan özellikler için bulunur. Modele dahil edilen özellikler hakkında daha fazla bilgi için bkz. [& özellikleri içerme](included-properties.md).
 
 * `_<camel-cased property name>`
 * `_<property name>`
 * `m_<camel-cased property name>`
 * `m_<property name>`
 
-[!code-csharp[Main](../../../samples/core/Modeling/Conventions/Samples/BackingField.cs#Sample)]
+[!code-csharp[Main](../../../samples/core/Modeling/Conventions/BackingField.cs#Sample)]
 
-Destek alanı yapılandırıldığında EF düzeniyle varlık örneklerden veritabanı (özellik ayarlayıcısını kullanmak yerine), bu alana doğrudan yazılacaktır. EF okumak veya diğer zamanlarda değeri yazmak gerekiyorsa, mümkünse özelliğini kullanır. EF bir özelliğinin değerini güncelleştirme yapması gerekiyorsa, bir tanımlanmışsa, örneğin, bu özellik ayarlayıcısını kullanır. Özellik salt okunur ise, alana yazar.
+Bir yedekleme alanı yapılandırıldığında, veritabanından varlık örnekleri (Özellik ayarlayıcısı 'nı kullanmak yerine) çalıştırıldığında, EF bu alana doğrudan yazar. EF 'in değeri diğer zamanlarda okuması veya yazması gerekiyorsa, özelliği mümkünse özelliğini kullanacaktır. Örneğin, EF 'in bir özelliğin değerini güncelleştirmesi gerekiyorsa, bir özellik, tanımlanmışsa Özellik ayarlayıcısı 'nı kullanır. Özellik salt okunurdur, alana yazar.
 
-## <a name="data-annotations"></a>Veri ek açıklamaları
+## <a name="data-annotations"></a>Veri Açıklamaları
 
-Destek alanları veri açıklamalarla yapılandırılamaz.
+Yedekleme alanları, veri açıklamaları ile yapılandırılamaz.
 
-## <a name="fluent-api"></a>Fluent API'si
+## <a name="fluent-api"></a>Akıcı API
 
-Fluent API'si, bir özellik için destek alanı yapılandırmak için kullanabilirsiniz.
+Bir özellik için bir destek alanı yapılandırmak üzere Floent API 'sini kullanabilirsiniz.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/BackingField.cs#Sample)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/BackingField.cs#Sample)]
 
-### <a name="controlling-when-the-field-is-used"></a>Alan kullanıldığında denetleme
+### <a name="controlling-when-the-field-is-used"></a>Alanın ne zaman kullanıldığını denetleme
 
-EF alanı veya özelliği kullandığında yapılandırabilirsiniz. Bkz: [PropertyAccessMode enum](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.propertyaccessmode) desteklenen seçenekler için.
+EF 'in alanı veya özelliği ne zaman kullandığını yapılandırabilirsiniz. Desteklenen seçenekler için bkz. [Propertyaccessmode sabit listesi](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.propertyaccessmode) .
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/BackingFieldAccessMode.cs#Sample)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/BackingFieldAccessMode.cs#Sample)]
 
-### <a name="fields-without-a-property"></a>Bir özellik olmadan alanları
+### <a name="fields-without-a-property"></a>Özelliği olmayan alanlar
 
-Modelinizdeki karşılık gelen bir CLR özelliği varlık sınıfında yok, ancak bunun yerine varlıktaki verileri depolamak için bir alan kullanır, kavramsal bir özelliği de oluşturabilirsiniz. Bu farklıdır [gölge Özellikler](shadow-properties.md), verilerin depolandığı değişiklik İzleyici '. Varlık sınıfı için değerleri get/set yöntemleri kullanıyorsa, bu genellikle kullanılmaz.
+Ayrıca, modelinizde, varlık sınıfında karşılık gelen bir CLR özelliğine sahip olmayan bir kavramsal özellik oluşturabilirsiniz, ancak bunun yerine verileri varlıkta depolamak için bir alan kullanır. Bu, verilerin değişiklik izleyicide depolandığı [Gölge özelliklerinden](shadow-properties.md)farklıdır. Bu, genellikle varlık sınıfı değerleri almak/ayarlamak için yöntemler kullanıyorsa kullanılır.
 
-EF alanın adını verebilirsiniz `Property(...)` API. Belirtilen ada sahip özellik varsa EF bir alan için arar.
+`Property(...)` API 'deki alanın adını EF olarak verebilirsiniz. Verilen ada sahip bir özellik yoksa, EF bir alanı arayacaktır.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/BackingFieldNoProperty.cs#Sample)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/BackingFieldNoProperty.cs#Sample)]
 
-Özellik alanı adı dışında bir ad vermek seçebilirsiniz. Bu ad, sonra modeli oluşturulurken kullanılır, en önemlisi, veritabanında eşlenen sütun adı için kullanılır.
+Özelliğe, alan adı dışında bir ad vermek da tercih edebilirsiniz. Bu ad daha sonra model oluşturulurken kullanılır, ancak veritabanı içinde öğesine eşlenen sütun adı için kullanılır.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/BackingFieldConceptualProperty.cs#Sample)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/BackingFieldConceptualProperty.cs#Sample)]
 
-Varlık sınıfta bir özellik olduğunda kullanabileceğiniz `EF.Property(...)` kavramsal modelin bir parçası olan özelliğine başvurmak için bir LINQ sorgusundaki yöntemi.
+Varlık sınıfında özellik olmadığında, bir LINQ sorgusunda `EF.Property(...)` yöntemini kullanarak modelin kavramsal bir parçası olan özelliğe başvurabilirsiniz.
 
 ``` csharp
 var blogs = db.blogs.OrderBy(b => EF.Property<string>(b, "Url"));

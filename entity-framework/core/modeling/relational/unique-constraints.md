@@ -1,33 +1,33 @@
 ---
-title: EF Core için alternatif anahtarlar (benzersiz kısıtlamalar)-
+title: Alternatif anahtarlar (benzersiz kısıtlamalar)-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 3d419dcf-2b5d-467c-b408-ea03d830721a
 uid: core/modeling/relational/unique-constraints
-ms.openlocfilehash: 7ec58ee31aac79e15329dc8542f37fd117772fbe
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 7afcb804aeeccbd5e07c228a8fd9850ca00a2919
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42994197"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197608"
 ---
-# <a name="alternate-keys-unique-constraints"></a>Alternatif anahtarlar (benzersiz kısıtlamalar)
+# <a name="alternate-keys-unique-constraints"></a>Alternatif Anahtarlar (Benzersiz Kısıtlamalar)
 
 > [!NOTE]  
-> Bu bölümdeki yapılandırma, genel olarak ilişkisel veritabanları için geçerlidir. İlişkisel veritabanı sağlayıcısı yüklediğinizde, burada gösterilen genişletme yöntemleri kullanılabilir hale gelir (paylaşılan nedeniyle *Microsoft.EntityFrameworkCore.Relational* paketi).
+> Bu bölümdeki yapılandırma genel olarak ilişkisel veritabanları için geçerlidir. Burada gösterilen uzantı yöntemleri, bir ilişkisel veritabanı sağlayıcısı yüklediğinizde (paylaşılan *Microsoft. EntityFrameworkCore. ilişkisel* paketi nedeniyle) kullanılabilir hale gelir.
 
-Modeldeki her alternatif anahtar için benzersiz kısıtlama tanıtılmaktadır.
+Modeldeki her alternatif anahtar için benzersiz bir kısıtlama getirilmiştir.
 
 ## <a name="conventions"></a>Kurallar
 
-Kural gereği, dizin ve alternatif anahtar için sunulan kısıtlaması adlandırılacağını `AK_<type name>_<property name>`. Bileşik alternatif anahtarlar için `<property name>` özellik adlarının bir alt çizgi ayrılmış listesi olur.
+Kurala göre, alternatif bir anahtar için tanıtılan dizin ve kısıtlama adlandıralınacaktır `AK_<type name>_<property name>`. Bileşik alternatif anahtarlar `<property name>` için özellik adlarının alt çizgiyle ayrılmış bir listesi haline gelir.
 
-## <a name="data-annotations"></a>Veri ek açıklamaları
+## <a name="data-annotations"></a>Veri Açıklamaları
 
-Benzersiz kısıtlamalar veri ek açıklamalarını kullanma yapılandırılamaz.
+Benzersiz kısıtlamalar, veri ek açıklamaları kullanılarak yapılandırılamaz.
 
-## <a name="fluent-api"></a>Fluent API'si
+## <a name="fluent-api"></a>Akıcı API
 
-Fluent API'si alternatif anahtar dizini ve kısıtlama adı yapılandırmak için kullanabilirsiniz.
+Farklı bir anahtar için dizin ve kısıtlama adını yapılandırmak üzere Floent API 'sini kullanabilirsiniz.
 
-[!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/Samples/Relational/AlternateKeyName.cs?name=Model&highlight=9)]
+[!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/Relational/AlternateKeyName.cs?name=Model&highlight=9)]

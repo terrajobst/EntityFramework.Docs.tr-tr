@@ -1,36 +1,36 @@
 ---
-title: Varsayılan şema - EF Core
+title: Varsayılan şema-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: e6e58473-9f5e-4a1f-ac0f-b87d2cbb667e
 uid: core/modeling/relational/default-schema
-ms.openlocfilehash: 800551bbadd0a9e8b5eb7070a8ccf6ed2407e3d2
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: ae903ed7200859430aecc55073651236759bc6ce
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42995372"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197136"
 ---
-# <a name="default-schema"></a>Varsayılan şema
+# <a name="default-schema"></a>Varsayılan Şema
 
 > [!NOTE]  
-> Bu bölümdeki yapılandırma, genel olarak ilişkisel veritabanları için geçerlidir. İlişkisel veritabanı sağlayıcısı yüklediğinizde, burada gösterilen genişletme yöntemleri kullanılabilir hale gelir (paylaşılan nedeniyle *Microsoft.EntityFrameworkCore.Relational* paketi).
+> Bu bölümdeki yapılandırma genel olarak ilişkisel veritabanları için geçerlidir. Burada gösterilen uzantı yöntemleri, bir ilişkisel veritabanı sağlayıcısı yüklediğinizde (paylaşılan *Microsoft. EntityFrameworkCore. ilişkisel* paketi nedeniyle) kullanılabilir hale gelir.
 
-Varsayılan şema, bu nesne için bir şema açıkça yapılandırılmamışsa, nesneleri oluşturulacak veritabanı şeması ' dir.
+Varsayılan şema, bu nesne için bir şema açıkça yapılandırılmamışsa nesnelerin oluşturulacağı veritabanı şemadır.
 
 ## <a name="conventions"></a>Kurallar
 
-Kural gereği, veritabanı sağlayıcısı en uygun varsayılan şema seçersiniz. Örneğin, Microsoft SQL Server kullanacak `dbo` (şemaları SQLite desteklenmediği) şema ve SQLite bir şema kullanmaz.
+Kural gereği, veritabanı sağlayıcısı en uygun varsayılan şemayı seçer. Örneğin, Microsoft SQL Server `dbo` şemayı kullanacaktır ve SQLite bir şema kullanmaz (çünkü şemalar SQLite ' de desteklenmez).
 
-## <a name="data-annotations"></a>Veri ek açıklamaları
+## <a name="data-annotations"></a>Veri Açıklamaları
 
-Veri ek açıklamalarını kullanma varsayılan şema ayarlayamazsınız.
+Veri ek açıklamalarını kullanarak varsayılan şemayı ayarlayamazsınız.
 
-## <a name="fluent-api"></a>Fluent API'si
+## <a name="fluent-api"></a>Akıcı API
 
-Varsayılan şema belirtmek için Fluent API'sini kullanabilirsiniz.
+Varsayılan bir şema belirtmek için Floent API 'sini kullanabilirsiniz.
 
-<!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Samples/Relational/DefaultSchema.cs?highlight=7)] -->
+<!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Relational/DefaultSchema.cs?highlight=7)] -->
 ``` csharp
 class MyContext : DbContext
 {

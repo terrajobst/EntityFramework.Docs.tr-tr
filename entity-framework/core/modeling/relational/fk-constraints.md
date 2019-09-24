@@ -1,36 +1,36 @@
 ---
-title: Yabancı anahtar kısıtlamaları - EF Core
+title: Yabancı anahtar kısıtlamaları-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: dbaf4bac-1fd5-46c0-ac57-64d7153bc574
 uid: core/modeling/relational/fk-constraints
-ms.openlocfilehash: a83f72b5d832e349fb4a5fb3b2de0b82bd79ef2a
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: d7ed4466f4df9ec01267b048ba1bbcc6e8bbdad5
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993994"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197060"
 ---
-# <a name="foreign-key-constraints"></a>Yabancı anahtar kısıtlamaları
+# <a name="foreign-key-constraints"></a>Yabancı Anahtar Kısıtlamaları
 
 > [!NOTE]  
-> Bu bölümdeki yapılandırma, genel olarak ilişkisel veritabanları için geçerlidir. İlişkisel veritabanı sağlayıcısı yüklediğinizde, burada gösterilen genişletme yöntemleri kullanılabilir hale gelir (paylaşılan nedeniyle *Microsoft.EntityFrameworkCore.Relational* paketi).
+> Bu bölümdeki yapılandırma genel olarak ilişkisel veritabanları için geçerlidir. Burada gösterilen uzantı yöntemleri, bir ilişkisel veritabanı sağlayıcısı yüklediğinizde (paylaşılan *Microsoft. EntityFrameworkCore. ilişkisel* paketi nedeniyle) kullanılabilir hale gelir.
 
-Bir yabancı anahtar kısıtlaması, modeldeki her ilişki için sunulmuştur.
+Modeldeki her ilişki için bir yabancı anahtar kısıtlaması tanıtılmıştır.
 
 ## <a name="conventions"></a>Kurallar
 
-Kural gereği, yabancı anahtar kısıtlamalarını adlandırılır `FK_<dependent type name>_<principal type name>_<foreign key property name>`. Bileşik yabancı anahtarlar için `<foreign key property name>` yabancı anahtar özellik adlarının bir alt çizgi ayrılmış listesi olur.
+Kurala göre, yabancı anahtar kısıtlamaları adlandırılır `FK_<dependent type name>_<principal type name>_<foreign key property name>`. Bileşik yabancı anahtarlar `<foreign key property name>` için, yabancı anahtar özellik adlarının alt çizgiyle ayrılmış bir listesi olur.
 
-## <a name="data-annotations"></a>Veri ek açıklamaları
+## <a name="data-annotations"></a>Veri Açıklamaları
 
-Veri ek açıklamalarını kullanma yabancı anahtar kısıtlaması adları yapılandırılamaz.
+Yabancı anahtar kısıtlama adları, veri açıklamaları kullanılarak yapılandırılamaz.
 
-## <a name="fluent-api"></a>Fluent API'si
+## <a name="fluent-api"></a>Akıcı API
 
-Fluent API'si, bir ilişki için yabancı anahtar kısıtlaması adını yapılandırmak için kullanabilirsiniz.
+Bir ilişkinin yabancı anahtar kısıtlama adını yapılandırmak için akıcı API 'YI kullanabilirsiniz.
 
-<!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Samples/Relational/RelationshipConstraintName.cs?highlight=12)] -->
+<!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Relational/RelationshipConstraintName.cs?highlight=12)] -->
 ``` csharp
 class MyContext : DbContext
 {
@@ -62,6 +62,6 @@ public class Post
     public string Content { get; set; }
 
     public int BlogId { get; set; }
-    public Blog Blog { get; set; }
+    public Blog Blog { get; set; }
 }
 ```

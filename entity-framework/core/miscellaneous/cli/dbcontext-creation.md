@@ -1,40 +1,68 @@
 ---
-title: Tasarım zamanında DbContext oluşturma - EF Core
+title: Tasarım zamanı DbContext oluşturma-EF Core
 author: bricelam
 ms.author: bricelam
-ms.date: 10/27/2017
+ms.date: 09/16/2019
 uid: core/miscellaneous/cli/dbcontext-creation
-ms.openlocfilehash: 66fec7605b6ac2da0af1e801f8a1dca0789aea35
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: f83d4b16227d114a1cac1514667484a908fea4ac
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993724"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197567"
 ---
-<a name="design-time-dbcontext-creation"></a>Tasarım zamanında DbContext oluşturma
+<a name="design-time-dbcontext-creation"></a>Tasarım Zamanında DbContext Oluşturma
 ==============================
-EF Core araçları komutlardan bazıları (örneğin, [geçişler][1] komutları) türetilmiş gerektiren `DbContext` uygulamanın ayrıntılarını toplamak için tasarım zamanında oluşturulacak örnek varlık türleri ve bunların veritabanı şemasına nasıl eşleneceğine. Çoğu durumda, tercih edilir, `DbContext` böylece oluşturulan nasıl olacaktır benzer bir biçimde yapılandırılmış [çalışma zamanında yapılandırılmış][2].
+EF Core araçları komutlarından bazıları (örneğin, [geçişler][1] komutları), uygulamanın varlık türleri ve bir veritabanı `DbContext` şemasına nasıl eşlendikleri hakkında bilgi toplamak için tasarım zamanında bir türetilmiş örnek oluşturulmasını gerektirir. Çoğu durumda, `DbContext` bu nedenle oluşturulması, [çalışma zamanında nasıl yapılandırılacağından][2]benzer bir şekilde yapılandırılmalıdır.
 
-Araçları deneyebilirsiniz oluşturmak için çeşitli yollar vardır `DbContext`:
+Araçların `DbContext`şunları oluşturmayı denemenin çeşitli yolları vardır:
 
-<a name="from-application-services"></a>Uygulama Hizmetleri'nden
+<a name="from-application-services"></a>Uygulama hizmetlerinden
 -------------------------
-Başlangıç projeniz bir ASP.NET Core uygulaması ise, uygulamanın hizmet sağlayıcısından DbContext nesnesini almak Araçlar'ı deneyin.
+Başlangıç projeniz [ASP.NET Core Web konağını][3] veya [.NET Core genel konağını][4]kullanıyorsa, Araçlar DbContext nesnesini uygulamanın hizmet sağlayıcısından almaya çalışır.
 
-Hizmet sağlayıcısı çağırarak elde etmek ilk araçları deneyebilirsiniz `Program.BuildWebHost()` erişerek `IWebHost.Services` özelliği.
+Araçlar, sonra `Program.CreateHostBuilder()` `Services` özelliğe erişen, çağırarak `Build()`ve ardından hizmet sağlayıcısını almaya çalışır.
+
+``` csharp
+public class Program
+{
+    public static void Main(string[] args)
+        => CreateHostBuilder(args).Build().Run();
+
+    // EF Core uses this method at design time to access the DbContext
+    public static IHostBuilder CreateHostBuilder(string[] args)
+        => Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(
+                webBuilder => webBuilder.UseStartup<Startup>());
+}
+
+public class Startup
+{
+    public void ConfigureServices(IServiceCollection services)
+        => services.AddDbContext<ApplicationDbContext>();
+}
+
+public class ApplicationDbContext : DbContext
+{
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
+    {
+    }
+}
+```
 
 > [!NOTE]
-> Yeni bir ASP.NET Core 2.0 uygulama oluşturduğunuzda, bu kanca varsayılan olarak dahil edilir. Önceki sürümlerinde EF Core ve ASP.NET Core, çağrılacak araçları deneyebilirsiniz `Startup.ConfigureServices` doğrudan uygulamanın hizmet sağlayıcısı, ancak bu düzen artık almak için düzgün şekilde ASP.NET Core 2.0 uygulamaları çalışır. ASP.NET Core 1.x uygulamaya 2.0 yükseltiyorsanız, şunları yapabilirsiniz [değiştirmek, `Program` yeni desende sınıfı][3].
+> Yeni bir ASP.NET Core uygulaması oluşturduğunuzda, bu kanca varsayılan olarak dahil edilir.
 
-`DbContext` Kendisi ve herhangi bir bağımlılığın oluşturucusuna Hizmetleri'nde uygulamanın hizmet sağlayıcısı olarak kaydedilmesi gerekir. Bu kolayca sağlanarak elde edilebilir [bir oluşturucu `DbContext` örneğini alır `DbContextOptions<TContext>` bağımsız değişken olarak][4] ve kullanarak [`AddDbContext<TContext>` yöntemi][5].
+`DbContext` Kendisinin ve oluşturucusunun içindeki bağımlılıkların, uygulamanın hizmet sağlayıcısında hizmet olarak kaydedilmesi gerekir. Bu [, bir bağımsız değişken `DbContext` `DbContextOptions<TContext>` ][5] [ olarakbirörneğialanvemetodunukullanarak,üzerindebirOluşturucubulundurarakkolaycaeldeedilebilir.`AddDbContext<TContext>` ][6]
 
-<a name="using-a-constructor-with-no-parameters"></a>Parametresiz bir oluşturucu kullanılarak
+<a name="using-a-constructor-with-no-parameters"></a>Parametresiz bir Oluşturucu kullanma
 --------------------------------------
-Uygulama hizmet sağlayıcısından DbContext alınamıyorsa araçları için türetilmiş Ara `DbContext` türü proje içinde. Ardından parametresiz bir Oluşturucusu kullanarak örneği oluşturmayı deneyin. Bu varsayılan oluşturucu olabilir `DbContext` kullanılarak yapılandırılan [ `OnConfiguring`][6] yöntemi.
+DbContext uygulama hizmeti sağlayıcısından alınamıyorsa, Araçlar proje içindeki türetilmiş `DbContext` türü arar. Daha sonra parametresiz bir Oluşturucu kullanarak bir örnek oluşturmaya çalışır. Yöntemi kullanılarak yapılandırıldıysa, `DbContext` varsayılan Oluşturucu bu olabilir. [`OnConfiguring`][7]
 
-<a name="from-a-design-time-factory"></a>Tasarım zamanı fabrikadan
+<a name="from-a-design-time-factory"></a>Tasarım zamanı fabrikasından
 --------------------------
-Uygulayarak, DbContext oluşturma araçları da söyleyebilirsiniz `IDesignTimeDbContextFactory<TContext>` arabirimi: Bu arabirimi uygulayan bir sınıfa veya türetilmiş projenin bulunursa `DbContext` veya uygulamanın başlangıç projesi araçları atlama DbContext ve tasarım zamanı Fabrika kullanmak yerine oluşturmanın diğer yolu.
+Ayrıca, araçları uygulayarak `IDesignTimeDbContextFactory<TContext>` DbContext 'nizi nasıl oluşturacağınız hakkında da söyleyebilirsiniz: Bu arabirimi uygulayan bir sınıf, türetilen `DbContext` ya da uygulamanın başlangıç projesindeki aynı projede bulunursa, Araçlar DbContext oluşturmanın diğer yollarını atlar ve bunun yerine tasarım zamanı fabrikasını kullanır.
 
 ``` csharp
 using Microsoft.EntityFrameworkCore;
@@ -57,14 +85,15 @@ namespace MyProject
 ```
 
 > [!NOTE]
-> `args` Parametresi, şu anda kullanılmayan. Var. [soruna][7] izleme araçları tasarım zamanı bağımsız değişkenleri belirtme olanağı.
+> `args` Parametresi şu anda kullanılmıyor. Araçlardan tasarım zamanı bağımsız değişkenlerini belirtme yeteneği izlenirken [bir sorun][8] oluştu.
 
-Tasarım zamanı Fabrika DbContext çalışma zamanında tasarım zamanından farklı şekilde yapılandırmak, gerekirse özellikle kullanışlı olabilir `DbContext` ek parametreler kaydedilmedi DI içinde DI hiç kullanmıyorsanız Oluşturucusu alır ya da Eğer bazı için tercih ettiğiniz yüklüyse neden bir `BuildWebHost` ASP.NET Core uygulamanızın yönteminde `Main` sınıfı.
+Bir tasarım zamanı fabrikası, çalışma zamanından daha önce DbContext 'i tasarım zamanı için farklı şekilde yapılandırmanız gerektiğinde kullanışlı olabilir. `DbContext` bu, Eğer Eğer Eğer Eğer Eğer Eğer bir `BuildWebHost` ASP.NETCore`Main` uygulamanızın sınıfında bir yöntemi olmaması tercih edersiniz.
 
   [1]: xref:core/managing-schemas/migrations/index
   [2]: xref:core/miscellaneous/configuring-dbcontext
-  [3]: https://docs.microsoft.com/aspnet/core/migration/1x-to-2x/#update-main-method-in-programcs
-  [4]: xref:core/miscellaneous/configuring-dbcontext#constructor-argument
-  [5]: xref:core/miscellaneous/configuring-dbcontext#using-dbcontext-with-dependency-injection
-  [6]: xref:core/miscellaneous/configuring-dbcontext#onconfiguring
-  [7]: https://github.com/aspnet/EntityFrameworkCore/issues/8332
+  [3]: /aspnet/core/fundamentals/host/web-host
+  [4]: /aspnet/core/fundamentals/host/generic-host
+  [5]: xref:core/miscellaneous/configuring-dbcontext#constructor-argument
+  [6]: xref:core/miscellaneous/configuring-dbcontext#using-dbcontext-with-dependency-injection
+  [7]: xref:core/miscellaneous/configuring-dbcontext#onconfiguring
+  [8]: https://github.com/aspnet/EntityFrameworkCore/issues/8332

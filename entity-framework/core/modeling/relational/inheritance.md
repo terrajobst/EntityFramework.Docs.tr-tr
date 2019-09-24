@@ -1,35 +1,35 @@
 ---
-title: Devralma (ilişkisel veritabanı) - EF Core
+title: Devralma (Ilişkisel veritabanı)-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 9a7c5488-aaf4-4b40-b1ff-f435ff30f6ec
 uid: core/modeling/relational/inheritance
-ms.openlocfilehash: 2d0a2abc554f5f115479f886ca3f9f4f01b80b5b
-ms.sourcegitcommit: ea1cdec0b982b922a59b9d9301d3ed2b94baca0f
+ms.openlocfilehash: a7fb19f9c86d1768967d172c006eb5d894254e0c
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 05/31/2019
-ms.locfileid: "66452286"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71196936"
 ---
-# <a name="inheritance-relational-database"></a>Devralma (ilişkisel veritabanı)
+# <a name="inheritance-relational-database"></a>Devralma (İlişkisel Veritabanı)
 
 > [!NOTE]  
-> Bu bölümdeki yapılandırma, genel olarak ilişkisel veritabanları için geçerlidir. İlişkisel veritabanı sağlayıcısı yüklediğinizde, burada gösterilen genişletme yöntemleri kullanılabilir hale gelir (paylaşılan nedeniyle *Microsoft.EntityFrameworkCore.Relational* paketi).
+> Bu bölümdeki yapılandırma genel olarak ilişkisel veritabanları için geçerlidir. Burada gösterilen uzantı yöntemleri, bir ilişkisel veritabanı sağlayıcısı yüklediğinizde (paylaşılan *Microsoft. EntityFrameworkCore. ilişkisel* paketi nedeniyle) kullanılabilir hale gelir.
 
-Devralma EF modeli, varlık sınıflarının Devralmada veritabanında nasıl temsil edildiğini denetlemek için kullanılır.
+EF modelindeki devralma, varlık sınıflarında devralmanın veritabanında nasıl temsil edileceğini denetlemek için kullanılır.
 
 > [!NOTE]  
-> Şu anda yalnızca tablo başına hiyerarşi (TPH) deseni EF Core uygulanır. Tablo başına tür (TPT) diğer ortak desenler ister ve tablo başına somut-tür (TPC) henüz kullanılamıyor.
+> Şu anda EF Core ' de yalnızca hiyerarşi başına tablo (TPH) düzeni uygulanır. Tablo/tür (TPT) ve tablo başına somut-tür (TPC) gibi diğer yaygın desenler henüz kullanılamamaktadır.
 
 ## <a name="conventions"></a>Kurallar
 
-Kural gereği, devralma tablo-başına-hiyerarşi (TPH) deseni kullanılarak eşleştirilir. TPH tek bir tabloyu hiyerarşideki tüm türleri için verileri depolamak için kullanır. Bir Ayrıştırıcı sütunu, her satırı temsil eden hangi tür tanımlamak için kullanılır.
+Kural gereği, devralma, hiyerarşi başına tablo (TPH) düzeni kullanılarak eşleştirilir. TPH, hiyerarşideki tüm türlerin verilerini depolamak için tek bir tablo kullanır. Bir Ayrıştırıcı sütunu, her bir satırın hangi tür temsil ettiğini belirlemek için kullanılır.
 
-EF Core yalnızca Kurulum devralma iki veya daha fazla devralınan türlerin açıkça modele dahil edilirse (bkz [devralma](../inheritance.md) daha fazla ayrıntı için).
+EF Core, yalnızca modele açıkça iki veya daha fazla devralınmış tür varsa devralma ayarı yapılır (daha fazla ayrıntı için bkz. [Devralma](../inheritance.md) ).
 
-Basit devralma senaryo ve TPH desenini kullanarak, bir ilişkisel veritabanı tablosunda depolanan verileri gösteren bir örnek aşağıda verilmiştir. *Ayrıştırıcı* sütun türünü tanımlayan *Blog* her satırda depolanır.
+Aşağıda, bir basit devralma senaryosunu ve TPH deseninin kullanıldığı bir ilişkisel veritabanı tablosunda depolanan verileri gösteren bir örnek verilmiştir. *Ayrıştırıcı* sütunu, her satırda hangi *Blog* türünün depolandığını tanımlar.
 
-<!-- [!code-csharp[Main](samples/core/relational/Modeling/Conventions/Samples/InheritanceDbSets.cs)] -->
+<!-- [!code-csharp[Main](samples/core/relational/Modeling/Conventions/InheritanceDbSets.cs)] -->
 ``` csharp
 class MyContext : DbContext
 {
@@ -52,17 +52,17 @@ public class RssBlog : Blog
 ![görüntü](_static/inheritance-tph-data.png)
 
 >[!NOTE]
-> Veritabanı sütunları otomatik olarak TPH eşleme kullanırken gerektiği gibi boş değer atanabilir yapılır.
+> Veritabanı sütunları, TPH eşlemesi kullanılırken gerektiğinde otomatik olarak null yapılabilir hale getirilir.
 
-## <a name="data-annotations"></a>Veri ek açıklamaları
+## <a name="data-annotations"></a>Veri Açıklamaları
 
-Veri ek açıklamaları, devralmayı yapılandırmak için kullanamazsınız.
+Devralma yapılandırmak için veri ek açıklamalarını kullanamazsınız.
 
-## <a name="fluent-api"></a>Fluent API'si
+## <a name="fluent-api"></a>Akıcı API
 
-Fluent API'si, bir ayrıştırıcı sütunu ve hiyerarşideki her bir tür tanımlamak için kullanılan değerleri türünü ve adını yapılandırmak için kullanabilirsiniz.
+Ayrıştırıcı sütununun adını ve türünü ve hiyerarşideki her türü tanımlamak için kullanılan değerleri yapılandırmak için Floent API 'sini kullanabilirsiniz.
 
-<!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Samples/InheritanceTPHDiscriminator.cs?highlight=7,8,9,10)] -->
+<!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/InheritanceTPHDiscriminator.cs?highlight=7,8,9,10)] -->
 ``` csharp
 class MyContext : DbContext
 {
@@ -89,9 +89,9 @@ public class RssBlog : Blog
 }
 ```
 
-## <a name="configuring-the-discriminator-property"></a>Ayrıştırıcı özelliği yapılandırma
+## <a name="configuring-the-discriminator-property"></a>Ayrıştırıcı özelliğini yapılandırma
 
-Yukarıdaki örneklerde, ayrıştırıcı olarak oluşturulan bir [gölge özelliği](xref:core/modeling/shadow-properties) üzerinde temel bir varlık hiyerarşisi. Modeldeki bir özellik olduğundan, diğer özellikleri gibi yapılandırılabilir. Örneğin, varsayılan kuralı tarafından ayrıştırıcı kullanılırken, en fazla uzunluk ayarlamak için şunu yazın:
+Yukarıdaki örneklerde, ayrıştırıcı hiyerarşinin temel varlığında bir [Gölge Özellik](xref:core/modeling/shadow-properties) olarak oluşturulur. Modeldeki bir özellik olduğu için, diğer özellikler gibi yapılandırılabilir. Örneğin, varsayılan, kural olarak ayrıştırıcı kullanılıyorsa en fazla uzunluğu ayarlamak için:
 
 ```C#
 modelBuilder.Entity<Blog>()
@@ -99,7 +99,7 @@ modelBuilder.Entity<Blog>()
     .HasMaxLength(200);
 ```
 
-Ayrıştırıcı da gerçek bir CLR özellik varlığınızdaki eşlenebilir. Örneğin:
+Ayrıştırıcı, varlığınızda gerçek bir CLR özelliğine de eşleştirilebilir. Örneğin:
 ```C#
 class MyContext : DbContext
 {
@@ -125,7 +125,7 @@ public class RssBlog : Blog
 }
 ```
 
-Peki bu ikisi birlikte birleştirerek hem ayrıştırıcı gerçek özellik eşleme ve yapılandırma mümkündür:
+Bu iki şeyi birlikte birleştirmek, Ayrıştırıcıyı gerçek bir özellik ile eşleştirmek ve yapılandırmak mümkündür:
 ```C#
 modelBuilder.Entity<Blog>(b =>
 {

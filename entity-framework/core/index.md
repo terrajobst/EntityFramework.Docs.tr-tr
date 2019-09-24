@@ -1,29 +1,29 @@
 ---
-title: Genel Bakış - EF Core
+title: Entity Framework Core genel bakış
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: bc2a2676-bc46-493f-bf49-e3cc97994d57
 uid: core/index
-ms.openlocfilehash: 0e35a2b3f89c92b717b8e05c8fa3ae5af5ce8fd3
-ms.sourcegitcommit: 06073f8efde97dd5f540dbfb69f574d8380566fe
+ms.openlocfilehash: 0107a520e5a698eaf76426b63c6f784392559167
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 06/24/2019
-ms.locfileid: "67333774"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71196975"
 ---
 # <a name="entity-framework-core"></a>Entity Framework Core
 
-Entity Framework (EF) Core, hafif, Genişletilebilir, [açık kaynak](https://github.com/aspnet/EntityFrameworkCore) ve çoklu platform sürümünü teknoloji erişim popüler Entity Framework Veri.
+Entity Framework (EF) Core, popüler Entity Framework veri erişim teknolojisinin basit, Genişletilebilir, [Açık kaynaklı](https://github.com/aspnet/EntityFrameworkCore) ve platformlar arası bir sürümüdür.
 
-EF Core, .NET geliştiricilerinin .NET nesneleri kullanarak bir veritabanıyla çalışmasına etkinleştirme bir nesne ilişkisel eşleyicidir (O/RM) olarak hizmet verebilir ve çoğu veri erişim kodu gereksinimini ortadan bunlar genellikle yazmanız gerekir.
+EF Core, nesne ilişkisel Eşleyici (O/RM) olarak görev yapabilir, .NET geliştiricilerin .NET nesnelerini kullanarak bir veritabanıyla çalışmasını sağlar ve genellikle yazması gereken veri erişimi kodunun çoğunu ortadan kaldırır.
 
-EF Core birçok veritabanı altyapılarını destekleyen, bkz: [veritabanı sağlayıcıları](providers/index.md) Ayrıntılar için.
+EF Core birçok veritabanı altyapısını destekler, Ayrıntılar için bkz. [veritabanı sağlayıcıları](providers/index.md) .
 
 ## <a name="the-model"></a>Model
 
-EF Core ile veri erişimi, bir modeli kullanılarak gerçekleştirilir. Bir modeli varlık sınıfları ve böylece sorgu ve veri kaydetmek, veritabanı ile bir oturumu temsil eden bir bağlam nesnesi oluşur. Bkz: [Model oluşturma](modeling/index.md) daha fazla bilgi için.
+EF Core, veri erişimi bir model kullanılarak gerçekleştirilir. Bir model, varlık sınıflarından ve veritabanı ile bir oturumu temsil eden bir bağlam nesnesinden oluşur ve verileri sorgulayıp kaydetmenizi sağlar. Daha fazla bilgi için bkz. [model oluşturma](modeling/index.md) .
 
-Varolan bir veritabanından bir model oluşturmak, kod, veritabanıyla eşleşmesi veya kullanmak için bir model el [EF geçişleri](managing-schemas/migrations/index.md) modelinizden bir veritabanı oluşturup modelinizi zamanla değiştikçe gelişmek için.
+Var olan bir veritabanından bir model oluşturabilir, bir modeli veritabanınızdan eşlemek üzere kodlayabilir veya modelinizden bir veritabanı oluşturmak için [EF geçişleri](managing-schemas/migrations/index.md) kullanabilirsiniz.
 
 ``` csharp
 using Microsoft.EntityFrameworkCore;
@@ -65,7 +65,7 @@ namespace Intro
 
 ## <a name="querying"></a>Sorgulama
 
-Varlık sınıflarının örneklerini dil tümleşik sorgu (LINQ) kullanarak veritabanından alınır. Bkz: [veri sorgulama](querying/index.md) daha fazla bilgi için.
+Varlık sınıflarınızın örnekleri, dil ile tümleşik sorgu (LINQ) kullanılarak veritabanından alınır. Daha fazla bilgi için bkz. [veri sorgulama](querying/index.md) .
 
 ``` csharp
 using (var db = new BloggingContext())
@@ -79,7 +79,7 @@ using (var db = new BloggingContext())
 
 ## <a name="saving-data"></a>Verileri Kaydetme
 
-Veri oluşturulan, silinen ve örnekleri, varlık sınıfları kullanarak veritabanında değiştirildi. Bkz: [verileri kaydetme](saving/index.md) daha fazla bilgi için.
+Veri, varlık sınıflarınızın örnekleri kullanılarak oluşturulur, silinir ve değiştirilir. Daha fazla bilgi edinmek için [verileri kaydetme](saving/index.md) konusuna bakın.
 
 ``` csharp
 using (var db = new BloggingContext())
@@ -92,5 +92,5 @@ using (var db = new BloggingContext())
 
 ## <a name="next-steps"></a>Sonraki adımlar
 
-Tanıtım amaçlı öğreticiler için bkz. [Entity Framework Core ile çalışmaya başlama](get-started/index.md).
+Tanıtım öğreticileri için bkz. [Entity Framework Core kullanmaya](get-started/index.md)başlama.
 

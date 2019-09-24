@@ -1,33 +1,33 @@
 ---
-title: EF Core - Model oluşturma
+title: Model oluşturma ve yapılandırma-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 88253ff3-174e-485c-b3f8-768243d01ee1
 uid: core/modeling/index
-ms.openlocfilehash: 78a8ffd2393a914edf737104f14e41f8a9074ad5
-ms.sourcegitcommit: 87fcaba46535aa351db4bdb1231bd14b40e459b9
+ms.openlocfilehash: 5b886226b16b5b1a1f01e6040e58d92ae8678d29
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59929904"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197313"
 ---
-# <a name="creating-and-configuring-a-model"></a>Oluşturma ve yapılandırma modeli
+# <a name="creating-and-configuring-a-model"></a>Model oluşturma ve yapılandırma
 
-Entity Framework, varlık sınıfları şeklinizde dayalı bir model oluşturmak için kuralları kümesi kullanır. Ek ve/veya ne kuralı tarafından bulunan geçersiz kılmak için ek yapılandırma belirtebilirsiniz.
+Entity Framework, varlık sınıflarınızın şekline göre bir model oluşturmak için bir kural kümesi kullanır. Kurala göre keşfedildiğini ve/veya geçersiz kılmak için ek yapılandırma belirtebilirsiniz.
 
-Bu makale, herhangi bir veri deposu ve herhangi bir ilişkisel veritabanı hedeflenirken uygulanabilen, hedefleyen bir model için uygulanabilir yapılandırmayı kapsar. Sağlayıcıları, belirli veri deposuna özgü yapılandırma da sağlayabilir. Belirli yapılandırma sağlayıcısı hakkında bilgi için bkz. [veritabanı sağlayıcıları](../providers/index.md) bölümü.
+Bu makale, herhangi bir veri deposunu hedefleyen ve herhangi bir ilişkisel veritabanını hedeflerken uygulanabilen bir modele uygulanabilen yapılandırmayı ele alır. Sağlayıcılar, belirli bir veri deposuna özgü yapılandırmayı da etkinleştirebilir. Sağlayıcıya özgü yapılandırmayla ilgili belgeler için, [veritabanı sağlayıcıları](../providers/index.md) bölümüne bakın.
 
 > [!TIP]  
-> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples) GitHub üzerinde.
+> Bu makalenin [örneğini](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples) GitHub ' da görebilirsiniz.
 
-## <a name="use-fluent-api-to-configure-a-model"></a>Bir modeli yapılandırmak için Fluent API'sini kullanın
+## <a name="use-fluent-api-to-configure-a-model"></a>Model yapılandırmak için Fluent API kullanma
 
-Geçersiz kılabilirsiniz `OnModelCreating` yöntemi türetilmiş bağlam ve kullanım `ModelBuilder API` modelinizi yapılandırmak için. Bu yapılandırmanın en güçlü bir yöntemdir ve yapılandırması, varlık sınıfları değiştirmeden belirtilmesine olanak sağlar. Fluent API configuration en yüksek önceliğe sahiptir ve kuralları ve veri ek açıklamalarını geçersiz kılar.
+Türetilmiş bağlamdaki yöntemi `OnModelCreating`geçersiz kılabilir ve modelinizi yapılandırmakiçinkullanabilirsiniz. `ModelBuilder API` Bu, yapılandırmanın en güçlü yöntemidir ve varlık sınıflarınızda değişiklik yapılmadan yapılandırmanın belirtilmesini sağlar. Akıcı API yapılandırması en yüksek önceliğe sahiptir ve kuralları ve veri ek açıklamalarını geçersiz kılar.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/Required.cs?highlight=11-13)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Required.cs?highlight=11-13)]
 
-## <a name="use-data-annotations-to-configure-a-model"></a>Bir modeli yapılandırmak için veri ek açıklamalarını kullanma
+## <a name="use-data-annotations-to-configure-a-model"></a>Model yapılandırmak için veri ek açıklamalarını kullanma
 
-Ayrıca, sınıfları ve özellikleri de (veri ek açıklamaları da bilinir) öznitelikleri uygulayabilirsiniz. Veri ek açıklamaları kuralları geçersiz kılar, ancak Fluent API'si yapılandırması tarafından geçersiz kılınır.
+Ayrıca, sınıflarınıza ve özelliklerine öznitelikler (veri ek açıklamaları olarak bilinir) uygulayabilirsiniz. Veri ek açıklamaları kuralları geçersiz kılar, ancak akıcı API yapılandırması tarafından geçersiz kılınır.
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/Required.cs?highlight=14)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Required.cs?highlight=14)]

@@ -1,97 +1,97 @@
 ---
-title: Oluşturulan değerler - EF Core
+title: Oluşturulan değerler-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: eb082011-11a1-41b4-a108-15daafa03e80
 uid: core/modeling/generated-properties
-ms.openlocfilehash: 9ecfa924a0614f327f0bd202cb7dda95bea810af
-ms.sourcegitcommit: 0d36e8ff0892b7f034b765b15e041f375f88579a
+ms.openlocfilehash: 6b38fd2e540ec29674f1116e7c204052d06ca1bc
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/09/2018
-ms.locfileid: "44250705"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197432"
 ---
-# <a name="generated-values"></a>Oluşturulan değerler
+# <a name="generated-values"></a>Oluşturulan Değerler
 
-## <a name="value-generation-patterns"></a>Değer oluşturma düzenleri
+## <a name="value-generation-patterns"></a>Değer oluşturma desenleri
 
-Özellikleri için kullanılabilecek üç değer oluşturma düzenleri şunlardır:
-* Hiçbir değer oluşturma
-* Üzerinde oluşturulan değeri Ekle
-* Oluşturulan değeri Ekle veya güncelleştir
+Özellikler için kullanılabilecek üç değer oluşturma deseni vardır:
+* Değer oluşturma yok
+* Ekleme sırasında oluşturulan değer
+* Ekleme veya güncelleştirme üzerinde oluşturulan değer
 
-### <a name="no-value-generation"></a>Hiçbir değer oluşturma
+### <a name="no-value-generation"></a>Değer oluşturma yok
 
-Hiçbir değer oluşturma, veritabanına kaydedilecek geçerli bir değer her zaman sağlayacak anlamına gelir. Bağlamına eklenmesi için yeni varlıklar Bu geçerli bir değer atanmalıdır.
+Değer oluşturma, her zaman veritabanına kaydedilecek geçerli bir değer sağlayacaksınız anlamına gelir. Bu geçerli değer, içeriğe eklenmeden önce yeni varlıklara atanmalıdır.
 
-### <a name="value-generated-on-add"></a>Üzerinde oluşturulan değeri Ekle
+### <a name="value-generated-on-add"></a>Ekleme sırasında oluşturulan değer
 
-Üzerinde oluşturulan değeri eklemek anlamına gelir, bir değer için varlıklar oluşturulur.
+Ekleme sırasında oluşturulan değer, yeni varlıklar için bir değerin oluşturulduğu anlamına gelir.
 
-Veritabanı sağlayıcısı bağlı olarak, kullanılan değerler olabilir istemci tarafı EF veya veritabanında oluşturulmuş. Ardından değeri veritabanı tarafından oluşturulmuşsa, varlık bağlamına eklediğinizde EF geçici bir değer atayabilirsiniz. Bu geçici değer ardından sırasında oluşturulan veritabanı değeriyle değiştirilir `SaveChanges()`.
+Kullanılan veritabanı sağlayıcısına bağlı olarak, değerler istemci tarafında EF veya veritabanında oluşturulabilir. Değer veritabanı tarafından oluşturulduysa, varlığı bağlama eklediğinizde EF geçici bir değer atayabilir. Daha sonra bu geçici değer sırasında `SaveChanges()`veritabanı tarafından oluşturulan değerle değiştirilirler.
 
-Özelliğe atanmış bir değere sahip bağlamı bir varlık eklemek, yeni bir tane oluşturmak yerine bu değeri eklemek EF dener. Bir özelliğin CLR varsayılan değer atanmazsa, atanan bir değere sahip olduğu kabul edildiği (`null` için `string`, `0` için `int`, `Guid.Empty` için `Guid`vb..). Daha fazla bilgi için [oluşturulan özellikler için açık değerler](../saving/explicit-values-generated-properties.md).
+Özelliğe atanmış bir değere sahip bir varlık eklerseniz, EF yeni bir değer oluşturmak yerine bu değeri eklemeye çalışacaktır. Bir özellik, clr varsayılan değeri (`null` `0` `int` `string` için,for`Guid`, vb.) atanmadığı takdirde atanmış bir değere sahip olarak değerlendirilir. `Guid.Empty` Daha fazla bilgi için bkz. [oluşturulan Özellikler Için açık değerler](../saving/explicit-values-generated-properties.md).
 
 > [!WARNING]  
-> Değer eklenen varlıklar için nasıl oluşturulacağını kullanılan veritabanı sağlayıcısına bağlıdır. Veritabanı sağlayıcıları bazı özellik türleri için değer oluşturmayı otomatik olarak ayarlayabilir, ancak diğerleri değerin nasıl oluşturulacağını el ile Kurulum gerekebilir.
+> Eklenen varlıklar için değerin nasıl oluşturulduğu, kullanılmakta olan veritabanı sağlayıcısına bağlıdır. Veritabanı sağlayıcıları bazı özellik türleri için değer oluşturmayı otomatik olarak oluşturabilir, ancak diğerleri değerin nasıl oluşturulduğunu el ile ayarlamanıza gerek olabilir.
 >
-> Örneğin, SQL Server kullanıldığında, değerleri otomatik olarak için oluşturulacak `GUID` özellikleri (SQL Server sıralı GUID algoritması kullanarak). Ancak, belirtirseniz bir `DateTime` özelliği oluşturulan oluşturulması için değerleri için bir yol kurmalısınız ardından, eklemek. Bunu yapmanın bir yolu olan bir varsayılan değerini yapılandırmak için `GETDATE()`, bkz: [varsayılan değerleri](relational/default-values.md).
+> Örneğin, SQL Server kullanırken, özellikler için `GUID` değerler otomatik olarak oluşturulur (SQL Server sıralı GUID algoritması kullanılarak). Ancak, ekleme sırasında bir `DateTime` özelliğin oluşturulduğunu belirtirseniz, değerlerin oluşturulması için bir yol oluşturmanız gerekir. Bunu yapmanın bir yolu, varsayılan değerini `GETDATE()`yapılandırmak, bkz. [varsayılan değerler](relational/default-values.md).
 
-### <a name="value-generated-on-add-or-update"></a>Oluşturulan değeri Ekle veya güncelleştir
+### <a name="value-generated-on-add-or-update"></a>Ekleme veya güncelleştirme üzerinde oluşturulan değer
 
-Oluşturulan değeri eklemek veya güncelleştirme, yeni bir değer kaydı (ekleme veya güncelleştirme) her kaydedildiğinde oluşturulur anlamına gelir.
+Ekleme veya güncelleştirme üzerinde oluşturulan değer, kayıt her kaydedildiğinde (ekleme veya güncelleştirme) yeni bir değerin oluşturulduğu anlamına gelir.
 
-Gibi `value generated on add`, değer oluşturulmasını değer yerine eklenir, bir varlığın yeni eklenen bir örneği üzerinde bir özellik için bir değer belirtin. Güncelleştirirken bir açık değeri ayarlamak da mümkündür. Daha fazla bilgi için [oluşturulan özellikler için açık değerler](../saving/explicit-values-generated-properties.md).
+Benzer `value generated on add`şekilde, bir varlığın yeni eklenen örneğinde özelliği için bir değer belirtirseniz, bu değer, üretilmekte olan bir değer yerine eklenir. Güncelleştirme sırasında açık bir değer ayarlamak da mümkündür. Daha fazla bilgi için bkz. [oluşturulan Özellikler Için açık değerler](../saving/explicit-values-generated-properties.md).
 
 > [!WARNING]
-> Değeri için eklenen ve güncelleştirilen varlıkların nasıl oluşturulacağını kullanılan veritabanı sağlayıcısına bağlıdır. Başkalarının değerin nasıl oluşturulacağını el ile Kurulum gerekir ancak veritabanı sağlayıcıları bazı özellik türleri için değer oluşturmayı otomatik olarak ayarlayabilir.
+> Değerin eklenen ve güncelleştirilmiş varlıkların nasıl oluşturulduğu, kullanılmakta olan veritabanı sağlayıcısına bağlıdır. Veritabanı sağlayıcıları bazı özellik türleri için değer oluşturmayı otomatik olarak oluşturabilir, diğerleri ise değerin nasıl oluşturulduğunu el ile ayarlamanıza gerek duyar.
 > 
-> Örneğin, SQL Server kullanırken `byte[]` üzerinde oluşturulan ayarlanan özellikler ekleyin veya güncelleştirin ve eşzamanlılık belirteçleri işaretlenmiş kuruluma olacaktır `rowversion` veri türü - böylece değerleri veritabanında oluşturulur. Ancak, belirtirseniz bir `DateTime` özelliği oluşturulan ekleme veya güncelleştirme sonra oluşturulması için değerleri için bir yol ayarlamanız gerekir. Bunu yapmanın bir yolu olan bir varsayılan değerini yapılandırmak için `GETDATE()` (bkz [varsayılan değerleri](relational/default-values.md)) yeni satırlar için değerler oluşturmak için. Ardından veritabanı tetikleyicisi (örneğin, aşağıdaki örnekte tetikleyici) güncelleştirmeler sırasında değerler oluşturmak için de kullanabilirsiniz.
+> Örneğin, SQL Server kullanırken, `byte[]` ekleme veya güncelleştirme sırasında oluşturulan ve eşzamanlılık belirteçleri olarak işaretlenen özellikler, `rowversion` veri türüyle ayarlanır. böylece değerler veritabanında oluşturulacaktır. Ancak, ekleme veya güncelleştirme üzerinde bir `DateTime` özelliğin oluşturulduğunu belirtirseniz, değerlerin oluşturulması için bir yol oluşturmanız gerekir. Bunu yapmanın bir yolu, varsayılan değeri `GETDATE()` (bkz. [varsayılan değerler](relational/default-values.md)) yeni satırlara yönelik değerler oluşturmak için yapılandırmaktır. Daha sonra güncelleştirmeler sırasında değerler oluşturmak için bir veritabanı tetikleyicisi kullanabilirsiniz (örneğin, aşağıdaki örnek tetikleyici).
 > 
-> [!code-sql[Main](../../../samples/core/Modeling/FluentAPI/Samples/ValueGeneratedOnAddOrUpdate.sql)]
+> [!code-sql[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedOnAddOrUpdate.sql)]
 
 ## <a name="conventions"></a>Kurallar
 
-Kural olarak, bileşik olmayan birincil anahtar türü short, int, long veya üzerinde oluşturulan değerler eklemek için Kurulum GUID olacaktır. Diğer tüm özellikler kurulumu ile hiçbir değer oluşturma olacaktır.
+Kurala göre, Short, int, Long veya GUID türündeki bileşik olmayan birincil anahtarlar, ekleme sırasında oluşturulan değerleri alacak şekilde oluşturulacaktır. Diğer tüm özellikler hiçbir değer üretimi olmadan kuruluma sunulacaktır.
 
-## <a name="data-annotations"></a>Veri ek açıklamaları
+## <a name="data-annotations"></a>Veri Açıklamaları
 
-### <a name="no-value-generation-data-annotations"></a>Hiçbir değer oluşturma (veri ek açıklamaları)
+### <a name="no-value-generation-data-annotations"></a>Değer üretimi yok (veri ek açıklamaları)
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/ValueGeneratedNever.cs#Sample)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ValueGeneratedNever.cs#Sample)]
 
-### <a name="value-generated-on-add-data-annotations"></a>(Veri ek açıklamaları) üzerinde oluşturulan değeri Ekle
+### <a name="value-generated-on-add-data-annotations"></a>Add (veri ek açıklamaları) üzerinde oluşturulan değer
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/ValueGeneratedOnAdd.cs#Sample)]
-
-> [!WARNING]  
-> Bu değerleri eklenen varlıkları için oluşturulur, bu değerleri oluşturmak için gerçek bir mekanizma EF Kurulum garanti etmez bildiğinizden EF yalnızca sağlar. Bkz: [üzerinde oluşturulan değeri eklemek](#value-generated-on-add) ayrıntılı bilgi için.
-
-### <a name="value-generated-on-add-or-update-data-annotations"></a>Oluşturuldu: değer ekleme veya güncelleştirme (veri ek açıklamaları)
-
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Samples/ValueGeneratedOnAddOrUpdate.cs#Sample)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ValueGeneratedOnAdd.cs#Sample)]
 
 > [!WARNING]  
-> Bu değerleri, eklenen veya güncelleştirilen varlıkları için oluşturulur, bu değerleri oluşturmak için gerçek bir mekanizma EF Kurulum garanti etmez bildiğinizden EF yalnızca sağlar. Bkz: [üzerinde üretilen değer ekleme veya güncelleştirme](#value-generated-on-add-or-update) ayrıntılı bilgi için.
+> Bu yalnızca AŞV 'nin eklenen varlıklar için değerlerin oluşturulduğunu bilmesini sağlar. Bu, EF 'in değer oluşturmak için gerçek mekanizmayı ayarlayabileceklerini garanti etmez. Daha fazla ayrıntı için bkz. [ekleme bölümünde oluşturulan değer](#value-generated-on-add) .
 
-## <a name="fluent-api"></a>Fluent API'si
+### <a name="value-generated-on-add-or-update-data-annotations"></a>Ekleme veya güncelleştirme üzerinde oluşturulan değer (veri açıklamaları)
 
-Fluent API'sini, belirli bir özellik için değer nesil düzenini değiştirmek için kullanabilirsiniz.
-
-### <a name="no-value-generation-fluent-api"></a>Hiçbir değer oluşturma (Fluent API'si)
-
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/ValueGeneratedNever.cs#Sample)]
-
-### <a name="value-generated-on-add-fluent-api"></a>Üzerinde oluşturulan değeri ekleyin (Fluent API'si)
-
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/ValueGeneratedOnAdd.cs#Sample)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ValueGeneratedOnAddOrUpdate.cs#Sample)]
 
 > [!WARNING]  
-> `ValueGeneratedOnAdd()` yalnızca bildiğiniz değerleri eklenen varlıkları için oluşturulur, bu değerleri oluşturmak için gerçek bir mekanizma EF Kurulum garanti etmez EF olanak tanır.  Bkz: [üzerinde oluşturulan değeri eklemek](#value-generated-on-add) ayrıntılı bilgi için.
+> Bu yalnızca AŞV 'nin eklenen veya güncelleştirilmiş varlıklar için değerlerin oluşturulduğunu bilmesini sağlar. Bu, EF 'in, değer oluşturmak için gerçek mekanizmayı ayarlayabileceklerini garanti etmez. Daha fazla ayrıntı için bkz. [ekleme veya güncelleştirme üzerinde oluşturulan değer](#value-generated-on-add-or-update) .
 
-### <a name="value-generated-on-add-or-update-fluent-api"></a>Oluşturuldu: değer ekleme veya güncelleştirme (Fluent API'si)
+## <a name="fluent-api"></a>Akıcı API
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Samples/ValueGeneratedOnAddOrUpdate.cs#Sample)]
+Belirli bir özellik için değer oluşturma modelini değiştirmek üzere Floent API 'sini kullanabilirsiniz.
+
+### <a name="no-value-generation-fluent-api"></a>Değer oluşturma (Floent API)
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedNever.cs#Sample)]
+
+### <a name="value-generated-on-add-fluent-api"></a>Add (Floent API) üzerinde oluşturulan değer
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedOnAdd.cs#Sample)]
 
 > [!WARNING]  
-> Bu değerleri, eklenen veya güncelleştirilen varlıkları için oluşturulur, bu değerleri oluşturmak için gerçek bir mekanizma EF Kurulum garanti etmez bildiğinizden EF yalnızca sağlar. Bkz: [üzerinde üretilen değer ekleme veya güncelleştirme](#value-generated-on-add-or-update) ayrıntılı bilgi için.
+> `ValueGeneratedOnAdd()`EF 'in, eklenen varlıklar için değerlerin oluşturulduğunu bilmesini sağlar, bu, EF 'in değer oluşturmak için gerçek mekanizmayı ayarlayabileceklerini garanti etmez.  Daha fazla ayrıntı için bkz. [ekleme bölümünde oluşturulan değer](#value-generated-on-add) .
+
+### <a name="value-generated-on-add-or-update-fluent-api"></a>Ekleme veya güncelleştirme üzerinde oluşturulan değer (akıcı API)
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedOnAddOrUpdate.cs#Sample)]
+
+> [!WARNING]  
+> Bu yalnızca AŞV 'nin eklenen veya güncelleştirilmiş varlıklar için değerlerin oluşturulduğunu bilmesini sağlar. Bu, EF 'in, değer oluşturmak için gerçek mekanizmayı ayarlayabileceklerini garanti etmez. Daha fazla ayrıntı için bkz. [ekleme veya güncelleştirme üzerinde oluşturulan değer](#value-generated-on-add-or-update) .
