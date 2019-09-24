@@ -1,36 +1,36 @@
 ---
-title: Yabancı anahtar kısıtlamaları - EF Core
+title: Yabancı anahtar kısıtlamaları-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: dbaf4bac-1fd5-46c0-ac57-64d7153bc574
 uid: core/modeling/relational/fk-constraints
-ms.openlocfilehash: a83f72b5d832e349fb4a5fb3b2de0b82bd79ef2a
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: d7ed4466f4df9ec01267b048ba1bbcc6e8bbdad5
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993994"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71197060"
 ---
-# <a name="foreign-key-constraints"></a><span data-ttu-id="e04fd-102">Yabancı anahtar kısıtlamaları</span><span class="sxs-lookup"><span data-stu-id="e04fd-102">Foreign Key Constraints</span></span>
+# <a name="foreign-key-constraints"></a><span data-ttu-id="334e7-102">Yabancı Anahtar Kısıtlamaları</span><span class="sxs-lookup"><span data-stu-id="334e7-102">Foreign Key Constraints</span></span>
 
 > [!NOTE]  
-> <span data-ttu-id="e04fd-103">Bu bölümdeki yapılandırma, genel olarak ilişkisel veritabanları için geçerlidir.</span><span class="sxs-lookup"><span data-stu-id="e04fd-103">The configuration in this section is applicable to relational databases in general.</span></span> <span data-ttu-id="e04fd-104">İlişkisel veritabanı sağlayıcısı yüklediğinizde, burada gösterilen genişletme yöntemleri kullanılabilir hale gelir (paylaşılan nedeniyle *Microsoft.EntityFrameworkCore.Relational* paketi).</span><span class="sxs-lookup"><span data-stu-id="e04fd-104">The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).</span></span>
+> <span data-ttu-id="334e7-103">Bu bölümdeki yapılandırma genel olarak ilişkisel veritabanları için geçerlidir.</span><span class="sxs-lookup"><span data-stu-id="334e7-103">The configuration in this section is applicable to relational databases in general.</span></span> <span data-ttu-id="334e7-104">Burada gösterilen uzantı yöntemleri, bir ilişkisel veritabanı sağlayıcısı yüklediğinizde (paylaşılan *Microsoft. EntityFrameworkCore. ilişkisel* paketi nedeniyle) kullanılabilir hale gelir.</span><span class="sxs-lookup"><span data-stu-id="334e7-104">The extension methods shown here will become available when you install a relational database provider (due to the shared *Microsoft.EntityFrameworkCore.Relational* package).</span></span>
 
-<span data-ttu-id="e04fd-105">Bir yabancı anahtar kısıtlaması, modeldeki her ilişki için sunulmuştur.</span><span class="sxs-lookup"><span data-stu-id="e04fd-105">A foreign key constraint is introduced for each relationship in the model.</span></span>
+<span data-ttu-id="334e7-105">Modeldeki her ilişki için bir yabancı anahtar kısıtlaması tanıtılmıştır.</span><span class="sxs-lookup"><span data-stu-id="334e7-105">A foreign key constraint is introduced for each relationship in the model.</span></span>
 
-## <a name="conventions"></a><span data-ttu-id="e04fd-106">Kurallar</span><span class="sxs-lookup"><span data-stu-id="e04fd-106">Conventions</span></span>
+## <a name="conventions"></a><span data-ttu-id="334e7-106">Kurallar</span><span class="sxs-lookup"><span data-stu-id="334e7-106">Conventions</span></span>
 
-<span data-ttu-id="e04fd-107">Kural gereği, yabancı anahtar kısıtlamalarını adlandırılır `FK_<dependent type name>_<principal type name>_<foreign key property name>`.</span><span class="sxs-lookup"><span data-stu-id="e04fd-107">By convention, foreign key constraints are named `FK_<dependent type name>_<principal type name>_<foreign key property name>`.</span></span> <span data-ttu-id="e04fd-108">Bileşik yabancı anahtarlar için `<foreign key property name>` yabancı anahtar özellik adlarının bir alt çizgi ayrılmış listesi olur.</span><span class="sxs-lookup"><span data-stu-id="e04fd-108">For composite foreign keys `<foreign key property name>` becomes an underscore separated list of foreign key property names.</span></span>
+<span data-ttu-id="334e7-107">Kurala göre, yabancı anahtar kısıtlamaları adlandırılır `FK_<dependent type name>_<principal type name>_<foreign key property name>`.</span><span class="sxs-lookup"><span data-stu-id="334e7-107">By convention, foreign key constraints are named `FK_<dependent type name>_<principal type name>_<foreign key property name>`.</span></span> <span data-ttu-id="334e7-108">Bileşik yabancı anahtarlar `<foreign key property name>` için, yabancı anahtar özellik adlarının alt çizgiyle ayrılmış bir listesi olur.</span><span class="sxs-lookup"><span data-stu-id="334e7-108">For composite foreign keys `<foreign key property name>` becomes an underscore separated list of foreign key property names.</span></span>
 
-## <a name="data-annotations"></a><span data-ttu-id="e04fd-109">Veri ek açıklamaları</span><span class="sxs-lookup"><span data-stu-id="e04fd-109">Data Annotations</span></span>
+## <a name="data-annotations"></a><span data-ttu-id="334e7-109">Veri Açıklamaları</span><span class="sxs-lookup"><span data-stu-id="334e7-109">Data Annotations</span></span>
 
-<span data-ttu-id="e04fd-110">Veri ek açıklamalarını kullanma yabancı anahtar kısıtlaması adları yapılandırılamaz.</span><span class="sxs-lookup"><span data-stu-id="e04fd-110">Foreign key constraint names cannot be configured using data annotations.</span></span>
+<span data-ttu-id="334e7-110">Yabancı anahtar kısıtlama adları, veri açıklamaları kullanılarak yapılandırılamaz.</span><span class="sxs-lookup"><span data-stu-id="334e7-110">Foreign key constraint names cannot be configured using data annotations.</span></span>
 
-## <a name="fluent-api"></a><span data-ttu-id="e04fd-111">Fluent API'si</span><span class="sxs-lookup"><span data-stu-id="e04fd-111">Fluent API</span></span>
+## <a name="fluent-api"></a><span data-ttu-id="334e7-111">Akıcı API</span><span class="sxs-lookup"><span data-stu-id="334e7-111">Fluent API</span></span>
 
-<span data-ttu-id="e04fd-112">Fluent API'si, bir ilişki için yabancı anahtar kısıtlaması adını yapılandırmak için kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="e04fd-112">You can use the Fluent API to configure the foreign key constraint name for a relationship.</span></span>
+<span data-ttu-id="334e7-112">Bir ilişkinin yabancı anahtar kısıtlama adını yapılandırmak için akıcı API 'YI kullanabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="334e7-112">You can use the Fluent API to configure the foreign key constraint name for a relationship.</span></span>
 
-<!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Samples/Relational/RelationshipConstraintName.cs?highlight=12)] -->
+<!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Relational/RelationshipConstraintName.cs?highlight=12)] -->
 ``` csharp
 class MyContext : DbContext
 {
@@ -62,6 +62,6 @@ public class Post
     public string Content { get; set; }
 
     public int BlogId { get; set; }
-    public Blog Blog { get; set; }
+    public Blog Blog { get; set; }
 }
 ```

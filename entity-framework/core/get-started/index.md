@@ -4,119 +4,119 @@ author: rick-anderson
 ms.date: 09/17/2019
 ms.assetid: 3c88427c-20c6-42ec-a736-22d3eccd5071
 uid: core/get-started/index
-ms.openlocfilehash: b921d1e99b07bdeb24fb81e16f65d9fef444bd33
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: 41ebdcbb3f51c914ee7befb3c1a9c0042e9b43c8
+ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71149005"
+ms.lasthandoff: 09/23/2019
+ms.locfileid: "71196892"
 ---
-# <a name="getting-started-with-ef-core"></a><span data-ttu-id="a9976-102">EF Core kullanmaya başlama</span><span class="sxs-lookup"><span data-stu-id="a9976-102">Getting Started with EF Core</span></span>
+# <a name="getting-started-with-ef-core"></a><span data-ttu-id="e1bd3-102">EF Core kullanmaya başlama</span><span class="sxs-lookup"><span data-stu-id="e1bd3-102">Getting Started with EF Core</span></span>
 
-<span data-ttu-id="a9976-103">Bu öğreticide, Entity Framework Core kullanarak bir SQLite veritabanına yönelik veri erişimi gerçekleştiren bir .NET Core konsol uygulaması oluşturacaksınız.</span><span class="sxs-lookup"><span data-stu-id="a9976-103">In this tutorial, you create a .NET Core console app that performs data access against a SQLite database using Entity Framework Core.</span></span>
+<span data-ttu-id="e1bd3-103">Bu öğreticide, Entity Framework Core kullanarak bir SQLite veritabanına yönelik veri erişimi gerçekleştiren bir .NET Core konsol uygulaması oluşturacaksınız.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-103">In this tutorial, you create a .NET Core console app that performs data access against a SQLite database using Entity Framework Core.</span></span>
 
-<span data-ttu-id="a9976-104">Windows üzerinde Visual Studio 'yu kullanarak veya Windows, macOS veya Linux üzerinde .NET Core CLI kullanarak öğreticiyi izleyebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="a9976-104">You can follow the tutorial by using Visual Studio on Windows, or by using the .NET Core CLI on Windows, macOS, or Linux.</span></span>
+<span data-ttu-id="e1bd3-104">Windows üzerinde Visual Studio 'yu kullanarak veya Windows, macOS veya Linux üzerinde .NET Core CLI kullanarak öğreticiyi izleyebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-104">You can follow the tutorial by using Visual Studio on Windows, or by using the .NET Core CLI on Windows, macOS, or Linux.</span></span>
 
-<span data-ttu-id="a9976-105">[Bu makalenin örneğini GitHub 'Da görüntüleyin](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted).</span><span class="sxs-lookup"><span data-stu-id="a9976-105">[View this article's sample on GitHub](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted).</span></span>
+<span data-ttu-id="e1bd3-105">[Bu makalenin örneğini GitHub 'Da görüntüleyin](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted).</span><span class="sxs-lookup"><span data-stu-id="e1bd3-105">[View this article's sample on GitHub](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="a9976-106">Önkoşullar</span><span class="sxs-lookup"><span data-stu-id="a9976-106">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="e1bd3-106">Önkoşullar</span><span class="sxs-lookup"><span data-stu-id="e1bd3-106">Prerequisites</span></span>
 
-<span data-ttu-id="a9976-107">Aşağıdaki yazılımı yükler:</span><span class="sxs-lookup"><span data-stu-id="a9976-107">Install the following software:</span></span>
+<span data-ttu-id="e1bd3-107">Aşağıdaki yazılımı yükler:</span><span class="sxs-lookup"><span data-stu-id="e1bd3-107">Install the following software:</span></span>
 
-# <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="a9976-108">.NET Core CLI</span><span class="sxs-lookup"><span data-stu-id="a9976-108">.NET Core CLI</span></span>](#tab/netcore-cli)
+# <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="e1bd3-108">.NET Core CLI</span><span class="sxs-lookup"><span data-stu-id="e1bd3-108">.NET Core CLI</span></span>](#tab/netcore-cli)
 
-* <span data-ttu-id="a9976-109">[.NET Core 3,0 SDK](https://www.microsoft.com/net/download/core).</span><span class="sxs-lookup"><span data-stu-id="a9976-109">[.NET Core 3.0 SDK](https://www.microsoft.com/net/download/core).</span></span>
+* <span data-ttu-id="e1bd3-109">[.NET Core 3,0 SDK](https://www.microsoft.com/net/download/core).</span><span class="sxs-lookup"><span data-stu-id="e1bd3-109">[.NET Core 3.0 SDK](https://www.microsoft.com/net/download/core).</span></span>
 
-# <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="a9976-110">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a9976-110">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="e1bd3-110">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="e1bd3-110">Visual Studio</span></span>](#tab/visual-studio)
 
-* <span data-ttu-id="a9976-111">[Visual Studio 2019 sürüm 16,3 veya üzeri](https://www.visualstudio.com/downloads/) bu iş yükü:</span><span class="sxs-lookup"><span data-stu-id="a9976-111">[Visual Studio 2019 version 16.3 or later](https://www.visualstudio.com/downloads/) with this  workload:</span></span>
-  * <span data-ttu-id="a9976-112">**.NET Core platformlar arası geliştirme** ( **diğer araç kümeleri**altında)</span><span class="sxs-lookup"><span data-stu-id="a9976-112">**.NET Core cross-platform development** (under **Other Toolsets**)</span></span>
+* <span data-ttu-id="e1bd3-111">[Visual Studio 2019 sürüm 16,3 veya üzeri](https://www.visualstudio.com/downloads/) bu iş yükü:</span><span class="sxs-lookup"><span data-stu-id="e1bd3-111">[Visual Studio 2019 version 16.3 or later](https://www.visualstudio.com/downloads/) with this  workload:</span></span>
+  * <span data-ttu-id="e1bd3-112">**.NET Core platformlar arası geliştirme** ( **diğer araç kümeleri**altında)</span><span class="sxs-lookup"><span data-stu-id="e1bd3-112">**.NET Core cross-platform development** (under **Other Toolsets**)</span></span>
 
 ---
 
-## <a name="create-a-new-project"></a><span data-ttu-id="a9976-113">Yeni bir proje oluşturma</span><span class="sxs-lookup"><span data-stu-id="a9976-113">Create a new project</span></span>
+## <a name="create-a-new-project"></a><span data-ttu-id="e1bd3-113">Yeni bir proje oluşturma</span><span class="sxs-lookup"><span data-stu-id="e1bd3-113">Create a new project</span></span>
 
-# <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="a9976-114">.NET Core CLI</span><span class="sxs-lookup"><span data-stu-id="a9976-114">.NET Core CLI</span></span>](#tab/netcore-cli)
+# <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="e1bd3-114">.NET Core CLI</span><span class="sxs-lookup"><span data-stu-id="e1bd3-114">.NET Core CLI</span></span>](#tab/netcore-cli)
 
 ``` Console
 dotnet new console -o EFGetStarted
 cd EFGetStarted
 ```
 
-# <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="a9976-115">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a9976-115">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="e1bd3-115">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="e1bd3-115">Visual Studio</span></span>](#tab/visual-studio)
 
-* <span data-ttu-id="a9976-116">Visual Studio 'Yu aç</span><span class="sxs-lookup"><span data-stu-id="a9976-116">Open Visual Studio</span></span>
-* <span data-ttu-id="a9976-117">**Yeni proje oluştur ' a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="a9976-117">Click **Create a new project**</span></span>
-* <span data-ttu-id="a9976-118">Etiketi ile **konsol uygulaması (.NET Core)** seçeneğini belirleyin ve ileri ' ye tıklayın. **C#**</span><span class="sxs-lookup"><span data-stu-id="a9976-118">Select **Console App (.NET Core)** with the **C#** tag and click **Next**</span></span>
-* <span data-ttu-id="a9976-119">Ad için **Efgetstarted** girin ve **Oluştur** ' a tıklayın.</span><span class="sxs-lookup"><span data-stu-id="a9976-119">Enter **EFGetStarted** for the name and click **Create**</span></span>
+* <span data-ttu-id="e1bd3-116">Visual Studio 'Yu aç</span><span class="sxs-lookup"><span data-stu-id="e1bd3-116">Open Visual Studio</span></span>
+* <span data-ttu-id="e1bd3-117">**Yeni proje oluştur ' a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="e1bd3-117">Click **Create a new project**</span></span>
+* <span data-ttu-id="e1bd3-118">Etiketi ile **konsol uygulaması (.NET Core)** seçeneğini belirleyin ve ileri ' ye tıklayın. **C#**</span><span class="sxs-lookup"><span data-stu-id="e1bd3-118">Select **Console App (.NET Core)** with the **C#** tag and click **Next**</span></span>
+* <span data-ttu-id="e1bd3-119">Ad için **Efgetstarted** girin ve **Oluştur** ' a tıklayın.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-119">Enter **EFGetStarted** for the name and click **Create**</span></span>
 
 ---
 
-## <a name="install-entity-framework-core"></a><span data-ttu-id="a9976-120">Entity Framework Core yüklensin</span><span class="sxs-lookup"><span data-stu-id="a9976-120">Install Entity Framework Core</span></span>
+## <a name="install-entity-framework-core"></a><span data-ttu-id="e1bd3-120">Entity Framework Core yüklensin</span><span class="sxs-lookup"><span data-stu-id="e1bd3-120">Install Entity Framework Core</span></span>
 
-<span data-ttu-id="a9976-121">EF Core yüklemek için, hedeflemek istediğiniz EF Core veritabanı sağlayıcılarının paketini yüklersiniz.</span><span class="sxs-lookup"><span data-stu-id="a9976-121">To install EF Core, you install the package for the EF Core database provider(s) you want to target.</span></span> <span data-ttu-id="a9976-122">Bu öğretici, .NET Core 'un desteklediği tüm platformlarda çalıştığı için SQLite kullanır.</span><span class="sxs-lookup"><span data-stu-id="a9976-122">This tutorial uses SQLite because it runs on all platforms that .NET Core supports.</span></span> <span data-ttu-id="a9976-123">Kullanılabilir sağlayıcıların bir listesi için bkz. [veritabanı sağlayıcıları](../providers/index.md).</span><span class="sxs-lookup"><span data-stu-id="a9976-123">For a list of available providers, see [Database Providers](../providers/index.md).</span></span>
+<span data-ttu-id="e1bd3-121">EF Core yüklemek için, hedeflemek istediğiniz EF Core veritabanı sağlayıcılarının paketini yüklersiniz.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-121">To install EF Core, you install the package for the EF Core database provider(s) you want to target.</span></span> <span data-ttu-id="e1bd3-122">Bu öğretici, .NET Core 'un desteklediği tüm platformlarda çalıştığı için SQLite kullanır.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-122">This tutorial uses SQLite because it runs on all platforms that .NET Core supports.</span></span> <span data-ttu-id="e1bd3-123">Kullanılabilir sağlayıcıların bir listesi için bkz. [veritabanı sağlayıcıları](../providers/index.md).</span><span class="sxs-lookup"><span data-stu-id="e1bd3-123">For a list of available providers, see [Database Providers](../providers/index.md).</span></span>
 
-# <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="a9976-124">.NET Core CLI</span><span class="sxs-lookup"><span data-stu-id="a9976-124">.NET Core CLI</span></span>](#tab/netcore-cli)
+# <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="e1bd3-124">.NET Core CLI</span><span class="sxs-lookup"><span data-stu-id="e1bd3-124">.NET Core CLI</span></span>](#tab/netcore-cli)
 
 ``` Console
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 ```
 
-# <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="a9976-125">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a9976-125">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="e1bd3-125">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="e1bd3-125">Visual Studio</span></span>](#tab/visual-studio)
 
-* <span data-ttu-id="a9976-126">**Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi konsolu**</span><span class="sxs-lookup"><span data-stu-id="a9976-126">**Tools > NuGet Package Manager > Package Manager Console**</span></span>
-* <span data-ttu-id="a9976-127">Aşağıdaki komutları çalıştırın:</span><span class="sxs-lookup"><span data-stu-id="a9976-127">Run the following commands:</span></span>
+* <span data-ttu-id="e1bd3-126">**Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi konsolu**</span><span class="sxs-lookup"><span data-stu-id="e1bd3-126">**Tools > NuGet Package Manager > Package Manager Console**</span></span>
+* <span data-ttu-id="e1bd3-127">Aşağıdaki komutları çalıştırın:</span><span class="sxs-lookup"><span data-stu-id="e1bd3-127">Run the following commands:</span></span>
 
   ``` PowerShell
   Install-Package Microsoft.EntityFrameworkCore.Sqlite
   ```
 
-<span data-ttu-id="a9976-128">İpucuyla Ayrıca, projeye sağ tıklayıp **NuGet Paketlerini Yönet** ' i seçerek paketleri yükleyebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="a9976-128">Tip: You can also install packages by right-clicking on the project and selecting **Manage NuGet Packages**</span></span>
+<span data-ttu-id="e1bd3-128">İpucuyla Ayrıca, projeye sağ tıklayıp **NuGet Paketlerini Yönet** ' i seçerek paketleri yükleyebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-128">Tip: You can also install packages by right-clicking on the project and selecting **Manage NuGet Packages**</span></span>
 
 ---
 
-## <a name="create-the-model"></a><span data-ttu-id="a9976-129">Modeli oluşturma</span><span class="sxs-lookup"><span data-stu-id="a9976-129">Create the model</span></span>
+## <a name="create-the-model"></a><span data-ttu-id="e1bd3-129">Modeli oluşturma</span><span class="sxs-lookup"><span data-stu-id="e1bd3-129">Create the model</span></span>
 
-<span data-ttu-id="a9976-130">Modeli oluşturan bir bağlam sınıfı ve varlık sınıfları tanımlayın.</span><span class="sxs-lookup"><span data-stu-id="a9976-130">Define a context class and entity classes that make up the model.</span></span>
+<span data-ttu-id="e1bd3-130">Modeli oluşturan bir bağlam sınıfı ve varlık sınıfları tanımlayın.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-130">Define a context class and entity classes that make up the model.</span></span>
 
-# <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="a9976-131">.NET Core CLI</span><span class="sxs-lookup"><span data-stu-id="a9976-131">.NET Core CLI</span></span>](#tab/netcore-cli)
+# <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="e1bd3-131">.NET Core CLI</span><span class="sxs-lookup"><span data-stu-id="e1bd3-131">.NET Core CLI</span></span>](#tab/netcore-cli)
 
-* <span data-ttu-id="a9976-132">Proje dizininde aşağıdaki kodla **model.cs** oluşturun</span><span class="sxs-lookup"><span data-stu-id="a9976-132">In the project directory create **Model.cs** with the following code</span></span>
+* <span data-ttu-id="e1bd3-132">Proje dizininde aşağıdaki kodla **model.cs** oluşturun</span><span class="sxs-lookup"><span data-stu-id="e1bd3-132">In the project directory create **Model.cs** with the following code</span></span>
 
-# <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="a9976-133">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a9976-133">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="e1bd3-133">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="e1bd3-133">Visual Studio</span></span>](#tab/visual-studio)
 
-* <span data-ttu-id="a9976-134">Projeye sağ tıklayın ve **> sınıfı Ekle** ' yi seçin.</span><span class="sxs-lookup"><span data-stu-id="a9976-134">Right-click on the project and select **Add > Class**</span></span>
-* <span data-ttu-id="a9976-135">Ad olarak **model.cs** girin ve **Ekle** ' ye tıklayın.</span><span class="sxs-lookup"><span data-stu-id="a9976-135">Enter **Model.cs** as the name and click **Add**</span></span>
-* <span data-ttu-id="a9976-136">Dosyanın içeriğini aşağıdaki kodla değiştirin</span><span class="sxs-lookup"><span data-stu-id="a9976-136">Replace the contents of the file with the following code</span></span>
+* <span data-ttu-id="e1bd3-134">Projeye sağ tıklayın ve **> sınıfı Ekle** ' yi seçin.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-134">Right-click on the project and select **Add > Class**</span></span>
+* <span data-ttu-id="e1bd3-135">Ad olarak **model.cs** girin ve **Ekle** ' ye tıklayın.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-135">Enter **Model.cs** as the name and click **Add**</span></span>
+* <span data-ttu-id="e1bd3-136">Dosyanın içeriğini aşağıdaki kodla değiştirin</span><span class="sxs-lookup"><span data-stu-id="e1bd3-136">Replace the contents of the file with the following code</span></span>
 
 ---
 
 [!code-csharp[Main](../../../samples/core/GetStarted/Model.cs)]
 
-<span data-ttu-id="a9976-137">EF Core Ayrıca, varolan bir veritabanından bir modele [ters mühendislik](../managing-schemas/scaffolding.md) uygulanabilir.</span><span class="sxs-lookup"><span data-stu-id="a9976-137">EF Core can also [reverse engineer](../managing-schemas/scaffolding.md) a model from an existing database.</span></span>
+<span data-ttu-id="e1bd3-137">EF Core Ayrıca, varolan bir veritabanından bir modele [ters mühendislik](../managing-schemas/scaffolding.md) uygulanabilir.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-137">EF Core can also [reverse engineer](../managing-schemas/scaffolding.md) a model from an existing database.</span></span>
 
-<span data-ttu-id="a9976-138">İpucuyla Gerçek bir uygulamada, her bir sınıfı ayrı bir dosyaya yerleştirip [bağlantı dizesini](../miscellaneous/connection-strings.md) bir yapılandırma dosyasına veya ortam değişkenine yerleştirebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="a9976-138">Tip: In a real app, you put each class in a separate file and put the [connection string](../miscellaneous/connection-strings.md) in a configuration file or environment variable.</span></span> <span data-ttu-id="a9976-139">Öğreticiyi bir şekilde korumak için her şey tek bir dosyada yer alır.</span><span class="sxs-lookup"><span data-stu-id="a9976-139">To keep the tutorial simple, everything is contained in one file.</span></span>
+<span data-ttu-id="e1bd3-138">İpucuyla Gerçek bir uygulamada, her bir sınıfı ayrı bir dosyaya yerleştirip [bağlantı dizesini](../miscellaneous/connection-strings.md) bir yapılandırma dosyasına veya ortam değişkenine yerleştirebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-138">Tip: In a real app, you put each class in a separate file and put the [connection string](../miscellaneous/connection-strings.md) in a configuration file or environment variable.</span></span> <span data-ttu-id="e1bd3-139">Öğreticiyi bir şekilde korumak için her şey tek bir dosyada yer alır.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-139">To keep the tutorial simple, everything is contained in one file.</span></span>
 
-## <a name="create-the-database"></a><span data-ttu-id="a9976-140">Veritabanını oluşturma</span><span class="sxs-lookup"><span data-stu-id="a9976-140">Create the database</span></span>
+## <a name="create-the-database"></a><span data-ttu-id="e1bd3-140">Veritabanını oluşturma</span><span class="sxs-lookup"><span data-stu-id="e1bd3-140">Create the database</span></span>
 
-<span data-ttu-id="a9976-141">Aşağıdaki adımlar bir veritabanı oluşturmak için [geçişleri](xref:core/managing-schemas/migrations/index) kullanır.</span><span class="sxs-lookup"><span data-stu-id="a9976-141">The following steps use [migrations](xref:core/managing-schemas/migrations/index) to create a database.</span></span>
+<span data-ttu-id="e1bd3-141">Aşağıdaki adımlar bir veritabanı oluşturmak için [geçişleri](xref:core/managing-schemas/migrations/index) kullanır.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-141">The following steps use [migrations](xref:core/managing-schemas/migrations/index) to create a database.</span></span>
 
-# <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="a9976-142">.NET Core CLI</span><span class="sxs-lookup"><span data-stu-id="a9976-142">.NET Core CLI</span></span>](#tab/netcore-cli)
+# <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="e1bd3-142">.NET Core CLI</span><span class="sxs-lookup"><span data-stu-id="e1bd3-142">.NET Core CLI</span></span>](#tab/netcore-cli)
 
-* <span data-ttu-id="a9976-143">Aşağıdaki komutları çalıştırın:</span><span class="sxs-lookup"><span data-stu-id="a9976-143">Run the following commands:</span></span>
+* <span data-ttu-id="e1bd3-143">Aşağıdaki komutları çalıştırın:</span><span class="sxs-lookup"><span data-stu-id="e1bd3-143">Run the following commands:</span></span>
 
   ``` Console
-  dotnet tool install --global dotnet-ef --version 3.0.0-*
+  dotnet tool install --global dotnet-ef
   dotnet add package Microsoft.EntityFrameworkCore.Design
   dotnet ef migrations add InitialCreate
   dotnet ef database update
   ```
 
-  <span data-ttu-id="a9976-144">Bu, bir projede komutu çalıştırmak için gerekli olan [DotNet EF](../miscellaneous/cli/dotnet.md) ve tasarım paketini de yüklüyor.</span><span class="sxs-lookup"><span data-stu-id="a9976-144">This installs [dotnet ef](../miscellaneous/cli/dotnet.md) and the design package which is required to run the command on a project.</span></span> <span data-ttu-id="a9976-145">Bu `migrations` komut, model için ilk tablo kümesini oluşturmak üzere bir geçişi bir geçişe kattı.</span><span class="sxs-lookup"><span data-stu-id="a9976-145">The `migrations` command scaffolds a migration to create the initial set of tables for the model.</span></span> <span data-ttu-id="a9976-146">`database update` Komut veritabanını oluşturur ve yeni geçişi uygular.</span><span class="sxs-lookup"><span data-stu-id="a9976-146">The `database update` command creates the database and applies the new migration to it.</span></span>
+  <span data-ttu-id="e1bd3-144">Bu, bir projede komutu çalıştırmak için gerekli olan [DotNet EF](../miscellaneous/cli/dotnet.md) ve tasarım paketini de yüklüyor.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-144">This installs [dotnet ef](../miscellaneous/cli/dotnet.md) and the design package which is required to run the command on a project.</span></span> <span data-ttu-id="e1bd3-145">Bu `migrations` komut, model için ilk tablo kümesini oluşturmak üzere bir geçişi bir geçişe kattı.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-145">The `migrations` command scaffolds a migration to create the initial set of tables for the model.</span></span> <span data-ttu-id="e1bd3-146">`database update` Komut veritabanını oluşturur ve yeni geçişi uygular.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-146">The `database update` command creates the database and applies the new migration to it.</span></span>
 
-# <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="a9976-147">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a9976-147">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="e1bd3-147">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="e1bd3-147">Visual Studio</span></span>](#tab/visual-studio)
 
-* <span data-ttu-id="a9976-148">**Paket Yöneticisi konsolunda** aşağıdaki komutları çalıştırın</span><span class="sxs-lookup"><span data-stu-id="a9976-148">Run the following commands in **Package Manager Console**</span></span>
+* <span data-ttu-id="e1bd3-148">**Paket Yöneticisi konsolunda** aşağıdaki komutları çalıştırın</span><span class="sxs-lookup"><span data-stu-id="e1bd3-148">Run the following commands in **Package Manager Console**</span></span>
 
   ``` PowerShell
   Install-Package Microsoft.EntityFrameworkCore.Tools
@@ -124,46 +124,46 @@ dotnet add package Microsoft.EntityFrameworkCore.Sqlite
   Update-Database
   ```
 
-  <span data-ttu-id="a9976-149">Bu, [EF Core Için PMC araçlarını](../miscellaneous/cli/powershell.md)kurar.</span><span class="sxs-lookup"><span data-stu-id="a9976-149">This installs the [PMC tools for EF Core](../miscellaneous/cli/powershell.md).</span></span> <span data-ttu-id="a9976-150">Bu `Add-Migration` komut, model için ilk tablo kümesini oluşturmak üzere bir geçişi bir geçişe kattı.</span><span class="sxs-lookup"><span data-stu-id="a9976-150">The `Add-Migration` command scaffolds a migration to create the initial set of tables for the model.</span></span> <span data-ttu-id="a9976-151">`Update-Database` Komut veritabanını oluşturur ve yeni geçişi uygular.</span><span class="sxs-lookup"><span data-stu-id="a9976-151">The `Update-Database` command creates the database and applies the new migration to it.</span></span>
+  <span data-ttu-id="e1bd3-149">Bu, [EF Core Için PMC araçlarını](../miscellaneous/cli/powershell.md)kurar.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-149">This installs the [PMC tools for EF Core](../miscellaneous/cli/powershell.md).</span></span> <span data-ttu-id="e1bd3-150">Bu `Add-Migration` komut, model için ilk tablo kümesini oluşturmak üzere bir geçişi bir geçişe kattı.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-150">The `Add-Migration` command scaffolds a migration to create the initial set of tables for the model.</span></span> <span data-ttu-id="e1bd3-151">`Update-Database` Komut veritabanını oluşturur ve yeni geçişi uygular.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-151">The `Update-Database` command creates the database and applies the new migration to it.</span></span>
 
 ---
 
-## <a name="create-read-update--delete"></a><span data-ttu-id="a9976-152">Oluşturma, okuma, güncelleştirme & silme</span><span class="sxs-lookup"><span data-stu-id="a9976-152">Create, read, update & delete</span></span>
+## <a name="create-read-update--delete"></a><span data-ttu-id="e1bd3-152">Oluşturma, okuma, güncelleştirme & silme</span><span class="sxs-lookup"><span data-stu-id="e1bd3-152">Create, read, update & delete</span></span>
 
-* <span data-ttu-id="a9976-153">*Program.cs* açın ve içeriğini şu kodla değiştirin:</span><span class="sxs-lookup"><span data-stu-id="a9976-153">Open *Program.cs* and replace the contents with the following code:</span></span>
+* <span data-ttu-id="e1bd3-153">*Program.cs* açın ve içeriğini şu kodla değiştirin:</span><span class="sxs-lookup"><span data-stu-id="e1bd3-153">Open *Program.cs* and replace the contents with the following code:</span></span>
 
   [!code-csharp[Main](../../../samples/core/GetStarted/Program.cs)]
 
-## <a name="run-the-app"></a><span data-ttu-id="a9976-154">Uygulamayı çalıştırma</span><span class="sxs-lookup"><span data-stu-id="a9976-154">Run the app</span></span>
+## <a name="run-the-app"></a><span data-ttu-id="e1bd3-154">Uygulamayı çalıştırma</span><span class="sxs-lookup"><span data-stu-id="e1bd3-154">Run the app</span></span>
 
-# <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="a9976-155">.NET Core CLI</span><span class="sxs-lookup"><span data-stu-id="a9976-155">.NET Core CLI</span></span>](#tab/netcore-cli)
+# <a name="net-core-clitabnetcore-cli"></a>[<span data-ttu-id="e1bd3-155">.NET Core CLI</span><span class="sxs-lookup"><span data-stu-id="e1bd3-155">.NET Core CLI</span></span>](#tab/netcore-cli)
 
 ``` Console
 dotnet run
 ```
 
-# <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="a9976-156">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a9976-156">Visual Studio</span></span>](#tab/visual-studio)
+# <a name="visual-studiotabvisual-studio"></a>[<span data-ttu-id="e1bd3-156">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="e1bd3-156">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="a9976-157">Visual Studio, .NET Core konsol uygulamaları çalıştırırken tutarsız bir çalışma dizini kullanır.</span><span class="sxs-lookup"><span data-stu-id="a9976-157">Visual Studio uses an inconsistent working directory when running .NET Core console apps.</span></span> <span data-ttu-id="a9976-158">(bkz. [DotNet/Project-System # 3619](https://github.com/dotnet/project-system/issues/3619)) Bu durum, oluşan bir özel durumla sonuçlanır *: böyle bir tablo yok: Blogları*.</span><span class="sxs-lookup"><span data-stu-id="a9976-158">(see [dotnet/project-system#3619](https://github.com/dotnet/project-system/issues/3619)) This results in an exception being thrown: *no such table: Blogs*.</span></span> <span data-ttu-id="a9976-159">Çalışma dizinini güncelleştirmek için:</span><span class="sxs-lookup"><span data-stu-id="a9976-159">To update the working directory:</span></span>
+<span data-ttu-id="e1bd3-157">Visual Studio, .NET Core konsol uygulamaları çalıştırırken tutarsız bir çalışma dizini kullanır.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-157">Visual Studio uses an inconsistent working directory when running .NET Core console apps.</span></span> <span data-ttu-id="e1bd3-158">(bkz. [DotNet/Project-System # 3619](https://github.com/dotnet/project-system/issues/3619)) Bu durum, oluşan bir özel durumla sonuçlanır *: böyle bir tablo yok: Blogları*.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-158">(see [dotnet/project-system#3619](https://github.com/dotnet/project-system/issues/3619)) This results in an exception being thrown: *no such table: Blogs*.</span></span> <span data-ttu-id="e1bd3-159">Çalışma dizinini güncelleştirmek için:</span><span class="sxs-lookup"><span data-stu-id="e1bd3-159">To update the working directory:</span></span>
 
-* <span data-ttu-id="a9976-160">Projeye sağ tıklayın ve **Proje dosyasını Düzenle** ' yi seçin.</span><span class="sxs-lookup"><span data-stu-id="a9976-160">Right-click on the project and select **Edit Project File**</span></span>
-* <span data-ttu-id="a9976-161">*TargetFramework* özelliğinin hemen altında aşağıdakileri ekleyin:</span><span class="sxs-lookup"><span data-stu-id="a9976-161">Just below the *TargetFramework* property, add the following:</span></span>
+* <span data-ttu-id="e1bd3-160">Projeye sağ tıklayın ve **Proje dosyasını Düzenle** ' yi seçin.</span><span class="sxs-lookup"><span data-stu-id="e1bd3-160">Right-click on the project and select **Edit Project File**</span></span>
+* <span data-ttu-id="e1bd3-161">*TargetFramework* özelliğinin hemen altında aşağıdakileri ekleyin:</span><span class="sxs-lookup"><span data-stu-id="e1bd3-161">Just below the *TargetFramework* property, add the following:</span></span>
 
   ``` XML
   <StartWorkingDirectory>$(MSBuildProjectDirectory)</StartWorkingDirectory>
   ```
 
-* <span data-ttu-id="a9976-162">Dosyayı kaydedin</span><span class="sxs-lookup"><span data-stu-id="a9976-162">Save the file</span></span>
+* <span data-ttu-id="e1bd3-162">Dosyayı kaydedin</span><span class="sxs-lookup"><span data-stu-id="e1bd3-162">Save the file</span></span>
 
-<span data-ttu-id="a9976-163">Artık uygulamayı çalıştırabilirsiniz:</span><span class="sxs-lookup"><span data-stu-id="a9976-163">Now you can run the app:</span></span>
+<span data-ttu-id="e1bd3-163">Artık uygulamayı çalıştırabilirsiniz:</span><span class="sxs-lookup"><span data-stu-id="e1bd3-163">Now you can run the app:</span></span>
 
-* <span data-ttu-id="a9976-164">**Hata ayıklama > hata ayıklama olmadan Başlat**</span><span class="sxs-lookup"><span data-stu-id="a9976-164">**Debug > Start Without Debugging**</span></span>
+* <span data-ttu-id="e1bd3-164">**Hata ayıklama > hata ayıklama olmadan Başlat**</span><span class="sxs-lookup"><span data-stu-id="e1bd3-164">**Debug > Start Without Debugging**</span></span>
 
 ---
 
-# <a name="next-steps"></a><span data-ttu-id="a9976-165">Sonraki adımlar</span><span class="sxs-lookup"><span data-stu-id="a9976-165">Next steps</span></span>
+# <a name="next-steps"></a><span data-ttu-id="e1bd3-165">Sonraki adımlar</span><span class="sxs-lookup"><span data-stu-id="e1bd3-165">Next steps</span></span>
 
-* <span data-ttu-id="a9976-166">Bir Web uygulamasında EF Core kullanmak için [ASP.NET Core öğreticisini](/aspnet/core/data/ef-rp/intro) izleyin</span><span class="sxs-lookup"><span data-stu-id="a9976-166">Follow the [ASP.NET Core Tutorial](/aspnet/core/data/ef-rp/intro) to use EF Core in a web app</span></span>
-* <span data-ttu-id="a9976-167">[LINQ sorgu ifadeleri](/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations) hakkında daha fazla bilgi edinin</span><span class="sxs-lookup"><span data-stu-id="a9976-167">Learn more about [LINQ query expressions](/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations)</span></span>
-* <span data-ttu-id="a9976-168">[Gerekli](xref:core/modeling/required-optional) ve [en fazla uzunluk](xref:core/modeling/max-length) gibi Işlemleri belirtmek için [modelinizi yapılandırın](xref:core/modeling/index)</span><span class="sxs-lookup"><span data-stu-id="a9976-168">[Configure your model](xref:core/modeling/index) to specify things like [required](xref:core/modeling/required-optional) and [maximum length](xref:core/modeling/max-length)</span></span>
-* <span data-ttu-id="a9976-169">Modelinizi değiştirdikten sonra veritabanı şemasını güncelleştirmek için [geçişleri](xref:core/managing-schemas/migrations/index) kullanma</span><span class="sxs-lookup"><span data-stu-id="a9976-169">Use [Migrations](xref:core/managing-schemas/migrations/index) to update the database schema after changing your model</span></span>
+* <span data-ttu-id="e1bd3-166">Bir Web uygulamasında EF Core kullanmak için [ASP.NET Core öğreticisini](/aspnet/core/data/ef-rp/intro) izleyin</span><span class="sxs-lookup"><span data-stu-id="e1bd3-166">Follow the [ASP.NET Core Tutorial](/aspnet/core/data/ef-rp/intro) to use EF Core in a web app</span></span>
+* <span data-ttu-id="e1bd3-167">[LINQ sorgu ifadeleri](/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations) hakkında daha fazla bilgi edinin</span><span class="sxs-lookup"><span data-stu-id="e1bd3-167">Learn more about [LINQ query expressions](/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations)</span></span>
+* <span data-ttu-id="e1bd3-168">[Gerekli](xref:core/modeling/required-optional) ve [en fazla uzunluk](xref:core/modeling/max-length) gibi Işlemleri belirtmek için [modelinizi yapılandırın](xref:core/modeling/index)</span><span class="sxs-lookup"><span data-stu-id="e1bd3-168">[Configure your model](xref:core/modeling/index) to specify things like [required](xref:core/modeling/required-optional) and [maximum length](xref:core/modeling/max-length)</span></span>
+* <span data-ttu-id="e1bd3-169">Modelinizi değiştirdikten sonra veritabanı şemasını güncelleştirmek için [geçişleri](xref:core/managing-schemas/migrations/index) kullanma</span><span class="sxs-lookup"><span data-stu-id="e1bd3-169">Use [Migrations](xref:core/managing-schemas/migrations/index) to update the database schema after changing your model</span></span>
