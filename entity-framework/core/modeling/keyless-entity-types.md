@@ -5,16 +5,16 @@ ms.author: ansvyryd
 ms.date: 02/26/2018
 ms.assetid: 9F4450C5-1A3F-4BB6-AC19-9FAC64292AAD
 uid: core/modeling/keyless-entity-types
-ms.openlocfilehash: b968ac9602b9aa1f1c1e3181b6b76a64394d70f0
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: e78b9f91fd2505de300ced7b5e73291b5d1ad3b4
+ms.sourcegitcommit: 7bc43f21e7bdd64926314ea949aae689f1911956
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71150845"
+ms.lasthandoff: 09/25/2019
+ms.locfileid: "71266770"
 ---
-# <a name="keyless-entity-types"></a>Keyless varlık türleri
+# <a name="keyless-entity-types"></a>Anahtarsız Varlık Türleri
 > [!NOTE]
-> Bu özellik EF Core 2,1 ' de yenidir. 3,0 ' den önce, sorgu türleri olarak bilinirdi
+> Bu özellik, sorgu türlerinin adı altında EF Core 2,1 ' ye eklenmiştir. EF Core 3,0 ' de kavram, anahtarsız varlık türleri olarak yeniden adlandırıldı.
 
 Normal varlık türlerine ek olarak, bir EF Core modeli, anahtar değerleri içermeyen verilere karşı veritabanı sorgularını yürütmek için kullanılabilen, _daha seyrek varlık türleri_içerebilir.
 
@@ -56,7 +56,7 @@ Anahtarsız varlık türünü bir veritabanı nesnesiyle eşlemek `ToTable` veya
 Aşağıdaki örnek, bir veritabanı görünümünü sorgulamak için anahtarsız varlık türlerinin nasıl kullanılacağını gösterir.
 
 > [!TIP]
-> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/QueryTypes) GitHub üzerinde.
+> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/KeylessEntityTypes) GitHub üzerinde.
 
 İlk olarak, basit bir Blog ve gönderi modeli tanımlayın:
 
