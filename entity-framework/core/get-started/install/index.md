@@ -4,12 +4,12 @@ author: divega
 ms.date: 08/06/2017
 ms.assetid: 608cc774-c570-4809-8a3e-cd2c8446b8b2
 uid: core/get-started/install/index
-ms.openlocfilehash: eb808dd9d9b1b214947524cd83999f67be9cc0ff
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: 7bdedf563b7d919ba334db79af73c3eed3ba4129
+ms.sourcegitcommit: 2caec1e63f2ce1d9439ef6193df5a77da2fedd0f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71149078"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "71317576"
 ---
 # <a name="installing-entity-framework-core"></a>Entity Framework Core yükleniyor
 
@@ -17,7 +17,7 @@ ms.locfileid: "71149078"
 
 * EF Core bir [.NET Standard 2,1](/dotnet/standard/net-standard) kitaplığı. EF Core .NET Standard 2,1 ' i destekleyen bir .NET uygulamasının çalışmasını gerektirir. EF Core diğer .NET Standard 2,1 kitaplıkları tarafından da başvurulabilirler. 
 
-* Örneğin, .NET Core 'u hedefleyen uygulamalar geliştirmek için EF Core kullanabilirsiniz. .NET Core uygulamaları oluşturmak için [.NET Core SDK](https://dotnet.microsoft.com/download)gerekir. İsteğe bağlı olarak, Visual Studio, Mac için Visual Studio veya Visual Studio Code gibi bir geliştirme ortamı da kullanabilirsiniz. Daha fazla bilgi için [.NET Core Ile çalışmaya](/dotnet/core/get-started)başlama konusuna bakın.
+* Örneğin, .NET Core 'u hedefleyen uygulamalar geliştirmek için EF Core kullanabilirsiniz. .NET Core uygulamaları oluşturmak için [.NET Core SDK](https://dotnet.microsoft.com/download)gerekir. İsteğe bağlı olarak, [Visual Studio](https://visualstudio.microsoft.com/vs), [Mac için Visual Studio](https://visualstudio.microsoft.com/vs/mac)veya [Visual Studio Code](https://code.visualstudio.com)gibi bir geliştirme ortamı da kullanabilirsiniz. Daha fazla bilgi için [.NET Core Ile çalışmaya](/dotnet/core/get-started)başlama konusuna bakın.
 
 * Visual Studio 'Yu kullanarak Windows 'da uygulama geliştirmek için EF Core kullanabilirsiniz. [Visual Studio](https://visualstudio.microsoft.com/vs) 'nun en son sürümü önerilir.
 

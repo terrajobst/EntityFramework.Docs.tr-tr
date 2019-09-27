@@ -5,12 +5,12 @@ ms.author: ansvyryd
 ms.date: 09/12/2019
 ms.assetid: 28264681-4486-4891-888c-be5e4ade24f1
 uid: core/providers/cosmos/index
-ms.openlocfilehash: c753bb71089c91cbb26b970cddd118645fb18d56
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: 683436aa485d2fef9aa8bf6c6ff02b00dfeb28cf
+ms.sourcegitcommit: 2caec1e63f2ce1d9439ef6193df5a77da2fedd0f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71150821"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "71317569"
 ---
 # <a name="ef-core-azure-cosmos-db-provider"></a>EF Core Azure Cosmos DB sağlayıcısı
 
@@ -34,7 +34,9 @@ Install-Package Microsoft.EntityFrameworkCore.Cosmos
 > [!TIP]  
 > Bu makalenin [örneğini GitHub '](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Cosmos)da görebilirsiniz.
 
-Diğer sağlayıcılarda olduğu gibi, ilk adım çağrlandır `UseCosmos`:[!code-csharp[Configuration](../../../../samples/core/Cosmos/ModelBuilding/OrderContext.cs?name=Configuration)]
+Diğer sağlayıcılarda olduğu gibi, ilk adım çağrlandır `UseCosmos`:
+
+[!code-csharp[Configuration](../../../../samples/core/Cosmos/ModelBuilding/OrderContext.cs?name=Configuration)]
 
 > [!WARNING]
 > Uç nokta ve anahtar kolaylık sağlaması için burada kodlanmıştır, ancak bir üretim uygulamasında bu uygulamalar güvenli bir şekilde [depolanmalıdır](https://docs.microsoft.com/aspnet/core/security/app-secrets#secret-manager)
@@ -45,7 +47,9 @@ Bu örnekte `Order` , [sahip olunan türe](../../modeling/owned-entities.md) `St
 
 [!code-csharp[StreetAddress](../../../../samples/core/Cosmos/ModelBuilding/StreetAddress.cs?name=StreetAddress)]
 
-Verileri kaydetme ve sorgulama normal EF düzenine uyar:[!code-csharp[HelloCosmos](../../../../samples/core/Cosmos/ModelBuilding/Sample.cs?name=HelloCosmos)]
+Verileri kaydetme ve sorgulama normal EF düzenine uyar:
+
+[!code-csharp[HelloCosmos](../../../../samples/core/Cosmos/ModelBuilding/Sample.cs?name=HelloCosmos)]
 
 > [!IMPORTANT]
 > Çağırma `EnsureCreated` , gerekli koleksiyonları oluşturmak ve modelde varsa [çekirdek verileri](../../modeling/data-seeding.md) eklemek için gereklidir. Ancak `EnsureCreated` , performans sorunlarına neden olabileceğinden, yalnızca dağıtım sırasında, normal işlem değil çağrılmalıdır.
