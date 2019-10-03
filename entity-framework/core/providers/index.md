@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 02/23/2018
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/providers/index
-ms.openlocfilehash: 096d68f814e279bd224dfc50111d6576ab5eb223
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: db06906e6af518a27a21f30b12d722ce06e9bd52
+ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71149243"
+ms.lasthandoff: 10/02/2019
+ms.locfileid: "71813517"
 ---
 # <a name="database-providers"></a>Veritabanı Sağlayıcıları
 
@@ -44,27 +44,23 @@ Entity Framework Core, veritabanı sağlayıcıları adlı eklenti kitaplıklar�
 | [Devart. Data. SQLite. EFCore](https://www.nuget.org/packages/Devart.Data.SQLite.EFCore/)                               | SQLite 3 ve sonraki sürümler           | [DevArt](https://www.devart.com/)                                             | Ödenmemiş                 | [belgeler](https://www.devart.com/dotconnect/sqlite/docs/)                                                                                                                                             |
 | [Devart.Data.MySql.EFCore](https://www.nuget.org/packages/Devart.Data.MySql.EFCore/)                                 | MySQL 5 ve sonraki sürümler            | [DevArt](https://www.devart.com/)                                             | Ödenmemiş                 | [belgeler](https://www.devart.com/dotconnect/mysql/docs/)                                                                                                                                              |
 
-## <a name="future-providers"></a>Gelecekteki sağlayıcılar
-
-### <a name="cosmos-db"></a>Cosmos DB
-
-Cosmos DB SQL API 'SI için EF Core sağlayıcısı geliştirdik.
-Bu, oluşturduğumuz ilk tamamlanmış belge odaklı veritabanı sağlayıcısıdır ve bu alýþtýrmadaki dersleri, EF Core gelecekteki sürümlerinin ve muhtemelen diğer ilişkisel olmayan sağlayıcıların tasarımındaki geliştirmeleri bilgilendirmeye devam edecektir.
-[NuGet galerisinde](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Cosmos)önizleme bulunur.
-
 ## <a name="adding-a-database-provider-to-your-application"></a>Uygulamanıza veritabanı sağlayıcısı ekleme
 
-EF Core için veritabanı sağlayıcılarının çoğu, NuGet paketleri olarak dağıtılır. Bu, komut satırındaki `dotnet` Aracı kullanılarak yüklenebilecekleri anlamına gelir:
+EF Core için veritabanı sağlayıcılarının çoğu NuGet paketleri olarak dağıtılır ve aşağıdaki gibi yüklenebilir:
+
+# <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
 ``` console
 dotnet add package provider_package_name
 ```
 
-Visual Studio 'da NuGet 'in Paket Yöneticisi konsolunu kullanarak:
+# <a name="visual-studiotabvs"></a>[Visual Studio](#tab/vs)
 
 ``` powershell
 install-package provider_package_name
 ```
+
+***
 
 Yüklendikten sonra, bir bağımlılık ekleme kapsayıcısı kullanıyorsanız `DbContext`, `OnConfiguring` bu sağlayıcıyı yöntemde ya `AddDbContext` da yönteminde yapılandıracaksınız.
 Örneğin, aşağıdaki satır, SQL Server sağlayıcıyı geçilen bağlantı dizesiyle yapılandırır:

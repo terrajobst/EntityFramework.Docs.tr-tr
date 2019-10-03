@@ -4,12 +4,12 @@ author: rick-anderson
 ms.date: 09/17/2019
 ms.assetid: 3c88427c-20c6-42ec-a736-22d3eccd5071
 uid: core/get-started/index
-ms.openlocfilehash: 41ebdcbb3f51c914ee7befb3c1a9c0042e9b43c8
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: fca1b532b34e20aeea1968939af96c692d60d738
+ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71196892"
+ms.lasthandoff: 10/02/2019
+ms.locfileid: "71813612"
 ---
 # <a name="getting-started-with-ef-core"></a>EF Core kullanmaya başlama
 
@@ -23,11 +23,11 @@ Windows üzerinde Visual Studio 'yu kullanarak veya Windows, macOS veya Linux ü
 
 Aşağıdaki yazılımı yükler:
 
-# <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
 * [.NET Core 3,0 SDK](https://www.microsoft.com/net/download/core).
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * [Visual Studio 2019 sürüm 16,3 veya üzeri](https://www.visualstudio.com/downloads/) bu iş yükü:
   * **.NET Core platformlar arası geliştirme** ( **diğer araç kümeleri**altında)
@@ -36,14 +36,14 @@ Aşağıdaki yazılımı yükler:
 
 ## <a name="create-a-new-project"></a>Yeni bir proje oluşturma
 
-# <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
 ``` Console
 dotnet new console -o EFGetStarted
 cd EFGetStarted
 ```
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Visual Studio 'Yu aç
 * **Yeni proje oluştur ' a** tıklayın
@@ -56,13 +56,13 @@ cd EFGetStarted
 
 EF Core yüklemek için, hedeflemek istediğiniz EF Core veritabanı sağlayıcılarının paketini yüklersiniz. Bu öğretici, .NET Core 'un desteklediği tüm platformlarda çalıştığı için SQLite kullanır. Kullanılabilir sağlayıcıların bir listesi için bkz. [veritabanı sağlayıcıları](../providers/index.md).
 
-# <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
 ``` Console
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 ```
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * **Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi konsolu**
 * Aşağıdaki komutları çalıştırın:
@@ -79,11 +79,11 @@ dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 
 Modeli oluşturan bir bağlam sınıfı ve varlık sınıfları tanımlayın.
 
-# <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
 * Proje dizininde aşağıdaki kodla **model.cs** oluşturun
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Projeye sağ tıklayın ve **> sınıfı Ekle** ' yi seçin.
 * Ad olarak **model.cs** girin ve **Ekle** ' ye tıklayın.
@@ -101,7 +101,7 @@ EF Core Ayrıca, varolan bir veritabanından bir modele [ters mühendislik](../m
 
 Aşağıdaki adımlar bir veritabanı oluşturmak için [geçişleri](xref:core/managing-schemas/migrations/index) kullanır.
 
-# <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
 * Aşağıdaki komutları çalıştırın:
 
@@ -114,7 +114,7 @@ Aşağıdaki adımlar bir veritabanı oluşturmak için [geçişleri](xref:core/
 
   Bu, bir projede komutu çalıştırmak için gerekli olan [DotNet EF](../miscellaneous/cli/dotnet.md) ve tasarım paketini de yüklüyor. Bu `migrations` komut, model için ilk tablo kümesini oluşturmak üzere bir geçişi bir geçişe kattı. `database update` Komut veritabanını oluşturur ve yeni geçişi uygular.
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * **Paket Yöneticisi konsolunda** aşağıdaki komutları çalıştırın
 
@@ -136,13 +136,13 @@ Aşağıdaki adımlar bir veritabanı oluşturmak için [geçişleri](xref:core/
 
 ## <a name="run-the-app"></a>Uygulamayı çalıştırma
 
-# <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
 ``` Console
 dotnet run
 ```
 
-# <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 Visual Studio, .NET Core konsol uygulamaları çalıştırırken tutarsız bir çalışma dizini kullanır. (bkz. [DotNet/Project-System # 3619](https://github.com/dotnet/project-system/issues/3619)) Bu durum, oluşan bir özel durumla sonuçlanır *: böyle bir tablo yok: Blogları*. Çalışma dizinini güncelleştirmek için:
 
@@ -161,7 +161,7 @@ Artık uygulamayı çalıştırabilirsiniz:
 
 ---
 
-# <a name="next-steps"></a>Sonraki adımlar
+## <a name="next-steps"></a>Sonraki adımlar
 
 * Bir Web uygulamasında EF Core kullanmak için [ASP.NET Core öğreticisini](/aspnet/core/data/ef-rp/intro) izleyin
 * [LINQ sorgu ifadeleri](/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations) hakkında daha fazla bilgi edinin

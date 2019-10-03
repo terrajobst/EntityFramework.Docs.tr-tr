@@ -4,12 +4,12 @@ author: divega
 ms.date: 08/13/2017
 ms.assetid: 8BD43C8C-63D9-4F3A-B954-7BC518A1B7DB
 uid: core/miscellaneous/1x-2x-upgrade
-ms.openlocfilehash: 1222f10811914f65822a49e18522c287ece12174
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
+ms.openlocfilehash: 42e59b47f569ef6fcf72fc5bd5f94d3e9d807a24
+ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306497"
+ms.lasthandoff: 10/02/2019
+ms.locfileid: "71813567"
 ---
 # <a name="upgrading-applications-from-previous-versions-to-ef-core-20"></a>Önceki sürümlerden uygulamaları EF Core 2,0 ' ye yükseltme
 
@@ -94,19 +94,19 @@ SQL Server ve SQLite sağlayıcıları EF ekibi tarafından sevk edilir ve 2,0 s
 
 Not: Bu değişiklikler çoğu uygulama kodunu etkilememelidir.
 
-Bir [ILogger](https://github.com/aspnet/Logging/blob/dev/src/Microsoft.Extensions.Logging.Abstractions/ILogger.cs) 'a gönderilen iletiler Için olay kimlikleri 2,0 içinde değişmiştir. Olay kimlikleri artık EF Core kod genelinde benzersizdir. Bu iletiler artık, örneğin MVC gibi kullanılan yapılandırılmış günlük için standart kalıbı de izler.
+Bir [ILogger](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) 'a gönderilen iletiler Için olay kimlikleri 2,0 içinde değişmiştir. Olay kimlikleri artık EF Core kod genelinde benzersizdir. Bu iletiler artık, örneğin MVC gibi kullanılan yapılandırılmış günlük için standart kalıbı de izler.
 
-Günlükçü kategorileri de değişmiştir. Artık [Dbloggercategory](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/DbLoggerCategory.cs)aracılığıyla erişilen iyi bilinen bir kategori kümesi vardır.
+Günlükçü kategorileri de değişmiştir. Artık [Dbloggercategory](https://github.com/aspnet/EntityFrameworkCore/blob/rel/2.0.0/src/EFCore/DbLoggerCategory.cs)aracılığıyla erişilen iyi bilinen bir kategori kümesi vardır.
 
-[Diagnosticsource](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md) olayları artık karşılık gelen `ILogger` iletilerle aynı olay kimliği adlarını kullanır. Olay yükleri, [eventdata](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Diagnostics/EventData.cs)'dan türetilmiş tüm nominal türlerdir.
+[Diagnosticsource](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md) olayları artık karşılık gelen `ILogger` iletilerle aynı olay kimliği adlarını kullanır. Olay yükleri, [eventdata](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.diagnostics.eventdata)'dan türetilmiş tüm nominal türlerdir.
 
-Olay kimlikleri, yük türleri ve kategoriler [Coreeventıd](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Diagnostics/CoreEventId.cs) ve [Relationaleventıd](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore.Relational/Diagnostics/RelationalEventId.cs) sınıflarında belgelenmiştir.
+Olay kimlikleri, yük türleri ve kategoriler [Coreeventıd](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.diagnostics.coreeventid) ve [Relationaleventıd](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.diagnostics.relationaleventid) sınıflarında belgelenmiştir.
 
 Kimlikler ayrıca Microsoft. EntityFrameworkCore. Infrastructure ' dan yeni Microsoft. EntityFrameworkCore. Diagnostics ad alanına de taşınmıştır.
 
 ## <a name="ef-core-relational-metadata-api-changes"></a>EF Core ilişkisel meta veri API 'SI değişiklikleri
 
-EF Core 2,0, artık kullanılan her farklı sağlayıcı için farklı bir [IModel](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/IModel.cs) oluşturacak. Bu genellikle uygulama için saydamdır. Bu, alt düzey meta veri API 'lerinin basitleştirdiğini, _ortak ilişkisel meta veri kavramlarının_ her zaman `.Relational` `.SqlServer`, `.Sqlite`, vb. bir çağrısıyla yapılan bir çağrı aracılığıyla yapılması için kolaylaştırmıştır. Örneğin, 1.1. x kodu şöyle:
+EF Core 2,0, artık kullanılan her farklı sağlayıcı için farklı bir [IModel](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.metadata.imodel) oluşturacak. Bu genellikle uygulama için saydamdır. Bu, alt düzey meta veri API 'lerinin basitleştirdiğini, _ortak ilişkisel meta veri kavramlarının_ her zaman `.Relational` `.SqlServer`, `.Sqlite`, vb. bir çağrısıyla yapılan bir çağrı aracılığıyla yapılması için kolaylaştırmıştır. Örneğin, 1.1. x kodu şöyle:
 
 ``` csharp
 var tableName = context.Model.FindEntityType(typeof(User)).SqlServer().TableName;
@@ -145,13 +145,13 @@ Bu, "MyDatabase" adlı bir veritabanını oluşturur/kullanır. `UseInMemoryData
 
 ## <a name="read-only-api-changes"></a>Salt okunurdur API değişiklikleri
 
-`IsReadOnlyBeforeSave`, `IsReadOnlyAfterSave`, ve `IsStoreGeneratedAlways` kullanımdan kaldırılmıştır ve [beforesavebehavior](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/IProperty.cs#L39) ve [aftersavebehavior](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/IProperty.cs#L55)ile değiştirilmiştir. Bu davranışlar her özellik için geçerlidir (yalnızca depo tarafından üretilen Özellikler değil) ve bir veritabanı satırına (`BeforeSaveBehavior`) eklenirken veya var olan bir veritabanı`AfterSaveBehavior`satırı () güncelleştirilirken özelliğin değerinin nasıl kullanılacağı belirlenir.
+`IsReadOnlyBeforeSave`, `IsReadOnlyAfterSave`, ve `IsStoreGeneratedAlways` kullanımdan kaldırılmıştır ve [beforesavebehavior](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.metadata.iproperty.beforesavebehavior) ve [aftersavebehavior](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.metadata.iproperty.aftersavebehavior)ile değiştirilmiştir. Bu davranışlar her özellik için geçerlidir (yalnızca depo tarafından üretilen Özellikler değil) ve bir veritabanı satırına (`BeforeSaveBehavior`) eklenirken veya var olan bir veritabanı`AfterSaveBehavior`satırı () güncelleştirilirken özelliğin değerinin nasıl kullanılacağı belirlenir.
 
-[Valuegenerated. OnAddOrUpdate](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/ValueGenerated.cs) (örneğin, hesaplanan sütunlar için) olarak işaretlenen özellikler, varsayılan olarak, özelliğinde ayarlanmış olan tüm değerleri yoksayar. Bu, izlenen varlık üzerinde herhangi bir değerin ayarlanmış veya değiştirilmiş olmasından bağımsız olarak her zaman bir mağaza tarafından oluşturulan değerin elde edilmeyeceği anlamına gelir. Bu, farklı `Before\AfterSaveBehavior`ayarlanarak değiştirilebilir.
+[Valuegenerated. OnAddOrUpdate](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.metadata.valuegenerated) (örneğin, hesaplanan sütunlar için) olarak işaretlenen özellikler, varsayılan olarak, özelliğinde ayarlanmış olan tüm değerleri yoksayar. Bu, izlenen varlık üzerinde herhangi bir değerin ayarlanmış veya değiştirilmiş olmasından bağımsız olarak her zaman bir mağaza tarafından oluşturulan değerin elde edilmeyeceği anlamına gelir. Bu, farklı `Before\AfterSaveBehavior`ayarlanarak değiştirilebilir.
 
 ## <a name="new-clientsetnull-delete-behavior"></a>Yeni ClientSetNull silme davranışı
 
-Önceki sürümlerde, [DeleteBehavior. restrict](https://github.com/aspnet/EntityFramework/blob/dev/src/EFCore/Metadata/DeleteBehavior.cs) bağlam tarafından izlenen varlıklar için daha fazla eşleşen `SetNull` semantiğini daha fazla kapatan bir davranışa sahipti. EF Core 2,0 ' de, isteğe `ClientSetNull` bağlı ilişkiler için varsayılan olarak yeni bir davranış sunulmuştur. Bu davranışın, `SetNull` EF Core kullanılarak oluşturulan veritabanlarının izlenen `Restrict` varlıkları ve davranışları için semantiği vardır. Deneyimimizde, izlenen varlıklar ve veritabanı için en çok beklenen/kullanışlı davranışlar vardır. `DeleteBehavior.Restrict`, isteğe bağlı ilişkiler için ayarlandığında, izlenen varlıklar için artık kabul edilir.
+Önceki sürümlerde, [DeleteBehavior. restrict](https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.deletebehavior) bağlam tarafından izlenen varlıklar için daha fazla eşleşen `SetNull` semantiğini daha fazla kapatan bir davranışa sahipti. EF Core 2,0 ' de, isteğe `ClientSetNull` bağlı ilişkiler için varsayılan olarak yeni bir davranış sunulmuştur. Bu davranışın, `SetNull` EF Core kullanılarak oluşturulan veritabanlarının izlenen `Restrict` varlıkları ve davranışları için semantiği vardır. Deneyimimizde, izlenen varlıklar ve veritabanı için en çok beklenen/kullanışlı davranışlar vardır. `DeleteBehavior.Restrict`, isteğe bağlı ilişkiler için ayarlandığında, izlenen varlıklar için artık kabul edilir.
 
 ## <a name="provider-design-time-packages-removed"></a>Sağlayıcı tasarım-zaman paketleri kaldırıldı
 

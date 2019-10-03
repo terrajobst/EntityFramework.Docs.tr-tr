@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 9af0cba7-7605-4f8f-9cfa-dd616fcb880c
 uid: core/providers/in-memory/index
-ms.openlocfilehash: 28f5f262b41cbc1f196e41d75c8b88ca60e678fe
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: b668e286993b9687be21aa815df4e8b8dd308c60
+ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71149242"
+ms.lasthandoff: 10/02/2019
+ms.locfileid: "71813527"
 ---
 # <a name="ef-core-in-memory-database-provider"></a>Bellek Içi veritabanı sağlayıcısını EF Core
 
@@ -19,17 +19,27 @@ Bu veritabanı sağlayıcısı, Entity Framework Core bellek içi veritabanıyla
 
 [Microsoft. EntityFrameworkCore. InMemory NuGet paketini](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory/)yükler.
 
+# <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
+
+``` console
+dotnet add package Microsoft.EntityFrameworkCore.InMemory
+```
+
+# <a name="visual-studiotabvs"></a>[Visual Studio](#tab/vs)
+
 ``` powershell
 Install-Package Microsoft.EntityFrameworkCore.InMemory
 ```
 
+***
+
 ## <a name="get-started"></a>Başlarken
 
 Aşağıdaki kaynaklar, bu sağlayıcıyı kullanmaya başlamanıza yardımcı olur.
-* [InMemory ile test etme](../../miscellaneous/testing/in-memory.md)
 
+* [InMemory ile test etme](../../miscellaneous/testing/in-memory.md)
 * [UnicornStore örnek uygulama testleri](https://github.com/rowanmiller/UnicornStore/blob/master/UnicornStore/src/UnicornStore.Tests/Controllers/ShippingControllerTests.cs)
 
 ## <a name="supported-database-engines"></a>Desteklenen veritabanı motorları
 
-* Yerleşik bellek içi veritabanı (yalnızca test amaçlı olarak tasarlanmıştır)
+İşlem içi bellek veritabanı (yalnızca test amaçlı olarak tasarlanmıştır)

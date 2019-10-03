@@ -4,17 +4,16 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: f7c241159c689d4648b2778b53e50c22f580deb0
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: 0dd4c5c4aa1a5d241fb48abf1372a678d0f7a7a3
+ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197930"
+ms.lasthandoff: 10/02/2019
+ms.locfileid: "71813626"
 ---
 # <a name="breaking-changes-included-in-ef-core-30"></a>EF Core 3,0 ' de yer alan son değişiklikler
 Aşağıdaki API ve davranış değişiklikleri, 3.0.0 sürümüne yükseltirken mevcut uygulamaları bozmak için olası bir davranıştır.
 Veritabanı sağlayıcılarını yalnızca etkilemek için beklediğimiz değişiklikler, [sağlayıcı değişiklikleri](xref:core/providers/provider-log)altında belgelenmiştir.
-Bir 3,0 önizlemeden başka bir 3,0 önizlemeye olan kesintiler burada açıklanmamıştır.
 
 ## <a name="summary"></a>Özet
 
@@ -76,8 +75,6 @@ Bir 3,0 önizlemeden başka bir 3,0 önizlemeye olan kesintiler burada açıklan
 [Sorun izleme #14935](https://github.com/aspnet/EntityFrameworkCore/issues/14935)
 [Ayrıca bkz. sorun #12795](https://github.com/aspnet/EntityFrameworkCore/issues/12795)
 
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
-
 **Eski davranış**
 
 3,0 öncesinde, EF Core bir sorgunun parçası olan bir ifadeyi SQL 'e veya bir parametreye dönüştüremediğinden, istemci üzerindeki ifadeyi otomatik olarak değerlendirdi.
@@ -107,8 +104,6 @@ Bir sorgu tam olarak çevrilemeyecek şekilde, sorguyu çevrilebilen bir biçimd
 
 [Sorun izleniyor #15498](https://github.com/aspnet/EntityFrameworkCore/issues/15498)
 
-Bu değişiklik EF Core 3,0-Preview 7 ' de kullanıma sunulmuştur.
-
 **Eski davranış**
 
 3,0 öncesinde, EF Core .NET Standard 2,0 ' i hedefledi ve .NET Framework dahil olmak üzere bu standardı destekleyen tüm platformlarda çalışacaktır.
@@ -129,8 +124,6 @@ Modern bir .NET platformuna geçmeyi düşünün. Bu mümkün değilse, her ikis
 ### <a name="entity-framework-core-is-no-longer-part-of-the-aspnet-core-shared-framework"></a>Entity Framework Core artık ASP.NET Core paylaşılan Framework 'ün bir parçası değil
 
 [Sorun bildirimleri izleniyor # 325](https://github.com/aspnet/Announcements/issues/325)
-
-Bu değişiklik ASP.NET Core 3,0-Preview 1 ' de kullanıma sunulmuştur. 
 
 **Eski davranış**
 
@@ -155,8 +148,6 @@ ASP.NET Core 3,0 uygulamasında veya desteklenen başka bir uygulamada EF Core k
 ### <a name="the-ef-core-command-line-tool-dotnet-ef-is-no-longer-part-of-the-net-core-sdk"></a>EF Core komut satırı aracı, DotNet EF, artık .NET Core SDK bir parçası değil
 
 [Sorun izleniyor #14016](https://github.com/aspnet/EntityFrameworkCore/issues/14016)
-
-Bu değişiklik EF Core 3,0-Preview 4 ' te ve ilgili .NET Core SDK sürümünde sunulmuştur.
 
 **Eski davranış**
 
@@ -184,8 +175,6 @@ Ayrıca, bir [araç bildirim dosyası](https://github.com/dotnet/cli/issues/1028
 ### <a name="fromsql-executesql-and-executesqlasync-have-been-renamed"></a>FromSql, ExecuteSql ve ExecuteSqlAsync yeniden adlandırıldı
 
 [Sorun izleniyor #10996](https://github.com/aspnet/EntityFrameworkCore/issues/10996)
-
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -227,8 +216,6 @@ Yeni yöntem adlarını kullanmak için geçiş yapın.
 
 [Sorun izleniyor #15704](https://github.com/aspnet/EntityFrameworkCore/issues/15704)
 
-Bu değişiklik EF Core 3,0-Preview 6 ' da sunulmuştur.
-
 **Eski davranış**
 
 3,0 EF Core önce, `FromSql` Yöntem sorgunun herhangi bir yerinden belirtilebilir.
@@ -249,8 +236,6 @@ EF Core 3,0 ' den başlayarak, yeni `FromSqlRaw` ve `FromSqlInterpolated` Yönte
 ### <a name="no-tracking-queries-no-longer-perform-identity-resolution"></a>Hiçbir izleme sorgusu artık kimlik çözümlemesi gerçekleştirmesiz
 
 [Sorun izleniyor #13518](https://github.com/aspnet/EntityFrameworkCore/issues/13518)
-
-Bu değişiklik EF Core 3,0-Preview 6 ' da sunulmuştur.
 
 **Eski davranış**
 
@@ -279,8 +264,6 @@ Kimlik çözümlemesi gerekiyorsa izleme sorgusu kullanın.
 
 [Sorun izleniyor #14523](https://github.com/aspnet/EntityFrameworkCore/issues/14523)
 
-Bu değişiklik EF Core 3,0-Preview 7 ' de geri döndürülüyor.
-
 EF Core 3,0 ' deki yeni yapılandırma, uygulama tarafından herhangi bir olayın günlük düzeyinin belirtilmesini sağladığından bu değişikliği geri çevirdik. Örneğin, SQL `Debug`'in günlüğe kaydedilmesini değiştirmek için, `OnConfiguring` veya `AddDbContext`düzeyini açıkça yapılandırın:
 ```C#
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -294,8 +277,6 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 ### <a name="temporary-key-values-are-no-longer-set-onto-entity-instances"></a>Geçici anahtar değerleri artık varlık örneklerine ayarlı değil
 
 [Sorun izleniyor #12378](https://github.com/aspnet/EntityFrameworkCore/issues/12378)
-
-Bu değişiklik EF Core 3,0-Preview 2 ' de kullanıma sunulmuştur.
 
 **Eski davranış**
 
@@ -324,8 +305,6 @@ Bu, şunları önlenebilir:
 ### <a name="detectchanges-honors-store-generated-key-values"></a>DetectChanges, Store tarafından oluşturulan anahtar değerlerini
 
 [Sorun izleniyor #14616](https://github.com/aspnet/EntityFrameworkCore/issues/14616)
-
-Bu değişiklik EF Core 3,0-Preview 3 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -365,8 +344,6 @@ public string Id { get; set; }
 
 [Sorun izleniyor #10114](https://github.com/aspnet/EntityFrameworkCore/issues/10114)
 
-Bu değişiklik EF Core 3,0-Preview 3 ' te sunulmuştur.
-
 **Eski davranış**
 
 3,0 öncesinde, EF Core (gerekli bir asıl öğe silindiğinde veya gerekli bir sorumluya ilişki olmadığında bağımlı varlıkları silme), SaveChanges çağrılana kadar gerçekleşmediği için.
@@ -394,8 +371,6 @@ context.ChangeTracker.DeleteOrphansTiming = CascadeTiming.OnSaveChanges;
 
 [Sorun izleniyor #12661](https://github.com/aspnet/EntityFrameworkCore/issues/12661)
 
-Bu değişiklik EF Core 3,0-Preview 5 ' te sunulmuştur.
-
 **Eski davranış**
 
 3,0 ' den `DeleteBehavior.Restrict` önce, sözdizimi ile `Restrict` veritabanında yabancı anahtarlar oluşturdunuz, ancak aynı zamanda iç düzeltmeyi belirgin olmayan bir şekilde değiştirdi.
@@ -416,8 +391,6 @@ Bu değişiklik, beklenmeyen yan etkilere gerek kalmadan sezgisel bir `DeleteBeh
 ### <a name="query-types-are-consolidated-with-entity-types"></a>Sorgu türleri varlık türleriyle birleştirilir
 
 [Sorun izleniyor #14194](https://github.com/aspnet/EntityFrameworkCore/issues/14194)
-
-Bu değişiklik EF Core 3,0-Preview 3 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -449,8 +422,6 @@ Birincil anahtar beklendiğinde ancak kuralıyla eşleşmediği zaman yanlış y
 [](https://github.com/aspnet/EntityFrameworkCore/issues/12444)
 Sorun izleme #12444 izleme sorunu[#9148](https://github.com/aspnet/EntityFrameworkCore/issues/9148)
 izleme sorunu[#14153](https://github.com/aspnet/EntityFrameworkCore/issues/14153)
-
-Bu değişiklik EF Core 3,0-Preview 3 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -508,8 +479,6 @@ Yukarıdaki örnekte gösterildiği gibi, sahip olunan tür ilişkilerinin yapı
 
 [Sorun izleniyor #9005](https://github.com/aspnet/EntityFrameworkCore/issues/9005)
 
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
-
 **Eski davranış**
 
 Aşağıdaki modeli göz önünde bulundurun:
@@ -544,8 +513,6 @@ Modelinizin tüm isteğe bağlı sütunlarla ilişkili bir tablo paylaşımına 
 ### <a name="all-entities-sharing-a-table-with-a-concurrency-token-column-have-to-map-it-to-a-property"></a>Bir eşzamanlılık belirteci sütunuyla bir tabloyu paylaşan tüm varlıkların onu bir özellik ile eşlemesi gerekir
 
 [Sorun izleniyor #14154](https://github.com/aspnet/EntityFrameworkCore/issues/14154)
-
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -598,8 +565,6 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 ### <a name="inherited-properties-from-unmapped-types-are-now-mapped-to-a-single-column-for-all-derived-types"></a>Eşlenmemiş türlerden devralınan özellikler artık tüm türetilmiş türler için tek bir sütunla eşleştirilir
 
 [Sorun izleniyor #13998](https://github.com/aspnet/EntityFrameworkCore/issues/13998)
-
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -663,8 +628,6 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 ### <a name="the-foreign-key-property-convention-no-longer-matches-same-name-as-the-principal-property"></a>Yabancı anahtar özellik kuralı artık Principal özelliği ile aynı ad ile eşleşmiyor
 
 [Sorun izleniyor #13274](https://github.com/aspnet/EntityFrameworkCore/issues/13274)
-
-Bu değişiklik EF Core 3,0-Preview 3 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -734,8 +697,6 @@ Bu değişiklik, sahip olan türde birincil anahtar özelliğini yanlışlıkla 
 
 [Sorun izleniyor #14218](https://github.com/aspnet/EntityFrameworkCore/issues/14218)
 
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
-
 **Eski davranış**
 
 EF Core 3,0 ' dan önce, bağlam bağlantıyı bir `TransactionScope`içinde açarsa, geçerli `TransactionScope` etkinken bağlantı açık kalır.
@@ -788,8 +749,6 @@ using (new TransactionScope())
 
 [Sorun izleniyor #6872](https://github.com/aspnet/EntityFrameworkCore/issues/6872)
 
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
-
 **Eski davranış**
 
 3,0 EF Core önce, tüm bellek içi tamsayı anahtar özellikleri için bir paylaşılan değer Oluşturucu kullanılmıştır.
@@ -811,8 +770,6 @@ Bunun yerine, belirli anahtar değerlerine bağlı değil veya yeni davranışla
 ### <a name="backing-fields-are-used-by-default"></a>Yedekleme alanları varsayılan olarak kullanılır
 
 [Sorun izleniyor #12430](https://github.com/aspnet/EntityFrameworkCore/issues/12430)
-
-Bu değişiklik EF Core 3,0-Preview 2 ' de kullanıma sunulmuştur.
 
 **Eski davranış**
 
@@ -841,8 +798,6 @@ modelBuilder.UsePropertyAccessMode(PropertyAccessMode.PreferFieldDuringConstruct
 
 [Sorun izleniyor #12523](https://github.com/aspnet/EntityFrameworkCore/issues/12523)
 
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
-
 **Eski davranış**
 
 EF Core 3,0 öncesinde, birden çok alan bir özelliğin yedekleme alanını bulmaya yönelik kurallarla eşleşirse, bir alan belirli bir öncelik sırasına göre seçilir.
@@ -869,8 +824,6 @@ modelBuilder
 ```
 
 ### <a name="field-only-property-names-should-match-the-field-name"></a>Yalnızca alan özellik adları alan adıyla eşleşmelidir
-
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -920,8 +873,6 @@ modelBuilder
 
 [Sorun izleniyor #14756](https://github.com/aspnet/EntityFrameworkCore/issues/14756)
 
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
-
 **Eski davranış**
 
 EF Core 3,0 ' dan önce `AddDbContext` , `AddDbContextPool` ' ı çağırarak günlüğe kaydetme ve bellek önbelleğe alma hizmetlerini D. I ile birlikte [addlogging](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.loggingservicecollectionextensions.addlogging) ve [addmemorycache](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.memorycacheservicecollectionextensions.addmemorycache)çağrıları ile de kaydeder.
@@ -943,8 +894,6 @@ Uygulamanız bu hizmetlere ihtiyaç duyuyorsa, bunları [Addlogging](https://doc
 ### <a name="dbcontextentry-now-performs-a-local-detectchanges"></a>DbContext. Entry artık yerel bir DetectChanges gerçekleştiriyor
 
 [Sorun izleniyor #13552](https://github.com/aspnet/EntityFrameworkCore/issues/13552)
-
-Bu değişiklik EF Core 3,0-Preview 3 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -971,8 +920,6 @@ Bu değişiklik, kullanmanın `context.Entry`varsayılan performansını gelişt
 ### <a name="string-and-byte-array-keys-are-not-client-generated-by-default"></a>Dize ve bayt dizisi anahtarları, varsayılan olarak istemci tarafından oluşturulur
 
 [Sorun izleniyor #14617](https://github.com/aspnet/EntityFrameworkCore/issues/14617)
-
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -1012,8 +959,6 @@ public string Id { get; set; }
 
 [Sorun izleniyor #14698](https://github.com/aspnet/EntityFrameworkCore/issues/14698)
 
-Bu değişiklik EF Core 3,0-Preview 3 ' te sunulmuştur.
-
 **Eski davranış**
 
 EF Core 3,0 ' dan `ILoggerFactory` önce, bir tek hizmet olarak kaydedildi.
@@ -1037,8 +982,6 @@ Bu gibi durumlarda çalıştırırsanız, daha sonra bunu nasıl yeniden kesece�
 ### <a name="lazy-loading-proxies-no-longer-assume-navigation-properties-are-fully-loaded"></a>Yavaş yükleme proxy 'leri artık gezinti özelliklerinin tam olarak yüklenmediğini varsaymaz
 
 [Sorun izleniyor #12780](https://github.com/aspnet/EntityFrameworkCore/issues/12780)
-
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -1064,8 +1007,6 @@ Uygulama kodunu, atılmış bağlamla geç yüklemeye kalkışacak şekilde gün
 ### <a name="excessive-creation-of-internal-service-providers-is-now-an-error-by-default"></a>İç hizmet sağlayıcılarının aşırı oluşturulması artık varsayılan olarak bir hatadır
 
 [Sorun izleniyor #10236](https://github.com/aspnet/EntityFrameworkCore/issues/10236)
-
-Bu değişiklik EF Core 3,0-Preview 3 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -1098,8 +1039,6 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 ### <a name="new-behavior-for-hasonehasmany-called-with-a-single-string"></a>HasOne/HasMany için tek bir dize ile çağrılan yeni davranış
 
 [Sorun izleniyor #9171](https://github.com/aspnet/EntityFrameworkCore/issues/9171)
-
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -1138,8 +1077,6 @@ modelBuilder.Entity<Samurai>().HasOne("Some.Entity.Type.Name", null).WithOne();
 
 [Sorun izleniyor #15184](https://github.com/aspnet/EntityFrameworkCore/issues/15184)
 
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
-
 **Eski davranış**
 
 Aşağıdaki zaman uyumsuz yöntemler daha önce bir `Task<T>`döndürür:
@@ -1170,8 +1107,6 @@ Bunun, bu değişikliğin getirdiği ayırma azaltmasını geçersiz hale getird
 
 [Sorun izleniyor #9913](https://github.com/aspnet/EntityFrameworkCore/issues/9913)
 
-Bu değişiklik EF Core 3,0-Preview 2 ' de kullanıma sunulmuştur.
-
 **Eski davranış**
 
 Tür eşleme ek açıklaması için ek açıklama adı "Ilişkisel: TypeMapping" idi.
@@ -1192,8 +1127,6 @@ Düzeltilmesi gereken en uygun eylem, ek açıklamayı doğrudan kullanmak yerin
 ### <a name="totable-on-a-derived-type-throws-an-exception"></a>Türetilmiş bir tür üzerinde ToTable bir özel durum oluşturur 
 
 [Sorun izleniyor #11811](https://github.com/aspnet/EntityFrameworkCore/issues/11811)
-
-Bu değişiklik EF Core 3,0-Preview 3 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -1216,8 +1149,6 @@ Türetilmiş türleri diğer tablolarla eşleme girişimlerini kaldırın.
 
 [Sorun izleniyor #12366](https://github.com/aspnet/EntityFrameworkCore/issues/12366)
 
-Bu değişiklik EF Core 3,0-Preview 3 ' te sunulmuştur.
-
 **Eski davranış**
 
 EF Core 3,0 öncesinde, `ForSqlServerHasIndex().ForSqlServerInclude()` ile `INCLUDE`kullanılan sütunları yapılandırmak için bir yol sağladı.
@@ -1238,8 +1169,6 @@ Yukarıda gösterildiği gibi yeni API 'yi kullanın.
 ### <a name="metadata-api-changes"></a>Meta veri API 'SI değişiklikleri
 
 [Sorun izleniyor #214](https://github.com/aspnet/EntityFrameworkCore/issues/214)
-
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
 
 **Yeni davranış**
 
@@ -1265,8 +1194,6 @@ Yeni uzantı yöntemlerini kullanın.
 
 [Sorun izleniyor #214](https://github.com/aspnet/EntityFrameworkCore/issues/214)
 
-Bu değişiklik EF Core 3,0-Preview 6 ' da sunulmuştur.
-
 **Yeni davranış**
 
 Sağlayıcıya özgü uzantı yöntemleri düzleştirilecektir:
@@ -1288,8 +1215,6 @@ Yeni uzantı yöntemlerini kullanın.
 ### <a name="ef-core-no-longer-sends-pragma-for-sqlite-fk-enforcement"></a>EF Core, SQLite FK zorlaması için artık pragma göndermez
 
 [Sorun izleniyor #12151](https://github.com/aspnet/EntityFrameworkCore/issues/12151)
-
-Bu değişiklik EF Core 3,0-Preview 3 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -1333,8 +1258,6 @@ Bu değişiklik, iOS üzerinde kullanılan SQLite sürümünün diğer platforml
 ### <a name="guid-values-are-now-stored-as-text-on-sqlite"></a>GUID değerleri artık SQLite üzerinde metın olarak depolanır
 
 [Sorun izleniyor #15078](https://github.com/aspnet/EntityFrameworkCore/issues/15078)
-
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -1386,8 +1309,6 @@ Microsoft. Data. SQLite, hem BLOB hem de metın sütunlarından GUID değerlerin
 
 [Sorun izleniyor #15020](https://github.com/aspnet/EntityFrameworkCore/issues/15020)
 
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
-
 **Eski davranış**
 
 Char değerleri daha önce SQLite üzerinde tamsayı değerleri olarak sokmıştı. Örneğin, *a* 'nın char değeri 65 tamsayı değeri olarak depolandı.
@@ -1429,8 +1350,6 @@ Microsoft. Data. SQLite Ayrıca tamsayı ve metın sütunlarından karakter değ
 
 [Sorun izleniyor #12978](https://github.com/aspnet/EntityFrameworkCore/issues/12978)
 
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
-
 **Eski davranış**
 
 Geçiş kimlikleri, geçerli kültürün takvimi kullanılarak yanlışlıkla oluşturulmuştur.
@@ -1470,8 +1389,6 @@ SET MigrationId = CONCAT(LEFT(MigrationId, 4)  - 543, SUBSTRING(MigrationId, 4, 
 
 [Sorun izleniyor #16400](https://github.com/aspnet/EntityFrameworkCore/issues/16400)
 
-Bu değişiklik EF Core 3,0-Preview 6 ' da sunulmuştur.
-
 **Eski davranış**
 
 EF Core 3,0 ' dan `UseRowNumberForPaging` önce, SQL Server 2008 ile uyumlu sayfalama için SQL oluşturmak üzere kullanılabilir.
@@ -1493,8 +1410,6 @@ Oluşturulan SQL 'in desteklenmesi için SQL Server daha yeni bir sürüme veya 
 ### <a name="extension-infometadata-has-been-removed-from-idbcontextoptionsextension"></a>Uzantı bilgisi/meta veriler ıdbcontextoptionsextenı' den kaldırıldı
 
 [Sorun izleniyor #16119](https://github.com/aspnet/EntityFrameworkCore/issues/16119)
-
-Bu değişiklik EF Core 3,0-Preview 7 ' de kullanıma sunulmuştur.
 
 **Eski davranış**
 
@@ -1520,8 +1435,6 @@ EF Core kaynak kodunda farklı tür uzantılara `IDbContextOptionsExtension` yö
 
 [Sorun izleniyor #10985](https://github.com/aspnet/EntityFrameworkCore/issues/10985)
 
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
-
 **Değişebilir**
 
 `RelationalEventId.LogQueryPossibleExceptionWithAggregateOperator`, olarak `RelationalEventId.LogQueryPossibleExceptionWithAggregateOperatorWarning`yeniden adlandırıldı.
@@ -1539,8 +1452,6 @@ Yeni adı kullanın. (Olay KIMLIĞI numarasının değiştirilmediğini unutmay�
 ### <a name="clarify-api-for-foreign-key-constraint-names"></a>Yabancı anahtar kısıtlama adları için API 'YI belirginleştirme
 
 [Sorun izleniyor #10730](https://github.com/aspnet/EntityFrameworkCore/issues/10730)
-
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
 
 **Eski davranış**
 
@@ -1572,8 +1483,6 @@ Yeni adı kullanın.
 
 [Sorun izleniyor #15997](https://github.com/aspnet/EntityFrameworkCore/issues/15997)
 
-Bu değişiklik EF Core 3,0-Preview 7 ' de kullanıma sunulmuştur.
-
 **Eski davranış**
 
 3,0 EF Core önce bu yöntemler korundu.
@@ -1596,8 +1505,6 @@ Herhangi bir geçersiz kılmanın erişilebilirliğini değiştirin.
 
 [Sorun izleniyor #11506](https://github.com/aspnet/EntityFrameworkCore/issues/11506)
 
-Bu değişiklik EF Core 3,0-Preview 4 ' te sunulmuştur.
-
 **Eski davranış**
 
 EF Core 3,0 tarihinden önce, Microsoft. EntityFrameworkCore. Design, derlemeye bağımlı olan projeler tarafından başvurulabilen düzenli bir NuGet paketidir.
@@ -1615,7 +1522,7 @@ Bu paket yalnızca tasarım zamanında kullanılmak üzere tasarlanmıştır. Da
 EF Core tasarım zamanı davranışını geçersiz kılmak için bu pakete başvurmanız gerekiyorsa, projenizdeki PackageReference öğe meta verilerini güncelleştirebilirsiniz. Pakete Microsoft. EntityFrameworkCore. Tools aracılığıyla doğrudan başvuruluyorsa, meta verilerini değiştirmek için pakete açık bir PackageReference eklemeniz gerekir.
 
 ``` xml
-<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.0-preview4.19216.3">
+<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.0">
   <PrivateAssets>all</PrivateAssets>
   <!-- Remove IncludeAssets to allow compiling against the assembly -->
   <!--<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>-->
@@ -1627,8 +1534,6 @@ EF Core tasarım zamanı davranışını geçersiz kılmak için bu pakete başv
 ### <a name="sqlitepclraw-updated-to-version-200"></a>SQLitePCL. RAW, 2.0.0 sürümüne güncelleştirildi
 
 [Sorun izleniyor #14824](https://github.com/aspnet/EntityFrameworkCore/issues/14824)
-
-Bu değişiklik EF Core 3,0-Preview 7 ' de kullanıma sunulmuştur.
 
 **Eski davranış**
 
@@ -1652,8 +1557,6 @@ SQLitePCL. Raw sürüm 2.0.0 bazı önemli değişiklikler içerir. Ayrıntılar
 
 [Sorun izleniyor #14825](https://github.com/aspnet/EntityFrameworkCore/issues/14825)
 
-Bu değişiklik EF Core 3,0-Preview 7 ' de kullanıma sunulmuştur.
-
 **Eski davranış**
 
 Uzamsal paketler daha önce Nettopologyısuite 1.15.1 sürümüne bağımlı.
@@ -1675,8 +1578,6 @@ Nettopologyısuite sürüm 2.0.0 bazı önemli değişiklikler içerir. Ayrınt�
 ### <a name="multiple-ambiguous-self-referencing-relationships-must-be-configured"></a>Birden çok belirsiz kendine başvuran ilişki yapılandırılması gerekiyor 
 
 [Sorun izleniyor #13573](https://github.com/aspnet/EntityFrameworkCore/issues/13573)
-
-Bu değişiklik EF Core 3,0-Preview 6 ' da sunulmuştur.
 
 **Eski davranış**
 
@@ -1721,8 +1622,6 @@ modelBuilder
 ### <a name="dbfunctionschema-being-null-or-empty-string-configures-it-to-be-in-models-default-schema"></a>DbFunction. Schema null ya da boş dize, modeli varsayılan şemasında olacak şekilde yapılandırır
 
 [Sorun izleniyor #12757](https://github.com/aspnet/EntityFrameworkCore/issues/12757)
-
-Bu değişiklik EF Core 3,0-Preview 7 ' de kullanıma sunulmuştur.
 
 **Eski davranış**
 
