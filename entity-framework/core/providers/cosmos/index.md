@@ -5,74 +5,84 @@ ms.author: ansvyryd
 ms.date: 09/12/2019
 ms.assetid: 28264681-4486-4891-888c-be5e4ade24f1
 uid: core/providers/cosmos/index
-ms.openlocfilehash: 683436aa485d2fef9aa8bf6c6ff02b00dfeb28cf
-ms.sourcegitcommit: 2caec1e63f2ce1d9439ef6193df5a77da2fedd0f
+ms.openlocfilehash: 96686256bb93f5828bb21fed167eb57812806390
+ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/26/2019
-ms.locfileid: "71317569"
+ms.lasthandoff: 10/02/2019
+ms.locfileid: "71813538"
 ---
-# <a name="ef-core-azure-cosmos-db-provider"></a><span data-ttu-id="3d81e-102">EF Core Azure Cosmos DB sağlayıcısı</span><span class="sxs-lookup"><span data-stu-id="3d81e-102">EF Core Azure Cosmos DB Provider</span></span>
+# <a name="ef-core-azure-cosmos-db-provider"></a><span data-ttu-id="df1e2-102">EF Core Azure Cosmos DB sağlayıcısı</span><span class="sxs-lookup"><span data-stu-id="df1e2-102">EF Core Azure Cosmos DB Provider</span></span>
 
 >[!NOTE]
-> <span data-ttu-id="3d81e-103">Bu sağlayıcı EF Core 3,0 ' de yenidir.</span><span class="sxs-lookup"><span data-stu-id="3d81e-103">This provider is new in EF Core 3.0.</span></span>
+> <span data-ttu-id="df1e2-103">Bu sağlayıcı EF Core 3,0 ' de yenidir.</span><span class="sxs-lookup"><span data-stu-id="df1e2-103">This provider is new in EF Core 3.0.</span></span>
 
-<span data-ttu-id="3d81e-104">Bu veritabanı sağlayıcısı, Azure Cosmos DB birlikte Entity Framework Core kullanılmasına izin verir.</span><span class="sxs-lookup"><span data-stu-id="3d81e-104">This database provider allows Entity Framework Core to be used with Azure Cosmos DB.</span></span> <span data-ttu-id="3d81e-105">Sağlayıcı [Entity Framework Core projenin](https://github.com/aspnet/EntityFrameworkCore)bir parçası olarak tutulur.</span><span class="sxs-lookup"><span data-stu-id="3d81e-105">The provider is maintained as part of the [Entity Framework Core Project](https://github.com/aspnet/EntityFrameworkCore).</span></span>
+<span data-ttu-id="df1e2-104">Bu veritabanı sağlayıcısı, Azure Cosmos DB birlikte Entity Framework Core kullanılmasına izin verir.</span><span class="sxs-lookup"><span data-stu-id="df1e2-104">This database provider allows Entity Framework Core to be used with Azure Cosmos DB.</span></span> <span data-ttu-id="df1e2-105">Sağlayıcı [Entity Framework Core projenin](https://github.com/aspnet/EntityFrameworkCore)bir parçası olarak tutulur.</span><span class="sxs-lookup"><span data-stu-id="df1e2-105">The provider is maintained as part of the [Entity Framework Core Project](https://github.com/aspnet/EntityFrameworkCore).</span></span>
 
-<span data-ttu-id="3d81e-106">Bu bölümü okumadan önce [Azure Cosmos DB belgelerini](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction) öğrenmeniz önemle tavsiye edilir.</span><span class="sxs-lookup"><span data-stu-id="3d81e-106">It is strongly recommended to familiarize yourself with the [Azure Cosmos DB documentation](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction) before reading this section.</span></span>
+<span data-ttu-id="df1e2-106">Bu bölümü okumadan önce [Azure Cosmos DB belgelerini](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction) öğrenmeniz önemle tavsiye edilir.</span><span class="sxs-lookup"><span data-stu-id="df1e2-106">It is strongly recommended to familiarize yourself with the [Azure Cosmos DB documentation](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction) before reading this section.</span></span>
 
-## <a name="install"></a><span data-ttu-id="3d81e-107">Yükleme</span><span class="sxs-lookup"><span data-stu-id="3d81e-107">Install</span></span>
+## <a name="install"></a><span data-ttu-id="df1e2-107">Yükleme</span><span class="sxs-lookup"><span data-stu-id="df1e2-107">Install</span></span>
 
-<span data-ttu-id="3d81e-108">[Microsoft. EntityFrameworkCore. Cosmos NuGet paketini](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Cosmos/)yükler.</span><span class="sxs-lookup"><span data-stu-id="3d81e-108">Install the [Microsoft.EntityFrameworkCore.Cosmos NuGet package](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Cosmos/).</span></span>
+<span data-ttu-id="df1e2-108">[Microsoft. EntityFrameworkCore. Cosmos NuGet paketini](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Cosmos/)yükler.</span><span class="sxs-lookup"><span data-stu-id="df1e2-108">Install the [Microsoft.EntityFrameworkCore.Cosmos NuGet package](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Cosmos/).</span></span>
+
+# <a name="net-core-clitabdotnet-core-cli"></a>[<span data-ttu-id="df1e2-109">.NET Core CLI</span><span class="sxs-lookup"><span data-stu-id="df1e2-109">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
+
+``` console
+dotnet add package Microsoft.EntityFrameworkCore.Cosmos
+```
+
+# <a name="visual-studiotabvs"></a>[<span data-ttu-id="df1e2-110">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="df1e2-110">Visual Studio</span></span>](#tab/vs)
 
 ``` powershell
 Install-Package Microsoft.EntityFrameworkCore.Cosmos
 ```
 
-## <a name="get-started"></a><span data-ttu-id="3d81e-109">Başlarken</span><span class="sxs-lookup"><span data-stu-id="3d81e-109">Get Started</span></span>
+***
+
+## <a name="get-started"></a><span data-ttu-id="df1e2-111">Başlarken</span><span class="sxs-lookup"><span data-stu-id="df1e2-111">Get Started</span></span>
 
 > [!TIP]  
-> <span data-ttu-id="3d81e-110">Bu makalenin [örneğini GitHub '](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Cosmos)da görebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="3d81e-110">You can view this article's [sample on GitHub](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Cosmos).</span></span>
+> <span data-ttu-id="df1e2-112">Bu makalenin [örneğini GitHub '](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Cosmos)da görebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="df1e2-112">You can view this article's [sample on GitHub](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Cosmos).</span></span>
 
-<span data-ttu-id="3d81e-111">Diğer sağlayıcılarda olduğu gibi, ilk adım çağrlandır `UseCosmos`:</span><span class="sxs-lookup"><span data-stu-id="3d81e-111">Like for other providers the first step is to call `UseCosmos`:</span></span>
+<span data-ttu-id="df1e2-113">Diğer sağlayıcılarda olduğu gibi, ilk adım çağrlandır `UseCosmos`:</span><span class="sxs-lookup"><span data-stu-id="df1e2-113">Like for other providers the first step is to call `UseCosmos`:</span></span>
 
 [!code-csharp[Configuration](../../../../samples/core/Cosmos/ModelBuilding/OrderContext.cs?name=Configuration)]
 
 > [!WARNING]
-> <span data-ttu-id="3d81e-112">Uç nokta ve anahtar kolaylık sağlaması için burada kodlanmıştır, ancak bir üretim uygulamasında bu uygulamalar güvenli bir şekilde [depolanmalıdır](https://docs.microsoft.com/aspnet/core/security/app-secrets#secret-manager)</span><span class="sxs-lookup"><span data-stu-id="3d81e-112">The endpoint and key are hardcoded here for simplicity, but in a production app these should be [stored securily](https://docs.microsoft.com/aspnet/core/security/app-secrets#secret-manager)</span></span>
+> <span data-ttu-id="df1e2-114">Uç nokta ve anahtar kolaylık sağlaması için burada kodlanmıştır, ancak bir üretim uygulamasında bu uygulamalar güvenli bir şekilde [depolanmalıdır](https://docs.microsoft.com/aspnet/core/security/app-secrets#secret-manager)</span><span class="sxs-lookup"><span data-stu-id="df1e2-114">The endpoint and key are hardcoded here for simplicity, but in a production app these should be [stored securily](https://docs.microsoft.com/aspnet/core/security/app-secrets#secret-manager)</span></span>
 
-<span data-ttu-id="3d81e-113">Bu örnekte `Order` , [sahip olunan türe](../../modeling/owned-entities.md) `StreetAddress`başvuru içeren basit bir varlıktır.</span><span class="sxs-lookup"><span data-stu-id="3d81e-113">In this example `Order` is a simple entity with a reference to the [owned type](../../modeling/owned-entities.md) `StreetAddress`.</span></span>
+<span data-ttu-id="df1e2-115">Bu örnekte `Order` , [sahip olunan türe](../../modeling/owned-entities.md) `StreetAddress`başvuru içeren basit bir varlıktır.</span><span class="sxs-lookup"><span data-stu-id="df1e2-115">In this example `Order` is a simple entity with a reference to the [owned type](../../modeling/owned-entities.md) `StreetAddress`.</span></span>
 
 [!code-csharp[Order](../../../../samples/core/Cosmos/ModelBuilding/Order.cs?name=Order)]
 
 [!code-csharp[StreetAddress](../../../../samples/core/Cosmos/ModelBuilding/StreetAddress.cs?name=StreetAddress)]
 
-<span data-ttu-id="3d81e-114">Verileri kaydetme ve sorgulama normal EF düzenine uyar:</span><span class="sxs-lookup"><span data-stu-id="3d81e-114">Saving and quering data follows the normal EF pattern:</span></span>
+<span data-ttu-id="df1e2-116">Verileri kaydetme ve sorgulama normal EF düzenine uyar:</span><span class="sxs-lookup"><span data-stu-id="df1e2-116">Saving and quering data follows the normal EF pattern:</span></span>
 
 [!code-csharp[HelloCosmos](../../../../samples/core/Cosmos/ModelBuilding/Sample.cs?name=HelloCosmos)]
 
 > [!IMPORTANT]
-> <span data-ttu-id="3d81e-115">Çağırma `EnsureCreated` , gerekli koleksiyonları oluşturmak ve modelde varsa [çekirdek verileri](../../modeling/data-seeding.md) eklemek için gereklidir.</span><span class="sxs-lookup"><span data-stu-id="3d81e-115">Calling `EnsureCreated` is necessary to create the required collections and insert the [seed data](../../modeling/data-seeding.md) if present in the model.</span></span> <span data-ttu-id="3d81e-116">Ancak `EnsureCreated` , performans sorunlarına neden olabileceğinden, yalnızca dağıtım sırasında, normal işlem değil çağrılmalıdır.</span><span class="sxs-lookup"><span data-stu-id="3d81e-116">However `EnsureCreated` should only be called during deployment, not normal operation, as it may cause performance issues.</span></span>
+> <span data-ttu-id="df1e2-117">Çağırma `EnsureCreated` , gerekli koleksiyonları oluşturmak ve modelde varsa [çekirdek verileri](../../modeling/data-seeding.md) eklemek için gereklidir.</span><span class="sxs-lookup"><span data-stu-id="df1e2-117">Calling `EnsureCreated` is necessary to create the required collections and insert the [seed data](../../modeling/data-seeding.md) if present in the model.</span></span> <span data-ttu-id="df1e2-118">Ancak `EnsureCreated` , performans sorunlarına neden olabileceğinden, yalnızca dağıtım sırasında, normal işlem değil çağrılmalıdır.</span><span class="sxs-lookup"><span data-stu-id="df1e2-118">However `EnsureCreated` should only be called during deployment, not normal operation, as it may cause performance issues.</span></span>
 
-## <a name="cosmos-specific-model-customization"></a><span data-ttu-id="3d81e-117">Cosmos 'e özgü model özelleştirmesi</span><span class="sxs-lookup"><span data-stu-id="3d81e-117">Cosmos-specific Model Customization</span></span>
+## <a name="cosmos-specific-model-customization"></a><span data-ttu-id="df1e2-119">Cosmos 'e özgü model özelleştirmesi</span><span class="sxs-lookup"><span data-stu-id="df1e2-119">Cosmos-specific Model Customization</span></span>
 
-<span data-ttu-id="3d81e-118">Varsayılan olarak, tüm varlık türleri türetilmiş bağlamdan sonra adlandırılan aynı kapsayıcıya eşlenir (`"OrderContext"` bu durumda).</span><span class="sxs-lookup"><span data-stu-id="3d81e-118">By default all entity types are mapped to the same container, named after the derived context (`"OrderContext"` in this case).</span></span> <span data-ttu-id="3d81e-119">Varsayılan kapsayıcı adını değiştirmek için şunu kullanın `HasDefaultContainer`:</span><span class="sxs-lookup"><span data-stu-id="3d81e-119">To change the default container name use `HasDefaultContainer`:</span></span>
+<span data-ttu-id="df1e2-120">Varsayılan olarak, tüm varlık türleri türetilmiş bağlamdan sonra adlandırılan aynı kapsayıcıya eşlenir (`"OrderContext"` bu durumda).</span><span class="sxs-lookup"><span data-stu-id="df1e2-120">By default all entity types are mapped to the same container, named after the derived context (`"OrderContext"` in this case).</span></span> <span data-ttu-id="df1e2-121">Varsayılan kapsayıcı adını değiştirmek için şunu kullanın `HasDefaultContainer`:</span><span class="sxs-lookup"><span data-stu-id="df1e2-121">To change the default container name use `HasDefaultContainer`:</span></span>
 
 [!code-csharp[DefaultContainer](../../../../samples/core/Cosmos/ModelBuilding/OrderContext.cs?name=DefaultContainer)]
 
-<span data-ttu-id="3d81e-120">Bir varlık türünü farklı bir kapsayıcı kullanımına `ToContainer`eşlemek için:</span><span class="sxs-lookup"><span data-stu-id="3d81e-120">To map an entity type to a different container use `ToContainer`:</span></span>
+<span data-ttu-id="df1e2-122">Bir varlık türünü farklı bir kapsayıcı kullanımına `ToContainer`eşlemek için:</span><span class="sxs-lookup"><span data-stu-id="df1e2-122">To map an entity type to a different container use `ToContainer`:</span></span>
 
 [!code-csharp[Container](../../../../samples/core/Cosmos/ModelBuilding/OrderContext.cs?name=Container)]
 
-<span data-ttu-id="3d81e-121">Belirli bir öğenin temsil ettiği varlık türünü belirlemek için EF Core türetilmiş varlık türü olmasa bile bir Ayrıştırıcı değeri ekler.</span><span class="sxs-lookup"><span data-stu-id="3d81e-121">To identify the entity type that a given item represent EF Core adds a discriminator value even if there are no derived entity types.</span></span> <span data-ttu-id="3d81e-122">Ayrıştırıcı adı ve değeri [değiştirilebilir](../../modeling/inheritance.md).</span><span class="sxs-lookup"><span data-stu-id="3d81e-122">The name and value of the discriminator [can be changed](../../modeling/inheritance.md).</span></span>
+<span data-ttu-id="df1e2-123">Belirli bir öğenin temsil ettiği varlık türünü belirlemek için EF Core türetilmiş varlık türü olmasa bile bir Ayrıştırıcı değeri ekler.</span><span class="sxs-lookup"><span data-stu-id="df1e2-123">To identify the entity type that a given item represent EF Core adds a discriminator value even if there are no derived entity types.</span></span> <span data-ttu-id="df1e2-124">Ayrıştırıcı adı ve değeri [değiştirilebilir](../../modeling/inheritance.md).</span><span class="sxs-lookup"><span data-stu-id="df1e2-124">The name and value of the discriminator [can be changed](../../modeling/inheritance.md).</span></span>
 
-## <a name="embedded-entities"></a><span data-ttu-id="3d81e-123">Katıştırılmış varlıklar</span><span class="sxs-lookup"><span data-stu-id="3d81e-123">Embedded Entities</span></span>
+## <a name="embedded-entities"></a><span data-ttu-id="df1e2-125">Katıştırılmış varlıklar</span><span class="sxs-lookup"><span data-stu-id="df1e2-125">Embedded Entities</span></span>
 
-<span data-ttu-id="3d81e-124">Cosmos 'ye ait varlıklar, sahibiyle aynı öğeye katıştırılır.</span><span class="sxs-lookup"><span data-stu-id="3d81e-124">For Cosmos owned entities are embedded in the same item as the owner.</span></span> <span data-ttu-id="3d81e-125">Bir özellik adını değiştirmek için şunu `ToJsonProperty`kullanın:</span><span class="sxs-lookup"><span data-stu-id="3d81e-125">To change a property name use `ToJsonProperty`:</span></span>
+<span data-ttu-id="df1e2-126">Cosmos 'ye ait varlıklar, sahibiyle aynı öğeye katıştırılır.</span><span class="sxs-lookup"><span data-stu-id="df1e2-126">For Cosmos owned entities are embedded in the same item as the owner.</span></span> <span data-ttu-id="df1e2-127">Bir özellik adını değiştirmek için şunu `ToJsonProperty`kullanın:</span><span class="sxs-lookup"><span data-stu-id="df1e2-127">To change a property name use `ToJsonProperty`:</span></span>
 
 [!code-csharp[PropertyNames](../../../../samples/core/Cosmos/ModelBuilding/OrderContext.cs?name=PropertyNames)]
 
-<span data-ttu-id="3d81e-126">Bu yapılandırmayla yukarıdaki örnekteki sıralama şöyle saklanır:</span><span class="sxs-lookup"><span data-stu-id="3d81e-126">With this configuration the order from the example above is stored like this:</span></span>
+<span data-ttu-id="df1e2-128">Bu yapılandırmayla yukarıdaki örnekteki sıralama şöyle saklanır:</span><span class="sxs-lookup"><span data-stu-id="df1e2-128">With this configuration the order from the example above is stored like this:</span></span>
 
 ``` json
 {
@@ -93,15 +103,15 @@ Install-Package Microsoft.EntityFrameworkCore.Cosmos
 }
 ```
 
-<span data-ttu-id="3d81e-127">Sahip olunan varlıkların koleksiyonları da katıştırılır.</span><span class="sxs-lookup"><span data-stu-id="3d81e-127">Collections of owned entities are embedded as well.</span></span> <span data-ttu-id="3d81e-128">Bir sonraki örnekte `Distributor` sınıfını bir `StreetAddress`koleksiyonuyla kullanacağız:</span><span class="sxs-lookup"><span data-stu-id="3d81e-128">For the next example we'll use the `Distributor` class with a collection of `StreetAddress`:</span></span>
+<span data-ttu-id="df1e2-129">Sahip olunan varlıkların koleksiyonları da katıştırılır.</span><span class="sxs-lookup"><span data-stu-id="df1e2-129">Collections of owned entities are embedded as well.</span></span> <span data-ttu-id="df1e2-130">Bir sonraki örnekte `Distributor` sınıfını bir `StreetAddress`koleksiyonuyla kullanacağız:</span><span class="sxs-lookup"><span data-stu-id="df1e2-130">For the next example we'll use the `Distributor` class with a collection of `StreetAddress`:</span></span>
 
 [!code-csharp[Distributor](../../../../samples/core/Cosmos/ModelBuilding/Distributor.cs?name=Distributor)]
 
-<span data-ttu-id="3d81e-129">Sahip olunan varlıkların depolanacak açık anahtar değerleri sağlaması gerekmez:</span><span class="sxs-lookup"><span data-stu-id="3d81e-129">The owned entities don't need to provide explicit key values to be stored:</span></span>
+<span data-ttu-id="df1e2-131">Sahip olunan varlıkların depolanacak açık anahtar değerleri sağlaması gerekmez:</span><span class="sxs-lookup"><span data-stu-id="df1e2-131">The owned entities don't need to provide explicit key values to be stored:</span></span>
 
 [!code-csharp[OwnedCollection](../../../../samples/core/Cosmos/ModelBuilding/Sample.cs?name=OwnedCollection)]
 
-<span data-ttu-id="3d81e-130">Bu şekilde kalıcı olacak:</span><span class="sxs-lookup"><span data-stu-id="3d81e-130">They will be persisted in this way:</span></span>
+<span data-ttu-id="df1e2-132">Bu şekilde kalıcı olacak:</span><span class="sxs-lookup"><span data-stu-id="df1e2-132">They will be persisted in this way:</span></span>
 
 ``` json
 {
@@ -128,22 +138,22 @@ Install-Package Microsoft.EntityFrameworkCore.Cosmos
 }
 ```
 
-<span data-ttu-id="3d81e-131">Dahili EF Core her zaman izlenen tüm varlıklar için benzersiz anahtar değerlerine sahip olması gerekir.</span><span class="sxs-lookup"><span data-stu-id="3d81e-131">Internally EF Core always needs to have unique key values for all tracked entities.</span></span> <span data-ttu-id="3d81e-132">Sahip olunan türlerin koleksiyonları için varsayılan olarak oluşturulan birincil anahtar, sahibine ve JSON dizisindeki dizine karşılık gelen bir `int` özelliğe işaret eden yabancı anahtar özelliklerinden oluşur.</span><span class="sxs-lookup"><span data-stu-id="3d81e-132">The primary key created by default for collections of owned types consists of the foreign key properties pointing to the owner and an `int` property corresponding to the index in the JSON array.</span></span> <span data-ttu-id="3d81e-133">Bu değerleri almak için giriş API 'SI kullanılabilir:</span><span class="sxs-lookup"><span data-stu-id="3d81e-133">To retrieve these values entry API could be used:</span></span>
+<span data-ttu-id="df1e2-133">Dahili EF Core her zaman izlenen tüm varlıklar için benzersiz anahtar değerlerine sahip olması gerekir.</span><span class="sxs-lookup"><span data-stu-id="df1e2-133">Internally EF Core always needs to have unique key values for all tracked entities.</span></span> <span data-ttu-id="df1e2-134">Sahip olunan türlerin koleksiyonları için varsayılan olarak oluşturulan birincil anahtar, sahibine ve JSON dizisindeki dizine karşılık gelen bir `int` özelliğe işaret eden yabancı anahtar özelliklerinden oluşur.</span><span class="sxs-lookup"><span data-stu-id="df1e2-134">The primary key created by default for collections of owned types consists of the foreign key properties pointing to the owner and an `int` property corresponding to the index in the JSON array.</span></span> <span data-ttu-id="df1e2-135">Bu değerleri almak için giriş API 'SI kullanılabilir:</span><span class="sxs-lookup"><span data-stu-id="df1e2-135">To retrieve these values entry API could be used:</span></span>
 
 [!code-csharp[ImpliedProperties](../../../../samples/core/Cosmos/ModelBuilding/Sample.cs?name=ImpliedProperties)]
 
 > [!TIP]
-> <span data-ttu-id="3d81e-134">Gerektiğinde, sahip olan varlık türleri için varsayılan birincil anahtar değiştirilebilir, ancak anahtar değerleri açıkça sağlanmalıdır.</span><span class="sxs-lookup"><span data-stu-id="3d81e-134">When necessary the default primary key for the owned entity types can be changed, but then key values should be provided explicitly.</span></span>
+> <span data-ttu-id="df1e2-136">Gerektiğinde, sahip olan varlık türleri için varsayılan birincil anahtar değiştirilebilir, ancak anahtar değerleri açıkça sağlanmalıdır.</span><span class="sxs-lookup"><span data-stu-id="df1e2-136">When necessary the default primary key for the owned entity types can be changed, but then key values should be provided explicitly.</span></span>
 
-## <a name="working-with-disconnected-entities"></a><span data-ttu-id="3d81e-135">Bağlantısı kesilmiş varlıklarla çalışma</span><span class="sxs-lookup"><span data-stu-id="3d81e-135">Working with Disconnected Entities</span></span>
+## <a name="working-with-disconnected-entities"></a><span data-ttu-id="df1e2-137">Bağlantısı kesilmiş varlıklarla çalışma</span><span class="sxs-lookup"><span data-stu-id="df1e2-137">Working with Disconnected Entities</span></span>
 
-<span data-ttu-id="3d81e-136">Her öğenin, belirtilen bölüm anahtarı `id` için benzersiz bir değere sahip olması gerekir.</span><span class="sxs-lookup"><span data-stu-id="3d81e-136">Every item needs to have an `id` value that is unique for the given partition key.</span></span> <span data-ttu-id="3d81e-137">Varsayılan olarak EF Core, bir sınırlayıcı olarak ' | ' kullanarak Ayrıştırıcı ve birincil anahtar değerlerini birleştirerek değeri oluşturur.</span><span class="sxs-lookup"><span data-stu-id="3d81e-137">By default EF Core generates the value by concatenating the discriminator and the primary key values, using '|' as a delimiter.</span></span> <span data-ttu-id="3d81e-138">Anahtar değerleri yalnızca bir varlık `Added` duruma girdiğinde oluşturulur.</span><span class="sxs-lookup"><span data-stu-id="3d81e-138">The key values are only generated when an entity enters the `Added` state.</span></span> <span data-ttu-id="3d81e-139">Bu, [varlık eklenirken](../../saving/disconnected-entities.md) bir sorun oluşturabilir ve bu, değeri depolamak için `id` .net türünde bir özelliğe sahip değildir.</span><span class="sxs-lookup"><span data-stu-id="3d81e-139">This might pose a problem when [attaching entities](../../saving/disconnected-entities.md) if they don't have an `id` property on the .NET type to store the value.</span></span>
+<span data-ttu-id="df1e2-138">Her öğenin, belirtilen bölüm anahtarı `id` için benzersiz bir değere sahip olması gerekir.</span><span class="sxs-lookup"><span data-stu-id="df1e2-138">Every item needs to have an `id` value that is unique for the given partition key.</span></span> <span data-ttu-id="df1e2-139">Varsayılan olarak EF Core, bir sınırlayıcı olarak ' | ' kullanarak Ayrıştırıcı ve birincil anahtar değerlerini birleştirerek değeri oluşturur.</span><span class="sxs-lookup"><span data-stu-id="df1e2-139">By default EF Core generates the value by concatenating the discriminator and the primary key values, using '|' as a delimiter.</span></span> <span data-ttu-id="df1e2-140">Anahtar değerleri yalnızca bir varlık `Added` duruma girdiğinde oluşturulur.</span><span class="sxs-lookup"><span data-stu-id="df1e2-140">The key values are only generated when an entity enters the `Added` state.</span></span> <span data-ttu-id="df1e2-141">Bu, [varlık eklenirken](../../saving/disconnected-entities.md) bir sorun oluşturabilir ve bu, değeri depolamak için `id` .net türünde bir özelliğe sahip değildir.</span><span class="sxs-lookup"><span data-stu-id="df1e2-141">This might pose a problem when [attaching entities](../../saving/disconnected-entities.md) if they don't have an `id` property on the .NET type to store the value.</span></span>
 
-<span data-ttu-id="3d81e-140">Bu sınırlamaya geçici bir çözüm bulmak için, `id` değeri el ile oluşturup ayarlayabilir ya da önce varlığı önce eklenmiş olarak işaretleyebilir, sonra da istediğiniz durumla değiştirerek:</span><span class="sxs-lookup"><span data-stu-id="3d81e-140">To work around this limitation one could create and set the `id` value manually or mark the entity as added first, then changing it to the desired state:</span></span>
+<span data-ttu-id="df1e2-142">Bu sınırlamaya geçici bir çözüm bulmak için, `id` değeri el ile oluşturup ayarlayabilir ya da önce varlığı önce eklenmiş olarak işaretleyebilir, sonra da istediğiniz durumla değiştirerek:</span><span class="sxs-lookup"><span data-stu-id="df1e2-142">To work around this limitation one could create and set the `id` value manually or mark the entity as added first, then changing it to the desired state:</span></span>
 
 [!code-csharp[Attach](../../../../samples/core/Cosmos/ModelBuilding/Sample.cs?highlight=4&name=Attach)]
 
-<span data-ttu-id="3d81e-141">Bu, sonuçta elde edilen JSON ' dır:</span><span class="sxs-lookup"><span data-stu-id="3d81e-141">This is the resulting JSON:</span></span>
+<span data-ttu-id="df1e2-143">Bu, sonuçta elde edilen JSON ' dır:</span><span class="sxs-lookup"><span data-stu-id="df1e2-143">This is the resulting JSON:</span></span>
 
 ``` json
 {
