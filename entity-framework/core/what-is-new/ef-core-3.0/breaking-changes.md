@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 0dd4c5c4aa1a5d241fb48abf1372a678d0f7a7a3
-ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
+ms.openlocfilehash: f7f04efa8fb8ebc1eb06f256b8ccbd3110af47ab
+ms.sourcegitcommit: 705e898b4684e639a57c787fb45c932a27650c2d
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/02/2019
-ms.locfileid: "71813626"
+ms.lasthandoff: 10/03/2019
+ms.locfileid: "71934877"
 ---
 # <a name="breaking-changes-included-in-ef-core-30"></a>EF Core 3,0 ' de yer alan son değişiklikler
 Aşağıdaki API ve davranış değişiklikleri, 3.0.0 sürümüne yükseltirken mevcut uygulamaları bozmak için olası bir davranıştır.
@@ -27,6 +27,7 @@ Veritabanı sağlayıcılarını yalnızca etkilemek için beklediğimiz değiş
 | [Sorgu türleri varlık türleriyle birleştirilir](#qt) | Yüksek      |
 | [Entity Framework Core artık ASP.NET Core paylaşılan Framework 'ün bir parçası değil](#no-longer) | Orta      |
 | [Art arda silme işlemleri artık varsayılan olarak hemen gerçekleşir](#cascade) | Orta      |
+| [İlgili varlıkların yüklenmesi artık tek bir sorguda gerçekleşir](#eager-loading-single-query) | Orta      |
 | [DeleteBehavior. restrict Temizleme semantiğine sahip](#deletebehavior) | Orta      |
 | [Sahip olunan tür ilişkilerinin Yapılandırma API 'SI değişti](#config) | Orta      |
 | [Her özellik bağımsız bellek içi tamsayı anahtar oluşturma kullanır](#each) | Orta      |
@@ -34,6 +35,7 @@ Veritabanı sağlayıcılarını yalnızca etkilemek için beklediğimiz değiş
 | [Meta veri API 'SI değişiklikleri](#metadata-api-changes) | Orta      |
 | [Sağlayıcıya özel meta veri API 'SI değişiklikleri](#provider) | Orta      |
 | [UseRowNumberForPaging kaldırıldı](#urn) | Orta      |
+| [Saklı yordamla birlikte kullanıldığında FromSql metodu birleştirilemez](#fromsqlsproc) | Orta      |
 | [FromSql metotları yalnızca sorgu köklerine göre belirtilebilir](#fromsql) | Düşük      |
 | [~~Sorgu yürütme hata ayıklama düzeyinde günlüğe kaydedilir~~ Çevrildi](#qe) | Düşük      |
 | [Geçici anahtar değerleri artık varlık örneklerine ayarlı değil](#tkv) | Düşük      |
@@ -210,6 +212,35 @@ Bu, sorguların olması gerektiğinde parametreli hale getirmemelidir.
 
 Yeni yöntem adlarını kullanmak için geçiş yapın.
 
+<a name="fromsqlsproc"></a>
+### <a name="fromsql-method-when-used-with-stored-procedure-cannot-be-composed"></a>Saklı yordamla birlikte kullanıldığında FromSql metodu birleştirilemez
+
+[Sorun izleniyor #15392](https://github.com/aspnet/EntityFrameworkCore/issues/15392)
+
+**Eski davranış**
+
+3,0 EF Core önce, FromSql yöntemi, geçirilen SQL 'in üzerine oluşmayabilir. SQL, saklı yordam gibi birleştirilmemiş bir işlem olduğu zaman istemci değerlendirmesi gerçekleştirdi. Aşağıdaki sorgu, sunucuda saklı yordam çalıştırılarak ve istemci tarafında FirstOrDefault ' i gerçekleştirerek çalıştı.
+
+```C#
+context.Products.FromSqlRaw("[dbo].[Ten Most Expensive Products]").FirstOrDefault();
+```
+
+**Yeni davranış**
+
+EF Core 3,0 ' den başlayarak, EF Core SQL ayrıştırmaya çalışmaz. Bu nedenle, FromSqlRaw/Fromsqlenterpolasyonından sonra oluşturuyorsanız, EF Core alt sorguya neden olarak SQL 'i oluşturacak. Bu nedenle, bileşim ile saklı yordam kullanıyorsanız, geçersiz SQL söz dizimi için bir özel durum alırsınız.
+
+**Kaydol**
+
+EF Core 3,0, [burada](#linq-queries-are-no-longer-evaluated-on-the-client)açıklandığı gibi bir hata olduğundan, otomatik istemci değerlendirmesini desteklemez.
+
+**Mayı**
+
+FromSqlRaw/Fromsqlenterpolasyonnda saklı bir yordam kullanıyorsanız, bunun üzerine oluşmadığını bilirsiniz; böylece sunucu tarafında herhangi bir kompozisyonu önlemek için FromSql yöntem çağrısından sonra __asslanabilir/AsAsyncEnumerable__ ekleyebilirsiniz.
+
+```C#
+context.Products.FromSqlRaw("[dbo].[Ten Most Expensive Products]").AsEnumerable().FirstOrDefault();
+```
+
 <a name="fromsql"></a>
 
 ### <a name="fromsql-methods-can-only-be-specified-on-query-roots"></a>FromSql metotları yalnızca sorgu köklerine göre belirtilebilir
@@ -366,6 +397,29 @@ Bu değişiklik, çağrılmadan _önce_ `SaveChanges` hangi varlıkların siline
 context.ChangeTracker.CascadeDeleteTiming = CascadeTiming.OnSaveChanges;
 context.ChangeTracker.DeleteOrphansTiming = CascadeTiming.OnSaveChanges;
 ```
+<a name="eager-loading-single-query"></a>
+### <a name="eager-loading-of-related-entities-now-happens-in-a-single-query"></a>İlgili varlıkların yüklenmesi artık tek bir sorguda gerçekleşir
+
+[Sorun izleniyor #18022](https://github.com/aspnet/EntityFrameworkCore/issues/18022)
+
+**Eski davranış**
+
+3,0 öncesinde, `Include` işleçleri aracılığıyla koleksiyon gezginlerini yüklemek, her ilgili varlık türü için bir tane olmak üzere ilişkisel veritabanında birden çok sorgunun oluşturulmasına neden oldu.
+
+**Yeni davranış**
+
+3,0 ile başlayarak, EF Core ilişkisel veritabanlarında birleştirmelere sahip tek bir sorgu oluşturur.
+
+**Kaydol**
+
+Tek bir LINQ sorgusu uygulamak için birden çok sorgu verilmesi, birden çok veritabanı yuvarlaklığına gerek olduğu için negatif performans dahil olmak üzere çok sayıda soruna neden olmuş ve her sorgu veritabanının farklı bir durumunu gözlemleyebilmelidir.
+
+**Karşı**
+
+Teknik olarak bu bir değişiklik olmadığı sürece, tek bir sorgu koleksiyon gezginlerde çok sayıda `Include` işleci içerdiğinde uygulama performansının önemli bir etkisi olabilir. Daha fazla bilgi edinmek ve sorguları daha verimli bir şekilde yeniden yazmak için [Bu açıklamaya bakın](https://github.com/aspnet/EntityFrameworkCore/issues/18022#issuecomment-537219137) .
+
+**
+
 <a name="deletebehavior"></a>
 ### <a name="deletebehaviorrestrict-has-cleaner-semantics"></a>DeleteBehavior. restrict Temizleme semantiğine sahip
 
