@@ -3,12 +3,12 @@ title: Entity Framework son sürümleri-EF6
 author: divega
 ms.date: 09/12/2019
 ms.assetid: 1060bb99-765f-4f32-aaeb-d6635d3dbd3e
-ms.openlocfilehash: 3ee433ac0932f89841b5cc42fb864eefb9419ef2
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: 478dec6b2401efd554e84a231fe78e71dcbf5771
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71149278"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182115"
 ---
 # <a name="past-releases-of-entity-framework"></a>Entity Framework geçmiş sürümleri
 
@@ -88,7 +88,7 @@ Bu küçük güncelleştirme, önemli sayıda yeni özellik içerir:
 
 - **Araç birleştirme** , yenı bir EF modeli oluşturmak için tutarlı bir yol sağlar. Bu özellik, var olan bir veritabanından ters mühendislik dahil olmak üzere [Code First modelleri oluşturmayı desteklemek için ADO.NET varlık veri modeli Sihirbazı 'nı genişletir](~/ef6/modeling/code-first/workflows/existing-database.md). Bu özellikler daha önce, EF güç araçlarında Beta kalitede kullanıma sunulmuştur.
 - **[İşlem işleme hatalarının işlenmesi](~/ef6/fundamentals/connection-resiliency/commit-failures.md)** , işlem işlemlerini ele almak için yeni tanıtılan özelliği kullanan CommitFailureHandler 'ı sağlar. CommitFailureHandler, işlem yürüten bağlantı hatalarından otomatik kurtarmaya izin verir.
-- **[Indexattribute](~/ef6/modeling/code-first/data-annotations.md)** , Code First modelinizdeki bir özelliğe (veya `[Index]` özelliklere) bir öznitelik yerleştirilerek dizinlerin belirtilmesini sağlar. Code First, veritabanında karşılık gelen bir dizin oluşturur.
+- **[Indexattribute](~/ef6/modeling/code-first/data-annotations.md)** , Code First modelinizdeki bir özelliğe (veya özelliklere) `[Index]` özniteliği yerleştirilerek dizinlerin belirtilmesini sağlar. Code First, veritabanında karşılık gelen bir dizin oluşturur.
 - **Ortak eşleme API 'si** , Özellikler ve türlerin veritabanındaki sütunlara ve tablolarla nasıl eşlendiğine ilişkin EF bilgisine erişim sağlar. Geçmişte bu API, iç sürümiydi.
 - Uygulama **[/Web. config dosyası aracılığıyla yakalayıcılar yapılandırma özelliği](~/ef6/fundamentals/configuring/config-file.md)** , uygulama yeniden derlenmeden ekleme yapılmasına izin verir.
 - **System. Data. Entity. Infrastructure. yakalayıcısı. Databasegünlükçü**, tüm veritabanı işlemlerini bir dosyaya günlüğe kaydetmek kolay hale getiren yeni bir dinleyici. Önceki özellikle birlikte, bu, yeniden derlemenize gerek kalmadan [dağıtılan bir uygulama için veritabanı işlemlerinin günlüğe kaydedilmesini](~/ef6/fundamentals/configuring/config-file.md)kolayca değiştirmenize olanak sağlar.
@@ -125,7 +125,7 @@ Aşağıdaki özellikler Code First veya EF Designer ile oluşturulan modeller i
 - **.Net 4,0 ' de numaralandırmalar, uzamsal ve daha Iyi performans** -.NET Framework olması için kullanılan çekırdek bileşenleri EF NuGet paketine taşıyarak, artık .NET 4,0 üzerinde EF5 adresinden enum desteği, uzamsal veri türleri ve performans iyileştirmeleri sunabilebiliyoruz.
 - **Sıralanabilir. LINQ sorgularında gelişmiş performans performansı**.
 - Özellikle büyük modeller için **geliştirilmiş ısınma süresi (görünüm oluşturma)** .
-- **Takılabilir &amp; plurselleştirme hizmeti**.
+- **Takılabilir @no__t, 1**. ve daha fazla Çalıştır Hizmeti.
 - Varlık sınıflarında **eşittir veya GetHashCode özel uygulamaları** artık desteklenmektedir.
 - **Dbset. AddRange/RemoveRange** bir kümeden birden çok varlık eklemek veya kaldırmak için iyileştirilmiş bir yol sağlar.
 - **Dbchangetracker. HasChanges** , veritabanına kaydedilecek bekleyen değişiklikler olup olmadığını görmek için kolay ve etkili bir yol sağlar.
@@ -138,9 +138,9 @@ Aşağıdaki özellikler yalnızca Code First için geçerlidir:
 - **[Idempotent geçişleri betikleri](~/ef6/modeling/code-first/migrations/index.md)** , herhangi bir sürümdeki bir veritabanını en son sürüme yükseltebilmeniz IÇIN bir SQL betiği oluşturmanıza olanak sağlar.
 - **[Yapılandırılabilir geçişler geçmişi tablosu](~/ef6/modeling/code-first/migrations/history-customization.md)** , geçişleri geçmiş tablosunun tanımını özelleştirmenizi sağlar. Bu özellikle, geçişler geçmiş tablosunun doğru şekilde çalışması için uygun veri türleri vb. gerektiren veritabanı sağlayıcıları için yararlıdır.
 - **Veritabanı başına birden çok bağlam** , geçişleri kullanırken veya Code First veritabanını otomatik olarak oluştururken veritabanı başına bir Code First modelinin önceki sınırlamasını kaldırır.
-- **[Dbmodelbuilder. HasDefaultSchema](~/ef6/modeling/code-first/fluent/types-and-properties.md)** , bir Code First modelinin varsayılan veritabanı şemasının tek bir yerde yapılandırılmasına izin veren yeni BIR Code First API 'sidir. Daha önce Code First varsayılan şeması dbo &quot;&quot; 'ya sabit olarak kodlanmıştır ve bir tablonun ait olduğu şemayı ToTable API 'si aracılığıyla yapılandırmanın tek yolu.
+- **[Dbmodelbuilder. HasDefaultSchema](~/ef6/modeling/code-first/fluent/types-and-properties.md)** , bir Code First modelinin varsayılan veritabanı şemasının tek bir yerde yapılandırılmasına izin veren yeni BIR Code First API 'sidir. Daha önce Code First varsayılan şeması, &quot;dbo @ no__t-1 ve bir tablonun ait olduğu şemayı, ToTable API 'SI aracılığıyla yapılandırmanın tek yolu ile sabit olarak kodlanmıştır.
 - **Dbmodelbuilder. Configurations. AddFromAssembly yöntemi** , Code FIRST akıcı API ile yapılandırma sınıfları kullandığınızda bir derlemede tanımlanan tüm yapılandırma sınıflarını kolayca eklemenize olanak tanır.
-- **[Özel geçiş işlemleri](http://romiller.com/2013/02/27/ef6-writing-your-own-code-first-migration-operations/)** , kod tabanlı geçişlerde kullanılacak ek işlemler eklemenizi sağlar.
+- **[Özel geçiş işlemleri](https://romiller.com/2013/02/27/ef6-writing-your-own-code-first-migration-operations/)** , kod tabanlı geçişlerde kullanılacak ek işlemler eklemenizi sağlar.
 - **Varsayılan işlem yalıtım düzeyi** , Code First kullanılarak oluşturulan VERITABANLARı için READ_COMMITTED_SNAPSHOT olarak değiştirilir ve daha fazla ölçeklenebilirlik ve daha az kilitlenme sağlar.
 - **Varlık ve karmaşık türler artık nestedinsıde sınıfları olabilir**. |
 

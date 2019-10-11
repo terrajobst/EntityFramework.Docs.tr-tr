@@ -1,65 +1,65 @@
 ---
-title: EF6 öncelikle - veritabanı
+title: Database First-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: cc6ffdb3-388d-4e79-a201-01ec2577c949
-ms.openlocfilehash: c81025fe7c3ad6398f003f7be2a3f9f072eec327
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: d40cff4ddccf43a394ef4f244653372a5a89b05a
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46284089"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182459"
 ---
-# <a name="database-first"></a>İlk veritabanı
-Bu video ve adım adım izlenecek yol, Entity Framework kullanarak veritabanı First geliştirmeye giriş sağlar. Veritabanı ilk ters mühendislik varolan bir veritabanını modelden sağlar. Model bir EDMX dosyası (.edmx uzantısı) depolanır ve görüntülenebilir ve Entity Framework Tasarımcısı'nda düzenlenebilir. Uygulamanıza etkileşim sınıfları EDMX dosyasından otomatik olarak oluşturulur.
+# <a name="database-first"></a>Database First
+Bu video ve adım adım yönergeler, Entity Framework kullanarak Database First geliştirmeye yönelik bir giriş sağlar. Database First, varolan bir veritabanından bir modele ters mühendislik yapmanıza olanak sağlar. Model bir EDMX dosyasında (. edmx uzantılı) depolanır ve Entity Framework Designer görüntülenebilir ve düzenlenebilir. Uygulamanızda etkileşimde bulunan sınıflar, EDMX dosyasından otomatik olarak oluşturulur.
 
 ## <a name="watch-the-video"></a>Videoyu izleyin
-Bu videoda, Entity Framework kullanarak veritabanı ilk geliştirme tanıtılmaktadır. Veritabanı ilk ters mühendislik varolan bir veritabanını modelden sağlar. Model bir EDMX dosyası (.edmx uzantısı) depolanır ve görüntülenebilir ve Entity Framework Tasarımcısı'nda düzenlenebilir. Uygulamanıza etkileşim sınıfları EDMX dosyasından otomatik olarak oluşturulur.
+Bu videoda Entity Framework kullanarak Database First geliştirmeye bir giriş sunulmaktadır. Database First, varolan bir veritabanından bir modele ters mühendislik yapmanıza olanak sağlar. Model bir EDMX dosyasında (. edmx uzantılı) depolanır ve Entity Framework Designer görüntülenebilir ve düzenlenebilir. Uygulamanızda etkileşimde bulunan sınıflar, EDMX dosyasından otomatik olarak oluşturulur.
 
-**Tarafından sunulan**: [Rowan Miller](http://romiller.com/)
+**Sunulma ölçütü**: [ROWA Miller](https://romiller.com/)
 
 **Video**: [WMV](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.wmv) | [MP4](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-mp4video-databasefirst.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.zip)
 
-## <a name="pre-requisites"></a>Ön koşullar
+## <a name="pre-requisites"></a>Önkoşulların önkoşulları
 
-Bu izlenecek yolu tamamlamak için Visual Studio 2012 yüklü veya en az Visual Studio 2010 olması gerekir.
+Bu izlenecek yolu tamamlamak için en az Visual Studio 2010 veya Visual Studio 2012 yüklü olmalıdır.
 
-Visual Studio 2010 kullanıyorsanız, aynı zamanda sahip gerekecektir [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklü.
+Visual Studio 2010 kullanıyorsanız, [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) ' in yüklü olması gerekir.
 
- 
+ 
 
-## <a name="1-create-an-existing-database"></a>1. Mevcut bir veritabanı oluşturun
+## <a name="1-create-an-existing-database"></a>1. Var olan bir veritabanı oluştur
 
-Genellikle zaten oluşturulur varolan bir veritabanını hedeflerken, ancak bu kılavuz erişmek için bir veritabanı oluşturmak ihtiyacımız var.
+Genellikle, var olan bir veritabanını hedeflerken zaten oluşturulur, ancak bu izlenecek yol için, erişmek üzere bir veritabanı oluşturulması gerekir.
 
-Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio sürümüne bağlı olarak farklılık gösterir:
+Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio sürümüne bağlı olarak farklılık gösteren bir sürümdür:
 
--   Visual Studio 2010 kullanıyorsanız, SQL Express veritabanı oluşturursunuz.
--   Visual Studio 2012 kullanıyorsanız sonra, oluşturduğunuz bir [LocalDB](https://msdn.microsoft.com/library/hh510202(v=sql.110).aspx) veritabanı.
+-   Visual Studio 2010 kullanıyorsanız, bir SQL Express veritabanı oluşturursunuz.
+-   Visual Studio 2012 kullanıyorsanız, [LocalDB](https://msdn.microsoft.com/library/hh510202(v=sql.110).aspx) veritabanı oluşturursunuz.
 
- 
+ 
 
-Yeni bir ubuntu ve veritabanı oluşturun.
+Şimdi veritabanını oluşturalım.
 
--   Visual Studio'yu Aç
--   **Görünüm -&gt; Sunucu Gezgini**
--   Sağ tıklayın **veri bağlantıları -&gt; bağlantı ekle...**
--   Sunucu gezgininden veritabanına bağlamadıysanız önce Microsoft SQL Server veri kaynağı olarak seçmeniz gerekir
+-   Visual Studio 'Yu aç
+-   **@No__t-1 Sunucu Gezgini görüntüle**
+-   Veri bağlantıları ' na sağ tıklayın **-&gt; bağlantı ekle...**
+-   Sunucu Gezgini bir veritabanına bağlı değilseniz, veri kaynağı olarak Microsoft SQL Server seçmeniz gerekir
 
     ![Veri kaynağını seçin](~/ef6/media/selectdatasource.png)
 
--   LocalDB veya hangisinin bağlı olarak, yüklü, SQL Express için bağlanın ve girin **DatabaseFirst.Blogging** veritabanı adı
+-   Hangisini yüklediğinize bağlı olarak LocalDB 'ye veya SQL Express 'e bağlanın ve veritabanı adı olarak **Databasefirst. blog** yazın
 
-    ![SQL Express bağlantısı SD](~/ef6/media/sqlexpressconnectiondf.png)
+    ![SQL Express bağlantı DF](~/ef6/media/sqlexpressconnectiondf.png)
 
-    ![LocalDB bağlantı SD](~/ef6/media/localdbconnectiondf.png)
+    ![LocalDB bağlantısı DF](~/ef6/media/localdbconnectiondf.png)
 
--   Seçin **Tamam** ve bir yeni bir veritabanı oluşturmak istiyorsanız istenir **Evet**
+-   **Tamam** ' ı seçtiğinizde, yeni bir veritabanı oluşturmak isteyip istemediğiniz sorulur, **Evet** ' i seçin.
 
-    ![Veritabanı iletişim kutusu oluşturma](~/ef6/media/createdatabasedialog.png)
+    ![Veritabanı oluştur Iletişim kutusu](~/ef6/media/createdatabasedialog.png)
 
--   Yeni veritabanı sunucu Gezgini'nde artık görünecek üzerinde sağ tıklayıp **yeni sorgu**
--   Yeni bir sorguda aşağıdaki SQL kopyalayın, sonra sağ tıklatın ve sorgu **Yürüt**
+-   Yeni veritabanı artık Sunucu Gezgini görüntülenir, sağ tıklayıp **Yeni sorgu** ' yı seçin.
+-   Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **Yürüt** ' ü seçin.
 
 ``` SQL
 CREATE TABLE [dbo].[Blogs] (
@@ -79,77 +79,77 @@ CREATE TABLE [dbo].[Posts] (
 );
 ```
 
-## <a name="2-create-the-application"></a>2. Uygulama oluşturma
+## <a name="2-create-the-application"></a>2. Uygulamayı oluşturma
 
-Örneği basit tutmak için veri erişimi gerçekleştirdiği ilk veritabanı kullanan temel bir konsol uygulaması oluşturmak için oluşturacağız:
+Şeyleri basit tutmak için, veri erişimi gerçekleştirmek üzere Database First kullanan temel bir konsol uygulaması oluşturacağız:
 
--   Visual Studio'yu Aç
--   **Dosya -&gt; yeni -&gt; proje...**
--   Seçin **Windows** sol menüden ve **konsol uygulaması**
--   Girin **DatabaseFirstSample** adı
--   Seçin **Tamam**
+-   Visual Studio 'Yu aç
+-   **Dosya-&gt; yeni-&gt; proje...**
+-   Sol taraftaki menüden ve **konsol uygulamasından** **Windows** ' u seçin
+-   Ad olarak **Databasefirstsample** yazın
+-   **Tamam 'ı** seçin
 
- 
+ 
 
-## <a name="3-reverse-engineer-model"></a>3. Ters mühendislik modeli
+## <a name="3-reverse-engineer-model"></a>3. Tersine mühendislik modeli
 
-Modelimiz oluşturmak için Entity Framework Visual Studio'nun bir parçası olarak dahil olan Designer'ın, kullanan oluşturacağız.
+Modelimizi oluşturmak için Visual Studio 'nun bir parçası olarak dahil edilen Entity Framework Designer kullanacağız.
 
--   **Takım projesi -&gt; Yeni Öğe Ekle...**
--   Seçin **veri** sol menüden ardından **ADO.NET varlık veri modeli**
--   Girin **BloggingModel** tıklayın ve adı olarak **Tamam**
--   Böylece **varlık veri modeli Sihirbazı**
--   Seçin **veritabanından Oluştur** tıklatıp **İleri**
+-   **Proje-&gt; yeni öğe Ekle...**
+-   Sol menüden **verileri** seçin ve ardından **ADO.net varlık veri modeli**
+-   Ad olarak **BloggingModel** girin ve **Tamam 'a** tıklayın
+-   Bu, **varlık veri modeli Sihirbazı 'nı** başlatır
+-   **Veritabanından oluştur** ' u seçin ve **İleri** ' ye tıklayın.
 
-    ![Adım 1'in Sihirbazı](~/ef6/media/wizardstep1.png)
+    ![Sihirbaz 1. adım](~/ef6/media/wizardstep1.png)
 
--   İlk bölümde oluşturduğunuz veritabanı bağlantısı seçin, girin **BloggingContext** tıklayın ve bağlantı dizesi adı olarak **İleri**
+-   İlk bölümde oluşturduğunuz veritabanına bağlantıyı seçin, bağlantı dizesinin adı olarak **BloggingContext** girin ve **İleri** ' ye tıklayın.
 
-    ![Sihirbazı adımı 2](~/ef6/media/wizardstep2.png)
+    ![Sihirbaz 2. adım](~/ef6/media/wizardstep2.png)
 
--   'Tüm tabloları Al ve 'Son' tablolar' yanındaki onay kutusuna tıklayın.
+-   Tüm tabloları içeri aktarmak için ' tablolar ' seçeneğinin yanındaki onay kutusuna tıklayın ve ' son ' a tıklayın
 
-    ![Sihirbazı adımı 3](~/ef6/media/wizardstep3.png)
+    ![Sihirbaz 3. adım](~/ef6/media/wizardstep3.png)
 
- 
+ 
 
-Ters mühendislik işlemi tamamlandıktan sonra yeni modeli projenize eklenir ve Entity Framework Tasarımcısı'nda görüntülemeniz için açıldı. Bir App.config dosyası ayrıca veritabanı bağlantı ayrıntıları ile projenize eklendi.
+Tersine mühendislik işlemi tamamlandıktan sonra, yeni model projenize eklenir ve Entity Framework Designer görüntülemeniz için açılır. Veritabanına yönelik bağlantı ayrıntılarına sahip bir App. config dosyası da projenize eklenmiştir.
 
-![İlk model](~/ef6/media/modelinitial.png)
+![Ilk model](~/ef6/media/modelinitial.png)
 
-### <a name="additional-steps-in-visual-studio-2010"></a>Visual Studio 2010'daki ek adımlar
+### <a name="additional-steps-in-visual-studio-2010"></a>Visual Studio 2010 ' de ek adımlar
 
-Visual Studio 2010'da çalışıyorsanız Entity Framework'ün en son sürüme yükseltmek için izlemeniz gereken bazı ek adımlar vardır. Yükseltme önemlidir çünkü en son hata düzeltmeleri yanı sıra kullanmak çok daha kolaydır, geliştirilmiş bir API yüzeyi, erişmenizi sağlar.
+Visual Studio 2010 ' de çalışıyorsanız, en son Entity Framework sürümüne yükseltmek için izlemeniz gereken bazı ek adımlar vardır. ' Nin, kullanımı çok daha kolay olan gelişmiş bir API yüzeyine erişim sağladığından ve en son hata düzeltmelerinin yanı sıra yükseltme önemlidir.
 
-Öncelikle, Nuget'ten Entity Framework'ün en son sürümünü almak ihtiyacımız var.
+İlk olarak, Entity Framework NuGet 'den en son sürümü alması gerekir.
 
--   **Proje –&gt; NuGet paketlerini Yönet... ** 
-     *Yoksa **NuGet paketlerini Yönet... ** yüklemelisiniz seçeneği [en son NuGet sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)*
--   Seçin **çevrimiçi** sekmesi
--   Seçin **EntityFramework** paket
--   Tıklayın **yükleyin**
+-   **Proje – &gt; NuGet Paketlerini Yönet...** 
+    * **NuGet Paketlerini Yönet...** seçeneğine sahipseniz [NuGet 'in en son sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklemelisiniz*
+-   **Çevrimiçi** sekmesini seçin
+-   **EntityFramework** paketini seçin
+-   **Install** 'a tıklayın
 
-Ardından, Entity Framework'ün sonraki sürümlerinde sunulan DbContext API kullanır kod üretmek için modelimizi takas etmek ihtiyacımız var.
+Bundan sonra, Entity Framework sonraki sürümlerinde tanıtılan DbContext API 'sini kullanan kodu oluşturmak için modelimizi değiştirmemiz gerekiyor.
 
--   Modelinizin EF Tasarımcısı'nda boş bir nokta üzerinde sağ tıklayıp **kod oluşturma öğesi Ekle...**
--   Seçin **çevrimiçi şablonlar** arayın ve sol menüden **DbContext**
--   EF seçin **5.x DbContext Oluşturucu c\#**, girin **BloggingModel** tıklayın ve adı olarak **Ekle**
+-   EF Designer 'daki modelinizin boş bir noktasına sağ tıklayıp **kod oluşturma öğesi Ekle...** seçeneğini belirleyin.
+-   Sol menüden **çevrimiçi şablonlar** ' ı seçin ve **DbContext** ' i arayın
+-   **C @ no__t-1 IÇIN EF 5. x DbContext Generator**' ı seçin, ad olarak **BloggingModel** girin ve **Ekle** ' ye tıklayın.
 
     ![DbContext şablonu](~/ef6/media/dbcontexttemplate.png)
 
- 
+ 
 
-## <a name="4-reading--writing-data"></a>4. Okuma ve yazma veri
+## <a name="4-reading--writing-data"></a>4. Verileri okuma & yazma
 
-Biz bir modeliniz olduğuna göre bazı verilere erişmek için kullanılacak zaman var. Sınıfları kullanacağız EDMX dosyasını temel alan için kullanılacak erişim verilerini otomatik olarak oluşturuluyor.
+Artık bir modelimiz olduğuna göre, bazı verilere erişmek için bunu kullanmanın zamanı. Verilere erişmek için kullanacağınız sınıflar, EDMX dosyasına bağlı olarak sizin için otomatik olarak oluşturulur.
 
-*Visual Studio 2010 kullanıyorsanız bu ekran görüntüsü, Visual Studio 2012'den BloggingModel.tt olduğu ve BloggingModel.Context.tt dosyalarını doğrudan projenize altında yerine EDMX dosyasının altında iç içe geçmiş.*
+*Bu ekran görüntüsü Visual Studio 2012 ' den, Visual Studio 2010 kullanıyorsanız BloggingModel.tt ve BloggingModel.Context.tt dosyaları, EDMX dosyasının altında iç içe değil doğrudan projenizin altında olacaktır.*
 
-![Oluşturulan sınıflar SD](~/ef6/media/generatedclassesdf.png)
+![Oluşturulan sınıflar DF](~/ef6/media/generatedclassesdf.png)
 
- 
+ 
 
-Main yöntemi program.cs'ye aşağıda gösterildiği gibi uygulayın. Bu kod, bizim bağlam yeni bir örneğini oluşturur ve yeni bir Blog eklemek için kullanır. Ardından veritabanından başlığa göre alfabetik olarak sıralanmış tüm blogları almak için LINQ sorgusu kullanır.
+Ana yöntemi aşağıda gösterildiği gibi Program.cs ' de uygulayın. Bu kod, bağlamımız yeni bir örnek oluşturur ve yeni bir blog eklemek için onu kullanır. Daha sonra, bir LINQ sorgusu kullanarak, veritabanındaki tüm blogları başlık sırasına göre sıralanmış olarak alır.
 
 ``` csharp
 class Program
@@ -184,24 +184,24 @@ class Program
 }
 ```
 
-Şimdi uygulamayı çalıştırmak ve test etmek.
+Şimdi uygulamayı çalıştırabilir ve test edebilirsiniz.
 
-```
+```console
 Enter a name for a new Blog: ADO.NET Blog
 All blogs in the database:
 ADO.NET Blog
 Press any key to exit...
 ```
- 
+ 
 
-## <a name="5-dealing-with-database-changes"></a>5. Veritabanı değişikliklerini uğraşmanızı
+## <a name="5-dealing-with-database-changes"></a>5. Veritabanı değişiklikleriyle ilgilenme
 
-Artık biz de modelimiz, bu değişiklikleri yansıtacak şekilde güncelleştirilecek ihtiyacımız bu değişiklik yaptığınız zaman, bizim veritabanı şeması, bazı değişiklikler yapmanız gerekebileceğini zamanı geldi.
+Artık veritabanı şemanızda bazı değişiklikler yapmanız zaman alabilir. bu değişiklikleri yaparken, bu değişiklikleri yansıtacak şekilde modelimizi de güncelleştirmeniz gerekir.
 
-Veritabanı şemasına bazı değişiklikler yapmanız gerekebileceğini ilk adımdır bakın. Bir kullanıcı tablosu için şema eklemek için ekleyeceğiz.
+İlk adım, veritabanı şemasında bazı değişiklikler yapmak için kullanılır. Şemaya bir kullanıcı tablosu ekleyeceğiz.
 
--   Sağ **DatabaseFirst.Blogging** seçin ve veritabanı sunucu Gezgini'nde **yeni sorgu**
--   Yeni bir sorguda aşağıdaki SQL kopyalayın, sonra sağ tıklatın ve sorgu **Yürüt**
+-   Sunucu Gezgini ve **Yeni sorgu** ' yı seçin **.**
+-   Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **Yürüt** ' ü seçin.
 
 ``` SQL
 CREATE TABLE [dbo].[Users]
@@ -211,22 +211,22 @@ CREATE TABLE [dbo].[Users]
 )
 ```
 
-Şema güncelleştirildi, modeli bu değişikliklerle güncelleştirmek için zaman var.
+Artık şema güncellendiğinden, modelin bu değişikliklerle güncelleştirilmesi zaman atalım.
 
--   Boş bir nokta modelinize EF Designer ve Seç 'güncelleştirme modeli veritabanından...' na sağ tıklayın, bu güncelleştirme Sihirbazı başlatılır
--   Güncelleştirme Sihirbazı onay tabloları yanındaki kutuyu Ekle sekmesinde bu şemadan herhangi bir yeni tablolar eklemek istediğimiz gösterir.
-    *Yenileme sekmesi, güncelleştirme sırasında değişiklikleri için denetlenecek modelindeki mevcut tabloların gösterir. Delete sekmeler şemadan kaldırıldı ve modelden güncelleştirmenin bir parçası da kaldırılacak herhangi bir tablo gösterir. Bu iki sekmelerindeki bilgileri otomatik olarak algılanır ve yalnızca bilgilendirme amacıyla sağlanmıştır, herhangi bir ayarı değiştiremezsiniz.*
+-   EF Designer 'daki modelinizin boş bir noktasına sağ tıklayın ve ' veritabanını güncelleştir... ' seçeneğini belirleyin, bu işlem güncelleştirme sihirbazını başlatır
+-   Güncelleştirme sihirbazının Ekle sekmesinde tablolar ' ın yanındaki kutuyu işaretleyin, bundan sonra şemadan yeni tablolar eklemek istiyoruz.
+    *-Yenile sekmesi, modelde, güncelleştirme sırasında değişikliklere denetlenecek olan tüm mevcut tabloları gösterir. Silme sekmeleri şemadan kaldırılan tüm tabloları gösterir ve güncelleştirmenin bir parçası olarak modelden de kaldırılır. Bu iki sekmede bulunan bilgiler otomatik olarak algılanır ve yalnızca bilgilendirme amacıyla sağlanır, hiçbir ayarı değiştiremezsiniz.*
 
-    ![Yenileme Sihirbazı](~/ef6/media/refreshwizard.png)
+    ![Sihirbazı Yenile](~/ef6/media/refreshwizard.png)
 
--   Güncelleştirme Sihirbazı'nı Son'a tıklayın
+-   Güncelleştirme sihirbazında son ' a tıklayın
 
- 
+ 
 
-Model veritabanına ekledik kullanıcılar tablo eşleşen yeni bir kullanıcı varlığı eklemek için güncelleştirilmiştir.
+Model artık veritabanına eklediğimiz Kullanıcı tablosuyla eşleşen yeni bir kullanıcı varlığı içerecek şekilde güncelleştirilir.
 
-![Güncelleştirilmiş model](~/ef6/media/modelupdated.png)
+![Model güncelleştirildi](~/ef6/media/modelupdated.png)
 
 ## <a name="summary"></a>Özet
 
-Bu kılavuzda ilk veritabanı geliştirme incelemiştik olduğu EF tasarımcıda varolan bir veritabanını temel alan bir model oluşturmak olduk. Ardından bu modelin bazı verileri veritabanından okuyup kullandık. Son olarak, model veritabanı şemasına yaptık değişiklikleri yansıtacak şekilde güncelleştirdik.
+Bu kılavuzda, var olan bir veritabanını temel alan EF tasarımcısında bir model oluşturmamızı sağlayan Database First geliştirmeyi inceledik. Daha sonra bu modeli veritabanından bazı verileri okumak ve yazmak için kullandık. Son olarak, modeli veritabanı şemasında yaptığımız değişiklikleri yansıtacak şekilde güncelleştirdik.

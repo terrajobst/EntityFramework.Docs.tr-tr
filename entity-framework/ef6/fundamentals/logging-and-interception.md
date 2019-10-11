@@ -3,12 +3,12 @@ title: Günlüğe kaydetme ve veritabanı işlemlerini kesintiye alma-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: b5ee7eb1-88cc-456e-b53c-c67e24c3f8ca
-ms.openlocfilehash: be32ed114269543ac36b256a202e0494d466e4f7
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
+ms.openlocfilehash: 35b0284a5ad8b2b732f074589bd458d243312575
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306540"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181671"
 ---
 # <a name="logging-and-intercepting-database-operations"></a>Veritabanı işlemlerini günlüğe kaydetme ve önleme
 > [!NOTE]
@@ -171,7 +171,7 @@ SELECT * from ThisTableIsMissing
 
 Görevin iptal edildiği zaman uyumsuz komutlar için, bu, temel alınan ADO.NET sağlayıcının genellikle iptal için bir deneme yapıldığında yaptığı durumlar olduğundan, bir özel durumla başarısız olabilir. Bu durum gerçekleşmezse ve görev düzgün şekilde iptal edilirse, çıkış şuna benzer şekilde görünür:  
 
-```  
+```console
 update Blogs set Title = 'No' where Id = -1
 -- Executing asynchronously at 5/13/2013 10:21:10 AM
 -- Canceled in 1 ms
@@ -244,7 +244,7 @@ public class MyDbConfiguration : DbConfiguration
 
 Bu yeni DatabaseLogFormatter artık her zaman veritabanı için kullanılacaktır. log ayarlandı. Bu nedenle, kod 1 ' den kodu çalıştırmak şu çıkışa neden olur:  
 
-```  
+```console
 Context 'BlogContext' is executing command 'SELECT TOP (1) [Extent1].[Id] AS [Id], [Extent1].[Title] AS [Title]FROM [dbo].[Blogs] AS [Extent1]WHERE (N'One Unicorn' = [Extent1].[Title]) AND ([Extent1].[Title] IS NOT NULL)'
 Context 'BlogContext' is executing command 'SELECT [Extent1].[Id] AS [Id], [Extent1].[Title] AS [Title], [Extent1].[BlogId] AS [BlogId]FROM [dbo].[Posts] AS [Extent1]WHERE [Extent1].[BlogId] = @EntityKeyValue1'
 Context 'BlogContext' is executing command 'update [dbo].[Posts]set [Title] = @0where ([Id] = @1)'
@@ -261,11 +261,11 @@ Yakasyon kodu, ele geçirme arabirimleri kavramı etrafında oluşturulmuştur. 
 
 ### <a name="the-interception-context"></a>Yakalenme bağlamı  
 
-Herhangi bir dinleyici için tanımlanan yöntemlere bakarak, her çağrıya Dbyakationcontext türünde bir nesne veya Dbcommandyakationcontext\<\>gibi bu türden türetilmiş bir tür verilmiştir. Bu nesne, EF 'in aldığı eylem hakkında bağlamsal bilgiler içerir. Örneğin, eylem bir DbContext adına götürülüiyorsa DbContext Dbyakationcontext içine dahil edilir. Benzer şekilde, zaman uyumsuz olarak yürütülen komutlar için, Dbcommandyakationcontext üzerinde IsAsync bayrağı ayarlanır.  
+Her çağrının, hiçbir yakacının arabiriminden tanımlanan yöntemlere bakarak, her çağrıya Dbyakationcontext türünde bir nesne veya Dbcommandyakationcontext @ no__t-0 @ no__t-1 gibi bir tür elde edilen bir tür verilmiştir. Bu nesne, EF 'in aldığı eylem hakkında bağlamsal bilgiler içerir. Örneğin, eylem bir DbContext adına götürülüiyorsa DbContext Dbyakationcontext içine dahil edilir. Benzer şekilde, zaman uyumsuz olarak yürütülen komutlar için, Dbcommandyakationcontext üzerinde IsAsync bayrağı ayarlanır.  
 
 ### <a name="result-handling"></a>Sonuç işleme  
 
-Dbcommandyakationcontext\< \> sınıfı result, originalresult, Exception ve OriginalException adlı bir özellik içerir. Bu özellikler, işlem yürütülmeden önce çağrılan çağrı yöntemlerine yapılan çağrılar için null/sıfır olarak ayarlanır; Yani,.................. Yöntemler yürütülüyor. İşlem yürütülürse ve başarılı olursa Result ve OriginalResult işlemin sonucuna ayarlanır. Bu değerler daha sonra, işlem yürütüldükten sonra çağrılan (...... Çalıştırılan Yöntemler. Benzer şekilde, işlem oluşturursa, Exception ve OriginalException özellikleri ayarlanır.  
+Dbcommandyakationcontext @ no__t-0 @ no__t-1 sınıfı result, OriginalResult, Exception ve OriginalException adlı bir özellik içerir. Bu özellikler, işlem yürütülmeden önce çağrılan çağrı yöntemlerine yapılan çağrılar için null/sıfır olarak ayarlanır; Yani,.................. Yöntemler yürütülüyor. İşlem yürütülürse ve başarılı olursa Result ve OriginalResult işlemin sonucuna ayarlanır. Bu değerler daha sonra, işlem yürütüldükten sonra çağrılan (...... Çalıştırılan Yöntemler. Benzer şekilde, işlem oluşturursa, Exception ve OriginalException özellikleri ayarlanır.  
 
 #### <a name="suppressing-execution"></a>Yürütmeyi gizleme  
 
@@ -299,7 +299,7 @@ Ayrıca, uygulama etki alanı düzeyinde DbConfiguration kod tabanlı yapıland�
 
 ### <a name="example-logging-to-nlog"></a>Örnek: NLog dosyasına kaydetme  
 
-Bunu, ıdbcommandyakalayıcısı ve [NLog](http://nlog-project.org/) ' un kullanıldığı bir örneğe bir araya koyalım:  
+Bunu, ıdbcommandyakalayıcısı ve [NLog](https://nlog-project.org/) ' un kullanıldığı bir örneğe bir araya koyalım:  
 
 - Zaman uyumsuz olarak yürütülen her komut için bir uyarı Kaydet  
 - Yürütüldüğünde oluşturan herhangi bir komut için bir hata günlüğe kaydet  

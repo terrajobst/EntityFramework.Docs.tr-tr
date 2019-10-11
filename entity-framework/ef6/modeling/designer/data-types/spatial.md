@@ -1,93 +1,93 @@
 ---
-title: Uzamsal - EF Designer - EF6
+title: Uzamsal-EF Tasarımcısı-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 06baa6e1-d680-4a95-845b-81305c87a962
-ms.openlocfilehash: 67cc6c007a4477b650e7c4875de8fac36a9ba2be
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: a9c54fbc14dd02ce5d4d91449a0d5f9e72f7f0f7
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283764"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182511"
 ---
-# <a name="spatial---ef-designer"></a>Uzamsal - EF Designer
+# <a name="spatial---ef-designer"></a>Uzamsal-EF Tasarımcısı
 > [!NOTE]
-> **EF5 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb. Entity Framework 5'te kullanıma sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.
+> **Yalnızca EF5** , bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 5 ' te sunulmuştur. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.
 
-Video ve adım adım kılavuzu uzamsal türler Entity Framework Designer ile eşleştirme gösterilmektedir. Ayrıca, LINQ sorgusu iki konum arasında bir uzaklık bulmak için nasıl kullanılacağını gösterir.
+Video ve adım adım izlenecek yol, Entity Framework Designer uzamsal türlerin nasıl eşleneceğini gösterir. Ayrıca, iki konum arasındaki mesafeyi bulmak için bir LINQ sorgusunun nasıl kullanılacağını gösterir.
 
-Bu izlenecek yol modeli ilk yeni bir veritabanı oluşturmak için kullanır, ancak EF Designer ile de kullanılabilir [veritabanı ilk](~/ef6/modeling/designer/workflows/database-first.md) mevcut bir veritabanına eşlemek için iş akışı.
+Bu izlenecek yol, yeni bir veritabanı oluşturmak için Model First kullanır, ancak aynı zamanda, var olan bir veritabanına eşlemek için [Database First](~/ef6/modeling/designer/workflows/database-first.md) iş AKıŞıYLA birlikte EF Designer da kullanılabilir.
 
-Uzamsal türü desteği, Entity Framework 5'te tanıtıldı. Not uzamsal türü, sabit listeleri ve tablo değerli işlevler gibi yeni özellikleri kullanmak için .NET Framework 4.5 hedeflemesi gerekir. Visual Studio 2012, varsayılan olarak .NET 4.5 hedefler.
+Uzamsal tür desteği Entity Framework 5 ' te tanıtılmıştı. Uzamsal tür, numaralandırmalar ve tablo değerli işlevler gibi yeni özellikleri kullanmak için, .NET Framework 4,5 ' i hedeflemelidir. Visual Studio 2012, .NET 4,5 'i varsayılan olarak hedefler.
 
-Uzamsal veri türleri kullanmayı da uzamsal desteğine sahip bir varlık çerçevesi sağlayıcısına kullanmanız gerekir. Bkz: [uzamsal türler için sağlayıcı desteği](~/ef6/fundamentals/providers/spatial-support.md) daha fazla bilgi için.
+Uzamsal veri türlerini kullanmak için, uzamsal destek içeren bir Entity Framework sağlayıcısı da kullanmanız gerekir. Daha fazla bilgi için bkz. [uzamsal türler için sağlayıcı desteği](~/ef6/fundamentals/providers/spatial-support.md) .
 
-İki ana uzamsal veri türü vardır: coğrafya ve geometri. Coğrafya veri türü ellipsoidal verilerini depolayan (örneğin, GPS'i enlem ve boylam koordinatlarını). Geometri veri türü (düz) Euclidean koordinat sistemini temsil eder.
+İki ana uzamsal veri türü vardır: Coğrafya ve geometri. Coğrafya veri türü ellipsoidal verilerini depolar (örneğin, GPS Enlem ve boylam koordinatları). Geometri veri türü, Euclidean (düz) koordinat sistemini temsil eder.
 
 ## <a name="watch-the-video"></a>Videoyu izleyin
-Bu videoda, Entity Framework Designer uzamsal türleriyle eşleme işlemi gösterilmektedir. Ayrıca, LINQ sorgusu iki konum arasında bir uzaklık bulmak için nasıl kullanılacağını gösterir.
+Bu videoda, Entity Framework Designer uzamsal türlerin nasıl eşleneceğini gösterir. Ayrıca, iki konum arasındaki mesafeyi bulmak için bir LINQ sorgusunun nasıl kullanılacağını gösterir.
 
-**Tarafından sunulan**: Julia Kornich
+**Sunulma ölçütü**: Julia Kornich
 
 **Video**: [WMV](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-winvideo-spatialwithdesigner.wmv) | [MP4](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-mp4video-spatialwithdesigner.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-winvideo-spatialwithdesigner.zip)
 
-## <a name="pre-requisites"></a>Ön koşullar
+## <a name="pre-requisites"></a>Önkoşulların önkoşulları
 
-Visual Studio 2012, Ultimate, Premium, Professional veya Web Express sürümü, bu izlenecek yolu tamamlamak için yüklü olması gerekir.
+Bu yönergeyi tamamlamak için Visual Studio 2012, Ultimate, Premium, Professional veya Web Express sürümünün yüklü olması gerekir.
 
-## <a name="set-up-the-project"></a>Projesi kurun
+## <a name="set-up-the-project"></a>Projeyi ayarlama
 
-1.  Visual Studio 2012'yi açın
-2.  Üzerinde **dosya** menüsünde **yeni**ve ardından **proje**
-3.  Sol bölmede **Visual C\#** ve ardından **konsol** şablonu
-4.  Girin **SpatialEFDesigner** tıklayın ve proje adı olarak **Tamam**
+1.  Visual Studio 2012 'yi açın
+2.  **Dosya** menüsünde, **Yeni**' nin üzerine gelin ve ardından **Proje** ' ye tıklayın.
+3.  Sol bölmede, **Visual C @ no__t-1**' e tıklayın ve ardından **konsol** şablonunu seçin
+4.  Projenin adı olarak **Spatialefdesigner** girin ve **Tamam 'a** tıklayın
 
-## <a name="create-a-new-model-using-the-ef-designer"></a>Yeni EF Designer kullanarak Model oluşturma
+## <a name="create-a-new-model-using-the-ef-designer"></a>EF tasarımcısını kullanarak yeni model oluşturma
 
-1.  Çözüm Gezgini'nde proje adına sağ tıklayın, fareyle **Ekle**ve ardından **yeni öğe**
-2.  Seçin **veri** seçin ve soldaki menüden **ADO.NET varlık veri modeli** Şablonlar bölmesinde
-3.  Girin **UniversityModel.edmx** dosya adı ve ardından **Ekle**
-4.  Varlık veri modeli Sihirbazı sayfasında **boş Model** Choose Model Contents iletişim kutusunda
-5.  Tıklayın **son**
+1.  Çözüm Gezgini ' de proje adına sağ tıklayın, **Ekle**' nin üzerine gelin ve ardından **Yeni öğe** ' ye tıklayın.
+2.  Sol menüden **verileri** seçin ve ardından şablonlar bölmesinde **ADO.net varlık veri modeli** seçin
+3.  Dosya adı için **Üniversıtymodel. edmx** girin ve ardından **Ekle** ' ye tıklayın.
+4.  Varlık Veri Modeli Sihirbazı sayfasında, model Içeriklerini Seç iletişim kutusunda **boş model** ' i seçin.
+5.  **Son** ' a tıklayın
 
-Modelinizi düzenleme için bir tasarım yüzeyi sağlar, varlık Tasarımcısı görüntülenir.
+Modelinizi düzenlemekte bir tasarım yüzeyi sağlayan Entity Desisgner görüntülenir.
 
-Sihirbaz, aşağıdaki eylemleri gerçekleştirir:
+Sihirbaz aşağıdaki eylemleri gerçekleştirir:
 
--   Kavramsal model ve depolama modeli bunları arasındaki eşlemeyi tanımlar EnumTestModel.edmx dosyası oluşturur. Oluşturulan meta veri dosyaları bütünleştirilmiş koda gömülü için Yapıt meta veri işleme özelliğini .edmx dosyasını çıkış bütünleştirilmiş kodu Ekle ayarlar.
--   Aşağıdaki derlemelere başvuru ekler: EntityFramework System.ComponentModel.DataAnnotations ve System.Data.Entity.
--   UniversityModel.tt ve UniversityModel.Context.tt dosyaları oluşturur ve bunları altında .edmx dosyasını ekler. Bu T4 şablonu dosyaları .edmx modeli'ndeki varlıkları eşleyen POCO türleri ve türetilen DbContext türünü tanımlayan kodu oluştur
+-   Kavramsal modeli, depolama modelini ve aralarındaki eşlemeyi tanımlayan EnumTestModel. edmx dosyasını oluşturur. Oluşturulan meta veri dosyalarının derlemeye katıştırılması için. edmx dosyasının meta veri yapıt Işleme özelliğini çıktı derlemesine katıştırmak üzere ayarlar.
+-   Aşağıdaki derlemelere bir başvuru ekler: EntityFramework, System. ComponentModel. Dataaçıklamalarda ve System. Data. Entity.
+-   UniversityModel.tt ve UniversityModel.Context.tt dosyalarını oluşturur ve. edmx dosyasının altına ekler. Bu T4 şablon dosyaları,. edmx modelindeki varlıklarla eşlenen DbContext türetilmiş türünü ve POCO türlerini tanımlayan kodu oluşturur
 
-## <a name="add-a-new-entity-type"></a>Yeni bir varlık türü Ekle
+## <a name="add-a-new-entity-type"></a>Yeni varlık türü Ekle
 
-1.  Select tasarım yüzeyinde boş bir alana sağ tıklayın **Ekle -&gt; varlık**, yeni varlık iletişim kutusu görünür.
-2.  Belirtin **University** türü için ad ve belirtin **UniversityID** için anahtar özellik adı, türü olarak bırakın **Int32**
+1.  Tasarım yüzeyinde boş bir alana sağ tıklayın, **Add-&gt; varlığı**' i seçin, yeni varlık iletişim kutusu görüntülenir
+2.  Tür adı olarak **University** belirtin ve anahtar özellik adı Için **üniverkimliği** belirtin, türü **Int32** olarak bırakın
 3.  **Tamam**’a tıklayın.
-4.  Varlık sağ tıklayıp **Ekle - yeni&gt; skaler özelliği**
-5.  Yeni özelliğe Yeniden Adlandır **adı**
-6.  Başka bir skaler bir özellik ekleyin ve yeniden adlandırın **konumu** Özellikler penceresini açın ve yeni özelliğin türünü değiştirme **coğrafi konum**
-7.  Modeli kaydedin ve projeyi derleyin
+4.  Varlığa sağ tıklayın ve **New-&gt; skaler Özellik Ekle** ' yi seçin
+5.  Yeni özelliği **ad** olarak yeniden adlandır
+6.  Başka bir skaler özellik ekleyin ve **konuma** yeniden adlandırın Özellikler penceresi açın ve yeni özelliğin türünü **Coğrafya** olarak değiştirin
+7.  Modeli kaydetme ve projeyi derleme
     > [!NOTE]
-    > Oluşturma sırasında hata Listesi'nde eşlenmemiş varlıkları ve ilişkileri hakkında uyarılar görünebilir. Veritabanı Modeli'nden seçtikten sonra hatalar kaybolur çünkü bu uyarıları gözardı edebilirsiniz.
+    > Oluşturduğunuzda, eşlenmemiş varlıklar ve ilişkilendirmeler hakkında uyarılar Hata Listesi görünebilir. Bu uyarıları yoksayabilirsiniz çünkü veritabanını modelden oluşturmayı seçmemiz gerekir, ancak hatalar kaybolur.
 
 ## <a name="generate-database-from-model"></a>Modelden veritabanı oluştur
 
-Şimdi biz modelini temel alan bir veritabanı oluşturabilirsiniz.
+Artık modeli temel alan bir veritabanı oluşturabilirsiniz.
 
-1.  Varlık Tasarımcısı seçin ve yüzey üzerinde boş bir alanı sağ **Model veritabanından oluştur**
-2.  Veritabanı Oluştur Sihirbazı'nın, veri bağlantısı iletişim kutusu Seç'e tıklayın görüntülenen **yeni bağlantı** belirt düğmesine **(localdb)\\ifadesini mssqllocaldb** vesunucuadıiçin **University** tıklayın ve veritabanı için **Tamam**
-3.  Yeni bir veritabanı oluşturmak isteyip istemediğinizi soran bir iletişim kutusu açılır, tıklayın **Evet**.
-4.  Tıklayın **sonraki** ve oluşturulan DDL bir veritabanı oluşturmak için bir tanım DDL içermeyen Ayarları iletişim kutusu Not ve Özet görüntülenir Veritabanı Oluşturma Sihirbazı'nı veri tanımlama dili (DDL) oluşturur. bir sabit listesi türü eşleyen tablo
-5.  Tıklayın **son** Son'a DDL betik yürütülmez.
-6.  Veritabanı Oluşturma Sihirbazı'nı aşağıdakileri yapar: açılır **UniversityModel.edmx.sql** T-SQL Düzenleyicisi oluşturur deposu şeması ve eşleme bölümlerini EDMX bağlantı dizesi bilgilerini ekler App.config dosyasına dosya
-7.  T-SQL Düzenleyicisi'nde sağ fare düğmesine tıklayıp **yürütme** Connect sunucusu iletişim kutusu görüntülenirse, 2. adımdaki bağlantı bilgilerini girin ve tıklayın **Bağlan**
-8.  Oluşturulan şema görüntülemek için SQL Server Nesne Gezgini içinde veritabanı adını sağ tıklatın ve seçin **Yenile**
+1.  Entity Desisgner yüzeyinde boş bir alana sağ tıklayın ve **modelden veritabanı oluştur** ' u seçin.
+2.  Veritabanı Oluştur sihirbazının veri bağlantısını seçin Iletişim kutusu görüntülenir **Yeni bağlantı** düğmesine tıklayın **(localdb) \\mssqllocaldb** , veritabanı Için sunucu adı ve **Üniversitesi** ve **Tamam 'a tıklayın.**
+3.  Yeni bir veritabanı oluşturmak isteyip istemediğinizi soran bir iletişim kutusu açılır ve **Evet**' e tıklayın.
+4.  **İleri** ' ye tıklayın ve veritabanı oluşturma Sihirbazı bir veritabanı oluşturmak için veri tanımlama DILI (ddl) oluşturur oluşturulan DDL, Özet ve ayarlar iletişim kutusu IÇINDE, DDL 'nin bu bir tablo için bir tanım içermediğini sabit listesi türü
+5.  Son **' a** tıklayarak DDL betiğini yürütmez.
+6.  Veritabanı oluşturma Sihirbazı şunları yapar: **Üniverbir. edmx** dosyasını açar. T-SQL DÜZENLEYICISINDE, edmx dosyasının mağaza şeması ve eşleme bölümleri, bağlantı dizesi bilgilerini App. config dosyasına ekler
+7.  T-SQL Düzenleyicisi ' nde sağ fare düğmesine tıklayın ve sunucuya Bağlan iletişim kutusunu **Çalıştır** ' ı seçin. Adım 2 ' den bağlantı bilgilerini girin ve **Bağlan** ' a tıklayın.
+8.  Oluşturulan şemayı görüntülemek için SQL Server Nesne Gezgini veritabanı adına sağ tıklayın ve **Yenile** ' yi seçin.
 
-## <a name="persist-and-retrieve-data"></a>Kalıcı hale getirmek ve veri alma
+## <a name="persist-and-retrieve-data"></a>Kalıcı ve veri alma
 
-Main yöntemi tanımlandığı Program.cs dosyasını açın. Ana işlevine aşağıdaki kodu ekleyin.
+Main yönteminin tanımlandığı Program.cs dosyasını açın. Aşağıdaki kodu Main işlevine ekleyin.
 
-Kod bağlamı için iki yeni University nesneleri ekler. Uzamsal özellikler DbGeography.FromText yöntemi kullanılarak başlatılır. WellKnownText yöntemine geçirilen olarak temsil edilen Coğrafya noktası. Kodu daha sonra verileri kaydeder. Konumunda belirtilen konuma yakın olduğu University nesnesi döndüren oluşturulur ve yürütülen ardından LINQ Sorgu.
+Kod, içeriğe iki yeni üniversite nesnesi ekler. Uzamsal Özellikler Dbcoğrafya. FromText yöntemi kullanılarak başlatılır. Wellknown olarak temsil edilen Coğrafya noktası yöntemine geçirilir. Kod daha sonra verileri kaydeder. Daha sonra, konumu belirtilen konuma en yakın olan bir üniversite nesnesi döndüren LINQ sorgusu oluşturulur ve yürütülür.
 
 ``` csharp
 using (var context = new UniversityModelContainer())
@@ -118,14 +118,14 @@ using (var context = new UniversityModelContainer())
 }
 ```
 
-Derleme ve uygulamayı çalıştırın. Program şu çıktıyı üretir:
+Uygulamayı derleyin ve çalıştırın. Program aşağıdaki çıktıyı üretir:
 
-```
+```console
 The closest University to you is: School of Fine Art.
 ```
 
-Veritabanındaki verileri görüntülemek için SQL Server Nesne Gezgini içinde veritabanı adını sağ tıklatın ve seçin **Yenile**. Tablo ve seçim sağ fare düğmesini tıklatıp **görünüm verilerini**.
+Veritabanındaki verileri görüntülemek için SQL Server Nesne Gezgini veritabanı adına sağ tıklayın ve **Yenile**' yi seçin. Ardından, tablodaki sağ fare düğmesine tıklayın ve **verileri görüntüle**' yi seçin.
 
 ## <a name="summary"></a>Özet
 
-Bu izlenecek yolda Entity Framework Designer kullanarak uzamsal türler eşlemeyle ilgili bilgi ve kod içinde uzamsal türler kullanma inceledik. 
+Bu izlenecek yolda, Entity Framework Designer kullanarak uzamsal türlerin nasıl eşlendiğini ve koddaki uzamsal türlerin nasıl kullanılacağını inceledik. 

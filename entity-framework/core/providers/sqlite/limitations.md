@@ -1,23 +1,23 @@
 ---
-title: SQLite veritabanı sağlayıcısı - kısıtlamaları - EF Core
+title: SQLite veritabanı sağlayıcısı-sınırlamalar-EF Core
 author: rowanmiller
 ms.date: 04/09/2017
 ms.assetid: 94ab4800-c460-4caa-a5e8-acdfee6e6ce2
 uid: core/providers/sqlite/limitations
-ms.openlocfilehash: eaa7d5b1496172e4f3821433a1cd098ee7e8b737
-ms.sourcegitcommit: 9bd64a1a71b7f7aeb044aeecc7c4785b57db1ec9
+ms.openlocfilehash: 2f80dc195265787318ac4925dd937da45ffad011
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67394795"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72179779"
 ---
 # <a name="sqlite-ef-core-database-provider-limitations"></a>SQLite EF Core veritabanı sağlayıcısı sınırlamaları
 
-SQLite sağlayıcısı, bir dizi geçişleri sınırlandırması vardır. Bu sınırlamaların çoğunu sınırlamaları temel SQLite Veritabanı Altyapısı'ndaki bir sonucudur ve EF için özel değildir.
+SQLite sağlayıcının bir dizi geçiş sınırlaması vardır. Bu sınırlamaların çoğu, temel alınan SQLite veritabanı altyapısındaki kısıtlamaların bir sonucudur ve EF 'e özgü değildir.
 
 ## <a name="modeling-limitations"></a>Modelleme sınırlamaları
 
-(Entity Framework ilişkisel veritabanı sağlayıcıları tarafından paylaşılan) ortak ilişkisel kitaplığı, çoğu ilişkisel veritabanı motoru için ortak olan kavramları modelleme için API tanımlar. Bu kavramlar birkaç SQLite sağlayıcı tarafından desteklenmiyor.
+Ortak ilişkisel kitaplık (Entity Framework ilişkisel veritabanı sağlayıcıları tarafından paylaşılır), en ilişkisel veritabanı altyapılarında ortak olan modelleme kavramları için API 'Leri tanımlar. Bu kavramların birkaç ikisi SQLite sağlayıcısı tarafından desteklenmez.
 
 * Şemaları
 * Diziler
@@ -25,16 +25,16 @@ SQLite sağlayıcısı, bir dizi geçişleri sınırlandırması vardır. Bu sı
 
 ## <a name="query-limitations"></a>Sorgu sınırlamaları
 
-SQLite yerel olarak aşağıdaki veri türlerini desteklemiyor. EF Core okuma ve yazma değerlerini ve bu tür, eşitlik için sorgulama (`where e.Property == value`) de desteğidir. Diğer işlemler, ancak karşılaştırma ister ve sıralama istemcide değerlendirme gerektirir.
+SQLite, aşağıdaki veri türlerini yerel olarak desteklemez. EF Core bu türlerin değerlerini okuyup yazabilir ve eşitlik için sorgulama (`where e.Property == value`) de desteklenir. Bununla birlikte, karşılaştırma ve sıralama gibi diğer işlemler de istemci üzerinde değerlendirme gerektirir.
 
 * DateTimeOffset
-* Ondalık
+* Decimal
 * TimeSpan
 * UInt64
 
-Yerine `DateTimeOffset`, DateTime değerleri kullanmanızı öneririz. Birden fazla saat dilimlerini işlerken, kaydetme ve ardından uygun saat dilimine dönüştürme önce UTC'ye değerleri dönüştürmenizi öneririz.
+@No__t-0 yerine, DateTime değerlerini kullanmanızı öneririz. Birden çok saat dilimini işlerken, kaydetmeden önce değerleri UTC 'ye dönüştürmenizi ve sonra uygun saat dilimine geri dönüştürmeyi öneririz.
 
-`Decimal` Türü, yüksek düzeyde bir duyarlık sağlar. Ancak, duyarlık düzeyini gerekmiyorsa, çift kullanmayı öneririz. Kullanabileceğiniz bir [değer dönüştürücü](../../modeling/value-conversions.md) ondalık sınıflarınızdaki kullanmaya devam etmek için.
+@No__t-0 türü yüksek düzeyde bir duyarlık sağlar. Ancak bu duyarlık düzeyine ihtiyacınız yoksa, bunun yerine Double kullanmanızı öneririz. Sınıflarınızda ondalık olarak kullanmaya devam etmek için bir [değer Dönüştürücüsü](../../modeling/value-conversions.md) kullanabilirsiniz.
 
 ``` csharp
 modelBuilder.Entity<MyEntity>()
@@ -44,36 +44,36 @@ modelBuilder.Entity<MyEntity>()
 
 ## <a name="migrations-limitations"></a>Geçiş sınırlamaları
 
-SQLite veritabanı altyapısı, bir dizi diğer ilişkisel veritabanlarını çoğunluğu tarafından desteklenen şema işlemi desteklemiyor. Desteklenmeyen işlemlerden biri bir SQLite veritabanı için geçerli çalışırsanız bir `NotSupportedException` oluşturulur.
+SQLite veritabanı altyapısı, diğer ilişkisel veritabanlarının çoğunluğu tarafından desteklenen bir dizi şema işlemini desteklemez. Desteklenmeyen işlemlerden birini bir SQLite veritabanına uygulamaya çalışırsanız, `NotSupportedException` oluşturulur.
 
-| Çalışma            | Destekleniyor mu? | Sürümünü gerektirir |
+| İşlem            | Destek? | Sürüm gerektirir |
 |:---------------------|:-----------|:-----------------|
 | AddColumn            | ✔          | 1.0              |
 | AddForeignKey        | ✗          |                  |
 | AddPrimaryKey        | ✗          |                  |
-| AddUniqueConstraint  | ✗          |                  |
+| AddUniqueConstraint kısıtlaması  | ✗          |                  |
 | AlterColumn          | ✗          |                  |
 | CreateIndex          | ✔          | 1.0              |
 | CreateTable          | ✔          | 1.0              |
-| DropColumn           | ✗          |                  |
-| DropForeignKey       | ✗          |                  |
-| DropIndex            | ✔          | 1.0              |
+| Açılan sütun           | ✗          |                  |
+| Dropyabancıanahtarı       | ✗          |                  |
+| Açılan Dizin            | ✔          | 1.0              |
 | DropPrimaryKey       | ✗          |                  |
-| DropTable            | ✔          | 1.0              |
-| DropUniqueConstraint | ✗          |                  |
+| Açılan tablo            | ✔          | 1.0              |
+| DropUniqueConstraint kısıtlaması | ✗          |                  |
 | RenameColumn         | ✔          | 2.2.2            |
 | RenameIndex          | ✔          | 2.1              |
 | RenameTable          | ✔          | 1.0              |
-| EnsureSchema         | ✔ (İşlemsiz)  | 2,0              |
-| DropSchema           | ✔ (İşlemsiz)  | 2,0              |
-| Ekleme               | ✔          | 2,0              |
-| Güncelleştirme               | ✔          | 2,0              |
-| Sil               | ✔          | 2,0              |
+| EnsureSchema         | ✔ (-OP)  | 2.0              |
+| DropSchema           | ✔ (-OP)  | 2.0              |
+| Ekle               | ✔          | 2.0              |
+| Güncelleştirme               | ✔          | 2.0              |
+| Sil               | ✔          | 2.0              |
 
-## <a name="migrations-limitations-workaround"></a>Geçiş sınırlamaları geçici çözüm
+## <a name="migrations-limitations-workaround"></a>Geçiş kısıtlamaları geçici çözümü
 
-Geçici çözüm bazıları için el ile bir tablo gerçekleştirmek için geçiş kodu yazarak bu sınırlamalardan yeniden oluşturun. Bir tablo yeniden oluşturma, varolan bir tabloyu yeniden adlandırma, yeni bir tablo oluşturma, yeni tabloya veri kopyalama ve eski tablo bırakılırken içerir. Kullanmanız gerekecektir `Sql(string)` bazı adımları gerçekleştirmek için yöntemi.
+Tablo yeniden oluşturma işlemi gerçekleştirmek için geçişlerinizi el ile yazarak bu sınırlamaların bazılarını geçici olarak yapabilirsiniz. Tablo yeniden oluşturma, var olan tabloyu yeniden adlandırmayı, yeni bir tablo oluşturmayı, yeni tabloya veri kopyalamayı ve eski tabloyu bırakmayı içerir. Bu adımlardan bazılarını gerçekleştirmek için `Sql(string)` yöntemini kullanmanız gerekir.
 
-Bkz: [yapmadan diğer tür, tablo şema değişiklikleri](http://sqlite.org/lang_altertable.html#otheralter) SQLite belgelerinde daha fazla ayrıntı için.
+Daha fazla ayrıntı için bkz. SQLite belgelerinde [diğer tür tablo şeması değişiklikleri yapma](https://sqlite.org/lang_altertable.html#otheralter) .
 
-Gelecekte EF bazıları bu işlemleri arka planda altında tablo yeniden oluşturma yaklaşımı kullanarak destekleyebilir. Yapabilecekleriniz [bizim GitHub üzerinde bu özelliği izlemek](https://github.com/aspnet/EntityFrameworkCore/issues/329).
+Daha sonra, EF 'in altındaki tablo yeniden oluşturma yaklaşımını kullanarak bu işlemlerden bazılarını destekleyebilir. [Bu özelliği GitHub projemizdeki](https://github.com/aspnet/EntityFrameworkCore/issues/329)bir şekilde izleyebilirsiniz.

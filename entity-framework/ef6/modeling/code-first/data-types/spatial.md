@@ -1,60 +1,60 @@
 ---
-title: Uzamsal - EF6 öncelikle - kod
+title: Uzamsal-Code First-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d617aed1-15f2-48a9-b187-186991c666e3
-ms.openlocfilehash: b8f2485a7002dcb4079f4045432f3224123fdb2f
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: 018f480c1f0f1e74fc9f7a8950a6880e96f1facc
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283608"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182657"
 ---
-# <a name="spatial---code-first"></a>Uzamsal - Code First
+# <a name="spatial---code-first"></a>Uzamsal-Code First
 > [!NOTE]
-> **EF5 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb. Entity Framework 5'te kullanıma sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.
+> **Yalnızca EF5** , bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 5 ' te sunulmuştur. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.
 
-Video ve adım adım izlenecek yol, Entity Framework Code First uzamsal türleriyle eşleme işlemi gösterilmektedir. Ayrıca, LINQ sorgusu iki konum arasında bir uzaklık bulmak için nasıl kullanılacağını gösterir.
+Video ve adım adım izlenecek yol, uzamsal türlerin Entity Framework Code First nasıl eşleneceğini gösterir. Ayrıca, iki konum arasındaki mesafeyi bulmak için bir LINQ sorgusunun nasıl kullanılacağını gösterir.
 
-Bu izlenecek yolda Code First yeni bir veritabanı oluşturmak için kullanır, ancak ayrıca [var olan bir veritabanına ilk kod](~/ef6/modeling/code-first/workflows/existing-database.md).
+Bu izlenecek yol, yeni bir veritabanı oluşturmak için Code First kullanır, ancak [Code First mevcut bir veritabanına](~/ef6/modeling/code-first/workflows/existing-database.md)de kullanabilirsiniz.
 
-Uzamsal türü desteği, Entity Framework 5'te tanıtıldı. Not uzamsal türü, sabit listeleri ve tablo değerli işlevler gibi yeni özellikleri kullanmak için .NET Framework 4.5 hedeflemesi gerekir. Visual Studio 2012, varsayılan olarak .NET 4.5 hedefler.
+Uzamsal tür desteği Entity Framework 5 ' te tanıtılmıştı. Uzamsal tür, numaralandırmalar ve tablo değerli işlevler gibi yeni özellikleri kullanmak için, .NET Framework 4,5 ' i hedeflemelidir. Visual Studio 2012, .NET 4,5 'i varsayılan olarak hedefler.
 
-Uzamsal veri türleri kullanmayı da uzamsal desteğine sahip bir varlık çerçevesi sağlayıcısına kullanmanız gerekir. Bkz: [uzamsal türler için sağlayıcı desteği](~/ef6/fundamentals/providers/spatial-support.md) daha fazla bilgi için.
+Uzamsal veri türlerini kullanmak için, uzamsal destek içeren bir Entity Framework sağlayıcısı da kullanmanız gerekir. Daha fazla bilgi için bkz. [uzamsal türler için sağlayıcı desteği](~/ef6/fundamentals/providers/spatial-support.md) .
 
-İki ana uzamsal veri türü vardır: coğrafya ve geometri. Coğrafya veri türü ellipsoidal verilerini depolayan (örneğin, GPS'i enlem ve boylam koordinatlarını). Geometri veri türü (düz) Euclidean koordinat sistemini temsil eder.
+İki ana uzamsal veri türü vardır: Coğrafya ve geometri. Coğrafya veri türü ellipsoidal verilerini depolar (örneğin, GPS Enlem ve boylam koordinatları). Geometri veri türü, Euclidean (düz) koordinat sistemini temsil eder.
 
 ## <a name="watch-the-video"></a>Videoyu izleyin
-Bu videoda, Entity Framework Code First uzamsal türleriyle eşleme işlemi gösterilmektedir. Ayrıca, LINQ sorgusu iki konum arasında bir uzaklık bulmak için nasıl kullanılacağını gösterir.
+Bu videoda, Entity Framework Code First ile uzamsal türlerin nasıl eşleneceğini gösterilmektedir. Ayrıca, iki konum arasındaki mesafeyi bulmak için bir LINQ sorgusunun nasıl kullanılacağını gösterir.
 
-**Tarafından sunulan**: Julia Kornich
+**Sunulma ölçütü**: Julia Kornich
 
 **Video**: [WMV](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-winvideo-spatialwithcodefirst.wmv) | [MP4](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-mp4video-spatialwithcodefirst.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-winvideo-spatialwithcodefirst.zip)
 
-## <a name="pre-requisites"></a>Ön koşullar
+## <a name="pre-requisites"></a>Önkoşulların önkoşulları
 
-Visual Studio 2012, Ultimate, Premium, Professional veya Web Express sürümü, bu izlenecek yolu tamamlamak için yüklü olması gerekir.
+Bu yönergeyi tamamlamak için Visual Studio 2012, Ultimate, Premium, Professional veya Web Express sürümünün yüklü olması gerekir.
 
-## <a name="set-up-the-project"></a>Projesi kurun
+## <a name="set-up-the-project"></a>Projeyi ayarlama
 
-1.  Visual Studio 2012'yi açın
-2.  Üzerinde **dosya** menüsünde **yeni**ve ardından **proje**
-3.  Sol bölmede **Visual C\#** ve ardından **konsol** şablonu
-4.  Girin **SpatialCodeFirst** tıklayın ve proje adı olarak **Tamam**
+1.  Visual Studio 2012 'yi açın
+2.  **Dosya** menüsünde, **Yeni**' nin üzerine gelin ve ardından **Proje** ' ye tıklayın.
+3.  Sol bölmede, **Visual C @ no__t-1**' e tıklayın ve ardından **konsol** şablonunu seçin
+4.  Projenin adı olarak **SpatialCodeFirst** girin ve **Tamam 'a** tıklayın
 
-## <a name="define-a-new-model-using-code-first"></a>Code First kullanarak yeni bir modeli tanımlamak
+## <a name="define-a-new-model-using-code-first"></a>Code First kullanarak yeni bir model tanımlama
 
-Code First geliştirme kullanırken, genellikle kavramsal (etki alanı) modelinizi tanımlayan bir .NET Framework sınıf yazarak başlayın. Aşağıdaki kod, University sınıfı tanımlar.
+Code First geliştirme kullanılırken, genellikle kavramsal (etki alanı) modelinizi tanımlayan .NET Framework sınıfları yazarak başlarsınız. Aşağıdaki kod University sınıfını tanımlar.
 
-University DbGeography tür konumu özelliğine sahiptir. DbGeography türünü kullanmak üzere System.Data.Entity derlemeye bir başvuruda bulunun ve ayrıca using deyimi System.Data.Spatial eklemeniz gerekir.
+Üniversitenin, Dbcoğrafya türünün Location özelliği vardır. Dbcoğrafya türünü kullanmak için System. Data. Entity derlemesine bir başvuru eklemeniz ve ayrıca System. Data. uzamsal using ifadesini de eklemeniz gerekir.
 
-Program.cs dosyasını açın ve aşağıdakini yapıştırın dosyasının en üstüne using deyimlerini:
+Program.cs dosyasını açın ve aşağıdaki using deyimlerini dosyanın en üstüne yapıştırın:
 
 ``` csharp
 using System.Data.Spatial;
 ```
 
-Program.cs dosyasına aşağıdaki University sınıf tanımını ekleyin.
+Aşağıdaki üniversite sınıfı tanımını Program.cs dosyasına ekleyin.
 
 ``` csharp
 public class University  
@@ -65,28 +65,28 @@ public class University
 }
 ```
 
-## <a name="define-the-dbcontext-derived-type"></a>Tanımlama DbContext türetilmiş türü
+## <a name="define-the-dbcontext-derived-type"></a>DbContext türetilmiş türünü tanımlayın
 
-Varlıklar tanımlayan yanı sıra olan DB kullanıma sunar ve DbContext türeyen bir sınıfı tanımlamanız gereken&lt;TEntity&gt; özellikleri. Olan DB&lt;TEntity&gt; özellikleri modele dahil etmek istediğiniz hangi türlerin bilmeniz bağlam olanak tanır.
+Varlıkları tanımlamaya ek olarak, DbContext öğesinden türeten bir sınıf tanımlamanız ve DbSet @ no__t-0TEntity @ no__t-1 özelliklerini kullanıma sunabilmeniz gerekir. DbSet @ no__t-0TEntity @ no__t-1 özellikleri bağlamın modele hangi türleri dahil etmek istediğinizi bilmesini sağlar.
 
-Nesneleri bir veritabanındaki verilerle doldurma içeren çalışma zamanı sırasında varlık nesnesi DbContext türetilmiş türün bir örneğini yönetir, izleme ve kalıcı veri veritabanına değiştirin.
+DbContext türetilmiş türünün bir örneği, çalışma zamanı sırasında varlık nesnelerini yönetir, bu da nesneleri bir veritabanındaki verilerle doldurmayı, değişiklik izlemeyi ve kalıcı verileri veritabanına getirmeyi içerir.
 
-DbContext ve olan DB türleri EntityFramework derlemede tanımlanır. EntityFramework NuGet paketini kullanarak bu DLL'ye bir başvuru ekleyeceğiz.
+DbContext ve DbSet türleri EntityFramework derlemesinde tanımlanmıştır. EntityFramework NuGet paketini kullanarak bu DLL 'ye bir başvuru ekleyeceğiz.
 
-1.  Çözüm Gezgini'nde proje adına sağ tıklayın.
-2.  Seçin **NuGet paketlerini Yönet...**
-3.  NuGet paketlerini Yönet iletişim kutusunda, seçmek **çevrimiçi** sekmesini **EntityFramework** paket.
-4.  Tıklayın **yükleyin**
+1.  Çözüm Gezgini, proje adına sağ tıklayın.
+2.  **NuGet Paketlerini Yönet...** seçeneğini belirleyin.
+3.  NuGet Paketlerini Yönet iletişim kutusunda **çevrimiçi** sekmesini seçin ve **EntityFramework** paketini seçin.
+4.  **Install** 'a tıklayın
 
-EntityFramework derleme yanı sıra System.ComponentModel.DataAnnotations derlemesine bir başvuru da eklendiğini unutmayın.
+EntityFramework derlemesine ek olarak, System. ComponentModel. Dataek açıklama derlemesine bir başvuru de eklenir.
 
-Program.cs dosyasının en üstüne aşağıdakileri ekleyin using deyimi:
+Program.cs dosyasının en üstüne aşağıdaki using ifadesini ekleyin:
 
 ``` csharp
 using System.Data.Entity;
 ```
 
-Program.cs içinde içerik tanımı ekleyin. 
+Program.cs içinde bağlam tanımını ekleyin. 
 
 ``` csharp
 public partial class UniversityContext : DbContext
@@ -95,11 +95,11 @@ public partial class UniversityContext : DbContext
 }
 ```
 
-## <a name="persist-and-retrieve-data"></a>Kalıcı hale getirmek ve veri alma
+## <a name="persist-and-retrieve-data"></a>Kalıcı ve veri alma
 
-Main yöntemi tanımlandığı Program.cs dosyasını açın. Ana işlevine aşağıdaki kodu ekleyin.
+Main yönteminin tanımlandığı Program.cs dosyasını açın. Aşağıdaki kodu Main işlevine ekleyin.
 
-Kod bağlamı için iki yeni University nesneleri ekler. Uzamsal özellikler DbGeography.FromText yöntemi kullanılarak başlatılır. WellKnownText yöntemine geçirilen olarak temsil edilen Coğrafya noktası. Kodu daha sonra verileri kaydeder. Konumunda belirtilen konuma yakın olduğu University nesnesi döndüren oluşturulur ve yürütülen ardından LINQ Sorgu.
+Kod, içeriğe iki yeni üniversite nesnesi ekler. Uzamsal Özellikler Dbcoğrafya. FromText yöntemi kullanılarak başlatılır. Wellknown olarak temsil edilen Coğrafya noktası yöntemine geçirilir. Kod daha sonra verileri kaydeder. Daha sonra, konumu belirtilen konuma en yakın olan bir üniversite nesnesi döndüren LINQ sorgusu oluşturulur ve yürütülür.
 
 ``` csharp
 using (var context = new UniversityContext ())
@@ -130,26 +130,26 @@ using (var context = new UniversityContext ())
 }
 ```
 
-Derleme ve uygulamayı çalıştırın. Program şu çıktıyı üretir:
+Uygulamayı derleyin ve çalıştırın. Program aşağıdaki çıktıyı üretir:
 
-```
+```console
 The closest University to you is: School of Fine Art.
 ```
 
-## <a name="view-the-generated-database"></a>Oluşturulan veritabanı görünümü
+## <a name="view-the-generated-database"></a>Oluşturulan veritabanını görüntüleme
 
-Uygulamayı ilk kez çalıştırdığınızda, Entity Framework sizin için bir veritabanı oluşturur. Biz Visual Studio 2012 yüklü olduğundan LocalDB örneğinde bir veritabanı oluşturulur. Varsayılan olarak Entity Framework veritabanı türetilmiş bağlamı tam olarak nitelenmiş adını sonra adları (Bu örnekte, **SpatialCodeFirst.UniversityContext**). Varolan bir veritabanını kullanılacak sonraki saatleri.  
+Uygulamayı ilk kez çalıştırdığınızda, Entity Framework sizin için bir veritabanı oluşturur. Visual Studio 2012 'nin yüklü olduğu için, veritabanı LocalDB örneğinde oluşturulacak. Varsayılan olarak Entity Framework, türetilmiş bağlamın tam adı (Bu örnekte **SpatialCodeFirst. Üniversıtycontext**) sonra veritabanını adlandırır. Mevcut veritabanının sonraki zamanları kullanılacaktır.  
 
-Veritabanı oluşturulduktan sonra modelinize herhangi bir değişiklik yaparsanız, Code First Migrations veritabanı şemasını güncelleştirmek için kullanmanızı unutmayın. Bkz: [yeni veritabanına Code First](~/ef6/modeling/code-first/workflows/new-database.md) geçişleri kullanma örneği için.
+Veritabanı oluşturulduktan sonra modelinizde herhangi bir değişiklik yaparsanız, veritabanı şemasını güncelleştirmek için Code First Migrations kullanmanız gerekir. Geçişleri kullanma örneği için bkz. [Code First yeni bir veritabanı](~/ef6/modeling/code-first/workflows/new-database.md) .
 
 Veritabanını ve verileri görüntülemek için aşağıdakileri yapın:
 
-1.  Visual Studio 2012 ana menüde **görünümü**  - &gt; **SQL Server Nesne Gezgini**.
-2.  LocalDB sunucuları listesinde değilse, sağ fare düğmesine tıklayın **SQL Server** seçip **SQL Server Ekle** varsayılan **Windows kimlik doğrulaması** bağlanmak için LocalDB örneğini
-3.  LocalDB düğümünü genişletin
-4.  Unfold **veritabanları** göz atın ve yeni veritabanı görmek için klasör **üniversiteler** tablo
-5.  Verileri görüntülemek, tablonun sağ tıklayın ve seçmek için **verileri görüntüleme**
+1.  Visual Studio 2012 ana menüsünde **görüntüle** - @ no__t-2 **SQL Server Nesne Gezgini**öğesini seçin.
+2.  LocalDB sunucular listesinde yoksa, **SQL Server** sağ fare düğmesine tıklayın ve **Ekle SQL Server** ' yi seçin ve LocalDB örneğine bağlanmak Için varsayılan **Windows kimlik doğrulamasını** kullanın
+3.  LocalDB düğümünü Genişlet
+4.  Yeni veritabanını görmek ve **üniversiteler** tablosuna gitmek için **veritabanları** klasörünün sarmalamayı kaldırın
+5.  Verileri görüntülemek için tabloya sağ tıklayıp **verileri görüntüle** ' yi seçin.
 
 ## <a name="summary"></a>Özet
 
-Bu izlenecek yolda uzamsal türler ile Entity Framework Code First kullanma inceledik. 
+Bu kılavuzda, Entity Framework Code First ile uzamsal türleri nasıl kullanacağınızı inceledik. 

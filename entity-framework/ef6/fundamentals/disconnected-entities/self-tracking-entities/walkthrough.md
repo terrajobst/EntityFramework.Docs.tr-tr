@@ -1,63 +1,63 @@
 ---
-title: Varlıkları izlenecek yol - EF6 Self izleme
+title: Kendi kendine Izlenen varlıklar Izlenecek yol-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: b21207c9-1d95-4aa3-ae05-bc5fe300dab0
-ms.openlocfilehash: d89c452410d34bea71e8220aae141c3bfca3e1ce
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 9bd644461f50a7eff1006cb8866ca9a3b08b6b8d
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490282"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181711"
 ---
-# <a name="self-tracking-entities-walkthrough"></a>Kendi kendine izleme varlıkları gözden geçirme
+# <a name="self-tracking-entities-walkthrough"></a>Kendi kendine Izlenen varlıkları gözden geçirme
 > [!IMPORTANT]
-> Artık, self tracking varlıkları şablon kullanmanızı öneririz. Bu yalnızca var olan uygulamaları desteklemek kullanılabilir olmaya devam edecek. Uygulamanızın çalışma bağlantısı kesilmiş varlıklar grafikleriyle gerektiriyorsa, başka alternatifler gibi düşünün [izlenebilir varlıkları](http://trackableentities.github.io/), Self-Tracking-daha etkin bir şekilde tarafından geliştirilen varlıklara benzer bir teknoloji olan Topluluk veya alt düzey değişiklik API'leri izleme kullanarak özel kod yazma.
+> Artık kendi kendine izleme varlıkları şablonunu kullanmanızı önermiyoruz. Yalnızca var olan uygulamaları desteklemek için kullanılabilir olmaya devam edecektir. Uygulamanız, bağlantısı kesilen varlıkların, topluluk tarafından daha etkin bir şekilde geliştirilen veya yazma gibi, kendi kendini Izlemeye benzer bir teknoloji olan, [izleyicileri](https://trackableentities.github.io/)olan diğer alternatifleri göz önünde bulundurun. alt düzey değişiklik izleme API 'Lerini kullanan özel kod.
 
-Bu izlenecek yol, bir Windows Communication Foundation (WCF) hizmeti bir varlık grafikte döndüren bir işlem kullanıma sunan bir senaryo gösterir. Ardından, bir istemci uygulaması, bu grafik yönetir ve doğrular ve Entity Framework kullanarak bir veritabanına güncelleştirmeleri kaydeden bir hizmet işlemi için yapılan değişiklikleri gönderir.
+Bu izlenecek yol, bir Windows Communication Foundation (WCF) hizmetinin bir varlık grafiği döndüren bir işlemi kullanıma sunduğunu gösteren senaryoyu gösterir. Daha sonra, bir istemci uygulaması bu grafiği yönetir ve Entity Framework kullanarak bir veritabanına güncelleştirmeleri doğrulayan ve kaydeden bir hizmet işlemine yapılan değişiklikleri gönderir.
 
-Bu izlenecek yolda tamamlamadan önce okuduğunuzdan emin olun [Self-Tracking varlıkları](index.md) sayfası.
+Bu yönergeyi tamamlamadan önce, [kendi kendine Izleme varlıkları](index.md) sayfasını okuduğunuzdan emin olun.
 
-Bu kılavuz, aşağıdaki eylemleri gerçekleştirir:
+Bu izlenecek yol aşağıdaki eylemleri tamamlar:
 
 -   Erişmek için bir veritabanı oluşturur.
 -   Modeli içeren bir sınıf kitaplığı oluşturur.
--   Takasları Self-Tracking varlık Oluşturucu şablon.
--   Varlık sınıfları için ayrı bir proje taşır.
--   Sorgulamak ve varlıkları kaydetmek için operations sunan bir WCF Hizmeti oluşturur.
--   İstemci hizmeti kullanmak uygulamaları (konsolu ve WPF) oluşturur.
+-   Kendi kendini Izleyen varlık Oluşturucu şablonunu değiştirir.
+-   Varlık sınıflarını ayrı bir projeye kaydırır.
+-   Varlıkları sorgulama ve kaydetme işlemlerini kullanıma sunan bir WCF hizmeti oluşturur.
+-   Hizmeti kullanan istemci uygulamaları (konsol ve WPF) oluşturur.
 
-Veritabanı ilk Bu izlenecek yolda kullanacağız ancak aynı teknikleri eşit ilk modeli için geçerlidir.
+Bu izlenecek yolda Database First kullanacağız, ancak aynı teknikler Model First için de aynı şekilde uygulanır.
 
-## <a name="pre-requisites"></a>Ön koşullar
+## <a name="pre-requisites"></a>Önkoşulların önkoşulları
 
-Bu izlenecek yolu tamamlamak için Visual Studio'nun yeni bir sürümü gerekir.
+Bu izlenecek yolu tamamlamak için, Visual Studio 'nun yeni bir sürümüne ihtiyacınız olacaktır.
 
-## <a name="create-a-database"></a>Bir veritabanı oluşturun
+## <a name="create-a-database"></a>Veritabanı Oluşturma
 
-Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio sürümüne bağlı olarak farklılık gösterir:
+Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio sürümüne bağlı olarak farklılık gösteren bir sürümdür:
 
--   Visual Studio 2012 kullanıyorsanız, bir LocalDB veritabanına oluşturmayı.
--   Visual Studio 2010 kullanıyorsanız, SQL Express veritabanı oluşturursunuz.
+-   Visual Studio 2012 kullanıyorsanız, LocalDB veritabanı oluşturursunuz.
+-   Visual Studio 2010 kullanıyorsanız, bir SQL Express veritabanı oluşturursunuz.
 
-Yeni bir ubuntu ve veritabanı oluşturun.
+Şimdi veritabanını oluşturalım.
 
--   Visual Studio'yu Aç
--   **Görünüm -&gt; Sunucu Gezgini**
--   Sağ tıklayın **veri bağlantıları -&gt; bağlantı ekle...**
--   Sunucu gezgininden veritabanına bağlamadıysanız seçmeniz gerekir önce **Microsoft SQL Server** veri kaynağı
--   LocalDB veya hangisinin bağlı olarak yüklediğiniz SQL Express için Bağlan
--   Girin **STESample** veritabanı adı
--   Seçin **Tamam** ve bir yeni bir veritabanı oluşturmak istiyorsanız istenir **Evet**
--   Yeni veritabanı şimdi sunucu Gezgini'nde görünür.
+-   Visual Studio 'Yu aç
+-   **@No__t-1 Sunucu Gezgini görüntüle**
+-   Veri bağlantıları ' na sağ tıklayın **-&gt; bağlantı ekle...**
+-   Sunucu Gezgini bir veritabanına bağlı değilseniz, veri kaynağı olarak **Microsoft SQL Server** seçmeniz gerekir
+-   Hangi hangisinin yüklü olduğuna bağlı olarak, LocalDB veya SQL Express 'e bağlanın
+-   Veritabanı adı olarak **Stesample** girin
+-   **Tamam** ' ı seçtiğinizde, yeni bir veritabanı oluşturmak isteyip istemediğiniz sorulur, **Evet** ' i seçin.
+-   Yeni veritabanı artık Sunucu Gezgini görüntülenir
 -   Visual Studio 2012 kullanıyorsanız
-    -   Sunucu Gezgini veritabanı üzerinde sağ tıklayıp **yeni sorgu**
-    -   Yeni bir sorguda aşağıdaki SQL kopyalayın, sonra sağ tıklatın ve sorgu **Yürüt**
+    -   Sunucu Gezgini veritabanında veritabanına sağ tıklayın ve **Yeni sorgu** ' yı seçin.
+    -   Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **Yürüt** ' ü seçin.
 -   Visual Studio 2010 kullanıyorsanız
-    -   Seçin **veri -&gt; Transact - SQL Düzenleyicisi&gt; yeni bağlantı...**
-    -   Girin **.\\ SQLEXPRESS** tıklayın ve sunucu adı olarak **Tamam**
-    -   Seçin **STESample** veritabanı açılır menüden aşağı sorgu Düzenleyicisi'ni üstünde
-    -   Yeni bir sorguda aşağıdaki SQL kopyalayın, sonra sağ tıklatın ve sorgu **SQL Yürüt**
+    -   **Data-&gt; Transact SQL Düzenleyicisi-&gt; yeni sorgu bağlantısı seç...**
+    -   Sunucu adı olarak **. \\SQLEXPRESS** girin ve **Tamam 'a** tıklayın
+    -   Sorgu Düzenleyicisi 'nin en üstündeki açılan listeden **Stesample** veritabanını seçin
+    -   Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **SQL 'ı Yürüt** ' ü seçin.
 
 ``` SQL
     CREATE TABLE [dbo].[Blogs] (
@@ -85,103 +85,103 @@ Yeni bir ubuntu ve veritabanı oluşturun.
 
 ## <a name="create-the-model"></a>Model oluşturma
 
-Öncelikle, bir proje modeli yerleştirmek için ihtiyacımız var.
+İlk olarak, modeli içine koyabileceğiniz bir proje gerekiyor.
 
--   **Dosya -&gt; yeni -&gt; proje...**
--   Seçin **Visual C\#**  sol bölmeden ardından **sınıf kitaplığı**
--   Girin **STESample** tıklayın ve adı olarak **Tamam**
+-   **Dosya-&gt; yeni-&gt; proje...**
+-   Sol bölmeden ve sonra **sınıf kitaplığı** 'Ndan **Visual C @ no__t-1** ' i seçin
+-   Ad olarak **Stesample** girin ve **Tamam 'a** tıklayın
 
-Basit bir model bizim veritabanına erişmek için EF Tasarımcısı'nda şimdi oluşturacağız:
+Şimdi, veritabanımıza erişmek için EF tasarımcısında basit bir model oluşturacağız:
 
--   **Takım projesi -&gt; Yeni Öğe Ekle...**
--   Seçin **veri** sol bölmeden ardından **ADO.NET varlık veri modeli**
--   Girin **BloggingModel** tıklayın ve adı olarak **Tamam**
--   Seçin **veritabanından Oluştur** tıklatıp **İleri**
+-   **Proje-&gt; yeni öğe Ekle...**
+-   Sol bölmedeki **verileri** seçin ve ardından **ADO.net varlık veri modeli**
+-   Ad olarak **BloggingModel** girin ve **Tamam 'a** tıklayın
+-   **Veritabanından oluştur** ' u seçin ve **İleri** ' ye tıklayın.
 -   Önceki bölümde oluşturduğunuz veritabanı için bağlantı bilgilerini girin
--   Girin **BloggingContext** tıklayın ve bağlantı dizesi adı olarak **İleri**
--   Yanındaki kutuyu işaretleyin **tabloları** tıklatıp **son**
+-   Bağlantı dizesinin adı olarak **BloggingContext** girin ve **İleri** ' ye tıklayın.
+-   **Tablolar** ' ın yanındaki kutuyu Işaretleyin ve **son** ' a tıklayın.
 
-## <a name="swap-to-ste-code-generation"></a>Ste'leri birleştirme kod oluşturma için takas etme
+## <a name="swap-to-ste-code-generation"></a>STE kod oluşturmaya değiştirme
 
-Artık varsayılan kod oluşturma ve değiştirme Self-Tracking varlıklara devre dışı bırakmak ihtiyacımız var.
+Şimdi varsayılan kod oluşturmayı devre dışı bırakmaktan ve kendini Izlemeye yönelik olarak takas etmemiz gerekiyor.
 
 ### <a name="if-you-are-using-visual-studio-2012"></a>Visual Studio 2012 kullanıyorsanız
 
--   Genişletin **BloggingModel.edmx** içinde **Çözüm Gezgini** ve silme **BloggingModel.tt** ve **BloggingModel.Context.tt** 
-     *Bu durum, varsayılan kod oluşturma devre dışı bırakır*
--   EF Designer seçin ve yüzey üzerinde boş bir alana sağ **kod oluşturma öğesi Ekle...**
--   Seçin **çevrimiçi** arayın ve sol bölmedeki **Pıştırarak Oluşturucusu**
--   Seçin **Pıştırarak Oluşturucu c\#**  şablon girin **STETemplate** tıklayın ve adı olarak **Ekle**
--   **STETemplate.tt** ve **STETemplate.Context.tt** dosyaları BloggingModel.edmx dosya altında iç içe geçmiş eklendi
+-   Çözüm Gezgini **BloggingModel. edmx** ' i genişletin ve **BloggingModel.tt** ve **BloggingModel.Context.tt**
+     ' ü silin.*Bu, varsayılan kod oluşturmayı devre dışı bırakır*
+-   EF Designer yüzeyinde boş bir alana sağ tıklayın ve **kod oluşturma öğesi Ekle...** seçeneğini belirleyin.
+-   Sol bölmeden **çevrimiçi** ' i seçin ve **Ste Generator** araması yapın
+-   **C @ no__t-1 şablonu Için Ste üreticisini** seçin, ad olarak **Stetemplate** girin ve **Ekle** ' ye tıklayın.
+-   **STETemplate.tt** ve **STETemplate.Context.tt** dosyaları, BloggingModel. edmx dosyasının altına iç içe eklenir
 
 ### <a name="if-you-are-using-visual-studio-2010"></a>Visual Studio 2010 kullanıyorsanız
 
--   EF Designer seçin ve yüzey üzerinde boş bir alana sağ **kod oluşturma öğesi Ekle...**
--   Seçin **kod** sol bölmeden ardından **ADO.NET Self-Tracking varlık Oluşturucu**
--   Girin **STETemplate** tıklayın ve adı olarak **Ekle**
--   **STETemplate.tt** ve **STETemplate.Context.tt** dosyalarını doğrudan projenize eklendi
+-   EF Designer yüzeyinde boş bir alana sağ tıklayın ve **kod oluşturma öğesi Ekle...** seçeneğini belirleyin.
+-   Sol bölmedeki **kodu** seçin ve ardından **ADO.net kendi kendine izleme varlık Oluşturucu**
+-   Ad olarak **Stetemplate** girin ve **Ekle** ' ye tıklayın.
+-   **STETemplate.tt** ve **STETemplate.Context.tt** dosyaları projenize doğrudan eklenir
 
-## <a name="move-entity-types-into-separate-project"></a>Varlık türleri ayrı projeye Taşı
+## <a name="move-entity-types-into-separate-project"></a>Varlık türlerini ayrı projeye taşı
 
-Self-Tracking varlıkları kullanmak için istemci uygulamamız bizim modelden üretilen varlık sınıflarının erişimi gerekir. İstemci uygulamasına modelin tamamını göstermek istemediğiniz için varlık sınıflarını ayrı bir projeye taşımak için ekleyeceğiz.
+Kendi kendini Izleyen varlıkları kullanmak için, istemci uygulamamız, modelinizde oluşturulan varlık sınıflarına erişmesi gerekir. Tüm modeli istemci uygulamasına göstermek istemediğimiz için, varlık sınıflarını ayrı bir projeye taşıyacağız.
 
-İlk adım, varolan projede, varlık sınıfları oluşturma önlemektir:
+İlk adım, mevcut projede varlık sınıfları oluşturmayı durdurmaktır:
 
--   Sağ **STETemplate.tt** içinde **Çözüm Gezgini** seçip **özellikleri**
--   İçinde **özellikleri** penceresi Temizle **TextTemplatingFileGenerator** gelen **CustomTool** özelliği
--   Genişletin **STETemplate.tt** içinde **Çözüm Gezgini** ve bunun altında iç içe geçmiş tüm dosyaları silin
+-   **Çözüm Gezgini** 'de **STETemplate.tt** öğesine sağ tıklayın ve **Özellikler** ' i seçin
+-   **Özellikler** penceresinde **CustomTool** özelliğinden **TextTemplatingFileGenerator** seçimini kaldırın
+-   **Çözüm Gezgini** 'de **STETemplate.tt** öğesini genişletin ve içinde iç içe yerleştirilmiş tüm dosyaları silin
 
-Ardından, yeni bir proje ekleyin ve varlık sınıfları oluşturmak için kullanacağız
+Ardından, yeni bir proje ekleyeceğiz ve bu projede varlık sınıfları oluşturacağız
 
--   **Dosya -&gt; Ekle -&gt; proje...**
--   Seçin **Visual C\#**  sol bölmeden ardından **sınıf kitaplığı**
--   Girin **STESample.Entities** tıklayın ve adı olarak **Tamam**
--   **Takım projesi -&gt; varolan öğeyi Ekle...**
--   Gidin **STESample** proje klasörü
--   Görüntülemek için seçin **tüm dosyalar (\*.\*)**
--   Seçin **STETemplate.tt** dosyası
--   Yanındaki aşağı açılan oka tıklayın **Ekle** düğmesini tıklatın ve seçin **bağlantı olarak Ekle**
+-   **Dosya-&gt; Add-&gt; projesi...**
+-   Sol bölmeden ve sonra **sınıf kitaplığı** 'Ndan **Visual C @ no__t-1** ' i seçin
+-   Ad olarak **Stesample. Entities** girin ve **Tamam 'a** tıklayın
+-   **Proje-&gt; varolan öğe Ekle...**
+-   **Stesample** proje klasörüne gitme
+-   Tüm dosyaları görüntülemek için seçin **(\*. \*)**
+-   **STETemplate.tt** dosyasını seçin
+-   **Ekle** düğmesinin yanındaki aşağı açılan oka tıklayın ve **bağlantı olarak ekle** ' yi seçin.
 
-    ![Bağlantılı şablonu Ekle](~/ef6/media/addlinkedtemplate.png)
+    ![Bağlı Şablon Ekle](~/ef6/media/addlinkedtemplate.png)
 
-Bunu varlık sınıflarının ad bağlamı olarak oluşturulmasını emin olmak için dağıtacağız. Bu, yalnızca using deyimlerini eklemek için uygulama genelinde ihtiyacımız sayısını azaltır.
+Ayrıca, varlık sınıflarının bağlamla aynı ad alanında oluşturulduğundan emin veriyoruz. Bu, uygulamamız genelinde eklememiz gereken using deyimlerinin sayısını azaltır.
 
--   Bağlantılı üzerinde sağ **STETemplate.tt** içinde **Çözüm Gezgini** seçip **özellikleri**
--   İçinde **özellikleri** penceresi kümesi **özel aracı Namespace** için **STESample**
+-   **Çözüm Gezgini** bağlantılı **STETemplate.tt** sağ tıklayın ve **Özellikler** ' i seçin
+-   **Özellikler** penceresinde, **Stesample** Için **özel araç ad alanını** ayarlayın
 
-Ste'leri birleştirme şablon tarafından oluşturulan kodu başvuru gerekir **System.Runtime.Serialization** derlemek için. Bu kitaplık için WCF gerekli **DataContract** ve **DataMember** seri hale getirilebilir varlık türleri üzerinde kullanılan öznitelikler.
+STE şablonu tarafından oluşturulan kod, derlemek için **System. Runtime. Serialization** öğesine bir başvuruya sahip olacaktır. Bu kitaplık, serileştirilebilir varlık türlerinde kullanılan WCF **DataContract** ve **DataMember** öznitelikleri için gereklidir.
 
--   Sağ tıklayın **STESample.Entities** projesi **Çözüm Gezgini** seçip **Başvuru Ekle...**
-    -   Visual Studio 2012'de - yanındaki kutuyu işaretleyin **System.Runtime.Serialization** tıklatıp **Tamam**
-    -   Visual Studio 2010'da - seçin **System.Runtime.Serialization** tıklatıp **Tamam**
+-   **Çözüm Gezgini** ' deki **Stesample. Entities** projesine sağ tıklayın ve **Başvuru Ekle...** seçeneğini belirleyin.
+    -   Visual Studio 2012- **System. Runtime. Serialization** seçeneğinin yanındaki kutuyu Işaretleyin ve **Tamam** ' a tıklayın.
+    -   Visual Studio 2010- **System. Runtime. Serialization** öğesini seçin ve **Tamam 'a** tıklayın
 
-Son olarak, bizim bağlamda projeyle varlık türleri başvuru gerekir.
+Son olarak, içinde bağlamımız bir proje varlık türlerine bir başvuruya sahip olur.
 
--   Sağ tıklayın **STESample** projesi **Çözüm Gezgini** seçip **Başvuru Ekle...**
-    -   Visual Studio 2012'de - seçin **çözüm** yanındaki onay kutusunu sol bölmeden **STESample.Entities** tıklatıp **Tamam**
-    -   Visual Studio 2010'da - seçin **projeleri** sekmesinde **STESample.Entities** tıklatıp **Tamam**
+-   **Çözüm Gezgini** ' deki **stesample** projesine sağ tıklayın ve **Başvuru Ekle...** öğesini seçin.
+    -   Visual Studio 2012-sol bölmeden **çözüm** ' i seçin, **Stesample. varlıklar** ' ın yanındaki kutuyu işaretleyin ve **Tamam** ' a tıklayın.
+    -   Visual Studio 2010- **Projeler** sekmesini seçin, **Stesample. Entities** ' yi seçin ve **Tamam** ' a tıklayın.
 
 >[!NOTE]
-> Varlık türleri ayrı bir projeye taşımak için başka bir seçenek, varsayılan konumundan bağlama yerine şablon dosyası taşımaktır. Bunu yaparsanız, güncelleştirmeniz gerekecektir **InputFile** edmx dosyasının göreli yolunu sağlamak için şablonu değişken (Bu örnekte olacaktır **.. \\BloggingModel.edmx**).
+> Varlık türlerini ayrı bir projeye taşımaya yönelik başka bir seçenek de şablon dosyasını varsayılan konumundan bağlamak yerine taşımaktır. Bunu yaparsanız, edmx dosyasına göreli yolu sağlamak için şablonda **InputFile** değişkenini güncelleştirmeniz gerekir (Bu örnekte, **... \\BloggingModel. edmx**).
 
-## <a name="create-a-wcf-service"></a>Bir WCF hizmeti oluşturma
+## <a name="create-a-wcf-service"></a>WCF hizmeti oluşturma
 
-Verilerimizi kullanıma sunmak için bir WCF hizmeti ekleme zamanı artık projesi oluşturarak başlayacağız.
+Şimdi verilerimizi açığa çıkarmak için bir WCF hizmeti eklemenin zamanı, projeyi oluşturarak başlayacağız.
 
--   **Dosya -&gt; Ekle -&gt; proje...**
--   Seçin **Visual C\#**  sol bölmeden ardından **WCF hizmeti uygulaması**
--   Girin **STESample.Service** tıklayın ve adı olarak **Tamam**
--   Bir başvuru ekleyin **System.Data.Entity** derleme
--   Bir başvuru ekleyin **STESample** ve **STESample.Entities** projeleri
+-   **Dosya-&gt; Add-&gt; projesi...**
+-   Sol bölmeden ve ardından **WCF hizmeti uygulamasından** **Visual C @ no__t-1** ' i seçin
+-   Ad olarak **Stesample. Service** girin ve **Tamam 'a** tıklayın
+-   **System. Data. Entity** derlemesine bir başvuru ekleyin
+-   **Stesample** ve **Stesample. Entities** projelerine bir başvuru ekleyin
 
-Çalışma zamanında bulunur, böylece bu projede EF bağlantı dizesini kopyalayın oluşturmamız gerekir.
+EF bağlantı dizesini, çalışma zamanında bulunduğu için bu projeye kopyalamamız gerekir.
 
--   Açık **App.Config** dosya için ** STESample ** proje ve kopyalama **connectionStrings** öğesi
--   Yapıştırma **connectionStrings** öğesi alt öğesi olarak **yapılandırma** öğesinin **Web.Config** dosyası **STESample.Service** proje
+-    **Stesample **projesi için **app. config** dosyasını açın ve **connectionStrings** öğesini kopyalayın
+-   **ConnectionString** öğesini, **Stesample. Service** projesindeki **Web. config** dosyasının **yapılandırma** öğesinin bir alt öğesi olarak yapıştırın
 
-Artık gerçek hizmeti uygulama zamanı geldi.
+Şimdi de gerçek hizmeti uygulama zamanı.
 
--   Açık **Iservice1.cs** ve içeriğini aşağıdaki kodla değiştirin.
+-   **IService1.cs** açın ve içeriğini aşağıdaki kodla değiştirin
 
 ``` csharp
     using System.Collections.Generic;
@@ -201,7 +201,7 @@ Artık gerçek hizmeti uygulama zamanı geldi.
     }
 ```
 
--   Açık **service1.svc'yi** ve içeriğini aşağıdaki kodla değiştirin.
+-   **Service1. svc** açın ve içerikleri aşağıdaki kodla değiştirin
 
 ``` csharp
     using System;
@@ -254,24 +254,24 @@ Artık gerçek hizmeti uygulama zamanı geldi.
     }
 ```
 
-## <a name="consume-the-service-from-a-console-application"></a>Konsol uygulamasından hizmetini kullanma
+## <a name="consume-the-service-from-a-console-application"></a>Hizmeti bir konsol uygulamasından tüketme
 
-Hizmetimiz kullanan bir konsol uygulaması oluşturalım.
+Hizmetimizi kullanan bir konsol uygulaması oluşturalım.
 
--   **Dosya -&gt; yeni -&gt; proje...**
--   Seçin **Visual C\#**  sol bölmeden ardından **konsol uygulaması**
--   Girin **STESample.ConsoleTest** tıklayın ve adı olarak **Tamam**
--   Bir başvuru ekleyin **STESample.Entities** proje
+-   **Dosya-&gt; yeni-&gt; proje...**
+-   Sol bölmeden ve sonra **konsol uygulamasında** **Visual C @ no__t-1** ' i seçin
+-   Ad olarak **Stesample. ConsoleTest** girin ve **Tamam 'a** tıklayın
+-   **Stesample. Entities** projesine bir başvuru ekleyin
 
-WCF hizmetimiz bir hizmet başvurusu ihtiyacımız
+WCF hizmetinize bir hizmet başvurusu gerekiyor
 
--   Sağ **STESample.ConsoleTest** projesi **Çözüm Gezgini** seçip **hizmet Başvurusu Ekle...**
--   Tıklayın **keşfedin**
--   Girin **BloggingService** tıklayın ve ad alanı olarak **Tamam**
+-   **Çözüm Gezgini** ' deki **Stesample. consoletest** projesine sağ tıklayın ve **hizmet başvurusu Ekle...** öğesini seçin.
+-   **Keşfet** 'e tıklayın
+-   Ad alanı olarak **BloggingService** girin ve **Tamam 'a** tıklayın
 
-Şimdi biz hizmeti kullanmak için bazı kod yazabilirsiniz.
+Artık hizmeti tüketmek için bazı kodlar yazabiliriz.
 
--   Açık **Program.cs** ve içeriğini aşağıdaki kodla değiştirin.
+-   **Program.cs** açın ve içeriğini aşağıdaki kodla değiştirin.
 
 ``` csharp
     using STESample.ConsoleTest.BloggingService;
@@ -398,13 +398,13 @@ WCF hizmetimiz bir hizmet başvurusu ihtiyacımız
     }
 ```
 
-Şimdi nasıl çalıştığını görmek için uygulamayı çalıştırabilirsiniz.
+Artık uygulamayı çalışır durumda görmek için çalıştırabilirsiniz.
 
--   Sağ **STESample.ConsoleTest** projesi **Çözüm Gezgini** seçip **hata ayıklama -&gt; yeni örnek Başlat**
+-   **Çözüm Gezgini** ' deki **Stesample. consoletest** projesine sağ tıklayın ve **Hata Ayıkla-&gt; yeni örnek Başlat** ' ı seçin
 
-Uygulama yürütüldüğünde, aşağıdaki çıktıyı görürsünüz.
+Uygulama yürütüldüğünde aşağıdaki çıktıyı görürsünüz.
 
-```
+```console
 Initial Data:
 ADO.NET Blog
 - Intro to EF
@@ -434,24 +434,24 @@ ADO.NET Blog
 Press any key to exit...
 ```
 
-## <a name="consume-the-service-from-a-wpf-application"></a>Bir WPF uygulamasından hizmetini kullanma
+## <a name="consume-the-service-from-a-wpf-application"></a>Bir WPF uygulamasından hizmeti tüketme
 
-Hizmetimiz kullanan bir WPF uygulaması oluşturalım.
+Hizmetimizi kullanan bir WPF uygulaması oluşturalım.
 
--   **Dosya -&gt; yeni -&gt; proje...**
--   Seçin **Visual C\#**  sol bölmeden ardından **WPF uygulaması**
--   Girin **STESample.WPFTest** tıklayın ve adı olarak **Tamam**
--   Bir başvuru ekleyin **STESample.Entities** proje
+-   **Dosya-&gt; yeni-&gt; proje...**
+-   Sol bölmeden ve ardından **WPF uygulamasında** **Visual C @ no__t-1** ' i seçin
+-   Ad olarak **Stesample. WPFTest** girin ve **Tamam 'a** tıklayın
+-   **Stesample. Entities** projesine bir başvuru ekleyin
 
-WCF hizmetimiz bir hizmet başvurusu ihtiyacımız
+WCF hizmetinize bir hizmet başvurusu gerekiyor
 
--   Sağ **STESample.WPFTest** projesi **Çözüm Gezgini** seçip **hizmet Başvurusu Ekle...**
--   Tıklayın **keşfedin**
--   Girin **BloggingService** tıklayın ve ad alanı olarak **Tamam**
+-   **Çözüm Gezgini** ' deki **Stesample. wpftest** projesine sağ tıklayın ve **hizmet başvurusu Ekle...** öğesini seçin.
+-   **Keşfet** 'e tıklayın
+-   Ad alanı olarak **BloggingService** girin ve **Tamam 'a** tıklayın
 
-Şimdi biz hizmeti kullanmak için bazı kod yazabilirsiniz.
+Artık hizmeti tüketmek için bazı kodlar yazabiliriz.
 
--   Açık **MainWindow.xaml** ve içeriğini aşağıdaki kodla değiştirin.
+-   **MainWindow. xaml** ' i açın ve içeriği aşağıdaki kodla değiştirin.
 
 ``` xaml
     <Window
@@ -495,7 +495,7 @@ WCF hizmetimiz bir hizmet başvurusu ihtiyacımız
     </Window>
 ```
 
--   Arka plan kod için MainWindow açın (**MainWindow.xaml.cs**) ve içeriğini aşağıdaki kodla değiştirin.
+-   MainWindow (**MainWindow.xaml.cs**) için arka plan kodunu açın ve içeriği aşağıdaki kodla değiştirin
 
 ``` csharp
     using STESample.WPFTest.BloggingService;
@@ -547,9 +547,9 @@ WCF hizmetimiz bir hizmet başvurusu ihtiyacımız
     }
 ```
 
-Şimdi nasıl çalıştığını görmek için uygulamayı çalıştırabilirsiniz.
+Artık uygulamayı çalışır durumda görmek için çalıştırabilirsiniz.
 
--   Sağ **STESample.WPFTest** projesi **Çözüm Gezgini** seçip **hata ayıklama -&gt; yeni örnek Başlat**
--   Ekran'ı kullanarak verileri işlemek ve yoluyla kullanarak hizmet kaydetmeden **Kaydet** düğmesi
+-   **Çözüm Gezgini** ' deki **Stesample. wpftest** projesine sağ tıklayın ve **Hata Ayıkla-&gt; yeni örnek Başlat** ' ı seçin
+-   Ekranı kullanarak verileri işleyebilir ve **Kaydet** düğmesini kullanarak hizmet aracılığıyla kaydedebilirsiniz.
 
 ![WPF ana penceresi](~/ef6/media/wpf.png)

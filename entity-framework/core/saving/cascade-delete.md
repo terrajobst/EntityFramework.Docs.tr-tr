@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 uid: core/saving/cascade-delete
-ms.openlocfilehash: ec04de4eab2a28e3aa81ff27accef4fc11c83995
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: af86383bad52c87d2874fa4f8eb247a656601312
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197797"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182008"
 ---
 # <a name="cascade-delete"></a>Basamaklı Silme
 
@@ -38,7 +38,7 @@ Aşağıdaki tablolarda listelendiği gibi dört silme davranışı vardır.
 | Davranış adı               | Bellekte bağımlı/alt öğe üzerindeki etki    | Veritabanında bağımlı/alt öğe üzerindeki etki  |
 |:----------------------------|:---------------------------------------|:---------------------------------------|
 | **Seçilemez**                 | Varlıklar silindi                   | Varlıklar silindi                   |
-| **Clientsetnull** Varsayılanını | Yabancı anahtar özellikleri null olarak ayarlandı | Yok.                                   |
+| **Clientsetnull** (varsayılan) | Yabancı anahtar özellikleri null olarak ayarlandı | Yok.                                   |
 | **SetNull**                 | Yabancı anahtar özellikleri null olarak ayarlandı | Yabancı anahtar özellikleri null olarak ayarlandı |
 | **Girmesini**                | Yok.                                   | Yok.                                   |
 
@@ -47,7 +47,7 @@ Gerekli ilişkiler (null yapılamayan yabancı anahtar) için, bir boş yabancı
 
 | Davranış adı         | Bellekte bağımlı/alt öğe üzerindeki etki | Veritabanında bağımlı/alt öğe üzerindeki etki |
 |:----------------------|:------------------------------------|:--------------------------------------|
-| **Basamakla** Varsayılanını | Varlıklar silindi                | Varlıklar silindi                  |
+| **Basamakla** (varsayılan) | Varlıklar silindi                | Varlıklar silindi                  |
 | **ClientSetNull**     | SaveChanges atar                  | Yok.                                  |
 | **SetNull**           | SaveChanges atar                  | SaveChanges atar                    |
 | **Girmesini**          | Yok.                                | Yok.                                  |
@@ -78,7 +78,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ### <a name="deletebehaviorcascade-with-required-or-optional-relationship"></a>DeleteBehavior. Cascade, gerekli veya isteğe bağlı ilişki
 
-```
+```console
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -107,7 +107,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-required-relationship"></a>Gerekli ilişki ile DeleteBehavior. ClientSetNull veya DeleteBehavior. SetNull
 
-```
+```console
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -130,7 +130,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-optional-relationship"></a>İsteğe bağlı ilişki ile DeleteBehavior. ClientSetNull veya DeleteBehavior. SetNull
 
-```
+```console
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -160,7 +160,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ### <a name="deletebehaviorrestrict-with-required-or-optional-relationship"></a>DeleteBehavior. gerekli veya isteğe bağlı ilişki ile kısıtla
 
-```
+```console
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -189,7 +189,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ### <a name="deletebehaviorcascade-with-required-or-optional-relationship"></a>DeleteBehavior. Cascade, gerekli veya isteğe bağlı ilişki
 
-```
+```console
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -217,7 +217,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-required-relationship"></a>Gerekli ilişki ile DeleteBehavior. ClientSetNull veya DeleteBehavior. SetNull
 
-```
+```console
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -240,7 +240,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-optional-relationship"></a>İsteğe bağlı ilişki ile DeleteBehavior. ClientSetNull veya DeleteBehavior. SetNull
 
-```
+```console
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -268,7 +268,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ### <a name="deletebehaviorrestrict-with-required-or-optional-relationship"></a>DeleteBehavior. gerekli veya isteğe bağlı ilişki ile kısıtla
 
-```
+```console
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -297,7 +297,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
     DELETE FROM [Blogs] WHERE [BlogId] = 1
 ```
 
-Yalnızca asıl öğe yüklüyse (örneğin, bir blog `Include(b => b.Posts)` için bir sorgu yapıldığında, gönderiler de dahil olmak üzere),--sonra SaveChanges yalnızca asıl/üst öğeyi silmek için SQL üretir:
+Yalnızca asıl öğe yüklüyse--Örneğin, bir blog için @no__t olmadan bir sorgu yapıldığında, gönderiler de dahil olmak üzere----------, yalnızca asıl/üst öğeyi silmek için SQL üretir:
 
 ```sql
     DELETE FROM [Blogs] WHERE [BlogId] = 1

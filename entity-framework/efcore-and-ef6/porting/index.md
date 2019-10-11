@@ -1,15 +1,15 @@
 ---
-title: EF6’dan EF Core’a taşıma
+title: EF6 'den EF Core-EF 'e taşıma
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 826b58bd-77b0-4bbc-bfcd-24d1ed3a8f38
 uid: efcore-and-ef6/porting/index
-ms.openlocfilehash: 42e40ce769a67a987883027e1807ec7eaeb4ad7a
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: 77096b9bffba6b8c2a3d7bfb0c2e41e2d170a7db
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71198032"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182085"
 ---
 # <a name="porting-from-ef6-to-ef-core"></a>EF6’dan EF Core’a taşıma
 
@@ -29,17 +29,17 @@ Bu, EF6 ve EF Core arasındaki davranıştaki bazı değişikliklerin ayrıntıl
 
 ### <a name="dbsetaddattach-and-graph-behavior"></a>DbSet. Add/Attach ve Graph davranışı
 
-EF6 ' de, `DbSet.Add()` bir varlığa çağırmak, gezinti özelliklerinde başvurulan tüm varlıkların özyinelemeli aramasına neden olur. Bulunan ve bağlam tarafından henüz izlenmeyen varlıklar de eklenmiş olarak işaretlenir. `DbSet.Attach()`tüm varlıkların değiştirilmemiş olarak işaretlenmesi dışında, aynı şekilde davranır.
+EF6 ' de, bir varlıkta `DbSet.Add()` ' ı çağırmak, gezinti özelliklerinde başvurulan tüm varlıkların özyinelemeli aramasına neden olur. Bulunan ve bağlam tarafından henüz izlenmeyen varlıklar de eklenmiş olarak işaretlenir. `DbSet.Attach()`, tüm varlıkların değiştirilmemiş olarak işaretlendiğinden aynı şekilde davranır.
 
 **EF Core benzer özyinelemeli arama gerçekleştirir, ancak biraz farklı kurallara sahiptir.**
 
-*  Kök varlık her zaman istenen durumda (için eklendi `DbSet.Add` ve `DbSet.Attach`değiştirilmez).
+*  Kök varlık her zaman istenen durumda (@no__t için eklendi-0 ve `DbSet.Attach` için değiştirilmez).
 
 *  **Gezinti özelliklerinin özyinelemeli araması sırasında bulunan varlıklar için:**
 
     *  **Varlığın birincil anahtarı mağaza oluşturulduysa**
 
-        * Birincil anahtar bir değere ayarlanmamışsa, durum eklendi olarak ayarlanır. Özellik türü için clr varsayılan değeri atanırsa, birincil anahtar değeri "ayarlanmadı" `0` olarak değerlendirilir (örneğin `int` `null` `string`, için, vb.).
+        * Birincil anahtar bir değere ayarlanmamışsa, durum eklendi olarak ayarlanır. Özellik türü için CLR varsayılan değeri atanırsa, birincil anahtar değeri "ayarlanmadı" olarak kabul edilir (örneğin, `int` için `0`, `string` vb. için `null`).
 
         * Birincil anahtar bir değere ayarlanmışsa durum Unchanged olarak ayarlanır.
 
@@ -63,10 +63,10 @@ EF6 ' de, `DbSet.Add()` bir varlığa çağırmak, gezinti özelliklerinde başv
 
 * Veritabanı bağlantısı kodda açıkça yapılandırılmalıdır.
 
-* Başlatma yapılmaz. Geçişleri uygulamak için `DbContext.Database.Migrate()` kullanmanız gerekir ( `EnsureDeleted()` veya `DbContext.Database.EnsureCreated()` , geçişleri kullanmadan veritabanını oluşturmak/silmek için).
+* Başlatma yapılmaz. Geçişleri uygulamak için `DbContext.Database.Migrate()` kullanmanız gerekir (veya `DbContext.Database.EnsureCreated()` ve `EnsureDeleted()` ' ye geçiş kullanmadan veritabanını oluşturmak/silmek için).
 
 ### <a name="code-first-table-naming-convention"></a>Code First tablo adlandırma kuralı
 
 EF6, varlığın eşlendiği varsayılan tablo adını hesaplamak için bir çoğullaştırma hizmeti aracılığıyla varlık sınıfı adını çalıştırır.
 
-EF Core, varlığın türetilmiş bağlamda kullanıma `DbSet` sunulmuş olduğu özelliğin adını kullanır. Varlığın bir `DbSet` özelliği yoksa, sınıf adı kullanılır.
+EF Core, varlığın türetilmiş bağlamda açığa çıkarılan `DbSet` özelliğinin adını kullanır. Varlığın bir `DbSet` özelliği yoksa, sınıf adı kullanılır.

@@ -4,12 +4,12 @@ author: ErikEJ
 ms.date: 01/07/2019
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/extensions/index
-ms.openlocfilehash: 43b98c1f09a89f7e5451e28cbf2f78a2cb1040e5
-ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
+ms.openlocfilehash: 0c9671eb77181d85cd493341cd1abf842d13fb0e
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/12/2019
-ms.locfileid: "70921773"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181267"
 ---
 # <a name="ef-core-tools--extensions"></a>EF Core araçları & uzantıları
 
@@ -52,12 +52,12 @@ CatFactory, bir SQL Server veritabanından DbContext sınıflarının, varlıkla
 
 ### <a name="loresofts-entity-framework-core-generator"></a>LoreSoft 'ın Entity Framework Core Oluşturucu
 
-Entity Framework Core Generator (EFG), var olan bir veritabanından `dotnet ef dbcontext scaffold`EF Core modeller oluşturabilen bir .NET Core CLI aracıdır, ancak bölge değişikliği aracılığıyla veya eşleme dosyalarını ayrıştırarak güvenli kod yeniden [oluşturmayı](https://efg.loresoft.com/en/latest/regeneration/) da destekler. Bu araç, görünüm modellerinin, doğrulamanın ve nesne Eşleyici kodunun oluşturulmasını destekler. 
+Entity Framework Core Generator (EFG), var olan bir veritabanından, `dotnet ef dbcontext scaffold` gibi EF Core modeller oluşturabilen, ancak bölge değişikliği aracılığıyla veya eşleme dosyalarını ayrıştırarak güvenli kod yeniden [oluşturmayı](https://efg.loresoft.com/en/latest/regeneration/) da destekleen .NET Core CLI bir araçtır. Bu araç, görünüm modellerinin, doğrulamanın ve nesne Eşleyici kodunun oluşturulmasını destekler. 
 
-[Öğretici](http://www.loresoft.com/Generate-ASP-NET-Web-API)belgeleri
-[](https://efg.loresoft.com/en/latest/)
+[Eğitim](https://www.loresoft.com/Generate-ASP-NET-Web-API)
+[belge](https://efg.loresoft.com/en/latest/)
 
-## <a name="extensions"></a>Uzantıları
+## <a name="extensions"></a>Uzantılar
 
 ### <a name="microsoftentityframeworkcoreautohistory"></a>Microsoft. EntityFrameworkCore. oto geçmişi
 

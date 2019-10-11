@@ -1,101 +1,101 @@
 ---
-title: Code First Migrations ile varolan bir veritabanını - EF6
+title: Var olan bir veritabanıyla Code First Migrations-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: f0cc4f93-67dd-4664-9753-0a9f913814db
-ms.openlocfilehash: 77370ec7d922b8324b924a0b4aca3e58f5ec6066
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: eb7948eafb1322cabcf69b47bd5411f762fe8498
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490577"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182577"
 ---
-# <a name="code-first-migrations-with-an-existing-database"></a>Code First Migrations ile mevcut bir veritabanı
+# <a name="code-first-migrations-with-an-existing-database"></a>Mevcut bir veritabanıyla Code First Migrations
 > [!NOTE]
-> **EF4.3 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb. Entity Framework 4.1 içinde kullanıma sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.
+> **EF 4.3 yalnızca** bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 4,1 ' de tanıtılmıştı. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.
 
-Bu makale, Entity Framework tarafından oluşturulmadıysa var olan veritabanı ile Code First Migrations'ı kullanarak kapsar.
+Bu makalede, Entity Framework tarafından oluşturulmamış mevcut bir veritabanıyla Code First Migrations kullanımı ele alınmaktadır.
 
 > [!NOTE]
-> Bu makalede, temel senaryolarda Code First Migrations nasıl kullanılacağını varsayar. Sizin sonra okumak ihtiyacınız olacak [Code First Migrations](~/ef6/modeling/code-first/migrations/index.md) devam etmeden önce.
+> Bu makalede temel senaryolarda Code First Migrations kullanmayı bildiğiniz varsayılmaktadır. Bunu yapmazsanız devam etmeden önce [Code First Migrations](~/ef6/modeling/code-first/migrations/index.md) okumanız gerekir.
 
-## <a name="screencasts"></a>Ekran kayıtları
+## <a name="screencasts"></a>Tasarlandı
 
-Bu makaleyi okuyun bir yayını daha yerine izleyin, bu makalede aynı içeriğe aşağıdaki iki video kapsar.
+Bu makaleyi okuduğunuzdan bir ekran koruyucu izlemeyi tercih ediyorsanız, aşağıdaki iki video bu makaleyle aynı içeriği kapsar.
 
-### <a name="video-one-migrations---under-the-hood"></a>Bir video: "Başlık altında - geçişler"
+### <a name="video-one-migrations---under-the-hood"></a>Video One: "Geçişler-"
 
-[Bu yayını](http://channel9.msdn.com/blogs/ef/migrations-under-the-hood) geçişleri nasıl izlediği kapsar ve modeli hakkında bilgi modeli değişikliklerini algılamak için kullanır.
+[Bu ekran kaydı](https://channel9.msdn.com/blogs/ef/migrations-under-the-hood) , geçişlerin, model değişikliklerini algılamak için model hakkındaki bilgileri nasıl izlediğini ve kullandığını ele alır.
 
-### <a name="video-two-migrations---existing-databases"></a>Video iki: "Geçişler - var olan veritabanlarını"
+### <a name="video-two-migrations---existing-databases"></a>Video Iki: "Geçişler-mevcut veritabanları"
 
-Önceki video kavramları güncelleştirmelerle [bu yayını](http://channel9.msdn.com/blogs/ef/migrations-existing-databases) etkinleştirmek ve var olan bir veritabanı geçişlerini kullanmak nasıl etkinleştireceğinizi de açıklar.
+Önceki videodaki kavramlar üzerinde oluşturma, [Bu ekran kaydı](https://channel9.msdn.com/blogs/ef/migrations-existing-databases) , var olan bir veritabanıyla geçişleri etkinleştirme ve kullanma konularını ele alır.
 
-## <a name="step-1-create-a-model"></a>1. adım: bir model oluşturma
+## <a name="step-1-create-a-model"></a>1\. adım: Model oluşturma
 
-İlk adımınız mevcut veritabanını hedefleyen Code First bir model oluşturmak olacaktır. [Var olan bir veritabanına ilk kod](~/ef6/modeling/code-first/workflows/existing-database.md) konu bunun nasıl yapılacağı hakkında ayrıntılı kılavuz sağlar.
+İlk adımınız, var olan veritabanınızı hedefleyen Code First bir model oluşturmak olacaktır. [Var olan bir veritabanına Code First](~/ef6/modeling/code-first/workflows/existing-database.md) , bunun nasıl yapılacağı hakkında ayrıntılı yönergeler sağlar.
 
 >[!NOTE]
-> Veritabanı şema değişiklikleri gerektirecek modeldeki herhangi bir değişiklik yapmadan önce bu konudaki adımları izlemeden daha önemlidir. Model eşitlenmiş olması için aşağıdaki adımları gerektirir veritabanı şeması.
+> Modelinizde veritabanı şemasında değişiklik yapılmasını gerektiren değişiklikler yapmadan önce bu konudaki adımların geri kalanını izlemeniz önemlidir. Aşağıdaki adımlar, modelin veritabanı şeması ile eşitlenmiş olmasını gerektirir.
 
-## <a name="step-2-enable-migrations"></a>2. adım: Migrations'ı etkinleştirme
+## <a name="step-2-enable-migrations"></a>2\. adım: Geçişleri etkinleştir
 
-Sonraki adım, geçiş etkinleştirmektir. Çalıştırarak bunu yapabilirsiniz **etkinleştir geçişleri** Paket Yöneticisi konsolunda komutu.
+Sonraki adım, geçişleri etkinleştirmektir. Bunu, Paket Yöneticisi konsolundaki **geçişi etkinleştir** komutunu çalıştırarak yapabilirsiniz.
 
-Bu komut çözümünüzde geçişleri adlı bir klasör oluşturun ve tek bir sınıf adlı yapılandırma içinde yerleştirin. Yapılandırma geçişleri uygulamanız için daha fazla bilgi bulabilirsiniz yapılandırdığınız sınıftır [Code First Migrations](~/ef6/modeling/code-first/migrations/index.md) konu.
+Bu komut, çözümünüzde geçişler adlı bir klasör oluşturur ve bunun içinde yapılandırma adlı tek bir sınıf yerleştirir. Yapılandırma sınıfı, uygulamanız için geçişleri yapılandırdığınız yerdir, [Code First Migrations](~/ef6/modeling/code-first/migrations/index.md) konusunda daha fazla bilgi edinebilirsiniz.
 
-## <a name="step-3-add-an-initial-migration"></a>3. adım: bir başlangıç geçiş Ekle
+## <a name="step-3-add-an-initial-migration"></a>3\. adım: İlk geçiş Ekle
 
-Geçiş oluşturulur ve uygulanan sonra bunlar uygulamak isteyebilirsiniz yerel veritabanı diğer veritabanlarına değişir. Örneğin, yerel veritabanınızı bir test veritabanı olabilir ve sonuçta da üretim veritabanına değişiklikleri uygulamak isteyebilirsiniz ve/veya diğer geliştiriciler veritabanları test edin. Bu adım için iki seçenek vardır ve diğer veritabanlarını şemasını boş veya şu anda yerel veritabanı şeması eşleşen olup olmadığını seçmeniz gerekir bir bağlıdır.
+Geçişler oluşturulduktan ve yerel veritabanına uygulandıktan sonra, bu değişiklikleri diğer veritabanlarına da uygulamak isteyebilirsiniz. Örneğin, yerel veritabanınız bir test veritabanı olabilir ve son olarak, değişiklikleri bir üretim veritabanına ve/veya diğer geliştiriciler test veritabanlarına de uygulamak isteyebilirsiniz. Bu adım için iki seçenek bulunur ve sizin seçmeniz gereken diğer veritabanlarının şemasının boş olup olmadığı veya şu anda yerel veritabanının şemasıyla eşleşip eşleşmediğini gösterir.
 
--   **Bir seçenek: var olan bir şema, başlangıç noktası olarak kullanın.** Yerel veritabanınızı şu anda olduğu gibi geçişleri gelecekte uygulanacak diğer veritabanları aynı şemaya sahip olduğunda bu yaklaşımı kullanmanız. Örneğin, bu yerel test veritabanınız şu anda v1 üretim veritabanınız ile eşleşen ve daha sonra bu geçişlerini üretim veritabanınızı v2 için güncelleştirme uygulanır kullanabilirsiniz.
--   **İki seçenek: boş veritabanı, başlangıç noktası olarak kullanın.** Geçişleri gelecekte uygulanacak diğer veritabanlarına boş (veya henüz var olmaması olduğunda), bu yaklaşımı kullanmanız gerekir. Örneğin, bir test veritabanı kullanarak uygulamanızı geliştirmeye başladı, ancak geçişleri ve kullanmadan daha sonra bir üretim veritabanının sıfırdan oluşturmak isteyeceksiniz bu kullanabilirsiniz.
+-   **seçenek: Başlangıç noktası olarak mevcut şemayı kullan.** Bu yaklaşımı, daha sonra geçiş yapılacak diğer veritabanları, yerel veritabanınız ile aynı şemaya sahip olacağı durumlarda kullanmanız gerekir. Örneğin, yerel test veritabanınız Şu anda üretim veritabanınızın v1 ile eşleşiyorsa bunu kullanabilir ve daha sonra üretim veritabanınızı v2 'ye güncelleştirmek için bu geçişleri uygularsınız.
+-   **Seçenek Iki: Başlangıç noktası olarak boş veritabanını kullan.** Bu yaklaşımı, geçiş için daha sonra uygulanacak diğer veritabanları boş olduğunda (veya henüz yoksa) kullanmanız gerekir. Örneğin, bir test veritabanını kullanarak uygulamanızı geliştirmeye başladıysanız ancak geçişleri kullanmadan, daha sonra bir üretim veritabanını sıfırdan oluşturmak istiyorsanız bu işlemi kullanabilirsiniz.
 
-### <a name="option-one-use-existing-schema-as-a-starting-point"></a>Bir seçenek: var olan şema başlangıç noktası olarak kullanın.
+### <a name="option-one-use-existing-schema-as-a-starting-point"></a>Seçenek bir: Varolan şemayı başlangıç noktası olarak kullan
 
-Code First geçişleri modeline değişikliklerini algılamak için modelinin en son geçiş depolanan anlık görüntüsünü kullanır (Bu konuda hakkında ayrıntılı bilgi bulabilirsiniz [Code First Migrations ekip ortamlarında](~/ef6/modeling/code-first/migrations/teams.md)). Veritabanları, geçerli model şeması zaten sahip olduğunuzu varsaymaktadır kullanacağız olduğundan, bir anlık görüntü olarak geçerli modeli olan bir boş (İşlemsiz) geçiş oluşturacağız.
+Code First Migrations, modeldeki değişiklikleri algılamak için en son geçişte depolanan modelin anlık görüntüsünü kullanır (Bu, ilgili ayrıntılı bilgileri [Takım ortamlarında Code First Migrations](~/ef6/modeling/code-first/migrations/teams.md)bulabilirsiniz). Veritabanlarının zaten geçerli modelin şemasına sahip olduğunu varsaydığımızdan, anlık görüntü olarak geçerli modele sahip boş bir (Hayır-op) geçişi oluşturacağız.
 
-1.  Çalıştırma **Ekle geçiş InitialCreate – IgnoreChanges** Paket Yöneticisi konsolunda komutu. Bu boş bir geçiş geçerli modeliyle anlık görüntü olarak oluşturur.
-2.  Çalıştırma **veritabanını Güncelleştir** Paket Yöneticisi konsolunda komutu. Bu, InitialCreate geçiş veritabanına uygulanır. Gerçek geçiş herhangi bir değişiklik içermiyor olduğundan, yalnızca bir satır için ekleyeceksiniz \_ \_bu geçiş zaten uygulanmış olan tablo MigrationsHistory belirten.
+1.  Paket Yöneticisi konsolundaki **Add-Migration ınitialcreate – ıgnorechanges** komutunu çalıştırın. Bu, geçerli modelle anlık görüntü olarak boş bir geçiş oluşturur.
+2.  Package Manager konsolunda **Update-Database** komutunu çalıştırın. Bu, ınitialcreate geçişini veritabanına uygular. Gerçek geçiş herhangi bir değişiklik içermediğinden, bu geçişin zaten uygulandığını belirten \_ @ no__t-1MigrationsHistory tablosuna yalnızca bir satır ekler.
 
-### <a name="option-two-use-empty-database-as-a-starting-point"></a>İki seçenek: boş veritabanı bir başlangıç noktası olarak kullanın.
+### <a name="option-two-use-empty-database-as-a-starting-point"></a>Iki seçenek: Boş veritabanını başlangıç noktası olarak kullan
 
-Bu senaryoda sıfırdan – bizim yerel veritabanında mevcut olan tablolar da dahil olmak üzere tüm veritabanı oluşturabilmeniz için geçişler ihtiyacımız var. Varolan şema oluşturmak için mantığı içeren bir InitialCreate geçiş oluşturmak için ekleyeceğiz. Ardından bu geçiş zaten uygulanmış gibi görünmesini bizim var olan veritabanı oluşturacağız.
+Bu senaryoda, yerel veritabanımızda zaten mevcut olan tablolar da dahil olmak üzere tüm veritabanını sıfırdan oluşturabilmeniz için geçişlere ihtiyacımız var. Mevcut şemayı oluşturma mantığını içeren bir ınitialcreate geçişi oluşturacağız. Daha sonra var olan veritabanımızın bu geçiş zaten uygulanmış gibi görünmesini sağlayacağız.
 
-1.  Çalıştırma **Ekle geçiş InitialCreate** Paket Yöneticisi konsolunda komutu. Bu var olan bir şema oluşturmak için bir geçiş oluşturur.
-2.  Yeni oluşturulan geçiş yukarı yönteminde tüm kod açıklama satırı yapın. Bu, bize 'geçiş için yerel veritabanı zaten mevcut olan tüm tabloları vb. yeniden çalışmadan uygulamak ' olanak tanır.
-3.  Çalıştırma **veritabanını Güncelleştir** Paket Yöneticisi konsolunda komutu. Bu, InitialCreate geçiş veritabanına uygulanır. Gerçek geçiş içermediğinden değişiklikleri (biz geçici olarak bunları açıklamalı nedeniyle), genellikle yalnızca bir satır ekler \_ \_bu geçiş zaten uygulanmış olan tablo MigrationsHistory belirten.
-4.  Yukarı yöntemindeki kod un açıklama. Başka bir deyişle, bu geçiş gelecekteki veritabanlarına uygulandığında, yerel veritabanında zaten varolduğu şema geçişleri tarafından oluşturulur.
+1.  Paket Yöneticisi konsolundaki **Add-Migration ınitialcreate** komutunu çalıştırın. Bu, varolan şemayı oluşturmak için bir geçiş oluşturur.
+2.  Yeni oluşturulan geçişin up yöntemindeki tüm kodu açıklama. Bu, daha önce var olan tüm tabloları yeniden oluşturmaya gerek kalmadan yerel veritabanına geçişi ' uygulamamıza izin verir.
+3.  Package Manager konsolunda **Update-Database** komutunu çalıştırın. Bu, ınitialcreate geçişini veritabanına uygular. Gerçek geçiş herhangi bir değişiklik içermediğinden (bunları geçici olarak belirlediğimiz için), bu geçişin zaten uygulandığını belirten \_ @ no__t-1MigrationsHistory tablosuna yalnızca bir satır ekler.
+4.  Up yöntemindeki kodun açıklamasını kaldırın. Bu, geçiş gelecekteki veritabanlarına uygulandığında, yerel veritabanında zaten var olan şemanın geçişler tarafından oluşturulacağı anlamına gelir.
 
-## <a name="things-to-be-aware-of"></a>Dikkat edilmesi gereken noktalar
+## <a name="things-to-be-aware-of"></a>Dikkat edilmesi gerekenler
 
-Geçişleri var olan bir veritabanında kullanırken bilmeniz gereken birkaç nokta vardır.
+Mevcut bir veritabanına yönelik geçişleri kullanırken bilmeniz gereken birkaç nokta vardır.
 
-### <a name="defaultcalculated-names-may-not-match-existing-schema"></a>Varsayılan ve hesaplanan adları mevcut şema eşleşmiyor olabilir
+### <a name="defaultcalculated-names-may-not-match-existing-schema"></a>Varsayılan/hesaplanan adlar varolan şemayla eşleşmeyebilir
 
-Geçişleri açıkça belirten sütun ve tabloların adlarını, bir geçiş iskele oluşturulduğunu olduğunda. Ancak, geçişler hesaplar için bir varsayılan ad geçişlerin uygularken diğer veritabanı nesnelerini vardır. Bu, dizinleri ve yabancı anahtar kısıtlamaları içerir. Var olan bir şema hedeflenirken Bu hesaplanan adları ne veritabanınızda gerçekten var eşleşmeyebilir.
+Geçişler, bir geçişleri yapılandırırken sütun ve tablo adlarını açıkça belirler. Ancak, geçişler uygulanırken geçiş için varsayılan bir adı hesaplayan diğer veritabanı nesneleri vardır. Bu dizinler ve yabancı anahtar kısıtlamalarını içerir. Mevcut bir şemayı hedeflerken, bu hesaplanan adlar veritabanınızda gerçekten mevcut olan ile eşleşmeyebilir.
 
-Bu durumun farkında olması gerektiğinde bazı örnekleri şunlardır:
+Bunun ne zaman farkında olmanız gerektiği hakkında bazı örnekler aşağıda verilmiştir:
 
-**Kullandıysanız ' seçeneği bir: var olan şema başlangıç noktası olarak kullanın. ' adım 3:**
+**Kullandıysanız ' seçeneği bir: Mevcut şemayı başlangıç noktası olarak kullan: 3. Adım:**
 
--   Değiştirmek veya farklı şekilde adlandırılmış veritabanı nesnelerinden birine bırakarak, modelinize ileride yapılacak değişikliklerin ihtiyacınız varsa, doğru adı belirtmek için iskele kurulmuş geçiş değiştirmeniz gerekir. Geçişleri API'leri, bunu yapmanızı sağlayan isteğe bağlı adı parametresi var.
-    Örneğin, var olan şemanızı IndexFk adlı bir dizin olan bir BlogId yabancı anahtar sütunu içeren bir gönderi tablo olabilir\_BlogId. Varsayılan olarak bu dizin IX adlandırılması geçişleri ancak beklediğiniz\_BlogId. Bu dizini bırakma sonucunda modeldeki bir değişiklik yaparsanız, IndexFk belirtmek için iskele kurulmuş DropIndex çağrısı değiştirmeniz gerekecektir\_BlogId adı.
+-   Modelinizdeki gelecekteki değişiklikler farklı şekilde adlandırılan veritabanı nesnelerinden birinin değiştirilmesini veya bırakılmasını gerektiriyorsa, doğru adı belirtmek için yapı iskelesi geçişini değiştirmeniz gerekir. Geçişler API 'Leri, bunu yapmanıza olanak sağlayan isteğe bağlı bir ad parametresine sahiptir.
+    Örneğin, var olan şemanız, IndexFk @ no__t-0Blogıd adlı bir dizine sahip blogID yabancı anahtar sütunu içeren bir post tablosuna sahip olabilir. Ancak, varsayılan olarak geçişler bu dizinin x @ no__t-0Blogıd olarak adlandırıldığını bekler. Modelinizde bu dizini bırakmaya neden olan bir değişiklik yaparsanız, IndexFk @ no__t-0Blogıd adını belirtmek için scafkatlanmış DropIndex çağrısını değiştirmeniz gerekir.
 
-**Kullandıysanız ' seçeneği iki: bir başlangıç noktası olarak boş veritabanını kullan ' adım 3:**
+**' seçeneğini kullandıysanız: Adım 3 ' te boş veritabanını başlangıç noktası olarak kullan:**
 
--   Geçişleri dizinleri ve yanlış adları kullanarak yabancı anahtar kısıtlamalarını dener (yani, boş bir veritabanı için geri alma olduğu gibi) ilk geçiş aşağı yöntemi yerel veritabanınızda çalıştırılmaya çalışılırken başarısız olabilir. Diğer veritabanlarının ilk geçiş yukarı yöntemi kullanarak sıfırdan oluşturulacağından bu yalnızca yerel veritabanınızı etkiler.
-    Var olan yerel veritabanınızı boş bir duruma düşürmek istiyorsanız bunu el ile veritabanını silmek veya tüm tabloları bırakarak yapmak oldukça kolaydır. Varsayılan adlarla tüm veritabanı nesnelerinin oluşturulması bu ilk Sürüm Düşürme sonra bu nedenle bu sorunu kendisi yeniden sunacaktır değil.
--   Modelinize ileride yapılacak değişikliklerin değiştirmek veya farklı şekilde adlandırılmış veritabanı nesnelerinden birine bırakarak gerektiriyorsa, varsayılan adları eşleşmeyecektir olduğundan bu var olan yerel veritabanınızda – çalışmaz. Ancak, geçişleri tarafından seçmiş varsayılan adları kullanmış olduğundan, 'sıfırdan' oluşturulan veritabanlarına karşı çalışır.
-    Ya da bu değişiklikleri el ile yerel mevcut veritabanınızı yapmak veya diğer makinelere olacak şekilde veritabanınızı – sıfırdan yeniden geçişleri depolamayı düşünün.
--   İlk geçişinizi yukarı yöntemi kullanılarak oluşturulan veritabanları dizinler için hesaplanan varsayılan adlar beri yerel veritabanından biraz farklı olabilir ve yabancı anahtar kısıtlamalarını kullanılacaktır. Ayrıca ek dizinler bitirebilirsiniz gibi geçişleri dizinleri yabancı anahtar sütunlarına varsayılan olarak oluşturacaktır – bu durumda, özgün yerel veritabanınızı olmuş olabilir.
+-   Geçişler, hatalı adları kullanarak dizin ve yabancı anahtar kısıtlamalarını bırakmaya çalışacağından, ilk geçişin (yani boş bir veritabanına geri döndürülmesi), yerel veritabanınıza karşı çalışma yöntemini çalıştırmaya çalışmak başarısız olabilir. Bu, ilk geçişin up yöntemi kullanılarak diğer veritabanları sıfırdan oluşturulduğundan, yalnızca yerel veritabanınızı etkiler.
+    Mevcut yerel veritabanınızı boş bir duruma düşürmek isterseniz, veritabanını bırakarak veya tüm tabloları bırakarak bunu el ile yapmak en kolay yoldur. Bu ilk kez düşürme sonrasında tüm veritabanı nesneleri varsayılan adlarla yeniden oluşturulacaktır, bu nedenle bu sorun kendisini tekrar sunmaz.
+-   Modelinizdeki gelecekteki değişiklikler farklı şekilde adlandırılan veritabanı nesnelerinden birinin değiştirilmesini veya bırakılmasını gerektiriyorsa, bu adlar varsayılanlar ile eşleşmediğinden, mevcut yerel veritabanınıza karşı çalışmaz. Ancak, geçişler tarafından seçilen varsayılan adları kullandıklarından ' sıfırdan ' ' sıfırdan ' oluşturulan veritabanlarına karşı çalışır.
+    Bu değişiklikleri yerel var olan veritabanınızda el ile yapabilir veya geçiş yapmayı, diğer makinelerde olduğu gibi, veritabanınızı sıfırdan yeniden oluşturmasını sağlayabilirsiniz.
+-   İlk geçişinizin up yöntemi kullanılarak oluşturulan veritabanları, dizinler ve yabancı anahtar kısıtlamaları için hesaplanmış varsayılan adlar kullanılacak olduğundan, yerel veritabanından biraz farklı olabilir. Geçiş, yabancı anahtar sütunlarında varsayılan olarak dizin oluşturacak şekilde ek dizinler de alabilir; bu durum özgün yerel veritabanınızda bu durum olmayabilir.
 
-### <a name="not-all-database-objects-are-represented-in-the-model"></a>Tüm veritabanı nesneleri modelinde temsil edilir
+### <a name="not-all-database-objects-are-represented-in-the-model"></a>Tüm veritabanı nesneleri modelde temsil edilmez
 
-Modelinizin bir parçası olmayan veritabanı nesneleri tarafından geçişleri işlenmedi. Bu görünümler, saklı yordamlar, izinler, model, ek dizinleri vb. parçası olmayan tablolar içerebilir.
+Modelinize dahil olmayan veritabanı nesneleri geçişler tarafından işlenmeyecektir. Bu, görünümleri, saklı yordamları, izinleri, modelinizin bir parçası olmayan tabloları, ek dizinleri vb. içerebilir.
 
-Bu durumun farkında olması gerektiğinde bazı örnekleri şunlardır:
+Bunun ne zaman farkında olmanız gerektiği hakkında bazı örnekler aşağıda verilmiştir:
 
--   Seçenek bağımsız olarak, modelinize ileride yapılacak değişikliklerin değiştirme ya da geçişler bu değişiklikleri yapmak için oynatacaklarını bilmez bu ek nesneleri bırakarak kullanmanız gerekiyorsa 'Adım 3' olarak seçtiniz. Örneğin, ek dizin içeren bir sütun sürüklerseniz, dizini silmek için geçişler bilmez. İskele kurulmuş geçişi bu el ile eklemeniz gerekir.
--   Kullandıysanız ' seçeneği iki: bir başlangıç noktası olarak boş veritabanını kullan ', bu ek nesneleri ilk geçişinizi yukarı yöntemi tarafından oluşturulmaz.
-    Yukarı değiştirebilir ve istediğiniz yöntemleri bu ek nesneleri, halletmeniz için. Geçişleri API'sindeki – – görünümleri gibi yerel olarak desteklenmeyen nesneler için kullanabileceğiniz [Sql](https://msdn.microsoft.com/library/system.data.entity.migrations.dbmigration.sql.aspx) oluşturma bunları bırakma için ham SQL çalıştırmak için yöntemi.
+-   ' Adım 3 ' te seçtiğiniz seçenekten bağımsız olarak, modelinizdeki gelecekteki değişiklikler bu ek nesnelerin değiştirilmesini veya bırakılmasını gerektiriyorsa, bu değişiklikleri yapmak için bu değişiklikleri bilmez. Örneğin, üzerinde ek bir dizin olan bir sütunu bırakırsanız, geçişler dizini bırakmayı bilmez. Bunu, yapı iskelesi geçişine el ile eklemeniz gerekir.
+-   ' Seçeneği Iki kullandıysanız: Boş veritabanını başlangıç noktası olarak kullan ', bu ek nesneler ilk geçişinizin up yöntemi tarafından oluşturulmayacak.
+    İsterseniz, bu ek nesnelerle ilgilenmek için yukarı ve aşağı yöntemlerini değiştirebilirsiniz. Geçişler API 'sinde, görünümler gibi yerel olarak desteklenmeyen nesneler için, [SQL](https://msdn.microsoft.com/library/system.data.entity.migrations.dbmigration.sql.aspx) metodunu kullanarak ham SQL 'i oluşturabilir/bırakabilirsiniz.

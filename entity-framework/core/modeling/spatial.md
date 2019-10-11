@@ -5,12 +5,12 @@ ms.author: bricelam
 ms.date: 11/01/2018
 ms.assetid: 2BDE29FC-4161-41A0-841E-69F51CCD9341
 uid: core/modeling/spatial
-ms.openlocfilehash: 026df735473e31f1c1463c1fbc6f46c4fd6dfd4f
-ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
+ms.openlocfilehash: cced53edadb890e4e86753ec2628218ffc4d1d5b
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/12/2019
-ms.locfileid: "70921729"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181386"
 ---
 # <a name="spatial-data"></a>Uzamsal veriler
 
@@ -32,7 +32,7 @@ Npgsql. EntityFrameworkCore. PostgreSQL   | [Npgsql. EntityFrameworkCore. Postgr
 
 ## <a name="reverse-engineering"></a>Tersine mühendislik
 
-Uzamsal NuGet paketleri de uzamsal özelliklerle [ters mühendislik](../managing-schemas/scaffolding.md) modellerini etkinleştirir, ancak veya `dotnet ef dbcontext scaffold`çalıştırmadan `Scaffold-DbContext` ***önce*** paketi yüklemeniz gerekir. Bunu yapmazsanız, sütunlar için tür eşlemelerini bulmayın hakkında uyarılar alırsınız ve sütunlar atlanır.
+Uzamsal NuGet paketleri de uzamsal özelliklerle [ters mühendislik](../managing-schemas/scaffolding.md) modellerini etkinleştirir, ancak `Scaffold-DbContext` veya `dotnet ef dbcontext scaffold` ' i çalıştırmadan ***önce*** paketi yüklemeniz gerekir. Bunu yapmazsanız, sütunlar için tür eşlemelerini bulmayın hakkında uyarılar alırsınız ve sütunlar atlanır.
 
 ## <a name="nettopologysuite-nts"></a>Nettopologyısuite (bir)
 
@@ -46,7 +46,7 @@ optionsBuilder.UseSqlServer(
     x => x.UseNetTopologySuite());
 ```
 
-Birçok uzamsal veri türü vardır. Kullandığınız tür, izin vermek istediğiniz şekillerin türüne bağlıdır. Modelinizdeki özellikler için kullanabileceğiniz, bu türlerin hiyerarşisi aşağıda verilmiştir. `NetTopologySuite.Geometries` Ad alanı içinde bulunur.
+Birçok uzamsal veri türü vardır. Kullandığınız tür, izin vermek istediğiniz şekillerin türüne bağlıdır. Modelinizdeki özellikler için kullanabileceğiniz, bu türlerin hiyerarşisi aşağıda verilmiştir. @No__t-0 ad alanı içinde bulunur.
 
 * Geometrisi
   * Seçeneğinin
@@ -62,7 +62,7 @@ Birçok uzamsal veri türü vardır. Kullandığınız tür, izin vermek istedi�
 
 Temel geometri türünü kullanmak, özelliği tarafından herhangi bir tür şeklin belirtilmesini sağlar.
 
-Aşağıdaki varlık sınıfları, [geniş dünya içe örnek veritabanındaki](http://go.microsoft.com/fwlink/?LinkID=800630)tablolarla eşlemek için kullanılabilir.
+Aşağıdaki varlık sınıfları, [geniş dünya içe örnek veritabanındaki](https://go.microsoft.com/fwlink/?LinkID=800630)tablolarla eşlemek için kullanılabilir.
 
 ``` csharp
 [Table("Cities", Schema = "Application"))]
@@ -101,7 +101,7 @@ var currentLocation = geometryFactory.CreatePoint(-122.121512, 47.6739882);
 
 ### <a name="longitude-and-latitude"></a>Boylam ve Enlem
 
-Ormallardaki koordinatlar X ve Y değerleri bakımından yapılır. Boylam ve enlem 'yi göstermek için boylam için X kullanın ve enlem için Y kullanın. Bunun, genellikle bu değerleri görebileceğiniz `latitude, longitude` biçimden **geriye doğru** olduğunu unutmayın.
+Ormallardaki koordinatlar X ve Y değerleri bakımından yapılır. Boylam ve enlem 'yi göstermek için boylam için X kullanın ve enlem için Y kullanın. Bunun, genellikle bu değerleri görebileceğiniz `latitude, longitude` biçiminden **geriye doğru** olduğunu unutmayın.
 
 ### <a name="srid-ignored-during-client-operations"></a>İstemci işlemleri sırasında SRID yoksayıldı
 
@@ -213,11 +213,11 @@ SQL Server kullanıyorsanız, bilmeniz gereken bazı ek şeyler vardır.
 
 ### <a name="geography-or-geometry"></a>Coğrafya veya geometri
 
-Varsayılan olarak, uzamsal özellikler SQL Server `geography` sütunlara eşlenir. Kullanmak `geometry`için, modelinizdeki [sütun türünü yapılandırın](xref:core/modeling/relational/data-types) .
+Varsayılan olarak, uzamsal özellikler SQL Server `geography` sütunlarına eşlenir. @No__t-0 ' ı kullanmak için modelinizdeki [sütun türünü yapılandırın](xref:core/modeling/relational/data-types) .
 
 ### <a name="geography-polygon-rings"></a>Coğrafi Çokgen halkaları
 
-`geography` Sütun türü kullanılırken, SQL Server dış halkada (veya kabukta) ve iç halkalarda (veya delikleri) ek gereksinimler uygular. Dış halkasının saatin tersi yönde ve iç halkalar saat yönünde yönlendirilmelidir. Bu, verileri veritabanına göndermeden önce bunu doğrular.
+@No__t-0 sütun türü kullanılırken, SQL Server dış halkada (veya kabukta) ve iç halkalarda (veya delikleri) ek gereksinimler uygular. Dış halkasının saatin tersi yönde ve iç halkalar saat yönünde yönlendirilmelidir. Bu, verileri veritabanına göndermeden önce bunu doğrular.
 
 ### <a name="fullglobe"></a>FullGlobe
 
@@ -244,7 +244,7 @@ brew install libspatialite
 
 ### <a name="configuring-srid"></a>SRID yapılandırma
 
-Gereksiz bir şekilde sütun başına bir SRID belirtmesi gerekir. Varsayılan SRID `0`. ForSqliteHasSrid yöntemini kullanarak farklı bir SRID belirtin.
+Gereksiz bir şekilde sütun başına bir SRID belirtmesi gerekir. Varsayılan SRID `0` ' dır. ForSqliteHasSrid yöntemini kullanarak farklı bir SRID belirtin.
 
 ``` csharp
 modelBuilder.Entity<City>().Property(c => c.Location)
@@ -331,5 +331,5 @@ Point. Z | ✔ | ✔ | ✔ | ✔
 
 * [SQL Server uzamsal veriler](https://docs.microsoft.com/sql/relational-databases/spatial/spatial-data-sql-server)
 * [Spaıalite ana sayfası](https://www.gaia-gis.it/fossil/libspatialite)
-* [Npgsql uzamsal belgeleri](http://www.npgsql.org/efcore/mapping/nts.html)
-* [PostGIS belgeleri](http://postgis.net/documentation/)
+* [Npgsql uzamsal belgeleri](https://www.npgsql.org/efcore/mapping/nts.html)
+* [PostGIS belgeleri](https://postgis.net/documentation/)

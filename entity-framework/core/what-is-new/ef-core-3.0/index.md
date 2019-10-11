@@ -1,15 +1,15 @@
 ---
-title: Entity Framework Core 3,0 ' deki yeni özellikler
+title: Entity Framework Core 3,0 ' deki yeni özellikler EF Core
 author: divega
 ms.date: 02/19/2019
 ms.assetid: 2EBE2CCC-E52D-483F-834C-8877F5EB0C0C
 uid: core/what-is-new/ef-core-3.0/index
-ms.openlocfilehash: ce53d0fa21acfd52dc5e8b37911202cab02f00c8
-ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
+ms.openlocfilehash: ccfb8259c70cf8706a06eb3b22b9541224c3b9bb
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/02/2019
-ms.locfileid: "71813472"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182082"
 ---
 # <a name="new-features-in-entity-framework-core-30"></a>Entity Framework Core 3,0 ' deki yeni özellikler
 
@@ -31,7 +31,7 @@ En önemli tasarım değişikliği, parametrelere dönüştürülemeyen veya SQL
 Önceki sürümlerde, bir sorgunun hangi bölümlerinin SQL 'e çevrilebileceğini ve bu sorgunun geri kalanını istemcide yürütüldüğünü EF Core.
 Bu tür istemci tarafı yürütme, bazı durumlarda istenebilir, ancak çoğu durumda verimsiz sorgulara yol açabilir.
 
-Örneğin, EF Core 2,2 bir `Where()` çağrı içindeki bir koşulu çeviremediğinden, filtre olmadan bir SQL ifadesini yürütür, veritabanından tüm satırları aktardı ve sonra bunları bellek içinde filtreledi:
+Örneğin, EF Core 2,2 bir koşulu bir `Where()` çağrısında çeviremediğinden, filtre olmadan bir SQL ifadesini yürütür, veritabanından tüm satırları aktardı ve sonra bunları bellek içinde filtreledi:
 
 ``` csharp
 var specialCustomers = 
@@ -41,7 +41,7 @@ var specialCustomers =
 
 Bu, veritabanı az sayıda satır içeriyorsa ancak önemli performans sorunlarına yol açabilir, hatta veritabanı büyük bir sayı veya satır içeriyorsa uygulama başarısızlığından kaynaklanabilir.
 
-EF Core 3,0 ' de, istemci değerlendirmesinin yalnızca en üst düzey projeksiyde (temelde, son çağrı `Select()`) gerçekleşmesini kısıtlarız.
+EF Core 3,0 ' de, istemci değerlendirmesinin yalnızca en üst düzey projeksiyde (temelde, `Select()` ' a yapılan son çağrı) gerçekleşmesini kısıtlarız.
 EF Core 3,0, sorguda başka herhangi bir yere çevrilemeyen ifadeler algıladığında, çalışma zamanı özel durumu oluşturur.
 
 Önceki örnekte olduğu gibi, istemci üzerindeki bir koşul koşulunu değerlendirmek için, geliştiricilerin artık sorgunun değerlendirmesini LINQ to Objects için açıkça geçiş yapması gerekir: 
@@ -58,7 +58,7 @@ Bunun var olan uygulamaları nasıl etkileyebileceği hakkında daha fazla ayrı
 
 ### <a name="single-sql-statement-per-linq-query"></a>LINQ sorgusu başına tek SQL ekstresi
 
-Tasarımın 3,0 ' de önemli ölçüde değiştiği başka bir yönü de her LINQ sorgusu için her zaman tek bir SQL ekstresi oluşturmamız. Önceki sürümlerde, bazı durumlarda birden çok SQL deyimi oluşturmak için kullanıldığımız gibi, koleksiyon gezinti özelliklerine `Include()` yapılan çağrıları çevirmek ve belirli desenleri izleyen sorguları alt sorgular halinde çevirmek gibi. Bu, bazı durumlarda kullanışlı olsa da, `Include()` hatta yedekli verileri kablo üzerinden göndermekten kaçınmaya yardımcı olsa da, uygulama karmaşıktır, son derece verimsiz davranışlar (N + 1 sorgu) ile sonuçlanır ve birden çok sorgu arasında döndürülen veriler tutarsız olabilir.
+Tasarımın 3,0 ' de önemli ölçüde değiştiği başka bir yönü de her LINQ sorgusu için her zaman tek bir SQL ekstresi oluşturmamız. Önceki sürümlerde, bazı durumlarda birden çok SQL deyimi oluşturmak için, koleksiyon gezinti özellikleri üzerinde `Include()` çağrıları çevirmek ve belirli desenleri izleyen sorguları alt sorgular ile dönüştürmek için kullandık. Bu, bazı durumlarda kullanışlı olsa da `Include()` ' d e kadar çok boş veri göndermekten kaçınmaya yardımcı olsa da, uygulama karmaşıktır, son derece verimsiz davranışlar (N + 1 sorgu) ile sonuçlanır ve verilerin bulunduğu durumlar vardı birden çok sorgu arasında döndürülen tutarsız olabilir.
 
 İstemci değerlendirmesine benzer şekilde, EF Core 3,0 bir LINQ sorgusunu tek bir SQL ifadesine çeviremiyorsa, çalışma zamanı özel durumu oluşturur. Ancak birleşimli tek bir sorgu için birden çok sorgu oluşturmak için kullanılan yaygın desenlerin çoğunu çevirdiğimiz EF Core yaptık.
 
@@ -74,7 +74,7 @@ EF Core 3,0, [8,0 ' deki C# yeni özelliklerden](https://docs.microsoft.com/dotn
 
 ### <a name="asynchronous-streams"></a>Zaman uyumsuz akışlar
 
-Zaman uyumsuz sorgu sonuçları artık yeni standart `IAsyncEnumerable<T>` arabirim kullanılarak kullanıma sunulmuştur ve kullanılarak `await foreach`tüketilebilir.
+Zaman uyumsuz sorgu sonuçları artık yeni standart `IAsyncEnumerable<T>` arabirimi kullanılarak kullanıma sunulmuştur ve `await foreach` kullanılarak tüketilebilir.
 
 ``` csharp
 var orders = 
@@ -92,9 +92,9 @@ Daha fazla bilgi için [ C# belgelerindeki zaman uyumsuz akışlara](https://doc
 
 ### <a name="nullable-reference-types"></a>Boş değer atanabilir başvuru türleri 
 
-Kodunuzda bu yeni özellik etkinleştirildiğinde EF Core, başvuru türü özelliklerinin null değer alabilme durumunu inceler ve veritabanındaki karşılık gelen sütunlara ve ilişkilere uygular: null yapılamayan başvurular türlerinin özellikleri, `[Required]` veri ek açıklaması özniteliği.
+Kodunuzda bu yeni özellik etkinleştirildiğinde EF Core, başvuru türü özelliklerinin null değer alabilme durumunu inceler ve veritabanındaki ilgili sütunlara ve ilişkilere uygular: null yapılamayan başvuruların özelliklerinin özellikleri, @no__ gibi değerlendirilir t-0 Data Annotation özniteliği.
 
-Örneğin, aşağıdaki sınıfta, türü `string?` olarak işaretlenen özellikler isteğe bağlı olarak yapılandırılır, ancak `string` gereken şekilde yapılandırılır:
+Örneğin, aşağıdaki sınıfta `string?` türü olarak işaretlenen özellikler isteğe bağlı olarak yapılandırılır, ancak `string` gerektiği şekilde yapılandırılır:
 
 ``` csharp
 public class Customer
@@ -114,7 +114,7 @@ EF Core 3,0 ' deki yeni yakama API 'SI, EF Core normal işleminin bir parçası 
 
 EF 6 ' da var olan ele geçirme özelliklerine benzer şekilde, kırıcılar, işlemleri gerçekleşmeden önce veya sonra ele aktarmanıza olanak tanır. Bunları gerçekleşmeden önce zaman geçitirsiniz, yürütmeye göre yürütme ve yedek mantığdan alternatif sonuçlar sağlama izni verilir. 
 
-Örneğin, komut metnini işlemek için şunu oluşturabilirsiniz `IDbCommandInterceptor`:
+Örneğin, komut metnini işlemek için bir @no__t oluşturabilirsiniz-0:
 
 ``` csharp 
 public class HintCommandInterceptor : DbCommandInterceptor
@@ -131,7 +131,7 @@ public class HintCommandInterceptor : DbCommandInterceptor
 }
 ``` 
 
-Ve şu şekilde kaydolun `DbContext`:
+Ve bunu @ no__t-0 ' a kaydedin:
 
 ``` csharp
 services.AddDbContext(b => b
@@ -169,9 +169,9 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 ## <a name="dependent-entities-sharing-the-table-with-the-principal-are-now-optional"></a>Tabloyu sorumlu ile paylaşan bağımlı varlıklar artık isteğe bağlıdır
 
-EF Core 3,0 ' den başlayarak, `OrderDetails` aynı tabloya `Order` ait veya açıkça eşlenmiş ise, birincil anahtar ile eşleştirilecektir, ancak tüm özellikler olmadan `Order` `OrderDetails` bir eklenebilir. `OrderDetails` null yapılabilir sütunlar.
+EF Core 3,0 ' den başlayarak, `OrderDetails` `Order` ' e aitse veya aynı tabloyla açıkça eşlenmişse, birincil anahtar null yapılabilir sütunlara eşlendiğinden, `OrderDetails` ve tüm `OrderDetails` özelliklerinin olmadığı bir `Order` eklemek mümkün olacaktır.
 
-Sorgulama yaparken, gerekli özelliklerinden herhangi `OrderDetails` birinin `null` bir değeri yoksa veya birincil `null`anahtar ve tüm Özellikler ' in yanı sıra gerekli özellikleri yoksa EF Core olarak ayarlanır.
+Sorgulanırken EF Core, gerekli özelliklerinden herhangi birinin bir değere sahip olmaması veya birincil anahtar ve tüm @no__t Özellikler ' in yanı sıra gerekli özelliklere sahip olmaması halinde, `OrderDetails` `null` olarak ayarlar.
 
 ``` csharp
 public class Order

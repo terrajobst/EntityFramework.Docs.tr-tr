@@ -1,30 +1,30 @@
 ---
-title: EF Core 2.2 - EF Core yenilikleri
+title: EF Core 2,2 ' deki yenilikler-EF Core
 author: divega
 ms.date: 11/14/2018
 ms.assetid: 998C04F3-676A-4FCF-8450-CFB0457B4198
 uid: core/what-is-new/ef-core-2.2
-ms.openlocfilehash: 79b4efc3aee23e19a9ea1deb6373b9984b77f886
-ms.sourcegitcommit: b3c2b34d5f006ee3b41d6668f16fe7dcad1b4317
+ms.openlocfilehash: 5fcf7c6dfb4d8cb7928ef974af6deb52df7c63eb
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/15/2018
-ms.locfileid: "51688807"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181370"
 ---
-# <a name="new-features-in-ef-core-22"></a>EF Core 2.2 yeni özellikler
+# <a name="new-features-in-ef-core-22"></a>EF Core 2,2 ' deki yeni özellikler
 
 ## <a name="spatial-data-support"></a>Uzamsal veri desteği
 
-Uzamsal veriler fiziksel konuma ve nesnelerin şeklini temsil etmek için kullanılabilir.
-Yerel olarak çok sayıda veritabanında depolamak, dizin ve uzamsal verileri sorgulama. Yaygın senaryolar şunlardır: belirli bir uzaklık içindeki nesneler için sorgulama ve belirli bir konuma bir Çokgen içeriyorsa, test etme.
-EF Core 2.2 destekler türlerinden kullanarak çeşitli veritabanları uzamsal verilerle çalışma [NetTopologySuite](https://github.com/NetTopologySuite/NetTopologySuite) (NTS) kitaplığı.
+Uzamsal veriler, nesnelerin fiziksel konumunu ve şeklini temsil etmek için kullanılabilir.
+Birçok veritabanı, uzamsal verileri yerel olarak saklayabilir, dizine alabilir ve sorgulayabilir. Yaygın senaryolar belirli bir mesafe içindeki nesnelerin sorgulanmasını ve bir çokgenin belirli bir konumu içerip içermediği test edilmesini içerir.
+EF Core 2,2 artık [Nettopologyısuite](https://github.com/NetTopologySuite/NetTopologySuite) (,) kitaplığındaki türler kullanılarak çeşitli veritabanlarındaki uzamsal verilerle çalışmayı desteklemektedir.
 
-Uzamsal veri desteği, sağlayıcıya özgü uzantı paketleri bir dizi olarak uygulanır.
-Bu paketlerin her NTS türleri ve yöntemleri ve karşılık gelen uzamsal türleri ve işlevleri veritabanında eşlemelerini katkıda bulunur.
-Bu tür sağlayıcısı uzantılar için kullanıma sunulmuştur [SQL Server](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite/), [SQLite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite/), ve [PostgreSQL](https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite/) (gelen [Npgsql proje](http://www.npgsql.org/)).
-Uzamsal türleri, doğrudan kullanılabilir [EF Core bellek içi sağlayıcısı](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) ek uzantıları olmadan.
+Uzamsal veri desteği, bir dizi sağlayıcıya özgü uzantı paketleri olarak uygulanır.
+Bu paketlerin her biri, türler ve yöntemler için eşlemeler ve veritabanındaki karşılık gelen uzamsal türleri ve işlevleri katkıda bulunur.
+Bu tür sağlayıcı uzantıları artık [SQL Server](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite/), [SQLite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite/)ve [PostgreSQL](https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite/) ( [npgsql projesinden](https://www.npgsql.org/)) için kullanılabilir.
+Uzamsal türler, ek Uzantılar olmadan doğrudan [EF Core bellek içi sağlayıcıyla](https://docs.microsoft.com/en-us/ef/core/providers/in-memory/) birlikte kullanılabilir.
 
-Sağlayıcı uzantısı yüklendikten sonra desteklenen tür özellikleri için varlıklarınızı ekleyebilirsiniz. Örneğin:
+Sağlayıcı uzantısı yüklendikten sonra, varlıklarınızda desteklenen türlerin özelliklerini ekleyebilirsiniz. Örneğin:
 
 ``` csharp
 using NetTopologySuite.Geometries;
@@ -42,7 +42,7 @@ namespace MyApp
 }
 ``` 
 
-Ardından, uzamsal verileri içeren varlıklar devam edebilir:
+Daha sonra varlıkları uzamsal verilerle kalıcı hale getirebilirsiniz:
 
 ``` csharp
 using (var context = new MyDbContext())
@@ -56,7 +56,7 @@ using (var context = new MyDbContext())
     context.SaveChanges();
 }
 ```
-Ve uzamsal verileri ve işlemleri temel alan veritabanı sorgularını yürütebilirsiniz:
+Ve uzamsal verilere ve işlemlere göre veritabanı sorguları yürütebilirsiniz:
 
 ``` csharp
   var nearestFriends =
@@ -67,33 +67,33 @@ Ve uzamsal verileri ve işlemleri temel alan veritabanı sorgularını yürüteb
 
 Bu özellik hakkında daha fazla bilgi için bkz. [uzamsal türler belgeleri](xref:core/modeling/spatial). 
 
-## <a name="collections-of-owned-entities"></a>Sahip olunan varlık koleksiyonları
+## <a name="collections-of-owned-entities"></a>Sahip olunan varlıkların koleksiyonları
 
-EF Core 2.0 için bire bir ilişkileri modeli sahip olma özelliği eklendi.
-EF Core 2.2-çok ilişkileri sahipliği express olanağı genişletir.
-Sahipliği varlıkları nasıl kullanıldığını sınırlamak yardımcı olur.
+EF Core 2,0, bire bir İlişkilendirmelerde sahiplik modelleyebilme özelliği ekledi.
+EF Core 2,2, sahipliğin bire çok ilişkilerine kapsamını ifade etme yeteneğini uzatır.
+Sahiplik, varlıkların nasıl kullanıldığını sınırlandırmanıza yardımcı olur.
 
-Örneğin, sahip olunan varlık:
-- Gezinti özellikleri diğer varlık türleri yalnızca görünür. 
-- Otomatik olarak yüklenir ve yalnızca bir DbContext birlikte bunların sahibi tarafından izlenebilir.
+Örneğin, sahip olunan varlıklar:
+- Yalnızca diğer varlık türlerinin gezinti özelliklerinde görünebilirler. 
+- Otomatik olarak yüklenir ve yalnızca sahibinden sonra bir DbContext ile izlenebilir.
 
-İlişkisel veritabanları, sahibi, normal bir-çok ilişkileri gibi tablolar ayırmak için sahip olduğu koleksiyonları eşlenir.
-Ancak, belge yönelimli veritabanlarında, sahip olunan varlıklar (sahibi koleksiyonları veya başvuruları) aynı belge sahibi olarak içinde iç içe planlıyoruz.
+İlişkisel veritabanlarında, sahip olunan koleksiyonlar, benzer bir şekilde, normal bire çok İlişkilendirmelerde olduğu gibi, sahip tarafından ayrı tablolara eşlenir.
+Ancak, belge odaklı veritabanlarında, sahip olduğu aynı belge içinde sahip olunan varlıkları (sahip olan koleksiyonlar veya başvurular) iç içe bir şekilde planlıyoruz.
 
-Yeni OwnsMany() API'sini çağırarak özelliğini kullanabilirsiniz:
+Yeni OwnsMany () API 'sini çağırarak özelliği kullanabilirsiniz:
 
 ``` csharp
 modelBuilder.Entity<Customer>().OwnsMany(c => c.Addresses);
 ```
 
-Daha fazla bilgi için [sahip olunan varlık belgeleri güncelleştirildi](xref:core/modeling/owned-entities#collections-of-owned-types).
+Daha fazla bilgi için bkz. [sahip olunan varlıklar belgeleri](xref:core/modeling/owned-entities#collections-of-owned-types).
 
 ## <a name="query-tags"></a>Sorgu etiketleri
 
-Bu özellik, kodu, LINQ sorgularında günlüklerde yakalanan oluşturulan SQL sorgularının bağıntısını basitleştirir.
+Bu özellik, günlüklerde yakalanan oluşturulmuş SQL sorguları ile koddaki LINQ sorgularının bağıntısını basitleştirir.
 
-Sorgu etiketleri yararlanmak için yeni TagWith() yöntemini kullanarak bir LINQ Sorgu açıklama ekleyin.
-Önceki örnekte uzamsal sorgu kullanarak:
+Sorgu etiketlerinin avantajlarından yararlanmak için New TagWith () yöntemini kullanarak bir LINQ sorgusuna açıklama ekleyebilirsiniz.
+Önceki bir örnekteki uzamsal sorguyu kullanma:
 
 ``` csharp
   var nearestFriends =
@@ -102,7 +102,7 @@ Sorgu etiketleri yararlanmak için yeni TagWith() yöntemini kullanarak bir LINQ
       select f).Take(5).ToList();
 ```
 
-Bu LINQ sorgusu SQL aşağıdaki çıktıyı üretir:
+Bu LINQ sorgusu aşağıdaki SQL çıktısını oluşturacak:
 
 ``` sql
 -- This is my spatial query!
@@ -112,4 +112,4 @@ FROM [Friends] AS [f]
 ORDER BY [f].[Location].STDistance(@__myLocation_0) DESC
 ```
 
-Daha fazla bilgi için [sorgu etiketleri belgeleri](xref:core/querying/tags). 
+Daha fazla bilgi için bkz. [sorgu etiketleri belgeleri](xref:core/querying/tags). 

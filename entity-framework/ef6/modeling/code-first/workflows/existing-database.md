@@ -1,50 +1,50 @@
 ---
-title: Mevcut bir veritabanına - EF6 öncelikle kod
+title: Var olan bir veritabanına Code First-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: a7e60b74-973d-4480-868f-500a3899932e
-ms.openlocfilehash: f05420beb3dff2d632151fcbf48986b0d9cd18ff
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 61980bbd1f236f496a9d4fd92aa52264f1454615
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490616"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182626"
 ---
-# <a name="code-first-to-an-existing-database"></a>Mevcut bir veritabanına ilk kod
-Bu video ve adım adım izlenecek yol, var olan bir veritabanını hedefleyen Code First geliştirmeye giriş sağlar. Kod ilk sağlar, C kullanarak modelinizi tanımlamanızı\# veya VB.Net sınıflar. İsteğe bağlı olarak ek yapılandırma, sınıfları ve özellikleri ya da fluent API'sini kullanarak öznitelikleri kullanılarak gerçekleştirilebilir.
+# <a name="code-first-to-an-existing-database"></a>Var olan bir veritabanına Code First
+Bu video ve adım adım yönergeler, var olan bir veritabanını hedefleyen Code First geliştirmeye yönelik bir giriş sağlar. Code First, modelinizi C @ no__t-0 veya VB.Net sınıfları kullanarak tanımlamanızı sağlar. İsteğe bağlı olarak, sınıflarınızda ve özelliklerde öznitelikler kullanılarak veya bir Fluent API kullanarak ek yapılandırma gerçekleştirilebilir.
 
 ## <a name="watch-the-video"></a>Videoyu izleyin
-Bu video [Channel 9 sunuldu](http://channel9.msdn.com/blogs/ef/code-first-to-existing-database-ef6-1-onwards-).
+Bu video [artık Channel 9 ' da kullanılabilir](https://channel9.msdn.com/blogs/ef/code-first-to-existing-database-ef6-1-onwards-).
 
-## <a name="pre-requisites"></a>Ön koşullar
+## <a name="pre-requisites"></a>Önkoşulların önkoşulları
 
-Sahip olması gerekir **Visual Studio 2012** veya **Visual Studio 2013** Bu izlenecek yolu tamamlamak için yüklü.
+Bu izlenecek yolu tamamlamak için **Visual Studio 2012** veya **Visual Studio 2013** yüklü olması gerekir.
 
-Ayrıca sürüm gerekir **6.1** (veya üzeri), **Visual Studio için Entity Framework Tools** yüklü. Bkz: [alma Entity Framework](~/ef6/fundamentals/install.md) Entity Framework Araçları'nın en son sürümü yükleme hakkında bilgi.
+Ayrıca, **Visual Studio için Entity Framework Tools** sürüm **6,1** (veya üzeri) yüklü olmalıdır. Entity Framework Tools 'ın en son sürümünü yükleme hakkında bilgi için bkz. [Get Entity Framework](~/ef6/fundamentals/install.md) .
 
-## <a name="1-create-an-existing-database"></a>1. Mevcut bir veritabanı oluşturun
+## <a name="1-create-an-existing-database"></a>1. Var olan bir veritabanı oluştur
 
-Genellikle zaten oluşturulur varolan bir veritabanını hedeflerken, ancak bu kılavuz erişmek için bir veritabanı oluşturmak ihtiyacımız var.
+Genellikle, var olan bir veritabanını hedeflerken zaten oluşturulur, ancak bu izlenecek yol için, erişmek üzere bir veritabanı oluşturulması gerekir.
 
-Yeni bir ubuntu ve veritabanı oluşturun.
+Şimdi veritabanını oluşturalım.
 
--   Visual Studio'yu Aç
--   **Görünüm -&gt; Sunucu Gezgini**
--   Sağ tıklayın **veri bağlantıları -&gt; bağlantı ekle...**
--   Bir veritabanına bağlamadıysanız **Sunucu Gezgini** seçmeniz gerekir önce **Microsoft SQL Server** veri kaynağı
+-   Visual Studio 'Yu aç
+-   **@No__t-1 Sunucu Gezgini görüntüle**
+-   Veri bağlantıları ' na sağ tıklayın **-&gt; bağlantı ekle...**
+-   **Sunucu Gezgini** bir veritabanına bağlı değilseniz, veri kaynağı olarak **Microsoft SQL Server** seçmeniz gerekir
 
     ![Veri kaynağını seçin](~/ef6/media/selectdatasource.png)
 
--   LocalDB Örneğinize bağlanmak ve girin **blog** veritabanı adı
+-   LocalDB örneğinize bağlanın ve veritabanı adı olarak **Blog** girin
 
-    ![LocalDB bağlantı](~/ef6/media/localdbconnection.png)
+    ![LocalDB bağlantısı](~/ef6/media/localdbconnection.png)
 
--   Seçin **Tamam** ve bir yeni bir veritabanı oluşturmak istiyorsanız istenir **Evet**
+-   **Tamam** ' ı seçtiğinizde, yeni bir veritabanı oluşturmak isteyip istemediğiniz sorulur, **Evet** ' i seçin.
 
-    ![Veritabanı iletişim kutusu oluşturma](~/ef6/media/createdatabasedialog.png)
+    ![Veritabanı oluştur Iletişim kutusu](~/ef6/media/createdatabasedialog.png)
 
--   Yeni veritabanı sunucu Gezgini'nde artık görünecek üzerinde sağ tıklayıp **yeni sorgu**
--   Yeni bir sorguda aşağıdaki SQL kopyalayın, sonra sağ tıklatın ve sorgu **Yürüt**
+-   Yeni veritabanı artık Sunucu Gezgini görüntülenir, sağ tıklayıp **Yeni sorgu** ' yı seçin.
+-   Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **Yürüt** ' ü seçin.
 
 ``` SQL
 CREATE TABLE [dbo].[Blogs] (
@@ -70,43 +70,43 @@ INSERT INTO [dbo].[Blogs] ([Name],[Url])
 VALUES ('.NET Framework Blog', 'http://blogs.msdn.com/dotnet/')
 ```
 
-## <a name="2-create-the-application"></a>2. Uygulama oluşturma
+## <a name="2-create-the-application"></a>2. Uygulamayı oluşturma
 
-Örneği basit tutmak için yapı veri erişimi gerçekleştirdiği Code First kullanan temel bir konsol uygulaması oluşturacağız:
+Şeyleri basit tutmak için veri erişimi gerçekleştirmek üzere Code First kullanan temel bir konsol uygulaması oluşturacağız:
 
--   Visual Studio'yu Aç
--   **Dosya -&gt; yeni -&gt; proje...**
--   Seçin **Windows** sol menüden ve **konsol uygulaması**
--   Girin **CodeFirstExistingDatabaseSample** adı
--   Seçin **Tamam**
+-   Visual Studio 'Yu aç
+-   **Dosya-&gt; yeni-&gt; proje...**
+-   Sol taraftaki menüden ve **konsol uygulamasından** **Windows** ' u seçin
+-   Ad olarak **Codefırstexistingdatabasesample** girin
+-   **Tamam 'ı** seçin
 
- 
+ 
 
-## <a name="3-reverse-engineer-model"></a>3. Ters mühendislik modeli
+## <a name="3-reverse-engineer-model"></a>3. Tersine mühendislik modeli
 
-Visual Studio için Entity Framework Araçları, veritabanı için ilk kod oluşturmamızı sağlayacak yararlanması oluşturacağız. Bu araçlar, yalnızca tercih ederseniz, ayrıca, el ile yazabilirsiniz kod oluşturma.
+Veritabanına eşlemek için bazı ilk kod oluşturmamıza yardımcı olmak üzere Visual Studio için Entity Framework Tools kullanacağız. Bu araçlar, isterseniz, el ile de yazabileceğiniz bir kod oluşturuyor.
 
--   **Takım projesi -&gt; Yeni Öğe Ekle...**
--   Seçin **veri** sol menüden ardından **ADO.NET varlık veri modeli**
--   Girin **BloggingContext** tıklayın ve adı olarak **Tamam**
--   Böylece **varlık veri modeli Sihirbazı**
--   Seçin **Code First veritabanından** tıklatıp **İleri**
+-   **Proje-&gt; yeni öğe Ekle...**
+-   Sol menüden **verileri** seçin ve ardından **ADO.net varlık veri modeli**
+-   Ad olarak **BloggingContext** girin ve **Tamam 'a** tıklayın
+-   Bu, **varlık veri modeli Sihirbazı 'nı** başlatır
+-   **Veritabanından Code First** seçin ve **İleri** ' ye tıklayın.
 
     ![Sihirbaz bir CFE](~/ef6/media/wizardonecfe.png)
 
--   İlk bölümde oluşturduğunuz veritabanı bağlantısı seçin ve tıklayın **İleri**
+-   İlk bölümde oluşturduğunuz veritabanına bağlantıyı seçin ve **İleri** ' ye tıklayın.
 
-    ![İki CFE Sihirbazı](~/ef6/media/wizardtwocfe.png)
+    ![Sihirbaz Iki CFE](~/ef6/media/wizardtwocfe.png)
 
--   Yanındaki onay kutusuna tıklayın **tabloları** tüm tabloları içeri aktarma ve tıklayın **son**
+-   **Tablolar** ' ın yanındaki onay kutusuna tıklayarak tüm tabloları Içeri aktarıp **son** ' a tıklayın.
 
-    ![Üç CFE Sihirbazı](~/ef6/media/wizardthreecfe.png)
+    ![Sihirbaz üç CFE](~/ef6/media/wizardthreecfe.png)
 
-Öğe sayısı ters mühendislik işlemi tamamlandıktan sonra projeye şimdi eklenecek ne eklenmiş bir göz atalım.
+Tersine mühendislik işlemi tamamlandıktan sonra projeye bir dizi öğe eklendiğinde, nelerin eklendiğine göz atalım.
 
 ### <a name="configuration-file"></a>Yapılandırma dosyası
 
-Bir App.config dosyası eklendi projeye, bu dosya, var olan veritabanına bağlantı dizesi içerir.
+Projeye bir App. config dosyası eklenmiştir, bu dosya mevcut veritabanına yönelik bağlantı dizesini içerir.
 
 ``` xml
 <connectionStrings>
@@ -117,12 +117,12 @@ Bir App.config dosyası eklendi projeye, bu dosya, var olan veritabanına bağla
 </connectionStrings>
 ```
 
-*Diğer ayarlarında bir yapılandırma dosyası çok fark edeceksiniz, Code First veritabanları oluşturma yeri bildirme varsayılan EF ayarları şunlardır. Bu ayar yoksayılacak varolan bir veritabanına uygulamamız içinde eşleyeceğiniz olduğundan.*
+*yapılandırma dosyasında başka bazı ayarlar da fark edersiniz. Bunlar, veritabanlarının nerede oluşturulacağını Code First söyleyen varsayılan EF ayarlarıdır. Mevcut bir veritabanıyla eşlendiğimiz için bu ayar uygulamamızda yok sayılacak.*
 
-### <a name="derived-context"></a>Türetilen içerik
+### <a name="derived-context"></a>Türetilmiş bağlam
 
-A **BloggingContext** sınıfı projeye eklendi. Bağlam, sorgu ve veri kaydetmek bize izin vererek, veritabanı ile bir oturumu temsil eder.
-İçerik sunan bir **olan DB&lt;TEntity&gt;**  modelimiz, her tür için. Varsayılan Oluşturucu kullanarak temel oluşturucu çağrısı da fark edeceksiniz **adı =** söz dizimi. Bu kod ilk bu bağlam için kullanılacak bağlantı dizesini yapılandırma dosyasından yüklenmesi gerektiğini bildirir.
+Projeye bir **BloggingContext** sınıfı eklendi. Bağlam, veritabanı ile bir oturumu temsil eder ve verileri sorgulamanızı ve kaydetmemizi sağlar.
+Bağlam, modelimizin her türü için bir **Dbset @ no__t-1TEntity @ no__t-2** gösterir. Ayrıca, varsayılan oluşturucunun **Name =** söz dizimini kullanarak bir temel Oluşturucu çağırdığına de dikkat edin. Bu, bu bağlam için kullanılacak bağlantı dizesinin yapılandırma dosyasından yüklü olması gerektiğini Code First söyler.
 
 ``` csharp
 public partial class BloggingContext : DbContext
@@ -141,11 +141,11 @@ public partial class BloggingContext : DbContext
     }
 ```
 
-*Her zaman kullanmalısınız **adı =** yapılandırma dosyasında bir bağlantı dizesi kullanırken söz dizimi. Bu bağlantı dizesi, mevcut değilse, Entity Framework ardından oluşturmaz sağlar kurala göre yeni bir veritabanı oluşturmak yerine.*
+*Yapılandırma dosyasında bir bağlantı dizesi kullanırken her zaman **Name =** sözdizimini kullanmanız gerekir. Bu, bağlantı dizesinin mevcut olmamasını sağlar ve Entity Framework kurala göre yeni bir veritabanı oluşturmak yerine oluşturulacak.*
 
 ### <a name="model-classes"></a>Model sınıfları
 
-Son olarak, bir **Blog** ve **Post** sınıfı da projeye eklendi. Modelimiz yapmak alan sınıfları şunlardır. Burada kod öncelikli kurallar var olan veritabanının yapısını hizalama değil, yapılandırmayı belirtmek için veri sınıfları için uygulanan ek görürsünüz. Örneğin, gördüğünüz **StringLength** üzerindeki ek açıklama **Blog.Name** ve **Blog.Url** bunlar en fazla olduğundan **200** içinde Veritabanı (veritabanı sağlayıcısı tarafından - desteklenen izin verilen en fazla uzunluk kullanmak için Code First varsayılandır **nvarchar(max)** SQL Server).
+Son olarak, projeye bir **Blog** ve **Post** sınıfı de eklenmiştir. Bunlar, modelimizi oluşturan etki alanı sınıflarıdır. Code First kurallarının mevcut veritabanının yapısıyla hizalanmayan yapılandırmayı belirtmek için sınıflara uygulanan veri ek açıklamalarını görürsünüz. Örneğin, veritabanında maksimum **200** uzunluğuna sahip olduklarından **blog.Name** ve **blog. URL** ' de **StringLength** ek açıklamasını görürsünüz (Code First varsayılan değer veritabanı sağlayıcısı tarafından desteklenen en yüksek uzunluğu kullanmaktır- SQL Server) için **nvarchar (max)** ).
 
 ``` csharp
 public partial class Blog
@@ -167,9 +167,9 @@ public partial class Blog
 }
 ```
 
-## <a name="4-reading--writing-data"></a>4. Okuma ve yazma veri
+## <a name="4-reading--writing-data"></a>4. Verileri okuma & yazma
 
-Biz bir modeliniz olduğuna göre bazı verilere erişmek için kullanılacak zaman var. Uygulama **ana** yönteminde **Program.cs** aşağıda gösterildiği gibi. Bu kod, bizim bağlam yeni bir örneğini oluşturur ve yeni bir eklemek için kullandığı **Blog**. Tüm almak için bir LINQ Sorgu kullanıyorsa **blogları** göre alfabetik olarak sıralanmış veritabanından **başlık**.
+Artık bir modelimiz olduğuna göre, bazı verilere erişmek için bunu kullanmanın zamanı. **Ana** yöntemi aşağıda gösterildiği gibi **program.cs** ' de uygulayın. Bu kod, bağlamımız yeni bir örnek oluşturur ve yeni bir **Blog**eklemek için onu kullanır. Daha sonra, bir LINQ sorgusu kullanarak, veritabanındaki tüm **blogları** **başlık**sırasına göre sıralanmış olarak alır.
 
 ``` csharp
 class Program
@@ -204,9 +204,9 @@ class Program
 }
 ```
 
-Şimdi uygulamayı çalıştırmak ve test etmek.
+Şimdi uygulamayı çalıştırabilir ve test edebilirsiniz.
 
-```
+```console
 Enter a name for a new Blog: ADO.NET Blog
 All blogs in the database:
 .NET Framework Blog
@@ -214,15 +214,15 @@ ADO.NET Blog
 The Visual Studio Blog
 Press any key to exit...
 ```
- 
-## <a name="what-if-my-database-changes"></a>Veritabanım varsa ne değiştirir?
+ 
+## <a name="what-if-my-database-changes"></a>Veritabanım değişirse ne olacak?
 
-Code First Veritabanı Sihirbazı'nı, ardından ince ve değiştirebileceği sınıf bir başlangıç noktası kümesi oluşturmak üzere tasarlanmıştır. Veritabanı şemanızı değişirse el ile düzenleme sınıfları veya sınıflar üzerine yazmak için başka bir ters mühendislik gerçekleştirin.
+Veritabanına Code First Sihirbazı, daha sonra ince ayar ve değiştirebileceğiniz bir başlangıç noktası kümesi oluşturmak için tasarlanmıştır. Veritabanı şemanız değişirse, sınıfları el ile düzenleyebilir veya sınıfların üzerine yazmak için başka bir geri mühendis gerçekleştirebilirsiniz.
 
-## <a name="using-code-first-migrations-to-an-existing-database"></a>Varolan bir veritabanına Code First geçişleri kullanma
+## <a name="using-code-first-migrations-to-an-existing-database"></a>Mevcut bir veritabanına Code First Migrations kullanma
 
-Var olan bir veritabanına Code First Migrations'ı kullanmak istiyorsanız, bkz. [var olan bir veritabanına Code First Migrations](~/ef6/modeling/code-first/migrations/existing-database.md).
+Mevcut bir veritabanıyla Code First Migrations kullanmak istiyorsanız, bkz. [Code First Migrations var olan bir veritabanına](~/ef6/modeling/code-first/migrations/existing-database.md).
 
 ## <a name="summary"></a>Özet
 
-Bu izlenecek yolda Code First geliştirme varolan bir veritabanını kullanma incelemiştik. Ters mühendislik veritabanına eşlediğiniz ve veri depolayıp almak için kullanılabilir sınıf kümesi için Entity Framework Araçları Visual Studio için kullanılır.
+Bu kılavuzda, var olan bir veritabanını kullanarak Code First geliştirmeye baktık. Veritabanına eşlenen ve veri depolamak ve almak için kullanılabilecek bir sınıf kümesine ters mühendislik uygulamak için Visual Studio için Entity Framework Tools kullandık.

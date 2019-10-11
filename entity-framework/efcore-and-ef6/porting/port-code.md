@@ -1,37 +1,37 @@
 ---
-title: EF6'dan EF Core'a taşıma - kod tabanlı bir modeli taşıma
+title: EF6 'den EF Core taşıma-kod tabanlı model-EF 'e taşıma
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 2dce1a50-7d84-4856-abf6-2763dd9be99d
 uid: efcore-and-ef6/porting/port-code
-ms.openlocfilehash: 2484b681d71ae8711b1b3a59bc274a0b2e403294
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 0a99eac2091c07d8bcf7d4e5e4bdc2afcaeee810
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997055"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181223"
 ---
-# <a name="porting-an-ef6-code-based-model-to-ef-core"></a>EF6 kod tabanlı bir modeli EF core'a taşıma
+# <a name="porting-an-ef6-code-based-model-to-ef-core"></a>EF6 kod tabanlı bir modelin EF Core için taşıma
 
-Tüm uyarılar makaleyi okudunuz ve bağlantı noktası için hazır olursunuz, başlamanıza yardımcı olmak için bazı Kılavuzlar şunlardır.
+Tüm uyarıları okuduğunuzda ve bağlantı noktasına hazırsanız, kullanmaya başlamanıza yardımcı olacak bazı yönergeler aşağıda verilmiştir.
 
-## <a name="install-ef-core-nuget-packages"></a>EF Core NuGet paketi yüklemesi
+## <a name="install-ef-core-nuget-packages"></a>EF Core NuGet paketlerini yükler
 
-EF Core kullanmak için kullanmak istediğiniz veritabanı sağlayıcısı için NuGet paketini yükleyin. Örneğin, SQL Server hedeflenirken yüklemeniz `Microsoft.EntityFrameworkCore.SqlServer`. Bkz: [veritabanı sağlayıcıları](../../core/providers/index.md) Ayrıntılar için.
+EF Core kullanmak için, kullanmak istediğiniz veritabanı sağlayıcısı için NuGet paketini yüklersiniz. Örneğin, SQL Server hedeflenirken, `Microsoft.EntityFrameworkCore.SqlServer` ' ı yüklersiniz. Ayrıntılar için bkz. [veritabanı sağlayıcıları](../../core/providers/index.md) .
 
-Geçişleri kullanmayı planladığınıza sonra de yüklemeniz gerekir `Microsoft.EntityFrameworkCore.Tools` paket.
+Geçişleri kullanmayı planlıyorsanız, `Microsoft.EntityFrameworkCore.Tools` paketini de yüklemelisiniz.
 
-EF Core ve EF6 kullanılan yan yana aynı uygulamada olması gibi yüklü EF6 NuGet paketini (EntityFramework) bırakmak uygundur. Uygulamanızın tüm alanlarda EF6'ı kullanmayı planlayan değildir, ancak sonra paket kaldırılıyor dikkat etmeniz gereken kod parçaları derleme hatalarını vermek yardımcı olur.
+EF Core ve EF6 'nin aynı uygulamada yan yana kullanılabilmesi için, EF6 NuGet paketini (EntityFramework) yüklü bırakmak çok iyidir. Ancak, uygulamanızın herhangi bir alanında EF6 kullanmayı hiç bilmiyorsanız, paketin kaldırılması, dikkat edilmesi gereken kod parçalarında derleme hataları sağlamaya yardımcı olur.
 
 ## <a name="swap-namespaces"></a>Ad alanlarını değiştirme
 
-EF6 içinde kullanan çoğu API'ler bulunan `System.Data.Entity` ad alanı (ve ilgili alt ad alanları). İlk kod değişikliği için değiştirilecek olan `Microsoft.EntityFrameworkCore` ad alanı. Genellikle türetilmiş bağlam kodu dosyanızla başlatın ve ardından derleme hatası oluşunca adresleme buradan iş.
+EF6 içinde kullandığınız çoğu API 'Ler `System.Data.Entity` ad alanında (ve ilgili alt ad alanlarında) bulunur. İlk kod değişikliği `Microsoft.EntityFrameworkCore` ad alanına takas etmek. Genellikle, türetilmiş bağlam kodu dosyanız ile başlayıp daha sonra, meydana gelen derleme hatalarını adresleyen bir şekilde ele almanız gerekir.
 
-## <a name="context-configuration-connection-etc"></a>Bağlam içi yapılandırma (bağlantı vs.)
+## <a name="context-configuration-connection-etc"></a>Bağlam yapılandırması (bağlantı vb.)
 
-Bölümünde anlatıldığı gibi [olun EF Core olacak iş uygulamanız için](ensure-requirements.md), EF Core olan algılama bağlanmak için veritabanı geçici olarak daha az Sihirli. Geçersiz kılmak ihtiyacınız olacak `OnConfiguring` yöntemi türetilmiş bağlam ve veritabanı bağlantısı kurmak için veritabanı sağlayıcısı özel API'yi kullanın.
+[EF Core uygulamanız Için çalıştığından emin olun](ensure-requirements.md), EF Core bağlanılacak veritabanını algılayarak daha az bir sihirli olur. Türetilmiş bağlamınızda `OnConfiguring` yöntemini geçersiz kılmanız ve veritabanına bağlantıyı kurmak için veritabanı sağlayıcısına özgü API 'yi kullanmanız gerekir.
 
-EF6 uygulamaların çoğu uygulamalarında bağlantı dizesini depolama `App/Web.config` dosya. Bu bağlantı dizesini kullanarak EF Core okuma `ConfigurationManager` API. Bir başvuru eklemeniz gerekebilir `System.Configuration` bu API'yi kullanabilmek için framework derlemesi.
+Çoğu EF6 uygulaması bağlantı dizesini uygulamalar `App/Web.config` dosyasında depolar. EF Core, `ConfigurationManager` API 'sini kullanarak bu bağlantı dizesini okuyabilirsiniz. Bu API 'yi kullanabilmeniz için `System.Configuration` çerçeve derlemesine bir başvuru eklemeniz gerekebilir.
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -46,16 +46,16 @@ public class BloggingContext : DbContext
 }
 ```
 
-## <a name="update-your-code"></a>Kodunuzu güncelleştirin
+## <a name="update-your-code"></a>Kodunuzu güncelleştirme
 
-Bu noktada, derleme hataları çözdükten ve davranış değişiklikleri, etkiler, görmek için kod gözden geçirme bir konudur.
+Bu noktada, bu durum derleme hatalarının adreslenmesi ve kodu gözden geçirerek davranış değişikliklerinin sizi etkileyebileceğini göz atalım.
 
-## <a name="existing-migrations"></a>Mevcut geçişleri
+## <a name="existing-migrations"></a>Mevcut geçişler
 
-Gerçekten mevcut EF6 geçişler EF Core için bağlantı noktası için uygun bir yolu yoktur.
+EF Core için mevcut EF6 geçişlerini bağlantı noktası için uygun bir yol yoktur.
 
-Mümkünse, veritabanına EF6'dan önceki tüm geçişler uygulanmış olan ve ardından EF Core kullanarak, şema geçişi başlangıç noktası varsayılır en iyisidir. Bunu yapmak için kullanacağınız `Add-Migration` modeli, EF Core için unity'nin sonra bir geçiş eklemek için komutu. Ardından tüm koddan kaldırın `Up` ve `Down` iskele kurulmuş geçiş yöntemleri. Bu ilk geçiş iskele kurulmuş zaman sonraki geçişleri modele karşılaştıracağız.
+Mümkünse, EF6 ' den önceki tüm geçişlerin veritabanına uygulandığını varsaymak ve sonra EF Core kullanarak şemayı bu noktadan geçirmeye başlamanız en iyisidir. Bunu yapmak için, model EF Core bağlantı kurulduktan sonra bir geçiş eklemek için `Add-Migration` komutunu kullanın. Daha sonra, `Up` ' dan ve `Down` ' den, yapı iskelesi geçişinin tüm kodunu kaldırırsınız. Sonraki geçişler, ilk geçiş iskele alındığı zaman modeliyle karşılaştırılır.
 
-## <a name="test-the-port"></a>Bağlantı testi
+## <a name="test-the-port"></a>Bağlantı noktasını test etme
 
-Yalnızca uygulamanızı derleyen çünkü başarıyla EF Core için unity'nin anlamına gelmez. Tüm alanları davranışı değişikliklerin hiçbiri olumsuz uygulamanızı etkilemiş emin olmak için uygulamanızı test etmek gerekir.
+Uygulamanız derlendiğinden, EF Core başarılı bir şekilde bir şekilde bağlantı edildiği anlamına gelmez. Davranış değişikliklerinin hiçbirinin uygulamanızı olumsuz yönde etkilememesini sağlamak için uygulamanızın tüm bölümlerini test etmeniz gerekir.

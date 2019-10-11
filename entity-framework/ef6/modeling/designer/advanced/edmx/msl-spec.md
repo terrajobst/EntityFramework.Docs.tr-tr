@@ -1,54 +1,54 @@
 ---
-title: MSL belirtimi - EF6
+title: MSL belirtimi-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 13ae7bc1-74b4-4ee4-8d73-c337be841467
-ms.openlocfilehash: 6bff1f5407bc0546e60b5bee1178be9aa4748bd8
-ms.sourcegitcommit: 29f928a6116771fe78f306846e6f2d45cbe8d1f4
+ms.openlocfilehash: 8990d1373ea2121ce11337a43dbcdf3b9e1532bd
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/01/2018
-ms.locfileid: "47460143"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182562"
 ---
-# <a name="msl-specification"></a>MSL belirtimi
-Eşleme belirtimi dili (MSL) kavramsal model ve depolama modeli bir Entity Framework uygulamasının arasındaki eşlemeyi açıklayan bir XML tabanlı dilidir.
+# <a name="msl-specification"></a>MSL Belirtimi
+Eşleme belirtim dili (MSL), bir Entity Framework uygulamasının kavramsal modeli ve depolama modeli arasındaki eşlemeyi açıklayan XML tabanlı bir dildir.
 
-Bir Entity Framework uygulamasında eşleme meta veri (MSL içinde yazılan) .msl dosyasından derleme sırasında yüklenir. Entity Framework eşleme meta veri deposu özgü komutlar için kavramsal modeline karşı sorgular çevirmek için çalışma zamanında kullanır.
+Entity Framework uygulamasında, eşleme meta verileri, derleme zamanında bir. msl dosyasından (MSL 'te yazılmıştır) yüklenir. Entity Framework, sorguları, verileri depoya özel komutlara dönüştürmek için çalışma zamanında eşleme meta verilerini kullanır.
 
-Entity Framework Designer (EF Designer), tasarım zamanında bir .edmx dosyası içinde eşleme bilgilerini depolar. Derleme sırasında varlık Tasarımcısı bilgi bir .edmx dosyası içinde Entity Framework tarafından çalışma zamanında gereken .msl dosyası oluşturmak için kullanır
+Entity Framework Designer (EF Designer), eşleme bilgilerini tasarım zamanında bir. edmx dosyasında depolar. Derleme zamanında Entity Desisgner, çalışma zamanında Entity Framework gereken. msl dosyasını oluşturmak için bir. edmx dosyasındaki bilgileri kullanır
 
-Tüm kavramsal adlarını veya MSL içinde başvurulan depolama model türleri ilgili ad alanı adlarıyla nitelenmelidir. Kavramsal model ad alanı adı hakkında daha fazla bilgi için bkz. [CSDL belirtimi](~/ef6/modeling/designer/advanced/edmx/csdl-spec.md). Depolama modeli ad alanı adı hakkında daha fazla bilgi için bkz. [SSDL belirtimi](~/ef6/modeling/designer/advanced/edmx/ssdl-spec.md).
+MSL 'de başvurulan tüm kavramsal veya depolama modeli türlerinin adları, ilgili ad alanı adlarıyla nitelenmelidir. Kavramsal model ad alanı adı hakkında daha fazla bilgi için bkz. [csdl belirtimi](~/ef6/modeling/designer/advanced/edmx/csdl-spec.md). Depolama modeli ad alanı adı hakkında daha fazla bilgi için bkz. [SSDL Specification](~/ef6/modeling/designer/advanced/edmx/ssdl-spec.md).
 
-MSL sürümleri, XML ad alanları tarafından ayrılır.
+MSL 'nin sürümleri, XML ad alanları ile farklılaştırılabilir.
 
-| MSL sürümü | XML Namespace                                        |
+| MSL sürümü | XML ad alanı                                        |
 |:------------|:-----------------------------------------------------|
-| MSL v1      | urn: schemas-microsoft-com:windows:storage:mapping:CS |
-| MSL v2      | http://schemas.microsoft.com/ado/2008/09/mapping/cs  |
-| MSL v3      | http://schemas.microsoft.com/ado/2009/11/mapping/cs  |
+| MSL v1      | urn: schemas-microsoft-com: Windows: Storage: eşleme: CS |
+| MSL v2      | https://schemas.microsoft.com/ado/2008/09/mapping/cs |
+| MSL v3      | https://schemas.microsoft.com/ado/2009/11/mapping/cs  |
 
-## <a name="alias-element-msl"></a>Diğer ad öğesinde (MSL)
+## <a name="alias-element-msl"></a>Alias öğesi (MSL)
 
-**Diğer** eşleme belirtimi dili (MSL) öğedir kavramsal model ve depolama modeli ad alanları için diğer adlarını tanımlamak için kullanılan eşleme öğesi alt. Tüm kavramsal adlarını veya MSL içinde başvurulan depolama model türleri ilgili ad alanı adlarıyla nitelenmelidir. Şema öğesi (CSDL) kavramsal model ad alanı adı hakkında daha fazla bilgi için bkz. Şema öğesi (SSDL) depolama modeli ad alanı adı hakkında daha fazla bilgi için bkz.
+Eşleme belirtim dili (MSL) içindeki **diğer ad** öğesi, kavramsal model ve depolama modeli ad alanları için diğer adları tanımlamak üzere kullanılan mapping öğesinin bir alt öğesidir. MSL 'de başvurulan tüm kavramsal veya depolama modeli türlerinin adları, ilgili ad alanı adlarıyla nitelenmelidir. Kavramsal model ad alanı adı hakkında daha fazla bilgi için bkz. şema öğesi (CSDL). Depolama modeli ad alanı adı hakkında daha fazla bilgi için bkz. şema öğesi (SSDL).
 
-**Diğer** öğesi alt öğeleri olamaz.
+**Alias** öğesi alt öğeleri içeremez.
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **diğer** öğesi.
+Aşağıdaki tabloda, **diğer ad** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Değer                                                                     |
+| Öznitelik adı | Gereklidir | Value                                                                     |
 |:---------------|:------------|:--------------------------------------------------------------------------|
-| **Key**        | Evet         | Tarafından belirtilen ad alanı diğer **değer** özniteliği. |
-| **Değer**      | Evet         | Kendisi için bir ad alanı değeri **anahtar** bir diğer ad bir öğedir.     |
+| **Anahtar**        | Evet         | **Değer** özniteliği tarafından belirtilen ad alanı için diğer ad. |
+| **Değer**      | Evet         | **Anahtar** öğesi değerinin bir diğer adı olduğu ad alanı.     |
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnekte gösterildiği bir **diğer** tanımlayan bir diğer öğe `c`, kavramsal modelde tanımlı türleri için.
+Aşağıdaki örnek, kavramsal modelde tanımlanan türler için `c` diğer adını tanımlayan bir **diğer ad** öğesini gösterir.
 
 ``` xml
  <Mapping Space="C-S"
-          xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+          xmlns="https://schemas.microsoft.com/ado/2009/11/mapping/cs">
    <Alias Key="c" Value="SchoolModel"/>
    <EntityContainerMapping StorageEntityContainer="SchoolModelStoreContainer"
                            CdmEntityContainer="SchoolModelEntities">
@@ -77,25 +77,25 @@ Aşağıdaki örnekte gösterildiği bir **diğer** tanımlayan bir diğer öğe
  </Mapping>
 ```
 
-## <a name="associationend-element-msl"></a>İlişki ucu öğesi (MSL)
+## <a name="associationend-element-msl"></a>AssociationEnd öğesi (MSL)
 
-**İlişki ucu** eşleme belirtimi dili (MSL) içindeki öğe temel alınan veritabanında saklı yordamlar için kavramsal modeldeki bir varlık türünün değiştirilmesi işlevleri eşlendiğinde kullanılır. Saklı yordamın kullandığı bir parametre değeri bir ilişkilendirme özelliğinde tutulan bir değişiklik olursa **ilişki ucu** öğesi parametresi özellik değeri eşler. Daha fazla bilgi için aşağıdaki örnekte bakın.
+Kavramsal modeldeki bir varlık türünün değiştirme işlevleri, temel alınan veritabanındaki Saklı yordamlarla eşlendiğinde, eşleme belirtim dili (MSL) içindeki **Associationend** öğesi kullanılır. Bir değişiklik saklı yordamı değeri bir ilişkilendirme özelliğinde tutulan bir parametre alırsa, **Associationend** öğesi özellik değerini parametresine Eşler. Daha fazla bilgi için aşağıdaki örnekte bakın.
 
-Saklı yordamlar için değişiklik işlevleri varlık türleri eşleme hakkında daha fazla bilgi için bkz: ModificationFunctionMapping öğesi (MSL) ve izlenecek yol: saklı yordamlar için bir varlık eşlemesi.
+Varlık türlerinin değişiklik işlevlerini saklı yordamlara eşleme hakkında daha fazla bilgi için bkz. ModificationFunctionMapping öğesi (MSL) ve Izlenecek yol: Bir varlığı Saklı yordamlarla eşleme.
 
-**İlişki ucu** öğesi şu alt öğelerden olabilir:
+**Associationend** öğesi aşağıdaki alt öğelere sahip olabilir:
 
 -   ScalarProperty
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda, geçerli olan öznitelikleri açıklar **ilişki ucu** öğesi.
+Aşağıdaki tabloda, **Associationend** öğesi için geçerli olan öznitelikler açıklanmaktadır.
 
-| Öznitelik adı     | Gereklidir | Değer                                                                                                                                                                             |
+| Öznitelik adı     | Gereklidir | Value                                                                                                                                                                             |
 |:-------------------|:------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **AssociationSet** | Evet         | Eşlenmekte olan ilişki adı.                                                                                                                                 |
-| **Kaynak**           | Evet         | Değerini **FromRole** eşlenmekte olan ilişki için karşılık gelen gezinme özelliğini özniteliği. NavigationProperty öğesi (CSDL) daha fazla bilgi için bkz. |
-| **Hedef**             | Evet         | Değerini **ToRole** eşlenmekte olan ilişki için karşılık gelen gezinme özelliğini özniteliği. NavigationProperty öğesi (CSDL) daha fazla bilgi için bkz.   |
+| **AssociationSet** | Evet         | Eşlenmekte olan ilişkilendirmenin adı.                                                                                                                                 |
+| **From**           | Evet         | Eşlenen ilişkiye karşılık gelen Gezinti özelliğinin **FromRole** özniteliğinin değeri. Daha fazla bilgi için bkz. NavigationProperty öğesi (CSDL). |
+| **To**             | Evet         | Eşlenen ilişkiye karşılık gelen Gezinti özelliğinin **ToRole** özniteliğinin değeri. Daha fazla bilgi için bkz. NavigationProperty öğesi (CSDL).   |
 
 ### <a name="example"></a>Örnek
 
@@ -116,7 +116,7 @@ Aşağıdaki kavramsal model varlık türünü göz önünde bulundurun:
  </EntityType>
 ```
 
-Ayrıca, aşağıdaki depolanan yordamı göz önünde bulundurun:
+Ayrıca aşağıdaki saklı yordamı göz önünde bulundurun:
 
 ``` SQL
  CREATE PROCEDURE [dbo].[UpdateCourse]
@@ -131,7 +131,7 @@ Ayrıca, aşağıdaki depolanan yordamı göz önünde bulundurun:
                                 WHERE CourseID=@CourseID;
 ```
 
-Güncelleştirme işlevini eşlemek için `Course` varlık Bu saklı yordamı için bir değer sağlamanız gerekir **DepartmentID** parametresi. Değeri `DepartmentID` varlık türü; bir özelliğe karşılık gelmiyor olan eşleme burada gösterilen bağımsız bir ilişkide yer alır:
+@No__t-0 varlığının güncelleştirme işlevini bu saklı yordama eşlemek için, **DepartmentID** parametresine bir değer sağlamanız gerekir. @No__t-0 değeri varlık türündeki bir özelliğe karşılık gelmiyor; eşlemesi burada gösterilen bağımsız bir ilişkide bulunur:
 
 ``` xml
  <AssociationSetMapping Name="FK_Course_Department"
@@ -146,7 +146,7 @@ Güncelleştirme işlevini eşlemek için `Course` varlık Bu saklı yordamı i�
  </AssociationSetMapping>
 ```
 
-Aşağıdaki kodda gösterildiği **ilişki ucu** eşlemek için kullanılan öğe **DepartmentID** özelliği **FK\_kurs\_departmanı** koleksiyonla ilişki **UpdateCourse** saklı yordamını (hangi güncelleştirme işlevini **kurs** varlık türü eşlendi):
+Aşağıdaki kod, **FK @ no__t-3Kursu @ no__t-4Department** Association 'ın **DepartmentID** özelliğini **updatekurs** saklı yordamına (' ın update Işlevinin) eşlemek için kullanılan **associationend** öğesini gösterir. **Kurs** varlık türü eşlendi):
 
 ``` xml
  <EntitySetMapping Name="Courses">
@@ -180,33 +180,33 @@ Aşağıdaki kodda gösterildiği **ilişki ucu** eşlemek için kullanılan ö�
 
 ## <a name="associationsetmapping-element-msl"></a>AssociationSetMapping öğesi (MSL)
 
-**AssociationSetMapping** eşleme belirtimi dili (MSL) içindeki öğe temel alınan veritabanında kavramsal model ve tablo sütunları bir ilişkide arasındaki eşlemeyi tanımlar.
+Eşleme belirtim dili (MSL) içindeki **Associationsetmapping** öğesi, temel veritabanındaki kavramsal model ve tablo sütunlarındaki bir ilişki arasındaki eşlemeyi tanımlar.
 
-Kavramsal modeldeki ilişkileri, birincil ve yabancı anahtar sütunları temel alınan veritabanında özelliklerini temsil türleridir. **AssociationSetMapping** öğe iki EndProperty öğe ilişki türü özellikleri ve sütunları arasındaki eşlemeleri veritabanında tanımlamak için kullanır. Bu eşlemeler koşul öğe ile koşulları yerleştirebilirsiniz. INSERT, update ve delete işlevleri ilişkileri için saklı yordamları veritabanında ModificationFunctionMapping öğesiyle eşlenir. Salt okunur eşlemeleri arasındaki ilişkilendirmeleri ve tablo sütunları bir QueryView öğesinde bir varlık SQL dizesi kullanarak tanımlayın.
+Kavramsal modeldeki ilişkilendirmeler, özellikleri temel veritabanında birincil ve yabancı anahtar sütunlarını temsil eden türlerdir. **Associationsetmapping** öğesi, veritabanındaki ilişkilendirme türü özellikleri ve sütunları arasındaki eşlemeleri tanımlamak Için Iki endproperty öğesi kullanır. Koşul öğesiyle bu eşlemelere koşullar yerleştirebilirsiniz. Veritabanında bulunan saklı yordamlara ilişkiler için INSERT, Update ve DELETE işlevlerini, ModificationFunctionMapping öğesiyle eşleyin. QueryView öğesinde bir Entity SQL dizesi kullanarak ilişkilendirmeler ve tablo sütunları arasında salt okunurdur eşlemeler tanımlayın.
 
 > [!NOTE]
-> Başvurusal Kısıt bir ilişkisi kavramsal modelde tanımlı ise ilişkilendirme ile eşlenmesi gerekmez bir **AssociationSetMapping** öğesi. Varsa bir **AssociationSetMapping** ilişkilendirme için bir başvuru kısıtlamasını sahip öğe varsa, tanımlanan eşlemeler **AssociationSetMapping** öğesi yok sayılacak. Daha fazla bilgi için Referentialconstraint'teki öğesi (CSDL) bakın.
+> Kavramsal modeldeki bir ilişki için bir başvuru kısıtlaması tanımlanmışsa, ilişkilendirmenin bir **Associationsetmapping** öğesiyle eşlenmesi gerekmez. Başvuru kısıtlaması olan bir ilişki için bir **Associationsetmapping** öğesi varsa, **associationsetmapping** öğesinde tanımlanan eşlemeler yok sayılır. Daha fazla bilgi için bkz. ReferentialConstraint öğesi (CSDL).
 
-**AssociationSetMapping** öğesi şu alt öğelerden olabilir
+**Associationsetmapping** öğesi aşağıdaki alt öğelere sahip olabilir
 
 -   QueryView (sıfır veya bir)
 -   EndProperty (sıfır veya iki)
 -   Koşul (sıfır veya daha fazla)
 -   ModificationFunctionMapping (sıfır veya bir)
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **AssociationSetMapping** öğesi.
+Aşağıdaki tabloda, **Associationsetmapping** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı     | Gereklidir | Değer                                                                                       |
+| Öznitelik adı     | Gereklidir | Value                                                                                       |
 |:-------------------|:------------|:--------------------------------------------------------------------------------------------|
-| **Ad**           | Evet         | Eşlenmekte olan kavramsal model ilişki kümesi adı.                      |
-| **typeName**       | Hayır          | Eşlenmekte olan kavramsal model ilişkilendirme türü ad alanıyla nitelenen adı. |
+| **Name**           | Evet         | Eşlenmekte olan kavramsal model ilişkilendirme kümesinin adı.                      |
+| **'Ta**       | Hayır          | Eşlenmekte olan kavramsal model ilişki türünün ad alanı nitelenmiş adı. |
 | **StoreEntitySet** | Hayır          | Eşlenmekte olan tablonun adı.                                                 |
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnekte gösterildiği bir **AssociationSetMapping** hangi öğesinde **FK\_kurs\_departmanı** ilişkisi kavramsal modelde ayarlamak için eşlendi **Kurs** veritabanındaki tablo. İlişki türü özellikleri ve tablo sütunları arasındaki eşlemeleri alt belirtilen **EndProperty** öğeleri.
+Aşağıdaki örnek, kavramsal modelde **FK @ no__t-2Kursu @ no__t-3Department** Association 'ın veritabanındaki **Kurs** tablosuna eşlendiği bir **associationsetmapping** öğesini göstermektedir. İlişki türü özellikleri ve tablo sütunları arasındaki eşlemeler alt **Endproperty** öğelerinde belirtilmiştir.
 
 ``` xml
  <AssociationSetMapping Name="FK_Course_Department"
@@ -223,27 +223,27 @@ Aşağıdaki örnekte gösterildiği bir **AssociationSetMapping** hangi öğesi
 
 ## <a name="complexproperty-element-msl"></a>ComplexProperty öğesi (MSL)
 
-A **ComplexProperty** eşleme belirtimi dili (MSL) içindeki öğe bir karmaşık tür özelliği temel alınan veritabanında bir kavramsal model varlık türü ve tablo sütunu arasındaki eşlemeyi tanımlar. Özellik sütun eşlemelerini alt ScalarProperty öğesinde belirtilir.
+Eşleme belirtim dili (MSL) içindeki bir **ComplexProperty** öğesi, bir kavramsal model varlık türü ve temel alınan veritabanındaki tablo sütunlarındaki karmaşık tür özelliği arasındaki eşlemeyi tanımlar. Özellik sütun eşlemeleri alt ScalarProperty öğelerinde belirtilmiştir.
 
-**ComplexType** özellik öğesi şu alt öğelerden sahip olabilir:
+**ComplexType** özelliği öğesi aşağıdaki alt öğelere sahip olabilir:
 
 -   ScalarProperty (sıfır veya daha fazla)
--   **ComplexProperty** (sıfır veya daha fazla)
+-   **Complexözelliği** (sıfır veya daha fazla)
 -   ComplextTypeMapping (sıfır veya daha fazla)
 -   Koşul (sıfır veya daha fazla)
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda, geçerli olan öznitelikleri açıklar **ComplexProperty** öğesi:
+Aşağıdaki tabloda, **ComplexProperty** öğesi için geçerli olan öznitelikler açıklanmaktadır:
 
-| Öznitelik adı | Gereklidir | Değer                                                                                            |
+| Öznitelik adı | Gereklidir | Value                                                                                            |
 |:---------------|:------------|:-------------------------------------------------------------------------------------------------|
-| **Ad**       | Evet         | Eşlenmekte olan kavramsal modeldeki bir varlık türünün karmaşık özelliğin adı. |
-| **typeName**   | Hayır          | Kavramsal model özellik türü ad alanıyla nitelenen adı.                              |
+| **Name**       | Evet         | Eşlenmekte olan kavramsal modeldeki bir varlık türünün karmaşık özelliğinin adı. |
+| **'Ta**   | Hayır          | Kavramsal model özelliği türünün ad alanı nitelikli adı.                              |
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnek, okul modelini temel alıyor. Aşağıdaki karmaşık türü için kavramsal model eklenmiştir:
+Aşağıdaki örnek, okul modelini temel alır. Kavramsal modele aşağıdaki karmaşık tür eklenmiştir:
 
 ``` xml
  <ComplexType Name="FullName">
@@ -256,7 +256,7 @@ Aşağıdaki örnek, okul modelini temel alıyor. Aşağıdaki karmaşık türü
  </ComplexType>
 ```
 
-**LastName** ve **FirstName** özelliklerini **kişi** varlık türü karmaşık bir özellik ile değiştirildi **adı**:
+**Kişi** varlık türünün **LastName** ve **FirstName** özellikleri, bir karmaşık özellikle değiştirildi, **ad**:
 
 ``` xml
  <EntityType Name="Person">
@@ -271,7 +271,7 @@ Aşağıdaki örnek, okul modelini temel alıyor. Aşağıdaki karmaşık türü
  </EntityType>
 ```
 
-Aşağıdaki MSL gösterildiği **ComplexProperty** eşlemek için kullanılan öğe **adı** özelliği temel alınan veritabanında sütunlara:
+Aşağıdaki MSL, **ad** özelliğini temel alınan veritabanındaki sütunlara eşlemek Için kullanılan **ComplexProperty** öğesini göstermektedir:
 
 ``` xml
  <EntitySetMapping Name="People">
@@ -291,24 +291,24 @@ Aşağıdaki MSL gösterildiği **ComplexProperty** eşlemek için kullanılan �
 
 ## <a name="complextypemapping-element-msl"></a>ComplexTypeMapping öğesi (MSL)
 
-**ComplexTypeMapping** eşleme belirtimi dili (MSL) içindeki öğe ResultMapping öğesinin bir alt öğesidir ve temel kavramsal modeldeki bir işlev içeri aktarma ve bir saklı yordam arasındaki eşlemeyi tanımlar. Veritabanı aşağıdaki doğru olduğunda:
+Eşleme belirtim dili (MSL) içindeki **Complextypemapping** öğesi, resultmapping öğesinin bir alt öğesidir ve aşağıdaki durumlarda temel alınan veritabanındaki bir işlev içeri aktarma ile kavramsal modeldeki bir saklı yordam arasındaki eşlemeyi tanımlar doğru:
 
--   İşlev kavramsal karmaşık bir tür döndürür.
--   Saklı yordam tarafından döndürülen sütun adlarını tam olarak karmaşık tür özellikleri adlarını eşleştirin.
+-   İşlev içeri aktarma kavramsal bir karmaşık tür döndürüyor.
+-   Saklı yordam tarafından döndürülen sütunların adları, karmaşık türdeki özelliklerin adlarıyla tam olarak eşleşmez.
 
-Varsayılan olarak, sütunlar arasındaki eşlemeyi bir saklı yordam tarafından döndürülen ve sütun ve özellik adları üzerinde karmaşık bir tür alır. Sütun adları tam olarak eşleşen özellik adlarını, kullanmalısınız **ComplexTypeMapping** eşleme tanımlamak için. Varsayılan eşleme örneği için Functionımportmapping öğesi (MSL) bakın.
+Varsayılan olarak, bir saklı yordam tarafından döndürülen sütunlar ve karmaşık bir tür arasındaki eşleme, sütun ve özellik adlarını temel alır. Sütun adları tam olarak özellik adlarıyla eşleşmezse, eşlemeyi tanımlamak için **Complextypemapping** öğesini kullanmanız gerekir. Varsayılan eşlemenin bir örneği için bkz. FunctionImportMapping öğesi (MSL).
 
-**ComplexTypeMapping** öğesi şu alt öğelerden olabilir:
+**Complextypemapping** öğesi aşağıdaki alt öğelere sahip olabilir:
 
 -   ScalarProperty (sıfır veya daha fazla)
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda, geçerli olan öznitelikleri açıklar **ComplexTypeMapping** öğesi.
+Aşağıdaki tabloda, **Complextypemapping** öğesi için geçerli olan öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Değer                                                                  |
+| Öznitelik adı | Gereklidir | Value                                                                  |
 |:---------------|:------------|:-----------------------------------------------------------------------|
-| **typeName**   | Evet         | Eşlenmekte olan bir karmaşık tür ad alanıyla nitelenen adı. |
+| **'Ta**   | Evet         | Eşlenmekte olan karmaşık türün ad alanı nitelikli adı. |
 
 ### <a name="example"></a>Örnek
 
@@ -326,7 +326,7 @@ Aşağıdaki saklı yordamı göz önünde bulundurun:
              WHERE StudentID = @student_Id
 ```
 
-Ayrıca, aşağıdaki kavramsal model karmaşık tür göz önünde bulundurun:
+Ayrıca, aşağıdaki kavramsal model karmaşık türünü de göz önünde bulundurun:
 
 ``` xml
  <ComplexType Name="GradeInfo">
@@ -338,7 +338,7 @@ Ayrıca, aşağıdaki kavramsal model karmaşık tür göz önünde bulundurun:
  </ComplexType>
 ```
 
-Varlık türü tanımlanmalıdır ve sütunlar arasındaki eşlemeyi önceki karmaşık türün örneğini döndüren bir işlev içeri aktarma oluşturabilmek için saklı yordam tarafından döndürülen bir **ComplexTypeMapping** öğesi:
+Önceki karmaşık türün örneklerini döndüren bir işlev içeri aktarması oluşturmak için, saklı yordamın ve varlık türünün döndürdüğü sütunlar arasındaki eşlemenin bir **Complextypemapping** öğesinde tanımlanması gerekir:
 
 ``` xml
  <FunctionImportMapping FunctionImportName="GetGrades"
@@ -354,39 +354,39 @@ Varlık türü tanımlanmalıdır ve sütunlar arasındaki eşlemeyi önceki kar
  </FunctionImportMapping>
 ```
 
-## <a name="condition-element-msl"></a>Koşul öğesi (MSL)
+## <a name="condition-element-msl"></a>Condition öğesi (MSL)
 
-**Koşul** eşleme belirtimi dili (MSL) içindeki öğenin kavramsal model ve temel alınan veritabanı arasındaki eşlemeleri üzerinde koşullar yerleştirir. Bir XML düğümü içinde tanımlanan tüm geçerli koşullar, belirtilen alt öğesi olarak eşlemedir **koşul** öğe karşılandığı. Aksi halde, eşleme geçerli değil. Örneğin, bir veya daha fazla MappingFragment öğe içeriyorsa, **koşul** alt öğeleri eşleme içinde tanımlanan **MappingFragment** düğümü yalnızca tüm geçerli olacaktır altkoşulları **Koşul** öğe karşılandığı.
+Eşleme belirtim dili (MSL) içindeki **koşul** öğesi, kavramsal model ve temel alınan veritabanı arasındaki eşlemelerle ilgili koşullar koyar. Bir XML düğümü içinde tanımlanan eşleme, alt **koşul** öğelerinde belirtilen tüm koşullar karşılanıyorsa geçerlidir. Aksi takdirde, eşleme geçerli değildir. Örneğin, bir MappingFragment öğesi bir veya daha fazla **Condition** alt öğesi Içeriyorsa, **mappingfragment** düğümü içinde tanımlanan eşleme yalnızca alt **koşul** öğelerinin tüm koşulları karşılanıyorsa geçerli olur.
 
-Her koşul için ya da uygulayabilirsiniz bir **adı** (bir kavramsal model varlık özelliği tarafından belirtilen adı **adı** özniteliği), veya bir **ColumnName** (adını bir sütun Belirtilen veritabanı **ColumnName** özniteliği). Zaman **adı** özniteliği, bir varlık özelliğinin değeri koşul denetlenir. Zaman **ColumnName** özniteliği, bir sütun değeri koşul denetlenir. Yalnızca biri **adı** veya **ColumnName** özniteliği belirtilebilir bir **koşul** öğesi.
+Her koşul, bir **ada** ( **ad** özniteliği tarafından belirtilen bir kavramsal model varlığı özelliğinin adı) veya **sütunadı** ( **ColumnName** özniteliği tarafından belirtilen veritabanında bir sütunun adı) uygulanabilir. **Ad** özniteliği ayarlandığında, koşul bir varlık özelliği değeri ile denetlenir. **ColumnName** özniteliği ayarlandığında, koşul bir sütun değerine göre denetlenir. **Condition** öğesinde **Name** veya **ColumnName** özniteliğinden yalnızca biri belirtilebilir.
 
 > [!NOTE]
-> Zaman **koşul** öğe Functionımportmapping element içinde yalnızca kullanılan **adı** özniteliği geçerli değil.
+> **Condition** öğesi bir FunctionImportMapping öğesi içinde kullanıldığında, yalnızca **Name** özniteliği uygulanabilir değildir.
 
-**Koşul** aşağıdaki öğelerin bir alt öğesi olabilir:
+**Condition** öğesi aşağıdaki öğelerin bir alt öğesi olabilir:
 
 -   AssociationSetMapping
--   ComplexProperty
+-   Complexözelliği
 -   EntitySetMapping
 -   MappingFragment
 -   EntityTypeMapping
 
-**Koşul** öğesi alt öğe yok olabilir.
+**Condition** öğesinin hiç alt öğesi olamaz.
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda, geçerli olan öznitelikleri açıklar **koşul** öğesi:
+Aşağıdaki tabloda, **koşul** öğesi için geçerli olan öznitelikler açıklanmaktadır:
 
-| Öznitelik adı | Gereklidir | Değer                                                                                                                                                                                                                                                                                         |
+| Öznitelik adı | Gereklidir | Value                                                                                                                                                                                                                                                                                         |
 |:---------------|:------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ColumnName** | Hayır          | Değeri koşulu değerlendirmek için kullanılabilecek tablo sütununun adı.                                                                                                                                                                                                                   |
-| **IsNull**     | Hayır          | **Doğru** veya **False**. Değer ise **True** ve sütun değeri **null**, veya değer ise **False** ve sütun değeri değil **null**, koşul true olduğu . Aksi halde koşul false olur. <br/> **IsNull** ve **değer** özniteliklerine aynı anda kullanılamaz. |
-| **Değer**      | Hayır          | Sütun değeri karşılaştırılacağı değeri. Değerler aynıysa koşul true'dur. Aksi halde koşul false olur. <br/> **IsNull** ve **değer** özniteliklerine aynı anda kullanılamaz.                                                                       |
-| **Ad**       | Hayır          | Değeri koşulu değerlendirmek için kullanılan kavramsal model varlık özelliğinin adı. <br/> Bu özniteliği geçerli değil, **koşul** öğesi içinde bir Functionımportmapping element kullanılır.                                                                           |
+| **Tation** | Hayır          | Koşulu değerlendirmek için değeri kullanılan tablo sütununun adı.                                                                                                                                                                                                                   |
+| **IsNull**     | Hayır          | **True** veya **false**. Değer **true** ise ve sütun değeri **null**ise veya değer **false** ise ve sütun değeri **null**değilse, koşul true olur. Aksi takdirde, koşul false olur. <br/> **IsNull** ve **Value** öznitelikleri aynı anda kullanılamaz. |
+| **Değer**      | Hayır          | Sütun değerinin karşılaştırıldığı değer. Değerler aynıysa, koşul true olur. Aksi takdirde, koşul false olur. <br/> **IsNull** ve **Value** öznitelikleri aynı anda kullanılamaz.                                                                       |
+| **Name**       | Hayır          | Koşulu değerlendirmek için kullanılan kavramsal model varlığı özelliğinin adı. <br/> **Condition** öğesi bir FunctionImportMapping öğesi içinde kullanılıyorsa bu öznitelik geçerli değildir.                                                                           |
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnekte gösterildiği **koşul** öğeleri alt öğeleri olarak **MappingFragment** öğeleri. Zaman **İşeAlmaTarihi** null değil ve **EnrollmentDate** olan veri arasında null eşlendi **SchoolModel.Instructor** türü ve **Personıd**ve **İşeAlmaTarihi** sütunlarının **kişi** tablo. Zaman **EnrollmentDate** null değil ve **İşeAlmaTarihi** olan veri arasında null eşlendi **SchoolModel.Student** türü ve **Personıd** ve **kayıt** sütunlarının **kişi** tablo.
+Aşağıdaki örnek, **durum** öğelerini **mappingfragment** öğelerinin alt öğesi olarak gösterir. **HireDate** null olmadığında ve **kayıttarihi** null olduğunda, veriler **SchoolModel. eğitmen** türü Ile **kişi** tablosunun **PersonID** ve **HireDate** sütunları arasında eşlenir. **Kayıttarihi** null olmadığında ve **HireDate** null olduğunda, veriler **SchoolModel. öğrenci** türü Ile **kişi** tablosunun **PersonID** ve **kayıt** sütunları arasında eşlenir.
 
 ``` xml
  <EntitySetMapping Name="People">
@@ -419,33 +419,33 @@ Aşağıdaki örnekte gösterildiği **koşul** öğeleri alt öğeleri olarak *
 
 ## <a name="deletefunction-element-msl"></a>DeleteFunction öğesi (MSL)
 
-**DeleteFunction** eşleme belirtimi dili (MSL) içindeki öğe temel alınan veritabanında bir saklı yordam için bir varlık türünün veya ilişkisi kavramsal modelde silme işlevini eşlemeleri. Hangi değişiklik işlevleri eşlenmiş saklı yordamlar depolama modelinde bildirilmesi gerekir. Daha fazla bilgi için işlev öğesi (SSDL) bakın.
+Eşleme belirtim dili (MSL) içindeki **deletefunction** öğesi, kavramsal modeldeki Delete işlevini, temel veritabanında bulunan bir saklı yordama eşler. Değişiklik işlevlerinin eşlendiği saklı yordamlar depolama modelinde bildirilmelidir. Daha fazla bilgi için bkz. Işlev öğesi (SSDL).
 
 > [!NOTE]
-> Değil eşlerseniz üçünü ekleme, güncelleştirme veya silme işlemleri saklı yordamlar için bir varlık türünün, çalışma zamanında yürütülüyorsa eşlenmemiş işlemleri başarısız olur ve bir UpdateException oluşturulur.
+> Bir varlık türünün ekleme, güncelleştirme veya silme işlemlerinin üçünü saklı yordamlara eşleştirmez, çalışma zamanında yürütülürse ve bir UpdateException oluşturulursa eşlenmemiş işlemler başarısız olur.
 
-### <a name="deletefunction-applied-to-entitytypemapping"></a>EntityTypeMapping için uygulanan DeleteFunction
+### <a name="deletefunction-applied-to-entitytypemapping"></a>EntityTypeMapping 'a uygulanan DeleteFunction
 
-EntityTypeMapping öğesine uygulandığında **DeleteFunction** öğesi için bir saklı yordam kavramsal modeldeki bir varlık türünün silme işlevini eşler.
+EntityTypeMapping öğesine uygulandığında, **Deletefunction** öğesi kavramsal modeldeki bir varlık türünün Delete işlevini bir saklı yordama eşler.
 
-**DeleteFunction** öğesi şu alt öğelerden uygulandığında olabilir bir **EntityTypeMapping** öğesi:
+Bir **Entitytypemapping** öğesine uygulandığında **deletefunction** öğesi aşağıdaki alt öğelere sahip olabilir:
 
--   İlişki ucu (sıfır veya daha fazla)
--   ComplexProperty (sıfır veya daha fazla)
+-   AssociationEnd (sıfır veya daha fazla)
+-   Complexözelliği (sıfır veya daha fazla)
 -   ScarlarProperty (sıfır veya daha fazla)
 
-#### <a name="applicable-attributes"></a>Uygun öznitelikler
+#### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **DeleteFunction** için uygulandığında öğesi bir **EntityTypeMapping** öğesi.
+Aşağıdaki tabloda, bir **Entitytypemapping** öğesine uygulandığında **deletefunction** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı            | Gereklidir | Değer                                                                                                                                                    |
+| Öznitelik adı            | Gereklidir | Value                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **functionName**          | Evet         | Silme işlevi için eşlenmiş saklı yordam ad alanıyla nitelenen adı. Saklı yordam depolama modelinde bildirilmesi gerekir. |
-| **RowsAffectedParameter** | Hayır          | Etkilenen satırların sayısını veren çıkış parametresinin adı.                                                                               |
+| **Ifadelerini**          | Evet         | Delete işlevinin eşlendiği saklı yordamın ad alanı nitelikli adı. Saklı yordam, depolama modelinde bildirilmelidir. |
+| **RowsAffectedParameter** | Hayır          | Etkilenen satır sayısını döndüren çıkış parametresinin adı.                                                                               |
 
 #### <a name="example"></a>Örnek
 
-Aşağıdaki örnek Okul modelini temel alan ve gösterir **DeleteFunction** silme işlevini eşleme öğesi **kişi** varlık türüne **DeletePerson** saklı yordam. **DeletePerson** saklı yordam, depolama modelinde bildirilir.
+Aşağıdaki örnek, okul modeline dayalıdır ve **kişi** varlık türünün Delete Işlevini **deleteperson** saklı yordamına eşleyen **deletefunction** öğesini gösterir. **Deleteperson** saklı yordamı depolama modelinde bildirilmiştir.
 
 ``` xml
  <EntitySetMapping Name="People">
@@ -490,26 +490,26 @@ Aşağıdaki örnek Okul modelini temel alan ve gösterir **DeleteFunction** sil
  </EntitySetMapping>
 ```
 
-### <a name="deletefunction-applied-to-associationsetmapping"></a>AssociationSetMapping için uygulanan DeleteFunction
+### <a name="deletefunction-applied-to-associationsetmapping"></a>AssociationSetMapping 'e uygulanan DeleteFunction
 
-AssociationSetMapping öğesine uygulandığında **DeleteFunction** öğesi saklı yordama ilişkilendirme kavramsal modeldeki silme işlevini eşlemeleri.
+AssociationSetMapping öğesine uygulandığında, **Deletefunction** öğesi kavramsal modeldeki bir ilişkinin Delete işlevini bir saklı yordama eşler.
 
-**DeleteFunction** öğesi şu alt öğelerden uygulandığında olabilir **AssociationSetMapping** öğesi:
+**Deletefunction** öğesi, **associationsetmapping** öğesine uygulandığında aşağıdaki alt öğelere sahip olabilir:
 
 -   EndProperty
 
-#### <a name="applicable-attributes"></a>Uygun öznitelikler
+#### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **DeleteFunction** için uygulandığında öğesi **AssociationSetMapping** öğesi.
+Aşağıdaki tablo, **Associationsetmapping** öğesine uygulandığında **deletefunction** öğesine uygulanabilen öznitelikleri açıklar.
 
-| Öznitelik adı            | Gereklidir | Değer                                                                                                                                                    |
+| Öznitelik adı            | Gereklidir | Value                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **functionName**          | Evet         | Silme işlevi için eşlenmiş saklı yordam ad alanıyla nitelenen adı. Saklı yordam depolama modelinde bildirilmesi gerekir. |
-| **RowsAffectedParameter** | Hayır          | Etkilenen satırların sayısını veren çıkış parametresinin adı.                                                                               |
+| **Ifadelerini**          | Evet         | Delete işlevinin eşlendiği saklı yordamın ad alanı nitelikli adı. Saklı yordam, depolama modelinde bildirilmelidir. |
+| **RowsAffectedParameter** | Hayır          | Etkilenen satır sayısını döndüren çıkış parametresinin adı.                                                                               |
 
 #### <a name="example"></a>Örnek
 
-Aşağıdaki örnek Okul modelini temel alan ve gösterir **DeleteFunction** silme işlevini eşlemek için kullanılan öğe **CourseInstructor** ilişkilendirmeye  **DeleteCourseInstructor** saklı yordamı. **DeleteCourseInstructor** saklı yordam, depolama modelinde bildirilir.
+Aşağıdaki örnek, okul modeline dayalıdır ve **courseeğitmen** ilişkilendirmesinin Delete Işlevini **deletecourseeğitmen** saklı yordamına eşlemek için kullanılan **deletefunction** öğesini gösterir. **Deletecourseeğitmen** saklı yordamı, depolama modelinde bildirilmiştir.
 
 ``` xml
  <AssociationSetMapping Name="CourseInstructor"
@@ -544,25 +544,25 @@ Aşağıdaki örnek Okul modelini temel alan ve gösterir **DeleteFunction** sil
 
 ## <a name="endproperty-element-msl"></a>EndProperty öğesi (MSL)
 
-**EndProperty** eşleme belirtimi dili (MSL) içindeki öğe sona veya değişiklik işlevi bir kavramsal model ilişkisi ve temel alınan veritabanı arasındaki eşlemeyi tanımlar. Özellik sütun eşleme, bir alt ScalarProperty öğesinde belirtilir.
+Eşleme belirtim dili (MSL) içindeki **Endproperty** öğesi, kavramsal model ilişkilendirmesinin bir End veya bir değiştirme işlevi ile temel alınan veritabanı arasındaki eşlemeyi tanımlar. Özellik sütunu eşlemesi bir alt ScalarProperty öğesinde belirtildi.
 
-Olduğunda bir **EndProperty** öğe eşleme için kavramsal model ilişki sonu tanımlamak için kullanılır, AssociationSetMapping öğesi bir alt öğesidir. Zaman **EndProperty** öğesi eşleme için kavramsal model ilişki değişikliği işlevi tanımlamak için kullanıldığında, bir InsertFunction DeleteFunction öğesi veya bir alt öğesidir.
+Bir **Endproperty** öğesi kavramsal model ilişkisinin sonuna yönelik eşlemeyi tanımlamak için kullanıldığında, bir associationsetmapping öğesinin alt öğesidir. Bir kavramsal model ilişkisinin değiştirme işlevi için eşlemeyi tanımlamak üzere **Endproperty** öğesi kullanıldığında, bir ınsertfunction öğesinin veya deletefunction öğesinin alt öğesidir.
 
-**EndProperty** öğesi şu alt öğelerden olabilir:
+**Endproperty** öğesi aşağıdaki alt öğelere sahip olabilir:
 
 -   ScalarProperty (sıfır veya daha fazla)
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda, geçerli olan öznitelikleri açıklar **EndProperty** öğesi:
+Aşağıdaki tabloda, **Endproperty** öğesi için geçerli olan öznitelikler açıklanmaktadır:
 
-| Öznitelik adı | Gereklidir | Değer                                                 |
+| Öznitelik adı | Gereklidir | Value                                                 |
 |:---------------|:------------|:------------------------------------------------------|
-| Ad           | Evet         | Eşlenmekte olan ilişki sonu adı. |
+| Name           | Evet         | Eşlenmekte olan ilişki ucunun adı. |
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnekte gösterildiği bir **AssociationSetMapping** hangi öğesinde **FK\_kurs\_departmanı** ilişkisi kavramsal modelde içineşlenmiş**Kurs** veritabanındaki tablo. İlişki türü özellikleri ve tablo sütunları arasındaki eşlemeleri alt belirtilen **EndProperty** öğeleri.
+Aşağıdaki örnek, kavramsal modeldeki **FK @ no__t-2Kursu @ no__t-3Department** Association öğesinin veritabanındaki **Kurs** tablosuyla eşlendiği bir **associationsetmapping** öğesini gösterir. İlişki türü özellikleri ve tablo sütunları arasındaki eşlemeler alt **Endproperty** öğelerinde belirtilmiştir.
 
 ``` xml
  <AssociationSetMapping Name="FK_Course_Department"
@@ -579,7 +579,7 @@ Aşağıdaki örnekte gösterildiği bir **AssociationSetMapping** hangi öğesi
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnekte gösterildiği **EndProperty** ilişkilendirme INSERT ve delete işlevlerini eşleme öğesi (**CourseInstructor**) temel alınan veritabanında saklı yordamlar. Eşleştirilmiş işlevleri depolama modelinde bildirilir.
+Aşağıdaki örnek, bir ilişkilendirmenin (**Courseeğitmen**) INSERT ve DELETE işlevlerini temel alınan veritabanındaki saklı yordamlara eşleyen **endproperty** öğesini gösterir. İle eşlenen işlevler depolama modelinde bildirilmiştir.
 
 ``` xml
  <AssociationSetMapping Name="CourseInstructor"
@@ -612,29 +612,29 @@ Aşağıdaki örnekte gösterildiği **EndProperty** ilişkilendirme INSERT ve d
  </AssociationSetMapping>
 ```
 
-## <a name="entitycontainermapping-element-msl"></a>Entitycontainermapping'indeki öğesi (MSL)
+## <a name="entitycontainermapping-element-msl"></a>EntityContainerMapping öğesi (MSL)
 
-**Entitycontainermapping'indeki** eşleme belirtimi dili (MSL) içindeki öğe depolama modelinin varlık kapsayıcısı kavramsal modeldeki varlık kapsayıcısı eşler. **Entitycontainermapping'indeki** eşleme öğesi bir alt öğesidir.
+Eşleme belirtim dili (MSL) içindeki **Entitycontainermapping** öğesi, kavramsal modeldeki varlık kapsayıcısını depolama modelindeki varlık kapsayıcısına eşler. **Entitycontainermapping** öğesi, Mapping öğesinin bir alt öğesidir.
 
-**Entitycontainermapping'indeki** öğesi şu alt öğelerden (listelenen sırayla) olabilir:
+**Entitycontainermapping** öğesi aşağıdaki alt öğelere sahip olabilir (listelenen sırayla):
 
 -   EntitySetMapping (sıfır veya daha fazla)
 -   AssociationSetMapping (sıfır veya daha fazla)
--   Functionımportmapping (sıfır veya daha fazla)
+-   FunctionImportMapping (sıfır veya daha fazla)
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **Entitycontainermapping'indeki** öğesi.
+Aşağıdaki tabloda **Entitycontainermapping** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı            | Gereklidir | Değer                                                                                                                                                                                                                                                    |
+| Öznitelik adı            | Gereklidir | Value                                                                                                                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **StorageModelContainer** | Evet         | Eşlenmekte olan depolama modelinin varlık kapsayıcısının adı.                                                                                                                                                                                     |
+| **StorageModelContainer** | Evet         | Eşlenmekte olan depolama modeli varlık kapsayıcısının adı.                                                                                                                                                                                     |
 | **CdmEntityContainer**    | Evet         | Eşlenmekte olan kavramsal model varlık kapsayıcısının adı.                                                                                                                                                                                  |
-| **GenerateUpdateViews**   | Hayır          | **Doğru** veya **False**. Varsa **False**, hiçbir güncelleştirme görünümleri oluşturulur. Bu öznitelik ayarlanmalıdır **False** verileri başarıyla dönmez olabilir çünkü, geçersiz olacak salt okunur bir eşleme varsa. <br/> Varsayılan değer **True**. |
+| **GenerateUpdateViews**   | Hayır          | **True** veya **false**. **Yanlışsa**, güncelleştirme görünümleri oluşturulmaz. Veriler başarıyla geri dönüş yaptığından, geçersiz olabilecek bir salt okuma eşlemi varsa, bu öznitelik **false** olarak ayarlanmalıdır. <br/> Varsayılan değer **true**'dur. |
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnekte gösterildiği bir **Entitycontainermapping'indeki** eşleşen öğe **SchoolModelEntities** (kavramsal model varlık kapsayıcısı) kapsayıcıya  **SchoolModelStoreContainer** kapsayıcı (depolama modelinin varlık kapsayıcısı):
+Aşağıdaki örnek, **SchoolModelEntities** kapsayıcısını (kavramsal model varlık kapsayıcısı) **SchoolModelStoreContainer** kapsayıcısına (depolama modeli varlığı) eşleyen bir **entitycontainermapping** öğesini gösterir kapsayıcı):
 
 ``` xml
  <EntityContainerMapping StorageEntityContainer="SchoolModelStoreContainer"
@@ -665,32 +665,32 @@ Aşağıdaki örnekte gösterildiği bir **Entitycontainermapping'indeki** eşle
 
 ## <a name="entitysetmapping-element-msl"></a>EntitySetMapping öğesi (MSL)
 
-**EntitySetMapping** eşleme belirtimi dili (MSL) eşlemeleri kavramsal model varlıktaki tüm türleri varlık kümesi içindeki öğe depolama modelinde ayarlar. Bir varlık kavramsal modelde kümesi için bir mantıksal kapsayıcıdır örnekleri varlık aynı türde (ve türetilen türler). Varlık kümesi depolama modelinde, bir tablo veya Görünüm temel alınan veritabanında temsil eder. Kavramsal model varlık kümesini değeri tarafından belirtilen **adı** özniteliği **EntitySetMapping** öğesi. Eşlenen için tablo veya görünüm tarafından belirtilen **StoreEntitySet** her alt MappingFragment öğe veya öznitelik **EntitySetMapping** öğenin kendisinin.
+Eşleme belirtim dili (MSL) içindeki **EntitySetMapping** öğesi, bir kavramsal model varlığındaki tüm türleri, depolama modelindeki varlık kümelerine göre eşler. Kavramsal modeldeki bir varlık, aynı türde (ve türetilmiş türler) varlık örnekleri için mantıksal bir kapsayıcıdır. Depolama modelinde ayarlanan bir varlık, temel alınan veritabanında bir tabloyu veya görünümü temsil eder. Kavramsal model varlık kümesi, **EntitySetMapping** öğesinin **Name** özniteliğinin değeri ile belirtilir. Eşlenen tablo veya görünüm her bir alt MappingFragment öğesinde veya **EntitySetMapping** öğesinin kendisinde **storeentityset** özniteliği tarafından belirtilir.
 
-**EntitySetMapping** öğesi şu alt öğelerden olabilir:
+**EntitySetMapping** öğesi aşağıdaki alt öğelere sahip olabilir:
 
 -   EntityTypeMapping (sıfır veya daha fazla)
 -   QueryView (sıfır veya bir)
 -   MappingFragment (sıfır veya daha fazla)
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **EntitySetMapping** öğesi.
+Aşağıdaki tabloda **EntitySetMapping** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı           | Gereklidir | Değer                                                                                                                                                                                                                         |
+| Öznitelik adı           | Gereklidir | Value                                                                                                                                                                                                                         |
 |:-------------------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Ad**                 | Evet         | Eşlenmekte olan kavramsal model varlık kümesinin adı.                                                                                                                                                             |
+| **Name**                 | Evet         | Eşlenmekte olan kavramsal model varlık kümesinin adı.                                                                                                                                                             |
 | **TypeName** **1**       | Hayır          | Eşlenmekte olan kavramsal model varlık türünün adı.                                                                                                                                                            |
-| **StoreEntitySet** **1** | Hayır          | İçin eşlenen depolama modelinin varlık kümesinin adı.                                                                                                                                                             |
-| **MakeColumnsDistinct**  | Hayır          | **Doğru** veya **False** bağlı olarak yalnızca ayrı satırların olup olmadığını döndürülür. <br/> Bu öznitelik ayarlanırsa **True**, **GenerateUpdateViews** Entitycontainermapping'indeki öğesinin özniteliği ayarlanmalıdır **False**. |
+| **Storeentityset** **1** | Hayır          | Eşlenmekte olan depolama modeli varlık kümesinin adı.                                                                                                                                                             |
+| **MakeColumnsDistinct**  | Hayır          | Yalnızca ayrı satırların döndürülüp döndürülmediğine bağlı olarak **doğru** veya **yanlış** . <br/> Bu öznitelik **true**olarak ayarlanırsa, EntityContainerMapping öğesinin **generateupdateviews** özniteliği **false**olarak ayarlanmalıdır. |
 
- 
+ 
 
-**1** **TypeName** ve **StoreEntitySet** öznitelikleri eşleme tek bir tabloya bir tek bir varlık türü için EntityTypeMapping ve MappingFragment alt öğeleri yerine kullanılabilir.
+**1** **TypeName** ve **storeentityset** öznitelikleri, tek bir varlık türünü tek bir tabloya eşlemek için entitytypemapping ve mappingfragment alt öğelerinin yerine kullanılabilir.
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnekte gösterildiği bir **EntitySetMapping** üç tür (bir taban türü ve iki türetilmiş türler) içinde eşleşen öğe **kursları** üç farklı tabloda için kavramsal modelin varlık kümesi temel alınan veritabanı. Tabloları tarafından belirtilen **StoreEntitySet** her öznitelik **MappingFragment** öğesi.
+Aşağıdaki örnek, kavramsal modelin **Kurslar** varlık kümesindeki üç türü (temel tür ve iki türetilmiş tür) eşleyen bir **EntitySetMapping** öğesini gösterir ve temel alınan veritabanında üç farklı tabloya sahiptir. Tablolar her **Mappingfragment** öğesinde **storeentityset** özniteliği tarafından belirtilir.
 
 ``` xml
  <EntitySetMapping Name="Courses">
@@ -721,11 +721,11 @@ Aşağıdaki örnekte gösterildiği bir **EntitySetMapping** üç tür (bir tab
 
 ## <a name="entitytypemapping-element-msl"></a>EntityTypeMapping öğesi (MSL)
 
-**EntityTypeMapping** eşleme belirtimi dili (MSL) içinde öğe, temel alınan veritabanında bir varlık türü kavramsal model ve tabloları veya görünümleri arasındaki eşlemeyi tanımlar. EntityType öğesi (CSDL) ve Entityset'in öğe (SSDL) kavramsal model varlık türleri ve temel alınan veritabanı tabloları veya görünümleri hakkında daha fazla bilgi için bkz. Eşlenmekte olan kavramsal model varlık türü tarafından belirtilen **TypeName** özniteliği **EntityTypeMapping** öğesi. Eşlenmekte olan Görünüm ve tablo tarafından belirtilen **StoreEntitySet** alt MappingFragment öğesinin özniteliği.
+Eşleme belirtim dili (MSL) içindeki **Entitytypemapping** öğesi, kavramsal modeldeki bir varlık türü ve temel alınan veritabanındaki tablolar veya görünümler arasındaki eşlemeyi tanımlar. Kavramsal model varlık türleri ve temel alınan veritabanı tabloları ya da görünümleri hakkında daha fazla bilgi için bkz. EntityType öğesi (CSDL) ve EntitySet öğesi (SSDL). Eşlenmekte olan kavramsal model varlık türü **Entitytypemapping** öğesinin **TypeName** özniteliğiyle belirtilir. Eşlenmekte olan tablo veya görünüm, alt MappingFragment öğesinin **Storeentityset** özniteliği tarafından belirtilir.
 
-Alt Öğe Ekle eşlemek için kullanılan ModificationFunctionMapping update veya delete işlevleri veritabanında saklı yordamlar için varlık türleri.
+ModificationFunctionMapping alt öğesi, varlık türlerinin INSERT, Update veya delete işlevlerini veritabanındaki saklı yordamlara eşlemek için kullanılabilir.
 
-**EntityTypeMapping** öğesi şu alt öğelerden olabilir:
+**Entitytypemapping** öğesi aşağıdaki alt öğelere sahip olabilir:
 
 -   MappingFragment (sıfır veya daha fazla)
 -   ModificationFunctionMapping (sıfır veya bir)
@@ -733,23 +733,23 @@ Alt Öğe Ekle eşlemek için kullanılan ModificationFunctionMapping update vey
 -   Koşul
 
 > [!NOTE]
-> **MappingFragment** ve **ModificationFunctionMapping** öğeleri alt öğeleri olamaz **EntityTypeMapping** aynı anda öğesi.
+> **Mappingfragment** ve **ModificationFunctionMapping** öğeleri aynı anda **entitytypemapping** öğesinin alt öğesi olamaz.
 
 
 > [!NOTE]
-> **ScalarProperty** ve **koşul** öğeleri alt öğelerinin yalnızca olabilir **EntityTypeMapping** bir Functionımportmapping element içinde kullanıldığında öğesi.
+> **Scalarproperty** ve **Condition** öğeleri yalnızca bir FunctionImportMapping öğesi içinde kullanıldığında **entitytypemapping** öğesinin alt öğeleri olabilir.
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **EntityTypeMapping** öğesi.
+Aşağıdaki tabloda **Entitytypemapping** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Değer                                                                                                                                                                                                |
+| Öznitelik adı | Gereklidir | Value                                                                                                                                                                                                |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **typeName**   | Evet         | Eşlenmekte olan kavramsal model varlık türü ad alanıyla nitelenen adı. <br/> Tür abstract veya türetilmiş bir tür ise, değer olmalıdır `IsOfType(Namespace-qualified_type_name)`. |
+| **'Ta**   | Evet         | Eşlenmekte olan kavramsal model varlık türünün ad alanı nitelikli adı. <br/> Tür soyut veya türetilmiş bir tür ise, değer `IsOfType(Namespace-qualified_type_name)` olmalıdır. |
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnek, bir iki alt EntitySetMapping öğeyle gösterir **EntityTypeMapping** öğeleri. İlk **EntityTypeMapping** öğesi **SchoolModel.Person** varlık türü eşlenmiş durumda **kişi** tablo. İkinci **EntityTypeMapping** öğesinde, güncelleştirme işlevleri **SchoolModel.Person** türü bir saklı yordam için eşlenmiş **UpdatePerson**, veritabanındaki .
+Aşağıdaki örnek iki alt **Entitytypemapping** öğesi olan bir EntitySetMapping öğesini gösterir. İlk **Entitytypemapping** öğesinde, **SchoolModel. Person** varlık türü **kişi** tablosuna eşlenir. İkinci **Entitytypemapping** öğesinde, **SchoolModel. Person** türünün güncelleştirme işlevselliği veritabanında bir saklı yordam olan **UpdatePerson**ile eşleştirilir.
 
 ``` xml
  <EntitySetMapping Name="People">
@@ -783,7 +783,7 @@ Aşağıdaki örnek, bir iki alt EntitySetMapping öğeyle gösterir **EntityTyp
 
 ### <a name="example"></a>Örnek
 
-Sonraki örnek, kök türü soyut bir tür hiyerarşisi eşleme gösterir. Kullanımına dikkat edin `IsOfType` söz diziminin **TypeName** öznitelikleri.
+Sonraki örnek, kök türünün soyut olduğu bir tür hiyerarşisinin eşlemesini gösterir. **TypeName** öznitelikleri için `IsOfType` sözdiziminin kullanımını göz önünde edin.
 
 ``` xml
  <EntitySetMapping Name="People">
@@ -814,29 +814,29 @@ Sonraki örnek, kök türü soyut bir tür hiyerarşisi eşleme gösterir. Kulla
  </EntitySetMapping>
 ```
 
-## <a name="functionimportmapping-element-msl"></a>Functionımportmapping Element (MSL)
+## <a name="functionimportmapping-element-msl"></a>FunctionImportMapping öğesi (MSL)
 
-**Functionımportmapping** eşleme belirtimi dili (MSL) içindeki öğe, temel alınan veritabanında bir işlev içeri aktarma kavramsal model ve bir saklı yordam veya işlev arasındaki eşlemeyi tanımlar. Kavramsal modelde işlevi içeri aktarmalar bildirilmelidir ve saklı yordamlar depolama modelinde bildirilmesi gerekir. Daha fazla bilgi için Functionımport öğesi (CSDL) ve işlev öğesi (SSDL) bakın.
+Eşleme belirtim dili (MSL) içindeki **FunctionImportMapping** öğesi, kavramsal modeldeki bir işlev içeri aktarması ile temel alınan veritabanındaki bir saklı yordam veya işlev arasındaki eşlemeyi tanımlar. İşlev içeri aktarmaları kavramsal modelde bildirilmelidir ve saklı yordamlar depolama modelinde bildirilmelidir. Daha fazla bilgi için bkz. FunctionImport öğesi (CSDL) ve Işlev öğesi (SSDL).
 
 > [!NOTE]
-> Bir işlev içeri aktarma kavramsal model varlık türünün veya karmaşık türü döndürürse, varsayılan olarak, ardından temel alınan bir saklı yordam tarafından döndürülen sütun adlarını tam olarak kavramsal model türündeki özellikleri adları eşleşmelidir. Sütun adlarını tam olarak eşleşen özellik adlarını, eşleme bir ResultMapping öğesinde tanımlanmış olması gerekir.
+> Varsayılan olarak, bir işlev içeri aktarma bir kavramsal model varlık türü veya karmaşık tür döndürürse, temel saklı yordam tarafından döndürülen sütunların adları kavramsal model türündeki özelliklerin adlarıyla tam olarak eşleşmelidir. Sütun adları Özellik adlarıyla tam olarak eşleşmiyorsa, eşlemenin bir ResultMapping öğesinde tanımlanması gerekir.
 
-**Functionımportmapping** öğesi şu alt öğelerden olabilir:
+**FunctionImportMapping** öğesi aşağıdaki alt öğelere sahip olabilir:
 
 -   ResultMapping (sıfır veya daha fazla)
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda, geçerli olan öznitelikleri açıklar **Functionımportmapping** öğesi:
+Aşağıdaki tabloda **FunctionImportMapping** öğesi için geçerli olan öznitelikler açıklanmaktadır:
 
-| Öznitelik adı         | Gereklidir | Değer                                                                                   |
+| Öznitelik adı         | Gereklidir | Value                                                                                   |
 |:-----------------------|:------------|:----------------------------------------------------------------------------------------|
-| **FunctionImportName** | Evet         | Eşlenmekte olan kavramsal modeldeki işlevi içeri aktarma adı.           |
-| **functionName**       | Evet         | Eşlenmekte olan depolama modelinde işlevi ad alanıyla nitelenen adı. |
+| **Işleviçeaktarmaadı** | Evet         | Eşlenmekte olan kavramsal modelde işlev içeri aktarma işleminin adı.           |
+| **Ifadelerini**       | Evet         | Eşlenen depolama modelindeki işlevin ad alanı nitelikli adı. |
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnek, okul modelini temel alıyor. Aşağıdaki işlev depolama modelinde göz önünde bulundurun:
+Aşağıdaki örnek, okul modelini temel alır. Depolama modelinde aşağıdaki işlevi göz önünde bulundurun:
 
 ``` xml
  <Function Name="GetStudentGrades" Aggregate="false"
@@ -847,7 +847,7 @@ Aşağıdaki örnek, okul modelini temel alıyor. Aşağıdaki işlev depolama m
  </Function>
 ```
 
-Ayrıca, bu işlev içeri aktarma kavramsal modeldeki göz önünde bulundurun:
+Kavramsal modelde bu işlevi içeri aktarmayı da göz önünde bulundurun:
 
 ``` xml
  <FunctionImport Name="GetStudentGrades" EntitySet="StudentGrades"
@@ -856,45 +856,45 @@ Ayrıca, bu işlev içeri aktarma kavramsal modeldeki göz önünde bulundurun:
  </FunctionImport>
 ```
 
-Aşağıdaki örnekte gösterildiği bir **Functionımportmapping** işlev eşleme ve birbirlerine yukarıda içeri aktarma işlevini kullanılan öğe:
+Aşağıdaki örnek, yukarıdaki işlev ve işlev içeri aktarmayı birbirlerine eşlemek için kullanılan bir **FunctionImportMapping** öğesi gösterir:
 
 ``` xml
  <FunctionImportMapping FunctionImportName="GetStudentGrades"
                         FunctionName="SchoolModel.Store.GetStudentGrades" />
 ```
- 
-## <a name="insertfunction-element-msl"></a>InsertFunction öğesi (MSL)
+ 
+## <a name="insertfunction-element-msl"></a>Insertfunction öğesi (MSL)
 
-**InsertFunction** eşleme belirtimi dili (MSL) içindeki öğe temel alınan veritabanında bir saklı yordam Ekle işlevi bir varlık türünün veya ilişkisi kavramsal modelde eşleştirir. Hangi değişiklik işlevleri eşlenmiş saklı yordamlar depolama modelinde bildirilmesi gerekir. Daha fazla bilgi için işlev öğesi (SSDL) bakın.
+Eşleme belirtim dili (MSL) içindeki **ınsertfunction** öğesi, kavramsal modeldeki INSERT işlevini temel veritabanındaki bir saklı yordama eşler. Değişiklik işlevlerinin eşlendiği saklı yordamlar depolama modelinde bildirilmelidir. Daha fazla bilgi için bkz. Işlev öğesi (SSDL).
 
 > [!NOTE]
-> Değil eşlerseniz üçünü ekleme, güncelleştirme veya silme işlemleri saklı yordamlar için bir varlık türünün, çalışma zamanında yürütülüyorsa eşlenmemiş işlemleri başarısız olur ve bir UpdateException oluşturulur.
+> Bir varlık türünün ekleme, güncelleştirme veya silme işlemlerinin üçünü saklı yordamlara eşleştirmez, çalışma zamanında yürütülürse ve bir UpdateException oluşturulursa eşlenmemiş işlemler başarısız olur.
 
-**InsertFunction** öğesi ModificationFunctionMapping öğesinin bir alt öğesi olabilir ve EntityTypeMapping öğesi veya Associationsetmapping'deki öğesine uygulanır.
+**Insertfunction** öğesi ModificationFunctionMapping öğesinin bir alt öğesi olabilir ve entitytypemapping öğesine veya associationsetmapping öğesine uygulanır.
 
-### <a name="insertfunction-applied-to-entitytypemapping"></a>EntityTypeMapping için uygulanan InsertFunction
+### <a name="insertfunction-applied-to-entitytypemapping"></a>EntityTypeMapping 'a uygulanan ınsertfunction
 
-EntityTypeMapping öğesine uygulandığında **InsertFunction** öğesi saklı yordama ekleme işlevi kavramsal modeldeki bir varlık türünün eşler.
+EntityTypeMapping öğesine uygulandığında, **ınsertfunction** öğesi kavramsal modeldeki bir varlık türünün INSERT işlevini bir saklı yordama eşler.
 
-**InsertFunction** öğesi şu alt öğelerden uygulandığında olabilir bir **EntityTypeMapping** öğesi:
+Bir **Entitytypemapping** öğesine uygulandığında **ınsertfunction** öğesi aşağıdaki alt öğelere sahip olabilir:
 
--   İlişki ucu (sıfır veya daha fazla)
--   ComplexProperty (sıfır veya daha fazla)
+-   AssociationEnd (sıfır veya daha fazla)
+-   Complexözelliği (sıfır veya daha fazla)
 -   ResultBinding (sıfır veya bir)
 -   ScarlarProperty (sıfır veya daha fazla)
 
-#### <a name="applicable-attributes"></a>Uygun öznitelikler
+#### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **InsertFunction** uygulandığında öğesi bir **EntityTypeMapping** öğesi.
+Aşağıdaki tabloda, bir **Entitytypemapping** öğesine uygulandığında **ınsertfunction** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı            | Gereklidir | Değer                                                                                                                                                    |
+| Öznitelik adı            | Gereklidir | Value                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **functionName**          | Evet         | INSERT işlevi için eşlenmiş saklı yordam ad alanıyla nitelenen adı. Saklı yordam depolama modelinde bildirilmesi gerekir. |
+| **Ifadelerini**          | Evet         | INSERT işlevinin eşlendiği saklı yordamın ad alanı nitelikli adı. Saklı yordam, depolama modelinde bildirilmelidir. |
 | **RowsAffectedParameter** | Hayır          | Etkilenen satır sayısını döndüren çıkış parametresinin adı.                                                                               |
 
 #### <a name="example"></a>Örnek
 
-Aşağıdaki örnek Okul modelini temel alan ve gösterir **InsertFunction** ekleme işlevi için kişi varlık türünün eşlemek için kullanılan öğe **InsertPerson** saklı yordamı. **InsertPerson** saklı yordam, depolama modelinde bildirilir.
+Aşağıdaki örnek, okul modeline dayalıdır ve kişi varlık türünün INSERT işlevini **ınsertperson** saklı yordamına eşlemek Için kullanılan **ınsertfunction** öğesini gösterir. **Insertperson** saklı yordamı depolama modelinde bildirilmiştir.
 
 ``` xml
  <EntityTypeMapping TypeName="SchoolModel.Person">
@@ -926,26 +926,26 @@ Aşağıdaki örnek Okul modelini temel alan ve gösterir **InsertFunction** ekl
    </ModificationFunctionMapping>
  </EntityTypeMapping>
 ```
-### <a name="insertfunction-applied-to-associationsetmapping"></a>AssociationSetMapping için uygulanan InsertFunction
+### <a name="insertfunction-applied-to-associationsetmapping"></a>AssociationSetMapping 'e uygulanan ınsertfunction
 
-AssociationSetMapping öğesine uygulandığında **InsertFunction** öğesi saklı yordama ekleme işlevi kavramsal modeldeki bir ilişkilendirmenin eşler.
+AssociationSetMapping öğesine uygulandığında, **ınsertfunction** öğesi kavramsal modeldeki bir ilişkinin INSERT işlevini bir saklı yordama eşler.
 
-**InsertFunction** öğesi şu alt öğelerden uygulandığında olabilir **AssociationSetMapping** öğesi:
+**Insertsetmapping öğesine uygulandığında ınsertfunction** öğesi aşağıdaki alt öğelere sahip olabilir:
 
 -   EndProperty
 
-#### <a name="applicable-attributes"></a>Uygun öznitelikler
+#### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **InsertFunction** için uygulandığında öğesi **AssociationSetMapping** öğesi.
+Aşağıdaki tablo, **Associationsetmapping** öğesine uygulandığında **ınsertfunction** öğesine uygulanabilen öznitelikleri açıklar.
 
-| Öznitelik adı            | Gereklidir | Değer                                                                                                                                                    |
+| Öznitelik adı            | Gereklidir | Value                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **functionName**          | Evet         | INSERT işlevi için eşlenmiş saklı yordam ad alanıyla nitelenen adı. Saklı yordam depolama modelinde bildirilmesi gerekir. |
-| **RowsAffectedParameter** | Hayır          | Etkilenen satırların sayısını veren çıkış parametresinin adı.                                                                               |
+| **Ifadelerini**          | Evet         | INSERT işlevinin eşlendiği saklı yordamın ad alanı nitelikli adı. Saklı yordam, depolama modelinde bildirilmelidir. |
+| **RowsAffectedParameter** | Hayır          | Etkilenen satır sayısını döndüren çıkış parametresinin adı.                                                                               |
 
 #### <a name="example"></a>Örnek
 
-Aşağıdaki örnek Okul modelini temel alan ve gösterir **InsertFunction** Ekle işlevini eşlemek için kullanılan öğe **CourseInstructor** ilişkilendirmeye  **InsertCourseInstructor** saklı yordamı. **InsertCourseInstructor** saklı yordam, depolama modelinde bildirilir.
+Aşağıdaki örnek, okul modeline dayalıdır ve **courseeğitmen** ilişkilendirmesinin INSERT Işlevini **ınsertcourseeğitmen** saklı yordamına eşlemek için kullanılan **ınsertfunction** öğesini gösterir. **Insertcourseeğitmen** saklı yordamı, depolama modelinde bildirilmiştir.
 
 ``` xml
  <AssociationSetMapping Name="CourseInstructor"
@@ -978,34 +978,34 @@ Aşağıdaki örnek Okul modelini temel alan ve gösterir **InsertFunction** Ekl
  </AssociationSetMapping>
 ```
 
-## <a name="mapping-element-msl"></a>Eşleme öğesi (MSL)
+## <a name="mapping-element-msl"></a>Mapping öğesi (MSL)
 
-**Eşleme** eşleme belirtimi dili (MSL) içinde öğesi (bir depolama model içinde anlatıldığı gibi) bir veritabanına kavramsal modelde sonuna tanımlanan nesneleri eşleme bilgilerini içerir. CSDL belirtimi ve SSDL belirtimi daha fazla bilgi için bkz.
+Eşleme belirtimi dili (MSL) içindeki **Mapping** öğesi, kavramsal modelde tanımlanan nesneleri bir veritabanına (bir depolama modelinde açıklandığı gibi) eşlemek için bilgiler içerir. Daha fazla bilgi için bkz. CSDL belirtimi ve SSDL belirtimi.
 
-**Eşleme** öğesi bir eşleme belirtimi için kök öğesidir. XML ad alanı belirtimleri eşleme http://schemas.microsoft.com/ado/2009/11/mapping/cs.
+**Mapping** öğesi, bir eşleme belirtiminin kök öğesidir. Eşleme belirtimleri için XML ad alanı https://schemas.microsoft.com/ado/2009/11/mapping/cs ' dır.
 
-Eşleme öğesi şu alt öğelerden (listelenen sırayla) sahip olabilir:
+Mapping öğesi aşağıdaki alt öğelere sahip olabilir (listelenen sırayla):
 
 -   Diğer ad (sıfır veya daha fazla)
--   Entitycontainermapping'indeki (tam olarak bir)
+-   EntityContainerMapping (tam olarak bir)
 
-Kavramsal adlarını ve MSL içinde başvurulan depolama model türleri ilgili ad alanı adlarıyla nitelenmelidir. Şema öğesi (CSDL) kavramsal model ad alanı adı hakkında daha fazla bilgi için bkz. Şema öğesi (SSDL) depolama modeli ad alanı adı hakkında daha fazla bilgi için bkz. Diğer adlar MSL içinde kullanılan ad alanları için diğer ad öğesinde ile tanımlanabilir.
+MSL 'de başvurulan kavramsal ve depolama modeli türlerinin adları, ilgili ad alanı adlarıyla nitelenmelidir. Kavramsal model ad alanı adı hakkında daha fazla bilgi için bkz. şema öğesi (CSDL). Depolama modeli ad alanı adı hakkında daha fazla bilgi için bkz. şema öğesi (SSDL). MSL 'de kullanılan ad alanları için diğer adlar diğer ad öğesiyle tanımlanabilir.
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **eşleme** öğesi.
+Aşağıdaki tabloda, **Mapping** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Değer                                                 |
+| Öznitelik adı | Gereklidir | Value                                                 |
 |:---------------|:------------|:------------------------------------------------------|
-| **alanı**      | Evet         | **C-S**. Bu, sabit bir değerdir ve değiştirilemez. |
+| **Boşlu**      | Evet         | **C-S**. Bu sabit bir değerdir ve değiştirilemez. |
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnekte gösterildiği bir **eşleme** Okul modelinin bir parçası üzerinde temel öğesi. Okul modeli hakkında daha fazla bilgi için Hızlı Başlangıç (Entity Framework) bakın:
+Aşağıdaki örnek, okul modelinin bir bölümünü temel alan bir **Mapping** öğesi gösterir. Okul modeli hakkında daha fazla bilgi için bkz. hızlı başlangıç (Entity Framework):
 
 ``` xml
  <Mapping Space="C-S"
-          xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+          xmlns="https://schemas.microsoft.com/ado/2009/11/mapping/cs">
    <Alias Key="c" Value="SchoolModel"/>
    <EntityContainerMapping StorageEntityContainer="SchoolModelStoreContainer"
                            CdmEntityContainer="SchoolModelEntities">
@@ -1036,26 +1036,26 @@ Aşağıdaki örnekte gösterildiği bir **eşleme** Okul modelinin bir parças�
 
 ## <a name="mappingfragment-element-msl"></a>MappingFragment öğesi (MSL)
 
-**MappingFragment** eşleme belirtimi dili (MSL) içindeki öğe kavramsal model varlık türü ve tablo veya Görünüm veritabanında özelliklerini arasındaki eşlemeyi tanımlar. EntityType öğesi (CSDL) ve Entityset'in öğe (SSDL) kavramsal model varlık türleri ve temel alınan veritabanı tabloları veya görünümleri hakkında daha fazla bilgi için bkz. **MappingFragment** EntityTypeMapping EntitySetMapping öğesi veya alt öğesi olabilir.
+Eşleme belirtim dili (MSL) içindeki **Mappingfragment** öğesi, bir kavramsal model varlık türünün özellikleri ve veritabanındaki bir tablo veya görünüm arasındaki eşlemeyi tanımlar. Kavramsal model varlık türleri ve temel alınan veritabanı tabloları ya da görünümleri hakkında daha fazla bilgi için bkz. EntityType öğesi (CSDL) ve EntitySet öğesi (SSDL). **Mappingfragment** entitytypemapping öğesinin ya da EntitySetMapping öğesinin bir alt öğesi olabilir.
 
-**MappingFragment** öğesi şu alt öğelerden olabilir:
+**Mappingfragment** öğesi aşağıdaki alt öğelere sahip olabilir:
 
 -   ComplexType (sıfır veya daha fazla)
 -   ScalarProperty (sıfır veya daha fazla)
 -   Koşul (sıfır veya daha fazla)
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **MappingFragment** öğesi.
+Aşağıdaki tabloda, **Mappingfragment** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı          | Gereklidir | Değer                                                                                                                                                                                                                         |
+| Öznitelik adı          | Gereklidir | Value                                                                                                                                                                                                                         |
 |:------------------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **StoreEntitySet**      | Evet         | Eşlenmekte olan Görünüm ve tablo adı.                                                                                                                                                                           |
-| **MakeColumnsDistinct** | Hayır          | **Doğru** veya **False** bağlı olarak yalnızca ayrı satırların olup olmadığını döndürülür. <br/> Bu öznitelik ayarlanırsa **True**, **GenerateUpdateViews** Entitycontainermapping'indeki öğesinin özniteliği ayarlanmalıdır **False**. |
+| **StoreEntitySet**      | Evet         | Eşlenmekte olan tablonun veya görünümün adı.                                                                                                                                                                           |
+| **MakeColumnsDistinct** | Hayır          | Yalnızca ayrı satırların döndürülüp döndürülmediğine bağlı olarak **doğru** veya **yanlış** . <br/> Bu öznitelik **true**olarak ayarlanırsa, EntityContainerMapping öğesinin **generateupdateviews** özniteliği **false**olarak ayarlanmalıdır. |
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnekte gösterildiği bir **MappingFragment** öğesi alt öğesi olarak bir **EntityTypeMapping** öğesi. Bu örnekte, özelliklerini **kurs** kavramsal model türünde sütunları eşlendi **kurs** veritabanındaki tablo.
+Aşağıdaki örnek bir **Entitytypemapping** öğesinin alt öğesi olarak bir **mappingfragment** öğesi gösterir. Bu örnekte, kavramsal modeldeki **Kurs** türünün özellikleri, veritabanındaki **Kurs** tablosunun sütunlarına eşlenir.
 
 ``` xml
  <EntitySetMapping Name="Courses">
@@ -1072,7 +1072,7 @@ Aşağıdaki örnekte gösterildiği bir **MappingFragment** öğesi alt öğesi
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnekte gösterildiği bir **MappingFragment** öğesi alt öğesi olarak bir **EntitySetMapping** öğesi. Özellikleri yukarıdaki örnekte olduğu gibi **kurs** kavramsal model türünde sütunları eşlendi **kurs** veritabanındaki tablo.
+Aşağıdaki örnek bir **EntitySetMapping** öğesinin alt öğesi olarak bir **mappingfragment** öğesi gösterir. Yukarıdaki örnekte olduğu gibi, kavramsal modeldeki **Kurs** türünün özellikleri, veritabanındaki **Kurs** tablosunun sütunlarına eşlenir.
 
 ``` xml
  <EntitySetMapping Name="Courses" TypeName="SchoolModel.Course">
@@ -1087,28 +1087,28 @@ Aşağıdaki örnekte gösterildiği bir **MappingFragment** öğesi alt öğesi
 
 ## <a name="modificationfunctionmapping-element-msl"></a>ModificationFunctionMapping öğesi (MSL)
 
-**ModificationFunctionMapping** eşleme belirtimi dili (MSL) içinde öğesi eşler ekleme, güncelleştirme ve delete işlevleri kavramsal model varlık türünün temel alınan veritabanında saklı yordamlar. **ModificationFunctionMapping** öğesi, ayrıca harita INSERT ve delete işlevleri çoktan çoğa ilişkilerini kavramsal modelde temel alınan veritabanında saklı yordamlar için. Hangi değişiklik işlevleri eşlenmiş saklı yordamlar depolama modelinde bildirilmesi gerekir. Daha fazla bilgi için işlev öğesi (SSDL) bakın.
+Eşleme belirtim dili (MSL) içindeki **ModificationFunctionMapping** öğesi, kavramsal model varlık türünün INSERT, Update ve DELETE işlevlerini temel alınan veritabanındaki saklı yordamlar olarak eşleştirir. **ModificationFunctionMapping** öğesi Ayrıca, kavramsal modeldeki çok-çok İlişkilendirmelerin INSERT ve DELETE işlevlerini temel alınan veritabanındaki Saklı yordamlarla de eşleyebilir. Değişiklik işlevlerinin eşlendiği saklı yordamlar depolama modelinde bildirilmelidir. Daha fazla bilgi için bkz. Işlev öğesi (SSDL).
 
 > [!NOTE]
-> Değil eşlerseniz üçünü ekleme, güncelleştirme veya silme işlemleri saklı yordamlar için bir varlık türünün, çalışma zamanında yürütülüyorsa eşlenmemiş işlemleri başarısız olur ve bir UpdateException oluşturulur.
+> Bir varlık türünün ekleme, güncelleştirme veya silme işlemlerinin üçünü saklı yordamlara eşleştirmez, çalışma zamanında yürütülürse ve bir UpdateException oluşturulursa eşlenmemiş işlemler başarısız olur.
 
 
 > [!NOTE]
-> Devralma Hiyerarşisi içindeki bir varlık için değişiklik işlevleri için saklı yordamlar eşlenirse, hiyerarşideki tüm türler için değişiklik işlevleri için saklı yordamlar eşlenmesi gerekir.
+> Bir devralma hiyerarşisindeki bir varlığın değişiklik işlevleri Saklı yordamlarla eşlenmişse, hiyerarşideki tüm türlerin değiştirme işlevlerinin Saklı yordamlarla eşlenmesi gerekir.
 
-**ModificationFunctionMapping** EntityTypeMapping öğenin veya Associationsetmapping'deki öğesi bir alt öğesi olabilir.
+**ModificationFunctionMapping** öğesi entitytypemapping öğesinin bir alt öğesi veya associationsetmapping öğesi olabilir.
 
-**ModificationFunctionMapping** öğesi şu alt öğelerden olabilir:
+**ModificationFunctionMapping** öğesi aşağıdaki alt öğelere sahip olabilir:
 
 -   DeleteFunction (sıfır veya bir)
--   InsertFunction (sıfır veya bir)
+-   Insertfunction (sıfır veya bir)
 -   UpdateFunction (sıfır veya bir)
 
-Hiçbir öznitelik geçerli olan **ModificationFunctionMapping** öğesi.
+**ModificationFunctionMapping** öğesi için geçerli bir öznitelik yok.
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnek, varlık kümesi için eşleme gösterir **kişiler** varlık Okul modelde ayarlayın. Sütun eşlemesi için ek olarak **kişi** varlık türü, eşleme INSERT, update ve delete işlevleri, **kişi** türü gösterilir. Eşleştirilmiş işlevleri depolama modelinde bildirilir.
+Aşağıdaki örnekte, okul modelinde ayarlanan **kişiler** varlığı için varlık kümesi eşleştirmesi gösterilmektedir. **Kişi** varlık türü için sütun eşlemenin yanı sıra, **kişi** türünün INSERT, Update ve DELETE işlevlerinin eşlemesi gösterilir. İle eşlenen işlevler depolama modelinde bildirilmiştir.
 
 ``` xml
  <EntitySetMapping Name="People">
@@ -1155,7 +1155,7 @@ Aşağıdaki örnek, varlık kümesi için eşleme gösterir **kişiler** varlı
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnek, kümesi için eşlemesini ilişkisini gösterir. **CourseInstructor** ilişkilendirme Okul modelde ayarlayın. Sütun eşlemesi için ek olarak **CourseInstructor** ilişkilendirme, INSERT ve delete işlevlerini eşleme **CourseInstructor** ilişkisi gösterilir. Eşleştirilmiş işlevleri depolama modelinde bildirilir.
+Aşağıdaki örnekte, okul modelinde **Kurs** için bir ilişki kümesi eşlemesi gösterilmektedir. **Courseeğitmen** ilişkilendirmesinin sütun eşlemesine ek olarak, **courseeğitmen** ilişkilendirmesinin INSERT ve DELETE işlevlerinin eşleştirmesi gösterilir. İle eşlenen işlevler depolama modelinde bildirilmiştir.
 
 ``` xml
  <AssociationSetMapping Name="CourseInstructor"
@@ -1187,37 +1187,37 @@ Aşağıdaki örnek, kümesi için eşlemesini ilişkisini gösterir. **CourseIn
    </ModificationFunctionMapping>
  </AssociationSetMapping>
 ```
- 
+ 
 
- 
+ 
 
 ## <a name="queryview-element-msl"></a>QueryView öğesi (MSL)
 
-**QueryView** eşleme belirtimi dili (MSL) içindeki öğe kavramsal model ve temel alınan veritabanı tablosunda bir varlık türünün veya ilişkilendirme arasında salt okunur bir eşleme tanımlar. Eşleme depolama modelinde değerlendirilen varlık SQL sorgusu ile tanımlanır ve bir varlık veya ilişkisi kavramsal modelde açısından sonuç express. Sorgu görünümleri salt okunur olduğundan, sorgu görünümleri tarafından tanımlanan türleri güncelleştirmek için standart güncelleştirme komutları kullanamazsınız. Değişiklik işlevlerini kullanarak bu tür için güncelleştirmeleri yapabilirsiniz. Daha fazla bilgi için bkz: nasıl yapılır: saklı yordamlar için eşlemesi değişikliği işlevleri.
+Eşleme belirtim dili (MSL) içindeki **QueryView** öğesi, kavramsal modeldeki bir varlık türü veya ilişkilendirme ile temel alınan veritabanındaki bir tablo arasındaki salt okunurdur eşlemeyi tanımlar. Eşleme, depolama modeline göre değerlendirilen bir Entity SQL sorgusuyla tanımlanır ve sonuç kümesini kavramsal modeldeki bir varlık veya ilişkilendirme açısından ifade edersiniz. Sorgu görünümleri salt okunurdur, sorgu görünümleri tarafından tanımlanan türleri güncelleştirmek için Standart güncelleştirme komutlarını kullanamazsınız. Değiştirme işlevlerini kullanarak bu türlerde güncelleştirmeler yapabilirsiniz. Daha fazla bilgi için bkz. nasıl yapılır: Değiştirme Işlevlerini Saklı yordamlarla eşleyin.
 
 > [!NOTE]
-> İçinde **QueryView** öğenin, içeren varlık SQL deyimleri **GroupBy**, Grup toplamları ya da gezinti özellikleri desteklenmez.
+> **QueryView** öğesinde, **GroupBy**, Grup toplamaları veya gezinti özellikleri içeren Entity SQL ifadeleri desteklenmez.
 
- 
+ 
 
-**QueryView** EntitySetMapping öğenin veya Associationsetmapping'deki öğesi bir alt öğesi olabilir. En eski bir durumda, sorgu görünümü, kavramsal modeldeki bir varlık için salt okunur eşlemeyi tanımlar. İkinci durumda, sorgu görünümü, kavramsal modeldeki bir ilişkilendirme için bir salt okunur eşleme tanımlar.
+**QueryView** öğesi EntitySetMapping öğesinin bir alt öğesi ya da associationsetmapping öğesi olabilir. Önceki durumda, sorgu görünümü kavramsal modeldeki bir varlık için salt okunurdur eşlemeyi tanımlar. İkinci durumda, sorgu görünümü kavramsal modeldeki bir ilişki için salt okunurdur eşlemeyi tanımlar.
 
 > [!NOTE]
-> Varsa **AssociationSetMapping** öğedir ilişkilendirmesine sahip bir başvuru kısıtlaması için **AssociationSetMapping** öğesi göz ardı edilir. Daha fazla bilgi için Referentialconstraint'teki öğesi (CSDL) bakın.
+> **Associationsetmapping** öğesi başvuru kısıtlaması olan bir ilişkilendirme için Ise, **associationsetmapping** öğesi yok sayılır. Daha fazla bilgi için bkz. ReferentialConstraint öğesi (CSDL).
 
-**QueryView** öğenin tüm alt öğeleri olamaz.
+**QueryView** öğesinin herhangi bir alt öğesi olamaz.
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **QueryView** öğesi.
+Aşağıdaki tabloda **QueryView** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Değer                                                                         |
+| Öznitelik adı | Gereklidir | Value                                                                         |
 |:---------------|:------------|:------------------------------------------------------------------------------|
-| **typeName**   | Hayır          | Sorgu Görünümü tarafından eşleştirilen kavramsal model türünün adı. |
+| **'Ta**   | Hayır          | Sorgu görünümü tarafından eşlenmekte olan kavramsal model türünün adı. |
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnekte gösterildiği **QueryView** öğesi alt öğesi olarak **EntitySetMapping** öğesi ve bir sorgu görünümü eşleme tanımlar **departmanı** varlık türünde Okul modeli.
+Aşağıdaki örnek, **QueryView** öğesini **EntitySetMapping** öğesinin bir alt öğesi olarak gösterir ve okul modelindeki **Departman** varlık türü için bir sorgu görünümü eşlemesi tanımlar.
 
 ``` xml
  <EntitySetMapping Name="Departments" >
@@ -1232,7 +1232,7 @@ Aşağıdaki örnekte gösterildiği **QueryView** öğesi alt öğesi olarak **
  </EntitySetMapping>
 ```
 
-Çünkü sorgu yalnızca üyelerin kümesini döndürür **departmanı** türü depolama modelindeki **departmanı** bu gibi eşleme'temel türü Okul modelde değiştirildi:
+Sorgu yalnızca depolama modelindeki **Departman** türünde üyelerin bir alt kümesini döndürdüğünden, okul modelindeki **Departman** türü bu eşlemeye göre aşağıdaki gibi değiştirilmiştir:
 
 ``` xml
  <EntityType Name="Department">
@@ -1253,7 +1253,7 @@ Aşağıdaki örnekte gösterildiği **QueryView** öğesi alt öğesi olarak **
 
 ### <a name="example"></a>Örnek
 
-Sonraki örnekte gösterildiği **QueryView** öğesi alt öğesi olarak bir **AssociationSetMapping** öğesi için bir salt okunur eşleme tanımlar `FK_Course_Department` Okul modelinde ilişkilendirme.
+Sonraki örnek, bir **Associationsetmapping** öğesinin alt öğesi olarak **QueryView** öğesini gösterir ve okul modelinde `FK_Course_Department` ilişkilendirmesi için salt okuma eşlemesini tanımlar.
 
 ``` xml
  <EntityContainerMapping StorageEntityContainer="SchoolModelStoreContainer"
@@ -1286,53 +1286,53 @@ Sonraki örnekte gösterildiği **QueryView** öğesi alt öğesi olarak bir **A
    </AssociationSetMapping>
  </EntityContainerMapping>
 ```
- 
+ 
 ### <a name="comments"></a>Açıklamalar
 
 Aşağıdaki senaryoları etkinleştirmek için sorgu görünümleri tanımlayabilirsiniz:
 
--   Bir varlık varlığın tüm özellikleri depolama modelinde içermeyen bir kavramsal model tanımlayın. Bu varsayılan değerlere sahip olmayan ve desteklenmeyen özellikleri içerir **null** değerleri.
--   Depolama modelindeki hesaplanmış sütunlar kavramsal modelin varlık türlerini özelliklerine eşlenir.
--   Burada kavramsal modeldeki bölüm varlıkları için kullanılan koşulların eşitlik bakımından dayanmayan eşlemeyi tanımlar. Belirttiğinizde kullanarak koşullu eşleştirme **koşul** öğesi, belirtilen koşula belirtilen değere eşit olmalıdır. Daha fazla bilgi için koşul öğesi (MSL) bakın.
--   Aynı sütun depolama modelindeki birden çok kavramsal modeldeki eşleyin.
--   Birden fazla aynı tabloya eşleyin.
--   İlişkisel şemasında yabancı anahtarlar temel almaz kavramsal modeldeki ilişkileri tanımlayın.
--   Özel iş mantığı kavramsal modelde özelliklerin değerini ayarlamak için kullanın. Örneğin, dize değeri veri kaynağında bir değer için "T" eşleyebilirsiniz **true**, kavramsal modeldeki bir Boole değeri.
--   Sorgu sonuçları için koşullu filtrelerini tanımlayın.
--   Depolama modelinin kavramsal modeldeki veriler üzerinde daha az kısıtlamalarını uygular. Bunu eşlenen sütun desteklemiyor olsa bile, bir özellik kavramsal modelde boş değer atanabilir yapabileceğiniz **null**değerleri.
+-   Kavramsal modelde, depolama modelindeki varlığın tüm özelliklerini içermeyen bir varlık tanımlayın. Bu, varsayılan değerlere sahip olmayan ve **null** değerleri desteklemeyen özellikler içerir.
+-   Depolama modelindeki hesaplanan sütunları kavramsal modeldeki varlık türlerinin özelliklerine eşleyin.
+-   Kavramsal modeldeki varlıkları bölümlemek için kullanılan koşulların eşitlik temelinde olmadığı bir eşleme tanımlayın. **Koşul** öğesini kullanarak koşullu eşleme belirttiğinizde, sağlanan koşulun belirtilen değere eşit olması gerekir. Daha fazla bilgi için bkz. koşul öğesi (MSL).
+-   Depolama modelindeki sütunu, kavramsal modeldeki birden çok türe eşleyin.
+-   Birden çok türü aynı tabloyla eşleyin.
+-   Kavramsal modelde ilişkisel şemadaki yabancı anahtarları temel alan ilişkilendirmeler tanımlayın.
+-   Kavramsal modeldeki özelliklerin değerini ayarlamak için özel iş mantığını kullanın. Örneğin, veri kaynağındaki "T" dize değerini, kavramsal modelde bir Boole değeri olan **true**değerine eşleyebilirsiniz.
+-   Sorgu sonuçları için koşullu filtreler tanımlayın.
+-   Kavramsal modeldeki veriler üzerinde depolama modelinden daha az kısıtlama zorlayın. Örneğin, bir özelliği, eşlendiği sütun **null**değerleri desteklemediğinden bile kavramsal modelde null yapılabilir hale getirebilirsiniz.
 
-Varlıkların sorgu görünümleri tanımlarken aşağıdaki maddeler geçerlidir:
+Varlıkların sorgu görünümlerini tanımlarken aşağıdaki noktalar geçerlidir:
 
--   Sorgu görünümleri salt okunurdur. Yalnızca güncelleştirme, değişiklik işlevlerini kullanarak varlıklara yapabilirsiniz.
--   Bir sorgu görünümü tarafından bir varlık türü tanımladığınızda, ilgili tüm varlıkların sorgu görünümleri tarafından da tanımlamanız gerekir.
--   Çoktan çoğa ilişki bir bağlantı tablosu ilişkisel şema temsil eden depolama modelinin varlık eşlediğinizde, tanımlamalısınız bir **QueryView** öğesinde **AssociationSetMapping** Bu bağlantı tablosu için öğesi.
--   Tüm türlerin tür hiyerarşisi için sorgu görünümleri yeniden tanımlanması gerekir. Bunu aşağıdaki yöntemlerle yapabilirsiniz:
--   -   Tek bir **QueryView** hiyerarşideki tüm varlık türlerini birleşimini döndürür tek bir varlık SQL sorgusu belirten öğe.
-    -   Tek bir **QueryView** hiyerarşi içinde bir özel varlık türü döndürmek için büyük/küçük harf işlecini kullanan tek bir varlık SQL sorgusu belirten öğesini, belirli bir koşula dayalı.
-    -   Bir ek **QueryView** hiyerarşideki belirli bir tür için öğesi. Bu durumda **TypeName** özniteliği **QueryView** her görünüm için varlık türünü belirtmek için öğesi.
--   Bir sorgu görünümü tanımlandığında belirtemezsiniz **StorageSetName** özniteliği **EntitySetMapping** öğesi.
--   Bir sorgu görünümü tanımlandığında **EntitySetMapping**öğesi de içeremez **özelliği** eşlemeleri.
+-   Sorgu görünümleri salt okunurdur. Yalnızca değiştirme işlevlerini kullanarak varlıklara güncelleştirmeler yapabilirsiniz.
+-   Bir sorgu görünümü ile bir varlık türü tanımladığınızda, tüm ilgili varlıkları sorgu görünümlerine göre de tanımlamanız gerekir.
+-   İlişkisel şemadaki bir bağlantı tablosunu temsil eden depolama modelindeki bir varlıkla çoktan çoğa bir ilişki eşlediğinizde, bu bağlantı tablosunun **Associationsetmapping** öğesinde bir **QueryView** öğesi tanımlamanız gerekir.
+-   Sorgu görünümleri bir tür hiyerarşisindeki tüm türler için tanımlanmalıdır. Bunu aşağıdaki yöntemlerle yapabilirsiniz:
+-   -   Hiyerarşide tüm varlık türlerinin bir birleşimini döndüren tek bir Entity SQL sorgusu belirten tek bir **QueryView** öğesi ile.
+    -   Belirli bir koşula bağlı olarak hiyerarşide belirli bir varlık türünü döndürmek için CASE işlecini kullanan tek bir Entity SQL sorgusu belirten tek bir **QueryView** öğesi ile.
+    -   Hiyerarşide belirli bir tür için ek bir **QueryView** öğesi ile. Bu durumda, her bir görünüm için varlık türünü belirtmek üzere **QueryView** öğesinin **TypeName** özniteliğini kullanın.
+-   Bir sorgu görünümü tanımlandığında, **EntitySetMapping** öğesinde **storagesetname** özniteliğini belirtemezsiniz.
+-   Bir sorgu görünümü tanımlandığında, **EntitySetMapping**öğesi **özellik** eşlemeleri de içeremez.
 
 ## <a name="resultbinding-element-msl"></a>ResultBinding öğesi (MSL)
 
-**ResultBinding** eşleme belirtimi dili (MSL) içinde öğesi eşler varlık türü değişikliği işlevleri eşlendiğinde, saklı yordamlar tarafından kavramsal modeldeki varlık özellikleri için saklı döndürülen sütun değerleri yordamları temel alınan veritabanında. Saklı yordamı, bir kimlik sütunu değeri döndürüldüğünde INSERT gibi **ResultBinding** öğesi kavramsal modeldeki bir varlık türü özelliği döndürülen değerin eşleştirir.
+Eşleme belirtimi dili (MSL) içindeki **Resultbinding** öğesi, varlık türü değiştirme işlevleri içindeki saklı yordamlarla eşlendiğinde, saklı yordamlar tarafından döndürülen sütun değerlerini kavramsal modelde varlık özelliklerine eşler. temel alınan veritabanı. Örneğin, bir kimlik sütununun değeri bir INSERT saklı yordamı tarafından döndürüldüğünde, **Resultbinding** öğesi döndürülen değeri kavramsal modeldeki bir varlık türü özelliğine eşler.
 
-**ResultBinding** InsertFunction UpdateFunction öğesi veya alt öğesi olabilir.
+**Resultbinding** öğesi, ınsertfunction öğesinin veya updatefunction öğesinin alt öğesi olabilir.
 
-**ResultBinding** öğenin tüm alt öğeleri olamaz.
+**Resultbinding** öğesinin herhangi bir alt öğesi olamaz.
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda, geçerli olan öznitelikleri açıklar **ResultBinding** öğesi:
+Aşağıdaki tabloda, **Resultbinding** öğesi için geçerli olan öznitelikler açıklanmaktadır:
 
-| Öznitelik adı | Gereklidir | Değer                                                                         |
+| Öznitelik adı | Gereklidir | Value                                                                         |
 |:---------------|:------------|:------------------------------------------------------------------------------|
-| **Ad**       | Evet         | Eşlenmekte olan kavramsal modeldeki varlık özelliğinin adı. |
-| **ColumnName** | Evet         | Eşlenmekte olan sütunun adı.                                          |
+| **Name**       | Evet         | Eşlenmekte olan kavramsal modeldeki varlık özelliğinin adı. |
+| **Tation** | Evet         | Eşlenen sütunun adı.                                          |
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnek Okul modelini temel alan ve gösterir bir **InsertFunction** Ekle işlevini eşlemek için kullanılan öğe **kişi** varlık türüne **InsertPerson** saklı yordam. ( **InsertPerson** saklı yordam aşağıda gösterilmiştir ve depolama modelinde bildirilir.) A **ResultBinding** öğesi saklı yordam tarafından döndürülen bir sütun değeri eşlemek için kullanılır (**NewPersonID**) için bir varlık türü özelliği (**Personıd**).
+Aşağıdaki örnek, okul modeline dayalıdır ve **kişi** varlık türünün INSERT Işlevini **ınsertperson** saklı yordamına eşlemek Için kullanılan bir **ınsertfunction** öğesini gösterir. ( **Insertperson** saklı yordamı aşağıda gösterilmektedir ve depolama modelinde bildirilmiştir.) Bir **Resultbinding** öğesi, saklı yordamın (**newpersonıd**) döndürdüğü bir sütun değerini bir varlık türü özelliğine (**PersonID**) eşlemek için kullanılır.
 
 ``` xml
  <EntityTypeMapping TypeName="SchoolModel.Person">
@@ -1365,7 +1365,7 @@ Aşağıdaki örnek Okul modelini temel alan ve gösterir bir **InsertFunction**
  </EntityTypeMapping>
 ```
 
-Aşağıdaki Transact-SQL açıklar **InsertPerson** saklı yordam:
+Aşağıdaki Transact-SQL, **ınsertperson** saklı yordamını açıklar:
 
 ``` SQL
  CREATE PROCEDURE [dbo].[InsertPerson]
@@ -1387,21 +1387,21 @@ Aşağıdaki Transact-SQL açıklar **InsertPerson** saklı yordam:
 
 ## <a name="resultmapping-element-msl"></a>ResultMapping öğesi (MSL)
 
-**ResultMapping** eşleme belirtimi dili (MSL) içindeki öğe aşağıdaki doğru olduğunda bu kavramsal modeldeki bir işlev içeri aktarma ve bir saklı yordam arasındaki eşleme temel alınan veritabanında tanımlar:
+Eşleme belirtim dili (MSL) içindeki **Resultmapping** öğesi, aşağıdaki doğru olduğunda, kavramsal modelde bir işlev içeri aktarma ve temel alınan veritabanındaki saklı yordam arasındaki eşlemeyi tanımlar:
 
--   İşlev, kavramsal model varlık türünün veya karmaşık türü döndürür.
--   Saklı yordam tarafından döndürülen sütun adlarını özellikleri varlık türünün veya karmaşık tür adlarını tam olarak aynı.
+-   İşlev içeri aktarma bir kavramsal model varlık türü veya karmaşık tür döndürüyor.
+-   Saklı yordam tarafından döndürülen sütunların adları, varlık türü veya karmaşık türdeki özelliklerin adlarıyla tam olarak eşleşmez.
 
-Varsayılan olarak, sütunlar arasındaki eşlemeyi bir saklı yordam tarafından döndürülen ve sütun ve özellik adları bir varlık türünün veya karmaşık türün temel alır. Sütun adları tam olarak eşleşen özellik adlarını, kullanmalısınız **ResultMapping** eşleme tanımlamak için. Varsayılan eşleme örneği için Functionımportmapping öğesi (MSL) bakın.
+Varsayılan olarak, bir saklı yordam tarafından döndürülen sütunlar ve varlık türü veya karmaşık tür arasındaki eşleme, sütun ve özellik adlarını temel alır. Sütun adları Özellik adlarıyla tam olarak eşleşmiyorsa, eşlemeyi tanımlamak için **Resultmapping** öğesini kullanmanız gerekir. Varsayılan eşlemenin bir örneği için bkz. FunctionImportMapping öğesi (MSL).
 
-**ResultMapping** Functionımportmapping element alt öğesi bir öğedir.
+**Resultmapping** öğesi FunctionImportMapping öğesinin bir alt öğesidir.
 
-**ResultMapping** öğesi şu alt öğelerden olabilir:
+**Resultmapping** öğesi aşağıdaki alt öğelere sahip olabilir:
 
 -   EntityTypeMapping (sıfır veya daha fazla)
 -   ComplexTypeMapping
 
-Hiçbir öznitelik geçerli olan **ResultMapping** öğesi.
+**Resultmapping** öğesi için geçerli bir öznitelik yok.
 
 ### <a name="example"></a>Örnek
 
@@ -1419,7 +1419,7 @@ Aşağıdaki saklı yordamı göz önünde bulundurun:
              WHERE StudentID = @student_Id
 ```
 
-Ayrıca, aşağıdaki kavramsal model varlık türünü göz önünde bulundurun:
+Ayrıca, aşağıdaki kavramsal model varlık türünü de göz önünde bulundurun:
 
 ``` xml
  <EntityType Name="StudentGrade">
@@ -1434,7 +1434,7 @@ Ayrıca, aşağıdaki kavramsal model varlık türünü göz önünde bulundurun
  </EntityType>
 ```
 
-Varlık türü tanımlanmalıdır ve sütunlar arasındaki eşlemeyi önceki varlık türünün örneğini döndüren bir işlev içeri aktarma oluşturabilmek için saklı yordam tarafından döndürülen bir **ResultMapping** öğesi:
+Önceki varlık türünün örneklerini döndüren bir işlev içeri aktarması oluşturmak için, saklı yordamın ve varlık türünün döndürdüğü sütunlar arasındaki eşlemenin bir **Resultmapping** öğesinde tanımlanması gerekir:
 
 ``` xml
  <FunctionImportMapping FunctionImportName="GetGrades"
@@ -1452,50 +1452,50 @@ Varlık türü tanımlanmalıdır ve sütunlar arasındaki eşlemeyi önceki var
 
 ## <a name="scalarproperty-element-msl"></a>ScalarProperty öğesi (MSL)
 
-**ScalarProperty** eşleme belirtimi dili (MSL) içinde öğesi bir tablo sütunu veya saklı yordam parametresi temel alınan veritabanında bir özelliği bir kavramsal model varlık türü, karmaşık tür veya ilişkilendirme eşler.
+Eşleme belirtim dili (MSL) içindeki **Scalarproperty** öğesi bir kavramsal model varlık türü, karmaşık tür veya bir tablo sütunuyla ilişkili bir özelliği veya temel alınan veritabanındaki saklı yordam parametresini eşleştirir.
 
 > [!NOTE]
-> Hangi değişiklik işlevleri eşlenmiş saklı yordamlar depolama modelinde bildirilmesi gerekir. Daha fazla bilgi için işlev öğesi (SSDL) bakın.
+> Değişiklik işlevlerinin eşlendiği saklı yordamlar depolama modelinde bildirilmelidir. Daha fazla bilgi için bkz. Işlev öğesi (SSDL).
 
-**ScalarProperty** aşağıdaki öğelerin bir alt öğesi olabilir:
+**Scalarproperty** öğesi aşağıdaki öğelerin bir alt öğesi olabilir:
 
 -   MappingFragment
--   InsertFunction
+-   Insertfunction
 -   UpdateFunction
 -   DeleteFunction
 -   EndProperty
--   ComplexProperty
+-   Complexözelliği
 -   ResultMapping
 
-Bir alt öğesi olarak **MappingFragment**, **ComplexProperty**, veya **EndProperty** öğesi **ScalarProperty** öğesi bir özellik eşlemeleri veritabanı sütununa kavramsal modelde. Bir alt öğesi olarak **InsertFunction**, **UpdateFunction**, veya **DeleteFunction** öğesi **ScalarProperty** öğesi bir özellik eşlemeleri bir saklı yordam parametresi için kavramsal modelde.
+**Mappingfragment**, **ComplexProperty**veya **endproperty** öğesinin bir alt öğesi olarak, **scalarproperty** öğesi kavramsal modeldeki bir özelliği veritabanındaki bir sütuna eşler. **Insertfunction**, **Updatefunction**veya **deletefunction** öğesinin bir alt öğesi olarak, **scalarproperty** öğesi kavramsal modeldeki bir özelliği bir saklı yordam parametresine Eşler.
 
-**ScalarProperty** öğenin tüm alt öğeleri olamaz.
+**Scalarproperty** öğesinin herhangi bir alt öğesi olamaz.
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Uygulanan öznitelikleri **ScalarProperty** öğesi, öğenin rolüne bağlı olarak farklılık gösterir.
+**Scalarproperty** öğesi için uygulanan öznitelikler, öğesinin rolüne bağlı olarak farklılık gösterir.
 
-Aşağıdaki tabloda, ne zaman geçerli olan öznitelikleri açıklar **ScalarProperty** öğesi, bir veritabanı sütununa kavramsal model özelliğine eşlemek için kullanılır:
+Aşağıdaki **tabloda, bir** kavramsal model özelliğini veritabanındaki bir sütuna eşlemek için kullanılan özellikler açıklanmaktadır:
 
-| Öznitelik adı | Gereklidir | Değer                                                           |
+| Öznitelik adı | Gereklidir | Value                                                           |
 |:---------------|:------------|:----------------------------------------------------------------|
-| **Ad**       | Evet         | Eşlenmekte olan kavramsal model özellik adı. |
-| **ColumnName** | Evet         | Eşlenmekte olan tablo sütununun adı.              |
+| **Name**       | Evet         | Eşlenmekte olan kavramsal model özelliğinin adı. |
+| **Tation** | Evet         | Eşlenmekte olan tablo sütununun adı.              |
 
-Aşağıdaki tabloda, geçerli olan öznitelikleri açıklar **ScalarProperty** bir saklı yordam parametresi için kavramsal model özelliğine eşlenecek kullanıldığında öğesi:
+Aşağıdaki tabloda, bir kavramsal model özelliğini saklı yordam parametresine eşlemek için kullanıldığında **Scalarproperty** öğesi için geçerli olan öznitelikler açıklanmaktadır:
 
-| Öznitelik adı    | Gereklidir | Değer                                                                                                                                           |
+| Öznitelik adı    | Gereklidir | Value                                                                                                                                           |
 |:------------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Ad**          | Evet         | Eşlenmekte olan kavramsal model özellik adı.                                                                                 |
-| **parameterName** | Evet         | Eşlenmekte olan parametrenin adı.                                                                                                 |
-| **Sürüm**       | Hayır          | **Geçerli** veya **özgün** geçerli veya özelliğin özgün değeri eşzamanlılık denetimlerinin için kullanılması gerekip gerekmediğini bağlı olarak. |
+| **Name**          | Evet         | Eşlenmekte olan kavramsal model özelliğinin adı.                                                                                 |
+| **ParameterName** | Evet         | Eşlenmekte olan parametrenin adı.                                                                                                 |
+| **Sürüm**       | Hayır          | **Geçerli** veya **orijinal** değerin, özelliğin orijinal değerinin eşzamanlılık denetimleri için kullanılıp kullanılmayacağını belirtir. |
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnekte gösterildiği **ScalarProperty** iki yolla kullanılan öğe:
+Aşağıdaki örnek, iki şekilde kullanılan **Scalarproperty** öğesini göstermektedir:
 
--   Özelliklerini eşlemek için **kişi** sütunlarını varlık türüne **kişi**tablo.
--   Özelliklerini eşlemek için **kişi** varlık türü parametrelerine **UpdatePerson** saklı yordamı. Saklı yordamları, depolama modelinde bildirilir.
+-   **Kişi** varlık türünün özelliklerini **kişi**tablosunun sütunlarına eşlemek için.
+-   **Kişi** varlık türünün özelliklerini **UpdatePerson** saklı yordamının parametreleriyle eşlemek için. Saklı yordamlar depolama modelinde bildirilmiştir.
 
 ``` xml
  <EntitySetMapping Name="People">
@@ -1542,7 +1542,7 @@ Aşağıdaki örnekte gösterildiği **ScalarProperty** iki yolla kullanılan ö
 
 ### <a name="example"></a>Örnek
 
-Sonraki örnekte gösterildiği **ScalarProperty** INSERT ve delete işlevleri bir kavramsal model ilişki veritabanında saklı yordamlar için kullanılan öğe. Saklı yordamları, depolama modelinde bildirilir.
+Sonraki örnekte, bir kavramsal model ilişkisinin INSERT ve DELETE işlevlerini veritabanındaki Saklı yordamlarla eşlemek için kullanılan **Scalarproperty** öğesi gösterilmektedir. Saklı yordamlar depolama modelinde bildirilmiştir.
 
 ``` xml
  <AssociationSetMapping Name="CourseInstructor"
@@ -1577,32 +1577,32 @@ Sonraki örnekte gösterildiği **ScalarProperty** INSERT ve delete işlevleri b
 
 ## <a name="updatefunction-element-msl"></a>UpdateFunction öğesi (MSL)
 
-**UpdateFunction** eşleme belirtimi dili (MSL) içindeki öğe temel alınan veritabanında bir saklı yordam kavramsal modeldeki bir varlık türünün güncelleştirme işlevini eşleştirir. Hangi değişiklik işlevleri eşlenmiş saklı yordamlar depolama modelinde bildirilmesi gerekir. Daha fazla bilgi için işlev öğesi (SSDL) bakın.
+Eşleme belirtim dili (MSL) içindeki **Updatefunction** öğesi, kavramsal modeldeki bir varlık türünün Update işlevini temel alınan veritabanında bulunan bir saklı yordama eşler. Değişiklik işlevlerinin eşlendiği saklı yordamlar depolama modelinde bildirilmelidir. Daha fazla bilgi için bkz. Işlev öğesi (SSDL).
 
 > [!NOTE]
->  Değil eşlerseniz üçünü ekleme, güncelleştirme veya silme işlemleri saklı yordamlar için bir varlık türünün, çalışma zamanında yürütülüyorsa eşlenmemiş işlemleri başarısız olur ve bir UpdateException oluşturulur.
+>  Bir varlık türünün ekleme, güncelleştirme veya silme işlemlerinin üçünü saklı yordamlara eşleştirmez, çalışma zamanında yürütülürse ve bir UpdateException oluşturulursa eşlenmemiş işlemler başarısız olur.
 
-**UpdateFunction** öğesi ModificationFunctionMapping öğesinin bir alt öğesi olabilir ve EntityTypeMapping öğeye uygulanır.
+**Updatefunction** öğesi ModificationFunctionMapping öğesinin bir alt öğesi olabilir ve entitytypemapping öğesine uygulanır.
 
-**UpdateFunction** öğesi şu alt öğelerden olabilir:
+**Updatefunction** öğesi aşağıdaki alt öğelere sahip olabilir:
 
--   İlişki ucu (sıfır veya daha fazla)
--   ComplexProperty (sıfır veya daha fazla)
+-   AssociationEnd (sıfır veya daha fazla)
+-   Complexözelliği (sıfır veya daha fazla)
 -   ResultBinding (sıfır veya bir)
 -   ScarlarProperty (sıfır veya daha fazla)
 
-### <a name="applicable-attributes"></a>Uygun öznitelikler
+### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
-Aşağıdaki tabloda uygulanabilir öznitelikleri açıklar **UpdateFunction** öğesi.
+Aşağıdaki tablo **Updatefunction** öğesine uygulanabilen öznitelikleri açıklar.
 
-| Öznitelik adı            | Gereklidir | Değer                                                                                                                                                    |
+| Öznitelik adı            | Gereklidir | Value                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **functionName**          | Evet         | Güncelleştirme işlevi için eşlenmiş saklı yordam ad alanıyla nitelenen adı. Saklı yordam depolama modelinde bildirilmesi gerekir. |
-| **RowsAffectedParameter** | Hayır          | Etkilenen satırların sayısını veren çıkış parametresinin adı.                                                                               |
+| **Ifadelerini**          | Evet         | Update işlevinin eşlendiği saklı yordamın ad alanı nitelikli adı. Saklı yordam, depolama modelinde bildirilmelidir. |
+| **RowsAffectedParameter** | Hayır          | Etkilenen satır sayısını döndüren çıkış parametresinin adı.                                                                               |
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnek Okul modelini temel alan ve gösterir **UpdateFunction** güncelleştirme işlevini eşlemek için kullanılan öğe **kişi** varlık türüne **UpdatePerson** saklı yordam. **UpdatePerson** saklı yordam, depolama modelinde bildirilir.
+Aşağıdaki örnek, okul modeline dayalıdır ve **kişi** varlık türünün güncelleştirme Işlevini **UpdatePerson** saklı yordamına eşlemek için kullanılan **updatefunction** öğesini gösterir. **UpdatePerson** saklı yordamı depolama modelinde bildirilmiştir.
 
 ``` xml
  <EntityTypeMapping TypeName="SchoolModel.Person">

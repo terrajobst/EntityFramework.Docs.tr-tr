@@ -1,85 +1,85 @@
 ---
-title: Entity Framework 6 yükseltme
+title: Entity Framework 6 ' ya yükseltme-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 29958ae5-85d3-4585-9ba6-550b8ec9393a
-ms.openlocfilehash: 711f1940080de27bd23cb8f641a5c7f2711dd65b
-ms.sourcegitcommit: a6082a2caee62029f101eb1000656966195cd6ee
+ms.openlocfilehash: 4395a9c117a6cf38e7fc08f11ee689d6fffa6fed
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53182013"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182107"
 ---
-# <a name="upgrading-to-entity-framework-6"></a>Entity Framework 6 yükseltme
+# <a name="upgrading-to-entity-framework-6"></a>Entity Framework 6 ' ya yükseltme
 
-EF önceki sürümlerinde .NET Framework bir parçası olarak gönderildiğini çekirdek kitaplıkları (öncelikle System.Data.Entity.dll) ve bir NuGet paketi sevk bant dışı (OOB) kitaplıkları (öncelikle EntityFramework.dll) arasında kod bölünmüş. EF6 çekirdek kitaplıklarından kodu alır ve OOB kitaplıkları içerir. Bu açık kaynak yapılacak EF izin vermek üzere gerekli ve .NET Framework farklı bir hızda evrim Geçiren mümkün olması için. Bu sonucu, uygulamaları taşınan türlerine karşı yeniden oluşturulması gerekecektir ' dir.
+EF 'in önceki sürümlerinde kod, bir NuGet paketinde gönderilen .NET Framework ve bant dışı (OOB) kitaplıklarının (birincil olarak EntityFramework. dll) bir parçası olarak sevk edilen çekirdek kitaplıklar (birincil olarak System. Data. Entity. dll) arasına bölünür. EF6, kodu çekirdek kitaplıklarından alır ve OOB kitaplıklarına ekler. Bu, EF 'in açık kaynak haline getirilme ve .NET Framework farklı bir hızda gelişebilmesini sağlamak için gereklidir. Bunun sonucu olarak, uygulamaların taşınan türler için yeniden oluşturulması gerekir.
 
-Bu DbContext EF 4.1 ve üzeri sevk edildi olarak kullanan uygulamalar için basit olmalıdır. Biraz daha fazla iş ObjectContext kullanan uygulamalar için gerekli değildir ancak yine de yapmak sabit değildir.
+Bu, EF 4,1 ve üzeri sürümlerde olduğu gibi DbContext kullanan uygulamalar için basit olmalıdır. ObjectContext 'in kullanıldığı ancak hala zor olmayan uygulamalar için biraz daha fazla iş gerekir.
 
-EF6 varolan bir uygulamaya yükseltmek için yapmanız gereken şeyleri listesi aşağıda verilmiştir.
+Mevcut bir uygulamayı EF6 'e yükseltmek için yapmanız gereken öğelerin bir denetim listesi aşağıda verilmiştir.
 
-## <a name="1-install-the-ef6-nuget-package"></a>1. EF6 NuGet paketini yükle
+## <a name="1-install-the-ef6-nuget-package"></a>1. EF6 NuGet paketini yükler
 
-Yeni Entity Framework 6 çalışma zamanına yükseltmesini gerekir.
+Yeni Entity Framework 6 çalışma zamanına yükseltmeniz gerekir.
 
-1. Seçin ve proje üzerinde sağ **NuGet paketlerini Yönet...**  
-2. Altında **çevrimiçi** sekmesinde **EntityFramework** tıklatıp **yükleyin**  
+1. Projenize sağ tıklayın ve **NuGet Paketlerini Yönet..** . seçeneğini belirleyin.  
+2. **Çevrimiçi** sekmesinde **EntityFramework** ' ü seçin ve ardından **yükler** ' e tıklayın.  
    > [!NOTE]
-   > EntityFramework NuGet paketi yüklendi önceki bir sürümü bu EF6 yükseltir.
+   > EntityFramework NuGet paketinin önceki bir sürümü yüklüyse, bunu EF6 sürümüne yükseltir.
 
-Alternatif olarak, Paket Yöneticisi konsolundan aşağıdaki komutu çalıştırabilirsiniz:
+Alternatif olarak, paket yöneticisi konsolundan aşağıdaki komutu çalıştırabilirsiniz:
 
 ``` powershell
 Install-Package EntityFramework
 ```
 
-## <a name="2-ensure-that-assembly-references-to-systemdataentitydll-are-removed"></a>2. Derleme başvurularını System.Data.Entity.dll kaldırıldığından emin olun
+## <a name="2-ensure-that-assembly-references-to-systemdataentitydll-are-removed"></a>2. System. Data. Entity. dll ' ye bütünleştirilmiş kod başvurularının kaldırıldığından emin olun
 
-EF6 NuGet paketini yükleme otomatik olarak System.Data.Entity tüm başvurular projenizden sizin için kaldırmanız gerekir.
+EF6 NuGet paketinin yüklenmesi, sizin için projenizden System. Data. Entity başvurularını otomatik olarak kaldırmalıdır.
 
-## <a name="3-swap-any-ef-designer-edmx-models-to-use-ef-6x-code-generation"></a>3. Takas herhangi EF Designer (EDMX) modellerini EF 6.x kod üretimini kullan
+## <a name="3-swap-any-ef-designer-edmx-models-to-use-ef-6x-code-generation"></a>3. EF Designer (EDMX) modellerini EF 6. x kod üretimi kullanacak şekilde değiştirin
 
-EF Designer ile oluşturulan herhangi bir model varsa, EF6 uyumlu kod üretmek için kod oluşturma şablonları güncelleştirmeniz gerekir.
+EF Designer ile oluşturulmuş modelleriniz varsa, EF6 uyumlu kod üretmek için kod oluşturma şablonlarını güncelleştirmeniz gerekir.
 
 > [!NOTE]
-> Şu anda yalnızca EF 6.x DbContext Oluşturucu şablonları Visual Studio 2012 ve 2013 için kullanılabilen vardır.
+> Şu anda yalnızca Visual Studio 2012 ve 2013 için kullanılabilen EF 6. x DbContext Oluşturucu şablonları mevcuttur.
 
-1. Varolan kod üretimi şablonları silin. Bu dosyalar genellikle adlı  **\<edmx_file_name\>.tt** ve  **\<edmx_file_name\>. Context.tt** ve Çözüm Gezgini'nde edmx dosyanız altında iç içe olamaz. Çözüm Gezgini ve ENTER tuşuna şablon seçebilirsiniz **Del** anahtarını silin.  
+1. Mevcut kod oluşturma şablonlarını silin. Bu dosyalar genellikle **@no__t -1edmx_file_name\>.tt** ve **\<edmx_file_adı @ no__t-5 olarak adlandırılır. Context.tt** ve Çözüm Gezgini içindeki edmx dosyanızın altına yerleştirilmiş. Çözüm Gezgini şablonları seçebilir ve silmek için **del** tuşuna basabilirsiniz.  
    > [!NOTE]
-   > Web sitesi projeleri şablonları değil edmx dosyanız altında iç içe geçmiş, ancak Çözüm Gezgini'nde yanı sıra listede.  
+   > Web sitesi projelerinde, şablonlar edmx dosyanızın altına yerleştirmeyecektir, ancak Çözüm Gezgini yanında listelenir.  
 
    > [!NOTE]
-   > VB.NET projelerinde 'Tüm iç içe geçmiş şablon dosyalarını görebilmeniz dosyaları Göster' etkinleştirmeniz gerekir.
-2. Uygun EF 6.x kod kuşak şablonu ekleyin. Açık EF Designer modelinizde sağ tasarım yüzeyi ve select **kod oluşturma öğesi Ekle...**
-    - DbContext sonra (önerilen) API kullanıyorsanız **EF 6.x DbContext Oluşturucu** altında kullanılabilir olacak **veri** sekmesi.  
+   > VB.NET projelerinde, iç içe şablon dosyalarını görebilmeniz için ' tüm dosyaları göster ' i etkinleştirmeniz gerekir.
+2. Uygun EF 6. x kod oluşturma şablonunu ekleyin. Ortamınızı EF tasarımcısında açın, tasarım yüzeyine sağ tıklayıp **kod oluşturma öğesi Ekle...** seçeneğini belirleyin.
+    - DbContext API 'SI kullanıyorsanız (önerilir), bu durumda **EF 6. x DbContext Oluşturucu** **veri** sekmesinde kullanılabilir.  
       > [!NOTE]
-      > Visual Studio 2012 kullanıyorsanız, bu şablonu EF 6 araçları yüklemeniz gerekir. Bkz: [alma Entity Framework](~/ef6/fundamentals/install.md) Ayrıntılar için.  
+      > Visual Studio 2012 kullanıyorsanız, bu şablonun olması için EF 6 araçlarını yüklemeniz gerekir. Ayrıntılar için bkz. [Get Entity Framework](~/ef6/fundamentals/install.md) .  
 
-    - ObjectContext API kullanıyorsanız sonra seçmeniz gerekecek **çevrimiçi** sekmesinde ve arama **EF 6.x EntityObject Oluşturucu**.  
-3. Özelleştirmeler için kod oluşturma şablonları uyguladıysanız yeniden güncelleştirilmiş şablonların uygulamanız gerekir.
+    - ObjectContext API 'sini kullanıyorsanız **çevrimiçi** sekmesini seçmeniz ve **EF 6. x EntityObject Generator**araması yapmanız gerekir.  
+3. Kod oluşturma şablonlarına herhangi bir özelleştirme uyguladıysanız, bunları güncelleştirilmiş şablonlara yeniden uygulamanız gerekir.
 
-## <a name="4-update-namespaces-for-any-core-ef-types-being-used"></a>4. Ad alanları için kullanılan her çekirdek EF türünü güncelleştir
+## <a name="4-update-namespaces-for-any-core-ef-types-being-used"></a>4. Kullanılmakta olan tüm çekirdek EF türleri için ad alanlarını güncelleştirme
 
-DbContext ve Code First türleri için ad alanları değişmedi. EF 4.1 kullanan birçok uygulama için başka bir deyişle ya da daha sonra herhangi bir ayarı değiştirmek gerekmez.
+DbContext ve Code First türleri için ad alanları değişmemiştir. Bu, EF 4,1 veya sonrasını kullanan birçok uygulama için herhangi bir şeyi değiştirmeniz gerekmediği anlamına gelir.
 
-Daha önce System.Data.Entity.dll türlerini ObjectContext gibi yeni ad alanları için taşınmıştır. Yani güncelleştirmeniz gerekebilir, *kullanarak* veya *alma* EF6 karşı oluşturmak için yönergeleri.
+Daha önce System. Data. Entity. dll içinde bulunan ObjectContext gibi türler yeni ad alanlarına taşınmıştır. Bu, EF6 'e göre derlemek için *using* veya *Import* yönergelerinden güncelleştirmeniz gerekebilecek anlamına gelir.
 
-Genel ad değişiklikleri için System.Data.* herhangi bir türü için System.Data.Entity.Core.* taşınır kuralıdır. Diğer bir deyişle, yalnızca eklemek **Entity.Core.** System.Data sonra. Örneğin:
+Ad alanı değişikliklerinin genel kuralı, System. Data. * içindeki herhangi bir tür System. Data. Entity. Core. * öğesine taşınır. Diğer bir deyişle **Entity. Core** 'u eklemeniz yeterlidir. System. Data 'dan sonra. Örneğin:
 
-- System.Data.EntityException = > System.Data. **Entity.Core**. EntityException  
-- System.Data.Objects.ObjectContext = > System.Data. **Entity.Core**. Objects.ObjectContext  
-- System.Data.Objects.DataClasses.RelationshipManager = > System.Data. **Entity.Core**. Objects.DataClasses.RelationshipManager  
+- System. Data. EntityException = > System. Data. **Entity. Core**. EntityException  
+- System. Data. Objects. ObjectContext = > System. Data. **Entity. Core**. Objects. ObjectContext  
+- System. Data. Objects. DataClasses. RelationshipManager = > System. Data. **Entity. Core**. Objects. DataClasses. RelationshipManager  
 
-Bu tür bulunan *çekirdek* ad alanları doğrudan çoğu DbContext tabanlı uygulamalar için kullanılmadığından. System.Data.Entity.dll parçası olan bazı türleri hala yaygın olarak ve doğrudan DbContext tabanlı uygulamalar için kullanılır ve bu nedenle içine taşınmamış olan *çekirdek* ad alanları. Bunlar:
+Bu türler, çoğu DbContext tabanlı uygulama için doğrudan kullanılmadığından *çekirdek* ad uzayındadır. System. Data. Entity. dll ' nin parçası olan bazı türler yaygın olarak ve doğrudan DbContext tabanlı uygulamalar için kullanılır ve bu nedenle *çekirdek* ad alanlarına taşınamaz. Bunlar:
 
-- System.Data.EntityState = > System.Data. **Varlık**. EntityState  
-- System.Data.Objects.DataClasses.EdmFunctionAttribute = > System.Data. **Entity.DbFunctionAttribute**  
+- System. Data. EntityState = > System. Data. **Varlık**. EntityState  
+- System. Data. Objects. DataClasses. EdmFunctionAttribute = > System. Data. **Entity. DbFunctionAttribute**  
   > [!NOTE]
-  > Bu sınıf yeniden adlandırıldı; eski adıyla bir sınıf hala var olduğundan ve çalışır, ancak artık eski olarak işaretlendi.  
-- System.Data.Objects.EntityFunctions = > System.Data. **Entity.DbFunctions**  
+  > Bu sınıf yeniden adlandırıldı; Eski adlı bir sınıf hala var ve işe yaramıştır, ancak artık eski olarak işaretlendi.  
+- System. Data. Objects. EntityFunctions = > System. Data. **Entity. DbFunctions**  
   > [!NOTE]
-  > Bu sınıf yeniden adlandırıldı; eski adıyla bir sınıf hala var olduğundan ve çalışır, ancak artık kullanılmayan olarak işaretlenmiş.)  
-- Uzamsal sınıfları (örneğin, DbGeography, DbGeometry) System.Data.Spatial taşınmış = > System.Data. **Varlık**. Uzamsal
+  > Bu sınıf yeniden adlandırıldı; Eski ada sahip bir sınıf hala var ve çalışmaktadır, ancak artık eski olarak işaretlendi.)  
+- Uzamsal sınıflar (örneğin, Dbcoğrafya, DbGeometry) System. Data. uzamsal = > System. Data öğesinden taşınmıştır. **Varlık**. Uzay
 
 > [!NOTE]
-> System.Data ad alanındaki bazı türleri, EF derleme olmayan System.Data.dll olabilir. Bu tür değil taşıdık ve bu nedenle, ad alanları değişmeden kalır.
+> System. Data ad alanındaki bazı türler, EF derlemesi olmayan System. Data. dll ' dir. Bu türler taşınmadı ve bu nedenle ad alanları değişmeden kalır.

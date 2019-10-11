@@ -1,51 +1,51 @@
 ---
-title: Kendi test double - EF6 ile test etme
+title: Kendi testinizi test edin-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 16a8b7c0-2d23-47f4-9cc0-e2eb2e738ca3
-ms.openlocfilehash: 9db56e28cd89084fece36c3e5a2c1b4495991d01
-ms.sourcegitcommit: 645785187ae23ddf7d7b0642c7a4da5ffb0c7f30
+ms.openlocfilehash: 4631206ae26d364e92c932857fa1970804a7a335
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/25/2019
-ms.locfileid: "58419737"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181413"
 ---
-# <a name="testing-with-your-own-test-doubles"></a>Kendi test Double ile test etme
+# <a name="testing-with-your-own-test-doubles"></a>Kendi testinizde test Double
 > [!NOTE]
-> **EF6 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb., Entity Framework 6'da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.  
+> **Yalnızca EF6** , bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 6 ' da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.  
 
-Uygulamanız için testleri yazarken genellikle veritabanı ulaşmaktan kaçınmak için tercih edilir.  Entity Framework, bir bağlam oluşturarak – – testleriniz tarafından tanımlanan davranışı ile bunu başarmak için bellek içi verileri kullanır, sağlar.  
+Uygulamanız için testler yazarken, genellikle veritabanına ulaşmaktan kaçınmak için bu durum tercih edilir.  Entity Framework, bir bağlam oluşturarak elde etmenizi sağlar. bu sayede, testleriniz tarafından tanımlanan davranışla birlikte bellek içi verileri kullanır.  
 
-## <a name="options-for-creating-test-doubles"></a>Test double oluşturmak için Seçenekler  
+## <a name="options-for-creating-test-doubles"></a>Test Double değerleri oluşturma seçenekleri  
 
-Bağlamınızı bir bellek içi sürümünü oluşturmak için kullanılan iki farklı yaklaşım vardır.  
+Bağlamınızın bellek içi bir sürümünü oluşturmak için kullanılabilecek iki farklı yaklaşım vardır.  
 
-- **Kendi test double oluşturma** – bu yaklaşım, kendi bellek içi uygulama içeriği ve DbSets yazma içerir. Bu, çok nasıl sınıfları davranır ancak yazmayı ve makul bir kod sahip olan içerebilir denetim sağlar.  
-- **Sahte bir çerçeve test double oluşturulacağı** – sahte bir çerçeve (örneğin, Moq) kullanarak, bellek içi uygulamaları, içerik ve çalışma zamanında dinamik olarak için oluşturulan kümeleri olabilir.  
+- **Kendi testinizi oluşturun** – bu yaklaşım, bağlam ve dbsets kendi bellek içi uygulamanızın yazılmasını içerir. Bu, sınıfların nasıl davrandığına ilişkin çok fazla denetim sağlar ancak makul miktarda kodu yazmayı ve sahip olduğunu içerebilir.  
+- **Test Double değerleri oluşturmak için bir sahte işlem çerçevesi kullanma** : bir sahte işlem çerçevesi kullanarak (moq gibi), sizin için çalışma zamanında sizin için bağlam içi ve dinamik olarak oluşturulan kümeler için, içeriğiniz için bir işlem yapın.  
 
-Bu makale, kendi test çift oluşturma ile ilgilenecektir. Sahte bir çerçeve kullanma hakkında bilgi için bkz. [sahte bir Framework ile test](mocking.md).  
+Bu makale, kendi test Double 'nizi oluşturmaya yöneliktir. Sahte işlem çerçevesini kullanma hakkında bilgi için bkz. [bir sahte işlem çerçevesi ile test etme](mocking.md).  
 
-## <a name="testing-with-pre-ef6-versions"></a>EF6 öncesi sürümler ile test etme  
+## <a name="testing-with-pre-ef6-versions"></a>EF6 öncesi sürümlerle test etme  
 
-Bu makalede gösterilen kod EF6 ile uyumludur. EF5 ve önceki sürümü ile test etmek için bkz: [sahte bir bağlamla test](http://romiller.com/2012/02/14/testing-with-a-fake-dbcontext/).  
+Bu makalede gösterilen kod, EF6 ile uyumludur. EF5 ve önceki sürümleri test etmek için bkz. [sahte bağlamla test etme](https://romiller.com/2012/02/14/testing-with-a-fake-dbcontext/).  
 
-## <a name="limitations-of-ef-in-memory-test-doubles"></a>EF bellek içi test çiftten oluşan sınırlamaları  
+## <a name="limitations-of-ef-in-memory-test-doubles"></a>Bellek içindeki EF ile test arasındaki sınırlamalar  
 
-Bellek içi test double birim testi, uygulamanızın EF kullanan bit düzeyi kapsamını sağlamanın iyi bir yolu olabilir. Ancak, bunun yapılması, LINQ to Objects'in bellek içi veri sorguları yürütmek için kullanırsınız. Bu sorgular, veritabanınızda çalıştırın SQL küçültmesini EF'ın LINQ sağlayıcısı (LINQ to Entities) kullanmaktan farklı bir davranış neden olabilir.  
+Bellek içi test Double değerleri, uygulamanızın EF kullanan bit bitlerinin birim test düzeyi kapsamını sağlamak için iyi bir yoldur. Ancak bunu yaparken, bellek içi verilerde sorgu yürütmek için LINQ to Objects kullanırsınız. Bu, SQL 'e sorguları veritabanınıza karşı çalıştırılan SQL 'e çevirmek için EF 'in LINQ sağlayıcısı (LINQ to Entities) kullanmaktan farklı davranışa neden olabilir.  
 
-Böyle bir fark örneği ilgili verileri yükleniyor. Bir dizi blog oluşturursanız her ilgili gönderileri ve bellek içi verileri kullanırken ilgili postaların her zaman her Blog için yüklenecek. Dahil etme yöntemini kullanırsanız, ancak bir veritabanıyla çalışırken veriler yalnızca yüklenir.  
+Bu türden bir örnek ilgili verileri yüklüyor. Her birinin ilgili gönderileri olan bir dizi blog oluşturursanız, bellek içi veriler kullanılırken ilgili gönderiler her blog için her zaman yüklenir. Ancak, bir veritabanına karşı çalıştırıldığında, veriler yalnızca Include metodunu kullanırsanız yüklenir.  
 
-Bu nedenle, her zaman doğru bir veritabanında, uygulama çalışır emin olmak için uçtan uca (ek olarak, birim testleri) test belirli bir düzeyde dahil etmek için önerilir.  
+Bu nedenle, uygulamanızın bir veritabanına karşı doğru şekilde çalıştığından emin olmak için her zaman uçtan uca testlerin bir düzeyi (birim testlerinize ek olarak) dahil edilmesi önerilir.  
 
-## <a name="following-along-with-this-article"></a>Bu makaleyi izleyerek  
+## <a name="following-along-with-this-article"></a>Bu makaleyle birlikte aşağıdaki  
 
-Bu makalede istiyorsanız takip etmek için Visual Studio'ya kopyalayabilirsiniz tam kod listeleri sağlar. Oluşturmak en kolayıdır bir **birim testi projesi** ihtiyacınız ve hedef **.NET Framework 4.5** kullanan zaman uyumsuz bölümlerin tamamlanması.  
+Bu makale, daha sonra izlemek üzere Visual Studio 'ya kopyalayabileceğiniz tüm kod listelerini sağlar. Bir **birim testi projesi** oluşturmak en kolayıdır ve zaman uyumsuz kullanan bölümleri tamamlayabilmeniz için **.NET Framework 4,5** ' i hedefleyebilirsiniz.  
 
-## <a name="creating-a-context-interface"></a>Bir bağlam arabirimi oluşturma  
+## <a name="creating-a-context-interface"></a>Bağlam arabirimi oluşturma  
 
-Bunu bir EF kullanan bir hizmet sınama sırasında aranacak dağıtacağız modeli. Test etmek için bir bellek içi sürüm bizim EF bağlam yerine oluşturabilmek, bizim EF bağlam (ve onun bellek içi çift) uygulayan bir arabirim tanımlarsınız.
+EF modelini kullanan bir hizmeti test etmeye bakacağız. Test için EF bağlamımızı bir bellek içi sürüm ile değiştirmek için, EF bağlamımız (ve bellek içi çift) uygulanacak bir arabirim tanımlayacağız.
 
-Test kullanacağız Hizmeti sorgu ve bizim bağlam olan DB özelliklerini kullanarak verileri değiştirme ve veritabanına değişiklikleri gönderme SaveChanges de çağırır. Biz bu üyeler arabirimde şekilde dahil.  
+Test edilecek hizmet, bağlamımız DbSet özelliklerini kullanarak verileri sorgular ve değiştirir ve değişiklikleri veritabanına göndermek için de SaveChanges 'ı çağırır. Bu nedenle bu üyeleri arabirime dahil ediyoruz.  
 
 ``` csharp
 using System.Data.Entity;
@@ -63,7 +63,7 @@ namespace TestingDemo
 
 ## <a name="the-ef-model"></a>EF modeli  
 
-Test etmek için yapacağımız hizmeti bir EF yararlanır modeli BloggingContext ve Blog ve gönderi sınıfları oluşur. Bu kod EF Designer tarafından oluşturulmuş olabilir veya bir Code First modeli.  
+Test edilecek hizmet, BloggingContext ve blog ve post sınıflarından oluşan bir EF modelinin kullanımını sağlar. Bu kod, EF Designer tarafından oluşturulmuş veya bir Code First modeli olabilir.  
 
 ``` csharp
 using System.Collections.Generic;
@@ -100,17 +100,17 @@ namespace TestingDemo
 
 ### <a name="implementing-the-context-interface-with-the-ef-designer"></a>EF Designer ile bağlam arabirimini uygulama  
 
-Bizim bağlam IBloggingContext arabirim uyguladığını unutmayın.  
+Bağlamımızın IBloggingContext arabirimini uyguladığını unutmayın.  
 
-Code First kullanıyorsanız, doğrudan arabirim uygulamak için Bağlamınızı düzenleyebilirsiniz. EF Designer kullanıyorsanız Bağlamınızı oluşturan T4 şablonu düzenlemeniz gerekir. Açık yukarı \<model_adı\>. Edmx dosyası altında iç içe Context.tt dosya, aşağıdaki kod parçası bulun ve arabiriminde gösterildiği gibi ekleyin.  
+Code First kullanıyorsanız, arabirimi uygulamak için bağlamını doğrudan düzenleyebilirsiniz. EF Designer kullanıyorsanız, bağlamını oluşturan T4 şablonunu düzenlemeniz gerekir. @No__t-0model_adı @ no__t-1 ' i açın. Context.tt dosyası, edmx dosyasının altında bulunan, aşağıdaki kod parçasını bulun ve arabirimde gösterildiği gibi ekleyin.  
 
 ``` csharp  
 <#=Accessibility.ForType(container)#> partial class <#=code.Escape(container)#> : DbContext, IBloggingContext
 ```  
 
-## <a name="service-to-be-tested"></a>Test edilecek hizmeti  
+## <a name="service-to-be-tested"></a>Sınanacak hizmet  
 
-Bellek içi test Double ile test göstermek için birkaç test için bir BlogService sağladığım için kullanacağız. (GetAllBlogs) adına göre sıralanmış tüm blogları döndüren ve yeni blogları (AddBlog) istemcilerinizle bir hizmettir. GetAllBlogs yanı sıra, ayrıca zaman uyumsuz olarak (GetAllBlogsAsync) adına göre sıralanmış tüm blogları alacak bir yöntem sağladık.  
+Bellek içi test ile testi göstermek için bir BlogService için birkaç test yazacağız. Hizmet, yeni blogların (AddBlog) oluşturulmasına ve ada göre sıralanmış tüm blogların (Getallblogları) döndürüliliğine sahiptir. Getallbloglara ek olarak, ada (GetAllBlogsAsync) göre sıralanan tüm blogları zaman uyumsuz olarak alacak bir yöntem de sağladık.  
 
 ``` csharp
 using System.Collections.Generic;
@@ -159,13 +159,13 @@ namespace TestingDemo
 }
 ```  
 
-<a name="creating-the-in-memory-test-doubles"/> ## Bellek içi test oluşturma iki katına çıkar  
+<a name="creating-the-in-memory-test-doubles"/> # # bellek içi test oluşturma Double değerleri  
 
-Gerçek EF modeli ve kullanabileceği bir hizmet sunuyoruz, bellek içi test ediyoruz test için kullanabileceğiniz çift oluşturmak zaman var. TestContext test çift bizim bağlam için oluşturduk. Testleri desteklemek için istediğimiz davranış seçmek için aldığımız test double içinde çalıştırmak için kullanacağız. Bu örnekte biz yalnızca SaveChanges adlı kaç kez yakalayacağınızı, ancak Test senaryosu doğrulamak için gerekli mantığı ekleyebilirsiniz.  
+Artık gerçek EF modeline ve bu hizmeti kullandığımıza göre, test için kullanabilmemiz için bellek içi test Double 'u oluşturmak zaman atalım. Bağlamımız için bir TestContext test Double oluşturduk. Test Double 'ta çalıştırdığımız testleri desteklemek için istediğimiz davranışı seçeceğiz. Bu örnekte, SaveChanges kaç kez çağrıldığını yakalıyoruz, ancak sınadığınız senaryoyu doğrulamak için gereken mantığı dahil edebilirsiniz.  
 
-Ayrıca, bellek içi uygulaması olan DB sağlayan bir TestDbSet oluşturduk. Tüm yöntemleri için eksiksiz bir düzeyi (bulma dışında) olan DB üzerinde sunduk ancak test senaryonuz kullanacağı üyeleri uygulamak yeterlidir.  
+Ayrıca, DbSet 'in bellek içi uygulamasını sağlayan bir TestDbSet oluşturduk. DbSet üzerindeki tüm yöntemler için (bul dışında) bir yürütme sağladık, ancak yalnızca test senaryonuz tarafından kullanılacak üyeleri uygulamanız gerekir.  
 
-TestDbSet, zaman uyumsuz sorgular işlenebilir emin olmak için ekledik bazı diğer altyapı sınıfları kullanır.  
+TestDbSet, zaman uyumsuz sorguların işlenebilmesi için dahil ettiğimiz bazı başka altyapı sınıflarının kullanımını sağlar.  
 
 ``` csharp
 using System;
@@ -372,9 +372,9 @@ namespace TestingDemo
 }
 ```  
 
-### <a name="implementing-find"></a>Uygulama Bul  
+### <a name="implementing-find"></a>Bulma uygulama  
 
-Find yöntemi genel bir şekilde uygulanması zordur. Test etmek gerekiyorsa yapan kodu desteklemek için gereken Varlık türlerinin her biri için olan DB bulma bir test oluşturmak en kolayıdır bulma yöntemini kullanın. Ardından, aşağıda gösterildiği gibi bu türdeki varlığın bulmak için mantıksal yazabilirsiniz.  
+Find yönteminin, genel bir biçimde uygulanması zordur. Find metodunu kullanan kodu test etmeniz gerekiyorsa, bulmayı desteklemesi gereken her varlık türü için bir test DbSet oluşturmak en kolay yoldur. Daha sonra, aşağıda gösterildiği gibi belirli varlık türünü bulmak için mantık yazabilirsiniz.  
 
 ``` csharp
 using System.Linq;
@@ -392,11 +392,11 @@ namespace TestingDemo
 }
 ```  
 
-## <a name="writing-some-tests"></a>Bazı testleri yazma  
+## <a name="writing-some-tests"></a>Bazı testler yazma  
 
-Tüm testi başlatmak için yapmanız gereken budur. Şu test bir TestContext ve bu bağlamda alan bir hizmeti oluşturur. Hizmet, ardından AddBlog yöntemi kullanarak yeni bir blog – oluşturmak için kullanılır. Son olarak, test, hizmet bağlamı'nın blogları özelliğine yeni bir Blog eklenmiş ve bağlamda SaveChanges çağırmışsa doğrular.  
+Teste başlamak için yapmanız gereken tek şey vardır. Aşağıdaki test bir test bağlamı ve bu bağlamı temel alan bir hizmet oluşturur. Daha sonra bu hizmet, AddBlog yöntemi kullanılarak yeni bir blog oluşturmak için kullanılır. Son olarak, test, hizmetin, içeriğin blogları özelliğine yeni bir blog eklediğini ve bağlam üzerinde SaveChanges olarak adlandırdığını doğrular.  
 
-Bu yalnızca bir bellek içi test çift sınayabilirsiniz şeyler tür örnek ve test double ve gereksinimlerinizi karşılamak için doğrulama mantığını ayarlayabilirsiniz.  
+Bu yalnızca, bellek içi test Double ile test yapabileceğiniz işlem türlerine bir örnektir ve test Double değerlerini ve doğrulama mantığını gereksinimlerinize uyacak şekilde ayarlayabilirsiniz.  
 
 ``` csharp
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -424,7 +424,7 @@ namespace TestingDemo
 }
 ```  
 
-Test - bu kez, bir sorgu gerçekleştiren bir başka bir örnek aşağıda verilmiştir. Test - veri alfabetik sırada olmadığına dikkat edin, Blog özelliğinde bazı verilerle bir test bağlam oluşturarak başlar. Ardından bizim test bağlamını temel alan bir BlogService oluşturabilmek ve geri GetAllBlogs aldığımız verileri adına göre sıralanır emin olun.  
+İşte bir test, bu kez sorgu gerçekleştiren bir örnektir. Test, blog özelliğindeki bazı verilerle bir test bağlamı oluşturarak başlar; verilerin alfabetik sırada olmadığına unutmayın. Daha sonra test bağlamımızı temel alan bir BlogService oluşturabilir ve Getallbloglarından geri aldığımız verilerin ada göre sipariş aldığından emin olabilirsiniz.  
 
 ``` csharp
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -454,7 +454,7 @@ namespace TestingDemo
 }
 ```  
 
-Son olarak, sizi eklediğimiz içinde zaman uyumsuz altyapı emin olmak için sunduğumuz zaman uyumsuz yöntemini kullanan bir daha fazla test yazacaksınız [TestDbSet](#creating-the-in-memory-test-doubles) çalışmaktadır.  
+Son olarak, [Testdbset](#creating-the-in-memory-test-doubles) 'e dahil ettiğimiz zaman uyumsuz altyapının çalıştığından emin olmak için zaman uyumsuz yönteminizin kullanıldığı bir daha test yazacağız.  
 
 ``` csharp
 using Microsoft.VisualStudio.TestTools.UnitTesting;

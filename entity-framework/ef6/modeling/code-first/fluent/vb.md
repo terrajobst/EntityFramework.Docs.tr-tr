@@ -1,45 +1,45 @@
 ---
-title: Fluent API'si ile VB.NET - EF6
+title: VB.NET-EF6 ile akıcı API
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 763dc6a2-764a-4600-896c-f6f13abf56ec
-ms.openlocfilehash: 6aa74fa72296f66f0b069b9b5ee7e2e016570525
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: df3e61fa5e2d24873336511e90231a7d78d32535
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283751"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182667"
 ---
-# <a name="fluent-api-with-vbnet"></a>Fluent API'si ile VB.NET
-Kod ilk sağlar, C kullanarak modelinizi tanımlamanızı\# veya VB.NET sınıflar. Ek yapılandırma, sınıfları ve özellikleri ya da fluent API'sini kullanarak özniteliklerini kullanarak isteğe bağlı olarak gerçekleştirilebilir. Bu izlenecek yol VB.NET kullanarak fluent API'si yapılandırmasının nasıl yapıldığı gösterir.
+# <a name="fluent-api-with-vbnet"></a>VB.NET ile akıcı API
+Code First, modelinizi C @ no__t-0 veya VB.NET sınıfları kullanarak tanımlamanızı sağlar. Ek yapılandırma, isteğe bağlı olarak sınıflarınızda ve özelliklerde öznitelikler kullanılarak veya bir Fluent API kullanılarak gerçekleştirilebilir. Bu izlenecek yol, VB.NET kullanarak Fluent API yapılandırmanın nasıl gerçekleştirileceğini gösterir.
 
-Bu sayfa, Code First'ın temel bir anlayışa sahip varsayar. Code First hakkında daha fazla bilgi için aşağıdaki yönergeler göz atın:
+Bu sayfa Code First temel bir anlama sahip olduğunuzu varsayar. Code First hakkında daha fazla bilgi için aşağıdaki izlenecek yollara göz atın:
 
--   [Yeni bir veritabanına ilk kod](~/ef6/modeling/code-first/workflows/new-database.md)
--   [Mevcut bir veritabanına ilk kod](~/ef6/modeling/code-first/workflows/existing-database.md)
+-   [Yeni bir veritabanına Code First](~/ef6/modeling/code-first/workflows/new-database.md)
+-   [Var olan bir veritabanına Code First](~/ef6/modeling/code-first/workflows/existing-database.md)
 
-## <a name="pre-requisites"></a>Ön koşullar
+## <a name="pre-requisites"></a>Önkoşulların önkoşulları
 
-Bu izlenecek yolu tamamlamak için Visual Studio 2012 yüklü veya en az Visual Studio 2010 olması gerekir.
+Bu izlenecek yolu tamamlamak için en az Visual Studio 2010 veya Visual Studio 2012 yüklü olmalıdır.
 
-Visual Studio 2010 kullanıyorsanız, aynı zamanda sahip gerekecektir [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklü
+Visual Studio 2010 kullanıyorsanız, [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) ' in yüklü olması gerekir
 
-## <a name="create-the-application"></a>Uygulama oluşturma
+## <a name="create-the-application"></a>Uygulamayı oluşturma
 
-Örneği basit tutmak için bunu bir veri erişimi gerçekleştirdiği Code First kullanan temel bir konsol uygulaması oluşturmak için dağıtacağız.
+Şeyleri basit tutmak için veri erişimi gerçekleştirmek üzere Code First kullanan temel bir konsol uygulaması oluşturacağız.
 
--   Visual Studio'yu Aç
--   **Dosya -&gt; yeni -&gt; proje...**
--   Seçin **Windows** sol menüden ve **konsol uygulaması**
--   Girin **CodeFirstVBSample** adı
--   Seçin **Tamam**
+-   Visual Studio 'Yu aç
+-   **Dosya-&gt; yeni-&gt; proje...**
+-   Sol taraftaki menüden ve **konsol uygulamasından** **Windows** ' u seçin
+-   Ad olarak **Codefırstvbsample** girin
+-   **Tamam 'ı** seçin
 
-## <a name="define-the-model"></a>Model tanımlama
+## <a name="define-the-model"></a>Modeli tanımlama
 
-Bu adımda, POCO VB.NET kavramsal model temsil eden varlık türlerini tanımlarsınız. Sınıflar, herhangi bir taban sınıftan türetilen veya arabirimlerden uygulamak gerekmez.
+Bu adımda, kavramsal modeli temsil eden VB.NET POCO varlık türlerini tanımlayacaksınız. Sınıfların herhangi bir taban sınıftan türetmesine veya herhangi bir arabirim uygulamasına gerek yoktur.
 
--   Projeye yeni bir sınıf ekleyin girin **SchoolModel** sınıfı adı
--   Yeni bir sınıf içeriğini aşağıdaki kodla değiştirin.
+-   Projeye yeni bir sınıf ekleyin, sınıf adı için **SchoolModel** girin
+-   Yeni sınıfın içeriğini aşağıdaki kodla değiştirin
 
 ``` vb
    Public Class Department
@@ -133,21 +133,21 @@ Bu adımda, POCO VB.NET kavramsal model temsil eden varlık türlerini tanımlar
     End Class
 ```
 
-## <a name="define-a-derived-context"></a>Türetilen bir bağlam tanımlama
+## <a name="define-a-derived-context"></a>Türetilmiş bir bağlam tanımlayın
 
-Yüzden EntityFramework NuGet paketini eklemek Entity Framework türleri kullanmaya başlamak üzere çalışıyoruz.
+Entity Framework türleri kullanmaya başlamak istiyoruz, bu nedenle EntityFramework NuGet paketini eklememiz gerekiyor.
 
--   ** Proje –&gt; **NuGet paketlerini Yönet...**
+-   \* * Proje – &gt; **NuGet Paketlerini Yönet...**
 > [!NOTE]
-> Öğeniz yoksa **NuGet paketlerini Yönet...** seçeneğini yüklemelisiniz [en son NuGet sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)
--   Seçin **çevrimiçi** sekmesi
--   Seçin **EntityFramework** paket
--   Tıklayın **yükleyin**
+> **NuGet Paketlerini Yönet..** . [en son NuGet sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklemelisiniz.
+-   **Çevrimiçi** sekmesini seçin
+-   **EntityFramework** paketini seçin
+-   **Install** 'a tıklayın
 
-Artık sorgu ve veri kaydetmek bize izin vererek, veritabanı ile bir oturumu temsil eden bir türetilmiş içeriği tanımlamak için zamanı geldi. System.Data.Entity.DbContext türetilir ve bir türü belirtilmiş olan DB sunan bir bağlam tanımlarız&lt;TEntity&gt; modelimizi her sınıf için.
+Şimdi, veritabanı ile bir oturumu temsil eden ve verileri sorgulayıp kaydedebileceğimizi sağlayan bir türetilmiş bağlam tanımlama zamanı. System. Data. Entity. DbContext öğesinden türeten bir bağlam tanımladık ve modelimizin her bir sınıfı için türü belirtilmiş bir DbSet @ no__t-0TEntity @ no__t-1 ' i kullanıma sunduk.
 
--   Projeye yeni bir sınıf ekleyin girin **SchoolContext** sınıfı adı
--   Yeni bir sınıf içeriğini aşağıdaki kodla değiştirin.
+-   Projeye yeni bir sınıf ekleyin, sınıf adı için **SchoolContext** girin
+-   Yeni sınıfın içeriğini aşağıdaki kodla değiştirin
 
 ``` vb
     Imports System.Data.Entity
@@ -169,11 +169,11 @@ Artık sorgu ve veri kaydetmek bize izin vererek, veritabanı ile bir oturumu te
     End Class
 ```
 
-## <a name="configuring-with-the-fluent-api"></a>Fluent API'si ile yapılandırma
+## <a name="configuring-with-the-fluent-api"></a>Akıcı API ile yapılandırma
 
-Bu bölümde türlerini tablolara eşleme, sütun eşleme ve tablolar arasında ilişki özelliklerini yapılandırmak için fluent API'ler kullanmayı gösteren\\modelinizdeki türü. Fluent API'si aracılığıyla kullanıma **DbModelBuilder** yazın ve en yaygın olarak geçersiz kılma tarafından erişilen **OnModelCreating** metodunda **DbContext**.
+Bu bölümde, modelinizdeki tablo eşleme, Özellikler sütun eşleme ve tablolar arasındaki ilişkiler arasındaki ilişkiler için türleri yapılandırmak üzere akıcı API 'Lerin nasıl kullanılacağı gösterilmektedir. Fluent API **Dbmodelbuilder** türü aracılığıyla sunulur ve en yaygın olarak **DbContext**üzerinde **onmodeloluþturma** yöntemi geçersiz kılınarak erişilir.
 
--   Aşağıdaki kodu kopyalayın ve eklemeniz **OnModelCreating** tanımlanan yöntemi **SchoolContext** sınıfı açıklamaları her eşleme ne yaptığını açıklayan
+-   Aşağıdaki kodu kopyalayın ve **SchoolContext** sınıfında tanımlanan **onmodeloluşturma** yöntemine ekleyin. her eşlemenin ne yaptığını açıklar
 
 ``` vb
 ' Configure Code First to ignore PluralizingTableName convention
@@ -365,10 +365,10 @@ modelBuilder.Entity(Of Course)().
 
 ## <a name="using-the-model"></a>Modeli kullanma
 
-Şimdi bazı veri erişimi kullanarak gerçekleştirmek **SchoolContext** eylem modeli kullanıma görmek için.
+Ayrıca, **SchoolContext** kullanarak, bir modeli çalışırken görmek için bazı veri erişimi gerçekleştirelim.
 
--   Main işlevi tanımlandığı Module1.vb dosyasını açın
--   Aşağıdaki Module1 tanımını yapıştırın
+-   Main işlevinin tanımlandığı Module1. vb dosyasını açın
+-   Aşağıdaki Module1 tanımını kopyalayıp yapıştırın
 
 ``` vb
 Imports System.Data.Entity
@@ -408,9 +408,9 @@ Module Module1
 End Module
 ```
 
-Şimdi uygulamayı çalıştırmak ve test etmek.
+Şimdi uygulamayı çalıştırabilir ve test edebilirsiniz.
 
-```
+```console
 Enter a name for a new Department: Computing
 All Departments in the database:
 Computing

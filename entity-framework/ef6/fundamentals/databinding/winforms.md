@@ -3,17 +3,17 @@ title: WinForms ile veri bağlama-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 80fc5062-2f1c-4dbd-ab6e-b99496784b36
-ms.openlocfilehash: 3c7c58f5ded29c136bbdca1d81c64b07c53ce583
-ms.sourcegitcommit: 7391cc31193c1216ec9ed485709042ad0c2106cf
+ms.openlocfilehash: 4b3eee20ff238864b94ef4edfb97c1bae0713300
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/23/2019
-ms.locfileid: "69985476"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181795"
 ---
 # <a name="databinding-with-winforms"></a>WinForms ile veri bağlama
 Bu adım adım izlenecek yol, POCO türlerinin bir "ana-ayrıntı" formunda pencere formları (WinForms) denetimlerine nasıl bağlanacağını gösterir. Uygulama, nesneleri veritabanındaki verilerle doldurmak, değişiklikleri izlemek ve verileri veritabanına kalıcı hale getirmek için Entity Framework kullanır.
 
-Model bire çok ilişkisine katılan iki tür tanımlar: Kategori (asıl\\ana) ve ürün (bağımlı\\ayrıntı). Daha sonra, Visual Studio Araçları modelde tanımlanan türleri WinForms denetimlerine bağlamak için kullanılır. WinForms veri bağlama çerçevesi ilgili nesneler arasında gezinmeyi sağlar: ana görünümdeki satırları seçme, ayrıntı görünümünün karşılık gelen alt verilerle güncelleştirilmesine neden olur.
+Model bire çok ilişkisine katılan iki tür tanımlar: Kategori (Principal @ no__t-0master) ve ürün (bağımlı @ no__t-1detail). Daha sonra, Visual Studio Araçları modelde tanımlanan türleri WinForms denetimlerine bağlamak için kullanılır. WinForms veri bağlama çerçevesi ilgili nesneler arasında gezinmeyi sağlar: ana görünümdeki satırları seçme, ayrıntı görünümünün karşılık gelen alt verilerle güncelleştirilmesine neden olur.
 
 Bu izlenecek yolda ekran görüntüleri ve kod listeleri Visual Studio 2013 alınmıştır ancak Visual Studio 2012 veya Visual Studio 2010 ile bu yönergeyi tamamlayabilirsiniz.
 
@@ -21,7 +21,7 @@ Bu izlenecek yolda ekran görüntüleri ve kod listeleri Visual Studio 2013 alı
 
 Bu izlenecek yolu tamamlamak için Visual Studio 2013, Visual Studio 2012 veya Visual Studio 2010 yüklü olmalıdır.
 
-Visual Studio 2010 kullanıyorsanız, NuGet ' i de yüklemelisiniz. Daha fazla bilgi için bkz. [NuGet 'ı yükleme](http://docs.nuget.org/docs/start-here/installing-nuget).
+Visual Studio 2010 kullanıyorsanız, NuGet ' i de yüklemelisiniz. Daha fazla bilgi için bkz. [NuGet 'ı yükleme](https://docs.nuget.org/docs/start-here/installing-nuget).
 
 ## <a name="create-the-application"></a>Uygulamayı oluşturma
 
@@ -46,11 +46,11 @@ Windows Forms kullanılırken sıralama ile iki yönlü veri bağlamayı etkinle
 
 -   Projeye bir **ObservableListSource** sınıfı ekleyin:
     -   Proje adına sağ tıklayın
-    -   **Ekle-&gt; yeni öğe** Seç
+    -   **Add-&gt; yeni öğe** seçin
     -   Sınıf adı için **Class** ' ı seçin ve **ObservableListSource** girin
 -   Varsayılan olarak oluşturulan kodu aşağıdaki kodla değiştirin:
 
-*Bu sınıf iki yönlü veri bağlamayı ve sıralamayı mümkün kılmaktadır. Sınıf, ObservableCollection&lt;T&gt; öğesinden türetilir ve ISource 'un açık bir uygulamasını ekler. ISource 'un GetList () yöntemi, ObservableCollection ile eşitlenmiş bir IBindingList uygulamasını döndürecek şekilde uygulanır. ToBindingList tarafından oluşturulan IBindingList uygulamasının sıralamayı destekler. ToBindingList Extension yöntemi EntityFramework derlemesinde tanımlanmıştır.*
+*bu sınıf iki yönlü veri bağlamayı ve sıralamayı mümkün kılmaktadır. Sınıf, ObservableCollection @ no__t-0T @ no__t-1 ' den türetilir ve ISource 'un açık bir uygulamasını ekler. ISource 'un GetList () yöntemi, ObservableCollection ile eşitlenmiş bir IBindingList uygulamasını döndürecek şekilde uygulanır. ToBindingList tarafından oluşturulan IBindingList uygulamasının sıralamayı destekler. ToBindingList Extension yöntemi EntityFramework derlemesinde tanımlanmıştır.*
 
 ``` csharp
     using System.Collections;
@@ -83,7 +83,7 @@ Bu izlenecek yolda, Code First veya EF tasarımcısını kullanarak bir model uy
 
 ### <a name="option-1-define-a-model-using-code-first"></a>Seçenek 1: Code First kullanarak model tanımlama
 
-Bu bölümde, Code First kullanarak bir modelin ve ilişkili veritabanının nasıl oluşturulacağı gösterilmektedir. Sonraki bölüme atlayın (**seçenek 2: EF Designer kullanarak bir veritabanından modelinize ters mühendislik uygulamak için Database First kullanmayı tercih ediyorsanız Database First)** kullanarak bir model tanımlayın
+Bu bölümde, Code First kullanarak bir modelin ve ilişkili veritabanının nasıl oluşturulacağı gösterilmektedir. Sonraki bölüme atlayın (**Seçenek 2: EF Designer kullanarak bir veritabanından modelinize ters mühendislik uygulamak için Database First kullanmayı tercih ediyorsanız, Database First)**  kullanarak bir model tanımlayın
 
 Code First geliştirme kullanılırken, genellikle kavramsal (etki alanı) modelinizi tanımlayan .NET Framework sınıfları yazarak başlarsınız.
 
@@ -134,7 +134,7 @@ Code First geliştirme kullanılırken, genellikle kavramsal (etki alanı) model
     }
 ```
 
-Varlıkları tanımlamaya ek olarak, **DbContext** öğesinden türeten bir sınıf tanımlamanız ve **&lt;dbset&gt; TEntity** özelliklerini kullanıma sunabilmeniz gerekir. **Dbset** özellikleri bağlamın modele hangi türleri dahil etmek istediğinizi bilmesini sağlar. **DbContext** ve **Dbset** türleri EntityFramework derlemesinde tanımlanmıştır.
+Varlıkları tanımlamaya ek olarak, **DbContext** öğesinden türeten bir sınıf tanımlamanız ve **dbset @ no__t-2TEntity @ no__t-3** özelliklerini kullanıma sunabilmeniz gerekir. **Dbset** özellikleri bağlamın modele hangi türleri dahil etmek istediğinizi bilmesini sağlar. **DbContext** ve **Dbset** türleri EntityFramework derlemesinde tanımlanmıştır.
 
 DbContext türetilmiş türünün bir örneği, çalışma zamanı sırasında varlık nesnelerini yönetir, bu da nesneleri bir veritabanındaki verilerle doldurmayı, değişiklik izlemeyi ve kalıcı verileri veritabanına getirmeyi içerir.
 
@@ -162,7 +162,7 @@ Projeyi derleyin.
 
 ### <a name="option-2-define-a-model-using-database-first"></a>Seçenek 2: Database First kullanarak model tanımlama
 
-Bu bölümde, EF Designer kullanarak bir veritabanından modelinize ters mühendislik uygulamak için Database First nasıl kullanılacağı gösterilmektedir. Önceki bölümü tamamladıysanız (**seçenek 1: Code First kullanarak bir model tanımlayın)** , ardından bu bölümü atlayın ve doğrudan **geç yükleme** bölümüne gidin.
+Bu bölümde, EF Designer kullanarak bir veritabanından modelinize ters mühendislik uygulamak için Database First nasıl kullanılacağı gösterilmektedir. Önceki bölümü tamamladıysanız (**Seçenek 1: Code First)**  kullanarak bir model tanımlayın, ardından bu bölümü atlayıp doğrudan **yavaş yükleme** bölümüne gidin.
 
 #### <a name="create-an-existing-database"></a>Var olan bir veritabanı oluştur
 
@@ -175,7 +175,7 @@ Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio s
 
 Şimdi veritabanını oluşturalım.
 
--   **Görünüm-&gt; Sunucu Gezgini**
+-   **@No__t-1 Sunucu Gezgini görüntüle**
 -   Veri bağlantıları ' na sağ tıklayın **-&gt; bağlantı ekle...**
 -   Sunucu Gezgini bir veritabanına bağlı değilseniz, veri kaynağı olarak Microsoft SQL Server seçmeniz gerekir
 
@@ -241,11 +241,11 @@ Visual Studio 2010 ' de çalışıyorsanız, EF6 kod oluşturmayı kullanmak iç
 
 -   EF Designer 'daki modelinizin boş bir noktasına sağ tıklayıp **kod oluşturma öğesi Ekle...** seçeneğini belirleyin.
 -   Sol menüden **çevrimiçi şablonlar** ' ı seçin ve **DbContext** ' i arayın
--   **C\#için EF 6. x DbContext oluşturucusunu seçin,** ad olarak **productsmodel** girin ve Ekle ' ye tıklayın.
+-   **C @ no__t-1 Için EF 6. x DbContext Generator ' ı seçin,** ad olarak **productsmodel** girin ve Ekle ' ye tıklayın.
 
 #### <a name="updating-code-generation-for-data-binding"></a>Veri bağlama için kod üretimi güncelleştiriliyor
 
-EF, modelden T4 şablonları kullanarak kod oluşturur. Visual Studio ile birlikte gelen veya Visual Studio galerisinden indirilen şablonlar genel amaçlı kullanım amaçlıdır. Bu, bu şablonlardan oluşturulan varlıkların basit ICollection&lt;T&gt; özelliklerine sahip olduğu anlamına gelir. Ancak, veri bağlama yaparken ISource 'u uygulayan koleksiyon özelliklerinin olması tercih edilir. Bu nedenle, yukarıdaki ObservableListSource sınıfını oluşturuyoruz ve artık bu sınıftan kullanımı sağlamak için şablonları değiştirebiliyoruz.
+EF, modelden T4 şablonları kullanarak kod oluşturur. Visual Studio ile birlikte gelen veya Visual Studio galerisinden indirilen şablonlar genel amaçlı kullanım amaçlıdır. Bu, bu şablonlardan oluşturulan varlıkların basit ICollection @ no__t-0T @ no__t-1 özelliklerine sahip olduğu anlamına gelir. Ancak, veri bağlama yaparken ISource 'u uygulayan koleksiyon özelliklerinin olması tercih edilir. Bu nedenle, yukarıdaki ObservableListSource sınıfını oluşturuyoruz ve artık bu sınıftan kullanımı sağlamak için şablonları değiştirebiliyoruz.
 
 -   **Çözüm Gezgini** açın ve **ProductModel. edmx** dosyasını bulun
 -   ProductModel. edmx dosyasının altında iç içe olacak **ProductModel.tt** dosyasını bulun
@@ -254,10 +254,10 @@ EF, modelden T4 şablonları kullanarak kod oluşturur. Visual Studio ile birlik
 
 -   Visual Studio Düzenleyicisi 'nde açmak için ProductModel.tt dosyasına çift tıklayın
 -   "**ICollection**" sözcüğünün iki yinelemesini "**ObservableListSource**" ile bulur ve değiştirin. Bunlar yaklaşık olarak 296 ve 484 satırlarında bulunur.
--   İlk "**HashSet**" oluşumunu "**ObservableListSource**" ile bulur ve değiştirin. Bu oluşum yaklaşık satır 50 ' de bulunur. Kodda daha sonra bulunan Ikinci diyez kümesi oluşumunu değiştirmeyin.
+-   İlk "**HashSet**" oluşumunu "**ObservableListSource**" ile bulur ve değiştirin. Bu oluşum yaklaşık satır 50 ' de bulunur. Kodda daha sonra bulunan ikinci diyez kümesi **oluşumunu değiştirmeyin.**
 -   ProductModel.tt dosyasını kaydedin. Bu, varlıkların kodunun yeniden üretilmesine neden olmalıdır. Kod otomatik olarak yeniden oluşturmaz, ProductModel.tt 'e sağ tıklayın ve "özel araç Çalıştır" seçeneğini belirleyin.
 
-Artık category.cs dosyasını (ProductModel.tt altında iç içe yerleştirilmiş) açarsanız, Products koleksiyonunun **ObservableListSource&lt;Product&gt;** türünde olduğunu görmeniz gerekir.
+Artık Category.cs dosyasını (ProductModel.tt altında iç içe) açarsanız, Products koleksiyonunun **ObservableListSource @ no__t-1Product @ no__t-2**türünde olduğunu görmeniz gerekir.
 
 Projeyi derleyin.
 
@@ -267,21 +267,21 @@ Projeyi derleyin.
 
 EF, gezinti özelliğine ilk kez eriştiğinizde ilgili varlıkları veritabanından otomatik olarak yükleme seçeneği sunar. Bu yükleme türü (yavaş yükleme olarak adlandırılır) ile, her gezinti özelliğine ilk kez eriştiğinizde, içerik bağlamda değilse veritabanına karşı ayrı bir sorgu yürütülecektir.
 
-POCO varlık türleri kullanılırken, EF, çalışma zamanı sırasında türetilmiş proxy türlerinin örneklerini oluşturarak ve sonra yükleme kancasını eklemek için sınıflarınızda sanal özellikleri geçersiz kılarak geç yüklemeye erişir. İlgili nesnelerin geç yüklemesini almak için, gezinti özelliği alıcıları ' ı **Public** ve **Virtual** (Visual Basic) olarak bildirmeniz ve sınıfınız mühürlenmemelidir (Visual Basic içinde**NotOverridable** ) . Database First gezinti özelliklerinin kullanılması, yavaş yüklemeyi etkinleştirmek için otomatik olarak sanal hale getirilir. Code First bölümünde, aynı nedenden dolayı gezinti özelliklerini sanal hale getirmeyi seçtik
+POCO varlık türleri kullanılırken, EF, çalışma zamanı sırasında türetilmiş proxy türlerinin örneklerini oluşturarak ve sonra yükleme kancasını eklemek için sınıflarınızda sanal özellikleri geçersiz kılarak geç yüklemeye erişir. İlgili nesnelerin geç yüklemesini almak için, gezinti özelliği alıcıları ' ı **Public** ve **Virtual** (Visual Basic) olarak bildirmeniz ve sınıfınız **mühürlenmemelidir** **(Visual Basic** içinde**NotOverridable** ). Database First gezinti özelliklerinin kullanılması, yavaş yüklemeyi etkinleştirmek için otomatik olarak sanal hale getirilir. Code First bölümünde, aynı nedenden dolayı gezinti özelliklerini sanal hale getirmeyi seçtik
 
 ## <a name="bind-object-to-controls"></a>Nesneyi denetimlere bağlama
 
 Bu WinForms uygulaması için modelde tanımlanan sınıfları veri kaynağı olarak ekleyin.
 
--   Ana menüden **&gt; proje-yeni veri kaynağı Ekle...** öğesini seçin.
-    (Visual Studio 2010 ' de, **&gt; veri-yeni veri kaynağı Ekle...** ' i seçmeniz gerekir.)
+-   Ana menüden **Proje-&gt; yeni veri kaynağı Ekle...** seçeneğini belirleyin.
+    (Visual Studio 2010 ' de, veri @no__t seçmeniz gerekir- **1 yeni veri kaynağı Ekle...** )
 -   Veri kaynağı türü seçin penceresinde, **nesne** ' yi seçin ve **İleri** ' ye tıklayın.
 -   Veri nesnelerini seçin iletişim kutusunda, **Winformyüzthefsample** 'ın iki kez katlamayı kaldırın ve **Kategori** ' yi seçin. Bu, ürün veri kaynağını seçmek zorunda kalmaz.
 
-    ![veri kaynağı](~/ef6/media/datasource.png)
+    ![Veri Kaynağı](~/ef6/media/datasource.png)
 
 -   Son ' a tıklayın **.**
-    Veri kaynakları penceresi görüntülenmiyorsa, **Görünüm-&gt; diğer Windows&gt; -veri kaynakları** ' nı seçin.
+    Veri kaynakları penceresi görüntülenmiyorsa, **diğer Windows-&gt; veri kaynaklarını görüntüle-&gt;** ' i seçin
 -   Veri kaynakları penceresi otomatik olarak gizlenmemesi için Sabitle simgesine basın. Pencere zaten görünür durumdaysa Yenile düğmesine vurması gerekebilir.
 
     ![Veri kaynağı 2](~/ef6/media/datasource2.png)
@@ -304,7 +304,7 @@ Bu WinForms uygulaması için modelde tanımlanan sınıfları veri kaynağı ol
 
     ![Form 1 Tasarımcısı](~/ef6/media/form1-designer.png)
 
--   Düğmeye çift tıklayarak Kaydet düğmesine ait olay işleyicisini ekleyin. Bu işlem olay işleyicisini ekler ve sizi form için arka plan koduna getirir. **\_Categorybindinggezgintorsaveıtem Click** olay işleyicisi kodu bir sonraki bölüme eklenecektir.
+-   Düğmeye çift tıklayarak Kaydet düğmesine ait olay işleyicisini ekleyin. Bu işlem olay işleyicisini ekler ve sizi form için arka plan koduna getirir. **Categorybindinggezgintorsaveıtem @ no__t-1Click** olay işleyicisi kodu bir sonraki bölüme eklenecektir.
 
 ## <a name="add-the-code-that-handles-data-interaction"></a>Veri etkileşimini Işleyen kodu ekleyin
 

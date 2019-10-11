@@ -1,46 +1,46 @@
 ---
-title: Yeni bir veritabanı - EF6 öncelikle kod
+title: Yeni bir veritabanına Code First-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 2df6cb0a-7d8b-4e28-9d05-e2b9a90125af
-ms.openlocfilehash: a19db575b685cde98509fff4a0efaf26106b26bc
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: d540fc6e84049f345ae22998f94c309e0be73fc3
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46284128"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182565"
 ---
-# <a name="code-first-to-a-new-database"></a>Yeni bir veritabanına ilk kod
-Bu video ve adım adım kılavuz, yeni bir veritabanını hedefleyen Code First geliştirmeye giriş sağlar. Mevcut bir veritabanını hedefleyen bu senaryo içerir ve Code First oluşturur ya da boş bir veritabanı, Code First yeni tablolara ekleyeceksiniz. Kod ilk sağlar, C kullanarak modelinizi tanımlamanızı\# veya VB.Net sınıflar. Ek yapılandırma, sınıfları ve özellikleri ya da fluent API'sini kullanarak özniteliklerini kullanarak isteğe bağlı olarak gerçekleştirilebilir.
+# <a name="code-first-to-a-new-database"></a>Yeni bir veritabanına Code First
+Bu video ve adım adım yönergeler, yeni bir veritabanını hedefleyen Code First geliştirmeye yönelik bir giriş sağlar. Bu senaryo, mevcut olmayan bir veritabanının hedeflenmesini ve Code First oluşturulacağını ve Code First yeni tablolar ekleyecek boş bir veritabanı içerir. Code First, modelinizi C @ no__t-0 veya VB.Net sınıfları kullanarak tanımlamanızı sağlar. Ek yapılandırma, isteğe bağlı olarak sınıflarınızda ve özelliklerde öznitelikler kullanılarak veya bir Fluent API kullanılarak gerçekleştirilebilir.
 
 ## <a name="watch-the-video"></a>Videoyu izleyin
-Bu videoda yeni bir veritabanını hedefleyen Code First geliştirmeye giriş sağlar. Mevcut bir veritabanını hedefleyen bu senaryo içerir ve Code First oluşturur ya da boş bir veritabanı, Code First yeni tablolara ekleyeceksiniz. Kod ilk C# veya VB.Net sınıflarını kullanarak modelinizi tanımlamanızı sağlar. Ek yapılandırma, sınıfları ve özellikleri ya da fluent API'sini kullanarak özniteliklerini kullanarak isteğe bağlı olarak gerçekleştirilebilir.
+Bu videoda yeni bir veritabanını hedefleyen Code First geliştirmeye yönelik bir giriş sunulmaktadır. Bu senaryo, mevcut olmayan bir veritabanının hedeflenmesini ve Code First oluşturulacağını ve Code First yeni tablolar ekleyecek boş bir veritabanı içerir. Code First, veya VB.Net sınıfları kullanarak C# modelinizi tanımlamanızı sağlar. Ek yapılandırma, isteğe bağlı olarak sınıflarınızda ve özelliklerde öznitelikler kullanılarak veya bir Fluent API kullanılarak gerçekleştirilebilir.
 
-**Tarafından sunulan**: [Rowan Miller](http://romiller.com/)
+**Sunulma ölçütü**: [ROWA Miller](https://romiller.com/)
 
 **Video**: [WMV](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.wmv) | [MP4](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-mp4Video-CodeFirstNewDatabase.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.zip)
 
-## <a name="pre-requisites"></a>Ön koşullar
+## <a name="pre-requisites"></a>Önkoşulların önkoşulları
 
-Bu izlenecek yolu tamamlamak için Visual Studio 2012 yüklü veya en az Visual Studio 2010 olması gerekir.
+Bu izlenecek yolu tamamlamak için en az Visual Studio 2010 veya Visual Studio 2012 yüklü olmalıdır.
 
-Visual Studio 2010 kullanıyorsanız, aynı zamanda sahip gerekecektir [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklü.
+Visual Studio 2010 kullanıyorsanız, [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) ' in yüklü olması gerekir.
 
-## <a name="1-create-the-application"></a>1. Uygulama oluşturma
+## <a name="1-create-the-application"></a>1. Uygulamayı oluşturma
 
-Örneği basit tutmak için bunu bir veri erişimi gerçekleştirdiği Code First kullanan temel bir konsol uygulaması oluşturmak için dağıtacağız.
+Şeyleri basit tutmak için veri erişimi gerçekleştirmek üzere Code First kullanan temel bir konsol uygulaması oluşturacağız.
 
--   Visual Studio'yu Aç
--   **Dosya -&gt; yeni -&gt; proje...**
--   Seçin **Windows** sol menüden ve **konsol uygulaması**
--   Girin **CodeFirstNewDatabaseSample** adı
--   Seçin **Tamam**
+-   Visual Studio 'Yu aç
+-   **Dosya-&gt; yeni-&gt; proje...**
+-   Sol taraftaki menüden ve **konsol uygulamasından** **Windows** ' u seçin
+-   Ad olarak **Codefırstnewdatabasesample** girin
+-   **Tamam 'ı** seçin
 
 ## <a name="2-create-the-model"></a>2. Model oluşturma
 
-Sınıfları kullanarak basit bir model tanımlayalım. Biz yalnızca bunları Program.cs dosyasındaki ancak ayrı dosyalar ve büyük olasılıkla ayrı proje sınıflarınızı kullanıma ayırırsınız gerçek dünya uygulamasında tanımlayacağınız.
+Sınıfları kullanarak çok basit bir model tanımlayalim. Bunları Program.cs dosyasında, ancak gerçek bir dünya uygulamasında tanımladıktan sonra, sınıflarınızı ayrı dosyalara ve potansiyel olarak ayrı bir projeye böyorsunuz.
 
-Program.cs Program sınıf tanımında altına aşağıdaki iki sınıf ekleyin.
+Program.cs içindeki program sınıfı tanımının altında aşağıdaki iki sınıfı ekleyin.
 
 ``` csharp
 public class Blog
@@ -62,27 +62,27 @@ public class Post
 }
 ```
 
-İki Gezinti özellikleri (Blog.Posts ve Post.Blog) sanal yapıyoruz olduğunu fark edeceksiniz. Bu, Entity Framework'ün yavaş Yükleme özelliği sağlar. Yavaş yükleniyor, bunları erişmeye çalışırken bu özellikleri içeriğini otomatik olarak veritabanından yükleneceğini belirten anlamına gelir.
+İki gezinti özelliğini (blog. Post ve post. blog) sanal hale getiriyoruz. Bu, Entity Framework yavaş yükleme özelliğini sunar. Yavaş yükleme, bu özelliklerin içeriğinin, erişmeye çalıştığınızda veritabanından otomatik olarak yükleneceğini gösterir.
 
-## <a name="3-create-a-context"></a>3. Bir bağlam oluşturma
+## <a name="3-create-a-context"></a>3. Bağlam oluşturma
 
-Artık sorgu ve veri kaydetmek bize izin vererek, veritabanı ile bir oturumu temsil eden bir türetilmiş içeriği tanımlamak için zamanı geldi. System.Data.Entity.DbContext türetilir ve bir türü belirtilmiş olan DB sunan bir bağlam tanımlarız&lt;TEntity&gt; modelimizi her sınıf için.
+Şimdi, veritabanı ile bir oturumu temsil eden ve verileri sorgulayıp kaydedebileceğimizi sağlayan bir türetilmiş bağlam tanımlama zamanı. System. Data. Entity. DbContext öğesinden türeten bir bağlam tanımladık ve modelimizin her bir sınıfı için türü belirtilmiş bir DbSet @ no__t-0TEntity @ no__t-1 ' i kullanıma sunduk.
 
-Şu anda yüzden EntityFramework NuGet paketini eklemek Entity Framework türlerinden kullanılacak başlatılıyor.
+Artık Entity Framework türleri kullanmaya başladık, bu yüzden EntityFramework NuGet paketini eklememiz gerekiyor.
 
--   **Proje –&gt; NuGet paketlerini Yönet...**
-    Not: yoksa **NuGet paketlerini Yönet...** seçeneğini yüklemelisiniz [en son NuGet sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)
--   Seçin **çevrimiçi** sekmesi
--   Seçin **EntityFramework** paket
--   Tıklayın **yükleyin**
+-   **Proje – &gt; NuGet Paketlerini Yönet...**
+    Not: **NuGet Paketlerini Yönet..** . [en son NuGet sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklemelisiniz.
+-   **Çevrimiçi** sekmesini seçin
+-   **EntityFramework** paketini seçin
+-   **Install** 'a tıklayın
 
-Kullanarak bir ekleme deyimi Program.cs dosyasının üst System.Data.Entity için.
+Program.cs 'in en üstünde System. Data. Entity için bir using açıklaması ekleyin.
 
 ``` csharp
 using System.Data.Entity;
 ```
 
-Program.cs sınıfında postanın aşağıdaki türetilmiş bağlam ekleyin.
+Program.cs ' deki Post sınıfının altında aşağıdaki türetilmiş bağlamı ekleyin.
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -92,7 +92,7 @@ public class BloggingContext : DbContext
 }
 ```
 
-Ne Program.cs artık içermelidir, tam bir listesi aşağıda verilmiştir.
+İşte Program.cs 'in neleri içermesi gerektiğine ilişkin ayrıntılı bir liste aşağıda verilmiştir.
 
 ``` csharp
 using System;
@@ -137,11 +137,11 @@ namespace CodeFirstNewDatabaseSample
 }
 ```
 
-Biz depolamak ve almak veri başlatmak için ihtiyacınız olan tüm kod olmasıdır. Kuşkusuz arka planda geçmeden oldukça bit yoktur ve ilk ancak bir dakika içinde şimdi nasıl çalıştığını görün, biz göz atacağız.
+Bu, veri depolamayı ve almayı başlatmak için gerekli olan tüm kodlarda bulunur. Arka planda oldukça bir bit olduğu açıktır, ancak kısa bir süre içinde göz atacağız, ancak önce bunu eylemde görlim.
 
-## <a name="4-reading--writing-data"></a>4. Okuma ve yazma veri
+## <a name="4-reading--writing-data"></a>4. Verileri okuma & yazma
 
-Main yöntemi program.cs'ye aşağıda gösterildiği gibi uygulayın. Bu kod, bizim bağlam yeni bir örneğini oluşturur ve yeni bir Blog eklemek için kullanır. Ardından veritabanından başlığa göre alfabetik olarak sıralanmış tüm blogları almak için LINQ sorgusu kullanır.
+Ana yöntemi aşağıda gösterildiği gibi Program.cs ' de uygulayın. Bu kod, bağlamımız yeni bir örnek oluşturur ve yeni bir blog eklemek için onu kullanır. Daha sonra, bir LINQ sorgusu kullanarak, veritabanındaki tüm blogları başlık sırasına göre sıralanmış olarak alır.
 
 ``` csharp
 class Program
@@ -176,9 +176,9 @@ class Program
 }
 ```
 
-Şimdi uygulamayı çalıştırmak ve test etmek.
+Şimdi uygulamayı çalıştırabilir ve test edebilirsiniz.
 
-```
+```console
 Enter a name for a new Blog: ADO.NET Blog
 All blogs in the database:
 ADO.NET Blog
@@ -186,44 +186,44 @@ Press any key to exit...
 ```
 ### <a name="wheres-my-data"></a>Verilerim nerede?
 
-Kural gereği DbContext sizin için bir veritabanı oluşturdu.
+Kurala göre DbContext sizin için bir veritabanı oluşturdu.
 
--   (Visual Studio 2010 ile varsayılan olarak yüklenir) yerel bir SQL Express örneği varsa ardından Code First veritabanı bu örnekte oluşturdu
--   SQL Express kullanılamıyor durumunda Code First çalıştığında ve [LocalDB](https://msdn.microsoft.com/library/hh510202(v=sql.110).aspx) (Visual Studio 2012 ile varsayılan olarak yüklenir)
--   Sonra bu örnekte türetilen bağlamı tam olarak nitelenmiş adını adlı veritabanı **CodeFirstNewDatabaseSample.BloggingContext**
+-   Yerel bir SQL Express örneği varsa (Visual Studio 2010 ile varsayılan olarak yüklenir) Code First, bu örnekte veritabanını oluşturmuştur
+-   SQL Express kullanılamazsa Code First, [LocalDB](https://msdn.microsoft.com/library/hh510202(v=sql.110).aspx) 'yi dener ve kullanır (Visual Studio 2012 ile varsayılan olarak yüklenir)
+-   Veritabanı, türetilmiş bağlamın tam adından sonra, **Codefırstnewdatabasesample. BloggingContext** ile adlandırılır
 
-Bunlar yalnızca varsayılan kuralları ve Code First kullandığı veritabanını değiştirmek için çeşitli yolları vardır, daha fazla bilgi kullanılabilir **DbContext Model ve veritabanı bağlantısını nasıl bulur** konu.
-Visual Studio'da Sunucu Gezgini kullanarak bu veritabanına bağlanabilir
+Bunlar yalnızca varsayılan kurallardır ve Code First kullanan veritabanını değiştirmek için çeşitli yollar vardır. **DbContext 'In model ve veritabanı bağlantısını nasıl bulduğu hakkında** daha fazla bilgi bulabilirsiniz.
+Visual Studio 'da Sunucu Gezgini kullanarak bu veritabanına bağlanabilirsiniz
 
--   **Görünüm -&gt; Sunucu Gezgini**
--   Sağ tıklayın **veri bağlantıları** seçip **bağlantı ekle...**
--   Sunucu gezgininden veritabanına bağlamadıysanız önce Microsoft SQL Server veri kaynağı olarak seçmeniz gerekir
+-   **@No__t-1 Sunucu Gezgini görüntüle**
+-   **Veri bağlantıları** ' na sağ tıklayın ve **bağlantı ekle...** seçeneğini belirleyin.
+-   Sunucu Gezgini bir veritabanına bağlı değilseniz, veri kaynağı olarak Microsoft SQL Server seçmeniz gerekir
 
     ![Veri kaynağını seçin](~/ef6/media/selectdatasource.png)
 
--   LocalDB veya hangisinin bağlı olarak yüklediğiniz SQL Express için Bağlan
+-   Hangi hangisinin yüklü olduğuna bağlı olarak, LocalDB veya SQL Express 'e bağlanın
 
-Biz, artık Code First oluşturulan şema inceleyebilirsiniz.
+Artık Code First oluşturulan şemayı inceleyebilirsiniz.
 
-![Şema başlangıç](~/ef6/media/schemainitial.png)
+![Ilk şema](~/ef6/media/schemainitial.png)
 
-Biz tanımlanmış olan DB özelliklerine bakarak tarafından modele dahil edilecek sınıfları dışarı DbContext çalışmıştır. Ardından kod öncelikli kurallar varsayılan kümesini kullanır tablo ve sütun adları belirlemek, veri türlerini belirlemek için birincil anahtarlar vb. bulun. Bu kuralları nasıl kılabilirsiniz Bu izlenecek yolda inceleyeceğiz.
+DbContext, tanımladığımız DbSet özelliklerine bakarak modele hangi sınıfların dahil edileceğini çalıştı. Daha sonra tablo ve sütun adlarını belirleme, veri türlerini belirleme, birincil anahtarları bulma vb. için varsayılan Code First kuralları kümesini kullanır. Bu izlenecek yolda daha sonra bu kuralları nasıl geçersiz kılabileceğiniz hakkında bakacağız.
 
-## <a name="5-dealing-with-model-changes"></a>5. Model değişikliklerle ilgilenme
+## <a name="5-dealing-with-model-changes"></a>5. Model değişiklikleriyle ilgili
 
-Artık size ayrıca veritabanı şemasını güncelleştirmek için ihtiyacımız olan bu değişiklikler yaptığınızda modelimiz için bazı değişiklikler yapmanız gerekebileceğini zamanı geldi. Bunu yapmak için Code First Migrations veya geçirilmesi için kısa adlı bir özelliği kullanmak için kullanacağız.
+Artık modelinizde bazı değişiklikler yapma zamanı, bu değişiklikleri yaptığımız için de veritabanı şemasını güncelleştirmemiz gerekiyor. Bunu yapmak için Code First Migrations veya kısa geçişler adlı bir özellik kullanacağız.
 
-Geçişleri bize (yükseltme ve düşürme), veritabanı şemasını açıklayan adımlar sıralı bir dizi olmasını sağlar. Bir geçiş bilinen, bu adımların her biri, değişikliklerin uygulanması için açıklayan bazı kod içerir. 
+Geçişler, veritabanı Şemamızı yükseltme (ve düşürme) hakkında sıralı bir adım kümesine sahip olmamızı sağlar. Geçiş olarak bilinen bu adımların her biri, uygulanacak değişiklikleri açıklayan bir kod içerir. 
 
-İlk adım, bizim BloggingContext için Code First Migrations etkinleştirmektir.
+İlk adım, BloggingContext için Code First Migrations etkinleştirmektir.
 
--   **Araçlar -&gt; kitaplık Paket Yöneticisi -&gt; Paket Yöneticisi Konsolu**
--   Çalıştırma **etkinleştir geçişleri** komutunu Paket Yöneticisi Konsolu
--   Yeni bir geçiş klasör iki öğe içeren bizim projeye eklendi:
-    -   **Configuration.cs** – bu dosya geçişleri geçirmek için kullanacağı ayarları içeren BloggingContext. Bu izlenecek yol için herhangi bir ayarı değiştirmek gerekmez, ancak burada kayıt sağlayıcıları diğer veritabanları için çekirdek veri değişiklikleri ad alanı belirleyebileceğiniz geçişler vb. içinde oluşturulur.
-    -   **&lt;zaman damgası&gt;\_InitialCreate.cs** – Bu, ilk geçiş, blog ve gönderi tablolar içeren bir boş bir veritabanı yüklenmesini gerçekleştirilecek veritabanına zaten uygulanmış olan değişiklikleri gösterir . Biz Code First otomatik olarak izin vermesine rağmen bu tablolar bir geçiş dönüştürülmüş geçişler için biz de verdiniz göre bize oluşturun. Kod, ayrıca bu geçiş zaten uygulanmış bizim yerel veritabanında ilk kaydetti. Zaman damgası dosya çubuğunda amacıyla sıralamak için kullanılır.
+-   **Araçlar-&gt; kitaplık Paket Yöneticisi-&gt; Paket Yöneticisi konsolu**
+-   Paket Yöneticisi konsolunda **Etkinleştir-geçişleri** komutunu çalıştırın
+-   Projenize iki öğe içeren yeni bir geçişler klasörü eklenmiştir:
+    -   **Configuration.cs** – bu dosya geçişleri BloggingContext geçirmek için kullanılacak ayarları içerir. Bu izlenecek yol için herhangi bir şeyi değiştirmemiz gerekmez, ancak burada çekirdek verileri belirtebileceğiniz, diğer veritabanları için sağlayıcıları kaydedebileceğiniz, geçişlerin de oluşturulduğu ad alanını değiştiren yer alan yer verilmiştir.
+    -   **&lt;timestamp @ no__t-2\_InitialCreate.cs** – bu ilk geçişiniz. Bu, veritabanını, blogların ve gönderi tablolarının bulunduğu boş bir veritabanı olmasını sağlamak üzere veritabanına uygulanmış olan değişiklikleri temsil eder. Code First, artık bu tabloları bir geçişe dönüştürüldüğünü kabul ettiğimiz için bu tabloları otomatik olarak oluşturmamıza izin veririz. Bu geçişin zaten uygulanmış olduğu yerel veritabanımızda Code First de kaydedilir. Dosya adının zaman damgası, sıralama amacıyla kullanılır.
 
-    Şimdi github'dan modelimiz için değişiklik, Blog sınıfa URL'si özelliği ekleyin:
+    Şimdi modelinizde bir değişiklik yapalim, blog sınıfına bir URL özelliği ekleyin:
 
 ``` csharp
 public class Blog
@@ -236,9 +236,9 @@ public class Blog
 }
 ```
 
--   Çalıştırma **Ekle geçiş AddUrl** Paket Yöneticisi konsolunda komutu.
-    Geçiş Ekle komutunu son geçişinizi bu yana değişiklik olup olmadığını denetler ve bulunan herhangi bir değişiklik ile yeni bir geçiş iskele oluşturulduğunu. Biz geçişleri bir ad verebilirsiniz; Bu durumda biz 'AddUrl' geçiş arıyoruz.
-    İskele kurulan kodu dbo dize verileri tutabilecek, bir Url sütun eklemek ihtiyacımız diyor. Bloglar tablo. Gerekirse, iskele kurulan kodu düzenleme, ancak bu durumda zorunlu değildir.
+-   Paket Yöneticisi konsolundaki **Add-Migration AddUrl** komutunu çalıştırın.
+    Ekle-geçiş komutu, son geçişinizin sonrasında yapılan değişiklikleri denetler ve bulunan değişikliklerle yeni bir geçiş gerçekleştirir. Geçişlerde bir ad verebiliriz; Bu durumda, ' AddUrl ' geçişini arıyoruz.
+    Yapı iskelesi kodu, dize verilerini tutan, dbo 'ya bir URL sütunu eklememiz gerektiğini bildiriyor. Bloglar tablosu. Gerekirse, yapı iskelesi kodunu düzenleyebiliyoruz ancak bu durumda gerekli değildir.
 
 ``` csharp
 namespace CodeFirstNewDatabaseSample.Migrations
@@ -261,18 +261,18 @@ namespace CodeFirstNewDatabaseSample.Migrations
 }
 ```
 
--   Çalıştırma **veritabanını Güncelleştir** Paket Yöneticisi konsolunda komutu. Bu komut tüm bekleyen geçişleri veritabanına uygulanır. Geçişler yalnızca bizim yeni AddUrl geçiş uygulanacak şekilde bizim InitialCreate geçiş zaten uygulanmıştır.
-    İpucu: Kullandığınız **– ayrıntılı** veritabanına karşı yürütülen SQL görmek için Update-veritabanı çağırırken geçin.
+-   Package Manager konsolunda **Update-Database** komutunu çalıştırın. Bu komut, bekleyen tüm geçişleri veritabanına uygular. Yalnızca yeni AddUrl geçişimizi uygulamak için, ınitialcreate geçişimiz zaten uygulandı.
+    İpucuyla Veritabanına göre yürütülmekte olan SQL 'i görmek için Update-Database ' i çağırırken **– verbose** anahtarını kullanabilirsiniz.
 
-Yeni bir Url sütun artık veritabanı blogları tablosuna eklenir:
+Yeni URL sütunu artık veritabanındaki Bloglar tablosuna eklenir:
 
-![URL şeması](~/ef6/media/schemawithurl.png)
+![URL Ile şema](~/ef6/media/schemawithurl.png)
 
-## <a name="6-data-annotations"></a>6. Veri ek açıklamaları
+## <a name="6-data-annotations"></a>6. Veri Açıklamaları
 
-Şu ana kadar biz yalnızca kendi varsayılan kuralları kullanarak model Bul EF bildirdiniz, ancak var olan giderek kez zaman göreceğiniz sınıfların kurallarına uygun olmayan ve daha fazla yapılandırmayı gerçekleştirmek ihtiyacımız olacak. Bu iki seçenek vardır; Bu bölümde veri ek açıklamaları ve sonraki bölümde fluent API'si şu konuları inceleyeceğiz.
+Şu ana kadar, en az bir deyişle, varsayılan kurallarını kullanarak modeli keşfeder, ancak sınıflarımızın kuralları takip etmemesi ve daha fazla yapılandırma gerçekleştirebilmemiz gerekir. Bunun için iki seçenek vardır; Bu bölümdeki veri ek açıklamalarına ve ardından sonraki bölümde Fluent API bakacağız.
 
--   Kullanıcı sınıfı için modelimizi ekleyelim
+-   Modelinize bir Kullanıcı sınıfı ekleyelim
 
 ``` csharp
 public class User
@@ -282,7 +282,7 @@ public class User
 }
 ```
 
--   Biz de müşterilerimizin türetilmiş bağlamına kümesi eklemeniz gerekir
+-   Ayrıca, türetilmiş bağlamımız için bir küme eklememiz gerekir
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -293,14 +293,14 @@ public class BloggingContext : DbContext
 }
 ```
 
--   Bir geçiş eklemek çalıştığında bir hata bildiren elde edebileceğiniz "*EntityType 'User' olan anahtar tanımlanmadı. Anahtar için bu Entitytype'a tanımlayın."* Kullanıcı adı, kullanıcı için birincil anahtarı olmalıdır olduğunu bilmesinin imkanı EF sahip olduğundan.
--   Yüzden kullanarak bir eklemek veri ek açıklamaları kullanmak oluşturacağız deyimini Program.cs dosyasının üst
+-   Bir geçiş eklemeye çalıştık, "*EntityType ' kullanıcısının" tanımlı anahtarı olmadığını belirten bir hata alıyorum. Bu EntityType için anahtarı tanımlayın. "* EF, bu kullanıcı adını bilmenin bir yolu olmadığından Kullanıcı için birincil anahtar olmalıdır.
+-   Şimdi veri ek açıklamalarını kullanacağız. bu nedenle, Program.cs üst kısmına bir using ifadesini eklememiz gerekir
 
-```
+```csharp
 using System.ComponentModel.DataAnnotations;
 ```
 
--   Artık birincil anahtarı olduğunu belirlemek için kullanıcı adı özelliği Not Ekle
+-   Şimdi, birincil anahtar olduğunu belirlemek için username özelliğine not ekleyin
 
 ``` csharp
 public class User
@@ -311,38 +311,38 @@ public class User
 }
 ```
 
--   Kullanım **Ekle geçiş AddUser** bu uygulama için bir geçiş iskele komut, veritabanına değiştirir
--   Çalıştırma **veritabanını Güncelleştir** komut yeni geçiş veritabanına uygulamak için
+-   Bu değişiklikleri veritabanına uygulamak için geçişi bir geçişe bağlamak üzere **Add-Migration AddUser** komutunu kullanın
+-   Veritabanına yeni geçişi uygulamak için **Update-Database** komutunu çalıştırın
 
 Yeni tablo artık veritabanına eklenir:
 
-![Kullanıcı şeması](~/ef6/media/schemawithusers.png)
+![Kullanıcılar Ile şema](~/ef6/media/schemawithusers.png)
 
-EF tarafından desteklenen ek açıklamaları tam listesi verilmiştir:
+EF tarafından desteklenen ek açıklamaların tam listesi:
 
 -   [KeyAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.keyattribute)
 -   [StringLengthAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.stringlengthattribute)
 -   [MaxLengthAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.maxlengthattribute)
 -   [ConcurrencyCheckAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.concurrencycheckattribute)
--   [RequiredAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.requiredattribute)
+-   [RequiredAttribute özniteliğine](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.requiredattribute)
 -   [TimestampAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.timestampattribute)
 -   [ComplexTypeAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.complextypeattribute)
 -   [ColumnAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.columnattribute)
 -   [TableAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.tableattribute)
--   [InversePropertyAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.inversepropertyattribute)
+-   [Ters çevir Sepropertyattribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.inversepropertyattribute)
 -   [ForeignKeyAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.foreignkeyattribute)
 -   [DatabaseGeneratedAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.databasegeneratedattribute)
 -   [NotMappedAttribute](https://msdn.microsoft.com/library/system.componentmodel.dataannotations.schema.notmappedattribute)
 
-## <a name="7-fluent-api"></a>7. Fluent API'si
+## <a name="7-fluent-api"></a>7. Akıcı API
 
-Önceki bölümde tamamlayabilir veya kurala göre algılandı geçersiz kılmak için veri ek açıklamaları kullanarak incelemiştik. Model yapılandırmak için diğer Code First fluent API'si ile yoludur.
+Önceki bölümde, kurala göre algılanıp algılanmadığını tamamlamak veya geçersiz kılmak için veri açıklamalarını kullanma hakkında baktık. Modeli yapılandırmanın diğer yolu Code First Fluent API kullanmaktır.
 
-En fazla model yapılandırma yapılabilir basit veri ek açıklamalarını kullanma. Fluent API'si veri ek açıklamaları ayrıca veri açıklamalarla mümkün bazı daha gelişmiş yapılandırma için yapabileceğiniz her şeyi kapsayan bir model yapılandırması belirterek daha gelişmiş bir yoludur. Veri ek açıklamaları ve fluent API'si birlikte kullanılabilir.
+Çoğu model yapılandırması, basit veri açıklamaları kullanılarak yapılabilir. Fluent API, veri ek açıklamalarıyla ilgili bazı gelişmiş yapılandırmaya ek olarak veri ek açıklamalarının yapabileceği her şeyi içeren model yapılandırması belirtmenin daha gelişmiş bir yoludur. Veri ek açıklamaları ve Fluent API birlikte kullanılabilir.
 
-Fluent API'sine erişmek için DbContext OnModelCreating yöntemi geçersiz kılın. İstedik User.DisplayName görüntülenecek depolanan sütunu yeniden adlandırmak düşünelim\_adı.
+Fluent API erişmek için DbContext içinde Onmodeloluþturma yöntemini geçersiz kılarsınız. Bunun için User. DisplayName 'in depolandığı sütunu, @ no__t-0name ' i gösterecek şekilde yeniden adlandırmanız gerektiğini varsayalım.
 
--   Aşağıdaki kod ile BloggingContext üzerinde OnModelCreating yöntemi geçersiz kılın
+-   Aşağıdaki kodla BloggingContext üzerinde Onmodeloluþturma yöntemini geçersiz kılın
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -360,13 +360,13 @@ public class BloggingContext : DbContext
 }
 ```
 
--   Kullanım **Ekle geçiş ChangeDisplayName** bu uygulama için bir geçiş iskele komut, veritabanına değiştirir.
--   Çalıştırma **veritabanını Güncelleştir** veritabanına yeni geçiş uygulamak için komutu.
+-   Bu değişiklikleri veritabanına uygulamak için geçişi bir geçişe bağlamak üzere **Add-Migration ChangeDisplayName** komutunu kullanın.
+-   Yeni geçişi veritabanına uygulamak için **Update-Database** komutunu çalıştırın.
 
-DisplayName sütun görüntülemek için şimdi adlandırılır\_adı:
+DisplayName sütunu artık @ no__t-0name: ' i görüntüleyecek şekilde yeniden adlandırıldı
 
-![Yeniden adlandırılan görünen adı ile şema](~/ef6/media/schemawithdisplaynamerenamed.png)
+![Görünen adı olan şema yeniden adlandırıldı](~/ef6/media/schemawithdisplaynamerenamed.png)
 
 ## <a name="summary"></a>Özet
 
-Bu izlenecek yolda Code First geliştirme kullanarak yeni bir veritabanı incelemiştik. Biz sınıfları kullanarak bir model tanımlı ardından modelin bir veritabanı oluşturun ve veri depolayıp almak için kullanılır. Veritabanı oluşturulduktan Code First Migrations şema gelişerek modelimizi değiştirmek için kullandık. Ayrıca veri ek açıklamaları ve Fluent API'sini kullanarak bir model yapılandırma gördük.
+Bu izlenecek yolda, yeni bir veritabanı kullanarak Code First geliştirmeye baktık. Sınıfları kullanarak bir model tanımladık ve bu modeli bir veritabanı oluşturmak ve verileri depolamak ve almak için kullandınız. Veritabanı oluşturulduktan sonra, modelimiz gibi şemayı değiştirmek için Code First Migrations kullandınız. Ayrıca, veri ek açıklamalarını ve akıcı API 'YI kullanarak bir modelin nasıl yapılandırılacağını da gördük.

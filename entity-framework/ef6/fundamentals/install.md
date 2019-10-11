@@ -1,63 +1,63 @@
 ---
-title: Entity Framework - EF6 Al
+title: Entity Framework Al-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 122c38a2-f9e8-4ecc-9c72-a83bc9af7814
-ms.openlocfilehash: 7f840a4f9e437ec12f699184339e386976e1528b
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 2bdec6a9be228fbe934d0f46aa1bfafdfb2c971c
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490668"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181733"
 ---
-# <a name="get-entity-framework"></a>Entity Framework Al
-Entity Framework EF araçlarını Visual Studio ve EF çalışma zamanı için oluşur.
+# <a name="get-entity-framework"></a>Entity Framework Alma
+Entity Framework, Visual Studio ve EF çalışma zamanına yönelik EF araçlarından oluşur.
 
 ## <a name="ef-tools-for-visual-studio"></a>Visual Studio için EF araçları
 
-Visual Studio için Entity Framework Tools EF Designer ve EF modeli Sihirbazı'nı içerir ve ilk veritabanı için gerekli olan ve ilk iş akışlarını modellemek. EF aracı, tüm yeni Visual Studio sürümlerinde yer almaktadır. Özel bir yükleme öğesi emin olmak için ihtiyacınız olacak Visual Studio'nun gerçekleştirirseniz "Entity Framework 6 Tools" içeren bir iş yükünü seçme veya ayrı ayrı bir bileşen seçerek seçilir.
+Visual Studio için Entity Framework Tools EF Designer ve EF model Sihirbazı 'nı içerir ve ilk olarak veritabanı ve model ilk iş akışları için gereklidir. EF araçları, Visual Studio 'nun tüm son sürümlerine dahildir. Visual Studio 'nun özel bir yüklemesini gerçekleştirirseniz, "Entity Framework 6 araçları" öğesinin, kendisini içeren bir iş yükü seçerek veya tek bir bileşen olarak seçerek seçili olduğundan emin olmanız gerekir.
 
-Bazı Visual Studio sürümlerini güncelleştirilmiş EF Araçlar bir indirme olarak kullanılabilir. Bkz: [Visual Studio sürümlerini](~/ef6/what-is-new/visual-studio.md) EF Araçlar kullanılabilir en son sürümünü Visual Studio sürümünüz için alma hakkında yönergeler için.
+Visual Studio 'nun bazı eski sürümlerinde, güncelleştirilmiş EF araçları indirme olarak sunulmaktadır. Visual Studio sürümünüz için sunulan en son EF araçları sürümünü nasıl alacağınız hakkında yönergeler için bkz. [Visual Studio sürümleri](~/ef6/what-is-new/visual-studio.md) .
 
 ## <a name="ef-runtime"></a>EF çalışma zamanı
 
-Entity Framework'ün en son sürümü olarak kullanılabilir [EntityFramework NuGet paketi](http://nuget.org/packages/EntityFramework/). NuGet Paket Yöneticisi ile ilgili bilgi sahibi değilseniz okumanızı öneririz [NuGet genel bakış](https://docs.microsoft.com/nuget/consume-packages/overview-and-workflow).
+Entity Framework en son sürümü [EntityFramework NuGet paketi](https://nuget.org/packages/EntityFramework/)olarak kullanılabilir. NuGet Paket Yöneticisi 'Ni tanımıyorsanız, [NuGet genel bakışını](https://docs.microsoft.com/nuget/consume-packages/overview-and-workflow)okumanızı öneririz.
 
-### <a name="installing-the-ef-nuget-package"></a>EF NuGet paketi yükleniyor
+### <a name="installing-the-ef-nuget-package"></a>EF NuGet paketini yükleme
 
-Sağ tıklayarak EntityFramework paketini yükleyebilirsiniz **başvuruları** projenizin klasörü seçerek **NuGet paketlerini Yönet...**
+Projenizin **Başvurular** klasörüne sağ tıklayıp NuGet Paketlerini Yönet ' i seçerek EntityFramework paketini yükleyebilirsiniz **...**
 
-![NuGet paketlerini Yönet](~/ef6/media/managenugetpackages.png)
+![NuGet Paketlerini yönetme](~/ef6/media/managenugetpackages.png)
 
 ### <a name="installing-from-package-manager-console"></a>Paket Yöneticisi konsolundan yükleme
 
-Alternatif olarak, aşağıdaki komutu çalıştırarak EntityFramework yükleyebilirsiniz [Paket Yöneticisi Konsolu](http://docs.nuget.org/docs/start-here/using-the-package-manager-console).
+Alternatif olarak, aşağıdaki komutu [Paket Yöneticisi konsolunda](https://docs.nuget.org/docs/start-here/using-the-package-manager-console)çalıştırarak EntityFramework 'ü yükleyebilirsiniz.
 
 ``` powershell
 Install-Package EntityFramework
 ```
 
-## <a name="installing-a-specific-version-of-ef"></a>EF belirli bir sürümünü yükleme
+## <a name="installing-a-specific-version-of-ef"></a>Belirli bir EF sürümü yükleme
 
-Ve sonraki sürümlerde EF 4.1 EF çalışma zamanının yeni sürümü olarak yayımlanmıştır [EntityFramework NuGet paketi](https://www.nuget.org/packages/EntityFramework/). .NET Framework tabanlı bir proje için bu sürümlerinin herhangi birinin eklenebilir Visual Studio'nun aşağıdaki komutu çalıştırarak [Paket Yöneticisi Konsolu](http://docs.nuget.org/docs/start-here/using-the-package-manager-console):
+EF 4,1 ve sonraki sürümlerinde, EF çalışma zamanının yeni sürümleri [EntityFramework NuGet paketi](https://www.nuget.org/packages/EntityFramework/)olarak yayımlanmıştır. Bu sürümlerden herhangi biri, Visual Studio 'nun [Paket Yöneticisi konsolunda](https://docs.nuget.org/docs/start-here/using-the-package-manager-console)aşağıdaki komutu çalıştırılarak .NET Framework tabanlı bir projeye eklenebilir:
 
 ``` powershell
 Install-Package EntityFramework -Version <number>
 ```
 
-Unutmayın `<number>` EF yüklemek için belirli bir sürümünü temsil eder. Örneğin, 6.2.0 EF 6.2 numaralı sürümüdür.   
+@No__t-0 ' ın yüklenecek EF 'in belirli sürümünü temsil ettiğini unutmayın. Örneğin, 6.2.0, EF 6,2 için sayı sürümüdür.   
 
-EF çalışma zamanları 4.1 önce .NET Framework parçası olan ve ayrı olarak yüklenemez.
+4,1 ' dan önceki EF çalışma zamanları .NET Framework bir parçası ve ayrı olarak yüklenemez.
 
-### <a name="installing-the-latest-preview"></a>En son Önizleme yükleme
+### <a name="installing-the-latest-preview"></a>En son önizlemeyi yükleme
 
-Yukarıdaki yöntemleri en son verecektir Entity Framework'ün yayın'tam olarak desteklenir. Genellikle, deneyin ve bize geri bildirim sağlamak için isteriz kullanılabilir Entity Framework'ün yayın öncesi sürümler vardır.
+Yukarıdaki yöntemler Entity Framework için en son tam olarak desteklenen sürümü verecektir. Denemenizi sevdiğimiz ve bize geri bildirimde bulunmak için sevdiğiniz Entity Framework ön sürüm sürümlerinin çoğu vardır.
 
-EntityFramework seçebileceğiniz en son Önizlemesi'ni yüklemek için **öncesini** NuGet paketlerini Yönet penceresinde. Hiçbir yayın öncesi sürümler kullanılabilir olduğunda otomatik olarak en son erişmenizi sağlayacak tam olarak desteklenen Entity Framework sürümü.
+EntityFramework 'ün en son önizlemesini yüklemek için, NuGet Paketlerini Yönet penceresinde **ön sürümü dahil et** ' i seçebilirsiniz. Herhangi bir ön sürüm sürümü yoksa, Entity Framework en son tamamen desteklenen sürümünü otomatik olarak alırsınız.
 
 ![Ön sürümü dahil et](~/ef6/media/includeprerelease.png)
 
-Alternatif olarak, aşağıdaki komutu çalıştırabilirsiniz [Paket Yöneticisi Konsolu](http://docs.nuget.org/docs/start-here/using-the-package-manager-console).
+Alternatif olarak, [Paket Yöneticisi konsolunda](https://docs.nuget.org/docs/start-here/using-the-package-manager-console)aşağıdaki komutu çalıştırabilirsiniz.
 
 ``` powershell
 Install-Package EntityFramework -Pre

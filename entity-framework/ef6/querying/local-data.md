@@ -1,21 +1,21 @@
 ---
-title: Yerel veriler - EF6
+title: Yerel veri-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 2eda668b-1e5d-487d-9a8c-0e3beef03fcb
-ms.openlocfilehash: 400b9e1337edac1b9fa4f0ec9e1384ca58aa2fbc
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: efd646348d8a18bbeed2d0a0e708d4d36eb26eac
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490460"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182426"
 ---
-# <a name="local-data"></a>Yerel veriler
-Doğrudan olan DB karşı çalışan bir LINQ Sorgu her zaman bir sorgu için veritabanı gönderir, ancak şu anda DbSet.Local özelliğini kullanarak bellek içi verileri erişebilirsiniz. Varlıklarınızı DbContext.Entry ve DbContext.ChangeTracker.Entries yöntemleri kullanma hakkında ek bilgi EF izleme de erişebilirsiniz. Bu konuda gösterilen teknikleri Code First ve EF Designer ile oluşturulan modeller için eşit oranda geçerlidir.  
+# <a name="local-data"></a>Yerel Veriler
+LINQ sorgusunun doğrudan bir DbSet 'e karşı çalıştırılması veritabanına her zaman bir sorgu gönderir, ancak şu anda DbSet. local özelliğini kullanarak bellekteki verilere erişebilirsiniz. DbContext. Entry ve DbContext. ChangeTracker. Entries yöntemlerini kullanarak varlıklarınız hakkında daha fazla bilgi için EF 'e de erişebilirsiniz. Bu konu başlığında gösterilen teknikler Code First ve EF Designer ile oluşturulan modellere eşit olarak uygulanır.  
 
 ## <a name="using-local-to-look-at-local-data"></a>Yerel verilere bakmak için yerel kullanma  
 
-Yerel bir özellik olan DB, şu anda bağlam izlendiğini ve silinmiş ' işaretlenmemiş varlıkları kümesinin basit erişim sağlar. Yerel özellik erişim asla veritabanına gönderilmek üzere bir sorgu neden olur. Bu, bir sorgu zaten gerçekleştirildikten sonra genellikle kullanıldığını anlamına gelir. Yük genişletme yöntemi, böylece sonuçları içerik izleyen bir sorgu yürütmek için kullanılabilir. Örneğin:  
+DbSet 'in yerel özelliği, şu anda bağlam tarafından izlenmekte olan ve silinmiş olarak işaretlenmeyen, küme varlıklarına basit erişim sağlar. Yerel özelliğe erişim hiçbir şekilde bir sorgunun veritabanına gönderilmesine neden olmaz. Bu, genellikle bir sorgu daha önce gerçekleştirildikten sonra kullanıldığı anlamına gelir. Yük uzantısı metodu, içeriğin sonuçları izlemesi için bir sorgu yürütmek üzere kullanılabilir. Örneğin:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -53,9 +53,9 @@ using (var context = new BloggingContext())
 }
 ```  
 
--'ADO.NET Blog' bir BlogId 1 ile - ve 'Visual Studio Blog' 2'in bir BlogId ile veritabanında iki blog vardı, aşağıdaki çıktıyı bekliyoruz:  
+' ADO.NET blog ' veritabanında iki blogumuz varsa blogID 1 ve ' a Visual Studio blogu ' ile bir blogID 2-şu çıktıyı bekleyebilir:  
 
-```  
+```console
 In Local:
 Found 0: My New Blog with state Added
 Found 2: The Visual Studio Blog with state Unchanged
@@ -65,21 +65,21 @@ Found 1: ADO.NET Blog with state Deleted
 Found 2: The Visual Studio Blog with state Unchanged
 ```  
 
-Bu, üç nokta gösterilmektedir:  
+Bu üç noktayı gösterir:  
 
-- Bunu henüz veritabanına kaydedilmedi olsa bile yeni blog 'My Yeni Blog' yerel koleksiyona dahil edilir. Veritabanı henüz varlık için gerçek bir anahtar oluşturmamıştır için bu blog sıfır birincil bir anahtar içeriyor.  
-- Hala bağlam tarafından izleniyor olsa bile 'ADO.NET Blog' yerel koleksiyona dahil edilmez. Böylece bu silindi olarak işaretleme olan DB kaldırdık olmasıdır.  
-- Bir sorguyu gerçekleştirmek için olan DB kullanıldığında (ADO.NET Blog) silinmek üzere işaretlenmiş blog sonuçlarda yer ve veritabanına kaydedilmedi yeni blog (My Yeni Blog) sonuçlarda yer almaz. Olan DB veritabanında bir sorgu gerçekleştiriyor ve her zaman döndürülen sonuçları veritabanında nedir yansıtmak için budur.  
+- Yeni blog ' yeni blogum ', henüz veritabanına kaydedilmese bile yerel koleksiyona dahil edilir. Veritabanı henüz varlık için gerçek bir anahtar oluşturulmadığı için bu blogun birincil anahtarı sıfır.  
+- ' ADO.NET blogu ', bağlam tarafından izlenmekte olmasına rağmen yerel koleksiyona dahil edilmez. Bunun nedeni, bunu DbSet 'ten kaldırdığımız ve bu nedenle silinmiş olarak işaretliyoruz.  
+- DbSet bir sorgu gerçekleştirmek için kullanıldığında, silinmek üzere işaretlenen blog (ADO.NET blogu) sonuçlara dahil edilir ve henüz veritabanına kaydedilmemiş olan yeni blog (yeni blogum) sonuçlara dahil edilmez. Bunun nedeni, DbSet 'in veritabanına karşı bir sorgu gerçekleştirme ve döndürülen sonuçların her zaman veritabanında neler olduğunu yansıtır.  
 
-## <a name="using-local-to-add-and-remove-entities-from-the-context"></a>Varlıkları bağlamdan ekleyip için yerel kullanma  
+## <a name="using-local-to-add-and-remove-entities-from-the-context"></a>Bağlamdan varlık eklemek ve kaldırmak için yerel kullanma  
 
-Yerel özelliği olan DB döndürür bir [ObservableCollection](https://msdn.microsoft.com/library/ms668604.aspx) eşitleme bağlamı içeriğini kalacak şekilde ölçekledikçe olayları. Bu varlıklar eklenebilir veya yerel koleksiyon veya olan DB kaldırılması gerektiğini anlamına gelir. Ayrıca, bu varlıklarla güncelleştirilen yerel koleksiyonu bağlamına yeni varlıkları getiren sorgular sonuçlanır anlamına gelir. Örneğin:  
+DbSet üzerindeki yerel özellik, olayların içeriğiyle eşitlenmiş olarak kalacak şekilde, olayları bağlayan bir [ObservableCollection](https://msdn.microsoft.com/library/ms668604.aspx) döndürür. Bu, varlıkların yerel koleksiyona ya da DbSet 'e eklenebileceği veya kaldırılabileceği anlamına gelir. Ayrıca, yeni varlıkları içeriğine getiren sorguların, yerel koleksiyonun bu varlıklarla güncelleştirilmesine neden olacağı anlamına gelir. Örneğin:  
 
 ``` csharp
 using (var context = new BloggingContext())
 {
     // Load some posts from the database into the context
-    context.Posts.Where(p => p.Tags.Contains("entity-framework").Load();  
+    context.Posts.Where(p => p.Tags.Contains("entity-framework")).Load();  
 
     // Get the local collection and make some changes to it
     var localPosts = context.Posts.Local;
@@ -119,9 +119,9 @@ using (var context = new BloggingContext())
 }
 ```  
 
-'Entity framework' ve 'asp.net' çıkışı ile etiketlenmiş birkaç gönderileri vardı varsayarsak şunun gibi görünebilir:  
+' Entity-Framework ' ve ' asp.net ' ile etiketlenmiş birkaç gönderi olduğunu varsayarsak, çıktı şuna benzer olabilir:  
 
-```  
+```console
 In Local after entity-framework query:
 Found 3: EF Designer Basics with state Unchanged
 Found 5: EF Code First Basics with state Unchanged
@@ -135,27 +135,27 @@ Found 0: What's New in EF with state Added
 Found 4: ASP.NET Beginners Guide with state Unchanged
 ```  
 
-Bu, üç nokta gösterilmektedir:  
+Bu üç noktayı gösterir:  
 
-- 'EF yenilikler' yeni gönderiye eklenen yerel koleksiyonu eklendi durumu bağlamda tarafından izlenen olur. SaveChanges çağrıldığında bu nedenle veritabanına eklenir.  
-- (EF Başlangıç Kılavuzu) yerel koleksiyondan kaldırıldı post artık bağlam içinde silindi olarak işaretlenir. SaveChanges çağrıldığında bu nedenle veritabanından silinir.  
-- İkinci sorgu bağlamla yüklenen ek post (ASP.NET Başlangıç Kılavuzu) otomatik olarak yerel koleksiyona eklenir.  
+- Yerel koleksiyona eklenen yeni gönderi ' EF 'teki yenilikler ', eklenen durumdaki bağlam tarafından izlenir. Bu, SaveChanges çağrıldığında veritabanına eklenecektir.  
+- Yerel koleksiyondan kaldırılan gönderi (EF son kullanım kılavuzu) artık bağlamda silinmiş olarak işaretlendi. Bu, SaveChanges çağrıldığında veritabanından silinir.  
+- İkinci sorgu ile bağlam içine yüklenen ek gönderi (ASP.NET yeni başlayanlar kılavuzu), yerel koleksiyona otomatik olarak eklenir.  
 
-ObservableCollection performans varlıklar çok sayıda harika değil, çünkü yerel hakkında dikkat edilecek son bir şey olmasıdır. Bu nedenle, bağlam içinde binlerce varlığın ile uğraşıyorsanız yerel bildirilmesi olmayabilir.  
+Yerel hakkında aklınızda bir son şey, ObservableCollection bir performans olduğundan çok sayıda varlık için harika değildir. Bu nedenle, bağlamdaki binlerce varlıkla uğraşıyorsanız yerel kullanılması önerilmez.  
 
-## <a name="using-local-for-wpf-data-binding"></a>WPF veri bağlama için yerel kullanma  
+## <a name="using-local-for-wpf-data-binding"></a>WPF veri bağlaması için yerel kullanma  
 
-ObservableCollection örneği olduğundan doğrudan WPF uygulamasında veri bağlama için olan DB yerel özelliği kullanılabilir. Bu otomatik olarak kullanacağı anlamına gelir önceki bölümlerde açıklandığı gibi eşitleme bağlamı içeriğinden haberdar olun ve bağlama içeriğini otomatik olarak ile eşitlenmiş durumda kalır. Yerel koleksiyon için yerel veritabanı sorgusu hiçbir zaman neden olduğundan bağlamak için herhangi bir şey olması burada verilerle önceden doldurmak gereken unutmayın.  
+DbSet üzerindeki Local özelliği, bir WPF uygulamasında bir ObservableCollection örneği olduğundan doğrudan veri bağlama için kullanılabilir. Önceki bölümlerde açıklandığı gibi bu, içeriğin içeriğiyle eşitlenmiş olarak kalacağı ve bağlam içeriğinin otomatik olarak onunla eşitlenmiş kalacağı anlamına gelir. Yerel koleksiyonun, bir veritabanı sorgusuna hiçbir şey neden olmadığı için bağlanacak bir şey olması için verilerle önceden doldurulması gerektiğini unutmayın.  
 
-Bu tam bir WPF verilerini bağlama örneği için uygun bir yere değildir ancak temel öğeleri şunlardır:  
+Bu, tam bir WPF veri bağlama örneği için uygun bir yer değildir ancak anahtar öğeleri şunlardır:  
 
-- Kurulum bağlama kaynağı  
-- Yerel kümenize özelliği için bağlama  
-- Yerel veritabanına bir sorgu kullanarak doldurun.  
+- Bağlama kaynağı ayarlama  
+- Bu dosyayı, kendi ayarladığınız yerel özelliğine bağlayın  
+- Veritabanını bir sorgu kullanarak yerel olarak doldurun.  
 
-## <a name="wpf-binding-to-navigation-properties"></a>WPF bağlama için Gezinti özellikleri  
+## <a name="wpf-binding-to-navigation-properties"></a>Gezinti özelliklerine WPF bağlama  
 
-Sizin yapmanız durumunda, ana/ayrıntı veri ayrıntılı görünüm birinin varlıklarınızdaki her gezinti özelliği için bağlama isteyebilirsiniz. Bunun çalışmasını sağlamak için kolay bir yolu, gezinti özelliği için ObservableCollection kullanmaktır. Örneğin:  
+Ana/ayrıntı veri bağlama yapıyorsanız, ayrıntı görünümünü varlıklarınızın bir gezinti özelliğine bağlamak isteyebilirsiniz. Bu işi yapmanın kolay bir yolu, gezinti özelliği için bir ObservableCollection kullanmaktır. Örneğin:  
 
 ``` csharp
 public class Blog
@@ -173,9 +173,9 @@ public class Blog
 }
 ```  
 
-## <a name="using-local-to-clean-up-entities-in-savechanges"></a>SaveChanges varlıklarda temizlemek için yerel kullanma  
+## <a name="using-local-to-clean-up-entities-in-savechanges"></a>SaveChanges 'da varlıkları temizlemek için yerel kullanma  
 
-Çoğu durumda bir gezinti özelliği kaldırıldı varlıkları otomatik olarak bağlamında silindi olarak işaretlenmez. Gönderin, ardından bir Post nesnesi Blog.Posts koleksiyondan kaldırırsanız SaveChanges çağrıldığında Örneğin, otomatik olarak silinmez. Ardından silinmesi gerekiyorsa bu Sallantıdaki varlıkları bulun ve bunları SaveChanges çağırmadan önce veya geçersiz kılınan bir SaveChanges bir parçası olarak silindi olarak işaretle gerekebilir. Örneğin:  
+Çoğu durumda, bir gezinti özelliğinden kaldırılan varlıklar bağlamda silinmiş olarak otomatik olarak işaretlenmez. Örneğin, blog. gönderimleri koleksiyonundan bir post nesnesini kaldırırsanız, SaveChanges çağrıldığında bu gönderi otomatik olarak silinmez. Bunun silinmeli olması gerekiyorsa, bu salgze varlıklarını bulmanız ve SaveChanges 'ı veya geçersiz kılınan SaveChanges 'un bir parçası olarak bu varlıkları silinmek üzere işaretlemeniz gerekebilir. Örneğin:  
 
 ``` csharp
 public override int SaveChanges()
@@ -192,23 +192,23 @@ public override int SaveChanges()
 }
 ```  
 
-Yukarıdaki kod, tüm gönderileri ve herhangi bir blog başvurusu silindi olarak yok işaretleri bulmak için yerel koleksiyon kullanır. ToList çağrı gereklidir çünkü koleksiyon Kaldır tarafından aksi durumda değiştirilecek numaralandırılan çağırın. Diğer çoğu durumda ToList kullanmadan önce yerel özellik karşı doğrudan sorgulayabilirsiniz.  
+Yukarıdaki kod, tüm gönderileri bulmak için yerel koleksiyonu kullanır ve silinen bir blog başvurusu olmayan her türlü işareti işaretler. ToList çağrısı gereklidir çünkü aksi takdirde koleksiyon, numaralandırılmakta olan kaldırma çağrısı tarafından değiştirilir. Çoğu durumda, ToList kullanmadan doğrudan yerel özelliğe karşı sorgulayabilirsiniz.  
 
-## <a name="using-local-and-tobindinglist-for-windows-forms-data-binding"></a>Yerel ve ToBindingList için Windows Forms veri bağlama işlemini kullanma  
+## <a name="using-local-and-tobindinglist-for-windows-forms-data-binding"></a>Windows Forms veri bağlama için yerel ve ToBindingList kullanma  
 
-Windows Forms kullanarak doğrudan ObservableCollection tam uygunlukta veri bağlamayı desteklemez. Ancak, önceki bölümlerde açıklanan tüm avantajlarından yararlanabilmek için veri bağlama için olan DB yerel özelliği kullanabilirsiniz. Bu oluşturan ToBindingList uzantı yöntemiyle yaratılabilir sağlanır bir [IBindingList](https://msdn.microsoft.com/library/system.componentmodel.ibindinglist.aspx) alacağından yerel ObservableCollection tarafından.  
+Windows Forms doğrudan ObservableCollection kullanarak tam aslına uygunluk verileri bağlamayı desteklemez. Ancak, önceki bölümlerde açıklanan tüm avantajları almak için veri bağlama için DbSet yerel özelliğini kullanmaya devam edebilirsiniz. Bu, yerel ObservableCollection tarafından desteklenen bir [IBindingList](https://msdn.microsoft.com/library/system.componentmodel.ibindinglist.aspx) uygulamasını oluşturan ToBindingList Extension yöntemi aracılığıyla elde edilir.  
 
-Bu tam bir Windows Forms veri bağlama örneği için uygun bir yere değildir, ancak temel öğeleri şunlardır:  
+Bu, tam Windows Forms veri bağlama örneği için uygun bir yer değildir ancak anahtar öğeleri şunlardır:  
 
-- Bir nesne bağlama kaynağı ayarla  
-- Yerel kümenize Local.ToBindingList() özelliğine bağlama  
-- Veritabanına bir sorgu kullanarak yerel Doldur  
+- Nesne bağlama kaynağı ayarlama  
+- Yerel. ToBindingList () kullanarak kendi ayarladığınız Yerel özelliğe bağlayın  
+- Veritabanını bir sorgu kullanarak yerel olarak doldur  
 
-## <a name="getting-detailed-information-about-tracked-entities"></a>İzlenen varlıkları hakkında ayrıntılı bilgi alma  
+## <a name="getting-detailed-information-about-tracked-entities"></a>İzlenen varlıklar hakkında ayrıntılı bilgi alma  
 
-Bu serideki örneklerin çoğu DbEntityEntry örneği bir varlık için döndürülecek giriş yöntemi kullanın. Bu giriş nesnesi, ardından geçerli durumu gibi varlık hakkında bilgi toplamak için yanı sıra bir ilgili varlığa açıkça yükleme gibi varlık üzerinde işlem gerçekleştirmek için başlangıç noktası olarak görev yapar.  
+Bu dizideki birçok örnek, bir varlık için DbEntityEntry örneği döndürmek üzere entry metodunu kullanır. Bu giriş nesnesi daha sonra varlık hakkında geçerli durumu gibi bilgi toplamak için başlangıç noktası olarak, varlık üzerinde de ilgili bir varlığı açıkça yükleme gibi işlemler gerçekleştirmek için de çalışır.  
 
-Giriş yöntemleri, bağlam tarafından izleniyor çoğu veya tüm varlıklar için DbEntityEntry nesneleri döndürür. Bu, bilgi toplamak veya birçok varlığın yalnızca tek bir giriş yazmak yerine işlemleri sağlar. Örneğin:  
+Giriş yöntemleri, bağlam tarafından izlenen birçok veya tüm varlık için DbEntityEntry nesneleri döndürür. Bu, yalnızca tek bir giriş yerine birçok varlık üzerinde bilgi toplamanıza veya işlem gerçekleştirmenize olanak tanır. Örneğin:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -265,7 +265,7 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Bir yazar ve okuyucu sınıfı örnek sunuyoruz - bu sınıfların her ikisi de IPerson arabirimini uygulayan göreceksiniz.  
+Örneğin, bu sınıfların her ikisi de IPerson arabirimini uygulayan bir yazar ve okuyucu sınıfı sunuyoruz.  
 
 ``` csharp
 public class Author : IPerson
@@ -288,17 +288,17 @@ public interface IPerson
 }
 ```  
 
-Aşağıdaki veriler bir veritabanında sahibiz varsayalım:
+Veritabanında aşağıdaki verilere sahip olduğunu varsayalım:
 
-Blog BlogId ile = 1 ve adı 'ADO.NET Blog' =  
-Blog BlogId ile = 2 ve adı 'Visual Studio Blog' =  
-Blog BlogId ile 3 ve adı = '.NET Framework blogu' =  
-Yazar ile AuthorId = 1 ve adı 'ALi Bloggs' =  
-Okuyucu ile ReaderId = 1 ve ad = 'Turgay elmas'  
+BlogID = 1 ve ad = ' ADO.NET blogu ' ile blog  
+BlogID = 2 ve ad = ' Visual Studio blogu ' ile blog  
+BlogID = 3 ve ad = ' .NET Framework blog ' ile blog  
+AuthorId = 1 ve Name = ' ali Bloggs ' olan yazar  
+Readerıd = 1 ve Name = ' John tikan ' ile okuyucu  
 
-Bir kod çalıştırmasını çıktı aşağıdaki gibi olur:  
+Kodu çalıştırmanın çıkışı şöyle olacaktır:  
 
-```  
+```console
 All tracked entities:
 Found entity of type Blog with state Modified
 Found entity of type Blog with state Deleted
@@ -322,10 +322,10 @@ Found Person Joe Bloggs
 Found Person Jane Doe
 ```  
 
-Bu örnekler birkaç nokta gösterir:  
+Bu örneklerde çeşitli noktaları gösterilmektedir:  
 
-- Giriş yöntemleri girişleri varlıklar için silinen dahil olmak üzere tüm durumlarda döndürür. Karşılaştırmak için bu dışlar yerel varlıkları silindi.  
-- Genel olmayan girişler yöntemi kullanıldığında tüm varlık türlerini girişlerinde döndürülür. Genel girişleri yöntemi kullanıldığında girişleri genel tür örneği olan varlıklar için yalnızca döndürülür. Bu yukarıdaki tüm blogları girişlerini almak için kullanıldı. Ayrıca, girişlerini IPerson uygulamak için tüm varlıkları almak için kullanıldı. Bu, genel tür, gerçek varlık türü yok gösterir.  
-- Nesnelere LINQ, döndürülen sonuçları filtrelemek için kullanılabilir. Bunu yukarıda değiştirilmeden sürece herhangi bir türde varlıkları bulmak için kullanıldı.  
+- Giriş yöntemleri, silinen dahil olmak üzere tüm durumlarda varlıkların girişlerini döndürür. Bunu, silinen varlıkları dışlayan yerel ile karşılaştırın.  
+- Tüm varlık türlerinin girişleri, genel olmayan girişler yöntemi kullanıldığında döndürülür. Genel girişler yöntemi kullanılan girişler yalnızca genel türün örnekleri olan varlıklar için döndürülür. Bu, tüm blogların girişlerini almak için yukarıda kullanıldı. Ayrıca, IPerson uygulayan tüm varlıkların girişlerini almak için de kullanılır. Bu, genel türün gerçek bir varlık türü olması gerektiğini gösterir.  
+- LINQ to Objects döndürülen sonuçları filtrelemek için kullanılabilir. Bu, değiştirildikleri sürece herhangi bir türdeki varlıkları bulmak için yukarıda kullanılmıştır.  
 
-DbEntityEntry örneklerinin her zaman null olmayan bir varlık içerdiğini unutmayın. Bu filtre gerekmez. Bu nedenle ilişki girişlerinin ve saplama girdileri DbEntityEntry örnekleri olarak temsil edilmez.
+DbEntityEntry örneklerinin her zaman null olmayan bir varlık içerdiğini unutmayın. İlişki girişleri ve saplama girdileri, DbEntityEntry örnekleri olarak temsil edilmez, bu nedenle bunlara filtre uygulamanız gerekmez.

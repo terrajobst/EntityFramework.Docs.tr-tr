@@ -1,55 +1,55 @@
 ---
-title: EF6 - Model oluşturma
+title: Model oluşturma-EF6
 author: divega
 ms.date: 07/05/2018
 ms.assetid: 4890228E-CEA1-4595-B8AD-CA81253F8767
-ms.openlocfilehash: c02cdf0550116b703fb6436f8b0c6b064b5d1408
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: bd9843a93121f53518a307c9d2d43b68ae03369c
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283582"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182470"
 ---
 # <a name="creating-a-model"></a>Model Oluşturma
 
-EF modeli, veritabanı tabloları ve sütunları için uygulama sınıfları ve özellikleri nasıl eşleştiği hakkında ayrıntılı bilgi depolar. EF modeli oluşturmak için iki ana yolu vardır:
+EF modeli, uygulama sınıflarının ve özelliklerinin veritabanı tablolarına ve sütunlarına nasıl eşlenme hakkındaki ayrıntıları depolar. EF modeli oluşturmanın iki ana yöntemi vardır:
 
-- **Code First kullanarak**: Geliştirici modelini belirtmek için bir kod yazar. EF modelleri ve eşlemelerin varlık sınıflarını temel çalışma zamanı ve geliştirici tarafından sağlanan ek modeli yapılandırması oluşturur.
+- **Code First kullanma**: Geliştirici, modeli belirtmek için kod yazar. EF, çalışma zamanında model ve eşlemeleri varlık sınıflarına ve geliştirici tarafından belirtilen ek model yapılandırmasına göre oluşturur.
 
-- **EF Designer kullanarak**: Geliştirici kutuları ve EF Designer kullanarak model belirtmek için bir satır çizer. Sonuç olarak oluşan model EDMX uzantılı bir dosyaya XML olarak depolanır. Uygulama etki alanı nesnelerini genellikle kavramsal modelden otomatik olarak oluşturulur.
+- **EF tasarımcısını kullanma**: Geliştirici, EF tasarımcısını kullanarak modeli belirtmek için kutular ve çizgiler çizer. Elde edilen model, EDMX uzantılı bir dosyada XML olarak depolanır. Uygulamanın etki alanı nesneleri, genellikle kavramsal modelden otomatik olarak oluşturulur.
 
 ## <a name="ef-workflows"></a>EF iş akışları
 
-Bu yaklaşımların her ikisi de mevcut bir veritabanını hedefleyen veya 4 farklı akışlarında kaynaklanan yeni bir veritabanı oluşturmak için kullanılabilir.
-İlgili bir sizin için en uygun olduğunu öğrenin:  
+Bu yaklaşımlardan her ikisi de mevcut bir veritabanını hedeflemek veya yeni bir veritabanı oluşturmak için kullanılabilir ve bu da 4 farklı iş akışı elde edilir.
+Sizin için en uygun olanı öğrenin:  
 
-|                                           | Yalnızca kod yazmak istiyorum...                                                                                                                   | Bir tasarımcı kullanmak istediğiniz...                                                                                                                        |
+|                                           | Yalnızca kod yazmak istiyorum...                                                                                                                   | Tasarımcı kullanmak istiyorum...                                                                                                                        |
 |:------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Yeni veritabanı oluşturuluyor**          | [Kullanım **Code First** modelinizi kodun içinde tanımlamak ve ardından bir veritabanı oluşturun.](~/ef6/modeling/code-first/workflows/new-database.md)           | [Kullanım **modeli ilk** kutuları ve satırları kullanarak modelinizi tanımlayın ve ardından bir veritabanı oluşturun.](~/ef6/modeling/designer/workflows/model-first.md)   |
-| **Mevcut bir veritabanına erişmek istiyorum** | [Kullanım **Code First** mevcut bir veritabanına eşleyen bir göre kod modeli oluşturun.](~/ef6/modeling/code-first/workflows/existing-database.md) | [Kullanım **veritabanı ilk** mevcut bir veritabanına eşler kutuları ve satırları modeli oluşturun.](~/ef6/modeling/designer/workflows/database-first.md) |
+| **Yeni bir veritabanı oluşturdum**          | [Modelinizi kodda tanımlamak ve sonra bir veritabanı oluşturmak için **Code First** kullanın.](~/ef6/modeling/code-first/workflows/new-database.md)           | [Kutuları ve çizgileri kullanarak modelinizi tanımlamak ve sonra bir veritabanı oluşturmak için **model First** kullanın.](~/ef6/modeling/designer/workflows/model-first.md)   |
+| **Var olan bir veritabanına erişebilmem gerekiyor** | [Mevcut bir veritabanıyla eşleşen kod tabanlı bir model oluşturmak için **Code First** kullanın.](~/ef6/modeling/code-first/workflows/existing-database.md) | [Mevcut bir veritabanıyla eşleşen kutular ve satırlar modeli oluşturmak için **Database First** kullanın.](~/ef6/modeling/designer/workflows/database-first.md) |
 
-### <a name="watch-the-video-what-ef-workflow-should-i-use"></a>Videoyu izleyin: hangi EF iş akışı kullanmalıyım?
+### <a name="watch-the-video-what-ef-workflow-should-i-use"></a>Videoyu izleyin: Hangi EF iş akışını kullanmalıyım?
 
-Bu kısa video farklar ve sizin için doğru olanı bulmak nasıl açıklar.
+Bu kısa videoda, farklar ve sizin için uygun olanı bulma açıklanmaktadır.
 
-**Tarafından sunulan**: [Rowan Miller](http://romiller.com/)
+**Sunulma ölçütü**: [ROWA Miller](https://romiller.com/)
 
-![Hangi iş akışı Thumb](../media/whichworkflow-thumb.png) [WMV](https://download.microsoft.com/download/8/F/8/8F81F4CD-3678-4229-8D79-0C63FFA3C595/HDI_ITPro_Technet_winvideo_ChoseYourWorkflow.wmv) | [MP4](https://download.microsoft.com/download/8/F/8/8F81F4CD-3678-4229-8D79-0C63FFA3C595/HDI_ITPro_Technet_mp4video_ChoseYourWorkflow.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/8/F/8/8F81F4CD-3678-4229-8D79-0C63FFA3C595/HDI_ITPro_Technet_winvideo_ChoseYourWorkflow.zip)
+![Hangi Iş akışı parmak izi @ no__t-1 [WMV](https://download.microsoft.com/download/8/F/8/8F81F4CD-3678-4229-8D79-0C63FFA3C595/HDI_ITPro_Technet_winvideo_ChoseYourWorkflow.wmv) | [MP4](https://download.microsoft.com/download/8/F/8/8F81F4CD-3678-4229-8D79-0C63FFA3C595/HDI_ITPro_Technet_mp4video_ChoseYourWorkflow.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/8/F/8/8F81F4CD-3678-4229-8D79-0C63FFA3C595/HDI_ITPro_Technet_winvideo_ChoseYourWorkflow.zip)
 
-Sonra hala EF Designer veya Code First kullanmak istediğinize karar rahat hissine kapılmayın videoyu varsa, her ikisi de öğrenin!
+Videoyu izlerken, EF tasarımcısını veya Code First kullanmak istiyorsanız, her ikisini de öğrenin!
 
-## <a name="a-look-under-the-hood"></a>Başlık altında bir görünüm
+## <a name="a-look-under-the-hood"></a>Ele bir görünüm
 
-Code First veya EF Designer kullanmadığınıza bakılmaksızın, EF modeli her zaman birçok bileşenden oluşur:
+Code First veya EF Designer ' ı kullanıp kullanmadığına bakılmaksızın bir EF modelinin her zaman birkaç bileşeni vardır:
 
-- Uygulama etki alanı nesnelerini veya varlık kendilerini yazar. Bu genellikle nesne katmanı olarak adlandırılır
+- Uygulamanın etki alanı nesneleri veya varlık türleri. Bu, genellikle nesne katmanı olarak adlandırılır
 
-- Etki alanına özgü varlık türleri ve ilişkileri kullanarak açıklanan oluşan kavramsal bir modeli [varlık veri modeli](~/ef6/resources/glossary.md#entity-data-model). Bu katman, genellikle "C" harfi için adlandırılır _kavramsal_.
+- [Varlık veri modeli](~/ef6/resources/glossary.md#entity-data-model)kullanarak açıklanan, etki alanına özgü varlık türlerinden ve ilişkilerinden oluşan kavramsal bir model. Bu katmana genellikle _kavramsal_olarak "C" harfiyle başvurulur.
 
-- Tabloları, sütunları ve ilişkileri veritabanında tanımlanan temsil eden bir depolama model. Bu katman, genellikle daha sonra "S", için adlandırılır _depolama_.  
+- Veritabanında tanımlanan tabloları, sütunları ve ilişkileri temsil eden bir depolama modeli. Bu katman genellikle _depolama_için daha sonraki "S" ile adlandırılır.  
 
-- Kavramsal model ve veritabanı şeması arasındaki eşlemeyi. Bu eşleme, genellikle "C-S" eşlemesi olarak da adlandırılır.
+- Kavramsal model ve veritabanı şeması arasındaki eşleme. Bu eşleme, genellikle "C-S" eşlemesi olarak adlandırılır.
 
-"C-S" varlıklar üzerinde işlemler dönüştürme - gibi oluşturma, okuma, güncelleştirme ve silme - eşdeğer işlemler veritabanındaki tablolar karşı eşleme EF'ın eşleme altyapısından yararlanır.
+EF 'in eşleme altyapısı, veritabanındaki tablolara yönelik olarak oluşturma, okuma, güncelleştirme ve silme gibi varlıklara karşı işlemleri dönüştürmek için "C-S" eşlemesini kullanır.
 
-Kavramsal model ve uygulamanın nesneler arasındaki eşleme, genellikle "O-C" eşlemesi olarak da adlandırılır. "C-S" eşleme karşılaştırıldığında, "O-C" eşleme örtük ve bire bir: varlıklar, özellikler ve ilişkiler kavramsal modelde tanımlı şekiller ve .NET nesne türleri ile eşleşecek biçimde gereklidir. EF4 ve sonrasında, nesneleri katmanı Basit Nesne EF bağımlılıkları olmadan özellikleriyle oluşturulmuş olabilir. Bunlar genellikle düz eski CLR nesnelerini (POCO) olarak adlandırılır ve eşleme türleri ve özellikleri gerçekleştirilir temel kuralları eşleşen adı. Daha önce EF 3. 5'EntityObject türetin gerek kalmadan ve "O-C" eşleme uygulamak için EF öznitelikleri taşıma zorunluluğunu ortadan kaldırarak varlık gibi nesne katmanı için belirli kısıtlamalar vardı.
+Kavramsal model ve uygulamanın nesneleri arasındaki eşleme, genellikle "O-C" eşlemesi olarak adlandırılır. "C-S" eşlemesi ile karşılaştırıldığında, "O-C" eşlemesi örtük ve bire bir ' dir: kavramsal modelde tanımlanan varlıklar, Özellikler ve ilişkiler, .NET nesnelerinin şekillerini ve türlerini eşleştirmek için gereklidir. EF4 ve ötesinde nesneler katmanı, EF üzerinde hiçbir bağımlılığı olmayan özelliklere sahip basit nesnelerden oluşabilir. Bunlar genellikle düz eski CLR nesneleri (POCO) olarak adlandırılır ve türlerin ve özelliklerin eşlemesi ad eşleştirme kuralları üzerinde taban olarak gerçekleştirilir. Daha önce, EF 3,5 ' de, nesne katmanı için, EntityObject sınıfından türetmek zorunda olan ve "O-C" eşlemesini uygulamak için EF özniteliklerini yürütmek zorunda olan varlıklar gibi belirli kısıtlamalar vardır.

@@ -1,55 +1,55 @@
 ---
-title: Tablo değerli işlev (Tvf) - EF6
+title: Tablo değerli Işlevler (TVFs)-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: f019c97b-87b0-4e93-98f4-2c539f77b2dc
-ms.openlocfilehash: 34aebd8f5f2c3b43c80e21c1a17a386597596c05
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: 35684196dcd7b708a8feeb1eca3096e8d4e555ec
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283959"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182531"
 ---
-# <a name="table-valued-functions-tvfs"></a>Tablo değerli işlev (Tvf)
+# <a name="table-valued-functions-tvfs"></a>Tablo değerli Işlevler (TVFs)
 > [!NOTE]
-> **EF5 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb. Entity Framework 5'te kullanıma sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.
+> **Yalnızca EF5** , bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 5 ' te sunulmuştur. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.
 
-Video ve adım adım izlenecek yol, Entity Framework Designer kullanarak tablo değerli işlev (Tvf) map işlemi gösterilmektedir. Ayrıca, bir LINQ Sorgu bir TVF çağırmak nasıl gösterir.
+Video ve adım adım izlenecek yol, Entity Framework Designer kullanarak tablo değerli işlevlerin (TVFs) nasıl eşlendiğini gösterir. Ayrıca, bir LINQ sorgusundan bir TVF 'nin nasıl çağrılacağını gösterir.
 
-Tvf şu anda yalnızca veritabanı ilk iş akışında desteklenir.
+TVFs Şu anda yalnızca Database First iş akışında desteklenmektedir.
 
-TVF destek Entity Framework 5 sürümü kullanıma sunulmuştur. Tablo değerli işlevler, sabit listeleri ve .NET Framework 4.5 hedeflemelidir uzamsal türler gibi yeni özellikleri kullanmak için dikkat edin. Visual Studio 2012, varsayılan olarak .NET 4.5 hedefler.
+TVF desteği Entity Framework sürüm 5 ' te tanıtılmıştı. Tablo değerli işlevler, numaralandırmalar ve uzamsal türler gibi yeni özellikleri kullanmak için .NET Framework 4,5 ' i hedeflemelidir. Visual Studio 2012, .NET 4,5 'i varsayılan olarak hedefler.
 
-Tvf da önemli bir fark saklı yordamlar için oldukça benzerdir: bir TVF sonucunu birleştirilebilir. Bir LINQ Sorgu sonuçlarını bir saklı yordam işleyemez bir TVF sonuçlardan kullanılabilir anlamına gelir.
+TVFs, tek bir anahtar farklılığı olan saklı yordamlara çok benzer: bir TVF 'nin sonucu birleştirilebilir. Bu, bir TVF 'nin sonuçlarının bir LINQ sorgusunda kullanılabileceği anlamına gelir, çünkü saklı yordamın sonuçları.
 
 ## <a name="watch-the-video"></a>Videoyu izleyin
 
-**Tarafından sunulan**: Julia Kornich
+**Sunulma ölçütü**: Julia Kornich
 
 [WMV](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-winvideo-tvf.wmv) | [MP4](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-mp4video-tvf.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-winvideo-tvf.zip)
 
-## <a name="pre-requisites"></a>Ön koşullar
+## <a name="pre-requisites"></a>Önkoşulların önkoşulları
 
-Bu izlenecek yolu tamamlamak için şunları yapmanız:
+Bu yönergeyi tamamlamak için şunları yapmanız gerekir:
 
-- Yükleme [School veritabanını](~/ef6/resources/school-database.md).
+- [Okul veritabanını](~/ef6/resources/school-database.md)yükler.
 
-- Visual Studio'nun yeni bir sürümü yüklü
+- Visual Studio 'nun yeni bir sürümüne sahip
 
-## <a name="set-up-the-project"></a>Projesi kurun
+## <a name="set-up-the-project"></a>Projeyi ayarlama
 
-1.  Visual Studio'yu Aç
-2.  Üzerinde **dosya** menüsünde **yeni**ve ardından **proje**
-3.  Sol bölmede **Visual C\#** ve ardından **konsol** şablonu
-4.  Girin **TVF** tıklayın ve proje adı olarak **Tamam**
+1.  Visual Studio 'Yu aç
+2.  **Dosya** menüsünde, **Yeni**' nin üzerine gelin ve ardından **Proje** ' ye tıklayın.
+3.  Sol bölmede, **Visual C @ no__t-1**' e tıklayın ve ardından **konsol** şablonunu seçin
+4.  Projenin adı olarak **TVF** girin ve **Tamam 'a** tıklayın
 
-## <a name="add-a-tvf-to-the-database"></a>Veritabanına bir TVF ekleme
+## <a name="add-a-tvf-to-the-database"></a>Veritabanına bir TVF ekleyin
 
--   Seçin **görünümü -&gt; SQL Server Nesne Gezgini**
--   LocalDB sunucuları listesinde değilse: sağ **SQL Server** seçip **SQL Server Ekle** varsayılan **Windows kimlik doğrulaması** LocalDB sunucusuna bağlanmak için
--   LocalDB düğümünü genişletin
--   Veritabanı düğümü altında School veritabanı düğümünü sağ tıklatın ve seçin **yeni sorgu...**
--   T-SQL Düzenleyicisi'nde aşağıdaki TVF tanımını yapıştırın
+-   **Görünüm-&gt;** ' i seçin SQL Server Nesne Gezgini
+-   LocalDB, sunucu listesinde değilse: **SQL Server** ' ye sağ tıklayın ve **Ekle SQL Server** ' yi seçin ve LocalDB sunucusuna bağlanmak Için varsayılan **Windows kimlik doğrulamasını** kullanın
+-   LocalDB düğümünü Genişlet
+-   Veritabanları düğümü altında, okul veritabanı düğümüne sağ tıklayın ve yeni sorgu ' yı seçin. **..**
+-   T-SQL düzenleyicisinde, aşağıdaki TVF tanımını yapıştırın
 
 ``` SQL
 CREATE FUNCTION [dbo].[GetStudentGradesForCourse]
@@ -67,29 +67,29 @@ RETURN
     WHERE  CourseID = @CourseID
 ```
 
--   T-SQL Düzenleyicisi sağ fare düğmesine tıklayıp **Yürüt**
--   School veritabanını GetStudentGradesForCourse işlevi eklenir
+-   T-SQL düzenleyicisinde sağ fare düğmesine tıklayın ve **Yürüt** ' ü seçin.
+-   Getstudentgradesforkurs işlevi okul veritabanına eklendi
 
- 
+ 
 
 ## <a name="create-a-model"></a>Model oluşturma
 
-1.  Çözüm Gezgini'nde proje adına sağ tıklayın, fareyle **Ekle**ve ardından **yeni öğe**
-2.  Seçin **veri** seçin ve soldaki menüden **ADO.NET varlık veri modeli** içinde **şablonları** bölmesi
-3.  Girin **TVFModel.edmx** dosya adı ve ardından **Ekle**
-4.  Choose Model Contents iletişim kutusunda **veritabanından Oluştur**ve ardından **İleri**
-5.  Tıklayın **yeni bağlantı** Enter **(localdb)\\ifadesini mssqllocaldb** Enter sunucu adı metin kutusunda **Okul** adına tıklayın veritabanı için **Tamam**
-6.  Choose, veritabanı nesneleri iletişim kutusunun altında **tabloları** düğümünü **kişi**, **StudentGrade**, ve **kurs** tabloları
-7.  Seçin **GetStudentGradesForCourse** işlevi bulunan altında **saklı yordamları ve işlevleri** düğümü Not, Visual Studio 2012 ile başlayarak, varlık Tasarımcısı sayesinde toplu içeri aktarma Saklı yordamları ve işlevleri
-8.  Tıklayın **son**
-9.  Modelinizi düzenleme için bir tasarım yüzeyi sağlar, varlık Tasarımcısı görüntülenir. Seçtiğiniz tüm nesneleri **veritabanı nesnelerinizi seçin** iletişim kutusu, modele eklenir.
-10. Varsayılan olarak, her bir içeri aktarılan saklı yordam veya işlev sonucu şeklini otomatik olarak yeni bir karmaşık tür varlık modelinizdeki olur. Ancak biz StudentGrade varlığa GetStudentGradesForCourse işlevinin sonuçlarını eşlemek istediğiniz: tasarım yüzeyi ve select sağ **Model tarayıcı** modeli tarayıcıda, seçin **işlevi içeri aktarmalar**ve çift tıklatarak **GetStudentGradesForCourse** işlevi içinde düzenleme işlevi Al iletişim kutusunda seçim **varlıkları** ve **StudentGrade**
+1.  Çözüm Gezgini ' de proje adına sağ tıklayın, **Ekle**' nin üzerine gelin ve ardından **Yeni öğe** ' ye tıklayın.
+2.  Sol menüden **verileri** seçin ve ardından **şablonlar** bölmesinde **ADO.net varlık veri modeli** seçin
+3.  Dosya adı için **Tvfmodel. edmx** yazın ve ardından **Ekle** ' ye tıklayın.
+4.  Model Içeriğini seçin iletişim kutusunda, **veritabanından oluştur**' u seçin ve ardından **İleri** ' ye tıklayın.
+5.  Sunucu adı metin kutusuna **Yeni bağlantı** gir **(localdb) \\mssqllocaldb** ' ye tıklayın, veritabanı adı için **okul** girin **Tamam** ' a tıklayın.
+6.  Veritabanı nesnelerinizi seçin iletişim kutusunda, **tablolar** düğümü altında, **kişiyi**, **studentgrad**' ı ve **Kurs**  tablolarını seçin
+7.   **Saklı yordamlar ve işlevler** Node notunun altında bulunan, Visual Studio 2012 ' den başlayarak, Entity Desisgner saklı yordamlarınızı ve işlevlerinizi içeri aktarmanızı sağlayan **Getstudentgradesforkursu** işlevini seçin
+8.   **Son** ' a tıklayın
+9.  Modelinizi düzenlemekte bir tasarım yüzeyi sağlayan Entity Desisgner görüntülenir.  **Veritabanı nesnelerinizi seçin** İletişim kutusunda seçtiğiniz tüm nesneler modele eklenir.
+10. Varsayılan olarak, içeri aktarılan her saklı yordamın veya işlevin sonuç şekli, varlık modelinizde otomatik olarak yeni bir karmaşık tür olur. Ancak Getstudentgradesforkurs işlevinin sonuçlarını Studentgrad varlığına eşlemek istiyoruz: Tasarım yüzeyine sağ tıklayın ve model tarayıcıda **model** tarayıcısı ' nı seçin, **işlev içeri aktarmalar**' ı seçin ve ardından **Getstudentgradesforkurs** Işlevine çift tıklayarak Işlev içeri aktarmayı Düzenle iletişim kutusunda **varlıklar** ' ı seçin.  ve **Studentgrad** seçin
 
-## <a name="persist-and-retrieve-data"></a>Kalıcı hale getirmek ve veri alma
+## <a name="persist-and-retrieve-data"></a>Kalıcı ve veri alma
 
-Main yöntemi tanımlandığı dosyasını açın. Ana işlevine aşağıdaki kodu ekleyin.
+Main yönteminin tanımlandığı dosyayı açın. Aşağıdaki kodu Main işlevine ekleyin.
 
-Aşağıdaki kod, bir tablo değerli işlev kullanan bir sorgu oluşturmak nasıl gösterir. Sorgu sonuçları 3.5 eşit veya daha büyük bir sınıf ile ilgili öğrencilere ve ilgili kurs başlık içeren bir anonim tür içine yansıtıyor.
+Aşağıdaki kod, tablo değerli bir Işlev kullanan bir sorgunun nasıl oluşturulacağını göstermektedir. Sorgu sonuçları, ilgili kurs başlığını ve 3,5 değerine eşit veya daha büyük bir değere sahip olan ilgili öğrencileri içeren anonim bir tür olarak projeler.
 
 ``` csharp
 using (var context = new SchoolEntities())
@@ -117,13 +117,13 @@ using (var context = new SchoolEntities())
 }
 ```
 
-Derleme ve uygulamayı çalıştırın. Program şu çıktıyı üretir:
+Uygulamayı derleyin ve çalıştırın. Program aşağıdaki çıktıyı üretir:
 
-```
+```console
 Couse: Microeconomics, Student: Arturo Anand
 Couse: Microeconomics, Student: Carson Bryant
 ```
 
 ## <a name="summary"></a>Özet
 
-Bu izlenecek yolda Entity Framework Designer kullanarak tablo değerli işlev (Tvf) map nasıl incelemiştik. Ayrıca, bir LINQ Sorgu bir TVF çağırmak nasıl gösterilmiştir.
+Bu izlenecek yolda, Entity Framework Designer kullanarak tablo değerli Işlevlerin (TVFs) nasıl eşlendiğini inceledik. Ayrıca, bir LINQ sorgusundan bir TVF çağırma gösterilmiştir.

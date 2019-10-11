@@ -1,80 +1,80 @@
 ---
-title: Entity Framework 6 sağlayıcı modeli - EF6
+title: Entity Framework 6 sağlayıcı modeli-EF6
 author: divega
 ms.date: 06/27/2018
 ms.assetid: 066832F0-D51B-4655-8BE7-C983C557E0E4
-ms.openlocfilehash: 8cbf6f87e0936f374c3d8a0c15a0e1d9c828f764
-ms.sourcegitcommit: 159c2e9afed7745e7512730ffffaf154bcf2ff4a
+ms.openlocfilehash: 8bda3f51e8934f2add862c30e60f1185f068c515
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/03/2019
-ms.locfileid: "55668758"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181604"
 ---
 # <a name="the-entity-framework-6-provider-model"></a>Entity Framework 6 sağlayıcı modeli
 
-Entity Framework sağlayıcısı model Entity Framework, farklı türde veritabanı sunucusu ile kullanılacak sağlar. Örneğin, bir sağlayıcı başka bir sağlayıcı uygulamasına Microsoft SQL Server Compact Edition karşı kullanılmak üzere EF izin vermek için takılabilen sırasında Microsoft SQL Server karşı kullanılmak üzere EF izin vermek için takılabilir. Farkında duyuyoruz EF6 için sağlayıcılar bulunabilir [Entity Framework sağlayıcıları](~/ef6/fundamentals/providers/index.md) sayfası.
+Entity Framework Sağlayıcı modeli, Entity Framework farklı veritabanı sunucusu türleriyle kullanılmasına izin verir. Örneğin, bir sağlayıcının Microsoft SQL Server karşı kullanılmasına izin vermek için, başka bir sağlayıcının Microsoft SQL Server Compact sürümünde kullanılmasına izin vermek üzere takılabileceği şekilde erişilebilir olması için bir sağlayıcı takılabilir. Bildiğimiz EF6 sağlayıcıları [Entity Framework sağlayıcılar](~/ef6/fundamentals/providers/index.md) sayfasında bulunabilir.
 
-Bazı değişiklikleri bir açık kod Lisansı kapsamında yayımlanacak EF izin vermek için sağlayıcıları EF etkileşimde şekilde gerekiyordu. Bu değişiklikler, sağlayıcı kaydı için yeni mekanizmaları birlikte EF6 derlemelere karşı EF sağlayıcılarının yeniden oluşturmayı gerektirir.
+EF 'in açık kaynaklı bir lisans altında serbest bırakılacağını sağlamak için gerekli olan belirli değişiklikler, aşv ile etkileşime girer. Bu değişiklikler, sağlayıcının kaydına yönelik yeni mekanizmalarla birlikte EF6 Derlemeleriyle EF sağlayıcılarının yeniden oluşturulması gerekir.
 
-## <a name="rebuilding"></a>Yeniden oluşturma
+## <a name="rebuilding"></a>Oluşturmak
 
-EF6 ile daha önce .NET Framework'ün bir parçası olan çekirdek kod artık bant dışı (OOB) derlemeler sevk edilen. EF6'yı kullanan uygulamalar oluşturma hakkında ayrıntılı bilgi bulunabilir [EF6 için uygulamaları güncelleştirme](~/ef6/what-is-new/upgrading-to-ef6.md) sayfası. Sağlayıcıları, ayrıca bu yönergeleri kullanarak yeniden oluşturulması gerekir.
+EF6 ile .NET Framework daha önce bir parçası olan çekirdek kod artık bant dışı (OOB) derlemeler olarak sevk edilir. EF6 'e yönelik uygulamalar oluşturma hakkındaki ayrıntılar, [EF6 için uygulamaları güncelleştirme](~/ef6/what-is-new/upgrading-to-ef6.md) sayfasında bulunabilir. Ayrıca bu yönergeler kullanılarak sağlayıcıların yeniden oluşturulması gerekir.
 
 ## <a name="provider-types-overview"></a>Sağlayıcı türlerine genel bakış
 
-EF sağlayıcısı gerçekten bu hizmetler gelen (için temel sınıf) genişletin veya (bir arabirim için) ve CLR türleri tarafından tanımlanan sağlayıcıya özgü Hizmetleri koleksiyonudur. Bu hizmetlerin iki temel ve EF çalışabilmesi gerekli. Diğerleri isteğe bağlıdır ve yalnızca belirli işlevleri gereklidir ve/veya bu hizmetler varsayılan uygulamaları için hedeflenen belirli bir veritabanı sunucusu çalışmıyor uygulanması gerekir.
+EF sağlayıcısı gerçekten, bu hizmetlerin genişletecek (bir temel sınıf için) veya uygulama (bir arabirim için) CLR türleri tarafından tanımlanan sağlayıcıya özgü hizmetlerden oluşan bir koleksiyondur. Bu hizmetlerden ikisi temel ve EF 'in hiç çalışması için gereklidir. Diğerleri isteğe bağlıdır ve yalnızca belirli işlevler gerekliyse ve/veya hedeflenen belirli veritabanı sunucusu için bu hizmetlerin varsayılan uygulamaları işe gerekmediği takdirde uygulanmalıdır.
 
 ## <a name="fundamental-provider-types"></a>Temel sağlayıcı türleri
 
 ### <a name="dbproviderfactory"></a>DbProviderFactory
 
-EF bağlıdır öğesinden türetilmiş bir tür olması [System.Data.Common.DbProviderFactory](https://msdn.microsoft.com/library/system.data.common.dbproviderfactory.aspx) tüm alt düzey veritabanı erişimi gerçekleştirme. DbProviderFactory EF aslında bir parçası değil ancak bunun yerine bir giriş noktası için ADO.NET sağlayıcıları hizmet veren .NET Framework sınıfında EF, diğer O/RMs tarafından veya doğrudan bir uygulama tarafından bağlantıları, komutlar, Parametreler örneğini almak için kullanılabilir ve Diğer ADO.NET soyutlama sağlayıcıyıda dilden bağımsız bir şekilde. DbProviderFactory hakkında daha fazla bilgi bulunabilir [ADO.NET için MSDN belgelerine](https://msdn.microsoft.com/library/a6cd7c08.aspx).
+EF, tüm düşük düzeydeki veritabanı erişimini gerçekleştirmek için [System. Data. Common. DbProviderFactory](https://msdn.microsoft.com/library/system.data.common.dbproviderfactory.aspx) öğesinden türetilmiş bir türe sahip olmaya bağlıdır. DbProviderFactory gerçekte EF 'in bir parçası değildir ancak bunun yerine, ADO.NET sağlayıcıları için EF, other/RMs veya doğrudan bağlantı, komut, parametre örnekleri elde eden bir uygulama tarafından kullanılabilecek bir giriş noktası sunan bir sınıf .NET Framework. bir sağlayıcının belirsiz şekilde diğer ADO.NET soyutlamaları. DbProviderFactory hakkında daha fazla bilgi [Için MSDN belgelerinde ADO.net](https://msdn.microsoft.com/library/a6cd7c08.aspx)bulabilirsiniz.
 
 ### <a name="dbproviderservices"></a>DbProviderServices
 
-ADO.NET sağlayıcısı tarafından zaten sağlanan işlevselliği üzerine EF tarafından gereken ek işlevsellik sağlamak için DbProviderServices türetilmiş bir tür EF bağlıdır. EF'ın eski sürümlerinde DbProviderServices sınıf .NET Framework'ün bir parçası olan ve System.Data.Common Ad alanında bulunamadı. Bu sınıf EF6'ile başlayan EntityFramework.dll artık parçasıdır ve System.Data.Entity.Core.Common ad alanındadır.
+EF, ADO.NET sağlayıcısı tarafından zaten sağlanan işlevselliğin üzerine gereken ek işlevselliği sağlamak için DbProviderServices 'den türetilmiş bir türe sahip olmaya bağlıdır. EF 'in daha eski sürümlerinde DbProviderServices sınıfı .NET Framework bir parçasıdır ve System. Data. Common Ad alanında bulunur. EF6 ile başlayarak bu sınıf artık EntityFramework. dll ' nin bir parçasıdır ve System. Data. Entity. Core. Common ad alanıdır.
 
-Temel işlevselliğini DbProviderServices uygulama hakkında daha fazla ayrıntı bulunabilir [MSDN](https://msdn.microsoft.com/library/ee789835.aspx). Ancak, çoğu kavramları hala geçerli olduğu halde bu bilgileri yazma saati itibarıyla EF6 için güncelleştirilmez unutmayın. DbProviderServices SQL Server ve SQL Server Compact uygulamalarını da içinde denetlenmiş olan [açık kaynak kod tabanı](https://github.com/aspnet/EntityFramework6/) ve diğer uygulamalar için kullanışlı bir başvuru olarak hizmet verebilir.
+DbProviderServices uygulamasının temel işlevleriyle ilgili daha fazla ayrıntı [MSDN](https://msdn.microsoft.com/library/ee789835.aspx)'de bulunabilir. Ancak, kavramların büyük bir kısmının hala geçerli olmasına rağmen, bu bilgileri yazmanın zaman EF6 için güncellenmediğini unutmayın. DbProviderServices 'ın SQL Server ve SQL Server Compact uygulamaları da [Açık kaynaklı kod](https://github.com/aspnet/EntityFramework6/) tabanına iade edilir ve diğer uygulamalar için yararlı başvurular olarak hizmet verebilir.
 
-EF eski sürümlerinde DbProviderServices uygulamasını kullanmak için doğrudan bir ADO.NET Sağlayıcısı'ndan edinilen. Bu, DbProviderFactory IServiceProvider için atama ve GetService metodunu çağırarak yapıldı. Bu EF sağlayıcısı için DbProviderFactory sıkı şekilde bağlı. Bu bağlantı, .NET Framework dışında taşınmış EF engellendi, bu nedenle bu sıkı bağ EF6 için kaldırılmıştır ve DbProviderServices uygulaması artık doğrudan uygulamanın yapılandırma dosyası veya kod tabanlı kayıtlı daha ayrıntılı olarak açıklandığı gibi yapılandırma _kaydetme DbProviderServices_ bölümüne bakın.
+EF 'in daha eski sürümlerinde kullanılacak DbProviderServices uygulamasının bir ADO.NET sağlayıcısından doğrudan edinildiği. Bu, DbProviderFactory IServiceProvider 'a bağlanarak ve GetService yöntemi çağrılırken yapılır. Bu, EF sağlayıcısını DbProviderFactory 'e sıkı bir şekilde bağlanmış. Bu kuponun .NET Framework dışına taşınmasını engelledi ve bu nedenle EF6 bu sıkı bir şekilde kaldırılmıştır ve DbProviderServices uygulaması artık doğrudan uygulamanın yapılandırma dosyasına veya kod tabanlı olarak kaydedilir yapılandırma, aşağıdaki _DbProviderServices kaydı_ hakkında daha ayrıntılı bilgi bölümünde açıklanmıştır.
 
 ## <a name="additional-services"></a>Ek hizmetler
 
-Yukarıda açıklanan temel hizmetlerin yanı sıra ayrıca her zaman veya bazen sağlayıcıya özgü olan EF tarafından kullanılan pek çok diğer hizmet mevcuttur. Bu hizmetlerin varsayılan sağlayıcıya özgü uygulamaları DbProviderServices uygulama tarafından sağlanabilir. Uygulamalar Ayrıca bu hizmetlerin uygulamalarını geçersiz kılmak veya DbProviderServices türü varsayılan bir sağlamaz uygulamaları belirtin. Bu daha ayrıntılı olarak açıklanan _ek hizmetler çözümleme_ bölümüne bakın.
+Yukarıda açıklanan temel hizmetlere ek olarak, EF tarafından her zaman veya bazen sağlayıcıya özgü olan çok sayıda diğer hizmet de mevcuttur. Bu hizmetlerin varsayılan sağlayıcıya özgü uygulamaları, bir DbProviderServices uygulaması tarafından sağlanabilir. Uygulamalar Ayrıca bu hizmetlerin uygulamalarını geçersiz kılabilir veya bir DbProviderServices türü için varsayılan değer sağlamadığı durumlarda uygulamalar sağlayabilir. Bu, aşağıdaki _ek hizmetleri çözme_ bölümünde daha ayrıntılı olarak açıklanmıştır.
 
-Sağlayıcı için bir sağlayıcı ilgilendirebilecek diğer hizmet türleri aşağıda listelenmiştir. Bu hizmet türlerinin her biri hakkında daha fazla ayrıntı için API belgelerinde bulunabilir.
+Bir sağlayıcının bir sağlayıcıya ilgi çekici olabileceği ek hizmet türleri aşağıda listelenmiştir. Bu hizmet türlerinin her biri hakkında daha fazla ayrıntı, API belgelerinde bulunabilir.
 
 ### <a name="idbexecutionstrategy"></a>Idbexecutionstrategy
 
-Bu veritabanında sorgulara ve komutlara yürütüldüğünde, yeniden deneme veya diğer davranışı uygulamak bir sağlayıcı sağlayan isteğe bağlı bir hizmettir. Uygulaması sağlanırsa, ardından EF yalnızca şu komutları çalıştırın ve oluşturulan tüm özel durumları yayar. SQL Server için SQL Azure gibi bulut tabanlı veritabanı sunucularına karşı çalışırken kullanışlı olan bir yeniden deneme ilkesi sağlamak için bu hizmeti kullanılır.
+Bu, bir sağlayıcının sorgular ve komutlar veritabanına göre yürütüldüğünde yeniden denemeler veya diğer davranışları uygulamasına izin veren isteğe bağlı bir hizmettir. Uygulama sağlanmazsa, EF komutları yürütür ve oluşturulan özel durumları yayacaktır. SQL Server için bu hizmet, SQL Azure gibi bulut tabanlı veritabanı sunucularında çalışırken yararlı olan bir yeniden deneme ilkesi sağlamak için kullanılır.
 
-### <a name="idbconnectionfactory"></a>IDbConnectionFactory
+### <a name="idbconnectionfactory"></a>Idbconnectionfactory
 
-Bu yalnızca bir veritabanı adı verildiğinde kurala göre DbConnection nesneleri oluşturmak bir sağlayıcı sağlayan isteğe bağlı bir hizmettir. Bu hizmet çalışırken EF 4.1 beri var olmuştur ve aynı zamanda açıkça kod veya yapılandırma dosyasında ayarlanabilir DbProviderServices uygulaması tarafından çözümlenen unutmayın. Sağlayıcı, yalnızca varsayılan sağlayıcı olarak kaydettiyseniz, bu hizmet çözmek için imkanına sahip olur (bkz _varsayılan sağlayıcı_ aşağıda) ve varsayılan bağlantı üretecini başka bir yerde ayarlanmadı.
+Bu, bir sağlayıcının yalnızca bir veritabanı adı verildiğinde bir kurala göre DbConnection nesneleri oluşturmasına olanak sağlayan isteğe bağlı bir hizmettir. Bu hizmet bir DbProviderServices uygulamasıyla çözülebildiğinden, EF 4,1 ' den bu yana var olan ve ayrıca yapılandırma dosyasında ya da kodda açıkça ayarlanmış olabilir. Sağlayıcı yalnızca varsayılan sağlayıcı olarak kayıtlıysa (varsayılan _sağlayıcıya_ bakın) ve bir varsayılan bağlantı fabrikası başka bir yerde ayarlanmamışsa bu hizmetin çözümlenme şansı elde eder.
 
 ### <a name="dbspatialservices"></a>DbSpatialServices
 
-Coğrafi konum ve geometri uzamsal türler için destek eklemek bir sağlayıcı sağlayan isteğe bağlı bir hizmet budur. Bu hizmet uygulaması, bir uygulamanın EF uzamsal türler ile kullanılacak sağlanmalıdır. DbSptialServices için iki yolla istenir. İlk olarak, sağlayıcıya özgü uzamsal hizmetler DbProviderInfo nesnesi kullanılarak istenir (değişmez değer içeren ad ve bildirim belirteci) anahtarı olarak. İkinci olarak, DbSpatialServices için hiçbir anahtar ile onaylayanlara sorulabilir. Bu, "tek başına DbGeography veya DbGeometry türleri oluştururken kullanılan genel uzamsal sağlayıcı" çözmek için kullanılır.
+Bu, bir sağlayıcının Coğrafya ve geometri uzamsal türler için destek eklemesini sağlayan isteğe bağlı bir hizmetlerdir. Bir uygulamanın uzamsal türler içeren EF kullanması için bu hizmetin uygulanması sağlanmalıdır. DbSptialServices için iki şekilde istenir. İlk olarak, sağlayıcıya özgü uzamsal hizmetler, anahtar olarak bir DBProviderInfo nesnesi (Sabit adı ve bildirim belirteci içerir) kullanılarak istenir. İkinci olarak, DbSpatialServices hiçbir anahtar olmadan istenebilir. Bu, tek başına Dbcoğrafya veya DbGeometry türleri oluştururken kullanılan "küresel uzamsal sağlayıcıyı" çözümlemek için kullanılır.
 
 ### <a name="migrationsqlgenerator"></a>MigrationSqlGenerator
 
-EF geçişleri, oluşturmak ve veritabanı şemalarını değiştirme kullanılan SQL üretimi için Code First tarafından kullanılacak sağlayan isteğe bağlı bir hizmettir. Uygulamaya geçişlerini desteklemek için gereklidir. Uygulamaya sağlanmazsa veritabanı başlatıcılar veya Database.Create yöntemi kullanılarak veritabanları oluşturulduğunda ardından onu da kullanılır.
+Bu, Code First tarafından veritabanı şemaları oluştururken ve değiştirirken kullanılan SQL üretimi için EF geçişlerinin kullanılmasına izin veren isteğe bağlı bir hizmettir. Geçişleri desteklemek için bir uygulama gerekir. Bir uygulama sağlanmışsa, veritabanları veritabanı başlatıcıları veya Database. Create yöntemi kullanılarak oluşturulduğunda de kullanılacaktır.
 
-### <a name="funcdbconnection-string-historycontextfactory"></a>FUNC < DbConnection, dize, HistoryContextFactory >
+### <a name="funcdbconnection-string-historycontextfactory"></a>Func < DbConnection, String, geçmişini contextFactory >
 
-Bu eşleme için HistoryContext yapılandırmak bir sağlayıcı sağlayan, isteğe bağlı bir hizmettir `__MigrationHistory` EF geçişleri tarafından kullanılan tablo. HistoryContext kod ilk DbContext olduğundan ve tablo ve sütun eşleme belirtimlerini adı gibi şeyleri değiştirmek için normal fluent API'si kullanılarak yapılandırılabilir. Bu sağlayıcı tarafından desteklenen tüm varsayılan tablo ve sütun eşlemelerini bile varsayılan uygulamasını EF tarafından döndürülen tüm sağlayıcıları için bu hizmet için belirtilen veritabanı sunucusu çalışabilir. Böyle bir durumda sağlayıcısı bu hizmet uygulaması sağlamanız gerekmez.
+Bu, bir sağlayıcının,, @no__t, bir sağlayıcının,,,,,, Bu bir DbContext Code First ve tablo adı ve sütun eşleme belirtimleri gibi şeyleri değiştirmek için normal Fluent API kullanılarak yapılandırılabilir. Tüm varsayılan tablo ve sütun eşlemeleri bu sağlayıcı tarafından destekleniyorsa, tüm sağlayıcılar için EF tarafından döndürülen bu hizmetin varsayılan uygulanması belirli bir veritabanı sunucusu için çalışabilir. Böyle bir durumda, sağlayıcının bu hizmetin bir uygulamasını sağlaması gerekmez.
 
-### <a name="idbproviderfactoryresolver"></a>IDbProviderFactoryResolver
+### <a name="idbproviderfactoryresolver"></a>Idbproviderfactoryresolver
 
-Bu, belirli bir DbConnection nesneden doğru DbProviderFactory alma isteğe bağlı bir hizmettir. Varsayılan uygulamasını EF tarafından döndürülen tüm sağlayıcıları için bu hizmet, tüm sağlayıcılar için amaçlanmıştır. Ancak .NET 4'te çalışan olduğunda DbProviderFactory bir IF genel olarak erişilebilir değil, DbConnections. Bu nedenle, EF eşleştirme bulmak üzere kayıtlı sağlayıcılardan aramak için bazı buluşsal yöntemler kullanır. Bazı sağlayıcıları için bu buluşsal yöntemler başarısız olur ve bu gibi durumlarda, yeni bir uygulama sağlayıcısı sunmalıdır mümkündür.
+Bu, belirli bir DbConnection nesnesinden doğru DbProviderFactory elde etmek için isteğe bağlı bir hizmettir. Tüm sağlayıcılar için EF tarafından döndürülen bu hizmetin varsayılan uygulamasının tüm sağlayıcılar için çalışması amaçlanır. Ancak, .NET 4 ' te çalışırken DbProviderFactory, DbConnections ise herkese açık bir şekilde erişemez. Bu nedenle, EF bir eşleşme bulmak için kayıtlı sağlayıcıları aramak üzere bazı buluşsal yöntemler kullanır. Bazı sağlayıcılardan bu buluşsal yöntemler başarısız olur ve bu gibi durumlarda sağlayıcı yeni bir uygulama sağlamalıdır.
 
 ## <a name="registering-dbproviderservices"></a>DbProviderServices kaydediliyor
 
-DbProviderServices uygulamasını kullanmak için uygulamanın yapılandırma dosyası (app.config veya web.config) veya kod tabanlı yapılandırma kullanılarak kaydedilebilir. Her iki durumda da kayıt sağlayıcının "değişmez adı" bir anahtar olarak kullanır. Bu, kayıtlı ve tek bir uygulamada kullanılan birden çok sağlayıcı sağlar. EF kayıtları için kullanılan değişmez adı ADO.NET Sağlayıcısı kaydı ve bağlantı dizeleri için kullanılan değişmez adı ile aynıdır. Örneğin, SQL Server için sabit adı "System.Data.SqlClient" kullanılır.
+Kullanılacak DbProviderServices uygulaması, uygulamanın yapılandırma dosyasında (App. config veya Web. config) ya da kod tabanlı yapılandırma kullanılarak kaydedilebilir. Her iki durumda da kayıt, sağlayıcının "sabit adı" nı anahtar olarak kullanır. Bu, birden çok sağlayıcının tek bir uygulamada kaydedilmesini ve kullanılmasını sağlar. EF kayıtları için kullanılan sabit ad, ADO.NET sağlayıcı kaydı ve bağlantı dizeleri için kullanılan sabit adla aynıdır. Örneğin, SQL Server için "System. Data. SqlClient" sabit adı kullanılır.
 
-### <a name="config-file-registration"></a>Yapılandırma dosyası kayıt
+### <a name="config-file-registration"></a>Yapılandırma dosyası kaydı
 
-Kullanılacak DbProviderServices türünü, uygulamanın yapılandırma dosyasında entityFramework bölümünü sağlayıcıları listesinden bir sağlayıcı öğesi olarak kaydedilir. Örneğin:
+Kullanılacak DbProviderServices türü, uygulamanın yapılandırma dosyasının entityFramework bölümünün sağlayıcılar listesinde bir sağlayıcı öğesi olarak kaydedilir. Örneğin:
 
 ``` xml
 <entityFramework>
@@ -84,11 +84,11 @@ Kullanılacak DbProviderServices türünü, uygulamanın yapılandırma dosyası
 </entityFramework>
 ```
 
-_Türü_ dize DbProviderServices uygulamasını kullanmak için derleme nitelikli tür adı olmalıdır.
+_Tür_ dizesi, kullanılacak DbProviderServices uygulamasının derleme nitelikli tür adı olmalıdır.
 
 ### <a name="code-based-registration"></a>Kod tabanlı kayıt
 
-EF6 sağlayıcıları ile başlayarak, ayrıca kod kullanılarak kaydedilebilir. Bu, uygulamanın yapılandırma dosyası herhangi bir değişiklik olmadan kullanılacak bir EF sağlayıcı sağlar. DbConfiguration sınıfı bölümünde anlatıldığı gibi bir uygulama oluşturmalısınız kod tabanlı yapılandırma kullanılacak [kod tabanlı yapılandırma belgeleri](https://msdn.com/data/jj680699). DbConfiguration sınıfının oluşturucusu, ardından EF sağlayıcıyı kaydetmek için SetProviderServices çağırmalıdır. Örneğin:
+EF6 sağlayıcılardan itibaren, kod kullanılarak da kaydedilebilir. Bu, bir EF sağlayıcısının uygulamanın yapılandırma dosyasında herhangi bir değişiklik yapılmadan kullanılmasına izin verir. Kod tabanlı yapılandırmayı kullanmak için bir uygulamanın, [kod tabanlı yapılandırma belgelerinde](https://msdn.com/data/jj680699)açıklandığı gibi bir DBConfiguration sınıfı oluşturması gerekir. DbConfiguration sınıfının Oluşturucusu, EF sağlayıcısını kaydettirmek için SetProviderServices öğesini çağırmalıdır. Örneğin:
 
 ``` csharp
 public class MyConfiguration : DbConfiguration
@@ -100,11 +100,11 @@ public class MyConfiguration : DbConfiguration
 }
 ```
 
-## <a name="resolving-additional-services"></a>Ek hizmetler çözümleme
+## <a name="resolving-additional-services"></a>Ek hizmetler çözümleniyor
 
-Yukarıda belirtildiği gibi _sağlayıcısı türlerinin genel bakış_ bölümünde, bir DbProviderServices sınıfı ayrıca ek hizmetlerin çözümlenmesi için kullanılabilir. Bu, çünkü DbProviderServices IDbDependencyResolver uygular ve her kayıtlı DbProviderServices türü "Varsayılan çözümleyici" eklenir mümkündür. IDbDpendencyResolver mekanizması, daha ayrıntılı olarak açıklanan [bağımlılık çözümlemesi](~/ef6/fundamentals/configuring/dependency-resolution.md). Ancak, bu özellikteki sağlayıcıyıda ek hizmetlerin çözümlenmesi için tüm kavramları anlamak gerekli değildir.
+_Sağlayıcı türlerine genel bakış_ bölümünde belirtildiği gibi, ek hizmetleri çözümlemek için de bir DbProviderServices sınıfı kullanılabilir. DbProviderServices ıdbdependencyresolver uyguladığından ve kayıtlı her DbProviderServices türü "varsayılan çözümleyici" olarak eklendiğinden, bu mümkündür. Idbdpendencyresolver mekanizması, [bağımlılık çözümlemesinde](~/ef6/fundamentals/configuring/dependency-resolution.md)daha ayrıntılı olarak açıklanmıştır. Ancak, bir sağlayıcıdaki ek hizmetleri çözümlemek için bu belirtideki tüm kavramların anlaşılması gerekli değildir.
 
-Ek hizmetlerin çözümlenmesi sağlayıcı için en yaygın yolu DbProviderServices sınıfın oluşturucusundaki her hizmet için DbProviderServices.AddDependencyResolver çağırmaktır. Örneğin, başlatma için buna benzer kod SqlProviderServices (SQL Server için EF sağlayıcısı) vardır:
+Bir sağlayıcının ek hizmetleri çözümlemek için en yaygın yolu, DbProviderServices sınıfının oluşturucusunda her bir hizmet için DbProviderServices. AddDependencyResolver öğesini çağırmaktır. Örneğin, SqlProviderServices (SQL Server için EF Provider), başlatma için buna benzer bir kod içerir:
 
 ``` csharp
 private SqlProviderServices()
@@ -129,12 +129,12 @@ private SqlProviderServices()
 }
 ```
 
-Bu oluşturucu, aşağıdaki yardımcı sınıfları kullanır:
+Bu Oluşturucu aşağıdaki yardımcı sınıfları kullanır:
 
-*   SingletonDependencyResolver: Tekil hizmetin çözümlemek için basit bir yol sağlar — diğer bir deyişle, hizmetler için aynı örneğini getirilen her zaman GetService çağrılır. Geçici Hizmetleri genellikle isteğe bağlı olarak geçici örnekleri oluşturmak için kullanılacak bir singleton üreteci olarak kaydedilir.
-*   ExecutionStrategyResolver: bir çözümleyici IExecutionStrategy uygulamaları döndürmek için belirli.
+*   SingletonDependencyResolver: tek Hizmetleri çözümlemek için basit bir yol sağlar — diğer bir deyişle, GetService 'in her çağrılışında aynı örneğin döndürüldüğü hizmetler. Geçici hizmetler genellikle isteğe bağlı olarak geçici örnekler oluşturmak için kullanılacak tek bir fabrika olarak kaydedilir.
+*   Executionstratejik Cayresolver: ıexecutionstrateji uygulamalarının döndürülmesi için özel bir çözümleyici.
 
-DbProviderServices.AddDependencyResolver kullanmak yerine DbProviderServices.GetService geçersiz kılmak ve ek hizmetler doğrudan çözmek mümkün. Belirli bir tür tarafından ve bazı durumlarda, belirli bir anahtar için tanımlanmış bir hizmeti EF ihtiyacı olduğunda, bu yöntem çağrılır. Yöntemi, bu olabilir veya hizmet verme ayrılma null döndürür ve bunun yerine bu sorunu çözmek başka bir sınıf izin verirseniz hizmet döndürmesi gerekir. Örneğin, varsayılan bağlantı üretecini çözmek için GetService kodu aşağıdakine benzeyebilir:
+DbProviderServices. AddDependencyResolver kullanmak yerine, DbProviderServices. GetService ' i geçersiz kılmak ve ek hizmetleri doğrudan çözümlemek da mümkündür. Bu yöntem, EF belirli bir tür tarafından tanımlanan bir hizmete ihtiyaç duyduğunda ve bazı durumlarda belirli bir anahtar için çağrılır. Yöntemi, hizmet tarafından döndürülmeden hizmeti döndürmelidir veya hizmeti döndürmekten vazgeçmek için null döndürebilir ve bunun yerine başka bir sınıfın bunu çözümlemesine izin verir. Örneğin, varsayılan bağlantı fabrikasını çözümlemek için GetService 'teki kod şuna benzer görünebilir:
 
 ``` csharp
 public override object GetService(Type type, object key)
@@ -149,17 +149,17 @@ public override object GetService(Type type, object key)
 
 ### <a name="registration-order"></a>Kayıt sırası
 
-Bir uygulamanın yapılandırma dosyasında birden çok DbProviderServices uygulamaları kayıtlı olduğunda ikincil Çözümleyicileri listelendikleri sırayla olarak eklenir. Çözümleyiciler her zaman ikincil çözümleyici zinciri üstüne listesinin sonuna sağlayıcısında buna eklenir beri diğerlerinden önce bağımlılıkları çözümlemek için imkanına sahip olur. (Bu bir biraz counter-intuitive ilk görünebilir, ancak her bir sağlayıcı listesi dışında alma ve üstünde mevcut sağlayıcıları yığınlama hayal ederseniz mantıklıdır.)
+Birden çok DbProviderServices uygulaması, bir uygulamanın yapılandırma dosyasına kaydedildiğinde, bunların listelendikleri sırayla ikincil çözümleyiciler olarak eklenir. Çözümleyiciler her zaman ikincil çözümleyici zincirinin üst kısmına eklendiğinden, bu, listenin sonundaki sağlayıcının diğerlerinden önce bağımlılıkları çözme şansı alabileceği anlamına gelir. (Bu, ilk başta çok az sayıda sayaç görünebilir, ancak her sağlayıcıyı listeden ayırarak ve mevcut sağlayıcıların üzerine yığarak bu durum üzerinde işlem yapar.)
 
-Bu sıralama, genellikle çoğu sağlayıcısı hizmetler sağlayıcıya özgü ve sağlayıcının değişmez adı tarafından Anahtarlanan olduğundan farketmez. Ancak, hizmetler için sağlayıcının değişmez adı ya da bu sıralama bağlı hizmet çözümlenir bazı diğer sağlayıcıya özgü anahtar tarafından Anahtarlanan değil. Bu açıkça farklı bir yerde başka ayarlanmazsa, örneğin, ardından varsayılan bağlantı üretecini zincirindeki en üstteki sağlayıcısından gelir.
+Bu sıralama genellikle çoğu sağlayıcı hizmetinin sağlayıcıya özgü ve sağlayıcı sabit adı tarafından anahtarlamalı olması nedeniyle değildir. Ancak, sağlayıcı sabit adına veya sağlayıcıya özgü başka bir anahtara göre anahtarınmayan hizmetler için, hizmet bu sıralamaya göre çözümlenir. Örneğin, başka bir yerde açıkça farklı ayarlanmamışsa, varsayılan bağlantı fabrikası zincirdeki en üstteki sağlayıcıdan gelir.
 
 ## <a name="additional-config-file-registrations"></a>Ek yapılandırma dosyası kayıtları
 
-Doğrudan uygulamanın yapılandırma dosyasında yukarıda açıklanan ek sağlayıcısı hizmetlerinden bazılarını kaydetmek mümkündür. Bu yapılandırma dosyasında kaydı yapıldığında DbProviderServices uygulama GetService yöntemi tarafından döndürülen herhangi bir şey yerine kullanılacaktır.
+Yukarıda açıklanan ek sağlayıcı hizmetlerinden bazılarını doğrudan bir uygulamanın yapılandırma dosyasında kaydetmek mümkündür. Bu tamamlandığında yapılandırma dosyasındaki kayıt, DbProviderServices uygulamasının GetService yöntemi tarafından döndürülen herhangi bir şey yerine kullanılacaktır.
 
-### <a name="registering-the-default-connection-factory"></a>Varsayılan bağlantı üretecini kaydediliyor
+### <a name="registering-the-default-connection-factory"></a>Varsayılan bağlantı fabrikası kaydediliyor
 
-İle EF5 EntityFramework NuGet paketini otomatik olarak başlatılmasını SQL Express bağlantı üreteci ya da LocalDb bağlantı üreteci yapılandırma dosyasında kayıtlı.
+EF5 ile başlayarak EntityFramework NuGet paketi otomatik olarak SQL Express bağlantı fabrikası veya yapılandırma dosyasında LocalDb bağlantı fabrikası olarak kaydedilir.
 
 Örneğin:
 
@@ -169,48 +169,48 @@ Doğrudan uygulamanın yapılandırma dosyasında yukarıda açıklanan ek sağl
 </entityFramework>
 ```
 
-_Türü_ IDbConnectionFactory uygulamalıdır varsayılan bağlantı üreteci için derleme nitelikli tür adı.
+_Tür_ , varsayılan bağlantı fabrikası Için ıdbconnectionfactory uygulaması gereken derleme nitelikli tür adıdır.
 
-Sağlayıcı NuGet paketi yüklendiğinde bu şekilde varsayılan bağlantı üretecini ayarlamanız önerilir. Bkz: _sağlayıcıları için NuGet paketlerini_ aşağıda.
+Bir sağlayıcı NuGet paketinin varsayılan bağlantı fabrikası yüklenirken bu şekilde ayarlanması önerilir. Aşağıdaki _sağlayıcılar Için NuGet paketlerine_ bakın.
 
-## <a name="additional-ef6-provider-changes"></a>Ek EF6 sağlayıcısı değişiklikler
+## <a name="additional-ef6-provider-changes"></a>Ek EF6 sağlayıcısı değişiklikleri
 
-### <a name="spatial-provider-changes"></a>Uzamsal sağlayıcısı değişiklikleri
+### <a name="spatial-provider-changes"></a>Uzamsal sağlayıcı değişiklikleri
 
-Uzamsal türlerini destekleyen sağlayıcıları artık DbSpatialDataReader türevi olan sınıflarda bazı ek yöntemleri uygulamanız gerekir:
+Uzamsal türleri destekleyen sağlayıcılar artık Dbspatıaldatareader ' dan türetilen sınıflarda bazı ek yöntemler gerçekleştirmelidir:
 
 *   `public abstract bool IsGeographyColumn(int ordinal)`
 *   `public abstract bool IsGeometryColumn(int ordinal)`
 
-Yeni zaman uyumsuz sürümlerini varsayılan uygulamaları zaman uyumlu metotlar için temsilci seçme ve bu nedenle zaman uyumsuz olarak Yürütülmeyen geçersiz kılınacak önerilen mevcut yöntemleri vardır:
+Varsayılan uygulamalar, zaman uyumsuz yöntemlere temsilci olarak verilmediğinden geçersiz kılınmasının önerildiği mevcut yöntemlerin yeni zaman uyumsuz sürümleri de vardır ve bu nedenle zaman uyumsuz olarak yürütülmez:
 
 *   `public virtual Task<DbGeography> GetGeographyAsync(int ordinal, CancellationToken cancellationToken)`
 *   `public virtual Task<DbGeometry> GetGeometryAsync(int ordinal, CancellationToken cancellationToken)`
 
-### <a name="native-support-for-enumerablecontains"></a>Enumerable.Contains için yerel destek
+### <a name="native-support-for-enumerablecontains"></a>Sıralanabilir. Contains için yerel destek
 
-EF6 Enumerable.Contains LINQ sorguları kullanımını etrafında performans sorunlarını gidermek için eklenen DbInExpression yeni ifade türü sunar. Yeni bir sanal yöntemle, yeni ifade türü bir sağlayıcı tarafından işlendiğini varsa belirlemek amacıyla EF tarafından çağrılan SupportsInExpression DbProviderManifest sınıfı vardır. Mevcut bir sağlayıcı uygulamaları ile uyumluluk için yöntem false döndürür. Bu gelişmeleri yararlanmak için bir EF6 sağlayıcısı DbInExpression işlemek ve SupportsInExpression true döndürmek için geçersiz kılmak için kod ekleyebilirsiniz. DbExpressionBuilder.In yöntemi çağırarak DbInExpression örneği oluşturulabilir. Genellikle bir tablo sütunu ve test etmek için bir eşleşme için DbConstantExpression listesini temsil eden, bir Dbexpression'dan DbInExpression örneği oluşur.
+EF6, sıralanabilir. LINQ sorgularında bulunan performans sorunlarına yönelik olarak eklenen DbInExpression adlı yeni bir ifade türü sunar. DbProviderManifest sınıfı yeni bir sanal yönteme sahiptir ve bir sağlayıcının yeni ifade türünü işlediğini tespit etmek için EF tarafından çağrılan, SupportsInExpression. Mevcut sağlayıcı uygulamalarıyla uyumluluk için, yöntem false döndürür. Bu iyileştirmelerden yararlanmak için, EF6 sağlayıcısı DbInExpression 'ı işlemek üzere kod ekleyebilir ve Supportsınexpression 'ı true döndürecek şekilde geçersiz kılar. DbInExpression örneği DbExpressionBuilder.In yöntemi çağırarak oluşturulabilir. Bir DbInExpression örneği, genellikle bir tablo sütununu temsil eden bir DbExpression ve bir eşleşme için test edilecek bir DbConstantExpression listesi oluşur.
 
-## <a name="nuget-packages-for-providers"></a>NuGet paketlerini sağlayıcıları
+## <a name="nuget-packages-for-providers"></a>Sağlayıcılar için NuGet paketleri
 
-EF6 sağlayıcısı kullanılabilir duruma getirmenin bir yolu, bir NuGet paketi olarak yayın sağlamaktır. Bir NuGet paketi kullanarak aşağıdaki avantajlara sahiptir:
+EF6 sağlayıcıyı kullanılabilir hale getirmenin bir yolu, bir NuGet paketi olarak yayınlanmanız. NuGet paketinin kullanılması aşağıdaki avantajları içerir:
 
-*   Sağlayıcı kaydı uygulamanın yapılandırma dosyasına eklemek için kullanımı kolay NuGet olduğu
-*   Varsayılan bağlantı üretecini kurala göre yapılan bağlantılar kayıtlı sağlayıcı kullanacak şekilde ayarlamak için yapılandırma dosyasına ek değişiklik yapılamaz
-*   NuGet tanıtıcıları bağlama yeniden yönlendirmeleri ekleyerek EF6 sağlayıcısı bile yeni EF paketi kullanıma sunulduktan sonra çalışmaya devam etmesi gerekir
+*   Sağlayıcının kaydını uygulamanın yapılandırma dosyasına eklemek için NuGet kullanmak kolaydır
+*   Kural tarafından yapılan bağlantıların kayıtlı sağlayıcıyı kullanması için varsayılan bağlantı fabrikasını ayarlamak üzere yapılandırma dosyasında ek değişiklikler yapılabilir
+*   NuGet, EF6 sağlayıcısı yeni bir EF paketi serbest bırakıldıktan sonra bile çalışmaya devam etmesi için bağlama yeniden yönlendirmeleri eklemeyi işler
 
-Buna örnek olarak dahil edilen EntityFramework.SqlServerCompact pakettir [açık kaynak kod tabanı](http://github.com/aspnet/entityframework6). Bu paket, NuGet paketlerini EF sağlayıcısı oluşturmak için iyi bir şablonu sağlar.
+Bu, [açık kaynak kod](https://github.com/aspnet/entityframework6)tabanına dahil edilen EntityFramework. sqlservercompact Package örneğidir. Bu paket, EF sağlayıcısı NuGet paketleri oluşturmak için iyi bir şablon sağlar.
 
 ### <a name="powershell-commands"></a>PowerShell komutları
 
-EntityFramework NuGet paketi yüklendiğinde sağlayıcısı paketleri için çok kullanışlı olan iki komutları içeren bir PowerShell modülü kaydeder:
+EntityFramework NuGet paketi yüklendiğinde, sağlayıcı paketleri için çok faydalı olan iki komut içeren bir PowerShell modülü kaydettirir:
 
-*   Ekleme EFProvider hedef projenin yapılandırma dosyasında sağlayıcının yeni bir varlık ekler ve kayıtlı sağlayıcılar listesi sonunda olduğundan emin olur.
-*   Ekleme EFDefaultConnectionFactory ekler veya hedef projenin yapılandırma dosyasında defaultConnectionFactory kaydı güncelleştirir.
+*   Add-EFProvider, hedef projenin yapılandırma dosyasında sağlayıcı için yeni bir varlık ekler ve kayıtlı sağlayıcılar listesinin sonunda olduğundan emin olur.
+*   Add-EFDefaultConnectionFactory, hedef projenin yapılandırma dosyasında defaultConnectionFactory kaydını ekler ya da güncelleştirir.
 
-Hem bu komutları gerekirse sağlayıcıları koleksiyonu ekleme ve yapılandırma dosyasına bir entityFramework bölümü eklemeyi ve dikkatli olun.
+Bu komutların her ikisi de bir entityFramework bölümünü yapılandırma dosyasına ekleme ve gerekirse bir sağlayıcı koleksiyonu ekleme işlemini gerçekleştirir.
 
-Bu komutlar NuGet betik install.ps1 çağrılması amaçlanmıştır. Örneğin, SQL Compact sağlayıcısı install.ps1 şuna benzer:
+Bu komutların install. ps1 NuGet betiğinden çağrılması amaçlanmıştır. Örneğin, SQL Compact sağlayıcısı için Install. ps1 şuna benzer:
 
 ``` powershell
 param($installPath, $toolsPath, $package, $project)
@@ -218,15 +218,15 @@ Add-EFDefaultConnectionFactory $project 'System.Data.Entity.Infrastructure.SqlCe
 Add-EFProvider $project 'System.Data.SqlServerCe.4.0' 'System.Data.Entity.SqlServerCompact.SqlCeProviderServices, EntityFramework.SqlServerCompact'</pre>
 ```
 
-Bu komutlar hakkında daha fazla bilgi Paket Yöneticisi konsolu penceresinde get-help kullanılarak elde edilebilir.
+Bu komutlar hakkında daha fazla bilgi, Paket Yöneticisi konsol penceresinde Get-Help kullanılarak elde edilebilir.
 
-## <a name="wrapping-providers"></a>Kaydırma sağlayıcıları
+## <a name="wrapping-providers"></a>Sarmalama sağlayıcıları
 
-Kaydırma genişletmek için profil oluşturma veya izleme özellikleri gibi diğer işlevlere sahip mevcut bir sağlayıcı sarmalayan bir EF ve/veya ADO.NET sağlayıcısı sağlayıcısıdır. Sağlayıcıları sarmalama normal yolla kaydedilebilir, ancak bu genellikle daha fazla çözüm sağlayıcısı ile ilgili hizmetlerin uğratarak zamanında sarmalama Sağlayıcısı Kurulumu uygun. Bunu yapmak için statik olay OnLockingConfiguration DbConfiguration sınıfı üzerinde kullanılabilir.
+Sarmalama sağlayıcısı, var olan bir sağlayıcıyı, profil oluşturma veya izleme yetenekleri gibi diğer işlevlerle genişletmek için sarmalayan bir EF ve/veya ADO.NET sağlayıcısıdır. Sarmalama sağlayıcıları normal şekilde kaydedilebilir, ancak sağlayıcıya yönelik hizmetlerin çözümlenmesini kesintiye uğratan, sarmalama sağlayıcısının çalışma zamanında kurulması genellikle daha uygundur. DbConfiguration sınıfındaki statik olay OnLockingConfiguration bunu yapmak için kullanılabilir.
 
-OnLockingConfiguration EF burada uygulama etki alanı için tüm EF yapılandırma öğesinden elde edileceği belirledi sonra ancak kullanım için kilitlenmeden önce çağrılır. Uygulama başlangıcında (EF kullanılmadan önce) uygulama bu olay için bir olay işleyicisi kaydolmalıdır. (Bu henüz desteklenmiyor ancak Biz bu işleyici yapılandırma dosyasında kaydetmek için destek ekleme değerlendiriyorsanız.) Olay işleyicisi, ardından bir çağrı ReplaceService sarmalamak için gereken her hizmet için olmanız gerekir.  
+EF olduktan sonra OnLockingConfiguration çağrılır ve uygulama etki alanı için tüm EF yapılandırmasının, kullanım için kilitlenmesinden önce nereden elde edildiğimize göre belirlenir. Uygulama başlangıcında (EF kullanılmadan önce) uygulamanın bu olay için bir olay işleyicisi kaydetmesi gerekir. (Bu işleyiciyi yapılandırma dosyasına kaydetmek için destek eklemeyi düşünüyoruz ancak henüz desteklenmiyor.) Olay işleyicisi daha sonra sarmalanması gereken her hizmet için bir ReplaceService çağrısı yapmanız gerekir.  
 
-Örneğin, IDbConnectionFactory ve DbProviderService kaydırmak için şuna benzeyen bir işleyici kaydedilmelidir:
+Örneğin, ıdbconnectionfactory ve DbProviderService 'i kaydırmak için şuna benzer bir işleyici kaydedilmelidir:
 
 ``` csharp
 DbConfiguration.OnLockingConfiguration +=
@@ -240,26 +240,26 @@ DbConfiguration.OnLockingConfiguration +=
     };
 ```
 
-Çözümlenmiş ve hizmet çözümlemek için kullanılan anahtarı ile birlikte artık sarılacağını hizmeti işleyiciye geçirilir. İşleyici sarmalamak bu hizmet ve döndürülen hizmet Sarmalanan bir sürümle değiştirin.
+Çözümlenmiş olan ve artık hizmeti çözümlemek için kullanılan anahtarla birlikte sarmalanmış olan hizmet işleyiciye iletilir. İşleyici daha sonra bu hizmeti sarmalanabilir ve döndürülen hizmeti sarmalanmış sürümle değiştirebilir.
 
-## <a name="resolving-a-dbproviderfactory-with-ef"></a>DbProviderFactory EF ile çözümleme
+## <a name="resolving-a-dbproviderfactory-with-ef"></a>Bir DbProviderFactory 'ı EF ile çözme
 
-DbProviderFactory olduğu EF tarafından açıklanan şekilde gerekli temel sağlayıcı türlerinden birini _sağlayıcısı türlerinin genel bakış_ yukarıdaki bölümde. Zaten belirtilen EF türü değilse ve kayıt genellikle EF yapılandırmasının bir parçası değildir, ancak bunun yerine normal ADO.NET Sağlayıcısı kaydı machine.config dosyasının ve/veya uygulamanın yapılandırma dosyası olduğu.
+DbProviderFactory, yukarıdaki _sağlayıcı türleri genel bakış_ bölümünde AÇıKLANDıĞı gibi EF tarafından gereken temel sağlayıcı türlerinden biridir. Zaten belirtildiği gibi, bir EF türü değildir ve kayıt genellikle EF yapılandırmasının bir parçası değildir, ancak bunun yerine Machine. config dosyasında ve/veya uygulamanın yapılandırma dosyasında normal ADO.NET sağlayıcı kaydı olur.
 
-Bu EF rağmen yine de, normal bağımlılık çözümleme mekanizması olduğunda DbProviderFactory için arama kullanmak için kullanır. Varsayılan çözümleyici normal ADO.NET kayıt yapılandırma dosyalarında kullanır ve bu nedenle bu genellikle saydamdır. Ancak normal bağımlılık çözümlemesi nedeniyle mekanizması olarak kullanıldığı bir IDbDependencyResolver bile normal ADO.NET kaydı yapılmadı olduğunda DbProviderFactory gidermek için kullanılabilir anlamına gelir.
+Bu EF hala, bir DbProviderFactory öğesini kullanmak için ararken normal bağımlılık çözüm mekanizmasını kullanıyor olsa da. Varsayılan çözümleyici yapılandırma dosyalarında normal ADO.NET kaydını kullanır ve bu nedenle genellikle saydamdır. Ancak normal bağımlılık çözümleme mekanizması kullanıldığı için, normal ADO.NET kaydı yapılmadığında bile bir ıdbdependencyresolver 'ın bir DbProviderFactory çözümlemek için kullanılabileceği anlamına gelir.
 
-Bu şekilde DbProviderFactory çözme, birkaç olası etkilere sahiptir:
+DbProviderFactory 'in bu şekilde çözülmesi birçok etkilere sahiptir:
 
-*   Kod tabanlı yapılandırma kullanarak uygulama uygun DbProviderFactory kaydedilecek DbConfiguration sınıfında çağrılar ekleyebilirsiniz. Etmek istiyor musunuz (veya açılamıyor) uygulamalar için özellikle kullanışlıdır yapmak hiç içeren herhangi bir dosya tabanlı yapılandırmayı kullanın.
-*   Hizmet sarmalanabilir veya ReplaceService makalesinde açıklanan şekilde kullanarak yerine _sağlayıcıları sarmalama_ yukarıdaki bölümde
-*   Teorik olarak, DbProviderServices uygulama DbProviderFactory çözümlenemiyor.
+*   Kod tabanlı yapılandırma kullanan bir uygulama, uygun DbProviderFactory 'yi kaydetmek için DbConfiguration sınıfında çağrı ekleyebilir. Bu, özellikle herhangi bir dosya tabanlı yapılandırmayı kullanmak istemediğiniz (veya yapamayan) uygulamalar için yararlıdır.
+*   Bu hizmet, yukarıdaki _sarmalama sağlayıcıları_ bölümünde açıklandığı gibi replaceservice kullanılarak sarmalanabilir veya değiştirilebilir
+*   Teorik olarak, bir DbProviderServices uygulaması bir DbProviderFactory çözümleyebilir.
 
-Bunlardan herhangi birini yapma hakkında dikkat edilecek önemli olan nokta, bunların yalnızca EF tarafından DbProviderFactory arama etkiler ' dir. Diğer EF olmayan kod hala normal bir şekilde kaydedilecek ADO.NET sağlayıcısı bekleyebilir ve kayıt bulunamaması durumunda başarısız olabilir. Bu nedenle, normal bir ADO.NET şekilde kaydedilecek DbProviderFactory için normalde daha iyi olacaktır.
+Bunlardan herhangi birini yapmakla ilgili dikkat edilmesi gereken önemli nokta, yalnızca DbProviderFactory 'ın EF ile olan aramasını etkiler. Diğer EF olmayan kod, ADO.NET sağlayıcısı 'nın normal şekilde kaydedilmesini bekleyebilir ve kayıt bulunamazsa başarısız olabilir. Bu nedenle, DbProviderFactory 'nin normal ADO.NET şekilde kaydedilmesi genellikle daha iyidir.
 
 ### <a name="related-services"></a>İlgili hizmetler
 
-Ardından EF DbProviderFactory çözmek için kullanılıyorsa IProviderInvariantName ve IDbProviderFactoryResolver Hizmetleri çözümlenmelidir.
+Bir DbProviderFactory çözümlemek için EF kullanılırsa, ayrıca IProviderInvariantName ve ıdbproviderfactoryresolver hizmetlerini de çözmelidir.
 
-IProviderInvariantName DbProviderFactory belirli bir tür bir sağlayıcı değişmez adını belirlemek için kullanılan bir hizmettir. Bu hizmet, varsayılan uygulama, ADO.NET Sağlayıcısı kaydı kullanır. Bu DbProviderFactory tarafından EF çözümlendiğinden ADO.NET sağlayıcısı normal bir şekilde kayıtlı değil, daha sonra Ayrıca bu hizmet çözmek gerekli anlamına gelir. Bu hizmet için bir çözümleyici DbConfiguration.SetProviderFactory yöntemi kullanırken otomatik olarak eklendiğini unutmayın.
+IProviderInvariantName, belirli bir DbProviderFactory türü için sağlayıcı sabit adını belirlemede kullanılan bir hizmettir. Bu hizmetin varsayılan uygulanması ADO.NET sağlayıcı kaydını kullanır. Bu, DbProviderFactory EF tarafından çözümlendiği için ADO.NET sağlayıcısı normal şekilde kaydedilmemişse, bu hizmetin çözümlenmesi için de gerekli olacaktır. DbConfiguration. SetProviderFactory yöntemi kullanılırken bu hizmet için bir çözümleyici 'nin otomatik olarak eklendiğini unutmayın.
 
-Bölümünde anlatıldığı gibi _sağlayıcısı türlerinin genel bakış_ yukarıda bölümünde, IDbProviderFactoryResolver doğru DbProviderFactory belirli bir DbConnection nesneden elde etmek için kullanılır. Bu hizmet, .NET 4'te çalışan ADO.NET Sağlayıcısı kaydı kullandığında varsayılan uygulaması. Bu DbProviderFactory tarafından EF çözümlendiğinden ADO.NET sağlayıcısı normal bir şekilde kayıtlı değil, daha sonra Ayrıca bu hizmet çözmek gerekli anlamına gelir.
+Yukarıdaki _sağlayıcı türleri genel bakış_ bölümünde açıklandığı gibi, ıdbproviderfactoryresolver, belirli bir DbConnection nesnesinden doğru DbProviderFactory elde etmek için kullanılır. .NET 4 ' te çalışırken bu hizmetin varsayılan uygulanması ADO.NET sağlayıcısı kaydını kullanır. Bu, DbProviderFactory EF tarafından çözümlendiği için ADO.NET sağlayıcısı normal şekilde kaydedilmemişse, bu hizmetin çözümlenmesi için de gerekli olacaktır.

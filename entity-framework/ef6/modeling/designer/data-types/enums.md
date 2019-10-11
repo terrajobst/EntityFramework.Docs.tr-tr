@@ -1,111 +1,111 @@
 ---
-title: Numaralandırma desteği - EF Designer - EF6
+title: Enum desteği-EF Tasarımcısı-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: c6ae6d8f-1ace-47db-ad47-b1718f1ba082
-ms.openlocfilehash: 331182c4311565c94cf072eb9b9ad372ac76180a
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: 92a763b84a04d3ce7ec0853ef2a4852356cf7997
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283946"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182516"
 ---
-# <a name="enum-support---ef-designer"></a>Numaralandırma desteği - EF Designer
+# <a name="enum-support---ef-designer"></a>Enum desteği-EF Tasarımcısı
 > [!NOTE]
-> **EF5 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb. Entity Framework 5'te kullanıma sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.
+> **Yalnızca EF5** , bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 5 ' te sunulmuştur. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.
 
-Bu video ve adım adım izlenecek yol, Entity Framework Designer ile numaralandırma türleri kullanmayı gösterir. Ayrıca, bir LINQ Sorgu numaralandırmalar kullanmayı gösterir.
+Bu video ve adım adım izlenecek yol, Entity Framework Designer numaralandırma türlerini nasıl kullanacağınızı gösterir. Ayrıca, bir LINQ sorgusunda numaralandırmaları nasıl kullanacağınızı gösterir.
 
-Bu izlenecek yol modeli ilk yeni bir veritabanı oluşturmak için kullanır, ancak EF Designer ile de kullanılabilir [veritabanı ilk](~/ef6/modeling/designer/workflows/database-first.md) mevcut bir veritabanına eşlemek için iş akışı.
+Bu izlenecek yol, yeni bir veritabanı oluşturmak için Model First kullanır, ancak aynı zamanda, var olan bir veritabanına eşlemek için [Database First](~/ef6/modeling/designer/workflows/database-first.md) iş AKıŞıYLA birlikte EF Designer da kullanılabilir.
 
-Numaralandırma desteği, Entity Framework 5'te tanıtıldı. Numaralandırmalar, uzamsal veri türleri ve tablo değerli işlevler gibi yeni özellikleri kullanmak için .NET Framework 4.5 hedeflemesi gerekir. Visual Studio 2012, varsayılan olarak .NET 4.5 hedefler.
+Enum desteği Entity Framework 5 ' te tanıtılmıştı. Numaralandırmalar, uzamsal veri türleri ve tablo değerli işlevler gibi yeni özellikleri kullanmak için, .NET Framework 4,5 ' i hedeflemelidir. Visual Studio 2012, .NET 4,5 'i varsayılan olarak hedefler.
 
-Varlık Çerçevesi'nde bir numaralandırma aşağıdaki temel alınan türler sahip olabilir: **bayt**, **Int16**, **Int32**, **Int64** , veya **SByte**.
+Entity Framework, bir numaralandırma aşağıdaki temel türlere sahip olabilir: **Byte**, **Int16**, **Int32**, **Int64** veya **SByte**.
 
 ## <a name="watch-the-video"></a>Videoyu izleyin
-Bu videoda, Entity Framework Designer ile numaralandırma türleri kullanmayı gösterir. Ayrıca, bir LINQ Sorgu numaralandırmalar kullanmayı gösterir.
+Bu videoda, Entity Framework Designer ile numaralandırma türlerinin nasıl kullanılacağı gösterilmektedir. Ayrıca, bir LINQ sorgusunda numaralandırmaları nasıl kullanacağınızı gösterir.
 
-**Tarafından sunulan**: Julia Kornich
+**Sunulma ölçütü**: Julia Kornich
 
 **Video**: [WMV](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.wmv) | [MP4](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-mp4video-enumwithdesiger.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.zip)
 
-## <a name="pre-requisites"></a>Ön koşullar
+## <a name="pre-requisites"></a>Önkoşulların önkoşulları
 
-Visual Studio 2012, Ultimate, Premium, Professional veya Web Express sürümü, bu izlenecek yolu tamamlamak için yüklü olması gerekir.
+Bu yönergeyi tamamlamak için Visual Studio 2012, Ultimate, Premium, Professional veya Web Express sürümünün yüklü olması gerekir.
 
-## <a name="set-up-the-project"></a>Projesi kurun
+## <a name="set-up-the-project"></a>Projeyi ayarlama
 
-1.  Visual Studio 2012'yi açın
-2.  Üzerinde **dosya** menüsünde **yeni**ve ardından **proje**
-3.  Sol bölmede **Visual C\#** ve ardından **konsol** şablonu
-4.  Girin **EnumEFDesigner** tıklayın ve proje adı olarak **Tamam**
+1.  Visual Studio 2012 'yi açın
+2.  **Dosya** menüsünde, **Yeni**' nin üzerine gelin ve ardından **Proje** ' ye tıklayın.
+3.  Sol bölmede, **Visual C @ no__t-1**' e tıklayın ve ardından **konsol** şablonunu seçin
+4.  Projenin adı olarak **Trmefdesigner** girin ve **Tamam 'a** tıklayın
 
-## <a name="create-a-new-model-using-the-ef-designer"></a>Yeni EF Designer kullanarak Model oluşturma
+## <a name="create-a-new-model-using-the-ef-designer"></a>EF tasarımcısını kullanarak yeni model oluşturma
 
-1.  Çözüm Gezgini'nde proje adına sağ tıklayın, fareyle **Ekle**ve ardından **yeni öğe**
-2.  Seçin **veri** seçin ve soldaki menüden **ADO.NET varlık veri modeli** Şablonlar bölmesinde
-3.  Girin **EnumTestModel.edmx** dosya adı ve ardından **Ekle**
-4.  Varlık veri modeli Sihirbazı sayfasında **boş Model** Choose Model Contents iletişim kutusunda
-5.  Tıklayın **son**
+1.  Çözüm Gezgini ' de proje adına sağ tıklayın, **Ekle**' nin üzerine gelin ve ardından **Yeni öğe** ' ye tıklayın.
+2.  Sol menüden **verileri** seçin ve ardından şablonlar bölmesinde **ADO.net varlık veri modeli** seçin
+3.  Dosya adı için **Enumtestmodel. edmx** girin ve ardından **Ekle** ' ye tıklayın.
+4.  Varlık Veri Modeli Sihirbazı sayfasında, model Içeriklerini Seç iletişim kutusunda **boş model** ' i seçin.
+5.  **Son** ' a tıklayın
 
-Modelinizi düzenleme için bir tasarım yüzeyi sağlar, varlık Tasarımcısı görüntülenir.
+Modelinizi düzenlemekte bir tasarım yüzeyi sağlayan Entity Desisgner görüntülenir.
 
-Sihirbaz, aşağıdaki eylemleri gerçekleştirir:
+Sihirbaz aşağıdaki eylemleri gerçekleştirir:
 
--   Kavramsal model ve depolama modeli bunları arasındaki eşlemeyi tanımlar EnumTestModel.edmx dosyası oluşturur. Oluşturulan meta veri dosyaları bütünleştirilmiş koda gömülü için Yapıt meta veri işleme özelliğini .edmx dosyasını çıkış bütünleştirilmiş kodu Ekle ayarlar.
--   Aşağıdaki derlemelere başvuru ekler: EntityFramework System.ComponentModel.DataAnnotations ve System.Data.Entity.
--   EnumTestModel.tt ve EnumTestModel.Context.tt dosyaları oluşturur ve bunları altında .edmx dosyasını ekler. Bu T4 şablonu dosyaları .edmx modeli'ndeki varlıkları eşleyen POCO türleri ve türetilen DbContext türünü tanımlayan bir kod oluşturur.
+-   Kavramsal modeli, depolama modelini ve aralarındaki eşlemeyi tanımlayan EnumTestModel. edmx dosyasını oluşturur. Oluşturulan meta veri dosyalarının derlemeye katıştırılması için. edmx dosyasının meta veri yapıt Işleme özelliğini çıktı derlemesine katıştırmak üzere ayarlar.
+-   Aşağıdaki derlemelere bir başvuru ekler: EntityFramework, System. ComponentModel. Dataaçıklamalarda ve System. Data. Entity.
+-   EnumTestModel.tt ve EnumTestModel.Context.tt dosyalarını oluşturur ve. edmx dosyasının altına ekler. Bu T4 şablon dosyaları,. edmx modelindeki varlıklarla eşlenen DbContext türetilmiş türünü ve POCO türlerini tanımlayan kodu oluşturur.
 
-## <a name="add-a-new-entity-type"></a>Yeni bir varlık türü Ekle
+## <a name="add-a-new-entity-type"></a>Yeni varlık türü Ekle
 
-1.  Select tasarım yüzeyinde boş bir alana sağ tıklayın **Ekle -&gt; varlık**, yeni varlık iletişim kutusu görünür.
-2.  Belirtin **departmanı** türü için ad ve belirtin **DepartmentID** için anahtar özellik adı, türü olarak bırakın **Int32**
+1.  Tasarım yüzeyinde boş bir alana sağ tıklayın, **Add-&gt; varlığı**' i seçin, yeni varlık iletişim kutusu görüntülenir
+2.  Tür adı için **departmanı** belirtin ve anahtar özellik adı için **DepartmentID** belirtin, türü **Int32** olarak bırakın
 3.  **Tamam**’a tıklayın.
-4.  Varlık sağ tıklayıp **Ekle - yeni&gt; skaler özelliği**
-5.  Yeni özelliğe Yeniden Adlandır **adı**
-6.  Yeni özelliğin türünü değiştirmek **Int32** (varsayılan olarak, yeni özellik dize türüdür) türünü değiştirmek için Özellikler penceresini açmak ve değiştirmek için Type özelliği **Int32**
-7.  Başka bir skaler bir özellik ekleyin ve yeniden adlandırın **bütçe**, türe çeviremezsiniz **ondalık**
+4.  Varlığa sağ tıklayın ve **New-&gt; skaler Özellik Ekle** ' yi seçin
+5.  Yeni özelliği **ad** olarak yeniden adlandır
+6.  Yeni özelliğin türünü **Int32** olarak değiştirin (varsayılan olarak, yeni özellik dize türündedir) ve türü değiştirmek için Özellikler penceresi açın ve Type özelliğini **Int32** olarak değiştirin
+7.  Başka bir skaler özellik ekleyin ve **bütçeye**yeniden adlandırın, türü **Decimal** olarak değiştirin
 
-## <a name="add-an-enum-type"></a>Enum Türü Ekle
+## <a name="add-an-enum-type"></a>Sabit listesi türü Ekle
 
-1.  Entity Framework Tasarımcısı'nda ad özelliği sağ tıklayın, **enum için Dönüştür**
+1.  Entity Framework Designer, ad özelliğine sağ tıklayın, **sabit listesine Dönüştür** ' ü seçin
 
-    ![Numaralandırmaya Dönüştür](~/ef6/media/converttoenum.png)
+    ![Sabit listesine Dönüştür](~/ef6/media/converttoenum.png)
 
-2.  İçinde **sabit listesi Ekle** iletişim kutusuna **DepartmentNames** Enum tür adı için temel alınan türe çeviremezsiniz **Int32**, ve ardından türü aşağıdaki üyeleri Ekle: İngilizce, Matematik ve ekonomik
+2.  Numaralandırma **Ekle** iletişim kutusunda, enum türü adı için **DepartmentNames** yazın, temeldeki türü **Int32**olarak değiştirin ve ardından aşağıdaki üyeleri türüne ekleyin: İngilizce, matematik ve ekonomisi
 
-    ![Enum Türü Ekle](~/ef6/media/addenumtype.png)
+    ![Sabit listesi türü Ekle](~/ef6/media/addenumtype.png)
 
-3.  Tuşuna **Tamam**
-4.  Modeli kaydedin ve projeyi derleyin
+3.  **Tamam** 'a basın
+4.  Modeli kaydetme ve projeyi derleme
     > [!NOTE]
-    > Oluşturma sırasında hata Listesi'nde eşlenmemiş varlıkları ve ilişkileri hakkında uyarılar görünebilir. Veritabanı Modeli'nden seçtikten sonra hatalar kaybolur çünkü bu uyarıları gözardı edebilirsiniz.
+    > Oluşturduğunuzda, eşlenmemiş varlıklar ve ilişkilendirmeler hakkında uyarılar Hata Listesi görünebilir. Bu uyarıları yoksayabilirsiniz çünkü veritabanını modelden oluşturmayı seçmemiz gerekir, ancak hatalar kaybolur.
 
-Özellikler penceresinde bakarsanız, Name özelliğinin türü için değiştirildiğini fark edeceksiniz **DepartmentNames** ve yeni eklenen numaralandırma türüne türlerini listesine eklendi.
+Özellikler penceresi görüyorsanız, ad özelliğinin türünün **DepartmentNames** olarak değiştirildiğini ve yeni eklenen sabit listesi türünün tür listesine eklendiğini fark edeceksiniz.
 
-Model tarayıcı penceresine geçiş yapıyorsanız, türü, sabit listesi türleri düğüme de eklendiğini görürsünüz.
+Model tarayıcı penceresine geçiş yaparsanız, türün de enum Types düğümüne eklendiğini görürsünüz.
 
-![Model tarayıcısı](~/ef6/media/modelbrowser.png)
+![Model tarayıcı](~/ef6/media/modelbrowser.png)
 
 >[!NOTE]
-> Ayrıca yeni sabit listesi türleri bu pencereden sağ fare düğmesini tıklatıp seçerek ekleyebileceğiniz **Enum Türü Ekle**. Türü oluşturulduktan sonra türleri listesinde görünür ve bir özellik ile ilişkilendirin olacaktır
+> Ayrıca, sağ fare düğmesine tıklayıp **sabit listesi türü Ekle**' yi seçerek bu pencereden yeni enum türleri ekleyebilirsiniz. Tür oluşturulduktan sonra, tür listesinde görünür ve bir özellikle ilişkilendirebileceksiniz
 
 ## <a name="generate-database-from-model"></a>Modelden veritabanı oluştur
 
-Şimdi biz modelini temel alan bir veritabanı oluşturabilirsiniz.
+Artık modeli temel alan bir veritabanı oluşturabilirsiniz.
 
-1.  Varlık Tasarımcısı seçin ve yüzey üzerinde boş bir alanı sağ **Model veritabanından oluştur**
-2.  Veritabanı Oluştur Sihirbazı'nın, veri bağlantısı iletişim kutusu Seç'e tıklayın görüntülenen **yeni bağlantı** belirt düğmesine **(localdb)\\ifadesini mssqllocaldb** vesunucuadıiçin **EnumTest** tıklayın ve veritabanı için **Tamam**
-3.  Yeni bir veritabanı oluşturmak isteyip istemediğinizi soran bir iletişim kutusu açılır, tıklayın **Evet**.
-4.  Tıklayın **sonraki** ve oluşturulan DDL bir veritabanı oluşturmak için bir tanım DDL içermeyen Ayarları iletişim kutusu Not ve Özet görüntülenir Veritabanı Oluşturma Sihirbazı'nı veri tanımlama dili (DDL) oluşturur. bir sabit listesi türü eşleyen tablo
-5.  Tıklayın **son** Son'a DDL betik yürütülmez.
-6.  Veritabanı Oluşturma Sihirbazı'nı aşağıdakileri yapar: açılır **EnumTest.edmx.sql** T-SQL Düzenleyicisi oluşturur deposu şeması ve eşleme bölümlerini EDMX bağlantı dizesi bilgilerini ekler App.config dosyasına dosya
-7.  T-SQL Düzenleyicisi'nde sağ fare düğmesine tıklayıp **yürütme** Connect sunucusu iletişim kutusu görüntülenirse, 2. adımdaki bağlantı bilgilerini girin ve tıklayın **Bağlan**
-8.  Oluşturulan şema görüntülemek için SQL Server Nesne Gezgini içinde veritabanı adını sağ tıklatın ve seçin **Yenile**
+1.  Entity Desisgner yüzeyinde boş bir alana sağ tıklayın ve **modelden veritabanı oluştur** ' u seçin.
+2.  Veritabanı oluşturma sihirbazının veri bağlantısını seçin Iletişim kutusu görüntülenir **Yeni bağlantı** düğmesine tıklayın **(localdb) \\mssqllocaldb** , veritabanı Için bir ad ve **Enumtest** için belirtin ve **Tamam 'a** tıklayın
+3.  Yeni bir veritabanı oluşturmak isteyip istemediğinizi soran bir iletişim kutusu açılır ve **Evet**' e tıklayın.
+4.  **İleri** ' ye tıklayın ve veritabanı oluşturma Sihirbazı bir veritabanı oluşturmak için veri tanımlama DILI (ddl) oluşturur oluşturulan DDL, Özet ve ayarlar iletişim kutusu IÇINDE, DDL 'nin bu bir tablo için bir tanım içermediğini sabit listesi türü
+5.  Son **' a** tıklayarak DDL betiğini yürütmez.
+6.  Veritabanı oluşturma Sihirbazı şunları yapar: T-SQL düzenleyicisinde **Enumtest. edmx. SQL** ' i açar, edmx dosyasının depo şemasını ve eşleme bölümlerini App. config dosyasına bağlantı dizesi bilgilerini ekler
+7.  T-SQL Düzenleyicisi ' nde sağ fare düğmesine tıklayın ve sunucuya Bağlan iletişim kutusunu **Çalıştır** ' ı seçin. Adım 2 ' den bağlantı bilgilerini girin ve **Bağlan** ' a tıklayın.
+8.  Oluşturulan şemayı görüntülemek için SQL Server Nesne Gezgini veritabanı adına sağ tıklayın ve **Yenile** ' yi seçin.
 
-## <a name="persist-and-retrieve-data"></a>Kalıcı hale getirmek ve veri alma
+## <a name="persist-and-retrieve-data"></a>Kalıcı ve veri alma
 
-Main yöntemi tanımlandığı Program.cs dosyasını açın. Ana işlevine aşağıdaki kodu ekleyin. Kod bağlamı için yeni bir bölüm nesnesi ekler. Ardından, verileri kaydeder. Kod ayrıca bir bölüm adı DepartmentNames.English olduğu döndüren LINQ sorgusu yürütür.
+Main yönteminin tanımlandığı Program.cs dosyasını açın. Aşağıdaki kodu Main işlevine ekleyin. Kod, içeriğe yeni bir departman nesnesi ekler. Daha sonra verileri kaydeder. Kod ayrıca, adın DepartmentNames. Ingilizce olduğu bir departmanı döndüren bir LINQ sorgusu yürütür.
 
 ``` csharp
 using (var context = new EnumTestModelContainer())
@@ -125,14 +125,14 @@ using (var context = new EnumTestModelContainer())
 }
 ```
 
-Derleme ve uygulamayı çalıştırın. Program şu çıktıyı üretir:
+Uygulamayı derleyin ve çalıştırın. Program aşağıdaki çıktıyı üretir:
 
-```
+```console
 DepartmentID: 1 Name: English
 ```
 
-Veritabanındaki verileri görüntülemek için SQL Server Nesne Gezgini içinde veritabanı adını sağ tıklatın ve seçin **Yenile**. Tablo ve seçim sağ fare düğmesini tıklatıp **görünüm verilerini**.
+Veritabanındaki verileri görüntülemek için SQL Server Nesne Gezgini veritabanı adına sağ tıklayın ve **Yenile**' yi seçin. Ardından, tablodaki sağ fare düğmesine tıklayın ve **verileri görüntüle**' yi seçin.
 
 ## <a name="summary"></a>Özet
 
-Bu izlenecek yolda Numaralandırma türleri Entity Framework Designer kullanarak eşleme ve numaralandırmalar kodda kullanma inceledik. 
+Bu kılavuzda, Entity Framework Designer kullanarak numaralandırma türlerini nasıl eşleyeceğinizi ve kod içinde Numaralandırmaların nasıl kullanılacağını inceledik. 

@@ -1,19 +1,19 @@
 ---
-title: Saklı yordamları - EF6 Sorgu Tasarımcısı
+title: Tasarımcı sorgusu saklı yordamları-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 9554ed25-c5c1-43be-acad-5da37739697f
-ms.openlocfilehash: 04478ea1c8cd43a7ba4ee788e464992af3de7f64
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.openlocfilehash: 2e0092b526278597e8477d47eeb642598647bb91
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283907"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182476"
 ---
-# <a name="designer-query-stored-procedures"></a>Sorgu Tasarımcısı saklı yordamlar
-Bu adım adım bir modele saklı yordamlar içeri aktarmak için Entity Framework Designer (EF Designer) kullanın ve ardından sonuçları almak için içeri aktarılan saklı yordamları çağırmak nasıl gösterir. 
+# <a name="designer-query-stored-procedures"></a>Tasarımcı sorgusu saklı yordamları
+Bu adım adım izlenecek yol, saklı yordamları bir modele aktarmak için Entity Framework Designer (EF Designer) kullanmayı ve ardından sonuçları almak için içeri aktarılan saklı yordamları çağırmayı gösterir. 
 
-Code First saklı yordamları ve işlevleri için eşleme desteklemediğini unutmayın. Ancak, System.Data.Entity.DbSet.SqlQuery yöntemi kullanarak saklı yordamları ve işlevleri çağırabilir. Örneğin:
+Code First, saklı yordamlara veya işlevlere eşlemeyi desteklemediğine unutmayın. Ancak, System. Data. Entity. DbSet. SqlQuery yöntemini kullanarak saklı yordamları veya işlevleri çağırabilirsiniz. Örneğin:
 ``` csharp
 var query = context.Products.SqlQuery("EXECUTE [dbo].[GetAllProducts]")`;
 ```
@@ -22,48 +22,48 @@ var query = context.Products.SqlQuery("EXECUTE [dbo].[GetAllProducts]")`;
 
 Bu kılavuzu tamamlamak için şunlara ihtiyacınız olacak:
 
-- Visual Studio'nun en son sürümü.
-- [School örnek veritabanını](~/ef6/resources/school-database.md).
+- Visual Studio 'nun son sürümü.
+- [Okul örnek veritabanı](~/ef6/resources/school-database.md).
 
-## <a name="set-up-the-project"></a>Projesi kurun
+## <a name="set-up-the-project"></a>Projeyi ayarlama
 
--   Visual Studio 2012'yi açın.
--   Seçin **File -&gt; yeni -&gt; proje**
--   Sol bölmede **Visual C\#** ve ardından **konsol** şablonu.
--   Girin **EFwithSProcsSample** adı.
--   Seçin **Tamam**.
+-   Visual Studio 2012 ' i açın.
+-   **Dosya-&gt; yeni-&gt; projesi** seçin
+-   Sol bölmede, **Visual C @ no__t-1**' e tıklayın ve ardından **konsol** şablonunu seçin.
+-   Ad olarak **Efwithsprocssample** girin.
+-    **Tamam ' ı**seçin.
 
 ## <a name="create-a-model"></a>Model oluşturma
 
--   Çözüm Gezgini'nde projeye sağ tıklayıp **Ekle -&gt; yeni öğe**.
--   Seçin **veri** seçin ve soldaki menüden **ADO.NET varlık veri modeli** Şablonlar bölmesinde.
--   Girin **EFwithSProcsModel.edmx** dosya adı ve ardından **Ekle**.
--   Choose Model Contents iletişim kutusunda **veritabanından Oluştur**ve ardından **sonraki**.
--   Tıklayın **yeni bağlantı**.  
-    Bağlantı Özellikleri iletişim kutusuna sunucu adını girin (örneğin, **(localdb)\\ifadesini mssqllocaldb**) seçin kimlik doğrulama yöntemi, tür **Okul** veritabanı adı ve ardından tıklayın **Tamam**.  
-    Veri bağlantınızı seçin iletişim kutusunda, veritabanı bağlantı ayarı ile güncelleştirilir.
--   Veritabanı nesnelerinizi seçin iletişim kutusunda, denetleyin **tabloları** tüm tabloları seçmek için onay kutusu.  
-    Ayrıca, altında aşağıdaki saklı yordamları seçin **saklı yordamları ve işlevleri** düğüm: **GetStudentGrades** ve **GetDepartmentName**. 
+-   Çözüm Gezgini projeye sağ tıklayın ve **Ekle-&gt; yeni öğe**' yi seçin.
+-   Sol menüden **verileri** seçin ve ardından şablonlar bölmesinde **ADO.net varlık veri modeli** öğesini seçin.
+-   Dosya adı için **Efwithsprocsmodel. edmx** yazın ve ardından **Ekle**' ye tıklayın.
+-   Model Içeriğini seçin iletişim kutusunda, **veritabanından oluştur**' u seçin ve ardından **İleri**' ye tıklayın.
+-    **Yeni bağlantı**' ya tıklayın.  
+    Bağlantı özellikleri iletişim kutusunda sunucu adını girin (örneğin, **(LocalDB) \\mssqllocaldb**), kimlik doğrulama yöntemini seçin, veritabanı adı için **okul** Yazın ve ardından **Tamam**' a tıklayın.  
+    Veri bağlantınızı seçin iletişim kutusu, veritabanı bağlantı ayarınız ile güncelleştirilir.
+-   Veritabanı nesnelerinizi seçin iletişim kutusunda, tüm tabloları seçmek için **tablolar** onay kutusunu işaretleyin.  
+    Ayrıca, **saklı yordamlar ve işlevler** düğümü altında aşağıdaki saklı yordamları seçin: **Getstudentnotlar** ve **GetDepartmentName**. 
 
-    ![{1&gt;İçeri Aktar&lt;1}](~/ef6/media/import.jpg)
+    ![İçeri Aktarma](~/ef6/media/import.jpg)
 
-    *EF Designer Visual Studio 2012'den itibaren saklı yordamlar toplu olarak içeri aktarma destekler. **Alma theentity modeline saklı yordamları ve işlevleri seçili** varsayılan olarak işaretlidir.*
--   **Son**'a tıklayın.
+    *Visual Studio 2012 ile başlayarak EF Designer, saklı yordamların Toplu içe aktarımını destekler. **Seçilen saklı yordamları ve Işlevleri Içeri aktar varlık modeline** varsayılan olarak işaretlidir.*
+-    **Son**' a tıklayın.
 
-Varsayılan olarak, her bir içeri aktarılan saklı yordam ya da birden fazla sütun döndüren işlev sonucu şeklini otomatik olarak yeni bir karmaşık türü olacaktır. Bu örnekte biz sonuçlarını eşlemek istediğiniz **GetStudentGrades** işlevi **StudentGrade** varlık ve sonuçları **GetDepartmentName** için**hiçbiri** (**hiçbiri** varsayılan değerdir).
+Varsayılan olarak, içeri aktarılan her saklı yordamın veya işlevin birden fazla sütunu döndüren sonuç şekli otomatik olarak yeni bir karmaşık tür olur. Bu örnekte, **Getstudentnotlar** Işlevinin sonuçlarını **Studentgrad** varlığına ve **GetDepartmentName** sonuçlarını **none** (**hiçbiri** varsayılan değer) olarak eşlemek istiyoruz.
 
-Bir işlev alma bir varlık türü döndürmek, karşılık gelen bir saklı yordam tarafından döndürülen sütunlar skaler özellikler döndürülen varlık türünün tam olarak eşleşmelidir. Bir işlev içeri aktarma, ayrıca koleksiyonları basit türler, karmaşık türler veya herhangi bir değer döndürebilir.
+Bir işlev içeri aktarma işleminin bir varlık türü döndürmesi için, karşılık gelen saklı yordam tarafından döndürülen sütunlar döndürülen varlık türünün skaler özellikleriyle tam olarak eşleşmelidir. Bir işlev içeri aktarması Ayrıca basit türler, karmaşık türler veya hiçbir değer için Koleksiyonlar döndürebilir.
 
--   Tasarım yüzeyi ve select sağ **Model tarayıcı**.
--   İçinde **Model tarayıcı**seçin **işlevi içeri aktarmalar**ve çift tıklatarak **GetStudentGrades** işlevi.
--   İşlev içeri aktarma Düzenle iletişim kutusunda **varlıkları** ve **StudentGrade**.  
-    ***İşlevi alma birleştirilebilir** en üstündeki onay kutusu **işlevi içeri aktarmalar** iletişim için birleştirilemeyen işlevler eşlemenize izin. Bu kutuyu işaretlerseniz, yalnızca birleştirilemeyen işlevler (tablo değerli işlevler) görünür **saklı yordam / işlev adı** aşağı açılan listesi. Bu kutuyu işaretleyin değil, yalnızca olmayan işlevler listesinde gösterilir.*
+-   Tasarım yüzeyine sağ tıklayıp **model tarayıcısı**' nı seçin.
+-   **Model tarayıcısı**' nda **işlev içeri aktarmalar**' ı seçin ve ardından **getstudentnotlar** işlevine çift tıklayın.
+-   Işlev Içeri aktarmayı Düzenle iletişim kutusunda, @no__t- **1Varlıkları**' nı seçin ve **Studentgrad**' ı seçin.  
+    *Işlev içe **aktarmaları** iletişim kutusunun üst kısmındaki **işlev içeri aktarma birleştirilebilir** onay kutusu, birleştirilebilir işlevlere eşlemenizi sağlar. Bu kutuyu işaretleyin, **saklı yordam/Işlev adı** açılır listesinde yalnızca birleştirilebilir Işlevler (tablo değerli işlevler) görüntülenir. Bu kutuyu denetlemeyin, listede yalnızca birleştirilemeyen işlevler gösterilir.*
 
-## <a name="use-the-model"></a>Kullanım modeli
+## <a name="use-the-model"></a>Modeli kullanma
 
-Açık **Program.cs** dosya nerede **ana** yöntemi tanımlanır. Ana işlevine aşağıdaki kodu ekleyin.
+**Main** yönteminin tanımlandığı **program.cs** dosyasını açın. Aşağıdaki kodu Main işlevine ekleyin.
 
-Kod, iki saklı yordam çağırır: **GetStudentGrades** (döndürür **StudentGrades** için belirtilen *StudentId*) ve **GetDepartmentName** (departman adı çıkış parametresinde döndürür).  
+Kod, saklı iki yordamı çağırır: **Getstudentnotlar** (belirtilen *Studentitıd*Için **studentnotlar** ' ı döndürür) ve **GetDepartmentName** (çıkış parametresindeki departmanın adını döndürür).  
 
 ``` csharp
     using (SchoolEntities context = new SchoolEntities())
@@ -87,9 +87,9 @@ Kod, iki saklı yordam çağırır: **GetStudentGrades** (döndürür **StudentG
     }
 ```
 
-Derleme ve uygulamayı çalıştırın. Program şu çıktıyı üretir:
+Uygulamayı derleyin ve çalıştırın. Program aşağıdaki çıktıyı üretir:
 
-```
+```console
 StudentID: 2
 Student grade: 4.00
 StudentID: 2
@@ -100,4 +100,4 @@ The department name is Engineering
 <a name="output-parameters"></a>Çıktı Parametreleri
 -----------------
 
-Çıktı parametreleri kullandıysanız değerleri sonuçları tamamen okunana kadar kullanılamaz. Bu dbdatareader öğesine dönüştürülemedi arka plandaki davranışı nedeniyle, bkz: [alma verileri kullanarak bir DataReader](https://go.microsoft.com/fwlink/?LinkID=398589) daha fazla ayrıntı için.
+Çıkış parametreleri kullanılıyorsa, sonuçlar tamamen okunana kadar bu değerler kullanılamaz. Bu, DbDataReader 'ın temel davranışının nedeni, daha fazla ayrıntı için [DataReader kullanarak veri alma](https://go.microsoft.com/fwlink/?LinkID=398589) konusuna bakın.

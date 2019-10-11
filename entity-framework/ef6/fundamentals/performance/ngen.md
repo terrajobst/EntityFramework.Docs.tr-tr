@@ -1,85 +1,85 @@
 ---
-title: NGen - EF6 ile başlangıç performansı iyileştirme
+title: NGen-EF6 ile başlangıç performansını artırma
 author: divega
 ms.date: 10/23/2016
 ms.assetid: dc6110a0-80a0-4370-8190-cea942841cee
-ms.openlocfilehash: 2e9a93c7741046da25b890fed084a6b280bf5643
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: c9b5f8a06add9133d30955e3cc97a92e9b189bdf
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489966"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182677"
 ---
-# <a name="improving-startup-performance-with-ngen"></a>NGen ile başlangıç performansı iyileştirme
+# <a name="improving-startup-performance-with-ngen"></a>NGen ile başlangıç performansını artırma
 > [!NOTE]
-> **EF6 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb., Entity Framework 6'da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.  
+> **Yalnızca EF6** , bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 6 ' da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.  
 
-.NET Framework yönetilen uygulamalar için yerel görüntüleri oluşturulmasını destekler ve daha az bellek kitaplıkları uygulamaları daha hızlı başlayın sağlayacak bir yol olarak ve bazı durumlarda da kullanabilirsiniz. Yerel görüntüler uygulama yürütülmeden önce yerel makine yönergelerine içeren dosyaları yerel yönergelerini oluşturmak zorunda kalmadan .NET JIT (Just-ın-Time) derleyicinin yoğun yönetilen kod derlemelerine çevirerek oluşturulur Uygulama çalışma zamanı.  
+.NET Framework, uygulamaların daha hızlı başlamasını ve ayrıca bazı durumlarda daha az bellek kullanmasını sağlamak için yönetilen uygulamalar ve kitaplıklar için yerel görüntülerin oluşturulmasını destekler. Yerel görüntüler, yönetilen kod derlemeleri uygulama yürütülmeden önce yerel makine yönergeleri içeren dosyalara çevrilirken oluşturulur, .NET JıT (tam zamanında) derleyicisini şu adreste yerel yönergeler oluşturmak zorunda kalmadan uygulama çalışma zamanı.  
 
-Sürüm 6 önce EF çalışma zamanının çekirdek kitaplıkları .NET Framework'ün bir parçası olan ve yerel görüntü için bunları otomatik olarak oluşturulmadı. Sürüm 6 ile başlayarak tüm EF çalışma zamanı EntityFramework NuGet paket birleştirilmiştir. Yerel görüntüler olması için şimdi oluşturulacak benzer sonuçlar elde etmek için NGen.exe komut satırı aracını kullanarak.  
+Sürüm 6 ' dan önce, EF Runtime 'ın temel kitaplıkları .NET Framework bir parçasıdır ve yerel görüntüler bunlar için otomatik olarak oluşturulmuştur. Sürüm 6 ' dan itibaren, tüm EF çalışma zamanı EntityFramework NuGet paketi ile birleştirilmiştir. Yerel görüntülerin artık benzer sonuçlar elde etmek için NGen. exe komut satırı aracı kullanılarak oluşturulması gerekir.  
 
-EF çalışma zamanı derlemeleri, yerel görüntüler uygulama başlangıç zamanı 1-3 saniye arasında daraltabilirsiniz görgül gözlemler gösterir.  
+Empırik gözlemleri, EF çalışma zamanı derlemelerinin yerel görüntülerinin, uygulama başlatma süresinin 1 ile 3 saniye arasında kesilmesini olduğunu gösterir.  
 
-## <a name="how-to-use-ngenexe"></a>NGen.exe kullanma  
+## <a name="how-to-use-ngenexe"></a>NGen. exe kullanma  
 
-En temel NGen.exe Aracı'nın "yüklemek için" işlevidir (diğer bir deyişle, oluşturmak ve diske kalıcı hale getirmek için) bir derleme ve tüm doğrudan bağımlılıkları için yerel görüntüler. İşte, nasıl gerçekleştirebilirsiniz:  
+NGen. exe aracının en temel işlevi, bir derleme için yerel görüntüleri ve tüm doğrudan bağımlılıklarını "yüklemektir" (diğer bir deyişle, disk oluşturmak ve kalıcı hale getirmek için). Şunları elde edebilirsiniz:  
 
-1. Yönetici olarak bir komut istemi penceresi açın  
-2. Geçerli çalışma dizini için yerel görüntüleri oluşturmak istediğiniz derlemelerin konumunu değiştirin:  
+1. Yönetici olarak bir komut Istemi penceresi açın  
+2. Geçerli çalışma dizinini yerel görüntü oluşturmak istediğiniz derlemelerin konumuyla değiştirin:  
 
   ``` console
     cd <*Assemblies location*>  
   ```
-3. İşletim sisteminiz ve uygulama yapılandırmasına bağlı olarak, 32 bit mimari, 64 bit mimari için veya her ikisi de için yerel görüntüler Oluştur gerekebilir.  
+3. İşletim sisteminize ve uygulamanın yapılandırmasına bağlı olarak, 32 bit mimarisi, 64 bit mimarisi veya her ikisi için de yerel görüntüler oluşturmanız gerekebilir.  
 
-    32 çalıştırma bit için:  
+    32 bit çalıştırması için:  
   ``` console
     %WINDIR%\Microsoft.NET\Framework\v4.0.30319\ngen install <Assembly name>  
   ```
-    64 çalıştırma bit için:
+    64 bit çalıştırması için:
   ``` console
     %WINDIR%\Microsoft.NET\Framework64\v4.0.30319\ngen install <Assembly name>  
   ```
 
 > [!TIP]
-> Yanlış mimarisi için yerel görüntüler oluşturuluyor çok yaygın bir hata var. Zaman şüpheli yeterlidir makinede yüklü olan işletim sistemi için geçerli tüm mimariler için yerel görüntüleri oluşturun.  
+> Yanlış mimari için yerel görüntülerin oluşturulması çok yaygın bir hata oluşturur. Şüpheli durumda, makinede yüklü olan işletim sistemi için uygulanan tüm mimarilerin yerel görüntülerini oluşturmanız yeterlidir.  
 
-NGen.exe, birden çok resimler, vb. nesil queuing yüklü yerel görüntüleri görüntüleme ve kaldırma gibi diğer işlevleri de destekler. Kullanımı daha fazla ayrıntı için okuma [NGen.exe belgeleri](https://msdn.microsoft.com/library/6t9t5wcf.aspx).  
+NGen. exe, yüklü yerel görüntüleri kaldırma ve görüntüleme, birden çok görüntünün oluşturulmasını sıraya alma, vb. gibi işlevleri de destekler. Kullanım hakkında daha fazla bilgi için [Ngen. exe belgelerini](https://msdn.microsoft.com/library/6t9t5wcf.aspx)okuyun.  
 
-## <a name="when-to-use-ngenexe"></a>NGen.exe kullanıldığı durumlar  
+## <a name="when-to-use-ngenexe"></a>NGen. exe ne zaman kullanılır?  
 
-EF 6 veya üzeri bir sürümü üzerinde tabanlı bir uygulama için yerel görüntüleri oluşturmak için hangi derlemelerin karar vermek için söz konusu olduğunda, aşağıdaki seçenekleri dikkate almanız gerekir:  
+Bir uygulama için, EF sürüm 6 veya üzerini temel alan bir uygulamada yerel görüntü oluşturmak üzere hangi derlemeler olduğuna karar verirken, aşağıdaki seçenekleri göz önünde bulundurmanız gerekir:  
 
-- **Ana EF çalışma zamanı derlemesi EntityFramework.dll**: genel bir temel EF uygulama yürütür veritabanında önemli miktarda kod başlangıç veya ilk erişimini, bu derlemedeki. Sonuç olarak, bu derlemenin yerel görüntüler oluşturma başlangıç performansı büyük kazanç oluşturur.  
-- **Uygulamanız tarafından kullanılan tüm EF sağlayıcı derlemesi**: başlangıç zamanı da avantajını biraz oluşturmasını bu yerel görüntüler. Örneğin, uygulamanın EF sağlayıcısı için SQL Server kullanıyorsa, yerel görüntü için EntityFramework.SqlServer.dll oluşturmak isteyeceksiniz.  
-- **Uygulamanızın derlemeleri ve diğer bağımlılıklar**: [NGen.exe belgeleri](https://msdn.microsoft.com/library/6t9t5wcf.aspx) için yerel görüntüler ve güvenlik, yerel görüntüler etkisini oluşturmak için hangi derlemelerin seçmeye yönelik genel ölçüt kapsar Gelişmiş Seçenekleri "sıkı bağlama" gibi hata ayıklama ve profil oluşturma senaryoları, vb. yerel görüntüleri kullanan gibi senaryoları.  
+- **Ana EF çalışma zamanı derlemesi, EntityFramework. dll**: Tipik bir EF tabanlı uygulama, başlangıçta bu derlemeden veya veritabanına ilk erişimi üzerinde önemli miktarda kod yürütür. Sonuç olarak, bu derlemenin yerel görüntülerini oluşturmak, başlangıç performansındaki en büyük kazancı oluşturacaktır.  
+- **Uygulamanız tarafından kullanılan herhangi BIR EF sağlayıcı derlemesi**: Başlangıç zamanı, bunların yerel görüntülerini oluşturmaktan biraz avantaj sağlayabilir. Örneğin, uygulama SQL Server için EF sağlayıcısını kullanıyorsa, EntityFramework. SqlServer. dll için yerel bir görüntü oluşturmak isteyeceksiniz.  
+- **Uygulamanızın derlemeleri ve diğer bağımlılıkları**: [Ngen. exe belgeleri](https://msdn.microsoft.com/library/6t9t5wcf.aspx) , için yerel görüntüler oluşturmak için kullanılan derlemeleri ve güvenlik üzerindeki yerel görüntülerin etkisini, "sabit bağlama" gibi gelişmiş seçenekleri, hata ayıklamada yerel görüntüleri kullanma gibi senaryoları ve profil oluşturma senaryoları, vb.  
 
 > [!TIP]
-> Dikkatli bir şekilde hem başlangıç performansını hem de uygulamanızın genel performansını yerel görüntüleri kullanan etkilerini ölçmek ve karşılaştırmak içinse karşı Gerçek gereksinimler emin olun. Yerel görüntüler genellikle performans dökümünü başlangıç artırmak ve bazı durumlarda bellek kullanımını azaltmaya yardımcı olur, ancak tüm senaryolarda eşit yararlı olacaktır. (Diğer bir deyişle, uygulama tarafından kullanılan tüm yöntemler en az bir kez çağrılabilir sonra), kararlı bir duruma yürütülmesine JIT derleyicisi tarafından üretilen kod aslında yerel görüntülerden biraz daha iyi performans sağlayabilir.  
+> Yerel görüntülerin hem başlangıç performansı hem de uygulamanızın genel performansı ve gerçek gereksinimlere göre karşılaştırıldığı etkileri dikkatle ölçdiğinizden emin olun. Yerel görüntüler genellikle başlangıçtaki performansı artırmaya yardımcı olur ve bazı durumlarda bellek kullanımını azaltırken, tüm senaryolar eşit olarak avantajına sahip olur. Örneğin, kararlı durum yürütmesinde (yani, uygulama tarafından kullanılan tüm yöntemler en az bir kez çağrıldığında), JıT derleyicisi tarafından oluşturulan kod aslında yerel görüntülerden biraz daha iyi performans sağlayabilir.  
 
-## <a name="using-ngenexe-in-a-development-machine"></a>NGen.exe bir geliştirme makinesinde kullanma  
+## <a name="using-ngenexe-in-a-development-machine"></a>Bir geliştirme makinesinde NGen. exe kullanma  
 
-Geliştirme sırasında .NET JIT Derleyici sık değişen kod için en iyi genel artırabilen sunar. EF çalışma zamanı derlemeleri gibi derlenmiş bağımlılıkları için yerel görüntüler oluşturuluyor, geliştirme ve test birkaç saniye her yürütme başlangıcında kesme göre hızlandırın yardımcı olabilir.  
+Geliştirme sırasında .NET JıT derleyicisi, sık değişen kod için en iyi genel zorunluluğunu getirir sunar. EF çalışma zamanı derlemeleri gibi derlenmiş bağımlılıklar için yerel görüntülerin oluşturulması, her yürütmenin başlangıcında birkaç saniyelik bir süreyi izleyerek geliştirme ve test sürecini hızlandırmaya yardımcı olabilir.  
 
-Çözüm için NuGet paket konumu EF çalışma zamanı derlemeleri bulmak için iyi bir yerdir. Örneğin, SQL Server ile EF 6.0.2 kullanma ve .NET 4.5 veya üzeri hedefleyen bir uygulama için aşağıdaki komut istemi penceresinde yazabilirsiniz (yönetici olarak açın unutmayın):  
+EF çalışma zamanı derlemelerini bulmak için iyi bir yer vardır. Örneğin, SQL Server ile EF 6.0.2 kullanan bir uygulama için, .NET 4,5 veya üstünü hedeflemek için bir komut Istemi penceresine (yönetici olarak açmayı unutmayın) şunu yazabilirsiniz:  
 
-``` console
+```console
 cd <Solution directory>\packages\EntityFramework.6.0.2\lib\net45
 %WINDIR%\Microsoft.NET\Framework\v4.0.30319\ngen install EntityFramework.SqlServer.dll
 %WINDIR%\Microsoft.NET\Framework64\v4.0.30319\ngen install EntityFramework.SqlServer.dll
 ```  
 
 > [!NOTE]
-> Bu, yerel görüntüler için SQL Server EF sağlayıcısı yükleme de varsayılan olarak yerel görüntüler için ana EF çalışma zamanı derlemesi yüklenir olgu yararlanır. NGen.exe EntityFramework.dll aynı dizinde bulunan EntityFramework.SqlServer.dll bütünleştirilmiş kodun doğrudan bir bağımlılık olduğunu algılamak için bu çalışır.  
+> Bu, SQL Server için doğal sağlayıcının yerel görüntülerini yüklemenin yanı sıra, ana EF çalışma zamanı derlemesinin yerel görüntülerini da yükler. Bu, NGen. exe ' nin EntityFramework. dll ' nin aynı dizinde bulunan EntityFramework. SqlServer. dll derlemesinin doğrudan bağımlılığı algılayabileceğinden, bu işe yarar.  
 
 ## <a name="creating-native-images-during-setup"></a>Kurulum sırasında yerel görüntüler oluşturma  
 
-WiX araç destekler queuing yerel görüntülerin Kurulum sırasında oluşturma Yönetilen derlemeler için bu konuda açıklandığı gibi [yapılır kılavuzunda](http://wixtoolset.org/documentation/manual/v3/howtos/files_and_registry/ngen_managed_assemblies.html). Başka bir alternatif NGen.exe komutu yürüterek bir özel kurulum görevi oluşturmaktır.  
+WiX araç seti, bu [nasıl yapılır kılavuzunda](https://wixtoolset.org/documentation/manual/v3/howtos/files_and_registry/ngen_managed_assemblies.html)açıklandığı gibi, kurulum sırasında yönetilen derlemeler için yerel görüntülerin oluşturulmasını sıraya almayı destekler. Diğer bir seçenek de NGen. exe komutunu yürütecek özel bir kurulum görevi oluşturmaktır.  
 
-## <a name="verifying-that-native-images-are-being-used-for-ef"></a>Yerel görüntüler için EF kullanıldığını doğrulanıyor  
+## <a name="verifying-that-native-images-are-being-used-for-ef"></a>Yerel görüntülerin EF için kullanıldığı doğrulanıyor  
 
-Uzantı yüklenen derlemeler için bakarak belirli bir uygulamanın yerel bir derleme kullandığından emin olun ". ni.dll"veya". ni.exe". Örneğin, bir doğal görüntü EF'ın ana çalışma zamanı derlemesi için EntityFramework.ni.dll çağrılmaz. Bir işlemin yüklenen .NET derlemeleri incelemek için kolay bir yol kullanmaktır [Process Explorer](https://technet.microsoft.com/sysinternals/bb896653).  
+Belirli bir uygulamanın, ". nı. dll" veya ". nı. exe" uzantısına sahip yüklü derlemeleri arayarak yerel bir derlemeyi kullandığını doğrulayabilirsiniz. Örneğin, EF 'in ana çalışma zamanı derlemesi için yerel bir görüntü EntityFramework. nı. dll olarak adlandırılacaktır. Bir işlemin yüklü .NET derlemelerini incelemenize yönelik kolay bir yol, [Işlem Gezginini](https://technet.microsoft.com/sysinternals/bb896653)kullanmaktır.  
 
-## <a name="other-things-to-be-aware-of"></a>Dikkat edilmesi gereken diğer noktalar  
+## <a name="other-things-to-be-aware-of"></a>Bilmeniz gerekenler  
 
-**Bir derlemenin yerel görüntüsünü oluşturma karıştırılmamalıdır derlemesinde kaydetme ile [GAC'ye (Global Assembly Cache)](https://msdn.microsoft.com/library/yf1d93sz.aspx)**. NGen.exe derlemeleri GAC'ye olmayan görüntülerini oluşturma sağlar ve EF belirli bir sürümünü kullanan birden çok uygulama aynı yerel görüntü aslında paylaşabilirsiniz. Windows 8 GAC'de yerleştirilen derlemeler için yerel görüntüleri otomatik olarak oluşturmanız mümkün olsa da EF çalışma zamanı yanı sıra, uygulamanızın dağıtılması için optimize edilmiştir ve bu derleme çözümlemesine üzerinde olumsuz bir etkiye sahip olduğundan GAC'ye kaydetme önerilmez ve uygulamalarınızı diğer yönleri arasında hizmet.  
+Bütünleştirilmiş **kodun yerel görüntüsünü oluşturmak, derlemeyi [GAC 'de (genel derleme önbelleği)](https://msdn.microsoft.com/library/yf1d93sz.aspx)kaydederek karıştırılmamalıdır**. NGen. exe GAC içinde olmayan derlemelerin görüntülerini oluşturmaya izin verir ve aslında belirli bir EF sürümü kullanan birden çok uygulama aynı yerel görüntüyü paylaşabilir. Windows 8 GAC 'ye yerleştirilmiş derlemeler için otomatik olarak yerel görüntüler oluşturmasının yanı sıra, EF çalışma zamanının uygulamanız ile birlikte dağıtılması en iyi duruma getirilmiştir ve bu, derleme çözümlemesi üzerinde olumsuz bir etkiye sahip olduğundan GAC 'ye kaydolmasını önermiyoruz. diğer yönleri arasında uygulamalarınıza bakım yapma.  

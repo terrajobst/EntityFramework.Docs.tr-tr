@@ -155,7 +155,7 @@
               href: core/managing-schemas/index.md
             - name: Geçişler
               items:
-                - name: Genel bakış
+                - name: Genel Bakış
                   href: core/managing-schemas/migrations/index.md
                 - name: Takım Ortamları
                   href: core/managing-schemas/migrations/teams.md
@@ -175,8 +175,6 @@
           items:
             - name: Genel Bakış
               href: core/querying/index.md
-            - name: Temel Sorgu
-              href: core/querying/basic.md
             - name: İlgili Verileri Yükleme
               href: core/querying/related-data.md
             - name: İstemci ile Sunucunun Karşılaştırmalı Değerlendirmesi
@@ -188,7 +186,7 @@
             - name: Zaman Uyumsuz Sorgular
               href: core/querying/async.md
             - name: Sorgunun Çalışma Biçimi
-              href: core/querying/overview.md
+              href: core/querying/how-query-works.md
             - name: Genel Sorgu Filtreleri
               href: core/querying/filters.md
             - name: Sorgu Etiketleri

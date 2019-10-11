@@ -3,12 +3,12 @@ title: Async sorgusu ve Save-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d56e6f1d-4bd1-4b50-9558-9a30e04a8ec3
-ms.openlocfilehash: ae578976ffc88b407ef0aaa0017935005bedd093
-ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
+ms.openlocfilehash: 0642dc13e7aa3906fa1495031c62701fc16f0192
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/12/2019
-ms.locfileid: "70921624"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181841"
 ---
 # <a name="async-query-and-save"></a>Zaman uyumsuz sorgu ve Kaydet
 > [!NOTE]
@@ -30,7 +30,7 @@ Zaman uyumsuz hakkında bilgi edinmek için daha fazla kaynak aşağıda verilmi
 
 -   [Brandon Bray, .NET 4,5 ' de Async/Await öğesine genel bakış](https://blogs.msdn.com/b/dotnet/archive/2012/04/03/async-in-4-5-worth-the-await.aspx)
 -   MSDN kitaplığındaki [zaman uyumsuz programlama](https://msdn.microsoft.com/library/hh191443.aspx) sayfaları
--   [Zaman uyumsuz kullanarak ASP.NET Web uygulamaları oluşturma](http://channel9.msdn.com/events/teched/northamerica/2013/dev-b337) (artan sunucu aktarım hızı hakkında bir tanıtım içerir)
+-   [Zaman uyumsuz kullanarak ASP.NET Web uygulamaları oluşturma](https://channel9.msdn.com/events/teched/northamerica/2013/dev-b337) (daha fazla sunucu aktarım hızı içerir)
 
 ## <a name="create-the-model"></a>Modeli oluşturma
 
@@ -142,7 +142,7 @@ Kod zaman uyumlu olduğundan, programı çalıştırdığımızda aşağıdaki y
 
 1.  **SaveChanges** yeni **blogunuzu** veritabanına göndermeye başlıyor
 2.  **SaveChanges** tamamlandı
-3.  Tüm blogların sorgusu veritabanına gönderiliyor
+3.  Tüm **blogların** sorgusu veritabanına gönderiliyor
 4.  Sorgu dönüşleri ve sonuçlar **konsola** yazılır
 5.  Günün teklifi **konsola** yazılır
 
@@ -222,12 +222,12 @@ System. Data. Entity ad alanındaki kullanılabilir uzantı yöntemlerinin kapsa
 Artık kod zaman uyumsuz olduğuna göre, programı çalıştırdığımızda farklı bir yürütme akışını gözlemlebiliriz:
 
 1. **SaveChanges** yeni **blogunuzu** veritabanına göndermeye başlıyor  
-    *Komut veritabanına gönderildikten sonra, geçerli yönetilen iş parçacığında daha fazla işlem süresi gerekmez. **Performdatabaseoperations** yöntemi döndürür (yürütmeyi bitirmemiş olsa da) ve Main yönteminde Program Flow devam eder.*
+    *Komut veritabanına gönderildikten sonra, geçerli yönetilen iş parçacığında daha fazla işlem süresi gerekmez. **Performdatabaseoperations** yöntemi döndürüyor (yürütmeyi bitirmemiş olsa bile) ve Main yönteminde Program Flow devam eder.*
 2. **Günün teklifi konsola yazılır**  
-    *Main yönteminde yapılacak başka bir iş olmadığından, veritabanı işlemi tamamlanana kadar, yönetilen iş parçacığı bekleme çağrısında engellenir. Tamamlandıktan sonra, **Performdatabaseoperations** 'imizin geri kalanı yürütülür.*
+    *Ana yöntemde başka iş yapamadıklarından, veritabanı işlemi tamamlanana kadar, yönetilen iş parçacığı bekleme çağrısında engellenir. Tamamlandıktan sonra, **Performdatabaseoperations** 'imizin geri kalanı yürütülür.*
 3.  **SaveChanges** tamamlandı  
-4.  Tüm blogların sorgusu veritabanına gönderiliyor  
-    *Bu durumda, sorgu veritabanında işlendiği sırada yönetilen iş parçacığı başka bir iş yapmak için ücretsizdir. Diğer tüm yürütme tamamlandığından iş parçacığı de yalnızca bekleme çağrısında durabilir.*
+4.  Tüm **blogların** sorgusu veritabanına gönderiliyor  
+    *Yeniden, yönetilen iş parçacığı sorgu veritabanında işlendiği sırada başka bir iş yapmak için ücretsizdir. Diğer tüm yürütme tamamlandığından, iş parçacığı yalnızca bekleme çağrısında da durabilir.*
 5.  Sorgu dönüşleri ve sonuçlar **konsola** yazılır  
 
 ![Zaman uyumsuz çıkış](~/ef6/media/asyncoutput.png) 

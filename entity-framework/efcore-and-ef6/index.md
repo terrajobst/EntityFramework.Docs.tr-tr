@@ -1,16 +1,16 @@
 ---
-title: Entity Framework 6 ve Entity Framework Core karşılaştırın
+title: Entity Framework 6 ve Entity Framework Core-EF karşılaştırın
 description: Entity Framework 6 ve Entity Framework Core arasında seçim yapma hakkında rehberlik sağlar.
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: a6b9cd22-6803-4c6c-a4d4-21147c0a81cb
 uid: efcore-and-ef6/index
-ms.openlocfilehash: 3d2f72e64e6846d2d8bb6d4d507e04090287114d
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: 9fe4905de5bd81fce083d620724b7fad4c6dd11b
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71198015"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72182048"
 ---
 # <a name="compare-ef-core--ef6"></a>EF Core ve EF6 Karşılaştırması
 
@@ -54,9 +54,9 @@ EF Core sütunu, özelliğin ilk göründüğü ürün sürümünü belirtir.
 | Gölge durumu özellikleri                               |          | 1.0                                   |
 | Alternatif anahtarlar                                        |          | 1.0                                   |
 | Çok-çok, JOIN varlığı olmadan                      | Evet      |                                       |
-| Anahtar oluşturma: Veritabanı                              | Evet      | 1.0                                   |
+| Anahtar oluşturma: Database                              | Evet      | 1.0                                   |
 | Anahtar oluşturma: İstemci                                |          | 1.0                                   |
-| Karmaşık/sahip türler                                   | Evet      | 2,0                                   |
+| Karmaşık/sahip türler                                   | Evet      | 2.0                                   |
 | Uzamsal veriler                                          | Evet      | 2.2                                   |
 | Modelin grafik görselleştirmesi                      | Evet      |                                       |
 | Grafik Model Düzenleyicisi                                | Evet      |                                       |
@@ -65,12 +65,12 @@ EF Core sütunu, özelliğin ilk göründüğü ürün sürümünü belirtir.
 | Veritabanından model oluştur: Komut satırı              | Evet      | 1.0                                   |
 | Veritabanından model oluştur: VS Sihirbazı                 | Evet      |                                       |
 | Modeli veritabanından Güncelleştir                            | Kısmi  |                                       |
-| Genel sorgu filtreleri                                  |          | 2,0                                   |
-| Tablo bölme                                       | Evet      | 2,0                                   |
+| Genel sorgu filtreleri                                  |          | 2.0                                   |
+| Tablo bölme                                       | Evet      | 2.0                                   |
 | Varlık bölme                                      | Evet      |                                       |
-| Veritabanı skaler işlev eşlemesi                      | Kötü     | 2,0                                   |
+| Veritabanı skaler işlev eşlemesi                      | Kötü     | 2.0                                   |
 | Alan eşleme                                         |          | 1.1                                   |
-| Null yapılabilir başvuru türleriC# (8,0)                     |          | 3.0                                   |
+| Null yapılabilir başvuru türleriC# (8,0)                     |          | 3,0                                   |
 
 ### <a name="querying-data"></a>Verileri sorgulama
 
@@ -86,9 +86,9 @@ EF Core sütunu, özelliğin ilk göründüğü ürün sürümünü belirtir.
 | Ham SQL sorguları: Varlık türleri                         | Evet      | 1.0                                   |
 | Ham SQL sorguları: Keyless varlık türleri                 | Evet      | 2.1                                   |
 | Ham SQL sorguları: LINQ ile oluşturma                  |          | 1.0                                   |
-| Açıkça derlenmiş sorgular                           | Kötü     | 2,0                                   |
+| Açıkça derlenmiş sorgular                           | Kötü     | 2.0                                   |
 | Metin tabanlı sorgu dili (Entity SQL)                | Evet      |                                       |
-| await foreach (C# 8,0)                                |          | 3.0                                   |
+| await foreach (C# 8,0)                                |          | 3,0                                   |
 
 ### <a name="saving-data"></a>Verileri kaydetme
 
@@ -115,7 +115,7 @@ EF Core sütunu, özelliğin ilk göründüğü ürün sürümünü belirtir.
 | Bağlantı dayanıklılığı                                 | Evet      | 1.1                                   |
 | Yaşam döngüsü kancaları (olaylar, yakalar)                | Evet      |                                       |
 | Basit günlüğe kaydetme (Database. log)                         | Evet      |                                       |
-| DbContext havuzu                                     |          | 2,0                                   |
+| DbContext havuzu                                     |          | 2.0                                   |
 
 ### <a name="database-providers"></a>Veritabanı sağlayıcıları
 
@@ -128,9 +128,9 @@ EF Core sütunu, özelliğin ilk göründüğü ürün sürümünü belirtir.
 | SQLite                                                | Evet      | 1.0                                   |
 | SQL Server Compact                                    | Evet      | 1,0 <sup>(1)</sup>                    |
 | DB2                                                   | Evet      | 1.0                                   |
-| Firebird                                              | Evet      | 2,0                                   |
+| Firebird                                              | Evet      | 2.0                                   |
 | Jet (Microsoft Access)                                |          | 2,0 <sup>(1)</sup>                    |
-| Cosmos DB                                             |          | 3.0                                   |
+| Cosmos DB                                             |          | 3,0                                   |
 | Bellek içi (test için)                               |          | 1.0                                   |
 
 <sup>1</sup> SQL Server Compact ve Jet sağlayıcıları yalnızca .NET Framework (.NET Core üzerinde değil) üzerinde çalışır.

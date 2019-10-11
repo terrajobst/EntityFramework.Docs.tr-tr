@@ -1,51 +1,51 @@
 ---
-title: -EF6 gibi sahte bir çerçeve ile test etme
+title: Bir sahte işlem çerçevesi ile test etme-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: bd66a638-d245-44d4-8e71-b9c6cb335cc7
-ms.openlocfilehash: 3d39b41018beb70b72105dfb2fe4d61afc0b0525
-ms.sourcegitcommit: eb8359b7ab3b0a1a08522faf67b703a00ecdcefd
+ms.openlocfilehash: 790e077c5b30c4a68a96b3c1a99b40893b2bbe55
+ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/21/2019
-ms.locfileid: "58319211"
+ms.lasthandoff: 10/09/2019
+ms.locfileid: "72181566"
 ---
-# <a name="testing-with-a-mocking-framework"></a>Sahte bir framework ile test etme
+# <a name="testing-with-a-mocking-framework"></a>Bir sahte işlem çerçevesiyle test etme
 > [!NOTE]
-> **EF6 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb., Entity Framework 6'da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.  
+> **Yalnızca EF6** , bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 6 ' da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.  
 
-Uygulamanız için testleri yazarken genellikle veritabanı ulaşmaktan kaçınmak için tercih edilir.  Entity Framework, bir bağlam oluşturarak – – testleriniz tarafından tanımlanan davranışı ile bunu başarmak için bellek içi verileri kullanır, sağlar.  
+Uygulamanız için testler yazarken, genellikle veritabanına ulaşmaktan kaçınmak için bu durum tercih edilir.  Entity Framework, bir bağlam oluşturarak elde etmenizi sağlar. bu sayede, testleriniz tarafından tanımlanan davranışla birlikte bellek içi verileri kullanır.  
 
-## <a name="options-for-creating-test-doubles"></a>Test double oluşturmak için Seçenekler  
+## <a name="options-for-creating-test-doubles"></a>Test Double değerleri oluşturma seçenekleri  
 
-Bağlamınızı bir bellek içi sürümünü oluşturmak için kullanılan iki farklı yaklaşım vardır.  
+Bağlamınızın bellek içi bir sürümünü oluşturmak için kullanılabilecek iki farklı yaklaşım vardır.  
 
-- **Kendi test double oluşturma** – bu yaklaşım, kendi bellek içi uygulama içeriği ve DbSets yazma içerir. Bu, çok nasıl sınıfları davranır ancak yazmayı ve makul bir kod sahip olan içerebilir denetim sağlar.  
-- **Sahte bir çerçeve test double oluşturulacağı** – sahte bir çerçeve (örneğin, Moq) kullanarak bağlamı ve çalışma zamanında dinamik olarak için oluşturulan kümeleri bellek içi uygulamalara sahip olabilir.  
+- **Kendi testinizi oluşturun** – bu yaklaşım, bağlam ve dbsets kendi bellek içi uygulamanızın yazılmasını içerir. Bu, sınıfların nasıl davrandığına ilişkin çok fazla denetim sağlar ancak makul miktarda kodu yazmayı ve sahip olduğunu içerebilir.  
+- **Test Double değerleri oluşturmak için bir sahte işlem çerçevesi kullanma** : bir sahte işlem çerçevesi (moq gibi) kullanarak, bağlamınızın bellek içi uygulamalarına ve çalışma zamanında dinamik olarak oluşturulan kümelerine sahip olabilirsiniz.  
 
-Bu makalede sahte bir çerçeve kullanma ile ilgilenecektir. Kendi test double oluşturmak için bkz: [ile bilgisayarınızı kendi Test double test](writing-test-doubles.md).  
+Bu makale, bir sahte işlem çerçevesi kullanmaya yöneliktir. Kendi test Double 'larınızı oluşturmak için [, kendi testlerinizi kullanarak test edin](writing-test-doubles.md).  
 
-Sahte işlem çerçevesiyle EF kullanan göstermek için Moq kullanmak için kullanacağız. Moq almak için en kolay yolu yüklemektir [Moq NuGet paketinden](http://nuget.org/packages/Moq/).  
+Bir sahte işlem çerçevesiyle EF kullanmayı göstermek için moq kullanacağız. Moq almanın en kolay yolu [NuGet 'Den moq paketini](https://nuget.org/packages/Moq/)yüklemektir.  
 
-## <a name="testing-with-pre-ef6-versions"></a>EF6 öncesi sürümler ile test etme  
+## <a name="testing-with-pre-ef6-versions"></a>EF6 öncesi sürümlerle test etme  
 
-Bu makalede gösterilen senaryoyu EF6 içinde olan DB için sunulan bazı değişikliklere bağlıdır. EF5 ve önceki sürümü ile test etmek için bkz: [sahte bir bağlamla test](http://romiller.com/2012/02/14/testing-with-a-fake-dbcontext/).  
+Bu makalede gösterilen senaryo, EF6 içinde DbSet 'e yaptığımız bazı değişikliklere bağımlıdır. EF5 ve önceki sürümleri test etmek için bkz. [sahte bağlamla test etme](https://romiller.com/2012/02/14/testing-with-a-fake-dbcontext/).  
 
-## <a name="limitations-of-ef-in-memory-test-doubles"></a>EF bellek içi test çiftten oluşan sınırlamaları  
+## <a name="limitations-of-ef-in-memory-test-doubles"></a>Bellek içindeki EF ile test arasındaki sınırlamalar  
 
-Bellek içi test double birim testi, uygulamanızın EF kullanan bit düzeyi kapsamını sağlamanın iyi bir yolu olabilir. Ancak, bunun yapılması, LINQ to Objects'in bellek içi veri sorguları yürütmek için kullanırsınız. Bu sorgular, veritabanınızda çalıştırın SQL küçültmesini EF'ın LINQ sağlayıcısı (LINQ to Entities) kullanmaktan farklı bir davranış neden olabilir.  
+Bellek içi test Double değerleri, uygulamanızın EF kullanan bit bitlerinin birim test düzeyi kapsamını sağlamak için iyi bir yoldur. Ancak bunu yaparken, bellek içi verilerde sorgu yürütmek için LINQ to Objects kullanırsınız. Bu, SQL 'e sorguları veritabanınıza karşı çalıştırılan SQL 'e çevirmek için EF 'in LINQ sağlayıcısı (LINQ to Entities) kullanmaktan farklı davranışa neden olabilir.  
 
-Böyle bir fark örneği ilgili verileri yükleniyor. Bir dizi blog oluşturursanız her ilgili gönderileri ve bellek içi verileri kullanırken ilgili postaların her zaman her Blog için yüklenecek. Dahil etme yöntemini kullanırsanız, ancak bir veritabanıyla çalışırken veriler yalnızca yüklenir.  
+Bu türden bir örnek ilgili verileri yüklüyor. Her birinin ilgili gönderileri olan bir dizi blog oluşturursanız, bellek içi veriler kullanılırken ilgili gönderiler her blog için her zaman yüklenir. Ancak, bir veritabanına karşı çalıştırıldığında, veriler yalnızca Include metodunu kullanırsanız yüklenir.  
 
-Bu nedenle, her zaman doğru bir veritabanında, uygulama çalışır emin olmak için uçtan uca (ek olarak, birim testleri) test belirli bir düzeyde dahil etmek için önerilir.  
+Bu nedenle, uygulamanızın bir veritabanına karşı doğru şekilde çalıştığından emin olmak için her zaman uçtan uca testlerin bir düzeyi (birim testlerinize ek olarak) dahil edilmesi önerilir.  
 
-## <a name="following-along-with-this-article"></a>Bu makaleyi izleyerek  
+## <a name="following-along-with-this-article"></a>Bu makaleyle birlikte aşağıdaki  
 
-Bu makalede istiyorsanız takip etmek için Visual Studio'ya kopyalayabilirsiniz tam kod listeleri sağlar. Oluşturmak en kolayıdır bir **birim testi projesi** ihtiyacınız ve hedef **.NET Framework 4.5** kullanan zaman uyumsuz bölümlerin tamamlanması.  
+Bu makale, daha sonra izlemek üzere Visual Studio 'ya kopyalayabileceğiniz tüm kod listelerini sağlar. Bir **birim testi projesi** oluşturmak en kolayıdır ve zaman uyumsuz kullanan bölümleri tamamlayabilmeniz için **.NET Framework 4,5** ' i hedefleyebilirsiniz.  
 
 ## <a name="the-ef-model"></a>EF modeli  
 
-Test etmek için yapacağımız hizmeti bir EF yararlanır modeli BloggingContext ve Blog ve gönderi sınıfları oluşur. Bu kod EF Designer tarafından oluşturulmuş olabilir veya bir Code First modeli.  
+Test edilecek hizmet, BloggingContext ve blog ve post sınıflarından oluşan bir EF modelinin kullanımını sağlar. Bu kod, EF Designer tarafından oluşturulmuş veya bir Code First modeli olabilir.  
 
 ``` csharp
 using System.Collections.Generic;
@@ -80,11 +80,11 @@ namespace TestingDemo
 }
 ```  
 
-### <a name="virtual-dbset-properties-with-ef-designer"></a>EF Designer ile sanal olan DB özellikleri  
+### <a name="virtual-dbset-properties-with-ef-designer"></a>EF Designer ile sanal DbSet özellikleri  
 
-Bağlam olan DB özellikleri olarak işaretlenmiş unutmayın. Bu, bizim bağlamını ve sahte bir uygulama bu özelliklerini geçersiz kılma türetmek için sahte framework olanak tanır.  
+Bağlamdaki DbSet özelliklerinin sanal olarak işaretlendiğini unutmayın. Bu, sahte işlem çerçevesinin bağlamımızdan türemesini ve bu özellikleri bir mocılenmiş uygulamayla geçersiz kılmasını sağlar.  
 
-Ardından kod ilk kullanıyorsanız sınıflarınızı doğrudan düzenleyebilirsiniz. EF Designer kullanıyorsanız Bağlamınızı oluşturan T4 şablonu düzenlemeniz gerekir. Açık yukarı \<model_adı\>. Edmx dosyası altında iç içe Context.tt dosya, aşağıdaki kod parçası bulun ve gösterildiği gibi sanal anahtar sözcük ekleyin.  
+Code First kullanıyorsanız, sınıflarınızı doğrudan düzenleyebilirsiniz. EF Designer kullanıyorsanız, bağlamını oluşturan T4 şablonunu düzenlemeniz gerekir. @No__t-0model_adı @ no__t-1 ' i açın. Context.tt dosyası, edmx dosyasının altında bulunan, aşağıdaki kod parçasını bulup gösterildiği gibi sanal anahtar sözcüğe ekleyin.  
 
 ``` csharp
 public string DbSet(EntitySet entitySet)
@@ -98,9 +98,9 @@ public string DbSet(EntitySet entitySet)
 }
 ```  
 
-## <a name="service-to-be-tested"></a>Test edilecek hizmeti  
+## <a name="service-to-be-tested"></a>Sınanacak hizmet  
 
-Bellek içi test Double ile test göstermek için birkaç test için bir BlogService sağladığım için kullanacağız. (GetAllBlogs) adına göre sıralanmış tüm blogları döndüren ve yeni blogları (AddBlog) istemcilerinizle bir hizmettir. GetAllBlogs yanı sıra, ayrıca zaman uyumsuz olarak (GetAllBlogsAsync) adına göre sıralanmış tüm blogları alacak bir yöntem sağladık.  
+Bellek içi test ile testi göstermek için bir BlogService için birkaç test yazacağız. Hizmet, yeni blogların (AddBlog) oluşturulmasına ve ada göre sıralanmış tüm blogların (Getallblogları) döndürüliliğine sahiptir. Getallbloglara ek olarak, ada (GetAllBlogsAsync) göre sıralanan tüm blogları zaman uyumsuz olarak alacak bir yöntem de sağladık.  
 
 ``` csharp
 using System.Collections.Generic;
@@ -150,7 +150,7 @@ namespace TestingDemo
 
 ## <a name="testing-non-query-scenarios"></a>Sorgu olmayan senaryoları test etme  
 
-Tüm sorgu olmayan yöntemleri testi başlatmak için yapmanız gereken budur. Şu test Moq bağlam oluşturmak için kullanır. Ardından bir olan DB oluşturur\<Blog\> ve bu bağlamı'nın blogları özelliğinden döndürülecek bağlayan ayarlama. Ardından, bağlamı, ardından AddBlog yöntemi kullanarak yeni bir blog – oluşturmak için kullanılan yeni bir BlogService oluşturmak için kullanılır. Son olarak, test, hizmet eklenen yeni bir Blog ve bağlamda SaveChanges çağırmışsa doğrular.  
+Sorgu olmayan yöntemlerin test etmeye başlamak için yapmanız gereken tek şey var. Aşağıdaki test, bir bağlam oluşturmak için moq kullanır. Daha sonra bir DbSet @ no__t-0Blog @ no__t-1 oluşturur ve içeriğin blogları özelliğinden döndürülecek şekilde kablolar olur. Daha sonra bağlam, yeni bir blog oluşturmak için kullanılan yeni bir BlogService oluşturmak için kullanılır. AddBlog yöntemi kullanılarak. Son olarak, test, hizmetin yeni bir blog eklediğini ve bağlam üzerinde SaveChanges çağırdı olduğunu doğrular.  
 
 ``` csharp
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -180,11 +180,11 @@ namespace TestingDemo
 }
 ```  
 
-## <a name="testing-query-scenarios"></a>Sorgu senaryoları test etme  
+## <a name="testing-query-scenarios"></a>Sorgu senaryolarını test etme  
 
-Çift bizim olan DB test sorguları yürütmek için biz Iqueryable uygulaması zamanlaması oluşturmanız gerekir. Bazı bellek içi verileri oluşturmak için ilk adımıdır – listesini kullanıyoruz\<Blog\>. Ardından, biz bir bağlam ve olan DB oluşturun\<Blog\> ardından wire olan DB – Iqueryable uygulamasını ayarlama bunlar yalnızca temsilci seçme listesiyle birlikte çalışan nesnelerin sağlayıcı için LINQ için\<T\>.  
+DbSet test Double 'imize karşı sorgu yürütebilmek için bir IQueryable uygulaması ayarlamanız gerekir. İlk adım, bazı bellek içi veriler oluşturmaktır: @ no__t-0Blog @ no__t-1 listesini kullanıyoruz. Daha sonra, bir bağlam oluşturur ve DBSet @ no__t-0Blogu @ no__t-1 ' i daha sonra DbSet için IQueryable uygulamasını yedekliyoruz; bu, yalnızca @ no__t-2T @ no__t-3 listesi ile birlikte çalışır LINQ to Objects sağlayıcıya temsilci olarak oluşturulur.  
 
-Ardından bizim test çiftler hakkında temel bir BlogService oluşturabilmek ve geri GetAllBlogs aldığımız verileri adına göre sıralanır emin olun.  
+Daha sonra test Double 'lerimizi temel alan bir BlogService oluşturabilir ve Getallbloglarından geri aldığımız verilerin ada göre sipariş aldığından emin olabilirsiniz.  
 
 ``` csharp
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -229,17 +229,17 @@ namespace TestingDemo
 }
 ```  
 
-### <a name="testing-with-async-queries"></a>Zaman uyumsuz sorgular ile test etme
+### <a name="testing-with-async-queries"></a>Zaman uyumsuz sorgularla test etme
 
-Entity Framework 6 zaman uyumsuz olarak bir sorgu yürütmek için kullanılan genişletme yöntemleri kümesini kullanıma sunuldu. Bu yöntemleri örnekleri ToListAsync, FirstAsync, ForEachAsync vb. içerir.  
+Entity Framework 6, bir sorguyu zaman uyumsuz olarak yürütmek için kullanılabilecek bir genişletme yöntemleri kümesi sunmuştur. Bu yöntemlerin örnekleri ToListAsync, FirstAsync, ForEachAsync vb. içerir.  
 
-Entity Framework sorguları LINQ yararlanması için genişletme yöntemleri Iqueryable ve IEnumerable tanımlanır. Ancak, yalnızca Entity Framework ile kullanılmak üzere tasarlandığından bir Entity Framework sorgu olmayan bir LINQ sorgusu kullanmayı denerseniz şu hatayı alabilirsiniz:
+Entity Framework sorguları LINQ kullandığından, uzantı yöntemleri IQueryable ve IEnumerable üzerinde tanımlanmıştır. Ancak Entity Framework yalnızca ile kullanılmak üzere tasarlandıklarından, bunları Entity Framework sorgusu olmayan bir LINQ sorgusunda kullanmayı denerseniz aşağıdaki hatayı alabilirsiniz:
 
-> Iqueryable kaynak IDbAsyncEnumerable uygulamayan{0}. IDbAsyncEnumerable uygulayan kaynakları Entity Framework zaman uyumsuz işlemler için kullanılabilir. Daha fazla ayrıntı için bkz: [ http://go.microsoft.com/fwlink/?LinkId=287068 ](https://go.microsoft.com/fwlink/?LinkId=287068).  
+> Kaynak IQueryable, ıdbasyncenumerable @ no__t-0 uygulamıyor. Yalnızca ıdbasyncenumerable uygulayan kaynaklar Entity Framework zaman uyumsuz işlemler için kullanılabilir. Daha fazla ayrıntı için bkz. [http://go.microsoft.com/fwlink/?LinkId=287068](https://go.microsoft.com/fwlink/?LinkId=287068).  
 
-Zaman uyumsuz yöntemler, yalnızca bir EF sorgusu çalıştırılırken desteklenir artırabileceksiniz çalışan bellek içi karşı test çift olan bir DB, birim testiniz kullanmak isteyebilirsiniz.  
+Zaman uyumsuz yöntemler yalnızca bir EF sorgusuna karşı çalıştırılırken desteklenir, bir DbSet 'in bellek içi test çift tarafında çalışırken bunları birim testinizde kullanmak isteyebilirsiniz.  
 
-Async metotlarını kullanmak için size zaman uyumsuz sorguları işlemek üzere bir bellek içi DbAsyncQueryProvider oluşturmanız gerekir. Moq kullanarak bir sorgu sağlayıcısı ayarlanabilir artırabileceksiniz kodda test çift uygulaması oluşturmak çok daha kolaydır. Bu uygulama için kod aşağıdaki gibidir:  
+Zaman uyumsuz yöntemleri kullanabilmeniz için, zaman uyumsuz sorguyu işlemek üzere bellek içi DbAsyncQueryProvider oluşturma gereksinimimiz vardır. Moq kullanarak bir sorgu sağlayıcısı kurmak mümkün olduğunda, kodda bir test Double uygulaması oluşturmak çok daha kolay. Bu uygulamanın kodu aşağıdaki gibidir:  
 
 ``` csharp
 using System.Collections.Generic;
@@ -349,7 +349,7 @@ namespace TestingDemo
 }
 ```  
 
-Biz bir zaman uyumsuz sorgu sağlayıcısı olduğuna göre bir birim testi için sunduğumuz yeni GetAllBlogsAsync yöntemi yazabilirsiniz.  
+Artık zaman uyumsuz bir sorgu sağlayıcımız olduğuna göre, yeni GetAllBlogsAsync yönteminizin bir birim testini yazabiliriz.  
 
 ``` csharp
 using Microsoft.VisualStudio.TestTools.UnitTesting;
