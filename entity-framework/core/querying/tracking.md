@@ -1,100 +1,80 @@
 ---
-title: İzleme ile Izleme sorguları yok-EF Core
-author: rowanmiller
-ms.date: 10/27/2016
+title: İzleme ve Izleme sorguları karşılaştırması-EF Core
+author: smitpatel
+ms.date: 10/10/2019
 ms.assetid: e17e060c-929f-4180-8883-40c438fbcc01
 uid: core/querying/tracking
-ms.openlocfilehash: 588dee012039ce5ecc83f0ecf263a4ea6ca38c29
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 66988f936ab75e17620398c8f21e4a32bbc950bd
+ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181975"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72445955"
 ---
-# <a name="tracking-vs-no-tracking-queries"></a><span data-ttu-id="ceff8-102">İzleme ile Izleme sorguları yok</span><span class="sxs-lookup"><span data-stu-id="ceff8-102">Tracking vs. No-Tracking Queries</span></span>
+# <a name="tracking-vs-no-tracking-queries"></a><span data-ttu-id="b3c58-102">İzleme ve Izleme sorguları karşılaştırması</span><span class="sxs-lookup"><span data-stu-id="b3c58-102">Tracking vs. No-Tracking Queries</span></span>
 
-<span data-ttu-id="ceff8-103">İzleme davranışı, Entity Framework Core değişiklik izleyicide bir varlık örneği hakkındaki bilgileri tutup tutamayacağını denetler.</span><span class="sxs-lookup"><span data-stu-id="ceff8-103">Tracking behavior controls whether or not Entity Framework Core will keep information about an entity instance in its change tracker.</span></span> <span data-ttu-id="ceff8-104">Bir varlık izleniyorsa, varlıkta algılanan tüm değişiklikler `SaveChanges()` sırasında veritabanında kalıcı hale getirilir.</span><span class="sxs-lookup"><span data-stu-id="ceff8-104">If an entity is tracked, any changes detected in the entity will be persisted to the database during `SaveChanges()`.</span></span> <span data-ttu-id="ceff8-105">Entity Framework Core Ayrıca, izleme sorgusundan alınan varlıklar ve daha önce DbContext örneğine yüklenmiş varlıklar arasındaki gezinti özelliklerini de düzeltir.</span><span class="sxs-lookup"><span data-stu-id="ceff8-105">Entity Framework Core will also fix-up navigation properties between entities that are obtained from a tracking query and entities that were previously loaded into the DbContext instance.</span></span>
+<span data-ttu-id="b3c58-103">Entity Framework Core değişiklik izleyicide bir varlık örneği hakkındaki bilgileri tutacağı davranış denetimlerini izleme.</span><span class="sxs-lookup"><span data-stu-id="b3c58-103">Tracking behavior controls if Entity Framework Core will keep information about an entity instance in its change tracker.</span></span> <span data-ttu-id="b3c58-104">Bir varlık izleniyorsa, varlıkta algılanan tüm değişiklikler `SaveChanges()` sırasında veritabanında kalıcı hale getirilir.</span><span class="sxs-lookup"><span data-stu-id="b3c58-104">If an entity is tracked, any changes detected in the entity will be persisted to the database during `SaveChanges()`.</span></span> <span data-ttu-id="b3c58-105">EF Core, bir izleme sorgusu sonucu ve değişiklik izleyicide bulunan varlıklar arasındaki gezinti özelliklerini de düzeltir.</span><span class="sxs-lookup"><span data-stu-id="b3c58-105">EF Core will also fix up navigation properties between the entities in a tracking query result and the entities that are in the change tracker.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="b3c58-106">[Keyless varlık türleri](xref:core/modeling/keyless-entity-types) hiçbir şekilde izlenmez.</span><span class="sxs-lookup"><span data-stu-id="b3c58-106">[Keyless entity types](xref:core/modeling/keyless-entity-types) are never tracked.</span></span> <span data-ttu-id="b3c58-107">Bu makalede varlık türleri söz konusu olduğunda, tanımlı bir anahtarı olan varlık türleri anlamına gelir.</span><span class="sxs-lookup"><span data-stu-id="b3c58-107">Wherever this article mentions entity types, it refers to entity types which have a key defined.</span></span>
 
 > [!TIP]  
-> <span data-ttu-id="ceff8-106">Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub üzerinde.</span><span class="sxs-lookup"><span data-stu-id="ceff8-106">You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) on GitHub.</span></span>
+> <span data-ttu-id="b3c58-108">Bu makalenin [örneğini](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub ' da görebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="b3c58-108">You can view this article's [sample](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) on GitHub.</span></span>
 
-## <a name="tracking-queries"></a><span data-ttu-id="ceff8-107">Sorguları izleme</span><span class="sxs-lookup"><span data-stu-id="ceff8-107">Tracking queries</span></span>
+## <a name="tracking-queries"></a><span data-ttu-id="b3c58-109">Sorguları izleme</span><span class="sxs-lookup"><span data-stu-id="b3c58-109">Tracking queries</span></span>
 
-<span data-ttu-id="ceff8-108">Varsayılan olarak, varlık türleri döndüren sorgular izliyor.</span><span class="sxs-lookup"><span data-stu-id="ceff8-108">By default, queries that return entity types are tracking.</span></span> <span data-ttu-id="ceff8-109">Bu, bu varlık örneklerinde değişiklik yapabileceğiniz ve bu değişiklikleri `SaveChanges()` ile kalıcı hale oluşturabileceğiniz anlamına gelir.</span><span class="sxs-lookup"><span data-stu-id="ceff8-109">This means you can make changes to those entity instances and have those changes persisted by `SaveChanges()`.</span></span>
+<span data-ttu-id="b3c58-110">Varsayılan olarak, varlık türleri döndüren sorgular izliyor.</span><span class="sxs-lookup"><span data-stu-id="b3c58-110">By default, queries that return entity types are tracking.</span></span> <span data-ttu-id="b3c58-111">Bu, söz konusu varlık örneklerinde değişiklik yapabileceğiniz ve bu değişiklikleri `SaveChanges()` ile kalıcı hale oluşturabileceğiniz anlamına gelir.</span><span class="sxs-lookup"><span data-stu-id="b3c58-111">Which means you can make changes to those entity instances and have those changes persisted by `SaveChanges()`.</span></span> <span data-ttu-id="b3c58-112">Aşağıdaki örnekte, blogların derecelendirmesi değişikliği, `SaveChanges()` sırasında veritabanı üzerinde algılanır ve kalıcı hale getirilir.</span><span class="sxs-lookup"><span data-stu-id="b3c58-112">In the following example, the change to the blogs rating will be detected and persisted to the database during `SaveChanges()`.</span></span>
 
-<span data-ttu-id="ceff8-110">Aşağıdaki örnekte, blogların derecelendirmesi değişikliği, `SaveChanges()` sırasında veritabanı üzerinde algılanır ve kalıcı hale getirilir.</span><span class="sxs-lookup"><span data-stu-id="ceff8-110">In the following example, the change to the blogs rating will be detected and persisted to the database during `SaveChanges()`.</span></span>
+[!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#Tracking)]
 
-<!-- [!code-csharp[Main](samples/core/Querying/Tracking/Sample.cs)] -->
-``` csharp
-using (var context = new BloggingContext())
-{
-    var blog = context.Blogs.SingleOrDefault(b => b.BlogId == 1);
-    blog.Rating = 5;
-    context.SaveChanges();
-}
-```
+## <a name="no-tracking-queries"></a><span data-ttu-id="b3c58-113">İzleme sorguları yok</span><span class="sxs-lookup"><span data-stu-id="b3c58-113">No-tracking queries</span></span>
 
-## <a name="no-tracking-queries"></a><span data-ttu-id="ceff8-111">İzleme sorguları yok</span><span class="sxs-lookup"><span data-stu-id="ceff8-111">No-tracking queries</span></span>
+<span data-ttu-id="b3c58-114">Bir salt okuma senaryosunda sonuçlar kullanıldığında hiçbir izleme sorgusu yararlı değildir.</span><span class="sxs-lookup"><span data-stu-id="b3c58-114">No tracking queries are useful when the results are used in a read-only scenario.</span></span> <span data-ttu-id="b3c58-115">Değişiklik izleme bilgilerini ayarlamaya gerek olmadığı için daha hızlı bir şekilde yürütüyoruz.</span><span class="sxs-lookup"><span data-stu-id="b3c58-115">They're quicker to execute because there's no need to set up the change tracking information.</span></span> <span data-ttu-id="b3c58-116">Veritabanından alınan varlıkları güncelleştirmeniz gerekmiyorsa, bir izleme sorgusunun kullanılması gerekir.</span><span class="sxs-lookup"><span data-stu-id="b3c58-116">If you don't need to update the entities retrieved from the database, then a no-tracking query should be used.</span></span> <span data-ttu-id="b3c58-117">Tek bir sorguyu bir izleme olmayacak şekilde takas edebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="b3c58-117">You can swap an individual query to be no-tracking.</span></span>
 
-<span data-ttu-id="ceff8-112">Bir salt okuma senaryosunda sonuçlar kullanıldığında hiçbir izleme sorgusu yararlı değildir.</span><span class="sxs-lookup"><span data-stu-id="ceff8-112">No tracking queries are useful when the results are used in a read-only scenario.</span></span> <span data-ttu-id="ceff8-113">Değişiklik izleme bilgilerini ayarlamaya gerek olmadığından, bunlar yürütülmeye daha hızlıdır.</span><span class="sxs-lookup"><span data-stu-id="ceff8-113">They are quicker to execute because there is no need to setup change tracking information.</span></span>
+[!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#NoTracking)]
 
-<span data-ttu-id="ceff8-114">Tek bir sorguyu bir izleme olmayacak şekilde takas edebilirsiniz:</span><span class="sxs-lookup"><span data-stu-id="ceff8-114">You can swap an individual query to be no-tracking:</span></span>
+<span data-ttu-id="b3c58-118">Bağlam örneği düzeyinde varsayılan izleme davranışını da değiştirebilirsiniz:</span><span class="sxs-lookup"><span data-stu-id="b3c58-118">You can also change the default tracking behavior at the context instance level:</span></span>
 
-<!-- [!code-csharp[Main](samples/core/Querying/Tracking/Sample.cs?highlight=4)] -->
-``` csharp
-using (var context = new BloggingContext())
-{
-    var blogs = context.Blogs
-        .AsNoTracking()
-        .ToList();
-}
-```
+[!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#ContextDefaultTrackingBehavior)]
 
-<span data-ttu-id="ceff8-115">Bağlam örneği düzeyinde varsayılan izleme davranışını da değiştirebilirsiniz:</span><span class="sxs-lookup"><span data-stu-id="ceff8-115">You can also change the default tracking behavior at the context instance level:</span></span>
+## <a name="identity-resolution"></a><span data-ttu-id="b3c58-119">Kimlik çözümlemesi</span><span class="sxs-lookup"><span data-stu-id="b3c58-119">Identity resolution</span></span>
 
-<!-- [!code-csharp[Main](samples/core/Querying/Tracking/Sample.cs?highlight=3)] -->
-``` csharp
-using (var context = new BloggingContext())
-{
-    context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+<span data-ttu-id="b3c58-120">İzleme sorgusu değişiklik izleyicisini kullandığından, EF Core izleme sorgusunda kimlik çözümlemesi yapılır.</span><span class="sxs-lookup"><span data-stu-id="b3c58-120">Since a tracking query uses the change tracker, EF Core will do identity resolution in a tracking query.</span></span> <span data-ttu-id="b3c58-121">Bir varlığı oluştururken EF Core, zaten izleniyorsa değişiklik izleyicide aynı varlık örneğini döndürür.</span><span class="sxs-lookup"><span data-stu-id="b3c58-121">When materializing an entity, EF Core will return the same entity instance from the change tracker if it's already being tracked.</span></span> <span data-ttu-id="b3c58-122">Sonuç aynı varlığı birden çok kez içeriyorsa, her oluşum için aynı örneği geri alırsınız.</span><span class="sxs-lookup"><span data-stu-id="b3c58-122">If the result contains same entity multiple times, you get back same instance for each occurrence.</span></span> <span data-ttu-id="b3c58-123">Hiçbir izleme sorgusu değişiklik izleyicisini kullanmaz ve kimlik çözümlemesi yapmayın.</span><span class="sxs-lookup"><span data-stu-id="b3c58-123">No-tracking queries don't use the change tracker and don't do identity resolution.</span></span> <span data-ttu-id="b3c58-124">Bu nedenle, aynı varlık sonucun birden çok kez dahil edildiğinde bile yeni varlık örneğini geri alırsınız.</span><span class="sxs-lookup"><span data-stu-id="b3c58-124">So you get back new instance of entity even when the same entity is contained in the result multiple times.</span></span> <span data-ttu-id="b3c58-125">Bu davranış EF Core 3,0 öncesi sürümlerde farklıydı, [önceki sürümlere](#previous-versions)bakın.</span><span class="sxs-lookup"><span data-stu-id="b3c58-125">This behavior was different in versions before EF Core 3.0, see [previous versions](#previous-versions).</span></span>
 
-    var blogs = context.Blogs.ToList();
-}
-```
+## <a name="tracking-and-custom-projections"></a><span data-ttu-id="b3c58-126">İzleme ve özel tahminler</span><span class="sxs-lookup"><span data-stu-id="b3c58-126">Tracking and custom projections</span></span>
 
-> [!NOTE]  
-> <span data-ttu-id="ceff8-116">Yürütülen sorgu içinde hiçbir izleme sorgusu hala kimlik çözümlemesi gerçekleştirmez.</span><span class="sxs-lookup"><span data-stu-id="ceff8-116">No tracking queries still perform identity resolution within the executing query.</span></span> <span data-ttu-id="ceff8-117">Sonuç kümesi aynı varlığı birden çok kez içeriyorsa, sonuç kümesindeki her bir oluşum için varlık sınıfının aynı örneği döndürülür.</span><span class="sxs-lookup"><span data-stu-id="ceff8-117">If the result set contains the same entity multiple times, the same instance of the entity class will be returned for each occurrence in the result set.</span></span> <span data-ttu-id="ceff8-118">Ancak, daha önce döndürülmüş varlıkların izlenmesini sağlamak için zayıf başvurular kullanılır.</span><span class="sxs-lookup"><span data-stu-id="ceff8-118">However, weak references are used to keep track of entities that have already been returned.</span></span> <span data-ttu-id="ceff8-119">Aynı kimliğe sahip önceki bir sonuç kapsam dışına gittiğinde ve çöp toplama işlemi çalıştırıyorsa, yeni bir varlık örneği alabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="ceff8-119">If a previous result with the same identity goes out of scope, and garbage collection runs, you may get a new entity instance.</span></span> <span data-ttu-id="ceff8-120">Daha fazla bilgi için bkz. [sorgunun nasıl çalıştığı](xref:core/querying/how-query-works).</span><span class="sxs-lookup"><span data-stu-id="ceff8-120">For more information, see [How Query Works](xref:core/querying/how-query-works).</span></span>
+<span data-ttu-id="b3c58-127">Sorgunun sonuç türü bir varlık türü olmasa bile EF Core, varsayılan olarak sonuçta bulunan varlık türlerini izlemeye devam eder.</span><span class="sxs-lookup"><span data-stu-id="b3c58-127">Even if the result type of the query isn't an entity type, EF Core will still track entity types contained in the result by default.</span></span> <span data-ttu-id="b3c58-128">Bir anonim tür döndüren aşağıdaki sorguda, sonuç kümesinde `Blog` örnekleri izlenir.</span><span class="sxs-lookup"><span data-stu-id="b3c58-128">In the following query, which returns an anonymous type, the instances of `Blog` in the result set will be tracked.</span></span>
 
-## <a name="tracking-and-projections"></a><span data-ttu-id="ceff8-121">İzleme ve tahminler</span><span class="sxs-lookup"><span data-stu-id="ceff8-121">Tracking and projections</span></span>
+[!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#CustomProjection1)]
 
-<span data-ttu-id="ceff8-122">Sorgunun sonuç türü bir varlık türü olmasa bile, sonuç varlık türleri içeriyorsa, bunlar varsayılan olarak yine de izlenir.</span><span class="sxs-lookup"><span data-stu-id="ceff8-122">Even if the result type of the query isn't an entity type, if the result contains entity types they will still be tracked by default.</span></span> <span data-ttu-id="ceff8-123">Bir anonim tür döndüren aşağıdaki sorguda, sonuç kümesinde `Blog` örnekleri izlenir.</span><span class="sxs-lookup"><span data-stu-id="ceff8-123">In the following query, which returns an anonymous type, the instances of `Blog` in the result set will be tracked.</span></span>
+<span data-ttu-id="b3c58-129">Sonuç kümesi, LINQ kompozisyonunuzdan gelen varlık türlerini içeriyorsa, EF Core bunları izler.</span><span class="sxs-lookup"><span data-stu-id="b3c58-129">If the result set contains entity types coming out from LINQ composition, EF Core will track them.</span></span>
 
-<!-- [!code-csharp[Main](samples/core/Querying/Tracking/Sample.cs?highlight=7)] -->
-``` csharp
-using (var context = new BloggingContext())
-{
-    var blog = context.Blogs
-        .Select(b =>
-            new
-            {
-                Blog = b,
-                Posts = b.Posts.Count()
-            });
-}
-```
+[!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#CustomProjection2)]
 
-<span data-ttu-id="ceff8-124">Sonuç kümesi herhangi bir varlık türü içermiyorsa, izleme yapılmaz.</span><span class="sxs-lookup"><span data-stu-id="ceff8-124">If the result set does not contain any entity types, then no tracking is performed.</span></span> <span data-ttu-id="ceff8-125">Aşağıdaki sorguda, varlıktan bazı değerler içeren anonim bir tür döndüren (ancak gerçek varlık türünün örneği olmadığında), hiçbir izleme yapılmaz.</span><span class="sxs-lookup"><span data-stu-id="ceff8-125">In the following query, which returns an anonymous type with some of the values from the entity (but no instances of the actual entity type), there is no tracking performed.</span></span>
+<span data-ttu-id="b3c58-130">Sonuç kümesi herhangi bir varlık türü içermiyorsa, izleme yapılmaz.</span><span class="sxs-lookup"><span data-stu-id="b3c58-130">If the result set doesn't contain any entity types, then no tracking is done.</span></span> <span data-ttu-id="b3c58-131">Aşağıdaki sorguda, varlıktan bazı değerler içeren anonim bir tür döndürüyoruz (ancak gerçek varlık türünün örneklerinden hiçbiri).</span><span class="sxs-lookup"><span data-stu-id="b3c58-131">In the following query, we return an anonymous type with some of the values from the entity (but no instances of the actual entity type).</span></span> <span data-ttu-id="b3c58-132">Sorgudan gelen hiçbir izlenen varlık yok.</span><span class="sxs-lookup"><span data-stu-id="b3c58-132">There are no tracked entities coming out of the query.</span></span>
 
-<!-- [!code-csharp[Main](samples/core/Querying/Tracking/Sample.cs)] -->
-``` csharp
-using (var context = new BloggingContext())
-{
-    var blog = context.Blogs
-        .Select(b =>
-            new
-            {
-                Id = b.BlogId,
-                Url = b.Url
-            });
-}
-```
+[!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#CustomProjection3)]
+
+ <span data-ttu-id="b3c58-133">EF Core, en üst düzey projeksiyde istemci değerlendirmesi yapmak destekler.</span><span class="sxs-lookup"><span data-stu-id="b3c58-133">EF Core supports doing client evaluation in the top-level projection.</span></span> <span data-ttu-id="b3c58-134">EF Core, istemci değerlendirmesi için bir varlık örneği içeriyorsa izlenir.</span><span class="sxs-lookup"><span data-stu-id="b3c58-134">If EF Core materializes an entity instance for client evaluation, it will be tracked.</span></span> <span data-ttu-id="b3c58-135">Burada, `StandardizeURL` istemci yöntemine `blog` varlıklar geçirdiğimiz için, EF Core blog örneklerini de izler.</span><span class="sxs-lookup"><span data-stu-id="b3c58-135">Here, since we're passing `blog` entities to the client method `StandardizeURL`, EF Core will track the blog instances too.</span></span>
+
+[!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#ClientProjection)]
+
+[!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#ClientMethod)]
+
+<span data-ttu-id="b3c58-136">EF Core, sonuçta yer alan anahtarsız varlık örneklerini izlemez.</span><span class="sxs-lookup"><span data-stu-id="b3c58-136">EF Core doesn't track the keyless entity instances contained in the result.</span></span> <span data-ttu-id="b3c58-137">Ancak EF Core Yukarıdaki kurallara göre anahtar içeren tüm varlık türlerinin diğer örneklerini izler.</span><span class="sxs-lookup"><span data-stu-id="b3c58-137">But EF Core tracks all the other instances of entity types with key according to rules above.</span></span>
+
+<span data-ttu-id="b3c58-138">Yukarıdaki kurallardan bazıları EF Core 3,0 ' dan önce farklı şekilde çalıştı.</span><span class="sxs-lookup"><span data-stu-id="b3c58-138">Some of the above rules worked differently before EF Core 3.0.</span></span> <span data-ttu-id="b3c58-139">Daha fazla bilgi için bkz. [önceki sürümler](#previous-versions).</span><span class="sxs-lookup"><span data-stu-id="b3c58-139">For more information, see [previous versions](#previous-versions).</span></span>
+
+## <a name="previous-versions"></a><span data-ttu-id="b3c58-140">Önceki sürümler</span><span class="sxs-lookup"><span data-stu-id="b3c58-140">Previous versions</span></span>
+
+<span data-ttu-id="b3c58-141">Sürüm 3,0 ' den önce, EF Core izlemenin nasıl yapıldığı konusunda bazı farklılıklar vardı.</span><span class="sxs-lookup"><span data-stu-id="b3c58-141">Before version 3.0, EF Core had some differences in how tracking was done.</span></span> <span data-ttu-id="b3c58-142">Önemli farklar şunlardır:</span><span class="sxs-lookup"><span data-stu-id="b3c58-142">Notable differences are as follows:</span></span>
+
+- <span data-ttu-id="b3c58-143">[İstemci vs Server değerlendirmesi](xref:core/querying/client-eval) sayfasında açıklandığı gibi, 3,0 sürümünden önceki sorgunun herhangi bir bölümünde desteklenen istemci değerlendirmesi EF Core.</span><span class="sxs-lookup"><span data-stu-id="b3c58-143">As explained in [Client vs Server Evaluation](xref:core/querying/client-eval) page, EF Core supported client evaluation in any part of the query before version 3.0.</span></span> <span data-ttu-id="b3c58-144">İstemci değerlendirmesi, sonucun bir parçası olmayan varlıkların bir şekilde oluşturulmasına neden oldu.</span><span class="sxs-lookup"><span data-stu-id="b3c58-144">Client evaluation caused materialization of entities, which weren't part of the result.</span></span> <span data-ttu-id="b3c58-145">EF Core, nelerin izleneceğini algılamak için sonucu analiz eder. Bu tasarımda aşağıdaki gibi bazı farklılıklar vardı:</span><span class="sxs-lookup"><span data-stu-id="b3c58-145">So EF Core analyzed the result to detect what to track. This design had certain differences as follows:</span></span>
+  - <span data-ttu-id="b3c58-146">Yansıtmada oluşan, ancak gerçekleştirilmiş varlık örneğini döndürmeyen istemci değerlendirmesi izlenmiyor.</span><span class="sxs-lookup"><span data-stu-id="b3c58-146">Client evaluation in the projection, which caused materialization but didn't return the materialized entity instance wasn't tracked.</span></span> <span data-ttu-id="b3c58-147">Aşağıdaki örnek `blog` varlıklarını izlememedi.</span><span class="sxs-lookup"><span data-stu-id="b3c58-147">The following example didn't track `blog` entities.</span></span>
+    [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#ClientProjection)]
+
+  - <span data-ttu-id="b3c58-148">EF Core, bazı durumlarda LINQ kompozisyonunun geldiği nesneleri izlememedi.</span><span class="sxs-lookup"><span data-stu-id="b3c58-148">EF Core didn't track the objects coming out of LINQ composition in certain cases.</span></span> <span data-ttu-id="b3c58-149">Aşağıdaki örnek `Post` ' i izlememedi.</span><span class="sxs-lookup"><span data-stu-id="b3c58-149">The following example didn't track `Post`.</span></span>
+    [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#CustomProjection2)]
+
+- <span data-ttu-id="b3c58-150">Sorgu sonuçları, anahtarsız varlık türleri içerdiğinde, tüm sorgu izlenmesiz hale getirilir.</span><span class="sxs-lookup"><span data-stu-id="b3c58-150">Whenever query results contained keyless entity types, the whole query was made non-tracking.</span></span> <span data-ttu-id="b3c58-151">Diğer bir deyişle, sonuçları bulunan anahtarlar içeren varlık türlerinin, her ikisi de izlenemez.</span><span class="sxs-lookup"><span data-stu-id="b3c58-151">That means that entity types with keys, which are in result weren't being tracked either.</span></span>
+- <span data-ttu-id="b3c58-152">EF Core, hiçbir izleme sorgusunda kimlik çözümlemesi gerçekleştirmedi.</span><span class="sxs-lookup"><span data-stu-id="b3c58-152">EF Core did identity resolution in no-tracking query.</span></span> <span data-ttu-id="b3c58-153">Daha önceden döndürülen varlıkların izlenmesini sağlamak için zayıf başvurular kullandı.</span><span class="sxs-lookup"><span data-stu-id="b3c58-153">It used weak references to keep track of entities that had already been returned.</span></span> <span data-ttu-id="b3c58-154">Bu nedenle, bir sonuç kümesi aynı varlığı çarpan bir kez içeriyorsa, her oluşum için aynı örneği elde edersiniz.</span><span class="sxs-lookup"><span data-stu-id="b3c58-154">So if a result set contained the same entity multiples times, you would get the same instance for each occurrence.</span></span> <span data-ttu-id="b3c58-155">Aynı kimliğe sahip önceki bir sonuç kapsam dışında gelse ve atık toplanmışsa, EF Core yeni bir örnek döndürdü.</span><span class="sxs-lookup"><span data-stu-id="b3c58-155">Though if a previous result with the same identity went out of scope and got garbage collected, EF Core returned a new instance.</span></span>
