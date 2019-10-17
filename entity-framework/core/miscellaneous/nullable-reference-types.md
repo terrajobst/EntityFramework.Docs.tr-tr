@@ -4,18 +4,18 @@ author: roji
 ms.date: 09/09/2019
 ms.assetid: bde4e0ee-fba3-4813-a849-27049323d301
 uid: core/miscellaneous/nullable-reference-types
-ms.openlocfilehash: ab35e63a6eeb2f02ed07a715fd65855b4d30eaf5
-ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
+ms.openlocfilehash: 055f492214596506ce2c28485ade359d175c4ac2
+ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/02/2019
-ms.locfileid: "71813448"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72445903"
 ---
 # <a name="working-with-nullable-reference-types"></a>Null yapılabilir başvuru türleriyle çalışma
 
 C#8 null [yapılabilir başvuru türleri](/dotnet/csharp/tutorials/nullable-reference-types)adlı yeni bir özellik tanıtılan ve başvuru türlerine açıklama eklenip eklenmeyeceğini belirten, bunların null içermesini sağlar. Bu özellik için yeni bir özelliktir, C# belgeleri okuyarak bunu öğrenmeniz önerilir.
 
-Bu sayfa EF Core, null yapılabilir başvuru türleri desteğini tanıtır ve bunlarla çalışmak için en iyi yöntemleri açıklar.
+Bu sayfa, EF Core null yapılabilir başvuru türleri desteğini tanıtır ve bunlarla çalışmak için en iyi yöntemleri açıklar.
 
 ## <a name="required-and-optional-properties"></a>Gerekli ve isteğe bağlı özellikler
 
@@ -26,7 +26,7 @@ Gerekli ve isteğe bağlı özellikler hakkındaki ana belgeler ve bunların nul
 
 ## <a name="dbcontext-and-dbset"></a>DbContext ve DbSet
 
-Null yapılabilir başvuru türleri etkinleştirildiğinde, C# derleyici null değer içereceklerde hiçbir başlatılmamış null yapılamayan özelliği için uyarı yayar. Sonuç olarak, bir bağlamda null yapılamayan `DbSet` olmayan bir şekilde tanımlanması yaygın olarak kullanılan uygulama bir uyarı oluşturacak. Ancak, EF Core her zaman DbContext ile türetilmiş türler üzerinde tüm `DbSet` özellikleri başlatır, bu nedenle derleyici bunun farkında olmasa bile hiçbir zaman null olmamaları garanti edilir. Bu nedenle, `DbSet` özellikleri null yapılamayan olarak korumanız önerilir. bu sayede, null denetimleri olmadan bunlara erişip onları null olarak ayarlayarak derleyici uyarılarını da null olarak ayarlayarak, null özelliği (!) ile birlikte null olarak ayarlayabilirsiniz:
+Null yapılabilir başvuru türleri etkinleştirildiğinde, C# derleyici null değer içereceklerde hiçbir başlatılmamış null yapılamayan özelliği için uyarı yayar. Sonuç olarak, bir bağlamda Nullable `DbSet` ' ı tanımlamanın ortak uygulaması şimdi bir uyarı oluşturur. Ancak, EF Core her zaman DbContext ile türetilmiş türler üzerinde tüm `DbSet` özelliklerini başlatır, bu nedenle derleyici bunun farkında olmasa bile hiçbir zaman null olmamaları garanti edilir. Bu nedenle, `DbSet` özelliklerini null yapılamayan olarak tutmanız önerilir; Bu sayede, null denetimleri olmadan bunlara erişmenizi sağlar ve derleyici uyarılarını, null özelliği olan (!) yardımı ile null olarak ayarlayarak yeniden açabilirsiniz.
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/NullableReferenceTypesContext.cs?name=Context&highlight=3-4)]
 
@@ -65,4 +65,4 @@ Bunu çok fazla fark ederseniz ve söz konusu varlık türleri EF Core sorgulard
 
 ## <a name="scaffolding"></a>Yapı iskelesi
 
-[8 Nullable başvuru türü özelliği şu anda ters mühendislik içinde desteklenmiyor: C# ](/dotnet/csharp/tutorials/nullable-reference-types) EF Core her zaman C# özelliğin kapalı olduğunu varsayan kodu üretir. Örneğin, null yapılabilir metin sütunları, bir özelliğin gerekli olup olmadığını yapılandırmak için kullanılan akıcı `string` API veya `string?`veri ek açıklamaları ile değil, türünde bir özellik olarak yapı haline getirilecektir. Yapı iskelesi kodunu düzenleyebilir ve bunları C# null yapılabilir ek açıklamalarla değiştirebilirsiniz. Null yapılabilir başvuru türleri için yapı iskelesi desteği [#15520](https://github.com/aspnet/EntityFrameworkCore/issues/15520)soruna göre izlenir.
+[8 C# Nullable başvuru türü özelliği](/dotnet/csharp/tutorials/nullable-reference-types) Şu anda ters mühendislik içinde desteklenmiyor: EF Core her zaman özelliğin C# kapalı olduğunu varsayan kodu üretir. Örneğin, null yapılabilir metin sütunları, bir özelliğin gerekli olup olmadığını yapılandırmak için kullanılan akıcı API veya veri ek açıklamalarıyla birlikte `string` olan `string?` türünde bir özellik olarak tanılanacaktır. Yapı iskelesi kodunu düzenleyebilir ve bunları C# null yapılabilir ek açıklamalarla değiştirebilirsiniz. Null yapılabilir başvuru türleri için yapı iskelesi desteği [#15520](https://github.com/aspnet/EntityFrameworkCore/issues/15520)soruna göre izlenir.

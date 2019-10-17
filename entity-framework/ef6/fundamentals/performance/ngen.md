@@ -3,12 +3,12 @@ title: NGen-EF6 ile başlangıç performansını artırma
 author: divega
 ms.date: 10/23/2016
 ms.assetid: dc6110a0-80a0-4370-8190-cea942841cee
-ms.openlocfilehash: c9b5f8a06add9133d30955e3cc97a92e9b189bdf
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 841aec645abdb2a56076d0b70bfb2614b0acafb4
+ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182677"
+ms.lasthandoff: 10/16/2019
+ms.locfileid: "72446002"
 ---
 # <a name="improving-startup-performance-with-ngen"></a>NGen ile başlangıç performansını artırma
 > [!NOTE]
@@ -24,22 +24,26 @@ Empırik gözlemleri, EF çalışma zamanı derlemelerinin yerel görüntülerin
 
 NGen. exe aracının en temel işlevi, bir derleme için yerel görüntüleri ve tüm doğrudan bağımlılıklarını "yüklemektir" (diğer bir deyişle, disk oluşturmak ve kalıcı hale getirmek için). Şunları elde edebilirsiniz:  
 
-1. Yönetici olarak bir komut Istemi penceresi açın  
-2. Geçerli çalışma dizinini yerel görüntü oluşturmak istediğiniz derlemelerin konumuyla değiştirin:  
+1. Yönetici olarak bir komut Istemi penceresi açın.
+2. Geçerli çalışma dizinini yerel görüntü oluşturmak istediğiniz derlemelerin konumuyla değiştirin:
 
-  ``` console
-    cd <*Assemblies location*>  
-  ```
-3. İşletim sisteminize ve uygulamanın yapılandırmasına bağlı olarak, 32 bit mimarisi, 64 bit mimarisi veya her ikisi için de yerel görüntüler oluşturmanız gerekebilir.  
+   ``` console
+   cd <*Assemblies location*>  
+   ```
 
-    32 bit çalıştırması için:  
-  ``` console
-    %WINDIR%\Microsoft.NET\Framework\v4.0.30319\ngen install <Assembly name>  
-  ```
-    64 bit çalıştırması için:
-  ``` console
-    %WINDIR%\Microsoft.NET\Framework64\v4.0.30319\ngen install <Assembly name>  
-  ```
+3. İşletim sisteminize ve uygulamanın yapılandırmasına bağlı olarak, 32 bit mimarisi, 64 bit mimarisi veya her ikisi için de yerel görüntüler oluşturmanız gerekebilir.
+
+   32 bit çalıştırması için:
+
+   ``` console
+   %WINDIR%\Microsoft.NET\Framework\v4.0.30319\ngen install <Assembly name>  
+   ```
+
+   64 bit çalıştırması için:
+  
+   ``` console
+   %WINDIR%\Microsoft.NET\Framework64\v4.0.30319\ngen install <Assembly name>  
+   ```
 
 > [!TIP]
 > Yanlış mimari için yerel görüntülerin oluşturulması çok yaygın bir hata oluşturur. Şüpheli durumda, makinede yüklü olan işletim sistemi için uygulanan tüm mimarilerin yerel görüntülerini oluşturmanız yeterlidir.  
@@ -50,9 +54,9 @@ NGen. exe, yüklü yerel görüntüleri kaldırma ve görüntüleme, birden çok
 
 Bir uygulama için, EF sürüm 6 veya üzerini temel alan bir uygulamada yerel görüntü oluşturmak üzere hangi derlemeler olduğuna karar verirken, aşağıdaki seçenekleri göz önünde bulundurmanız gerekir:  
 
-- **Ana EF çalışma zamanı derlemesi, EntityFramework. dll**: Tipik bir EF tabanlı uygulama, başlangıçta bu derlemeden veya veritabanına ilk erişimi üzerinde önemli miktarda kod yürütür. Sonuç olarak, bu derlemenin yerel görüntülerini oluşturmak, başlangıç performansındaki en büyük kazancı oluşturacaktır.  
-- **Uygulamanız tarafından kullanılan herhangi BIR EF sağlayıcı derlemesi**: Başlangıç zamanı, bunların yerel görüntülerini oluşturmaktan biraz avantaj sağlayabilir. Örneğin, uygulama SQL Server için EF sağlayıcısını kullanıyorsa, EntityFramework. SqlServer. dll için yerel bir görüntü oluşturmak isteyeceksiniz.  
-- **Uygulamanızın derlemeleri ve diğer bağımlılıkları**: [Ngen. exe belgeleri](https://msdn.microsoft.com/library/6t9t5wcf.aspx) , için yerel görüntüler oluşturmak için kullanılan derlemeleri ve güvenlik üzerindeki yerel görüntülerin etkisini, "sabit bağlama" gibi gelişmiş seçenekleri, hata ayıklamada yerel görüntüleri kullanma gibi senaryoları ve profil oluşturma senaryoları, vb.  
+- **Ana EF çalışma zamanı derlemesi, EntityFramework. dll**: tıpık bir EF tabanlı uygulama, başlangıçta bu derlemeden veya veritabanına ilk erişimi üzerinde önemli miktarda kod yürütür. Sonuç olarak, bu derlemenin yerel görüntülerini oluşturmak, başlangıç performansındaki en büyük kazancı oluşturacaktır.  
+- **Uygulamanız tarafından kullanılan herhangi BIR EF sağlayıcı derlemesi**: başlangıç saati, bunların yerel görüntülerini oluşturmaktan biraz daha da yararlanabilir. Örneğin, uygulama SQL Server için EF sağlayıcısını kullanıyorsa, EntityFramework. SqlServer. dll için yerel bir görüntü oluşturmak isteyeceksiniz.  
+- **Uygulamanızın derlemeleri ve diğer bağımlılıkları**: [Ngen. exe belgeleri](https://msdn.microsoft.com/library/6t9t5wcf.aspx) , yerel görüntüler için hangi derlemelerin oluşturulacağını ve yerel görüntülerin güvenlik üzerindeki etkisini ve "Hard" gibi gelişmiş seçenekleri bağlama ", hata ayıklama ve profil oluşturma senaryolarında yerel görüntüleri kullanma gibi senaryolar, vb.  
 
 > [!TIP]
 > Yerel görüntülerin hem başlangıç performansı hem de uygulamanızın genel performansı ve gerçek gereksinimlere göre karşılaştırıldığı etkileri dikkatle ölçdiğinizden emin olun. Yerel görüntüler genellikle başlangıçtaki performansı artırmaya yardımcı olur ve bazı durumlarda bellek kullanımını azaltırken, tüm senaryolar eşit olarak avantajına sahip olur. Örneğin, kararlı durum yürütmesinde (yani, uygulama tarafından kullanılan tüm yöntemler en az bir kez çağrıldığında), JıT derleyicisi tarafından oluşturulan kod aslında yerel görüntülerden biraz daha iyi performans sağlayabilir.  
