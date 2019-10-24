@@ -175,22 +175,24 @@
           items:
             - name: Genel Bakış
               href: core/querying/index.md
-            - name: İlgili Verileri Yükleme
-              href: core/querying/related-data.md
             - name: İstemci ile Sunucunun Karşılaştırmalı Değerlendirmesi
               href: core/querying/client-eval.md
             - name: İzleme ile İzlememe Karşılaştırması
               href: core/querying/tracking.md
-            - name: Ham SQL Sorguları
-              href: core/querying/raw-sql.md
+            - name: Karmaşık Sorgu İşleçleri
+              href: core/querying/complex-query-operators.md
+            - name: İlgili Verileri Yükleme
+              href: core/querying/related-data.md
             - name: Zaman Uyumsuz Sorgular
               href: core/querying/async.md
-            - name: Sorgunun Çalışma Biçimi
-              href: core/querying/how-query-works.md
+            - name: Ham SQL Sorguları
+              href: core/querying/raw-sql.md
             - name: Genel Sorgu Filtreleri
               href: core/querying/filters.md
             - name: Sorgu Etiketleri
               href: core/querying/tags.md
+            - name: Sorgunun Çalışma Biçimi
+              href: core/querying/how-query-works.md
         - name: Verileri Kaydetme
           items:
             - name: Genel Bakış
