@@ -1,25 +1,26 @@
 ---
-title: Özel geçişleri geçmiş tablosu - EF Core
+title: Özel geçişler geçmiş tablosu-EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 11/07/2017
-ms.openlocfilehash: 1a253972a8f4e410421ec8a77c079e588d368819
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+uid: core/managing-schemas/migrations/history-table
+ms.openlocfilehash: 0db393ff3101564f8d8081d0a57b264c2c459df7
+ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45488822"
+ms.lasthandoff: 10/23/2019
+ms.locfileid: "72812076"
 ---
-<a name="custom-migrations-history-table"></a>Özel geçişleri geçmiş tablosu
-===============================
-Varsayılan olarak EF Core adlı bir tabloda kaydederek veritabanına hangi geçişleri uygulanmış izler `__EFMigrationsHistory`. Çeşitli nedenlerden dolayı bu tablo, gereksinimlerinize daha iyi uyacak şekilde özelleştirmek isteyebilirsiniz.
+# <a name="custom-migrations-history-table"></a>Özel geçişler geçmiş tablosu
+
+Varsayılan olarak EF Core, veritabanını `__EFMigrationsHistory`adlı bir tabloya kaydederek hangi geçişlerin uygulanmış olduğunu izler. Çeşitli nedenlerle bu tabloyu gereksinimlerinize daha uygun olacak şekilde özelleştirmek isteyebilirsiniz.
 
 > [!IMPORTANT]
-> Geçişleri geçmiş tablosu özelleştirirseniz *sonra* geçişler uygulama, var olan tablo veritabanında güncelleştirmek için sorumluluğu size aittir.
+> Geçişleri uyguladıktan *sonra* geçişleri geçmiş tablosunu özelleştirirseniz, veritabanında var olan tabloyu güncelleştirmekten siz sorumlusunuz.
 
-<a name="schema-and-table-name"></a>Şema ve tablo adı
-----------------------
-Şema ve tablo adıyla değiştirebilirsiniz `MigrationsHistoryTable()` yönteminde `OnConfiguring()` (veya `ConfigureServices()` ASP.NET Core üzerinde). SQL Server EF Core Sağlayıcısı'nı kullanarak bir örnek aşağıda verilmiştir.
+## <a name="schema-and-table-name"></a>Şema ve tablo adı
+
+Şema ve tablo adını, `OnConfiguring()` (veya ASP.NET Core üzerinde `ConfigureServices()`) `MigrationsHistoryTable()` yöntemini kullanarak değiştirebilirsiniz. SQL Server EF Core sağlayıcısını kullanan bir örnek aşağıda verilmiştir.
 
 ``` csharp
 protected override void OnConfiguring(DbContextOptionsBuilder options)
@@ -28,9 +29,9 @@ protected override void OnConfiguring(DbContextOptionsBuilder options)
         x => x.MigrationsHistoryTable("__MyMigrationsHistory", "mySchema"));
 ```
 
-<a name="other-changes"></a>Diğer değişiklikler
--------------
-Tablo ek yönlerini yapılandırmak için geçersiz kılın ve sağlayıcıya özgü değiştirin `IHistoryRepository` hizmeti. İşte bir örnek MigrationId sütunun adı değiştirme *kimliği* SQL Server'da.
+## <a name="other-changes"></a>Diğer değişiklikler
+
+Tablonun ek yönlerini yapılandırmak için sağlayıcıya özgü `IHistoryRepository` hizmetini geçersiz kılın ve değiştirin. SQL Server MigrationID sütununun adını *kimlik* olarak değiştirme örneği aşağıda verilmiştir.
 
 ``` csharp
 protected override void OnConfiguring(DbContextOptionsBuilder options)
@@ -40,7 +41,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder options)
 ```
 
 > [!WARNING]
-> `SqlServerHistoryRepository` içinde bir iç ad alanı ve gelecek sürümlerde değişebilir.
+> `SqlServerHistoryRepository` iç ad alanı içindedir ve gelecek sürümlerde değiştirilebilir.
 
 ``` csharp
 class MyHistoryRepository : SqlServerHistoryRepository

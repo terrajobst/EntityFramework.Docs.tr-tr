@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: a628795e-64df-4f24-a5e8-76bc261e7ed8
 uid: core/modeling/backing-field
-ms.openlocfilehash: c3ca8bb97992c192672e8c2f2040b0de029df68d
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: 288440a4494117fe59d27187e24424c4d2fd44ab
+ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197485"
+ms.lasthandoff: 10/23/2019
+ms.locfileid: "72811883"
 ---
 # <a name="backing-fields"></a>Destek Alanları
 
@@ -51,16 +51,12 @@ EF 'in alanı veya özelliği ne zaman kullandığını yapılandırabilirsiniz.
 
 Ayrıca, modelinizde, varlık sınıfında karşılık gelen bir CLR özelliğine sahip olmayan bir kavramsal özellik oluşturabilirsiniz, ancak bunun yerine verileri varlıkta depolamak için bir alan kullanır. Bu, verilerin değişiklik izleyicide depolandığı [Gölge özelliklerinden](shadow-properties.md)farklıdır. Bu, genellikle varlık sınıfı değerleri almak/ayarlamak için yöntemler kullanıyorsa kullanılır.
 
-`Property(...)` API 'deki alanın adını EF olarak verebilirsiniz. Verilen ada sahip bir özellik yoksa, EF bir alanı arayacaktır.
+`Property(...)` API 'sindeki alanın adını EF 'e verebilirsiniz. Verilen ada sahip bir özellik yoksa, EF bir alanı arayacaktır.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/BackingFieldNoProperty.cs#Sample)]
-
-Özelliğe, alan adı dışında bir ad vermek da tercih edebilirsiniz. Bu ad daha sonra model oluşturulurken kullanılır, ancak veritabanı içinde öğesine eşlenen sütun adı için kullanılır.
-
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/BackingFieldConceptualProperty.cs#Sample)]
 
 Varlık sınıfında özellik olmadığında, bir LINQ sorgusunda `EF.Property(...)` yöntemini kullanarak modelin kavramsal bir parçası olan özelliğe başvurabilirsiniz.
 
 ``` csharp
-var blogs = db.blogs.OrderBy(b => EF.Property<string>(b, "Url"));
+var blogs = db.blogs.OrderBy(b => EF.Property<string>(b, "_validatedUrl"));
 ```

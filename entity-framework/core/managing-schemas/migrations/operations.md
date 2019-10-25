@@ -1,30 +1,29 @@
 ---
-title: Özel bir geçiş işlemleri - EF Core
+title: Özel geçiş Işlemleri-EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 11/07/2017
 uid: core/managing-schemas/migrations/operations
-ms.openlocfilehash: 93de6ee1b2eda1875188ace6eda299260fbcc1fe
-ms.sourcegitcommit: 082946dcaa1ee5174e692dbfe53adeed40609c6a
+ms.openlocfilehash: bd2bfdc24977a47eaf7a6756a88b758b563d818a
+ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2018
-ms.locfileid: "51028089"
+ms.lasthandoff: 10/23/2019
+ms.locfileid: "72812050"
 ---
-<a name="custom-migrations-operations"></a>Özel bir geçiş işlemleri
-============================
-MigrationBuilder API geçiş sırasında birçok farklı türde işlemleri yapmanıza olanak tanır, ancak kapsamlı gölgeden uzak olan. Ancak, API da Genişletilebilir kendi işlemleri tanımlamanızı sağlar. API genişletmek için iki yolu vardır: kullanarak `Sql()` yöntemi veya özel tanımlayarak `MigrationOperation` nesneleri.
+# <a name="custom-migrations-operations"></a>Özel geçiş Işlemleri
 
-Göstermek için her bir yaklaşım kullanarak bir veritabanı kullanıcısı oluşturan bir işlem uygulanmasına göz atalım. Bizim geçişlerde, aşağıdaki kod yazma etkinleştirmek istiyoruz:
+MigrationBuilder API 'SI, geçiş sırasında birçok farklı türde işlem gerçekleştirmenize olanak tanır, ancak bu çok yoğun bir şekilde yapılır. Ancak, API ayrıca kendi işlemlerinizi tanımlamanızı sağlayan genişletilebilir. API 'yi genişletmek için iki yol vardır: `Sql()` yöntemini kullanma veya özel `MigrationOperation` nesneleri tanımlama.
+
+Göstermek için, her yaklaşımı kullanarak bir veritabanı kullanıcısı oluşturan bir işlem uygulamaya bakalım. Geçişlerimiz bölümünde aşağıdaki kodun yazılmasını etkinleştirmek istiyoruz:
 
 ``` csharp
 migrationBuilder.CreateUser("SQLUser1", "Password");
 ```
 
-<a name="using-migrationbuildersql"></a>MigrationBuilder.Sql() kullanma
-----------------------------
-Çağıran bir genişletme yöntemi tanımlamak için özel bir işlemi uygulamak için en kolay yolu olan `MigrationBuilder.Sql()`.
-Uygun Transact-SQL oluşturan bir örnek aşağıda verilmiştir.
+## <a name="using-migrationbuildersql"></a>MigrationBuilder. SQL () kullanma
+
+Özel bir işlem uygulamanın en kolay yolu, `MigrationBuilder.Sql()`çağıran bir genişletme yöntemi tanımlamaktır. Uygun Transact-SQL üreten bir örnek aşağıda verilmiştir.
 
 ``` csharp
 static MigrationBuilder CreateUser(
@@ -34,7 +33,7 @@ static MigrationBuilder CreateUser(
     => migrationBuilder.Sql($"CREATE USER {name} WITH PASSWORD '{password}';");
 ```
 
-Geçiş birden çok veritabanı sağlayıcısı desteklemeniz gerekiyorsa, kullanabileceğiniz `MigrationBuilder.ActiveProvider` özelliği. Hem Microsoft SQL Server hem de PostgreSQL destekleyen bir örnek aşağıda verilmiştir.
+Geçişlerinizin birden çok veritabanı sağlayıcısını desteklemesi gerekiyorsa `MigrationBuilder.ActiveProvider` özelliğini kullanabilirsiniz. Hem Microsoft SQL Server hem de PostgreSQL destekleyen bir örnek aşağıda verilmiştir.
 
 ``` csharp
 static MigrationBuilder CreateUser(
@@ -57,11 +56,11 @@ static MigrationBuilder CreateUser(
 }
 ```
 
-Her sağlayıcının biliyorsanız, bu yaklaşım yalnızca özel işlemi burada uygulanacak çalışır.
+Bu yaklaşım yalnızca özel işlemin uygulanacağı her sağlayıcıyı biliyorsanız çalışır.
 
-<a name="using-a-migrationoperation"></a>Bir MigrationOperation kullanma
----------------------------
-SQL özel işlemden ayırmak için kendi tanımlayabileceğiniz `MigrationOperation` bunu gösterecek. Böylece oluşturmak için uygun SQL belirleyebilir işlemi daha sonra sağlayıcıya geçirilir.
+## <a name="using-a-migrationoperation"></a>MigrationOperation kullanma
+
+Özel işlemi SQL 'den ayırmak için, bunu temsil etmek üzere kendi `MigrationOperation` tanımlayabilirsiniz. Daha sonra işlem sağlayıcıya geçirilir, böylece oluşturulacak uygun SQL 'i tespit edebilir.
 
 ``` csharp
 class CreateUserOperation : MigrationOperation
@@ -71,7 +70,7 @@ class CreateUserOperation : MigrationOperation
 }
 ```
 
-Bu yaklaşımda, genişletme yöntemi yalnızca bu işlemler için birini eklemek gereken `MigrationBuilder.Operations`.
+Bu yaklaşımla, Uzantı yönteminin `MigrationBuilder.Operations`için bu işlemlerden birini eklemesi yeterlidir.
 
 ``` csharp
 static MigrationBuilder CreateUser(
@@ -90,7 +89,7 @@ static MigrationBuilder CreateUser(
 }
 ```
 
-Bu yaklaşım bu işlem için SQL oluşturmayı öğrenmek her bir sağlayıcı gerektirir, `IMigrationsSqlGenerator` hizmeti. Yeni işlemi işlemek için SQL Server'ın Oluşturucu geçersiz kılan bir örnek aşağıda verilmiştir.
+Bu yaklaşım, her sağlayıcının `IMigrationsSqlGenerator` hizmetinde bu işlem için nasıl SQL üreteceğimizi bilmesini gerektirir. İşte, yeni işlemi işlemek için SQL Server üreticisini geçersiz kılan bir örnek.
 
 ``` csharp
 class MyMigrationsSqlGenerator : SqlServerMigrationsSqlGenerator
@@ -135,7 +134,7 @@ class MyMigrationsSqlGenerator : SqlServerMigrationsSqlGenerator
 }
 ```
 
-Varsayılan geçiş sql Oluşturucu hizmeti güncelleştirilmiş biriyle değiştirin.
+Varsayılan geçişleri SQL Oluşturucu hizmetini güncelleştirilmiş bir ile değiştirin.
 
 ``` csharp
 protected override void OnConfiguring(DbContextOptionsBuilder options)

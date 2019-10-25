@@ -4,18 +4,19 @@ author: bricelam
 ms.author: bricelam
 ms.date: 07/11/2019
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: e5b42275aa575d711e1dcdf3d2ba3cb29a036727
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 29434c26a503fabb16b43ee8f0c36136a0b5b745
+ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181253"
+ms.lasthandoff: 10/23/2019
+ms.locfileid: "72811964"
 ---
 # <a name="entity-framework-core-tools-reference---net-cli"></a>Entity Framework Core araçları başvurusu-.NET CLı
 
 Entity Framework Core için komut satırı arabirimi (CLı) araçları tasarım zamanı geliştirme görevlerini gerçekleştirmeye yöneliktir. Örneğin, [geçişler](/aspnet/core/data/ef-mvc/migrations?view=aspnetcore-2.0)oluşturur, geçişleri uygular ve var olan bir veritabanını temel alan bir model için kod oluşturur. Komutlar, [.NET Core SDK](https://www.microsoft.com/net/core)bir parçası olan platformlar arası [DotNet](/dotnet/core/tools) komutuna bir uzantıdır. Bu araçlar .NET Core projeleriyle birlikte çalışır.
 
 Visual Studio kullanıyorsanız, bunun yerine [Paket Yöneticisi konsol araçları](powershell.md) önerilir:
+
 * Bunlar, el ile dizin geçmeniz gerekmeden, **Paket Yöneticisi konsolunda** seçilen geçerli projeyle otomatik olarak çalışır.
 * Komut tamamlandıktan sonra komut tarafından oluşturulan dosyaları otomatik olarak açar.
 
@@ -30,13 +31,13 @@ Yükleme yordamı proje türüne ve sürümüne bağlıdır:
 
 ### <a name="ef-core-3x"></a>EF Core 3. x
 
-* `dotnet ef` ' ın genel veya yerel bir araç olarak yüklenmesi gerekir. Çoğu geliştirici, aşağıdaki komutla genel bir araç olarak `dotnet ef` yükler:
+* `dotnet ef`, genel veya yerel bir araç olarak yüklenmelidir. Çoğu geliştirici, `dotnet ef` aşağıdaki komutla küresel bir araç olarak yükler:
 
   ``` console
   dotnet tool install --global dotnet-ef
   ```
 
-  Yerel araç olarak `dotnet ef` de kullanabilirsiniz. Bunu yerel bir araç olarak kullanmak için, bir [araç bildirim dosyası](https://github.com/dotnet/cli/issues/10288)kullanarak bunu araç bağımlılığı olarak bildiren bir projenin bağımlılıklarını geri yükleyin.
+  `dotnet ef` yerel araç olarak da kullanabilirsiniz. Bunu yerel bir araç olarak kullanmak için, bir [araç bildirim dosyası](https://github.com/dotnet/cli/issues/10288)kullanarak bunu araç bağımlılığı olarak bildiren bir projenin bağımlılıklarını geri yükleyin.
 
 * [.NET Core SDK 3,0](https://dotnet.microsoft.com/download/dotnet-core/3.0)) yüklemesini yapın. Visual Studio 'nun en son sürümüne sahip olsanız bile SDK 'nın yüklenmesi gerekir.
 
@@ -50,11 +51,11 @@ Yükleme yordamı proje türüne ve sürümüne bağlıdır:
 
 * Geçerli [.NET Core SDK](https://www.microsoft.com/net/download/core)'yi yükler. Visual Studio 2017 ' nin en son sürümüne sahip olsanız bile SDK 'nın yüklenmesi gerekir.
 
-  @No__t-0 paketi [Microsoft. AspNetCore. app metapackage](/aspnet/core/fundamentals/metapackage-app)içine eklendiğinden, bu ASP.NET Core 2.1 + için gereklidir.
+  `Microsoft.EntityFrameworkCore.Design` paketi [Microsoft. AspNetCore. app metapackage](/aspnet/core/fundamentals/metapackage-app)içine eklendiğinden, bu ASP.NET Core 2.1 + için gereklidir.
 
 ### <a name="ef-core-2x-not-aspnet-core"></a>EF Core 2. x (ASP.NET Core değil)
 
-@No__t-0 komutları .NET Core SDK dahil edilmiştir, ancak `Microsoft.EntityFrameworkCore.Design` paketini yüklemek için sahip olduğunuz komutları etkinleştirmek için.
+`dotnet ef` komutları .NET Core SDK dahil edilir, ancak `Microsoft.EntityFrameworkCore.Design` paketini yüklemek için sahip olduğunuz komutları etkinleştirmek için.
 
 * Geçerli [.NET Core SDK](https://www.microsoft.com/net/download/core)'yi yükler. Visual Studio 'nun en son sürümüne sahip olsanız bile SDK 'nın yüklenmesi gerekir.
 
@@ -70,9 +71,9 @@ Yükleme yordamı proje türüne ve sürümüne bağlıdır:
 
 * Uygulamayı, [genel. JSON](/dotnet/core/tools/global-json) dosyasını DEĞIŞTIREREK 2.1.200 SDK sürümünü kullanacak şekilde yapılandırın. Bu dosya normalde çözüm dizinine eklenir (projenin üzerinde bir tane).
 
-* Proje dosyasını düzenleyin ve `DotNetCliToolReference` öğesi olarak `Microsoft.EntityFrameworkCore.Tools.DotNet` ekleyin. En son 1. x sürümünü belirtin, örneğin: 1.1.6. Bu bölümün sonundaki proje dosyası örneğine bakın.
+* Proje dosyasını düzenleyin ve `DotNetCliToolReference` öğe olarak `Microsoft.EntityFrameworkCore.Tools.DotNet` ekleyin. En son 1. x sürümünü belirtin, örneğin: 1.1.6. Bu bölümün sonundaki proje dosyası örneğine bakın.
 
-* @No__t-0 paketinin en son 1. x sürümünü yükler, örneğin:
+* `Microsoft.EntityFrameworkCore.Design` paketinin en son 1. x sürümünü yükler, örneğin:
 
   ```console
   dotnet add package Microsoft.EntityFrameworkCore.Design -v 1.1.6
@@ -98,7 +99,7 @@ Yükleme yordamı proje türüne ve sürümüne bağlıdır:
   </Project>
   ```
 
-  Bu projeye başvuran projelere `PrivateAssets="All"` ile bir paket başvurusu gösterilmez. Bu kısıtlama özellikle yalnızca geliştirme sırasında kullanılan paketler için yararlıdır.
+  `PrivateAssets="All"` olan bir paket başvurusu, bu projeye başvuran projelere gösterilmez. Bu kısıtlama özellikle yalnızca geliştirme sırasında kullanılan paketler için yararlıdır.
 
 ### <a name="verify-installation"></a>Yüklemeyi doğrula
 
@@ -133,9 +134,9 @@ Araçları kullanmadan önce, bir başlangıç projesi oluşturmanız veya ortam
 
 Komutlar bir *projeye* ve bir *başlangıç projesine*başvurur.
 
-* Ayrıca, komutların dosya eklemesi veya kaldırması nedeniyle *Proje* *hedef proje* olarak da bilinir. Varsayılan olarak, geçerli dizindeki proje hedef projem tir. <nobr>@No__t-1</nobr> seçeneğini kullanarak, hedef proje olarak farklı bir proje belirtebilirsiniz.
+* Ayrıca, komutların dosya eklemesi veya kaldırması nedeniyle *Proje* *hedef proje* olarak da bilinir. Varsayılan olarak, geçerli dizindeki proje hedef projem tir. <nobr>`--project`</nobr> seçeneğini kullanarak, hedef proje olarak farklı bir proje belirtebilirsiniz.
 
-* *Başlangıç projesi* , araçların oluşturup çalıştırdığı bir. Araçlar, veritabanı bağlantı dizesi ve modelin yapılandırması gibi proje hakkında bilgi almak için tasarım zamanında uygulama kodu yürütmeniz gerekir. Varsayılan olarak, geçerli dizindeki proje başlangıç projem ' dir. <nobr>@No__t-1</nobr> seçeneğini kullanarak, başlangıç projesi olarak farklı bir proje belirtebilirsiniz.
+* *Başlangıç projesi* , araçların oluşturup çalıştırdığı bir. Araçlar, veritabanı bağlantı dizesi ve modelin yapılandırması gibi proje hakkında bilgi almak için tasarım zamanında uygulama kodu yürütmeniz gerekir. Varsayılan olarak, geçerli dizindeki proje başlangıç projem ' dir. <nobr>`--startup-project`</nobr> seçeneğini kullanarak, başlangıç projesi olarak farklı bir proje belirtebilirsiniz.
 
 Başlangıç projesi ve hedef proje genellikle aynı projem. Farklı projeler oldukları tipik bir senaryo şunlardır:
 
@@ -146,7 +147,7 @@ Başlangıç projesi ve hedef proje genellikle aynı projem. Farklı projeler ol
 
 ### <a name="other-target-frameworks"></a>Diğer hedef çerçeveler
 
-CLı araçları .NET Core projeleriyle ve .NET Framework projeleriyle çalışır. .NET Standard Sınıf kitaplığındaki EF Core modeli olan uygulamalarda .NET Core veya .NET Framework projesi bulunmayabilir. Örneğin, bu, Xamarin ve Evrensel Windows Platformu uygulamaları için geçerlidir. Bu gibi durumlarda, yalnızca amacı araçlar için başlangıç projesi olarak davranacak bir .NET Core konsol uygulaması projesi oluşturabilirsiniz. Proje, gerçek kod içermeyen bir kukla proje olabilir &mdash; yalnızca araç için bir hedef sağlamak için gereklidir.
+CLı araçları .NET Core projeleriyle ve .NET Framework projeleriyle çalışır. .NET Standard Sınıf kitaplığındaki EF Core modeli olan uygulamalarda .NET Core veya .NET Framework projesi bulunmayabilir. Örneğin, bu, Xamarin ve Evrensel Windows Platformu uygulamaları için geçerlidir. Bu gibi durumlarda, yalnızca amacı araçlar için başlangıç projesi olarak davranacak bir .NET Core konsol uygulaması projesi oluşturabilirsiniz. Proje, gerçek kod içermeyen bir kukla proje olabilir &mdash; yalnızca araç için bir hedef sağlamanız gerekir.
 
 İşlevsiz bir proje neden gereklidir? Daha önce belirtildiği gibi, araçların uygulama kodunu tasarım zamanında yürütmesi gerekir. Bunu yapmak için .NET Core çalışma zamanını kullanmaları gerekir. EF Core modeli .NET Core veya .NET Framework hedefleyen bir projede olduğunda, EF Core araçları projeden çalışma zamanını ödünç. EF Core modeli .NET Standard bir sınıf kitaplığınlarsa bunu yapamazlar. .NET Standard gerçek bir .NET uygulamasını değil; .NET uygulamalarının desteklemesi gereken bir API kümesine yönelik bir belirtimdir. Bu nedenle .NET Standard uygulama kodunu yürütmek için EF Core araçları yeterli değildir. Başlangıç projesi olarak kullanmak için oluşturduğunuz kukla proje, araçların .NET Standard sınıf kitaplığını yükleyebileceği somut bir hedef platform sağlar.
 
@@ -163,7 +164,7 @@ ASP.NET Core projelerine yönelik ortamı belirtmek için, komutları çalışt�
 | `-p`              | `--project <PROJECT>`             | Hedef projenin proje klasörünün göreli yolu.  Varsayılan değer geçerli klasördür.                                                                                                                                                              |
 | `-s`              | `--startup-project <PROJECT>`     | Başlangıç projesinin proje klasörünün göreli yolu. Varsayılan değer geçerli klasördür.                                                                                                                                                              |
 |                   | `--framework <FRAMEWORK>`         | [Hedef çerçeve](/dotnet/standard/frameworks)Için [hedef çerçeve bilinen](/dotnet/standard/frameworks#supported-target-framework-versions) adı.  Proje dosyası birden çok hedef çerçeve belirttiğinde ve bunlardan birini seçmek istediğinizde kullanın. |
-|                   | `--configuration <CONFIGURATION>` | Derleme yapılandırması, örneğin: `Debug` veya `Release`.                                                                                                                                                                                                   |
+|                   | `--configuration <CONFIGURATION>` | Yapı yapılandırması, örneğin: `Debug` veya `Release`.                                                                                                                                                                                                   |
 |                   | `--runtime <IDENTIFIER>`          | Paketlerinin geri yükleneceği hedef çalışma zamanının tanımlayıcısı. Çalışma zamanı tanımlayıcıları (RID 'Ler) listesi için bkz. [RID kataloğu](/dotnet/core/rid-catalog).                                                                                                      |
 | `-h`              | `--help`                          | Yardım bilgilerini göster.                                                                                                                                                                                                                                        |
 | `-v`              | `--verbose`                       | Ayrıntılı çıktıyı göster.                                                                                                                                                                                                                                          |
@@ -200,7 +201,7 @@ dotnet ef database update 20180904195021_InitialCreate
 
 ## <a name="dotnet-ef-dbcontext-info"></a>DotNet EF DbContext bilgisi
 
-@No__t-0 türü hakkında bilgi alır.
+`DbContext` türü hakkında bilgi alır.
 
 ## <a name="dotnet-ef-dbcontext-list"></a>DotNet EF DbContext listesi
 
@@ -214,20 +215,20 @@ Değişkenlerinden
 
 | Bağımsız Değişken       | Açıklama                                                                                                                                                                                                             |
 |:---------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `<CONNECTION>` | Veritabanına bağlantı dizesi. ASP.NET Core 2. x projelerinde, bu değer *Name = \<Bağlantı dizesi > adı*olabilir. Bu durumda, ad proje için ayarlanan yapılandırma kaynaklarından gelir. |
-| `<PROVIDER>`   | Kullanılacak sağlayıcı. Genellikle bu, NuGet paketinin adıdır; örneğin: `Microsoft.EntityFrameworkCore.SqlServer`.                                                                                           |
+| `<CONNECTION>` | Veritabanına bağlantı dizesi. ASP.NET Core 2. x projeleri için değer *=\<bağlantı dizesi >* adı olabilir. Bu durumda, ad proje için ayarlanan yapılandırma kaynaklarından gelir. |
+| `<PROVIDER>`   | Kullanılacak sağlayıcı. Genellikle bu, NuGet paketinin adıdır, örneğin: `Microsoft.EntityFrameworkCore.SqlServer`.                                                                                           |
 
 Seçenekler:
 
 |                 | Seçenek                                   | Açıklama                                                                                                                                                                    |
 |:----------------|:-----------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <nobr>-d</nobr> | `--data-annotations`                     | Modeli yapılandırmak için öznitelikleri kullanın (mümkün olduğunda). Bu seçenek atlanırsa yalnızca Fluent API kullanılır.                                                                |
-| `-c`            | `--context <NAME>`                       | Oluşturulacak `DbContext` sınıfının adı.                                                                                                                                 |
-|                 | `--context-dir <PATH>`                   | @No__t-0 sınıf dosyasının içine yerleştirilecek dizin. Yollar proje dizinine göredir. Ad alanları, Klasör adlarından türetilir.                                 |
+| `-c`            | `--context <NAME>`                       | Oluşturulacak `DbContext` sınıfın adı.                                                                                                                                 |
+|                 | `--context-dir <PATH>`                   | `DbContext` sınıfı dosyasının içine yerleştirilecek dizin. Yollar proje dizinine göredir. Ad alanları, Klasör adlarından türetilir.                                 |
 | `-f`            | `--force`                                | Varolan dosyaların üzerine yaz.                                                                                                                                                      |
 | `-o`            | `--output-dir <PATH>`                    | İçinde varlık sınıfı dosyalarını yerleştirmek için dizin. Yollar proje dizinine göredir.                                                                                       |
-|                 | <nobr>`--schema <SCHEMA_NAME>...`</nobr> | İçin varlık türleri oluşturulacak tablo şemaları. Birden çok şema belirtmek için, her biri için `--schema` ' ı tekrarlayın. Bu seçenek atlanırsa, tüm şemalar dahil edilir.          |
-| `-t`            | `--table <TABLE_NAME>`...                | İçin varlık türleri oluşturulacak tablolar. Birden çok tablo belirtmek için, her biri için `-t` veya `--table` ' i tekrarlayın. Bu seçenek atlanırsa, tüm tablolar dahil edilir.                |
+|                 | <nobr>`--schema <SCHEMA_NAME>...`</nobr> | İçin varlık türleri oluşturulacak tablo şemaları. Birden çok şema belirtmek için `--schema` her biri için yineleyin. Bu seçenek atlanırsa, tüm şemalar dahil edilir.          |
+| `-t`            | `--table <TABLE_NAME>`...                | İçin varlık türleri oluşturulacak tablolar. Birden çok tablo belirtmek için her biri için `-t` veya `--table` tekrarlayın. Bu seçenek atlanırsa, tüm tablolar dahil edilir.                |
 |                 | `--use-database-names`                   | Tablo ve sütun adlarını tam olarak veritabanında göründükleri gibi kullanın. Bu seçenek atlanırsa, veritabanı adları C# ad stili kurallarıyla daha yakından uyumlu olacak şekilde değiştirilir. |
 
 Aşağıdaki örnek, tüm şemaları ve tabloları uygular ve yeni dosyaları *modeller* klasörüne koyar.

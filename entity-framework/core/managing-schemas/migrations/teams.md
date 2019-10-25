@@ -1,22 +1,23 @@
 ---
-title: Ekip ortamlarında - EF Core geçişleri
+title: Takım ortamlarında geçişler-EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 10/30/2017
-ms.openlocfilehash: e8ff7f468d5ab6dbd6285f1abf9199e413288d10
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+uid: core/managing-schemas/migrations/teams
+ms.openlocfilehash: e6a1b86761a201cbcae34cced7e64f11df37a420
+ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42997701"
+ms.lasthandoff: 10/23/2019
+ms.locfileid: "72811986"
 ---
-<a name="migrations-in-team-environments"></a>Ekip ortamlarında geçişleri
-===============================
-Ekip ortamlarında Migrations ile çalışırken, ek model anlık görüntü dosyası dikkat edin. Bu dosya, teammate's geçiş türlerinizle düzgün bir şekilde birleştirir veya yeniden paylaşımı önce geçişinizi oluşturarak çakışmayı gidermeniz gerekiyorsa söyleyebilirsiniz.
+# <a name="migrations-in-team-environments"></a>Takım Ortamlarında Geçişler
 
-<a name="merging"></a>Birleştirme
--------
-Kodunuza geçişleri birleştirdiğinizde çakışmaları modeli anlık görüntü dosyanızda alabilirsiniz. Her iki değişiklik ilgisiz ise birleştirme önemsiz ve iki geçiş bulunabilir. Örneğin, şuna benzeyen müşteri varlık türü yapılandırmasındaki bir birleştirme çakışması karşılaşabilirsiniz:
+Ekip ortamlarında geçişlerle çalışırken, model anlık görüntü dosyasına fazladan dikkat edin. Bu dosya, takımınızın geçiş işleminden sizinkiyle düzgün bir şekilde birleşiyorsa ya da bir çakışmayı paylaşmadan önce yeniden oluşturarak bir çakışmayı çözmeniz gerekiyorsa size bildirir.
+
+## <a name="merging"></a>Birleştirme
+
+Takım mateklarından geçişleri birleştirdiğinizde, model anlık görüntü dosyanızda çakışmalar alabilirsiniz. Her iki değişiklik de ilgisiz ise birleştirme basit olur ve iki geçiş birlikte kullanılabilir. Örneğin, müşteri varlık türü yapılandırmasında şuna benzer bir birleştirme çakışması alabilirsiniz:
 
     <<<<<<< Mine
     b.Property<bool>("Deactivated");
@@ -24,18 +25,18 @@ Kodunuza geçişleri birleştirdiğinizde çakışmaları modeli anlık görünt
     b.Property<int>("LoyaltyPoints");
     >>>>>>> Theirs
 
-Bu özelliklerin her ikisi de son modelde mevcut olması gerektiğinden, birleştirme, her iki özellik ekleyerek tamamlayın. Çoğu durumda, sürüm denetimi sisteminiz otomatik olarak bu tür değişiklikleri sizin için birleştirme.
+Bu özelliklerin her ikisinin de son modelde bulunması gerektiğinden, her iki özelliği de ekleyerek birleştirmeyi doldurun. Çoğu durumda, sürüm denetimi sisteminiz sizin için bu değişiklikleri otomatik olarak birleştirebiliriz.
 
 ``` csharp
 b.Property<bool>("Deactivated");
 b.Property<int>("LoyaltyPoints");
 ```
 
-Bu gibi durumlarda, geçiş ve, teammate's geçiş birbirinden bağımsızdır. Bunlardan birini ilk uygulanabilir olduğundan, takımınızla paylaşmayı önce geçişinizi ek değişiklik gerekmez.
+Bu gibi durumlarda geçişiniz ve ekip Mate geçişiniz birbirinden bağımsızdır. Bunlardan biri önce uygulanamadığından, ekibinizle paylaşmadan önce geçişinize ek değişiklik yapmanız gerekmez.
 
-<a name="resolving-conflicts"></a>Çakışmaları çözümleme
--------------------
-Bazen model anlık görüntü modeli birleştirilirken gerçek bir çakışma ortaya. Örneğin, siz ve, teammate her aynı özelliğe yeniden adlandırmış olabilir.
+## <a name="resolving-conflicts"></a>Çakışmaları çözme
+
+Bazen model anlık görüntü modeli birleştirilirken doğru bir çakışma ile karşılaşırsınız. Örneğin, sizin ve takımlarınızın her biri aynı özelliği yeniden adlandırmış olabilir.
 
     <<<<<<< Mine
     b.Property<string>("Username");
@@ -43,13 +44,13 @@ Bazen model anlık görüntü modeli birleştirilirken gerçek bir çakışma or
     b.Property<string>("Alias");
     >>>>>>> Theirs
 
-Bu tür bir çakışma karşılaşırsanız geçişinizi yeniden oluşturarak çözümleyin. Aşağıdaki adımları uygulayın:
+Bu tür çakışmayla karşılaşırsanız, geçişinizi yeniden oluşturarak çözümleyin. Aşağıdaki adımları uygulayın:
 
-1. Birleştirme ve birleştirme önce çalışma dizininize geri alma iptal
-2. Geçişinizi Kaldır (ancak modeli değişikliklerinizi saklamak)
-3. Çalışma dizininize, teammate's değişiklikleri Birleştir
+1. Birleştirme işleminden önce birleştirme ve çalışma dizininize geri alma işlemini iptal edin
+2. Geçişinizi kaldırma (ancak model değişiklerinizi koru)
+3. Ekipte yapılan değişiklikleri çalışma dizininiz ile birleştirin
 4. Geçişinizi yeniden ekleyin
 
-Bunu yaptıktan sonra iki geçiş doğru sırayla uygulanabilir. Geçişini, ilk olarak sütunu yeniden adlandırma uygulanır *diğer*, bundan sonra geçiş için yeniden adlandırsa *Username*.
+Bunu yaptıktan sonra, iki geçiş doğru sırada uygulanabilir. Önce geçişi uygulanır, sütunu *diğer ad*olarak yeniden adlandırır, bundan sonra geçişiniz bunu *Kullanıcı adı*olarak değiştirir.
 
-Geçişinizi güvenle takımın geri kalanı ile paylaşılabilir.
+Geçişiniz, takımın geri kalanı ile güvenli bir şekilde paylaşılabilir.

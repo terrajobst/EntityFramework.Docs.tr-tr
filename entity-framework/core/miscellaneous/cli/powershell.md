@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 09/18/2018
 uid: core/miscellaneous/cli/powershell
-ms.openlocfilehash: 45370a82131da9db8b724fe395d41b1e3641fcf8
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: a9ce6d5b5f36a72e3715a9de787f1f00e989a58c
+ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181341"
+ms.lasthandoff: 10/23/2019
+ms.locfileid: "72811906"
 ---
 # <a name="entity-framework-core-tools-reference---package-manager-console-in-visual-studio"></a>Visual Studio 'da Entity Framework Core araçları başvurusu-Paket Yöneticisi konsolu
 
@@ -23,9 +23,10 @@ Araçları yükleme ve güncelleştirme yordamları ASP.NET Core 2.1 + ile önce
 
 ### <a name="aspnet-core-version-21-and-later"></a>ASP.NET Core sürüm 2,1 ve üzeri
 
-@No__t-0 paketi [Microsoft. AspNetCore. app metapackage](/aspnet/core/fundamentals/metapackage-app)içinde yer aldığı için Araçlar ASP.NET Core 2.1 + projesine otomatik olarak eklenir.
+`Microsoft.EntityFrameworkCore.Tools` paketi [Microsoft. AspNetCore. app metapackage](/aspnet/core/fundamentals/metapackage-app)içinde yer aldığı için Araçlar ASP.NET Core 2.1 + projesine otomatik olarak eklenir.
 
 Bu nedenle, araçları yüklemek için herhangi bir şey yapmanız gerekmez, ancak şunları yapmanız gerekir:
+
 * Yeni bir projedeki araçları kullanmadan önce paketleri geri yükleyin.
 * Araçları daha yeni bir sürüme güncelleştirmek için bir paket yükler.
 
@@ -46,6 +47,7 @@ Aşağıdaki örnekte olduğu gibi bir ileti aldığınızda araçları güncell
 > EF Core araçları sürümü ' 2.1.1-RTM-30846 ', ' 2.1.3-RTM-32065 ' çalışma zamanından daha eski. En son özellikler ve hata düzeltmeleri için araçları güncelleştirin.
 
 Araçları güncelleştirmek için:
+
 * En son .NET Core SDK yükler.
 * Visual Studio 'Yu en son sürüme güncelleştirin.
 * *. Csproj* dosyasını, daha önce gösterildiği gibi en son araçlar paketine bir paket başvurusu içerecek şekilde düzenleyin.
@@ -95,6 +97,7 @@ SHORT DESCRIPTION
 ## <a name="using-the-tools"></a>Araçları kullanma
 
 Araçları kullanmadan önce:
+
 * Hedef ve başlangıç projesi arasındaki farkı anlayın.
 * .NET Standard sınıf kitaplıklarıyla araçları nasıl kullanacağınızı öğrenin.
 * ASP.NET Core projeler için ortamı ayarlayın.
@@ -103,9 +106,9 @@ Araçları kullanmadan önce:
 
 Komutlar bir *projeye* ve bir *başlangıç projesine*başvurur.
 
-* Ayrıca, komutların dosya eklemesi veya kaldırması nedeniyle *Proje* *hedef proje* olarak da bilinir. Varsayılan olarak, **Paket Yöneticisi konsolunda** seçilen **varsayılan proje** hedef projem tir. <nobr>@No__t-1</nobr> seçeneğini kullanarak, hedef proje olarak farklı bir proje belirtebilirsiniz.
+* Ayrıca, komutların dosya eklemesi veya kaldırması nedeniyle *Proje* *hedef proje* olarak da bilinir. Varsayılan olarak, **Paket Yöneticisi konsolunda** seçilen **varsayılan proje** hedef projem tir. <nobr>`--project`</nobr> seçeneğini kullanarak, hedef proje olarak farklı bir proje belirtebilirsiniz.
 
-* *Başlangıç projesi* , araçların oluşturup çalıştırdığı bir. Araçlar, veritabanı bağlantı dizesi ve modelin yapılandırması gibi proje hakkında bilgi almak için tasarım zamanında uygulama kodu yürütmeniz gerekir. Varsayılan olarak, Çözüm Gezgini **Başlangıç projesi** başlangıç projem ' dir. <nobr>@No__t-1</nobr> seçeneğini kullanarak, başlangıç projesi olarak farklı bir proje belirtebilirsiniz.
+* *Başlangıç projesi* , araçların oluşturup çalıştırdığı bir. Araçlar, veritabanı bağlantı dizesi ve modelin yapılandırması gibi proje hakkında bilgi almak için tasarım zamanında uygulama kodu yürütmeniz gerekir. Varsayılan olarak, Çözüm Gezgini **Başlangıç projesi** başlangıç projem ' dir. <nobr>`--startup-project`</nobr> seçeneğini kullanarak, başlangıç projesi olarak farklı bir proje belirtebilirsiniz.
 
 Başlangıç projesi ve hedef proje genellikle aynı projem. Farklı projeler oldukları tipik bir senaryo şunlardır:
 
@@ -116,7 +119,7 @@ Başlangıç projesi ve hedef proje genellikle aynı projem. Farklı projeler ol
 
 ### <a name="other-target-frameworks"></a>Diğer hedef çerçeveler
 
-Paket Yöneticisi konsol araçları, .NET Core veya .NET Framework projeleriyle çalışır. .NET Standard Sınıf kitaplığındaki EF Core modeli olan uygulamalarda .NET Core veya .NET Framework projesi bulunmayabilir. Örneğin, bu, Xamarin ve Evrensel Windows Platformu uygulamaları için geçerlidir. Bu gibi durumlarda, yalnızca amacı araçlar için başlangıç projesi olarak davranacak olan bir .NET Core veya .NET Framework konsol uygulaması projesi oluşturabilirsiniz. Proje, gerçek kod içermeyen bir kukla proje olabilir &mdash; yalnızca araç için bir hedef sağlamak için gereklidir.
+Paket Yöneticisi konsol araçları, .NET Core veya .NET Framework projeleriyle çalışır. .NET Standard Sınıf kitaplığındaki EF Core modeli olan uygulamalarda .NET Core veya .NET Framework projesi bulunmayabilir. Örneğin, bu, Xamarin ve Evrensel Windows Platformu uygulamaları için geçerlidir. Bu gibi durumlarda, yalnızca amacı araçlar için başlangıç projesi olarak davranacak olan bir .NET Core veya .NET Framework konsol uygulaması projesi oluşturabilirsiniz. Proje, gerçek kod içermeyen bir kukla proje olabilir &mdash; yalnızca araç için bir hedef sağlamanız gerekir.
 
 İşlevsiz bir proje neden gereklidir? Daha önce belirtildiği gibi, araçların uygulama kodunu tasarım zamanında yürütmesi gerekir. Bunu yapmak için, .NET Core veya .NET Framework çalışma zamanını kullanmaları gerekir. EF Core modeli .NET Core veya .NET Framework hedefleyen bir projede olduğunda, EF Core araçları projeden çalışma zamanını ödünç. EF Core modeli .NET Standard bir sınıf kitaplığınlarsa bunu yapamazlar. .NET Standard gerçek bir .NET uygulamasını değil; .NET uygulamalarının desteklemesi gereken bir API kümesine yönelik bir belirtimdir. Bu nedenle .NET Standard uygulama kodunu yürütmek için EF Core araçları yeterli değildir. Başlangıç projesi olarak kullanmak için oluşturduğunuz kukla proje, araçların .NET Standard sınıf kitaplığını yükleyebileceği somut bir hedef platform sağlar.
 
@@ -130,12 +133,12 @@ Aşağıdaki tabloda tüm EF Core komutlarında ortak olan parametreler gösteri
 
 | Parametre                 | Açıklama                                                                                                                                                                                                          |
 |:--------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| -Context \<String >        | Kullanılacak `DbContext` sınıfı. Yalnızca sınıf adı veya ad alanları ile tam nitelikli.  Bu parametre atlanırsa, EF Core bağlam sınıfını bulur. Birden çok bağlam sınıfı varsa, bu parametre gereklidir. |
-| -Proje \<String >        | Hedef proje. Bu parametre atlanırsa, hedef proje olarak **Package Manager konsolunun** **varsayılan projesi** kullanılır.                                                                             |
-| -StartupProject \<String > | Başlangıç projesi. Bu parametre atlanırsa, **çözüm özelliklerindeki** **Başlangıç projesi** hedef proje olarak kullanılır.                                                                                 |
+| -Context \<dize >        | Kullanılacak `DbContext` sınıfı. Yalnızca sınıf adı veya ad alanları ile tam nitelikli.  Bu parametre atlanırsa, EF Core bağlam sınıfını bulur. Birden çok bağlam sınıfı varsa, bu parametre gereklidir. |
+| -Proje \<dize >        | Hedef proje. Bu parametre atlanırsa, hedef proje olarak **Package Manager konsolunun** **varsayılan projesi** kullanılır.                                                                             |
+| -StartupProject \<dize > | Başlangıç projesi. Bu parametre atlanırsa, **çözüm özelliklerindeki** **Başlangıç projesi** hedef proje olarak kullanılır.                                                                                 |
 | -Ayrıntılı                  | Ayrıntılı çıktıyı göster.                                                                                                                                                                                                 |
 
-Bir komutla ilgili yardım bilgilerini göstermek için, PowerShell 'in `Get-Help` komutunu kullanın.
+Bir komutla ilgili yardım bilgilerini göstermek için PowerShell 'in `Get-Help` komutunu kullanın.
 
 > [!TIP]
 > Bağlam, proje ve StartupProject parametreleri sekme genişletmeyi destekler.
@@ -148,8 +151,8 @@ Parametreler:
 
 | Parametre                         | Açıklama                                                                                                             |
 |:----------------------------------|:------------------------------------------------------------------------------------------------------------------------|
-| @no__t -0-Name \<Dize > <nobr>       | Geçişin adı. Bu bir Konumsal parametredir ve gereklidir.                                              |
-| <nobr>-OutputDir \<Dize ></nobr> | Kullanılacak dizin (ve alt ad alanı). Yollar, hedef proje dizini ile ilişkilidir. Varsayılan olarak "geçişler" olur. |
+| <nobr>ad \<dize ><nobr>       | Geçişin adı. Bu bir Konumsal parametredir ve gereklidir.                                              |
+| <nobr>-OutputDir \<dize ></nobr> | Kullanılacak dizin (ve alt ad alanı). Yollar, hedef proje dizini ile ilişkilidir. Varsayılan olarak "geçişler" olur. |
 
 ## <a name="drop-database"></a>Veritabanını bırak
 
@@ -163,7 +166,7 @@ Parametreler:
 
 ## <a name="get-dbcontext"></a>Get-DbContext
 
-@No__t-0 türü hakkında bilgi alır.
+`DbContext` türü hakkında bilgi alır.
 
 ## <a name="remove-migration"></a>Geçişi Kaldır
 
@@ -175,21 +178,21 @@ Parametreler:
 |:----------|:--------------------------------------------------------------------------------|
 | -Zorla    | Geçişi geri alma (veritabanına uygulanan değişiklikleri geri alın). |
 
-## <a name="scaffold-dbcontext"></a>Scaffold-DbContext
+## <a name="scaffold-dbcontext"></a>Yapı iskelesi-DbContext
 
-Bir veritabanı için `DbContext` ve varlık türleri için kod üretir. @No__t-0 ' ın bir varlık türü oluşturması için, veritabanı tablosunun birincil anahtarı olmalıdır.
+Bir veritabanı için `DbContext` ve varlık türleri için kod üretir. `Scaffold-DbContext` bir varlık türü oluşturmak için veritabanı tablosunun birincil anahtarı olmalıdır.
 
 Parametreler:
 
 | Parametre                          | Açıklama                                                                                                                                                                                                                                                             |
 |:-----------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <nobr>-Bağlantı \< dize ></nobr> | Veritabanına bağlantı dizesi. ASP.NET Core 2. x projelerinde, bu değer *Name = \<Bağlantı dizesi > adı*olabilir. Bu durumda, ad proje için ayarlanan yapılandırma kaynaklarından gelir. Bu bir Konumsal parametredir ve gereklidir. |
-| <nobr>-Sağlayıcı \< dize ></nobr>   | Kullanılacak sağlayıcı. Genellikle bu, NuGet paketinin adıdır; örneğin: `Microsoft.EntityFrameworkCore.SqlServer`. Bu bir Konumsal parametredir ve gereklidir.                                                                                           |
-| -OutputDir \<String >               | Dosyaları içine koyabileceğiniz dizin. Yollar proje dizinine göredir.                                                                                                                                                                                             |
-| -ContextDir \<String >              | @No__t-0 dosyasının içine yerleştirilecek dizin. Yollar proje dizinine göredir.                                                                                                                                                                              |
-| -Context \<String >                 | Oluşturulacak `DbContext` sınıfının adı.                                                                                                                                                                                                                          |
-| -Şema \<String [] >               | İçin varlık türleri oluşturulacak tablo şemaları. Bu parametre atlanırsa, tüm şemalar dahil edilir.                                                                                                                                                             |
-| -Tablo \<String [] >                | İçin varlık türleri oluşturulacak tablolar. Bu parametre atlanırsa, tüm tablolar dahil edilir.                                                                                                                                                                         |
+| <nobr>-Bağlantı \<dize ></nobr> | Veritabanına bağlantı dizesi. ASP.NET Core 2. x projeleri için değer *=\<bağlantı dizesi >* adı olabilir. Bu durumda, ad proje için ayarlanan yapılandırma kaynaklarından gelir. Bu bir Konumsal parametredir ve gereklidir. |
+| <nobr>-Sağlayıcı \<dize ></nobr>   | Kullanılacak sağlayıcı. Genellikle bu, NuGet paketinin adıdır, örneğin: `Microsoft.EntityFrameworkCore.SqlServer`. Bu bir Konumsal parametredir ve gereklidir.                                                                                           |
+| -OutputDir \<dize >               | Dosyaları içine koyabileceğiniz dizin. Yollar proje dizinine göredir.                                                                                                                                                                                             |
+| -ContextDir \<dize >              | `DbContext` dosyasının içine yerleştirilecek dizin. Yollar proje dizinine göredir.                                                                                                                                                                              |
+| -Context \<dize >                 | Oluşturulacak `DbContext` sınıfın adı.                                                                                                                                                                                                                          |
+| -Şema \<dize [] >               | İçin varlık türleri oluşturulacak tablo şemaları. Bu parametre atlanırsa, tüm şemalar dahil edilir.                                                                                                                                                             |
+| -Tables \<dize [] >                | İçin varlık türleri oluşturulacak tablolar. Bu parametre atlanırsa, tüm tablolar dahil edilir.                                                                                                                                                                         |
 | -Datanot açıklamaları                   | Modeli yapılandırmak için öznitelikleri kullanın (mümkün olduğunda). Bu parametre atlanırsa yalnızca Fluent API kullanılır.                                                                                                                                                      |
 | -UseDatabaseNames                  | Tablo ve sütun adlarını tam olarak veritabanında göründükleri gibi kullanın. Bu parametre atlanırsa, veritabanı adları C# ad stili kurallarıyla daha yakından uyumlu olacak şekilde değiştirilir.                                                                                       |
 | -Zorla                             | Varolan dosyaların üzerine yaz.                                                                                                                                                                                                                                               |
@@ -214,10 +217,10 @@ Parametreler:
 
 | Parametre                | Açıklama                                                                                                                                                                                                                |
 |:-------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| *-* @No__t-1dize >        | Geçiş başlatılıyor. Geçişler, ada veya KIMLIĞE göre tanımlanabilir. 0 sayısı, *ilk geçişten önceki*anlamına gelen özel bir durumdur. Varsayılan değer 0 ' dır.                                                              |
-| *-* @No__t-1string >          | Son geçiş. Son geçişin varsayılan değeri.                                                                                                                                                                      |
+| *-* \<dizeden >        | Geçiş başlatılıyor. Geçişler, ada veya KIMLIĞE göre tanımlanabilir. 0 sayısı, *ilk geçişten önceki*anlamına gelen özel bir durumdur. Varsayılan değer 0 ' dır.                                                              |
+| *-* \<dize >          | Son geçiş. Son geçişin varsayılan değeri.                                                                                                                                                                      |
 | <nobr>-Idempotent</nobr> | Herhangi bir geçişte veritabanında kullanılabilecek bir betik oluşturun.                                                                                                                                                         |
-| -Çıkış \<String >        | Sonucun yazılacağı dosya. Bu parametre atlanırsa dosya, uygulamanın çalışma zamanı dosyaları oluşturulduğu klasörde oluşturulmuş bir adla oluşturulur, örneğin: */obj/Debug/netcoreapp2,/ghbkztfz.exe*. |
+| -Output \<dize >        | Sonucun yazılacağı dosya. Bu parametre atlanırsa dosya, uygulamanın çalışma zamanı dosyaları oluşturulduğu klasörde oluşturulmuş bir adla oluşturulur, örneğin: */obj/Debug/netcoreapp2,/ghbkztfz.exe*. |
 
 > [!TIP]
 > To, from ve OUTPUT parametreleri sekme genişletmeyi destekler.
@@ -240,7 +243,7 @@ Veritabanını son geçişe veya belirtilen bir geçişe güncelleştirir.
 
 | Parametre                           | Açıklama                                                                                                                                                                                                                                                     |
 |:------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <nobr> *-Geçiş* \<string ></nobr> | Hedef geçişi. Geçişler, ada veya KIMLIĞE göre tanımlanabilir. 0 sayısı, *ilk geçişten önceki* ve tüm geçişlerin geri alınmasına neden olan özel bir durumdur. Hiçbir geçiş belirtilmemişse, komut en son geçişe varsayılan olarak ayarlanır. |
+| <nobr> *-Geçiş* \<dize ></nobr> | Hedef geçişi. Geçişler, ada veya KIMLIĞE göre tanımlanabilir. 0 sayısı, *ilk geçişten önceki* ve tüm geçişlerin geri alınmasına neden olan özel bir durumdur. Hiçbir geçiş belirtilmemişse, komut en son geçişe varsayılan olarak ayarlanır. |
 
 > [!TIP]
 > Geçiş parametresi sekme genişletmeyi destekler.

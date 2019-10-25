@@ -1,26 +1,27 @@
 ---
-title: Birden çok sağlayıcı - EF Core ile geçişleri
+title: Birden çok sağlayıcı ile geçişler-EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 11/08/2017
-ms.openlocfilehash: 75c055221609679db3f00016b9cb44c6c8c6e473
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+uid: core/managing-schemas/migrations/providers
+ms.openlocfilehash: c9b1a2563ef548e592374f90a6242b0bd851bc98
+ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45488783"
+ms.lasthandoff: 10/23/2019
+ms.locfileid: "72811953"
 ---
-<a name="migrations-with-multiple-providers"></a>Birden çok sağlayıcı ile geçişleri
-==================================
-[EF Core Araçları] [ 1] yalnızca geçişler etkin sağlayıcı için iskele. Bazı durumlarda, ancak birden fazla sağlayıcı (örneğin, Microsoft SQL Server ve SQLite) ile DbContext kullanmak isteyebilirsiniz. Migrations ile bu durumu çözmek için iki yolu vardır. İki koruyabilirsiniz geçişini--her sağlayıcısı--veya birleştirme bunları tek bir kümesi için bir tane hem de çalışabilir.
+# <a name="migrations-with-multiple-providers"></a>Birden çok sağlayıcı ile geçişler
 
-<a name="two-migration-sets"></a>İki geçiş kümesi
-------------------
-İçinde bir ilk yaklaşım, her model değişikliği için iki geçiş oluşturur.
+[EF Core araçları][1] , etkin sağlayıcı için yalnızca iskele geçişlerini. Ancak bazen, DbContext ile birden fazla sağlayıcı (örneğin Microsoft SQL Server ve SQLite) kullanmak isteyebilirsiniz. Geçişlerle bunu işlemenin iki yolu vardır. Her bir sağlayıcı için bir tane olmak üzere iki geçiş kümesini koruyabilir veya bunları her ikisi üzerinde çalışan tek bir küme halinde birleştirebilirsiniz.
 
-Yapmanın bir yolu bu her geçiş kümesi eklemektir [ayrı bir derlemede] [ 2] ve iki geçiş ekleme arasında etkin sağlayıcısı (ve geçişleri derleme) el ile geçiş yapın.
+## <a name="two-migration-sets"></a>İki geçiş kümesi
 
-Araçları ile çalışmayı kolaylaştırır başka bir yaklaşım, DbContext türetilir ve etkin sağlayıcı geçersiz kılar. yeni bir tür oluşturmaktır. Bu tür, tasarım sırasında kullanılan saat eklerken veya geçişler uygulanıyor.
+İlk yaklaşımda, her model değişikliği için iki geçiş oluşturursunuz.
+
+Bunu yapmanın bir yolu, her bir geçiş kümesini [ayrı bir derlemede][2] koymaktır ve iki geçiş ekleme arasında etkin sağlayıcıyı (ve geçişler derlemesini) el ile değiştirin.
+
+Araçlarla çalışmayı kolaylaştıran başka bir yaklaşım da, DbContext 'ınızdan türeyen yeni bir tür oluşturmaktır ve etkin sağlayıcıyı geçersiz kılar. Bu tür, geçişler eklenirken veya uygulanırken tasarım zamanında kullanılır.
 
 ``` csharp
 class MySqliteDbContext : MyDbContext
@@ -31,27 +32,28 @@ class MySqliteDbContext : MyDbContext
 ```
 
 > [!NOTE]
-> Her bir geçiş kümesi kendi DbContext türleri kullandığından, bu yaklaşım ayrı geçişleri derlemeyi kullanarak gerektirmez.
+> Her geçiş kümesi kendi DbContext türlerini kullandığından, bu yaklaşım ayrı bir geçiş derlemesi kullanılmasını gerektirmez.
 
-Yeni geçiş eklerken, içerik türlerini belirtin.
+Yeni geçiş eklerken bağlam türlerini belirtin.
 
 ``` powershell
 Add-Migration InitialCreate -Context MyDbContext -OutputDir Migrations\SqlServerMigrations
 Add-Migration InitialCreate -Context MySqliteDbContext -OutputDir Migrations\SqliteMigrations
 ```
+
 ``` Console
 dotnet ef migrations add InitialCreate --context MyDbContext --output-dir Migrations/SqlServerMigrations
 dotnet ef migrations add InitialCreate --context MySqliteDbContext --output-dir Migrations/SqliteMigrations
 ```
 
 > [!TIP]
-> Bir kardeş olarak oluşturulduğundan, sonraki geçişler için çıktı dizini belirtmeniz gerekmez.
+> Son bir için eşdüzey öğe olarak oluşturuldıklarından sonraki geçişler için çıkış dizinini belirtmeniz gerekmez.
 
-<a name="one-migration-set"></a>Bir geçiş kümesi
------------------
-Geçişlerin iki sahip beğenmezseniz el ile bunları her iki sağlayıcıları için uygulanabilir tek bir kümesine birleştirebilirsiniz.
+## <a name="one-migration-set"></a>Bir geçiş kümesi
 
-Bir sağlayıcı, anlamıyor herhangi bir ek açıklamaları yok sayar olduğundan, ek açıklamalar bulunabilir. Örneğin, Microsoft SQL Server ve SQLite ile çalışan bir birincil anahtar sütunu aşağıdaki gibi görünebilir.
+İki geçiş kümesi yoksa, bunları her iki sağlayıcıya da uygulanabilen tek bir küme halinde el ile birleştirebilirsiniz.
+
+Sağlayıcı anladığı tüm ek açıklamaları yoksaydığından, ek açıklamalar birlikte kullanılabilir. Örneğin, hem Microsoft SQL Server hem de SQLite ile birlikte çalışarak birincil anahtar sütunu şöyle görünebilir.
 
 ``` csharp
 Id = table.Column<int>(nullable: false)
@@ -60,7 +62,7 @@ Id = table.Column<int>(nullable: false)
     .Annotation("Sqlite:Autoincrement", true),
 ```
 
-İşlem yalnızca bir sağlayıcısında uygulanabilir (veya farklı sağlayıcıları arasında oldukları), kullanın `ActiveProvider` özelliği sağlayıcının etkin olduğunu söylemek için.
+İşlemler yalnızca bir sağlayıcıya uygulanabileceği (veya sağlayıcılar arasında farklı olan), hangi sağlayıcının etkin olduğunu söylemek için `ActiveProvider` özelliğini kullanın.
 
 ``` csharp
 if (migrationBuilder.ActiveProvider == "Microsoft.EntityFrameworkCore.SqlServer")
@@ -69,7 +71,6 @@ if (migrationBuilder.ActiveProvider == "Microsoft.EntityFrameworkCore.SqlServer"
         name: "EntityFrameworkHiLoSequence");
 }
 ```
-
 
   [1]: ../../miscellaneous/cli/index.md
   [2]: projects.md
