@@ -4,12 +4,12 @@ author: divega
 ms.date: 09/12/2019
 ms.assetid: 41d1f86b-ce66-4bf2-8963-48514406fb4c
 uid: ef6/what-is-new/index
-ms.openlocfilehash: c49f4cba0066d1e218f11c3959d96f9cafa913f4
-ms.sourcegitcommit: 7bc43f21e7bdd64926314ea949aae689f1911956
+ms.openlocfilehash: 9daae787d0cec0ca536413e6263bb363ba76ff2c
+ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/25/2019
-ms.locfileid: "71266789"
+ms.lasthandoff: 10/23/2019
+ms.locfileid: "72812139"
 ---
 # <a name="whats-new-in-ef6"></a>EF6 'deki yenilikler
 
@@ -25,9 +25,9 @@ EF 6.3.0 Runtime, Eylül 2019 ' de NuGet 'e yayımlandı. Bu sürümün ana amac
   - EntityFramework paketi artık .NET Framework 4. x ' e ek olarak .NET Standard 2,1 ' i hedefliyor.
   - Bu, EF 6,3 ' nin platformlar arası olduğu ve Linux ve macOS gibi Windows dışındaki diğer işletim sistemlerinde desteklendiği anlamına gelir.
   - Geçişler komutları, işlem dışında yürütülecek ve SDK stili projelerle çalışacak şekilde yeniden yazıldı.
-- SQL Server HierarchyId desteği
-- Roslyn ve NuGet PackageReference ile iyileştirilmiş uyumluluk
-- Derlemelerden `ef6.exe` geçişleri etkinleştirmek, eklemek, betik oluşturmak ve uygulamak için yardımcı program eklendi. Bunun yerini alır`migrate.exe`
+- SQL Server HierarchyId desteği.
+- Roslyn ve NuGet PackageReference ile iyileştirilmiş uyumluluk.
+- Derlemelerden geçişleri etkinleştirmek, eklemek, betik oluşturmak ve uygulamak için `ef6.exe` yardımcı program eklendi. Bu `migrate.exe`yerini alır.
 
 ### <a name="ef-designer-support"></a>EF Designer desteği
 

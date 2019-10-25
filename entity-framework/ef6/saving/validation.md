@@ -3,24 +3,24 @@ title: Doğrulama-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 77d6a095-c0d0-471e-80b9-8f9aea6108b2
-ms.openlocfilehash: 4162c2eb60109459c799da7cf4c1a9c8e84548b6
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 2c5e6f1b3f60862124bafcac42e8859a7591f8e6
+ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182125"
+ms.lasthandoff: 10/23/2019
+ms.locfileid: "72812155"
 ---
 # <a name="data-validation"></a>Veri Doğrulama
 > [!NOTE]
 > **EF 4.1 yalnızca** sonraki sürümler-bu sayfada açıklanan özellikler, API 'ler vb. Entity Framework 4,1 ' de tanıtılmıştı. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz
 
-Bu sayfadaki içerik, başlangıçta Julie Lerman ([https://thedatafarm.com](http://thedatafarm.com)) tarafından yazılmış bir makaleden uyarlanmıştır.
+Bu sayfadaki içerik, başlangıçta Julie Lerman ([https://thedatafarm.com](https://thedatafarm.com)) tarafından yazılmış bir makaleden uyarlanmıştır.
 
 Entity Framework, istemci tarafı doğrulama için bir kullanıcı arabirimine veya sunucu tarafı doğrulaması için kullanılabilir. Önce kodu kullanırken, daha fazla açıklama veya Fluent API yapılandırma kullanarak doğrulama belirtebilirsiniz. Kod içinde ek doğrulamalar ve daha karmaşık bir şekilde belirlenebilir ve önce, modelinizde önce koddan, modelden önce veya önce modelinizden çekip önlenebilir.
 
 ## <a name="the-model"></a>Model
 
-Basit bir sınıf çiftiyle doğrulamaları göstereceğim: Blog ve gönderi.
+Basit bir sınıf çiftiyle doğrulamaları göstereceğim: blog ve gönderi.
 
 ``` csharp
 public class Blog
@@ -45,7 +45,7 @@ public class Post
 
 ## <a name="data-annotations"></a>Veri Açıklamaları
 
-Code First, kod ilk sınıflarını yapılandırmanın bir yolu olarak `System.ComponentModel.DataAnnotations` derlemesindeki ek açıklamaları kullanır. Bu ek açıklamalar arasında `Required`, `MaxLength` ve `MinLength` gibi kurallar sağlayan olanlardır. Birçok .NET istemci uygulaması da bu ek açıklamaları tanır, örneğin, ASP.NET MVC. Bu ek açıklamalarla hem istemci tarafı hem de sunucu tarafı doğrulaması elde edebilirsiniz. Örneğin, blog title özelliğini gerekli bir özellik olacak şekilde zorlayabilirsiniz.
+Code First, kod ilk sınıflarını yapılandırmanın bir yolu olarak `System.ComponentModel.DataAnnotations` derlemesindeki ek açıklamaları kullanır. Bu ek açıklamalar arasında `Required`, `MaxLength` ve `MinLength`gibi kurallar sağlayan olanlardır. Birçok .NET istemci uygulaması da bu ek açıklamaları tanır, örneğin, ASP.NET MVC. Bu ek açıklamalarla hem istemci tarafı hem de sunucu tarafı doğrulaması elde edebilirsiniz. Örneğin, blog title özelliğini gerekli bir özellik olacak şekilde zorlayabilirsiniz.
 
 ``` csharp
 [Required]
@@ -58,7 +58,7 @@ Uygulamada ek kod veya biçimlendirme değişikliği olmadan, mevcut bir MVC uyg
 
 Bu oluşturma görünümünün geri gönder yönteminde, yeni blogu veritabanına kaydetmek için Entity Framework kullanılır, ancak uygulama bu koda ulaşmadan önce MVC 'nin istemci tarafı doğrulaması tetiklenir.
 
-İstemci tarafı doğrulaması, bir madde işareti değildir, ancak. Kullanıcılar, tarayıcı özelliklerini etkileyebilir veya daha kötü bir şekilde kötü, Kullanıcı arabirimi doğrulamaları önlemek için bazı karmaşık kery kullanabilir. Aynı zamanda Entity Framework, `Required` ek açıklamasını tanır ve doğrular.
+İstemci tarafı doğrulaması, bir madde işareti değildir, ancak. Kullanıcılar, tarayıcı özelliklerini etkileyebilir veya daha kötü bir şekilde kötü, Kullanıcı arabirimi doğrulamaları önlemek için bazı karmaşık kery kullanabilir. Ancak Entity Framework Ayrıca `Required` ek açıklamayı tanıyacak ve doğrulayacaktır.
 
 Bunu sınamanın basit bir yolu, MVC 'nin istemci tarafı doğrulama özelliğini devre dışı bırakmanız. Bunu, MVC uygulamasının Web. config dosyasında yapabilirsiniz. AppSettings bölümünde ClientValidationEnabled için bir anahtar bulunur. Bu anahtarın false olarak ayarlanması, Kullanıcı arabiriminin doğrulamaları gerçekleştirmesini engeller.
 
@@ -69,11 +69,11 @@ Bunu sınamanın basit bir yolu, MVC 'nin istemci tarafı doğrulama özelliğin
 </appSettings>
 ```
 
-İstemci tarafı doğrulaması devre dışı bırakılsa bile, uygulamanızda aynı yanıtı alırsınız. "Başlık alanı gereklidir" hata iletisi, daha önce olduğu gibi görüntülenecektir. Bunun dışında, sunucu tarafı doğrulamanın bir sonucu olacaktır. Entity Framework, `Required` ek açıklamasında (veritabanına gönderilmek üzere bir `INSERT` komutu oluşturmak için bile, hatta hata vermezler) ve iletiyi görüntüleyen MVC 'ye hatayı döndürecek şekilde doğrulamayı gerçekleştirecek.
+İstemci tarafı doğrulaması devre dışı bırakılsa bile, uygulamanızda aynı yanıtı alırsınız. "Başlık alanı gereklidir" hata iletisi, daha önce olduğu gibi görüntülenecektir. Bunun dışında, sunucu tarafı doğrulamanın bir sonucu olacaktır. Entity Framework, `Required` ek açıklamasında (veritabanına gönderilmek üzere bir `INSERT` komutu oluşturmak için bile, hatta geri dönmezler) ve iletiyi görüntüleyen MVC 'ye hatayı döndürecek şekilde doğrulamayı gerçekleştirecek.
 
 ## <a name="fluent-api"></a>Akıcı API
 
-Aynı istemci tarafı & sunucu tarafı doğrulamasını almak için, kod açıklamaları yerine önce kod Fluent API kullanabilirsiniz. @No__t-0 kullanmak yerine, bunu bir MaxLength doğrulaması kullanarak göstereceğiz.
+Aynı istemci tarafı & sunucu tarafı doğrulamasını almak için, kod açıklamaları yerine önce kod Fluent API kullanabilirsiniz. `Required`kullanmak yerine, bunu bir MaxLength doğrulaması kullanarak göstereceğiz.
 
 Kod, ilk olarak sınıftan model oluşturuyor olduğundan, akıcı API konfigürasyonları uygulanır. DbContext sınıfının ' Onmodeloluþturma metodunu geçersiz kılarak, konfigürasyonları ekleyebilirsiniz. BloggerName özelliğinin 10 karakterden uzun olmadığını belirten bir yapılandırma aşağıda verilmiştir.
 
@@ -114,7 +114,7 @@ public ActionResult Edit(int id, Blog blog)
 }
 ```
 
-Doğrulama, `ModelState.AddModelError` kullanan ek kodun neden kullanıldığı, otomatik olarak görünüme geri geçirilmiyor. Bu, hata ayrıntılarının, hatayı görüntülemek için `ValidationMessageFor` HtmlHelper kullanacağı görünüme yapmasını sağlar.
+Doğrulama, `ModelState.AddModelError` kullanan ek kodun neden kullanıldığından, otomatik olarak görünüme geri geçirilir. Bu, hata ayrıntılarının görünümü bir görünüme yapmasını sağlar ve ardından hatayı görüntülemek için HtmlHelper `ValidationMessageFor` kullanacaktır.
 
 ``` csharp
 @Html.ValidationMessageFor(model => model.BloggerName)
@@ -122,11 +122,11 @@ Doğrulama, `ModelState.AddModelError` kullanan ek kodun neden kullanıldığı,
 
 ## <a name="ivalidatableobject"></a>IValidatableObject
 
-`IValidatableObject`, `System.ComponentModel.DataAnnotations` ' de bulunan bir arabirimdir. Entity Framework API 'sinin bir parçası olmasa da, Entity Framework sınıflarınızda sunucu tarafı doğrulama için bundan yararlanmaya devam edebilirsiniz. `IValidatableObject`, Entity Framework SaveChanges sırasında çağıracağını belirten bir `Validate` yöntemi sağlar veya kendi sınıflarını doğrulamak istediğiniz zaman çağırabilirsiniz.
+`IValidatableObject`, `System.ComponentModel.DataAnnotations`bulunan bir arabirimdir. Entity Framework API 'sinin bir parçası olmasa da, Entity Framework sınıflarınızda sunucu tarafı doğrulama için bundan yararlanmaya devam edebilirsiniz. `IValidatableObject`, Entity Framework SaveChanges sırasında çağıracak bir `Validate` yöntemi sağlar veya kendi sınıflarını doğrulamak istediğiniz her zaman çağırabilirsiniz.
 
-@No__t-0 ve `MaxLength` gibi konfigürasyonlar tek bir alanda doğrulama gerçekleştirir. @No__t-0 yönteminde, örneğin iki alanı karşılaştıran daha karmaşık mantığa sahip olabilirsiniz.
+`Required` ve `MaxLength` gibi yapılandırmalara tek bir alanda doğrulama işlemi yapılır. `Validate` yönteminde, örneğin iki alanı karşılaştıran daha karmaşık mantığa sahip olabilirsiniz.
 
-Aşağıdaki örnekte, `Blog` sınıfı `IValidatableObject` ' i uygulamak üzere genişletilmiştir ve sonra `Title` ve `BloggerName` ' ün eşleşemez bir kural sağlamalıdır.
+Aşağıdaki örnekte, `Blog` sınıfı `IValidatableObject` uygulamak için genişletilmiştir ve sonra `Title` ve `BloggerName` eşleşemez bir kural sağlamaktır.
 
 ``` csharp
 public class Blog : IValidatableObject
@@ -152,19 +152,19 @@ public class Blog : IValidatableObject
 }
 ```
 
-@No__t-0 Oluşturucusu, hata iletisini ve doğrulamayla ilişkili üye adlarını temsil eden bir `string`s dizisini temsil eden bir `string` alır. Bu doğrulama hem `Title` hem de `BloggerName` ' i denetlediğinden, her iki özellik adı da döndürülür.
+`ValidationResult` Oluşturucu, hata iletisini ve doğrulamayla ilişkili üye adlarını temsil eden `string`s dizisini temsil eden bir `string` alır. Bu doğrulama hem `Title` hem de `BloggerName`denetlediğinden, her iki özellik adı da döndürülür.
 
-Akıcı API tarafından sağlanmış olan doğrulamanın aksine, bu doğrulama sonucu görünüm tarafından tanınacaktır ve daha önce hatayı eklemek için kullandığım özel durum işleyicisi `ModelState` gereksizdir. @No__t-0 ' da her iki özellik adını ayarlayacağım, MVC Htmlyardımcıları bu özelliklerin her ikisi için de hata iletisini görüntüler.
+Akıcı API tarafından sağlanmış olan doğrulamanın aksine, bu doğrulama sonucu görünüm tarafından tanınacaktır ve daha önce bir hatayı `ModelState` eklemek için kullandığım özel durum işleyicisi gereksizdir. `ValidationResult`her iki özellik adını da ayarlayacağım, MVC Htmlyardımcıları bu özelliklerin her ikisi için de hata iletisini görüntüler.
 
 ![Şekil 2](~/ef6/media/figure02.png)
 
 ## <a name="dbcontextvalidateentity"></a>DbContext. ValidateEntity
 
-`DbContext` `ValidateEntity` adlı geçersiz kılınabilir bir yönteme sahip. @No__t-0 ' ı çağırdığınızda Entity Framework, durumu `Unchanged` olmayan önbelleğindeki her varlık için bu yöntemi çağırır. Doğrulama mantığını doğrudan buraya yerleştirebilir veya bir önceki bölümde eklenen `Blog.Validate` yöntemini çağırmak için bu yöntemi kullanabilirsiniz.
+`DbContext`, `ValidateEntity`adlı geçersiz kılınabilir bir yönteme sahiptir. `SaveChanges`çağırdığınızda Entity Framework, durumu `Unchanged`olan önbelleğindeki her varlık için bu yöntemi çağırır. Doğrulama mantığını doğrudan buraya yerleştirebilirsiniz veya bu yöntemi, örneğin, önceki bölümde eklenen `Blog.Validate` yöntemini çağırmak için kullanabilirsiniz.
 
-Aşağıda, posta başlığının henüz kullanılmadığından emin olmak için yeni `Post`s ' i doğrulayan `ValidateEntity` geçersiz kılma örneği verilmiştir. İlk olarak varlığın bir gönderi olup olmadığını ve durumunun eklenip eklenmediğini kontrol eder. Bu durumda, aynı başlığa sahip bir gönderi olup olmadığını görmek için veritabanına bakar. Zaten var olan bir gönderi varsa, yeni bir `DbEntityValidationResult` oluşturulur.
+Aşağıda, posta başlığının henüz kullanılmadığından emin olmak için yeni `Post`s 'yi doğrulayan `ValidateEntity` bir geçersiz kılma örneği verilmiştir. İlk olarak varlığın bir gönderi olup olmadığını ve durumunun eklenip eklenmediğini kontrol eder. Bu durumda, aynı başlığa sahip bir gönderi olup olmadığını görmek için veritabanına bakar. Zaten var olan bir gönderi varsa yeni bir `DbEntityValidationResult` oluşturulur.
 
-`DbEntityValidationResult`, tek bir varlık için bir `DbEntityEntry` ve `ICollection<DbValidationErrors>` ' i barındırır. Bu yöntemin başlangıcında, bir `DbEntityValidationResult` örneği oluşturulur ve sonra bulunan tüm hatalar `ValidationErrors` koleksiyonuna eklenir.
+tek bir varlık için bir `DbEntityEntry` ve bir `ICollection<DbValidationErrors>` `DbEntityValidationResult`. Bu yöntemin başlangıcında, bir `DbEntityValidationResult` örneği oluşturulur ve sonra bulunan tüm hatalar `ValidationErrors` koleksiyonuna eklenir.
 
 ``` csharp
 protected override DbEntityValidationResult ValidateEntity (
@@ -198,11 +198,11 @@ protected override DbEntityValidationResult ValidateEntity (
 
 ## <a name="explicitly-triggering-validation"></a>Doğrulamayı açıkça tetikleme
 
-@No__t-0 ' A yapılan bir çağrı, bu makalede ele alınan tüm doğrulamaları tetikler. Ancak `SaveChanges` ' a güvenmeniz gerekmez. Uygulamanızda başka bir yerde doğrulama yapmayı tercih edebilirsiniz.
+`SaveChanges` çağrısı, bu makalede ele alınan tüm doğrulamaları tetikler. Ancak `SaveChanges`bilmeniz gerekmez. Uygulamanızda başka bir yerde doğrulama yapmayı tercih edebilirsiniz.
 
-`DbContext.GetValidationErrors`, ek açıklamalar veya akıcı API tarafından tanımlanan doğrulamaları, `IValidatableObject` ' de (örneğin, `Blog.Validate`) oluşturulan doğrulamayı ve `DbContext.ValidateEntity` yönteminde gerçekleştirilen doğrulamaları tetikleyecektir.
+`DbContext.GetValidationErrors`, ek açıklamalar veya akıcı API tarafından tanımlanan doğrulamaları, `IValidatableObject` oluşturulan doğrulamayı (örneğin, `Blog.Validate`) ve `DbContext.ValidateEntity` yönteminde gerçekleştirilen doğrulamaları tetikleyecektir.
 
-Aşağıdaki kod, `DbContext` ' in geçerli örneğinde `GetValidationErrors` ' a çağrı yapılır. `ValidationErrors` ' ın varlık türüne göre `DbEntityValidationResult` ' e gruplanırlar. Kod, ilk olarak yöntemi tarafından döndürülen `DbEntityValidationResult`s ve sonra içinde her `DbValidationError` üzerinden yinelenir.
+Aşağıdaki kod, `DbContext`geçerli örneğinde `GetValidationErrors` çağıracaktır. `ValidationErrors` varlık türüne göre `DbEntityValidationResult`. Kod, ilk olarak yöntemi tarafından döndürülen `DbEntityValidationResult`ve ardından içindeki her `DbValidationError` üzerinden yinelenir.
 
 ``` csharp
 foreach (var validationResult in db.GetValidationErrors())
@@ -223,8 +223,8 @@ Entity Framework doğrulaması kullanırken göz önünde bulundurmanız gereken
 
 - Doğrulama sırasında yavaş yükleme devre dışı bırakıldı
 - EF, eşlenmemiş özelliklerde veri açıklamalarını doğrular (veritabanındaki bir sütunla eşlenmemiş Özellikler)
-- @No__t-0 sırasında değişiklikler algılandıktan sonra doğrulama gerçekleştirilir. Doğrulama sırasında değişiklik yaparsanız değişiklik izleyicinize bildirimde bulunan sorumluluk sizin sorumluluğunuzdadır
-- doğrulama sırasında hata oluşursa, `DbUnexpectedValidationException` atılır
+- `SaveChanges`sırasında değişiklikler saptandıktan sonra doğrulama gerçekleştirilir. Doğrulama sırasında değişiklik yaparsanız değişiklik izleyicinize bildirimde bulunan sorumluluk sizin sorumluluğunuzdadır
+- doğrulama sırasında hata oluşursa `DbUnexpectedValidationException` atılır
 - Entity Framework model (maksimum uzunluk, gerekli, vb.), sınıflarınızda hiç bir veri ek açıklaması olmasa bile doğrulamaya neden olur ve/veya modelinizi oluşturmak için EF tasarımcısını kullandıysanız
 - Öncelik kuralları:
   - Akıcı API çağrıları karşılık gelen veri açıklamalarını geçersiz kılar
@@ -239,4 +239,4 @@ Entity Framework doğrulaması kullanırken göz önünde bulundurmanız gereken
 
 Entity Framework 'deki doğrulama API 'SI MVC 'de istemci tarafı doğrulaması ile çok daha fazla oynatılır, ancak istemci tarafı doğrulamaya güvenmeniz gerekmez. Entity Framework, kod ilk akıcı API ile uyguladığınız veri açıklamaları veya yapılandırmaların sunucu tarafında doğrulama işlemini ele alır.
 
-Ayrıca, `IValidatableObject` arabirimini kullanıp kullanmayacağınızı veya `DbContext.ValidateEntity` yöntemine dokunarak davranışı özelleştirmek için birçok genişletilebilirlik noktası da gördünüz. Ve `DbContext` ' ı kullanarak, kavramsal modelinizi anlatmak için Code First, Model First veya Database First iş akışını kullanmanıza bakılmaksızın, doğrulamanın bu son iki yolu vardır.
+Ayrıca, `IValidatableObject` arabirimini kullanıp `DbContext.ValidateEntity` yöntemine dokunarak davranışı özelleştirmek için birçok genişletilebilirlik noktası da gördünüz. Ve bu son iki yol `DbContext`aracılığıyla, kavramsal modelinizi anlatmak için Code First, Model First veya Database First iş akışını kullanmanıza bakılmaksızın kullanılabilir.

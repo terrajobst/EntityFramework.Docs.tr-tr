@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 690c7828cfe5019f4e7ae904c92430fab4726cb9
-ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
+ms.openlocfilehash: b2e3881e3454377dab7851cba999ed6b891def4e
+ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/16/2019
-ms.locfileid: "72446022"
+ms.lasthandoff: 10/23/2019
+ms.locfileid: "72812129"
 ---
 # <a name="breaking-changes-included-in-ef-core-30"></a>EF Core 3,0 ' de yer alan son değişiklikler
 Aşağıdaki API ve davranış değişiklikleri, 3.0.0 sürümüne yükseltirken mevcut uygulamaları bozmak için olası bir davranıştır.
@@ -69,6 +69,7 @@ Veritabanı sağlayıcılarını yalnızca etkilemek için beklediğimiz değiş
 | [Microsoft. EntityFrameworkCore. Design artık bir DevelopmentDependency paketi](#dip) | Düşük      |
 | [SQLitePCL. RAW, 2.0.0 sürümüne güncelleştirildi](#SQLitePCL) | Düşük      |
 | [Nettopologyısuite, 2.0.0 sürümüne güncelleştirildi](#NetTopologySuite) | Düşük      |
+| [System. Data. SqlClient yerine Microsoft. Data. SqlClient kullanılır](#SqlClient) | Düşük      |
 | [Birden çok belirsiz kendine başvuran ilişki yapılandırılması gerekiyor](#mersa) | Düşük      |
 | [DbFunction. Schema null ya da boş dize, modeli varsayılan şemasında olacak şekilde yapılandırır](#udf-empty-string) | Düşük      |
 
@@ -165,7 +166,7 @@ Bu değişiklik, EF Core 3,0 'nin her zaman bir NuGet paketi olarak dağıtılma
 
 **Karşı**
 
-@No__t-0 ' ı yönetmek için, `dotnet-ef` ' i bir genel araç olarak yüklemek için:
+`DbContext`geçişleri veya yapı iskelesi yönetmek için `dotnet-ef` genel bir araç olarak yükler:
 
   ``` console
     $ dotnet tool install --global dotnet-ef
@@ -257,7 +258,7 @@ EF Core 3,0 ' den başlayarak, yeni `FromSqlRaw` ve `FromSqlInterpolated` Yönte
 
 **Kaydol**
 
-@No__t-0 ' ı bir `DbSet` ' in dışında bir yerde belirtmek, hiçbir anlam veya eklenen değeri belirtmediyse, belirli senaryolarda belirsizliğe neden olabilir.
+`DbSet` üzerinde `FromSql` herhangi bir yerde, hiçbir anlamı veya eklenen değeri belirtmediyse, bazı senaryolarda belirsizliğe neden olabilir.
 
 **Karşı**
 
@@ -550,17 +551,17 @@ public class OrderDetails
     public string ShippingAddress { get; set; }
 }
 ```
-EF Core 3,0 ' dan önce, `OrderDetails` `Order` ' e aitse veya aynı tabloya açık olarak eşlenmişse, yeni bir @no__t 3 eklendiğinde her zaman bir `OrderDetails` örneği gereklidir.
+EF Core 3,0 ' dan önce, `OrderDetails` aynı tabloyla `Order` veya açıkça eşlenmişse, yeni bir `Order`eklenirken `OrderDetails` örneği her zaman gereklidir.
 
 
 **Yeni davranış**
 
 EF Core 3,0 ' den başlayarak, bir `OrderDetails` olmadan `Order` ekleme ve birincil anahtar null yapılabilir sütunlara hariç tüm `OrderDetails` özelliklerini eşleme olanağı sağlar.
-EF Core kümelerini sorgularken, gerekli özelliklerinden herhangi birinin bir değeri yoksa veya birincil anahtar ve tüm Özellikler ' in yanı sıra gerekli özellikleri yoksa, `null` ' ye `null` @no__t.
+EF Core kümelerini sorgularken, gerekli özelliklerinden herhangi birinin bir değeri yoksa veya birincil anahtar ve tüm `null`Özellikler ' in yanı sıra gerekli özellikleri yoksa, `null` `OrderDetails`.
 
 **Karşı**
 
-Modelinizin tüm isteğe bağlı sütunlarla ilişkili bir tablo paylaşımına sahipse, ancak buna işaret eden gezinmenin `null` olması beklenmiyorsa, gezinti `null` olduğunda, uygulamanın servis taleplerini işleyecek şekilde değiştirilmesi gerekir. Bu mümkün değilse, varlık türüne gerekli bir özellik eklenmelidir veya en az bir özelliğe atanmış @no__t 0 olmayan bir değer olmalıdır.
+Modelinizin tüm isteğe bağlı sütunlarla ilişkili bir tablo paylaşımına sahipse, ancak buna işaret eden gezinmenin `null` olması beklenmiyorsa, gezinti `null` olduğunda, uygulamanın servis taleplerini işleyecek şekilde değiştirilmesi gerekir. Bu mümkün değilse, varlık türüne gerekli bir özellik eklenmelidir ya da en az bir özellik kendisine atanmış`null` bir değere sahip olmalıdır.
 
 <a name="aes"></a>
 
@@ -597,7 +598,7 @@ EF Core 3,0 ' dan önce, `OrderDetails` `Order` ' e aitse veya aynı tabloya aç
 
 **Yeni davranış**
 
-3,0 ' dan başlayarak, EF Core yeni `Version` değerini @no__t 2 ' ye sahip `Order` ' e yayar. Aksi takdirde model doğrulaması sırasında bir özel durum oluşturulur.
+3,0 ' den itibaren, yeni `Version` değerini `OrderDetails`sahip `Order` EF Core yayar. Aksi takdirde model doğrulaması sırasında bir özel durum oluşturulur.
 
 **Kaydol**
 
@@ -700,7 +701,7 @@ public class Order
 }
 ```
 EF Core 3,0 ' dan önce, `CustomerId` özelliği kural tarafından yabancı anahtar için kullanılır.
-Ancak, `Order` sahipli bir tür ise, bu da birincil anahtar @no__t ve genellikle beklenmez.
+Ancak, `Order` sahipli bir tür ise, bu da birincil anahtar `CustomerId` olur ve bu genellikle beklenmez.
 
 **Yeni davranış**
 
@@ -959,9 +960,9 @@ Bu, `EntityEntry` ' da kullanıma sunulan durumun güncel olduğundan emin olun.
 EF Core 3,0 ' den başlayarak, `DbContext.Entry` ' ı çağırmak artık yalnızca verilen varlıktaki değişiklikleri ve bununla ilgili izlenen ana varlıkları algılamaya çalışır.
 Bu, uygulama durumunda etkileri olabilecek, bu yöntemi çağırarak başka bir yerde değişiklik algılanmamış olabileceği anlamına gelir.
 
-@No__t-0 ' ı `false` olarak ayarlanırsa, bu yerel değişiklik algılama devre dışı bırakılır.
+`ChangeTracker.AutoDetectChangesEnabled` `false` olarak ayarlanırsa, bu yerel değişikliğin algılanması de devre dışı bırakılır.
 
-Değişiklik algılamasına neden olan diğer yöntemler--örneğin `ChangeTracker.Entries` ve `SaveChanges`--tüm izlenen varlıkların tam @no__t 2 ' ye neden olur.
+Değişiklik algılamasına neden olan diğer yöntemler--örneğin `ChangeTracker.Entries` ve `SaveChanges`--yine de izlenen tüm varlıkların tam `DetectChanges` neden olur.
 
 **Kaydol**
 
@@ -977,8 +978,8 @@ Bu değişiklik, `context.Entry` kullanmanın varsayılan performansını geliş
 
 **Eski davranış**
 
-EF Core 3,0 önce, `string` ve `byte[]` anahtar özellikleri açıkça null olmayan bir değer Ayarlamasız şekilde kullanılabilir.
-Böyle bir durumda, anahtar değeri istemci üzerinde `byte[]` için bayt olarak seri hale getirilen bir GUID olarak oluşturulur.
+EF Core 3,0 önce `string` ve `byte[]` anahtar özellikleri açık bir şekilde null olmayan bir değer ayarlamadan kullanılabilir.
+Böyle bir durumda, anahtar değeri istemci üzerinde `byte[]`için bayt olarak serileştirilmiş bir GUID olarak oluşturulur.
 
 **Yeni davranış**
 
@@ -986,7 +987,7 @@ EF Core 3,0 ' den itibaren, hiçbir anahtar değer ayarlanmadığını belirten 
 
 **Kaydol**
 
-Bu değişiklik, istemci tarafından oluşturulan `string` @ no__t-1 @ no__t-2 değerleri genellikle faydalı olmadığından ve varsayılan davranış ortak bir şekilde oluşturulan anahtar değerleri hakkında bir nedene kadar zor hale getirildiğinden yapılmıştır.
+Bu değişiklik, istemci tarafından oluşturulan `string`/`byte[]` değerleri genellikle yararlı olmadığından ve varsayılan davranış ortak bir şekilde oluşturulan anahtar değerleri hakkında bir nedene kadar zor hale getirildiğinden yapılmıştır.
 
 **Karşı**
 
@@ -1031,7 +1032,7 @@ Bu değişiklik, EF Core iç hizmet sağlayıcısı 'nda özel hizmetleri kaydet
 Bu, yaygın değildir.
 Bu durumlarda, çoğu şey çalışmaya devam eder, ancak `ILoggerFactory` ' a bağlı olan herhangi bir tek hizmetin, `ILoggerFactory` ' i farklı bir şekilde alması için değiştirilmesi gerekir.
 
-Bu gibi durumlarda çalıştırırsanız, daha sonra bunu nasıl yeniden keseceğimizi daha iyi anlayabilmemiz için lütfen [EF Core GitHub sorun İzleyicisi](https://github.com/aspnet/EntityFrameworkCore/issues) ' nde bir sorun @no__t bildirin.
+Bu gibi durumlarda çalıştırırsanız, daha sonra bunu nasıl yeniden keseceğimizi daha iyi anlayabilmemiz için lütfen [EF Core GitHub sorun İzleyicisi](https://github.com/aspnet/EntityFrameworkCore/issues) ' nde bir sorun `ILoggerFactory` bildirin.
 
 ### <a name="lazy-loading-proxies-no-longer-assume-navigation-properties-are-fully-loaded"></a>Yavaş yükleme proxy 'leri artık gezinti özelliklerinin tam olarak yüklenmediğini varsaymaz
 
@@ -1133,7 +1134,7 @@ modelBuilder.Entity<Samurai>().HasOne("Some.Entity.Type.Name", null).WithOne();
 
 **Eski davranış**
 
-Aşağıdaki zaman uyumsuz yöntemler daha önce bir @no__t döndürdü-0:
+Aşağıdaki zaman uyumsuz yöntemler daha önce bir `Task<T>`döndürdü:
 
 * `DbContext.FindAsync()`
 * `DbSet.FindAsync()`
@@ -1152,7 +1153,7 @@ Bu değişiklik, bu yöntemler çağrılırken oluşan yığın ayırma sayısı
 **Karşı**
 
 Yalnızca yukarıdaki API 'Leri bekleyen uygulamaların yeniden derlenmesi gerekiyor-kaynak değişikliği gerekli değildir.
-Daha karmaşık bir kullanım (örn. döndürülen `Task` ' A `Task.WhenAny()` ' e geçirilmesi) genellikle `AsTask()` ' @no__t çağırarak `Task<T>` ' e dönüştürülmesini gerektirir.
+Daha karmaşık bir kullanım (örn. döndürülen `Task` `Task.WhenAny()`geçirilmesi), genellikle döndürülen `ValueTask<T>` `AsTask()` çağırarak `Task<T>` dönüştürmesini gerektirir.
 Bunun, bu değişikliğin getirdiği ayırma azaltmasını geçersiz hale getirdiğine unutmayın.
 
 <a name="rtt"></a>
@@ -1210,7 +1211,7 @@ EF Core 3,0 ' dan önce, `ForSqlServerHasIndex().ForSqlServerInclude()` `INCLUDE
 **Yeni davranış**
 
 EF Core 3,0 ' den itibaren, bir dizinde `Include` kullanılması artık ilişkisel düzeyde destekleniyor.
-@No__t-0 kullanın.
+`HasIndex().ForSqlServerInclude()`kullanın.
 
 **Kaydol**
 
@@ -1272,7 +1273,7 @@ Yeni uzantı yöntemlerini kullanın.
 
 **Eski davranış**
 
-EF Core 3,0 ' dan önce, bir SQLite bağlantısı açıldığında EF Core `PRAGMA foreign_keys = 1` gönderir.
+3,0 EF Core önce, bir SQLite bağlantısı açıldığında EF Core `PRAGMA foreign_keys = 1` gönderebilirim.
 
 **Yeni davranış**
 
@@ -1280,7 +1281,7 @@ EF Core 3,0 ' den başlayarak, bir SQLite bağlantısı açıldığında EF Core
 
 **Kaydol**
 
-Bu değişiklik, EF Core varsayılan olarak `SQLitePCLRaw.bundle_e_sqlite3` ' ı kullandığından, FK zorlamasının varsayılan olarak açık olduğu ve bağlantı her açıldığında açık bir şekilde etkinleştirilmesi gerekmediği anlamına gelir.
+Bu değişiklik, EF Core varsayılan olarak `SQLitePCLRaw.bundle_e_sqlite3` kullandığından, bu, sırasıyla FK zorlamasının varsayılan olarak açık olduğu ve bağlantı her açıldığında açık bir şekilde etkinleştirilmesi gerekmediği anlamına gelir.
 
 **Karşı**
 
@@ -1293,11 +1294,11 @@ Diğer durumlar için, bağlantı dizeniz içinde `Foreign Keys=True` belirterek
 
 **Eski davranış**
 
-3,0 EF Core önce, EF Core `SQLitePCLRaw.bundle_green` ' ı kullandı.
+3,0 EF Core önce EF Core `SQLitePCLRaw.bundle_green`kullanılır.
 
 **Yeni davranış**
 
-EF Core 3,0 ' den başlayarak EF Core `SQLitePCLRaw.bundle_e_sqlite3` ' ı kullanır.
+EF Core 3,0 ' den başlayarak EF Core `SQLitePCLRaw.bundle_e_sqlite3`kullanır.
 
 **Kaydol**
 
@@ -1471,7 +1472,7 @@ Oluşturulan SQL 'in desteklenmesi için SQL Server daha yeni bir sürüme veya 
 
 **Yeni davranış**
 
-Bu yöntemler yeni bir `IDbContextOptionsExtension.Info` özelliğinden döndürülen yeni bir @no__t 0 soyut taban sınıfına taşınmıştır.
+Bu yöntemler yeni bir `IDbContextOptionsExtension.Info` özelliğinden döndürülen yeni bir `DbContextOptionsExtensionInfo` soyut taban sınıfına taşınmıştır.
 
 **Kaydol**
 
@@ -1626,6 +1627,29 @@ EF Core kullanıcıların karşılaştığı çeşitli kullanılabilirlik sorunl
 **Karşı**
 
 Nettopologyısuite sürüm 2.0.0 bazı önemli değişiklikler içerir. Ayrıntılar için [sürüm notlarına](https://www.nuget.org/packages/NetTopologySuite/2.0.0-pre001) bakın.
+
+<a name="SqlClient"></a>
+
+### <a name="microsoftdatasqlclient-is-used-instead-of-systemdatasqlclient"></a>System. Data. SqlClient yerine Microsoft. Data. SqlClient kullanılır
+
+[Sorun izleniyor #15636](https://github.com/aspnet/EntityFrameworkCore/issues/15636)
+
+**Eski davranış**
+
+Microsoft. EntityFrameworkCore. SqlServer daha önce System. Data. SqlClient 'a bağımlı.
+
+**Yeni davranış**
+
+Paketimizi Microsoft. Data. SqlClient 'e göre güncelleştirdik.
+
+**Kaydol**
+
+Microsoft. Data. SqlClient, SQL Server ileriye dönük tanıtım verileri erişim sürücüsüdür ve System. Data. SqlClient artık geliştirme odağı değildir.
+Always Encrypted gibi bazı önemli özellikler yalnızca Microsoft. Data. SqlClient ile kullanılabilir.
+
+**Karşı**
+
+Kodunuz System. Data. SqlClient üzerinde doğrudan bir bağımlılık alırsa bunun yerine Microsoft. Data. SqlClient öğesine başvuracak şekilde değiştirmeniz gerekir; iki paket çok yüksek düzeyde API uyumluluğu korudıkça, bu yalnızca basit bir paket ve ad alanı değişikliği olmalıdır.
 
 <a name="mersa"></a>
 
