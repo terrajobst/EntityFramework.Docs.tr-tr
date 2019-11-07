@@ -1,104 +1,180 @@
 ---
-title: EF Core 1.0 - EF Core yenilikleri
+title: EF Core 1,0 ' deki yenilikler-EF Core
 author: divega
 ms.date: 10/27/2016
 ms.assetid: 20A25111-AEBE-4BC2-83A5-3F651952DF72
 uid: core/what-is-new/ef-core-1.0
-ms.openlocfilehash: 409e16d762bca3ecd083ea191ad7b42aa0a6a275
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 2cd2a54d75ed3f0caa8b674dfb56babcfcc13592
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42996857"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655852"
 ---
-# <a name="features-included-in-ef-core-10"></a>EF Core 1.0 dahil olan özellikler
+# <a name="features-included-in-ef-core-10"></a>EF Core 1,0 ' de bulunan özellikler
 
 ## <a name="platforms"></a>Platformlar
+
 ### <a name="net-framework-451"></a>.NET Framework 4.5.1
-Konsolu, WPF, WinForms, ASP.NET 4, vb. içerir.
-### <a name="net-standard-13"></a>.NET standard 1.3
-Hem .NET Framework ve .NET Core Windows, OSX ve Linux'ta hedefleyen ASP.NET Core dahil.
+
+Konsol, WPF, WinForms, ASP.NET 4 vb. içerir.
+
+### <a name="net-standard-13"></a>.NET Standard 1,3
+
+Hem .NET Framework hem de .NET Core 'u Windows, OSX ve Linux üzerinde hedefleme ASP.NET Core dahil.
 
 ## <a name="modelling"></a>Modelleme
+
 ### <a name="basic-modelling"></a>Temel modelleme
-POCO varlık alma/ayarlama özelliklerini genel skaler türleri ile temel (`int`, `string`vb..).
-### <a name="relationships-and-navigation-properties"></a>İlişkileri ve gezinti özellikleri
-Bire çok ve bir sıfır-veya-bire ilişkileri bir yabancı anahtar dayalı modeli belirtilebilir. Gezinti özellikleri basit koleksiyonu veya başvuru türleri bu ilişkileri ile ilişkilendirilebilir.
-### <a name="built-in-conventions"></a>Yerleşik kuralları
-Bu varlık sınıflarının şekli üzerinde bir ilk modeline oluşturun.
-### <a name="fluent-api"></a>Fluent API'si
-Geçersiz kılmanıza da olanak tanır `OnModelCreating` Bağlamınızı daha fazla kuralı tarafından bulunan modeli yapılandırmak için yöntemi.
+
+Ortak skaler türlerin (`int`, `string`, vb.) Get/Set özellikleriyle POCO varlıklarını temel alır.
+
+### <a name="relationships-and-navigation-properties"></a>İlişkiler ve gezinti özellikleri
+
+Bire çok ve bire sıfır veya-bir ilişki yabancı anahtara göre modelde belirtilebilir. Basit koleksiyon veya başvuru türlerinin gezinti özellikleri, bu ilişkilerle ilişkilendirilebilir.
+
+### <a name="built-in-conventions"></a>Yerleşik kurallar
+
+Bu, varlık sınıflarının şekline göre bir başlangıç modeli oluşturur.
+
+### <a name="fluent-api"></a>Akıcı API
+
+Kural tarafından bulunan modeli daha fazla yapılandırmak için, bağlamdaki `OnModelCreating` yöntemi geçersiz kılmanızı sağlar.
+
 ### <a name="data-annotations"></a>Veri açıklamaları
-Varlık sınıfları/özelliklerinizi eklenebilir ve EF modeli etkiler öznitelikleridir. Örneğin, ekleme `[Required]` EF bir özelliğin gerekli olduğunu bilmesini sağlayacaktır.
-### <a name="relational-table-mapping"></a>İlişkisel Tablo eşleme
-Tabloları/sütunları eşlenmesi varlıklar sağlar.
+
+, Varlık sınıflarınıza/özelliklerine eklenebilen özniteliklerdir ve EF modelini etkiler. Örneğin, `[Required]` eklemek EF 'in bir özelliğin gerekli olduğunu bilmesini sağlar.
+
+### <a name="relational-table-mapping"></a>İlişkisel tablo eşleme
+
+Varlıkların tablolarla/sütunlarla eşleştirilmesini sağlar.
+
 ### <a name="key-value-generation"></a>Anahtar değeri oluşturma
-İstemci tarafında oluşturma ve veritabanı oluşturma da dahil olmak üzere.
-### <a name="database-generated-values"></a>Veritabanı üretilmiş değerler
-Veritabanı ekleme (varsayılan değerler) veya güncelleştirme (hesaplanan sütun) tarafından oluşturulan değerleri sağlar.
-### <a name="sequences-in-sql-server"></a>SQL Server'da dizileri
-Modelde tanımlanması nesneleri dizisi sağlar.
+
+İstemci tarafı oluşturma ve veritabanı oluşturma dahil.
+
+### <a name="database-generated-values"></a>Veritabanı tarafından oluşturulan değerler
+
+Ekleme (varsayılan değerler) veya Update (hesaplanan sütunlar) üzerinde veritabanı tarafından oluşturulmasına izin verir.
+
+### <a name="sequences-in-sql-server"></a>SQL Server diziler
+
+Model içinde sıralama nesnelerinin tanımlanmasını sağlar.
+
 ### <a name="unique-constraints"></a>Benzersiz kısıtlamalar
-Alternatif anahtarlar ve ilişkileri tanımlama yeteneği tanımı için bu anahtara hedefleyen sağlar.
-### <a name="indexes"></a>Dizinleri
-Modelde, otomatik olarak dizinler tanımlama veritabanında tanıtır. Benzersiz dizinler de desteklenir.
+
+Alternatif anahtarların tanımına ve bu anahtarı hedefleyen ilişkiler tanımlamasına olanak sağlar.
+
+### <a name="indexes"></a>Dizinlerde
+
+Modeldeki dizinlerin tanımlanması veritabanındaki dizinleri otomatik olarak tanıtır. Benzersiz dizinler de desteklenir.
+
 ### <a name="shadow-state-properties"></a>Gölge durumu özellikleri
-Bildirilmemiş .NET sınıfında depolanmaz, ancak izlenen ve EF Core tarafından güncelleştirilmiş modelde tanımlanması özellikleri sağlar. Bu nesne gösterme istenmediğinde yabancı anahtar özelliklerini yaygın olarak kullanılır.
-### <a name="table-per-hierarchy-inheritance-pattern"></a>Tablo başına hiyerarşi devralma deseni
-Bunlar veritabanında belirli bir kaydı için varlık türü tanımlamak için bir ayrıştırıcı sütunu kullanarak tek bir tabloyu kaydedilecek Devralma Hiyerarşisi varlıklar sağlar.
-### <a name="model-validation"></a>Model doğrulama
-Algılar. geçersiz modelde desenleri ve kullanışlı hata iletileri sağlar.
+
+Özelliklerin bildirilmemiş ve .NET sınıfında depolanmayan, ancak EF Core tarafından izlenip güncelleştirilebilecek modelde tanımlanmasına izin verir. Genellikle yabancı anahtar özellikleri için kullanılır.
+
+### <a name="table-per-hierarchy-inheritance-pattern"></a>Tablo başına devralma düzeni
+
+Bir devralma hiyerarşisindeki varlıkların veritabanındaki belirli bir kayıt için varlık türünü belirlemek üzere bir Ayrıştırıcı sütunu kullanılarak tek bir tabloya kaydedilmesine izin verir.
+
+### <a name="model-validation"></a>Model doğrulaması
+
+Modelde geçersiz desenler algılar ve yararlı hata iletileri sağlar.
 
 ## <a name="change-tracking"></a>Change tracking
+
 ### <a name="snapshot-change-tracking"></a>Anlık görüntü değişiklik izleme
-Geçerli durumunu özgün durumuna karşı bir kopyasını (snapshot) karşılaştırarak otomatik olarak algılanamayacak kadar varlıklarda değişiklikler sağlar.
-### <a name="notification-change-tracking"></a>Bildirim değişiklik izleme
-Özellik değerleri değiştirildiğinde değişiklik İzleyici bildirmek varlıklarınızı sağlar.
-### <a name="accessing-tracked-state"></a>İzlenen durumuna erişme
-Aracılığıyla `DbContext.Entry` ve `DbContext.ChangeTracker`.
-### <a name="attaching-detached-entitiesgraphs"></a>Ayrılmış varlıklar/grafik ekleme
-Yeni `DbContext.AttachGraph` API yardımcı olan bir bağlam varlıklara yeni/değiştirilmiş varlıklar kaydetmek için yeniden ekler.
+
+Geçerli durum özgün durumun bir kopyasına (anlık görüntü) göre karşılaştırılırken varlıklarda yapılan değişikliklerin otomatik olarak algılanabilmesi için izin verir.
+
+### <a name="notification-change-tracking"></a>Bildirim değişikliği izleme
+
+Özellik değerleri değiştirildiğinde varlıklarınızın değişiklik izleyicide bilgilendirmesini sağlar.
+
+### <a name="accessing-tracked-state"></a>İzlenen duruma erişme
+
+`DbContext.Entry` ve `DbContext.ChangeTracker`aracılığıyla.
+
+### <a name="attaching-detached-entitiesgraphs"></a>Ayrılmış varlıkları/grafikleri iliştirme
+
+Yeni `DbContext.AttachGraph` API 'SI, yeni/değiştirilmiş varlıkların kaydedileceği varlıkları bir bağlama yeniden iliştirmenize yardımcı olur.
 
 ## <a name="saving-data"></a>Verileri kaydetme
-### <a name="basic-save-functionality"></a>Temel işlevleri kaydetme
-Değişiklikler veritabanına kalıcı için varlık örneklerini sağlar.
-### <a name="optimistic-concurrency"></a>İyimser eşzamanlılık
-Verileri veritabanından getirildikten sonra başka bir kullanıcı tarafından yapılan değişikliklerin üzerine karşı korur.
+
+### <a name="basic-save-functionality"></a>Temel kaydetme işlevselliği
+
+Varlık örneklerindeki değişikliklerin veritabanına kalıcı olmasını sağlar.
+
+### <a name="optimistic-concurrency"></a>İyimser Eşzamanlılık
+
+Verilerin veritabanından getirilmesi bu yana başka bir kullanıcı tarafından yapılan değişikliklerin üzerine yazılmasına karşı koruma sağlar.
+
 ### <a name="async-savechanges"></a>Zaman uyumsuz SaveChanges
-Veritabanı tarafından verilen komutları işlerken diğer istekleri işlemek için geçerli iş parçacığı boşaltmak `SaveChanges`.
-### <a name="database-transactions"></a>Veritabanı işlemleri
-Anlamına `SaveChanges` her zaman (ya da tamamen başarılı ya da değişiklik veritabanına yapılan anlamına gelir) atomik olduğu. Ayrıca vardır işlem ilgili API'ler, işlemler vb. bağlam örnekleri arasında paylaşılmasına izin verecek şekilde.
-### <a name="relational-batching-of-statements"></a>İlişkisel: deyimleri toplu işleme
-Veritabanı tek bir gidiş dönüş içinde birden çok ekleme/güncelleştirme/silme komutlarını yığınlama daha iyi performans sağlar.
+
+, Veritabanı `SaveChanges`verilen komutları işlerken diğer istekleri işlemek için geçerli iş parçacığını serbest bırakabilirsiniz.
+
+### <a name="database-transactions"></a>Veritabanı Işlemleri
+
+`SaveChanges` her zaman atomik olduğu anlamına gelir (yani tamamen başarılı olur ya da veritabanında değişiklik yapılmaz). Ayrıca bağlam örnekleri arasında işleme işlemlerine izin veren işlem ile ilgili API 'Ler vardır.
+
+### <a name="relational-batching-of-statements"></a>İlişkisel: deyimlerin toplu işi
+
+Birden fazla ekleme/GÜNCELLEŞTIRME/SILME komutunu veritabanına tek bir gidiş dönüş halinde toplu olarak oluşturarak daha iyi performans sağlar.
 
 ## <a name="query"></a>Sorgu
-### <a name="basic-linq-support"></a>Temel LINQ desteği
-Veritabanından veri almak için LINQ kullanma olanağı sağlar.
-### <a name="mixed-clientserver-evaluation"></a>Karma istemci/sunucu değerlendirme
-Veritabanında değerlendirilemiyor ve bu nedenle veri belleğe alındıktan sonra değerlendirilmelidir mantığı içerecek şekilde sorguları mümkün kılar.
-### <a name="notracking"></a>NoTracking
-Sorguları daha hızlı sorgu yürütme bağlamı (Bu sonuçları salt okunur yararlıdır) varlık örneklerini değişiklikleri izleyin gerekmez, sağlar.
-### <a name="eager-loading"></a>İstekli yükleme
-Sağlar `Include` ve `ThenInclude` ayrıca sorgulanırken getirileceği ilgili verileri belirlemek için yöntemleri.
-### <a name="async-query"></a>Zaman uyumsuz sorgu
-Veritabanı sırasında diğer istekleri işlemek için geçerli iş parçacığı (ve onun ilişkili kaynakları) ücretsiz işler sorgu.
-### <a name="raw-sql-queries"></a>Ham SQL sorguları
-Sağlar `DbSet.FromSql` yöntemi ham SQL sorguları verileri getirmek için. Bu sorgular, LINQ kullanarak da oluşabilir.
 
-## <a name="database-schema-management"></a>Veritabanı Şema Yönetimi       
-### <a name="database-creationdeletion-apis"></a>Veritabanı oluşturma/silme API'leri
-Çoğunlukla, hızlı bir şekilde oluşturma / veritabanı geçişleri kullanmadan silme istediğiniz test etmek için tasarlanmıştır.
-### <a name="relational-database-migrations"></a>İlişkisel veritabanı geçişlerini
-İlişkisel veritabanı şeması modeli değişikliklerinizi olarak mesai gelişmesi sağlar.
-### <a name="reverse-engineer-from-database"></a>Veritabanından ters mühendislik
-İskelesini kurar EF modeli varolan bir ilişkisel veritabanı şemasını temel alan.
+### <a name="basic-linq-support"></a>Temel LINQ desteği
+
+Veritabanından veri almak için LINQ kullanma özelliği sağlar.
+
+### <a name="mixed-clientserver-evaluation"></a>Karma istemci/sunucu değerlendirmesi
+
+Sorguların veritabanında değerlendirilemeyen mantığı içermesini sağlar ve bu nedenle veriler belleğe alındıktan sonra değerlendirilmelidir.
+
+### <a name="notracking"></a>NoTracking
+
+Bağlam, varlık örneklerine yapılan değişiklikleri izlemeye gerek olmadığında daha hızlı sorgu yürütmeye olanak sağlar (sonuçlar salt okunurdur, bu faydalıdır).
+
+### <a name="eager-loading"></a>Ekip yükleme
+
+, ' İ sorgularken de getirilmesi gereken ilgili verileri belirlemek için `Include` ve `ThenInclude` yöntemleri sağlar.
+
+### <a name="async-query"></a>Zaman uyumsuz sorgu
+
+, Veritabanı sorguyu işlerken diğer istekleri işlemek için geçerli iş parçacığını (ve ilişkili kaynakları) serbest bırakabilirsiniz.
+
+### <a name="raw-sql-queries"></a>Ham SQL sorguları
+
+Veri getirmek için ham SQL sorguları kullanmak üzere `DbSet.FromSql` yöntemi sağlar. Bu sorgular, LINQ kullanılarak da oluşturulabilir.
+
+## <a name="database-schema-management"></a>Veritabanı şeması yönetimi
+
+### <a name="database-creationdeletion-apis"></a>Veritabanı oluşturma/silme API 'Leri
+
+Genellikle, geçişleri kullanmadan veritabanını hızlı bir şekilde oluşturmak/silmek istediğiniz test için tasarlanmıştır.
+
+### <a name="relational-database-migrations"></a>İlişkisel veritabanı geçişleri
+
+İlişkisel bir veritabanı şemasının, modelinizde değişiklik yaptığı fazla mesaiyi geliştirmeye izin verin.
+
+### <a name="reverse-engineer-from-database"></a>Veritabanından tersine mühendislik
+
+Var olan bir ilişkisel veritabanı şemasını temel alan bir EF modeli yapı iskelesi.
 
 ## <a name="database-providers"></a>Veritabanı sağlayıcıları
+
 ### <a name="sql-server"></a>SQL Server
-Microsoft SQL Server 2008 ve sonraki sürümlerde bağlanır.
+
+Microsoft SQL Server 2008 ve sonraki sürümleri bağlanır.
+
 ### <a name="sqlite"></a>SQLite
+
 SQLite 3 veritabanına bağlanır.
+
 ### <a name="in-memory"></a>Bellek içi
-Bir veritabanına bağlanmadan test kolayca sağlamak üzere tasarlanmıştır.
-### <a name="3rd-party-providers"></a>3. taraf sağlayıcılar
-Çeşitli sağlayıcılar diğer veritabanı altyapıları için kullanılabilir. Bkz: [veritabanı sağlayıcıları](../providers/index.md) tam listesi için.
+
+, Gerçek bir veritabanına bağlanmadan test etmeyi kolayca etkinleştirmek üzere tasarlanmıştır.
+
+### <a name="3rd-party-providers"></a>3\. taraf sağlayıcılar
+
+Diğer veritabanı motorları için çeşitli sağlayıcılar mevcuttur. Tüm liste için bkz. [veritabanı sağlayıcıları](../providers/index.md) .

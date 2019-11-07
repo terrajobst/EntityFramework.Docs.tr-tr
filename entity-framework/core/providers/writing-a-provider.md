@@ -1,38 +1,39 @@
 ---
-title: EF Core - veritabanı sağlayıcısı yazma
+title: Veritabanı sağlayıcısı yazma-EF Core
 author: anmiller
 ms.date: 10/27/2016
 ms.assetid: 1165e2ec-e421-43fc-92ab-d92f9ab3c494
 uid: core/providers/writing-a-provider
-ms.openlocfilehash: c7130b0d104cd26584d298da98eb3e7080ee7f3c
-ms.sourcegitcommit: dadee5905ada9ecdbae28363a682950383ce3e10
+ms.openlocfilehash: 9d52a8581772cc5405e94966fa7ebdff4128c252
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "42993672"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73654773"
 ---
-# <a name="writing-a-database-provider"></a>Veritabanı sağlayıcısı yazma
+# <a name="writing-a-database-provider"></a>Veritabanı Sağlayıcısı Yazma
 
-Bir Entity Framework Core veritabanı sağlayıcısı yazma hakkında daha fazla bilgi için bkz: [EF Core sağlayıcısı yazmak istediğiniz şekilde](https://blog.oneunicorn.com/2016/11/11/so-you-want-to-write-an-ef-core-provider/) tarafından [Arthur Vickers](https://github.com/ajcvickers).
+Entity Framework Core veritabanı sağlayıcısı yazma hakkında daha fazla bilgi için, bkz. [Arthur Vicranlar](https://github.com/ajcvickers)tarafından [bir EF Core sağlayıcısı yazmak istiyor](https://blog.oneunicorn.com/2016/11/11/so-you-want-to-write-an-ef-core-provider/) .
 
 > [!NOTE]
-> Bu postaları EF Core 1.1 güncelleştirilmemiş ve o zamandan bu yana yapılan önemli değişiklikler olmuştur [sorunu 681](https://github.com/aspnet/EntityFramework.Docs/issues/681) güncelleştirmeleri bu belge için izlemektir.
+> Bu gönderimler EF Core 1,1 ' den beri güncelleştirilmemiş ve bu süre [681 sorunu](https://github.com/aspnet/EntityFramework.Docs/issues/681) bu belgelerde yapılan güncelleştirmeleri izlemediğinden önemli değişiklikler yapıldı.
 
-EF Core kod tabanının açık kaynaklıdır ve başvuru olarak kullanılan birkaç veritabanı sağlayıcısı içerir. Kaynak kodu bulabilirsiniz https://github.com/aspnet/EntityFrameworkCore. Ayrıca yaygın olarak kullanılan üçüncü taraf sağlayıcılar için gibi koda göz atmak yararlı olabilir [Npgsql](https://github.com/npgsql/Npgsql.EntityFrameworkCore.PostgreSQL), [Pomelo MySQL](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql), ve [SQL Server Compact](https://github.com/ErikEJ/EntityFramework.SqlServerCompact). Özellikle, bu projelerin gelen genişletmek ve NuGet üzerinde biz yayımlama işlevsel testleri çalıştırmak için kurulum değiştirilebilir. Bu tür bir kurulum önemle tavsiye edilir.
+EF Core kod temeli açık kaynaktır ve başvuru olarak kullanılabilecek çeşitli veritabanı sağlayıcıları içerir. Kaynak kodunu <https://github.com/aspnet/EntityFrameworkCore>' de bulabilirsiniz. Ayrıca, [Npgsql](https://github.com/npgsql/Npgsql.EntityFrameworkCore.PostgreSQL), [Pomelo MySQL](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql)ve [SQL Server Compact](https://github.com/ErikEJ/EntityFramework.SqlServerCompact)gibi yaygın olarak kullanılan üçüncü taraf sağlayıcılarının koduna bakmak da yararlı olabilir. Özellikle, bu projeler, NuGet üzerinde yayımladığımız işlev testlerini genişletmek ve çalıştırmak için kurulumlardır. Bu tür bir kurulum kesinlikle önerilir.
 
-## <a name="keeping-up-to-date-with-provider-changes"></a>Sağlayıcı değişiklikleri takip etme
+## <a name="keeping-up-to-date-with-provider-changes"></a>Sağlayıcı değişiklikleriyle güncel tutma
 
-Oluşturduk 2.1 sürümünden sonra iş ile başlayarak, bir [değişiklik günlüğünü](provider-log.md) sağlayıcı kodu karşılık gelen değişiklikleri gerekebilir. Bu yeni bir sürümü EF Core ile çalışmak için mevcut bir sağlayıcı güncelleştirirken yardımcı olmayı hedefler.
+2,1 sürümünden sonra çalışmaya başladıktan sonra, sağlayıcı kodunda ilgili değişikliklere ihtiyacı olabilecek bir [değişiklikler günlüğü](provider-log.md) oluşturduk. Bu, mevcut bir sağlayıcıyı EF Core yeni bir sürümüyle çalışacak şekilde güncelleştirirken yardımcı olmaya yöneliktir.
 
-2.1 önce kullandığımız [ `providers-beware` ](https://github.com/aspnet/EntityFrameworkCore/labels/providers-beware) ve [ `providers-fyi` ](https://github.com/aspnet/EntityFrameworkCore/labels/providers-fyi) bizim GitHub sorunlar ve çekme istekleri benzer bir amaç için etiketleri. Bu etiketleri sorunları hangi iş öğelerinin belirli bir sürüm sağlayıcıları yapılacak işleri de gerektirebilir göstergesidir vermek için kullanılacak continiue yapacağız. A `providers-beware` etiket genellikle anlamına gelir uygulama bir iş öğesinin sağlayıcıları bozabilir ancak bir `providers-fyi` etiket genellikle anlamına gelir sağlayıcıları bozuk olmayacak, ancak yine de, örneğin değiştirilmesi, yeni işlevselliği etkinleştirmek için kod gerekebilir.
+2,1 ' dan önce, GitHub sorunlarımızda [`providers-beware`](https://github.com/aspnet/EntityFrameworkCore/labels/providers-beware) ve [`providers-fyi`](https://github.com/aspnet/EntityFrameworkCore/labels/providers-fyi) etiketleri ve benzer bir amaç için çekme isteklerimize kullandık. Bu etiketleri sorunlarını, belirli bir sürümdeki iş öğelerinin, sağlayıcılarda hangi iş öğelerinin yapılmasını gerektirdiğini belirten bir belirtiye vermek için de kullanacağız. Bir `providers-beware` etiketi genellikle bir iş öğesi uygulamasının sağlayıcıları bozabileceğinden, bir `providers-fyi` etiketinin genellikle sağlayıcıların kesilmeyeceği, ancak örneğin yeni işlevselliği etkinleştirmek için de kodun değiştirilmesi gerekebilecek anlamına gelir.
 
-## <a name="suggested-naming-of-third-party-providers"></a>Önerilen adlandırma üçüncü taraf sağlayıcılar
+## <a name="suggested-naming-of-third-party-providers"></a>Üçüncü taraf sağlayıcıların önerilen adlandırma
 
-NuGet paketleri için aşağıdaki adlandırma kullanmanızı öneririz. Bu, EF Core ekibi tarafından teslim edilen paket adları ile tutarlıdır.
+NuGet paketleri için aşağıdaki adlandırmanın kullanılması önerilir. Bu, EF Core ekibi tarafından teslim edilen paketlerin adlarıyla tutarlıdır.
 
 `<Optional project/company name>.EntityFrameworkCore.<Database engine name>`
 
 Örneğin:
+
 * `Microsoft.EntityFrameworkCore.SqlServer`
 * `Npgsql.EntityFrameworkCore.PostgreSQL`
 * `EntityFrameworkCore.SqlServerCompact40`

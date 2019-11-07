@@ -5,14 +5,14 @@ ms.author: ansvyryd
 ms.date: 04/10/2019
 ms.assetid: 0EC2CCE1-BD55-45D8-9EA9-20634987F094
 uid: core/modeling/table-splitting
-ms.openlocfilehash: 684fcfbb66debfd1b89e23c8aaf0a32909378c6b
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: a3a2e5842a6c6b4b490084d205a0d44bb46c17ee
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71149195"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656036"
 ---
-# <a name="table-splitting"></a>Tablo bölme
+# <a name="table-splitting"></a>Tablo Bölme
 
 >[!NOTE]
 > Bu özellik EF Core 2,0 ' de yenidir.
@@ -25,13 +25,13 @@ Varlık türlerinin tablo bölmeyi kullanmak için aynı tabloya eşlenmesi gere
 
 Tablo bölme için yaygın bir senaryo, daha fazla performans veya kapsülleme için tablodaki sütunların yalnızca bir alt kümesini kullanmaktır.
 
-Bu örnekte `Order` , `DetailedOrder`bir alt kümesini temsil eder.
+Bu örnekte `Order` bir `DetailedOrder`alt kümesini temsil eder.
 
 [!code-csharp[Order](../../../samples/core/Modeling/TableSplitting/Order.cs?name=Order)]
 
 [!code-csharp[DetailedOrder](../../../samples/core/Modeling/TableSplitting/DetailedOrder.cs?name=DetailedOrder)]
 
-Gereken yapılandırmaya ek olarak, ile aynı sütuna `Property(o => o.Status).HasColumnName("Status")` `Order.Status`eşleme `DetailedOrder.Status` çağrısı yaptık.
+Gerekli yapılandırmaya ek olarak, `DetailedOrder.Status` `Order.Status`ile aynı sütuna eşlemek için `Property(o => o.Status).HasColumnName("Status")` çağırıyoruz.
 
 [!code-csharp[TableSplittingConfiguration](../../../samples/core/Modeling/TableSplitting/TableSplittingContext.cs?name=TableSplitting&highlight=3)]
 
@@ -40,7 +40,7 @@ Gereken yapılandırmaya ek olarak, ile aynı sütuna `Property(o => o.Status).H
 
 ## <a name="usage"></a>Kullanım
 
-Tablo bölme kullanarak varlıkları kaydetme ve sorgulama, diğer varlıklarla aynı şekilde yapılır. EF Core 3,0 ' den başlayarak, bağımlı varlık başvurusu olabilir `null`. Bağımlı varlık `NULL` tarafından kullanılan tüm sütunlar veritabanı ise, sorgulanan sırada bir örnek oluşturulmaz. Bu, tüm özelliklerin isteğe bağlı ve olarak `null`ayarlandığı anlamına gelir, bu da beklenmeyebilir.
+Tablo bölme kullanarak varlıkları kaydetme ve sorgulama, diğer varlıklarla aynı şekilde yapılır. EF Core 3,0 ile başlayarak, bağımlı varlık başvurusu `null`olabilir. Bağımlı varlık tarafından kullanılan tüm sütunlar veritabanı `NULL`, sorgulandığında hiçbir örnek oluşturulmaz. Ayrıca, tüm özellikler isteğe bağlıdır ve `null`olarak ayarlanır ve bu da beklenmeyebilir.
 
 [!code-csharp[Usage](../../../samples/core/Modeling/TableSplitting/Program.cs?name=Usage)]
 

@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 10/05/2018
 uid: core/managing-schemas/migrations/index
-ms.openlocfilehash: e9c4013d17a2d41772822f77b3ceba15702ffc48
-ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
+ms.openlocfilehash: bf9aa32dd731b60d2985a9fe8bebd703af4af03b
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/23/2019
-ms.locfileid: "72812065"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655565"
 ---
 # <a name="migrations"></a>Geçişler
 
@@ -39,13 +39,19 @@ Geçişler, aşağıdaki görevlerle yardım eden komut satırı araçlarını v
 
 [İlk modelinizi tanımladıktan](xref:core/modeling/index)sonra, veritabanının oluşturulması zaman alabilir. İlk geçiş eklemek için aşağıdaki komutu çalıştırın.
 
-``` powershell
-Add-Migration InitialCreate
-```
+## <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
 ``` Console
 dotnet ef migrations add InitialCreate
 ```
+
+## <a name="visual-studiotabvs"></a>[Visual Studio](#tab/vs)
+
+``` powershell
+Add-Migration InitialCreate
+```
+
+***
 
 **Geçiş** dizini altında projenize üç dosya eklenir:
 
@@ -62,25 +68,37 @@ Dosya adında zaman damgası, değişikliklerin ilerlemesini görebileceğiniz �
 
 Sonra, şemayı oluşturmak için geçiş veritabanını veritabanına uygulayın.
 
-``` powershell
-Update-Database
-```
+## <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
 ``` Console
 dotnet ef database update
 ```
 
+## <a name="visual-studiotabvs"></a>[Visual Studio](#tab/vs)
+
+``` powershell
+Update-Database
+```
+
+***
+
 ## <a name="customize-migration-code"></a>Geçiş kodunu özelleştirme
 
 EF Core modelinizde değişiklik yaptıktan sonra veritabanı şeması eşitlenmemiş olabilir. Bunu güncel hale getirmek için başka bir geçiş ekleyin. Geçiş adı, bir sürüm denetim sisteminde bir COMMIT iletisi gibi kullanılabilir. Örneğin, gözden geçirmeler için değişiklik yeni bir varlık sınıfı ise *Addproductincelemeleri* gibi bir ad seçebilirsiniz.
+
+## <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
+
+``` Console
+dotnet ef migrations add AddProductReviews
+```
+
+## <a name="visual-studiotabvs"></a>[Visual Studio](#tab/vs)
 
 ``` powershell
 Add-Migration AddProductReviews
 ```
 
-``` Console
-dotnet ef migrations add AddProductReviews
-```
+***
 
 Geçiş, daha sonra (bunun için oluşturulan kod) bir kez alındıktan sonra, kodu doğruluk için gözden geçirin ve doğru uygulamak için gereken tüm işlemleri ekleyin, kaldırın veya değiştirin.
 
@@ -129,13 +147,19 @@ migrationBuilder.DropColumn(
 
 Uygun komutu kullanarak geçişi veritabanına uygulayın.
 
-``` powershell
-Update-Database
-```
+## <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
 ``` Console
 dotnet ef database update
 ```
+
+## <a name="visual-studiotabvs"></a>[Visual Studio](#tab/vs)
+
+``` powershell
+Update-Database
+```
+
+***
 
 ### <a name="empty-migrations"></a>Boş geçişler
 
@@ -151,13 +175,19 @@ Bazen herhangi bir model değişikliği yapmadan bir geçiş eklemek yararlı ol
 
 Bazen bir geçiş ekleyip EF Core modelinizde uygulamadan önce ek değişiklikler yapmanız gerektiğini fark edebilirsiniz. Son geçişi kaldırmak için bu komutu kullanın.
 
-``` powershell
-Remove-Migration
-```
+## <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
 ``` Console
 dotnet ef migrations remove
 ```
+
+## <a name="visual-studiotabvs"></a>[Visual Studio](#tab/vs)
+
+``` powershell
+Remove-Migration
+```
+
+***
 
 Geçiş kaldırıldıktan sonra, ek model değişiklikleri yapıp yeniden ekleyebilirsiniz.
 
@@ -165,25 +195,37 @@ Geçiş kaldırıldıktan sonra, ek model değişiklikleri yapıp yeniden ekleye
 
 Veritabanına zaten bir geçiş (veya birkaç geçiş) uyguladıysanız ancak geri döndürmeniz gerekiyorsa, geçişleri uygulamak için aynı komutu kullanabilirsiniz, ancak geri almak istediğiniz geçişin adını belirtebilirsiniz.
 
-``` powershell
-Update-Database LastGoodMigration
-```
+## <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
 ``` Console
 dotnet ef database update LastGoodMigration
 ```
 
+## <a name="visual-studiotabvs"></a>[Visual Studio](#tab/vs)
+
+``` powershell
+Update-Database LastGoodMigration
+```
+
+***
+
 ## <a name="generate-sql-scripts"></a>SQL betikleri oluştur
 
 Geçişlerinizi hata ayıkladığınızda veya bir üretim veritabanına dağıttığınızda, bir SQL betiği oluşturmak yararlı olur. Betik daha sonra doğruluk açısından daha fazla incelenebilir ve bir üretim veritabanının ihtiyaçlarına uyacak şekilde ayarlanabilir. Betik Ayrıca bir dağıtım teknolojisiyle birlikte kullanılabilir. Temel komut aşağıdaki gibidir.
+
+## <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
+
+``` Console
+dotnet ef migrations script
+```
+
+## <a name="visual-studiotabvs"></a>[Visual Studio](#tab/vs)
 
 ``` powershell
 Script-Migration
 ```
 
-``` Console
-dotnet ef migrations script
-```
+***
 
 Bu komut için birkaç seçenek vardır.
 

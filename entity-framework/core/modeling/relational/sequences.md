@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 94f81a92-3c72-4e14-912a-f99310374e42
 uid: core/modeling/relational/sequences
-ms.openlocfilehash: ce02b9840e58102a60c1d8eacf6810365104d7d7
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: b810caaffa329bb5ad6f3486145d0ade9287eada
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71196915"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656110"
 ---
 # <a name="sequences"></a>Diziler
 
@@ -30,67 +30,12 @@ Veri ek açıklamalarını kullanarak bir sıra yapılandıramazsınız.
 
 Modelde bir sıra oluşturmak için Floent API 'sini kullanabilirsiniz.
 
-<!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Relational/Sequence.cs?highlight=7)] -->
-``` csharp
-class MyContext : DbContext
-{
-    public DbSet<Order> Orders { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.HasSequence<int>("OrderNumbers");
-    }
-}
-
-public class Order
-{
-    public int OrderId { get; set; }
-    public int OrderNo { get; set; }
-    public string Url { get; set; }
-}
-```
+[!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/Relational/Sequence.cs?name=Model&highlight=7)]
 
 Ayrıca, dizinin şeması, başlangıç değeri ve artışı gibi ek yönlerini de yapılandırabilirsiniz.
 
-<!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Relational/SequenceConfigured.cs?highlight=7,8,9)] -->
-``` csharp
-class MyContext : DbContext
-{
-    public DbSet<Order> Orders { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.HasSequence<int>("OrderNumbers", schema: "shared")
-            .StartsAt(1000)
-            .IncrementsBy(5);
-    }
-}
-```
+[!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/Relational/SequenceConfigured.cs?name=Sequence&highlight=7,8,9)]
 
 Bir sıra alındıktan sonra, modelinizdeki özelliklerin değerlerini oluşturmak için bunu kullanabilirsiniz. Örneğin, sıradaki değeri sırayla eklemek için [varsayılan değerleri](default-values.md) kullanabilirsiniz.
 
-<!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Relational/SequenceUsed.cs?highlight=11,12,13)] -->
-``` csharp
-class MyContext : DbContext
-{
-    public DbSet<Order> Orders { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.HasSequence<int>("OrderNumbers", schema: "shared")
-            .StartsAt(1000)
-            .IncrementsBy(5);
-
-        modelBuilder.Entity<Order>()
-            .Property(o => o.OrderNo)
-            .HasDefaultValueSql("NEXT VALUE FOR shared.OrderNumbers");
-    }
-}
-
-public class Order
-{
-    public int OrderId { get; set; }
-    public int OrderNo { get; set; }
-    public string Url { get; set; }
-}
-```
+[!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/Relational/SequenceUsed.cs?name=Default&highlight=13)]

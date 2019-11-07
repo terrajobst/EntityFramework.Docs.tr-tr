@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 uid: core/saving/cascade-delete
-ms.openlocfilehash: af86383bad52c87d2874fa4f8eb247a656601312
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 51c8b6f4517a3f87821ed1e4e2d60549e06ed39d
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182008"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656066"
 ---
 # <a name="cascade-delete"></a>Basamaklı Silme
 
@@ -18,9 +18,11 @@ Art arda silme, bir satırı silmenin ilgili satırların silinmesini otomatik o
 EF Core birkaç farklı silme davranışı uygular ve tek tek ilişkilerin silme davranışlarının yapılandırılmasına izin verir. EF Core Ayrıca, [ilişkinin gerekliğine](../modeling/relationships.md#required-and-optional-relationships)göre her ilişki için yararlı varsayılan silme davranışlarını otomatik olarak yapılandıran kuralları uygular.
 
 ## <a name="delete-behaviors"></a>Davranışları Sil
+
 Silme davranışları *DeleteBehavior* Numaralandırıcı türünde tanımlanır ve bir sorumlu/üst varlığın silinmesini veya bağımlı/alt varlıklara olan ilişkinin ne kadar olduğunu denetlemek Için *OnDelete* Fluent API geçirilebilir bağımlı/alt varlıklar üzerinde yan etkisi vardır.
 
 Bir asıl/üst varlık silindiğinde veya alt öğeyle olan ilişki bırakıldığında, EF 'in gerçekleştirebileceği üç eylem vardır:
+
 * Alt/Bağımlı öğe silinebilir
 * Çocuğun yabancı anahtar değerleri null olarak ayarlanabilir
 * Alt öğe değişmeden kalır
@@ -33,6 +35,7 @@ Yukarıdaki ikinci eylem için yabancı anahtar null yapılabilir değilse, yaba
 Aşağıdaki tablolarda listelendiği gibi dört silme davranışı vardır.
 
 ### <a name="optional-relationships"></a>İsteğe bağlı ilişkiler
+
 İsteğe bağlı ilişkiler için (boş değer atanabilir yabancı anahtar), aşağıdaki etkilere neden olan bir boş yabancı anahtar değeri _kaydetmek mümkündür:_
 
 | Davranış adı               | Bellekte bağımlı/alt öğe üzerindeki etki    | Veritabanında bağımlı/alt öğe üzerindeki etki  |
@@ -43,6 +46,7 @@ Aşağıdaki tablolarda listelendiği gibi dört silme davranışı vardır.
 | **Girmesini**                | Yok.                                   | Yok.                                   |
 
 ### <a name="required-relationships"></a>Gerekli ilişkiler
+
 Gerekli ilişkiler (null yapılamayan yabancı anahtar) için, bir boş yabancı anahtar değeri kaydetmek mümkün _değildir_ , bu durum aşağıdaki etkilere neden olur:
 
 | Davranış adı         | Bellekte bağımlı/alt öğe üzerindeki etki | Veritabanında bağımlı/alt öğe üzerindeki etki |
@@ -55,6 +59,7 @@ Gerekli ilişkiler (null yapılamayan yabancı anahtar) için, bir boş yabancı
 Yukarıdaki tablolarda, *none* bir kısıtlama ihlaline yol açabilir. Örneğin, bir asıl/alt varlık silinirse ancak bağımlı/alt öğenin yabancı anahtarını değiştirmek için herhangi bir eylem yapılmaz, veritabanı büyük olasılıkla yabancı bir kısıtlama ihlali nedeniyle SaveChanges üzerinde oluşturulur.
 
 Yüksek düzeyde:
+
 * Üst öğesi olmadan var olmayan varlıklarınız varsa ve alt öğeleri otomatik olarak silmek için EF 'i istiyorsanız, *Cascade*kullanın.
   * Üst öğe olmadan mevcut olmayan varlıklar genellikle, *Cascade* varsayılan değer olan gerekli ilişkilerden birini kullanır.
 * Bir üst öğeye sahip olabilecek veya olmayan varlıklarınız varsa ve yabancı anahtarı sizin yerinize dışarıda bırakmak istiyorsanız, bu durumda *Clientsetnull* kullanın
@@ -107,7 +112,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-required-relationship"></a>Gerekli ilişki ile DeleteBehavior. ClientSetNull veya DeleteBehavior. SetNull
 
-```console
+``` output
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -130,7 +135,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-optional-relationship"></a>İsteğe bağlı ilişki ile DeleteBehavior. ClientSetNull veya DeleteBehavior. SetNull
 
-```console
+``` output
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -160,7 +165,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ### <a name="deletebehaviorrestrict-with-required-or-optional-relationship"></a>DeleteBehavior. gerekli veya isteğe bağlı ilişki ile kısıtla
 
-```console
+``` output
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -189,7 +194,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ### <a name="deletebehaviorcascade-with-required-or-optional-relationship"></a>DeleteBehavior. Cascade, gerekli veya isteğe bağlı ilişki
 
-```console
+``` output
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -217,7 +222,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-required-relationship"></a>Gerekli ilişki ile DeleteBehavior. ClientSetNull veya DeleteBehavior. SetNull
 
-```console
+``` output
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -240,7 +245,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ### <a name="deletebehaviorclientsetnull-or-deletebehaviorsetnull-with-optional-relationship"></a>İsteğe bağlı ilişki ile DeleteBehavior. ClientSetNull veya DeleteBehavior. SetNull
 
-```console
+``` output
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -268,7 +273,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ### <a name="deletebehaviorrestrict-with-required-or-optional-relationship"></a>DeleteBehavior. gerekli veya isteğe bağlı ilişki ile kısıtla
 
-```console
+``` output
   After loading entities:
     Blog '1' is in state Unchanged with 2 posts referenced.
       Post '1' is in state Unchanged with FK '1' and reference to blog '1'.
@@ -297,7 +302,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
     DELETE FROM [Blogs] WHERE [BlogId] = 1
 ```
 
-Yalnızca asıl öğe yüklüyse--Örneğin, bir blog için @no__t olmadan bir sorgu yapıldığında, gönderiler de dahil olmak üzere----------, yalnızca asıl/üst öğeyi silmek için SQL üretir:
+Yalnızca asıl öğe yüklüyse (örneğin, bir blog için bir `Include(b => b.Posts)` yoksa, gönderiler dahil etmeden bir sorgu yapıldığında, SaveChanges yalnızca SQL 'i temel/üst öğeyi silmek için oluşturur:
 
 ```sql
     DELETE FROM [Blogs] WHERE [BlogId] = 1

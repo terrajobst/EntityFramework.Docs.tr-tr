@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: e6e58473-9f5e-4a1f-ac0f-b87d2cbb667e
 uid: core/modeling/relational/default-schema
-ms.openlocfilehash: ae903ed7200859430aecc55073651236759bc6ce
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: 1579fed007997aa4cf49b4c1290aee86c81c0000
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197136"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655977"
 ---
 # <a name="default-schema"></a>Varsayılan Şema
 
@@ -20,7 +20,7 @@ Varsayılan şema, bu nesne için bir şema açıkça yapılandırılmamışsa n
 
 ## <a name="conventions"></a>Kurallar
 
-Kural gereği, veritabanı sağlayıcısı en uygun varsayılan şemayı seçer. Örneğin, Microsoft SQL Server `dbo` şemayı kullanacaktır ve SQLite bir şema kullanmaz (çünkü şemalar SQLite ' de desteklenmez).
+Kural gereği, veritabanı sağlayıcısı en uygun varsayılan şemayı seçer. Örneğin, Microsoft SQL Server `dbo` şemasını kullanır ve SQLite bir şema kullanmaz (çünkü şemalar SQLite ' de desteklenmez).
 
 ## <a name="data-annotations"></a>Veri Açıklamaları
 
@@ -30,15 +30,4 @@ Veri ek açıklamalarını kullanarak varsayılan şemayı ayarlayamazsınız.
 
 Varsayılan bir şema belirtmek için Floent API 'sini kullanabilirsiniz.
 
-<!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/Relational/DefaultSchema.cs?highlight=7)] -->
-``` csharp
-class MyContext : DbContext
-{
-    public DbSet<Blog> Blogs { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.HasDefaultSchema("blogging");
-    }
-}
-```
+[!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/Relational/DefaultSchema.cs?name=DefaultSchema&highlight=7)]

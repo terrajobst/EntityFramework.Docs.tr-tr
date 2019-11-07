@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: bc2a2676-bc46-493f-bf49-e3cc97994d57
 uid: core/index
-ms.openlocfilehash: e736251753134b716e64f24f6c517ed9f66a7db4
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: e6127f775d6bbbdf81debf5519388fe252fe079d
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181322"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655618"
 ---
 # <a name="entity-framework-core"></a>Entity Framework Core
 
@@ -25,72 +25,20 @@ EF Core, veri erişimi bir model kullanılarak gerçekleştirilir. Bir model, va
 
 Var olan bir veritabanından bir model oluşturabilir, bir modeli veritabanınızdan eşlemek üzere kodlayabilir veya modelinizden bir veritabanı oluşturmak için [EF geçişleri](managing-schemas/migrations/index.md) kullanabilirsiniz.
 
-``` csharp
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+[!code-csharp[Main](../../samples/core/Intro/Model.cs)]
 
-namespace Intro
-{
-    public class BloggingContext : DbContext
-    {
-        public DbSet<Blog> Blogs { get; set; }
-        public DbSet<Post> Posts { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(
-                @"Server=(localdb)\mssqllocaldb;Database=Blogging;Integrated Security=True");
-        }
-    }
-
-    public class Blog
-    {
-        public int BlogId { get; set; }
-        public string Url { get; set; }
-        public int Rating { get; set; }
-        public List<Post> Posts { get; set; }
-    }
-
-    public class Post
-    {
-        public int PostId { get; set; }
-        public string Title { get; set; }
-        public string Content { get; set; }
-
-        public int BlogId { get; set; }
-        public Blog Blog { get; set; }
-    }
-}
-```
-
-## <a name="querying"></a>Sorgulama
+## <a name="querying"></a>Oluştu
 
 Varlık sınıflarınızın örnekleri, dil ile tümleşik sorgu (LINQ) kullanılarak veritabanından alınır. Daha fazla bilgi için bkz. [veri sorgulama](querying/index.md) .
 
-``` csharp
-using (var db = new BloggingContext())
-{
-    var blogs = db.Blogs
-        .Where(b => b.Rating > 3)
-        .OrderBy(b => b.Url)
-        .ToList();
-}
-```
+[!code-csharp[Main](../../samples/core/Intro/Program.cs#Querying)]
 
 ## <a name="saving-data"></a>Verileri Kaydetme
 
 Veri, varlık sınıflarınızın örnekleri kullanılarak oluşturulur, silinir ve değiştirilir. Daha fazla bilgi edinmek için [verileri kaydetme](saving/index.md) konusuna bakın.
 
-``` csharp
-using (var db = new BloggingContext())
-{
-    var blog = new Blog { Url = "http://sample.com" };
-    db.Blogs.Add(blog);
-    db.SaveChanges();
-}
-```
+[!code-csharp[Main](../../samples/core/Intro/Program.cs#SavingData)]
 
 ## <a name="next-steps"></a>Sonraki adımlar
 
 Tanıtım öğreticileri için bkz. [Entity Framework Core kullanmaya](get-started/index.md)başlama.
-

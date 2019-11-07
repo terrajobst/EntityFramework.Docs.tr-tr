@@ -4,12 +4,12 @@ author: ErikEJ
 ms.date: 01/07/2019
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/extensions/index
-ms.openlocfilehash: 0c9671eb77181d85cd493341cd1abf842d13fb0e
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: e70011b42818e4df1ec5b9b88d7adb9d36bb26f1
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181267"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73654795"
 ---
 # <a name="ef-core-tools--extensions"></a>EF Core araçları & uzantıları
 
@@ -24,13 +24,13 @@ Bu araçlar ve uzantılar, Entity Framework Core 2,0 ve üzeri için ek işlevle
 
 LLBLGen Pro, Entity Framework ve Entity Framework Core desteğiyle bir varlık modelleme çözümüdür. Bu, varlık modelinizi kolayca tanımlamanızı ve veritabanını ilk veya modeli kullanarak veritabanınıza eşlemenizi sağlar, böylece sorguları hemen yazmaya başlayabilirsiniz.
 
-[Web sitesi](https://www.llblgen.com/)
+[Websitesi](https://www.llblgen.com/)
 
 ### <a name="devart-entity-developer"></a>Varlık geliştiriciyi kaldırma
 
-Varlık geliştiricisi, ADO.NET Entity Framework, Nhazırda beklet, LinqConnect, Telerik veri erişimi ve LINQ to SQL için güçlü bir ORM tasarlayıcıdır. EF Core modellerinin görsel olarak tasarlanmasını, ilk veya veritabanı ilk yaklaşımı ve C# ya da kod üretimini Visual Basic destekler. 
+Varlık geliştiricisi, ADO.NET Entity Framework, Nhazırda beklet, LinqConnect, Telerik veri erişimi ve LINQ to SQL için güçlü bir ORM tasarlayıcıdır. EF Core modellerinin görsel olarak tasarlanmasını, ilk veya veritabanı ilk yaklaşımı ve C# ya da kod üretimini Visual Basic destekler.
 
-[Web sitesi](https://www.devart.com/entitydeveloper/)
+[Websitesi](https://www.devart.com/entitydeveloper/)
 
 ### <a name="ef-core-power-tools"></a>EF Core güç araçları
 
@@ -52,12 +52,12 @@ CatFactory, bir SQL Server veritabanından DbContext sınıflarının, varlıkla
 
 ### <a name="loresofts-entity-framework-core-generator"></a>LoreSoft 'ın Entity Framework Core Oluşturucu
 
-Entity Framework Core Generator (EFG), var olan bir veritabanından, `dotnet ef dbcontext scaffold` gibi EF Core modeller oluşturabilen, ancak bölge değişikliği aracılığıyla veya eşleme dosyalarını ayrıştırarak güvenli kod yeniden [oluşturmayı](https://efg.loresoft.com/en/latest/regeneration/) da destekleen .NET Core CLI bir araçtır. Bu araç, görünüm modellerinin, doğrulamanın ve nesne Eşleyici kodunun oluşturulmasını destekler. 
+Entity Framework Core Generator (EFG), `dotnet ef dbcontext scaffold`gibi var olan bir veritabanından EF Core modeller oluşturabilen, ancak bölge değişikliği aracılığıyla veya eşleme dosyalarını ayrıştırarak güvenli kod yeniden [oluşturmayı](https://efg.loresoft.com/en/latest/regeneration/) da destekleyen bir .NET Core CLI aracıdır. Bu araç, görünüm modellerinin, doğrulamanın ve nesne Eşleyici kodunun oluşturulmasını destekler.
 
 [Eğitim](https://www.loresoft.com/Generate-ASP-NET-Web-API)
-[belge](https://efg.loresoft.com/en/latest/)
+[belgeleri](https://efg.loresoft.com/en/latest/)
 
-## <a name="extensions"></a>Uzantılar
+## <a name="extensions"></a>Uzantıları
 
 ### <a name="microsoftentityframeworkcoreautohistory"></a>Microsoft. EntityFrameworkCore. oto geçmişi
 
@@ -86,7 +86,7 @@ Bu kitaplık, birincil anahtar (bileşik anahtarlar dahil) değerlerinin bir sö
 
 ### <a name="entityframeworkcoretypedoriginalvalues"></a>EntityFrameworkCore. TypedOriginalValues
 
-Bu kitaplık, varlık özelliklerinin orijinal değerlerine kesin olarak belirlenmiş erişimi sağlar. 
+Bu kitaplık, varlık özelliklerinin orijinal değerlerine kesin olarak belirlenmiş erişimi sağlar.
 
 [GitHub deposu](https://github.com/NickStrupat/EntityFramework.TypedOriginalValues/)
 
@@ -158,7 +158,7 @@ EF Core için yüksek performanslı ikinci düzey sorgu önbelleği.
 
 ### <a name="entity-framework-plus"></a>Entity Framework Plus
 
-DbContext dosyanızı şu gibi özelliklerle genişletir: Filtre, denetim, önbelleğe alma, sorgu gelecekteki, toplu silme, toplu güncelleştirme ve daha fazlasını ekleyin.
+DbContext dosyanızı, şunlar gibi özelliklerle genişletir: filtre, denetim, önbelleğe alma, sorgu gelecekteki, toplu silme, toplu güncelleştirme ve daha fazlasını Içerir.
 
 [Web sitesi](https://entityframework-plus.net/)
 [GitHub deposu](https://github.com/zzzprojects/EntityFramework-Plus)
@@ -167,7 +167,7 @@ DbContext dosyanızı şu gibi özelliklerle genişletir: Filtre, denetim, önbe
 
 DbContext uygulamanızı yüksek performanslı toplu işlemlerle genişletir: BulkSaveChanges, Bulkınsert, BulkUpdate, BulkDelete, BulkMerge ve daha fazlası.
 
-[Web sitesi](https://entityframework-extensions.net/)
+[Websitesi](https://entityframework-extensions.net/)
 
 ### <a name="reconciler"></a>Bağdaştıriler
 

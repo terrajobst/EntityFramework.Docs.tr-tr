@@ -4,18 +4,18 @@ author: divega
 ms.date: 08/06/2017
 ms.assetid: 608cc774-c570-4809-8a3e-cd2c8446b8b2
 uid: core/get-started/install/index
-ms.openlocfilehash: b4ae13ae1b22bb78c2c0407c0b3da64ee12ff2c1
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: aeb3ed1af8725ed6f92e0c0ba022a89b651bff80
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181208"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655590"
 ---
 # <a name="installing-entity-framework-core"></a>Entity Framework Core yükleniyor
 
-## <a name="prerequisites"></a>Önkoşullar
+## <a name="prerequisites"></a>Prerequisites
 
-* EF Core bir [.NET Standard 2,1](/dotnet/standard/net-standard) kitaplığı. EF Core .NET Standard 2,1 ' i destekleyen bir .NET uygulamasının çalışmasını gerektirir. EF Core diğer .NET Standard 2,1 kitaplıkları tarafından da başvurulabilirler. 
+* EF Core bir [.NET Standard 2,1](/dotnet/standard/net-standard) kitaplığı. EF Core .NET Standard 2,1 ' i destekleyen bir .NET uygulamasının çalışmasını gerektirir. EF Core diğer .NET Standard 2,1 kitaplıkları tarafından da başvurulabilirler.
 
 * Örneğin, .NET Core 'u hedefleyen uygulamalar geliştirmek için EF Core kullanabilirsiniz. .NET Core uygulamaları oluşturmak için [.NET Core SDK](https://dotnet.microsoft.com/download)gerekir. İsteğe bağlı olarak, [Visual Studio](https://visualstudio.microsoft.com/vs), [Mac için Visual Studio](https://visualstudio.microsoft.com/vs/mac)veya [Visual Studio Code](https://code.visualstudio.com)gibi bir geliştirme ortamı da kullanabilirsiniz. Daha fazla bilgi için [.NET Core Ile çalışmaya](/dotnet/core/get-started)başlama konusuna bakın.
 
@@ -41,7 +41,7 @@ NuGet paketlerini yüklemek veya güncelleştirmek için, .NET Core komut satır
   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
   ```
 
-* @No__t-0 komutunda, `-v` değiştiricisini kullanarak belirli bir sürümü belirtebilirsiniz. Örneğin, EF Core 2.2.0 paketlerini yüklemek için komutuna `-v 2.2.0` ekleyin.
+* `dotnet add package` komutunda, `-v` değiştiricisini kullanarak belirli bir sürümü belirtebilirsiniz. Örneğin, EF Core 2.2.0 paketlerini yüklemek için komutuna `-v 2.2.0` ekleyin.
 
 Daha fazla bilgi için bkz. [.NET komut satırı arabirimi (CLI) araçları](/dotnet/core/tools/).
 
@@ -51,7 +51,7 @@ Daha fazla bilgi için bkz. [.NET komut satırı arabirimi (CLI) araçları](/do
 
 * **Gözatmaya** veya **güncelleştirmeler** sekmesine tıklayın
 
-* SQL Server sağlayıcıyı yüklemek veya güncelleştirmek için, `Microsoft.EntityFrameworkCore.SqlServer` paketini seçin ve onaylayın.
+* SQL Server sağlayıcıyı yüklemek veya güncelleştirmek için `Microsoft.EntityFrameworkCore.SqlServer` paketini seçin ve onaylayın.
 
 Daha fazla bilgi için bkz. [NuGet Paket Yöneticisi Iletişim kutusu](/nuget/tools/package-manager-ui).
 
@@ -64,9 +64,10 @@ Daha fazla bilgi için bkz. [NuGet Paket Yöneticisi Iletişim kutusu](/nuget/to
   ``` PowerShell  
   Install-Package Microsoft.EntityFrameworkCore.SqlServer
   ```
+
 * Sağlayıcıyı güncelleştirmek için `Update-Package` komutunu kullanın.
 
-* Belirli bir sürümü belirtmek için `-Version` değiştiricisini kullanın. Örneğin, EF Core 2.2.0 paketlerini yüklemek için `-Version 2.2.0` ' ı komutlara ekleyin
+* Belirli bir sürümü belirtmek için `-Version` değiştiricisini kullanın. Örneğin, EF Core 2.2.0 paketlerini yüklemek için komutlara `-Version 2.2.0` ekleyin
 
 Daha fazla bilgi için bkz. [Paket Yöneticisi konsolu](/nuget/tools/package-manager-console).
 
@@ -76,11 +77,11 @@ Projenizde, veritabanı geçişleri oluşturma ve uygulama ya da var olan bir ve
 
 İki araç kümesi mevcuttur:
 
-* [.NET Core komut satırı arabirimi (CLI) araçları](xref:core/miscellaneous/cli/dotnet) Windows, Linux veya MacOS 'ta kullanılabilir. Bu komutlar `dotnet ef` ile başlar. 
+* [.NET Core komut satırı arabirimi (CLI) araçları](xref:core/miscellaneous/cli/dotnet) Windows, Linux veya MacOS 'ta kullanılabilir. Bu komutlar `dotnet ef`başlar.
 
-* [Paket Yöneticisi Konsolu (PMC) araçları](xref:core/miscellaneous/cli/powershell) , Windows üzerinde Visual Studio 'da çalışır. Bu komutlar bir fiil ile başlar, örneğin `Add-Migration`, `Update-Database`.
+* [Paket Yöneticisi Konsolu (PMC) araçları](xref:core/miscellaneous/cli/powershell) , Windows üzerinde Visual Studio 'da çalışır. Bu komutlar bir fiil ile başlar, örneğin `Add-Migration``Update-Database`.
 
-Paket Yöneticisi konsolundan `dotnet ef` komutlarını da kullanabilseniz de, Visual Studio kullanırken Paket Yöneticisi konsol araçlarının kullanılması önerilir:
+Ayrıca, paket yöneticisi konsolundan `dotnet ef` komutlarını da kullanabilseniz de, Visual Studio kullanırken Paket Yöneticisi konsol araçlarının kullanılması önerilir:
 
 * Bunlar, el ile geçiş yapmak zorunda kalmadan, Visual Studio 'da PMC 'de seçilen geçerli projeyle otomatik olarak çalışır.  
 
@@ -92,30 +93,30 @@ Paket Yöneticisi konsolundan `dotnet ef` komutlarını da kullanabilseniz de, V
 
 .NET Core CLI araçlar, [önkoşullardan](#prerequisites)daha önce bahsedilen .NET Core SDK gerektirir.
 
-@No__t-0 komutları, .NET Core SDK güncel sürümlerine dahildir, ancak belirli bir projedeki komutları etkinleştirmek için `Microsoft.EntityFrameworkCore.Design` paketini yüklemelisiniz:
+`dotnet ef` komutları .NET Core SDK güncel sürümlerine dahildir, ancak belirli bir projedeki komutları etkinleştirmek için `Microsoft.EntityFrameworkCore.Design` paketini yüklemelisiniz:
 
-``` Console 
-dotnet add package Microsoft.EntityFrameworkCore.Design 
-``` 
+``` Console
+dotnet add package Microsoft.EntityFrameworkCore.Design
+```
 
 ASP.NET Core uygulamalar için bu paket otomatik olarak eklenir.
 
-> [!IMPORTANT]      
+> [!IMPORTANT]
 > Her zaman çalışma zamanı paketlerinin ana sürümü ile eşleşen Araçlar paketinin sürümünü kullanın.
 
 ### <a name="get-the-package-manager-console-tools"></a>Paket Yöneticisi konsol araçlarını al
 
 EF Core için Paket Yöneticisi konsol araçları 'nı almak için `Microsoft.EntityFrameworkCore.Tools` paketini yükledikten sonra. Örneğin, Visual Studio 'dan:
 
-``` PowerShell  
+``` PowerShell
 Install-Package Microsoft.EntityFrameworkCore.Tools
-``` 
+```
 
 ASP.NET Core uygulamalar için bu paket otomatik olarak eklenir.
 
 ## <a name="upgrading-to-the-latest-ef-core"></a>En son EF Core yükseltme
 
-* EF Core yeni bir sürümünü yayınlıyoruz, Microsoft. EntityFrameworkCore. SqlServer, Microsoft. EntityFrameworkCore. SQLite gibi EF Core projenin parçası olan sağlayıcıların yeni bir sürümünü de yayınlarız. Microsoft. EntityFrameworkCore. InMemory. Tüm geliştirmeleri almak için yalnızca sağlayıcının yeni sürümüne yükseltebilirsiniz. 
+* EF Core yeni bir sürümünü yayınlıyoruz, Microsoft. EntityFrameworkCore. SqlServer, Microsoft. EntityFrameworkCore. SQLite gibi EF Core projenin parçası olan sağlayıcıların yeni bir sürümünü de yayınlarız. Microsoft. EntityFrameworkCore. InMemory. Tüm geliştirmeleri almak için yalnızca sağlayıcının yeni sürümüne yükseltebilirsiniz.
 
 * EF Core, SQL Server ve bellek içi sağlayıcılar ASP.NET Core güncel sürümlerine dahildir. Mevcut bir ASP.NET Core uygulamasını EF Core daha yeni bir sürüme yükseltmek için ASP.NET Core sürümünü her zaman yükseltin.
 
@@ -125,10 +126,10 @@ ASP.NET Core uygulamalar için bu paket otomatik olarak eklenir.
 
 * Mevcut bir uygulamayı EF Core en son sürümüne yükseltiyorsanız, eski EF Core paketlerine yapılan bazı başvuruların el ile kaldırılması gerekebilir:
 
-  * Veritabanı sağlayıcısı tasarım-`Microsoft.EntityFrameworkCore.SqlServer.Design` gibi zaman paketleri artık gerekli değildir veya EF Core 2,0 ve üzeri sürümlerde desteklenmez, ancak diğer paketler yükseltilirken otomatik olarak kaldırılmaz.
+  * Veritabanı sağlayıcısı tasarım zamanı paketleri `Microsoft.EntityFrameworkCore.SqlServer.Design` gibi EF Core 2,0 ve sonraki sürümlerde artık gerekli değildir veya desteklenmemektedir, ancak diğer paketler yükseltilirken otomatik olarak kaldırılmaz.
 
   * .NET CLı araçları, sürüm 2,1 ' den beri .NET SDK 'da bulunur, bu nedenle bu pakete yönelik başvuru proje dosyasından kaldırılabilir:
-    ```xml
+
+    ``` xml
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
     ```
-

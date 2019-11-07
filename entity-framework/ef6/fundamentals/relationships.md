@@ -1,41 +1,41 @@
 ---
-title: İlişkiler, gezinti özellikleri ve yabancı anahtarlar - EF6
+title: İlişkiler, gezinti özellikleri ve yabancı anahtarlar-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 8a21ae73-6d9b-4b50-838a-ec1fddffcf37
-ms.openlocfilehash: 8292ae7af8d760240715854611d92ab340bf1ca7
-ms.sourcegitcommit: eb8359b7ab3b0a1a08522faf67b703a00ecdcefd
+ms.openlocfilehash: cc7160f2d0ab7ac0c6009f820441c88590cacfaf
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/21/2019
-ms.locfileid: "58319198"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655873"
 ---
 # <a name="relationships-navigation-properties-and-foreign-keys"></a>İlişkiler, gezinti özellikleri ve yabancı anahtarlar
-Bu konu, Entity Framework varlıklar arasındaki ilişkilerin nasıl yönettiğine bir genel bakış sağlar. Ayrıca ilişkileri eşleyin ve düzenleme hakkında rehberlik sağlar.
+Bu konu, varlıklar arasındaki ilişkileri nasıl yönettiğini Entity Framework bir genel bakış sunar. Ayrıca, ilişkilerin eşlenme ve işleme hakkında bazı yönergeler de sağlar.
 
-## <a name="relationships-in-ef"></a>EF ilişkileri
+## <a name="relationships-in-ef"></a>EF 'teki ilişkiler
 
-İlişkisel veritabanları, tablolar arasında ilişki (ilişkilendirmeleri olarak da bilinir), yabancı anahtarlar tanımlanır. Yabancı anahtar (FK) bir sütun veya kurmak ve iki tablodaki veriler arasında bir bağlantı zorlamak için kullanılan sütunlar bileşimidir. Genellikle üç türde ilişki vardır: bire bir, bire çok ve çok-çok. Bir-çok ilişki, yabancı anahtar birçok ilişki sonunu temsil eden tabloda tanımlanır. Çoktan çoğa ilişki ile ilgili iki tablodan yabancı anahtarlar birincil anahtarı oluşur (bir birleşim veya birleşim tablo olarak adlandırılır) üçüncü bir tablo tanımlama ilgilidir. Bire bir ilişki, yabancı anahtar olarak ayrıca birincil anahtar görevi görür ve ayrı yabancı anahtar sütunu yok ya da tablo için yoktur.
+İlişkisel veritabanlarında, tablolar arasındaki ilişkiler (ilişkilendirmeler olarak da bilinir) yabancı anahtarlar aracılığıyla tanımlanır. Yabancı anahtar (FK), iki tablodaki veriler arasında bağlantı kurmak ve zorlamak için kullanılan bir sütun veya sütun birleşimidir. Genellikle üç tür ilişki vardır: bire bir, bire çok ve çoktan çoğa. Bire çok ilişkisinde, yabancı anahtar ilişkinin birçok sonunu temsil eden tabloda tanımlanmıştır. Çoktan çoğa ilişki, birincil anahtarı ilgili tablolardaki yabancı anahtarlardan oluşan bir üçüncü tablo (kavşak veya birleşim tablosu olarak adlandırılır) tanımlamayı içerir. Bire bir ilişkide, birincil anahtar ek olarak yabancı anahtar olarak davranır ve her iki tablo için ayrı bir yabancı anahtar sütunu yoktur.
 
-Aşağıdaki görüntüde katılan iki tablo-çok ilişkisini gösterir. **Kurs** tablodur bağımlı tablo içerdiği için **DepartmentID** bağlantı sütunu **departmanı** tablo.
+Aşağıdaki görüntüde bire çok ilişkisine katılan iki tablo gösterilmektedir. **Kurs** tablosu, **bölüm** tablosuna bağlayan **DepartmentID** sütununu içerdiğinden bağımlı tablodur.
 
-![Bölüm ve kursu tabloları](~/ef6/media/database2.png)
+![Departman ve kurs tabloları](~/ef6/media/database2.png)
 
-Varlık Çerçevesi'nde varlığın diğer varlıklarla ilişki veya ilişki ile ilgili olabilir. Her ilişki varlık türü ve tür (bir, sıfır veya bir veya birçok) Bu ilişki iki varlıktaki için Çokluk tanımlayan iki ucu içerir. İlişki hangi son ilişkisinde bir asıl rolüdür tanımlayan bir başvuru kısıtlamasını tarafından yönetilebilir ve bağımlı rol olduğu.
+Entity Framework, bir varlık bir ilişki veya ilişki aracılığıyla diğer varlıklarla ilişkili olabilir. Her ilişki, söz konusu ilişkideki iki varlık için varlık türünü ve türün çokluğunu (bir, sıfır-veya-bir ya da çok) tanımlayan iki ucu içerir. İlişki, ilişkinin bir asıl rol olduğunu ve bağımlı bir rol olduğunu açıklayan bir başvuru kısıtlaması tarafından yönetilebilir.
 
-Gezinti özellikleri iki varlık türleri arasındaki ilişkiyi gitmek için bir yol sağlar. Her nesne içinde katılan her ilişki için bir gezinti özelliği olabilir. Gezinti özellikleri gidin ve bir başvuru nesnesi döndürerek her iki yönde ilişkileri yönetmenize olanak sağlar (çeşitlilik tek ise ya da sıfır veya bir) veya (çeşitlilik birçok ise) bir koleksiyon. Ayrıca tek yönlü gezinme her ikisini de değil ve ilişkisine katılıyor türleri yalnızca birinde gezinme özelliği bu durumda tanımlamak seçebilirsiniz.
+Gezinti özellikleri iki varlık türü arasındaki bir ilişkilendirmeyi gezinmek için bir yol sağlar. Her nesnenin katıldığı her ilişki için bir gezinti özelliği olabilir. Gezinti özellikleri, bir başvuru nesnesi (çoğulluk bir veya sıfır ya da-bir) ya da bir koleksiyon (çokluk çok ise) döndüren her iki yönde ilişkilerde gezinmeniz ve bunları yönetmenize olanak tanır. Tek yönlü bir gezinmenin de tercih edebilirsiniz. Bu durumda, gezinti özelliğini yalnızca ilişkiye katılan ve her ikisi üzerinde değil, yalnızca birinde tanımladığınız türlerden birinde tanımlarsınız.
 
-Bir veritabanındaki yabancı anahtarlar eşleyen modelinde özellikler eklemek için önerilir. Dahil edilen yabancı anahtar özellikleri ile oluşturabilir veya bağımlı bir nesne üzerinde yabancı anahtar değerini değiştirerek bir ilişki. Bu tür bir ilişki, yabancı anahtar ilişkilendirmesi adı verilir. Yabancı anahtarlar kullanarak bağlantısı kesilmiş varlıklar ile çalışırken daha da önemlidir. Not, söz konusu olduğunda 1-1 veya 1-0 ile çalışma... 1 ilişki ayrı yabancı anahtar sütunu yok, birincil anahtar özelliği yabancı anahtar olarak davranır ve modeldeki her zaman dahildir.
+Modeldeki yabancı anahtarlarla eşlenen özellikleri eklemek önerilir. Yabancı anahtar özellikleri dahil olmak üzere, bağımlı bir nesne üzerindeki yabancı anahtar değerini değiştirerek bir ilişki oluşturabilir veya değiştirebilirsiniz. Bu tür bir ilişkiye yabancı anahtar ilişkilendirmesi denir. Bağlantısı kesilmiş varlıklarla çalışırken yabancı anahtarların kullanılması daha da önemlidir. 1 ile 1 arasında veya 1 ile 0 arasında çalışırken. 1 ilişkiler, ayrı bir yabancı anahtar sütunu yoktur, birincil anahtar özelliği yabancı anahtar olarak davranır ve her zaman modele dahil edilir.
 
-Yabancı anahtar sütunları, modelde yer almaz, ilişki bilgilerini bağımsız bir nesne yönetilir. Yabancı anahtar özellikleri yerine nesne başvuruları arasında ilişkileri izlenir. Bu tür bir ilişkilendirme olarak adlandırılan bir *bağımsız ilişkilendirme*. Değiştirmek için en yaygın yolu bir *bağımsız ilişkilendirme* ilişkilendirmesine katılan her varlık için oluşturulan gezinti özelliklerini değiştirmek için.
+Yabancı anahtar sütunları modele dahil edilmediğinde, ilişkilendirme bilgileri bağımsız bir nesne olarak yönetilir. İlişkiler, yabancı anahtar özellikleri yerine nesne başvuruları aracılığıyla izlenir. Bu tür bir ilişkilendirme *bağımsız bir ilişkilendirme*olarak adlandırılır. *Bağımsız bir ilişkilendirmeyi* değiştirmek için en yaygın yol, ilişkilendirmede yer alan her varlık için oluşturulan gezinti özelliklerini değiştirmektir.
 
-Modelinizde ilişkilendirmeleri birini veya ikisini türleri kullanmayı da tercih edebilirsiniz. Yalnızca yabancı anahtarları içeren bir birleştirme tablo bağlı saf bir çoktan çoğa ilişki varsa, ancak, EF bağımsız ilişkilendirme böyle çoktan çoğa ilişki yönetmek için kullanırsınız.   
+Modelinizde bir veya her iki tür ilişkilendirmeyi kullanmayı seçebilirsiniz. Ancak, yalnızca yabancı anahtarlar içeren bir JOIN tablosu tarafından bağlanan saf çoktan çoğa ilişkiye sahipseniz, EF bu çok-çok ilişkisini yönetmek için bağımsız bir ilişki kullanır.   
 
-Aşağıdaki görüntüde, Entity Framework Designer ile oluşturulmuş bir kavramsal model gösterilmektedir. Model-çok ilişkide yer alan iki varlık içerir. Her iki varlık Gezinti özellikleri vardır. **Kurs** bağımlı varlık ve **DepartmentID** tanımlı yabancı anahtar özelliği.
+Aşağıdaki görüntüde Entity Framework Designer ile oluşturulmuş kavramsal bir model gösterilmektedir. Model bire çok ilişkisine katılan iki varlık içerir. Her iki varlık de gezinti özelliklerine sahiptir. **Kurs** , bağımlı varlıktır ve **DepartmentID** yabancı anahtar özelliği tanımlanmış.
 
-![Gezinti özellikleri içeren bölüm ve kurs tablolar](~/ef6/media/relationshipefdesigner.png)
+![Gezinti özelliklerine sahip departman ve kurs tabloları](~/ef6/media/relationshipefdesigner.png)
 
-Aşağıdaki kod parçacığı, Code First ile oluşturulan aynı modelin gösterir.
+Aşağıdaki kod parçacığı, Code First ile oluşturulmuş modeli gösterir.
 
 ``` csharp
 public class Course
@@ -62,55 +62,55 @@ public class Department
 }
 ```
 
-## <a name="configuring-or-mapping-relationships"></a>Yapılandırma veya ilişkileri eşleme
+## <a name="configuring-or-mapping-relationships"></a>İlişkileri yapılandırma veya eşleme
 
-Bu sayfanın geri kalanını erişmek ve ilişkileri kullanarak verileri işlemek nasıl etkinleştireceğinizi de açıklar. Modelinizde ilişkileri ayarlama hakkında daha fazla bilgi için şu sayfalara bakın.
+Bu sayfanın geri kalanında ilişkiler kullanılarak verilere erişme ve verileri işleme konuları ele alınmaktadır. Modelinizde ilişkiler ayarlama hakkında daha fazla bilgi için aşağıdaki sayfalara bakın.
 
--   İlişkiler Code First yapılandırmak için bkz [veri ek açıklamaları](~/ef6/modeling/code-first/data-annotations.md) ve [Fluent API'si – ilişkileri](~/ef6/modeling/code-first/fluent/relationships.md).
--   Entity Framework Designer kullanarak ilişkilerini yapılandırmak için bkz [EF Designer ilişkilerle](~/ef6/modeling/designer/relationships.md).
+-   Code First ilişkilerini yapılandırmak için, bkz. [veri ek açıklamaları](~/ef6/modeling/code-first/data-annotations.md) ve [akıcı API – ilişkiler](~/ef6/modeling/code-first/fluent/relationships.md).
+-   Entity Framework Designer kullanarak ilişkileri yapılandırmak için, bkz. [EF Designer Ile ilişkiler](~/ef6/modeling/designer/relationships.md).
 
-## <a name="creating-and-modifying-relationships"></a>Oluşturma ve ilişkileri değiştirme
+## <a name="creating-and-modifying-relationships"></a>İlişki oluşturma ve değiştirme
 
-İçinde bir *yabancı anahtar ilişkilendirmesi*, ilişki ile bağımlı bir nesnenin durumu değiştiğinde bir `EntityState.Unchanged` durumu değişiklikleri `EntityState.Modified`. Bağımsız bir ilişkide, ilişkinin değiştirme bağımlı nesne durumunu güncelleştirmez.
+Bir *yabancı anahtar ilişkisinde*, ilişkiyi değiştirdiğinizde, bağımlı nesnenin durumu, `EntityState.Unchanged` durumu `EntityState.Modified`olarak değişir. Bağımsız bir ilişkide ilişki değiştirildiğinde bağımlı nesnenin durumu güncellemez.
 
-Aşağıdaki örnekler, yabancı anahtar özellikler ve gezinti özellikleri ilgili nesneleri ilişkilendirmek için nasıl kullanılacağını gösterir. Yabancı anahtar ilişkilerini değiştirme, oluşturmak veya ilişkileri değiştirmek için her iki yöntem kullanabilirsiniz. Bağımsız ilişkilerini, yabancı anahtar özelliği kullanılamaz.
+Aşağıdaki örneklerde, ilişkili nesneleri ilişkilendirmek için yabancı anahtar özelliklerinin ve gezinti özelliklerinin nasıl kullanılacağı gösterilmektedir. Yabancı anahtar ilişkilendirmeleriyle, ilişkileri değiştirmek, oluşturmak veya değiştirmek için her iki yöntemi de kullanabilirsiniz. Bağımsız İlişkilendirmelerde, yabancı anahtar özelliğini kullanamazsınız.
 
-- Yeni bir değer aşağıdaki örnekte olduğu gibi bir yabancı anahtar özelliğine atayarak.  
+- Aşağıdaki örnekte olduğu gibi, yabancı anahtar özelliğine yeni bir değer atayarak.  
   ``` csharp
   course.DepartmentID = newCourse.DepartmentID;
   ```
 
-- Aşağıdaki kod bir ilişki, yabancı anahtarı ayarlayarak kaldırır **null**. Yabancı anahtar özelliği null olması gerektiğini unutmayın.  
+- Aşağıdaki kod, yabancı anahtarı **null**olarak ayarlayarak bir ilişkiyi kaldırır. Yabancı anahtar özelliğinin null yapılabilir olması gerektiğini unutmayın.  
   ``` csharp
   course.DepartmentID = null;
   ```
 
   >[!NOTE]
-  > Başvuru (Bu örnekte, kurs nesnesi) eklenmiş durumda ise, SaveChanges çağrılana kadar başvuru gezinti özelliği yeni bir nesnenin anahtar değerleriyle eşitlenmez. Nesne bağlamı kaydedilmeden kadar eklenen nesneler için kalıcı anahtarlar içermediğinden eşitleme gerçekleşmez. Yeni nesneler ilişkisi hemen sonra tam olarak eşitlenmiş olması gerekir, aşağıdaki yöntemlerin birini kullanın.*
+  > Başvuru eklenen durumundaysa (Bu örnekte, kurs nesnesi), SaveChanges çağrılmadan önce başvuru gezintisi özelliği yeni bir nesnenin anahtar değerleriyle eşitlenmez. Nesne bağlamı, kaydedilmeden eklenen nesneler için kalıcı anahtarlar içermediğinden eşitleme gerçekleşmez. İlişkiyi ayarladığınız anda yeni nesneleri tamamen eşitlenmiş olması gerekiyorsa, aşağıdaki yöntemlerden birini kullanın. *
 
-- Yeni bir nesne bir gezinti özelliğine atayarak. Aşağıdaki kod bir kurs arasında bir ilişki oluşturur ve bir `department`. Nesneleri bağlamına ekliyse `course` de eklenir `department.Courses` koleksiyonu ve yabancı karşılık gelen anahtar özellik üzerinde `course` nesne departmanı anahtar özellik değerine ayarlanır.  
+- Bir gezinti özelliğine yeni bir nesne atayarak. Aşağıdaki kod, kurs ile `department`arasında bir ilişki oluşturur. Nesneler bağlama eklenirse, `course` `department.Courses` koleksiyonuna de eklenir ve `course` nesnesindeki karşılık gelen yabancı anahtar özelliği departmanın anahtar özellik değerine ayarlanır.  
   ``` csharp
   course.Department = department;
   ```
 
-- İlişkiyi silmek için gezinme özelliğini ayarlamak `null`. Entity Framework, .NET 4.0 tabanlı ile çalışıyorsanız, ilgili uç, null olarak ayarlamadan önce yüklü olması gerekir. Örneğin:   
+- İlişkiyi silmek için, gezinti özelliğini `null`olarak ayarlayın. .NET 4,0 tabanlı Entity Framework çalışıyorsanız, null olarak ayarlamadan önce ilgili ucun yüklenmesi gerekir. Örneğin:   
   ``` csharp
   context.Entry(course).Reference(c => c.Department).Load();
   course.Department = null;
   ```
 
-  Entity Framework, .NET 4.5 üzerinde temel alınan 5.0 ile başlatma, ilişki null ilgili uç yüklemeden ayarlayabilirsiniz. Ayrıca, aşağıdaki yöntemi kullanarak null değeri ayarlayabilirsiniz.   
+  .NET 4,5 ' i temel alan Entity Framework 5,0 ' den başlayarak, ilişkili bitişi yüklemeden ilişkiyi null olarak ayarlayabilirsiniz. Ayrıca, aşağıdaki yöntemi kullanarak geçerli değeri null olarak ayarlayabilirsiniz.   
   ``` csharp
   context.Entry(course).Reference(c => c.Department).CurrentValue = null;
   ```
 
-- Silme veya bir varlık koleksiyonu bir nesne ekleme. Örneğin, türü bir nesne ekleyebilirsiniz `Course` için `department.Courses` koleksiyonu. Bu işlem, belirli bir arasında bir ilişki oluşturur **kurs** ve belirli bir `department`. Nesneler üzerinde eklenmiş içerik, departman başvuru ve yabancı anahtar özelliği varsa **kurs** nesne ayarlanacak uygun `department`.  
+- Bir varlık koleksiyonundaki bir nesneyi silerek veya ekleyerek. Örneğin, `department.Courses` koleksiyonuna `Course` türünde bir nesne ekleyebilirsiniz. Bu işlem, belirli bir **Kurs** ve belirli bir `department`arasında bir ilişki oluşturur. Nesneler içeriğe eklenmişse, **Kurs** nesnesindeki departman başvurusu ve yabancı anahtar özelliği uygun `department`ayarlanır.  
   ``` csharp
   department.Courses.Add(newCourse);
   ```
 
-- Kullanarak `ChangeRelationshipState` iki varlık nesnesi arasında belirtilen ilişki durumunu değiştirmek için yöntemi. Bu yöntem N katmanlı uygulamalar ile çalışırken en yaygın olarak kullanılır ve bir *bağımsız ilişkilendirme* (yabancı anahtar ilişkilendirmesi ile kullanılamaz). Ayrıca, bu yöntemi kullanmak için düşürmeli aşağı `ObjectContext`aşağıdaki örnekte gösterildiği gibi.  
-Aşağıdaki örnekte, eğitmenlerini ve dersleri arasında bir çoktan çoğa ilişki yoktur. Çağırma `ChangeRelationshipState` yöntemi ve geçirme `EntityState.Added` parametresi, sağlar `SchoolContext` iki nesne bir ilişki eklendiğini bildirin:
+- İki varlık nesnesi arasında belirtilen ilişkinin durumunu değiştirmek için `ChangeRelationshipState` yöntemini kullanarak. Bu yöntem, N katmanlı uygulamalarla ve *bağımsız bir ilişkilendirmede* (bir yabancı anahtar ilişkisiyle birlikte kullanılamaz) çalışırken yaygın olarak kullanılır. Ayrıca, bu yöntemi kullanmak için aşağıdaki örnekte gösterildiği gibi, `ObjectContext`için öğesini açmalısınız.  
+Aşağıdaki örnekte, Eğitmenler ve kurslar arasında çoktan çoğa ilişki vardır. `ChangeRelationshipState` yöntemini çağırarak ve `EntityState.Added` parametresini geçirerek, `SchoolContext` iki nesne arasında bir ilişki eklendiğini bilmesini sağlar:
   ``` csharp
 
   ((IObjectContextAdapter)context).ObjectContext.
@@ -118,7 +118,7 @@ Aşağıdaki örnekte, eğitmenlerini ve dersleri arasında bir çoktan çoğa i
     ChangeRelationshipState(course, instructor, c => c.Instructor, EntityState.Added);
   ```
 
-  (Yalnızca ekleme) güncelleştiriyorsanız unutmayın bir ilişki eski ilişkiyi yeni bir tane ekledikten sonra silmeniz gerekir:
+  Bir ilişki güncelleştiriyorsanız (yalnızca eklemeyi değil), yenisini ekledikten sonra eski ilişkiyi silmeniz gerektiğini unutmayın:
 
   ``` csharp
   ((IObjectContextAdapter)context).ObjectContext.
@@ -126,11 +126,11 @@ Aşağıdaki örnekte, eğitmenlerini ve dersleri arasında bir çoktan çoğa i
     ChangeRelationshipState(course, oldInstructor, c => c.Instructor, EntityState.Deleted);
   ```
 
-## <a name="synchronizing-the-changes-between-the-foreign-keys-and-navigation-properties"></a>Gezinti özellikleri ve yabancı anahtarlar arasındaki değişiklikleri eşitleme
+## <a name="synchronizing-the-changes-between-the-foreign-keys-and-navigation-properties"></a>Yabancı anahtarlar ve gezinti özellikleri arasındaki değişiklikleri eşitleme
 
-Yukarıda anlatılan yöntemlerden birini kullanarak bağlamına iliştirilemez. nesneler arasındaki ilişkiyi değiştirdiğinizde, yabancı anahtarlar, başvuruları ve koleksiyonları eşitlemek Entity Framework gerekir. Entity Framework bu eşitleme (olarak da bilinen ilişki düzeltmesi yan yana) proxy'si ile POCO varlık için otomatik olarak yönetir. Daha fazla bilgi için [proxy ile çalışmayı](~/ef6/fundamentals/proxies.md).
+Yukarıda açıklanan yöntemlerden birini kullanarak bağlama eklenmiş nesnelerin ilişkisini değiştirdiğinizde Entity Framework yabancı anahtarları, başvuruları ve koleksiyonları eşitlenmiş halde tutmaları gerekir. Entity Framework, proxy 'leri olan POCO varlıklarının bu eşitlemesini (ilişki çözme olarak da bilinir) otomatik olarak yönetir. Daha fazla bilgi için bkz. [proxy Ile çalışma](~/ef6/fundamentals/proxies.md).
 
-POCO varlık olmayan proxy'si kullanıyorsanız, emin olmanız gerekir **DetectChanges** bağlamındaki ilişkili nesneleri eşitlenecek yöntemi çağrılır. Aşağıdaki API'ları otomatik olarak tetikleyen Not bir **DetectChanges** çağırın.
+Proxy 'siz POCO varlıklarını kullanıyorsanız, bağlam içindeki ilişkili nesneleri eşitlemeniz için **DetectChanges** yönteminin çağrıldığından emin olmanız gerekir. Aşağıdaki API 'Lerin bir **DetectChanges** çağrısını otomatik olarak tetikleyeceğini unutmayın.
 
 -   `DbSet.Add`
 -   `DbSet.AddRange`
@@ -143,14 +143,14 @@ POCO varlık olmayan proxy'si kullanıyorsanız, emin olmanız gerekir **DetectC
 -   `DbContext.GetValidationErrors`
 -   `DbContext.Entry`
 -   `DbChangeTracker.Entries`
--   Yürütülen bir LINQ Sorgu karşı bir `DbSet`
+-   `DbSet` bir LINQ sorgusu yürütme
 
-## <a name="loading-related-objects"></a>Yükleme ile ilgili nesneler
+## <a name="loading-related-objects"></a>İlgili nesneler yükleniyor
 
-Varlık Çerçevesi'nde, yaygın olarak Gezinti özellikleri tanımlanmış ilişki tarafından döndürülen varlık ilgili varlıkları yükleme için kullanırsınız. Daha fazla bilgi için [ilgili nesneler Yükleniyor](~/ef6/querying/related-data.md).
+Entity Framework, tanımlı ilişki tarafından döndürülen varlıkla ilişkili varlıkları yüklemek için genellikle gezinti özelliklerini kullanırsınız. Daha fazla bilgi için bkz. [Ilgili nesneleri yükleme](~/ef6/querying/related-data.md).
 
 > [!NOTE]
-> Bağımlı bir nesne bir ilgili uç yüklediğinizde bir yabancı anahtar ilişkilendirmesine, ilgili nesneyi göre şu anda bellekte olmadığını bağımlı yabancı anahtar değeri olarak yüklenecektir:
+> Yabancı anahtar ilişkisinde, bağımlı bir nesnenin ilgili bir sonunu yüklediğinizde ilgili nesne, şu anda bellekte olan bağımlı anahtarın yabancı anahtar değerine göre yüklenir:
 
 ``` csharp
     // Get the course where currently DepartmentID = 2.
@@ -164,16 +164,16 @@ Varlık Çerçevesi'nde, yaygın olarak Gezinti özellikleri tanımlanmış ili�
     context.Entry(course).Reference(c => c.Department).Load();
 ```
 
-Bağımsız bir ilişkide, şu anda veritabanında yabancı anahtar değere göre bir bağımlı nesne ilgili sonuna sorgulanır. Ancak, ilişkisi değiştirildi ve bağımlı nesne noktalarında nesne bağlamında, Entity Framework yüklenen farklı bir asıl nesneye başvuru özelliği olarak bir ilişki oluşturmak deneyecek, istemcide tanımlanır.
+Bağımsız bir ilişkide, bağımlı bir nesnenin ilgili ucu, şu anda veritabanında olan yabancı anahtar değerine göre sorgulanır. Ancak, ilişki değiştirildiyse ve bağımlı nesne üzerindeki başvuru özelliği, nesne bağlamına yüklenen farklı bir Principal nesnesine işaret ediyorsa, Entity Framework istemci üzerinde tanımlanan bir ilişki oluşturmayı dener.
 
-## <a name="managing-concurrency"></a>Eşzamanlılığı yönetme
+## <a name="managing-concurrency"></a>Eşzamanlılık yönetimi
 
-Yabancı anahtar hem bağımsız ilişkilendirmeleri eşzamanlılık denetimlerinin varlık anahtarları ve modelde tanımlanan diğer varlık özellikleri temel alır. Bir model oluşturmak için EF Designer'ı kullanırken, ayarlayın `ConcurrencyMode` özniteliğini **sabit** özelliği için eşzamanlılık denetlenmesi gerektiğini belirtmek için. Bir modeli tanımlamak için Code First kullanarak kullanınl `ConcurrencyCheck` denetlenmesi için eşzamanlılık istediğiniz özellikleri ek açıklama. Code First ile çalışırken de kullanabilirsiniz `TimeStamp` özelliği için eşzamanlılık denetlenmesi gerektiğini belirtmek için ek açıklama. Belirli bir sınıf içinde yalnızca bir zaman damgası özelliği olabilir. Kod, bu özellik ilk veritabanı NULL olmayan bir alana eşlemeleri.
+Hem yabancı anahtar hem de bağımsız İlişkilendirmelerde eşzamanlılık denetimleri, modelde tanımlanan varlık anahtarlarına ve diğer varlık özelliklerine göre yapılır. Bir model oluşturmak için EF tasarımcısını kullanırken, özelliğinin eşzamanlılık için denetlenmesi gerektiğini belirtmek üzere `ConcurrencyMode` özniteliğini **fixed** olarak ayarlayın. Bir modeli tanımlamak için Code First kullanırken, eşzamanlılık için denetlenmesini istediğiniz özelliklerde `ConcurrencyCheck` ek açıklamasını kullanın. Code First ile çalışırken, özelliğin eşzamanlılık için denetlenmesi gerektiğini belirtmek için `TimeStamp` ek açıklamasını de kullanabilirsiniz. Belirli bir sınıfta yalnızca bir zaman damgası özelliğine sahip olabilirsiniz. Code First, bu özelliği veritabanında null olmayan bir alana eşleştirir.
 
-Her zaman yabancı anahtar ilişkilendirmesi eşzamanlılık denetimi ve çözümleme katılacak varlıklar ile çalışırken kullanmanızı öneririz.
+Eşzamanlılık denetimi ve çözümüne katılan varlıklarla çalışırken her zaman yabancı anahtar ilişkilendirmesini kullanmanızı öneririz.
 
-Daha fazla bilgi için [eşzamanlılık çakışmalarını işleme](~/ef6/saving/concurrency.md).
+Daha fazla bilgi için bkz. [eşzamanlılık çakışmalarını işleme](~/ef6/saving/concurrency.md).
 
-## <a name="working-with-overlapping-keys"></a>Anahtarları örtüşen ile çalışma
+## <a name="working-with-overlapping-keys"></a>Çakışan anahtarlarla çalışma
 
-Bazı özellikler anahtarında da varlıktaki başka bir anahtarın parçası olduğu bileşik anahtarlar çakışan anahtarlar var. Çakışan bir anahtarı bağımsız ilişkilendirmesine sahip olamaz. Anahtarları örtüşen içeren bir yabancı anahtar ilişkilendirmesi değiştirmek için nesne başvuruları kullanmak yerine, yabancı anahtar değerlerini değiştirmenizi öneririz.
+Çakışan anahtarlar, anahtardaki bazı özelliklerin aynı zamanda varlıktaki başka bir anahtarın parçası olduğu bileşik anahtarlardır. Bağımsız bir ilişkide çakışan bir anahtarınız olamaz. Çakışan anahtarlar içeren bir yabancı anahtar ilişkilendirmesini değiştirmek için, nesne başvurularını kullanmak yerine yabancı anahtar değerlerini değiştirmenizi öneririz.

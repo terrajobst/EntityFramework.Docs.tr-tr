@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 9a7c5488-aaf4-4b40-b1ff-f435ff30f6ec
 uid: core/modeling/relational/inheritance
-ms.openlocfilehash: c660107619470a726fe13ad8eee2850749e6dcd9
-ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
+ms.openlocfilehash: 381d1878007bb78b359eb49649f4356f1e5eb04a
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/23/2019
-ms.locfileid: "72812086"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655639"
 ---
 # <a name="inheritance-relational-database"></a>Devralma (İlişkisel Veritabanı)
 
@@ -29,25 +29,7 @@ EF Core, yalnızca modele açıkça iki veya daha fazla devralınmış tür vars
 
 Aşağıda, bir basit devralma senaryosunu ve TPH deseninin kullanıldığı bir ilişkisel veritabanı tablosunda depolanan verileri gösteren bir örnek verilmiştir. *Ayrıştırıcı* sütunu, her satırda hangi *Blog* türünün depolandığını tanımlar.
 
-<!-- [!code-csharp[Main](samples/core/relational/Modeling/Conventions/InheritanceDbSets.cs)] -->
-``` csharp
-class MyContext : DbContext
-{
-    public DbSet<Blog> Blogs { get; set; }
-    public DbSet<RssBlog> RssBlogs { get; set; }
-}
-
-public class Blog
-{
-    public int BlogId { get; set; }
-    public string Url { get; set; }
-}
-
-public class RssBlog : Blog
-{
-    public string RssUrl { get; set; }
-}
-```
+[!code-csharp[Main](../../../../samples/core/Modeling/Conventions/InheritanceDbSets.cs#Model)]
 
 ![görüntü](_static/inheritance-tph-data.png)
 
@@ -62,32 +44,7 @@ Devralma yapılandırmak için veri ek açıklamalarını kullanamazsınız.
 
 Ayrıştırıcı sütununun adını ve türünü ve hiyerarşideki her türü tanımlamak için kullanılan değerleri yapılandırmak için Floent API 'sini kullanabilirsiniz.
 
-<!-- [!code-csharp[Main](samples/core/relational/Modeling/FluentAPI/InheritanceTPHDiscriminator.cs?highlight=7,8,9,10)] -->
-``` csharp
-class MyContext : DbContext
-{
-    public DbSet<Blog> Blogs { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Blog>()
-            .HasDiscriminator<string>("blog_type")
-            .HasValue<Blog>("blog_base")
-            .HasValue<RssBlog>("blog_rss");
-    }
-}
-
-public class Blog
-{
-    public int BlogId { get; set; }
-    public string Url { get; set; }
-}
-
-public class RssBlog : Blog
-{
-    public string RssUrl { get; set; }
-}
-```
+[!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/InheritanceTPHDiscriminator.cs#Inheritance)]
 
 ## <a name="configuring-the-discriminator-property"></a>Ayrıştırıcı özelliğini yapılandırma
 

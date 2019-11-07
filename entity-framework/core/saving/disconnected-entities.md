@@ -5,12 +5,12 @@ ms.author: avickers
 ms.date: 10/27/2016
 ms.assetid: 2533b195-d357-4056-b0e0-8698971bc3b0
 uid: core/saving/disconnected-entities
-ms.openlocfilehash: 070f2ad396ec21858096c29413ac80bdf8547328
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: 88c3fa8ea5b8246a932f5cf21e674bc7cc71c0ea
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197804"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656266"
 ---
 # <a name="disconnected-entities"></a>Bağlantısı kesilen varlıklar
 
@@ -18,11 +18,13 @@ DbContext örneği veritabanından döndürülen varlıkları otomatik olarak iz
 
 Ancak, bazen varlıklar bir bağlam örneği kullanılarak sorgulanır ve sonra farklı bir örnek kullanılarak kaydedilir. Bu genellikle varlıkların sorgulandığı, istemciye gönderildiği, değiştirildiği, bir istekte sunucuya geri gönderildiği ve ardından kaydedildiği bir Web uygulaması gibi "bağlantısı kesik" senaryolarda meydana gelir. Bu durumda, ikinci bağlam örneğinin varlıkların yeni (eklenmelidir) mi yoksa mevcut mi (güncelleştirilmesi gerekir) olduğunu bilmeleri gerekir.
 
-> [!TIP]  
-> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Disconnected/) GitHub üzerinde.
+<!-- markdownlint-disable MD028 -->
+> [!TIP]
+> Bu makalenin [örneğini](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Disconnected/) GitHub ' da görebilirsiniz.
 
 > [!TIP]
 > EF Core, belirli bir birincil anahtar değeri olan herhangi bir varlığın yalnızca bir örneğini izleyebilir. Bu sorunu önlemenin en iyi yolu, her iş birimi için, içeriğin boş başlaması, kendisine iliştirilmiş varlıklar olması, bu varlıkları kaydettiğinden ve sonra bağlamın atılacağını ve atılmasına yönelik kısa süreli bir bağlam kullanmaktır.
+<!-- markdownlint-enable MD028 -->
 
 ## <a name="identifying-new-entities"></a>Yeni varlıkları tanımlama
 
@@ -50,8 +52,9 @@ Bununla birlikte, EF aynı zamanda herhangi bir varlık türü ve anahtar türü
 ### <a name="with-other-keys"></a>Diğer anahtarlarla
 
 Anahtar değerleri otomatik olarak oluşturulmadığında yeni varlıkları tanımlamak için başka bir mekanizma gerekir. Bunun için iki genel yaklaşım vardır:
- * Varlık için sorgu
- * İstemciden bir bayrak geçirin
+
+* Varlık için sorgu
+* İstemciden bir bayrak geçirin
 
 Varlığı sorgulamak için Find metodunu kullanmanız yeterlidir:
 
@@ -74,11 +77,12 @@ Update yöntemi, normal olarak güncelleştirme için varlığı, INSERT değil 
 > [!TIP]  
 > Bu davranış EF Core 2,0 ' de tanıtılmıştı. Daha önceki sürümlerde, açıkça Ekle veya Güncelleştir ' i seçmek için her zaman gereklidir.
 
-Varlık otomatik olarak oluşturulan anahtarları kullanmıyor ise, uygulamanın varlığın eklenip eklenmeyeceğine veya güncelleştirilmesine karar vermelidir: Örneğin:
+Varlık otomatik olarak oluşturulan anahtarları kullanmıyor ise, uygulamanın varlığın eklenip eklenmeyeceğini veya güncelleştirilip güncelleştirilmediğini kararı vermelidir: Örneğin:
 
 [!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#InsertOrUpdateSingleEntityWithFind)]
 
 Buradaki adımlar şunlardır:
+
 * Find null döndürürse, veritabanı bu KIMLIĞE sahip blogu zaten içermez, bu nedenle ekleme öğesini çağırıyoruz.
 * Bul bir varlık döndürürse, veritabanında bulunur ve bağlam artık var olan varlığı izliyor
   * Daha sonra bu varlıktaki tüm özelliklerin değerlerini istemciden gelen değerlere ayarlamak için SetValues kullanılır.

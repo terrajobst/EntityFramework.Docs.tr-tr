@@ -1,16 +1,16 @@
 ---
 title: Azure Cosmos DB sağlayıcı-yapılandırılmamış verilerle çalışma-EF Core
+description: Entity Framework Core kullanarak Azure Cosmos DB yapılandırılmamış verilerle çalışma
 author: AndriySvyryd
 ms.author: ansvyryd
-ms.date: 09/12/2019
-ms.assetid: b47d41b6-984f-419a-ab10-2ed3b95e3919
+ms.date: 11/05/2019
 uid: core/providers/cosmos/unstructured-data
-ms.openlocfilehash: 86bb0f7915c8a2561e7d5cd5dffc27474218a112
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: 0bfccbfd3af6e209967004752b5a3947d644544b
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71150818"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655511"
 ---
 # <a name="working-with-unstructured-data-in-ef-core-azure-cosmos-db-provider"></a>EF Core Azure Cosmos DB sağlayıcısında yapılandırılmamış verilerle çalışma
 
@@ -18,19 +18,18 @@ EF Core modelde tanımlanan bir şemayı izleyen verilerle çalışmayı kolayla
 
 ## <a name="accessing-the-raw-json"></a>Ham JSON 'a erişme
 
-Mağaza 'dan alınan verileri ve depolanacak verileri temsil eden adlı `"__jObject"` [Gölge durumundaki](../../modeling/shadow-properties.md) özel bir `JObject` özellik aracılığıyla EF Core tarafından izlenmeyen özelliklere erişmek mümkündür:
+Mağaza 'dan alınan verileri ve depolanacak verileri temsil eden bir `JObject` içeren `"__jObject"` adlı [Gölge durumda](../../modeling/shadow-properties.md) EF Core tarafından izlenmeyen özelliklere erişmek mümkündür:
 
-[!code-csharp[Unmapped](../../../../samples/core/Cosmos/UnstructuredData/Sample.cs?highlight=21-23&name=Unmapped)]
+[!code-csharp[Unmapped](../../../../samples/core/Cosmos/UnstructuredData/Sample.cs?highlight=23,24&name=Unmapped)]
 
 ``` json
 {
     "Id": 1,
-    "Discriminator": "Order",
+    "PartitionKey": "1",
     "TrackingNumber": null,
-    "id": "Order|1",
+    "id": "1",
     "Address": {
         "ShipsToCity": "London",
-        "Discriminator": "StreetAddress",
         "ShipsToStreet": "221 B Baker St"
     },
     "_rid": "eLMaAK8TzkIBAAAAAAAAAA==",
@@ -43,24 +42,24 @@ Mağaza 'dan alınan verileri ve depolanacak verileri temsil eden adlı `"__jObj
 ```
 
 > [!WARNING]
-> `"__jObject"` Özelliği EF Core altyapısının bir parçasıdır ve bu özellik, gelecekteki sürümlerde farklı davranışa sahip olmak büyük olasılıkla son çare olarak kullanılmalıdır.
+> `"__jObject"` özelliği EF Core altyapısının bir parçasıdır ve yalnızca gelecekteki sürümlerde farklı davranışları olması olası bir son çare olarak kullanılmalıdır.
 
 > [!NOTE]
-> Varlıktaki değişiklikler, içinde `"__jObject"` `SaveChanges`depolanan değerleri geçersiz kılar.
+> Varlıkta yapılan değişiklikler, `SaveChanges`sırasında `"__jObject"` depolanan değerleri geçersiz kılar.
 
 ## <a name="using-cosmosclient"></a>CosmosClient kullanma
 
-EF Core tamamen [ayırmak için Azure Cosmos DB SDK 'sının parçası](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-get-started) `DbContext`olan `CosmosClient` nesneyi şuradan alın:
+EF Core tamamen ayırmak için, `DbContext`[Azure Cosmos DB SDK 'sının parçası](/azure/cosmos-db/sql-api-get-started) olan [CosmosClient](/dotnet/api/Microsoft.Azure.Cosmos.CosmosClient) nesnesini alın:
 
 [!code-csharp[CosmosClient](../../../../samples/core/Cosmos/UnstructuredData/Sample.cs?highlight=3&name=CosmosClient)]
 
 ## <a name="missing-property-values"></a>Özellik değerleri eksik
 
-Önceki örnekte, `"TrackingNumber"` özelliği siparişten kaldırdık. Dizin oluşturmanın Cosmos DB çalışma biçimi nedeniyle, projeksiyondan farklı bir yerde eksik özelliğe başvuruda bulunan sorgular beklenmeyen sonuçlar döndürebilir. Örneğin:
+Önceki örnekte `"TrackingNumber"` özelliğini siparişten kaldırdık. Dizin oluşturmanın Cosmos DB çalışma biçimi nedeniyle, projeksiyondan farklı bir yerde eksik özelliğe başvuruda bulunan sorgular beklenmeyen sonuçlar döndürebilir. Örneğin:
 
 [!code-csharp[MissingProperties](../../../../samples/core/Cosmos/UnstructuredData/Sample.cs?name=MissingProperties)]
 
 Sıralanmış sorgu aslında sonuç döndürmez. Bu, bir tane, mağaza ile doğrudan çalışırken EF Core tarafından eşlenen özelliklerin her zaman doldurulmasıdır.
 
 > [!NOTE]
-> Bu davranış, Cosmos 'nin gelecek sürümlerinde değişebilir. Örneğin, şu anda dizin oluşturma ilkesi Birleşik Dizin {ID/? ' i tanımlıyorsa ASC, TrackingNumber/? ASC)}, sonra ' order by c.ID ASC, c. ayrıştırıcı ASC ' olan bir sorgu, `"TrackingNumber"` özelliği eksik olan öğeleri döndürür.
+> Bu davranış, Cosmos 'nin gelecek sürümlerinde değişebilir. Örneğin, şu anda dizin oluşturma ilkesi Birleşik Dizin {ID/? ' i tanımlıyorsa ASC, TrackingNumber/? ASC)}, sonra ' ORDER BY c.Id ASC, c. ayrıştırıcı ASC ' olan bir sorgu `"TrackingNumber"` özelliği eksik olan __öğeleri döndürür.__

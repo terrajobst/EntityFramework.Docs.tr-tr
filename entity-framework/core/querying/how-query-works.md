@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 09/26/2018
 ms.assetid: de2e34cd-659b-4cab-b5ed-7a979c6bf120
 uid: core/querying/how-query-works
-ms.openlocfilehash: bc085755f39b1288f092a8b2df892c1bf82a89f1
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: ba0d68469530e6272ffbb51946d7856122a261c7
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72186269"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656249"
 ---
 # <a name="how-queries-work"></a>Sorgular nasıl çalışır?
 
@@ -33,15 +33,16 @@ Aşağıda her bir sorgunun gittiği işleme ilişkin üst düzey bir genel bak�
       * Varsa, var olan varlık döndürülür <sup>(1)</sup>
       * Aksi takdirde, yeni bir varlık oluşturulur ve döndürülür
 
-<sup>(1)</sup> izleme sorgusu, önceden Döndürülmüş varlıkların izlenmesini sağlamak için zayıf başvurular kullanır. Aynı kimliğe sahip önceki bir sonuç kapsam dışına gittiğinde ve çöp toplama işlemi çalıştırıyorsa, yeni bir varlık örneği alabilirsiniz.
+<sup>(1)</sup> hiçbir izleme sorgusu, zaten döndürülen varlıkların izlenmesini sağlamak için zayıf başvurular kullanır. Aynı kimliğe sahip önceki bir sonuç kapsam dışına gittiğinde ve çöp toplama işlemi çalıştırıyorsa, yeni bir varlık örneği alabilirsiniz.
 
 ## <a name="when-queries-are-executed"></a>Sorgular yürütüldüğünde
 
 LINQ işleçlerini çağırdığınızda sorgunun bellek içi gösterimini oluşturursunuz. Sorgu yalnızca sonuçlar tüketiliyorsa veritabanına gönderilir.
 
 Veritabanına gönderilen sorgunun sonucu olan en yaygın işlemler şunlardır:
+
 * Sonuçları bir `for` döngüsünde yineleme
-* @No__t-0, `ToArray`, `Single`, `Count` gibi bir işleç kullanarak
+* `ToList`, `ToArray`, `Single`, `Count` gibi bir işleç kullanma
 * Sorgunun sonuçlarını Kullanıcı arabirimine bağlama
 
 > [!WARNING]  

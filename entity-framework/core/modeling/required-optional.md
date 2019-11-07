@@ -4,27 +4,27 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: ddaa0a54-9f43-4c34-aae3-f95c96c69842
 uid: core/modeling/required-optional
-ms.openlocfilehash: fd9e96e6f79965e63b07c21217edd004fd5c4d54
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: 62b2b3f5a761c0aacece986ecd0b2dd2f958d048
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197840"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655658"
 ---
-# <a name="required-and-optional-properties"></a>Gerekli ve Isteğe bağlı özellikler
+# <a name="required-and-optional-properties"></a>Gerekli ve İsteğe Bağlı Özellikler
 
-Özelliği, içermesi `null`için geçerliyse, isteğe bağlı olarak kabul edilir. `null` Bir özelliğe atanacak geçerli bir değer değilse, gerekli bir özellik olarak kabul edilir.
+Özelliği, `null`içermesi için geçerliyse, isteğe bağlı olarak kabul edilir. `null` bir özelliğe atanacak geçerli bir değer değilse, gerekli bir özellik olarak kabul edilir.
 
 İlişkisel bir veritabanı şemasına eşleme yaparken, gerekli özellikler null yapılamayan sütunlar olarak oluşturulur ve isteğe bağlı özellikler null yapılabilir sütunlar olarak oluşturulur.
 
 ## <a name="conventions"></a>Kurallar
 
-Kurala göre, .NET türü null içerebilen bir özellik isteğe bağlı olarak yapılandırılır, ancak .NET türü null değer içermeyen özellikler gerekli olarak yapılandırılır. Örneğin, .net değer türleri (`int`, `decimal`, `bool`vb.) olan tüm özellikler gerekli olarak yapılandırılır ve Nullable .net değer türleri (`int?`, `decimal?`, `bool?`vb.) olan tüm özellikler isteğe bağlı olarak yapılandırılır.
+Kurala göre, .NET türü null içerebilen bir özellik isteğe bağlı olarak yapılandırılır, ancak .NET türü null değer içermeyen özellikler gerekli olarak yapılandırılır. Örneğin, .NET değer türleri (`int`, `decimal`, `bool`, vb.) olan tüm özellikler gerekli olarak yapılandırılır ve null yapılabilir .NET değer türleri (`int?`, `decimal?`, `bool?`, vb.) tüm özellikler isteğe bağlı olarak yapılandırılır.
 
 C#8, başvuru türlerinin açıklanmasına izin veren, null [olabilen başvuru](/dotnet/csharp/tutorials/nullable-reference-types)türleri olarak adlandırılan yeni bir özellik sunmuştur. Bu özellik varsayılan olarak devre dışıdır ve etkinleştirilirse, EF Core davranışını aşağıdaki şekilde değiştirir:
 
 * Null yapılabilir başvuru türleri devre dışıysa (varsayılan), .NET başvuru türleri olan tüm özellikler, kurala göre isteğe bağlı olarak yapılandırılır (ör. `string`).
-* Null yapılabilir başvuru türleri etkinleştirilirse, Özellikler .net türlerinden C# null değer verilebilirliği temel alınarak yapılandırılır: `string?` isteğe bağlı olarak yapılandırılır, ancak `string` gerekli olarak yapılandırılır.
+* Null yapılabilir başvuru türleri etkinleştirilirse, Özellikler .NET türlerinden C# null değer verilebilirliği temel alınarak yapılandırılır: `string?` isteğe bağlı olarak yapılandırılır, ancak `string` gerekli olarak yapılandırılır.
 
 Aşağıdaki örnek, null olabilen başvuru özelliği devre dışı (varsayılan) ve etkin olarak, gerekli ve isteğe bağlı özelliklerle bir varlık türü gösterir.
 
@@ -53,7 +53,7 @@ Kurala göre isteğe bağlı olacak bir özellik, aşağıdaki gibi gerekli olac
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Required.cs?highlight=14)]
 
-# <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api) 
+# <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Required.cs?highlight=11-13)]
 

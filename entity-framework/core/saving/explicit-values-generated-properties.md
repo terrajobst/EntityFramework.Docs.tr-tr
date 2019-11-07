@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 3f1993c2-cdf5-425b-bac2-a2665a20322b
 uid: core/saving/explicit-values-generated-properties
-ms.openlocfilehash: d6aa9a0a9ce34e09a39026ad7ea9195b6777858c
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: ea469b9b7199cc767b2d0da1a5999026f938d087
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197863"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656256"
 ---
 # <a name="setting-explicit-values-for-generated-properties"></a>Oluşturulan özellikler için açık değerler ayarlanıyor
 
@@ -18,23 +18,24 @@ Oluşturulan özellik, varlık eklendiğinde ve/veya güncelleştirilirken değe
 Oluşturulmuş bir özellik için, oluşturulması yerine açık bir değer ayarlamak istediğiniz durumlar olabilir.
 
 > [!TIP]  
-> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/ExplicitValuesGenerateProperties/) GitHub üzerinde.
+> Bu makalenin [örneğini](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/ExplicitValuesGenerateProperties/) GitHub ' da görebilirsiniz.
 
 ## <a name="the-model"></a>Model
 
-Bu makalede kullanılan model tek `Employee` bir varlık içerir.
+Bu makalede kullanılan model tek bir `Employee` varlığı içerir.
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/Employee.cs#Sample)]
 
 ## <a name="saving-an-explicit-value-during-add"></a>Ekleme sırasında açık bir değer kaydetme
 
-`Employee.EmploymentStarted` Özelliği, yeni varlıklar için veritabanı tarafından oluşturulan değerlere sahip olacak şekilde yapılandırılır (varsayılan değer kullanılarak).
+`Employee.EmploymentStarted` özelliği, yeni varlıklar için veritabanı tarafından oluşturulan değerlere sahip olacak şekilde yapılandırılır (varsayılan değer kullanılarak).
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/EmployeeContext.cs#EmploymentStarted)]
 
 Aşağıdaki kod veritabanına iki çalışan ekler.
-* İlki için, `Employee.EmploymentStarted` özelliğe hiçbir değer atanmaz, bu nedenle için `DateTime`clr varsayılan değerine ayarlanır.
-* İkincisi için açık bir değer `1-Jan-2000`belirledik.
+
+* İlki için, `Employee.EmploymentStarted` özelliğine hiçbir değer atanmaz, bu nedenle `DateTime`için CLR varsayılan değerine ayarlanır.
+* İkincisi, `1-Jan-2000`açık bir değer belirledik.
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/Sample.cs#EmploymentStarted)]
 
@@ -47,9 +48,9 @@ Aşağıdaki kod veritabanına iki çalışan ekler.
 
 ### <a name="explicit-values-into-sql-server-identity-columns"></a>SQL Server KIMLIK sütunlarına açık değerler
 
-Kurala göre özelliği `Employee.EmployeeId` , bir depo tarafından oluşturulan `IDENTITY` sütundur.
+Kurala göre `Employee.EmployeeId` özelliği bir depo `IDENTITY` sütunu olarak oluşturulur.
 
-Çoğu durumda, yukarıda gösterilen yaklaşım anahtar özellikleri için çalışacaktır. Ancak, SQL Server `IDENTITY` sütununa açık değerler eklemek için çağrılmadan `SaveChanges()`önce el ile etkinleştirmeniz `IDENTITY_INSERT` gerekir.
+Çoğu durumda, yukarıda gösterilen yaklaşım anahtar özellikleri için çalışacaktır. Ancak, bir SQL Server `IDENTITY` sütununa açık değerler eklemek için, `SaveChanges()`çağrılmadan önce `IDENTITY_INSERT` el ile etkinleştirmeniz gerekir.
 
 > [!NOTE]  
 > Kapsamımızda SQL Server sağlayıcısı içinde otomatik olarak bunu yapması için bir [özellik isteği](https://github.com/aspnet/EntityFramework/issues/703) sunuyoruz.
@@ -65,7 +66,7 @@ Kurala göre özelliği `Employee.EmployeeId` , bir depo tarafından oluşturula
 
 ## <a name="setting-an-explicit-value-during-update"></a>Güncelleştirme sırasında açık bir değer ayarlama
 
-`Employee.LastPayRaise` Özelliği, güncelleştirmeler sırasında veritabanı tarafından oluşturulan değerlere sahip olacak şekilde yapılandırılmıştır.
+`Employee.LastPayRaise` özelliği, güncelleştirmeler sırasında veritabanı tarafından oluşturulan değerlere sahip olacak şekilde yapılandırılmıştır.
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/EmployeeContext.cs#LastPayRaise)]
 
@@ -73,14 +74,15 @@ Kurala göre özelliği `Employee.EmployeeId` , bir depo tarafından oluşturula
 > Varsayılan olarak, güncelleştirme sırasında oluşturulacak şekilde yapılandırılmış bir özellik için açık bir değer kaydetmeye çalışırsanız, EF Core bir özel durum oluşturur. Bunu önlemek için, alt düzey meta veri API 'sine aşağı doğru açmanız ve `AfterSaveBehavior` (yukarıda gösterildiği gibi) ayarlamanız gerekir.
 
 > [!NOTE]  
-> **EF Core 2,0 değişiklikleri:** Önceki sürümlerde, After-Save davranışı `IsReadOnlyAfterSave` bayrağı aracılığıyla denetlenir. Bu bayrak kullanımdan kaldırılmıştır ve tarafından `AfterSaveBehavior`değiştirildi.
+> **EF Core 2,0 değişiklikleri:** Önceki sürümlerde, sonra Kaydet davranışı `IsReadOnlyAfterSave` bayrağıyla denetlenir. Bu bayrak kullanımdan kaldırılmıştır ve `AfterSaveBehavior`tarafından değiştirildi.
 
-Ayrıca, işlemler sırasında `LastPayRaise` `UPDATE` sütun için değerler oluşturmak üzere veritabanında bir tetikleyici de vardır.
+Ayrıca, `UPDATE` işlemleri sırasında `LastPayRaise` sütunu için değerler oluşturmak üzere veritabanında bir tetikleyici de vardır.
 
 [!code-sql[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/employee_UPDATE.sql)]
 
 Aşağıdaki kod, veritabanında iki çalışanın maaşını artırır.
-* İlki için, hiçbir değer `Employee.LastPayRaise` özelliğe atanmaz, bu nedenle null olarak ayarlanır.
+
+* İlki için, `Employee.LastPayRaise` özelliğine hiçbir değer atanmaz, bu nedenle null olarak ayarlanır.
 * İkincisi için bir hafta önce açık bir değer belirledik (ödeme yapını geri alıyorsunuz).
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/Sample.cs#LastPayRaise)]

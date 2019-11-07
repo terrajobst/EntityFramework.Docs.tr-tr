@@ -3,12 +3,13 @@ title: Entity Framework son sürümleri-EF6
 author: divega
 ms.date: 09/12/2019
 ms.assetid: 1060bb99-765f-4f32-aaeb-d6635d3dbd3e
-ms.openlocfilehash: 478dec6b2401efd554e84a231fe78e71dcbf5771
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+uid: ef6/what-is-new/past-releases
+ms.openlocfilehash: fada7740453cd9a55a1d0069236efcecbd9aa314
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182115"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73656134"
 ---
 # <a name="past-releases-of-entity-framework"></a>Entity Framework geçmiş sürümleri
 
@@ -50,15 +51,15 @@ EF 6,2 çalışma zamanını etkileyen en önemli değişikliklerin kısa bir li
 - Migrate. exe artık-Script seçeneğini destekliyor [#240](https://github.com/aspnet/EntityFramework6/issues/240)
 - EF6, artık SQL Server bir sıra tarafından oluşturulan anahtar değerleriyle çalışabilir [#165](https://github.com/aspnet/EntityFramework6/issues/165)
 - SQL Azure yürütme stratejisi için geçici hataların listesini güncelleştirin [#83](https://github.com/aspnet/EntityFramework6/issues/83)
-- Tiva Sorgular veya SQL komutlarının yeniden denenme işlemi "SqlParameter zaten başka bir SqlParameterCollection tarafından bulunuyor" [#81](https://github.com/aspnet/EntityFramework6/issues/81)
-- Tiva DbQuery. ToString (), hata ayıklayıcıda sıklıkla zaman aşımına uğruyor [#73](https://github.com/aspnet/EntityFramework6/issues/73)
+- Hata: sorguları veya SQL komutlarını yeniden deneme "SqlParameter zaten başka bir SqlParameterCollection tarafından bulunuyor" [#81](https://github.com/aspnet/EntityFramework6/issues/81)
+- Hata: DbQuery. ToString (), hata ayıklayıcıda sık sık zaman aşımına uğruyor [#73](https://github.com/aspnet/EntityFramework6/issues/73)
 
 ## <a name="ef-613"></a>EF 6.1.3
 EF 6.1.3 Runtime, Ekim 2015 ' de NuGet 'e yayımlandı.
 Bu sürüm yalnızca, 6.1.2 sürümünde bildirilen yüksek öncelikli kusurların ve gerilemelerin düzeltmelerini içerir.
 Düzeltmeler şunlardır:
 
-- Sorgu: EF 6.1.2 'ta gerileme: DıŞ uygulama, 1:1 ilişkiler ve "Let" yan tümcesi için tanıtılan ve daha karmaşık sorguları uygular
+- Sorgu: EF 'de gerileme 6.1.2: dış uygulama, 1:1 ilişkiler ve "Let" yan tümcesi için tanıtılan ve daha karmaşık sorgular
 - Devralınan sınıftaki temel sınıf özelliğini gizleme ile TPT sorunu
 - DbMigration. SQL, metinde ' Go ' sözcüğü dahil edildiğinde başarısız olur
 - UnionAll ve Intersect düzleştirme desteği için uyumluluk bayrağı oluştur
@@ -79,7 +80,7 @@ Bu sürüm çoğunlukla hata düzeltmeleri hakkında. Ayrıca, Topluluk üyeleri
 ## <a name="ef-611"></a>EF 6.1.1
 EF 6.1.1 Runtime, Haziran 2014 ' de NuGet 'e yayımlandı.
 Bu sürüm, bir dizi kişinin karşılaştığı sorunlara yönelik düzeltmeler içerir. Diğerleri arasında:
-- Layana EF6 tasarımcısında Decimal Precision EF5 edmx açılırken hata oluştu
+- Tasarımcı: EF6 tasarımcısında Decimal Precision EF5 edmx açılırken hata oluştu
 - LocalDB için varsayılan örnek algılama mantığı SQL Server 2014 ile çalışmıyor
 
 ## <a name="ef-610"></a>EF 6.1.0
@@ -125,7 +126,7 @@ Aşağıdaki özellikler Code First veya EF Designer ile oluşturulan modeller i
 - **.Net 4,0 ' de numaralandırmalar, uzamsal ve daha Iyi performans** -.NET Framework olması için kullanılan çekırdek bileşenleri EF NuGet paketine taşıyarak, artık .NET 4,0 üzerinde EF5 adresinden enum desteği, uzamsal veri türleri ve performans iyileştirmeleri sunabilebiliyoruz.
 - **Sıralanabilir. LINQ sorgularında gelişmiş performans performansı**.
 - Özellikle büyük modeller için **geliştirilmiş ısınma süresi (görünüm oluşturma)** .
-- **Takılabilir @no__t, 1**. ve daha fazla Çalıştır Hizmeti.
+- **Takılabilir &amp;, eklenebilir bir hizmet**.
 - Varlık sınıflarında **eşittir veya GetHashCode özel uygulamaları** artık desteklenmektedir.
 - **Dbset. AddRange/RemoveRange** bir kümeden birden çok varlık eklemek veya kaldırmak için iyileştirilmiş bir yol sağlar.
 - **Dbchangetracker. HasChanges** , veritabanına kaydedilecek bekleyen değişiklikler olup olmadığını görmek için kolay ve etkili bir yol sağlar.
@@ -138,11 +139,11 @@ Aşağıdaki özellikler yalnızca Code First için geçerlidir:
 - **[Idempotent geçişleri betikleri](~/ef6/modeling/code-first/migrations/index.md)** , herhangi bir sürümdeki bir veritabanını en son sürüme yükseltebilmeniz IÇIN bir SQL betiği oluşturmanıza olanak sağlar.
 - **[Yapılandırılabilir geçişler geçmişi tablosu](~/ef6/modeling/code-first/migrations/history-customization.md)** , geçişleri geçmiş tablosunun tanımını özelleştirmenizi sağlar. Bu özellikle, geçişler geçmiş tablosunun doğru şekilde çalışması için uygun veri türleri vb. gerektiren veritabanı sağlayıcıları için yararlıdır.
 - **Veritabanı başına birden çok bağlam** , geçişleri kullanırken veya Code First veritabanını otomatik olarak oluştururken veritabanı başına bir Code First modelinin önceki sınırlamasını kaldırır.
-- **[Dbmodelbuilder. HasDefaultSchema](~/ef6/modeling/code-first/fluent/types-and-properties.md)** , bir Code First modelinin varsayılan veritabanı şemasının tek bir yerde yapılandırılmasına izin veren yeni BIR Code First API 'sidir. Daha önce Code First varsayılan şeması, &quot;dbo @ no__t-1 ve bir tablonun ait olduğu şemayı, ToTable API 'SI aracılığıyla yapılandırmanın tek yolu ile sabit olarak kodlanmıştır.
+- **[Dbmodelbuilder. HasDefaultSchema](~/ef6/modeling/code-first/fluent/types-and-properties.md)** , bir Code First modelinin varsayılan veritabanı şemasının tek bir yerde yapılandırılmasına izin veren yeni BIR Code First API 'sidir. Daha önce Code First varsayılan şeması, &quot;dbo&quot; ve bir tablonun ait olduğu şemayı ToTable API 'SI aracılığıyla yapılandırmanın tek yolunu yapılandırmak için sabit kodlandı.
 - **Dbmodelbuilder. Configurations. AddFromAssembly yöntemi** , Code FIRST akıcı API ile yapılandırma sınıfları kullandığınızda bir derlemede tanımlanan tüm yapılandırma sınıflarını kolayca eklemenize olanak tanır.
 - **[Özel geçiş işlemleri](https://romiller.com/2013/02/27/ef6-writing-your-own-code-first-migration-operations/)** , kod tabanlı geçişlerde kullanılacak ek işlemler eklemenizi sağlar.
 - **Varsayılan işlem yalıtım düzeyi** , Code First kullanılarak oluşturulan VERITABANLARı için READ_COMMITTED_SNAPSHOT olarak değiştirilir ve daha fazla ölçeklenebilirlik ve daha az kilitlenme sağlar.
-- **Varlık ve karmaşık türler artık nestedinsıde sınıfları olabilir**. |
+- **Varlık ve karmaşık türler artık nestedinsıde sınıfları olabilir**.
 
 ## <a name="ef-50"></a>EF 5,0
 EF 5.0.0 Runtime, Ağustos 2012 ' de NuGet 'e yayımlandı.
@@ -150,7 +151,7 @@ Bu sürüm, sabit listesi desteği, tablo değerli işlevler, uzamsal veri türl
 
 Visual Studio 2012 ' de Entity Framework Designer, model başına birden çok diyagram, Tasarım yüzeyinde şekillerin renklendirmesi ve saklı yordamların Toplu içe aktarılması için destek sunar.
 
-Bu, özellikle EF 5 sürümü için birlikte koyduğumuz içeriğin bir listesi.
+EF 5 sürümü için özel olarak birlikte koyduğumuz içeriğin bir listesi aşağıda verilmiştir:
 
 -   [EF 5 yayın gönderisi](https://blogs.msdn.com/b/adonet/archive/2012/08/15/ef5-released.aspx)
 -   EF5 'deki yeni özellikler
@@ -217,7 +218,7 @@ Bu, özellikle EF 5 sürümü için birlikte koyduğumuz içeriğin bir listesi.
 EF 4.3.1 Runtime, AŞV 4.3.0 sonrasında 2012 Şubat ayında NuGet 'e yayımlandı.
 Bu düzeltme eki sürümü, EF 4,3 sürümüne bazı hata düzeltmeleri içeriyordu ve Visual Studio 2012 ile EF 4,3 kullanan müşteriler için daha iyi LocalDB desteği getirmiştir.
 
-EF 4.3.1 Release 'e özellikle birlikte koyduğumuz içeriğin bir listesi aşağıda EF 4,1 için belirtilen içeriğin çoğu da EF 4,3 ' de geçerlidir.
+EF 4.3.1 Release 'e özellikle birlikte koyduğumuz içeriğin bir listesi aşağıda EF 4,1 için belirtilen içeriğin çoğu da EF 4,3 ' de geçerlidir:
 
 -   [EF 4.3.1 Release blog gönderisi](https://blogs.msdn.com/b/adonet/archive/2012/02/29/ef4-3-1-and-ef5-beta-1-available-on-nuget.aspx)
 
@@ -235,7 +236,7 @@ EF 4.2.0 Runtime, Kasım 2011 ' de NuGet 'e yayımlandı.
 Bu sürüm, EF 4.1.1 sürümüne hata düzeltmeleri içerir.
 Bu yayında yalnızca hata düzeltmeleri bulunduğundan, EF 4.1.2 Patch sürümü olabilir, ancak 4.1. x yayınlarında kullandığımız Tarih tabanlı düzeltme eki sürüm numaralarının dışında hareket etmemizi ve s için [semantik Versionsing](https://semver.org) standardını benimsememizi sağlamak üzere 4,2 ' a geçmek zorunda olduğumuz emanit sürümü oluşturma.
 
-EF 4,2 sürümü için bir araya koyduğumuz içeriğin bir listesi aşağıdadır. EF 4,1 için sunulan içerik hala EF 4,2 için de geçerlidir.
+Yalnızca EF 4,2 sürümü için birlikte koyduğumuz içerik listesi, EF 4,1 için sunulan içerik yine de EF 4,2 için geçerlidir:
 
 -   [EF 4,2 yayın gönderisi](https://blogs.msdn.com/b/adonet/archive/2011/11/01/ef-4-2-released.aspx)
 -   [Code First Izlenecek yol](https://blogs.msdn.com/b/adonet/archive/2011/09/28/ef-4-2-code-first-walkthrough.aspx)

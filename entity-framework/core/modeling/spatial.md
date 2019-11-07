@@ -5,12 +5,12 @@ ms.author: bricelam
 ms.date: 11/01/2018
 ms.assetid: 2BDE29FC-4161-41A0-841E-69F51CCD9341
 uid: core/modeling/spatial
-ms.openlocfilehash: cced53edadb890e4e86753ec2628218ffc4d1d5b
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 335d4f3a601624f7c994b7dcacefe4ef6798beb3
+ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181386"
+ms.lasthandoff: 11/06/2019
+ms.locfileid: "73655605"
 ---
 # <a name="spatial-data"></a>Uzamsal veriler
 
@@ -32,7 +32,7 @@ Npgsql. EntityFrameworkCore. PostgreSQL   | [Npgsql. EntityFrameworkCore. Postgr
 
 ## <a name="reverse-engineering"></a>Tersine mühendislik
 
-Uzamsal NuGet paketleri de uzamsal özelliklerle [ters mühendislik](../managing-schemas/scaffolding.md) modellerini etkinleştirir, ancak `Scaffold-DbContext` veya `dotnet ef dbcontext scaffold` ' i çalıştırmadan ***önce*** paketi yüklemeniz gerekir. Bunu yapmazsanız, sütunlar için tür eşlemelerini bulmayın hakkında uyarılar alırsınız ve sütunlar atlanır.
+Uzamsal NuGet paketleri de uzamsal özelliklerle [ters mühendislik](../managing-schemas/scaffolding.md) modellerini etkinleştirir, ancak `Scaffold-DbContext` veya `dotnet ef dbcontext scaffold`çalıştırmadan ***önce*** paketi yüklemeniz gerekir. Bunu yapmazsanız, sütunlar için tür eşlemelerini bulmayın hakkında uyarılar alırsınız ve sütunlar atlanır.
 
 ## <a name="nettopologysuite-nts"></a>Nettopologyısuite (bir)
 
@@ -46,7 +46,7 @@ optionsBuilder.UseSqlServer(
     x => x.UseNetTopologySuite());
 ```
 
-Birçok uzamsal veri türü vardır. Kullandığınız tür, izin vermek istediğiniz şekillerin türüne bağlıdır. Modelinizdeki özellikler için kullanabileceğiniz, bu türlerin hiyerarşisi aşağıda verilmiştir. @No__t-0 ad alanı içinde bulunur.
+Birçok uzamsal veri türü vardır. Kullandığınız tür, izin vermek istediğiniz şekillerin türüne bağlıdır. Modelinizdeki özellikler için kullanabileceğiniz, bu türlerin hiyerarşisi aşağıda verilmiştir. `NetTopologySuite.Geometries` ad alanı içinde yer alır.
 
 * Geometrisi
   * Seçeneğinin
@@ -213,11 +213,11 @@ SQL Server kullanıyorsanız, bilmeniz gereken bazı ek şeyler vardır.
 
 ### <a name="geography-or-geometry"></a>Coğrafya veya geometri
 
-Varsayılan olarak, uzamsal özellikler SQL Server `geography` sütunlarına eşlenir. @No__t-0 ' ı kullanmak için modelinizdeki [sütun türünü yapılandırın](xref:core/modeling/relational/data-types) .
+Varsayılan olarak, uzamsal özellikler SQL Server `geography` sütunlara eşlenir. `geometry`kullanmak için, modelinizde [sütun türünü yapılandırın](xref:core/modeling/relational/data-types) .
 
 ### <a name="geography-polygon-rings"></a>Coğrafi Çokgen halkaları
 
-@No__t-0 sütun türü kullanılırken, SQL Server dış halkada (veya kabukta) ve iç halkalarda (veya delikleri) ek gereksinimler uygular. Dış halkasının saatin tersi yönde ve iç halkalar saat yönünde yönlendirilmelidir. Bu, verileri veritabanına göndermeden önce bunu doğrular.
+`geography` sütun türünü kullanırken, SQL Server dış halkada (veya kabukta) ve iç halkalarda (veya delikleri) ek gereksinimler uygular. Dış halkasının saatin tersi yönde ve iç halkalar saat yönünde yönlendirilmelidir. Bu, verileri veritabanına göndermeden önce bunu doğrular.
 
 ### <a name="fullglobe"></a>FullGlobe
 
@@ -244,7 +244,7 @@ brew install libspatialite
 
 ### <a name="configuring-srid"></a>SRID yapılandırma
 
-Gereksiz bir şekilde sütun başına bir SRID belirtmesi gerekir. Varsayılan SRID `0` ' dır. ForSqliteHasSrid yöntemini kullanarak farklı bir SRID belirtin.
+Gereksiz bir şekilde sütun başına bir SRID belirtmesi gerekir. Varsayılan SRID `0`. ForSqliteHasSrid yöntemini kullanarak farklı bir SRID belirtin.
 
 ``` csharp
 modelBuilder.Entity<City>().Property(c => c.Location)
@@ -271,7 +271,7 @@ Geometry. AsBinary () | ✔ | ✔ | ✔ | ✔
 Geometry. AsText () | ✔ | ✔ | ✔ | ✔
 Geometry. sınır | ✔ | | ✔ | ✔
 Geometry. Buffer (Double) | ✔ | ✔ | ✔ | ✔
-Geometry. Buffer (Double, int) | | | ✔
+Geometry. Buffer (Double, int) | | | ✔ | ✔
 Geometry. Centroıd | ✔ | | ✔ | ✔
 Geometry. Contains (geometri) | ✔ | ✔ | ✔ | ✔
 Geometry. ConvexHull () | ✔ | ✔ | ✔ | ✔
@@ -287,17 +287,17 @@ Geometry. Equalsexyasası (geometri) | | | | ✔
 Geometry. EqualsTopologically (geometri) | ✔ | ✔ | ✔ | ✔
 Geometry. GeometryType | ✔ | ✔ | ✔ | ✔
 Geometry. Getgeometrik YN (int) | ✔ | | ✔ | ✔
-Geometri. ınteriorpoint | ✔ | | ✔
+Geometri. ınteriorpoint | ✔ | | ✔ | ✔
 Geometry. kesişmesi (geometri) | ✔ | ✔ | ✔ | ✔
 Geometry. kesişme (geometri) | ✔ | ✔ | ✔ | ✔
 Geometry. IsEmpty | ✔ | ✔ | ✔ | ✔
 Geometry. IsSimple | ✔ | | ✔ | ✔
 Geometry. IsValid | ✔ | ✔ | ✔ | ✔
-Geometry. ıswithındistance (geometri, Double) | ✔ | | ✔
+Geometry. ıswithındistance (geometri, Double) | ✔ | | ✔ | ✔
 Geometry. length | ✔ | ✔ | ✔ | ✔
 Geometry. Numgeometrileri | ✔ | ✔ | ✔ | ✔
 Geometry. NumPoints | ✔ | ✔ | ✔ | ✔
-Geometry. OgcGeometryType | ✔ | ✔ | ✔
+Geometry. OgcGeometryType | ✔ | ✔ | ✔ | ✔
 Geometry. örtüşüyor (geometri) | ✔ | ✔ | ✔ | ✔
 Geometry. PointOnSurface | ✔ | | ✔ | ✔
 Geometry. Ilişkilendir (geometri, dize) | ✔ | | ✔ | ✔
@@ -307,7 +307,7 @@ Geometry. SymmetricDifference (geometri) | ✔ | ✔ | ✔ | ✔
 Geometry. ToBinary () | ✔ | ✔ | ✔ | ✔
 Geometry. ToText () | ✔ | ✔ | ✔ | ✔
 Geometry. dokunuşları (geometri) | ✔ | | ✔ | ✔
-Geometry. Union () | | | ✔
+Geometry. Union () | | | ✔ | ✔
 Geometry. Union (geometri) | ✔ | ✔ | ✔ | ✔
 Geometri. Içinde (geometri) | ✔ | ✔ | ✔ | ✔
 GeometryCollection. Count | ✔ | ✔ | ✔ | ✔
