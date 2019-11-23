@@ -10,54 +10,54 @@ ms.contentlocale: tr-TR
 ms.lasthandoff: 10/09/2019
 ms.locfileid: "72181711"
 ---
-# <a name="self-tracking-entities-walkthrough"></a><span data-ttu-id="e865c-102">Kendi kendine Izlenen varlıkları gözden geçirme</span><span class="sxs-lookup"><span data-stu-id="e865c-102">Self-Tracking Entities Walkthrough</span></span>
+# <a name="self-tracking-entities-walkthrough"></a><span data-ttu-id="99aa7-102">Kendi kendine Izlenen varlıkları gözden geçirme</span><span class="sxs-lookup"><span data-stu-id="99aa7-102">Self-Tracking Entities Walkthrough</span></span>
 > [!IMPORTANT]
-> <span data-ttu-id="e865c-103">Artık kendi kendine izleme varlıkları şablonunu kullanmanızı önermiyoruz.</span><span class="sxs-lookup"><span data-stu-id="e865c-103">We no longer recommend using the self-tracking-entities template.</span></span> <span data-ttu-id="e865c-104">Yalnızca var olan uygulamaları desteklemek için kullanılabilir olmaya devam edecektir.</span><span class="sxs-lookup"><span data-stu-id="e865c-104">It will only continue to be available to support existing applications.</span></span> <span data-ttu-id="e865c-105">Uygulamanız, bağlantısı kesilen varlıkların, topluluk tarafından daha etkin bir şekilde geliştirilen veya yazma gibi, kendi kendini Izlemeye benzer bir teknoloji olan, [izleyicileri](https://trackableentities.github.io/)olan diğer alternatifleri göz önünde bulundurun. alt düzey değişiklik izleme API 'Lerini kullanan özel kod.</span><span class="sxs-lookup"><span data-stu-id="e865c-105">If your application requires working with disconnected graphs of entities, consider other alternatives such as [Trackable Entities](https://trackableentities.github.io/), which is a technology similar to Self-Tracking-Entities that is more actively developed by the community, or writing custom code using the low-level change tracking APIs.</span></span>
+> <span data-ttu-id="99aa7-103">Artık kendi kendine izleme varlıkları şablonunu kullanmanızı önermiyoruz.</span><span class="sxs-lookup"><span data-stu-id="99aa7-103">We no longer recommend using the self-tracking-entities template.</span></span> <span data-ttu-id="99aa7-104">Yalnızca var olan uygulamaları desteklemek için kullanılabilir olmaya devam edecektir.</span><span class="sxs-lookup"><span data-stu-id="99aa7-104">It will only continue to be available to support existing applications.</span></span> <span data-ttu-id="99aa7-105">Uygulamanız, bağlantılı olmayan grafik grafiklerle çalışmayı gerektiriyorsa, bu, topluluk tarafından daha etkin bir şekilde geliştirilmiş olan ve alt düzey değişiklik izleme API 'Leri kullanılarak özel kod yazma gibi, kendini Izlemeye benzer bir teknoloji olan, [izleyicileri oluşturan varlıklar](https://trackableentities.github.io/)gibi diğer alternatifleri göz önünde bulundurun.</span><span class="sxs-lookup"><span data-stu-id="99aa7-105">If your application requires working with disconnected graphs of entities, consider other alternatives such as [Trackable Entities](https://trackableentities.github.io/), which is a technology similar to Self-Tracking-Entities that is more actively developed by the community, or writing custom code using the low-level change tracking APIs.</span></span>
 
-<span data-ttu-id="e865c-106">Bu izlenecek yol, bir Windows Communication Foundation (WCF) hizmetinin bir varlık grafiği döndüren bir işlemi kullanıma sunduğunu gösteren senaryoyu gösterir.</span><span class="sxs-lookup"><span data-stu-id="e865c-106">This walkthrough demonstrates the scenario in which a Windows Communication Foundation (WCF) service exposes an operation that returns an entity graph.</span></span> <span data-ttu-id="e865c-107">Daha sonra, bir istemci uygulaması bu grafiği yönetir ve Entity Framework kullanarak bir veritabanına güncelleştirmeleri doğrulayan ve kaydeden bir hizmet işlemine yapılan değişiklikleri gönderir.</span><span class="sxs-lookup"><span data-stu-id="e865c-107">Next, a client application manipulates that graph and submits the modifications to a service operation that validates and saves the updates to a database using Entity Framework.</span></span>
+<span data-ttu-id="99aa7-106">Bu izlenecek yol, bir Windows Communication Foundation (WCF) hizmetinin bir varlık grafiği döndüren bir işlemi kullanıma sunduğunu gösteren senaryoyu gösterir.</span><span class="sxs-lookup"><span data-stu-id="99aa7-106">This walkthrough demonstrates the scenario in which a Windows Communication Foundation (WCF) service exposes an operation that returns an entity graph.</span></span> <span data-ttu-id="99aa7-107">Daha sonra, bir istemci uygulaması bu grafiği yönetir ve Entity Framework kullanarak bir veritabanına güncelleştirmeleri doğrulayan ve kaydeden bir hizmet işlemine yapılan değişiklikleri gönderir.</span><span class="sxs-lookup"><span data-stu-id="99aa7-107">Next, a client application manipulates that graph and submits the modifications to a service operation that validates and saves the updates to a database using Entity Framework.</span></span>
 
-<span data-ttu-id="e865c-108">Bu yönergeyi tamamlamadan önce, [kendi kendine Izleme varlıkları](index.md) sayfasını okuduğunuzdan emin olun.</span><span class="sxs-lookup"><span data-stu-id="e865c-108">Before completing this walkthrough make sure you read the [Self-Tracking Entities](index.md) page.</span></span>
+<span data-ttu-id="99aa7-108">Bu yönergeyi tamamlamadan önce, [kendi kendine Izleme varlıkları](index.md) sayfasını okuduğunuzdan emin olun.</span><span class="sxs-lookup"><span data-stu-id="99aa7-108">Before completing this walkthrough make sure you read the [Self-Tracking Entities](index.md) page.</span></span>
 
-<span data-ttu-id="e865c-109">Bu izlenecek yol aşağıdaki eylemleri tamamlar:</span><span class="sxs-lookup"><span data-stu-id="e865c-109">This walkthrough completes the following actions:</span></span>
+<span data-ttu-id="99aa7-109">Bu izlenecek yol aşağıdaki eylemleri tamamlar:</span><span class="sxs-lookup"><span data-stu-id="99aa7-109">This walkthrough completes the following actions:</span></span>
 
--   <span data-ttu-id="e865c-110">Erişmek için bir veritabanı oluşturur.</span><span class="sxs-lookup"><span data-stu-id="e865c-110">Creates a database to access.</span></span>
--   <span data-ttu-id="e865c-111">Modeli içeren bir sınıf kitaplığı oluşturur.</span><span class="sxs-lookup"><span data-stu-id="e865c-111">Creates a class library that contains the model.</span></span>
--   <span data-ttu-id="e865c-112">Kendi kendini Izleyen varlık Oluşturucu şablonunu değiştirir.</span><span class="sxs-lookup"><span data-stu-id="e865c-112">Swaps to the Self-Tracking Entity Generator template.</span></span>
--   <span data-ttu-id="e865c-113">Varlık sınıflarını ayrı bir projeye kaydırır.</span><span class="sxs-lookup"><span data-stu-id="e865c-113">Moves the entity classes to a separate project.</span></span>
--   <span data-ttu-id="e865c-114">Varlıkları sorgulama ve kaydetme işlemlerini kullanıma sunan bir WCF hizmeti oluşturur.</span><span class="sxs-lookup"><span data-stu-id="e865c-114">Creates a WCF service that exposes operations to query and save entities.</span></span>
--   <span data-ttu-id="e865c-115">Hizmeti kullanan istemci uygulamaları (konsol ve WPF) oluşturur.</span><span class="sxs-lookup"><span data-stu-id="e865c-115">Creates client applications (Console and WPF) that consume the service.</span></span>
+-   <span data-ttu-id="99aa7-110">Erişmek için bir veritabanı oluşturur.</span><span class="sxs-lookup"><span data-stu-id="99aa7-110">Creates a database to access.</span></span>
+-   <span data-ttu-id="99aa7-111">Modeli içeren bir sınıf kitaplığı oluşturur.</span><span class="sxs-lookup"><span data-stu-id="99aa7-111">Creates a class library that contains the model.</span></span>
+-   <span data-ttu-id="99aa7-112">Kendi kendini Izleyen varlık Oluşturucu şablonunu değiştirir.</span><span class="sxs-lookup"><span data-stu-id="99aa7-112">Swaps to the Self-Tracking Entity Generator template.</span></span>
+-   <span data-ttu-id="99aa7-113">Varlık sınıflarını ayrı bir projeye kaydırır.</span><span class="sxs-lookup"><span data-stu-id="99aa7-113">Moves the entity classes to a separate project.</span></span>
+-   <span data-ttu-id="99aa7-114">Varlıkları sorgulama ve kaydetme işlemlerini kullanıma sunan bir WCF hizmeti oluşturur.</span><span class="sxs-lookup"><span data-stu-id="99aa7-114">Creates a WCF service that exposes operations to query and save entities.</span></span>
+-   <span data-ttu-id="99aa7-115">Hizmeti kullanan istemci uygulamaları (konsol ve WPF) oluşturur.</span><span class="sxs-lookup"><span data-stu-id="99aa7-115">Creates client applications (Console and WPF) that consume the service.</span></span>
 
-<span data-ttu-id="e865c-116">Bu izlenecek yolda Database First kullanacağız, ancak aynı teknikler Model First için de aynı şekilde uygulanır.</span><span class="sxs-lookup"><span data-stu-id="e865c-116">We'll use Database First in this walkthrough but the same techniques apply equally to Model First.</span></span>
+<span data-ttu-id="99aa7-116">Bu izlenecek yolda Database First kullanacağız, ancak aynı teknikler Model First için de aynı şekilde uygulanır.</span><span class="sxs-lookup"><span data-stu-id="99aa7-116">We'll use Database First in this walkthrough but the same techniques apply equally to Model First.</span></span>
 
-## <a name="pre-requisites"></a><span data-ttu-id="e865c-117">Önkoşulların önkoşulları</span><span class="sxs-lookup"><span data-stu-id="e865c-117">Pre-Requisites</span></span>
+## <a name="pre-requisites"></a><span data-ttu-id="99aa7-117">Önkoşulların önkoşulları</span><span class="sxs-lookup"><span data-stu-id="99aa7-117">Pre-Requisites</span></span>
 
-<span data-ttu-id="e865c-118">Bu izlenecek yolu tamamlamak için, Visual Studio 'nun yeni bir sürümüne ihtiyacınız olacaktır.</span><span class="sxs-lookup"><span data-stu-id="e865c-118">To complete this walkthrough you will need a recent version of Visual Studio.</span></span>
+<span data-ttu-id="99aa7-118">Bu izlenecek yolu tamamlamak için, Visual Studio 'nun yeni bir sürümüne ihtiyacınız olacaktır.</span><span class="sxs-lookup"><span data-stu-id="99aa7-118">To complete this walkthrough you will need a recent version of Visual Studio.</span></span>
 
-## <a name="create-a-database"></a><span data-ttu-id="e865c-119">Veritabanı Oluşturma</span><span class="sxs-lookup"><span data-stu-id="e865c-119">Create a Database</span></span>
+## <a name="create-a-database"></a><span data-ttu-id="99aa7-119">Veritabanı Oluşturma</span><span class="sxs-lookup"><span data-stu-id="99aa7-119">Create a Database</span></span>
 
-<span data-ttu-id="e865c-120">Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio sürümüne bağlı olarak farklılık gösteren bir sürümdür:</span><span class="sxs-lookup"><span data-stu-id="e865c-120">The database server that is installed with Visual Studio is different depending on the version of Visual Studio you have installed:</span></span>
+<span data-ttu-id="99aa7-120">Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio sürümüne bağlı olarak farklılık gösteren bir sürümdür:</span><span class="sxs-lookup"><span data-stu-id="99aa7-120">The database server that is installed with Visual Studio is different depending on the version of Visual Studio you have installed:</span></span>
 
--   <span data-ttu-id="e865c-121">Visual Studio 2012 kullanıyorsanız, LocalDB veritabanı oluşturursunuz.</span><span class="sxs-lookup"><span data-stu-id="e865c-121">If you are using Visual Studio 2012 then you'll be creating a LocalDB database.</span></span>
--   <span data-ttu-id="e865c-122">Visual Studio 2010 kullanıyorsanız, bir SQL Express veritabanı oluşturursunuz.</span><span class="sxs-lookup"><span data-stu-id="e865c-122">If you are using Visual Studio 2010 you'll be creating a SQL Express database.</span></span>
+-   <span data-ttu-id="99aa7-121">Visual Studio 2012 kullanıyorsanız, LocalDB veritabanı oluşturursunuz.</span><span class="sxs-lookup"><span data-stu-id="99aa7-121">If you are using Visual Studio 2012 then you'll be creating a LocalDB database.</span></span>
+-   <span data-ttu-id="99aa7-122">Visual Studio 2010 kullanıyorsanız, bir SQL Express veritabanı oluşturursunuz.</span><span class="sxs-lookup"><span data-stu-id="99aa7-122">If you are using Visual Studio 2010 you'll be creating a SQL Express database.</span></span>
 
-<span data-ttu-id="e865c-123">Şimdi veritabanını oluşturalım.</span><span class="sxs-lookup"><span data-stu-id="e865c-123">Let's go ahead and generate the database.</span></span>
+<span data-ttu-id="99aa7-123">Şimdi veritabanını oluşturalım.</span><span class="sxs-lookup"><span data-stu-id="99aa7-123">Let's go ahead and generate the database.</span></span>
 
--   <span data-ttu-id="e865c-124">Visual Studio 'Yu aç</span><span class="sxs-lookup"><span data-stu-id="e865c-124">Open Visual Studio</span></span>
--   <span data-ttu-id="e865c-125">**@No__t-1 Sunucu Gezgini görüntüle**</span><span class="sxs-lookup"><span data-stu-id="e865c-125">**View -&gt; Server Explorer**</span></span>
--   <span data-ttu-id="e865c-126">Veri bağlantıları ' na sağ tıklayın **-&gt; bağlantı ekle...**</span><span class="sxs-lookup"><span data-stu-id="e865c-126">Right click on **Data Connections -&gt; Add Connection…**</span></span>
--   <span data-ttu-id="e865c-127">Sunucu Gezgini bir veritabanına bağlı değilseniz, veri kaynağı olarak **Microsoft SQL Server** seçmeniz gerekir</span><span class="sxs-lookup"><span data-stu-id="e865c-127">If you haven’t connected to a database from Server Explorer before you’ll need to select **Microsoft SQL Server** as the data source</span></span>
--   <span data-ttu-id="e865c-128">Hangi hangisinin yüklü olduğuna bağlı olarak, LocalDB veya SQL Express 'e bağlanın</span><span class="sxs-lookup"><span data-stu-id="e865c-128">Connect to either LocalDB or SQL Express, depending on which one you have installed</span></span>
--   <span data-ttu-id="e865c-129">Veritabanı adı olarak **Stesample** girin</span><span class="sxs-lookup"><span data-stu-id="e865c-129">Enter **STESample** as the database name</span></span>
--   <span data-ttu-id="e865c-130">**Tamam** ' ı seçtiğinizde, yeni bir veritabanı oluşturmak isteyip istemediğiniz sorulur, **Evet** ' i seçin.</span><span class="sxs-lookup"><span data-stu-id="e865c-130">Select **OK** and you will be asked if you want to create a new database, select **Yes**</span></span>
--   <span data-ttu-id="e865c-131">Yeni veritabanı artık Sunucu Gezgini görüntülenir</span><span class="sxs-lookup"><span data-stu-id="e865c-131">The new database will now appear in Server Explorer</span></span>
--   <span data-ttu-id="e865c-132">Visual Studio 2012 kullanıyorsanız</span><span class="sxs-lookup"><span data-stu-id="e865c-132">If you are using Visual Studio 2012</span></span>
-    -   <span data-ttu-id="e865c-133">Sunucu Gezgini veritabanında veritabanına sağ tıklayın ve **Yeni sorgu** ' yı seçin.</span><span class="sxs-lookup"><span data-stu-id="e865c-133">Right-click on the database in Server Explorer and select **New Query**</span></span>
-    -   <span data-ttu-id="e865c-134">Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **Yürüt** ' ü seçin.</span><span class="sxs-lookup"><span data-stu-id="e865c-134">Copy the following SQL into the new query, then right-click on the query and select **Execute**</span></span>
--   <span data-ttu-id="e865c-135">Visual Studio 2010 kullanıyorsanız</span><span class="sxs-lookup"><span data-stu-id="e865c-135">If you are using Visual Studio 2010</span></span>
-    -   <span data-ttu-id="e865c-136">**Data-&gt; Transact SQL Düzenleyicisi-&gt; yeni sorgu bağlantısı seç...**</span><span class="sxs-lookup"><span data-stu-id="e865c-136">Select **Data -&gt; Transact SQL Editor -&gt; New Query Connection...**</span></span>
-    -   <span data-ttu-id="e865c-137">Sunucu adı olarak **. \\SQLEXPRESS** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="e865c-137">Enter **.\\SQLEXPRESS** as the server name and click **OK**</span></span>
-    -   <span data-ttu-id="e865c-138">Sorgu Düzenleyicisi 'nin en üstündeki açılan listeden **Stesample** veritabanını seçin</span><span class="sxs-lookup"><span data-stu-id="e865c-138">Select the **STESample** database from the drop down at the top of the query editor</span></span>
-    -   <span data-ttu-id="e865c-139">Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **SQL 'ı Yürüt** ' ü seçin.</span><span class="sxs-lookup"><span data-stu-id="e865c-139">Copy the following SQL into the new query, then right-click on the query and select **Execute SQL**</span></span>
+-   <span data-ttu-id="99aa7-124">Visual Studio 'Yu aç</span><span class="sxs-lookup"><span data-stu-id="99aa7-124">Open Visual Studio</span></span>
+-   <span data-ttu-id="99aa7-125">**&gt; Sunucu Gezgini görüntüle**</span><span class="sxs-lookup"><span data-stu-id="99aa7-125">**View -&gt; Server Explorer**</span></span>
+-   <span data-ttu-id="99aa7-126">Veri bağlantıları ' na sağ tıklayın **&gt; bağlantı ekle...**</span><span class="sxs-lookup"><span data-stu-id="99aa7-126">Right click on **Data Connections -&gt; Add Connection…**</span></span>
+-   <span data-ttu-id="99aa7-127">Sunucu Gezgini bir veritabanına bağlı değilseniz, veri kaynağı olarak **Microsoft SQL Server** seçmeniz gerekir</span><span class="sxs-lookup"><span data-stu-id="99aa7-127">If you haven’t connected to a database from Server Explorer before you’ll need to select **Microsoft SQL Server** as the data source</span></span>
+-   <span data-ttu-id="99aa7-128">Hangi hangisinin yüklü olduğuna bağlı olarak, LocalDB veya SQL Express 'e bağlanın</span><span class="sxs-lookup"><span data-stu-id="99aa7-128">Connect to either LocalDB or SQL Express, depending on which one you have installed</span></span>
+-   <span data-ttu-id="99aa7-129">Veritabanı adı olarak **Stesample** girin</span><span class="sxs-lookup"><span data-stu-id="99aa7-129">Enter **STESample** as the database name</span></span>
+-   <span data-ttu-id="99aa7-130">**Tamam** ' ı seçtiğinizde, yeni bir veritabanı oluşturmak isteyip istemediğiniz sorulur, **Evet** ' i seçin.</span><span class="sxs-lookup"><span data-stu-id="99aa7-130">Select **OK** and you will be asked if you want to create a new database, select **Yes**</span></span>
+-   <span data-ttu-id="99aa7-131">Yeni veritabanı artık Sunucu Gezgini görüntülenir</span><span class="sxs-lookup"><span data-stu-id="99aa7-131">The new database will now appear in Server Explorer</span></span>
+-   <span data-ttu-id="99aa7-132">Visual Studio 2012 kullanıyorsanız</span><span class="sxs-lookup"><span data-stu-id="99aa7-132">If you are using Visual Studio 2012</span></span>
+    -   <span data-ttu-id="99aa7-133">Sunucu Gezgini veritabanında veritabanına sağ tıklayın ve **Yeni sorgu** ' yı seçin.</span><span class="sxs-lookup"><span data-stu-id="99aa7-133">Right-click on the database in Server Explorer and select **New Query**</span></span>
+    -   <span data-ttu-id="99aa7-134">Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **Yürüt** ' ü seçin.</span><span class="sxs-lookup"><span data-stu-id="99aa7-134">Copy the following SQL into the new query, then right-click on the query and select **Execute**</span></span>
+-   <span data-ttu-id="99aa7-135">Visual Studio 2010 kullanıyorsanız</span><span class="sxs-lookup"><span data-stu-id="99aa7-135">If you are using Visual Studio 2010</span></span>
+    -   <span data-ttu-id="99aa7-136">**Veri&gt; Transact SQL Düzenleyicisi-&gt; yeni sorgu bağlantısı ' nı seçin...**</span><span class="sxs-lookup"><span data-stu-id="99aa7-136">Select **Data -&gt; Transact SQL Editor -&gt; New Query Connection...**</span></span>
+    -   <span data-ttu-id="99aa7-137">Sunucu adı olarak **.\\SQLExpress** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="99aa7-137">Enter **.\\SQLEXPRESS** as the server name and click **OK**</span></span>
+    -   <span data-ttu-id="99aa7-138">Sorgu Düzenleyicisi 'nin en üstündeki açılan listeden **Stesample** veritabanını seçin</span><span class="sxs-lookup"><span data-stu-id="99aa7-138">Select the **STESample** database from the drop down at the top of the query editor</span></span>
+    -   <span data-ttu-id="99aa7-139">Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **SQL 'ı Yürüt** ' ü seçin.</span><span class="sxs-lookup"><span data-stu-id="99aa7-139">Copy the following SQL into the new query, then right-click on the query and select **Execute SQL**</span></span>
 
 ``` SQL
     CREATE TABLE [dbo].[Blogs] (
@@ -83,106 +83,106 @@ ms.locfileid: "72181711"
     INSERT INTO [dbo].[Posts] ([Title], [Content], [BlogId]) VALUES (N'What is New', N'More interesting stuff...', 1)
 ```
 
-## <a name="create-the-model"></a><span data-ttu-id="e865c-140">Model oluşturma</span><span class="sxs-lookup"><span data-stu-id="e865c-140">Create the Model</span></span>
+## <a name="create-the-model"></a><span data-ttu-id="99aa7-140">Model oluşturma</span><span class="sxs-lookup"><span data-stu-id="99aa7-140">Create the Model</span></span>
 
-<span data-ttu-id="e865c-141">İlk olarak, modeli içine koyabileceğiniz bir proje gerekiyor.</span><span class="sxs-lookup"><span data-stu-id="e865c-141">First up, we need a project to put the model in.</span></span>
+<span data-ttu-id="99aa7-141">İlk olarak, modeli içine koyabileceğiniz bir proje gerekiyor.</span><span class="sxs-lookup"><span data-stu-id="99aa7-141">First up, we need a project to put the model in.</span></span>
 
--   <span data-ttu-id="e865c-142">**Dosya-&gt; yeni-&gt; proje...**</span><span class="sxs-lookup"><span data-stu-id="e865c-142">**File -&gt; New -&gt; Project...**</span></span>
--   <span data-ttu-id="e865c-143">Sol bölmeden ve sonra **sınıf kitaplığı** 'Ndan **Visual C @ no__t-1** ' i seçin</span><span class="sxs-lookup"><span data-stu-id="e865c-143">Select **Visual C\#** from the left pane and then **Class Library**</span></span>
--   <span data-ttu-id="e865c-144">Ad olarak **Stesample** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="e865c-144">Enter **STESample** as the name and click **OK**</span></span>
+-   <span data-ttu-id="99aa7-142">**Dosya-&gt; yeni&gt; projesi...**</span><span class="sxs-lookup"><span data-stu-id="99aa7-142">**File -&gt; New -&gt; Project...**</span></span>
+-   <span data-ttu-id="99aa7-143">Sol bölmeden ve sonra **sınıf kitaplığı** 'Ndan **Visual C\#** seçin</span><span class="sxs-lookup"><span data-stu-id="99aa7-143">Select **Visual C\#** from the left pane and then **Class Library**</span></span>
+-   <span data-ttu-id="99aa7-144">Ad olarak **Stesample** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="99aa7-144">Enter **STESample** as the name and click **OK**</span></span>
 
-<span data-ttu-id="e865c-145">Şimdi, veritabanımıza erişmek için EF tasarımcısında basit bir model oluşturacağız:</span><span class="sxs-lookup"><span data-stu-id="e865c-145">Now we'll create a simple model in the EF Designer to access our database:</span></span>
+<span data-ttu-id="99aa7-145">Şimdi, veritabanımıza erişmek için EF tasarımcısında basit bir model oluşturacağız:</span><span class="sxs-lookup"><span data-stu-id="99aa7-145">Now we'll create a simple model in the EF Designer to access our database:</span></span>
 
--   <span data-ttu-id="e865c-146">**Proje-&gt; yeni öğe Ekle...**</span><span class="sxs-lookup"><span data-stu-id="e865c-146">**Project -&gt; Add New Item...**</span></span>
--   <span data-ttu-id="e865c-147">Sol bölmedeki **verileri** seçin ve ardından **ADO.net varlık veri modeli**</span><span class="sxs-lookup"><span data-stu-id="e865c-147">Select **Data** from the left pane and then **ADO.NET Entity Data Model**</span></span>
--   <span data-ttu-id="e865c-148">Ad olarak **BloggingModel** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="e865c-148">Enter **BloggingModel** as the name and click **OK**</span></span>
--   <span data-ttu-id="e865c-149">**Veritabanından oluştur** ' u seçin ve **İleri** ' ye tıklayın.</span><span class="sxs-lookup"><span data-stu-id="e865c-149">Select **Generate from database** and click **Next**</span></span>
--   <span data-ttu-id="e865c-150">Önceki bölümde oluşturduğunuz veritabanı için bağlantı bilgilerini girin</span><span class="sxs-lookup"><span data-stu-id="e865c-150">Enter the connection information for the database that you created in the previous section</span></span>
--   <span data-ttu-id="e865c-151">Bağlantı dizesinin adı olarak **BloggingContext** girin ve **İleri** ' ye tıklayın.</span><span class="sxs-lookup"><span data-stu-id="e865c-151">Enter **BloggingContext** as the name for the connection string and click **Next**</span></span>
--   <span data-ttu-id="e865c-152">**Tablolar** ' ın yanındaki kutuyu Işaretleyin ve **son** ' a tıklayın.</span><span class="sxs-lookup"><span data-stu-id="e865c-152">Check the box next to **Tables** and click **Finish**</span></span>
+-   <span data-ttu-id="99aa7-146">**Proje-&gt; yeni öğe Ekle...**</span><span class="sxs-lookup"><span data-stu-id="99aa7-146">**Project -&gt; Add New Item...**</span></span>
+-   <span data-ttu-id="99aa7-147">Sol bölmedeki **verileri** seçin ve ardından **ADO.net varlık veri modeli**</span><span class="sxs-lookup"><span data-stu-id="99aa7-147">Select **Data** from the left pane and then **ADO.NET Entity Data Model**</span></span>
+-   <span data-ttu-id="99aa7-148">Ad olarak **BloggingModel** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="99aa7-148">Enter **BloggingModel** as the name and click **OK**</span></span>
+-   <span data-ttu-id="99aa7-149">**Veritabanından oluştur** ' u seçin ve **İleri** ' ye tıklayın.</span><span class="sxs-lookup"><span data-stu-id="99aa7-149">Select **Generate from database** and click **Next**</span></span>
+-   <span data-ttu-id="99aa7-150">Önceki bölümde oluşturduğunuz veritabanı için bağlantı bilgilerini girin</span><span class="sxs-lookup"><span data-stu-id="99aa7-150">Enter the connection information for the database that you created in the previous section</span></span>
+-   <span data-ttu-id="99aa7-151">Bağlantı dizesinin adı olarak **BloggingContext** girin ve **İleri** ' ye tıklayın.</span><span class="sxs-lookup"><span data-stu-id="99aa7-151">Enter **BloggingContext** as the name for the connection string and click **Next**</span></span>
+-   <span data-ttu-id="99aa7-152">**Tablolar** ' ın yanındaki kutuyu Işaretleyin ve **son** ' a tıklayın.</span><span class="sxs-lookup"><span data-stu-id="99aa7-152">Check the box next to **Tables** and click **Finish**</span></span>
 
-## <a name="swap-to-ste-code-generation"></a><span data-ttu-id="e865c-153">STE kod oluşturmaya değiştirme</span><span class="sxs-lookup"><span data-stu-id="e865c-153">Swap to STE Code Generation</span></span>
+## <a name="swap-to-ste-code-generation"></a><span data-ttu-id="99aa7-153">STE kod oluşturmaya değiştirme</span><span class="sxs-lookup"><span data-stu-id="99aa7-153">Swap to STE Code Generation</span></span>
 
-<span data-ttu-id="e865c-154">Şimdi varsayılan kod oluşturmayı devre dışı bırakmaktan ve kendini Izlemeye yönelik olarak takas etmemiz gerekiyor.</span><span class="sxs-lookup"><span data-stu-id="e865c-154">Now we need to disable the default code generation and swap to Self-Tracking Entities.</span></span>
+<span data-ttu-id="99aa7-154">Şimdi varsayılan kod oluşturmayı devre dışı bırakmaktan ve kendini Izlemeye yönelik olarak takas etmemiz gerekiyor.</span><span class="sxs-lookup"><span data-stu-id="99aa7-154">Now we need to disable the default code generation and swap to Self-Tracking Entities.</span></span>
 
-### <a name="if-you-are-using-visual-studio-2012"></a><span data-ttu-id="e865c-155">Visual Studio 2012 kullanıyorsanız</span><span class="sxs-lookup"><span data-stu-id="e865c-155">If you are using Visual Studio 2012</span></span>
+### <a name="if-you-are-using-visual-studio-2012"></a><span data-ttu-id="99aa7-155">Visual Studio 2012 kullanıyorsanız</span><span class="sxs-lookup"><span data-stu-id="99aa7-155">If you are using Visual Studio 2012</span></span>
 
--   <span data-ttu-id="e865c-156">Çözüm Gezgini **BloggingModel. edmx** ' i genişletin ve **BloggingModel.tt** ve **BloggingModel.Context.tt**
-     ' ü silin.*Bu, varsayılan kod oluşturmayı devre dışı bırakır*</span><span class="sxs-lookup"><span data-stu-id="e865c-156">Expand **BloggingModel.edmx** in **Solution Explorer** and delete the **BloggingModel.tt** and **BloggingModel.Context.tt**
+-   <span data-ttu-id="99aa7-156">**Çözüm Gezgini** 'de **BloggingModel. edmx** ' i genişletin ve **BloggingModel.tt** ve **BloggingModel.Context.tt**
+    silin. *Bu, varsayılan kod üretimini devre dışı bırakır*</span><span class="sxs-lookup"><span data-stu-id="99aa7-156">Expand **BloggingModel.edmx** in **Solution Explorer** and delete the **BloggingModel.tt** and **BloggingModel.Context.tt**
 *This will disable the default code generation*</span></span>
--   <span data-ttu-id="e865c-157">EF Designer yüzeyinde boş bir alana sağ tıklayın ve **kod oluşturma öğesi Ekle...** seçeneğini belirleyin.</span><span class="sxs-lookup"><span data-stu-id="e865c-157">Right-click an empty area on the EF Designer surface and select **Add Code Generation Item...**</span></span>
--   <span data-ttu-id="e865c-158">Sol bölmeden **çevrimiçi** ' i seçin ve **Ste Generator** araması yapın</span><span class="sxs-lookup"><span data-stu-id="e865c-158">Select **Online** from the left pane and search for **STE Generator**</span></span>
--   <span data-ttu-id="e865c-159">**C @ no__t-1 şablonu Için Ste üreticisini** seçin, ad olarak **Stetemplate** girin ve **Ekle** ' ye tıklayın.</span><span class="sxs-lookup"><span data-stu-id="e865c-159">Select the **STE Generator for C\#** template, enter **STETemplate** as the name and click **Add**</span></span>
--   <span data-ttu-id="e865c-160">**STETemplate.tt** ve **STETemplate.Context.tt** dosyaları, BloggingModel. edmx dosyasının altına iç içe eklenir</span><span class="sxs-lookup"><span data-stu-id="e865c-160">The **STETemplate.tt** and **STETemplate.Context.tt** files are added nested under the BloggingModel.edmx file</span></span>
+-   <span data-ttu-id="99aa7-157">EF Designer yüzeyinde boş bir alana sağ tıklayın ve **kod oluşturma öğesi Ekle...** seçeneğini belirleyin.</span><span class="sxs-lookup"><span data-stu-id="99aa7-157">Right-click an empty area on the EF Designer surface and select **Add Code Generation Item...**</span></span>
+-   <span data-ttu-id="99aa7-158">Sol bölmeden **çevrimiçi** ' i seçin ve **Ste Generator** araması yapın</span><span class="sxs-lookup"><span data-stu-id="99aa7-158">Select **Online** from the left pane and search for **STE Generator**</span></span>
+-   <span data-ttu-id="99aa7-159">**C\#şablonu Için Ste Generator** ' yı seçin, ad olarak **Stetemplate** girin ve **Ekle** ' ye tıklayın.</span><span class="sxs-lookup"><span data-stu-id="99aa7-159">Select the **STE Generator for C\#** template, enter **STETemplate** as the name and click **Add**</span></span>
+-   <span data-ttu-id="99aa7-160">**STETemplate.tt** ve **STETemplate.Context.tt** dosyaları, BloggingModel. edmx dosyasının altına iç içe eklenir</span><span class="sxs-lookup"><span data-stu-id="99aa7-160">The **STETemplate.tt** and **STETemplate.Context.tt** files are added nested under the BloggingModel.edmx file</span></span>
 
-### <a name="if-you-are-using-visual-studio-2010"></a><span data-ttu-id="e865c-161">Visual Studio 2010 kullanıyorsanız</span><span class="sxs-lookup"><span data-stu-id="e865c-161">If you are using Visual Studio 2010</span></span>
+### <a name="if-you-are-using-visual-studio-2010"></a><span data-ttu-id="99aa7-161">Visual Studio 2010 kullanıyorsanız</span><span class="sxs-lookup"><span data-stu-id="99aa7-161">If you are using Visual Studio 2010</span></span>
 
--   <span data-ttu-id="e865c-162">EF Designer yüzeyinde boş bir alana sağ tıklayın ve **kod oluşturma öğesi Ekle...** seçeneğini belirleyin.</span><span class="sxs-lookup"><span data-stu-id="e865c-162">Right-click an empty area on the EF Designer surface and select **Add Code Generation Item...**</span></span>
--   <span data-ttu-id="e865c-163">Sol bölmedeki **kodu** seçin ve ardından **ADO.net kendi kendine izleme varlık Oluşturucu**</span><span class="sxs-lookup"><span data-stu-id="e865c-163">Select **Code** from the left pane and then **ADO.NET Self-Tracking Entity Generator**</span></span>
--   <span data-ttu-id="e865c-164">Ad olarak **Stetemplate** girin ve **Ekle** ' ye tıklayın.</span><span class="sxs-lookup"><span data-stu-id="e865c-164">Enter **STETemplate** as the name and click **Add**</span></span>
--   <span data-ttu-id="e865c-165">**STETemplate.tt** ve **STETemplate.Context.tt** dosyaları projenize doğrudan eklenir</span><span class="sxs-lookup"><span data-stu-id="e865c-165">The **STETemplate.tt** and **STETemplate.Context.tt** files are added directly to your project</span></span>
+-   <span data-ttu-id="99aa7-162">EF Designer yüzeyinde boş bir alana sağ tıklayın ve **kod oluşturma öğesi Ekle...** seçeneğini belirleyin.</span><span class="sxs-lookup"><span data-stu-id="99aa7-162">Right-click an empty area on the EF Designer surface and select **Add Code Generation Item...**</span></span>
+-   <span data-ttu-id="99aa7-163">Sol bölmedeki **kodu** seçin ve ardından **ADO.net kendi kendine izleme varlık Oluşturucu**</span><span class="sxs-lookup"><span data-stu-id="99aa7-163">Select **Code** from the left pane and then **ADO.NET Self-Tracking Entity Generator**</span></span>
+-   <span data-ttu-id="99aa7-164">Ad olarak **Stetemplate** girin ve **Ekle** ' ye tıklayın.</span><span class="sxs-lookup"><span data-stu-id="99aa7-164">Enter **STETemplate** as the name and click **Add**</span></span>
+-   <span data-ttu-id="99aa7-165">**STETemplate.tt** ve **STETemplate.Context.tt** dosyaları projenize doğrudan eklenir</span><span class="sxs-lookup"><span data-stu-id="99aa7-165">The **STETemplate.tt** and **STETemplate.Context.tt** files are added directly to your project</span></span>
 
-## <a name="move-entity-types-into-separate-project"></a><span data-ttu-id="e865c-166">Varlık türlerini ayrı projeye taşı</span><span class="sxs-lookup"><span data-stu-id="e865c-166">Move Entity Types into Separate Project</span></span>
+## <a name="move-entity-types-into-separate-project"></a><span data-ttu-id="99aa7-166">Varlık türlerini ayrı projeye taşı</span><span class="sxs-lookup"><span data-stu-id="99aa7-166">Move Entity Types into Separate Project</span></span>
 
-<span data-ttu-id="e865c-167">Kendi kendini Izleyen varlıkları kullanmak için, istemci uygulamamız, modelinizde oluşturulan varlık sınıflarına erişmesi gerekir.</span><span class="sxs-lookup"><span data-stu-id="e865c-167">To use Self-Tracking Entities our client application needs access to the entity classes generated from our model.</span></span> <span data-ttu-id="e865c-168">Tüm modeli istemci uygulamasına göstermek istemediğimiz için, varlık sınıflarını ayrı bir projeye taşıyacağız.</span><span class="sxs-lookup"><span data-stu-id="e865c-168">Because we don't want to expose the whole model to the client application we're going to move the entity classes into a separate project.</span></span>
+<span data-ttu-id="99aa7-167">Kendi kendini Izleyen varlıkları kullanmak için, istemci uygulamamız, modelinizde oluşturulan varlık sınıflarına erişmesi gerekir.</span><span class="sxs-lookup"><span data-stu-id="99aa7-167">To use Self-Tracking Entities our client application needs access to the entity classes generated from our model.</span></span> <span data-ttu-id="99aa7-168">Tüm modeli istemci uygulamasına göstermek istemediğimiz için, varlık sınıflarını ayrı bir projeye taşıyacağız.</span><span class="sxs-lookup"><span data-stu-id="99aa7-168">Because we don't want to expose the whole model to the client application we're going to move the entity classes into a separate project.</span></span>
 
-<span data-ttu-id="e865c-169">İlk adım, mevcut projede varlık sınıfları oluşturmayı durdurmaktır:</span><span class="sxs-lookup"><span data-stu-id="e865c-169">The first step is to stop generating entity classes in the existing project:</span></span>
+<span data-ttu-id="99aa7-169">İlk adım, mevcut projede varlık sınıfları oluşturmayı durdurmaktır:</span><span class="sxs-lookup"><span data-stu-id="99aa7-169">The first step is to stop generating entity classes in the existing project:</span></span>
 
--   <span data-ttu-id="e865c-170">**Çözüm Gezgini** 'de **STETemplate.tt** öğesine sağ tıklayın ve **Özellikler** ' i seçin</span><span class="sxs-lookup"><span data-stu-id="e865c-170">Right-click on **STETemplate.tt** in **Solution Explorer** and select **Properties**</span></span>
--   <span data-ttu-id="e865c-171">**Özellikler** penceresinde **CustomTool** özelliğinden **TextTemplatingFileGenerator** seçimini kaldırın</span><span class="sxs-lookup"><span data-stu-id="e865c-171">In the **Properties** window clear **TextTemplatingFileGenerator** from the **CustomTool** property</span></span>
--   <span data-ttu-id="e865c-172">**Çözüm Gezgini** 'de **STETemplate.tt** öğesini genişletin ve içinde iç içe yerleştirilmiş tüm dosyaları silin</span><span class="sxs-lookup"><span data-stu-id="e865c-172">Expand **STETemplate.tt** in **Solution Explorer** and delete all files nested under it</span></span>
+-   <span data-ttu-id="99aa7-170">**Çözüm Gezgini** 'de **STETemplate.tt** öğesine sağ tıklayın ve **Özellikler** ' i seçin</span><span class="sxs-lookup"><span data-stu-id="99aa7-170">Right-click on **STETemplate.tt** in **Solution Explorer** and select **Properties**</span></span>
+-   <span data-ttu-id="99aa7-171">**Özellikler** penceresinde **CustomTool** özelliğinden **TextTemplatingFileGenerator** seçimini kaldırın</span><span class="sxs-lookup"><span data-stu-id="99aa7-171">In the **Properties** window clear **TextTemplatingFileGenerator** from the **CustomTool** property</span></span>
+-   <span data-ttu-id="99aa7-172">**Çözüm Gezgini** 'de **STETemplate.tt** öğesini genişletin ve içinde iç içe yerleştirilmiş tüm dosyaları silin</span><span class="sxs-lookup"><span data-stu-id="99aa7-172">Expand **STETemplate.tt** in **Solution Explorer** and delete all files nested under it</span></span>
 
-<span data-ttu-id="e865c-173">Ardından, yeni bir proje ekleyeceğiz ve bu projede varlık sınıfları oluşturacağız</span><span class="sxs-lookup"><span data-stu-id="e865c-173">Next, we are going to add a new project and generate the entity classes in it</span></span>
+<span data-ttu-id="99aa7-173">Ardından, yeni bir proje ekleyeceğiz ve bu projede varlık sınıfları oluşturacağız</span><span class="sxs-lookup"><span data-stu-id="99aa7-173">Next, we are going to add a new project and generate the entity classes in it</span></span>
 
--   <span data-ttu-id="e865c-174">**Dosya-&gt; Add-&gt; projesi...**</span><span class="sxs-lookup"><span data-stu-id="e865c-174">**File -&gt; Add -&gt; Project...**</span></span>
--   <span data-ttu-id="e865c-175">Sol bölmeden ve sonra **sınıf kitaplığı** 'Ndan **Visual C @ no__t-1** ' i seçin</span><span class="sxs-lookup"><span data-stu-id="e865c-175">Select **Visual C\#** from the left pane and then **Class Library**</span></span>
--   <span data-ttu-id="e865c-176">Ad olarak **Stesample. Entities** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="e865c-176">Enter **STESample.Entities** as the name and click **OK**</span></span>
--   <span data-ttu-id="e865c-177">**Proje-&gt; varolan öğe Ekle...**</span><span class="sxs-lookup"><span data-stu-id="e865c-177">**Project -&gt; Add Existing Item...**</span></span>
--   <span data-ttu-id="e865c-178">**Stesample** proje klasörüne gitme</span><span class="sxs-lookup"><span data-stu-id="e865c-178">Navigate to the **STESample** project folder</span></span>
--   <span data-ttu-id="e865c-179">Tüm dosyaları görüntülemek için seçin **(\*. \*)**</span><span class="sxs-lookup"><span data-stu-id="e865c-179">Select to view **All Files (\*.\*)**</span></span>
--   <span data-ttu-id="e865c-180">**STETemplate.tt** dosyasını seçin</span><span class="sxs-lookup"><span data-stu-id="e865c-180">Select the **STETemplate.tt** file</span></span>
--   <span data-ttu-id="e865c-181">**Ekle** düğmesinin yanındaki aşağı açılan oka tıklayın ve **bağlantı olarak ekle** ' yi seçin.</span><span class="sxs-lookup"><span data-stu-id="e865c-181">Click on the drop down arrow next to the **Add** button and select **Add As Link**</span></span>
+-   <span data-ttu-id="99aa7-174">**Dosya-&gt; Add-&gt; projesi...**</span><span class="sxs-lookup"><span data-stu-id="99aa7-174">**File -&gt; Add -&gt; Project...**</span></span>
+-   <span data-ttu-id="99aa7-175">Sol bölmeden ve sonra **sınıf kitaplığı** 'Ndan **Visual C\#** seçin</span><span class="sxs-lookup"><span data-stu-id="99aa7-175">Select **Visual C\#** from the left pane and then **Class Library**</span></span>
+-   <span data-ttu-id="99aa7-176">Ad olarak **Stesample. Entities** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="99aa7-176">Enter **STESample.Entities** as the name and click **OK**</span></span>
+-   <span data-ttu-id="99aa7-177">**Proje-&gt; var olan öğe Ekle...**</span><span class="sxs-lookup"><span data-stu-id="99aa7-177">**Project -&gt; Add Existing Item...**</span></span>
+-   <span data-ttu-id="99aa7-178">**Stesample** proje klasörüne gitme</span><span class="sxs-lookup"><span data-stu-id="99aa7-178">Navigate to the **STESample** project folder</span></span>
+-   <span data-ttu-id="99aa7-179">Tüm dosyaları görüntülemek için seçin **(\*.\*)**</span><span class="sxs-lookup"><span data-stu-id="99aa7-179">Select to view **All Files (\*.\*)**</span></span>
+-   <span data-ttu-id="99aa7-180">**STETemplate.tt** dosyasını seçin</span><span class="sxs-lookup"><span data-stu-id="99aa7-180">Select the **STETemplate.tt** file</span></span>
+-   <span data-ttu-id="99aa7-181">**Ekle** düğmesinin yanındaki aşağı açılan oka tıklayın ve **bağlantı olarak ekle** ' yi seçin.</span><span class="sxs-lookup"><span data-stu-id="99aa7-181">Click on the drop down arrow next to the **Add** button and select **Add As Link**</span></span>
 
     ![Bağlı Şablon Ekle](~/ef6/media/addlinkedtemplate.png)
 
-<span data-ttu-id="e865c-183">Ayrıca, varlık sınıflarının bağlamla aynı ad alanında oluşturulduğundan emin veriyoruz.</span><span class="sxs-lookup"><span data-stu-id="e865c-183">We're also going to make sure the entity classes get generated in the same namespace as the context.</span></span> <span data-ttu-id="e865c-184">Bu, uygulamamız genelinde eklememiz gereken using deyimlerinin sayısını azaltır.</span><span class="sxs-lookup"><span data-stu-id="e865c-184">This just reduces the number of using statements we need to add throughout our application.</span></span>
+<span data-ttu-id="99aa7-183">Ayrıca, varlık sınıflarının bağlamla aynı ad alanında oluşturulduğundan emin veriyoruz.</span><span class="sxs-lookup"><span data-stu-id="99aa7-183">We're also going to make sure the entity classes get generated in the same namespace as the context.</span></span> <span data-ttu-id="99aa7-184">Bu, uygulamamız genelinde eklememiz gereken using deyimlerinin sayısını azaltır.</span><span class="sxs-lookup"><span data-stu-id="99aa7-184">This just reduces the number of using statements we need to add throughout our application.</span></span>
 
--   <span data-ttu-id="e865c-185">**Çözüm Gezgini** bağlantılı **STETemplate.tt** sağ tıklayın ve **Özellikler** ' i seçin</span><span class="sxs-lookup"><span data-stu-id="e865c-185">Right-click on the linked **STETemplate.tt** in **Solution Explorer** and select **Properties**</span></span>
--   <span data-ttu-id="e865c-186">**Özellikler** penceresinde, **Stesample** Için **özel araç ad alanını** ayarlayın</span><span class="sxs-lookup"><span data-stu-id="e865c-186">In the **Properties** window set **Custom Tool Namespace** to **STESample**</span></span>
+-   <span data-ttu-id="99aa7-185">**Çözüm Gezgini** bağlantılı **STETemplate.tt** sağ tıklayın ve **Özellikler** ' i seçin</span><span class="sxs-lookup"><span data-stu-id="99aa7-185">Right-click on the linked **STETemplate.tt** in **Solution Explorer** and select **Properties**</span></span>
+-   <span data-ttu-id="99aa7-186">**Özellikler** penceresinde, **Stesample** Için **özel araç ad alanını** ayarlayın</span><span class="sxs-lookup"><span data-stu-id="99aa7-186">In the **Properties** window set **Custom Tool Namespace** to **STESample**</span></span>
 
-<span data-ttu-id="e865c-187">STE şablonu tarafından oluşturulan kod, derlemek için **System. Runtime. Serialization** öğesine bir başvuruya sahip olacaktır.</span><span class="sxs-lookup"><span data-stu-id="e865c-187">The code generated by the STE template will need a reference to **System.Runtime.Serialization** in order to compile.</span></span> <span data-ttu-id="e865c-188">Bu kitaplık, serileştirilebilir varlık türlerinde kullanılan WCF **DataContract** ve **DataMember** öznitelikleri için gereklidir.</span><span class="sxs-lookup"><span data-stu-id="e865c-188">This library is needed for the WCF **DataContract** and **DataMember** attributes that are used on the serializable entity types.</span></span>
+<span data-ttu-id="99aa7-187">STE şablonu tarafından oluşturulan kod, derlemek için **System. Runtime. Serialization** öğesine bir başvuruya sahip olacaktır.</span><span class="sxs-lookup"><span data-stu-id="99aa7-187">The code generated by the STE template will need a reference to **System.Runtime.Serialization** in order to compile.</span></span> <span data-ttu-id="99aa7-188">Bu kitaplık, serileştirilebilir varlık türlerinde kullanılan WCF **DataContract** ve **DataMember** öznitelikleri için gereklidir.</span><span class="sxs-lookup"><span data-stu-id="99aa7-188">This library is needed for the WCF **DataContract** and **DataMember** attributes that are used on the serializable entity types.</span></span>
 
--   <span data-ttu-id="e865c-189">**Çözüm Gezgini** ' deki **Stesample. Entities** projesine sağ tıklayın ve **Başvuru Ekle...** seçeneğini belirleyin.</span><span class="sxs-lookup"><span data-stu-id="e865c-189">Right click on the **STESample.Entities** project in **Solution Explorer** and select **Add Reference...**</span></span>
-    -   <span data-ttu-id="e865c-190">Visual Studio 2012- **System. Runtime. Serialization** seçeneğinin yanındaki kutuyu Işaretleyin ve **Tamam** ' a tıklayın.</span><span class="sxs-lookup"><span data-stu-id="e865c-190">In Visual Studio 2012 - check the box next to **System.Runtime.Serialization** and click **OK**</span></span>
-    -   <span data-ttu-id="e865c-191">Visual Studio 2010- **System. Runtime. Serialization** öğesini seçin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="e865c-191">In Visual Studio 2010 - select **System.Runtime.Serialization** and click **OK**</span></span>
+-   <span data-ttu-id="99aa7-189">**Çözüm Gezgini** ' deki **Stesample. Entities** projesine sağ tıklayın ve **Başvuru Ekle...** seçeneğini belirleyin.</span><span class="sxs-lookup"><span data-stu-id="99aa7-189">Right click on the **STESample.Entities** project in **Solution Explorer** and select **Add Reference...**</span></span>
+    -   <span data-ttu-id="99aa7-190">Visual Studio 2012- **System. Runtime. Serialization** seçeneğinin yanındaki kutuyu Işaretleyin ve **Tamam** ' a tıklayın.</span><span class="sxs-lookup"><span data-stu-id="99aa7-190">In Visual Studio 2012 - check the box next to **System.Runtime.Serialization** and click **OK**</span></span>
+    -   <span data-ttu-id="99aa7-191">Visual Studio 2010- **System. Runtime. Serialization** öğesini seçin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="99aa7-191">In Visual Studio 2010 - select **System.Runtime.Serialization** and click **OK**</span></span>
 
-<span data-ttu-id="e865c-192">Son olarak, içinde bağlamımız bir proje varlık türlerine bir başvuruya sahip olur.</span><span class="sxs-lookup"><span data-stu-id="e865c-192">Finally, the project with our context in it will need a reference to the entity types.</span></span>
+<span data-ttu-id="99aa7-192">Son olarak, içinde bağlamımız bir proje varlık türlerine bir başvuruya sahip olur.</span><span class="sxs-lookup"><span data-stu-id="99aa7-192">Finally, the project with our context in it will need a reference to the entity types.</span></span>
 
--   <span data-ttu-id="e865c-193">**Çözüm Gezgini** ' deki **stesample** projesine sağ tıklayın ve **Başvuru Ekle...** öğesini seçin.</span><span class="sxs-lookup"><span data-stu-id="e865c-193">Right click on the **STESample** project in **Solution Explorer** and select **Add Reference...**</span></span>
-    -   <span data-ttu-id="e865c-194">Visual Studio 2012-sol bölmeden **çözüm** ' i seçin, **Stesample. varlıklar** ' ın yanındaki kutuyu işaretleyin ve **Tamam** ' a tıklayın.</span><span class="sxs-lookup"><span data-stu-id="e865c-194">In Visual Studio 2012 - select **Solution** from the left pane, check the box next to **STESample.Entities** and click **OK**</span></span>
-    -   <span data-ttu-id="e865c-195">Visual Studio 2010- **Projeler** sekmesini seçin, **Stesample. Entities** ' yi seçin ve **Tamam** ' a tıklayın.</span><span class="sxs-lookup"><span data-stu-id="e865c-195">In Visual Studio 2010 - select the **Projects** tab, select **STESample.Entities** and click **OK**</span></span>
+-   <span data-ttu-id="99aa7-193">**Çözüm Gezgini** ' deki **stesample** projesine sağ tıklayın ve **Başvuru Ekle...** öğesini seçin.</span><span class="sxs-lookup"><span data-stu-id="99aa7-193">Right click on the **STESample** project in **Solution Explorer** and select **Add Reference...**</span></span>
+    -   <span data-ttu-id="99aa7-194">Visual Studio 2012-sol bölmeden **çözüm** ' i seçin, **Stesample. varlıklar** ' ın yanındaki kutuyu işaretleyin ve **Tamam** ' a tıklayın.</span><span class="sxs-lookup"><span data-stu-id="99aa7-194">In Visual Studio 2012 - select **Solution** from the left pane, check the box next to **STESample.Entities** and click **OK**</span></span>
+    -   <span data-ttu-id="99aa7-195">Visual Studio 2010- **Projeler** sekmesini seçin, **Stesample. Entities** ' yi seçin ve **Tamam** ' a tıklayın.</span><span class="sxs-lookup"><span data-stu-id="99aa7-195">In Visual Studio 2010 - select the **Projects** tab, select **STESample.Entities** and click **OK**</span></span>
 
 >[!NOTE]
-> <span data-ttu-id="e865c-196">Varlık türlerini ayrı bir projeye taşımaya yönelik başka bir seçenek de şablon dosyasını varsayılan konumundan bağlamak yerine taşımaktır.</span><span class="sxs-lookup"><span data-stu-id="e865c-196">Another option for moving the entity types to a separate project is to move the template file, rather than linking it from its default location.</span></span> <span data-ttu-id="e865c-197">Bunu yaparsanız, edmx dosyasına göreli yolu sağlamak için şablonda **InputFile** değişkenini güncelleştirmeniz gerekir (Bu örnekte, **... \\BloggingModel. edmx**).</span><span class="sxs-lookup"><span data-stu-id="e865c-197">If you do this, you will need to update the **inputFile** variable in the template to provide the relative path to the edmx file (in this example that would be **..\\BloggingModel.edmx**).</span></span>
+> <span data-ttu-id="99aa7-196">Varlık türlerini ayrı bir projeye taşımaya yönelik başka bir seçenek de şablon dosyasını varsayılan konumundan bağlamak yerine taşımaktır.</span><span class="sxs-lookup"><span data-stu-id="99aa7-196">Another option for moving the entity types to a separate project is to move the template file, rather than linking it from its default location.</span></span> <span data-ttu-id="99aa7-197">Bunu yaparsanız, edmx dosyasına (Bu örnekte **..\\BloggingModel. edmx**) göreli yolu sağlamak Için şablonda **InputFile** değişkenini güncelleştirmeniz gerekir.</span><span class="sxs-lookup"><span data-stu-id="99aa7-197">If you do this, you will need to update the **inputFile** variable in the template to provide the relative path to the edmx file (in this example that would be **..\\BloggingModel.edmx**).</span></span>
 
-## <a name="create-a-wcf-service"></a><span data-ttu-id="e865c-198">WCF hizmeti oluşturma</span><span class="sxs-lookup"><span data-stu-id="e865c-198">Create a WCF Service</span></span>
+## <a name="create-a-wcf-service"></a><span data-ttu-id="99aa7-198">WCF hizmeti oluşturma</span><span class="sxs-lookup"><span data-stu-id="99aa7-198">Create a WCF Service</span></span>
 
-<span data-ttu-id="e865c-199">Şimdi verilerimizi açığa çıkarmak için bir WCF hizmeti eklemenin zamanı, projeyi oluşturarak başlayacağız.</span><span class="sxs-lookup"><span data-stu-id="e865c-199">Now it's time to add a WCF Service to expose our data, we'll start by creating the project.</span></span>
+<span data-ttu-id="99aa7-199">Şimdi verilerimizi açığa çıkarmak için bir WCF hizmeti eklemenin zamanı, projeyi oluşturarak başlayacağız.</span><span class="sxs-lookup"><span data-stu-id="99aa7-199">Now it's time to add a WCF Service to expose our data, we'll start by creating the project.</span></span>
 
--   <span data-ttu-id="e865c-200">**Dosya-&gt; Add-&gt; projesi...**</span><span class="sxs-lookup"><span data-stu-id="e865c-200">**File -&gt; Add -&gt; Project...**</span></span>
--   <span data-ttu-id="e865c-201">Sol bölmeden ve ardından **WCF hizmeti uygulamasından** **Visual C @ no__t-1** ' i seçin</span><span class="sxs-lookup"><span data-stu-id="e865c-201">Select **Visual C\#** from the left pane and then **WCF Service Application**</span></span>
--   <span data-ttu-id="e865c-202">Ad olarak **Stesample. Service** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="e865c-202">Enter **STESample.Service** as the name and click **OK**</span></span>
--   <span data-ttu-id="e865c-203">**System. Data. Entity** derlemesine bir başvuru ekleyin</span><span class="sxs-lookup"><span data-stu-id="e865c-203">Add a reference to the **System.Data.Entity** assembly</span></span>
--   <span data-ttu-id="e865c-204">**Stesample** ve **Stesample. Entities** projelerine bir başvuru ekleyin</span><span class="sxs-lookup"><span data-stu-id="e865c-204">Add a reference to the **STESample** and **STESample.Entities** projects</span></span>
+-   <span data-ttu-id="99aa7-200">**Dosya-&gt; Add-&gt; projesi...**</span><span class="sxs-lookup"><span data-stu-id="99aa7-200">**File -&gt; Add -&gt; Project...**</span></span>
+-   <span data-ttu-id="99aa7-201">Sol bölmeden ve ardından **WCF hizmeti uygulamasından** **Visual C\#** seçin</span><span class="sxs-lookup"><span data-stu-id="99aa7-201">Select **Visual C\#** from the left pane and then **WCF Service Application**</span></span>
+-   <span data-ttu-id="99aa7-202">Ad olarak **Stesample. Service** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="99aa7-202">Enter **STESample.Service** as the name and click **OK**</span></span>
+-   <span data-ttu-id="99aa7-203">**System. Data. Entity** derlemesine bir başvuru ekleyin</span><span class="sxs-lookup"><span data-stu-id="99aa7-203">Add a reference to the **System.Data.Entity** assembly</span></span>
+-   <span data-ttu-id="99aa7-204">**Stesample** ve **Stesample. Entities** projelerine bir başvuru ekleyin</span><span class="sxs-lookup"><span data-stu-id="99aa7-204">Add a reference to the **STESample** and **STESample.Entities** projects</span></span>
 
-<span data-ttu-id="e865c-205">EF bağlantı dizesini, çalışma zamanında bulunduğu için bu projeye kopyalamamız gerekir.</span><span class="sxs-lookup"><span data-stu-id="e865c-205">We need to copy the EF connection string to this project so that it is found at runtime.</span></span>
+<span data-ttu-id="99aa7-205">EF bağlantı dizesini, çalışma zamanında bulunduğu için bu projeye kopyalamamız gerekir.</span><span class="sxs-lookup"><span data-stu-id="99aa7-205">We need to copy the EF connection string to this project so that it is found at runtime.</span></span>
 
--   <span data-ttu-id="e865c-206"> **Stesample **projesi için **app. config** dosyasını açın ve **connectionStrings** öğesini kopyalayın</span><span class="sxs-lookup"><span data-stu-id="e865c-206">Open the **App.Config** file for the **STESample **project and copy the **connectionStrings** element</span></span>
--   <span data-ttu-id="e865c-207">**ConnectionString** öğesini, **Stesample. Service** projesindeki **Web. config** dosyasının **yapılandırma** öğesinin bir alt öğesi olarak yapıştırın</span><span class="sxs-lookup"><span data-stu-id="e865c-207">Paste the **connectionStrings** element as a child element of the **configuration** element of the **Web.Config** file in the **STESample.Service** project</span></span>
+-   <span data-ttu-id="99aa7-206"> **Stesample **projesi için **app. config** dosyasını açın ve **connectionStrings** öğesini kopyalayın</span><span class="sxs-lookup"><span data-stu-id="99aa7-206">Open the **App.Config** file for the **STESample **project and copy the **connectionStrings** element</span></span>
+-   <span data-ttu-id="99aa7-207">**ConnectionString** öğesini, **Stesample. Service** projesindeki **Web. config** dosyasının **yapılandırma** öğesinin bir alt öğesi olarak yapıştırın</span><span class="sxs-lookup"><span data-stu-id="99aa7-207">Paste the **connectionStrings** element as a child element of the **configuration** element of the **Web.Config** file in the **STESample.Service** project</span></span>
 
-<span data-ttu-id="e865c-208">Şimdi de gerçek hizmeti uygulama zamanı.</span><span class="sxs-lookup"><span data-stu-id="e865c-208">Now it's time to implement the actual service.</span></span>
+<span data-ttu-id="99aa7-208">Şimdi de gerçek hizmeti uygulama zamanı.</span><span class="sxs-lookup"><span data-stu-id="99aa7-208">Now it's time to implement the actual service.</span></span>
 
--   <span data-ttu-id="e865c-209">**IService1.cs** açın ve içeriğini aşağıdaki kodla değiştirin</span><span class="sxs-lookup"><span data-stu-id="e865c-209">Open **IService1.cs** and replace the contents with the following code</span></span>
+-   <span data-ttu-id="99aa7-209">**IService1.cs** açın ve içeriğini aşağıdaki kodla değiştirin</span><span class="sxs-lookup"><span data-stu-id="99aa7-209">Open **IService1.cs** and replace the contents with the following code</span></span>
 
 ``` csharp
     using System.Collections.Generic;
@@ -202,7 +202,7 @@ ms.locfileid: "72181711"
     }
 ```
 
--   <span data-ttu-id="e865c-210">**Service1. svc** açın ve içerikleri aşağıdaki kodla değiştirin</span><span class="sxs-lookup"><span data-stu-id="e865c-210">Open **Service1.svc** and replace the contents with the following code</span></span>
+-   <span data-ttu-id="99aa7-210">**Service1. svc** açın ve içerikleri aşağıdaki kodla değiştirin</span><span class="sxs-lookup"><span data-stu-id="99aa7-210">Open **Service1.svc** and replace the contents with the following code</span></span>
 
 ``` csharp
     using System;
@@ -255,24 +255,24 @@ ms.locfileid: "72181711"
     }
 ```
 
-## <a name="consume-the-service-from-a-console-application"></a><span data-ttu-id="e865c-211">Hizmeti bir konsol uygulamasından tüketme</span><span class="sxs-lookup"><span data-stu-id="e865c-211">Consume the Service from a Console Application</span></span>
+## <a name="consume-the-service-from-a-console-application"></a><span data-ttu-id="99aa7-211">Hizmeti bir konsol uygulamasından tüketme</span><span class="sxs-lookup"><span data-stu-id="99aa7-211">Consume the Service from a Console Application</span></span>
 
-<span data-ttu-id="e865c-212">Hizmetimizi kullanan bir konsol uygulaması oluşturalım.</span><span class="sxs-lookup"><span data-stu-id="e865c-212">Let's create a console application that uses our service.</span></span>
+<span data-ttu-id="99aa7-212">Hizmetimizi kullanan bir konsol uygulaması oluşturalım.</span><span class="sxs-lookup"><span data-stu-id="99aa7-212">Let's create a console application that uses our service.</span></span>
 
--   <span data-ttu-id="e865c-213">**Dosya-&gt; yeni-&gt; proje...**</span><span class="sxs-lookup"><span data-stu-id="e865c-213">**File -&gt; New -&gt; Project...**</span></span>
--   <span data-ttu-id="e865c-214">Sol bölmeden ve sonra **konsol uygulamasında** **Visual C @ no__t-1** ' i seçin</span><span class="sxs-lookup"><span data-stu-id="e865c-214">Select **Visual C\#** from the left pane and then **Console Application**</span></span>
--   <span data-ttu-id="e865c-215">Ad olarak **Stesample. ConsoleTest** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="e865c-215">Enter **STESample.ConsoleTest** as the name and click **OK**</span></span>
--   <span data-ttu-id="e865c-216">**Stesample. Entities** projesine bir başvuru ekleyin</span><span class="sxs-lookup"><span data-stu-id="e865c-216">Add a reference to the **STESample.Entities** project</span></span>
+-   <span data-ttu-id="99aa7-213">**Dosya-&gt; yeni&gt; projesi...**</span><span class="sxs-lookup"><span data-stu-id="99aa7-213">**File -&gt; New -&gt; Project...**</span></span>
+-   <span data-ttu-id="99aa7-214">Sol bölmeden ve sonra **konsol uygulamasında** **Visual C\#** ' yi seçin.</span><span class="sxs-lookup"><span data-stu-id="99aa7-214">Select **Visual C\#** from the left pane and then **Console Application**</span></span>
+-   <span data-ttu-id="99aa7-215">Ad olarak **Stesample. ConsoleTest** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="99aa7-215">Enter **STESample.ConsoleTest** as the name and click **OK**</span></span>
+-   <span data-ttu-id="99aa7-216">**Stesample. Entities** projesine bir başvuru ekleyin</span><span class="sxs-lookup"><span data-stu-id="99aa7-216">Add a reference to the **STESample.Entities** project</span></span>
 
-<span data-ttu-id="e865c-217">WCF hizmetinize bir hizmet başvurusu gerekiyor</span><span class="sxs-lookup"><span data-stu-id="e865c-217">We need a service reference to our WCF service</span></span>
+<span data-ttu-id="99aa7-217">WCF hizmetinize bir hizmet başvurusu gerekiyor</span><span class="sxs-lookup"><span data-stu-id="99aa7-217">We need a service reference to our WCF service</span></span>
 
--   <span data-ttu-id="e865c-218">**Çözüm Gezgini** ' deki **Stesample. consoletest** projesine sağ tıklayın ve **hizmet başvurusu Ekle...** öğesini seçin.</span><span class="sxs-lookup"><span data-stu-id="e865c-218">Right-click the **STESample.ConsoleTest** project in **Solution Explorer** and select **Add Service Reference...**</span></span>
--   <span data-ttu-id="e865c-219">**Keşfet** 'e tıklayın</span><span class="sxs-lookup"><span data-stu-id="e865c-219">Click **Discover**</span></span>
--   <span data-ttu-id="e865c-220">Ad alanı olarak **BloggingService** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="e865c-220">Enter **BloggingService** as the namespace and click **OK**</span></span>
+-   <span data-ttu-id="99aa7-218">**Çözüm Gezgini** ' deki **Stesample. consoletest** projesine sağ tıklayın ve **hizmet başvurusu Ekle...** öğesini seçin.</span><span class="sxs-lookup"><span data-stu-id="99aa7-218">Right-click the **STESample.ConsoleTest** project in **Solution Explorer** and select **Add Service Reference...**</span></span>
+-   <span data-ttu-id="99aa7-219">**Keşfet** 'e tıklayın</span><span class="sxs-lookup"><span data-stu-id="99aa7-219">Click **Discover**</span></span>
+-   <span data-ttu-id="99aa7-220">Ad alanı olarak **BloggingService** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="99aa7-220">Enter **BloggingService** as the namespace and click **OK**</span></span>
 
-<span data-ttu-id="e865c-221">Artık hizmeti tüketmek için bazı kodlar yazabiliriz.</span><span class="sxs-lookup"><span data-stu-id="e865c-221">Now we can write some code to consume the service.</span></span>
+<span data-ttu-id="99aa7-221">Artık hizmeti tüketmek için bazı kodlar yazabiliriz.</span><span class="sxs-lookup"><span data-stu-id="99aa7-221">Now we can write some code to consume the service.</span></span>
 
--   <span data-ttu-id="e865c-222">**Program.cs** açın ve içeriğini aşağıdaki kodla değiştirin.</span><span class="sxs-lookup"><span data-stu-id="e865c-222">Open **Program.cs** and replace the contents with the following code.</span></span>
+-   <span data-ttu-id="99aa7-222">**Program.cs** açın ve içeriğini aşağıdaki kodla değiştirin.</span><span class="sxs-lookup"><span data-stu-id="99aa7-222">Open **Program.cs** and replace the contents with the following code.</span></span>
 
 ``` csharp
     using STESample.ConsoleTest.BloggingService;
@@ -399,11 +399,11 @@ ms.locfileid: "72181711"
     }
 ```
 
-<span data-ttu-id="e865c-223">Artık uygulamayı çalışır durumda görmek için çalıştırabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="e865c-223">You can now run the application to see it in action.</span></span>
+<span data-ttu-id="99aa7-223">Artık uygulamayı çalışır durumda görmek için çalıştırabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="99aa7-223">You can now run the application to see it in action.</span></span>
 
--   <span data-ttu-id="e865c-224">**Çözüm Gezgini** ' deki **Stesample. consoletest** projesine sağ tıklayın ve **Hata Ayıkla-&gt; yeni örnek Başlat** ' ı seçin</span><span class="sxs-lookup"><span data-stu-id="e865c-224">Right-click the **STESample.ConsoleTest** project in **Solution Explorer** and select **Debug -&gt; Start new instance**</span></span>
+-   <span data-ttu-id="99aa7-224">**Çözüm Gezgini** ' deki **Stesample. consoletest** projesine sağ tıklayın ve **Hata Ayıkla-&gt; yeni örnek Başlat** ' ı seçin</span><span class="sxs-lookup"><span data-stu-id="99aa7-224">Right-click the **STESample.ConsoleTest** project in **Solution Explorer** and select **Debug -&gt; Start new instance**</span></span>
 
-<span data-ttu-id="e865c-225">Uygulama yürütüldüğünde aşağıdaki çıktıyı görürsünüz.</span><span class="sxs-lookup"><span data-stu-id="e865c-225">You'll see the following output when the application executes.</span></span>
+<span data-ttu-id="99aa7-225">Uygulama yürütüldüğünde aşağıdaki çıktıyı görürsünüz.</span><span class="sxs-lookup"><span data-stu-id="99aa7-225">You'll see the following output when the application executes.</span></span>
 
 ```console
 Initial Data:
@@ -435,24 +435,24 @@ ADO.NET Blog
 Press any key to exit...
 ```
 
-## <a name="consume-the-service-from-a-wpf-application"></a><span data-ttu-id="e865c-226">Bir WPF uygulamasından hizmeti tüketme</span><span class="sxs-lookup"><span data-stu-id="e865c-226">Consume the Service from a WPF Application</span></span>
+## <a name="consume-the-service-from-a-wpf-application"></a><span data-ttu-id="99aa7-226">Bir WPF uygulamasından hizmeti tüketme</span><span class="sxs-lookup"><span data-stu-id="99aa7-226">Consume the Service from a WPF Application</span></span>
 
-<span data-ttu-id="e865c-227">Hizmetimizi kullanan bir WPF uygulaması oluşturalım.</span><span class="sxs-lookup"><span data-stu-id="e865c-227">Let's create a WPF application that uses our service.</span></span>
+<span data-ttu-id="99aa7-227">Hizmetimizi kullanan bir WPF uygulaması oluşturalım.</span><span class="sxs-lookup"><span data-stu-id="99aa7-227">Let's create a WPF application that uses our service.</span></span>
 
--   <span data-ttu-id="e865c-228">**Dosya-&gt; yeni-&gt; proje...**</span><span class="sxs-lookup"><span data-stu-id="e865c-228">**File -&gt; New -&gt; Project...**</span></span>
--   <span data-ttu-id="e865c-229">Sol bölmeden ve ardından **WPF uygulamasında** **Visual C @ no__t-1** ' i seçin</span><span class="sxs-lookup"><span data-stu-id="e865c-229">Select **Visual C\#** from the left pane and then **WPF Application**</span></span>
--   <span data-ttu-id="e865c-230">Ad olarak **Stesample. WPFTest** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="e865c-230">Enter **STESample.WPFTest** as the name and click **OK**</span></span>
--   <span data-ttu-id="e865c-231">**Stesample. Entities** projesine bir başvuru ekleyin</span><span class="sxs-lookup"><span data-stu-id="e865c-231">Add a reference to the **STESample.Entities** project</span></span>
+-   <span data-ttu-id="99aa7-228">**Dosya-&gt; yeni&gt; projesi...**</span><span class="sxs-lookup"><span data-stu-id="99aa7-228">**File -&gt; New -&gt; Project...**</span></span>
+-   <span data-ttu-id="99aa7-229">Sol bölmeden ve ardından **WPF uygulamasında** **Visual C\#** seçin</span><span class="sxs-lookup"><span data-stu-id="99aa7-229">Select **Visual C\#** from the left pane and then **WPF Application**</span></span>
+-   <span data-ttu-id="99aa7-230">Ad olarak **Stesample. WPFTest** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="99aa7-230">Enter **STESample.WPFTest** as the name and click **OK**</span></span>
+-   <span data-ttu-id="99aa7-231">**Stesample. Entities** projesine bir başvuru ekleyin</span><span class="sxs-lookup"><span data-stu-id="99aa7-231">Add a reference to the **STESample.Entities** project</span></span>
 
-<span data-ttu-id="e865c-232">WCF hizmetinize bir hizmet başvurusu gerekiyor</span><span class="sxs-lookup"><span data-stu-id="e865c-232">We need a service reference to our WCF service</span></span>
+<span data-ttu-id="99aa7-232">WCF hizmetinize bir hizmet başvurusu gerekiyor</span><span class="sxs-lookup"><span data-stu-id="99aa7-232">We need a service reference to our WCF service</span></span>
 
--   <span data-ttu-id="e865c-233">**Çözüm Gezgini** ' deki **Stesample. wpftest** projesine sağ tıklayın ve **hizmet başvurusu Ekle...** öğesini seçin.</span><span class="sxs-lookup"><span data-stu-id="e865c-233">Right-click the **STESample.WPFTest** project in **Solution Explorer** and select **Add Service Reference...**</span></span>
--   <span data-ttu-id="e865c-234">**Keşfet** 'e tıklayın</span><span class="sxs-lookup"><span data-stu-id="e865c-234">Click **Discover**</span></span>
--   <span data-ttu-id="e865c-235">Ad alanı olarak **BloggingService** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="e865c-235">Enter **BloggingService** as the namespace and click **OK**</span></span>
+-   <span data-ttu-id="99aa7-233">**Çözüm Gezgini** ' deki **Stesample. wpftest** projesine sağ tıklayın ve **hizmet başvurusu Ekle...** öğesini seçin.</span><span class="sxs-lookup"><span data-stu-id="99aa7-233">Right-click the **STESample.WPFTest** project in **Solution Explorer** and select **Add Service Reference...**</span></span>
+-   <span data-ttu-id="99aa7-234">**Keşfet** 'e tıklayın</span><span class="sxs-lookup"><span data-stu-id="99aa7-234">Click **Discover**</span></span>
+-   <span data-ttu-id="99aa7-235">Ad alanı olarak **BloggingService** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="99aa7-235">Enter **BloggingService** as the namespace and click **OK**</span></span>
 
-<span data-ttu-id="e865c-236">Artık hizmeti tüketmek için bazı kodlar yazabiliriz.</span><span class="sxs-lookup"><span data-stu-id="e865c-236">Now we can write some code to consume the service.</span></span>
+<span data-ttu-id="99aa7-236">Artık hizmeti tüketmek için bazı kodlar yazabiliriz.</span><span class="sxs-lookup"><span data-stu-id="99aa7-236">Now we can write some code to consume the service.</span></span>
 
--   <span data-ttu-id="e865c-237">**MainWindow. xaml** ' i açın ve içeriği aşağıdaki kodla değiştirin.</span><span class="sxs-lookup"><span data-stu-id="e865c-237">Open **MainWindow.xaml** and replace the contents with the following code.</span></span>
+-   <span data-ttu-id="99aa7-237">**MainWindow. xaml** ' i açın ve içeriği aşağıdaki kodla değiştirin.</span><span class="sxs-lookup"><span data-stu-id="99aa7-237">Open **MainWindow.xaml** and replace the contents with the following code.</span></span>
 
 ``` xaml
     <Window
@@ -496,7 +496,7 @@ Press any key to exit...
     </Window>
 ```
 
--   <span data-ttu-id="e865c-238">MainWindow (**MainWindow.xaml.cs**) için arka plan kodunu açın ve içeriği aşağıdaki kodla değiştirin</span><span class="sxs-lookup"><span data-stu-id="e865c-238">Open the code behind for MainWindow (**MainWindow.xaml.cs**) and replace the contents with the following code</span></span>
+-   <span data-ttu-id="99aa7-238">MainWindow (**MainWindow.xaml.cs**) için arka plan kodunu açın ve içeriği aşağıdaki kodla değiştirin</span><span class="sxs-lookup"><span data-stu-id="99aa7-238">Open the code behind for MainWindow (**MainWindow.xaml.cs**) and replace the contents with the following code</span></span>
 
 ``` csharp
     using STESample.WPFTest.BloggingService;
@@ -548,9 +548,9 @@ Press any key to exit...
     }
 ```
 
-<span data-ttu-id="e865c-239">Artık uygulamayı çalışır durumda görmek için çalıştırabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="e865c-239">You can now run the application to see it in action.</span></span>
+<span data-ttu-id="99aa7-239">Artık uygulamayı çalışır durumda görmek için çalıştırabilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="99aa7-239">You can now run the application to see it in action.</span></span>
 
--   <span data-ttu-id="e865c-240">**Çözüm Gezgini** ' deki **Stesample. wpftest** projesine sağ tıklayın ve **Hata Ayıkla-&gt; yeni örnek Başlat** ' ı seçin</span><span class="sxs-lookup"><span data-stu-id="e865c-240">Right-click the **STESample.WPFTest** project in **Solution Explorer** and select **Debug -&gt; Start new instance**</span></span>
--   <span data-ttu-id="e865c-241">Ekranı kullanarak verileri işleyebilir ve **Kaydet** düğmesini kullanarak hizmet aracılığıyla kaydedebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="e865c-241">You can manipulate the data using the screen and save it via the service using the **Save** button</span></span>
+-   <span data-ttu-id="99aa7-240">**Çözüm Gezgini** ' deki **Stesample. wpftest** projesine sağ tıklayın ve **Hata Ayıkla-&gt; yeni örnek Başlat** ' ı seçin</span><span class="sxs-lookup"><span data-stu-id="99aa7-240">Right-click the **STESample.WPFTest** project in **Solution Explorer** and select **Debug -&gt; Start new instance**</span></span>
+-   <span data-ttu-id="99aa7-241">Ekranı kullanarak verileri işleyebilir ve **Kaydet** düğmesini kullanarak hizmet aracılığıyla kaydedebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="99aa7-241">You can manipulate the data using the screen and save it via the service using the **Save** button</span></span>
 
 ![WPF ana penceresi](~/ef6/media/wpf.png)
