@@ -12,7 +12,7 @@ ms.locfileid: "72181711"
 ---
 # <a name="self-tracking-entities-walkthrough"></a>Kendi kendine Izlenen varlıkları gözden geçirme
 > [!IMPORTANT]
-> Artık kendi kendine izleme varlıkları şablonunu kullanmanızı önermiyoruz. Yalnızca var olan uygulamaları desteklemek için kullanılabilir olmaya devam edecektir. Uygulamanız, bağlantısı kesilen varlıkların, topluluk tarafından daha etkin bir şekilde geliştirilen veya yazma gibi, kendi kendini Izlemeye benzer bir teknoloji olan, [izleyicileri](https://trackableentities.github.io/)olan diğer alternatifleri göz önünde bulundurun. alt düzey değişiklik izleme API 'Lerini kullanan özel kod.
+> Artık kendi kendine izleme varlıkları şablonunu kullanmanızı önermiyoruz. Yalnızca var olan uygulamaları desteklemek için kullanılabilir olmaya devam edecektir. Uygulamanız, bağlantılı olmayan grafik grafiklerle çalışmayı gerektiriyorsa, bu, topluluk tarafından daha etkin bir şekilde geliştirilmiş olan ve alt düzey değişiklik izleme API 'Leri kullanılarak özel kod yazma gibi, kendini Izlemeye benzer bir teknoloji olan, [izleyicileri oluşturan varlıklar](https://trackableentities.github.io/)gibi diğer alternatifleri göz önünde bulundurun.
 
 Bu izlenecek yol, bir Windows Communication Foundation (WCF) hizmetinin bir varlık grafiği döndüren bir işlemi kullanıma sunduğunu gösteren senaryoyu gösterir. Daha sonra, bir istemci uygulaması bu grafiği yönetir ve Entity Framework kullanarak bir veritabanına güncelleştirmeleri doğrulayan ve kaydeden bir hizmet işlemine yapılan değişiklikleri gönderir.
 
@@ -43,8 +43,8 @@ Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio s
 Şimdi veritabanını oluşturalım.
 
 -   Visual Studio 'Yu aç
--   **@No__t-1 Sunucu Gezgini görüntüle**
--   Veri bağlantıları ' na sağ tıklayın **-&gt; bağlantı ekle...**
+-   **&gt; Sunucu Gezgini görüntüle**
+-   Veri bağlantıları ' na sağ tıklayın **&gt; bağlantı ekle...**
 -   Sunucu Gezgini bir veritabanına bağlı değilseniz, veri kaynağı olarak **Microsoft SQL Server** seçmeniz gerekir
 -   Hangi hangisinin yüklü olduğuna bağlı olarak, LocalDB veya SQL Express 'e bağlanın
 -   Veritabanı adı olarak **Stesample** girin
@@ -54,8 +54,8 @@ Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio s
     -   Sunucu Gezgini veritabanında veritabanına sağ tıklayın ve **Yeni sorgu** ' yı seçin.
     -   Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **Yürüt** ' ü seçin.
 -   Visual Studio 2010 kullanıyorsanız
-    -   **Data-&gt; Transact SQL Düzenleyicisi-&gt; yeni sorgu bağlantısı seç...**
-    -   Sunucu adı olarak **. \\SQLEXPRESS** girin ve **Tamam 'a** tıklayın
+    -   **Veri&gt; Transact SQL Düzenleyicisi-&gt; yeni sorgu bağlantısı ' nı seçin...**
+    -   Sunucu adı olarak **.\\SQLExpress** girin ve **Tamam 'a** tıklayın
     -   Sorgu Düzenleyicisi 'nin en üstündeki açılan listeden **Stesample** veritabanını seçin
     -   Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **SQL 'ı Yürüt** ' ü seçin.
 
@@ -87,8 +87,8 @@ Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio s
 
 İlk olarak, modeli içine koyabileceğiniz bir proje gerekiyor.
 
--   **Dosya-&gt; yeni-&gt; proje...**
--   Sol bölmeden ve sonra **sınıf kitaplığı** 'Ndan **Visual C @ no__t-1** ' i seçin
+-   **Dosya-&gt; yeni&gt; projesi...**
+-   Sol bölmeden ve sonra **sınıf kitaplığı** 'Ndan **Visual C\#** seçin
 -   Ad olarak **Stesample** girin ve **Tamam 'a** tıklayın
 
 Şimdi, veritabanımıza erişmek için EF tasarımcısında basit bir model oluşturacağız:
@@ -107,11 +107,11 @@ Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio s
 
 ### <a name="if-you-are-using-visual-studio-2012"></a>Visual Studio 2012 kullanıyorsanız
 
--   Çözüm Gezgini **BloggingModel. edmx** ' i genişletin ve **BloggingModel.tt** ve **BloggingModel.Context.tt**
-     ' ü silin.*Bu, varsayılan kod oluşturmayı devre dışı bırakır*
+-   **Çözüm Gezgini** 'de **BloggingModel. edmx** ' i genişletin ve **BloggingModel.tt** ve **BloggingModel.Context.tt**
+    silin. *Bu, varsayılan kod üretimini devre dışı bırakır*
 -   EF Designer yüzeyinde boş bir alana sağ tıklayın ve **kod oluşturma öğesi Ekle...** seçeneğini belirleyin.
 -   Sol bölmeden **çevrimiçi** ' i seçin ve **Ste Generator** araması yapın
--   **C @ no__t-1 şablonu Için Ste üreticisini** seçin, ad olarak **Stetemplate** girin ve **Ekle** ' ye tıklayın.
+-   **C\#şablonu Için Ste Generator** ' yı seçin, ad olarak **Stetemplate** girin ve **Ekle** ' ye tıklayın.
 -   **STETemplate.tt** ve **STETemplate.Context.tt** dosyaları, BloggingModel. edmx dosyasının altına iç içe eklenir
 
 ### <a name="if-you-are-using-visual-studio-2010"></a>Visual Studio 2010 kullanıyorsanız
@@ -134,11 +134,11 @@ Kendi kendini Izleyen varlıkları kullanmak için, istemci uygulamamız, modeli
 Ardından, yeni bir proje ekleyeceğiz ve bu projede varlık sınıfları oluşturacağız
 
 -   **Dosya-&gt; Add-&gt; projesi...**
--   Sol bölmeden ve sonra **sınıf kitaplığı** 'Ndan **Visual C @ no__t-1** ' i seçin
+-   Sol bölmeden ve sonra **sınıf kitaplığı** 'Ndan **Visual C\#** seçin
 -   Ad olarak **Stesample. Entities** girin ve **Tamam 'a** tıklayın
--   **Proje-&gt; varolan öğe Ekle...**
+-   **Proje-&gt; var olan öğe Ekle...**
 -   **Stesample** proje klasörüne gitme
--   Tüm dosyaları görüntülemek için seçin **(\*. \*)**
+-   Tüm dosyaları görüntülemek için seçin **(\*.\*)**
 -   **STETemplate.tt** dosyasını seçin
 -   **Ekle** düğmesinin yanındaki aşağı açılan oka tıklayın ve **bağlantı olarak ekle** ' yi seçin.
 
@@ -162,14 +162,14 @@ Son olarak, içinde bağlamımız bir proje varlık türlerine bir başvuruya sa
     -   Visual Studio 2010- **Projeler** sekmesini seçin, **Stesample. Entities** ' yi seçin ve **Tamam** ' a tıklayın.
 
 >[!NOTE]
-> Varlık türlerini ayrı bir projeye taşımaya yönelik başka bir seçenek de şablon dosyasını varsayılan konumundan bağlamak yerine taşımaktır. Bunu yaparsanız, edmx dosyasına göreli yolu sağlamak için şablonda **InputFile** değişkenini güncelleştirmeniz gerekir (Bu örnekte, **... \\BloggingModel. edmx**).
+> Varlık türlerini ayrı bir projeye taşımaya yönelik başka bir seçenek de şablon dosyasını varsayılan konumundan bağlamak yerine taşımaktır. Bunu yaparsanız, edmx dosyasına (Bu örnekte **..\\BloggingModel. edmx**) göreli yolu sağlamak Için şablonda **InputFile** değişkenini güncelleştirmeniz gerekir.
 
 ## <a name="create-a-wcf-service"></a>WCF hizmeti oluşturma
 
 Şimdi verilerimizi açığa çıkarmak için bir WCF hizmeti eklemenin zamanı, projeyi oluşturarak başlayacağız.
 
 -   **Dosya-&gt; Add-&gt; projesi...**
--   Sol bölmeden ve ardından **WCF hizmeti uygulamasından** **Visual C @ no__t-1** ' i seçin
+-   Sol bölmeden ve ardından **WCF hizmeti uygulamasından** **Visual C\#** seçin
 -   Ad olarak **Stesample. Service** girin ve **Tamam 'a** tıklayın
 -   **System. Data. Entity** derlemesine bir başvuru ekleyin
 -   **Stesample** ve **Stesample. Entities** projelerine bir başvuru ekleyin
@@ -258,8 +258,8 @@ EF bağlantı dizesini, çalışma zamanında bulunduğu için bu projeye kopyal
 
 Hizmetimizi kullanan bir konsol uygulaması oluşturalım.
 
--   **Dosya-&gt; yeni-&gt; proje...**
--   Sol bölmeden ve sonra **konsol uygulamasında** **Visual C @ no__t-1** ' i seçin
+-   **Dosya-&gt; yeni&gt; projesi...**
+-   Sol bölmeden ve sonra **konsol uygulamasında** **Visual C\#** ' yi seçin.
 -   Ad olarak **Stesample. ConsoleTest** girin ve **Tamam 'a** tıklayın
 -   **Stesample. Entities** projesine bir başvuru ekleyin
 
@@ -438,8 +438,8 @@ Press any key to exit...
 
 Hizmetimizi kullanan bir WPF uygulaması oluşturalım.
 
--   **Dosya-&gt; yeni-&gt; proje...**
--   Sol bölmeden ve ardından **WPF uygulamasında** **Visual C @ no__t-1** ' i seçin
+-   **Dosya-&gt; yeni&gt; projesi...**
+-   Sol bölmeden ve ardından **WPF uygulamasında** **Visual C\#** seçin
 -   Ad olarak **Stesample. WPFTest** girin ve **Tamam 'a** tıklayın
 -   **Stesample. Entities** projesine bir başvuru ekleyin
 

@@ -14,9 +14,9 @@ ms.locfileid: "72182470"
 
 EF modeli, uygulama sınıflarının ve özelliklerinin veritabanı tablolarına ve sütunlarına nasıl eşlenme hakkındaki ayrıntıları depolar. EF modeli oluşturmanın iki ana yöntemi vardır:
 
-- **Code First kullanma**: Geliştirici, modeli belirtmek için kod yazar. EF, çalışma zamanında model ve eşlemeleri varlık sınıflarına ve geliştirici tarafından belirtilen ek model yapılandırmasına göre oluşturur.
+- **Code First kullanımı**: geliştirici, modeli belirtmek için kod yazar. EF, çalışma zamanında model ve eşlemeleri varlık sınıflarına ve geliştirici tarafından belirtilen ek model yapılandırmasına göre oluşturur.
 
-- **EF tasarımcısını kullanma**: Geliştirici, EF tasarımcısını kullanarak modeli belirtmek için kutular ve çizgiler çizer. Elde edilen model, EDMX uzantılı bir dosyada XML olarak depolanır. Uygulamanın etki alanı nesneleri, genellikle kavramsal modelden otomatik olarak oluşturulur.
+- **EF tasarımcısını kullanarak**: GELIŞTIRICI, EF tasarımcısını kullanarak modeli belirtmek için kutular ve çizgiler çizer. Elde edilen model, EDMX uzantılı bir dosyada XML olarak depolanır. Uygulamanın etki alanı nesneleri, genellikle kavramsal modelden otomatik olarak oluşturulur.
 
 ## <a name="ef-workflows"></a>EF iş akışları
 
@@ -28,13 +28,13 @@ Sizin için en uygun olanı öğrenin:
 | **Yeni bir veritabanı oluşturdum**          | [Modelinizi kodda tanımlamak ve sonra bir veritabanı oluşturmak için **Code First** kullanın.](~/ef6/modeling/code-first/workflows/new-database.md)           | [Kutuları ve çizgileri kullanarak modelinizi tanımlamak ve sonra bir veritabanı oluşturmak için **model First** kullanın.](~/ef6/modeling/designer/workflows/model-first.md)   |
 | **Var olan bir veritabanına erişebilmem gerekiyor** | [Mevcut bir veritabanıyla eşleşen kod tabanlı bir model oluşturmak için **Code First** kullanın.](~/ef6/modeling/code-first/workflows/existing-database.md) | [Mevcut bir veritabanıyla eşleşen kutular ve satırlar modeli oluşturmak için **Database First** kullanın.](~/ef6/modeling/designer/workflows/database-first.md) |
 
-### <a name="watch-the-video-what-ef-workflow-should-i-use"></a>Videoyu izleyin: Hangi EF iş akışını kullanmalıyım?
+### <a name="watch-the-video-what-ef-workflow-should-i-use"></a>Videoyu izleyin: hangi EF iş akışını kullanmalıyım?
 
 Bu kısa videoda, farklar ve sizin için uygun olanı bulma açıklanmaktadır.
 
-**Sunulma ölçütü**: [ROWA Miller](https://romiller.com/)
+**Sunulma ölçütü**: [Rowa Miller](https://romiller.com/)
 
-![Hangi Iş akışı parmak izi @ no__t-1 [WMV](https://download.microsoft.com/download/8/F/8/8F81F4CD-3678-4229-8D79-0C63FFA3C595/HDI_ITPro_Technet_winvideo_ChoseYourWorkflow.wmv) | [MP4](https://download.microsoft.com/download/8/F/8/8F81F4CD-3678-4229-8D79-0C63FFA3C595/HDI_ITPro_Technet_mp4video_ChoseYourWorkflow.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/8/F/8/8F81F4CD-3678-4229-8D79-0C63FFA3C595/HDI_ITPro_Technet_winvideo_ChoseYourWorkflow.zip)
+![](../media/whichworkflow-thumb.png) [wmv](https://download.microsoft.com/download/8/F/8/8F81F4CD-3678-4229-8D79-0C63FFA3C595/HDI_ITPro_Technet_winvideo_ChoseYourWorkflow.wmv) | [MP4](https://download.microsoft.com/download/8/F/8/8F81F4CD-3678-4229-8D79-0C63FFA3C595/HDI_ITPro_Technet_mp4video_ChoseYourWorkflow.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/8/F/8/8F81F4CD-3678-4229-8D79-0C63FFA3C595/HDI_ITPro_Technet_winvideo_ChoseYourWorkflow.zip) iş akışı parmak izi
 
 Videoyu izlerken, EF tasarımcısını veya Code First kullanmak istiyorsanız, her ikisini de öğrenin!
 

@@ -261,11 +261,11 @@ Yakasyon kodu, ele geçirme arabirimleri kavramı etrafında oluşturulmuştur. 
 
 ### <a name="the-interception-context"></a>Yakalenme bağlamı  
 
-Her çağrının, hiçbir yakacının arabiriminden tanımlanan yöntemlere bakarak, her çağrıya Dbyakationcontext türünde bir nesne veya Dbcommandyakationcontext @ no__t-0 @ no__t-1 gibi bir tür elde edilen bir tür verilmiştir. Bu nesne, EF 'in aldığı eylem hakkında bağlamsal bilgiler içerir. Örneğin, eylem bir DbContext adına götürülüiyorsa DbContext Dbyakationcontext içine dahil edilir. Benzer şekilde, zaman uyumsuz olarak yürütülen komutlar için, Dbcommandyakationcontext üzerinde IsAsync bayrağı ayarlanır.  
+Herhangi bir dinleyici için tanımlanan yöntemlere bakarak, her çağrıya Dbyakationcontext türünde bir nesne veya Dbcommandyakationcontext\<\>gibi bazı tür bir nesne verilmediği görünür. Bu nesne, EF 'in aldığı eylem hakkında bağlamsal bilgiler içerir. Örneğin, eylem bir DbContext adına götürülüiyorsa DbContext Dbyakationcontext içine dahil edilir. Benzer şekilde, zaman uyumsuz olarak yürütülen komutlar için, Dbcommandyakationcontext üzerinde IsAsync bayrağı ayarlanır.  
 
 ### <a name="result-handling"></a>Sonuç işleme  
 
-Dbcommandyakationcontext @ no__t-0 @ no__t-1 sınıfı result, OriginalResult, Exception ve OriginalException adlı bir özellik içerir. Bu özellikler, işlem yürütülmeden önce çağrılan çağrı yöntemlerine yapılan çağrılar için null/sıfır olarak ayarlanır; Yani,.................. Yöntemler yürütülüyor. İşlem yürütülürse ve başarılı olursa Result ve OriginalResult işlemin sonucuna ayarlanır. Bu değerler daha sonra, işlem yürütüldükten sonra çağrılan (...... Çalıştırılan Yöntemler. Benzer şekilde, işlem oluşturursa, Exception ve OriginalException özellikleri ayarlanır.  
+Dbcommandyakationcontext\<\> sınıfı result, OriginalResult, Exception ve OriginalException adlı bir özellik içerir. Bu özellikler, işlem yürütülmeden önce çağrılan çağrı yöntemlerine yapılan çağrılar için null/sıfır olarak ayarlanır; Yani,.................. Yöntemler yürütülüyor. İşlem yürütülürse ve başarılı olursa Result ve OriginalResult işlemin sonucuna ayarlanır. Bu değerler daha sonra, işlem yürütüldükten sonra çağrılan (...... Çalıştırılan Yöntemler. Benzer şekilde, işlem oluşturursa, Exception ve OriginalException özellikleri ayarlanır.  
 
 #### <a name="suppressing-execution"></a>Yürütmeyi gizleme  
 
@@ -297,7 +297,7 @@ DbInterception.Add(new NLogCommandInterceptor());
 
 Ayrıca, uygulama etki alanı düzeyinde DbConfiguration kod tabanlı yapılandırma mekanizması kullanılarak da kayıt yapılabilir.  
 
-### <a name="example-logging-to-nlog"></a>Örnek: NLog dosyasına kaydetme  
+### <a name="example-logging-to-nlog"></a>Örnek: NLog günlüğüne kaydetme  
 
 Bunu, ıdbcommandyakalayıcısı ve [NLog](https://nlog-project.org/) ' un kullanıldığı bir örneğe bir araya koyalım:  
 

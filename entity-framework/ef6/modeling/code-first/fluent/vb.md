@@ -11,7 +11,7 @@ ms.lasthandoff: 10/09/2019
 ms.locfileid: "72182667"
 ---
 # <a name="fluent-api-with-vbnet"></a>VB.NET ile akıcı API
-Code First, modelinizi C @ no__t-0 veya VB.NET sınıfları kullanarak tanımlamanızı sağlar. Ek yapılandırma, isteğe bağlı olarak sınıflarınızda ve özelliklerde öznitelikler kullanılarak veya bir Fluent API kullanılarak gerçekleştirilebilir. Bu izlenecek yol, VB.NET kullanarak Fluent API yapılandırmanın nasıl gerçekleştirileceğini gösterir.
+Code First, modelinizi C\# veya VB.NET sınıfları kullanarak tanımlamanızı sağlar. Ek yapılandırma, isteğe bağlı olarak sınıflarınızda ve özelliklerde öznitelikler kullanılarak veya bir Fluent API kullanılarak gerçekleştirilebilir. Bu izlenecek yol, VB.NET kullanarak Fluent API yapılandırmanın nasıl gerçekleştirileceğini gösterir.
 
 Bu sayfa Code First temel bir anlama sahip olduğunuzu varsayar. Code First hakkında daha fazla bilgi için aşağıdaki izlenecek yollara göz atın:
 
@@ -29,7 +29,7 @@ Visual Studio 2010 kullanıyorsanız, [NuGet](https://visualstudiogallery.msdn.m
 Şeyleri basit tutmak için veri erişimi gerçekleştirmek üzere Code First kullanan temel bir konsol uygulaması oluşturacağız.
 
 -   Visual Studio 'Yu aç
--   **Dosya-&gt; yeni-&gt; proje...**
+-   **Dosya-&gt; yeni&gt; projesi...**
 -   Sol taraftaki menüden ve **konsol uygulamasından** **Windows** ' u seçin
 -   Ad olarak **Codefırstvbsample** girin
 -   **Tamam 'ı** seçin
@@ -137,14 +137,14 @@ Bu adımda, kavramsal modeli temsil eden VB.NET POCO varlık türlerini tanımla
 
 Entity Framework türleri kullanmaya başlamak istiyoruz, bu nedenle EntityFramework NuGet paketini eklememiz gerekiyor.
 
--   \* * Proje – &gt; **NuGet Paketlerini Yönet...**
+-   \* * Proje –&gt; **NuGet Paketlerini Yönet...**
 > [!NOTE]
 > **NuGet Paketlerini Yönet..** . [en son NuGet sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklemelisiniz.
 -   **Çevrimiçi** sekmesini seçin
 -   **EntityFramework** paketini seçin
 -   **Install** 'a tıklayın
 
-Şimdi, veritabanı ile bir oturumu temsil eden ve verileri sorgulayıp kaydedebileceğimizi sağlayan bir türetilmiş bağlam tanımlama zamanı. System. Data. Entity. DbContext öğesinden türeten bir bağlam tanımladık ve modelimizin her bir sınıfı için türü belirtilmiş bir DbSet @ no__t-0TEntity @ no__t-1 ' i kullanıma sunduk.
+Şimdi, veritabanı ile bir oturumu temsil eden ve verileri sorgulayıp kaydedebileceğimizi sağlayan bir türetilmiş bağlam tanımlama zamanı. System. Data. Entity. DbContext öğesinden türeten bir bağlam tanımladık ve modelimizin her bir sınıfı için tür bir DbSet&lt;TEntity&gt; kullanıma sunuyor.
 
 -   Projeye yeni bir sınıf ekleyin, sınıf adı için **SchoolContext** girin
 -   Yeni sınıfın içeriğini aşağıdaki kodla değiştirin
@@ -171,7 +171,7 @@ Entity Framework türleri kullanmaya başlamak istiyoruz, bu nedenle EntityFrame
 
 ## <a name="configuring-with-the-fluent-api"></a>Akıcı API ile yapılandırma
 
-Bu bölümde, modelinizdeki tablo eşleme, Özellikler sütun eşleme ve tablolar arasındaki ilişkiler arasındaki ilişkiler için türleri yapılandırmak üzere akıcı API 'Lerin nasıl kullanılacağı gösterilmektedir. Fluent API **Dbmodelbuilder** türü aracılığıyla sunulur ve en yaygın olarak **DbContext**üzerinde **onmodeloluþturma** yöntemi geçersiz kılınarak erişilir.
+Bu bölümde, modelinizdeki tür\\eşleme, sütun eşleme özellikleri ve tablolar arasındaki ilişkiler arasındaki ilişkileri yapılandırmak için akıcı API 'Lerin nasıl kullanılacağı gösterilmektedir. Fluent API **Dbmodelbuilder** türü aracılığıyla sunulur ve en yaygın olarak **DbContext**üzerinde **onmodeloluþturma** yöntemi geçersiz kılınarak erişilir.
 
 -   Aşağıdaki kodu kopyalayın ve **SchoolContext** sınıfında tanımlanan **onmodeloluşturma** yöntemine ekleyin. her eşlemenin ne yaptığını açıklar
 

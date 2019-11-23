@@ -24,9 +24,9 @@ TVFs, tek bir anahtar farklılığı olan saklı yordamlara çok benzer: bir TVF
 
 ## <a name="watch-the-video"></a>Videoyu izleyin
 
-**Sunulma ölçütü**: Julia Kornich
+**Sunduğu**: Julia Kornich
 
-[WMV](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-winvideo-tvf.wmv) | [MP4](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-mp4video-tvf.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-winvideo-tvf.zip)
+[Wmv](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-winvideo-tvf.wmv) | [MP4](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-mp4video-tvf.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-winvideo-tvf.zip)
 
 ## <a name="pre-requisites"></a>Önkoşulların önkoşulları
 
@@ -40,13 +40,13 @@ Bu yönergeyi tamamlamak için şunları yapmanız gerekir:
 
 1.  Visual Studio 'Yu aç
 2.  **Dosya** menüsünde, **Yeni**' nin üzerine gelin ve ardından **Proje** ' ye tıklayın.
-3.  Sol bölmede, **Visual C @ no__t-1**' e tıklayın ve ardından **konsol** şablonunu seçin
+3.  Sol bölmede, **Visual C\#** ' ye tıklayın ve ardından **konsol** şablonunu seçin
 4.  Projenin adı olarak **TVF** girin ve **Tamam 'a** tıklayın
 
 ## <a name="add-a-tvf-to-the-database"></a>Veritabanına bir TVF ekleyin
 
--   **Görünüm-&gt;** ' i seçin SQL Server Nesne Gezgini
--   LocalDB, sunucu listesinde değilse: **SQL Server** ' ye sağ tıklayın ve **Ekle SQL Server** ' yi seçin ve LocalDB sunucusuna bağlanmak Için varsayılan **Windows kimlik doğrulamasını** kullanın
+-   **Görünüm-&gt; SQL Server Nesne Gezgini** seçin
+-   LocalDB sunucu listesinde değilse: **SQL Server** sağ tıklayın ve **Ekle SQL Server** ' yi seçin ve LocalDB sunucusuna bağlanmak Için varsayılan **Windows kimlik doğrulamasını** kullanın
 -   LocalDB düğümünü Genişlet
 -   Veritabanları düğümü altında, okul veritabanı düğümüne sağ tıklayın ve yeni sorgu ' yı seçin. **..**
 -   T-SQL düzenleyicisinde, aşağıdaki TVF tanımını yapıştırın
@@ -78,12 +78,12 @@ RETURN
 2.  Sol menüden **verileri** seçin ve ardından **şablonlar** bölmesinde **ADO.net varlık veri modeli** seçin
 3.  Dosya adı için **Tvfmodel. edmx** yazın ve ardından **Ekle** ' ye tıklayın.
 4.  Model Içeriğini seçin iletişim kutusunda, **veritabanından oluştur**' u seçin ve ardından **İleri** ' ye tıklayın.
-5.  Sunucu adı metin kutusuna **Yeni bağlantı** gir **(localdb) \\mssqllocaldb** ' ye tıklayın, veritabanı adı için **okul** girin **Tamam** ' a tıklayın.
-6.  Veritabanı nesnelerinizi seçin iletişim kutusunda, **tablolar** düğümü altında, **kişiyi**, **studentgrad**' ı ve **Kurs**  tablolarını seçin
-7.   **Saklı yordamlar ve işlevler** Node notunun altında bulunan, Visual Studio 2012 ' den başlayarak, Entity Desisgner saklı yordamlarınızı ve işlevlerinizi içeri aktarmanızı sağlayan **Getstudentgradesforkursu** işlevini seçin
+5.  Sunucu adı metin kutusuna **Yeni bağlantı** gir **(localdb)\\mssqllocaldb** ' ye tıklayın, veritabanı adı için **okul** girin, **Tamam** ' a tıklayın.
+6.  Veritabanı nesnelerinizi seçin iletişim kutusunda, **tablolar** düğümü altında, **kişiyi**, **studentgrad**' ı ve **Kurs** tabloları ' nı seçin.
+7.   **Saklı yordamlar ve işlevler** , Visual Studio 2012 ' den başlayarak, Entity Desisgner, saklı yordamlarınızı ve işlevlerinizi Toplu içe aktarmanıza olanak sağlayan saklı yordamlar ve işlevler altında bulunan **Getstudentgradesforkurs** işlevini seçin
 8.   **Son** ' a tıklayın
-9.  Modelinizi düzenlemekte bir tasarım yüzeyi sağlayan Entity Desisgner görüntülenir.  **Veritabanı nesnelerinizi seçin** İletişim kutusunda seçtiğiniz tüm nesneler modele eklenir.
-10. Varsayılan olarak, içeri aktarılan her saklı yordamın veya işlevin sonuç şekli, varlık modelinizde otomatik olarak yeni bir karmaşık tür olur. Ancak Getstudentgradesforkurs işlevinin sonuçlarını Studentgrad varlığına eşlemek istiyoruz: Tasarım yüzeyine sağ tıklayın ve model tarayıcıda **model** tarayıcısı ' nı seçin, **işlev içeri aktarmalar**' ı seçin ve ardından **Getstudentgradesforkurs** Işlevine çift tıklayarak Işlev içeri aktarmayı Düzenle iletişim kutusunda **varlıklar** ' ı seçin.  ve **Studentgrad** seçin
+9.  Modelinizi düzenlemekte bir tasarım yüzeyi sağlayan Entity Desisgner görüntülenir.  **Veritabanı nesnelerinizi seçin** iletişim kutusunda seçtiğiniz tüm nesneler modele eklenir.
+10. Varsayılan olarak, içeri aktarılan her saklı yordamın veya işlevin sonuç şekli, varlık modelinizde otomatik olarak yeni bir karmaşık tür olur. Ancak Getstudentgradesforkurs işlevinin sonuçlarını Studentgrad varlığına eşlemek istiyoruz: tasarım yüzeyine sağ tıklayın ve model **tarayıcısı 'nda model tarayıcısı '** nı seçin, **işlev içeri aktarmalar**' ı seçin ve ardından **Getstudentgradesforkurs** Işlevine çift tıklayarak Işlev içeri aktarmayı Düzenle Iletişim kutusunda **varlık** seçin ve **studentgrad** öğesini seçin.
 
 ## <a name="persist-and-retrieve-data"></a>Kalıcı ve veri alma
 

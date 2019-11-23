@@ -13,7 +13,7 @@ ms.locfileid: "72181585"
 # <a name="testability-and-entity-framework-40"></a>Test edilebilirlik ve Entity Framework 4,0
 Scott Allen
 
-Yayımladığı Mayıs 2010
+Yayımlandı: Mayıs 2010
 
 ## <a name="introduction"></a>Giriş
 
@@ -120,7 +120,7 @@ EF4 için bir uygulama sağladığımızda arabirim tanımında birkaç değişi
 
 Kod bir arabirim (bir çalışan ırepository) kullandığından, kodu farklı arabirim uygulamalarıyla sağlayabiliriz. Bir uygulama, EF4 ve kalıcı nesneleri Microsoft SQL Server bir veritabanında desteklenen bir uygulama olabilir. Farklı bir uygulama (test sırasında kullandığımız bir adet), çalışan nesnelerinin bellek içi bir listesi tarafından yönetilebilir. Arabirim, kodda yalıtım elde etmenize yardımcı olur.
 
-Irepository @ no__t-0T @ no__t-1 arabiriminin bir kaydetme işlemi sergilediğine dikkat edin. Mevcut nesneleri nasıl güncelleştiririz? Kaydet işlemini içeren ırepository tanımlarında gelebilir ve bu depoların uygulamalarının bir nesneyi veritabanına hemen kalıcı hale getirmeniz gerekecektir. Ancak birçok uygulamada nesneleri ayrı ayrı kalıcı hale getirmek istemedik. Bunun yerine, farklı depolardan belki de nesneleri hayata getirmek istiyoruz, bu nesneleri iş etkinliklerinin bir parçası olarak değiştirebilir ve sonra tüm nesneleri tek bir atomik işlemin parçası olarak kalıcı hale getiririz. Neyse ki, bu tür davranışa izin veren bir model vardır.
+Irepository&lt;T&gt; arabiriminin bir kaydetme işlemi sergilemediğine dikkat edin. Mevcut nesneleri nasıl güncelleştiririz? Kaydet işlemini içeren ırepository tanımlarında gelebilir ve bu depoların uygulamalarının bir nesneyi veritabanına hemen kalıcı hale getirmeniz gerekecektir. Ancak birçok uygulamada nesneleri ayrı ayrı kalıcı hale getirmek istemedik. Bunun yerine, farklı depolardan belki de nesneleri hayata getirmek istiyoruz, bu nesneleri iş etkinliklerinin bir parçası olarak değiştirebilir ve sonra tüm nesneleri tek bir atomik işlemin parçası olarak kalıcı hale getiririz. Neyse ki, bu tür davranışa izin veren bir model vardır.
 
 ### <a name="the-unit-of-work-pattern"></a>Çalışma birimi deseninin
 
@@ -198,7 +198,7 @@ POCOs 'un yerinde, Visual Studio 'da bir Varlık Veri Modeli (EDM) oluşturabili
 
 **Şekil 1**
 
-Note: önce EDM modelini geliştirmek isterseniz, EDM 'den temiz, POCO kodu oluşturmak mümkündür. Bunu, veri programlama ekibi tarafından sunulan bir Visual Studio 2010 uzantısıyla yapabilirsiniz. Uzantıyı indirmek için, Visual Studio 'daki Araçlar menüsünden Uzantı Yöneticisi ' ni başlatın ve "POCO" şablonlarının çevrimiçi galerisinde arama yapın (bkz. Şekil 2). EF için birkaç POCO şablonu mevcuttur. Şablonu kullanma hakkında daha fazla bilgi için bkz. "[Izlenecek yol: Entity Framework @ no__t-0 "için POCO şablonu.
+Note: önce EDM modelini geliştirmek isterseniz, EDM 'den temiz, POCO kodu oluşturmak mümkündür. Bunu, veri programlama ekibi tarafından sunulan bir Visual Studio 2010 uzantısıyla yapabilirsiniz. Uzantıyı indirmek için, Visual Studio 'daki Araçlar menüsünden Uzantı Yöneticisi ' ni başlatın ve "POCO" şablonlarının çevrimiçi galerisinde arama yapın (bkz. Şekil 2). EF için birkaç POCO şablonu mevcuttur. Şablonu kullanma hakkında daha fazla bilgi için, bkz. " [Izlenecek yol: POCO şablonu Entity Framework](https://blogs.msdn.com/adonet/pages/walkthrough-poco-template-for-the-entity-framework.aspx)".
 
 ![EF test_02](~/ef6/media/eftest-02.png)
 
@@ -220,7 +220,7 @@ Bir ASP.NET MVC projesinden aşağıdaki denetleyici eylemini göz önünde bulu
 
 Kod test edilebilir mi? Eylemin davranışının doğrulanması için gereken en az iki test var. İlk olarak, eylemin doğru görünümü döndürdüğünü ve kolay bir test olduğunu doğrulamak istiyoruz. Ayrıca, eylemin doğru çalışanı aldığını doğrulamak için de bir test yazmak istiyoruz ve veritabanını sorgulamak için kodu yürütmeden bunu yapmak istiyoruz. Test altındaki kodu yalıtmak istediğinizi unutmayın. Yalıtım, veri erişim kodundaki veya veritabanı yapılandırmasındaki bir hata nedeniyle testin başarısız olmamasını güvence altına almayacaktır. Test başarısız olursa, denetleyici mantığındaki bir hata olduğunu ve bazı alt düzey sistem bileşenlerinden olmadığını biliyoruz.
 
-Yalıtım sağlamak için, daha önce depolar ve iş birimleri için sunduğumuz arabirimler gibi bazı soyutlamalar olması gerekir. Depo deseninin, etki alanı nesneleri ve veri eşleme katmanı arasında aracılık için tasarlandığını unutmayın. Bu *SENARYODA EF4,* veri eşleme katmanıdır ve zaten IObjectSet @ No__t-1T @ no__t-2 (System. Data. Objects ad alanından) adlı depo benzeri bir soyutlama sağlar. Arabirim tanımı aşağıdaki gibi görünür.
+Yalıtım sağlamak için, daha önce depolar ve iş birimleri için sunduğumuz arabirimler gibi bazı soyutlamalar olması gerekir. Depo deseninin, etki alanı nesneleri ve veri eşleme katmanı arasında aracılık için tasarlandığını unutmayın. Bu *SENARYODA EF4 veri* eşleme katmanıdır ve zaten ıobjectset&lt;t&gt; (System. Data. Objects ad alanından) adlı depo benzeri bir soyutlama sağlar. Arabirim tanımı aşağıdaki gibi görünür.
 
 ``` csharp
     public interface IObjectSet<TEntity> :
@@ -237,7 +237,7 @@ Yalıtım sağlamak için, daha önce depolar ve iş birimleri için sunduğumuz
     }
 ```
 
-IObjectSet @ no__t-0T @ no__t-1 bir depo gereksinimlerini karşılar çünkü bir nesne koleksiyonuna (IEnumerable @ no__t-2T @ no__t-3 aracılığıyla) benzer ve sanal koleksiyona nesne ekleme ve kaldırma yöntemleri sağlar. Attach ve Detach yöntemleri, EF4 API 'sinin ek özelliklerini kullanıma sunar. Depolamakümesi @ no__t-0T @ no__t-1 ' i depolar için arabirim olarak kullanmak için, depoları birbirine bağlamak üzere bir iş soyutlama birimi gerekir.
+IObjectSet&lt;T&gt;, bir depo gereksinimlerini karşılar çünkü bir nesne koleksiyonuna (IEnumerable&lt;T&gt;aracılığıyla) benzer ve sanal koleksiyona nesne ekleme ve kaldırma yöntemleri sağlar. Attach ve Detach yöntemleri, EF4 API 'sinin ek özelliklerini kullanıma sunar. Depolamakümesi&lt;T&gt; depolar için arabirim olarak kullanmak için, depoları birbirine bağlamak üzere bir iş soyutlama birimi gerekir.
 
 ``` csharp
     public interface IUnitOfWork {
@@ -276,7 +276,7 @@ Bu arabirimin somut bir uygulanması SQL Server konuşacak ve EF4 adresinden Obj
     }
 ```
 
-Bir IObjectSet @ no__t-0T @ no__t-1 ' i hayata getirme, ObjectContext nesnesinin CreateObjectSet metodunu çağırmak kadar kolaydır. Arka planda çerçeve, somut bir ObjectSet @ no__t-0T @ no__t-1 oluşturmak için EDM 'da sağladığımız meta verileri kullanır. İstemci kodunda test kararlılığını korumaya yardımcı olacağı için IObjectSet @ no__t-0T @ no__t-1 arabirimini döndürmeyle başlayacağız.
+Bir IObjectReference&lt;T&gt; hayata getirme, ObjectContext nesnesinin CreateObjectSet metodunu çağırmak kadar kolaydır. Arka planda çerçeve, somut bir ObjectSet&lt;T&gt;oluşturmak için EDM 'da sağladığımız meta verileri kullanır. İstemci kodunda test kararlılığını korumaya yardımcı olacağı için IObjectSet&lt;T&gt; arabirimini döndürmeyle başlayacağız.
 
 Bu somut uygulama üretimde faydalıdır, ancak sınamayı kolaylaştırmak için IUnitOfWork soyutımızı nasıl kullanacağımız üzerine odaklanmamız gerekir.
 
@@ -321,7 +321,7 @@ Test için kullandığımız sahte bir iş birimi, aşağıdaki gibi görünebil
 
 Sahte iş biriminin bir iletişim olarak kabul edilen bir özelliği kullanıma sunduğunu fark edin. Bazen, testi kolaylaştıran sahte bir sınıfa özellikler eklemek yararlı olabilir. Bu durumda, işlenen özelliği denetleyerek kodun bir iş birimi işlediğini gözlemlemek kolaydır.
 
-Ayrıca, çalışan ve zaman kartı nesnelerini bellekte tutmak için sahte bir IObjectReference @ no__t-0T @ no__t-1 gerekecektir. Genel türler kullanarak tek bir uygulama sağlayabiliriz.
+Ayrıca, bellekte çalışan ve zaman kartı nesneleri tutmak için sahte bir IObjectSet&lt;T&gt; gerekir. Genel türler kullanarak tek bir uygulama sağlayabiliriz.
 
 ``` csharp
     public class InMemoryObjectSet<T> : IObjectSet<T> where T : class
@@ -368,7 +368,7 @@ Ayrıca, çalışan ve zaman kartı nesnelerini bellekte tutmak için sahte bir 
     }
 ```
 
-Bu test, kendi işinin büyük bir bölümünü temel bir diyez kümesi @ no__t-0T @ no__t-1 nesnesi olarak çift devreder. IObjectSet @ no__t-0T @ no__t-1 ' in bir sınıf (başvuru türü) olarak T uygulayan genel bir kısıtlama gerektirdiğini ve ayrıca IQueryable @ no__t-2T @ no__t-3 uygulamamızı zorleyebileceğini unutmayın. Standart LINQ işleci olan bir IQueryable @ no__t-0T @ no__t-1 olarak bir bellek içi koleksiyonun görünmesini kolay hale getirmek kolaydır.
+Bu test, işinin çoğunu temel bir diyez kümesi&lt;T&gt; nesnesine devreder. IObjectSet&lt;T&gt; 'in bir sınıf (başvuru türü) olarak T uygulayan genel bir kısıtlama gerektirdiğini ve ayrıca IQueryable&lt;T&gt;uygulamamızı zorleyebileceğini unutmayın. Bir bellek içi toplamanın standart LINQ işleci olan bir IQueryable&lt;T&gt; olarak görünmesini kolay hale getirmek kolaydır.
 
 ### <a name="the-tests"></a>Testler
 
@@ -541,7 +541,7 @@ Yukarıdaki koda yönelik iki önemli özellik vardır. İlk: daha kolay bir şe
     }
 ```
 
-İkinci önemli özelliği, kodun çalışanların ve zaman kartı bilgilerini bir araya getirmek için tek ve verimli bir sorgu oluşturmasına izin verir. Çalışan bilgilerini ve zaman kartı bilgilerini özel API 'Ler kullanmadan aynı nesneye yükledik. Kod, yalnızca, bellek içi veri kaynaklarına ve uzak veri kaynaklarına karşı çalışan standart LINQ işleçleri kullanmak için gereken bilgileri ifade ediyor. EF4, LINQ sorgusu ve C @ no__t-0 derleyicisi tarafından oluşturulan ifade ağaçlarını tek ve verimli bir T-SQL sorgusuna çevirebildi.
+İkinci önemli özelliği, kodun çalışanların ve zaman kartı bilgilerini bir araya getirmek için tek ve verimli bir sorgu oluşturmasına izin verir. Çalışan bilgilerini ve zaman kartı bilgilerini özel API 'Ler kullanmadan aynı nesneye yükledik. Kod, yalnızca, bellek içi veri kaynaklarına ve uzak veri kaynaklarına karşı çalışan standart LINQ işleçleri kullanmak için gereken bilgileri ifade ediyor. EF4, LINQ sorgusu ve C\# derleyicisi tarafından oluşturulan ifade ağaçlarını tek ve verimli bir T-SQL sorgusuna çevirebildi.
 
 ``` SQL
     SELECT
@@ -569,14 +569,14 @@ Bir görünüm modeliyle veya DTO nesnesiyle çalışmak istemediğimiz zaman, a
 
 ### <a name="explicit-eager-loading"></a>Açık Eager yüklemesi
 
-İlgili varlık bilgilerini daha fazla yüklemek istediğimiz için, iş mantığı için bazı mekanizmaları (veya bu senaryoda, denetleyici eylem mantığı), isteğini depoya ifade etmek istiyoruz. EF4 ObjectQuery @ no__t-0T @ no__t-1 sınıfı, bir sorgu sırasında alınacak ilgili nesneleri belirtmek için bir Include yöntemi tanımlar. EF4 ObjectContext 'in varlıkları, ObjectQuery @ no__t-2T @ no__t-3 ' ten devralan somut ObjectSet @ no__t-0T @ no__t-1 sınıfı aracılığıyla kullanıma sunduğunu unutmayın.  Denetleyicimizde ObjectSet @ no__t-0T @ no__t-1 başvurularını kullandığımızda, her çalışana yönelik bir zaman kartı bilgileri yüklemesi belirtmek için aşağıdaki kodu yazabilirsiniz.
+İlgili varlık bilgilerini daha fazla yüklemek istediğimiz için, iş mantığı için bazı mekanizmaları (veya bu senaryoda, denetleyici eylem mantığı), isteğini depoya ifade etmek istiyoruz. EF4 ObjectQuery&lt;T&gt; sınıfı, bir sorgu sırasında alınacak ilgili nesneleri belirtmek için bir Include yöntemi tanımlar. EF4 ObjectContext 'in, ObjectQuery&lt;T&gt;devralan somut ObjectSet&lt;T&gt; sınıfı aracılığıyla varlıkları açığa çıkardığı unutulmamalıdır.  Denetleyici eylemimizde ObjectSet&lt;T&gt; başvurularını kullandığımızda, her çalışana yönelik bir zaman kartı bilgileri yüklemesi belirtmek için aşağıdaki kodu yazabilirsiniz.
 
 ``` csharp
     _employees.Include("TimeCards")
               .Where(e => e.HireDate.Year > 2009);
 ```
 
-Ancak, kodumuzu tutmaya çalışırken, gerçek iş sınıfının dışından ObjectSet @ no__t-0T @ no__t-1 ' i kullanıma sunmuyoruz. Bunun yerine, sahte kümesi @ no__t-0T @ no__t-1 arabirimine güveniyoruz, ancak IObjectSet @ no__t-2T @ no__t-3 de bir Içerme yöntemi tanımlamıyor. LINQ 'ın, kendi ekleme işleçlerimizi oluşturduğumuz.
+Ancak, kod test etmemiz yaptığımız için, gerçek iş sınıfının dışından ObjectSet&lt;T&gt; kullanıma sunmuyoruz. Bunun yerine, sahte kümesi&lt;T&gt; arabirimine güveniyoruz, ancak IObjectSet&lt;T&gt; bir Içerme yöntemi tanımlamaz. LINQ 'ın, kendi ekleme işleçlerimizi oluşturduğumuz.
 
 ``` csharp
     public static class QueryableExtensions {
@@ -592,7 +592,7 @@ Ancak, kodumuzu tutmaya çalışırken, gerçek iş sınıfının dışından Ob
     }
 ```
 
-Bu Include işlecinin, IObjectSet @ no__t-2T @ no__t-3 yerine IQueryable @ no__t-0T @ no__t-1 için bir genişletme yöntemi olarak tanımlandığını unutmayın. Bu, yöntemi IQueryable @ no__t-0T @ no__t-1, IObjectSet @ no__t-2T @ no__t-3, ObjectQuery @ no__t-4T @ no__t-5 ve ObjectSet @ no__t-6T @ no__t-7 dahil olmak üzere daha geniş bir dizi olası tür ile kullanma olanağı sunar. Temeldeki sıra, orijinal bir EF4 ObjectQuery @ no__t-0T @ no__t-1 değil, bir sorun değildir ve Içerme işleci hiçbir şey değildir. Temeldeki sıra bir ObjectQuery @ no__t-1T @ no__t-2 (veya ObjectQuery @ no__t-3T @ no__t-4 ' ten türetilmiş) *ise* , EF4 ek veriler için gereksinimimizi görebilir ve uygun SQL sorgusunu formüllendirilecektir.
+Bu Include işlecinin, IObjectSet&lt;T&gt;yerine IQueryable&lt;T&gt; için bir genişletme yöntemi olarak tanımlandığını unutmayın. Bu, yöntemi IQueryable&lt;T&gt;, IObjectSet&lt;T&gt;, ObjectQuery&lt;T&gt;ve ObjectSet&lt;T&gt;dahil olmak üzere daha geniş bir dizi olası tür ile kullanma olanağı sunar. Temeldeki sıra, gerçek bir EF4 ObjectQuery&lt;T&gt;olmadığından, bir sorun yoktur ve Içerme işleci hiçbir şey değildir. Temeldeki sıra bir ObjectQuery&lt;T&gt; (ya da ObjectQuery&lt;T&gt;) ise, EF4 ek veriler için gereksinimimizi görür ve uygun SQL sorgusunu *formüllendiriyor* .
 
 Bu yeni işleçle birlikte, depodan bir zaman kartı bilgileri yüklemesi isteğinde bulunabilir.
 
@@ -660,7 +660,7 @@ Bununla birlikte, bu proxy 'lerin çalışması için bir varlık üzerinde öze
     }
 ```
 
-Yine de çalışan varlığının, genellikle Kalıcılık Ignorant olduğunu varsayalım. Tek gereksinim, sanal üyelerin kullanılması ve bu kodun test edilebilirlik etkilemez. Herhangi bir özel taban sınıftan türetmemiz gerekmez, hatta yavaş yüklemeye adanmış özel bir koleksiyon kullanın. Kodun gösterdiği gibi, ICollection @ no__t-0T @ no__t-1 uygulayan tüm sınıflar ilgili varlıkları tutmak için kullanılabilir.
+Yine de çalışan varlığının, genellikle Kalıcılık Ignorant olduğunu varsayalım. Tek gereksinim, sanal üyelerin kullanılması ve bu kodun test edilebilirlik etkilemez. Herhangi bir özel taban sınıftan türetmemiz gerekmez, hatta yavaş yüklemeye adanmış özel bir koleksiyon kullanın. Kodun gösterdiği gibi, ICollection&lt;T&gt; uygulayan tüm sınıflar ilgili varlıkları tutmak için kullanılabilir.
 
 İş birimimizin içinde yapabilmemiz gereken bir küçük değişiklik de vardır. Doğrudan bir ObjectContext nesnesiyle çalışırken geç yükleme varsayılan olarak *kapalıdır* . Bu özelliği, ertelenmiş yüklemeyi etkinleştirmek için ContextOptions özelliğinde ayarlayabiliriz ve her yerde yavaş yüklemeyi etkinleştirmek istiyorsam gerçek iş birimimizin içinde ayarlayabiliriz.
 
@@ -687,7 +687,7 @@ Yine de çalışan varlığının, genellikle Kalıcılık Ignorant olduğunu va
 
 Yavaş yükleme, uygulama kodunu yazmayı daha kolay hale getirir ve proxy Magic ile kod tamamen test edilebilir kalır. Çalışma birimi için bellek içi Fakes, bir test sırasında gerektiğinde ilgili verileri içeren sahte varlıkları önyükleyebilir.
 
-Bu noktada, IObjectSet @ no__t-0T @ no__t-1 kullanarak depolamaları derlemeden ilgilenmeniz ve kalıcılık çerçevesinin tüm işaretlerini gizlemek için soyutlamaları göz atacağız.
+Bu noktada, IObjectSet&lt;T&gt; kullanarak depo oluşturma konusunda ilgilenmeniz ve kalıcılık çerçevesinin tüm işaretlerini gizlemek için soyutlamaları göz atacağız.
 
 ## <a name="custom-repositories"></a>Özel depolar
 
@@ -701,9 +701,9 @@ Bu makaledeki iş birimi tasarım deseninin ilk olarak sunulduğunu, iş birimin
     }
 ```
 
-Bu çalışma birimi ile son bölümde oluşturduğumuz çalışma birimi arasındaki birincil fark, bu iş biriminin EF4 çerçevesinden herhangi bir soyutlama kullanmadığında (IObjectSet @ no__t-0T @ no__t-1). IObjectSet @ no__t-0T @ no__t-1, bir depo arabirimi olarak iyi çalışmaktadır, ancak açığa çıkardığı API, uygulama gereksinimlerimize uygun şekilde hizalanmayabilir. Bu yaklaşan yaklaşımda, özel bir ırepository @ no__t-0T @ no__t-1 soyutlama kullanan depoları temsil edeceğiz.
+Bu iş birimi ile son bölümde oluşturduğumuz iş birimi arasındaki birincil fark, bu iş biriminin EF4 çerçevesinden herhangi bir soyutlama kullanmadığında (bir IObjectSet&lt;T&gt;). IObjectSet&lt;T&gt; bir depo arabirimi olarak iyi çalışmaktadır, ancak açığa çıkardığı API, uygulama gereksinimlerimize uygun şekilde hizalanmayabilir. Bu yaklaşan yaklaşımda, özel bir ırepository&lt;T&gt; soyutlama kullanan depoları temsil edeceğiz.
 
-Test odaklı tasarım, davranış odaklı tasarım ve etki alanı odaklı Yöntemler tasarımını izleyen birçok geliştirici, bazı nedenlerle ırepository @ no__t-0T @ no__t-1 yaklaşımını tercih eder. İlk olarak, ırepository @ no__t-0T @ no__t-1 arabirimi bir "bozulma önleme" katmanını temsil eder. Etki alanı odaklı tasarım defterindeki Eric Evans 'Lar tarafından açıklandığı gibi, bir kalıcılık API 'SI gibi, etki alanı kodunuzu altyapı API 'Lerinden uzakta tutar. İkincisi, geliştiriciler, bir uygulamanın tam ihtiyaçlarını karşılayan (testleri yazarken bulunur), depoya Yöntemler oluşturabilir. Örneğin, genellikle bir KIMLIK değeri kullanarak tek bir varlığı bulduğumuz için, depo arabirimine bir Findbyıd yöntemi ekleyebiliriz.  Irepository @ no__t-0T @ no__t-1 tanımımız aşağıdaki gibi görünür.
+Test odaklı tasarım, davranış odaklı tasarım ve etki alanı odaklı Yöntemler tasarımını izleyen birçok geliştirici, bazı nedenlerle ırepository&lt;T&gt; yaklaşımını tercih eder. İlk olarak, ırepository&lt;T&gt; arabirimi bir "bozulma önleme" katmanını temsil eder. Etki alanı odaklı tasarım defterindeki Eric Evans 'Lar tarafından açıklandığı gibi, bir kalıcılık API 'SI gibi, etki alanı kodunuzu altyapı API 'Lerinden uzakta tutar. İkincisi, geliştiriciler, bir uygulamanın tam ihtiyaçlarını karşılayan (testleri yazarken bulunur), depoya Yöntemler oluşturabilir. Örneğin, genellikle bir KIMLIK değeri kullanarak tek bir varlığı bulduğumuz için, depo arabirimine bir Findbyıd yöntemi ekleyebiliriz.  Irepository&lt;T&gt; tanımımız aşağıdaki gibi görünür.
 
 ``` csharp
     public interface IRepository<T>
@@ -716,9 +716,9 @@ Test odaklı tasarım, davranış odaklı tasarım ve etki alanı odaklı Yönte
     }
 ```
 
-Varlık koleksiyonlarını göstermek için IQueryable @ no__t-0T @ no__t-1 arabirimini kullanmaya geri başlayacağız. IQueryable @ no__t-0T @ no__t-1, LINQ Expression ağaçlarının EF4 sağlayıcısına akmasını ve sağlayıcıya sorgunun bütünsel görünümünü vermesini sağlar. İkinci seçenek IEnumerable @ no__t-0T @ no__t-1 ' i döndürmek, bu da EF4 LINQ sağlayıcısı 'nın yalnızca deponun içinde yerleşik olan ifadeleri göremeyeceği anlamına gelir. Deponun dışında yapılan herhangi bir gruplandırma, sıralama ve projeksiyon, veritabanına gönderilen SQL komutuna uygulanmaz ve bu da performansa zarar verebilir. Öte yandan, yalnızca IEnumerable @ no__t-0T @ no__t-1 sonuçlarını döndüren bir depo, yeni bir SQL komutu ile hiçbir şekilde hiçbir şekilde hiçbir şekilde sizi şaşırtabilir. Her iki yaklaşım da çalışacaktır ve her iki yaklaşım da testable olarak kalır.
+Varlık koleksiyonlarını göstermek için IQueryable&lt;T&gt; arabirimini kullanmaya geri başlayacağız. IQueryable&lt;T&gt;, LINQ Expression ağaçlarının EF4 sağlayıcısına akmasını ve sağlayıcıya sorgunun bütünsel görünümünü vermesini sağlar. İkinci bir seçenek IEnumerable&lt;T&gt;döndürmek, bu da EF4 LINQ sağlayıcının yalnızca deponun içinde yerleşik olan ifadeleri göremeyeceği anlamına gelir. Deponun dışında yapılan herhangi bir gruplandırma, sıralama ve projeksiyon, veritabanına gönderilen SQL komutuna uygulanmaz ve bu da performansa zarar verebilir. Diğer taraftan, yalnızca IEnumerable&lt;T&gt; sonuçları döndüren bir depo, yeni bir SQL komutu ile sizi hiçbir şekilde hiçbir şekilde hiçbir şekilde sürmez. Her iki yaklaşım da çalışacaktır ve her iki yaklaşım da testable olarak kalır.
 
-Genel türler ve EF4 ObjectContext API 'SI kullanılarak ırepository @ no__t-0T @ no__t-1 arabiriminin tek bir uygulamasını sağlamak basittir.
+Genel türler ve EF4 ObjectContext API 'SI kullanılarak ırepository&lt;T&gt; arabiriminin tek bir uygulamasını sağlamak basittir.
 
 ``` csharp
     public class SqlRepository<T> : IRepository<T>
@@ -746,7 +746,7 @@ Genel türler ve EF4 ObjectContext API 'SI kullanılarak ırepository @ no__t-0T
     }
 ```
 
-Irepository @ no__t-0T @ no__t-1 yaklaşımı, bir istemcinin bir varlığa ulaşmak için bir yöntem çağırması gerektiğinden, sorgularımızda bazı ek denetimler elde etmenizi sağlar. Yöntemi içinde, uygulama kısıtlamalarını zorlamak için ek denetimler ve LINQ işleçleri sağlayabiliriz. Arabirimin genel tür parametresinde iki kısıtlama olduğunu fark edin. İlk kısıtlama, ObjectSet @ no__t-0T @ no__t-1 için gerekli olan birinci tamsayı sınıfıdır ve ikinci kısıtlama, varlıklarımızı uygulama için oluşturulan bir soyutlama olan IEntity 'ı uygulayacak şekilde zorlar. IEntity arabirimi, varlıkların okunabilir bir ID özelliğine sahip olmasını zorlar ve daha sonra bu özelliği Findbyıd yönteminde kullanabiliriz. IEntity aşağıdaki kodla tanımlanır.
+Irepository&lt;T&gt; yaklaşımı, bir istemcinin bir varlığa ulaşmak için bir yöntem çağırması gerektiğinden sorgularımızda bazı ek denetimler elde etmenizi sağlar. Yöntemi içinde, uygulama kısıtlamalarını zorlamak için ek denetimler ve LINQ işleçleri sağlayabiliriz. Arabirimin genel tür parametresinde iki kısıtlama olduğunu fark edin. İlk kısıtlama, ObjectSet&lt;T&gt;için gerekli olan bir sınıftır ve ikinci kısıtlama varlıklarımızı uygulama için oluşturulan bir soyutlama olan IEntity 'ı uygulayacak şekilde zorlar. IEntity arabirimi, varlıkların okunabilir bir ID özelliğine sahip olmasını zorlar ve daha sonra bu özelliği Findbyıd yönteminde kullanabiliriz. IEntity aşağıdaki kodla tanımlanır.
 
 ``` csharp
     public interface IEntity {
@@ -756,7 +756,7 @@ Irepository @ no__t-0T @ no__t-1 yaklaşımı, bir istemcinin bir varlığa ula�
 
 Varlıklarımızın bu arabirimi uygulaması gerektiğinden, IEntity küçük bir kalıcılığı ihlal edilebilir olarak düşünülebilir. Kalıcılık Ignorance 'in, bir denge hakkında olduğunu ve birçok Findbyıd işlevinin, arabirim tarafından uygulanan kısıtlamayı aşacak şekilde olacağını unutmayın. Arabirimin test edilebilirlik üzerinde hiçbir etkisi yoktur.
 
-Canlı bir ırepository 'nin örneğini oluşturma @ no__t-0T @ no__t-1 bir EF4 ObjectContext gerektirir, bu nedenle somut bir iş uygulaması biriminin örneği oluşturmayı yönetmesi gerekir.
+Canlı bir ırepository 'nin örneklenmesi&lt;T&gt; bir EF4 ObjectContext gerektirir, bu nedenle somut bir iş uygulaması biriminin örnek oluşturmayı yönetmesi gerekir.
 
 ``` csharp
     public class SqlUnitOfWork : IUnitOfWork {
@@ -801,7 +801,7 @@ Canlı bir ırepository 'nin örneğini oluşturma @ no__t-0T @ no__t-1 bir EF4 
 
 ### <a name="using-the-custom-repository"></a>Özel depoyu kullanma
 
-Özel havuzumuzu kullanmak, IObjectSet @ no__t-0T @ no__t-1 temelinde depoyu kullanmaktan önemli ölçüde farklı değildir. LINQ işleçlerini doğrudan bir özelliğine uygulamak yerine, önce bir IQueryable @ no__t-0T @ no__t-1 başvurusunu almak için bir deponun yöntemlerini çağırırız.
+Özel havuzumuzu kullanmak, IObjectSet&lt;T&gt;tabanlı depoyu kullanmaktan önemli ölçüde farklı değildir. LINQ işleçlerini doğrudan bir özelliğine uygulamak yerine, önce bir IQueryable&lt;T&gt; başvurusunu almak için bir deponun yöntemlerini çağırmanız gerekir.
 
 ``` csharp
     public ViewResult Index() {
@@ -821,7 +821,7 @@ Daha önce uyguladığımız özel Içerme işlecinin değişiklik olmadan çal�
     }
 ```
 
-İncelediğimiz iki yaklaşımın test edilebilirlik açısından önemli bir fark yoktur. HashSet @ no__t-2Employee @ no__t-3 tarafından desteklenen somut sınıflar oluşturarak, son bölümde yaptığımız gibi, ırepository @ no__t-0T @ no__t-1 ' nin sahte uygulamalarını sağlayabiliriz. Ancak bazı geliştiriciler, Fakes oluşturmak yerine, sahte nesneler ve sahte nesne çerçeveleri kullanmayı tercih eder. Uygulamamızı test etmek ve sonraki bölümde yer aldığı ve bu farklılıkları ve Fakes arasındaki farkları tartışmak için de moyaları kullanma bölümüne bakacağız.
+İncelediğimiz iki yaklaşımın test edilebilirlik açısından önemli bir fark yoktur. HashSet&lt;çalışan&gt; tarafından desteklenen somut sınıflar oluşturarak (son bölümde yaptığımız gibi) ırepository&lt;T&gt; sahte uygulamalar sağlayabiliriz. Ancak bazı geliştiriciler, Fakes oluşturmak yerine, sahte nesneler ve sahte nesne çerçeveleri kullanmayı tercih eder. Uygulamamızı test etmek ve sonraki bölümde yer aldığı ve bu farklılıkları ve Fakes arasındaki farkları tartışmak için de moyaları kullanma bölümüne bakacağız.
 
 ### <a name="testing-with-mocks"></a>Moklarla test etme
 
@@ -841,7 +841,7 @@ Test, geliştirdiğimiz gerçek, çalışma uygulamalarına sahiptir. Arka pland
     var employee = repository.FindById(1);
 ```
 
-Bir ırepository @ no__t-0Employee @ no__t-1 uygulaması için moq soruyoruz ve dinamik olarak bir tane oluşturur. Irepository @ no__t-0Employee @ no__t-1 ' i uygulayan nesneye, sahte @ no__t-2T @ no__t-3 nesnesinin Object özelliğine erişerek ulaşacağız. Denetleyicilerimize geçebilmemiz için bu iç nesne budur ve bu, bir test Double veya gerçek depo olduğunu bilmez. Nesneleri, gerçek bir uygulamayla bir nesne üzerinde çağırırız gibi, nesne üzerinde Yöntemler çağırabiliriz.
+Bir ırepository&lt;çalışan&gt; uygulaması için moq soruyoruz ve dinamik olarak bir tane oluşturur. Irepository&lt;çalışan nesneye,&gt;, sahte&lt;T&gt; nesnesinin nesne özelliğine erişerek ulaşacağız. Denetleyicilerimize geçebilmemiz için bu iç nesne budur ve bu, bir test Double veya gerçek depo olduğunu bilmez. Nesneleri, gerçek bir uygulamayla bir nesne üzerinde çağırırız gibi, nesne üzerinde Yöntemler çağırabiliriz.
 
 Add metodunu çağırdığımızda, sahte deponun ne yapacağına merak etmeniz gerekir. Sahte nesnenin arkasında hiçbir uygulama olmadığından, ekleme işlemi hiçbir şey yapmaz. Yazdığımız Fakes gibi sahnelerin arkasında somut bir koleksiyon yoktur, bu nedenle çalışan atılır. Findbyıd 'nin dönüş değeri ne? Bu durumda, sahte nesne yalnızca yapabileceği şeyi yapar; bu, varsayılan bir değer döndürür. Bir başvuru türü (bir çalışan) döndürtiğimiz için, dönüş değeri null bir değerdir.
 
@@ -862,7 +862,7 @@ Kneztal, daha az ses alabilir; Bununla birlikte, bu konuda daha fazla bilgi edin
     }
 ```
 
-Bu örnekte, moq 'ın bir depoyu dinamik olarak oluşturmasını ve sonra depoyu bir beklentisiyle programlıyoruz. Bu beklentiler, bir Kullanıcı Findbyıd metodunu 5 değerini geçirerek bir kimlik değeri 5 olan yeni bir çalışan nesnesi döndürmesini söyler. Bu test geçirilir ve sahte ırepository @ no__t-0T @ no__t-1 için tam bir uygulama oluşturmamız gerekmiyor.
+Bu örnekte, moq 'ın bir depoyu dinamik olarak oluşturmasını ve sonra depoyu bir beklentisiyle programlıyoruz. Bu beklentiler, bir Kullanıcı Findbyıd metodunu 5 değerini geçirerek bir kimlik değeri 5 olan yeni bir çalışan nesnesi döndürmesini söyler. Bu test geçirilir ve sahte ırepository&lt;T&gt;için tam bir uygulama oluşturmamız gerekmiyor.
 
 Daha önce yazdığımız testleri tekrar ziyaret edelim ve bunları Fakes yerine kları kullanacak şekilde yeniden ekleyeceğiz. Daha önce olduğu gibi, denetleyicinin tüm testleri için ihtiyacımız olan yaygın altyapı parçalarını ayarlamak için bir temel sınıf kullanacağız.
 
@@ -957,14 +957,14 @@ Körler veya Fakes arasındaki seçim büyük ölçüde test ettiğiniz sisteme 
 
 ## <a name="conclusions"></a>Sonuçlar
 
-Bu yazıda, veri kalıcılığı için ADO.NET Entity Framework kullanırken, test edilebilir kod oluşturmak için çeşitli yaklaşımlar yaptık. IObjectSet @ no__t-0T @ no__t-1 gibi yerleşik soyutlamalar ile faydalanabilir veya ırepository @ no__t-2T @ no__t-3 gibi kendi soyutlamalarını oluşturabilirsiniz.  Her iki durumda da, ADO.NET Entity Framework 4,0 ' deki POCO desteği, bu soyutlamalar tüketicilerinin kalıcı olarak Ignorant ve yüksek oranda bir şekilde kalmasına izin verir. Örtük yavaş yükleme gibi ek EF4 özellikleri, iş ve uygulama hizmeti kodunun, ilişkisel bir veri deposunun ayrıntıları konusunda endişelenmeden çalışmasına izin verir. Son olarak, oluşturduğumuz soyutlamalar birim testlerinin içinde anlamlı veya taklit edilebilir. bu test Double değerlerini kullanarak hızlı çalışan, yüksek oranda yalıtılmış ve güvenilir testler elde edebilirsiniz.
+Bu yazıda, veri kalıcılığı için ADO.NET Entity Framework kullanırken, test edilebilir kod oluşturmak için çeşitli yaklaşımlar yaptık. IObjectSet&lt;T&gt;gibi yerleşik soyutlamalar kullanabilir veya ırepository&lt;T&gt;gibi kendi soyutlamalarını oluşturabilirsiniz.  Her iki durumda da, ADO.NET Entity Framework 4,0 ' deki POCO desteği, bu soyutlamalar tüketicilerinin kalıcı olarak Ignorant ve yüksek oranda bir şekilde kalmasına izin verir. Örtük yavaş yükleme gibi ek EF4 özellikleri, iş ve uygulama hizmeti kodunun, ilişkisel bir veri deposunun ayrıntıları konusunda endişelenmeden çalışmasına izin verir. Son olarak, oluşturduğumuz soyutlamalar birim testlerinin içinde anlamlı veya taklit edilebilir. bu test Double değerlerini kullanarak hızlı çalışan, yüksek oranda yalıtılmış ve güvenilir testler elde edebilirsiniz.
 
 ### <a name="additional-resources"></a>Ek Kaynaklar
 
 -   Robert C. MARI, " [tek sorumluluk ilkesi](https://www.objectmentor.com/resources/articles/srp.pdf)"
 -   Marwler, *Kurumsal uygulama mimarisi desenlerinden* [desenler kataloğu](https://www.martinfowler.com/eaaCatalog/index.html)
 -   Griffin Caprio, " [bağımlılık ekleme](https://msdn.microsoft.com/magazine/cc163739.aspx)"
--   Veri programlama blogu, "[Izlenecek yol: Entity Framework 4.0 @ no__t-0 "ile test odaklı geliştirme.
+-   Veri programlama blogu, " [Izlenecek yol: Entity Framework 4,0 Ile test odaklı geliştirme](https://blogs.msdn.com/adonet/pages/walkthrough-test-driven-development-with-the-entity-framework-4-0.aspx)".
 -   Veri programlama blogu, " [Entity Framework 4,0 Ile depo ve Iş birimi desenleri kullanma](https://blogs.msdn.com/adonet/archive/2009/06/16/using-repository-and-unit-of-work-patterns-with-entity-framework-4-0.aspx)"
 -   Aaron Jensen, " [makine belirtimlerini tanıtma](http://codebetter.com/blogs/aaron.jensen/archive/2008/05/08/introducing-machine-specifications-or-mspec-for-short.aspx)"
 -   Eric eser, " [MSTest Ile BDD](https://blogs.msdn.com/elee/archive/2009/01/20/bdd-with-mstest.aspx)"
@@ -975,4 +975,4 @@ Bu yazıda, veri kalıcılığı için ADO.NET Entity Framework kullanırken, te
 
 ### <a name="biography"></a>Biyografi
 
-Scott Allen, Plurali ve OdeToCode.com 'in en altında bulunan teknik personelin bir üyesidir. 15 yıllık ticari yazılım geliştirme sürecinde Scott, 8 bit ekli cihazlardan her şeyin çözüm üzerinde, yüksek düzeyde ölçeklenebilir ASP.NET Web uygulamalarına kadar bir süredir çalıştık. Scott 'a OdeToCode konumundaki blogda veya [https://twitter.com/OdeToCode](https://twitter.com/OdeToCode)' deki Twitter üzerinden ulaşabilirsiniz.
+Scott Allen, Plurali ve OdeToCode.com 'in en altında bulunan teknik personelin bir üyesidir. 15 yıllık ticari yazılım geliştirme sürecinde Scott, 8 bit ekli cihazlardan her şeyin çözüm üzerinde, yüksek düzeyde ölçeklenebilir ASP.NET Web uygulamalarına kadar bir süredir çalıştık. Scott 'a OdeToCode konumundaki blogda veya [https://twitter.com/OdeToCode](https://twitter.com/OdeToCode)adresinden Twitter üzerinden ulaşabilirsiniz.

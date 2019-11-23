@@ -15,7 +15,7 @@ ms.locfileid: "72182418"
 
 ## <a name="ef-team-blogs"></a>EF ekip blogları
 
-- [.NET blogu-Tag: Entity Framework @ no__t-0
+- [.NET blogu-etiket: Entity Framework](https://blogs.msdn.microsoft.com/dotnet/tag/entity-framework/)
 - [ADO.NET blogu (artık kullanımda değil)](https://blogs.msdn.microsoft.com/adonet/)
 - [EF tasarım blogu (artık kullanımda değil)](https://blogs.msdn.microsoft.com/efdesign/)
 

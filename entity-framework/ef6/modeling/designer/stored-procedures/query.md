@@ -27,9 +27,9 @@ Bu kılavuzu tamamlamak için şunlara ihtiyacınız olacak:
 
 ## <a name="set-up-the-project"></a>Projeyi ayarlama
 
--   Visual Studio 2012 ' i açın.
--   **Dosya-&gt; yeni-&gt; projesi** seçin
--   Sol bölmede, **Visual C @ no__t-1**' e tıklayın ve ardından **konsol** şablonunu seçin.
+-   Visual Studio 2012'yi açın.
+-   **Dosya&gt; yeni&gt; proje** ' yi seçin
+-   Sol bölmede, **Visual C\#** ' ye tıklayın ve ardından **konsol** şablonunu seçin.
 -   Ad olarak **Efwithsprocssample** girin.
 -    **Tamam ' ı**seçin.
 
@@ -40,12 +40,12 @@ Bu kılavuzu tamamlamak için şunlara ihtiyacınız olacak:
 -   Dosya adı için **Efwithsprocsmodel. edmx** yazın ve ardından **Ekle**' ye tıklayın.
 -   Model Içeriğini seçin iletişim kutusunda, **veritabanından oluştur**' u seçin ve ardından **İleri**' ye tıklayın.
 -    **Yeni bağlantı**' ya tıklayın.  
-    Bağlantı özellikleri iletişim kutusunda sunucu adını girin (örneğin, **(LocalDB) \\mssqllocaldb**), kimlik doğrulama yöntemini seçin, veritabanı adı için **okul** Yazın ve ardından **Tamam**' a tıklayın.  
+    Bağlantı özellikleri iletişim kutusunda sunucu adını (örneğin, **(LocalDB)\\mssqllocaldb**) girin, kimlik doğrulama yöntemini seçin, veritabanı adı için **okul** yazın ve ardından **Tamam**' a tıklayın.  
     Veri bağlantınızı seçin iletişim kutusu, veritabanı bağlantı ayarınız ile güncelleştirilir.
--   Veritabanı nesnelerinizi seçin iletişim kutusunda, tüm tabloları seçmek için **tablolar** onay kutusunu işaretleyin.  
+-   Veritabanı nesnelerinizi seçin iletişim kutusunda tablolar onay kutusunu işaretleyerek tüm **tabloları seçin** .  
     Ayrıca, **saklı yordamlar ve işlevler** düğümü altında aşağıdaki saklı yordamları seçin: **Getstudentnotlar** ve **GetDepartmentName**. 
 
-    ![İçeri Aktarma](~/ef6/media/import.jpg)
+    ![{1&gt;İçeri Aktar&lt;1}](~/ef6/media/import.jpg)
 
     *Visual Studio 2012 ile başlayarak EF Designer, saklı yordamların Toplu içe aktarımını destekler. **Seçilen saklı yordamları ve Işlevleri Içeri aktar varlık modeline** varsayılan olarak işaretlidir.*
 -    **Son**' a tıklayın.
@@ -56,14 +56,14 @@ Bir işlev içeri aktarma işleminin bir varlık türü döndürmesi için, kar�
 
 -   Tasarım yüzeyine sağ tıklayıp **model tarayıcısı**' nı seçin.
 -   **Model tarayıcısı**' nda **işlev içeri aktarmalar**' ı seçin ve ardından **getstudentnotlar** işlevine çift tıklayın.
--   Işlev Içeri aktarmayı Düzenle iletişim kutusunda, @no__t- **1Varlıkları**' nı seçin ve **Studentgrad**' ı seçin.  
-    *Işlev içe **aktarmaları** iletişim kutusunun üst kısmındaki **işlev içeri aktarma birleştirilebilir** onay kutusu, birleştirilebilir işlevlere eşlemenizi sağlar. Bu kutuyu işaretleyin, **saklı yordam/Işlev adı** açılır listesinde yalnızca birleştirilebilir Işlevler (tablo değerli işlevler) görüntülenir. Bu kutuyu denetlemeyin, listede yalnızca birleştirilemeyen işlevler gösterilir.*
+-   Işlev Içeri aktarmayı Düzenle iletişim kutusunda **varlıklar** seçin ve **Studentgrad**' ı seçin.  
+    *İşlev içeri **aktarmaları** iletişim kutusunun üst kısmındaki **işlev içe aktarma birleştirilebilir** onay kutusu, birleştirilebilir işlevlere eşlemenizi sağlar. Bu kutuyu işaretleyin, **saklı yordam/Işlev adı** açılır listesinde yalnızca birleştirilebilir Işlevler (tablo değerli işlevler) görüntülenir. Bu kutuyu denetlemeyin, listede yalnızca birleştirilemeyen işlevler gösterilir.*
 
 ## <a name="use-the-model"></a>Modeli kullanma
 
 **Main** yönteminin tanımlandığı **program.cs** dosyasını açın. Aşağıdaki kodu Main işlevine ekleyin.
 
-Kod, saklı iki yordamı çağırır: **Getstudentnotlar** (belirtilen *Studentitıd*Için **studentnotlar** ' ı döndürür) ve **GetDepartmentName** (çıkış parametresindeki departmanın adını döndürür).  
+Kod, iki saklı yordamı çağırır: **Getstudentnotlar** (belirtilen *studentitıd*Için **studentnotlar** ' ı döndürür) ve **GetDepartmentName** (çıkış parametresindeki departmanın adını döndürür).  
 
 ``` csharp
     using (SchoolEntities context = new SchoolEntities())

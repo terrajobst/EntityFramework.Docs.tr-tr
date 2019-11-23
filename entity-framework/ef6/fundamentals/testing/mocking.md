@@ -84,7 +84,7 @@ namespace TestingDemo
 
 Bağlamdaki DbSet özelliklerinin sanal olarak işaretlendiğini unutmayın. Bu, sahte işlem çerçevesinin bağlamımızdan türemesini ve bu özellikleri bir mocılenmiş uygulamayla geçersiz kılmasını sağlar.  
 
-Code First kullanıyorsanız, sınıflarınızı doğrudan düzenleyebilirsiniz. EF Designer kullanıyorsanız, bağlamını oluşturan T4 şablonunu düzenlemeniz gerekir. @No__t-0model_adı @ no__t-1 ' i açın. Context.tt dosyası, edmx dosyasının altında bulunan, aşağıdaki kod parçasını bulup gösterildiği gibi sanal anahtar sözcüğe ekleyin.  
+Code First kullanıyorsanız, sınıflarınızı doğrudan düzenleyebilirsiniz. EF Designer kullanıyorsanız, bağlamını oluşturan T4 şablonunu düzenlemeniz gerekir. \<model_name\>açın. Context.tt dosyası, edmx dosyasının altında bulunan, aşağıdaki kod parçasını bulup gösterildiği gibi sanal anahtar sözcüğe ekleyin.  
 
 ``` csharp
 public string DbSet(EntitySet entitySet)
@@ -150,7 +150,7 @@ namespace TestingDemo
 
 ## <a name="testing-non-query-scenarios"></a>Sorgu olmayan senaryoları test etme  
 
-Sorgu olmayan yöntemlerin test etmeye başlamak için yapmanız gereken tek şey var. Aşağıdaki test, bir bağlam oluşturmak için moq kullanır. Daha sonra bir DbSet @ no__t-0Blog @ no__t-1 oluşturur ve içeriğin blogları özelliğinden döndürülecek şekilde kablolar olur. Daha sonra bağlam, yeni bir blog oluşturmak için kullanılan yeni bir BlogService oluşturmak için kullanılır. AddBlog yöntemi kullanılarak. Son olarak, test, hizmetin yeni bir blog eklediğini ve bağlam üzerinde SaveChanges çağırdı olduğunu doğrular.  
+Sorgu olmayan yöntemlerin test etmeye başlamak için yapmanız gereken tek şey var. Aşağıdaki test, bir bağlam oluşturmak için moq kullanır. Daha sonra bir DbSet\<blog\> oluşturur ve içeriğin blogları özelliğinden geri döndürülecek şekilde kablolar. Daha sonra bağlam, yeni bir blog oluşturmak için kullanılan yeni bir BlogService oluşturmak için kullanılır. AddBlog yöntemi kullanılarak. Son olarak, test, hizmetin yeni bir blog eklediğini ve bağlam üzerinde SaveChanges çağırdı olduğunu doğrular.  
 
 ``` csharp
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -182,7 +182,7 @@ namespace TestingDemo
 
 ## <a name="testing-query-scenarios"></a>Sorgu senaryolarını test etme  
 
-DbSet test Double 'imize karşı sorgu yürütebilmek için bir IQueryable uygulaması ayarlamanız gerekir. İlk adım, bazı bellek içi veriler oluşturmaktır: @ no__t-0Blog @ no__t-1 listesini kullanıyoruz. Daha sonra, bir bağlam oluşturur ve DBSet @ no__t-0Blogu @ no__t-1 ' i daha sonra DbSet için IQueryable uygulamasını yedekliyoruz; bu, yalnızca @ no__t-2T @ no__t-3 listesi ile birlikte çalışır LINQ to Objects sağlayıcıya temsilci olarak oluşturulur.  
+DbSet test Double 'imize karşı sorgu yürütebilmek için bir IQueryable uygulaması ayarlamanız gerekir. İlk adım, bazı bellek içi veriler oluşturmaktır: bir liste\<blog\>kullanıyoruz. Daha sonra, bir bağlam ve DBSet\<blog\> unu oluşturup DbSet için IQueryable uygulamasını nasıl bağlayacağız. Bu, yalnızca liste\<T\>ile birlikte çalışarak LINQ to Objects sağlayıcısına temsilci olarak oluşturulur.  
 
 Daha sonra test Double 'lerimizi temel alan bir BlogService oluşturabilir ve Getallbloglarından geri aldığımız verilerin ada göre sipariş aldığından emin olabilirsiniz.  
 
@@ -235,7 +235,7 @@ Entity Framework 6, bir sorguyu zaman uyumsuz olarak yürütmek için kullanıla
 
 Entity Framework sorguları LINQ kullandığından, uzantı yöntemleri IQueryable ve IEnumerable üzerinde tanımlanmıştır. Ancak Entity Framework yalnızca ile kullanılmak üzere tasarlandıklarından, bunları Entity Framework sorgusu olmayan bir LINQ sorgusunda kullanmayı denerseniz aşağıdaki hatayı alabilirsiniz:
 
-> Kaynak IQueryable, ıdbasyncenumerable @ no__t-0 uygulamıyor. Yalnızca ıdbasyncenumerable uygulayan kaynaklar Entity Framework zaman uyumsuz işlemler için kullanılabilir. Daha fazla ayrıntı için bkz. [http://go.microsoft.com/fwlink/?LinkId=287068](https://go.microsoft.com/fwlink/?LinkId=287068).  
+> Kaynak IQueryable, ıdbasyncenumerable{0}uygulamıyor. Yalnızca ıdbasyncenumerable uygulayan kaynaklar Entity Framework zaman uyumsuz işlemler için kullanılabilir. Daha fazla bilgi için bkz. [http://go.microsoft.com/fwlink/?LinkId=287068](https://go.microsoft.com/fwlink/?LinkId=287068).  
 
 Zaman uyumsuz yöntemler yalnızca bir EF sorgusuna karşı çalıştırılırken desteklenir, bir DbSet 'in bellek içi test çift tarafında çalışırken bunları birim testinizde kullanmak isteyebilirsiniz.  
 

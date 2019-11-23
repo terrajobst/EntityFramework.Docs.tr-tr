@@ -30,7 +30,7 @@ Bu kılavuzu tamamlamak için şunlara ihtiyacınız olacak:
 
 Bu izlenecek yol, Visual Studio 2012 ' i kullanıyor.
 
--   Visual Studio 2012 ' i açın.
+-   Visual Studio 2012'yi açın.
 -   **Dosya** menüsünde, **Yeni**' nin üzerine gelin ve ardından **Proje**' ye tıklayın.
 -   Sol bölmede, Visual C\#' ye tıklayın ve ardından konsol uygulaması şablonunu seçin.
 -   Projenin adı olarak **Tablespttingsample** girin ve **Tamam**' a tıklayın.
@@ -41,12 +41,12 @@ Bu izlenecek yol, Visual Studio 2012 ' i kullanıyor.
 -   Sol menüden **verileri** seçin ve ardından şablonlar bölmesinde **ADO.net varlık veri modeli** öğesini seçin.
 -   Dosya adı için **TableSplittingModel. edmx** girin ve ardından **Ekle**' ye tıklayın.
 -   Model Içeriğini seçin iletişim kutusunda, **veritabanından oluştur**' u seçin ve ardından İleri ' ye tıklayın **.**
--   Yeni bağlantı ' ya tıklayın. Bağlantı özellikleri iletişim kutusunda sunucu adını (örneğin, **\\(LocalDB) mssqllocaldb**) girin, kimlik doğrulama yöntemini seçin, veritabanı adı için **okul** yazın ve ardından **Tamam**' a tıklayın.
+-   Yeni bağlantı ' ya tıklayın. Bağlantı özellikleri iletişim kutusunda sunucu adını (örneğin, **(LocalDB)\\mssqllocaldb**) girin, kimlik doğrulama yöntemini seçin, veritabanı adı için **okul** yazın ve ardından **Tamam**' a tıklayın.
     Veri bağlantınızı seçin iletişim kutusu, veritabanı bağlantı ayarınız ile güncelleştirilir.
--   Veritabanı nesnelerinizi seçin iletişim kutusunda **Tablolar** düğümünün katlamayı kaldırın ve **kişi** tablosuna bakın. Bu, belirtilen tabloyu **okul** modeline ekler.
+-   Veritabanı nesnelerinizi seçin iletişim kutusunda **tablo** düğümünü katlayın ve **kişi** tablosunu kontrol edin. Bu, belirtilen tabloyu **okul** modeline ekler.
 -    **Son**' a tıklayın.
 
-Modelinizi düzenlemekte bir tasarım yüzeyi sağlayan Entity Desisgner görüntülenir.  **Veritabanı nesnelerinizi** seçin iletişim kutusunda seçtiğiniz tüm nesneler modele eklenir.
+Modelinizi düzenlemekte bir tasarım yüzeyi sağlayan Entity Desisgner görüntülenir.  **Veritabanı nesnelerinizi seçin** iletişim kutusunda seçtiğiniz tüm nesneler modele eklenir.
 
 ## <a name="map-two-entities-to-a-single-table"></a>Iki varlığı tek bir tabloyla eşleyin
 
@@ -57,20 +57,20 @@ Bu bölümde, **kişi** varlığını iki varlığa bölecektir ve sonra bunlar�
 
 -   Tasarım yüzeyinde boş bir alana sağ tıklayın, **Yeni Ekle**' nin üzerine gelin ve **varlık**' a tıklayın.
      **Yeni varlık** iletişim kutusu görüntülenir.
--   **Anahtar özellik** adı için **varlık adı** ve **PersonID** için **hireınfo** yazın.
+-   **Anahtar özellik** adı için **varlık adı** ve **PersonID** için **hireınfo** yazın.
 -    **Tamam**' a tıklayın.
 -   Tasarım yüzeyinde yeni bir varlık türü oluşturulur ve görüntülenir.
--     **Kişi** **** varlıktürününHireDateözelliğiniseçinveCTRL+Xtuşlarına basın.
+-    **Kişi** varlık türünün **hiredate** özelliğini seçin ve **CTRL + X** tuşlarına basın.
 -   **Hireınfo** varlığını seçin ve **CTRL + V** tuşlarına basın.
 -   **Kişi** ve **hireınfo**arasında bir ilişki oluşturun. Bunu yapmak için tasarım yüzeyinde boş bir alana sağ tıklayın, **Yeni Ekle**' nin üzerine gelin ve **ilişkilendirme**' ye tıklayın.
--    **** İlişki Ekle iletişim kutusu görüntülenir. **Personhireınfo** adı varsayılan olarak verilir.
+-    **Ilişki ekle** iletişim kutusu görüntülenir. **Personhireınfo** adı varsayılan olarak verilir.
 -   İlişkinin her iki ucunda çeşitlilik **1 (bir)** belirtin.
 -   Tuşuna **Tamam**.
 
-Sonraki adım, **eşleme ayrıntıları** penceresini gerektirir. Bu pencereyi göremiyorsanız, tasarım yüzeyine sağ tıklayıp **eşleme ayrıntıları**' nı seçin.
+Sonraki adım için **eşleme ayrıntıları** penceresi gerekir. Bu pencereyi göremiyorsanız, tasarım yüzeyine sağ tıklayıp **eşleme ayrıntıları**' nı seçin.
 
--    **Hireınfo** varlık türünü seçin ve  **eşleme ayrıntıları** **&lt;&gt;** penceresindetabloveyaGörünümEkle'yetıklayın. 
--   **Tablo &lt;Ekle veyaGörünüm&gt;** alanıaçılırlistesindenkişi'yi seçin. Liste, seçilen varlığın eşleştiribileceği tabloları veya görünümleri içerir.
+-    ** varlık** türünü seçin ve **eşleme ayrıntıları** penceresinde **&lt;tablo ekleme veya&gt; görüntüleme** ' ye tıklayın.
+-   **&lt;bir tablo eklemek veya &gt;** alan açılır listesinden **kişi** ' yi seçin. Liste, seçilen varlığın eşleştiribileceği tabloları veya görünümleri içerir.
     Uygun özellikler varsayılan olarak eşlenmelidir.
 
     ![Eşleme](~/ef6/media/mapping.png)
@@ -126,7 +126,7 @@ Aşağıdaki T-SQL deyimleri, bu uygulamayı çalıştırmanın bir sonucu olara
 
 -   Aşağıdaki **ekleme** bağlam yürütmenin sonucu olarak yürütüldü. SaveChanges () ve **kişi** ve **hireınfo** varlıklarındaki verileri birleştirir
 
-    ![Ekleme](~/ef6/media/insert.png)
+    ![Ekle](~/ef6/media/insert.png)
 
 -   Aşağıdaki **seçim** , bağlam yürütmenin sonucu olarak yürütüldü. Kişiler. FirstOrDefault () ve yalnızca **kişiyle** eşleştirilmiş sütunları seçer
 

@@ -102,7 +102,7 @@ namespace TestingDemo
 
 Bağlamımızın IBloggingContext arabirimini uyguladığını unutmayın.  
 
-Code First kullanıyorsanız, arabirimi uygulamak için bağlamını doğrudan düzenleyebilirsiniz. EF Designer kullanıyorsanız, bağlamını oluşturan T4 şablonunu düzenlemeniz gerekir. @No__t-0model_adı @ no__t-1 ' i açın. Context.tt dosyası, edmx dosyasının altında bulunan, aşağıdaki kod parçasını bulun ve arabirimde gösterildiği gibi ekleyin.  
+Code First kullanıyorsanız, arabirimi uygulamak için bağlamını doğrudan düzenleyebilirsiniz. EF Designer kullanıyorsanız, bağlamını oluşturan T4 şablonunu düzenlemeniz gerekir. \<model_name\>açın. Context.tt dosyası, edmx dosyasının altında bulunan, aşağıdaki kod parçasını bulun ve arabirimde gösterildiği gibi ekleyin.  
 
 ``` csharp  
 <#=Accessibility.ForType(container)#> partial class <#=code.Escape(container)#> : DbContext, IBloggingContext

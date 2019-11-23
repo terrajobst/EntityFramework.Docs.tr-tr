@@ -12,7 +12,7 @@ ms.locfileid: "71813555"
 ---
 # <a name="designer-cud-stored-procedures"></a>Tasarımcı CUD saklı yordamları
 
-Bu adım adım izlenecek yol, bir varlık türünün @ no__t-0ınsert, Update ve Delete (CUD) işlemlerini Entity Framework Designer (EF Designer) kullanarak saklı yordamlara nasıl eşleneceğini gösterir.  Varsayılan olarak, Entity Framework CUD işlemleri için SQL deyimlerini otomatik olarak oluşturur, ancak saklı yordamları bu işlemlere de eşleyebilirsiniz.  
+Bu adım adım izlenecek yol, bir varlık türünün Create\\INSERT, Update ve Delete (CUD) işlemlerinin, Entity Framework Designer (EF Designer) kullanılarak saklı yordamlara nasıl eşleneceğini gösterir.  Varsayılan olarak, Entity Framework CUD işlemleri için SQL deyimlerini otomatik olarak oluşturur, ancak saklı yordamları bu işlemlere de eşleyebilirsiniz.  
 
 Code First, saklı yordamlara veya işlevlere eşlemeyi desteklemediğine unutmayın. Ancak, System. Data. Entity. DbSet. SqlQuery yöntemini kullanarak saklı yordamları veya işlevleri çağırabilirsiniz. Örneğin:
 
@@ -24,10 +24,10 @@ var query = context.Products.SqlQuery("EXECUTE [dbo].[GetAllProducts]");
 
 CUD işlemlerini Saklı yordamlarla eşlerken aşağıdaki noktalar geçerlidir:
 
-- CUD işlemlerinden birini saklı yordamla eşleştirdiğinizde, tümünü eşleyin. Üçü de eşleştirmez, yürütülürse eşlenmemiş işlemler başarısız olur ve bir **UpdateException** atılır.
+- CUD işlemlerinden birini saklı yordamla eşleştirdiğinizde, tümünü eşleyin. Üçü de eşleştirmez, yürütülürse eşlenmemiş işlemler başarısız olur ve bir **UpdateException** oluşturulur.
 - Saklı yordamın her parametresini varlık özelliklerine eşlemeniz gerekir.
-- Sunucu, ekli satır için birincil anahtar değerini oluşturursa, bu değeri varlığın anahtar özelliğine geri eşlemeniz gerekir. Aşağıdaki örnekte, **ınsertperson** saklı yordamı, saklı yordamın sonuç kümesinin bir parçası olarak yeni oluşturulan birincil anahtarı döndürür. Birincil anahtar, EF Designer 'ın **&lt;Add Result Bindings @ no__t-3** özelliğini kullanarak varlık anahtarı (**PersonID**) ile eşleştirilir.
-- Saklı yordam çağrıları, kavramsal modeldeki varlıklarla 1:1 eşleştirilir. Örneğin, kavramsal modelinize bir devralma hiyerarşisi uygularsanız ve sonra **üst** (temel) ve **alt** (türetilmiş) varlıklar için CUD saklı yordamlarını eşlediğinizde, **alt** değişiklikleri kaydetmek yalnızca **alt**' ' i çağırır ' saklı yordamlar, **üst**öğenin saklı yordam çağrılarını tetiklemez.
+- Sunucu, ekli satır için birincil anahtar değerini oluşturursa, bu değeri varlığın anahtar özelliğine geri eşlemeniz gerekir. Aşağıdaki örnekte, **ınsertperson** saklı yordamı saklı yordamın sonuç kümesinin bir parçası olarak yeni oluşturulan birincil anahtarı döndürür. Birincil anahtar, EF Designer 'ın **&lt;sonuç bağlamaları ekle&gt;**  özelliği kullanılarak varlık anahtarı (**PersonID**) ile eşleştirilir.
+- Saklı yordam çağrıları, kavramsal modeldeki varlıklarla 1:1 eşleştirilir. Örneğin, kavramsal modelinize bir devralma hiyerarşisi uygularsanız ve sonra **üst** (temel) ve **alt** (türetilmiş) varlıklar için CUD saklı yordamlarını eşlediğinizde, **alt** değişiklikleri kaydetmek yalnızca **alt**öğenin saklı yordamlarını çağıracaktır, **üst**öğenin saklı yordam çağrılarını tetiklemez.
 
 ## <a name="prerequisites"></a>Önkoşullar
 
@@ -38,9 +38,9 @@ Bu kılavuzu tamamlamak için şunlara ihtiyacınız olacak:
 
 ## <a name="set-up-the-project"></a>Projeyi ayarlama
 
-- Visual Studio 2012 ' i açın.
-- **Dosya-&gt; yeni-&gt; projesi** seçin
-- Sol bölmede, **Visual C @ no__t-1**' e tıklayın ve ardından **konsol** şablonunu seçin.
+- Visual Studio 2012'yi açın.
+- **Dosya&gt; yeni&gt; proje** ' yi seçin
+- Sol bölmede, **Visual C\#** ' ye tıklayın ve ardından **konsol** şablonunu seçin.
 - Ad olarak **Cudsprocssample** girin.
 -  **Tamam ' ı**seçin.
 
@@ -50,10 +50,10 @@ Bu kılavuzu tamamlamak için şunlara ihtiyacınız olacak:
 - Sol menüden **verileri** seçin ve ardından şablonlar bölmesinde **ADO.net varlık veri modeli** öğesini seçin.
 - Dosya adı için **Cudsprocs. edmx** girin ve ardından **Ekle**' ye tıklayın.
 - Model Içeriğini seçin iletişim kutusunda, **veritabanından oluştur**' u seçin ve ardından **İleri**' ye tıklayın.
--  **Yeni bağlantı**' ya tıklayın. Bağlantı özellikleri iletişim kutusunda sunucu adını (örneğin, **\\(LocalDB) mssqllocaldb**) girin, kimlik doğrulama yöntemini seçin, veritabanı adı için **okul** yazın ve ardından **Tamam**' a tıklayın.
+-  **Yeni bağlantı**' ya tıklayın. Bağlantı özellikleri iletişim kutusunda sunucu adını (örneğin, **(LocalDB)\\mssqllocaldb**) girin, kimlik doğrulama yöntemini seçin, veritabanı adı için **okul** yazın ve ardından **Tamam**' a tıklayın.
     Veri bağlantınızı seçin iletişim kutusu, veritabanı bağlantı ayarınız ile güncelleştirilir.
 - Veritabanı nesnelerinizi seçin iletişim kutusunda, **tablolar** düğümü altında **kişi** tablosunu seçin.
-- Ayrıca, **saklı yordamlar ve işlevler** düğümü altında aşağıdaki saklı yordamları seçin: **Deleteperson**, **ınsertperson**ve **UpdatePerson**.
+- Ayrıca, **saklı yordamlar ve işlevler** düğümü altında aşağıdaki saklı yordamları seçin: **deleteperson**, **ınsertperson**ve **UpdatePerson**.
 - Visual Studio 2012 ile başlayarak EF Designer, saklı yordamların Toplu içe aktarımını destekler. **Seçilen saklı yordamları ve işlevleri varlık modeline aktar** varsayılan olarak denetlenir. Bu örnekte varlık türlerini ekleyen, güncelleştiren ve silen yordamlar depoladık, bunları içeri aktarmak istemiyorum ve bu onay kutusunun işaretini silecek.
 
     ![S profili içeri aktar](~/ef6/media/importsprocs.jpg)
@@ -63,29 +63,29 @@ Bu kılavuzu tamamlamak için şunlara ihtiyacınız olacak:
 
 ## <a name="map-the-person-entity-to-stored-procedures"></a>Kişi varlığını saklı yordamlara eşleyin
 
-- @No__t-1Varlık türünde **kişiye**sağ tıklayın ve **saklı yordam eşlemesi**' ni seçin.
-- Saklı yordam eşlemeleri **eşleme ayrıntıları** penceresinde görüntülenir.
--  **@No__t-1 ' e tıklayın @ no__t-2 INSERT Function Select**.
+- Varlık türü  **kişiye** sağ tıklayın ve **saklı yordam eşlemesi**' ni seçin.
+- Saklı yordam eşlemeleri, **eşleme ayrıntıları** penceresinde görünür.
+-  **&lt;Işlev ekle&gt;seçin **' e tıklayın.
     Bu alan, kavramsal modeldeki varlık türleriyle eşleştirilabilen depolama modelindeki saklı yordamların açılan bir listesi haline gelir.
-    Aşağı açılan listeden **ınsertperson** öğesini seçin.
-- Saklı yordam parametreleri ve varlık özellikleri arasındaki varsayılan eşlemeler görüntülenir. Okların eşleme yönünün olduğunu unutmayın: Özellik değerleri, saklı yordam parametrelerine sağlanır.
--  **@No__t-1Sonuç bağlamayı Ekle @ no__t-2**' ye tıklayın.
+    Aşağı açılan listeden  **ınsertperson** ' ı seçin.
+- Saklı yordam parametreleri ve varlık özellikleri arasındaki varsayılan eşlemeler görüntülenir. Okların eşleme yönünü gösterdiğine unutmayın: özellik değerleri, saklı yordam parametrelerine sağlanır.
+-  **&lt;sonuç bağlama&gt;Ekle **' ye tıklayın.
 -  **Newpersonıd**, **ınsertperson** saklı yordamının döndürdüğü parametrenin adı yazın. Baştaki veya sondaki boşlukları yazmayın emin olun.
 -  **ENTER**tuşuna basın.
-- Varsayılan olarak **Newpersonıd** , **PersonID**varlık anahtarına eşlenir. Bir okun eşlemenin yönünü olduğunu unutmayın: Sonuç sütununun değeri özelliği için sağlanır.
+- Varsayılan olarak **Newpersonıd** , **PersonID**varlık anahtarıyla eşleştirilir. Bir okun eşlemenin yönünü gösterir: sonuç sütununun değeri özelliği için sağlanır.
 
     ![Eşleme ayrıntıları](~/ef6/media/mappingdetails.png)
 
--  **@No__t-1 ' e tıklayın @ no__t-2** ' i seçin ve açılan listeden **UpdatePerson** ' i seçin.
+-  **&lt;işlev&gt;Güncelleştir** ' i tıklatın  sonra oluşturulan açılan listeden **UpdatePerson** ' i seçin.
 - Saklı yordam parametreleri ve varlık özellikleri arasındaki varsayılan eşlemeler görüntülenir.
--  **@No__t-1Select Function @ no__t-2** ' e tıklayın ve elde edilen açılan listeden **deleteperson** ' i seçin.
+-  **&lt;fonksiyon&gt;Sil** ' i seçin ardından ortaya çıkan açılan listeden **deleteperson** ' ı seçin.
 - Saklı yordam parametreleri ve varlık özellikleri arasındaki varsayılan eşlemeler görüntülenir.
 
- **Kişi** Varlık türünün ekleme, güncelleştirme ve silme işlemleri artık Saklı yordamlarla eşlenir.
+ **Kişi** varlık türünün ekleme, güncelleştirme ve silme işlemleri artık Saklı yordamlarla eşlenir.
 
 Saklı yordamlar içeren bir varlığı güncelleştirirken veya silerken eşzamanlılık denetimini etkinleştirmek istiyorsanız, aşağıdaki seçeneklerden birini kullanın:
 
-- Saklı yordamdaki etkilenen satırların sayısını döndürmek ve parametre adının yanındaki  onay **parametresiyle etkilenen**satırları denetlemek Için bir **output** parametresi kullanın. İşlem çağrıldığında döndürülen değer sıfırsa, bir  [**OptimisticConcurrencyException**](https://msdn.microsoft.com/library/system.data.optimisticconcurrencyexception.aspx) atılır.
+- Saklı yordamdaki etkilenen satırların sayısını döndürmek ve parametre adının yanındaki onay kutusunu **etkilenen** satırları denetlemek Için bir **output** parametresi kullanın. İşlem çağrıldığında döndürülen değer sıfırsa, bir  [**OptimisticConcurrencyException**](https://msdn.microsoft.com/library/system.data.optimisticconcurrencyexception.aspx) atılır.
 - Eşzamanlılık denetimi için kullanmak istediğiniz özelliğin yanındaki **özgün değeri kullan** onay kutusunu işaretleyin. Bir güncelleştirme denendiğinde, veritabanında ilk olarak okunan özelliğin değeri veritabanına geri veri yazılırken kullanılacaktır. Değer veritabanındaki değerle eşleşmiyorsa, bir **OptimisticConcurrencyException** atılır.
 
 ## <a name="use-the-model"></a>Modeli kullanma

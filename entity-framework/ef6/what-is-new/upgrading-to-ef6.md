@@ -18,7 +18,7 @@ Bu, EF 4,1 ve üzeri sürümlerde olduğu gibi DbContext kullanan uygulamalar i�
 
 Mevcut bir uygulamayı EF6 'e yükseltmek için yapmanız gereken öğelerin bir denetim listesi aşağıda verilmiştir.
 
-## <a name="1-install-the-ef6-nuget-package"></a>1. EF6 NuGet paketini yükler
+## <a name="1-install-the-ef6-nuget-package"></a>1. EF6 NuGet paketini yüklemesi
 
 Yeni Entity Framework 6 çalışma zamanına yükseltmeniz gerekir.
 
@@ -37,14 +37,14 @@ Install-Package EntityFramework
 
 EF6 NuGet paketinin yüklenmesi, sizin için projenizden System. Data. Entity başvurularını otomatik olarak kaldırmalıdır.
 
-## <a name="3-swap-any-ef-designer-edmx-models-to-use-ef-6x-code-generation"></a>3. EF Designer (EDMX) modellerini EF 6. x kod üretimi kullanacak şekilde değiştirin
+## <a name="3-swap-any-ef-designer-edmx-models-to-use-ef-6x-code-generation"></a>3. EF Designer (EDMX) modellerini EF 6. x kod oluşturma kullanacak şekilde değiştirin
 
 EF Designer ile oluşturulmuş modelleriniz varsa, EF6 uyumlu kod üretmek için kod oluşturma şablonlarını güncelleştirmeniz gerekir.
 
 > [!NOTE]
 > Şu anda yalnızca Visual Studio 2012 ve 2013 için kullanılabilen EF 6. x DbContext Oluşturucu şablonları mevcuttur.
 
-1. Mevcut kod oluşturma şablonlarını silin. Bu dosyalar genellikle **@no__t -1edmx_file_name\>.tt** ve **\<edmx_file_adı @ no__t-5 olarak adlandırılır. Context.tt** ve Çözüm Gezgini içindeki edmx dosyanızın altına yerleştirilmiş. Çözüm Gezgini şablonları seçebilir ve silmek için **del** tuşuna basabilirsiniz.  
+1. Mevcut kod oluşturma şablonlarını silin. Bu dosyalar genellikle **\<edmx_file_name\>. tt** ve **\<edmx_file_name\>olarak adlandırılır. Context.tt** ve Çözüm Gezgini içindeki edmx dosyanızın altına yerleştirilmiş. Çözüm Gezgini şablonları seçebilir ve silmek için **del** tuşuna basabilirsiniz.  
    > [!NOTE]
    > Web sitesi projelerinde, şablonlar edmx dosyanızın altına yerleştirmeyecektir, ancak Çözüm Gezgini yanında listelenir.  
 
@@ -58,7 +58,7 @@ EF Designer ile oluşturulmuş modelleriniz varsa, EF6 uyumlu kod üretmek için
     - ObjectContext API 'sini kullanıyorsanız **çevrimiçi** sekmesini seçmeniz ve **EF 6. x EntityObject Generator**araması yapmanız gerekir.  
 3. Kod oluşturma şablonlarına herhangi bir özelleştirme uyguladıysanız, bunları güncelleştirilmiş şablonlara yeniden uygulamanız gerekir.
 
-## <a name="4-update-namespaces-for-any-core-ef-types-being-used"></a>4. Kullanılmakta olan tüm çekirdek EF türleri için ad alanlarını güncelleştirme
+## <a name="4-update-namespaces-for-any-core-ef-types-being-used"></a>4. kullanılan tüm çekirdek EF türleri için ad alanlarını güncelleştirin
 
 DbContext ve Code First türleri için ad alanları değişmemiştir. Bu, EF 4,1 veya sonrasını kullanan birçok uygulama için herhangi bir şeyi değiştirmeniz gerekmediği anlamına gelir.
 

@@ -20,14 +20,14 @@ Bu izlenecek yol, yeni bir veritabanı oluşturmak için Model First kullanır, 
 
 Enum desteği Entity Framework 5 ' te tanıtılmıştı. Numaralandırmalar, uzamsal veri türleri ve tablo değerli işlevler gibi yeni özellikleri kullanmak için, .NET Framework 4,5 ' i hedeflemelidir. Visual Studio 2012, .NET 4,5 'i varsayılan olarak hedefler.
 
-Entity Framework, bir numaralandırma aşağıdaki temel türlere sahip olabilir: **Byte**, **Int16**, **Int32**, **Int64** veya **SByte**.
+Entity Framework, bir numaralandırma aşağıdaki temel türlere sahip olabilir: **byte**, **Int16**, **Int32**, **Int64** veya **SByte**.
 
 ## <a name="watch-the-video"></a>Videoyu izleyin
 Bu videoda, Entity Framework Designer ile numaralandırma türlerinin nasıl kullanılacağı gösterilmektedir. Ayrıca, bir LINQ sorgusunda numaralandırmaları nasıl kullanacağınızı gösterir.
 
-**Sunulma ölçütü**: Julia Kornich
+**Sunduğu**: Julia Kornich
 
-**Video**: [WMV](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.wmv) | [MP4](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-mp4video-enumwithdesiger.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.zip)
+**Video**: [wmv](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.wmv) | [MP4](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-mp4video-enumwithdesiger.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.zip)
 
 ## <a name="pre-requisites"></a>Önkoşulların önkoşulları
 
@@ -35,9 +35,9 @@ Bu yönergeyi tamamlamak için Visual Studio 2012, Ultimate, Premium, Profession
 
 ## <a name="set-up-the-project"></a>Projeyi ayarlama
 
-1.  Visual Studio 2012 'yi açın
+1.  Visual Studio 2012'yi açın
 2.  **Dosya** menüsünde, **Yeni**' nin üzerine gelin ve ardından **Proje** ' ye tıklayın.
-3.  Sol bölmede, **Visual C @ no__t-1**' e tıklayın ve ardından **konsol** şablonunu seçin
+3.  Sol bölmede, **Visual C\#** ' ye tıklayın ve ardından **konsol** şablonunu seçin
 4.  Projenin adı olarak **Trmefdesigner** girin ve **Tamam 'a** tıklayın
 
 ## <a name="create-a-new-model-using-the-ef-designer"></a>EF tasarımcısını kullanarak yeni model oluşturma
@@ -58,10 +58,10 @@ Sihirbaz aşağıdaki eylemleri gerçekleştirir:
 
 ## <a name="add-a-new-entity-type"></a>Yeni varlık türü Ekle
 
-1.  Tasarım yüzeyinde boş bir alana sağ tıklayın, **Add-&gt; varlığı**' i seçin, yeni varlık iletişim kutusu görüntülenir
+1.  Tasarım yüzeyinde boş bir alana sağ tıklayın, **Ekle-&gt; varlık**' ı seçin, yeni varlık iletişim kutusu görüntülenir
 2.  Tür adı için **departmanı** belirtin ve anahtar özellik adı için **DepartmentID** belirtin, türü **Int32** olarak bırakın
 3.  **Tamam**’a tıklayın.
-4.  Varlığa sağ tıklayın ve **New-&gt; skaler Özellik Ekle** ' yi seçin
+4.  Varlığa sağ tıklayın ve **New-&gt; skaler özelliği Ekle** ' yi seçin
 5.  Yeni özelliği **ad** olarak yeniden adlandır
 6.  Yeni özelliğin türünü **Int32** olarak değiştirin (varsayılan olarak, yeni özellik dize türündedir) ve türü değiştirmek için Özellikler penceresi açın ve Type özelliğini **Int32** olarak değiştirin
 7.  Başka bir skaler özellik ekleyin ve **bütçeye**yeniden adlandırın, türü **Decimal** olarak değiştirin
@@ -72,7 +72,7 @@ Sihirbaz aşağıdaki eylemleri gerçekleştirir:
 
     ![Sabit listesine Dönüştür](~/ef6/media/converttoenum.png)
 
-2.  Numaralandırma **Ekle** iletişim kutusunda, enum türü adı için **DepartmentNames** yazın, temeldeki türü **Int32**olarak değiştirin ve ardından aşağıdaki üyeleri türüne ekleyin: İngilizce, matematik ve ekonomisi
+2.  Numaralandırma **Ekle** iletişim kutusunda, enum türü adı için **DepartmentNames** yazın, temel alınan türü **Int32**olarak değiştirin ve ardından aşağıdaki üyeleri türüne ekleyin: İngilizce, matematik ve ekonomiku
 
     ![Sabit listesi türü Ekle](~/ef6/media/addenumtype.png)
 
@@ -95,11 +95,11 @@ Model tarayıcı penceresine geçiş yaparsanız, türün de enum Types düğüm
 Artık modeli temel alan bir veritabanı oluşturabilirsiniz.
 
 1.  Entity Desisgner yüzeyinde boş bir alana sağ tıklayın ve **modelden veritabanı oluştur** ' u seçin.
-2.  Veritabanı oluşturma sihirbazının veri bağlantısını seçin Iletişim kutusu görüntülenir **Yeni bağlantı** düğmesine tıklayın **(localdb) \\mssqllocaldb** , veritabanı Için bir ad ve **Enumtest** için belirtin ve **Tamam 'a** tıklayın
+2.  Veritabanı oluşturma Sihirbazı ' nın veri bağlantısını seçin Iletişim kutusu görüntülenir **Yeni bağlantı** düğmesine tıklayın (LocalDB) sunucu adı ve veritabanı Için **enumtest** için **Mssqllocaldb\\** ve ardından **Tamam** ' a tıklayın.
 3.  Yeni bir veritabanı oluşturmak isteyip istemediğinizi soran bir iletişim kutusu açılır ve **Evet**' e tıklayın.
-4.  **İleri** ' ye tıklayın ve veritabanı oluşturma Sihirbazı bir veritabanı oluşturmak için veri tanımlama DILI (ddl) oluşturur oluşturulan DDL, Özet ve ayarlar iletişim kutusu IÇINDE, DDL 'nin bu bir tablo için bir tanım içermediğini sabit listesi türü
+4.  **İleri** ' ye tıklayın ve veritabanı oluşturma Sihirbazı bir veritabanı oluşturmak için veri tanımlama DILI (ddl) oluşturur oluşturulan DDL, Özet ve ayarlar iletişim kutusu ' nda, DDL 'nin numaralandırma türüyle eşleşen bir tablo tanımı içermediğini belirten bir açıklama içermez.
 5.  Son **' a** tıklayarak DDL betiğini yürütmez.
-6.  Veritabanı oluşturma Sihirbazı şunları yapar: T-SQL düzenleyicisinde **Enumtest. edmx. SQL** ' i açar, edmx dosyasının depo şemasını ve eşleme bölümlerini App. config dosyasına bağlantı dizesi bilgilerini ekler
+6.  Veritabanı oluşturma Sihirbazı şunları yapar: **Enumtest. edmx** dosyasını açar. T-SQL DÜZENLEYICISINDE, edmx dosyasının mağaza şeması ve eşleme bölümleri, bağlantı dizesi bilgilerini App. config dosyasına ekler
 7.  T-SQL Düzenleyicisi ' nde sağ fare düğmesine tıklayın ve sunucuya Bağlan iletişim kutusunu **Çalıştır** ' ı seçin. Adım 2 ' den bağlantı bilgilerini girin ve **Bağlan** ' a tıklayın.
 8.  Oluşturulan şemayı görüntülemek için SQL Server Nesne Gezgini veritabanı adına sağ tıklayın ve **Yenile** ' yi seçin.
 

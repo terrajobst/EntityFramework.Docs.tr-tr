@@ -16,9 +16,9 @@ Bu video ve adım adım yönergeler, Entity Framework kullanarak Model First gel
 ## <a name="watch-the-video"></a>Videoyu izleyin
 Bu video ve adım adım yönergeler, Entity Framework kullanarak Model First geliştirmeye yönelik bir giriş sağlar. Model First, Entity Framework Designer kullanarak yeni bir model oluşturmanızı ve sonra modelden bir veritabanı şeması oluşturmanızı sağlar. Model bir EDMX dosyasında (. edmx uzantılı) depolanır ve Entity Framework Designer görüntülenebilir ve düzenlenebilir. Uygulamanızda etkileşimde bulunan sınıflar, EDMX dosyasından otomatik olarak oluşturulur.
 
-**Sunulma ölçütü**: [ROWA Miller](https://romiller.com/)
+**Sunulma ölçütü**: [Rowa Miller](https://romiller.com/)
 
-**Video**: [WMV](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-winvideo-modelfirst.wmv) | [MP4](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-mp4video-modelfirst.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-winvideo-modelfirst.zip)
+**Video**: [wmv](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-winvideo-modelfirst.wmv) | [MP4](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-mp4video-modelfirst.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-winvideo-modelfirst.zip)
 
 ## <a name="pre-requisites"></a>Önkoşulların önkoşulları
 
@@ -26,17 +26,17 @@ Bu izlenecek yolu tamamlamak için Visual Studio 2010 veya Visual Studio 2012 y�
 
 Visual Studio 2010 kullanıyorsanız, [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) ' in yüklü olması gerekir.
 
-## <a name="1-create-the-application"></a>1. Uygulamayı oluşturma
+## <a name="1-create-the-application"></a>1. uygulamayı oluşturun
 
 Şeyleri basit tutmak için, veri erişimi gerçekleştirmek üzere Model First kullanan temel bir konsol uygulaması oluşturacağız:
 
 -   Visual Studio 'Yu aç
--   **Dosya-&gt; yeni-&gt; proje...**
+-   **Dosya-&gt; yeni&gt; projesi...**
 -   Sol taraftaki menüden ve **konsol uygulamasından** **Windows** ' u seçin
 -   Ad olarak **Modelfirstsample** girin
 -   **Tamam 'ı** seçin
 
-## <a name="2-create-model"></a>2. Model oluştur
+## <a name="2-create-model"></a>2. model oluştur
 
 Modelimizi oluşturmak için Visual Studio 'nun bir parçası olarak dahil edilen Entity Framework Designer kullanacağız.
 
@@ -50,24 +50,25 @@ Modelimizi oluşturmak için Visual Studio 'nun bir parçası olarak dahil edile
 Entity Framework Designer boş bir modelle açılır. Artık modele varlıklar, Özellikler ve ilişkilendirmeler eklemeye başlayabiliriz.
 
 -   Tasarım yüzeyine sağ tıklayıp **Özellikler** ' i seçin
--   Özellikler penceresi **varlık kapsayıcısı adını** **BloggingContext**
-     olarak değiştirin-2*Bu, sizin için üretilecek olan türetilmiş bağlamın adıdır, bağlam veritabanı ile bir oturumu temsil eder ve bu da sorgulamanızı ve kaydetmemizi sağlar veri*
--   Tasarım yüzeyine sağ tıklayın ve **yeni &gt; varlık Ekle ' yi seçin...**
+-   Özellikler penceresi **varlık kapsayıcısı adını** **BloggingContext** olarak değiştirin
+    *Bu, sizin için oluşturulacak türetilmiş bağlamın adıdır; bağlam veritabanı ile bir oturumu temsil eder ve verileri sorgulayıp kaydetmenize olanak tanır*
+-   Tasarım yüzeyine sağ tıklayıp **yeni&gt; varlık Ekle ' yi seçin...**
 -   Varlık adı ve **blogID** olarak anahtar adı olarak blog girin ve **Tamam** ' **a** tıklayın.
 
     ![Blog varlığı Ekle](~/ef6/media/addblogentity.png)
 
--   Tasarım yüzeyinde yeni varlığa sağ tıklayın ve **Yeni-&gt; skaler Özellik Ekle**' yi seçin, özelliğin adı olarak **ad** girin.
+-   Tasarım yüzeyinde yeni varlığa sağ tıklayın ve **New-&gt; skaler Özellik Ekle**' yi seçin, özelliğin adı olarak **adı** girin.
 -   **URL** özelliği eklemek için bu işlemi tekrarlayın.
--   Tasarım yüzeyinde **URL** özelliği ' ne sağ tıklayın ve **Özellikler**' i seçin Özellikler penceresi **null yapılabilir** ayarını **doğru**olarak değiştirin 
-    *Bu, bir web günlüğünü veritabanına atamadan veritabanına kaydetmemizi sağlar *
+-   Tasarım yüzeyinde **URL** özelliği ' ne sağ tıklayın ve **Özellikler**' i seçin Özellikler penceresi **null yapılabilir** ayarını **doğru** olarak değiştirin
+    bu, *bir blogu URL atamadan veritabanına kaydetmenizi sağlar*
 -   Yeni öğrenmeniz gereken teknikleri kullanarak **postid** anahtar özelliğine sahip bir **Post** varlığı ekleyin
 -   **Post** varlığına **başlık** ve **içerik** skaler özellikleri ekleyin
 
 Artık birkaç varlık olduğuna göre, aralarında bir ilişki (veya ilişki) ekleme zamanı.
 
--   Tasarım yüzeyine sağ tıklayıp **Yeni-&gt; Ilişkilendirme Ekle ' yi seçin...**
--   İlişki noktasının bir bitişini bir **tane** birçok @no__t çokluğa sahip **olacak şekilde** **bloga** ve diğer uç noktanın **çok sayıda**-4 *'* e
+-   Tasarım yüzeyine sağ tıklayıp **yeni&gt; Ilişkilendirmesi Ekle ' yi seçin...**
+-   İlişki noktasının bir bitişini bir **tane** **birçok**
+    çokluğa sahip olacak şekilde **bloga** ve diğer uç nokta ile blog olarak **gönderin** . *Bu, blogun birçok gönderiye sahip olduğu ve bir gönderiye ait olduğu anlamına gelir*
 -   **' Post ' varlığına yabancı anahtar özellikleri ekle** kutusunun işaretli olduğundan emin olun ve **Tamam** ' a tıklayın.
 
     ![Ilişki ekleme MF](~/ef6/media/addassociationmf.png)
@@ -82,8 +83,8 @@ Visual Studio 2010 ' de çalışıyorsanız, en son Entity Framework sürümüne
 
 İlk olarak, Entity Framework NuGet 'den en son sürümü alması gerekir.
 
--   **Proje – &gt; NuGet Paketlerini Yönet...** 
-    * **NuGet Paketlerini Yönet...** seçeneğine sahipseniz [NuGet 'in en son sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklemelisiniz*
+-   **Proje –&gt; NuGet Paketlerini Yönet...** * **NuGet Paketlerini Yönet...** seçeneğine sahipseniz
+    [NuGet 'in en son sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklemelisiniz*
 -   **Çevrimiçi** sekmesini seçin
 -   **EntityFramework** paketini seçin
 -   **Install** 'a tıklayın
@@ -92,11 +93,11 @@ Bundan sonra, Entity Framework sonraki sürümlerinde tanıtılan DbContext API 
 
 -   EF Designer 'daki modelinizin boş bir noktasına sağ tıklayıp **kod oluşturma öğesi Ekle...** seçeneğini belirleyin.
 -   Sol menüden **çevrimiçi şablonlar** ' ı seçin ve **DbContext** ' i arayın
--   **C @ no__t-1 IÇIN EF 5. x DbContext Generator**' ı seçin, ad olarak **BloggingModel** girin ve **Ekle** ' ye tıklayın.
+-   **C\#IÇIN EF 5. x DbContext oluşturucusunu** seçin, ad olarak **BloggingModel** girin ve **Ekle** ' ye tıklayın.
 
     ![DbContext şablonu](~/ef6/media/dbcontexttemplate.png)
 
-## <a name="3-generating-the-database"></a>3. Veritabanı oluşturuluyor
+## <a name="3-generating-the-database"></a>3. veritabanı oluşturuluyor
 
 Modelimiz verildiğinde, Entity Framework modeli kullanarak veri depolamanıza ve almasına imkan tanıyan bir veritabanı şemasını hesaplayabilirler.
 
@@ -119,7 +120,7 @@ Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio s
 -   Betik görüntülenirken **son** ' a tıklayın ve betik projenize eklenir ve açılır
 -   Komut dosyasına sağ tıklayın ve **Yürüt**' ü seçin, hangi Visual Studio sürümüne bağlı olarak ' ye bağlanacak veritabanını belirtmeniz, LocalDB veya SQL Server Express belirtmeniz istenecektir
 
-## <a name="4-reading--writing-data"></a>4. Verileri okuma & yazma
+## <a name="4-reading--writing-data"></a>4. verileri okuma & yazma
 
 Artık bir modelimiz olduğuna göre, bazı verilere erişmek için bunu kullanmanın zamanı. Verilere erişmek için kullanacağınız sınıflar, EDMX dosyasına bağlı olarak sizin için otomatik olarak oluşturulur.
 
@@ -171,7 +172,7 @@ ADO.NET Blog
 Press any key to exit...
 ```
 
-## <a name="5-dealing-with-model-changes"></a>5. Model değişiklikleriyle ilgili
+## <a name="5-dealing-with-model-changes"></a>5. model değişiklikleriyle ilgilenme
 
 Artık modelinizde bazı değişiklikler yapma zamanı, bu değişiklikleri yaptığımız için de veritabanı şemasını güncelleştirmemiz gerekiyor.
 
@@ -181,8 +182,8 @@ Modelinize yeni bir kullanıcı varlığı ekleyerek başlayacağız.
 
     ![Kullanıcı varlığı Ekle](~/ef6/media/adduserentity.png)
 
--   Tasarım yüzeyinde **Kullanıcı adı** özelliğine sağ tıklayın ve **Özellikler**' i seçin Özellikler penceresi **MaxLength** ayarını **50**olarak değiştirin 
-    *Bu, Kullanıcı adı 'nda depolanabilecek verileri 50 ' e kısıtlar karakterler*
+-   Tasarım yüzeyinde **Kullanıcı adı** özelliğine sağ tıklayın ve **Özellikler**' i seçin Özellikler penceresi **MaxLength** ayarını **50** olarak değiştirin
+    *Bu, Kullanıcı adı 'nda depolanabilecek verileri 50 karaktere kısıtlar*
 -   **Kullanıcı** varlığına **DisplayName** skalar özelliği ekleyin
 
 Şimdi güncelleştirilmiş bir modelimiz var ve veritabanını yeni Kullanıcı varlık türü ile uyumlu olacak şekilde güncelleştirmeye hazırsınız.
@@ -191,7 +192,7 @@ Modelinize yeni bir kullanıcı varlığı ekleyerek başlayacağız.
 -   **Son** ' a tıklayın
 -   Var olan DDL betiğinin üzerine yazma ve modelin eşleme ve depolama bölümlerinin yazılmasına ilişkin uyarılar alabilirsiniz, her iki uyarı için de **Evet** ' e tıklayabilirsiniz
 -   Veritabanını oluşturmak için güncelleştirilmiş SQL betiği sizin için açıldı  
-    @no__t-oluşturulan komut dosyası tüm mevcut tabloları bırakacak ve sonra şemayı sıfırdan yeniden oluşturacak. Bu, yerel geliştirme için çalışabilir, ancak daha önce dağıtılmış bir veritabanına yapılan değişiklikleri göndermek için uygun değildir. Zaten dağıtılmış bir veritabanında değişiklikler yayımlamanız gerekiyorsa, bir geçiş betiği hesaplamak için betiği düzenlemeniz veya bir şema karşılaştırma aracı kullanmanız gerekir. *
+    *Oluşturulan komut dosyası tüm mevcut tabloları bırakacak ve sonra şemayı sıfırdan yeniden oluşturacak. Bu, yerel geliştirme için çalışabilir, ancak daha önce dağıtılmış bir veritabanına yapılan değişiklikleri göndermek için uygun değildir. Zaten dağıtılmış bir veritabanında değişiklikler yayımlamanız gerekiyorsa, bir geçiş betiği hesaplamak için betiği düzenlemeniz veya bir şema karşılaştırma aracı kullanmanız gerekir.*
 -   Komut dosyasına sağ tıklayın ve **Yürüt**' ü seçin, hangi Visual Studio sürümüne bağlı olarak ' ye bağlanacak veritabanını belirtmeniz, LocalDB veya SQL Server Express belirtmeniz istenecektir
 
 ## <a name="summary"></a>Özet

@@ -27,9 +27,9 @@ Uzamsal veri türlerini kullanmak için, uzamsal destek içeren bir Entity Frame
 ## <a name="watch-the-video"></a>Videoyu izleyin
 Bu videoda, Entity Framework Code First ile uzamsal türlerin nasıl eşleneceğini gösterilmektedir. Ayrıca, iki konum arasındaki mesafeyi bulmak için bir LINQ sorgusunun nasıl kullanılacağını gösterir.
 
-**Sunulma ölçütü**: Julia Kornich
+**Sunduğu**: Julia Kornich
 
-**Video**: [WMV](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-winvideo-spatialwithcodefirst.wmv) | [MP4](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-mp4video-spatialwithcodefirst.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-winvideo-spatialwithcodefirst.zip)
+**Video**: [wmv](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-winvideo-spatialwithcodefirst.wmv) | [MP4](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-mp4video-spatialwithcodefirst.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-winvideo-spatialwithcodefirst.zip)
 
 ## <a name="pre-requisites"></a>Önkoşulların önkoşulları
 
@@ -37,9 +37,9 @@ Bu yönergeyi tamamlamak için Visual Studio 2012, Ultimate, Premium, Profession
 
 ## <a name="set-up-the-project"></a>Projeyi ayarlama
 
-1.  Visual Studio 2012 'yi açın
+1.  Visual Studio 2012'yi açın
 2.  **Dosya** menüsünde, **Yeni**' nin üzerine gelin ve ardından **Proje** ' ye tıklayın.
-3.  Sol bölmede, **Visual C @ no__t-1**' e tıklayın ve ardından **konsol** şablonunu seçin
+3.  Sol bölmede, **Visual C\#** ' ye tıklayın ve ardından **konsol** şablonunu seçin
 4.  Projenin adı olarak **SpatialCodeFirst** girin ve **Tamam 'a** tıklayın
 
 ## <a name="define-a-new-model-using-code-first"></a>Code First kullanarak yeni bir model tanımlama
@@ -67,7 +67,7 @@ public class University
 
 ## <a name="define-the-dbcontext-derived-type"></a>DbContext türetilmiş türünü tanımlayın
 
-Varlıkları tanımlamaya ek olarak, DbContext öğesinden türeten bir sınıf tanımlamanız ve DbSet @ no__t-0TEntity @ no__t-1 özelliklerini kullanıma sunabilmeniz gerekir. DbSet @ no__t-0TEntity @ no__t-1 özellikleri bağlamın modele hangi türleri dahil etmek istediğinizi bilmesini sağlar.
+Varlıkları tanımlamaya ek olarak, DbContext 'ten türeten bir sınıf tanımlamanız ve DbSet&lt;TEntity&gt; özelliklerini kullanıma sunabilmeniz gerekir. DbSet&lt;TEntity&gt; özellikleri, bağlamın modele hangi türleri dahil etmek istediğinizi bilmesini sağlar.
 
 DbContext türetilmiş türünün bir örneği, çalışma zamanı sırasında varlık nesnelerini yönetir, bu da nesneleri bir veritabanındaki verilerle doldurmayı, değişiklik izlemeyi ve kalıcı verileri veritabanına getirmeyi içerir.
 
@@ -144,7 +144,7 @@ Veritabanı oluşturulduktan sonra modelinizde herhangi bir değişiklik yaparsa
 
 Veritabanını ve verileri görüntülemek için aşağıdakileri yapın:
 
-1.  Visual Studio 2012 ana menüsünde **görüntüle** - @ no__t-2 **SQL Server Nesne Gezgini**öğesini seçin.
+1.  Visual Studio 2012 ana menüsünde **görünüm** -&gt; **SQL Server Nesne Gezgini**' yı seçin.
 2.  LocalDB sunucular listesinde yoksa, **SQL Server** sağ fare düğmesine tıklayın ve **Ekle SQL Server** ' yi seçin ve LocalDB örneğine bağlanmak Için varsayılan **Windows kimlik doğrulamasını** kullanın
 3.  LocalDB düğümünü Genişlet
 4.  Yeni veritabanını görmek ve **üniversiteler** tablosuna gitmek için **veritabanları** klasörünün sarmalamayı kaldırın

@@ -40,16 +40,16 @@ Depo şeması tanım dili (SSDL) içindeki bir **ilişkilendirme** öğesi, teme
 
 Aşağıdaki tabloda **ilişkilendirme** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                            |
+| Öznitelik adı | Gereklidir | Değer                                                                            |
 |:---------------|:------------|:---------------------------------------------------------------------------------|
-| **Name**       | Evet         | Temel alınan veritabanında karşılık gelen yabancı anahtar kısıtlamasının adı. |
+| **Ad**       | Evet         | Temel alınan veritabanında karşılık gelen yabancı anahtar kısıtlamasının adı. |
 
 > [!NOTE]
 > **İlişkilendirme** öğesine herhangi bir sayıda ek açıklama özniteliği (özel XML özniteliği) uygulanabilir. Ancak, özel öznitelikler SSDL için ayrılan herhangi bir XML ad alanına ait olamaz. İki özel öznitelik için tam nitelikli adlar aynı olamaz.
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnek, **FK @ no__t-3CustomerOrders** yabancı anahtar kısıtlamasına katılan sütunları belirtmek Için **ReferentialConstraint** öğesi kullanan bir **ilişkilendirme** öğesi gösterir:
+Aşağıdaki örnek, **FK\_CustomerOrders** yabancı anahtar kısıtlamasına katılan sütunları belirtmek Için **ReferentialConstraint** öğesi kullanan bir **ilişkilendirme** öğesi gösterir:
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -86,9 +86,9 @@ SSDL Association kümeleri, bir AssociationSetMapping öğesi tarafından CSDL i
 
 Aşağıdaki tabloda **AssociationSet** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı  | Gereklidir | Value                                                                                                |
+| Öznitelik adı  | Gereklidir | Değer                                                                                                |
 |:----------------|:------------|:-----------------------------------------------------------------------------------------------------|
-| **Name**        | Evet         | İlişki kümesinin temsil ettiği yabancı anahtar kısıtlamasının adı.                          |
+| **Ad**        | Evet         | İlişki kümesinin temsil ettiği yabancı anahtar kısıtlamasının adı.                          |
 | **İlişkilendirme** | Evet         | Yabancı anahtar kısıtlamasına katılan sütunları tanımlayan ilişkilendirmenin adı. |
 
 > [!NOTE]
@@ -197,7 +197,7 @@ Depo şeması tanım dili (SSDL) içindeki **bağımlı** öğe, bir yabancı an
 
 Aşağıdaki tabloda **bağımlı** öğeye uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                                                                                                       |
+| Öznitelik adı | Gereklidir | Değer                                                                                                                                                       |
 |:---------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Rol**       | Evet         | Karşılık gelen End öğesinin **rol** özniteliğiyle aynı değer (kullanılıyorsa); Aksi takdirde, başvuran sütununu içeren tablonun adı. |
 
@@ -206,7 +206,7 @@ Aşağıdaki tabloda **bağımlı** öğeye uygulanabilen öznitelikler açıkla
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnek, **FK @ no__t-2CustomerOrders** yabancı anahtar kısıtlamasına katılan sütunları belirtmek Için **ReferentialConstraint** öğesi kullanan bir ilişkilendirme öğesi gösterir. **Bağımlı** öğe, kısıtlamanın bağımlı sonu olarak **Order** tablosunun **CustomerID** sütununu belirtir.
+Aşağıdaki örnek, **FK\_CustomerOrders** yabancı anahtar kısıtlamasına katılan sütunları belirtmek Için **ReferentialConstraint** öğesi kullanan bir ilişkilendirme öğesi gösterir. **Bağımlı** öğe, kısıtlamanın bağımlı sonu olarak **Order** tablosunun **CustomerID** sütununu belirtir.
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -233,8 +233,8 @@ Depo şeması tanım dili (SSDL) içindeki **Belgeler** öğesi, bir üst öğed
 
 **Belge** öğesi aşağıdaki alt öğelere sahip olabilir (listelenen sırayla):
 
--   **Özet**: Üst öğenin kısa bir açıklaması. (sıfır veya bir öğe)
--   **LongDescription**: Üst öğenin kapsamlı bir açıklaması. (sıfır veya bir öğe)
+-   **Özet**: üst öğenin kısa bir açıklaması. (sıfır veya bir öğe)
+-   **LongDescription**: üst öğenin kapsamlı bir açıklaması. (sıfır veya bir öğe)
 
 ### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
@@ -276,18 +276,18 @@ Bir **End** öğesi aşağıdaki alt öğelere sahip olabilir (listelenen sıray
 
 Aşağıdaki tabloda, bir **ilişkilendirme** öğesinin alt öğesi olduğunda, **End** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı   | Gereklidir | Value                                                                                                                                                                                                                                                                                                                                                                                      |
+| Öznitelik adı   | Gereklidir | Değer                                                                                                                                                                                                                                                                                                                                                                                      |
 |:-----------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Tür**         | Evet         | Yabancı anahtar kısıtlamasının sonundaki SSDL varlık kümesinin tam adı.                                                                                                                                                                                                                                                                                          |
 | **Rol**         | Hayır          | Karşılık gelen ReferentialConstraint öğesinin Principal veya Dependent öğesinde **rol** özniteliğinin değeri (kullanılıyorsa).                                                                                                                                                                                                                                             |
-| **Ğunun** | Evet         | **1**, **0.. 1**veya **\*** yabancı anahtar kısıtlamasının sonunda olabilecek satır sayısına bağlı olarak. <br/> **1** yabancı anahtar kısıtlama ucunda tam olarak bir satır olduğunu gösterir. <br/> **0.. 1** yabancı anahtar kısıtlaması sonunda sıfır veya bir satırın bulunduğunu gösterir. <br/> **\*** , yabancı anahtar kısıtlaması sonunda sıfır, bir veya daha fazla satırın bulunduğunu belirtir. |
+| **Ğunun** | Evet         | **1**, **0.. 1**veya yabancı anahtar kısıtlamasının sonunda olabilecek satır sayısına göre **\*** . <br/> **1** yabancı anahtar kısıtlama ucunda tam olarak bir satır olduğunu gösterir. <br/> **0.. 1** yabancı anahtar kısıtlaması sonunda sıfır veya bir satırın bulunduğunu gösterir. <br/> **\*** , yabancı anahtar kısıtlaması sonunda sıfır, bir veya daha fazla satırın bulunduğunu belirtir. |
 
 > [!NOTE]
 > Herhangi bir sayıda ek açıklama özniteliği (özel XML özniteliği), **End** öğesine uygulanabilir. Ancak, özel öznitelikler CSDL için ayrılan herhangi bir XML ad alanına ait olamaz. İki özel öznitelik için tam nitelikli adlar aynı olamaz.
 
 #### <a name="example"></a>Örnek
 
-Aşağıdaki örnek, **FK @ no__t-2CustomerOrders** yabancı anahtar kısıtlamasını tanımlayan bir **ilişkilendirme** öğesi gösterir. Her **bitiş** öğesinde belirtilen **çokluk** değerleri, **Orders** tablosundaki birçok satırın **Customers** tablosundaki bir satırla ilişkilendirilemeyeceğini gösterir, ancak **Customers** tablosundaki yalnızca bir satır bir satırla ilişkilendirilebilir **siparişler** tablosunda. Ayrıca, **OnDelete** öğesi, **Customers** tablosundaki satır silindiğinde, **müşteriler** tablosundaki belirli bir satıra başvuran **Orders** tablosundaki tüm satırların silineceğini gösterir.
+Aşağıdaki örnek, **FK\_CustomerOrders** yabancı anahtar kısıtlamasını tanımlayan bir **ilişkilendirme** öğesi gösterir. Her **bitiş** öğesinde belirtilen **çokluk** değerleri, **Orders** tablosundaki birçok satırın **Customers** tablosundaki bir satırla ilişkilendirilemeyeceğini gösterir, ancak **Customers** tablosundaki yalnızca bir satır **Orders** tablosundaki bir satırla ilişkilendirilebilir. Ayrıca, **OnDelete** öğesi, **Customers** tablosundaki satır silindiğinde, **müşteriler** tablosundaki belirli bir satıra başvuran **Orders** tablosundaki tüm satırların silineceğini gösterir.
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -321,7 +321,7 @@ Bir **End** öğesi aşağıdaki alt öğelere sahip olabilir (listelenen sıray
 
 Aşağıdaki tabloda, bir **AssociationSet** öğesinin alt öğesi olduğunda **End** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                                                                  |
+| Öznitelik adı | Gereklidir | Değer                                                                                                                  |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------|
 | **Di**  | Evet         | Yabancı anahtar kısıtlamasının sonundaki SSDL varlık kümesinin adı.                                      |
 | **Rol**       | Hayır          | Karşılık gelen Ilişkilendirme öğesinin bir **End** öğesinde belirtilen **rol** özniteliklerinden birinin değeri. |
@@ -351,7 +351,7 @@ Aşağıdaki örnek, iki **End** öğesiyle bir **AssociationSet** öğesi olan 
 
 ## <a name="entitycontainer-element-ssdl"></a>EntityContainer öğesi (SSDL)
 
-Depo şeması tanım dili (SSDL) içindeki bir **EntityContainer** öğesi, bir Entity Framework uygulamasında temel alınan veri kaynağının yapısını açıklar: SSDL varlık kümeleri (EntitySet öğelerinde tanımlanmıştır) bir veritabanındaki tabloları temsil eder, SSDL varlık türleri (EntityType öğelerinde tanımlanmıştır) bir tablodaki satırları temsil eder ve ilişki kümeleri (AssociationSet öğelerinde tanımlanmıştır) bir, içindeki yabancı anahtar kısıtlamalarını temsil eder veritabanınızı. Bir depolama modeli varlık kapsayıcısı, EntityContainerMapping öğesi aracılığıyla bir kavramsal model varlığı kapsayıcısına eşlenir.
+Depo şeması tanım dili (SSDL) içindeki bir **EntityContainer** öğesi, bir Entity Framework uygulamasında temel alınan veri kaynağının yapısını AÇıKLAR: SSDL varlık kümeleri (EntitySet öğelerinde tanımlanan) bir veritabanındaki tabloları temsil eder, SSDL varlık türleri (EntityType öğelerinde tanımlanmıştır) bir tablodaki satırları temsil eder ve ilişki kümeleri (AssociationSet öğelerinde tanımlanmıştır) bir veritabanındaki yabancı anahtar kısıtlamalarını temsil eder. Bir depolama modeli varlık kapsayıcısı, EntityContainerMapping öğesi aracılığıyla bir kavramsal model varlığı kapsayıcısına eşlenir.
 
 Bir **EntityContainer** öğesi sıfır veya bir belge öğesine sahip olabilir. Bir **belge** öğesi mevcutsa, diğer tüm alt öğelerin önüne gelmelidir.
 
@@ -365,9 +365,9 @@ Bir **EntityContainer** öğesi aşağıdaki alt öğeleri sıfır veya daha faz
 
 Aşağıdaki tabloda, **EntityContainer** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                   |
+| Öznitelik adı | Gereklidir | Değer                                                                   |
 |:---------------|:------------|:------------------------------------------------------------------------|
-| **Name**       | Evet         | Varlık kapsayıcısının adı. Bu ad nokta (.) içeremez. |
+| **Ad**       | Evet         | Varlık kapsayıcısının adı. Bu ad nokta (.) içeremez. |
 
 > [!NOTE]
 > Herhangi bir sayıda ek açıklama özniteliği (özel XML özniteliği), **EntityContainer** öğesine uygulanabilir. Ancak, özel öznitelikler SSDL için ayrılan herhangi bir XML ad alanına ait olamaz. İki özel öznitelik için tam nitelikli adlar aynı olamaz.
@@ -409,9 +409,9 @@ Aşağıdaki tabloda, **EntitySet** öğesine uygulanabilen öznitelikler açık
 > [!NOTE]
 > Bazı öznitelikler (burada listelenmemiş) **Mağaza** diğer adıyla nitelenmeyebilir. Bu öznitelikler bir model güncelleştirilirken model Güncelleştirme Sihirbazı tarafından kullanılır.
 
-| Öznitelik adı | Gereklidir | Value                                                                                    |
+| Öznitelik adı | Gereklidir | Değer                                                                                    |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------|
-| **Name**       | Evet         | Varlık kümesinin adı.                                                              |
+| **Ad**       | Evet         | Varlık kümesinin adı.                                                              |
 | **EntityType** | Evet         | Varlık kümesinin örnek içerdiği varlık türünün tam adı. |
 | **Şema**     | Hayır          | Veritabanı şeması.                                                                     |
 | **Tablo**      | Hayır          | Veritabanı tablosu.                                                                      |
@@ -453,9 +453,9 @@ Depo şeması tanım dili (SSDL) içindeki bir **EntityType** öğesi, alttaki v
 
 Aşağıdaki tabloda, **EntityType** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                                                                                                                  |
+| Öznitelik adı | Gereklidir | Değer                                                                                                                                                                  |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**       | Evet         | Varlık türünün adı. Bu değer genellikle varlık türünün bir satırı temsil ettiği tablonun adı ile aynıdır. Bu değer, nokta (.) içeremez. |
+| **Ad**       | Evet         | Varlık türünün adı. Bu değer genellikle varlık türünün bir satırı temsil ettiği tablonun adı ile aynıdır. Bu değer, nokta (.) içeremez. |
 
 > [!NOTE]
 > Herhangi bir sayıda ek açıklama özniteliği (özel XML özniteliği) **EntityType** öğesine uygulanabilir. Ancak, özel öznitelikler SSDL için ayrılan herhangi bir XML ad alanına ait olamaz. İki özel öznitelik için tam nitelikli adlar aynı olamaz.
@@ -501,9 +501,9 @@ Aşağıdaki tabloda, **işlev** öğesine uygulanabilen öznitelikler açıklan
 > [!NOTE]
 > Bazı öznitelikler (burada listelenmemiş) **Mağaza** diğer adıyla nitelenmeyebilir. Bu öznitelikler bir model güncelleştirilirken model Güncelleştirme Sihirbazı tarafından kullanılır.
 
-| Öznitelik adı             | Gereklidir | Value                                                                                                                                                                                                              |
+| Öznitelik adı             | Gereklidir | Değer                                                                                                                                                                                                              |
 |:---------------------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**                   | Evet         | Saklı yordamın adı.                                                                                                                                                                                  |
+| **Ad**                   | Evet         | Saklı yordamın adı.                                                                                                                                                                                  |
 | **'Indaki**             | Hayır          | Saklı yordamın dönüş türü.                                                                                                                                                                           |
 | **Birleşik**              | Hayır          | Saklı yordam bir toplama değeri döndürürse **true** ; Aksi halde **yanlış**.                                                                                                                                  |
 | **Yerleik**                | Hayır          | İşlev yerleşik bir<sup>1</sup> Işlevse **true** ; Aksi halde **yanlış**.                                                                                                                                  |
@@ -581,7 +581,7 @@ Depo şeması tanım dili (SSDL) içindeki **OnDelete** öğesi, bir yabancı an
 
 Aşağıdaki tabloda, **OnDelete** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                                               |
+| Öznitelik adı | Gereklidir | Değer                                                                                               |
 |:---------------|:------------|:----------------------------------------------------------------------------------------------------|
 | **Eylem**     | Evet         | **Cascade** veya **none**. ( **Kısıtlanmış** değer geçerli ancak **none**ile aynı davranışa sahiptir.) |
 
@@ -590,7 +590,7 @@ Aşağıdaki tabloda, **OnDelete** öğesine uygulanabilen öznitelikler açıkl
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnek, **FK @ no__t-2CustomerOrders** yabancı anahtar kısıtlamasını tanımlayan bir **ilişkilendirme** öğesi gösterir. **OnDelete** öğesi, **Customers** tablosundaki satır silindiğinde, **müşteriler** tablosundaki belirli bir satıra başvuran **Orders** tablosundaki tüm satırların silineceğini gösterir.
+Aşağıdaki örnek, **FK\_CustomerOrders** yabancı anahtar kısıtlamasını tanımlayan bir **ilişkilendirme** öğesi gösterir. **OnDelete** öğesi, **Customers** tablosundaki satır silindiğinde, **müşteriler** tablosundaki belirli bir satıra başvuran **Orders** tablosundaki tüm satırların silineceğini gösterir.
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -624,15 +624,15 @@ Depo şeması tanım dili (SSDL) içindeki **Parameter** öğesi, bir işlev ö�
 
 Aşağıdaki tabloda, **parametre** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                                                                                                                                                                           |
+| Öznitelik adı | Gereklidir | Değer                                                                                                                                                                                                                           |
 |:---------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**       | Evet         | Parametrenin adı.                                                                                                                                                                                                      |
+| **Ad**       | Evet         | Parametrenin adı.                                                                                                                                                                                                      |
 | **Tür**       | Evet         | Parametre türü.                                                                                                                                                                                                             |
 | **Modundaysa**       | Hayır          | Parametresinin bir giriş, çıkış veya giriş/çıkış parametresi olup olmadığına bağlı olarak, **içinde**, **Out**veya **InOut** .                                                                                                                |
 | **'In**  | Hayır          | Parametrenin uzunluk üst sınırı.                                                                                                                                                                                            |
 | **Duyarlılık**  | Hayır          | Parametrenin duyarlığı.                                                                                                                                                                                                 |
 | **Ölçek**      | Hayır          | Parametresinin ölçeği.                                                                                                                                                                                                     |
-| **SRID**       | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin parametreleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
+| **SRıD**       | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin parametreleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 
 > [!NOTE]
 > **Parametre** öğesine herhangi bir sayıda ek açıklama özniteliği (özel XML özniteliği) uygulanabilir. Ancak, özel öznitelikler SSDL için ayrılan herhangi bir XML ad alanına ait olamaz. İki özel öznitelik için tam nitelikli adlar aynı olamaz.
@@ -667,7 +667,7 @@ Depo şeması tanım dili (SSDL) içindeki **Principal** öğesi, bir yabancı a
 
 Aşağıdaki tabloda, **Principal** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                                                                                                      |
+| Öznitelik adı | Gereklidir | Değer                                                                                                                                                      |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Rol**       | Evet         | Karşılık gelen End öğesinin **rol** özniteliğiyle aynı değer (kullanılıyorsa); Aksi takdirde, başvurulan sütununu içeren tablonun adı. |
 
@@ -676,7 +676,7 @@ Aşağıdaki tabloda, **Principal** öğesine uygulanabilen öznitelikler açık
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnek, **FK @ no__t-2CustomerOrders** yabancı anahtar kısıtlamasına katılan sütunları belirtmek Için **ReferentialConstraint** öğesi kullanan bir ilişkilendirme öğesi gösterir. **Principal** öğesi, kısıtlamanın asıl sonu olarak **Müşteri** tablosunun **CustomerID** sütununu belirtir.
+Aşağıdaki örnek, **FK\_CustomerOrders** yabancı anahtar kısıtlamasına katılan sütunları belirtmek Için **ReferentialConstraint** öğesi kullanan bir ilişkilendirme öğesi gösterir. **Principal** öğesi, kısıtlamanın asıl sonu olarak **Müşteri** tablosunun **CustomerID** sütununu belirtir.
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -707,9 +707,9 @@ Bir **özellik** öğesinin herhangi bir alt öğesi olamaz.
 
 Aşağıdaki tabloda, **özellik** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı            | Gereklidir | Value                                                                                                                                                                                                                           |
+| Öznitelik adı            | Gereklidir | Değer                                                                                                                                                                                                                           |
 |:--------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**                  | Evet         | Karşılık gelen sütunun adı.                                                                                                                                                                                           |
+| **Ad**                  | Evet         | Karşılık gelen sütunun adı.                                                                                                                                                                                           |
 | **Tür**                  | Evet         | Karşılık gelen sütunun türü.                                                                                                                                                                                           |
 | **Yapılamaz**              | Hayır          | **True** (varsayılan değer) veya false değeri, karşılık gelen sütunun null değere sahip olup olmadığına bağlı olarak **yanlış** .                                                                                                                  |
 | **Değerinin**          | Hayır          | Karşılık gelen sütunun varsayılan değeri.                                                                                                                                                                                  |
@@ -719,7 +719,7 @@ Aşağıdaki tabloda, **özellik** öğesine uygulanabilen öznitelikler açıkl
 | **Ölçek**                 | Hayır          | Karşılık gelen sütunun ölçeği.                                                                                                                                                                                          |
 | **Unicode**               | Hayır          | Karşılık gelen sütun değerinin bir Unicode dize olarak saklanıp saklanmayacağı **doğru** veya **yanlış** .                                                                                                                   |
 | **Mediğinden**             | Hayır          | Veri kaynağında kullanılacak harmanlama sırasını belirten bir dize.                                                                                                                                                   |
-| **SRID**                  | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin özellikleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
+| **SRıD**                  | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin özellikleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 | **StoreGeneratedPattern** | Hayır          | **Hiçbiri**, **kimlik** (karşılık gelen sütun değeri veritabanında oluşturulan bir kimlik ise) veya **hesaplanmışsa** (karşılık gelen sütun değeri veritabanında hesaplanmışsa). RowType özellikleri için geçerli değil. |
 
 > [!NOTE]
@@ -759,9 +759,9 @@ Depo şeması tanım dili (SSDL) içindeki **Propertyref** öğesi, özelliğin 
 
 Aşağıdaki tabloda, **Propertyref** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                |
+| Öznitelik adı | Gereklidir | Değer                                |
 |:---------------|:------------|:-------------------------------------|
-| **Name**       | Evet         | Başvurulan özelliğin adı. |
+| **Ad**       | Evet         | Başvurulan özelliğin adı. |
 
 > [!NOTE]
 > **Propertyref** öğesine herhangi bir sayıda ek açıklama özniteliği (özel XML özniteliği) uygulanabilir. Ancak, özel öznitelikler CSDL için ayrılan herhangi bir XML ad alanına ait olamaz. İki özel öznitelik için tam nitelikli adlar aynı olamaz.
@@ -803,7 +803,7 @@ Depo şeması tanım dili (SSDL) içindeki **ReferentialConstraint** öğesi, te
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnek, **FK @ no__t-3CustomerOrders** yabancı anahtar kısıtlamasına katılan sütunları belirtmek Için **ReferentialConstraint** öğesi kullanan bir **ilişkilendirme** öğesi gösterir:
+Aşağıdaki örnek, **FK\_CustomerOrders** yabancı anahtar kısıtlamasına katılan sütunları belirtmek Için **ReferentialConstraint** öğesi kullanan bir **ilişkilendirme** öğesi gösterir:
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -902,17 +902,17 @@ Depo şeması tanım dili (SSDL) içindeki **şema** öğesi, bir depolama model
 
 **Şema** öğesi, bir depolama modelindeki varlık türü ve ilişkilendirme nesneleri için ad alanını tanımlamak üzere **Namespace** özniteliğini kullanır. Bir ad alanı içinde, iki nesne aynı ada sahip olamaz.
 
-Depolama modeli ad alanı, **şema** öğesinin XML ad alanından farklıdır. Bir depolama modeli ad alanı ( **ad alanı** özniteliğiyle tanımlandığı gibi) varlık türleri ve ilişkilendirme türleri için bir mantıksal kapsayıcıdır. Bir **şema** öğesinin XML ad alanı ( **xmlns** özniteliğiyle gösterilir), alt öğeler ve **şema** öğesinin öznitelikleri için varsayılan ad alanıdır. @No__t-0 (YYYY ve MM, sırasıyla bir yılı ve ayı temsil eder) biçiminde olan XML ad alanları SSDL için ayrılmıştır. Özel öğeler ve öznitelikler bu forma sahip ad alanlarında olamaz.
+Depolama modeli ad alanı, **şema** öğesinin XML ad alanından farklıdır. Bir depolama modeli ad alanı ( **ad alanı** özniteliğiyle tanımlandığı gibi) varlık türleri ve ilişkilendirme türleri için bir mantıksal kapsayıcıdır. Bir **şema** öğesinin XML ad alanı ( **xmlns** özniteliğiyle gösterilir), alt öğeler ve **şema** öğesinin öznitelikleri için varsayılan ad alanıdır. Form https://schemas.microsoft.com/ado/YYYY/MM/edm/ssdl XML ad alanları (YYYY ve MM, sırasıyla bir yılı ve ayı temsil eder) SSDL için ayrılmıştır. Özel öğeler ve öznitelikler bu forma sahip ad alanlarında olamaz.
 
 ### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
 Aşağıdaki tabloda, özniteliklerin **şema** öğesine uygulanabileceğini açıklanmaktadır.
 
-| Öznitelik adı            | Gereklidir | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Öznitelik adı            | Gereklidir | Değer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 |:--------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Namespace**             | Evet         | Depolama modelinin ad alanı. **Ad alanı** özniteliğinin değeri, bir türün tam nitelikli adını biçimlendirmek için kullanılır. Örneğin, *Müşteri* adlı bir **EntityType** , ExampleModel. Store ad alanında ise, **EntityType** 'ın tam adı örnek model. Store. Customer olur. <br/> Şu dizeler **ad alanı** özniteliği için değer olarak kullanılamaz: **Sistem**, **geçici**veya **EDM**. **Ad alanı** özniteliği DEĞERI, csdl şeması öğesindeki **Namespace** özniteliğinin değeri ile aynı olamaz. |
-| **Diğer ad**                 | Hayır          | Ad alanı adı yerine kullanılan tanımlayıcı. Örneğin, *Müşteri* adlı bir **EntityType** , ExampleModel ' de yer alıyorsa. mağaza ad alanı ve **diğer ad** özniteliğinin değeri *Storagemodel*ise, storagemodel. Customer ' i tam adı **olarak kullanabilirsiniz EntityType.**                                                                                                                                                                                                                                                                                    |
-| **Sağlayıcı**              | Evet         | Veri sağlayıcısı.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **Namespace**             | Evet         | Depolama modelinin ad alanı. **Ad alanı** özniteliğinin değeri, bir türün tam nitelikli adını biçimlendirmek için kullanılır. Örneğin, *Müşteri* adlı bir **EntityType** , ExampleModel. Store ad alanında ise, **EntityType** 'ın tam adı örnek model. Store. Customer olur. <br/> Şu dizeler **ad alanı** özniteliği değeri olarak kullanılamaz: **System**, **geçici**veya **EDM**. **Ad alanı** özniteliği DEĞERI, csdl şeması öğesindeki **Namespace** özniteliğinin değeri ile aynı olamaz. |
+| **Diğer ad**                 | Hayır          | Ad alanı adı yerine kullanılan tanımlayıcı. Örneğin, *Müşteri* adlı bir **EntityType** , ExampleModel ' de yer alıyorsa. Depo ad alanı ve **diğer ad** özniteliğinin değeri *Storagemodel*ise storagemodel. Customer öğesini EntityType 'ın tam adı olarak kullanabilirsiniz **.**                                                                                                                                                                                                                                                                                    |
+| **Sağlayıcı**              | Evet         | Veri sağlayıcı.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | **ProviderManifestToken** | Evet         | Sağlayıcıya döndürülecek sağlayıcı bildirimini gösteren bir belirteç. Belirteç için biçim tanımlanmadı. Belirtecin değerleri sağlayıcı tarafından tanımlanır. SQL Server sağlayıcısı bildirim belirteçleri hakkında daha fazla bilgi için bkz. SqlClient Entity Framework.                                                                                                                                                                                                                                                                                                                        |
 
 ### <a name="example"></a>Örnek

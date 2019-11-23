@@ -16,9 +16,9 @@ Bu video ve adım adım yönergeler, Entity Framework kullanarak Database First 
 ## <a name="watch-the-video"></a>Videoyu izleyin
 Bu videoda Entity Framework kullanarak Database First geliştirmeye bir giriş sunulmaktadır. Database First, varolan bir veritabanından bir modele ters mühendislik yapmanıza olanak sağlar. Model bir EDMX dosyasında (. edmx uzantılı) depolanır ve Entity Framework Designer görüntülenebilir ve düzenlenebilir. Uygulamanızda etkileşimde bulunan sınıflar, EDMX dosyasından otomatik olarak oluşturulur.
 
-**Sunulma ölçütü**: [ROWA Miller](https://romiller.com/)
+**Sunulma ölçütü**: [Rowa Miller](https://romiller.com/)
 
-**Video**: [WMV](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.wmv) | [MP4](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-mp4video-databasefirst.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.zip)
+**Video**: [wmv](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.wmv) | [MP4](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-mp4video-databasefirst.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.zip)
 
 ## <a name="pre-requisites"></a>Önkoşulların önkoşulları
 
@@ -28,7 +28,7 @@ Visual Studio 2010 kullanıyorsanız, [NuGet](https://visualstudiogallery.msdn.m
 
  
 
-## <a name="1-create-an-existing-database"></a>1. Var olan bir veritabanı oluştur
+## <a name="1-create-an-existing-database"></a>1. var olan bir veritabanını oluşturun
 
 Genellikle, var olan bir veritabanını hedeflerken zaten oluşturulur, ancak bu izlenecek yol için, erişmek üzere bir veritabanı oluşturulması gerekir.
 
@@ -42,11 +42,11 @@ Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio s
 Şimdi veritabanını oluşturalım.
 
 -   Visual Studio 'Yu aç
--   **@No__t-1 Sunucu Gezgini görüntüle**
--   Veri bağlantıları ' na sağ tıklayın **-&gt; bağlantı ekle...**
+-   **&gt; Sunucu Gezgini görüntüle**
+-   Veri bağlantıları ' na sağ tıklayın **&gt; bağlantı ekle...**
 -   Sunucu Gezgini bir veritabanına bağlı değilseniz, veri kaynağı olarak Microsoft SQL Server seçmeniz gerekir
 
-    ![Veri kaynağını seçin](~/ef6/media/selectdatasource.png)
+    ![Veri Kaynağı Seç](~/ef6/media/selectdatasource.png)
 
 -   Hangisini yüklediğinize bağlı olarak LocalDB 'ye veya SQL Express 'e bağlanın ve veritabanı adı olarak **Databasefirst. blog** yazın
 
@@ -79,19 +79,19 @@ CREATE TABLE [dbo].[Posts] (
 );
 ```
 
-## <a name="2-create-the-application"></a>2. Uygulamayı oluşturma
+## <a name="2-create-the-application"></a>2. uygulamayı oluşturun
 
 Şeyleri basit tutmak için, veri erişimi gerçekleştirmek üzere Database First kullanan temel bir konsol uygulaması oluşturacağız:
 
 -   Visual Studio 'Yu aç
--   **Dosya-&gt; yeni-&gt; proje...**
+-   **Dosya-&gt; yeni&gt; projesi...**
 -   Sol taraftaki menüden ve **konsol uygulamasından** **Windows** ' u seçin
 -   Ad olarak **Databasefirstsample** yazın
 -   **Tamam 'ı** seçin
 
  
 
-## <a name="3-reverse-engineer-model"></a>3. Tersine mühendislik modeli
+## <a name="3-reverse-engineer-model"></a>3. tersine mühendislik modeli
 
 Modelimizi oluşturmak için Visual Studio 'nun bir parçası olarak dahil edilen Entity Framework Designer kullanacağız.
 
@@ -123,8 +123,8 @@ Visual Studio 2010 ' de çalışıyorsanız, en son Entity Framework sürümüne
 
 İlk olarak, Entity Framework NuGet 'den en son sürümü alması gerekir.
 
--   **Proje – &gt; NuGet Paketlerini Yönet...** 
-    * **NuGet Paketlerini Yönet...** seçeneğine sahipseniz [NuGet 'in en son sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklemelisiniz*
+-   **Proje –&gt; NuGet Paketlerini Yönet...** * **NuGet Paketlerini Yönet...** seçeneğine sahipseniz
+    [NuGet 'in en son sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklemelisiniz*
 -   **Çevrimiçi** sekmesini seçin
 -   **EntityFramework** paketini seçin
 -   **Install** 'a tıklayın
@@ -133,13 +133,13 @@ Bundan sonra, Entity Framework sonraki sürümlerinde tanıtılan DbContext API 
 
 -   EF Designer 'daki modelinizin boş bir noktasına sağ tıklayıp **kod oluşturma öğesi Ekle...** seçeneğini belirleyin.
 -   Sol menüden **çevrimiçi şablonlar** ' ı seçin ve **DbContext** ' i arayın
--   **C @ no__t-1 IÇIN EF 5. x DbContext Generator**' ı seçin, ad olarak **BloggingModel** girin ve **Ekle** ' ye tıklayın.
+-   **C\#IÇIN EF 5. x DbContext oluşturucusunu** seçin, ad olarak **BloggingModel** girin ve **Ekle** ' ye tıklayın.
 
     ![DbContext şablonu](~/ef6/media/dbcontexttemplate.png)
 
  
 
-## <a name="4-reading--writing-data"></a>4. Verileri okuma & yazma
+## <a name="4-reading--writing-data"></a>4. verileri okuma & yazma
 
 Artık bir modelimiz olduğuna göre, bazı verilere erişmek için bunu kullanmanın zamanı. Verilere erişmek için kullanacağınız sınıflar, EDMX dosyasına bağlı olarak sizin için otomatik olarak oluşturulur.
 
@@ -194,7 +194,7 @@ Press any key to exit...
 ```
  
 
-## <a name="5-dealing-with-database-changes"></a>5. Veritabanı değişiklikleriyle ilgilenme
+## <a name="5-dealing-with-database-changes"></a>5. veritabanı değişiklikleriyle ilgilenme
 
 Artık veritabanı şemanızda bazı değişiklikler yapmanız zaman alabilir. bu değişiklikleri yaparken, bu değişiklikleri yansıtacak şekilde modelimizi de güncelleştirmeniz gerekir.
 
@@ -215,7 +215,7 @@ Artık şema güncellendiğinden, modelin bu değişikliklerle güncelleştirilm
 
 -   EF Designer 'daki modelinizin boş bir noktasına sağ tıklayın ve ' veritabanını güncelleştir... ' seçeneğini belirleyin, bu işlem güncelleştirme sihirbazını başlatır
 -   Güncelleştirme sihirbazının Ekle sekmesinde tablolar ' ın yanındaki kutuyu işaretleyin, bundan sonra şemadan yeni tablolar eklemek istiyoruz.
-    *-Yenile sekmesi, modelde, güncelleştirme sırasında değişikliklere denetlenecek olan tüm mevcut tabloları gösterir. Silme sekmeleri şemadan kaldırılan tüm tabloları gösterir ve güncelleştirmenin bir parçası olarak modelden de kaldırılır. Bu iki sekmede bulunan bilgiler otomatik olarak algılanır ve yalnızca bilgilendirme amacıyla sağlanır, hiçbir ayarı değiştiremezsiniz.*
+    *Yenile sekmesi, modelde, güncelleştirme sırasında değişiklikler için denetlenecek tüm mevcut tabloları gösterir. Silme sekmeleri şemadan kaldırılan tüm tabloları gösterir ve güncelleştirmenin bir parçası olarak modelden de kaldırılır. Bu iki sekmede bulunan bilgiler otomatik olarak algılanır ve yalnızca bilgilendirme amacıyla sağlanır, hiçbir ayarı değiştiremezsiniz.*
 
     ![Sihirbazı Yenile](~/ef6/media/refreshwizard.png)
 

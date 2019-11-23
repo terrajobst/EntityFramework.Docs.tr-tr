@@ -16,7 +16,7 @@ Entity Framework Sağlayıcı modeli, Entity Framework farklı veritabanı sunuc
 
 EF 'in açık kaynaklı bir lisans altında serbest bırakılacağını sağlamak için gerekli olan belirli değişiklikler, aşv ile etkileşime girer. Bu değişiklikler, sağlayıcının kaydına yönelik yeni mekanizmalarla birlikte EF6 Derlemeleriyle EF sağlayıcılarının yeniden oluşturulması gerekir.
 
-## <a name="rebuilding"></a>Oluşturmak
+## <a name="rebuilding"></a>Yeniden Oluşturma
 
 EF6 ile .NET Framework daha önce bir parçası olan çekirdek kod artık bant dışı (OOB) derlemeler olarak sevk edilir. EF6 'e yönelik uygulamalar oluşturma hakkındaki ayrıntılar, [EF6 için uygulamaları güncelleştirme](~/ef6/what-is-new/upgrading-to-ef6.md) sayfasında bulunabilir. Ayrıca bu yönergeler kullanılarak sağlayıcıların yeniden oluşturulması gerekir.
 
@@ -28,7 +28,7 @@ EF sağlayıcısı gerçekten, bu hizmetlerin genişletecek (bir temel sınıf i
 
 ### <a name="dbproviderfactory"></a>DbProviderFactory
 
-EF, tüm düşük düzeydeki veritabanı erişimini gerçekleştirmek için [System. Data. Common. DbProviderFactory](https://msdn.microsoft.com/library/system.data.common.dbproviderfactory.aspx) öğesinden türetilmiş bir türe sahip olmaya bağlıdır. DbProviderFactory gerçekte EF 'in bir parçası değildir ancak bunun yerine, ADO.NET sağlayıcıları için EF, other/RMs veya doğrudan bağlantı, komut, parametre örnekleri elde eden bir uygulama tarafından kullanılabilecek bir giriş noktası sunan bir sınıf .NET Framework. bir sağlayıcının belirsiz şekilde diğer ADO.NET soyutlamaları. DbProviderFactory hakkında daha fazla bilgi [Için MSDN belgelerinde ADO.net](https://msdn.microsoft.com/library/a6cd7c08.aspx)bulabilirsiniz.
+EF, tüm düşük düzeydeki veritabanı erişimini gerçekleştirmek için [System. Data. Common. DbProviderFactory](https://msdn.microsoft.com/library/system.data.common.dbproviderfactory.aspx) öğesinden türetilmiş bir türe sahip olmaya bağlıdır. DbProviderFactory gerçekte EF 'in bir parçası değildir ancak bunun yerine, bir sağlayıcının bağımsız olarak bağlantı, komut, parametre ve diğer ADO.NET soyutlamalarını elde etmek için EF, diğer O/RMs tarafından kullanılabilen ADO.NET sağlayıcıları için bir giriş noktasına hizmet veren veya bir uygulama tarafından doğrudan bir uygulama tarafından kullanılan bir .NET Framework sınıf. DbProviderFactory hakkında daha fazla bilgi [Için MSDN belgelerinde ADO.net](https://msdn.microsoft.com/library/a6cd7c08.aspx)bulabilirsiniz.
 
 ### <a name="dbproviderservices"></a>DbProviderServices
 
@@ -36,7 +36,7 @@ EF, ADO.NET sağlayıcısı tarafından zaten sağlanan işlevselliğin üzerine
 
 DbProviderServices uygulamasının temel işlevleriyle ilgili daha fazla ayrıntı [MSDN](https://msdn.microsoft.com/library/ee789835.aspx)'de bulunabilir. Ancak, kavramların büyük bir kısmının hala geçerli olmasına rağmen, bu bilgileri yazmanın zaman EF6 için güncellenmediğini unutmayın. DbProviderServices 'ın SQL Server ve SQL Server Compact uygulamaları da [Açık kaynaklı kod](https://github.com/aspnet/EntityFramework6/) tabanına iade edilir ve diğer uygulamalar için yararlı başvurular olarak hizmet verebilir.
 
-EF 'in daha eski sürümlerinde kullanılacak DbProviderServices uygulamasının bir ADO.NET sağlayıcısından doğrudan edinildiği. Bu, DbProviderFactory IServiceProvider 'a bağlanarak ve GetService yöntemi çağrılırken yapılır. Bu, EF sağlayıcısını DbProviderFactory 'e sıkı bir şekilde bağlanmış. Bu kuponun .NET Framework dışına taşınmasını engelledi ve bu nedenle EF6 bu sıkı bir şekilde kaldırılmıştır ve DbProviderServices uygulaması artık doğrudan uygulamanın yapılandırma dosyasına veya kod tabanlı olarak kaydedilir yapılandırma, aşağıdaki _DbProviderServices kaydı_ hakkında daha ayrıntılı bilgi bölümünde açıklanmıştır.
+EF 'in daha eski sürümlerinde kullanılacak DbProviderServices uygulamasının bir ADO.NET sağlayıcısından doğrudan edinildiği. Bu, DbProviderFactory IServiceProvider 'a bağlanarak ve GetService yöntemi çağrılırken yapılır. Bu, EF sağlayıcısını DbProviderFactory 'e sıkı bir şekilde bağlanmış. Bu bağlantının .NET Framework dışına taşınmasını engelledi ve bu nedenle EF6 bu sıkı bir şekilde kaldırılmıştır ve DbProviderServices 'in bir uygulaması, aşağıdaki _DbProviderServices kaydı_ daha ayrıntılı olarak açıklandığı gibi doğrudan uygulamanın yapılandırma dosyasına veya kod tabanlı yapılandırmada kaydedilir.
 
 ## <a name="additional-services"></a>Ek hizmetler
 
@@ -62,7 +62,7 @@ Bu, Code First tarafından veritabanı şemaları oluştururken ve değiştirirk
 
 ### <a name="funcdbconnection-string-historycontextfactory"></a>Func < DbConnection, String, geçmişini contextFactory >
 
-Bu, bir sağlayıcının,, @no__t, bir sağlayıcının,,,,,, Bu bir DbContext Code First ve tablo adı ve sütun eşleme belirtimleri gibi şeyleri değiştirmek için normal Fluent API kullanılarak yapılandırılabilir. Tüm varsayılan tablo ve sütun eşlemeleri bu sağlayıcı tarafından destekleniyorsa, tüm sağlayıcılar için EF tarafından döndürülen bu hizmetin varsayılan uygulanması belirli bir veritabanı sunucusu için çalışabilir. Böyle bir durumda, sağlayıcının bu hizmetin bir uygulamasını sağlaması gerekmez.
+Bu, bir sağlayıcının,, bir sağlayıcının,,,,, bir sağlayıcının,,,, bir `__MigrationHistory` sağlayıcının, bir sistem. Bu bir DbContext Code First ve tablo adı ve sütun eşleme belirtimleri gibi şeyleri değiştirmek için normal Fluent API kullanılarak yapılandırılabilir. Tüm varsayılan tablo ve sütun eşlemeleri bu sağlayıcı tarafından destekleniyorsa, tüm sağlayıcılar için EF tarafından döndürülen bu hizmetin varsayılan uygulanması belirli bir veritabanı sunucusu için çalışabilir. Böyle bir durumda, sağlayıcının bu hizmetin bir uygulamasını sağlaması gerekmez.
 
 ### <a name="idbproviderfactoryresolver"></a>Idbproviderfactoryresolver
 

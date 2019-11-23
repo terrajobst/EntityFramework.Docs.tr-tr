@@ -18,7 +18,7 @@ Veritabanı sağlayıcılarını yalnızca etkilemek için beklediğimiz değiş
 
 ## <a name="summary"></a>Özet
 
-| **Son değişiklik**                                                                                               | **ACT** |
+| **Yeni değişiklik**                                                                                               | **Etkisi** |
 |:------------------------------------------------------------------------------------------------------------------|------------|
 | [LINQ sorguları artık istemcide değerlendirilmedi](#linq-queries-are-no-longer-evaluated-on-the-client)         | Yüksek       |
 | [EF Core 3,0 hedefi .NET Standard 2,0 değil .NET Standard 2,1](#netstandard21) | Yüksek      |
@@ -59,7 +59,7 @@ Veritabanı sağlayıcılarını yalnızca etkilemek için beklediğimiz değiş
 | [Ilişkisel: TypeMapping ek açıklaması artık yalnızca TypeMapping](#rtt) | Düşük      |
 | [Türetilmiş bir tür üzerinde ToTable bir özel durum oluşturur](#totable-on-a-derived-type-throws-an-exception) | Düşük      |
 | [EF Core, SQLite FK zorlaması için artık pragma göndermez](#pragma) | Düşük      |
-| [Microsoft. EntityFrameworkCore. SQLite artık SQLitePCLRaw. bundle_e_sqlite3 öğesine bağımlıdır](#sqlite3) | Düşük      |
+| [Microsoft. EntityFrameworkCore. SQLite artık SQLitePCLRaw. bundle_e_sqlite3 bağımlıdır](#sqlite3) | Düşük      |
 | [GUID değerleri artık SQLite üzerinde metın olarak depolanır](#guid) | Düşük      |
 | [Char değerleri artık SQLite üzerinde metın olarak depolanır](#char) | Düşük      |
 | [Geçiş kimlikleri artık sabit kültürün takvimi kullanılarak oluşturulmuştur](#migid) | Düşük      |
@@ -77,7 +77,7 @@ Veritabanı sağlayıcılarını yalnızca etkilemek için beklediğimiz değiş
 ### <a name="linq-queries-are-no-longer-evaluated-on-the-client"></a>LINQ sorguları artık istemcide değerlendirilmedi
 
 [Sorun izleme #14935](https://github.com/aspnet/EntityFrameworkCore/issues/14935)
-[ayrıca bkz. #12795](https://github.com/aspnet/EntityFrameworkCore/issues/12795)
+[da bakın #12795](https://github.com/aspnet/EntityFrameworkCore/issues/12795)
 
 **Eski davranış**
 
@@ -86,14 +86,14 @@ Varsayılan olarak, pahalı olabilecek ifadelerin istemci değerlendirmesi yaln�
 
 **Yeni davranış**
 
-3,0 ile başlayarak EF Core, yalnızca üst düzey projeksiyonun (sorgudaki son `Select()` çağrısı) istemci üzerinde değerlendirilmek için yalnızca ifadeye izin verir.
+3,0 ' den başlayarak EF Core, yalnızca üst düzey projeksiyonun (sorgudaki son `Select()` çağrı) istemci üzerinde değerlendirilmek üzere ifade etmesine izin verir.
 Sorgunun başka bir bölümündeki deyimler SQL 'e veya parametreye dönüştürülemiyorsa, bir özel durum oluşturulur.
 
 **Kaydol**
 
 Sorguların otomatik istemci değerlendirmesi, önemli kısımları çevrilemeyecek halde birçok sorgunun yürütülmesini sağlar.
 Bu davranış, yalnızca üretimde öngelebilecek beklenmedik ve zararlı olabilecek davranışlara neden olabilir.
-Örneğin, çevrilemeyen `Where()` çağrısındaki bir koşul, tablodaki tüm satırların veritabanı sunucusundan aktarılmasına ve bu filtrenin istemciye uygulanmasına neden olabilir.
+Örneğin, çevrilemeyen bir `Where()` çağrısındaki bir koşul, tablodaki tüm satırların veritabanı sunucusundan aktarılmasına ve bu filtrenin istemciye uygulanmasına neden olabilir.
 Bu durum, tablo yalnızca geliştirme sırasında yalnızca birkaç satır içeriyorsa, ancak tablo milyonlarca satır içerebilen, uygulamanın üretime taşınması halinde, kolayca algılanabilmelidir.
 Geliştirme sırasında de istemci değerlendirmesi uyarıları yok sayılacak çok kolay.
 
@@ -101,7 +101,7 @@ Bunun yanı sıra, otomatik istemci değerlendirmesi, sürümler arasında isten
 
 **Karşı**
 
-Bir sorgu tam olarak çevrilemeyecek şekilde, sorguyu çevrilebilen bir biçimde yeniden yazın veya `AsEnumerable()`, `ToList()` ' i kullanabilir ya da daha sonra verileri LINQ-Objects kullanılarak daha sonra işlenebileceği istemciye açık bir şekilde geri getirmek için benzer.
+Bir sorgu tam olarak çevrilemeyecek şekilde, sorguyu çevrilebilen bir biçimde yeniden yazın veya `AsEnumerable()`, `ToList()`ya da benzer bir şekilde, daha sonra LINQ-Objects kullanılarak daha sonra işlenebileceği istemciye açık bir şekilde veri getirmek için benzer.
 
 <a name="netstandard21"></a>
 ### <a name="ef-core-30-targets-net-standard-21-rather-than-net-standard-20"></a>EF Core 3,0 hedefi .NET Standard 2,0 değil .NET Standard 2,1
@@ -131,7 +131,7 @@ Modern bir .NET platformuna geçmeyi düşünün. Bu mümkün değilse, her ikis
 
 **Eski davranış**
 
-ASP.NET Core 3,0 önce, `Microsoft.AspNetCore.App` veya `Microsoft.AspNetCore.All` ' e bir paket başvurusu eklediğinizde, EF Core ve EF Core sağlayıcı gibi SQL Server veri sağlayıcılarından bazılarını dahil eder.
+ASP.NET Core 3,0 öncesinde, `Microsoft.AspNetCore.App` veya `Microsoft.AspNetCore.All`bir paket başvurusu eklediğinizde, EF Core ve EF Core sağlayıcı gibi SQL Server veri sağlayıcılarından bazılarını dahil eder.
 
 **Yeni davranış**
 
@@ -155,15 +155,15 @@ ASP.NET Core 3,0 uygulamasında veya desteklenen başka bir uygulamada EF Core k
 
 **Eski davranış**
 
-3,0 tarihinden önce, `dotnet ef` aracı .NET Core SDK eklenmiştir ve ek adımlara gerek duymadan herhangi bir projeden komut satırından kullanılmak üzere hazırdır. 
+3,0 ' dan önce, `dotnet ef` aracı .NET Core SDK eklenmiştir ve ek adımlara gerek duymadan herhangi bir projeden komut satırından kullanılmak üzere hazırdır. 
 
 **Yeni davranış**
 
-3,0 ' den başlayarak, .NET SDK `dotnet ef` aracını içermez, bu nedenle kullanabilmeniz için onu yerel veya genel bir araç olarak açıkça yüklemelisiniz. 
+3,0 ' den başlayarak .NET SDK `dotnet ef` aracını içermez, bu nedenle kullanabilmeniz için önce yerel veya küresel bir araç olarak açıkça kurmanız gerekir. 
 
 **Kaydol**
 
-Bu değişiklik, EF Core 3,0 'nin her zaman bir NuGet paketi olarak dağıtılması açısından, NuGet üzerinde düzenli bir .NET CLı aracı olarak `dotnet ef` ' ı dağıtmamızı ve güncelleştirmemizi sağlar.
+Bu değişiklik, NuGet üzerinde düzenli bir .NET CLı aracı olarak `dotnet ef` dağıtmamızı ve güncelleştirmenizi sağlar ve bu da EF Core 3,0 her zaman bir NuGet paketi olarak dağıtılır.
 
 **Karşı**
 
@@ -186,7 +186,7 @@ Ayrıca, bir [araç bildirim dosyası](https://github.com/dotnet/cli/issues/1028
 
 **Yeni davranış**
 
-EF Core 3,0 ' den başlayarak, parametrelerin sorgu dizesinden ayrı olarak geçirildiği parametreli bir sorgu oluşturmak için `FromSqlRaw`, `ExecuteSqlRaw` ve `ExecuteSqlRawAsync` kullanın.
+EF Core 3,0 ' den başlayarak, parametrelerin sorgu dizesinden ayrı olarak geçirildiği parametreli bir sorgu oluşturmak için `FromSqlRaw`, `ExecuteSqlRaw`ve `ExecuteSqlRawAsync` kullanın.
 Örneğin:
 
 ```C#
@@ -195,7 +195,7 @@ context.Products.FromSqlRaw(
     product.Name);
 ```
 
-Parametrelerin, enterpolasyonlu bir sorgu dizesinin parçası olarak geçirildiği parametreli bir sorgu oluşturmak için `FromSqlInterpolated`, `ExecuteSqlInterpolated` ve `ExecuteSqlInterpolatedAsync` kullanın.
+Parametrelerin, enterpolasyonlu bir sorgu dizesinin parçası olarak geçirildiği parametreli bir sorgu oluşturmak için `FromSqlInterpolated`, `ExecuteSqlInterpolated`ve `ExecuteSqlInterpolatedAsync` kullanın.
 Örneğin:
 
 ```C#
@@ -251,11 +251,11 @@ context.Products.FromSqlRaw("[dbo].[Ten Most Expensive Products]").AsEnumerable(
 
 **Eski davranış**
 
-EF Core 3,0 önce, `FromSql` yöntemi sorgunun herhangi bir yerinden belirtilebilir.
+3,0 EF Core önce, `FromSql` yöntemi sorgunun herhangi bir yerinden belirtilebilir.
 
 **Yeni davranış**
 
-EF Core 3,0 ' den başlayarak, yeni `FromSqlRaw` ve `FromSqlInterpolated` Yöntemleri (`FromSql` ' yi değiştirme) yalnızca sorgu köklerinin üzerinde belirtilebilir, yani doğrudan `DbSet<>`. Bunları başka her yerde belirtmeye çalışmak, derleme hatasına neden olur.
+EF Core 3,0 ' den başlayarak, yeni `FromSqlRaw` ve `FromSqlInterpolated` Yöntemleri (`FromSql`değiştirme) yalnızca sorgu köklerinin üzerinde belirtilebilir, yani doğrudan `DbSet<>`. Bunları başka her yerde belirtmeye çalışmak, derleme hatasına neden olur.
 
 **Kaydol**
 
@@ -263,7 +263,7 @@ EF Core 3,0 ' den başlayarak, yeni `FromSqlRaw` ve `FromSqlInterpolated` Yönte
 
 **Karşı**
 
-`FromSql` çağırmaları, uygulandıkları `DbSet` ' e doğrudan taşınmalıdır.
+`FromSql` etkinleştirmeleri, uygulandıkları `DbSet` doğrudan taşınmalıdır.
 
 <a name="notrackingresolution"></a>
 ### <a name="no-tracking-queries-no-longer-perform-identity-resolution"></a>Hiçbir izleme sorgusu artık kimlik çözümlemesi gerçekleştirmesiz
@@ -277,11 +277,11 @@ EF Core 3,0 ' dan önce, belirli bir tür ve KIMLIĞE sahip bir varlığın her 
 ```C#
 var results = context.Products.Include(e => e.Category).AsNoTracking().ToList();
 ```
-, belirtilen kategori ile ilişkili her bir `Product` için aynı `Category` örneğini döndürür.
+, verilen kategoriyle ilişkilendirilen her bir `Product` için aynı `Category` örneğini döndürür.
 
 **Yeni davranış**
 
-EF Core 3,0 ' den başlayarak, döndürülen grafikte farklı yerlerde verilen tür ve KIMLIĞE sahip bir varlık ile karşılaşıldığında farklı varlık örnekleri oluşturulacaktır. Örneğin, yukarıdaki sorgu artık aynı kategori ile iki ürün ilişkilendirildiğinde bile her `Product` için yeni bir `Category` örneği döndürüyor.
+EF Core 3,0 ' den başlayarak, döndürülen grafikte farklı yerlerde verilen tür ve KIMLIĞE sahip bir varlık ile karşılaşıldığında farklı varlık örnekleri oluşturulacaktır. Örneğin, yukarıdaki sorgu artık aynı kategori ile iki ürün ilişkilendirildiğinde bile her bir `Product` için yeni bir `Category` örneği döndürecek.
 
 **Kaydol**
 
@@ -297,7 +297,7 @@ Kimlik çözümlemesi gerekiyorsa izleme sorgusu kullanın.
 
 [Sorun izleniyor #14523](https://github.com/aspnet/EntityFrameworkCore/issues/14523)
 
-EF Core 3,0 ' deki yeni yapılandırma, uygulama tarafından herhangi bir olayın günlük düzeyinin belirtilmesini sağladığından bu değişikliği geri çevirdik. Örneğin, SQL 'in günlüğe kaydedilmesini `Debug` ' a geçmek için `OnConfiguring` veya `AddDbContext` ' deki düzeyi açıkça yapılandırın:
+EF Core 3,0 ' deki yeni yapılandırma, uygulama tarafından herhangi bir olayın günlük düzeyinin belirtilmesini sağladığından bu değişikliği geri çevirdik. Örneğin, SQL 'in günlüğe kaydedilmesini `Debug`değiştirmek için `OnConfiguring` veya `AddDbContext`düzeyini açıkça yapılandırın:
 ```C#
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     => optionsBuilder
@@ -331,7 +331,7 @@ Bu, şunları önlenebilir:
 * Mağaza tarafından oluşturulan anahtarlar kullanmıyor.
 * Yabancı anahtar değerlerini ayarlamak yerine gezinti özelliklerini, ilişkileri oluşturmak için ayarlama.
 * Varlığın izleme bilgileriyle gerçek geçici anahtar değerlerini elde edin.
-Örneğin, `context.Entry(blog).Property(e => e.Id).CurrentValue` `blog.Id` kendisi ayarlanmamışsa bile geçici değeri döndürür.
+Örneğin, `context.Entry(blog).Property(e => e.Id).CurrentValue`, `blog.Id` kendisi ayarlanmamışsa bile geçici değeri döndürür.
 
 <a name="dc"></a>
 
@@ -345,7 +345,7 @@ EF Core 3,0 ' dan önce, `DetectChanges` tarafından bulunan izlenmeyen bir varl
 
 **Yeni davranış**
 
-EF Core 3,0 ' den başlayarak, bir varlık oluşturulan anahtar değerlerini kullanıyorsa ve bazı anahtar değer ayarlandıysa, varlık `Modified` durumunda izlenir.
+EF Core 3,0 ' den başlayarak, bir varlık üretilen anahtar değerlerini kullanıyorsa ve bazı anahtar değer ayarlandıysa, varlık `Modified` durumunda izlenir.
 Bu, varlık için bir satırın var olduğu varsayılır ve `SaveChanges` çağrıldığında güncelleştirilir.
 Anahtar değeri ayarlanmamışsa veya varlık türü oluşturulan anahtarları kullanmazsa, yeni varlık önceki sürümlerde olduğu gibi `Added` olarak izlenir.
 
@@ -384,7 +384,7 @@ public string Id { get; set; }
 **Yeni davranış**
 
 3,0 ile başlayarak, Tetikleme koşulu algılandığında EF Core geçişli eylemleri uygular.
-Örneğin, bir asıl varlığı silmek için `context.Remove()` ' ı çağırmak, izlenen ilişkili ilgili tüm bağımlıların da hemen `Deleted` olarak ayarlanmasının oluşmasına neden olur.
+Örneğin, bir sorumlu varlığı silmek için `context.Remove()` çağırmak, izlenen ilgili tüm bağımlı bağımlıların de hemen `Deleted` olarak ayarlanabilmesini sağlar.
 
 **Kaydol**
 
@@ -392,7 +392,7 @@ Bu değişiklik, `SaveChanges` çağrılmadan _önce_ hangi varlıkların siline
 
 **Karşı**
 
-Önceki davranış `context.ChangedTracker` ayarları aracılığıyla geri yüklenebilir.
+Önceki davranış `context.ChangedTracker`ayarları aracılığıyla geri yüklenebilir.
 Örneğin:
 
 ```C#
@@ -418,7 +418,7 @@ Tek bir LINQ sorgusu uygulamak için birden çok sorgu verilmesi, birden çok ve
 
 **Karşı**
 
-Teknik olarak bu bir değişiklik olmadığı sürece, tek bir sorgu koleksiyon gezginlerde çok sayıda `Include` işleci içerdiğinde uygulama performansının önemli bir etkisi olabilir. Daha fazla bilgi edinmek ve sorguları daha verimli bir şekilde yeniden yazmak için [Bu açıklamaya bakın](https://github.com/aspnet/EntityFrameworkCore/issues/18022#issuecomment-542397085) .
+Teknik olarak bu bir değişiklik olmadığı sürece, tek bir sorgu koleksiyon gezginlerinin çok sayıda `Include` işleci içerdiğinde uygulama performansının önemli bir etkisi olabilir. Daha fazla bilgi edinmek ve sorguları daha verimli bir şekilde yeniden yazmak için [Bu açıklamaya bakın](https://github.com/aspnet/EntityFrameworkCore/issues/18022#issuecomment-542397085) .
 
 **
 
@@ -429,19 +429,19 @@ Teknik olarak bu bir değişiklik olmadığı sürece, tek bir sorgu koleksiyon 
 
 **Eski davranış**
 
-3,0 öncesinde, `DeleteBehavior.Restrict`, veritabanında `Restrict` semantiklerle yabancı anahtarlar oluşturdu, ancak aynı zamanda iç düzeltmeyi belirgin olmayan bir şekilde değiştirdi.
+3,0 ' den önce, `Restrict` anlamlarında `DeleteBehavior.Restrict` yabancı anahtarlar oluşturdunuz, ancak aynı zamanda iç düzeltmeyi belirgin olmayan bir şekilde değiştirdi.
 
 **Yeni davranış**
 
-3,0 ile başlayarak, `DeleteBehavior.Restrict`, yabancı anahtarların `Restrict` semantiğinin oluşturulmasını sağlar; Yani bu, basamaksız; sınır iç düzeltmesini etkilemeden kısıtlama ihlalinde throw.
+3,0 ile başlayarak, `DeleteBehavior.Restrict` yabancı anahtarların `Restrict` semantiğinin oluşturulmasını sağlar; Yani bu, basamaksız; sınır iç düzeltmesini etkilemeden kısıtlama ihlalinde throw.
 
 **Kaydol**
 
-Bu değişiklik, beklenmeyen yan etkileri olmadan `DeleteBehavior` ' ı sezgisel bir şekilde kullanma deneyimini geliştirmek üzere yapılmıştır.
+Bu değişiklik, beklenmeyen yan etkileri olmadan `DeleteBehavior` kullanımı kolay bir şekilde geliştirmek için yapılmıştır.
 
 **Karşı**
 
-Önceki davranış `DeleteBehavior.ClientNoAction` kullanılarak geri yüklenebilir.
+Önceki davranış `DeleteBehavior.ClientNoAction`kullanılarak geri yüklenebilir.
 
 <a name="qt"></a>
 ### <a name="query-types-are-consolidated-with-entity-types"></a>Sorgu türleri varlık türleriyle birleştirilir
@@ -467,16 +467,16 @@ Benzer şekilde, genellikle görünümlere eşlenir, ancak bu yalnızca görün�
 **Karşı**
 
 API 'nin aşağıdaki bölümleri artık kullanılmıyor:
-* **`ModelBuilder.Query<>()`** -`ModelBuilder.Entity<>().HasNoKey()` ' nin bir varlık türünü anahtar olmadan işaretlemek için çağrılması gerekir.
+* **`ModelBuilder.Query<>()`** -bir varlık türünü anahtar olmadan işaretlemek için `ModelBuilder.Entity<>().HasNoKey()` çağrılması gerekir.
 Birincil anahtar beklendiğinde ancak kuralıyla eşleşmediği zaman yanlış yapılandırılmaması için bu kural tarafından yapılandırılmamalıdır.
-* **`DbQuery<>`** -`DbSet<>` kullanılmalıdır.
-* **`DbContext.Query<>()`** -`DbContext.Set<>()` kullanılmalıdır.
+* **`DbQuery<>`** bunun yerine `DbSet<>` kullanılmalıdır.
+* **`DbContext.Query<>()`** bunun yerine `DbContext.Set<>()` kullanılmalıdır.
 
 <a name="config"></a>
 ### <a name="configuration-api-for-owned-type-relationships-has-changed"></a>Sahip olunan tür ilişkilerinin Yapılandırma API 'SI değişti
 
-[Sorun izleme #12444](https://github.com/aspnet/EntityFrameworkCore/issues/12444)
- izleme sorunu[#9148](https://github.com/aspnet/EntityFrameworkCore/issues/9148)
+Sorun izleme [#12444](https://github.com/aspnet/EntityFrameworkCore/issues/12444) sorunu
+izleme sorunu [#9148](https://github.com/aspnet/EntityFrameworkCore/issues/9148)
 [izleme sorunu #14153](https://github.com/aspnet/EntityFrameworkCore/issues/14153)
 
 **Eski davranış**
@@ -485,15 +485,15 @@ Birincil anahtar beklendiğinde ancak kuralıyla eşleşmediği zaman yanlış y
 
 **Yeni davranış**
 
-EF Core 3,0 ' den başlayarak, artık `WithOwner()` kullanarak sahip için bir gezinti özelliği yapılandırmak Fluent API.
+EF Core 3,0 ' den başlayarak, artık `WithOwner()`kullanarak sahip için bir gezinti özelliği yapılandırmak Fluent API.
 Örneğin:
 
 ```C#
 modelBuilder.Entity<Order>.OwnsOne(e => e.Details).WithOwner(e => e.Order);
 ```
 
-Sahip ve sahibi arasındaki ilişkiyle ilgili yapılandırma artık diğer ilişkilerin yapılandırılmasına benzer şekilde `WithOwner()` ' dan sonra zinciredilmelidir.
-Sahip olduğu için yapılandırma `OwnsOne()/OwnsMany()` ' dan sonra hala zincirlenebilir.
+Sahip ve sahibi arasındaki ilişkiyle ilgili yapılandırma artık diğer ilişkilerin yapılandırılmasına benzer şekilde `WithOwner()` sonra zincirde olmalıdır.
+Sahip olduğu için yapılandırma, `OwnsOne()/OwnsMany()`sonra hala zincirleme olmaya devam edecektir.
 Örneğin:
 
 ```C#
@@ -518,12 +518,12 @@ modelBuilder.Entity<Order>.OwnsOne(e => e.Details, eb =>
     });
 ```
 
-Ayrıca, sahip bir tür hedefi ile `Entity()`, `HasOne()` veya `Set()` çağırmak artık bir özel durum oluşturacak.
+Ayrıca, sahip bir tür hedefi ile `Entity()`, `HasOne()`veya `Set()` çağırmak artık bir özel durum oluşturacak.
 
 **Kaydol**
 
 Bu değişiklik, sahip olunan türün kendisini ve sahip olduğu _ilişkiyi_ yapılandırma arasında bir temizleyici ayrım oluşturmak için yapılmıştır.
-Bu, ' de `HasForeignKey` gibi yöntemler etrafında belirsizlik ve karışıklık ortadan kaldırır.
+Bu, sırasıyla `HasForeignKey`gibi yöntemlere ve karışıklığı ortadan kaldırır.
 
 **Karşı**
 
@@ -557,12 +557,12 @@ EF Core 3,0 ' dan önce, `OrderDetails` aynı tabloyla `Order` veya açıkça e�
 
 **Yeni davranış**
 
-EF Core 3,0 ' den başlayarak, bir `OrderDetails` olmadan `Order` ekleme ve birincil anahtar null yapılabilir sütunlara hariç tüm `OrderDetails` özelliklerini eşleme olanağı sağlar.
+3,0 ile başlayarak EF Core, `OrderDetails` olmayan bir `Order` eklemesine ve birincil anahtar null yapılabilir sütunlara hariç tüm `OrderDetails` özelliklerini eşleştirme olanağı sağlar.
 EF Core kümelerini sorgularken, gerekli özelliklerinden herhangi birinin bir değeri yoksa veya birincil anahtar ve tüm `null`Özellikler ' in yanı sıra gerekli özellikleri yoksa, `null` `OrderDetails`.
 
 **Karşı**
 
-Modelinizin tüm isteğe bağlı sütunlarla ilişkili bir tablo paylaşımına sahipse, ancak buna işaret eden gezinmenin `null` olması beklenmiyorsa, gezinti `null` olduğunda, uygulamanın servis taleplerini işleyecek şekilde değiştirilmesi gerekir. Bu mümkün değilse, varlık türüne gerekli bir özellik eklenmelidir ya da en az bir özellik kendisine atanmış`null` bir değere sahip olmalıdır.
+Modelinizin tüm isteğe bağlı sütunlarla ilişkili bir tablo paylaşımına sahipse, ancak buna işaret eden gezinmenin `null` olması beklenmiyorsa, gezinti `null`olduğunda, uygulamanın servis taleplerini işleyecek şekilde değiştirilmesi gerekir. Bu mümkün değilse, varlık türüne gerekli bir özellik eklenmelidir ya da en az bir özellik kendisine atanmış`null` bir değere sahip olmalıdır.
 
 <a name="aes"></a>
 
@@ -594,7 +594,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
         .Property(o => o.Version).IsRowVersion().HasColumnName("Version");
 }
 ```
-EF Core 3,0 ' dan önce, `OrderDetails` `Order` ' e aitse veya aynı tabloya açık olarak eşlenmişse, yalnızca `OrderDetails` ' yi güncelleştirmek istemcide `Version` değerini güncelleştirmeyecektir ve sonraki güncelleştirme başarısız olur.
+EF Core 3,0 ' dan önce, `OrderDetails` aynı tabloyla `Order` ya da açıkça eşlenmişse, yalnızca `OrderDetails` güncelleştirilmesi istemci üzerindeki `Version` değerini güncelleştirmez ve sonraki güncelleştirme başarısız olur.
 
 
 **Yeni davranış**
@@ -653,11 +653,11 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 
-EF Core 3,0 ' dan önce, `ShippingAddress` özelliği varsayılan olarak `BulkOrder` ve `Order` sütunları için ayrı sütunlara eşlenir.
+EF Core 3,0 ' dan önce, `ShippingAddress` özelliği varsayılan olarak `BulkOrder` ve `Order` ayrı sütunlara eşlenir.
 
 **Yeni davranış**
 
-3,0 ile başlayarak, EF Core `ShippingAddress` için yalnızca bir sütun oluşturur.
+3,0 ile başlayarak, EF Core `ShippingAddress`için yalnızca bir sütun oluşturur.
 
 **Kaydol**
 
@@ -755,7 +755,7 @@ Bu değişiklik, sahip olan türde birincil anahtar özelliğini yanlışlıkla 
 
 **Eski davranış**
 
-EF Core 3,0 ' dan önce, bağlam bağlantıyı bir `TransactionScope` içinde açarsa, geçerli `TransactionScope` etkinken bağlantı açık kalır.
+EF Core 3,0 ' dan önce, bağlam bağlantıyı bir `TransactionScope`içinde açarsa, geçerli `TransactionScope` etkinken bağlantı açık kalır.
 
 ```C#
 using (new TransactionScope())
@@ -778,11 +778,11 @@ using (new TransactionScope())
 
 **Kaydol**
 
-Bu değişiklik, aynı `TransactionScope` ' da birden çok bağlam kullanılmasına izin verir. Yeni davranış ayrıca EF6 ile eşleşir.
+Bu değişiklik aynı `TransactionScope`birden çok bağlam kullanılmasına izin verir. Yeni davranış ayrıca EF6 ile eşleşir.
 
 **Karşı**
 
-Bağlantının `OpenConnection()` ' a açık açık çağrı kalması gerekiyorsa, EF Core zamanından önce kapanmasını sağlar:
+Bağlantının açık açık olarak kalması gerekiyorsa `OpenConnection()`, EF Core zamanından önce kapanmasını sağlar:
 
 ```C#
 using (new TransactionScope())
@@ -843,7 +843,7 @@ Bu değişiklik, varlıklarla ilgili veritabanı işlemlerini gerçekleştirirke
 
 **Karşı**
 
-3,0 öncesi davranış `ModelBuilder` ' da özellik erişim modunun yapılandırması aracılığıyla geri yüklenebilir.
+3,0 öncesi davranış `ModelBuilder`özellik erişim modunun yapılandırması aracılığıyla geri yüklenebilir.
 Örneğin:
 
 ```C#
@@ -931,15 +931,15 @@ modelBuilder
 
 **Eski davranış**
 
-EF Core 3,0 ' dan önce, `AddDbContext` veya `AddDbContextPool` ' i çağırmak, günlüğe kaydetme ve bellek önbelleğe alma hizmetlerini D. I ile birlikte [Addlogging](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.loggingservicecollectionextensions.addlogging) ve [addmemorycache](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.memorycacheservicecollectionextensions.addmemorycache)çağrıları aracılığıyla da kaydeder.
+EF Core 3,0 ' dan önce, `AddDbContext` veya `AddDbContextPool` çağrısı, günlüğe kaydetme ve bellek önbelleğe alma hizmetlerini D. I ile, [Addlogging](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.loggingservicecollectionextensions.addlogging) ve [addmemorycache](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.memorycacheservicecollectionextensions.addmemorycache)çağrıları aracılığıyla da kaydeder.
 
 **Yeni davranış**
 
-EF Core 3,0 ' den başlayarak, `AddDbContext` ve `AddDbContextPool` artık bu hizmetleri bağımlılık ekleme (dı) ile kaydetmez.
+EF Core 3,0 ' den başlayarak `AddDbContext` ve `AddDbContextPool` artık bu hizmetleri bağımlılık ekleme (dı) ile kaydetmez.
 
 **Kaydol**
 
-EF Core 3,0, bu hizmetlerin uygulamanın DI kapsayıcısında olmasını gerektirmez. Ancak, `ILoggerFactory`, uygulamanın DI kapsayıcısında kayıtlıysa, EF Core tarafından kullanılmaya devam edilir.
+EF Core 3,0, bu hizmetlerin uygulamanın DI kapsayıcısında olmasını gerektirmez. Ancak, `ILoggerFactory` uygulamanın dı kapsayıcısına kayıtlıysa, EF Core tarafından hala kullanılacaktır.
 
 **Karşı**
 
@@ -953,12 +953,12 @@ Uygulamanız bu hizmetlere ihtiyaç duyuyorsa, bunları [Addlogging](https://doc
 
 **Eski davranış**
 
-EF Core 3,0 ' dan önce, `DbContext.Entry` ' ı çağırmak izlenen tüm varlıklar için değişikliklerin algılanmasına neden olur.
-Bu, `EntityEntry` ' da kullanıma sunulan durumun güncel olduğundan emin olun.
+EF Core 3,0 önce, `DbContext.Entry` çağırma, izlenen tüm varlıklar için değişikliklerin algılanmasına neden olur.
+Bu, `EntityEntry` açığa çıkarılan durumun güncel olduğunu ortaya çıkardık.
 
 **Yeni davranış**
 
-EF Core 3,0 ' den başlayarak, `DbContext.Entry` ' ı çağırmak artık yalnızca verilen varlıktaki değişiklikleri ve bununla ilgili izlenen ana varlıkları algılamaya çalışır.
+EF Core 3,0 ' den başlayarak, çağırma `DbContext.Entry` artık yalnızca verilen varlıktaki değişiklikleri ve bununla ilgili tüm izlenen ana varlıkları algılamaya çalışır.
 Bu, uygulama durumunda etkileri olabilecek, bu yöntemi çağırarak başka bir yerde değişiklik algılanmamış olabileceği anlamına gelir.
 
 `ChangeTracker.AutoDetectChangesEnabled` `false` olarak ayarlanırsa, bu yerel değişikliğin algılanması de devre dışı bırakılır.
@@ -967,11 +967,11 @@ Değişiklik algılamasına neden olan diğer yöntemler--örneğin `ChangeTrack
 
 **Kaydol**
 
-Bu değişiklik, `context.Entry` kullanmanın varsayılan performansını geliştirmek için yapılmıştır.
+Bu değişiklik, `context.Entry`kullanmanın varsayılan performansını geliştirmek için yapılmıştır.
 
 **Karşı**
 
-3,0 öncesi davranışı sağlamak için `Entry` çağrılmadan önce `ChgangeTracker.DetectChanges()` ' ı çağırın.
+3,0 öncesi davranışı sağlamak için `Entry` çağrılmadan önce `ChgangeTracker.DetectChanges()` çağırın.
 
 ### <a name="string-and-byte-array-keys-are-not-client-generated-by-default"></a>Dize ve bayt dizisi anahtarları, varsayılan olarak istemci tarafından oluşturulur
 
@@ -1017,21 +1017,21 @@ public string Id { get; set; }
 
 **Eski davranış**
 
-EF Core 3,0 ' dan önce, `ILoggerFactory` tek bir hizmet olarak kaydedildi.
+EF Core 3,0 tarihinden önce `ILoggerFactory` bir tek hizmet olarak kaydedildi.
 
 **Yeni davranış**
 
-EF Core 3,0 ' den başlayarak, `ILoggerFactory` artık kapsamlı olarak kaydedilir.
+EF Core 3,0 ' den başlayarak `ILoggerFactory` artık kapsamlı olarak kaydedilir.
 
 **Kaydol**
 
-Bu değişiklik, diğer işlevleri sağlayan ve iç hizmet sağlayıcılarının açılımı gibi Pathik davranışlarının bazı örneklerini kaldıran `DbContext` örneğiyle bir günlükçü ilişkilendirmesine izin vermek üzere yapılmıştır.
+Bu değişiklik, diğer işlevleri sağlayan ve iç hizmet sağlayıcılarının açılımı gibi bazı bazı durumları kaldıran `DbContext` örneğiyle bir günlükçü ilişkilendirmesine izin vermek üzere yapılmıştır.
 
 **Karşı**
 
 Bu değişiklik, EF Core iç hizmet sağlayıcısı 'nda özel hizmetleri kaydetmediğiniz ve kullanmadıkça uygulama kodunu etkilememelidir.
 Bu, yaygın değildir.
-Bu durumlarda, çoğu şey çalışmaya devam eder, ancak `ILoggerFactory` ' a bağlı olan herhangi bir tek hizmetin, `ILoggerFactory` ' i farklı bir şekilde alması için değiştirilmesi gerekir.
+Bu durumlarda, çoğu şey çalışmaya devam edecektir, ancak `ILoggerFactory` bağlı olan herhangi bir singleton hizmeti, `ILoggerFactory` farklı bir şekilde almak için değiştirilmelidir.
 
 Bu gibi durumlarda çalıştırırsanız, daha sonra bunu nasıl yeniden keseceğimizi daha iyi anlayabilmemiz için lütfen [EF Core GitHub sorun İzleyicisi](https://github.com/aspnet/EntityFrameworkCore/issues) ' nde bir sorun `ILoggerFactory` bildirin.
 
@@ -1041,7 +1041,7 @@ Bu gibi durumlarda çalıştırırsanız, daha sonra bunu nasıl yeniden kesece�
 
 **Eski davranış**
 
-EF Core 3,0 ' dan önce, bir `DbContext` ' ı bir kez atıldıktan sonra, söz konusu bağlamdan alınan bir varlıkta verilen bir gezinti özelliğinin tam olarak yüklenip yüklenmediğini bilmenin bir yolu yoktur.
+EF Core 3,0 ' dan önce, bir `DbContext` atıldıktan sonra, söz konusu bağlamdan alınan bir varlık üzerinde verilen bir gezinti özelliğinin tam olarak yüklenip yüklenmediğini bilmenin bir yolu yoktur.
 Proxy 'ler bunun yerine, null olmayan bir değer varsa ve bir koleksiyon gezintisi boş değilse yüklenmiş bir başvuru gezintisi olduğunu varsayacaktır.
 Bu durumlarda, yavaş yüklemeye çalışılması, bir op değildir.
 
@@ -1054,7 +1054,7 @@ Bu durum ortaya çıkarsa, uygulama kodunun geç yüklemeyi geçersiz bir zamand
 
 **Kaydol**
 
-Bu değişiklik, atılmış bir `DbContext` örneğinde yavaş yüklemeye çalışırken davranışı tutarlı ve doğru hale getirmek için yapılmıştır.
+Bu değişiklik, atılmış bir `DbContext` örneğine geç yüklemeye çalışırken davranışı tutarlı ve doğru hale getirmek için yapılmıştır.
 
 **Karşı**
 
@@ -1079,7 +1079,7 @@ Bu değişiklik, bu Pathik büyük/küçük harf daha açık bir şekilde kullan
 **Karşı**
 
 Bu hatayla karşılaşıldığında eylemin en uygun nedeni, kök nedenin anlaşılması ve çok sayıda iç hizmet sağlayıcısının oluşturulmasını durdurmaktır.
-Ancak, hata, `DbContextOptionsBuilder` ' da yapılandırma yoluyla bir uyarıya (veya yoksayıldı) geri dönüştürülebilir.
+Ancak, hata `DbContextOptionsBuilder`yapılandırması aracılığıyla bir uyarıya (veya yoksayıldı) geri dönüştürülebilir.
 Örneğin:
 
 ```C#
@@ -1098,15 +1098,15 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
 **Eski davranış**
 
-EF Core 3,0 öncesinde, tek bir dizeyle `HasOne` veya `HasMany` çağıran kod kafa karıştırıcı bir şekilde yorumlandı.
+EF Core 3,0 öncesinde, tek bir dize ile `HasOne` veya `HasMany` kodu, kafa karıştırıcı bir şekilde yorumlandı.
 Örneğin:
 ```C#
 modelBuilder.Entity<Samurai>().HasOne("Entrance").WithOne();
 ```
 
-Kod, özel olabilecek `Entrance` gezinti özelliğini kullanarak `Samurai` ' ı diğer bir varlık türü ile ilişkili olduğu gibi görünür.
+Kod, özel olabilecek `Entrance` gezinti özelliğini kullanarak `Samurai` başka bir varlık türüyle ilişkili olduğu gibi görünür.
 
-Gerçekte, bu kod, gezinti özelliği olmayan `Entrance` adlı bir varlık türüne ilişki oluşturmaya çalışır.
+Gerçekte, bu kod, gezinti özelliği olmayan `Entrance` adlı bazı varlık türlerine bir ilişki oluşturmaya çalışır.
 
 **Yeni davranış**
 
@@ -1120,7 +1120,7 @@ EF Core 3,0 ' den itibaren, yukarıdaki kod artık daha önce yaptığımız gib
 
 Bu, yalnızca tür adları için dizeler kullanarak ve gezinti özelliğini açıkça belirtmeden ilişkileri açıkça yapılandıran uygulamaları keser.
 Bu, yaygın değildir.
-Önceki davranış, gezinti özelliği adı için `null` ' ı açıkça geçirerek elde edilebilir.
+Önceki davranış, gezinti özelliği adı için `null` açıkça geçirerek elde edilebilir.
 Örneğin:
 
 ```C#
@@ -1141,11 +1141,11 @@ Aşağıdaki zaman uyumsuz yöntemler daha önce bir `Task<T>`döndürdü:
 * `DbSet.FindAsync()`
 * `DbContext.AddAsync()`
 * `DbSet.AddAsync()`
-* `ValueGenerator.NextValueAsync()` (ve türetilen sınıflar)
+* `ValueGenerator.NextValueAsync()` (ve türetme sınıfları)
 
 **Yeni davranış**
 
-Yukarıda bahsedilen yöntemler bundan sonra aynı `T` üzerinden `ValueTask<T>` döndürür.
+Yukarıda bahsedilen yöntemler bundan sonra aynı `T` daha `ValueTask<T>` döndürür.
 
 **Kaydol**
 
@@ -1186,11 +1186,11 @@ Düzeltilmesi gereken en uygun eylem, ek açıklamayı doğrudan kullanmak yerin
 
 **Eski davranış**
 
-EF Core 3,0 öncesinde, türetilmiş bir tür üzerinde çağrılan `ToTable()`, yalnızca devralma eşleme stratejisi bu geçersiz olduğu için yok sayılır. 
+EF Core 3,0 ' dan önce, yalnızca devralma eşleme stratejisi bu geçerli olmayan bir TPH olduğundan, türetilmiş bir tür üzerinde çağrılan `ToTable()` yok sayılır. 
 
 **Yeni davranış**
 
-EF Core 3,0 ' den başlayarak ve daha sonraki bir sürümde TPT ve TPC desteği ekleme hazırlığı sırasında, türetilmiş bir tür üzerinde çağrılan `ToTable()`, bundan sonra beklenmeyen bir eşleme değişikliğini önlemek için bir özel durum oluşturur.
+EF Core 3,0 ' den başlayarak ve daha sonraki bir sürümde TPT ve TPC desteği ekleme hazırlığı sırasında, bir türetilmiş tür üzerinde çağrılan `ToTable()` artık gelecekte beklenmedik bir eşleme değişikliğini önlemek için bir özel durum oluşturacak.
 
 **Kaydol**
 
@@ -1207,11 +1207,11 @@ Türetilmiş türleri diğer tablolarla eşleme girişimlerini kaldırın.
 
 **Eski davranış**
 
-EF Core 3,0 ' dan önce, `ForSqlServerHasIndex().ForSqlServerInclude()` `INCLUDE` ile kullanılan sütunları yapılandırmak için bir yol sağladı.
+EF Core 3,0 ' dan önce `ForSqlServerHasIndex().ForSqlServerInclude()` `INCLUDE`ile kullanılan sütunları yapılandırmak için bir yol sağladı.
 
 **Yeni davranış**
 
-EF Core 3,0 ' den itibaren, bir dizinde `Include` kullanılması artık ilişkisel düzeyde destekleniyor.
+EF Core 3,0 ' den itibaren, bir dizinde `Include` kullanmak artık ilişkisel düzeyde destekleniyor.
 `HasIndex().ForSqlServerInclude()`kullanın.
 
 **Kaydol**
@@ -1286,12 +1286,12 @@ Bu değişiklik, EF Core varsayılan olarak `SQLitePCLRaw.bundle_e_sqlite3` kull
 
 **Karşı**
 
-Yabancı anahtarlar varsayılan olarak, EF Core için varsayılan olarak kullanılan SQLitePCLRaw. bundle_e_sqlite3 içinde etkindir.
-Diğer durumlar için, bağlantı dizeniz içinde `Foreign Keys=True` belirterek yabancı anahtarlar etkinleştirilebilir.
+EF Core için varsayılan olarak kullanılan SQLitePCLRaw. bundle_e_sqlite3 öğesinde yabancı anahtarlar varsayılan olarak etkinleştirilir.
+Diğer durumlarda, yabancı anahtarlar bağlantı dizeniz `Foreign Keys=True` belirtilerek etkinleştirilebilir.
 
 <a name="sqlite3"></a>
 
-### <a name="microsoftentityframeworkcoresqlite-now-depends-on-sqlitepclrawbundle_e_sqlite3"></a>Microsoft. EntityFrameworkCore. SQLite artık SQLitePCLRaw. bundle_e_sqlite3 öğesine bağımlıdır
+### <a name="microsoftentityframeworkcoresqlite-now-depends-on-sqlitepclrawbundle_e_sqlite3"></a>Microsoft. EntityFrameworkCore. SQLite artık SQLitePCLRaw. bundle_e_sqlite3 bağımlıdır
 
 **Eski davranış**
 
@@ -1307,7 +1307,7 @@ Bu değişiklik, iOS üzerinde kullanılan SQLite sürümünün diğer platforml
 
 **Karşı**
 
-İOS 'ta yerel SQLite sürümünü kullanmak için `Microsoft.Data.Sqlite` ' ı farklı bir `SQLitePCLRaw` paketi kullanacak şekilde yapılandırın.
+İOS 'ta yerel SQLite sürümünü kullanmak için `Microsoft.Data.Sqlite` farklı bir `SQLitePCLRaw` paketi kullanacak şekilde yapılandırın.
 
 <a name="guid"></a>
 
@@ -1447,7 +1447,7 @@ SET MigrationId = CONCAT(LEFT(MigrationId, 4)  - 543, SUBSTRING(MigrationId, 4, 
 
 **Eski davranış**
 
-EF Core 3,0 ' dan önce, `UseRowNumberForPaging` SQL Server 2008 ile uyumlu sayfalama için SQL oluşturmak üzere kullanılabilir.
+EF Core 3,0 ' dan önce `UseRowNumberForPaging`, SQL Server 2008 ile uyumlu sayfalama için SQL oluşturmak üzere kullanılabilir.
 
 **Yeni davranış**
 
@@ -1483,7 +1483,7 @@ Bunları yeni bir soyut taban sınıfına bölmek, var olan uzantıları bozmada
 **Karşı**
 
 Yeni kalıbı izlemek için uzantıları güncelleştirin.
-EF Core kaynak kodundaki farklı uzantı türleri için `IDbContextOptionsExtension` ' ın birçok uygulamasında örnekler bulunur.
+EF Core kaynak kodundaki farklı tür uzantılara yönelik `IDbContextOptionsExtension` birçok uygulamada örnek bulunur.
 
 <a name="lqpe"></a>
 
@@ -1493,7 +1493,7 @@ EF Core kaynak kodundaki farklı uzantı türleri için `IDbContextOptionsExtens
 
 **Değişebilir**
 
-`RelationalEventId.LogQueryPossibleExceptionWithAggregateOperator` `RelationalEventId.LogQueryPossibleExceptionWithAggregateOperatorWarning` olarak yeniden adlandırıldı.
+`RelationalEventId.LogQueryPossibleExceptionWithAggregateOperator` `RelationalEventId.LogQueryPossibleExceptionWithAggregateOperatorWarning`olarak yeniden adlandırıldı.
 
 **Kaydol**
 
@@ -1714,7 +1714,7 @@ public static int? DatePart(string datePartArg, DateTime? date) => throw new Exc
 
 **Yeni davranış**
 
-Tüm DbFunction eşlemeleri Kullanıcı tanımlı işlevlere eşlenildiği kabul edilir. Bu nedenle boş dize değeri, işlevi model için varsayılan şemanın içine yerleştirir. Bu şema, Fluent API `modelBuilder.HasDefaultSchema()` veya `dbo` aracılığıyla açıkça yapılandırılabilir.
+Tüm DbFunction eşlemeleri Kullanıcı tanımlı işlevlere eşlenildiği kabul edilir. Bu nedenle boş dize değeri, işlevi model için varsayılan şemanın içine yerleştirir. Şema, Fluent API `modelBuilder.HasDefaultSchema()` aracılığıyla açıkça yapılandırılabilir veya `dbo` Aksi takdirde.
 
 **Kaydol**
 

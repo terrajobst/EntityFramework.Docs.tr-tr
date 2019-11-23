@@ -24,13 +24,13 @@ Bu araçlar ve uzantılar, Entity Framework Core 2,0 ve üzeri için ek işlevle
 
 LLBLGen Pro, Entity Framework ve Entity Framework Core desteğiyle bir varlık modelleme çözümüdür. Bu, varlık modelinizi kolayca tanımlamanızı ve veritabanını ilk veya modeli kullanarak veritabanınıza eşlemenizi sağlar, böylece sorguları hemen yazmaya başlayabilirsiniz.
 
-[Websitesi](https://www.llblgen.com/)
+[Web sitesi](https://www.llblgen.com/)
 
 ### <a name="devart-entity-developer"></a>Varlık geliştiriciyi kaldırma
 
 Varlık geliştiricisi, ADO.NET Entity Framework, Nhazırda beklet, LinqConnect, Telerik veri erişimi ve LINQ to SQL için güçlü bir ORM tasarlayıcıdır. EF Core modellerinin görsel olarak tasarlanmasını, ilk veya veritabanı ilk yaklaşımı ve C# ya da kod üretimini Visual Basic destekler.
 
-[Websitesi](https://www.devart.com/entitydeveloper/)
+[Web sitesi](https://www.devart.com/entitydeveloper/)
 
 ### <a name="ef-core-power-tools"></a>EF Core güç araçları
 
@@ -57,7 +57,7 @@ Entity Framework Core Generator (EFG), `dotnet ef dbcontext scaffold`gibi var ol
 [Eğitim](https://www.loresoft.com/Generate-ASP-NET-Web-API)
 [belgeleri](https://efg.loresoft.com/en/latest/)
 
-## <a name="extensions"></a>Uzantıları
+## <a name="extensions"></a>Uzantılar
 
 ### <a name="microsoftentityframeworkcoreautohistory"></a>Microsoft. EntityFrameworkCore. oto geçmişi
 
@@ -167,7 +167,7 @@ DbContext dosyanızı, şunlar gibi özelliklerle genişletir: filtre, denetim, 
 
 DbContext uygulamanızı yüksek performanslı toplu işlemlerle genişletir: BulkSaveChanges, Bulkınsert, BulkUpdate, BulkDelete, BulkMerge ve daha fazlası.
 
-[Websitesi](https://entityframework-extensions.net/)
+[Web sitesi](https://entityframework-extensions.net/)
 
 ### <a name="reconciler"></a>Bağdaştıriler
 

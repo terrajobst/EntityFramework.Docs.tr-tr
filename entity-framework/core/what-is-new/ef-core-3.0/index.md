@@ -91,7 +91,7 @@ Daha fazla bilgi için [ C# belgelerindeki zaman uyumsuz akışlara](https://doc
 
 ### <a name="nullable-reference-types"></a>Boş değer atanabilir başvuru türleri
 
-Kodunuzda bu yeni özellik etkinleştirildiğinde EF Core, başvuru türü özelliklerinin null değer alabilme durumunu inceler ve veritabanındaki ilgili sütunlara ve ilişkilere uygular: null yapılamayan başvuruların özelliklerinin özellikleri, @no__t_ gibi değerlendirilir 0_ Data Annotation özniteliği.
+Kodunuzda bu yeni özellik etkinleştirildiğinde EF Core, başvuru türü özelliklerinin null olduğunu inceler ve veritabanındaki ilgili sütunlara ve ilişkilere uygular: null yapılamayan başvuruların özelliklerinin özellikleri `[Required]` veri ek açıklaması özniteliğine sahip gibi değerlendirilir.
 
 Örneğin, aşağıdaki sınıfta, `string?` türü olarak işaretlenen özellikler isteğe bağlı olarak yapılandırılır, ancak `string` gerekli olarak yapılandırılır:
 

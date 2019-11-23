@@ -15,14 +15,14 @@ ms.locfileid: "71197313"
 
 Entity Framework, varlık sınıflarınızın şekline göre bir model oluşturmak için bir kural kümesi kullanır. Kurala göre keşfedildiğini ve/veya geçersiz kılmak için ek yapılandırma belirtebilirsiniz.
 
-Bu makale, herhangi bir veri deposunu hedefleyen ve herhangi bir ilişkisel veritabanını hedeflerken uygulanabilen bir modele uygulanabilen yapılandırmayı ele alır. Sağlayıcılar, belirli bir veri deposuna özgü yapılandırmayı da etkinleştirebilir. Sağlayıcıya özgü yapılandırmayla ilgili belgeler için, [veritabanı sağlayıcıları](../providers/index.md) bölümüne bakın.
+Bu makale, herhangi bir veri deposunu hedefleyen ve herhangi bir ilişkisel veritabanını hedeflerken uygulanabilen bir modele uygulanabilen yapılandırmayı ele alır. Sağlayıcılar, belirli bir veri deposuna özgü yapılandırmayı da etkinleştirebilir. Sağlayıcıya özgü yapılandırmayla ilgili belgelerde, [veritabanı sağlayıcıları](../providers/index.md) bölümüne bakın.
 
 > [!TIP]  
-> Bu makalenin [örneğini](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples) GitHub ' da görebilirsiniz.
+> Bu makalenin [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples) GitHub ' da görüntüleyebilirsiniz.
 
 ## <a name="use-fluent-api-to-configure-a-model"></a>Model yapılandırmak için Fluent API kullanma
 
-Türetilmiş bağlamdaki yöntemi `OnModelCreating`geçersiz kılabilir ve modelinizi yapılandırmakiçinkullanabilirsiniz. `ModelBuilder API` Bu, yapılandırmanın en güçlü yöntemidir ve varlık sınıflarınızda değişiklik yapılmadan yapılandırmanın belirtilmesini sağlar. Akıcı API yapılandırması en yüksek önceliğe sahiptir ve kuralları ve veri ek açıklamalarını geçersiz kılar.
+Türetilmiş içerikinizdeki `OnModelCreating` yöntemini geçersiz kılabilir ve modelinizi yapılandırmak için `ModelBuilder API` kullanabilirsiniz. Bu, yapılandırmanın en güçlü yöntemidir ve varlık sınıflarınızda değişiklik yapılmadan yapılandırmanın belirtilmesini sağlar. Akıcı API yapılandırması en yüksek önceliğe sahiptir ve kuralları ve veri ek açıklamalarını geçersiz kılar.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Required.cs?highlight=11-13)]
 

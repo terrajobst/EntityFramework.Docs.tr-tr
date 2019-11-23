@@ -13,7 +13,7 @@ ms.locfileid: "72181655"
 # <a name="performance-considerations-for-ef-4-5-and-6"></a>EF 4, 5 ve 6 için performans konuları
 David OBANDO, Eric Dettu ve diğerleri
 
-Yayımladığı 2012 Nisan
+Yayımlandı: Nisan 2012
 
 Son güncelleme tarihi: Mayıs 2014
 
@@ -31,7 +31,7 @@ Pratik amaçlarla, bu belge Entity Framework 4 ' ün .NET 4,0 altında çalışt
 
 Entity Framework 6 bant dışı bir sürümdür ve .NET ile birlikte gelen Entity Framework bileşenlerine bağlı değildir. Entity Framework 6 hem .NET 4,0 hem de .NET 4,5 üzerinde çalışır ve .NET 4,0 'den yükseltilmeyen ancak uygulamalarınızda en son Entity Framework bitleri istediğiniz büyük bir performans avantajı sunabilir. Bu belgede Entity Framework 6 ' dan bahsetme, bu yazma sırasında bulunan en son sürüme başvurur: sürüm 6.1.0.
 
-## <a name="2-cold-vs-warm-query-execution"></a>2. Soğuk ile Sıcak sorgu yürütme
+## <a name="2-cold-vs-warm-query-execution"></a>2. soğuk ve sıcak sorgu yürütme
 
 Bazı sorgular belirli bir modele göre ilk kez yapıldığında Entity Framework, arka planda modeli yüklemek ve doğrulamak için çok sayıda iş yapar. Bu ilk sorguya "soğuk" sorgusu olarak sıklıkla başvurduk.  Önceden yüklenmiş bir modele yönelik daha fazla sorgu "normal" sorgular olarak bilinir ve çok daha hızlıdır.
 
@@ -39,21 +39,21 @@ Entity Framework kullanarak bir sorgu yürütürken nerede harcandığına iliş
 
 **İlk sorgu yürütme – soğuk sorgu**
 
-| Kod Kullanıcı yazmaları                                                                                     | Action                    | EF4 performans etkisi                                                                                                                                                                                                                                                                                                                                                                                                        | EF5 performans etkisi                                                                                                                                                                                                                                                                                                                                                                                                                                                    | EF6 performans etkisi                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Kod Kullanıcı yazmaları                                                                                     | Eylem                    | EF4 performans etkisi                                                                                                                                                                                                                                                                                                                                                                                                        | EF5 performans etkisi                                                                                                                                                                                                                                                                                                                                                                                                                                                    | EF6 performans etkisi                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 |:-----------------------------------------------------------------------------------------------------|:--------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `using(var db = new MyContext())` <br/> `{`                                                          | Bağlam oluşturma          | Orta                                                                                                                                                                                                                                                                                                                                                                                                                        | Orta                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Düşük                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `  var q1 = ` <br/> `    from c in db.Customers` <br/> `    where c.Id == id1` <br/> `    select c;` | Sorgu ifadesi oluşturma | Düşük                                                                                                                                                                                                                                                                                                                                                                                                                           | Düşük                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Düşük                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| `  var c1 = q1.First();`                                                                             | LINQ sorgu yürütme      | -Meta veri yükleme: Yüksek ancak önbelleğe alınmış <br/> -Üretimi görüntüle: Potansiyel olarak çok yüksek ancak önbelleğe alınmış <br/> -Parametre değerlendirmesi: Orta <br/> -Sorgu çevirisi: Orta <br/> -Materializer oluşturma: Orta, ancak önbelleğe alınmış <br/> -Veritabanı sorgu yürütme: Potansiyel olarak yüksek <br/> + Connection. Open <br/> + Command. ExecuteReader <br/> + DataReader. Read <br/> Nesne materialization: Orta <br/> -Kimlik arama: Orta | -Meta veri yükleme: Yüksek ancak önbelleğe alınmış <br/> -Üretimi görüntüle: Potansiyel olarak çok yüksek ancak önbelleğe alınmış <br/> -Parametre değerlendirmesi: Düşük <br/> -Sorgu çevirisi: Orta, ancak önbelleğe alınmış <br/> -Materializer oluşturma: Orta, ancak önbelleğe alınmış <br/> -Veritabanı sorgu yürütme: Potansiyel olarak yüksek (bazı durumlarda daha Iyi sorgular) <br/> + Connection. Open <br/> + Command. ExecuteReader <br/> + DataReader. Read <br/> Nesne materialization: Orta <br/> -Kimlik arama: Orta | -Meta veri yükleme: Yüksek ancak önbelleğe alınmış <br/> -Üretimi görüntüle: Orta, ancak önbelleğe alınmış <br/> -Parametre değerlendirmesi: Düşük <br/> -Sorgu çevirisi: Orta, ancak önbelleğe alınmış <br/> -Materializer oluşturma: Orta, ancak önbelleğe alınmış <br/> -Veritabanı sorgu yürütme: Potansiyel olarak yüksek (bazı durumlarda daha Iyi sorgular) <br/> + Connection. Open <br/> + Command. ExecuteReader <br/> + DataReader. Read <br/> Nesne materialization: Orta (EF5 'den daha hızlı) <br/> -Kimlik arama: Orta |
+| `  var c1 = q1.First();`                                                                             | LINQ sorgu yürütme      | -Meta veri yükleme: yüksek ancak önbelleğe alınmış <br/> -Üretimi görüntüle: büyük olasılıkla çok yüksek ancak önbelleğe alınmış <br/> -Parametre değerlendirmesi: Orta <br/> -Sorgu çevirisi: Orta <br/> -Materializer oluşturma: Orta ancak önbelleğe alınmış <br/> -Veritabanı sorgusu yürütme: büyük olasılıkla yüksek <br/> + Connection. Open <br/> + Command. ExecuteReader <br/> + DataReader. Read <br/> Nesne materialization: Orta <br/> -Kimlik arama: Orta | -Meta veri yükleme: yüksek ancak önbelleğe alınmış <br/> -Üretimi görüntüle: büyük olasılıkla çok yüksek ancak önbelleğe alınmış <br/> -Parametre değerlendirmesi: düşük <br/> -Sorgu çevirisi: Orta ancak önbelleğe alınmış <br/> -Materializer oluşturma: Orta ancak önbelleğe alınmış <br/> -Veritabanı sorgusu yürütme: potansiyel yüksek (bazı durumlarda daha Iyi sorgular) <br/> + Connection. Open <br/> + Command. ExecuteReader <br/> + DataReader. Read <br/> Nesne materialization: Orta <br/> -Kimlik arama: Orta | -Meta veri yükleme: yüksek ancak önbelleğe alınmış <br/> -Üretimi görüntüle: Orta ancak önbelleğe alınmış <br/> -Parametre değerlendirmesi: düşük <br/> -Sorgu çevirisi: Orta ancak önbelleğe alınmış <br/> -Materializer oluşturma: Orta ancak önbelleğe alınmış <br/> -Veritabanı sorgusu yürütme: potansiyel yüksek (bazı durumlarda daha Iyi sorgular) <br/> + Connection. Open <br/> + Command. ExecuteReader <br/> + DataReader. Read <br/> Nesne materialization: Orta (EF5 'den daha hızlı) <br/> -Kimlik arama: Orta |
 | `}`                                                                                                  | Connection. Close          | Düşük                                                                                                                                                                                                                                                                                                                                                                                                                           | Düşük                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Düşük                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 
 **İkinci sorgu yürütme – sıcak sorgu**
 
-| Kod Kullanıcı yazmaları                                                                                     | Action                    | EF4 performans etkisi                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | EF5 performans etkisi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | EF6 performans etkisi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Kod Kullanıcı yazmaları                                                                                     | Eylem                    | EF4 performans etkisi                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | EF5 performans etkisi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | EF6 performans etkisi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 |:-----------------------------------------------------------------------------------------------------|:--------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `using(var db = new MyContext())` <br/> `{`                                                          | Bağlam oluşturma          | Orta                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Orta                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Düşük                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `  var q1 = ` <br/> `    from c in db.Customers` <br/> `    where c.Id == id1` <br/> `    select c;` | Sorgu ifadesi oluşturma | Düşük                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Düşük                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Düşük                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `  var c1 = q1.First();`                                                                             | LINQ sorgu yürütme      | -Meta veri ~~yükleme~~ araması: ~~Yüksek ancak önbelleğe alınmış~~ Zayıf <br/> - ~~Oluşturma~~ aramasını görüntüle: ~~Potansiyel olarak çok yüksek ancak önbelleğe alınmış~~ Zayıf <br/> -Parametre değerlendirmesi: Orta <br/> -Sorgu ~~çevirisi~~ arama: Orta <br/> -Materializer ~~oluşturma~~ araması: ~~Orta, ancak önbelleğe alınmış~~ Zayıf <br/> -Veritabanı sorgu yürütme: Potansiyel olarak yüksek <br/> + Connection. Open <br/> + Command. ExecuteReader <br/> + DataReader. Read <br/> Nesne materialization: Orta <br/> -Kimlik arama: Orta | -Meta veri ~~yükleme~~ araması: ~~Yüksek ancak önbelleğe alınmış~~ Zayıf <br/> - ~~Oluşturma~~ aramasını görüntüle: ~~Potansiyel olarak çok yüksek ancak önbelleğe alınmış~~ Zayıf <br/> -Parametre değerlendirmesi: Düşük <br/> -Sorgu ~~çevirisi~~ arama: ~~Orta, ancak önbelleğe alınmış~~ Zayıf <br/> -Materializer ~~oluşturma~~ araması: ~~Orta, ancak önbelleğe alınmış~~ Zayıf <br/> -Veritabanı sorgu yürütme: Potansiyel olarak yüksek (bazı durumlarda daha Iyi sorgular) <br/> + Connection. Open <br/> + Command. ExecuteReader <br/> + DataReader. Read <br/> Nesne materialization: Orta <br/> -Kimlik arama: Orta | -Meta veri ~~yükleme~~ araması: ~~Yüksek ancak önbelleğe alınmış~~ Zayıf <br/> - ~~Oluşturma~~ aramasını görüntüle: ~~Orta, ancak önbelleğe alınmış~~ Zayıf <br/> -Parametre değerlendirmesi: Düşük <br/> -Sorgu ~~çevirisi~~ arama: ~~Orta, ancak önbelleğe alınmış~~ Zayıf <br/> -Materializer ~~oluşturma~~ araması: ~~Orta, ancak önbelleğe alınmış~~ Zayıf <br/> -Veritabanı sorgu yürütme: Potansiyel olarak yüksek (bazı durumlarda daha Iyi sorgular) <br/> + Connection. Open <br/> + Command. ExecuteReader <br/> + DataReader. Read <br/> Nesne materialization: Orta (EF5 'den daha hızlı) <br/> -Kimlik arama: Orta |
+| `  var c1 = q1.First();`                                                                             | LINQ sorgu yürütme      | -Meta veri ~~yükleme~~ araması: ~~yüksek ancak önbelleğe alınan~~ düşük <br/> - ~~Oluşturma~~ aramasını görüntüle: ~~büyük olasılıkla çok yüksek ancak önbelleğe alınmış~~ düşük <br/> -Parametre değerlendirmesi: Orta <br/> -Sorgu ~~çevirisi~~ arama: Orta <br/> -Materializer ~~oluşturma~~ araması: ~~Orta ancak düşük önbelleğe alınmış~~ <br/> -Veritabanı sorgusu yürütme: büyük olasılıkla yüksek <br/> + Connection. Open <br/> + Command. ExecuteReader <br/> + DataReader. Read <br/> Nesne materialization: Orta <br/> -Kimlik arama: Orta | -Meta veri ~~yükleme~~ araması: ~~yüksek ancak önbelleğe alınan~~ düşük <br/> - ~~Oluşturma~~ aramasını görüntüle: ~~büyük olasılıkla çok yüksek ancak önbelleğe alınmış~~ düşük <br/> -Parametre değerlendirmesi: düşük <br/> -Sorgu ~~çevirisi~~ arama: ~~Orta ancak düşük önbelleğe alınmış~~ <br/> -Materializer ~~oluşturma~~ araması: ~~Orta ancak düşük önbelleğe alınmış~~ <br/> -Veritabanı sorgusu yürütme: potansiyel yüksek (bazı durumlarda daha Iyi sorgular) <br/> + Connection. Open <br/> + Command. ExecuteReader <br/> + DataReader. Read <br/> Nesne materialization: Orta <br/> -Kimlik arama: Orta | -Meta veri ~~yükleme~~ araması: ~~yüksek ancak önbelleğe alınan~~ düşük <br/> - ~~Oluşturma~~ aramasını görüntüle: ~~Orta ancak düşük önbelleğe alınmış~~ <br/> -Parametre değerlendirmesi: düşük <br/> -Sorgu ~~çevirisi~~ arama: ~~Orta ancak düşük önbelleğe alınmış~~ <br/> -Materializer ~~oluşturma~~ araması: ~~Orta ancak düşük önbelleğe alınmış~~ <br/> -Veritabanı sorgusu yürütme: potansiyel yüksek (bazı durumlarda daha Iyi sorgular) <br/> + Connection. Open <br/> + Command. ExecuteReader <br/> + DataReader. Read <br/> Nesne materialization: Orta (EF5 'den daha hızlı) <br/> -Kimlik arama: Orta |
 | `}`                                                                                                  | Connection. Close          | Düşük                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Düşük                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Düşük                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 
@@ -68,7 +68,7 @@ Hangi görünüm oluşturmanın olduğunu anlamak için öncelikle "eşleme gör
 
 Kavramsal modelin, veritabanı şemasından çeşitli yollarla farklı olabileceğini aklınızda bulundurun. Örneğin, bir tek tablo, verileri iki farklı varlık türü için depolamak üzere kullanılabilir. Devralma ve önemsiz olmayan eşlemeler, eşleme görünümlerinin karmaşıklığından bir rol oynar.
 
-Bu görünümleri eşlemenin belirtimine göre hesaplama işlemi, görünüm oluşturmayı çağırdığımız şeydir. Görünüm üretimi, bir model yüklendiğinde veya derleme zamanında "önceden oluşturulmuş görünümler" kullanılarak dinamik olarak yapılabilir; İkincisi, Entity SQL deyimleri biçiminde bir C @ no__t-0 veya VB dosyasına serileştirilir.
+Bu görünümleri eşlemenin belirtimine göre hesaplama işlemi, görünüm oluşturmayı çağırdığımız şeydir. Görünüm üretimi, bir model yüklendiğinde veya derleme zamanında "önceden oluşturulmuş görünümler" kullanılarak dinamik olarak yapılabilir; İkincisi, Entity SQL deyimleri biçiminde bir C\# veya VB dosyasına serileştirilir.
 
 Görünümler oluşturulduğunda, bunlar da doğrulanmaz. Performans açısından, görünüm oluşturma maliyetinin büyük bir bölümü aslında, varlıklar arasındaki bağlantıların anlamlı hale gelmesini ve desteklenen tüm işlemler için doğru kardinalite olmasını sağlayan görünümlerin doğrulanmasından oluşur.
 
@@ -96,7 +96,7 @@ Model sınıf dosyasına sağ tıklayıp "görünüm üret" i seçmek için Enti
 
 #### <a name="232-how-to-use-pre-generated-views-with-a-model-created-by-edmgen"></a>2.3.2, EDMGen tarafından oluşturulan bir modelle önceden oluşturulmuş görünümleri nasıl kullanacağınızı
 
-EDMGen, .NET ile birlikte gelen ve Entity Framework 4 ve 5 ile çalışan, ancak Entity Framework 6 ile birlikte çalışan bir yardımcı programdır. EDMGen, komut satırından bir model dosyası, nesne katmanı ve görünümler oluşturmanıza olanak sağlar. Çıktılardan biri, tercih ettiğiniz dilde bir görünüm dosyası, VB veya C @ no__t-0 olacaktır. Bu, her varlık kümesi için Entity SQL parçacıkları içeren bir kod dosyasıdır. Önceden oluşturulmuş görünümleri etkinleştirmek için, dosyayı projenize eklemeniz yeterlidir.
+EDMGen, .NET ile birlikte gelen ve Entity Framework 4 ve 5 ile çalışan, ancak Entity Framework 6 ile birlikte çalışan bir yardımcı programdır. EDMGen, komut satırından bir model dosyası, nesne katmanı ve görünümler oluşturmanıza olanak sağlar. Çıktılardan biri, seçim, VB veya C\#dilinizdeki bir görünümler dosyası olacaktır. Bu, her varlık kümesi için Entity SQL parçacıkları içeren bir kod dosyasıdır. Önceden oluşturulmuş görünümleri etkinleştirmek için, dosyayı projenize eklemeniz yeterlidir.
 
 Model için şema dosyalarında el ile düzenleme yaparsanız, görünümler dosyasını yeniden oluşturmanız gerekecektir. Bunu, **/Mode: ViewGeneration** bayrağıyla EDMGen çalıştırarak yapabilirsiniz.
 
@@ -106,8 +106,8 @@ Ayrıca, bir EDMX dosyasının görünümlerini oluşturmak için EDMGen ' yı k
 
 Görünümü oluşturmak için T4 şablonu kullanmayı açıklayan bir gönderi ADO.NET ekibi blogu vardır ( \<http://blogs.msdn.com/b/adonet/archive/2008/06/20/how-to-use-a-t4-template-for-view-generation.aspx>). Bu gönderi, indirilip projenize eklenebilen bir şablon içerir. Şablon, Entity Framework ilk sürümü için yazıldığı için, en son Entity Framework sürümleriyle çalışmayı garanti edilmez. Ancak, Visual Studio galerisinden Entity Framework 4 ve 5 için daha güncel bir görünüm oluşturma şablonları yükleyebilirsiniz:
 
--   VB.NET: \< @ NO__T-1
--   C @ NO__T-0: \< @ NO__T-2
+-   VB.NET: \<http://visualstudiogallery.msdn.microsoft.com/118b44f2-1b91-4de2-a584-7a680418941d>
+-   C\#: \<http://visualstudiogallery.msdn.microsoft.com/ae7730ce-ddab-470f-8456-1b313cd2c44d>
 
 Entity Framework 6 kullanıyorsanız, görünüm oluşturma T4 şablonlarını konumundaki Visual Studio Galerisi'nden alabileceğiniz \<http://visualstudiogallery.msdn.microsoft.com/18a7db90-6705-4d19-9dd1-0a6c23d0751f>.
 
@@ -145,7 +145,7 @@ Büyük bir Code First modeliniz varsa, bağımsız Ilişkilerin kullanılması 
 
 Modeliniz doğrudan uygulamanızın projesine dahil edildiğinde ve oluşturma öncesi bir olay veya T4 şablonu aracılığıyla görünümler oluşturursanız, model değiştirilmese bile, oluşturma ve doğrulama proje yeniden oluşturulduğunda gerçekleşir. Modeli ayrı bir derlemeye taşır ve uygulamanızın projesinden başvurmanız durumunda, modeli içeren projeyi yeniden derlemeye gerek kalmadan uygulamanızda başka değişiklikler yapabilirsiniz.
 
-*Note:*  modelinizi ayrı derlemelere taşırken, modelin bağlantı dizelerini istemci projesinin uygulama yapılandırma dosyasına kopyalamayı unutmayın.
+*Note:* modelinizi ayrı derlemelere taşırken  , modelin bağlantı dizelerini istemci projesinin uygulama yapılandırma dosyasına kopyalamayı unutmayın.
 
 #### <a name="243-disable-validation-of-an-edmx-based-model"></a>2.4.3 bir edmx tabanlı modelin doğrulanmasını devre dışı bırakma
 
@@ -191,7 +191,7 @@ Find metodunu kullanırken göz önünde bulundurmanız gerekenler şunlardır:
 1.  Nesne önbellekte değilse, bulma avantajları de daha basit olur, ancak sözdizimi anahtara göre sorgudan hala daha basittir.
 2.  Değişiklikleri otomatik algıla etkinleştirilirse, bulma yönteminin maliyeti tek bir büyüklük sırasıyla artabilir veya modelinizin karmaşıklığına ve nesne önbelleğinizin varlık miktarına bağlı olarak daha da fazla olabilir.
 
-Ayrıca, bul 'un yalnızca aradığınız varlığı döndürdüğünü ve zaten nesne önbelleğinde değilse ilişkili varlıklarını otomatik olarak yüklemediğini unutmayın. İlişkili varlıkları almanız gerekiyorsa, bir sorgu ile bir sorgu kullanarak bir sorgu kullanabilirsiniz. Daha fazla bilgi için bkz. **8,1 geç yükleme vs. @ No__t-0 yüklenirken Eager yükleniyor.
+Ayrıca, bul 'un yalnızca aradığınız varlığı döndürdüğünü ve zaten nesne önbelleğinde değilse ilişkili varlıklarını otomatik olarak yüklemediğini unutmayın. İlişkili varlıkları almanız gerekiyorsa, bir sorgu ile bir sorgu kullanarak bir sorgu kullanabilirsiniz. Daha fazla bilgi için bkz. **8,1 yavaş yükleme vs. Eager yüklemesi**.
 
 #### <a name="312-performance-issues-when-the-object-cache-has-many-entities"></a>Nesne önbelleğinde çok sayıda varlık olduğunda performans sorunları 3.1.2
 
@@ -244,11 +244,11 @@ Sorgu planı önbelleğinin uygulamanızın performansına etkisini göstermek i
 
 ##### <a name="3231-test-results"></a>3.2.3.1 Test Sonuçları
 
-| Test etme                                                                   | EF5 önbellek yok | EF5 önbelleğe alındı | EF6 önbellek yok | EF6 önbelleğe alındı |
+| {1&gt;Sınama&lt;1}                                                                   | EF5 önbellek yok | EF5 önbelleğe alındı | EF6 önbellek yok | EF6 önbelleğe alındı |
 |:-----------------------------------------------------------------------|:-------------|:-----------|:-------------|:-----------|
 | Tüm 18723 sorguları numaralandırılıyor                                          | 124          | 125,4      | 124,3        | 125,3      |
 | Süpürme (karmaşıklıktan bağımsız olarak yalnızca ilk 800 sorgu)  | 41,7         | 5.5        | 40.5         | 5,4        |
-| Yalnızca Aggregatingalt toplamları sorguları (178 toplam, süpürme önlenir) | 39,5         | 4,5        | 38,1         | 4.6        |
+| Yalnızca Aggregatingalt toplamları sorguları (178 toplam, süpürme önlenir) | 39,5         | 4.5        | 38,1         | 4.6        |
 
 *Saniyeler içinde her zaman.*
 
@@ -260,7 +260,7 @@ Bir CompiledQuery, planı önbelleğe alınmış bir LINQ sorgusu olduğundan, b
 
 ### <a name="33-using-compiledquery-to-improve-performance-with-linq-queries"></a>LINQ sorgularıyla performansı artırmak için CompiledQuery kullanma 3,3
 
-Sınamalarımız, CompiledQuery kullanmanın, oto derlenen LINQ sorgularının üzerinde% 7 ' nin avantajlarından yararlanabileceğinizi gösteriyor; Bu, Entity Framework yığınından kod yürüten% 7 daha az zaman harcamanız anlamına gelir; Uygulamanızın% 7 daha hızlı olacağını ifade etmez. Genel olarak, f 5,0 ' de CompiledQuery nesnelerini yazma ve korumanın maliyeti avantajlarla karşılaştırıldığında sorun için değer olmayabilir. Gelinmeniz farklılık gösterebilir, bu nedenle projeniz fazladan gönderim gerektiriyorsa bu seçeneği kullanabilirsiniz. CompiledQueries 'in yalnızca ObjectContext ile türetilmiş modellerle uyumlu olduğunu ve DbContext ile türetilmiş modellerle uyumlu olduğunu unutmayın.
+Sınamalarımız, CompiledQuery kullanmanın, oto derlenen LINQ sorgularının üzerinde %7 ' nin avantajlarından yararlanabileceğinizi gösteriyor; Bu, Entity Framework yığınından kod yürüten %7 daha az zaman harcamanız anlamına gelir; Uygulamanızın %7 daha hızlı olacağını ifade etmez. Genel olarak, f 5,0 ' de CompiledQuery nesnelerini yazma ve korumanın maliyeti avantajlarla karşılaştırıldığında sorun için değer olmayabilir. Gelinmeniz farklılık gösterebilir, bu nedenle projeniz fazladan gönderim gerektiriyorsa bu seçeneği kullanabilirsiniz. CompiledQueries 'in yalnızca ObjectContext ile türetilmiş modellerle uyumlu olduğunu ve DbContext ile türetilmiş modellerle uyumlu olduğunu unutmayın.
 
 Bir CompiledQuery oluşturma ve çağırma hakkında daha fazla bilgi için bkz. [derlenmiş sorgular (LINQ to Entities)](https://msdn.microsoft.com/library/bb896297.aspx).
 
@@ -426,14 +426,14 @@ Entity Framework, bir sorgunun yeniden derlenmesi gereken zaman algılar ve sorg
 
 Diğer koşullar, sorgunuzun önbelleği kullanmasını engelleyebilir. Yaygın örnekler şunlardır:
 
--   IEnumerable @ no__t-0T @ no__t-1 kullanılıyor. @ No__t-2 @ no__t-3 (T değeri) içerir.
+-   IEnumerable&lt;T&gt;kullanılıyor.&lt;&gt;(T değeri) içerir.
 -   Sabitler ile sorgu üreten işlevleri kullanma.
 -   Eşlenmeyen bir nesnenin özelliklerini kullanma.
 -   Sorgunuzu yeniden derlenmesi gereken başka bir sorguya bağlama.
 
-### <a name="41-using-ienumerablelttgtcontainslttgtt-value"></a>4,1 IEnumerable @ no__t-0T @ no__t-1 kullanılıyor. Contains @ no__t-2T @ no__t-3 (T değeri)
+### <a name="41-using-ienumerablelttgtcontainslttgtt-value"></a>IEnumerable&lt;T&gt;kullanılarak 4,1.&lt;T&gt;içerir (T değeri)
 
-Entity Framework IEnumerable @ no__t-0T @ no__t-1 ' i çağıran sorguları önbelleğe almaz. Koleksiyonun değerleri geçici olarak kabul edildiği için, bir bellek içi koleksiyonda @ no__t-2T @ no__t-3 (T değeri) içerir. Aşağıdaki örnek sorgu önbelleğe alınmayacak, bu nedenle plan derleyicisi tarafından her zaman işlenir:
+Entity Framework IEnumerable&lt;T&gt;çağıran sorguları önbelleğe almaz. Koleksiyonun değerleri geçici olarak değerlendirildiğinden, bellek içi bir koleksiyonda&lt;T&gt;(T değeri) bulunur. Aşağıdaki örnek sorgu önbelleğe alınmayacak, bu nedenle plan derleyicisi tarafından her zaman işlenir:
 
 ``` csharp
 int[] ids = new int[10000];
@@ -450,7 +450,7 @@ using (var context = new MyContext())
 
 Içerdiği IEnumerable 'ın, sorgunuzun ne kadar hızlı veya nasıl derlendiğini belirleyen bir boyut olduğunu unutmayın. Yukarıdaki örnekte gösterildiği gibi büyük koleksiyonlar kullanılırken performans önemli ölçüde düşebilir.
 
-Entity Framework 6, IEnumerable @ no__t-0T @ no__t-1 şeklinde iyileştirmeler içerir. Sorgular yürütüldüğünde @ no__t-2T @ no__t-3 (T value) değerini içerir. Oluşturulan SQL kodu daha hızlıdır ve daha fazla okunabilir ve çoğu durumda sunucuda daha hızlı yürütülür.
+Entity Framework 6, IEnumerable&lt;T&gt;yönteme iyileştirmeler içerir. Sorgular yürütüldüğünde&lt;T&gt;(T değeri) içerir. Oluşturulan SQL kodu daha hızlıdır ve daha fazla okunabilir ve çoğu durumda sunucuda daha hızlı yürütülür.
 
 ### <a name="42-using-functions-that-produce-queries-with-constants"></a>sabitler ile sorgu üreten işlevleri kullanarak 4,2
 
@@ -618,16 +618,16 @@ Bu testte, Izlemeyi Navision modeli için NoTracking sorgularıyla karşılaşt�
 
 Test Sonuçları, 3 üzerinde ortanca çalışma:
 
-|                        | IZLEME YOK – ÇALIŞMA KÜMESI | IZLEME YOK – ZAMAN | YALNIZCA APPEND – ÇALIŞMA KÜMESI | YALNIZCA APPEND – SAAT |
+|                        | IZLEME YOK – ÇALıŞMA KÜMESI | IZLEME YOK – ZAMAN | YALNıZCA APPEND – ÇALıŞMA KÜMESI | YALNıZCA APPEND – SAAT |
 |:-----------------------|:--------------------------|:-------------------|:--------------------------|:-------------------|
 | **Entity Framework 5** | 460361728                 | 1163536 MS         | 596545536                 | 1273042 MS         |
 | **Entity Framework 6** | 647127040                 | 190228 MS          | 832798720                 | 195521 MS          |
 
 Entity Framework 5 ' ün sonunda Entity Framework 6 ' dan daha küçük bir bellek parmak izi olacaktır. Entity Framework 6 tarafından tüketilen ek bellek, yeni özellikleri ve daha iyi performans sağlayan ek bellek yapılarının ve kodların sonucudur.
 
-Ayrıca, ObjectStateManager kullanılırken bellek parmak izde net bir farklılık vardır. Entity Framework 5, veritabanından gerçekleştirilmiş olan tüm varlıkların izini tutarken,% 30 ' a kadar olan ayak izini artırmıştır. Entity Framework 6 ' nın parmak izi% 28 ' i arttı.
+Ayrıca, ObjectStateManager kullanılırken bellek parmak izde net bir farklılık vardır. Entity Framework 5, veritabanından gerçekleştirilmiş olan tüm varlıkların izini tutarken, %30 ' a kadar olan ayak izini artırmıştır. Entity Framework 6 ' nın parmak izi %28 ' i arttı.
 
-Zaman içinde, Entity Framework 6 out, bu testte büyük bir kenar boşluğu ile Entity Framework 5 gerçekleştirir. Entity Framework 6, testi yaklaşık% 16 ' da Entity Framework 5 tarafından tüketilen zamanın% 16 ' da tamamladı. Ayrıca, Entity Framework 5, ObjectStateManager kullanılırken tamamlanacak% 9 daha fazla zaman alır. Buna karşılık, Entity Framework 6, ObjectStateManager kullanırken 3 ' ü daha fazla kez kullanıyor.
+Zaman içinde, Entity Framework 6 out, bu testte büyük bir kenar boşluğu ile Entity Framework 5 gerçekleştirir. Entity Framework 6, testi yaklaşık %16 ' da Entity Framework 5 tarafından tüketilen zamanın %16 ' da tamamladı. Ayrıca, Entity Framework 5, ObjectStateManager kullanılırken tamamlanacak %9 daha fazla zaman alır. Buna karşılık, Entity Framework 6, ObjectStateManager kullanırken 3 ' ü daha fazla kez kullanıyor.
 
 ## <a name="6-query-execution-options"></a>6 sorgu yürütme seçenekleri
 
@@ -789,7 +789,7 @@ var q = context.InvokeProductsForCategoryCQ("Beverages");
 
 **Ları**
 
--   Normal LINQ sorguları üzerinde en fazla% 7 performans geliştirmesini sağlar.
+-   Normal LINQ sorguları üzerinde en fazla %7 performans geliştirmesini sağlar.
 -   Tam gerçekleştirilmiş nesneler.
 -   CUD işlemlerine uygun.
 
@@ -803,7 +803,7 @@ var q = context.InvokeProductsForCategoryCQ("Beverages");
 
 Bağlam oluşturma işlemi zaman aşımına uğramayan basit mikro kıyaslamalar. Denetlenen bir ortamda, önbelleğe alınmamış varlıkların bir kümesi için 5000 kez sorgu ölçüleceğini ölçüyoruz. Bu numaralar bir uyarı ile birlikte alınırlar: bir uygulama tarafından üretilen gerçek sayıları yansıtmaz, ancak bunun yerine farklı sorgulama seçenekleri karşılaştırıldığında performans farkının ne kadarının olacağını çok doğru bir ölçüdür Yeni bağlam oluşturma maliyeti hariç, elmalar ve elmalar.
 
-| AŞV  | Test etme                                 | Zaman (MS) | Bellek   |
+| AŞV  | {1&gt;Sınama&lt;1}                                 | Zaman (MS) | Bellek   |
 |:----|:-------------------------------------|:----------|:---------|
 | EF5 | ObjectContext ESQL                   | 2414      | 38801408 |
 | EF5 | ObjectContext LINQ sorgusu             | 2692      | 38277120 |
@@ -825,7 +825,7 @@ Mikro kıyaslamalar, koddaki küçük değişikliklere çok duyarlıdır. Bu dur
 
 Farklı sorgu seçeneklerinin gerçek dünya performansını karşılaştırmak için, kategori adı "Içecek" olan tüm ürünleri seçmek üzere farklı bir sorgu seçeneği kullandığımız 5 ayrı test varyasyonunu oluşturduk. Her yineleme, bağlam oluşturma maliyetinin yanı sıra döndürülen tüm varlıkların nasıl bir ücret almakta olduğunu içerir. 10 yineleme, 1000 süreli yinelemelerin toplamı alınmadan önce zaman aşımına uğramadan çalıştırılır. Gösterilen sonuçlar, her testin 5 çalıştırmasından alınan ortanca çalışmadır. Daha fazla bilgi için bkz. Ek B, test kodunu içerir.
 
-| AŞV  | Test etme                                        | Zaman (MS) | Bellek   |
+| AŞV  | {1&gt;Sınama&lt;1}                                        | Zaman (MS) | Bellek   |
 |:----|:--------------------------------------------|:----------|:---------|
 | EF5 | ObjectContext varlık komutu                | 621       | 39350272 |
 | EF5 | Veritabanı üzerinde DbContext SQL sorgusu             | 825       | 37519360 |
@@ -857,7 +857,7 @@ Farklı sorgu seçeneklerinin gerçek dünya performansını karşılaştırmak 
 > [!NOTE]
 > Bu, bir EntityCommand üzerinde Entity SQL bir sorgu yürütüyoruz bir varyasyon ekledik. Ancak, bu tür sorgular için sonuçlar gerçekleştirilmediğinden, karşılaştırma, her zaman, her ne kadar elmalar olması gerekmez. Test, karşılaştırma fairer yapmayı denemek için bir kapanış tahmini içerir.
 
-Bu uçtan uca bu durumda Entity Framework 6 out, çok daha hafif bir DbContext başlatması ve daha hızlı MetadataCollection @ no__t-0T @ no__t-1 aramaları dahil olmak üzere yığının çeşitli bölümlerinde yapılan performans geliştirmelerinden dolayı 5 Entity Framework.
+Bu uçtan uca bu durumda Entity Framework 6 out, çok daha hafif bir DbContext başlatması ve daha hızlı MetadataCollection&lt;T&gt; aramaları dahil olmak üzere yığının çeşitli bölümlerinde yapılan performans geliştirmelerinden dolayı 5 ' i Entity Framework.
 
 ## <a name="7-design-time-performance-considerations"></a>7 tasarım zamanı performans konuları
 
@@ -889,8 +889,8 @@ Model, 1005 varlık kümesi ve 4227 ilişkilendirme kümesi içerir.
 
 | Yapılandırma                              | Tüketilen sürenin dökümü                                                                                                                                               |
 |:-------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Visual Studio 2010, Entity Framework 4     | SSDL oluşturma: 2 saat 27 dk <br/> Eşleme oluşturma: 1 saniye <br/> CSDL oluşturma: 1 saniye <br/> ObjectLayer oluşturma: 1 saniye <br/> Üretimi görüntüle: 2 h 14 dk |
-| Visual Studio 2010 SP1, Entity Framework 4 | SSDL oluşturma: 1 saniye <br/> Eşleme oluşturma: 1 saniye <br/> CSDL oluşturma: 1 saniye <br/> ObjectLayer oluşturma: 1 saniye <br/> Üretimi görüntüle: 1 hr 53 dk   |
+| Visual Studio 2010, Entity Framework 4     | SSDL oluşturma: 2 sa 27 dk <br/> Eşleme oluşturma: 1 saniye <br/> CSDL oluşturma: 1 saniye <br/> ObjectLayer oluşturma: 1 saniye <br/> Üretimi görüntüle: 2 h 14 dk |
+| Visual Studio 2010 SP1, Entity Framework 4 | SSDL oluşturma: 1 saniye <br/> Eşleme oluşturma: 1 saniye <br/> CSDL oluşturma: 1 saniye <br/> ObjectLayer oluşturma: 1 saniye <br/> Üretimi görüntüle: 1 sa 53 dk   |
 | Visual Studio 2013, Entity Framework 5     | SSDL oluşturma: 1 saniye <br/> Eşleme oluşturma: 1 saniye <br/> CSDL oluşturma: 1 saniye <br/> ObjectLayer oluşturma: 1 saniye <br/> Üretimi görüntüle: 65 dakika    |
 | Visual Studio 2013, Entity Framework 6     | SSDL oluşturma: 1 saniye <br/> Eşleme oluşturma: 1 saniye <br/> CSDL oluşturma: 1 saniye <br/> ObjectLayer oluşturma: 1 saniye <br/> Üretimi görüntüle: 28 saniye.   |
 
@@ -925,7 +925,7 @@ Bir POCO varlığının değişiklik izleme proxy 'si olmadığında, varlıklar
 
 ## <a name="8-loading-related-entities"></a>8 Ilgili varlıkları yükleme
 
-### <a name="81-lazy-loading-vs-eager-loading"></a>8,1 yavaş yükleme ile Ekip yükleme
+### <a name="81-lazy-loading-vs-eager-loading"></a>8,1 yavaş yükleme vs. Eager yükleniyor
 
 Entity Framework, hedef varlığınıza ilişkin varlıkları yüklemek için birkaç farklı yol sunar. Örneğin, ürünler için sorgulama yaptığınızda ilgili siparişlerin nesne durumu yöneticisine yüklenebilmenin farklı yolları vardır. Bir performans açısından, ilgili varlıkların yüklenmesi sırasında göz önünde bulundurmanız gereken en büyük soru, geç yükleme veya Eager yükleme kullanılıp kullanılmayacağını belirtir.
 
@@ -1158,7 +1158,7 @@ Bazı kullanıcılar, Atık toplayıcısının düzgün yapılandırılmadığı
 </configuration>
 ```
 
-Bu, iş parçacığı çekişmesini azaltmalı ve CPU doygun senaryolarda% 30 ' a varan aktarım hızını artırmalıdır. Genel koşullarda, her zaman uygulamanızın klasik çöp toplamayı (UI ve istemci tarafı senaryoları için daha iyi ayarlanmış) ve sunucu çöp toplama işlemini kullanarak nasıl davranacağını test etmelisiniz.
+Bu, iş parçacığı çekişmesini azaltmalı ve CPU doygun senaryolarda %30 ' a varan aktarım hızını artırmalıdır. Genel koşullarda, her zaman uygulamanızın klasik çöp toplamayı (UI ve istemci tarafı senaryoları için daha iyi ayarlanmış) ve sunucu çöp toplama işlemini kullanarak nasıl davranacağını test etmelisiniz.
 
 ### <a name="92-autodetectchanges"></a>9,2 Oto DetectChanges
 
@@ -1187,7 +1187,7 @@ Entity Framework bağlamlarının en iyi performans deneyimini sağlamak için k
 
 ### <a name="94-database-null-semantics"></a>9,4 veritabanı null semantiği
 
-Varsayılan olarak Entity Framework, C @ no__t-0 null karşılaştırma semantiğinin bulunduğu SQL kodu oluşturur. Aşağıdaki örnek sorguyu göz önünde bulundurun:
+Varsayılan olarak Entity Framework, C\# null karşılaştırma semantiğinin bulunduğu SQL kodu oluşturur. Aşağıdaki örnek sorguyu göz önünde bulundurun:
 
 ``` csharp
             int? categoryId = 7;
@@ -1210,9 +1210,9 @@ Varsayılan olarak Entity Framework, C @ no__t-0 null karşılaştırma semanti�
             var r = q.ToList();
 ```
 
-Bu örnekte, bir dizi null yapılabilir değişkeni, varlığındaki null yapılabilir özelliklerle (SupplierID ve BirimFiyat gibi) karşılaştırıyoruz. Bu sorgu için oluşturulan SQL, parametre değerinin sütun değeriyle aynı olup olmadığını veya hem parametre hem de sütun değerlerinin null olduğunu sorar. Bu, veritabanı sunucusunun null değerleri işleme şeklini gizler ve farklı veritabanı satıcıları arasında tutarlı bir C @ no__t-0 boş deneyim sağlar. Diğer taraftan, oluşturulan kod bir bit evdir ve sorgunun where deyimindeki karşılaştırma miktarı büyük bir sayıya büyüdükçe iyi şekilde gerçekleştirilemeyebilir.
+Bu örnekte, bir dizi null yapılabilir değişkeni, varlığındaki null yapılabilir özelliklerle (SupplierID ve BirimFiyat gibi) karşılaştırıyoruz. Bu sorgu için oluşturulan SQL, parametre değerinin sütun değeriyle aynı olup olmadığını veya hem parametre hem de sütun değerlerinin null olduğunu sorar. Bu, veritabanı sunucusunun null değerleri işleme biçimini gizler ve farklı veritabanı satıcıları arasında tutarlı bir C\# null deneyimi sağlar. Diğer taraftan, oluşturulan kod bir bit evdir ve sorgunun where deyimindeki karşılaştırma miktarı büyük bir sayıya büyüdükçe iyi şekilde gerçekleştirilemeyebilir.
 
-Bu durumla başa çıkmak için bir yol veritabanı null semantiğini kullanmaktır. Bu, veritabanı altyapısının null değerleri işleme biçimini sunan daha basit bir SQL üretecağından, bu durum büyük olasılıkla C @ no__t-0 null semanEntity Framework tiğinin farklı davranabileceğini unutmayın. Veritabanı null semantiği bağlam yapılandırmasına karşı tek bir yapılandırma satırıyla bağlam başına etkinleştirilebilir:
+Bu durumla başa çıkmak için bir yol veritabanı null semantiğini kullanmaktır. Entity Framework bundan sonra veritabanı altyapısının null değerleri işleme biçimini sunan daha basit bir SQL üretecağından, bu durum büyük olasılıkla C\# null semantiğinin farklı davranmasına neden olabileceğini unutmayın. Veritabanı null semantiği bağlam yapılandırmasına karşı tek bir yapılandırma satırıyla bağlam başına etkinleştirilebilir:
 
 ``` csharp
                 context.Configuration.UseDatabaseNullSemantics = true;
@@ -1220,13 +1220,14 @@ Bu durumla başa çıkmak için bir yol veritabanı null semantiğini kullanmakt
 
 Küçük ve orta ölçekli sorgularda, veritabanı null semantiği kullanılırken bir algılanabilir performans geliştirmesi gösterilmez, ancak fark çok sayıda olası null karşılaştırmaları olan sorgularda daha belirgin olur.
 
-Yukarıdaki örnek sorguda performans farkı, denetlenen bir ortamda çalışan bir mikro kıyaslama için% 2 ' den az idi.
+Yukarıdaki örnek sorguda performans farkı, denetlenen bir ortamda çalışan bir mikro kıyaslama için %2 ' den az idi.
 
 ### <a name="95-async"></a>9,5 zaman uyumsuz
 
 Entity Framework 6, .NET 4,5 veya üzeri sürümlerde çalışırken zaman uyumsuz işlemler desteği getirmiştir. Çoğu bölümde, GÇ ile ilgili çekişmeye sahip uygulamalar, zaman uyumsuz sorgu ve kaydetme işlemlerini kullanmanın en iyi avantajını kullanacaktır. Uygulamanız GÇ çekişme ile karşılaşmamışsa, zaman uyumsuz kullanılması en iyi şekilde çalışır ve sonucu zaman uyumlu bir çağrı ile aynı süre içinde döndürür ya da en kötü durumda yürütmeyi zaman uyumsuz bir göreve erteleyin ve ek Tim ekleyin Senaryonuzun tamamlanmasını sağlar.
 
-Zaman uyumsuz bir uygulamanızın performansını artıracak karar yardımcı olacak ne zaman uyumsuz programlama iş ziyaret bilgi [http://msdn.microsoft.com/library/hh191443.aspx](https://msdn.microsoft.com/library/hh191443.aspx). Entity Framework zaman uyumsuz işlemlerin kullanımı hakkında daha fazla bilgi için bkz. [Async Query ve Save @ no__t-1.
+Zaman uyumsuz bir uygulamanızın performansını artıracak karar yardımcı olacak ne zaman uyumsuz programlama iş ziyaret bilgi [http://msdn.microsoft.com/library/hh191443.aspx](https://msdn.microsoft.com/library/hh191443.aspx). Entity Framework zaman uyumsuz işlemlerin kullanımı hakkında daha fazla bilgi için bkz. [Async Query ve Save](~/ef6/fundamentals/async.md
+).
 
 ### <a name="96-ngen"></a>9,6 NGEN
 
@@ -1254,7 +1255,7 @@ Entity Framework performans sorunları yaşıyorsanız, uygulamanızın zamanın
 
 Visual Studio 'da yerleşik olarak bulunan profil oluşturucu gibi araçlar, uygulamanızın ne zaman harcamış olduğunu söyler.  Çalışan uygulamanızın dinamik analizini, gereksinimlerinize bağlı olarak üretim veya ön üretim aşamasında gerçekleştiren ve veritabanı erişiminin genel sınırları ve çapraz düzenlerini belirten başka bir profil oluşturucu türü vardır.
 
-Entity Framework profil Oluşturucu (\< @ no__t-1 ve ORMProfiler (\< @ no__t-3), ticari olarak kullanılabilir iki profil oluşturucular.
+Entity Framework profil Oluşturucu (\<http://efprof.com>) ve ORMProfiler (\<http://ormprofiler.com>), ticari olarak kullanılabilir iki profil oluşturucular.
 
 Uygulamanız Code First kullanan bir MVC uygulaması ise, StackExchange 'in mini Profiler 'ı kullanabilirsiniz. Scott Hanselman blog bu araç açıklar: \<http://www.hanselman.com/blog/NuGetPackageOfTheWeek9ASPNETMiniProfilerFromStackExchangeRocksYourWorld.aspx>.
 
@@ -1273,7 +1274,7 @@ Entity Framework 6 kullanıyorsanız, yerleşik günlüğe kaydetme işlevini de
     }
 ```
 
-Bu örnekte, veritabanı etkinliği konsola kaydedilir, ancak Log özelliği herhangi bir @ no__t-0string @ no__t-1 temsilcisini çağırmak üzere yapılandırılabilir.
+Bu örnekte, veritabanı etkinliği konsolunda günlüğe kaydedilir, ancak Log özelliği herhangi bir Işlem&lt;dize&gt; yetkisini çağırmak üzere yapılandırılabilir.
 
 Veritabanı günlüğünü yeniden derlemeden etkinleştirmek istiyorsanız ve Entity Framework 6,1 veya sonraki bir sürümü kullanıyorsanız, uygulamanızın Web. config veya App. config dosyasına bir şifre ekleyerek bunu yapabilirsiniz.
 
@@ -1304,12 +1305,12 @@ Bu ortam, istemci uygulamasından ayrı bir makine üzerinde veritabanıyla birl
     -   Visual Studio 2010 – Ultimate.
     -   Visual Studio 2010 SP1 (yalnızca bazı karşılaştırmalar için).
 -   Entity Framework 5 ve 6 yazılım ortamı
-    -   İşletim sistemi adı: Windows 8.1 Enterprise
+    -   İşletim sistemi adı: Kurumsal Windows 8.1
     -   Visual Studio 2013 – Ultimate.
 
 ##### <a name="11112-hardware-environment"></a>11.1.1.2 donanım ortamı
 
--   Çift Işlemci:     Intel (R) Xeon (R) CPU L5520 W3530 @ 2.27 GHz, 2261 Mhz8 GHz, 4 çekirdek, 84 mantıksal Işlemci.
+-   Çift Işlemci: Intel (R) Xeon (R) CPU L5520 W3530 @ 2.27 GHz, 2261 Mhz8 GHz, 4 çekirdek, 84 mantıksal Işlemci.
 -   2412 GB RamRAM.
 -   136 GB SCSI250GB SATA 7200 RPM 3GB/s sürücü 4 bölüme bölünür.
 
@@ -1507,7 +1508,7 @@ Navision modeliyle kullanılan sorgular listesi, Entity SQL sorgularının 3 kat
 
 Toplamaları olmayan basit bir arama sorgusu
 
--   Biriktirme 16232
+-   Sayı: 16232
 -   Örnek:
 
 ``` xml
@@ -1520,7 +1521,7 @@ Toplamaları olmayan basit bir arama sorgusu
 
 Birden çok toplama içeren normal bir bı sorgusu, ancak alt toplamlar (tek sorgu)
 
--   Biriktirme 2313
+-   Sayı: 2313
 -   Örnek:
 
 ``` xml
@@ -1529,7 +1530,7 @@ Birden çok toplama içeren normal bir bı sorgusu, ancak alt toplamlar (tek sor
   </Query>
 ```
 
-Burada MDF @ no__t-0SessionLogin @ no__t-1Time @ no__t-2Max () modelde şu şekilde tanımlanır:
+Burada MDF\_SessionLogin\_zaman\_Max () modelinde tanımlanmıştır:
 
 ``` xml
   <Function Name="MDF_SessionLogin_Time_Max" ReturnType="Collection(DateTime)">
@@ -1541,7 +1542,7 @@ Burada MDF @ no__t-0SessionLogin @ no__t-1Time @ no__t-2Max () modelde şu şeki
 
 Toplamaları ve alt toplamları olan bir bı sorgusu (UNION ALL aracılığıyla)
 
--   Biriktirme 178
+-   Sayı: 178
 -   Örnek:
 
 ``` xml

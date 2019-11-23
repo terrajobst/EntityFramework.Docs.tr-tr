@@ -27,9 +27,9 @@ Uzamsal veri türlerini kullanmak için, uzamsal destek içeren bir Entity Frame
 ## <a name="watch-the-video"></a>Videoyu izleyin
 Bu videoda, Entity Framework Designer uzamsal türlerin nasıl eşleneceğini gösterir. Ayrıca, iki konum arasındaki mesafeyi bulmak için bir LINQ sorgusunun nasıl kullanılacağını gösterir.
 
-**Sunulma ölçütü**: Julia Kornich
+**Sunduğu**: Julia Kornich
 
-**Video**: [WMV](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-winvideo-spatialwithdesigner.wmv) | [MP4](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-mp4video-spatialwithdesigner.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-winvideo-spatialwithdesigner.zip)
+**Video**: [wmv](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-winvideo-spatialwithdesigner.wmv) | [MP4](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-mp4video-spatialwithdesigner.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-winvideo-spatialwithdesigner.zip)
 
 ## <a name="pre-requisites"></a>Önkoşulların önkoşulları
 
@@ -37,9 +37,9 @@ Bu yönergeyi tamamlamak için Visual Studio 2012, Ultimate, Premium, Profession
 
 ## <a name="set-up-the-project"></a>Projeyi ayarlama
 
-1.  Visual Studio 2012 'yi açın
+1.  Visual Studio 2012'yi açın
 2.  **Dosya** menüsünde, **Yeni**' nin üzerine gelin ve ardından **Proje** ' ye tıklayın.
-3.  Sol bölmede, **Visual C @ no__t-1**' e tıklayın ve ardından **konsol** şablonunu seçin
+3.  Sol bölmede, **Visual C\#** ' ye tıklayın ve ardından **konsol** şablonunu seçin
 4.  Projenin adı olarak **Spatialefdesigner** girin ve **Tamam 'a** tıklayın
 
 ## <a name="create-a-new-model-using-the-ef-designer"></a>EF tasarımcısını kullanarak yeni model oluşturma
@@ -60,10 +60,10 @@ Sihirbaz aşağıdaki eylemleri gerçekleştirir:
 
 ## <a name="add-a-new-entity-type"></a>Yeni varlık türü Ekle
 
-1.  Tasarım yüzeyinde boş bir alana sağ tıklayın, **Add-&gt; varlığı**' i seçin, yeni varlık iletişim kutusu görüntülenir
+1.  Tasarım yüzeyinde boş bir alana sağ tıklayın, **Ekle-&gt; varlık**' ı seçin, yeni varlık iletişim kutusu görüntülenir
 2.  Tür adı olarak **University** belirtin ve anahtar özellik adı Için **üniverkimliği** belirtin, türü **Int32** olarak bırakın
 3.  **Tamam**’a tıklayın.
-4.  Varlığa sağ tıklayın ve **New-&gt; skaler Özellik Ekle** ' yi seçin
+4.  Varlığa sağ tıklayın ve **New-&gt; skaler özelliği Ekle** ' yi seçin
 5.  Yeni özelliği **ad** olarak yeniden adlandır
 6.  Başka bir skaler özellik ekleyin ve **konuma** yeniden adlandırın Özellikler penceresi açın ve yeni özelliğin türünü **Coğrafya** olarak değiştirin
 7.  Modeli kaydetme ve projeyi derleme
@@ -75,11 +75,11 @@ Sihirbaz aşağıdaki eylemleri gerçekleştirir:
 Artık modeli temel alan bir veritabanı oluşturabilirsiniz.
 
 1.  Entity Desisgner yüzeyinde boş bir alana sağ tıklayın ve **modelden veritabanı oluştur** ' u seçin.
-2.  Veritabanı Oluştur sihirbazının veri bağlantısını seçin Iletişim kutusu görüntülenir **Yeni bağlantı** düğmesine tıklayın **(localdb) \\mssqllocaldb** , veritabanı Için sunucu adı ve **Üniversitesi** ve **Tamam 'a tıklayın.**
+2.  Veritabanı Oluştur sihirbazının veri bağlantısını seçin Iletişim kutusu görüntülenir **Yeni bağlantı** düğmesine tıklayın (LocalDB) veritabanı için sunucu adı ve **üniversite** için **Mssqllocaldb\\** ve **Tamam** ' a tıklayın.
 3.  Yeni bir veritabanı oluşturmak isteyip istemediğinizi soran bir iletişim kutusu açılır ve **Evet**' e tıklayın.
-4.  **İleri** ' ye tıklayın ve veritabanı oluşturma Sihirbazı bir veritabanı oluşturmak için veri tanımlama DILI (ddl) oluşturur oluşturulan DDL, Özet ve ayarlar iletişim kutusu IÇINDE, DDL 'nin bu bir tablo için bir tanım içermediğini sabit listesi türü
+4.  **İleri** ' ye tıklayın ve veritabanı oluşturma Sihirbazı bir veritabanı oluşturmak için veri tanımlama DILI (ddl) oluşturur oluşturulan DDL, Özet ve ayarlar iletişim kutusu ' nda, DDL 'nin numaralandırma türüyle eşleşen bir tablo tanımı içermediğini belirten bir açıklama içermez.
 5.  Son **' a** tıklayarak DDL betiğini yürütmez.
-6.  Veritabanı oluşturma Sihirbazı şunları yapar: **Üniverbir. edmx** dosyasını açar. T-SQL DÜZENLEYICISINDE, edmx dosyasının mağaza şeması ve eşleme bölümleri, bağlantı dizesi bilgilerini App. config dosyasına ekler
+6.  Veritabanı oluşturma Sihirbazı şunları yapar: **Üniversıtymodel. edmx** dosyasını açar. T-SQL DÜZENLEYICISI, edmx dosyasının depo şemasını ve eşleme bölümlerini, bağlantı dizesi bilgilerini App. config dosyasına ekler
 7.  T-SQL Düzenleyicisi ' nde sağ fare düğmesine tıklayın ve sunucuya Bağlan iletişim kutusunu **Çalıştır** ' ı seçin. Adım 2 ' den bağlantı bilgilerini girin ve **Bağlan** ' a tıklayın.
 8.  Oluşturulan şemayı görüntülemek için SQL Server Nesne Gezgini veritabanı adına sağ tıklayın ve **Yenile** ' yi seçin.
 

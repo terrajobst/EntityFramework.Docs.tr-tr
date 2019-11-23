@@ -47,9 +47,9 @@ Bir **ilişkilendirme** öğesi aşağıdaki alt öğelere sahip olabilir (liste
 
 Aşağıdaki tabloda **ilişkilendirme** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                        |
+| Öznitelik adı | Gereklidir | Değer                        |
 |:---------------|:------------|:-----------------------------|
-| **Name**       | Evet         | İlişkilendirmenin adı. |
+| **Ad**       | Evet         | İlişkilendirmenin adı. |
 
  
 
@@ -110,9 +110,9 @@ Kavramsal şema tanım dili (CSDL) içindeki **AssociationSet** öğesi, aynı t
 
 Aşağıdaki tabloda **AssociationSet** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı  | Gereklidir | Value                                                                                                                                                             |
+| Öznitelik adı  | Gereklidir | Değer                                                                                                                                                             |
 |:----------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**        | Evet         | Varlık kümesinin adı. **Name** özniteliğinin değeri **Association** özniteliğinin değeriyle aynı olamaz.                                 |
+| **Ad**        | Evet         | Varlık kümesinin adı. **Name** özniteliğinin değeri **Association** özniteliğinin değeriyle aynı olamaz.                                 |
 | **İlişkilendirme** | Evet         | İlişki kümesinin örnekleri içerdiği ilişkilendirmenin tam nitelikli adı. İlişki, ilişki kümesiyle aynı ad alanında olmalıdır. |
 
  
@@ -150,7 +150,7 @@ Aşağıdaki örnek, iki **AssociationSet** öğesiyle bir **EntityContainer** �
 Kavramsal şema tanım dili (CSDL) içindeki **CollectionType** öğesi, bir işlev parametresi veya işlev dönüş türünün bir koleksiyon olduğunu belirtir. **CollectionType** öğesi, Parameter öğesinin veya ReturnType (Function) öğesinin bir alt öğesi olabilir. Koleksiyon türü, **Type** özniteliği ya da aşağıdaki alt öğelerinden biri kullanılarak belirtilebilir:
 
 -   **Türünde**
--   ReferenceType
+-   referenceType
 -   RowType
 -   Değerini
 
@@ -163,17 +163,17 @@ Kavramsal şema tanım dili (CSDL) içindeki **CollectionType** öğesi, bir iş
 
 Aşağıdaki tabloda, **CollectionType** öğesine uygulanabilen öznitelikler açıklanmaktadır. **DefaultValue**, **MaxLength**, **FixedLength**, **Precision**, **Scale**, **UNICODE**ve **harmanlama** özniteliklerinin yalnızca **edmsimpletypes**koleksiyonları için geçerli olduğunu unutmayın.
 
-| Öznitelik adı                                                          | Gereklidir | Value                                                                                                                                                                                                                            |
+| Öznitelik adı                                                          | Gereklidir | Değer                                                                                                                                                                                                                            |
 |:------------------------------------------------------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Tür**                                                                | Hayır          | Koleksiyonun türü.                                                                                                                                                                                                      |
 | **Yapılamaz**                                                            | Hayır          | **True** (varsayılan değer) veya özelliğin NULL değere sahip olmasına bağlı olarak **false** . <br/> [!NOTE]                                                                                                                 |
-| CSDL V1 >, karmaşık bir tür özelliği `Nullable="False"` olmalıdır. |             |                                                                                                                                                                                                                                  |
+| CSDL V1 >, karmaşık bir tür özelliği `Nullable="False"`sahip olmalıdır. |             |                                                                                                                                                                                                                                  |
 | **Değerinin**                                                        | Hayır          | Özelliğin varsayılan değeri.                                                                                                                                                                                               |
 | **'In**                                                           | Hayır          | Özellik değerinin uzunluk üst sınırı.                                                                                                                                                                                        |
 | **FixedLength**                                                         | Hayır          | Özellik değerinin sabit uzunluklu bir dize olarak depolanıp saklanmayacağı seçeneğe bağlı olarak **doğru** veya **yanlış** .                                                                                                                           |
 | **Duyarlılık**                                                           | Hayır          | Özellik değerinin duyarlığı.                                                                                                                                                                                             |
 | **Ölçek**                                                               | Hayır          | Özellik değerinin ölçeği.                                                                                                                                                                                                 |
-| **SRID**                                                                | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin özellikleri için geçerlidir.   Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx) |
+| **SRıD**                                                                | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin özellikleri için geçerlidir.   Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx) |
 | **Unicode**                                                             | Hayır          | Özellik değerinin bir Unicode dize olarak saklanıp saklanmayacağı seçeneğe bağlı olarak **doğru** veya **yanlış** .                                                                                                                                |
 | **Mediğinden**                                                           | Hayır          | Veri kaynağında kullanılacak harmanlama sırasını belirten bir dize.                                                                                                                                                    |
 
@@ -260,7 +260,7 @@ Bir **complexType** öğesi aşağıdaki alt öğelere sahip olabilir (listelene
 
 Aşağıdaki tabloda, **complexType** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı                                                                                                 | Gereklidir | Value                                                                                                                                                                               |
+| Öznitelik adı                                                                                                 | Gereklidir | Değer                                                                                                                                                                               |
 |:---------------------------------------------------------------------------------------------------------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name                                                                                                           | Evet         | Karmaşık türün adı. Karmaşık bir türün adı, modelin kapsamı içinde olan başka bir karmaşık türün, varlık türünün veya ilişkilendirmenin adı ile aynı olamaz. |
 | BaseType                                                                                                       | Hayır          | Tanımlanmakta olan karmaşık türün temel türü olan başka bir karmaşık türün adı. <br/> [!NOTE]                                                                     |
@@ -350,7 +350,7 @@ Kavramsal şema tanım dili (CSDL) içindeki **bağımlı** öğe, ReferentialCo
 
 Aşağıdaki tabloda **bağımlı** öğeye uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                |
+| Öznitelik adı | Gereklidir | Değer                                                                |
 |:---------------|:------------|:---------------------------------------------------------------------|
 | **Rol**       | Evet         | İlişkinin bağımlı ucundaki varlık türünün adı. |
 
@@ -386,12 +386,12 @@ Aşağıdaki örnek, **PublishedBy** Association tanımının bir parçası olar
 
 ## <a name="documentation-element-csdl"></a>Documentation öğesi (CSDL)
 
-Kavramsal şema tanım dili (CSDL) içindeki **Belgeler** öğesi, bir üst öğede tanımlanan bir nesne hakkında bilgi sağlamak için kullanılabilir. Bir. edmx dosyasında, **Belgeler** öğesi EF Designer 'ın tasarım yüzeyinde (bir varlık, ilişkilendirme veya özellik gibi) bir nesne olarak görünen bir öğenin alt öğesi olduğunda, **belge** öğesinin içeriği şöyle görünür Nesne için Visual Studio **özellikleri** penceresi.
+Kavramsal şema tanım dili (CSDL) içindeki **Belgeler** öğesi, bir üst öğede tanımlanan bir nesne hakkında bilgi sağlamak için kullanılabilir. Bir. edmx dosyasında, **documentation** öğesi EF Designer 'ın tasarım yüzeyinde (bir varlık, ilişkilendirme veya özellik gibi) bir nesne olarak görünen bir öğenin alt öğesi olduğunda, **belge** öğesinin Içeriği nesnenin Visual Studio **özellikleri** penceresinde görünür.
 
 **Belge** öğesi aşağıdaki alt öğelere sahip olabilir (listelenen sırayla):
 
--   **Özet**: Üst öğenin kısa bir açıklaması. (sıfır veya bir öğe)
--   **LongDescription**: Üst öğenin kapsamlı bir açıklaması. (sıfır veya bir öğe)
+-   **Özet**: üst öğenin kısa bir açıklaması. (sıfır veya bir öğe)
+-   **LongDescription**: üst öğenin kapsamlı bir açıklaması. (sıfır veya bir öğe)
 -   Ek açıklama öğeleri. (sıfır veya daha fazla öğe)
 
 ### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
@@ -437,11 +437,11 @@ Bir **End** öğesi aşağıdaki alt öğelere sahip olabilir (listelenen sıray
 
 Aşağıdaki tabloda, bir **ilişkilendirme** öğesinin alt öğesi olduğunda, **End** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı   | Gereklidir | Value                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Öznitelik adı   | Gereklidir | Değer                                                                                                                                                                                                                                                                                                                                                                                                              |
 |:-----------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Tür**         | Evet         | İlişkinin bir sonundaki varlık türünün adı.                                                                                                                                                                                                                                                                                                                                                         |
 | **Rol**         | Hayır          | İlişki ucu için bir ad. Ad sağlanmazsa, ilişki uçtaki varlık türünün adı kullanılacaktır.                                                                                                                                                                                                                                                                                           |
-| **Ğunun** | Evet         | **1**, **0.. 1**veya ilişki sonunda olabilecek varlık türü örneklerinin sayısına bağlı olarak **\*** . <br/> **1** ilişki ucunda tam olarak bir varlık türü örneğinin bulunduğunu gösterir. <br/> **0.. 1** , ilişkilendirme ucunda sıfır veya bir varlık türü örneklerinin bulunduğunu gösterir. <br/> **\*** , ilişkilendirme ucunda sıfır, bir veya daha fazla varlık türü örneğinin var olduğunu belirtir. |
+| **Ğunun** | Evet         | **1**, **0.. 1**veya ilişkinin sonunda olabilecek varlık türü örneklerinin sayısına göre **\*** . <br/> **1** ilişki ucunda tam olarak bir varlık türü örneğinin bulunduğunu gösterir. <br/> **0.. 1** , ilişkilendirme ucunda sıfır veya bir varlık türü örneklerinin bulunduğunu gösterir. <br/> **\*** , ilişkilendirme ucunda sıfır, bir veya daha fazla varlık türü örneğinin var olduğunu belirtir. |
 
  
 
@@ -482,7 +482,7 @@ Bir **End** öğesi aşağıdaki alt öğelere sahip olabilir (listelenen sıray
 
 Aşağıdaki tabloda, bir **AssociationSet** öğesinin alt öğesi olduğunda **End** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                                                                                                                                                                 |
+| Öznitelik adı | Gereklidir | Değer                                                                                                                                                                                                                 |
 |:---------------|:------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Di**  | Evet         | Üst **AssociationSet** öğesinin bir sonunu tanımlayan **EntitySet** öğesinin adı. **EntitySet** öğesi, üst **AssociationSet** öğesiyle aynı varlık kapsayıcısında tanımlanmalıdır. |
 | **Rol**       | Hayır          | İlişki kümesi ucunun adı. **Rol** özniteliği kullanılmazsa, ilişki kümesi ucunun adı varlık kümesinin adı olacaktır.                                                                   |
@@ -536,9 +536,9 @@ Aynı ad alanı içinde olan başka bir **EntityContainer** 'ın içeriğini dah
 
 Aşağıdaki tabloda, **using** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                           |
+| Öznitelik adı | Gereklidir | Değer                                                           |
 |:---------------|:------------|:----------------------------------------------------------------|
-| **Name**       | Evet         | Varlık kapsayıcısının adı.                               |
+| **Ad**       | Evet         | Varlık kapsayıcısının adı.                               |
 | **Tekrarlan**    | Hayır          | Aynı ad alanı içindeki başka bir varlık kapsayıcısının adı. |
 
  
@@ -591,9 +591,9 @@ Belirli bir varlık türü için birden fazla varlık kümesi tanımlanmış ola
 
 Aşağıdaki tabloda, **EntitySet** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                                    |
+| Öznitelik adı | Gereklidir | Değer                                                                                    |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------|
-| **Name**       | Evet         | Varlık kümesinin adı.                                                              |
+| **Ad**       | Evet         | Varlık kümesinin adı.                                                              |
 | **EntityType** | Evet         | Varlık kümesinin örnek içerdiği varlık türünün tam adı. |
 
  
@@ -671,9 +671,9 @@ Bir **EntityType** öğesi aşağıdaki alt öğelere sahip olabilir (listelenen
 
 Aşağıdaki tabloda, **EntityType** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı                                                                                                                                  | Gereklidir | Value                                                                                            |
+| Öznitelik adı                                                                                                                                  | Gereklidir | Değer                                                                                            |
 |:------------------------------------------------------------------------------------------------------------------------------------------------|:------------|:-------------------------------------------------------------------------------------------------|
-| **Name**                                                                                                                                        | Evet         | Varlık türünün adı.                                                                     |
+| **Ad**                                                                                                                                        | Evet         | Varlık türünün adı.                                                                     |
 | **BaseType**                                                                                                                                    | Hayır          | Tanımlanmakta olan varlık türünün temel türü olan başka bir varlık türünün adı.  |
 | **Soyut**                                                                                                                                    | Hayır          | Varlık türünün soyut bir tür olmasına bağlı olarak **true** veya **false**.                 |
 | **OpenType**                                                                                                                                    | Hayır          | Varlık türünün açık bir varlık türü olup olmadığına bağlı olarak **doğru** veya **yanlış** . <br/> [!NOTE] |
@@ -722,9 +722,9 @@ Bir **EnumType** öğesi aşağıdaki alt öğelere sahip olabilir (listelenen s
 
 Aşağıdaki tabloda, **EnumType** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı     | Gereklidir | Value                                                                                                                                                                                         |
+| Öznitelik adı     | Gereklidir | Değer                                                                                                                                                                                         |
 |:-------------------|:------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**           | Evet         | Varlık türünün adı.                                                                                                                                                                  |
+| **Ad**           | Evet         | Varlık türünün adı.                                                                                                                                                                  |
 | **IsFlags**        | Hayır          | Sabit listesi türünün bir bayrak kümesi olarak kullanılıp kullanılamayacağını bağlı olarak **true** veya **false**. Varsayılan değer false şeklindedir **.**                                                                     |
 | **UnderlyingType** | Hayır          | **Edm. Byte**, **Edm. Int16**, **Edm. Int32**, **Edm. Int64** veya **Edm. SByte** , türün değer aralığını tanımlar.   Numaralandırma öğelerinin varsayılan temel alınan türü **Edm. Int32**' dir.. |
 
@@ -768,9 +768,9 @@ Bir işlev için dönüş türü, **ReturnType** (Function) öğesi ya da **Retu
 
 Aşağıdaki tabloda, **işlev** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                              |
+| Öznitelik adı | Gereklidir | Değer                              |
 |:---------------|:------------|:-----------------------------------|
-| **Name**       | Evet         | İşlevin adı.          |
+| **Ad**       | Evet         | İşlevin adı.          |
 | **'Indaki** | Hayır          | İşlev tarafından döndürülen tür. |
 
  
@@ -815,9 +815,9 @@ Bir işlev için dönüş türü, **ReturnType** (FunctionImport) öğesi ya da 
 
 Aşağıdaki tabloda, **FunctionImport** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı   | Gereklidir | Value                                                                                                                                                                                                 |
+| Öznitelik adı   | Gereklidir | Değer                                                                                                                                                                                                 |
 |:-----------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**         | Evet         | İçeri aktarılan işlevin adı.                                                                                                                                                                    |
+| **Ad**         | Evet         | İçeri aktarılan işlevin adı.                                                                                                                                                                    |
 | **'Indaki**   | Hayır          | İşlevin döndürdüğü tür. İşlev bir değer döndürmezse bu özniteliği kullanmayın. Aksi takdirde, değer ComplexType, EntityType veya EDMSimpleType bir koleksiyon olmalıdır.        |
 | **Di**    | Hayır          | İşlev bir varlık türleri koleksiyonu döndürürse, **EntitySet** 'in değeri koleksiyonun ait olduğu varlık kümesi olmalıdır. Aksi takdirde, **EntitySet** özniteliği kullanılmamalıdır. |
 | **IsComposable** | Hayır          | Değer true olarak ayarlanırsa, işlev birleştirilebilir (tablo değerli Işlev) ve bir LINQ sorgusunda kullanılabilir.  Varsayılan değer **false**'dur.                                                           |
@@ -907,9 +907,9 @@ Aynı ada sahip iki yazar aynı adreste yaşılamadığından, varlık anahtarı
 
 Aşağıdaki tabloda, **FunctionImport** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                                                                                                                                    |
+| Öznitelik adı | Gereklidir | Değer                                                                                                                                                                                    |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**       | Evet         | Üyenin adı.                                                                                                                                                                  |
+| **Ad**       | Evet         | Üyenin adı.                                                                                                                                                                  |
 | **Değer**      | Hayır          | Üyenin değeri. Varsayılan olarak, ilk üye 0 değerine sahiptir ve art arda her bir Numaralandırıcı değeri 1 artırılır. Aynı değere sahip birden çok üye bulunabilir. |
 
  
@@ -940,7 +940,7 @@ Bir **NavigationProperty** öğesi, bir ilişkilendirmenin diğer sonuna bir ba�
 
 Gezinti özelliklerinin, bir ilişkinin sonundaki her iki varlık türü üzerinde isteğe bağlı olduğunu unutmayın. Bir ilişkinin sonundaki bir varlık türünde bir gezinti özelliği tanımlarsanız, ilişkilendirmenin diğer sonundaki varlık türünde bir gezinti özelliği tanımlamanız gerekmez.
 
-Bir gezinti özelliği tarafından döndürülen veri türü, uzak ilişki ucunun çoğulluğu tarafından belirlenir. Örneğin **, bir** **Müşteri** varlık türünde bir gezinti özelliği olduğunu varsayalım ve **Müşteri** ile **sipariş**arasında bire çok ilişkilendirmeyi gider. Gezinti özelliği için uzak ilişki ucunun çokluya çok sayıda (\*) olduğundan, veri türü bir koleksiyon ( **sıra**) olur. Benzer şekilde, bir gezinti özelliği olan **CustomerNavProp**, **sipariş** varlık türünde mevcutsa, uzak uçtaki çoğulluğu bir (1) olduğundan veri türü **Müşteri** olur.
+Bir gezinti özelliği tarafından döndürülen veri türü, uzak ilişki ucunun çoğulluğu tarafından belirlenir. Örneğin **, bir** **Müşteri** varlık türünde bir gezinti özelliği olduğunu varsayalım ve **Müşteri** ile **sipariş**arasında bire çok ilişkilendirmeyi gider. Gezinti özelliği için uzak ilişki ucunun çokluğun çok sayıda (\*) olduğundan, veri türü bir koleksiyon ( **sıra**) olur. Benzer şekilde, bir gezinti özelliği olan **CustomerNavProp**, **sipariş** varlık türünde mevcutsa, uzak uçtaki çoğulluğu bir (1) olduğundan veri türü **Müşteri** olur.
 
 Bir **NavigationProperty** öğesi aşağıdaki alt öğelere sahip olabilir (listelenen sırayla):
 
@@ -951,9 +951,9 @@ Bir **NavigationProperty** öğesi aşağıdaki alt öğelere sahip olabilir (li
 
 Aşağıdaki tabloda, **NavigationProperty** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı   | Gereklidir | Value                                                                                                                                                                                                                                            |
+| Öznitelik adı   | Gereklidir | Değer                                                                                                                                                                                                                                            |
 |:-----------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**         | Evet         | Gezinti özelliğinin adı.                                                                                                                                                                                                             |
+| **Ad**         | Evet         | Navigation özelliğinin adı.                                                                                                                                                                                                             |
 | **İlişkiye** | Evet         | Modelin kapsamı içinde olan bir ilişkilendirmenin adı.                                                                                                                                                                                |
 | **ToRole**       | Evet         | Gezinmede uçların bittiği son. **ToRole** özniteliğinin değeri, ilişki uçlarından birinde tanımlanan **rol** özniteliklerinden birinin değeriyle aynı olmalıdır (associationend öğesinde tanımlanır).       |
 | **FromRole**     | Evet         | Gezintinin başladığı ilişkinin sonu. **FromRole** özniteliğinin değeri, ilişki uçlarından birinde tanımlanan **rol** özniteliklerinden birinin değeriyle aynı olmalıdır (associationend öğesinde tanımlanır). |
@@ -1005,7 +1005,7 @@ Kavramsal şema tanım dili (CSDL) içindeki **OnDelete** öğesi bir ilişkilen
 
 Aşağıdaki tabloda, **OnDelete** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                                                                                                                                                                         |
+| Öznitelik adı | Gereklidir | Değer                                                                                                                                                                                                                         |
 |:---------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Eylem**     | Evet         | **Cascade** veya **none**. Eğer **basamakla**, bağımlı varlık türleri asıl varlık türü silindiğinde silinir. **Hiçbiri**yoksa, asıl varlık türü silindiğinde bağımlı varlık türleri silinmez. |
 
@@ -1049,15 +1049,15 @@ Bir **parametre** öğesi ( **FunctionImport** öğesinin bir alt Öğesı olara
 
 Aşağıdaki tabloda **parametre** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                                                                                                                                                                           |
+| Öznitelik adı | Gereklidir | Değer                                                                                                                                                                                                                           |
 |:---------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**       | Evet         | Parametrenin adı.                                                                                                                                                                                                      |
+| **Ad**       | Evet         | Parametrenin adı.                                                                                                                                                                                                      |
 | **Tür**       | Evet         | Parametre türü. Değer, bir **Edmsimpletype** veya modelin kapsamı içinde olan karmaşık bir tür olmalıdır.                                                                                                             |
 | **Modundaysa**       | Hayır          | Parametresinin bir giriş, çıkış veya giriş/çıkış parametresi olup olmadığına bağlı olarak, **içinde**, **Out**veya **InOut** .                                                                                                                |
 | **'In**  | Hayır          | Parametrenin izin verilen en fazla uzunluğu.                                                                                                                                                                                    |
 | **Duyarlılık**  | Hayır          | Parametrenin duyarlığı.                                                                                                                                                                                                 |
 | **Ölçek**      | Hayır          | Parametresinin ölçeği.                                                                                                                                                                                                     |
-| **SRID**       | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin parametreleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
+| **SRıD**       | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin parametreleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 
  
 
@@ -1106,9 +1106,9 @@ Bir **parametre** öğesi ( **Function** öğesinin bir alt öğesi olarak) kavr
 
 Aşağıdaki tabloda **parametre** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı   | Gereklidir | Value                                                                                                                                                                                                                           |
+| Öznitelik adı   | Gereklidir | Değer                                                                                                                                                                                                                           |
 |:-----------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**         | Evet         | Parametrenin adı.                                                                                                                                                                                                      |
+| **Ad**         | Evet         | Parametrenin adı.                                                                                                                                                                                                      |
 | **Tür**         | Hayır          | Parametre türü. Bir parametre aşağıdaki türlerden herhangi biri olabilir (veya bu türlerin koleksiyonları): <br/> **EdmSimpleType** <br/> entity type <br/> complex type <br/> satır türü <br/> başvuru türü                             |
 | **Yapılamaz**     | Hayır          | **True** (varsayılan değer) veya özelliğin **null** değere sahip olmasına bağlı olarak **false** .                                                                                                                          |
 | **Değerinin** | Hayır          | Özelliğin varsayılan değeri.                                                                                                                                                                                              |
@@ -1116,7 +1116,7 @@ Aşağıdaki tabloda **parametre** öğesine uygulanabilen öznitelikler açıkl
 | **FixedLength**  | Hayır          | Özellik değerinin sabit uzunluklu bir dize olarak depolanıp saklanmayacağı seçeneğe bağlı olarak **doğru** veya **yanlış** .                                                                                                                          |
 | **Duyarlılık**    | Hayır          | Özellik değerinin duyarlığı.                                                                                                                                                                                            |
 | **Ölçek**        | Hayır          | Özellik değerinin ölçeği.                                                                                                                                                                                                |
-| **SRID**         | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin özellikleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
+| **SRıD**         | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin özellikleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 | **Unicode**      | Hayır          | Özellik değerinin bir Unicode dize olarak saklanıp saklanmayacağı seçeneğe bağlı olarak **doğru** veya **yanlış** .                                                                                                                               |
 | **Mediğinden**    | Hayır          | Veri kaynağında kullanılacak harmanlama sırasını belirten bir dize.                                                                                                                                                   |
 
@@ -1155,7 +1155,7 @@ Kavramsal şema tanım dili (CSDL) içindeki **asıl** öğe, bir başvuru kıs�
 
 Aşağıdaki tabloda, **Principal** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                |
+| Öznitelik adı | Gereklidir | Değer                                                                |
 |:---------------|:------------|:---------------------------------------------------------------------|
 | **Rol**       | Evet         | İlişkinin asıl ucundaki varlık türünün adı. |
 
@@ -1202,7 +1202,7 @@ Kavramsal şema tanım dili (CSDL) içindeki **özellik** öğesi EntityType ö�
 -   Documentation öğesi (sıfır veya bir öğe izin verilir)
 -   Ek açıklama öğeleri (sıfır veya daha fazla öğe izin verilir)
 
-Aşağıdaki modeller bir **özellik** öğesine uygulanabilir: **Null yapılabilir**, **DefaultValue**, **MaxLength**, **FixedLength**, **Precision**, **Scale**, **UNICODE**, **harmanlama**, **ConcurrencyMode**. Modeller, özellik değerlerinin veri deposunda nasıl depolandığı hakkında bilgi sağlayan XML öznitelikleridir.
+Aşağıdaki modeller bir **özellik** öğesine uygulanabilir: **null atanabilir**, **DefaultValue**, **MaxLength**, **FixedLength**, **Precision**, **Scale**, **UNICODE**, **harmanlama**, **ConcurrencyMode**. Modeller, özellik değerlerinin veri deposunda nasıl depolandığı hakkında bilgi sağlayan XML öznitelikleridir.
 
 > [!NOTE]
 > Modeller yalnızca **Edmsimpletype**türünde özelliklere uygulanabilir.
@@ -1213,18 +1213,18 @@ Aşağıdaki modeller bir **özellik** öğesine uygulanabilir: **Null yapılabi
 
 Aşağıdaki tabloda, **özellik** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı                                                         | Gereklidir | Value                                                                                                                                                                                                                           |
+| Öznitelik adı                                                         | Gereklidir | Değer                                                                                                                                                                                                                           |
 |:-----------------------------------------------------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**                                                               | Evet         | Özelliğin adı.                                                                                                                                                                                                       |
+| **Ad**                                                               | Evet         | Özelliğin adı.                                                                                                                                                                                                       |
 | **Tür**                                                               | Evet         | Özellik değerinin türü. Özellik değeri türünün, modelin kapsamındaki bir **Edmsimpletype** veya karmaşık bir tür olması gerekir (tam olarak nitelenmiş bir ad ile belirtilir).                                                 |
 | **Yapılamaz**                                                           | Hayır          | **True** (varsayılan değer) veya özelliğin NULL değere sahip olmasına bağlı olarak <strong>false</strong> . <br/> [!NOTE]                                                                                                   |
-| CSDL v1 'de > karmaşık bir tür özelliği @no__t olmalıdır. |             |                                                                                                                                                                                                                                 |
+| CSDL v1 'de > karmaşık bir tür özelliği `Nullable="False"`sahip olmalıdır. |             |                                                                                                                                                                                                                                 |
 | **Değerinin**                                                       | Hayır          | Özelliğin varsayılan değeri.                                                                                                                                                                                              |
 | **'In**                                                          | Hayır          | Özellik değerinin uzunluk üst sınırı.                                                                                                                                                                                       |
 | **FixedLength**                                                        | Hayır          | Özellik değerinin sabit uzunluklu bir dize olarak depolanıp saklanmayacağı seçeneğe bağlı olarak **doğru** veya **yanlış** .                                                                                                                          |
 | **Duyarlılık**                                                          | Hayır          | Özellik değerinin duyarlığı.                                                                                                                                                                                            |
 | **Ölçek**                                                              | Hayır          | Özellik değerinin ölçeği.                                                                                                                                                                                                |
-| **SRID**                                                               | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin özellikleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
+| **SRıD**                                                               | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin özellikleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 | **Unicode**                                                            | Hayır          | Özellik değerinin bir Unicode dize olarak saklanıp saklanmayacağı seçeneğe bağlı olarak **doğru** veya **yanlış** .                                                                                                                               |
 | **Mediğinden**                                                          | Hayır          | Veri kaynağında kullanılacak harmanlama sırasını belirten bir dize.                                                                                                                                                   |
 | **ConcurrencyMode**                                                    | Hayır          | **Hiçbiri** (varsayılan değer) veya **sabit**. Değer **fixed**olarak ayarlandıysa, iyimser eşzamanlılık denetimlerinde Özellik değeri kullanılacaktır.                                                                                  |
@@ -1276,7 +1276,7 @@ Aşağıdaki örnek, beş **özellik** öğesi Içeren bir **complexType** öğe
 **Property** öğesi aşağıdaki alt öğelerden tam olarak birine sahip olabilir:
 
 -   Türünde
--   ReferenceType
+-   referenceType
 -   RowType
 
 **Property** öğesi herhangi bir sayıda alt ek açıklama öğesine sahip olabilir.
@@ -1290,18 +1290,18 @@ Aşağıdaki örnek, beş **özellik** öğesi Içeren bir **complexType** öğe
 
 Aşağıdaki tabloda, **özellik** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı                                                     | Gereklidir | Value                                                                                                                                                                                                                           |
+| Öznitelik adı                                                     | Gereklidir | Değer                                                                                                                                                                                                                           |
 |:-------------------------------------------------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**                                                           | Evet         | Özelliğin adı.                                                                                                                                                                                                       |
+| **Ad**                                                           | Evet         | Özelliğin adı.                                                                                                                                                                                                       |
 | **Tür**                                                           | Evet         | Özellik değerinin türü.                                                                                                                                                                                                 |
 | **Yapılamaz**                                                       | Hayır          | **True** (varsayılan değer) veya özelliğin NULL değere sahip olmasına bağlı olarak **false** . <br/> [!NOTE]                                                                                                                |
-| CSDL v1 'de > karmaşık bir tür özelliği, @no__t sahip olmalıdır. |             |                                                                                                                                                                                                                                 |
+| CSDL v1 'de > karmaşık bir tür özelliği `Nullable="False"`sahip olmalıdır. |             |                                                                                                                                                                                                                                 |
 | **Değerinin**                                                   | Hayır          | Özelliğin varsayılan değeri.                                                                                                                                                                                              |
 | **'In**                                                      | Hayır          | Özellik değerinin uzunluk üst sınırı.                                                                                                                                                                                       |
 | **FixedLength**                                                    | Hayır          | Özellik değerinin sabit uzunluklu bir dize olarak depolanıp saklanmayacağı seçeneğe bağlı olarak **doğru** veya **yanlış** .                                                                                                                          |
 | **Duyarlılık**                                                      | Hayır          | Özellik değerinin duyarlığı.                                                                                                                                                                                            |
 | **Ölçek**                                                          | Hayır          | Özellik değerinin ölçeği.                                                                                                                                                                                                |
-| **SRID**                                                           | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin özellikleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
+| **SRıD**                                                           | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin özellikleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 | **Unicode**                                                        | Hayır          | Özellik değerinin bir Unicode dize olarak saklanıp saklanmayacağı seçeneğe bağlı olarak **doğru** veya **yanlış** .                                                                                                                               |
 | **Mediğinden**                                                      | Hayır          | Veri kaynağında kullanılacak harmanlama sırasını belirten bir dize.                                                                                                                                                   |
 
@@ -1356,9 +1356,9 @@ Kavramsal şema tanım dili (CSDL) içindeki **Propertyref** öğesi, özelliği
 
 Aşağıdaki tabloda, **Propertyref** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                |
+| Öznitelik adı | Gereklidir | Değer                                |
 |:---------------|:------------|:-------------------------------------|
-| **Name**       | Evet         | Başvurulan özelliğin adı. |
+| **Ad**       | Evet         | Başvurulan özelliğin adı. |
 
  
 
@@ -1427,7 +1427,7 @@ Bir **ReferenceType** öğesi aşağıdaki alt öğelere sahip olabilir (listele
 
 Aşağıdaki tabloda, **ReferenceType** öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                         |
+| Öznitelik adı | Gereklidir | Değer                                         |
 |:---------------|:------------|:----------------------------------------------|
 | **Tür**       | Evet         | Başvurulmakta olan varlık türünün adı. |
 
@@ -1522,7 +1522,7 @@ Dönüş türleri herhangi bir **Edmsimpletype**, varlık türü, karmaşık tü
 Bir işlevin dönüş türü, **ReturnType** (Function) öğesinin **tür** özniteliğiyle ya da aşağıdaki alt öğelerinden biri ile belirtilebilir:
 
 -   Türünde
--   ReferenceType
+-   referenceType
 -   RowType
 
 > [!NOTE]
@@ -1534,7 +1534,7 @@ Bir işlevin dönüş türü, **ReturnType** (Function) öğesinin **tür** özn
 
 Aşağıdaki tabloda, **ReturnType** (Function) öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                              |
+| Öznitelik adı | Gereklidir | Değer                              |
 |:---------------|:------------|:-----------------------------------|
 | **'Indaki** | Hayır          | İşlev tarafından döndürülen tür. |
 
@@ -1574,7 +1574,7 @@ Dönüş türleri herhangi bir varlık türü, karmaşık tür veya **Edmsimplet
 
 Aşağıdaki tabloda, **ReturnType** (FunctionImport) öğesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                                                                                                                                                 |
+| Öznitelik adı | Gereklidir | Değer                                                                                                                                                                                                 |
 |:---------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Tür**       | Hayır          | İşlevin döndürdüğü tür. Değer, ComplexType, EntityType veya EDMSimpleType bir koleksiyon olmalıdır.                                                                                      |
 | **Di**  | Hayır          | İşlev bir varlık türleri koleksiyonu döndürürse, **EntitySet** 'in değeri koleksiyonun ait olduğu varlık kümesi olmalıdır. Aksi takdirde, **EntitySet** özniteliği kullanılmamalıdır. |
@@ -1665,15 +1665,15 @@ Aşağıdaki örnek, işlevin satır koleksiyonunu ( **RowType** öğesinde beli
 
 **Şema** öğesi, kavramsal bir modeldeki varlık türü, karmaşık tür ve ilişkilendirme nesneleri için ad alanını tanımlamak üzere **Namespace** özniteliğini kullanır. Bir ad alanı içinde, iki nesne aynı ada sahip olamaz. Ad alanları, birden çok **şema** öğesine ve birden çok. csdl dosyasına yayılabilir.
 
-Kavramsal model ad alanı, **şema** öğesinin XML ad alanından farklıdır. Kavramsal model ad alanı ( **ad alanı** özniteliği tarafından tanımlandığı gibi) varlık türleri, karmaşık türler ve ilişkilendirme türleri için bir mantıksal kapsayıcıdır. Bir **şema** öğesinin XML ad alanı ( **xmlns** özniteliğiyle gösterilir), alt öğeler ve **şema** öğesinin öznitelikleri için varsayılan ad alanıdır. @No__t-0 (YYYY ve MM, sırasıyla bir yılı ve ayı temsil eder) biçiminde olan XML ad alanları CSDL için ayrılmıştır. Özel öğeler ve öznitelikler bu forma sahip ad alanlarında olamaz.
+Kavramsal model ad alanı, **şema** öğesinin XML ad alanından farklıdır. Kavramsal model ad alanı ( **ad alanı** özniteliği tarafından tanımlandığı gibi) varlık türleri, karmaşık türler ve ilişkilendirme türleri için bir mantıksal kapsayıcıdır. Bir **şema** öğesinin XML ad alanı ( **xmlns** özniteliğiyle gösterilir), alt öğeler ve **şema** öğesinin öznitelikleri için varsayılan ad alanıdır. Form https://schemas.microsoft.com/ado/YYYY/MM/edm XML ad alanları (YYYY ve MM, sırasıyla bir yılı ve ayı temsil eder) CSDL için ayrılmıştır. Özel öğeler ve öznitelikler bu forma sahip ad alanlarında olamaz.
 
 ### <a name="applicable-attributes"></a>Uygulanabilir öznitelikler
 
 Aşağıdaki tabloda, özniteliklerin **şema** öğesine uygulanabileceğini açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Öznitelik adı | Gereklidir | Değer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 |:---------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Namespace**  | Evet         | Kavramsal modelin ad alanı. **Ad alanı** özniteliğinin değeri, bir türün tam nitelikli adını biçimlendirmek için kullanılır. Örneğin, *Müşteri* adlı bir **EntityType** basit. example. model ad alanında ise, **EntityType** 'ın tam adı simpleexamplemodel. Customer olur. <br/> Şu dizeler **ad alanı** özniteliği için değer olarak kullanılamaz: **Sistem**, **geçici**veya **EDM**. **Namespace** özniteliğinin DEĞERI, SSDL şema öğesindeki **Namespace** özniteliğinin değeri ile aynı olamaz. |
+| **Namespace**  | Evet         | Kavramsal modelin ad alanı. **Ad alanı** özniteliğinin değeri, bir türün tam nitelikli adını biçimlendirmek için kullanılır. Örneğin, *Müşteri* adlı bir **EntityType** basit. example. model ad alanında ise, **EntityType** 'ın tam adı simpleexamplemodel. Customer olur. <br/> Şu dizeler **ad alanı** özniteliği değeri olarak kullanılamaz: **System**, **geçici**veya **EDM**. **Namespace** özniteliğinin DEĞERI, SSDL şema öğesindeki **Namespace** özniteliğinin değeri ile aynı olamaz. |
 | **Diğer ad**      | Hayır          | Ad alanı adı yerine kullanılan tanımlayıcı. Örneğin, *Müşteri* adlı bir **EntityType** basit. example. model ad alanı ve **diğer ad** özniteliğinin değeri *Modelise*model. Customer ' i EntityType 'ın tam adı olarak kullanabilirsiniz **.**                                                                                                                                                                                                                                                                                                     |
 
  
@@ -1760,17 +1760,17 @@ Kavramsal şema tanım dili (CSDL) içindeki **TypeRef** öğesi, var olan bir a
 
 Aşağıdaki tabloda, **TypeRef** öğesine uygulanabilen öznitelikler açıklanmaktadır. **DefaultValue**, **MaxLength**, **FixedLength**, **Precision**, **Scale**, **UNICODE**ve **harmanlama** özniteliklerinin yalnızca **edmsimpletypes**için geçerli olduğunu unutmayın.
 
-| Öznitelik adı                                                     | Gereklidir | Value                                                                                                                                                                                                                           |
+| Öznitelik adı                                                     | Gereklidir | Değer                                                                                                                                                                                                                           |
 |:-------------------------------------------------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Tür**                                                           | Hayır          | Başvurulmakta olan türün adı.                                                                                                                                                                                          |
 | **Yapılamaz**                                                       | Hayır          | **True** (varsayılan değer) veya özelliğin NULL değere sahip olmasına bağlı olarak **false** . <br/> [!NOTE]                                                                                                                |
-| CSDL v1 'de > karmaşık bir tür özelliği, @no__t sahip olmalıdır. |             |                                                                                                                                                                                                                                 |
+| CSDL v1 'de > karmaşık bir tür özelliği `Nullable="False"`sahip olmalıdır. |             |                                                                                                                                                                                                                                 |
 | **Değerinin**                                                   | Hayır          | Özelliğin varsayılan değeri.                                                                                                                                                                                              |
 | **'In**                                                      | Hayır          | Özellik değerinin uzunluk üst sınırı.                                                                                                                                                                                       |
 | **FixedLength**                                                    | Hayır          | Özellik değerinin sabit uzunluklu bir dize olarak depolanıp saklanmayacağı seçeneğe bağlı olarak **doğru** veya **yanlış** .                                                                                                                          |
 | **Duyarlılık**                                                      | Hayır          | Özellik değerinin duyarlığı.                                                                                                                                                                                            |
 | **Ölçek**                                                          | Hayır          | Özellik değerinin ölçeği.                                                                                                                                                                                                |
-| **SRID**                                                           | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin özellikleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
+| **SRıD**                                                           | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin özellikleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 | **Unicode**                                                        | Hayır          | Özellik değerinin bir Unicode dize olarak saklanıp saklanmayacağı seçeneğe bağlı olarak **doğru** veya **yanlış** .                                                                                                                               |
 | **Mediğinden**                                                      | Hayır          | Veri kaynağında kullanılacak harmanlama sırasını belirten bir dize.                                                                                                                                                   |
 
@@ -1820,7 +1820,7 @@ Kavramsal şema tanım dili (CSDL) içindeki **using** öğesi, farklı bir ad a
 
 Aşağıdaki tabloda, **using** ögesine uygulanabilen öznitelikler açıklanmaktadır.
 
-| Öznitelik adı | Gereklidir | Value                                                                                                                                                                              |
+| Öznitelik adı | Gereklidir | Değer                                                                                                                                                                              |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Namespace**  | Evet         | İçeri aktarılan ad alanının adı.                                                                                                                                                |
 | **Diğer ad**      | Evet         | Ad alanı adı yerine kullanılan tanımlayıcı. Bu öznitelik gerekli olsa da, nesne adlarını nitelemek için ad alanı adı yerine kullanılması gerekli değildir. |
@@ -1834,7 +1834,7 @@ Aşağıdaki tabloda, **using** ögesine uygulanabilen öznitelikler açıklanma
 
 ### <a name="example"></a>Örnek
 
-Aşağıdaki örnek, başka bir yerde tanımlanmış bir ad alanını içeri aktarmak için kullanılan **using** öğesini gösterir. Gösterilen **şema** öğesi için ad alanının `BooksModel` olduğunu unutmayın. @No__t-1**EntityType** 'daki `Address` özelliği, `ExtendedBooksModel` ad alanında tanımlanan karmaşık bir türdür ( **using** öğesiyle içeri aktarılır).
+Aşağıdaki örnek, başka bir yerde tanımlanmış bir ad alanını içeri aktarmak için kullanılan **using** öğesini gösterir. Gösterilen **şema** öğesi için ad alanının `BooksModel`olduğunu unutmayın. `Publisher`**EntityType** 'daki `Address` özelliği `ExtendedBooksModel` ad alanında tanımlanan karmaşık bir türdür ( **using** öğesiyle içeri aktarılır).
 
 ``` xml
  <Schema xmlns="https://schemas.microsoft.com/ado/2009/11/edm"
@@ -1923,7 +1923,7 @@ Aşağıdaki kod, ek açıklama özniteliğinde meta verileri alır ve konsola y
 ```
  
 
-Yukarıdaki kod `School.csdl` dosyasının projenin çıkış dizininde olduğunu ve aşağıdaki `Imports` ve `Using` deyimlerini projenize eklediğinizi varsayar:
+Yukarıdaki kod `School.csdl` dosyasının projenin çıkış dizininde olduğunu ve projenize aşağıdaki `Imports` ve `Using` deyimlerini eklediğinizi varsayar:
 
 ``` csharp
  using System.Data.Metadata.Edm;
@@ -1993,7 +1993,7 @@ Aşağıdaki kod, ek açıklama öğesindeki meta verileri alır ve konsola yaza
 ```
  
 
-Yukarıdaki kod, okul. csdl dosyasının projenin çıkış dizininde olduğunu ve aşağıdaki `Imports` ve `Using` deyimlerini projenize eklediğinizi varsayar:
+Yukarıdaki kod, okul. csdl dosyasının projenin çıkış dizininde olduğunu ve projenize aşağıdaki `Imports` ve `Using` deyimlerini eklediğinizi varsayar:
 
 ``` csharp
  using System.Data.Metadata.Edm;
@@ -2059,17 +2059,17 @@ Aşağıdaki tabloda, CSDL 'de desteklenen modeller açıklanmaktadır. Tüm mod
 |:--------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------|:--------------------|
 | **Mediğinden**       | Özelliğin değerlerinde karşılaştırma ve sıralama işlemleri gerçekleştirirken kullanılacak harmanlama sırasını (veya sıralama sırasını) belirtir.                                                                                                               | **EDM. String**                                                                                                                                                                                                                                                                                                                                                                       | Evet                              | Hayır                  |
 | **ConcurrencyMode** | Özellik değerinin iyimser eşzamanlılık denetimleri için kullanılması gerektiğini belirtir.                                                                                                                                                                    | Tüm **Edmsimpletype** özellikleri                                                                                                                                                                                                                                                                                                                                                     | Hayır                               | Evet                 |
-| **Varsayılan**         | Örnek oluşturma sırasında hiçbir değer sağlanmadığında özelliğin varsayılan değerini belirtir.                                                                                                                                                                       | Tüm **Edmsimpletype** özellikleri                                                                                                                                                                                                                                                                                                                                                     | Evet                              | Evet                 |
+| **Default**         | Örnek oluşturma sırasında hiçbir değer sağlanmadığında özelliğin varsayılan değerini belirtir.                                                                                                                                                                       | Tüm **Edmsimpletype** özellikleri                                                                                                                                                                                                                                                                                                                                                     | Evet                              | Evet                 |
 | **FixedLength**     | Özellik değerinin uzunluğunun değişebileceğini belirtir.                                                                                                                                                                                                  | **Edm. Binary**, **Edm. String**                                                                                                                                                                                                                                                                                                                                                       | Evet                              | Hayır                  |
 | **'In**       | Özellik değerinin uzunluk üst sınırını belirtir.                                                                                                                                                                                                           | **Edm. Binary**, **Edm. String**                                                                                                                                                                                                                                                                                                                                                       | Evet                              | Hayır                  |
 | **Yapılamaz**        | Özelliğin **null** değere sahip olup olmayacağını belirtir.                                                                                                                                                                                                     | Tüm **Edmsimpletype** özellikleri                                                                                                                                                                                                                                                                                                                                                     | Evet                              | Evet                 |
 | **Duyarlılık**       | **Decimal**türü özellikler için, bir özellik değerinin sahip olduğu basamak sayısını belirtir. **Time**, **DateTime**ve **DateTimeOffset**türündeki özellikler için, özellik değerinin saniyenin kısmi bölümü için basamak sayısını belirtir. | **Edm. DateTime**, **Edm. DateTimeOffset**, **Edm. Decimal**, **Edm. Time**                                                                                                                                                                                                                                                                                                              | Evet                              | Hayır                  |
 | **Ölçek**           | Özellik değeri için ondalık noktanın sağ tarafındaki basamak sayısını belirtir.                                                                                                                                                                      | **EDM. Decimal**                                                                                                                                                                                                                                                                                                                                                                      | Evet                              | Hayır                  |
-| **SRID**            | Uzamsal sistem başvurusu sistem KIMLIĞINI belirtir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx).                                                              | **EDM. coğrafya, Edm. Geographyıpoint, Edm. Geographyılinestring, Edm. GeographyPolygon, Edm. Geographyımultipoint, Edm. Geographyımultilinestring, Edm. GeographyMultiPolygon, Edm. Geographyıcollection, Edm. Geometry, Edm. GeometryPoint EDM. GeometryLineString, Edm. GeometryPolygon, Edm. GeometryMultiPoint, Edm. GeometryMultiLineString, Edm. GeometryMultiPolygon, Edm. GeometryCollection** | Hayır                               | Evet                 |
+| **SRıD**            | Uzamsal sistem başvurusu sistem KIMLIĞINI belirtir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx).                                                              | **EDM. coğrafya, Edm. Geographyıpoint, Edm. Geographyılinestring, Edm. GeographyPolygon, Edm. Geographyımultipoint, Edm. Geographyımultilinestring, Edm. GeographyMultiPolygon, Edm. Geographyıcollection, Edm. Geometry, Edm. GeometryPoint EDM. GeometryLineString, Edm. GeometryPolygon, Edm. GeometryMultiPoint, Edm. GeometryMultiLineString, Edm. GeometryMultiPolygon, Edm. GeometryCollection** | Hayır                               | Evet                 |
 | **Unicode**         | Özellik değerinin Unicode olarak depolandığını belirtir.                                                                                                                                                                                                    | **EDM. String**                                                                                                                                                                                                                                                                                                                                                                       | Evet                              | Evet                 |
 
 >[!NOTE]
-> Kavramsal bir modelden veritabanı oluştururken, veritabanı oluştur Sihirbazı, **StoreGeneratedPattern** özniteliğinin değerini şu ad alanında ise, bir **özellik** öğesi üzerinde algılar: https://schemas.microsoft.com/ado/2009/02/edm/annotation. Öznitelik için desteklenen değerler **Identity** ve **hesaplandı**. **Kimlik** değeri, veritabanında oluşturulan kimlik değeri ile bir veritabanı sütunu oluşturur. **Hesaplanan** değeri, veritabanında hesaplanan bir değere sahip bir sütun oluşturur.
+> Kavramsal bir modelden veritabanı oluştururken, veritabanı oluştur Sihirbazı, bir **özellik** öğesi üzerinde **StoreGeneratedPattern** özniteliğinin değerini şu ad alanında ise tanır: https://schemas.microsoft.com/ado/2009/02/edm/annotation. Öznitelik için desteklenen değerler **Identity** ve **hesaplandı**. **Kimlik** değeri, veritabanında oluşturulan kimlik değeri ile bir veritabanı sütunu oluşturur. **Hesaplanan** değeri, veritabanında hesaplanan bir değere sahip bir sütun oluşturur.
 
 ### <a name="example"></a>Örnek
 
