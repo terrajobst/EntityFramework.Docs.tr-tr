@@ -225,6 +225,8 @@
                   href: core/providers/sql-server/index.md
                 - name: Bellek için İyileştirilmiş Tablolar
                   href: core/providers/sql-server/memory-optimized-tables.md
+                - name: Azure SQL Veritabanı Seçeneklerini Belirtme
+                  href: core/providers/sql-server/azure-sql-database.md
             - name: SQLite
               items:
                 - name: Genel Bakış
