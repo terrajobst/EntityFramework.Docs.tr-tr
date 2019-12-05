@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 07/11/2019
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: 29434c26a503fabb16b43ee8f0c36136a0b5b745
-ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
+ms.openlocfilehash: 5686d28e6847797130476cd858bd3fb611620140
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/23/2019
-ms.locfileid: "72811964"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824473"
 ---
 # <a name="entity-framework-core-tools-reference---net-cli"></a>Entity Framework Core araçları başvurusu-.NET CLı
 
@@ -33,17 +33,17 @@ Yükleme yordamı proje türüne ve sürümüne bağlıdır:
 
 * `dotnet ef`, genel veya yerel bir araç olarak yüklenmelidir. Çoğu geliştirici, `dotnet ef` aşağıdaki komutla küresel bir araç olarak yükler:
 
-  ``` console
+  ```dotnetcli
   dotnet tool install --global dotnet-ef
   ```
 
   `dotnet ef` yerel araç olarak da kullanabilirsiniz. Bunu yerel bir araç olarak kullanmak için, bir [araç bildirim dosyası](https://github.com/dotnet/cli/issues/10288)kullanarak bunu araç bağımlılığı olarak bildiren bir projenin bağımlılıklarını geri yükleyin.
 
-* [.NET Core SDK 3,0](https://dotnet.microsoft.com/download/dotnet-core/3.0)) yüklemesini yapın. Visual Studio 'nun en son sürümüne sahip olsanız bile SDK 'nın yüklenmesi gerekir.
+* [3,0 .NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0)'yi yükler. Visual Studio 'nun en son sürümüne sahip olsanız bile SDK 'nın yüklenmesi gerekir.
 
 * En son `Microsoft.EntityFrameworkCore.Design` paketini yükler.
 
-  ``` Console
+  ```dotnetcli
   dotnet add package Microsoft.EntityFrameworkCore.Design
   ```
 
@@ -61,7 +61,7 @@ Yükleme yordamı proje türüne ve sürümüne bağlıdır:
 
 * En son kararlı `Microsoft.EntityFrameworkCore.Design` paketini yükler.
 
-  ``` Console
+  ```dotnetcli
   dotnet add package Microsoft.EntityFrameworkCore.Design
   ```
 
@@ -75,7 +75,7 @@ Yükleme yordamı proje türüne ve sürümüne bağlıdır:
 
 * `Microsoft.EntityFrameworkCore.Design` paketinin en son 1. x sürümünü yükler, örneğin:
 
-  ```console
+  ```dotnetcli
   dotnet add package Microsoft.EntityFrameworkCore.Design -v 1.1.6
   ```
 
@@ -105,7 +105,7 @@ Yükleme yordamı proje türüne ve sürümüne bağlıdır:
 
 EF Core CLı araçlarının düzgün yüklendiğini doğrulamak için aşağıdaki komutları çalıştırın:
 
-  ``` Console
+  ```dotnetcli
   dotnet restore
   dotnet ef
   ```
@@ -194,7 +194,7 @@ Değişkenlerinden
 
 Aşağıdaki örnekler veritabanını belirtilen bir geçişe güncelleştirir. İlki geçiş adını, ikincisi ise geçiş KIMLIĞINI kullanır:
 
-```console
+```dotnetcli
 dotnet ef database update InitialCreate
 dotnet ef database update 20180904195021_InitialCreate
 ```
@@ -233,13 +233,13 @@ Seçenekler:
 
 Aşağıdaki örnek, tüm şemaları ve tabloları uygular ve yeni dosyaları *modeller* klasörüne koyar.
 
-```console
+```dotnetcli
 dotnet ef dbcontext scaffold "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models
 ```
 
 Aşağıdaki örnek yalnızca seçili tabloları ve bağlamı belirtilen bir ada sahip ayrı bir klasörde oluşturur:
 
-```console
+```dotnetcli
 dotnet ef dbcontext scaffold "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -t Blog -t Post --context-dir Context -c BlogContext
 ```
 
@@ -281,7 +281,7 @@ Değişkenlerinden
 
 | Bağımsız Değişken | Açıklama                                                                                                                                                   |
 |:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `<FROM>` | Geçiş başlatılıyor. Geçişler, ada veya KIMLIĞE göre tanımlanabilir. 0 sayısı, *ilk geçişten önceki*anlamına gelen özel bir durumdur. Varsayılan değer 0 ' dır. |
+| `<FROM>` | Geçiş başlatılıyor. Geçişler, ada veya KIMLIĞE göre tanımlanabilir. 0 sayısı, *ilk geçişten önceki*anlamına gelen özel bir durumdur. Varsayılan ayar: 0. |
 | `<TO>`   | Son geçiş. Son geçişin varsayılan değeri.                                                                                                         |
 
 Seçenekler:
@@ -293,13 +293,13 @@ Seçenekler:
 
 Aşağıdaki örnek, ınitialcreate geçişi için bir komut dosyası oluşturur:
 
-```console
+```dotnetcli
 dotnet ef migrations script 0 InitialCreate
 ```
 
 Aşağıdaki örnek, ınitialcreate geçişinden sonra tüm geçişler için bir komut dosyası oluşturur.
 
-```console
+```dotnetcli
 dotnet ef migrations script 20180904195021_InitialCreate
 ```
 

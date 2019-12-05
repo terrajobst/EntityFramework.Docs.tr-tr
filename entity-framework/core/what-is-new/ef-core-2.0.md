@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/20/2018
 ms.assetid: 2CB5809E-0EFB-44F6-AF14-9D5BFFFBFF9D
 uid: core/what-is-new/ef-core-2.0
-ms.openlocfilehash: 72393e96c195af1df5a169025ca2ce7a7acb16bb
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 83f6b819409d502dba17a678d44a0746a4a77f4b
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73656218"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824882"
 ---
 # <a name="new-features-in-ef-core-20"></a>EF Core 2,0 ' deki yeni özellikler
 
@@ -72,7 +72,7 @@ Bu özellik hakkında daha fazla bilgi için, [sahip olduğunuz varlık türleri
 
 ### <a name="model-level-query-filters"></a>Model düzeyi sorgu filtreleri
 
-EF Core 2,0, model düzeyi sorgu filtrelerini çağırdığımız yeni bir özellik içeriyor. Bu özellik LINQ sorgu koşullarına (genellikle LINQ WHERE sorgu işlecine geçirilen bir Boole ifadesi) meta veri modelindeki varlık türlerinde (genellikle Onmodeloluþturma 'da) doğrudan tanımlanacak şekilde izin verir. Bu tür filtreler, dolaylı olarak başvurulan varlık türleri dahil olmak üzere bu varlık türlerini içeren herhangi bir LINQ sorgusuna otomatik olarak uygulanır; Örneğin, ekleme veya doğrudan gezinme özelliği başvuruları kullanımı. Bu özelliğin bazı yaygın uygulamaları şunlardır:
+EF Core 2,0, model düzeyi sorgu filtrelerini çağırdığımız yeni bir özellik içeriyor. Bu özellik LINQ sorgu koşullarına (genellikle LINQ WHERE sorgu işlecine geçirilen bir Boole ifadesi) meta veri modelindeki varlık türlerinde (genellikle Onmodeloluþturma 'da) doğrudan tanımlanacak şekilde izin verir. Bu filtreler, varlık türleri Ekle kullanarak dolaylı olarak gibi başvurulan veya doğrudan bir gezinti özelliği başvuruları dahil olmak üzere bu varlık türleriyle ilgili herhangi bir LINQ sorguları için otomatik olarak uygulanır. Bu özelliğin bazı ortak uygulamalar şunlardır:
 
 - Geçici silme-bir varlık türü, IsDeleted özelliğini tanımlar.
 - Çok kiracılı-varlık türü bir Tenantıd özelliğini tanımlar.
@@ -91,12 +91,12 @@ public class BloggingContext : DbContext
     {
         modelBuilder.Entity<Post>().HasQueryFilter(
             p => !p.IsDeleted
-            && p.TenantId == this.TenantId );
+            && p.TenantId == this.TenantId);
     }
 }
 ```
 
-`Post` varlık türünün örnekleri için çok kiracılı ve geçici silme uygulayan model düzeyinde bir filtre tanımlandık. DbContext örnek düzeyi özelliğinin kullanımını Note: `TenantId`. Model düzeyi filtreleri doğru bağlam örneğindeki değeri kullanır (diğer bir deyişle, sorguyu yürüten bağlam örneği).
+`Post` varlık türünün örnekleri için çok kiracılı ve geçici silme uygulayan model düzeyinde bir filtre tanımlandık. `DbContext` örnek düzeyi özelliğinin kullanımını aklınızda kullanın: `TenantId`. Model düzeyi filtreleri doğru bağlam örneğindeki değeri kullanır (diğer bir deyişle, sorguyu yürüten bağlam örneği).
 
 Filtreler, IgnoreQueryFilters () işleci kullanılarak tekil LINQ sorguları için devre dışı bırakılabilir.
 
@@ -119,7 +119,7 @@ public class BloggingContext : DbContext
     [DbFunction]
     public static int PostReadCount(int blogId)
     {
-        throw new Exception();
+        throw new NotImplementedException();
     }
 }
 ```
@@ -133,11 +133,11 @@ var query =
     select p;
 ```
 
-Dikkat etmeniz gereken birkaç nokta:
+Dikkat edilecek birkaç şey:
 
-- Kurala göre yöntemin adı, SQL oluştururken bir işlevin adı (Bu örnekte Kullanıcı tanımlı bir işlev) olarak kullanılır, ancak yöntem kaydı sırasında adı ve şemayı geçersiz kılabilirsiniz
-- Şu anda yalnızca skaler işlevler destekleniyor
-- Eşlenmiş işlevi veritabanında oluşturmanız gerekir. EF Core geçişleri oluşturma işlemini gerçekleşmeyecek
+- Kurala göre yöntemin adı, SQL oluştururken bir işlevin adı (Bu örnekte Kullanıcı tanımlı bir işlev) olarak kullanılır, ancak yöntem kaydı sırasında adı ve şemayı geçersiz kılabilirsiniz.
+- Şu anda yalnızca skaler işlevler desteklenir.
+- Eşlenmiş işlevi veritabanında oluşturmanız gerekir. EF Core geçişler bunu oluşturmak için gerekli olmayacaktır.
 
 ### <a name="self-contained-type-configuration-for-code-first"></a>Önce kod için kendi kendine içerilen tür yapılandırması
 
@@ -146,11 +146,11 @@ EF6 içinde, *EntityTypeConfiguration*'dan türeterek belirli bir varlık türü
 ``` csharp
 class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 {
-  public void Configure(EntityTypeBuilder<Customer> builder)
-  {
-     builder.HasKey(c => c.AlternateKey);
-     builder.Property(c => c.Name).HasMaxLength(200);
-   }
+    public void Configure(EntityTypeBuilder<Customer> builder)
+    {
+        builder.HasKey(c => c.AlternateKey);
+        builder.Property(c => c.Name).HasMaxLength(200);
+    }
 }
 
 ...
@@ -158,7 +158,7 @@ class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 builder.ApplyConfiguration(new CustomerConfiguration());
 ```
 
-## <a name="high-performance"></a>Yüksek performans
+## <a name="high-performance"></a>Yüksek Performans
 
 ### <a name="dbcontext-pooling"></a>DbContext havuzu
 
@@ -223,7 +223,7 @@ Bu çalışma, Grup birleşimleri için oluşturulan SQL 'i geliştirir. Grup bi
 
 ### <a name="string-interpolation-in-fromsql-and-executesqlcommand"></a>FromSql ve ExecuteSqlCommand 'da dize ilişkilendirme
 
-C#6, C# ifadelerin dize değişmez değerlerinde doğrudan gömülmesini sağlayan, çalışma zamanında dizeler oluşturmanın iyi bir yolunu sağlayan bir özellik olan dize ilişkilendirmeyi sunmuştur. EF Core 2,0 ' de, ham SQL dizelerini kabul eden iki birincil API 'imize enterpolasyonlu dizeler için özel destek ekledik: `FromSql` ve `ExecuteSqlCommand`. Bu yeni destek, C# dize ilişkilendirme ' güvenli ' bir biçimde kullanılmasına izin verir. Diğer bir deyişle, çalışma zamanında dinamik olarak SQL oluştururken ortaya çıkabilecek yaygın SQL ekleme hatalarına karşı koruma sağlar.
+C#6, C# ifadelerin dize değişmez değerlerinde doğrudan gömülmesini sağlayan, çalışma zamanında dizeler oluşturmanın iyi bir yolunu sağlayan bir özellik olan dize ilişkilendirmeyi sunmuştur. EF Core 2,0 ' de, ham SQL dizelerini kabul eden iki birincil API 'imize enterpolasyonlu dizeler için özel destek ekledik: `FromSql` ve `ExecuteSqlCommand`. Bu yeni destek, C# dize ilişkilendirbir "güvenli" biçimde kullanılmasına izin verir. Diğer bir deyişle, çalışma zamanında dinamik olarak SQL oluştururken ortaya çıkabilecek yaygın SQL ekleme hatalarına karşı koruma sağlar.
 
 Aşağıda bir örnek verilmiştir:
 
@@ -270,7 +270,7 @@ var aCustomers =
 
 ## <a name="database-management"></a>Veritabanı yönetimi
 
-### <a name="pluralization-hook-for-dbcontext-scaffolding"></a>DbContext Scafkatlaması için pluralization kancası
+### <a name="pluralization-hook-for-dbcontext-scaffolding"></a>DbContext scafkatlaması için pluralization kancası
 
 EF Core 2,0, varlık türü adlarını ve pluri DbSet adlarını bir kez eklemek için kullanılan yeni bir *ıpluralizer* hizmeti sunar. Varsayılan uygulama bir op değildir, bu nedenle bu yalnızca katlara kendi pluralizer 'ı kolayca ekleyebileceğiniz bir kanca olur.
 

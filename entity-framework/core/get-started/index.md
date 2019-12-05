@@ -4,12 +4,12 @@ author: rick-anderson
 ms.date: 09/17/2019
 ms.assetid: 3c88427c-20c6-42ec-a736-22d3eccd5071
 uid: core/get-started/index
-ms.openlocfilehash: fca1b532b34e20aeea1968939af96c692d60d738
-ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
+ms.openlocfilehash: d46c4bb9ac6c8f718b4da5ecd82d54710d41935f
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/02/2019
-ms.locfileid: "71813612"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824493"
 ---
 # <a name="getting-started-with-ef-core"></a>EF Core kullanmaya başlama
 
@@ -19,9 +19,9 @@ Windows üzerinde Visual Studio 'yu kullanarak veya Windows, macOS veya Linux ü
 
 [Bu makalenin örneğini GitHub 'Da görüntüleyin](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/GetStarted).
 
-## <a name="prerequisites"></a>Önkoşullar
+## <a name="prerequisites"></a>Prerequisites
 
-Aşağıdaki yazılımı yükler:
+Aşağıdaki yazılımları yükleyin:
 
 ## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
@@ -34,18 +34,18 @@ Aşağıdaki yazılımı yükler:
 
 ---
 
-## <a name="create-a-new-project"></a>Yeni bir proje oluşturma
+## <a name="create-a-new-project"></a>Yeni bir proje oluşturun
 
 ## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
-``` Console
+```dotnetcli
 dotnet new console -o EFGetStarted
 cd EFGetStarted
 ```
 
 ## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Visual Studio 'Yu aç
+* Visual Studio’yu açın
 * **Yeni proje oluştur ' a** tıklayın
 * Etiketi ile **konsol uygulaması (.NET Core)** seçeneğini belirleyin ve ileri ' ye tıklayın. **C#**
 * Ad için **Efgetstarted** girin ve **Oluştur** ' a tıklayın.
@@ -58,7 +58,7 @@ EF Core yüklemek için, hedeflemek istediğiniz EF Core veritabanı sağlayıc�
 
 ## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
-``` Console
+```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 ```
 
@@ -71,7 +71,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Sqlite
   Install-Package Microsoft.EntityFrameworkCore.Sqlite
   ```
 
-İpucuyla Ayrıca, projeye sağ tıklayıp **NuGet Paketlerini Yönet** ' i seçerek paketleri yükleyebilirsiniz.
+İpucu: Ayrıca, projeye sağ tıklayıp **NuGet Paketlerini Yönet** ' i seçerek paketleri yükleyebilirsiniz.
 
 ---
 
@@ -95,7 +95,7 @@ Modeli oluşturan bir bağlam sınıfı ve varlık sınıfları tanımlayın.
 
 EF Core Ayrıca, varolan bir veritabanından bir modele [ters mühendislik](../managing-schemas/scaffolding.md) uygulanabilir.
 
-İpucuyla Gerçek bir uygulamada, her bir sınıfı ayrı bir dosyaya yerleştirip [bağlantı dizesini](../miscellaneous/connection-strings.md) bir yapılandırma dosyasına veya ortam değişkenine yerleştirebilirsiniz. Öğreticiyi bir şekilde korumak için her şey tek bir dosyada yer alır.
+İpucu: gerçek bir uygulamada, her bir sınıfı ayrı bir dosyaya yerleştirip [bağlantı dizesini](../miscellaneous/connection-strings.md) bir yapılandırma dosyasına veya ortam değişkenine yerleştirebilirsiniz. Öğreticiyi bir şekilde korumak için her şey tek bir dosyada yer alır.
 
 ## <a name="create-the-database"></a>Veritabanını oluşturma
 
@@ -105,14 +105,14 @@ Aşağıdaki adımlar bir veritabanı oluşturmak için [geçişleri](xref:core/
 
 * Aşağıdaki komutları çalıştırın:
 
-  ``` Console
+  ```dotnetcli
   dotnet tool install --global dotnet-ef
   dotnet add package Microsoft.EntityFrameworkCore.Design
   dotnet ef migrations add InitialCreate
   dotnet ef database update
   ```
 
-  Bu, bir projede komutu çalıştırmak için gerekli olan [DotNet EF](../miscellaneous/cli/dotnet.md) ve tasarım paketini de yüklüyor. Bu `migrations` komut, model için ilk tablo kümesini oluşturmak üzere bir geçişi bir geçişe kattı. `database update` Komut veritabanını oluşturur ve yeni geçişi uygular.
+  Bu, bir projede komutu çalıştırmak için gerekli olan [DotNet EF](../miscellaneous/cli/dotnet.md) ve tasarım paketini de yüklüyor. `migrations` komutu, modelin ilk tablo kümesini oluşturmak için bir geçişi oluşturur. `database update` komutu veritabanını oluşturur ve yeni geçişi uygular.
 
 ## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -124,7 +124,7 @@ Aşağıdaki adımlar bir veritabanı oluşturmak için [geçişleri](xref:core/
   Update-Database
   ```
 
-  Bu, [EF Core Için PMC araçlarını](../miscellaneous/cli/powershell.md)kurar. Bu `Add-Migration` komut, model için ilk tablo kümesini oluşturmak üzere bir geçişi bir geçişe kattı. `Update-Database` Komut veritabanını oluşturur ve yeni geçişi uygular.
+  Bu, [EF Core Için PMC araçlarını](../miscellaneous/cli/powershell.md)kurar. `Add-Migration` komutu, modelin ilk tablo kümesini oluşturmak için bir geçişi oluşturur. `Update-Database` komutu veritabanını oluşturur ve yeni geçişi uygular.
 
 ---
 
@@ -138,13 +138,13 @@ Aşağıdaki adımlar bir veritabanı oluşturmak için [geçişleri](xref:core/
 
 ## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
-``` Console
+```dotnetcli
 dotnet run
 ```
 
 ## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Visual Studio, .NET Core konsol uygulamaları çalıştırırken tutarsız bir çalışma dizini kullanır. (bkz. [DotNet/Project-System # 3619](https://github.com/dotnet/project-system/issues/3619)) Bu durum, oluşan bir özel durumla sonuçlanır *: böyle bir tablo yok: Blogları*. Çalışma dizinini güncelleştirmek için:
+Visual Studio, .NET Core konsol uygulamaları çalıştırırken tutarsız bir çalışma dizini kullanır. (bkz. [DotNet/Project-System # 3619](https://github.com/dotnet/project-system/issues/3619)) Bu durum, oluşan bir özel durumla sonuçlanır: *böyle bir tablo: blogları*. Çalışma dizinini güncelleştirmek için:
 
 * Projeye sağ tıklayın ve **Proje dosyasını Düzenle** ' yi seçin.
 * *TargetFramework* özelliğinin hemen altında aşağıdakileri ekleyin:
@@ -153,7 +153,7 @@ Visual Studio, .NET Core konsol uygulamaları çalıştırırken tutarsız bir �
   <StartWorkingDirectory>$(MSBuildProjectDirectory)</StartWorkingDirectory>
   ```
 
-* Dosyayı kaydedin
+* Dosyayı kaydetme
 
 Artık uygulamayı çalıştırabilirsiniz:
 

@@ -1,14 +1,14 @@
 ---
 title: Bağlantı dayanıklılığı ve yeniden deneme mantığı-EF6
-author: divega
-ms.date: 10/23/2016
+author: AndriySvyryd
+ms.date: 11/20/2019
 ms.assetid: 47d68ac1-927e-4842-ab8c-ed8c8698dff2
-ms.openlocfilehash: a01216c3399ca4a04943563435eacd0047337a5f
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
+ms.openlocfilehash: 50e65bed32d0cfcf42746da0d632f9e990424b97
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306568"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824844"
 ---
 # <a name="connection-resiliency-and-retry-logic"></a>Bağlantı dayanıklılığı ve yeniden deneme mantığı
 > [!NOTE]
@@ -124,77 +124,14 @@ using (var db = new BloggingContext())
 
 Bu, bir yürütme stratejisi kullanılırken, EF önceki işlemlerden haberdar olmadığından ve bunların nasıl yeniden denenmediğinden desteklenmez. Örneğin, ikinci SaveChanges başarısız olduysa EF, ilk SaveChanges çağrısını yeniden denemek için gereken bilgileri artık yok.  
 
-### <a name="workaround-suspend-execution-strategy"></a>Geçici çözüm: Yürütme stratejisini askıya al  
+### <a name="solution-manually-call-execution-strategy"></a>Çözüm: El Ile çağrı yürütme stratejisi  
 
-Olası bir geçici çözüm, bir kullanıcı tarafından başlatılan işlem kullanması gereken kod parçası için yeniden deneme yürütme stratejisini askıya alma ' dır. Bunu yapmanın en kolay yolu, kod tabanlı yapılandırma sınıfınıza bir SuspendExecutionStrategy bayrağı eklemek ve bayrak ayarlandığında, yürütme stratejisi lambda öğesini varsayılan (yeniden bağlama olmayan) yürütme stratejisini döndürecek şekilde değiştirmenizi kullanmaktır.  
-
-``` csharp
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.SqlServer;
-using System.Runtime.Remoting.Messaging;
-
-namespace Demo
-{
-    public class MyConfiguration : DbConfiguration
-    {
-        public MyConfiguration()
-        {
-            this.SetExecutionStrategy("System.Data.SqlClient", () => SuspendExecutionStrategy
-              ? (IDbExecutionStrategy)new DefaultExecutionStrategy()
-              : new SqlAzureExecutionStrategy());
-        }
-
-        public static bool SuspendExecutionStrategy
-        {
-            get
-            {
-                return (bool?)CallContext.LogicalGetData("SuspendExecutionStrategy") ?? false;
-            }
-            set
-            {
-                CallContext.LogicalSetData("SuspendExecutionStrategy", value);
-            }
-        }
-    }
-}
-```  
-
-Bayrak değerini depolamak için CallContext kullandığınızı unutmayın. Bu, yerel depolama alanı iş parçacığı için benzer işlevler sağlar, ancak zaman uyumsuz sorgu dahil zaman uyumsuz kodla kullanımı güvenlidir ve Entity Framework ile kaydedin.  
-
-Artık Kullanıcı tarafından başlatılan bir işlem kullanan kod bölümünün yürütme stratejisini askıya alabiliriz.  
-
-``` csharp
-using (var db = new BloggingContext())
-{
-    MyConfiguration.SuspendExecutionStrategy = true;
-
-    using (var trn = db.Database.BeginTransaction())
-    {
-        db.Blogs.Add(new Blog { Url = "http://msdn.com/data/ef" });
-        db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
-        db.SaveChanges();
-
-        db.Blogs.Add(new Blog { Url = "http://twitter.com/efmagicunicorns" });
-        db.SaveChanges();
-
-        trn.Commit();
-    }
-
-    MyConfiguration.SuspendExecutionStrategy = false;
-}
-```  
-
-### <a name="workaround-manually-call-execution-strategy"></a>Geçici çözüm: Yürütme stratejisini el ile çağırma  
-
-Diğer bir seçenek de, yürütme stratejisini el ile kullanmaktır ve bu işlem, işlemlerden biri başarısız olursa her şeyi yeniden deneyebilir. Hala, yeniden denenebilir kod bloğu içinde kullanılan her türlü bağlam yeniden denenmeye çalışabilmeniz için, yukarıda gösterilen tekniğin kullanıldığı yürütme stratejisini askıya almanız gerekir.  
+Çözüm, yürütme stratejisini el ile kullanmak ve bir işlem başarısız olursa her şeyi yeniden denemek için bu uygulamayı çalıştırılacak mantığı kümesinin tamamına vermektir. Dbexecutionstratejisinden türetilen bir yürütme stratejisi çalıştırıldığında, SaveChanges 'da kullanılan örtük yürütme stratejisini askıya alır.  
 
 Yeniden denenmek üzere kod bloğu içinde herhangi bir bağlam oluşturulması gerektiğini unutmayın. Bu, her yeniden deneme için temiz bir durumla başlıyoruz.  
 
 ``` csharp
 var executionStrategy = new SqlAzureExecutionStrategy();
-
-MyConfiguration.SuspendExecutionStrategy = true;
 
 executionStrategy.Execute(
     () =>
@@ -214,6 +151,4 @@ executionStrategy.Execute(
             }
         }
     });
-
-MyConfiguration.SuspendExecutionStrategy = false;
 ```  

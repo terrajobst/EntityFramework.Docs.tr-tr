@@ -1,15 +1,16 @@
 ---
 title: Oluşturulan değerler-EF Core
-author: rowanmiller
-ms.date: 10/27/2016
-ms.assetid: eb082011-11a1-41b4-a108-15daafa03e80
+description: Entity Framework Core kullanırken özellikler için değer oluşturmayı yapılandırma
+author: AndriySvyryd
+ms.author: ansvyryd
+ms.date: 11/06/2019
 uid: core/modeling/generated-properties
-ms.openlocfilehash: 6643d3c5c9b3363e450e820793f449a41e2eba80
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 7fa3eae5e2edb7b4c40ed4f99ce4a29f367e622a
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655754"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824703"
 ---
 # <a name="generated-values"></a>Oluşturulan Değerler
 
@@ -53,7 +54,7 @@ Ekleme veya güncelleştirme üzerinde oluşturulan değer, kayıt her kaydedild
 
 ## <a name="conventions"></a>Kurallar
 
-Kurala göre, Short, int, Long veya GUID türündeki bileşik olmayan birincil anahtarlar, ekleme sırasında oluşturulan değerleri alacak şekilde oluşturulacaktır. Diğer tüm özellikler hiçbir değer üretimi olmadan kuruluma sunulacaktır.
+Varsayılan olarak, Short, int, Long veya GUID türündeki bileşik olmayan birincil anahtarlar, ekleme sırasında oluşturulan değerleri alacak şekilde kurulumda olur. Diğer tüm özellikler hiçbir değer üretimi olmadan kuruluma sunulacaktır.
 
 ## <a name="data-annotations"></a>Veri Açıklamaları
 

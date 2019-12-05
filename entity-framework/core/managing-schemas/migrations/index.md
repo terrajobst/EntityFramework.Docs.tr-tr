@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 10/05/2018
 uid: core/managing-schemas/migrations/index
-ms.openlocfilehash: bf9aa32dd731b60d2985a9fe8bebd703af4af03b
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 7de465d483ab2c183c7f37d08c84de00ef113651
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655565"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824507"
 ---
 # <a name="migrations"></a>Geçişler
 
@@ -41,7 +41,7 @@ Geçişler, aşağıdaki görevlerle yardım eden komut satırı araçlarını v
 
 ## <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
-``` Console
+```dotnetcli
 dotnet ef migrations add InitialCreate
 ```
 
@@ -70,7 +70,7 @@ Sonra, şemayı oluşturmak için geçiş veritabanını veritabanına uygulayı
 
 ## <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
-``` Console
+```dotnetcli
 dotnet ef database update
 ```
 
@@ -88,7 +88,7 @@ EF Core modelinizde değişiklik yaptıktan sonra veritabanı şeması eşitlenm
 
 ## <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
-``` Console
+```dotnetcli
 dotnet ef migrations add AddProductReviews
 ```
 
@@ -149,7 +149,7 @@ Uygun komutu kullanarak geçişi veritabanına uygulayın.
 
 ## <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
-``` Console
+```dotnetcli
 dotnet ef database update
 ```
 
@@ -165,7 +165,7 @@ Update-Database
 
 Bazen herhangi bir model değişikliği yapmadan bir geçiş eklemek yararlı olabilir. Bu durumda, yeni bir geçiş eklemek boş sınıflarla kod dosyaları oluşturur. Bu geçişi, EF Core modeliyle doğrudan bağlantılı olmayan işlemleri gerçekleştirmek için özelleştirebilirsiniz. Bu şekilde yönetmek isteyebileceğiniz bazı şeyler şunlardır:
 
-* Tam metin arama
+* Tam Metin Araması
 * İşlevler
 * Saklı yordamlar
 * Tetikleyiciler
@@ -177,7 +177,7 @@ Bazen bir geçiş ekleyip EF Core modelinizde uygulamadan önce ek değişiklikl
 
 ## <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
-``` Console
+```dotnetcli
 dotnet ef migrations remove
 ```
 
@@ -197,7 +197,7 @@ Veritabanına zaten bir geçiş (veya birkaç geçiş) uyguladıysanız ancak ge
 
 ## <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
-``` Console
+```dotnetcli
 dotnet ef database update LastGoodMigration
 ```
 
@@ -215,7 +215,7 @@ Geçişlerinizi hata ayıkladığınızda veya bir üretim veritabanına dağıt
 
 ## <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
-``` Console
+```dotnetcli
 dotnet ef migrations script
 ```
 

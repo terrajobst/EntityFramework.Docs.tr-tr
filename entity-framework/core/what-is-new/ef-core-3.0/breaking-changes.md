@@ -1,15 +1,14 @@
 ---
 title: EF Core 3,0 ' deki Son değişiklikler EF Core
-author: divega
-ms.date: 02/19/2019
-ms.assetid: EE2878C9-71F9-4FA5-9BC4-60517C7C9830
+author: ajcvickers
+ms.date: 12/03/2019
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: f02825f5303959997dca6e14e4efe64020b3cb22
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: d614103169837238810fabd0a8889043c851ef14
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655883"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824871"
 ---
 # <a name="breaking-changes-included-in-ef-core-30"></a>EF Core 3,0 ' de yer alan son değişiklikler
 
@@ -42,6 +41,7 @@ Veritabanı sağlayıcılarını yalnızca etkilemek için beklediğimiz değiş
 | [Geçici anahtar değerleri artık varlık örneklerine ayarlı değil](#tkv) | Düşük      |
 | [Tabloyu sorumlu ile paylaşan bağımlı varlıklar artık isteğe bağlıdır](#de) | Düşük      |
 | [Bir eşzamanlılık belirteci sütunuyla bir tabloyu paylaşan tüm varlıkların onu bir özellik ile eşlemesi gerekir](#aes) | Düşük      |
+| [Sahip olunan varlıklar, izleme sorgusu kullanılarak sahip olmadan sorgulanamıyor](#owned-query) | Düşük      |
 | [Eşlenmemiş türlerden devralınan özellikler artık tüm türetilmiş türler için tek bir sütunla eşleştirilir](#ip) | Düşük      |
 | [Yabancı anahtar özellik kuralı artık Principal özelliği ile aynı ad ile eşleşmiyor](#fkp) | Düşük      |
 | [TransactionScope tamamlanmadan önce artık kullanılmıyorsa, veritabanı bağlantısı artık kapalı](#dbc) | Düşük      |
@@ -49,6 +49,7 @@ Veritabanı sağlayıcılarını yalnızca etkilemek için beklediğimiz değiş
 | [Birden çok uyumlu yedekleme alanı bulunursa throw](#throw-if-multiple-compatible-backing-fields-are-found) | Düşük      |
 | [Yalnızca alan özellik adları alan adıyla eşleşmelidir](#field-only-property-names-should-match-the-field-name) | Düşük      |
 | [AddDbContext/AddDbContextPool artık AddLogging ve AddMemoryCache çağrısını içermiyor](#adddbc) | Düşük      |
+| [AddEntityFramework * bir boyut sınırı ile ımemorycache ekler](#addentityframework-adds-imemorycache-with-a-size-limit) | Düşük      |
 | [DbContext. Entry artık yerel bir DetectChanges gerçekleştiriyor](#dbe) | Düşük      |
 | [Dize ve bayt dizisi anahtarları, varsayılan olarak istemci tarafından oluşturulur](#string-and-byte-array-keys-are-not-client-generated-by-default) | Düşük      |
 | [Iloggerfactory artık kapsamlı bir hizmettir](#ilf) | Düşük      |
@@ -99,7 +100,7 @@ Geliştirme sırasında de istemci değerlendirmesi uyarıları yok sayılacak �
 
 Bunun yanı sıra, otomatik istemci değerlendirmesi, sürümler arasında istenmeyen değişikliklere neden olan belirli ifadeler için sorgu çevirisini geliştirme ile ilgili sorunlara yol açabilir.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Bir sorgu tam olarak çevrilemeyecek şekilde, sorguyu çevrilebilen bir biçimde yeniden yazın veya `AsEnumerable()`, `ToList()`ya da benzer bir şekilde, daha sonra LINQ-Objects kullanılarak daha sonra işlenebileceği istemciye açık bir şekilde veri getirmek için benzer.
 
@@ -120,7 +121,7 @@ Bir sorgu tam olarak çevrilemeyecek şekilde, sorguyu çevrilebilen bir biçimd
 
 Bu, .NET Core ve Xamarin gibi diğer modern .NET platformlarına enerji tasarrufu sağlamak için .NET teknolojilerinde stratejik bir kararın bir parçasıdır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Modern bir .NET platformuna geçmeyi düşünün. Bu mümkün değilse, her ikisi de .NET Framework EF Core 2,1 veya EF Core 2,2 ' i kullanmaya devam edin.
 
@@ -144,7 +145,7 @@ Bu değişiklikten önce, uygulamanın ASP.NET Core ve SQL Server hedeflendiğin
 Bu değişiklik ile, EF Core alma deneyimi tüm sağlayıcılar, desteklenen .NET uygulamaları ve uygulama türleri arasında aynıdır.
 Geliştiriciler artık EF Core ve EF Core veri sağlayıcılarının yükseltilme sırasında tam olarak denetim de alabilir.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 ASP.NET Core 3,0 uygulamasında veya desteklenen başka bir uygulamada EF Core kullanmak için, uygulamanızın kullanacağı EF Core veritabanı sağlayıcısına açıkça bir paket başvurusu ekleyin.
 
@@ -165,7 +166,7 @@ ASP.NET Core 3,0 uygulamasında veya desteklenen başka bir uygulamada EF Core k
 
 Bu değişiklik, NuGet üzerinde düzenli bir .NET CLı aracı olarak `dotnet ef` dağıtmamızı ve güncelleştirmenizi sağlar ve bu da EF Core 3,0 her zaman bir NuGet paketi olarak dağıtılır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 `DbContext`geçişleri veya yapı iskelesi yönetmek için `dotnet-ef` genel bir araç olarak yükler:
 
@@ -189,7 +190,7 @@ Ayrıca, bir [araç bildirim dosyası](https://github.com/dotnet/cli/issues/1028
 EF Core 3,0 ' den başlayarak, parametrelerin sorgu dizesinden ayrı olarak geçirildiği parametreli bir sorgu oluşturmak için `FromSqlRaw`, `ExecuteSqlRaw`ve `ExecuteSqlRawAsync` kullanın.
 Örneğin:
 
-```C#
+```csharp
 context.Products.FromSqlRaw(
     "SELECT * FROM Products WHERE Name = {0}",
     product.Name);
@@ -198,7 +199,7 @@ context.Products.FromSqlRaw(
 Parametrelerin, enterpolasyonlu bir sorgu dizesinin parçası olarak geçirildiği parametreli bir sorgu oluşturmak için `FromSqlInterpolated`, `ExecuteSqlInterpolated`ve `ExecuteSqlInterpolatedAsync` kullanın.
 Örneğin:
 
-```C#
+```csharp
 context.Products.FromSqlInterpolated(
     $"SELECT * FROM Products WHERE Name = {product.Name}");
 ```
@@ -210,7 +211,7 @@ Yukarıdaki sorguların her ikisinin de aynı SQL parametreleriyle aynı paramet
 Bu gibi yöntem aşırı yüklemeleri, amaç, enterpolasyonlu dize yöntemini çağırmak ve diğer şekilde, ham dize metodunu yanlışlıkla çağırmak çok kolay hale getirir.
 Bu, sorguların olması gerektiğinde parametreli hale getirmemelidir.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Yeni yöntem adlarını kullanmak için geçiş yapın.
 
@@ -223,7 +224,7 @@ Yeni yöntem adlarını kullanmak için geçiş yapın.
 
 3,0 EF Core önce, FromSql yöntemi, geçirilen SQL 'in üzerine oluşmayabilir. SQL, saklı yordam gibi birleştirilmemiş bir işlem olduğu zaman istemci değerlendirmesi gerçekleştirdi. Aşağıdaki sorgu, sunucuda saklı yordam çalıştırılarak ve istemci tarafında FirstOrDefault ' i gerçekleştirerek çalıştı.
 
-```C#
+```csharp
 context.Products.FromSqlRaw("[dbo].[Ten Most Expensive Products]").FirstOrDefault();
 ```
 
@@ -239,7 +240,7 @@ EF Core 3,0, [burada](#linq-queries-are-no-longer-evaluated-on-the-client)açık
 
 FromSqlRaw/Fromsqlenterpolasyonnda saklı bir yordam kullanıyorsanız, bunun üzerine oluşmadığını bilirsiniz; böylece sunucu tarafında herhangi bir kompozisyonu önlemek için FromSql yöntem çağrısından sonra __asslanabilir/AsAsyncEnumerable__ ekleyebilirsiniz.
 
-```C#
+```csharp
 context.Products.FromSqlRaw("[dbo].[Ten Most Expensive Products]").AsEnumerable().FirstOrDefault();
 ```
 
@@ -261,7 +262,7 @@ EF Core 3,0 ' den başlayarak, yeni `FromSqlRaw` ve `FromSqlInterpolated` Yönte
 
 `DbSet` üzerinde `FromSql` herhangi bir yerde, hiçbir anlamı veya eklenen değeri belirtmediyse, bazı senaryolarda belirsizliğe neden olabilir.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 `FromSql` etkinleştirmeleri, uygulandıkları `DbSet` doğrudan taşınmalıdır.
 
@@ -274,7 +275,7 @@ EF Core 3,0 ' den başlayarak, yeni `FromSqlRaw` ve `FromSqlInterpolated` Yönte
 
 EF Core 3,0 ' dan önce, belirli bir tür ve KIMLIĞE sahip bir varlığın her oluşumu için aynı varlık örneği kullanılacaktır. Bu, sorguları izleme davranışıyla eşleşir. Örneğin, bu sorgu:
 
-```C#
+```csharp
 var results = context.Products.Include(e => e.Category).AsNoTracking().ToList();
 ```
 , verilen kategoriyle ilişkilendirilen her bir `Product` için aynı `Category` örneğini döndürür.
@@ -287,7 +288,7 @@ EF Core 3,0 ' den başlayarak, döndürülen grafikte farklı yerlerde verilen t
 
 Kimlik çözümlemesi (diğer bir deyişle, bir varlığın daha önce karşılaşılan varlıkla aynı türe ve KIMLIĞE sahip olduğunu belirlemek) ek performans ve bellek yükü ekler. Bu genellikle, ilk yerde hiçbir izleme sorgusunun neden kullanıldığına ilişkin sayacı çalıştırır. Ayrıca, kimlik çözümlemesi bazen faydalı olabilirken, varlıkların serileştirilmek ve bir istemciye gönderilmesi, hiçbir izleme sorgusu için ortak olan bir istemciye gönderiliyorsa, bu gerekli değildir.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Kimlik çözümlemesi gerekiyorsa izleme sorgusu kullanın.
 
@@ -298,7 +299,7 @@ Kimlik çözümlemesi gerekiyorsa izleme sorgusu kullanın.
 [Sorun izleniyor #14523](https://github.com/aspnet/EntityFrameworkCore/issues/14523)
 
 EF Core 3,0 ' deki yeni yapılandırma, uygulama tarafından herhangi bir olayın günlük düzeyinin belirtilmesini sağladığından bu değişikliği geri çevirdik. Örneğin, SQL 'in günlüğe kaydedilmesini `Debug`değiştirmek için `OnConfiguring` veya `AddDbContext`düzeyini açıkça yapılandırın:
-```C#
+```csharp
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     => optionsBuilder
         .UseSqlServer(connectionString)
@@ -324,7 +325,7 @@ Genellikle bu geçici değerler büyük negatif sayılardır.
 
 Daha önce bazı `DbContext` örnekleri tarafından izlenen bir varlık farklı bir `DbContext` örneğine taşındığında, geçici anahtar değerlerinin yanlışlıkla kalıcı hale gelmesini engellemek için bu değişiklik yapılmıştır. 
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Varlıklar arasındaki ilişkilendirmeleri oluşturmak için yabancı anahtarlara birincil anahtar değerleri atayan uygulamalar, birincil anahtarların mağaza oluşturulup `Added` durumundaki varlıklara ait olması durumunda eski davranışa bağlı olabilir.
 Bu, şunları önlenebilir:
@@ -353,13 +354,13 @@ Anahtar değeri ayarlanmamışsa veya varlık türü oluşturulan anahtarları k
 
 Bu değişiklik, Store tarafından oluşturulan anahtarlar kullanılırken bağlantısı kesilen varlık grafikleriyle daha kolay ve daha tutarlı hale getirilmek üzere yapılmıştır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Bu değişiklik, bir varlık türü oluşturulan anahtarları kullanacak şekilde yapılandırıldıysa ancak anahtar değerleri açıkça yeni örnekler için ayarlandıysa, bir uygulamayı bozabilir.
 Bu çözüm, anahtar özelliklerinin oluşturulan değerleri kullanmamasına açık bir şekilde yapılandırmaktır.
 Örneğin, Fluent API:
 
-```C#
+```csharp
 modelBuilder
     .Entity<Blog>()
     .Property(e => e.Id)
@@ -368,7 +369,7 @@ modelBuilder
 
 Ya da veri ek açıklamalarıyla:
 
-```C#
+```csharp
 [DatabaseGenerated(DatabaseGeneratedOption.None)]
 public string Id { get; set; }
 ```
@@ -390,12 +391,12 @@ public string Id { get; set; }
 
 Bu değişiklik, `SaveChanges` çağrılmadan _önce_ hangi varlıkların silineceğini anlamak için önemli olan veri bağlama ve denetim senaryolarına yönelik deneyimi geliştirmek üzere yapılmıştır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Önceki davranış `context.ChangedTracker`ayarları aracılığıyla geri yüklenebilir.
 Örneğin:
 
-```C#
+```csharp
 context.ChangeTracker.CascadeDeleteTiming = CascadeTiming.OnSaveChanges;
 context.ChangeTracker.DeleteOrphansTiming = CascadeTiming.OnSaveChanges;
 ```
@@ -416,7 +417,7 @@ context.ChangeTracker.DeleteOrphansTiming = CascadeTiming.OnSaveChanges;
 
 Tek bir LINQ sorgusu uygulamak için birden çok sorgu verilmesi, birden çok veritabanı yuvarlaklığına gerek olduğu için negatif performans dahil olmak üzere çok sayıda soruna neden olmuş ve her sorgu veritabanının farklı bir durumunu gözlemleyebilmelidir.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Teknik olarak bu bir değişiklik olmadığı sürece, tek bir sorgu koleksiyon gezginlerinin çok sayıda `Include` işleci içerdiğinde uygulama performansının önemli bir etkisi olabilir. Daha fazla bilgi edinmek ve sorguları daha verimli bir şekilde yeniden yazmak için [Bu açıklamaya bakın](https://github.com/aspnet/EntityFrameworkCore/issues/18022#issuecomment-542397085) .
 
@@ -439,7 +440,7 @@ Teknik olarak bu bir değişiklik olmadığı sürece, tek bir sorgu koleksiyon 
 
 Bu değişiklik, beklenmeyen yan etkileri olmadan `DeleteBehavior` kullanımı kolay bir şekilde geliştirmek için yapılmıştır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Önceki davranış `DeleteBehavior.ClientNoAction`kullanılarak geri yüklenebilir.
 
@@ -464,7 +465,7 @@ Bu değişiklik, sorgu türlerinin amacını aşmak için yapılmıştır.
 Özellikle, bunlar, anahtarsız varlık türlerdir ve bu, doğal olarak salt okunurdur, ancak yalnızca bir varlık türünün Salt okunabilir olması gerektiğinden kullanılmamalıdır.
 Benzer şekilde, genellikle görünümlere eşlenir, ancak bu yalnızca görünümler genellikle anahtar tanımlamaz.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 API 'nin aşağıdaki bölümleri artık kullanılmıyor:
 * **`ModelBuilder.Query<>()`** -bir varlık türünü anahtar olmadan işaretlemek için `ModelBuilder.Entity<>().HasNoKey()` çağrılması gerekir.
@@ -488,7 +489,7 @@ izleme sorunu [#9148](https://github.com/aspnet/EntityFrameworkCore/issues/9148)
 EF Core 3,0 ' den başlayarak, artık `WithOwner()`kullanarak sahip için bir gezinti özelliği yapılandırmak Fluent API.
 Örneğin:
 
-```C#
+```csharp
 modelBuilder.Entity<Order>.OwnsOne(e => e.Details).WithOwner(e => e.Order);
 ```
 
@@ -496,7 +497,7 @@ Sahip ve sahibi arasındaki ilişkiyle ilgili yapılandırma artık diğer iliş
 Sahip olduğu için yapılandırma, `OwnsOne()/OwnsMany()`sonra hala zincirleme olmaya devam edecektir.
 Örneğin:
 
-```C#
+```csharp
 modelBuilder.Entity<Order>.OwnsOne(e => e.Details, eb =>
     {
         eb.WithOwner()
@@ -525,7 +526,7 @@ Ayrıca, sahip bir tür hedefi ile `Entity()`, `HasOne()`veya `Set()` çağırma
 Bu değişiklik, sahip olunan türün kendisini ve sahip olduğu _ilişkiyi_ yapılandırma arasında bir temizleyici ayrım oluşturmak için yapılmıştır.
 Bu, sırasıyla `HasForeignKey`gibi yöntemlere ve karışıklığı ortadan kaldırır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Yukarıdaki örnekte gösterildiği gibi, sahip olunan tür ilişkilerinin yapılandırmasını yeni API yüzeyini kullanacak şekilde değiştirin.
 
@@ -538,7 +539,7 @@ Yukarıdaki örnekte gösterildiği gibi, sahip olunan tür ilişkilerinin yapı
 **Eski davranış**
 
 Aşağıdaki modeli göz önünde bulundurun:
-```C#
+```csharp
 public class Order
 {
     public int Id { get; set; }
@@ -560,7 +561,7 @@ EF Core 3,0 ' dan önce, `OrderDetails` aynı tabloyla `Order` veya açıkça e�
 3,0 ile başlayarak EF Core, `OrderDetails` olmayan bir `Order` eklemesine ve birincil anahtar null yapılabilir sütunlara hariç tüm `OrderDetails` özelliklerini eşleştirme olanağı sağlar.
 EF Core kümelerini sorgularken, gerekli özelliklerinden herhangi birinin bir değeri yoksa veya birincil anahtar ve tüm `null`Özellikler ' in yanı sıra gerekli özellikleri yoksa, `null` `OrderDetails`.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Modelinizin tüm isteğe bağlı sütunlarla ilişkili bir tablo paylaşımına sahipse, ancak buna işaret eden gezinmenin `null` olması beklenmiyorsa, gezinti `null`olduğunda, uygulamanın servis taleplerini işleyecek şekilde değiştirilmesi gerekir. Bu mümkün değilse, varlık türüne gerekli bir özellik eklenmelidir ya da en az bir özellik kendisine atanmış`null` bir değere sahip olmalıdır.
 
@@ -573,7 +574,7 @@ Modelinizin tüm isteğe bağlı sütunlarla ilişkili bir tablo paylaşımına 
 **Eski davranış**
 
 Aşağıdaki modeli göz önünde bulundurun:
-```C#
+```csharp
 public class Order
 {
     public int Id { get; set; }
@@ -605,15 +606,47 @@ EF Core 3,0 ' dan önce, `OrderDetails` aynı tabloyla `Order` ya da açıkça e
 
 Aynı tabloyla eşlenmiş varlıkların yalnızca biri güncelleştirildiği zaman eski bir eşzamanlılık belirteci değerinden kaçınmak için bu değişiklik yapılmıştır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Tabloyu paylaşan tüm varlıkların eşzamanlılık belirteci sütunuyla eşlenen bir özelliği içermesi gerekir. Gölge durumundaki bir oluşturma olasılığı vardır:
-```C#
+```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder.Entity<OrderDetails>()
         .Property<byte[]>("Version").IsRowVersion().HasColumnName("Version");
 }
+```
+
+<a name="owned-query"></a>
+
+### <a name="owned-entities-cannot-be-queried-without-the-owner-using-a-tracking-query"></a>Sahip olunan varlıklar, izleme sorgusu kullanılarak sahip olmadan sorgulanamıyor
+
+[Sorun izleniyor #18876](https://github.com/aspnet/EntityFrameworkCore/issues/18876)
+
+**Eski davranış**
+
+EF Core 3,0 ' dan önce, sahip olan varlıklar başka bir gezinti olarak sorgulanabilir.
+
+```csharp
+context.People.Select(p => p.Address);
+```
+
+**Yeni davranış**
+
+3,0 ile başlayarak, bir izleme sorgusu sahip olmayan bir varlık projesinde proje EF Core oluşturulur.
+
+**Kaydol**
+
+Sahip olunan varlıklar sahip olmadan değiştirilemez, bu nedenle bu şekilde sorgulama durumlarının büyük çoğunluğunda bir hata olur.
+
+**Risk Azaltıcı Etkenler**
+
+Sahip olduğu varlık daha sonra değiştirilecek şekilde izleniyorsa, sahibin sorguya eklenmesi gerekir.
+
+Aksi takdirde `AsNoTracking()` çağrısı ekleyin:
+
+```csharp
+context.People.Select(p => p.Address).AsNoTracking();
 ```
 
 <a name="ip"></a>
@@ -625,7 +658,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 **Eski davranış**
 
 Aşağıdaki modeli göz önünde bulundurun:
-```C#
+```csharp
 public abstract class EntityBase
 {
     public int Id { get; set; }
@@ -663,11 +696,11 @@ EF Core 3,0 ' dan önce, `ShippingAddress` özelliği varsayılan olarak `BulkOr
 
 Eski davranınır beklenmiyordu.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Özelliği yine de türetilmiş türlerde ayrı sütunlara açıkça eşlenmiş olabilir:
 
-```C#
+```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder.Ignore<OrderBase>();
@@ -688,7 +721,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 **Eski davranış**
 
 Aşağıdaki modeli göz önünde bulundurun:
-```C#
+```csharp
 public class Customer
 {
     public int CustomerId { get; set; }
@@ -710,7 +743,7 @@ Ancak, `Order` sahipli bir tür ise, bu da birincil anahtar `CustomerId` olur ve
 Asıl Özellik adı ile birleştirilmiş asıl tür adı ve asıl özellik adı desenleriyle birleştirilmiş gezinti adı hala eşleştirilir.
 Örneğin:
 
-```C#
+```csharp
 public class Customer
 {
     public int Id { get; set; }
@@ -724,7 +757,7 @@ public class Order
 }
 ```
 
-```C#
+```csharp
 public class Customer
 {
     public int Id { get; set; }
@@ -743,7 +776,7 @@ public class Order
 
 Bu değişiklik, sahip olan türde birincil anahtar özelliğini yanlışlıkla tanımlamayı önlemek için yapılmıştır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Özelliğin yabancı anahtar ve bu nedenle birincil anahtarın bir parçası olması amaçlandıysa, bu şekilde açıkça yapılandırın.
 
@@ -757,7 +790,7 @@ Bu değişiklik, sahip olan türde birincil anahtar özelliğini yanlışlıkla 
 
 EF Core 3,0 ' dan önce, bağlam bağlantıyı bir `TransactionScope`içinde açarsa, geçerli `TransactionScope` etkinken bağlantı açık kalır.
 
-```C#
+```csharp
 using (new TransactionScope())
 {
     using (AdventureWorks context = new AdventureWorks())
@@ -766,7 +799,7 @@ using (new TransactionScope())
         context.SaveChanges();
 
         // Old behavior: Connection is still open at this point
-        
+
         var categories = context.ProductCategories().ToList();
     }
 }
@@ -780,11 +813,11 @@ using (new TransactionScope())
 
 Bu değişiklik aynı `TransactionScope`birden çok bağlam kullanılmasına izin verir. Yeni davranış ayrıca EF6 ile eşleşir.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Bağlantının açık açık olarak kalması gerekiyorsa `OpenConnection()`, EF Core zamanından önce kapanmasını sağlar:
 
-```C#
+```csharp
 using (new TransactionScope())
 {
     using (AdventureWorks context = new AdventureWorks())
@@ -792,7 +825,7 @@ using (new TransactionScope())
         context.Database.OpenConnection();
         context.ProductCategories.Add(new ProductCategory());
         context.SaveChanges();
-        
+
         var categories = context.ProductCategories().ToList();
         context.Database.CloseConnection();
     }
@@ -818,7 +851,7 @@ Ayrıca, veritabanı silinirse, tüm tablolar için anahtar oluşturma sıfırla
 
 Bu değişiklik, bellek içi anahtar oluşturmayı gerçek veritabanı anahtarı oluşturmaya daha yakından hizalamaya ve bellek içi veritabanını kullanırken testlerin birbirinden yalıtılmasına olanak sağlamak için yapılmıştır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Bu, belirli bellek içi anahtar değerlerine bağlı olan bir uygulamayı bölebilir.
 Bunun yerine, belirli anahtar değerlerine bağlı değil veya yeni davranışla eşleşecek şekilde güncellemeden düşünün.
@@ -841,12 +874,12 @@ Bu, uygulama, alıcı veya ayarlayıcı yöntemleriyle kodlanmış ek davranış
 
 Bu değişiklik, varlıklarla ilgili veritabanı işlemlerini gerçekleştirirken, EF Core yanlışlıkla iş mantığını tetiklemesini engellemek üzere yapılmıştır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 3,0 öncesi davranış `ModelBuilder`özellik erişim modunun yapılandırması aracılığıyla geri yüklenebilir.
 Örneğin:
 
-```C#
+```csharp
 modelBuilder.UsePropertyAccessMode(PropertyAccessMode.PreferFieldDuringConstruction);
 ```
 
@@ -867,12 +900,12 @@ EF Core 3,0 ' den başlayarak, birden çok alan aynı özellik ile eşleşirse, 
 
 Bu değişiklik, yalnızca bir tane doğru olduğunda bir alanı başka bir alan ile sessizce kullanmaktan kaçınmak için yapılmıştır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Belirsiz yedekleme alanları olan özelliklerin açık olarak kullanılması için alanı olmalıdır.
 Örneğin, Fluent API kullanımı:
 
-```C#
+```csharp
 modelBuilder
     .Entity<Blog>()
     .Property(e => e.Id)
@@ -884,14 +917,16 @@ modelBuilder
 **Eski davranış**
 
 EF Core 3,0 ' dan önce bir özellik bir dize değeri ile belirtilebilir ve .NET türünde bu ada sahip bir özellik bulunmazsa EF Core, kural kurallarını kullanarak bir alanla eşleştirmeye çalışır.
-```C#
+
+```csharp
 private class Blog
 {
     private int _id;
     public string Name { get; set; }
 }
 ```
-```C#
+
+```csharp
 modelBuilder
     .Entity<Blog>()
     .Property("Id");
@@ -901,7 +936,7 @@ modelBuilder
 
 EF Core 3,0 ' den başlayarak, yalnızca alan özelliği alan adı ile aynı olmalıdır.
 
-```C#
+```csharp
 modelBuilder
     .Entity<Blog>()
     .Property("_id");
@@ -911,12 +946,12 @@ modelBuilder
 
 Benzer şekilde adlandırılan iki özellik için aynı alanı kullanmaktan kaçınmak için bu değişiklik yapılmıştır. aynı zamanda yalnızca alan özellikleri için eşleşen kuralların CLR özellikleriyle eşlenen özelliklerle aynı olmasını sağlar.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Yalnızca alan özellikleri, eşlendiği alanla aynı olarak adlandırılmalıdır.
 3,0 sonrasında EF Core gelecek bir sürümünde, özellik adından farklı olan bir alan adını açıkça yapılandırmayı yeniden etkinleştirmeyi planlıyoruz (bkz. sorun [#15307](https://github.com/aspnet/EntityFrameworkCore/issues/15307)):
 
-```C#
+```csharp
 modelBuilder
     .Entity<Blog>()
     .Property("Id")
@@ -931,7 +966,7 @@ modelBuilder
 
 **Eski davranış**
 
-EF Core 3,0 ' dan önce, `AddDbContext` veya `AddDbContextPool` çağrısı, günlüğe kaydetme ve bellek önbelleğe alma hizmetlerini D. I ile, [Addlogging](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.loggingservicecollectionextensions.addlogging) ve [addmemorycache](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.memorycacheservicecollectionextensions.addmemorycache)çağrıları aracılığıyla da kaydeder.
+EF Core 3,0 ' dan önce, `AddDbContext` veya `AddDbContextPool` çağırma işlemi, [Addlogging](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.loggingservicecollectionextensions.addlogging) ve [addmemorycache](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.memorycacheservicecollectionextensions.addmemorycache)çağrılarına çağrı ile günlüğe kaydetme ve bellek önbelleğe alma hizmetlerini de kaydeder.
 
 **Yeni davranış**
 
@@ -941,9 +976,31 @@ EF Core 3,0 ' den başlayarak `AddDbContext` ve `AddDbContextPool` artık bu hiz
 
 EF Core 3,0, bu hizmetlerin uygulamanın DI kapsayıcısında olmasını gerektirmez. Ancak, `ILoggerFactory` uygulamanın dı kapsayıcısına kayıtlıysa, EF Core tarafından hala kullanılacaktır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Uygulamanız bu hizmetlere ihtiyaç duyuyorsa, bunları [Addlogging](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.loggingservicecollectionextensions.addlogging) veya [ADDMEMORYCACHE](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.memorycacheservicecollectionextensions.addmemorycache)kullanarak dı kapsayıcısı ile açık olarak kaydedin.
+
+### <a name="addentityframework-adds-imemorycache-with-a-size-limit"></a>AddEntityFramework * bir boyut sınırı ile ımemorycache ekler
+
+[Sorun izleniyor #12905](https://github.com/aspnet/EntityFrameworkCore/issues/12905)
+
+**Eski davranış**
+
+EF Core 3,0 ' dan önce, `AddEntityFramework*` yöntemlerin çağrılması, bellek önbelleğe alma hizmetlerini bir boyut sınırı olmadan DI ile de kaydeder.
+
+**Yeni davranış**
+
+EF Core 3,0 ' den başlayarak `AddEntityFramework*` bir ımemorycache hizmetini boyut sınırı ile kaydeder. Daha sonra eklenen diğer hizmetler ımemorycache 'e bağımlıysa, özel durumlara veya performans düşüklüğe neden olan varsayılan sınıra hızlıca ulaşabilirler.
+
+**Kaydol**
+
+Sorgu önbelleğe alma mantığındaki bir hata varsa veya sorgular dinamik olarak oluşturulduysa, ımemorycache 'i sınır olmadan kullanmak denetlenmeyen bellek kullanımına neden olabilir. Varsayılan sınırın olması olası bir DoS saldırısının etkisini azaltır.
+
+**Risk Azaltıcı Etkenler**
+
+Çoğu durumda `AddEntityFramework*` çağrısı `AddDbContext` veya `AddDbContextPool` da çağrılırsa gerekli değildir. Bu nedenle, en iyi risk azaltma `AddEntityFramework*` çağrısını kaldırmayacak.
+
+Uygulamanız bu hizmetlere ihtiyaç duyuyorsa, daha önce [addmemorycache](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.memorycacheservicecollectionextensions.addmemorycache)' i kullanarak bir ıMEMORYCACHE uygulamasını dı kapsayıcısı ile açık olarak kaydedin.
 
 <a name="dbe"></a>
 
@@ -969,7 +1026,7 @@ Değişiklik algılamasına neden olan diğer yöntemler--örneğin `ChangeTrack
 
 Bu değişiklik, `context.Entry`kullanmanın varsayılan performansını geliştirmek için yapılmıştır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 3,0 öncesi davranışı sağlamak için `Entry` çağrılmadan önce `ChgangeTracker.DetectChanges()` çağırın.
 
@@ -990,12 +1047,12 @@ EF Core 3,0 ' den itibaren, hiçbir anahtar değer ayarlanmadığını belirten 
 
 Bu değişiklik, istemci tarafından oluşturulan `string`/`byte[]` değerleri genellikle yararlı olmadığından ve varsayılan davranış ortak bir şekilde oluşturulan anahtar değerleri hakkında bir nedene kadar zor hale getirildiğinden yapılmıştır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Önceden 3,0 davranışı, hiçbir null olmayan değer ayarlanmamışsa, anahtar özelliklerinin oluşturulan değerleri kullanması gerektiğini açıkça belirterek elde edilebilir.
 Örneğin, Fluent API:
 
-```C#
+```csharp
 modelBuilder
     .Entity<Blog>()
     .Property(e => e.Id)
@@ -1004,7 +1061,7 @@ modelBuilder
 
 Ya da veri ek açıklamalarıyla:
 
-```C#
+```csharp
 [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 public string Id { get; set; }
 ```
@@ -1027,7 +1084,7 @@ EF Core 3,0 ' den başlayarak `ILoggerFactory` artık kapsamlı olarak kaydedili
 
 Bu değişiklik, diğer işlevleri sağlayan ve iç hizmet sağlayıcılarının açılımı gibi bazı bazı durumları kaldıran `DbContext` örneğiyle bir günlükçü ilişkilendirmesine izin vermek üzere yapılmıştır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Bu değişiklik, EF Core iç hizmet sağlayıcısı 'nda özel hizmetleri kaydetmediğiniz ve kullanmadıkça uygulama kodunu etkilememelidir.
 Bu, yaygın değildir.
@@ -1056,7 +1113,7 @@ Bu durum ortaya çıkarsa, uygulama kodunun geç yüklemeyi geçersiz bir zamand
 
 Bu değişiklik, atılmış bir `DbContext` örneğine geç yüklemeye çalışırken davranışı tutarlı ve doğru hale getirmek için yapılmıştır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Uygulama kodunu, atılmış bağlamla geç yüklemeye kalkışacak şekilde güncelleştirin veya bunu özel durum iletisinde açıklandığı şekilde bir op olarak yapılandırın.
 
@@ -1076,13 +1133,13 @@ EF Core 3,0 ' den başlayarak bu uyarı artık dikkate alınır ve hata oluşur 
 
 Bu değişiklik, bu Pathik büyük/küçük harf daha açık bir şekilde kullanıma sunularak daha iyi uygulama kodu daha
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Bu hatayla karşılaşıldığında eylemin en uygun nedeni, kök nedenin anlaşılması ve çok sayıda iç hizmet sağlayıcısının oluşturulmasını durdurmaktır.
 Ancak, hata `DbContextOptionsBuilder`yapılandırması aracılığıyla bir uyarıya (veya yoksayıldı) geri dönüştürülebilir.
 Örneğin:
 
-```C#
+```csharp
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 {
     optionsBuilder
@@ -1100,7 +1157,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
 EF Core 3,0 öncesinde, tek bir dize ile `HasOne` veya `HasMany` kodu, kafa karıştırıcı bir şekilde yorumlandı.
 Örneğin:
-```C#
+```csharp
 modelBuilder.Entity<Samurai>().HasOne("Entrance").WithOne();
 ```
 
@@ -1116,14 +1173,14 @@ EF Core 3,0 ' den itibaren, yukarıdaki kod artık daha önce yaptığımız gib
 
 Özellikle yapılandırma kodunu okurken ve hata ararken eski davranış çok karmaşıktır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Bu, yalnızca tür adları için dizeler kullanarak ve gezinti özelliğini açıkça belirtmeden ilişkileri açıkça yapılandıran uygulamaları keser.
 Bu, yaygın değildir.
 Önceki davranış, gezinti özelliği adı için `null` açıkça geçirerek elde edilebilir.
 Örneğin:
 
-```C#
+```csharp
 modelBuilder.Entity<Samurai>().HasOne("Some.Entity.Type.Name", null).WithOne();
 ```
 
@@ -1151,7 +1208,7 @@ Yukarıda bahsedilen yöntemler bundan sonra aynı `T` daha `ValueTask<T>` dönd
 
 Bu değişiklik, bu yöntemler çağrılırken oluşan yığın ayırma sayısını azaltarak genel performansı geliştirir.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Yalnızca yukarıdaki API 'Leri bekleyen uygulamaların yeniden derlenmesi gerekiyor-kaynak değişikliği gerekli değildir.
 Daha karmaşık bir kullanım (örn. döndürülen `Task` `Task.WhenAny()`geçirilmesi), genellikle döndürülen `ValueTask<T>` `AsTask()` çağırarak `Task<T>` dönüştürmesini gerektirir.
@@ -1175,7 +1232,7 @@ Tür eşleme ek açıklaması için ek açıklama adı artık "TypeMapping" olur
 
 Tür eşlemeleri artık yalnızca ilişkisel veritabanı sağlayıcılarının daha fazlası için kullanılır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Bu, yalnızca tür eşlemesine doğrudan bir ek açıklama olarak erişen uygulamaları keser. Bu, yaygın olmayan bir şekilde yapılır.
 Düzeltilmesi gereken en uygun eylem, ek açıklamayı doğrudan kullanmak yerine tür eşlemelere erişmek için API yüzeyini kullanmaktır.
@@ -1197,7 +1254,7 @@ EF Core 3,0 ' den başlayarak ve daha sonraki bir sürümde TPT ve TPC desteği 
 Şu anda türetilmiş bir türü farklı bir tabloya eşlemek için geçerli değildir.
 Bu değişiklik, gelecekte yapılacak geçerli bir şey olduğunda daha sonra bozmadan kaçınır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Türetilmiş türleri diğer tablolarla eşleme girişimlerini kaldırın.
 
@@ -1218,7 +1275,7 @@ EF Core 3,0 ' den itibaren, bir dizinde `Include` kullanmak artık ilişkisel d�
 
 Bu değişiklik, tüm veritabanı sağlayıcıları için `Include` olan dizinler için API 'yi tek bir yerde birleştirmek üzere yapılmıştır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Yukarıda gösterildiği gibi yeni API 'yi kullanın.
 
@@ -1240,7 +1297,7 @@ Aşağıdaki özellikler genişletme yöntemlerine dönüştürüldü:
 
 Bu değişiklik, belirtilen arabirimlerin uygulanmasını basitleştirir.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Yeni uzantı yöntemlerini kullanın.
 
@@ -1262,7 +1319,7 @@ Sağlayıcıya özgü uzantı yöntemleri düzleştirilecektir:
 
 Bu değişiklik, belirtilen genişletme yöntemlerinin uygulanmasını basitleştirir.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Yeni uzantı yöntemlerini kullanın.
 
@@ -1284,7 +1341,7 @@ EF Core 3,0 ' den başlayarak, bir SQLite bağlantısı açıldığında EF Core
 
 Bu değişiklik, EF Core varsayılan olarak `SQLitePCLRaw.bundle_e_sqlite3` kullandığından, bu, sırasıyla FK zorlamasının varsayılan olarak açık olduğu ve bağlantı her açıldığında açık bir şekilde etkinleştirilmesi gerekmediği anlamına gelir.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 EF Core için varsayılan olarak kullanılan SQLitePCLRaw. bundle_e_sqlite3 öğesinde yabancı anahtarlar varsayılan olarak etkinleştirilir.
 Diğer durumlarda, yabancı anahtarlar bağlantı dizeniz `Foreign Keys=True` belirtilerek etkinleştirilebilir.
@@ -1305,7 +1362,7 @@ EF Core 3,0 ' den başlayarak EF Core `SQLitePCLRaw.bundle_e_sqlite3`kullanır.
 
 Bu değişiklik, iOS üzerinde kullanılan SQLite sürümünün diğer platformlarla tutarlı olması için yapılmıştır.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 İOS 'ta yerel SQLite sürümünü kullanmak için `Microsoft.Data.Sqlite` farklı bir `SQLitePCLRaw` paketi kullanacak şekilde yapılandırın.
 
@@ -1327,7 +1384,7 @@ GUID değerleri artık metın olarak depolanır.
 
 GUID 'lerin ikili biçimi standartlaştırılmış değildir. Değerlerin metın olarak depolanması, veritabanının diğer teknolojilerle daha uyumlu olmasını sağlar.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Aşağıdaki gibi SQL 'i yürüterek mevcut veritabanlarını yeni biçime geçirebilirsiniz.
 
@@ -1377,7 +1434,7 @@ Char değerleri artık metın olarak depolanır.
 
 Değerlerin metın olarak depolanması daha doğal hale gelir ve veritabanının diğer teknolojilerle daha uyumlu olmasını sağlar.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Aşağıdaki gibi SQL 'i yürüterek mevcut veritabanlarını yeni biçime geçirebilirsiniz.
 
@@ -1418,7 +1475,7 @@ Geçiş kimlikleri artık her zaman sabit kültürün takvimi (Gregoryen) kullan
 
 Veritabanının güncelleştirilmesi veya birleştirme çakışmalarını çözmek için geçişlerin sırası önemlidir. Sabit takvimin kullanılması, takım üyelerinden farklı sistem takvimlerine neden olan sorunları sıralamayı önler.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Bu değişiklik, yılın Gregoryen takvimden büyük olduğu Gregoryen olmayan bir takvim kullanan herkesi etkiler (Tay dili Budist takvimi gibi). Yeni geçişlerin mevcut geçişlerden sonra sıralanabilmesi için mevcut geçiş kimliklerinin güncellenmesi gerekir.
 
@@ -1457,7 +1514,7 @@ EF Core 3,0 ' den başlayarak, EF yalnızca daha sonraki SQL Server sürümlerle
 
 [SQL Server 2008 artık desteklenen bir ürün](https://blogs.msdn.microsoft.com/sqlreleaseservices/end-of-mainstream-support-for-sql-server-2008-and-sql-server-2008-r2/) olmadığından ve bu özelliğin EF Core 3,0 ' de yapılan sorgu değişiklikleriyle çalışacak şekilde güncelleştirilmesi önemli bir çalışmadır çünkü bu değişikliği yapıyoruz.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Oluşturulan SQL 'in desteklenmesi için SQL Server daha yeni bir sürüme veya daha yüksek bir uyumluluk düzeyi kullanarak güncelleştirmenizi öneririz. Bu, bunu yapamamanızın ardından, Ayrıntılar için lütfen [izleme sorunu hakkında yorum](https://github.com/aspnet/EntityFrameworkCore/issues/16400) yapın. Bu kararı geri bildirime göre geri ziyaret edebilirsiniz.
 
@@ -1480,7 +1537,7 @@ Bu yöntemler yeni bir `IDbContextOptionsExtension.Info` özelliğinden döndür
 2,0 ' den 3,0 ' e kadar olan yayınlar için bu yöntemlere birkaç kez ekleme veya bu yöntemleri değiştirme gerekiyordu.
 Bunları yeni bir soyut taban sınıfına bölmek, var olan uzantıları bozmadan bu tür değişiklikleri daha kolay hale getirir.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Yeni kalıbı izlemek için uzantıları güncelleştirin.
 EF Core kaynak kodundaki farklı tür uzantılara yönelik `IDbContextOptionsExtension` birçok uygulamada örnek bulunur.
@@ -1499,7 +1556,7 @@ EF Core kaynak kodundaki farklı tür uzantılara yönelik `IDbContextOptionsExt
 
 Bu uyarı olayının adlandırmasını diğer tüm uyarı olaylarıyla hizalar.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Yeni adı kullanın. (Olay KIMLIĞI numarasının değiştirilmediğini unutmayın.)
 
@@ -1513,7 +1570,7 @@ Yeni adı kullanın. (Olay KIMLIĞI numarasının değiştirilmediğini unutmay�
 
 3,0 EF Core önce, yabancı anahtar kısıtlama adlarına yalnızca "ad" adı verilir. Örneğin:
 
-```C#
+```csharp
 var constraintName = myForeignKey.Name;
 ```
 
@@ -1521,7 +1578,7 @@ var constraintName = myForeignKey.Name;
 
 EF Core 3,0 ' den başlayarak, yabancı anahtar kısıtlama adları artık "kısıtlama adı" olarak anılacaktır. Örneğin:
 
-```C#
+```csharp
 var constraintName = myForeignKey.ConstraintName;
 ```
 
@@ -1529,7 +1586,7 @@ var constraintName = myForeignKey.ConstraintName;
 
 Bu değişiklik, bu alandaki adlandırma tutarlılığını sağlar ve ayrıca bu, yabancı anahtar kısıtlamasının adı ve yabancı anahtarın tanımlandığı sütun veya özellik adı değil, yabancı anahtar kısıtlaması olduğunu da açıklar.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Yeni adı kullanın.
 
@@ -1551,7 +1608,7 @@ EF Core 3,0 ' den itibaren bu yöntemler geneldir.
 
 Bu yöntemler, bir veritabanının oluşturulup oluşturulmadığını ve boş olduğunu anlamak için EF tarafından kullanılır. Bu, geçiş uygulanıp uygulanmadığını belirlemek için EF dışından da yararlı olabilir.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Herhangi bir geçersiz kılmanın erişilebilirliğini değiştirin.
 
@@ -1573,7 +1630,7 @@ EF Core 3,0 ' den başlayarak, bu bir DevelopmentDependency paketidir. Bu, bağ�
 
 Bu paket yalnızca tasarım zamanında kullanılmak üzere tasarlanmıştır. Dağıtılan uygulamalar buna başvurmamalıdır. Paketi bir DevelopmentDependency hale getirmek, bu öneriyi yeniden zorlar.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 EF Core tasarım zamanı davranışını geçersiz kılmak için bu pakete başvurmanız gerekiyorsa, projenizdeki PackageReference öğe meta verilerini güncelleştirebilirsiniz. Pakete Microsoft. EntityFrameworkCore. Tools aracılığıyla doğrudan başvuruluyorsa, meta verilerini değiştirmek için pakete açık bir PackageReference eklemeniz gerekir.
 
@@ -1603,7 +1660,7 @@ Paketinizin 2.0.0 sürümüne bağlı olarak paketimizi güncelleştirdik.
 
 SQLitePCL. RAW hedeflerinin sürümü 2.0.0 .NET Standard 2,0. Daha önce .NET Standard, geçişli paketlerin büyük bir kapanışının çalışmasını gerektiren 1,1 ' i hedefledi.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 SQLitePCL. Raw sürüm 2.0.0 bazı önemli değişiklikler içerir. Ayrıntılar için [sürüm notlarına](https://github.com/ericsink/SQLitePCL.raw/blob/v2/v2.md) bakın.
 
@@ -1625,7 +1682,7 @@ Paketinizin 2.0.0 sürümüne bağlı olarak paketimizi güncelleştirdik.
 
 EF Core kullanıcıların karşılaştığı çeşitli kullanılabilirlik sorunlarını gidermek için nettopologyısuite amaçlar 'nin sürüm 2.0.0.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Nettopologyısuite sürüm 2.0.0 bazı önemli değişiklikler içerir. Ayrıntılar için [sürüm notlarına](https://www.nuget.org/packages/NetTopologySuite/2.0.0-pre001) bakın.
 
@@ -1648,7 +1705,7 @@ Paketimizi Microsoft. Data. SqlClient 'e göre güncelleştirdik.
 Microsoft. Data. SqlClient, SQL Server ileriye dönük tanıtım verileri erişim sürücüsüdür ve System. Data. SqlClient artık geliştirme odağı değildir.
 Always Encrypted gibi bazı önemli özellikler yalnızca Microsoft. Data. SqlClient ile kullanılabilir.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 Kodunuz System. Data. SqlClient üzerinde doğrudan bir bağımlılık alırsa bunun yerine Microsoft. Data. SqlClient öğesine başvuracak şekilde değiştirmeniz gerekir; iki paket çok yüksek düzeyde API uyumluluğu korudıkça, bu yalnızca basit bir paket ve ad alanı değişikliği olmalıdır.
 
@@ -1662,7 +1719,7 @@ Kodunuz System. Data. SqlClient üzerinde doğrudan bir bağımlılık alırsa b
 
 Birden çok kendine başvuran tek yönlü gezinti özelliklerine ve eşleşen FKs 'e sahip bir varlık türü yanlış bir ilişki olarak yapılandırılmış. Örneğin:
 
-```C#
+```csharp
 public class User 
 {
         public Guid Id { get; set; }
@@ -1681,11 +1738,11 @@ Bu senaryo artık model oluşturma bölümünde algılanır ve modelin belirsiz 
 
 Sonuç modeli belirsizdir ve genellikle bu durum için yanlış olur.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 İlişkinin tam yapılandırmasını kullanın. Örneğin:
 
-```C#
+```csharp
 modelBuilder
      .Entity<User>()
      .HasOne(e => e.CreatedBy)
@@ -1706,7 +1763,7 @@ modelBuilder
 
 Şema ile boş bir dize olarak yapılandırılmış bir DbFunction, şema olmadan yerleşik işlev olarak değerlendirildi. Örneğin, aşağıdaki kod `DatePart` CLR işlevini SqlServer üzerinde `DATEPART` yerleşik işlevine eşleyecek.
 
-```C#
+```csharp
 [DbFunction("DATEPART", Schema = "")]
 public static int? DatePart(string datePartArg, DateTime? date) => throw new Exception();
 
@@ -1720,11 +1777,11 @@ Tüm DbFunction eşlemeleri Kullanıcı tanımlı işlevlere eşlenildiği kabul
 
 Daha önceden şemanın boş olması, işlevin yerleşik olduğunu değerlendirmek için bir yoldur, ancak bu mantık yalnızca yerleşik işlevlerin herhangi bir şemaya ait olmadığı SqlServer için geçerlidir.
 
-**Karşı**
+**Risk Azaltıcı Etkenler**
 
 DbFunction 'ın çevirisini yerleşik bir işlevle eşlemek için el ile yapılandırın.
 
-```C#
+```csharp
 modelBuilder
     .HasDbFunction(typeof(MyContext).GetMethod(nameof(MyContext.DatePart)))
     .HasTranslation(args => SqlFunctionExpression.Create("DatePart", args, typeof(int?), null));

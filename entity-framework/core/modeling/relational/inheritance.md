@@ -1,15 +1,16 @@
 ---
 title: Devralma (Ilişkisel veritabanı)-EF Core
-author: rowanmiller
-ms.date: 10/27/2016
-ms.assetid: 9a7c5488-aaf4-4b40-b1ff-f435ff30f6ec
+description: Entity Framework Core kullanarak ilişkisel bir veritabanında varlık türü devralmayı yapılandırma
+author: AndriySvyryd
+ms.author: ansvyryd
+ms.date: 11/06/2019
 uid: core/modeling/relational/inheritance
-ms.openlocfilehash: 381d1878007bb78b359eb49649f4356f1e5eb04a
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 30e25aa2968ceab03404baddb46e0ae59fc3ea6b
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655639"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824750"
 ---
 # <a name="inheritance-relational-database"></a>Devralma (İlişkisel Veritabanı)
 
@@ -23,7 +24,7 @@ EF modelindeki devralma, varlık sınıflarında devralmanın veritabanında nas
 
 ## <a name="conventions"></a>Kurallar
 
-Kural gereği, devralma, hiyerarşi başına tablo (TPH) düzeni kullanılarak eşleştirilir. TPH, hiyerarşideki tüm türlerin verilerini depolamak için tek bir tablo kullanır. Bir Ayrıştırıcı sütunu, her bir satırın hangi tür temsil ettiğini belirlemek için kullanılır.
+Devralma varsayılan olarak, hiyerarşi başına tablo (TPH) düzeni kullanılarak eşleştirilir. TPH, hiyerarşideki tüm türlerin verilerini depolamak için tek bir tablo kullanır. Bir Ayrıştırıcı sütunu, her bir satırın hangi tür temsil ettiğini belirlemek için kullanılır.
 
 EF Core, yalnızca modele açıkça iki veya daha fazla devralınmış tür varsa devralma ayarı yapılır (daha fazla ayrıntı için bkz. [Devralma](../inheritance.md) ).
 
@@ -50,48 +51,14 @@ Ayrıştırıcı sütununun adını ve türünü ve hiyerarşideki her türü ta
 
 Yukarıdaki örneklerde, ayrıştırıcı hiyerarşinin temel varlığında bir [Gölge Özellik](xref:core/modeling/shadow-properties) olarak oluşturulur. Modeldeki bir özellik olduğu için, diğer özellikler gibi yapılandırılabilir. Örneğin, varsayılan, kural olarak ayrıştırıcı kullanılıyorsa en fazla uzunluğu ayarlamak için:
 
-```C#
-modelBuilder.Entity<Blog>()
-    .Property("Discriminator")
-    .HasMaxLength(200);
-```
+[!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/DefaultDiscriminator.cs#DiscriminatorConfiguration)]
 
-Ayrıştırıcı, varlığınızda gerçek bir CLR özelliğine de eşleştirilebilir. Örneğin:
+Ayrıştırıcı, varlığınızda bir .NET özelliğine de eşleştirilebilir ve bunu yapılandırabilir. Örneğin:
 
-```C#
-class MyContext : DbContext
-{
-    public DbSet<Blog> Blogs { get; set; }
+[!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/NonShadowDiscriminator.cs#NonShadowDiscriminator)]
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Blog>()
-            .HasDiscriminator<string>("BlogType");
-    }
-}
+## <a name="shared-columns"></a>Paylaşılan sütunlar
 
-public class Blog
-{
-    public int BlogId { get; set; }
-    public string Url { get; set; }
-    public string BlogType { get; set; }
-}
+İki eşdüzey varlık türünün aynı ada sahip bir özelliği olduğunda, varsayılan olarak iki ayrı sütuna eşlenir. Ancak uyumluysa, aynı sütunla eşleştirilebilir:
 
-public class RssBlog : Blog
-{
-    public string RssUrl { get; set; }
-}
-```
-
-Bu iki şeyi birlikte birleştirmek, Ayrıştırıcıyı gerçek bir özellik ile eşleştirmek ve yapılandırmak mümkündür:
-
-```C#
-modelBuilder.Entity<Blog>(b =>
-{
-    b.HasDiscriminator<string>("BlogType");
-
-    b.Property(e => e.BlogType)
-        .HasMaxLength(200)
-        .HasColumnName("blog_type");
-});
-```
+[!code-csharp[Main](../../../../samples/core/Modeling/FluentAPI/SharedTPHColumns.cs#SharedTPHColumns)]

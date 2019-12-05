@@ -5,32 +5,32 @@ author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 11/05/2019
 uid: core/providers/cosmos/index
-ms.openlocfilehash: 6cac695288d9ba84968b7fab6361f55e9b51be67
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 162e5d387bcbfbf1e90baf27fc62dd2ed562ae58
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73656086"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824552"
 ---
 # <a name="ef-core-azure-cosmos-db-provider"></a>EF Core Azure Cosmos DB sağlayıcısı
 
->[!NOTE]
+> [!NOTE]
 > Bu sağlayıcı EF Core 3,0 ' de yenidir.
 
 Bu veritabanı sağlayıcısı, Azure Cosmos DB birlikte Entity Framework Core kullanılmasına izin verir. Sağlayıcı [Entity Framework Core projenin](https://github.com/aspnet/EntityFrameworkCore)bir parçası olarak tutulur.
 
 Bu bölümü okumadan önce [Azure Cosmos DB belgelerini](/azure/cosmos-db/introduction) öğrenmeniz önemle tavsiye edilir.
 
->[!NOTE]
+> [!NOTE]
 > Bu sağlayıcı yalnızca Azure Cosmos DB SQL API 'SI ile birlikte kullanılabilir.
 
-## <a name="install"></a>Yükleme
+## <a name="install"></a>yükleme
 
 [Microsoft. EntityFrameworkCore. Cosmos NuGet paketini](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Cosmos/)yükler.
 
 ## <a name="net-core-clitabdotnet-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
-``` console
+```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore.Cosmos
 ```
 
@@ -89,7 +89,7 @@ Varsayılan olarak EF Core, bölüm anahtarı, öğe eklerken herhangi bir değe
 
 [!code-csharp[PartitionKey](../../../../samples/core/Cosmos/ModelBuilding/OrderContext.cs?name=PartitionKey)]
 
->[!NOTE]
+> [!NOTE]
 >Bölüm anahtarı özelliği, [dizeye dönüştürüldüğü](xref:core/modeling/value-conversions)sürece herhangi bir türde olabilir.
 
 Bir kez yapılandırıldıktan sonra, bölüm anahtarı özelliği her zaman null olmayan bir değere sahip olmalıdır. Bir sorgu verirken, tek bölüm oluşturmak için bir koşul eklenebilir.

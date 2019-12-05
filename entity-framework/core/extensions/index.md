@@ -4,12 +4,12 @@ author: ErikEJ
 ms.date: 01/07/2019
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/extensions/index
-ms.openlocfilehash: e70011b42818e4df1ec5b9b88d7adb9d36bb26f1
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 86befa151adc8278ff8c76bdef023ca26a12508b
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73654795"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824636"
 ---
 # <a name="ef-core-tools--extensions"></a>EF Core araçları & uzantıları
 
@@ -18,7 +18,7 @@ Bu araçlar ve uzantılar, Entity Framework Core 2,0 ve üzeri için ek işlevle
 > [!IMPORTANT]  
 > Uzantılar çeşitli kaynaklardan oluşturulmuştur ve Entity Framework Core projenin bir parçası olarak korunmaz. Üçüncü taraf uzantısını değerlendirirken, gereksinimlerinizi karşıladığından emin olmak için kalite, lisanslama, uyumluluk, destek vb. değerlendirdiğinizden emin olun.
 
-## <a name="tools"></a>Araçlar
+## <a name="tools"></a>Araçları
 
 ### <a name="llblgen-pro"></a>LLBLGen Pro
 
@@ -42,7 +42,7 @@ EF Core güç araçları, basit bir kullanıcı arabiriminde çeşitli EF Core t
 
 Entity Framework Visual Düzenleyicisi, EF 6 ve EF Core sınıflarının görsel tasarımı için bir ORM Tasarımcısı ekleyen bir Visual Studio uzantısıdır. Kod, T4 şablonları kullanılarak oluşturulur, bu nedenle, herhangi bir gereksinimlerinize uyacak şekilde özelleştirilebilir. Devralma, tek yönlü ve çift yönlü ilişkilendirmeler, numaralandırmalar ve sınıflarınızın renk Kodlayabilme ve tasarımınızın potansiyel olarak büyük bir kısmını açıklamak için metin blokları ekleme imkanını destekler.
 
-['Nde](https://marketplace.visualstudio.com/items?itemName=michaelsawczyn.EFDesigner)
+[Market](https://marketplace.visualstudio.com/items?itemName=michaelsawczyn.EFDesigner)
 
 ### <a name="catfactory"></a>Katfactory
 
@@ -57,7 +57,7 @@ Entity Framework Core Generator (EFG), `dotnet ef dbcontext scaffold`gibi var ol
 [Eğitim](https://www.loresoft.com/Generate-ASP-NET-Web-API)
 [belgeleri](https://efg.loresoft.com/en/latest/)
 
-## <a name="extensions"></a>Uzantılar
+## <a name="extensions"></a>Uzantıları
 
 ### <a name="microsoftentityframeworkcoreautohistory"></a>Microsoft. EntityFrameworkCore. oto geçmişi
 
@@ -168,9 +168,3 @@ DbContext dosyanızı, şunlar gibi özelliklerle genişletir: filtre, denetim, 
 DbContext uygulamanızı yüksek performanslı toplu işlemlerle genişletir: BulkSaveChanges, Bulkınsert, BulkUpdate, BulkDelete, BulkMerge ve daha fazlası.
 
 [Web sitesi](https://entityframework-extensions.net/)
-
-### <a name="reconciler"></a>Bağdaştıriler
-
-İlgili varlıkları ekleyerek, güncelleştirerek ve kaldırarak depodaki bir varlık grafiğini verilen bir tek güncelleştirme.
-
-[GitHub deposu](https://github.com/jtheisen/reconciler)

@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: 2EBE2CCC-E52D-483F-834C-8877F5EB0C0C
 uid: core/what-is-new/ef-core-3.0/index
-ms.openlocfilehash: 24368b4c87e785e779b3f2b2f10de19766451c9b
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: ebc676930ffc396aa70bb8afb91cf5a0cd43e04d
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73656230"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824856"
 ---
 # <a name="new-features-in-entity-framework-core-30"></a>Entity Framework Core 3,0 ' deki yeni özellikler
 
@@ -39,7 +39,7 @@ var specialCustomers = context.Customers
     .Where(c => c.Name.StartsWith(n) && IsSpecialCustomer(c));
 ```
 
-Bu, veritabanı az sayıda satır içeriyorsa ancak önemli performans sorunlarına yol açabilir, hatta veritabanı büyük bir sayı veya satır içeriyorsa uygulama başarısızlığından kaynaklanabilir.
+Bu, veritabanı az sayıda satır içeriyorsa, ancak veritabanı çok sayıda satır içeriyorsa önemli performans sorunlarına yol açabilir ve hatta uygulama başarısızlığından kaynaklanabilir.
 
 EF Core 3,0 ' de, istemci değerlendirmesinin yalnızca en üst düzey projeksiyonde (temelde, `Select()`yapılan son çağrı) gerçekleşmesini kısıtlarız.
 EF Core 3,0, sorguda başka herhangi bir yere çevrilemeyen ifadeler algıladığında, çalışma zamanı özel durumu oluşturur.
@@ -145,7 +145,7 @@ Veritabanından okunabilecek ancak güncelleştirilmemiş verileri temsil eden s
 
 Örneğin, [DotNet EF komut satırı aracını](xref:core/miscellaneous/cli/dotnet) kullanarak şunu yazabilirsiniz:
 
-``` console
+```dotnetcli
 dotnet ef dbcontext scaffold "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
 ```
 

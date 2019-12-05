@@ -1,16 +1,16 @@
 ---
 title: Sahip olan varlık türleri-EF Core
+description: Entity Framework Core kullanırken sahip olan varlık türlerini veya toplamları yapılandırma
 author: AndriySvyryd
 ms.author: ansvyryd
-ms.date: 02/26/2018
-ms.assetid: 2B0BADCE-E23E-4B28-B8EE-537883E16DF3
+ms.date: 11/06/2019
 uid: core/modeling/owned-entities
-ms.openlocfilehash: a0665bfa27134b8dc3eba854ff3f7b1af4b69217
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 7b6d1b3bccbfceb85f03a580ba03a45984d29c74
+ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655929"
+ms.lasthandoff: 12/04/2019
+ms.locfileid: "74824599"
 ---
 # <a name="owned-entity-types"></a>Sahip Olunan Varlık Türleri
 
@@ -19,7 +19,7 @@ ms.locfileid: "73655929"
 
 EF Core, yalnızca diğer varlık türlerinin gezinti özelliklerinde görünebilen varlık türlerini modeletmenize olanak tanır. Bunlara sahip olan _varlık türleri_denir. Sahip olduğu varlık türü içeren varlık _sahibi_.
 
-Sahibi olan varlıklar aslında sahibin bir parçasıdır ve bu olmadan mevcut olamaz, bu değerler [toplamalara](https://martinfowler.com/bliki/DDD_Aggregate.html)kavramsal olarak benzerdir.
+Sahibi olan varlıklar aslında sahibin bir parçasıdır ve bu olmadan mevcut olamaz, bu değerler [toplamalara](https://martinfowler.com/bliki/DDD_Aggregate.html)kavramsal olarak benzerdir. Bu, sahip olduğu türün sahip olduğu ilişkinin bağımlı tarafında tanımına göre olduğu anlamına gelir.
 
 ## <a name="explicit-configuration"></a>Açık yapılandırma
 
@@ -74,17 +74,20 @@ Farklı bir PK çağrısı `HasKey`yapılandırmak için:
 [!code-csharp[OwnsMany](../../../samples/core/Modeling/OwnedEntities/OwnedEntityContext.cs?name=OwnsMany)]
 
 > [!NOTE]
-> EF Core 3,0 `WithOwner()` yöntemi mevcut olmadığı için bu çağrının kaldırılması gerekir.
+> EF Core 3,0 `WithOwner()` yöntemi mevcut olmadığı için bu çağrının kaldırılması gerekir. Ayrıca birincil anahtar otomatik olarak keşfedilmemiş, her zaman belirtilmelidir.
 
 ## <a name="mapping-owned-types-with-table-splitting"></a>Sahip olunan türleri tablo bölme ile eşleme
 
 İlişkisel veritabanları kullanılırken, varsayılan başvuruya ait türler, sahibiyle aynı tabloyla eşleştirilir. Bu, tablonun iki içinde bölünmesini gerektirir: bazı sütunlar sahibin verilerini depolamak için kullanılacaktır ve bu varlığın verilerini depolamak için bazı sütunlar kullanılacaktır. Bu, [tablo bölme](table-splitting.md)olarak bilinen yaygın bir özelliktir.
 
-Varsayılan olarak EF Core, _Navigation_OwnedEntityProperty_örüntüsünün ardından ait olan varlık türünün özelliklerinin veritabanı sütunlarını adlandırın. Bu nedenle `StreetAddress` özellikleri ' ShippingAddress_Street ' ve ' ShippingAddress_City ' adlarıyla ' Orders ' tablosunda görünür.
+Varsayılan olarak, EF Core, model _Navigation_OwnedEntityProperty_takip eden varlık türünün özelliklerine ait veritabanı sütunlarını adı verecek. Bu nedenle `StreetAddress` özellikleri ' Orders ' tablosunda ' ShippingAddress_Street ' ve ' ShippingAddress_City ' adlarına sahip olacak şekilde görünür.
 
 Bu sütunları yeniden adlandırmak için `HasColumnName` yöntemini kullanabilirsiniz:
 
 [!code-csharp[ColumnNames](../../../samples/core/Modeling/OwnedEntities/OwnedEntityContext.cs?name=ColumnNames)]
+
+> [!NOTE]
+> [Yok sayma](/dotnet/api/microsoft.entityframeworkcore.metadata.builders.ownednavigationbuilder.ignore) gibi normal varlık türü yapılandırma yöntemlerinin çoğu aynı şekilde çağrılabilir.
 
 ## <a name="sharing-the-same-net-type-among-multiple-owned-types"></a>Aynı .NET türünü sahip olunan birden çok tür arasında paylaşma
 
@@ -106,6 +109,8 @@ Bu örnekte, hem `StreetAddress` türü olan `BillingAddress` ve `ShippingAddres
 
 [!code-csharp[OrderStatus](../../../samples/core/Modeling/OwnedEntities/OrderStatus.cs?name=OrderStatus)]
 
+Sahip olan bir türe her gezinti, tamamen bağımsız yapılandırmayla ayrı bir varlık türü tanımlar.
+
 Sahip olunan iç içe geçmiş türlere ek olarak, sahip olunan bir tür düzenli bir varlığa başvurabilir, sahip olan varlık bağımlı tarafta olduğu sürece sahip veya farklı bir varlık olabilir. Bu yetenek, sahip olduğu varlık türlerini EF6 içindeki karmaşık türlerden ayrı olarak ayarlar.
 
 [!code-csharp[OrderDetails](../../../samples/core/Modeling/OwnedEntities/OrderDetails.cs?name=OrderDetails)]
@@ -114,15 +119,17 @@ Bu modeli yapılandırmak için `OwnsOne` yönteminin akıcı bir çağrıda zin
 
 [!code-csharp[OwnsOneNested](../../../samples/core/Modeling/OwnedEntities/OwnedEntityContext.cs?name=OwnsOneNested)]
 
-Sahibe doğru işaret eden gezinti özelliğini yapılandırmak için kullanılan `WithOwner` çağrısına dikkat edin.
+Sahibe doğru işaret eden gezinti özelliğini yapılandırmak için kullanılan `WithOwner` çağrısına dikkat edin. Sahiplik ilişkisinin parçası olmayan sahip varlık türü için bir gezinti yapılandırmak üzere `WithOwner()` herhangi bir bağımsız değişken olmadan çağrılmalıdır.
 
-`OrderDetails` ve `StreetAdress``OwnedAttribute` kullanarak sonuca ulaşmak mümkündür.
+`OrderDetails` ve `StreetAddress``OwnedAttribute` kullanarak sonuca ulaşmak mümkündür.
 
 ## <a name="storing-owned-types-in-separate-tables"></a>Sahip olunan türleri ayrı tablolarda depolama
 
 Ayrıca, EF6 karmaşık türlerin aksine, sahip olunan türler sahibinden ayrı bir tabloda depolanabilir. Sahip olan bir türü sahip ile aynı tabloya eşleyen kuralı geçersiz kılmak için, yalnızca `ToTable` çağırıp farklı bir tablo adı sağlayabilirsiniz. Aşağıdaki örnek `OrderDetails` ve iki adresini `DetailedOrder`olan ayrı bir tabloyla eşleyebilir:
 
 [!code-csharp[OwnsOneTable](../../../samples/core/Modeling/OwnedEntities/OwnedEntityContext.cs?name=OwnsOneTable)]
+
+Bunu gerçekleştirmek için `TableAttribute` kullanmak da mümkündür, ancak bu, sahip olan türde birden çok gezinmeler varsa, bu durumda birden çok varlık türünün aynı tabloyla eşlenmesinin ardından başarısız olacağını unutmayın.
 
 ## <a name="querying-owned-types"></a>Sahip olunan türler sorgulanıyor
 
@@ -141,7 +148,7 @@ Bu sınırlamaların bazıları, sahip olduğu varlık türlerinin çalışması
 
 ### <a name="current-shortcomings"></a>Geçerli eksikler
 
-- Sahibi olan varlık türlerini içeren devralma hiyerarşileri desteklenmez
+- Sahip olan varlık türlerinde devralma hiyerarşileri olamaz
 - Sahip olunan varlık türlerine yönelik başvuru gezginleri, sahip tarafından ayrı bir tabloya açık olarak eşlenmediği müddetçe null olamaz
 - Sahip varlık türlerinin örnekleri birden çok sahip tarafından paylaşılamaz (Bu, sahip olduğu varlık türleri kullanılarak uygulanamaz değer nesneleri için iyi bilinen bir senaryodur)
 
