@@ -3,19 +3,16 @@ title: Tablo bölme-EF Core
 description: Entity Framework Core kullanarak tablo bölmeyi yapılandırma
 author: AndriySvyryd
 ms.author: ansvyryd
-ms.date: 04/10/2019
+ms.date: 01/03/2020
 uid: core/modeling/table-splitting
-ms.openlocfilehash: 0e48c516de43cdc2b54c56f1a96f5e01f9fbbbc4
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.openlocfilehash: c38d3ee0efa82f84a1051017ae40c9f3fdd57f1f
+ms.sourcegitcommit: 4e86f01740e407ff25e704a11b1f7d7e66bfb2a6
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824562"
+ms.lasthandoff: 01/09/2020
+ms.locfileid: "75781176"
 ---
 # <a name="table-splitting"></a>Tablo Bölme
-
->[!NOTE]
-> Bu özellik EF Core 2,0 ' de yenidir.
 
 EF Core iki veya daha fazla varlığı tek bir satıra eşlemeye izin verir. Bu, _tablo bölme_ veya _tablo paylaşma_olarak adlandırılır.
 
@@ -33,21 +30,28 @@ Bu örnekte `Order` bir `DetailedOrder`alt kümesini temsil eder.
 
 Gerekli yapılandırmaya ek olarak, `DetailedOrder.Status` `Order.Status`ile aynı sütuna eşlemek için `Property(o => o.Status).HasColumnName("Status")` çağırıyoruz.
 
-[!code-csharp[TableSplittingConfiguration](../../../samples/core/Modeling/TableSplitting/TableSplittingContext.cs?name=TableSplitting&highlight=3)]
+[!code-csharp[TableSplittingConfiguration](../../../samples/core/Modeling/TableSplitting/TableSplittingContext.cs?name=TableSplitting)]
 
 > [!TIP]
 > Daha fazla bağlam için bkz. [tam örnek proje](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Modeling/TableSplitting) .
 
 ## <a name="usage"></a>Kullanım
 
-Tablo bölme kullanarak varlıkları kaydetme ve sorgulama, diğer varlıklarla aynı şekilde yapılır. EF Core 3,0 ile başlayarak, bağımlı varlık başvurusu `null`olabilir. Bağımlı varlık tarafından kullanılan tüm sütunlar veritabanı `NULL`, sorgulandığında hiçbir örnek oluşturulmaz. Ayrıca, tüm özellikler isteğe bağlıdır ve `null`olarak ayarlanır ve bu da beklenmeyebilir.
+Tablo bölme kullanarak varlıkları kaydetme ve sorgulama, diğer varlıklarla aynı şekilde yapılır:
 
 [!code-csharp[Usage](../../../samples/core/Modeling/TableSplitting/Program.cs?name=Usage)]
 
+## <a name="optional-dependent-entity"></a>İsteğe bağlı bağımlı varlık
+
+> [!NOTE]
+> Bu özellik EF Core 3,0 ' de tanıtılmıştı.
+
+Bağımlı bir varlık tarafından kullanılan tüm sütunlar veritabanında `NULL`, bu durumda sorgulanan bir örnek oluşturulmaz. Bu, Principal 'ın ilişki özelliğinin null olacağı, isteğe bağlı bir bağımlı varlığın modellemesini sağlar. Bunun aynı zamanda bağımlı olduğu tüm özelliklerin tümünün de olacağını ve `null`olarak ayarlandığını unutmayın.
+
 ## <a name="concurrency-tokens"></a>Eşzamanlılık belirteçleri
 
-Bir tabloyu paylaşan varlık türlerinden herhangi birinde bir eşzamanlılık belirteci varsa, aynı tabloyla eşlenmiş varlıkların yalnızca biri güncelleştirildiği zaman eski bir eşzamanlılık belirteci değerinden kaçınmak için diğer tüm varlık türlerine dahil olması gerekir.
+Bir tabloyu paylaşan varlık türlerinden herhangi birinde eşzamanlılık belirteci varsa, bu, diğer tüm varlık türlerine de dahil olmalıdır. Aynı tabloyla eşlenmiş varlıkların yalnızca biri güncelleştirildiği zaman eski bir eşzamanlılık belirteci değerinden kaçınmak için bu gereklidir.
 
-Bunu, tüketim kodunda ortaya çıkarmamak için gölge durumundaki bir oluşturma olasılığı vardır.
+Eşzamanlılık belirtecini, tüketim kodunda açığa çıkarmamak için bir [gölge özelliği](xref:core/modeling/shadow-properties)olarak oluştur mümkündür:
 
 [!code-csharp[TableSplittingConfiguration](../../../samples/core/Modeling/TableSplitting/TableSplittingContext.cs?name=ConcurrencyToken&highlight=2)]

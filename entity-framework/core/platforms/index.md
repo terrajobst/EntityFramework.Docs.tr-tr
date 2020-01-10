@@ -3,31 +3,31 @@ title: Desteklenen .NET uygulamaları-EF Core
 author: rowanmiller
 ms.date: 08/30/2017
 uid: core/platforms/index
-ms.openlocfilehash: ac3cf3d0a84200bbf4ba7ec18b9115e06d1748f4
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.openlocfilehash: 6450884ea8f1b7bfd12d6b0c722b150b2574c5c3
+ms.sourcegitcommit: 4e86f01740e407ff25e704a11b1f7d7e66bfb2a6
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71149215"
+ms.lasthandoff: 01/09/2020
+ms.locfileid: "75781202"
 ---
 # <a name="net-implementations-supported-by-ef-core"></a>EF Core tarafından desteklenen .NET uygulamaları
 
 EF Core tüm modern .NET uygulamalarındaki geliştiriciler için kullanılabilir olmasını istiyoruz ve bu hedefle çalışmaya devam ediyoruz. EF Core .NET Core üzerinde destek, otomatik test ve başarıyla kullanılması bilinen birçok uygulama tarafından ele alınmıştır, mono, Xamarin ve UWP bazı sorunlar yaşıyor.
 
-## <a name="overview"></a>Genel Bakış
+## <a name="overview"></a>Genel bakış
 
 Aşağıdaki tabloda her .NET uygulamasına yönelik rehberlik sunulmaktadır:
 
-| EF Core                       | 'in    | 2.x        | 3.x             |
-|:------------------------------|:-------|:-----------|:----------------|
-| .NET Standard                 | 1.3    | 2,0        | 2.1             |
-| .NET Core                     | 1.0    | 2,0        | 3.0             |
-| .NET Framework<sup>(1)</sup>  | 4.5.1  | 4.7.2      | (desteklenmiyor) |
-| Mono                          | 4.6    | 5,4        | 6.4             |
-| Xamarin. iOS<sup>(2)</sup>     | 10.0   | 10,14      | 12,16           |
-| Xamarin. Android<sup>(2)</sup> | 7.0    | 8.0        | 10.0            |
-| UWP<sup>(3)</sup>             | 10.0   | 10.0.16299 | TBD             |
-| Unity<sup>(4)</sup>           | 2018,1 | 2018,1     | TBD             |
+| EF Core                       | 2.1        | 3.0             | 3.1        |
+|:------------------------------|:-----------|:----------------|:-----------|
+| .NET Standard                 | 2,0        | 2.1             | 2,0        |
+| .NET Core                     | 2,0        | 3.0             | 2,0        |
+| .NET Framework<sup>(1)</sup>  | 4.7.2      | (desteklenmiyor) | 4.7.2      |
+| Mono                          | 5,4        | 6.4             | 5,4        |
+| Xamarin. iOS<sup>(2)</sup>     | 10,14      | 12,16           | 10,14      |
+| Xamarin. Android<sup>(2)</sup> | 8.0        | 10.0            | 8.0        |
+| UWP<sup>(3)</sup>             | 10.0.16299 | TBD             | 10.0.16299 |
+| Unity<sup>(4)</sup>           | 2018,1     | TBD             | 2018,1     |
 
 <sup>(1)</sup> aşağıdaki [.NET Framework](#net-framework) bölümüne bakın.
 
@@ -69,7 +69,7 @@ UWP üzerinde EF Core kullanırken:
 
 * Sorgu performansını iyileştirmek için LINQ sorgularında anonim türlerden kaçının. Bir UWP uygulamasını App Store 'a dağıtmak için bir uygulamanın .NET Native ile derlenmesi gerekir. Anonim türlere sahip sorguların .NET Native performansı kötüleştiğini.
 
-* Performansı iyileştirmek `SaveChanges()` için, [changetrackingstrateji. changingandchangednotifications](/dotnet/api/microsoft.entityframeworkcore.changetrackingstrategy) kullanın ve [INotifyPropertyChanged](https://msdn.microsoft.com/library/system.componentmodel.inotifypropertychanged.aspx), [INotifyPropertyChanging](https://msdn.microsoft.com/library/system.componentmodel.inotifypropertychanging.aspx)ve [INotifyCollectionChanged](https://msdn.microsoft.com/library/system.collections.specialized.inotifycollectionchanged.aspx) ' yi uygulayın. varlık türleri.
+* `SaveChanges()` performansını iyileştirmek için, [Changetrackingstrateji. ChangingAndChangedNotifications](/dotnet/api/microsoft.entityframeworkcore.changetrackingstrategy) kullanın ve varlık Türlerinize [INotifyPropertyChanged](https://msdn.microsoft.com/library/system.componentmodel.inotifypropertychanged.aspx), [INotifyPropertyChanging](https://msdn.microsoft.com/library/system.componentmodel.inotifypropertychanging.aspx)ve [INotifyCollectionChanged](https://msdn.microsoft.com/library/system.collections.specialized.inotifycollectionchanged.aspx) uygulayın.
 
 ## <a name="report-issues"></a>Sorunları raporla
 

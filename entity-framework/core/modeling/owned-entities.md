@@ -5,17 +5,14 @@ author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 11/06/2019
 uid: core/modeling/owned-entities
-ms.openlocfilehash: 7b6d1b3bccbfceb85f03a580ba03a45984d29c74
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.openlocfilehash: 30b91b6e66b6c0f516d1ba12485304b52770cbef
+ms.sourcegitcommit: 4e86f01740e407ff25e704a11b1f7d7e66bfb2a6
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824599"
+ms.lasthandoff: 01/09/2020
+ms.locfileid: "75781241"
 ---
 # <a name="owned-entity-types"></a>Sahip Olunan Varlık Türleri
-
-> [!NOTE]
-> Bu özellik EF Core 2,0 ' de yenidir.
 
 EF Core, yalnızca diğer varlık türlerinin gezinti özelliklerinde görünebilen varlık türlerini modeletmenize olanak tanır. Bunlara sahip olan _varlık türleri_denir. Sahip olduğu varlık türü içeren varlık _sahibi_.
 
@@ -56,7 +53,7 @@ EF Core bu nesneleri nasıl izlediğini anlamak için, bir birincil anahtarın, 
 
 Sahip olunan türlerin bir koleksiyonunu yapılandırmak için `OnModelCreating``OwnsMany` kullanın.
 
-Sahip olunan türlerin bir birincil anahtar olması gerekir. .NET türünde iyi aday özellikleri yoksa EF Core bir tane oluşturmayı deneyebilir. Ancak, sahip olunan türler bir koleksiyon aracılığıyla tanımlandığında, `OwnsOne`için yaptığımız gibi, hem yabancı anahtar hem de sahip olan Örneğin birincil anahtarı olarak görev yapacak bir gölge özellik oluşturmak için yeterli değildir: her biri için birden çok sahip tür örneği olabilir sahip ve bu nedenle sahip anahtarı, sahip olunan her örnek için benzersiz bir kimlik sağlamak için yeterli değildir.
+Sahip olunan türlerin bir birincil anahtar olması gerekir. .NET türünde iyi aday özellikleri yoksa EF Core bir tane oluşturmayı deneyebilir. Bununla birlikte, sahip olunan türler bir koleksiyon aracılığıyla tanımlandığında, `OwnsOne`için yaptığımız gibi, hem yabancı anahtar hem de sahip olunan birincil anahtar olarak davranmak için bir gölge özellik oluşturmak yeterli değildir: her bir sahip için birden çok sahip tür örneği olabilir ve bu nedenle sahip anahtarı, sahip olduğu her bir örnek için benzersiz bir kimlik sağlamak için yeterli değildir.
 
 Bunun en kolay iki çözümü şunlardır:
 
