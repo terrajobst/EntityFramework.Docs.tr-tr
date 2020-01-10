@@ -4,12 +4,12 @@ author: rick-anderson
 ms.date: 09/17/2019
 ms.assetid: 3c88427c-20c6-42ec-a736-22d3eccd5071
 uid: core/get-started/index
-ms.openlocfilehash: d46c4bb9ac6c8f718b4da5ecd82d54710d41935f
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.openlocfilehash: 8aea40b9caaf454bc06d4991fd403e1ad0ff9b93
+ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824493"
+ms.lasthandoff: 12/27/2019
+ms.locfileid: "75502025"
 ---
 # <a name="getting-started-with-ef-core"></a>EF Core kullanmaya başlama
 
@@ -23,11 +23,11 @@ Windows üzerinde Visual Studio 'yu kullanarak veya Windows, macOS veya Linux ü
 
 Aşağıdaki yazılımları yükleyin:
 
-## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
 * [.NET Core 3,0 SDK](https://www.microsoft.com/net/download/core).
 
-## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * [Visual Studio 2019 sürüm 16,3 veya üzeri](https://www.visualstudio.com/downloads/) bu iş yükü:
   * **.NET Core platformlar arası geliştirme** ( **diğer araç kümeleri**altında)
@@ -36,14 +36,14 @@ Aşağıdaki yazılımları yükleyin:
 
 ## <a name="create-a-new-project"></a>Yeni bir proje oluşturun
 
-## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
 ```dotnetcli
 dotnet new console -o EFGetStarted
 cd EFGetStarted
 ```
 
-## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Visual Studio’yu açın
 * **Yeni proje oluştur ' a** tıklayın
@@ -56,13 +56,13 @@ cd EFGetStarted
 
 EF Core yüklemek için, hedeflemek istediğiniz EF Core veritabanı sağlayıcılarının paketini yüklersiniz. Bu öğretici, .NET Core 'un desteklediği tüm platformlarda çalıştığı için SQLite kullanır. Kullanılabilir sağlayıcıların bir listesi için bkz. [veritabanı sağlayıcıları](../providers/index.md).
 
-## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
 ```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 ```
 
-## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * **Araçlar > NuGet Paket Yöneticisi > Paket Yöneticisi konsolu**
 * Aşağıdaki komutları çalıştırın:
@@ -79,11 +79,11 @@ dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 
 Modeli oluşturan bir bağlam sınıfı ve varlık sınıfları tanımlayın.
 
-## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
 * Proje dizininde aşağıdaki kodla **model.cs** oluşturun
 
-## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Projeye sağ tıklayın ve **> sınıfı Ekle** ' yi seçin.
 * Ad olarak **model.cs** girin ve **Ekle** ' ye tıklayın.
@@ -101,7 +101,7 @@ EF Core Ayrıca, varolan bir veritabanından bir modele [ters mühendislik](../m
 
 Aşağıdaki adımlar bir veritabanı oluşturmak için [geçişleri](xref:core/managing-schemas/migrations/index) kullanır.
 
-## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
 * Aşağıdaki komutları çalıştırın:
 
@@ -114,7 +114,7 @@ Aşağıdaki adımlar bir veritabanı oluşturmak için [geçişleri](xref:core/
 
   Bu, bir projede komutu çalıştırmak için gerekli olan [DotNet EF](../miscellaneous/cli/dotnet.md) ve tasarım paketini de yüklüyor. `migrations` komutu, modelin ilk tablo kümesini oluşturmak için bir geçişi oluşturur. `database update` komutu veritabanını oluşturur ve yeni geçişi uygular.
 
-## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * **Paket Yöneticisi konsolunda** aşağıdaki komutları çalıştırın
 
@@ -136,13 +136,13 @@ Aşağıdaki adımlar bir veritabanı oluşturmak için [geçişleri](xref:core/
 
 ## <a name="run-the-app"></a>Uygulamayı çalıştırma
 
-## <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
+### <a name="net-core-clitabnetcore-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
 ```dotnetcli
 dotnet run
 ```
 
-## <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
+### <a name="visual-studiotabvisual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 Visual Studio, .NET Core konsol uygulamaları çalıştırırken tutarsız bir çalışma dizini kullanır. (bkz. [DotNet/Project-System # 3619](https://github.com/dotnet/project-system/issues/3619)) Bu durum, oluşan bir özel durumla sonuçlanır: *böyle bir tablo: blogları*. Çalışma dizinini güncelleştirmek için:
 
@@ -165,5 +165,5 @@ Artık uygulamayı çalıştırabilirsiniz:
 
 * Bir Web uygulamasında EF Core kullanmak için [ASP.NET Core öğreticisini](/aspnet/core/data/ef-rp/intro) izleyin
 * [LINQ sorgu ifadeleri](/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations) hakkında daha fazla bilgi edinin
-* [Gerekli](xref:core/modeling/required-optional) ve [en fazla uzunluk](xref:core/modeling/max-length) gibi Işlemleri belirtmek için [modelinizi yapılandırın](xref:core/modeling/index)
+* [Gerekli](xref:core/modeling/entity-properties#required-and-optional-properties) ve [en fazla uzunluk](xref:core/modeling/entity-properties#maximum-length) gibi Işlemleri belirtmek için [modelinizi yapılandırın](xref:core/modeling/index)
 * Modelinizi değiştirdikten sonra veritabanı şemasını güncelleştirmek için [geçişleri](xref:core/managing-schemas/migrations/index) kullanma

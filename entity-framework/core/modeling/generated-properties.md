@@ -5,12 +5,12 @@ author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 11/06/2019
 uid: core/modeling/generated-properties
-ms.openlocfilehash: 7fa3eae5e2edb7b4c40ed4f99ce4a29f367e622a
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.openlocfilehash: 9c616e157ff1bdb9700f436a7ae2788330fe5d45
+ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824703"
+ms.lasthandoff: 12/27/2019
+ms.locfileid: "75502038"
 ---
 # <a name="generated-values"></a>Oluşturulan Değerler
 
@@ -34,7 +34,7 @@ Kullanılan veritabanı sağlayıcısına bağlı olarak, değerler istemci tara
 
 Özelliğe atanmış bir değere sahip bir varlık eklerseniz, EF yeni bir değer oluşturmak yerine bu değeri eklemeye çalışacaktır. Bir özellik, CLR varsayılan değeri (`string`için`null`, `int`için `0` `Guid.Empty`, vb.) atanmadığı takdirde atanan bir değere sahip olarak kabul edilir. Daha fazla bilgi için bkz. [oluşturulan Özellikler Için açık değerler](../saving/explicit-values-generated-properties.md).
 
-> [!WARNING]  
+> [!WARNING]
 > Eklenen varlıklar için değerin nasıl oluşturulduğu, kullanılmakta olan veritabanı sağlayıcısına bağlıdır. Veritabanı sağlayıcıları bazı özellik türleri için değer oluşturmayı otomatik olarak oluşturabilir, ancak diğerleri değerin nasıl oluşturulduğunu el ile ayarlamanıza gerek olabilir.
 >
 > Örneğin, SQL Server kullanırken, `GUID` özellikler için değerler otomatik olarak oluşturulur (SQL Server sıralı GUID algoritması kullanılarak). Ancak, ekleme sırasında bir `DateTime` özelliğinin oluşturulduğunu belirtirseniz, değerlerin oluşturulması için bir yol oluşturmanız gerekir. Bunu yapmanın bir yolu, `GETDATE()`varsayılan değerini yapılandırmak için [varsayılan değerler](relational/default-values.md)bölümüne bakın.
@@ -52,48 +52,73 @@ Ekleme veya güncelleştirme üzerinde oluşturulan değer, kayıt her kaydedild
 >
 > [!code-sql[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedOnAddOrUpdate.sql)]
 
-## <a name="conventions"></a>Kurallar
+## <a name="value-generated-on-add"></a>Ekleme sırasında oluşturulan değer
 
-Varsayılan olarak, Short, int, Long veya GUID türündeki bileşik olmayan birincil anahtarlar, ekleme sırasında oluşturulan değerleri alacak şekilde kurulumda olur. Diğer tüm özellikler hiçbir değer üretimi olmadan kuruluma sunulacaktır.
+Kural gereği, uygulama tarafından bir değer sağlanmadıysa, anahtar, int, Long veya GUID türündeki bileşik olmayan birincil anahtarlar, eklenen varlıklar için oluşturulan değerlere sahip olacak şekilde ayarlanır. Veritabanı sağlayıcınız genellikle gereken yapılandırmayı üstlenir; Örneğin, SQL Server bir sayısal birincil anahtar otomatik olarak bir KIMLIK sütunu olarak ayarlanır.
 
-## <a name="data-annotations"></a>Veri Açıklamaları
+Herhangi bir özelliği, ekli varlıklar için değeri oluşturulacak şekilde aşağıdaki gibi yapılandırabilirsiniz:
 
-### <a name="no-value-generation-data-annotations"></a>Değer üretimi yok (veri ek açıklamaları)
+### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ValueGeneratedNever.cs#Sample)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ValueGeneratedOnAdd.cs?name=ValueGeneratedOnAdd&highlight=5)]
 
-### <a name="value-generated-on-add-data-annotations"></a>Add (veri ek açıklamaları) üzerinde oluşturulan değer
+### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ValueGeneratedOnAdd.cs#Sample)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedOnAdd.cs?name=ValueGeneratedOnAdd&highlight=5)]
 
-> [!WARNING]  
+***
+
+> [!WARNING]
 > Bu yalnızca AŞV 'nin eklenen varlıklar için değerlerin oluşturulduğunu bilmesini sağlar. Bu, EF 'in değer oluşturmak için gerçek mekanizmayı ayarlayabileceklerini garanti etmez. Daha fazla ayrıntı için bkz. [ekleme bölümünde oluşturulan değer](#value-generated-on-add) .
 
-### <a name="value-generated-on-add-or-update-data-annotations"></a>Ekleme veya güncelleştirme üzerinde oluşturulan değer (veri açıklamaları)
+### <a name="default-values"></a>Varsayılan değerler
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ValueGeneratedOnAddOrUpdate.cs#Sample)]
+İlişkisel veritabanlarında, bir sütun varsayılan bir değerle yapılandırılabilir; bir satır bu sütun için bir değer olmadan eklenirse, varsayılan değer kullanılacaktır.
 
-> [!WARNING]  
+Bir özellik üzerinde varsayılan bir değer yapılandırabilirsiniz:
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/DefaultValue.cs?name=DefaultValue&highlight=5)]
+
+Varsayılan değeri hesaplamak için kullanılan bir SQL parçası da belirtebilirsiniz:
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/DefaultValueSql.cs?name=DefaultValueSql&highlight=5)]
+
+Varsayılan bir değer belirtmek, özelliği, ekleme sırasında oluşturulan değer olarak örtülü olarak yapılandırır.
+
+## <a name="value-generated-on-add-or-update"></a>Ekleme veya güncelleştirme üzerinde oluşturulan değer
+
+### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
+
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ValueGeneratedOnAddOrUpdate.cs?name=ValueGeneratedOnAddOrUpdate&highlight=5)]
+
+### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedOnAddOrUpdate.cs?name=ValueGeneratedOnAddOrUpdate&highlight=5)]
+
+***
+
+> [!WARNING]
 > Bu yalnızca AŞV 'nin eklenen veya güncelleştirilmiş varlıklar için değerlerin oluşturulduğunu bilmesini sağlar. Bu, EF 'in, değer oluşturmak için gerçek mekanizmayı ayarlayabileceklerini garanti etmez. Daha fazla ayrıntı için bkz. [ekleme veya güncelleştirme üzerinde oluşturulan değer](#value-generated-on-add-or-update) .
 
-## <a name="fluent-api"></a>Akıcı API
+### <a name="computed-columns"></a>Hesaplanan sütunlar
 
-Belirli bir özellik için değer oluşturma modelini değiştirmek üzere Floent API 'sini kullanabilirsiniz.
+Bazı ilişkisel veritabanlarında, bir sütun değeri, genellikle diğer sütunlara başvuran bir ifadeyle birlikte veritabanında hesaplanmalıdır:
 
-### <a name="no-value-generation-fluent-api"></a>Değer oluşturma (Floent API)
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ComputedColumn.cs?name=ComputedColumn&highlight=5)]
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedNever.cs#Sample)]
+> [!NOTE]
+> Bazı durumlarda, sütunun değeri her getirilirken (bazen *sanal* sütunlar olarak adlandırılır) hesaplanır ve diğer bir deyişle, satırdaki her güncelleştirmede ve depolanan (bazen *depolanan* veya *kalıcı* sütunlar olarak adlandırılır) hesaplanır. Bu, veritabanı sağlayıcılarının tamamında farklılık gösterir.
 
-### <a name="value-generated-on-add-fluent-api"></a>Add (Floent API) üzerinde oluşturulan değer
+## <a name="no-value-generation"></a>Değer oluşturma yok
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedOnAdd.cs#Sample)]
+Bir özellik üzerinde değer oluşturmayı devre dışı bırakmak genellikle bir kural değer oluşturma için yapılandırıyorsa gereklidir. Örneğin, int türünde bir birincil anahtarınız varsa, bu, ekleme sırasında oluşturulan değer olarak örtülü olarak ayarlanır; Bunu aşağıdakiler aracılığıyla devre dışı bırakabilirsiniz:
 
-> [!WARNING]  
-> `ValueGeneratedOnAdd()` yalnızca, eklenen varlıklar için değerlerin oluşturulduğunu bilmesini sağlar, EF 'in değer oluşturmak için gerçek mekanizmayı ayarlayacağının garantisi yoktur.  Daha fazla ayrıntı için bkz. [ekleme bölümünde oluşturulan değer](#value-generated-on-add) .
+### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
 
-### <a name="value-generated-on-add-or-update-fluent-api"></a>Ekleme veya güncelleştirme üzerinde oluşturulan değer (akıcı API)
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ValueGeneratedNever.cs?name=ValueGeneratedNever&highlight=3)]
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedOnAddOrUpdate.cs#Sample)]
+### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
 
-> [!WARNING]  
-> Bu yalnızca AŞV 'nin eklenen veya güncelleştirilmiş varlıklar için değerlerin oluşturulduğunu bilmesini sağlar. Bu, EF 'in, değer oluşturmak için gerçek mekanizmayı ayarlayabileceklerini garanti etmez. Daha fazla ayrıntı için bkz. [ekleme veya güncelleştirme üzerinde oluşturulan değer](#value-generated-on-add-or-update) .
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedNever.cs?name=ValueGeneratedNever&highlight=5)]
+
+***

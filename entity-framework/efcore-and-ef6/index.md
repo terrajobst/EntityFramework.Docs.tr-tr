@@ -5,12 +5,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: a6b9cd22-6803-4c6c-a4d4-21147c0a81cb
 uid: efcore-and-ef6/index
-ms.openlocfilehash: 9fe4905de5bd81fce083d620724b7fad4c6dd11b
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 62f7da64bbb6289edd38b877af71fc126e03d0f6
+ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182048"
+ms.lasthandoff: 12/27/2019
+ms.locfileid: "75502295"
 ---
 # <a name="compare-ef-core--ef6"></a>EF Core ve EF6 Karşılaştırması
 
@@ -30,7 +30,7 @@ EF Core, EF6 benzer bir geliştirici deneyimi sağlamak için tasarlanmıştır.
 
 ## <a name="feature-comparison"></a>Özellik karşılaştırması
 
-EF Core, EF6 içinde uygulanmayan yeni özellikler sunar ( [Alternatif anahtarlar](xref:core/modeling/alternate-keys), [toplu güncelleştirmeler](xref:core/what-is-new/ef-core-1.0#relational-batching-of-statements)ve [LINQ sorgularında karışık istemci/veritabanı değerlendirmesi](xref:core/querying/client-eval)gibi). Ancak, yeni bir kod tabanı olduğundan, EF6 'in sahip olduğu bazı özellikler de yoktur.
+EF Core, EF6 içinde uygulanmayan yeni özellikler sunar ( [Alternatif anahtarlar](xref:core/modeling/keys#alternate-keys), [toplu güncelleştirmeler](xref:core/what-is-new/ef-core-1.0#relational-batching-of-statements)ve [LINQ sorgularında karışık istemci/veritabanı değerlendirmesi](xref:core/querying/client-eval)gibi). Ancak, yeni bir kod tabanı olduğundan, EF6 'in sahip olduğu bazı özellikler de yoktur.
 
 Aşağıdaki tablolar EF Core ve EF6 ' de bulunan özellikleri karşılaştırır. Bu, üst düzey bir karşılaştırmalardır ve farklı EF sürümlerindeki aynı özellik arasındaki her özelliği veya açıklama farklarını listeetmez.
 
@@ -48,29 +48,29 @@ EF Core sütunu, özelliğin ilk göründüğü ürün sürümünü belirtir.
 | Özel kurallar                                    | Evet      | 1,0 (kısmi)                         |
 | Veri açıklamaları                                      | Evet      | 1.0                                   |
 | Akıcı API                                            | Evet      | 1.0                                   |
-| Devralmayı Hiyerarşi başına tablo (TPH)                | Evet      | 1.0                                   |
-| Devralmayı Tür başına tablo (TPT)                     | Evet      |                                       |
-| Devralmayı Somut sınıf başına tablo (TPC)           | Evet      |                                       |
+| Devralma: hiyerarşi başına tablo (TPH)                | Evet      | 1.0                                   |
+| Devralma: tür başına tablo (TPT)                     | Evet      |                                       |
+| Devralma: somut sınıf başına tablo (TPC)           | Evet      |                                       |
 | Gölge durumu özellikleri                               |          | 1.0                                   |
 | Alternatif anahtarlar                                        |          | 1.0                                   |
 | Çok-çok, JOIN varlığı olmadan                      | Evet      |                                       |
-| Anahtar oluşturma: Database                              | Evet      | 1.0                                   |
-| Anahtar oluşturma: İstemci                                |          | 1.0                                   |
-| Karmaşık/sahip türler                                   | Evet      | 2.0                                   |
+| Anahtar oluşturma: veritabanı                              | Evet      | 1.0                                   |
+| Anahtar üretimi: Istemci                                |          | 1.0                                   |
+| Karmaşık/sahip türler                                   | Evet      | 2,0                                   |
 | Uzamsal veriler                                          | Evet      | 2.2                                   |
 | Modelin grafik görselleştirmesi                      | Evet      |                                       |
 | Grafik Model Düzenleyicisi                                | Evet      |                                       |
-| Model biçimi: Kod                                    | Evet      | 1.0                                   |
+| Model biçimi: kod                                    | Evet      | 1.0                                   |
 | Model biçimi: EDMX (XML)                              | Evet      |                                       |
-| Veritabanından model oluştur: Komut satırı              | Evet      | 1.0                                   |
-| Veritabanından model oluştur: VS Sihirbazı                 | Evet      |                                       |
+| Veritabanından model oluştur: komut satırı              | Evet      | 1.0                                   |
+| Veritabanından model oluştur: VS Wizard                 | Evet      |                                       |
 | Modeli veritabanından Güncelleştir                            | Kısmi  |                                       |
-| Genel sorgu filtreleri                                  |          | 2.0                                   |
-| Tablo bölme                                       | Evet      | 2.0                                   |
+| Genel sorgu filtreleri                                  |          | 2,0                                   |
+| Tablo bölme                                       | Evet      | 2,0                                   |
 | Varlık bölme                                      | Evet      |                                       |
-| Veritabanı skaler işlev eşlemesi                      | Kötü     | 2.0                                   |
-| Alan eşleme                                         |          | 1.1                                   |
-| Null yapılabilir başvuru türleriC# (8,0)                     |          | 3,0                                   |
+| Veritabanı skaler işlev eşlemesi                      | Kötü     | 2,0                                   |
+| Alan eşlemesi                                         |          | 1.1                                   |
+| Null yapılabilir başvuru türleriC# (8,0)                     |          | 3.0                                   |
 
 ### <a name="querying-data"></a>Verileri sorgulama
 
@@ -79,24 +79,24 @@ EF Core sütunu, özelliğin ilk göründüğü ürün sürümünü belirtir.
 | LINQ sorguları                                          | Evet      | 1,0 (karmaşık sorgular için devam ediyor) |
 | Okunabilir oluşturulmuş SQL                                | Kötü     | 1.0                                   |
 | GroupBy çevirisi                                   | Evet      | 2.1                                   |
-| İlgili veriler yükleniyor: Eager                           | Evet      | 1.0                                   |
-| İlgili veriler yükleniyor: Türetilmiş türler için ekip yükleme |          | 2.1                                   |
-| İlgili veriler yükleniyor: Yavaş                            | Evet      | 2.1                                   |
-| İlgili veriler yükleniyor: Anlaşılır                        | Evet      | 1.1                                   |
-| Ham SQL sorguları: Varlık türleri                         | Evet      | 1.0                                   |
+| İlgili verileri yükleme: Eager                           | Evet      | 1.0                                   |
+| İlgili verileri yükleme: türetilmiş türler için ekip yükleme |          | 2.1                                   |
+| İlgili verileri yükleme: yavaş                            | Evet      | 2.1                                   |
+| İlgili verileri yükleme: açık                        | Evet      | 1.1                                   |
+| Ham SQL sorguları: varlık türleri                         | Evet      | 1.0                                   |
 | Ham SQL sorguları: Keyless varlık türleri                 | Evet      | 2.1                                   |
 | Ham SQL sorguları: LINQ ile oluşturma                  |          | 1.0                                   |
-| Açıkça derlenmiş sorgular                           | Kötü     | 2.0                                   |
+| Açıkça derlenmiş sorgular                           | Kötü     | 2,0                                   |
 | Metin tabanlı sorgu dili (Entity SQL)                | Evet      |                                       |
-| await foreach (C# 8,0)                                |          | 3,0                                   |
+| await foreach (C# 8,0)                                |          | 3.0                                   |
 
 ### <a name="saving-data"></a>Verileri kaydetme
 
 | **Özelliği**                                           | **EF6**  | **EF Core**                           |
 |:------------------------------------------------------|:---------|:--------------------------------------|
-| Değişiklik izleme: Anlık Görüntü                             | Evet      | 1.0                                   |
-| Değişiklik izleme: Bildirim                         | Evet      | 1.0                                   |
-| Değişiklik izleme: Proxy'ler                              | Evet      |                                       |
+| Değişiklik izleme: anlık görüntü                             | Evet      | 1.0                                   |
+| Değişiklik izleme: bildirim                         | Evet      | 1.0                                   |
+| Değişiklik izleme: proxy 'Ler                              | Evet      |                                       |
 | İzlenen duruma erişme                               | Evet      | 1.0                                   |
 | İyimser eşzamanlılık                                | Evet      | 1.0                                   |
 | İşlemler                                          | Evet      | 1.0                                   |
@@ -115,7 +115,7 @@ EF Core sütunu, özelliğin ilk göründüğü ürün sürümünü belirtir.
 | Bağlantı dayanıklılığı                                 | Evet      | 1.1                                   |
 | Yaşam döngüsü kancaları (olaylar, yakalar)                | Evet      |                                       |
 | Basit günlüğe kaydetme (Database. log)                         | Evet      |                                       |
-| DbContext havuzu                                     |          | 2.0                                   |
+| DbContext havuzu                                     |          | 2,0                                   |
 
 ### <a name="database-providers"></a>Veritabanı sağlayıcıları
 
@@ -128,9 +128,9 @@ EF Core sütunu, özelliğin ilk göründüğü ürün sürümünü belirtir.
 | SQLite                                                | Evet      | 1.0                                   |
 | SQL Server Compact                                    | Evet      | 1,0 <sup>(1)</sup>                    |
 | DB2                                                   | Evet      | 1.0                                   |
-| Firebird                                              | Evet      | 2.0                                   |
+| Firebird                                              | Evet      | 2,0                                   |
 | Jet (Microsoft Access)                                |          | 2,0 <sup>(1)</sup>                    |
-| Cosmos DB                                             |          | 3,0                                   |
+| Cosmos DB                                             |          | 3.0                                   |
 | Bellek içi (test için)                               |          | 1.0                                   |
 
 <sup>1</sup> SQL Server Compact ve Jet sağlayıcıları yalnızca .NET Framework (.NET Core üzerinde değil) üzerinde çalışır.

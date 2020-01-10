@@ -3,12 +3,12 @@ title: EF Core 3,0 ' deki Son değişiklikler EF Core
 author: ajcvickers
 ms.date: 12/03/2019
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: d614103169837238810fabd0a8889043c851ef14
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
-ms.translationtype: MT
+ms.openlocfilehash: cac166e9e194e512de7d730d27c061e6deaf5191
+ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
+ms.translationtype: HT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824871"
+ms.lasthandoff: 12/27/2019
+ms.locfileid: "75502233"
 ---
 # <a name="breaking-changes-included-in-ef-core-30"></a>EF Core 3,0 ' de yer alan son değişiklikler
 
@@ -393,7 +393,7 @@ Bu değişiklik, `SaveChanges` çağrılmadan _önce_ hangi varlıkların siline
 
 **Risk Azaltıcı Etkenler**
 
-Önceki davranış `context.ChangedTracker`ayarları aracılığıyla geri yüklenebilir.
+Önceki davranış `context.ChangeTracker`ayarları aracılığıyla geri yüklenebilir.
 Örneğin:
 
 ```csharp
@@ -1632,7 +1632,7 @@ Bu paket yalnızca tasarım zamanında kullanılmak üzere tasarlanmıştır. Da
 
 **Risk Azaltıcı Etkenler**
 
-EF Core tasarım zamanı davranışını geçersiz kılmak için bu pakete başvurmanız gerekiyorsa, projenizdeki PackageReference öğe meta verilerini güncelleştirebilirsiniz. Pakete Microsoft. EntityFrameworkCore. Tools aracılığıyla doğrudan başvuruluyorsa, meta verilerini değiştirmek için pakete açık bir PackageReference eklemeniz gerekir.
+EF Core tasarım zamanı davranışını geçersiz kılmak için bu pakete başvurmanız gerekiyorsa, projenizdeki PackageReference öğe meta verilerini güncelleştirebilirsiniz.
 
 ``` xml
 <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.0">
@@ -1641,6 +1641,8 @@ EF Core tasarım zamanı davranışını geçersiz kılmak için bu pakete başv
   <!--<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>-->
 </PackageReference>
 ```
+
+Pakete Microsoft. EntityFrameworkCore. Tools aracılığıyla doğrudan başvuruluyorsa, meta verilerini değiştirmek için pakete açık bir PackageReference eklemeniz gerekir. Bu tür bir açık başvuru, paketteki türlerin gerekli olduğu herhangi bir projeye eklenmelidir.
 
 <a name="SQLitePCL"></a>
 

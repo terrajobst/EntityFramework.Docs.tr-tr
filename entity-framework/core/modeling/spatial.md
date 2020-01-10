@@ -5,12 +5,12 @@ ms.author: bricelam
 ms.date: 11/01/2018
 ms.assetid: 2BDE29FC-4161-41A0-841E-69F51CCD9341
 uid: core/modeling/spatial
-ms.openlocfilehash: 335d4f3a601624f7c994b7dcacefe4ef6798beb3
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 8dae1ab949c77ffa08904b12a5716b729e6913a1
+ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655605"
+ms.lasthandoff: 12/27/2019
+ms.locfileid: "75502246"
 ---
 # <a name="spatial-data"></a>Uzamsal veriler
 
@@ -19,11 +19,11 @@ ms.locfileid: "73655605"
 
 Uzamsal veriler, fiziksel konumu ve nesnelerin şeklini temsil eder. Birçok veritabanı, bu tür veriler için destek sağlar, böylece diğer verilerle birlikte dizinlenebilir ve sorgulanabilir. Yaygın senaryolar, bir konumdan belirli bir uzaklıkta bulunan nesnelerin sorgulanmasını veya kenarlığını belirli bir konumu içeren nesneyi seçmeyi içerir. EF Core, [Nettopologyısuite](https://github.com/NetTopologySuite/NetTopologySuite) uzamsal kitaplığı kullanılarak uzamsal veri türlerine eşlemeyi destekler.
 
-## <a name="installing"></a>Yüklemenin
+## <a name="installing"></a>Yükleme
 
 Uzamsal verileri EF Core kullanmak için, uygun destekleyici NuGet paketini yüklemeniz gerekir. Yüklemeniz gereken paket, kullanmakta olduğunuz sağlayıcıya bağlıdır.
 
-EF Core sağlayıcı                        | Uzamsal NuGet paketi
+EF Core Sağlayıcısı                        | Uzamsal NuGet paketi
 --------------------------------------- | ---------------------
 Microsoft. EntityFrameworkCore. SqlServer | [Microsoft. EntityFrameworkCore. SqlServer. Nettopologyısuite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite)
 Microsoft. EntityFrameworkCore. SQLite    | [Microsoft. EntityFrameworkCore. SQLite. Nettopologyısuite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite)
@@ -53,7 +53,7 @@ Birçok uzamsal veri türü vardır. Kullandığınız tür, izin vermek istedi�
   * LineString
   * Gen
   * GeometryCollection
-    * Noktalı
+    * Çok nokta
     * MultiLineString
     * MultiPolygon
 
@@ -213,7 +213,7 @@ SQL Server kullanıyorsanız, bilmeniz gereken bazı ek şeyler vardır.
 
 ### <a name="geography-or-geometry"></a>Coğrafya veya geometri
 
-Varsayılan olarak, uzamsal özellikler SQL Server `geography` sütunlara eşlenir. `geometry`kullanmak için, modelinizde [sütun türünü yapılandırın](xref:core/modeling/relational/data-types) .
+Varsayılan olarak, uzamsal özellikler SQL Server `geography` sütunlara eşlenir. `geometry`kullanmak için, modelinizde [sütun türünü yapılandırın](xref:core/modeling/entity-properties#column-data-types) .
 
 ### <a name="geography-polygon-rings"></a>Coğrafi Çokgen halkaları
 
