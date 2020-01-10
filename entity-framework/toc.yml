@@ -79,18 +79,14 @@
           items:
             - name: Genel Bakış
               href: core/modeling/index.md
-            - name: Türleri Dahil Etme ve Dışlama
-              href: core/modeling/included-types.md
-            - name: Özellikleri Dahil Etme ve Dışlama
-              href: core/modeling/included-properties.md
-            - name: Anahtarlar (birincil)
+            - name: Varlık Türleri
+              href: core/modeling/entity-types.md
+            - name: Varlık Özellikleri
+              href: core/modeling/entity-properties.md
+            - name: Anahtarlar
               href: core/modeling/keys.md
             - name: Oluşturulan Değerler
               href: core/modeling/generated-properties.md
-            - name: Gerekli ve İsteğe Bağlı Özellikler
-              href: core/modeling/required-optional.md
-            - name: En Fazla Uzunluk
-              href: core/modeling/max-length.md
             - name: Eşzamanlılık Belirteçleri
               href: core/modeling/concurrency.md
             - name: Gölge Özellikler
@@ -99,10 +95,10 @@
               href: core/modeling/relationships.md
             - name: Dizinler
               href: core/modeling/indexes.md
-            - name: Alternatif Anahtarlar
-              href: core/modeling/alternate-keys.md
             - name: Devralma
               href: core/modeling/inheritance.md
+            - name: Diziler
+              href: core/modeling/sequences.md
             - name: Destek Alanları
               href: core/modeling/backing-field.md
             - name: Değer Dönüştürmeleri
@@ -119,36 +115,13 @@
               href: core/modeling/keyless-entity-types.md
             - name: Aynı DbContext’e sahip alternatif modeller
               href: core/modeling/dynamic-model.md
-            - name: Uzamsal Veriler (GIS)
+            - name: Uzamsal Veriler
+              displayName: GIS
               href: core/modeling/spatial.md
             - name: İlişkisel veritabanı modelleme
               items:
                 - name: Genel Bakış
                   href: core/modeling/relational/index.md
-                - name: Tablo Eşleme
-                  href: core/modeling/relational/tables.md
-                - name: Sütun Eşleme
-                  href: core/modeling/relational/columns.md
-                - name: Veri Türleri
-                  href: core/modeling/relational/data-types.md
-                - name: Birincil Anahtarlar
-                  href: core/modeling/relational/primary-keys.md
-                - name: Varsayılan Şema
-                  href: core/modeling/relational/default-schema.md
-                - name: Hesaplanan Sütunlar
-                  href: core/modeling/relational/computed-columns.md
-                - name: Diziler
-                  href: core/modeling/relational/sequences.md
-                - name: Varsayılan Değerler
-                  href: core/modeling/relational/default-values.md
-                - name: Dizinler
-                  href: core/modeling/relational/indexes.md
-                - name: Yabancı Anahtar Kısıtlamaları
-                  href: core/modeling/relational/fk-constraints.md
-                - name: Alternatif Anahtarlar (Benzersiz Kısıtlamalar)
-                  href: core/modeling/relational/unique-constraints.md
-                - name: Devralma (İlişkisel Veritabanı)
-                  href: core/modeling/relational/inheritance.md
         - name: Veritabanı Şemalarını Yönetme
           items:
             - name: Genel Bakış
@@ -321,7 +294,7 @@
                   items:
                     - name: Genel Bakış
                       href: ef6/fundamentals/disconnected-entities/self-tracking-entities/index.md
-                    - name: Kılavuz
+                    - name: İzlenecek yol
                       href: ef6/fundamentals/disconnected-entities/self-tracking-entities/walkthrough.md
             - name: Günlüğe Kaydetme ve Durdurma
               href: ef6/fundamentals/logging-and-interception.md
