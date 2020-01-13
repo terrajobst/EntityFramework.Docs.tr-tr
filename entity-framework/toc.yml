@@ -53,7 +53,7 @@
               href: core/get-started/index.md
             - name: EF Core’u Yükleme
               href: core/get-started/install/index.md
-            - name: ⤤ ASP.NET Core Öğreticisi
+            - name: ASP.NET Core Öğreticisi >>
               href: /aspnet/core/data/ef-rp/intro
         - name: Temeller
           items:
@@ -118,10 +118,6 @@
             - name: Uzamsal Veriler
               displayName: GIS
               href: core/modeling/spatial.md
-            - name: İlişkisel veritabanı modelleme
-              items:
-                - name: Genel Bakış
-                  href: core/modeling/relational/index.md
         - name: Veritabanı Şemalarını Yönetme
           items:
             - name: Genel Bakış
@@ -234,8 +230,8 @@
               href: core/miscellaneous/cli/dbcontext-creation.md
             - name: Tasarım Zamanı Hizmetleri
               href: core/miscellaneous/cli/services.md
-        - name: ⤤ EF Core API Başvurusu
-          href: 'https://docs.microsoft.com/dotnet/api/?view=efcore-2.1'
+        - name: EF Core API Başvurusu >>
+          href: /dotnet/api/?view=efcore-3.1
     - name: Entity Framework 6
       items:
         - name: Genel Bakış
@@ -542,5 +538,5 @@
                       href: ef6/resources/licenses/ef6/kor.md
                     - name: Rusça
                       href: ef6/resources/licenses/ef6/rus.md
-        - name: ⤤ EF6 API Başvurusu
+        - name: EF6 API Başvurusu >>
           href: 'https://docs.microsoft.com/dotnet/api/?view=entity-framework-6.2.0'
