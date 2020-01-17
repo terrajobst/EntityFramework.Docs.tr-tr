@@ -3,14 +3,14 @@ title: Genel sorgu filtreleri - EF Core
 author: anpete
 ms.date: 11/03/2017
 uid: core/querying/filters
-ms.openlocfilehash: c9bbb8a5889834ea078ddb7e432863b3d0cf2ffe
-ms.sourcegitcommit: 0cc9578fd49802789a00c0044b4e57325476ca2e
+ms.openlocfilehash: f4ee9b77411290249e763f9cb8492eea61803e91
+ms.sourcegitcommit: f2a38c086291699422d8b28a72d9611d1b24ad0d
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70271452"
+ms.lasthandoff: 01/16/2020
+ms.locfileid: "76124398"
 ---
-# <a name="global-query-filters"></a>Genel sorgu filtreleri
+# <a name="global-query-filters"></a>Genel Sorgu Filtreleri
 
 > [!NOTE]
 > Bu özellik EF Core 2,0 ' de tanıtılmıştı.
@@ -43,7 +43,7 @@ Koşul ifadeleri geçirilen _HasQueryFilter_ çağrıları artık otomatik olara
 > DbContext örnek düzeyinde bir alanı kullanımına dikkat edin: `_tenantId` geçerli Kiracı ayarlamak için kullanılır. Model düzeyi filtreleri (diğer bir deyişle, sorguyu yürüten örnek) doğru bağlam örneğinin değerini kullanır.
 
 > [!NOTE]
-> Aynı varlık üzerinde birden çok sorgu filtresi tanımlamak mümkün değildir; yalnızca en son bir değer geçerli olur. Ancak, mantıksal _ve_ işlecini kullanarak birden çok koşuldan oluşan tek bir filtre tanımlayabilirsiniz ([ `&&` içinde C# ](https://docs.microsoft.com/dotnet/csharp/language-reference/operators/boolean-logical-operators#conditional-logical-and-operator-)).
+> Aynı varlık üzerinde birden çok sorgu filtresi tanımlamak mümkün değildir; yalnızca en son bir değer geçerli olur. Ancak, mantıksal _ve_ işlecini ([`&&` içinde C# ](https://docs.microsoft.com/dotnet/csharp/language-reference/operators/boolean-logical-operators#conditional-logical-and-operator-)) kullanarak birden çok koşuldan oluşan tek bir filtre tanımlayabilirsiniz.
 
 ## <a name="disabling-filters"></a>Filtreleri devre dışı bırakma
 
@@ -55,5 +55,4 @@ Filtreleri devre dışı bırakılabilir için tek tek LINQ sorgularını kullan
 
 Genel sorgu filtreleri aşağıdaki sınırlamalara sahiptir:
 
-* Filtreler, gezinti özellikleri başvurular içeremez.
 * Filtreler yalnızca varlık türü devralma hiyerarşisinin kökü için tanımlanabilir.
