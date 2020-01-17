@@ -19,10 +19,16 @@
       items:
         - name: Genel Bakış
           href: core/index.md
-        - name: Yenilikler
+        - name: Sürümler ve planlama
           items:
             - name: Genel Bakış
               href: core/what-is-new/index.md
+            - name: Sürüm planlama süreci
+              href: core/what-is-new/release-planning.md
+            - name: EF Core 5.0
+              items:
+                - name: Yüksek düzeyde plan
+                  href: core/what-is-new/ef-core-5.0/plan.md
             - name: EF Core 3.0
               items:
                 - name: Yeni özellikler
