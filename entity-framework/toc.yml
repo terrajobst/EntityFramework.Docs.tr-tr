@@ -21,7 +21,7 @@
           href: core/index.md
         - name: Sürümler ve planlama
           items:
-            - name: Genel Bakış
+            - name: Mevcut ve planlanan sürümler (Yol Haritası)
               href: core/what-is-new/index.md
             - name: Sürüm planlama süreci
               href: core/what-is-new/release-planning.md
