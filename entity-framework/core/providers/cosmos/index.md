@@ -5,12 +5,12 @@ author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 11/05/2019
 uid: core/providers/cosmos/index
-ms.openlocfilehash: 6903aab4911f7478afe3d8987a791ae1c5ccebce
-ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
+ms.openlocfilehash: 7451ce6e8d5d7078b3f56a6865aa7698e6fc63ca
+ms.sourcegitcommit: b3cf5d2e3cb170b9916795d1d8c88678269639b1
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/27/2019
-ms.locfileid: "75502220"
+ms.lasthandoff: 01/30/2020
+ms.locfileid: "76888128"
 ---
 # <a name="ef-core-azure-cosmos-db-provider"></a>EF Core Azure Cosmos DB sağlayıcısı
 
@@ -42,7 +42,7 @@ Install-Package Microsoft.EntityFrameworkCore.Cosmos
 
 ***
 
-## <a name="get-started"></a>Kullanmaya başlayın
+## <a name="get-started"></a>Başlangıç
 
 > [!TIP]  
 > Bu makalenin [örneğini GitHub '](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Cosmos)da görebilirsiniz.
@@ -52,7 +52,7 @@ Diğer sağlayıcılar gibi, ilk adım [Usecosmos](/dotnet/api/Microsoft.EntityF
 [!code-csharp[Configuration](../../../../samples/core/Cosmos/ModelBuilding/OrderContext.cs?name=Configuration)]
 
 > [!WARNING]
-> Uç nokta ve anahtar kolaylık sağlaması için burada kodlanmıştır, ancak bir üretim uygulamasında bu uygulamalar güvenli bir şekilde [depolanmalıdır](/aspnet/core/security/app-secrets#secret-manager)
+> Uç nokta ve anahtar kolaylık sağlaması için burada kodlanmıştır, ancak bir üretim uygulamasında bunlar [güvenli bir şekilde depolanmalıdır](/aspnet/core/security/app-secrets#secret-manager).
 
 Bu örnekte `Order`, [sahip olduğu `StreetAddress`türüne](../../modeling/owned-entities.md) başvuran basit bir varlıktır.
 

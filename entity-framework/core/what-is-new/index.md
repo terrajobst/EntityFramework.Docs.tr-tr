@@ -1,21 +1,21 @@
 ---
 title: EF Core yayınları ve planlamayı
 author: ajcvickers
-ms.date: 01/14/2020
+ms.date: 01/29/2020
 ms.assetid: C21F89EE-FB08-4ED9-A2A0-76CB7656E6E4
 uid: core/what-is-new/index
-ms.openlocfilehash: 8d74c24021fd62c5c5d944eaf3973b344fdb1e9c
-ms.sourcegitcommit: f2a38c086291699422d8b28a72d9611d1b24ad0d
+ms.openlocfilehash: 0704b624a50d0736fefbb5633e9e7e657499a703
+ms.sourcegitcommit: b3cf5d2e3cb170b9916795d1d8c88678269639b1
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/16/2020
-ms.locfileid: "76124411"
+ms.lasthandoff: 01/30/2020
+ms.locfileid: "76888067"
 ---
 # <a name="ef-core-releases-and-planning"></a>EF Core yayınları ve planlamayı
 
 ## <a name="stable-releases"></a>Kararlı yayınlar
 
-| Sürüm | Hedef çerçeve | Destek sonu | Bağlantılar
+| Sürüm | Hedef çerçeve | Şu kadar destekleniyor | Bağlantılar
 |:--------|------------------|-----------------|------
 | [EF Core 3,1](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/3.1.1) | .NET Standard 2,0 | 3 Aralık 2022 (LTS) | [Duyur](https://devblogs.microsoft.com/dotnet/announcing-entity-framework-core-3-1-and-entity-framework-6-4/)
 | [EF Core 3,0](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/3.0.1) | .NET Standard 2,1 | 3 Mart 2020 | [Duyuru](https://devblogs.microsoft.com/dotnet/announcing-ef-core-3-0-and-ef-6-3-general-availability/) / [son değişiklikler](ef-core-3.0/breaking-changes.md)
@@ -35,18 +35,32 @@ Destek süre sonu ve uzun süreli destek (LTS) sürümleri hakkında bilgi için
 * Ana sürüm güncelleştirmeleri (örneğin, EF Core 2 ' den EF Core 3 ' e) genellikle son değişiklikler olur. Önemli sürümler üzerinde güncelleştirme yaparken tam test önerilir. Üstteki değişikliklerle ilgili yönergeler için yukarıdaki Son değişiklik bağlantılarını kullanın.
 * İkincil sürüm güncelleştirmeleri genellikle son değişiklikleri içermez. Ancak, yeni özelliklerin gerileme getirebilmesinden bu yana kapsamlı test yine de önerilir.
 
-## <a name="ef-core-50"></a>EF Core 5,0
+## <a name="release-planning-and-schedules"></a>Yayın planlama ve zamanlamalar
 
-EF Core yayınları [.NET Core sevkiyat zamanlaması](https://github.com/dotnet/core/blob/master/roadmap.md)ile hizalanır. Sonraki planlı kararlı sürüm, 2020 Kasım 5,0 ' de zamanlanan **EF Core**' dir.
+EF Core yayınları [.NET Core sevkiyat zamanlaması](https://github.com/dotnet/core/blob/master/roadmap.md)ile hizalanır.
+
+Düzeltme Eki yayınları genellikle aylık olarak sevk ederken uzun bir sağlama süresine sahiptir.
+Bunu geliştirmek için çalışıyoruz.
+
+Her sürümde nelerin yayınlanacağına karar verdiğimiz hakkında daha fazla bilgi için [Sürüm Planlama sürecini](release-planning.md) inceleyin.
+Genellikle bir sonraki büyük veya küçük sürümden daha fazla ayrıntı planlaması yapılmazlar.
+
+## <a name="ef-core-50"></a>EF Core 5.0
+
+Sonraki planlı kararlı sürüm, 2020 Kasım 5,0 ' de zamanlanan **EF Core**' dir.
 
 [EF Core 5,0 için yüksek düzey bir plan](ef-core-5.0/plan.md) , belgelenen [yayın planlama işlemi](release-planning.md)sonrasında oluşturulmuştur.
 
-Planlamaya ilişkin geri bildiriminiz önemlidir. Bir sorunun önemini belirtmenin en iyi yolu GitHub 'da söz konusu sorundan oylanmanız (thumbs-up). Bu veriler daha sonra bir sonraki sürüm için planlama işlemine akış eklenecektir.
+Planlamaya ilişkin geri bildiriminiz önemlidir.
+Bir sorunun önemini belirtmenin en iyi yolu GitHub 'daki bu sorun için oy vermektir (👍).
+Bu veriler daha sonra bir sonraki sürüm için planlama işlemine akış eklenecektir.
 
 ### <a name="get-it-now"></a>Hemen alın!
 
 EF Core 5,0 paketleri, [günlük derlemeler](https://github.com/aspnet/AspNetCore/blob/master/docs/DailyBuilds.md)olarak **artık kullanılabilir** . 
 
-Günlük derlemelerin kullanılması, sorunları bulmak ve mümkün olduğunca erken geri bildirimde bulunmak için harika bir yoldur. Daha erken bu geri bildirimde bulunduk, daha büyük olasılıkla sonraki resmi yayından önce eyleme geçirilecektir. Her derleme için her bir platform için 55.000 testten fazla testi çalıştırarak günlük yapıların iyi şekilde kalmasını sağlamak için çok çalıştık.
+Günlük derlemelerin kullanılması, sorunları bulmak ve mümkün olduğunca erken geri bildirimde bulunmak için harika bir yoldur.
+Daha erken bu geri bildirimde bulunduk, daha büyük olasılıkla sonraki resmi yayından önce eyleme geçirilecektir.
+Her derleme için her bir platform için 56.000 testten fazla testi çalıştırarak günlük yapıların iyi şekilde kalmasını sağlamak için çok çalıştık.
 
 Önizleme paketleri, yılda daha sonra NuGet 'e gönderilir.

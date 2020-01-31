@@ -4,12 +4,12 @@ author: ErikEJ
 ms.date: 12/17/2019
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/extensions/index
-ms.openlocfilehash: bab725afffe1fbf9f8c0abeef58579ac9dc842d2
-ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
+ms.openlocfilehash: 99f59153a452a2f4aad5811110ebc5b5da7717ef
+ms.sourcegitcommit: b3cf5d2e3cb170b9916795d1d8c88678269639b1
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/27/2019
-ms.locfileid: "75502088"
+ms.lasthandoff: 01/30/2020
+ms.locfileid: "76888049"
 ---
 # <a name="ef-core-tools--extensions"></a>EF Core araçları & uzantıları
 
@@ -32,6 +32,12 @@ Varlık geliştiricisi, ADO.NET Entity Framework, Nhazırda beklet, LinqConnect,
 
 [Web sitesi](https://www.devart.com/entitydeveloper/)
 
+### <a name="nhydrate-orm-for-entity-framework"></a>Entity Framework için Nhizte ORM
+
+Entity Framework için türü kesin belirlenmiş, Genişletilebilir sınıflar oluşturan bir ORM. Oluşturulan kod Entity Framework Core. Fark yoktur. Bu, EF veya Custom ORM için bir değiştirme değildir. Ekibin karmaşık veritabanı şemalarını yönetmesine olanak tanıyan bir görsel modelleme katmanıdır. Git gibi SCM yazılımıyla birlikte çalışarak, en az çakışmalarıyla modelinize çoklu Kullanıcı erişimi sağlar. Yükleyici, model değişikliklerini izler ve yükseltme betikleri oluşturur. EF Core için: 3.
+
+[GitHub sitesi](https://github.com/nHydrate/nHydrate)
+
 ### <a name="ef-core-power-tools"></a>EF Core güç araçları
 
 EF Core güç araçları, basit bir kullanıcı arabiriminde çeşitli EF Core tasarım zamanı görevleri sunan bir Visual Studio uzantısıdır. Bu, var olan veritabanlarından DbContext ve varlık sınıflarının tersine mühendislik ve [SQL Server DACPACs](https://docs.microsoft.com/sql/relational-databases/data-tier-applications/data-tier-applications), veritabanı geçişleri yönetimi ve model görselleştirmeleri içerir. EF Core için: 2, 3.
@@ -42,7 +48,7 @@ EF Core güç araçları, basit bir kullanıcı arabiriminde çeşitli EF Core t
 
 Entity Framework Visual Düzenleyicisi, EF 6 ve EF Core sınıflarının görsel tasarımı için bir ORM Tasarımcısı ekleyen bir Visual Studio uzantısıdır. Kod, T4 şablonları kullanılarak oluşturulur, bu nedenle, herhangi bir gereksinimlerinize uyacak şekilde özelleştirilebilir. Devralma, tek yönlü ve çift yönlü ilişkilendirmeler, numaralandırmalar ve sınıflarınızın renk Kodlayabilme ve tasarımınızın potansiyel olarak büyük bir kısmını açıklamak için metin blokları ekleme imkanını destekler. EF Core için: 2.
 
-[Marketplace](https://marketplace.visualstudio.com/items?itemName=michaelsawczyn.EFDesigner)
+['Nde](https://marketplace.visualstudio.com/items?itemName=michaelsawczyn.EFDesigner)
 
 ### <a name="catfactory"></a>Katfactory
 
@@ -163,3 +169,9 @@ DbContext dosyanızı, şunlar gibi özelliklerle genişletir: filtre, denetim, 
 DbContext uygulamanızı yüksek performanslı toplu işlemlerle genişletir: BulkSaveChanges, Bulkınsert, BulkUpdate, BulkDelete, BulkMerge ve daha fazlası. EF Core için: 2, 3.
 
 [Web sitesi](https://entityframework-extensions.net/)
+
+### <a name="expressionify"></a>Expressionbelirt
+
+Uzantı yöntemlerini LINQ Lambdalar içinde çağırma desteği ekleyin. EF Core için: 3,1
+
+[GitHub deposu](https://github.com/ClaveConsulting/Expressionify)
