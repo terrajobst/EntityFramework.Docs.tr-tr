@@ -4,12 +4,12 @@ description: Entity Framework Core kullanırken varlık türleri arasında iliş
 author: AndriySvyryd
 ms.date: 11/21/2019
 uid: core/modeling/relationships
-ms.openlocfilehash: 6b3e0636bfa266b78baafe1b6e318c9707294560
-ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
+ms.openlocfilehash: 6d68e813cec6c989e8e4cb848f8740489645c65c
+ms.sourcegitcommit: 89567d08c9d8bf9c33bb55a62f17067094a4065a
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/27/2019
-ms.locfileid: "75502194"
+ms.lasthandoff: 02/06/2020
+ms.locfileid: "77051413"
 ---
 # <a name="relationships"></a>İlişkiler
 
@@ -26,9 +26,9 @@ Bir ilişki, iki varlığın birbirleriyle ilişkisini tanımlar. İlişkisel bi
 
 * **Asıl varlık:** Bu, birincil/alternatif anahtar özelliklerini içeren varlıktır. Bazen ilişkinin ' Parent ' olarak adlandırılır.
 
-* **Yabancı anahtar:** İlgili varlık için asıl anahtar değerlerini depolamak için kullanılan bağımlı varlıktaki Özellikler.
-
 * **Asıl anahtar:** Asıl varlığı benzersiz bir şekilde tanımlayan Özellikler. Bu, birincil anahtar veya alternatif bir anahtar olabilir.
+
+* **Yabancı anahtar:** İlgili varlık için asıl anahtar değerlerini depolamak için kullanılan bağımlı varlıktaki Özellikler.
 
 * **Gezinti özelliği:** Sorumlu ve/veya bağımlı varlık üzerinde tanımlanan, ilgili varlığa başvuran bir özellik.
 
@@ -48,9 +48,9 @@ Aşağıdaki kod, `Blog` ve `Post` arasında bir-çok ilişkisi gösterir
 
 * Asıl varlık `Blog`
 
-* yabancı anahtar `Post.BlogId`
-
 * `Blog.BlogId` asıl anahtardır (Bu durumda, alternatif bir anahtar yerine birincil anahtardır)
+
+* yabancı anahtar `Post.BlogId`
 
 * `Post.Blog` bir başvuru gezinti özelliğidir
 
@@ -116,7 +116,7 @@ Gerekli ve isteğe bağlı ilişkiler arasındaki fark için [gerekli ve Isteğe
 
 Farklı silme davranışları ve kural tarafından kullanılan varsayılanlar hakkında daha fazla ayrıntı için bkz. [Cascade Delete](../saving/cascade-delete.md) .
 
-## <a name="manual-configuration"></a>Elle yapılandırma
+## <a name="manual-configuration"></a>El ile yapılandırma
 
 ### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
 
@@ -228,7 +228,7 @@ Her seçeneğe ilişkin ayrıntılı bir tartışma için bkz. [Cascade Delete](
 
 ## <a name="other-relationship-patterns"></a>Diğer ilişki desenleri
 
-### <a name="one-to-one"></a>Bir-bir
+### <a name="one-to-one"></a>Bire bir
 
 Bir ilişkinin her iki tarafında da başvuru gezintisi özelliği vardır. Tek-çok ilişkilerle aynı kurallara uyar, ancak her sorumluyla yalnızca bir bağımlı ilişki olduğundan emin olmak için yabancı anahtar özelliğinde benzersiz bir dizin sunulmuştur.
 

@@ -19,9 +19,9 @@
       items:
         - name: Genel Bakış
           href: core/index.md
-        - name: Sürümler ve planlama
+        - name: Sürümler ve planlama (Yol haritası)
           items:
-            - name: Mevcut ve planlanan sürümler (Yol Haritası)
+            - name: Mevcut ve planlanan sürümler
               href: core/what-is-new/index.md
             - name: Sürüm planlama süreci
               href: core/what-is-new/release-planning.md
@@ -29,6 +29,8 @@
               items:
                 - name: Yüksek düzeyde plan
                   href: core/what-is-new/ef-core-5.0/plan.md
+                - name: Yenilikler
+                  href: core/what-is-new/ef-core-5.0/whatsnew.md
             - name: EF Core 3.0
               items:
                 - name: Yeni özellikler
