@@ -1,0 +1,7 @@
+- name: Docs
+  tocHref: /
+  topicHref: /
+  items:
+    - name: Varlık Çerçevesi
+      tocHref: /ef/
+      topicHref: /ef/index
