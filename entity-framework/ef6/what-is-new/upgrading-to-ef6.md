@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 29958ae5-85d3-4585-9ba6-550b8ec9393a
 ms.openlocfilehash: 4395a9c117a6cf38e7fc08f11ee689d6fffa6fed
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182107"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419656"
 ---
 # <a name="upgrading-to-entity-framework-6"></a>Entity Framework 6 ' ya yükseltme
 
@@ -64,7 +64,7 @@ DbContext ve Code First türleri için ad alanları değişmemiştir. Bu, EF 4,1
 
 Daha önce System. Data. Entity. dll içinde bulunan ObjectContext gibi türler yeni ad alanlarına taşınmıştır. Bu, EF6 'e göre derlemek için *using* veya *Import* yönergelerinden güncelleştirmeniz gerekebilecek anlamına gelir.
 
-Ad alanı değişikliklerinin genel kuralı, System. Data. * içindeki herhangi bir tür System. Data. Entity. Core. * öğesine taşınır. Diğer bir deyişle **Entity. Core** 'u eklemeniz yeterlidir. System. Data 'dan sonra. Örneğin:
+Ad alanı değişikliklerinin genel kuralı, System. Data. * içindeki herhangi bir tür System. Data. Entity. Core. * öğesine taşınır. Diğer bir deyişle **Entity. Core** 'u eklemeniz yeterlidir. System. Data 'dan sonra. Örnek:
 
 - System. Data. EntityException = > System. Data. **Entity. Core**. EntityException  
 - System. Data. Objects. ObjectContext = > System. Data. **Entity. Core**. Objects. ObjectContext  

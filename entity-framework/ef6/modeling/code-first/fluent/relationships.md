@@ -1,30 +1,30 @@
 ---
-title: Fluent API'si - ilişkileri - EF6
+title: Akıcı API-Ilişkiler-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: fd73b4f8-16d5-40f1-9640-885ceafe67a1
 ms.openlocfilehash: 05f282c02699f8bf3c71197ac5e01000f1855917
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490473"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419075"
 ---
-# <a name="fluent-api---relationships"></a>Fluent API'si - ilişkileri
+# <a name="fluent-api---relationships"></a>Akıcı API-Ilişkiler
 > [!NOTE]
-> Bu sayfa fluent API'sini kullanarak, Code First modeli ilişkileri ayarlama hakkında bilgi sağlar. EF ve erişmek ve ilişkileri kullanarak verileri işlemek nasıl ilişkiler hakkında genel bilgi için bkz. [ilişkileri ve gezinti özellikleri](~/ef6/fundamentals/relationships.md).  
+> Bu sayfa, Fluent API kullanarak Code First modelinizdeki ilişkileri ayarlama hakkında bilgi sağlar. EF 'teki ilişkiler ve ilişkileri kullanarak verilere erişme ve verileri işleme hakkında genel bilgi için bkz. [ilişkiler & gezinti özellikleri](~/ef6/fundamentals/relationships.md).  
 
-Code First ile çalışırken, etki alanı CLR sınıflarını tanımlayarak modelinizi tanımlayın. Varsayılan olarak Entity Framework veritabanı şemasına sınıflarınızı eşlemek için kod öncelikli kurallar kullanır. Code First adlandırma kurallarını kullanırsanız, çoğu durumda, ilk temel sınıflarında tanımlayan Gezinti özellikleri ve yabancı anahtarlar, tablolar arasında ilişki kurmak için kod üzerinde güvenebilirsiniz. Sınıfları tanımlarken kurallara uymayan veya kuralları biçimini değiştirmek istiyorsanız iş, Code First, tablolar arasındaki ilişkileri eşleyebilmeniz sınıflarınızı yapılandırmak için veri ek açıklamaları ya da fluent API'sini kullanabilirsiniz.  
+Code First ile çalışırken, etki alanı CLR sınıflarınızı tanımlayarak modelinizi tanımlarsınız. Varsayılan olarak, Entity Framework sınıflarınızı veritabanı şemasına eşlemek için Code First kurallarını kullanır. Code First adlandırma kurallarını kullanıyorsanız, çoğu durumda, sınıflarınızda tanımladığınız yabancı anahtarlara ve gezinti özelliklerine göre tablolarınız arasında ilişkiler ayarlamak için Code First güvenebilirsiniz. Sınıflarınızı tanımlarken kuralları izlemeyin veya kuralların çalışma biçimini değiştirmek istiyorsanız, sınıflarınızı yapılandırmak için Fluent API veya veri açıklamalarını kullanarak Code First tablolarınız arasındaki ilişkileri eşleyebilir.  
 
 ## <a name="introduction"></a>Giriş  
 
-Fluent API'si ile bir ilişki yapılandırırken EntityTypeConfiguration örneğiyle başlatın ve sonra bu varlığın katıldığı ilişki türünü belirtmek için HasRequired, HasOptional veya çok yöntemini kullanın. HasRequired ve HasOptional yöntemleri, bir başvuru gezinme özelliğini temsil eden bir lambda ifadesi alır. Çok yöntem bir koleksiyon gezinme özelliği temsil eden bir lambda ifadesi alır. Ters gezinti özelliği WithRequired WithOptional ve WithMany yöntemlerini kullanarak daha sonra yapılandırabilirsiniz. Bu yöntemleri ile tek yönlü gezintiler kardinalite belirtmek için kullanılabilir ve bağımsız değişkenler almayan aşırı yüklemeleri vardır.  
+Fluent API bir ilişki yapılandırırken, EntityTypeConfiguration örneğiyle başlar ve ardından HasRequired, HasOptional veya HasMany yöntemini kullanarak bu varlığın katıldığı ilişki türünü belirtebilirsiniz. HasRequired ve HasOptional yöntemleri başvuru gezintisi özelliğini temsil eden bir lambda ifadesi alır. HasMany yöntemi, koleksiyon gezintisi özelliğini temsil eden bir lambda ifadesi alır. Daha sonra WithRequired, WithOptional ve WithMany yöntemlerini kullanarak bir ters gezinti özelliği yapılandırabilirsiniz. Bu yöntemlerin, bağımsız değişken kullanmayan ve tek yönlü gezintilerle kardinalite belirtmek için kullanılabilecek aşırı yüklemeleri vardır.  
 
-Ardından, yabancı anahtar özelliklerini HasForeignKey yöntemi kullanarak yapılandırabilirsiniz. Bu yöntem, yabancı anahtar olarak kullanılacak özelliği temsil eden bir lambda ifadesi alır.  
+Ardından, HasForeignKey metodunu kullanarak yabancı anahtar özelliklerini yapılandırabilirsiniz. Bu yöntem, yabancı anahtar olarak kullanılacak özelliği temsil eden bir lambda ifadesi alır.  
 
-## <a name="configuring-a-required-to-optional-relationship-one-tozero-or-one"></a>Gereklidir-için-isteğe bağlı bir ilişki (-bire-sıfır-veya-bir) yapılandırma  
+## <a name="configuring-a-required-to-optional-relationship-one-tozero-or-one"></a>Gerekli-Isteğe bağlı bir Ilişkiyi yapılandırma (bire-sıfır veya-bir)  
 
-Aşağıdaki örnek, bir sıfır-veya-bire bir ilişki yapılandırır. Özelliğin adı HasKey yöntemi birincil anahtarı yapılandırmak için kullanılan kuralı izlemiyor çünkü OfficeAssignment birincil anahtar ve yabancı anahtar Instructorıd özelliği vardır.  
+Aşağıdaki örnek, bire sıfır veya-bir ilişkiyi yapılandırır. OfficeAssignment, birincil anahtar ve yabancı anahtar olan Komutctorıd özelliğine sahiptir, çünkü özelliğin adı, birincil anahtarı yapılandırmak için HasKey yönteminin kullanıldığı kuralı takip etmez.  
 
 ``` csharp
 // Configure the primary key for the OfficeAssignment
@@ -37,9 +37,9 @@ modelBuilder.Entity<OfficeAssignment>()
     .WithOptional(t => t.OfficeAssignment);
 ```  
 
-## <a name="configuring-a-relationship-where-both-ends-are-required-one-to-one"></a>Burada ikisinde (bire) gerekli bir ilişki yapılandırma  
+## <a name="configuring-a-relationship-where-both-ends-are-required-one-to-one"></a>Her Iki ucunun de gerekli olduğu bir Ilişkiyi yapılandırma (bire bir)  
 
-Çoğu durumda, hangi tür bağımlı ve asıl ilişkisinde olduğu Entity Framework çıkarabilir. Bağımlı ve asıl ancak zaman hem ilişkinin uçlarından gerekli ya da her iki tarafında da isteğe bağlı Entity Framework tanımlanamıyor. Her iki ucunda da ilişki gerekli olduğunda WithRequiredPrincipal veya WithRequiredDependent sonra HasRequired yöntemi kullanın. Her iki ucunda da ilişki isteğe bağlı olduğunuzda WithOptionalPrincipal veya WithOptionalDependent sonra HasOptional yöntemi kullanın.  
+Çoğu durumda Entity Framework, hangi türün bağımlı olduğunu ve bir ilişkide sorumlu olduğunu belirtebilir. Ancak, ilişkinin her iki ucu de gerektiğinde veya her iki taraf da isteğe bağlı olduğunda Entity Framework bağımlı ve sorumluyu tanımlayamıyor. İlişkinin her iki ucu de gerektiğinde, HasRequired yönteminden sonra WithRequiredPrincipal veya WithRequiredDependent kullanın. İlişkinin her iki ucu isteğe bağlı olduğunda, HasOptional yönteminden sonra WithOptionalPrincipal veya WithOptionalDependent kullanın.  
 
 ``` csharp
 // Configure the primary key for the OfficeAssignment
@@ -51,9 +51,9 @@ modelBuilder.Entity<Instructor>()
     .WithRequiredPrincipal(t => t.Instructor);
 ```  
 
-## <a name="configuring-a-many-to-many-relationship"></a>Çoktan çoğa ilişki yapılandırma  
+## <a name="configuring-a-many-to-many-relationship"></a>Çoktan çoğa Ilişki yapılandırma  
 
-Aşağıdaki kod kurs ve Eğitmenler türü arasında bir çoktan çoğa ilişki yapılandırır. Aşağıdaki örnekte, varsayılan kod öncelikli kurallar, bir birleştirme tablo oluşturmak için kullanılır. Sonuç olarak CourseInstructor tablo Course_CourseID ve Instructor_InstructorID sütunlarla oluşturulur.  
+Aşağıdaki kod kurs ve eğitmen türleri arasında çoktan çoğa bir ilişki yapılandırır. Aşağıdaki örnekte, bir JOIN tablosu oluşturmak için varsayılan Code First kuralları kullanılır. Sonuç olarak, kurs Seeğitmeni tablosu Course_CourseID ve Instructor_InstructorID sütunları ile oluşturulur.  
 
 ``` csharp
 modelBuilder.Entity<Course>()
@@ -61,7 +61,7 @@ modelBuilder.Entity<Course>()
     .WithMany(t => t.Courses)
 ```  
 
-Eşleme yöntemini kullanarak ek yapılandırma gerçekleştirmeniz gereken tabloda birleştirme tablo adını ve sütunlarının adlarını belirtmek istiyorsanız. Aşağıdaki kod CourseID ve Instructorıd sütunlar içeren CourseInstructor tablo oluşturur.  
+Yol tablosu adını ve tablodaki sütunların adlarını belirtmek istiyorsanız, Map metodunu kullanarak ek yapılandırma yapmanız gerekir. Aşağıdaki kod, CourseID ve Komutctorıd sütunları ile Courseeğitmen tablosunu oluşturur.  
 
 ``` csharp
 modelBuilder.Entity<Course>()
@@ -75,9 +75,9 @@ modelBuilder.Entity<Course>()
     });
 ```  
 
-## <a name="configuring-a-relationship-with-one-navigation-property"></a>Bir gezinti özelliği ile bir ilişki yapılandırma  
+## <a name="configuring-a-relationship-with-one-navigation-property"></a>Tek bir gezinti özelliği ile Ilişki yapılandırma  
 
-Tek yönlü (tek yönlü da denir) ilişkidir bir gezinti özelliği yalnızca bir ilişkinin uçlarından hem de her ikisi de olarak tanımlandığında. Kural gereği, Code First her zaman tek yönlü bir ilişki tek-çok olarak yorumlar. Örneğin, eğitmen ve bir gezinti özelliği yalnızca Eğitmen türüne sahip olduğu, OfficeAssignment, arasında bire bir ilişki istiyorsanız, bu ilişkiyi yapılandırmak için fluent API'sini kullanmanız gerekir.  
+Tek yönlü (tek yönlü olarak da adlandırılır) ilişkisi, bir gezinti özelliğinin yalnızca ilişkinin yalnızca birinde, her ikisi üzerinde değil, ne zaman sona ereceğini bir şekilde tanımlandığını de alır Kurala göre Code First her zaman tek yönlü ilişkiyi bire çok olarak yorumlar. Örneğin, yalnızca eğitmen türünde bir gezinti özelliği olan eğitmen ve OfficeAssignment arasında bire bir ilişki istiyorsanız, bu ilişkiyi yapılandırmak için Fluent API kullanmanız gerekir.  
 
 ``` csharp
 // Configure the primary Key for the OfficeAssignment
@@ -89,16 +89,16 @@ modelBuilder.Entity<Instructor>()
     .WithRequiredPrincipal();
 ```  
 
-## <a name="enabling-cascade-delete"></a>Art arda silme işlevini etkinleştirme  
+## <a name="enabling-cascade-delete"></a>Basamaklı silme etkinleştiriliyor  
 
-Art arda silme WillCascadeOnDelete yöntemi kullanarak, bir ilişkiye yapılandırabilirsiniz. Bağımlı varlıkta bir yabancı anahtar null değilse, ardından Code First art arda silme ilişkisine ayarlar. Bağımlı varlıkta bir yabancı anahtar null yapılabilir, Code First ayarlı değil art arda silme ilişkisine ve asıl silindiğinde yabancı anahtarı ayarlama null.  
+Willcascade Deondelete yöntemini kullanarak bir ilişkide basamaklı silme yapılandırabilirsiniz. Bağımlı varlıktaki bir yabancı anahtar null yapılabilir değilse, Code First ilişkide basamaklı silme ayarlar. Bağımlı varlıktaki bir yabancı anahtar null yapılabilir ise, Code First ilişkide basamaklı silme ayarı yapmaz ve asıl öğe silindiğinde yabancı anahtar null olarak ayarlanır.  
 
-Bu art arda silme kuralları kullanarak kaldırabilirsiniz:  
+Bu basamaklı silme kurallarını kullanarak kaldırabilirsiniz:  
 
-modelBuilder.Conventions.Remove\<OneToManyCascadeDeleteConvention\>)  
-modelBuilder.Conventions.Remove\<ManyToManyCascadeDeleteConvention\>)  
+modelBuilder. kurallarınızı. Remove\<Onetomanybasamakdedeleteconvention\>()  
+modelBuilder. kuralları. Remove\<Manytomanybasamakdedeleteconvention\>()  
 
-Aşağıdaki kod, gerekli bir ilişki yapılandırır ve art arda silme işlevini devre dışı bırakır.  
+Aşağıdaki kod, ilişkiyi gerekli olacak şekilde yapılandırır ve ardından Cascade silmeyi devre dışı bırakır.  
 
 ``` csharp
 modelBuilder.Entity<Course>()
@@ -108,9 +108,9 @@ modelBuilder.Entity<Course>()
     .WillCascadeOnDelete(false);
 ```  
 
-## <a name="configuring-a-composite-foreign-key"></a>Bileşik bir yabancı anahtar yapılandırma  
+## <a name="configuring-a-composite-foreign-key"></a>Bileşik yabancı anahtar yapılandırma  
 
-Birincil anahtar bölüm türüne DepartmentID ve ad özelliklerini oluşuyorsa, birincil anahtar bölüm ve yabancı anahtarı Kurs türleri gibi yapılandırabileceğinizi gösteren:  
+Departman türündeki birincil anahtar DepartmentID ve ad özelliklerinden oluşur, bölüm için birincil anahtarı ve kurs türlerindeki yabancı anahtarı aşağıdaki gibi yapılandırın:  
 
 ``` csharp
 // Composite primary key
@@ -124,9 +124,9 @@ modelBuilder.Entity<Course>()
     .HasForeignKey(d => new { d.DepartmentID, d.DepartmentName });
 ```  
 
-## <a name="renaming-a-foreign-key-that-is-not-defined-in-the-model"></a>Modelde tanımlı olmayan bir yabancı anahtar yeniden adlandırma  
+## <a name="renaming-a-foreign-key-that-is-not-defined-in-the-model"></a>Modelde tanımlanmayan bir yabancı anahtarı yeniden adlandırma  
 
-Değil CLR türüne bir yabancı anahtar tanımlayın, ancak veritabanında olması gereken hangi adını belirtmek istediğiniz seçerseniz, aşağıdakileri yapın:  
+CLR türünde bir yabancı anahtar tanımlamadıysanız, ancak veritabanında olması gereken adı belirtmek istiyorsanız aşağıdakileri yapın:  
 
 ``` csharp
 modelBuilder.Entity<Course>()
@@ -135,9 +135,9 @@ modelBuilder.Entity<Course>()
     .Map(m => m.MapKey("ChangedDepartmentID"));
 ```  
 
-## <a name="configuring-a-foreign-key-name-that-does-not-follow-the-code-first-convention"></a>Kod ilk kuralı izlemez bir yabancı anahtar adı yapılandırma  
+## <a name="configuring-a-foreign-key-name-that-does-not-follow-the-code-first-convention"></a>Code First kuralına uymayan bir yabancı anahtar adı yapılandırma  
 
-Yabancı anahtar özelliği kurs sınıfındaki SomeDepartmentID DepartmentID yerine çağrılırsa SomeDepartmentID yabancı anahtarı olmasını istediğinizi belirtmek için aşağıdakileri yapmanız gerekir:  
+Kurs sınıfındaki yabancı anahtar özelliği DepartmentID yerine SomeDepartmentID olarak adlandırıldıysa, SomeDepartmentID 'nin yabancı anahtar olmasını istediğinizi belirtmek için aşağıdakileri yapmanız gerekir:  
 
 ``` csharp
 modelBuilder.Entity<Course>()
@@ -146,7 +146,7 @@ modelBuilder.Entity<Course>()
          .HasForeignKey(c => c.SomeDepartmentID);
 ```  
 
-## <a name="model-used-in-samples"></a>Örneklerde kullanılan modeli  
+## <a name="model-used-in-samples"></a>Örneklerde kullanılan model  
 
 Bu sayfadaki örnekler için aşağıdaki Code First modeli kullanılır.  
 

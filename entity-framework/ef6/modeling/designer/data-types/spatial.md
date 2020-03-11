@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 06baa6e1-d680-4a95-845b-81305c87a962
 ms.openlocfilehash: a9c54fbc14dd02ce5d4d91449a0d5f9e72f7f0f7
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182511"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418541"
 ---
 # <a name="spatial---ef-designer"></a>Uzamsal-EF Tasarımcısı
 > [!NOTE]
@@ -24,14 +24,14 @@ Uzamsal veri türlerini kullanmak için, uzamsal destek içeren bir Entity Frame
 
 İki ana uzamsal veri türü vardır: Coğrafya ve geometri. Coğrafya veri türü ellipsoidal verilerini depolar (örneğin, GPS Enlem ve boylam koordinatları). Geometri veri türü, Euclidean (düz) koordinat sistemini temsil eder.
 
-## <a name="watch-the-video"></a>Videoyu izleyin
+## <a name="watch-the-video"></a>Videoyu izleme
 Bu videoda, Entity Framework Designer uzamsal türlerin nasıl eşleneceğini gösterir. Ayrıca, iki konum arasındaki mesafeyi bulmak için bir LINQ sorgusunun nasıl kullanılacağını gösterir.
 
 **Sunduğu**: Julia Kornich
 
 **Video**: [wmv](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-winvideo-spatialwithdesigner.wmv) | [MP4](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-mp4video-spatialwithdesigner.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-winvideo-spatialwithdesigner.zip)
 
-## <a name="pre-requisites"></a>Önkoşulların önkoşulları
+## <a name="pre-requisites"></a>Önkoşullar
 
 Bu yönergeyi tamamlamak için Visual Studio 2012, Ultimate, Premium, Professional veya Web Express sürümünün yüklü olması gerekir.
 
@@ -48,7 +48,7 @@ Bu yönergeyi tamamlamak için Visual Studio 2012, Ultimate, Premium, Profession
 2.  Sol menüden **verileri** seçin ve ardından şablonlar bölmesinde **ADO.net varlık veri modeli** seçin
 3.  Dosya adı için **Üniversıtymodel. edmx** girin ve ardından **Ekle** ' ye tıklayın.
 4.  Varlık Veri Modeli Sihirbazı sayfasında, model Içeriklerini Seç iletişim kutusunda **boş model** ' i seçin.
-5.  **Son** ' a tıklayın
+5.  **Son**’a tıklayın
 
 Modelinizi düzenlemekte bir tasarım yüzeyi sağlayan Entity Desisgner görüntülenir.
 

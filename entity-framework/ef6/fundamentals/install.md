@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 122c38a2-f9e8-4ecc-9c72-a83bc9af7814
 ms.openlocfilehash: 2bdec6a9be228fbe934d0f46aa1bfafdfb2c971c
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181733"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419470"
 ---
 # <a name="get-entity-framework"></a>Entity Framework Alma
 Entity Framework, Visual Studio ve EF çalışma zamanına yönelik EF araçlarından oluşur.
@@ -45,7 +45,7 @@ EF 4,1 ve sonraki sürümlerinde, EF çalışma zamanının yeni sürümleri [En
 Install-Package EntityFramework -Version <number>
 ```
 
-@No__t-0 ' ın yüklenecek EF 'in belirli sürümünü temsil ettiğini unutmayın. Örneğin, 6.2.0, EF 6,2 için sayı sürümüdür.   
+`<number>` yüklenecek EF 'in belirli sürümünü temsil ettiğini unutmayın. Örneğin, 6.2.0, EF 6,2 için sayı sürümüdür.   
 
 4,1 ' dan önceki EF çalışma zamanları .NET Framework bir parçası ve ayrı olarak yüklenemez.
 

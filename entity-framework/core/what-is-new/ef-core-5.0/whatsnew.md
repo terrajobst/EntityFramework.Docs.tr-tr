@@ -3,12 +3,12 @@ title: EF Core 5,0 ' deki yenilikler
 author: ajcvickers
 ms.date: 01/29/2020
 uid: core/what-is-new/ef-core-5.0/whatsnew.md
-ms.openlocfilehash: e858379cc46abbef999fd32a3685e1d522524889
-ms.sourcegitcommit: 89567d08c9d8bf9c33bb55a62f17067094a4065a
+ms.openlocfilehash: 65d7bd43e8a00c77fd6091a74c677635710d03e3
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/06/2020
-ms.locfileid: "77052034"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417968"
 ---
 # <a name="whats-new-in-ef-core-50"></a>EF Core 5,0 ' deki yenilikler
 
@@ -30,7 +30,7 @@ Yani, her türlü harici günlük çerçevesini yapılandırmaya gerek kalmadan 
 
 İlk belgeler, [5 aralık 2019 Için EF haftalık durumuna](https://github.com/dotnet/efcore/issues/15403#issuecomment-562332863)dahildir.
 
-Ek belgeler [#2085](https://github.com/aspnet/EntityFramework.Docs/issues/2085)soruna göre izlenir.
+Ek belgeler [#2085](https://github.com/dotnet/EntityFramework.Docs/issues/2085)soruna göre izlenir.
 
 ### <a name="simple-way-to-get-generated-sql"></a>Oluşturulan SQL almanın basit yolu
 
@@ -38,7 +38,7 @@ EF Core 5,0, bir LINQ sorgusu yürütürken EF Core üretebileceği SQL döndür
 
 Ön belgeler, [9 ocak 2020 Için EF haftalık durumuna](https://github.com/dotnet/efcore/issues/19549#issuecomment-572823246)dahildir.
 
-Ek belgeler [#1331](https://github.com/aspnet/EntityFramework.Docs/issues/1331)soruna göre izlenir.
+Ek belgeler [#1331](https://github.com/dotnet/EntityFramework.Docs/issues/1331)soruna göre izlenir.
 
 ### <a name="enhanced-debug-views"></a>Gelişmiş hata ayıklama görünümleri
 
@@ -48,7 +48,7 @@ EF Core 5,0 için model görünümü ' ne daha kolay okunabilir ve durum yöneti
 
 Ön belgeler, [12 aralık 2019 Için EF haftalık durumuna](https://github.com/dotnet/efcore/issues/15403#issuecomment-565196206)dahildir.
 
-Ek belgeler [#2086](https://github.com/aspnet/EntityFramework.Docs/issues/2086)soruna göre izlenir.
+Ek belgeler [#2086](https://github.com/dotnet/EntityFramework.Docs/issues/2086)soruna göre izlenir.
 
 ### <a name="connection-or-connection-string-can-be-changed-on-initialized-dbcontext"></a>Bağlantı veya bağlantı dizesi, başlatılmış DbContext üzerinde değiştirilebilir
 
@@ -56,7 +56,7 @@ Artık herhangi bir bağlantı veya bağlantı dizesi olmadan bir DbContext örn
 Ayrıca, bağlantı veya bağlantı dizesi artık bağlam örneği üzerinde değiştirilebilir.
 Bu, aynı bağlam örneğinin farklı veritabanlarına dinamik olarak bağlanmasını sağlar.
 
-Belgeler [#2075](https://github.com/aspnet/EntityFramework.Docs/issues/2075)soruna göre izlenir.
+Belgeler [#2075](https://github.com/dotnet/EntityFramework.Docs/issues/2075)soruna göre izlenir.
 
 ### <a name="change-tracking-proxies"></a>Değişiklik izleme proxy 'leri
 
@@ -64,7 +64,7 @@ EF Core, artık otomatik olarak [INotifyPropertyChanging](https://docs.microsoft
 Böylece, varlık özelliklerindeki değer değişiklikleri doğrudan EF Core olarak raporlanarak değişiklik taraması ihtiyacını önler.
 Ancak, proxy 'ler kendi kısıtlama kümesiyle gelir, bu nedenle herkes için değildir.
 
-Belgeler [#2076](https://github.com/aspnet/EntityFramework.Docs/issues/2076)soruna göre izlenir.
+Belgeler [#2076](https://github.com/dotnet/EntityFramework.Docs/issues/2076)soruna göre izlenir.
 
 ### <a name="improved-handling-of-database-null-semantics"></a>Veritabanı null semantiğini gelişmiş işleme
 
@@ -73,32 +73,32 @@ C#, diğer taraftan, null değeri, diğer herhangi bir null ile eşit olan tanı
 EF Core, varsayılan olarak, null semantiğini kullanacak C# şekilde sorguları çevirir.
 EF Core 5,0, bu çevirilerin verimliliğini önemli ölçüde geliştirir.
 
-Belgeler [#1612](https://github.com/aspnet/EntityFramework.Docs/issues/1612)soruna göre izlenir.
+Belgeler [#1612](https://github.com/dotnet/EntityFramework.Docs/issues/1612)soruna göre izlenir.
 
 ### <a name="indexer-properties"></a>Dizin Oluşturucu özellikleri
 
 EF Core 5,0, C# Dizin Oluşturucu özelliklerinin eşlenmesini destekler.
 Bu, varlıkların, sütunların pakette adlandırılmış özelliklerle eşlendikleri özellik paketleri olarak davranmasını sağlar.
 
-Belgeler [#2018](https://github.com/aspnet/EntityFramework.Docs/issues/2018)soruna göre izlenir.
+Belgeler [#2018](https://github.com/dotnet/EntityFramework.Docs/issues/2018)soruna göre izlenir.
 
 ### <a name="generation-of-check-constraints-for-enum-mappings"></a>Enum eşlemeleri için denetim kısıtlamaları oluşturma
 
 EF Core 5,0 geçişleri, artık enum özelliği eşlemeleri için DENETIM kısıtlamaları oluşturabilir.
-Örneğin:
+Örnek:
 
 ```SQL
 MyEnumColumn VARCHAR(10) NOT NULL CHECK (MyEnumColumn IN('Useful', 'Useless', 'Unknown'))
 ```
 
-Belgeler [#2082](https://github.com/aspnet/EntityFramework.Docs/issues/2082)soruna göre izlenir.
+Belgeler [#2082](https://github.com/dotnet/EntityFramework.Docs/issues/2082)soruna göre izlenir.
 
 ### <a name="query-translations-for-more-datetime-constructs"></a>Daha fazla TarihSaat yapıları için sorgu çevirileri
 
 Yeni veri süresi oluşturma içeren sorgular artık çevrilir.
 Ayrıca, DateDiffWeek SQL Server işlevi artık eşleştirilir.
 
-Belgeler [#2079](https://github.com/aspnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.
+Belgeler [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.
 
 ### <a name="query-translations-for-more-byte-array-constructs"></a>Daha fazla bayt dizisi yapıları için sorgu çevirileri
 
@@ -106,18 +106,18 @@ Byte [] özellikleri, Contains, length, Sequenceeşittir, vb. kullanan sorgular 
 
 İlk belgeler, [5 aralık 2019 Için EF haftalık durumuna](https://github.com/dotnet/efcore/issues/15403#issuecomment-562332863)dahildir.
 
-Ek belgeler [#2079](https://github.com/aspnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.
+Ek belgeler [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.
 
 ### <a name="query-translation-for-reverse"></a>Ters için sorgu çevirisi
 
 `Reverse` kullanan sorgular artık çevrilir.
-Örneğin:
+Örnek:
 
 ```CSharp
 context.Employees.OrderBy(e => e.EmployeeID).Reverse()
 ```
 
-Belgeler [#2079](https://github.com/aspnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.
+Belgeler [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.
 
 ### <a name="query-translation-for-bitwise-operators"></a>Bit düzeyinde işleçler için sorgu çevirisi
 
@@ -127,10 +127,10 @@ Bit düzeyinde işleçler kullanan sorgular artık daha fazla durumda çevrilir:
 context.Orders.Where(o => ~o.OrderID == negatedId)
 ```
 
-Belgeler [#2079](https://github.com/aspnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.
+Belgeler [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.
 
 ### <a name="query-translation-for-strings-on-cosmos"></a>Cosmos üzerinde dizeler için sorgu çevirisi
 
 Dize yöntemlerini kullanan sorgular şunlardır, StartsWith ve EndsWith artık Azure Cosmos DB sağlayıcısı kullanılırken çevrilir.
 
-Belgeler [#2079](https://github.com/aspnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.
+Belgeler [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.

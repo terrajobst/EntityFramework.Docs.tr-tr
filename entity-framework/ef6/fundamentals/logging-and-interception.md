@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: b5ee7eb1-88cc-456e-b53c-c67e24c3f8ca
 ms.openlocfilehash: 35b0284a5ad8b2b732f074589bd458d243312575
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181671"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419480"
 ---
 # <a name="logging-and-intercepting-database-operations"></a>Veritabanı işlemlerini günlüğe kaydetme ve önleme
 > [!NOTE]
@@ -100,7 +100,7 @@ WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()
 
 Log özelliği ayarlandığında, aşağıdakilerin tümü günlüğe kaydedilir:  
 
-- Tüm farklı komut türleri için SQL. Örneğin:  
+- Tüm farklı komut türleri için SQL. Örnek:  
     - Normal LINQ sorguları, eSQL sorguları ve SqlQuery gibi yöntemlerden ham sorgular da dahil olmak üzere sorgular  
     - SaveChanges 'un bir parçası olarak oluşturulan ekler, güncelleştirmeler ve siler  
     - Geç yükleme tarafından oluşturulanlar gibi ilişki yükleme sorguları  
@@ -227,7 +227,7 @@ public class OneLineFormatter : DatabaseLogFormatter
 
 ### <a name="setting-the-databaselogformatter"></a>DatabaseLogFormatter ayarlanıyor  
 
-Yeni bir DatabaseLogFormatter sınıfı oluşturulduktan sonra, EF ile kaydedilmesi gerekir. Bu, kod tabanlı yapılandırma kullanılarak yapılır. Bir kısaca 'de bu, DbContext sınıfınız ile aynı derlemede bulunan DBConfiguration 'dan türetilmiş yeni bir sınıf oluşturma ve ardından bu yeni sınıfın oluşturucusunda setdatabaselogformatter çağırma anlamına gelir. Örneğin:  
+Yeni bir DatabaseLogFormatter sınıfı oluşturulduktan sonra, EF ile kaydedilmesi gerekir. Bu, kod tabanlı yapılandırma kullanılarak yapılır. Bir kısaca 'de bu, DbContext sınıfınız ile aynı derlemede bulunan DBConfiguration 'dan türetilmiş yeni bir sınıf oluşturma ve ardından bu yeni sınıfın oluşturucusunda setdatabaselogformatter çağırma anlamına gelir. Örnek:  
 
 ``` csharp
 public class MyDbConfiguration : DbConfiguration
@@ -289,7 +289,7 @@ OriginalResult ve OriginalException özellikleri salt okunurdur ve yalnızca bir
 
 ### <a name="registering-interceptors"></a>Kayıt yaptırıcılar  
 
-Bir veya daha fazla savunma arabirimini uygulayan bir sınıf oluşturulduktan sonra, Dbyakaısyon sınıfı kullanılarak EF ile kaydedilebilir. Örneğin:  
+Bir veya daha fazla savunma arabirimini uygulayan bir sınıf oluşturulduktan sonra, Dbyakaısyon sınıfı kullanılarak EF ile kaydedilebilir. Örnek:  
 
 ``` csharp
 DbInterception.Add(new NLogCommandInterceptor());

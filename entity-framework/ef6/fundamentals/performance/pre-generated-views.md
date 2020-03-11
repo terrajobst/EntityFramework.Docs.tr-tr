@@ -1,43 +1,43 @@
 ---
-title: Önceden oluşturulan eşleme görünümleri - EF6
+title: Önceden oluşturulmuş eşleme görünümleri-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 917ba9c8-6ddf-4631-ab8c-c4fb378c2fcd
 ms.openlocfilehash: 1fda9fe9638adce9b24a6b81aa081effeb0def81
-ms.sourcegitcommit: c568d33214fc25c76e02c8529a29da7a356b37b4
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/30/2018
-ms.locfileid: "47459532"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419393"
 ---
-# <a name="pre-generated-mapping-views"></a>Önceden oluşturulan eşleme görünümleri
-Entity Framework, bir sorgu yürütme veya değişiklikleri veri kaynağına kaydetmek için önce bunun veritabanına erişmek için eşleme görünümü kümesi oluşturmanız gerekir. Bu eşleme görünümler veritabanı soyut bir şekilde temsil eden varlık SQL deyimi bir dizi ve uygulama etki alanı başına önbelleğe alınan meta veriler bir parçasıdır. Aynı uygulama etki alanında birden fazla aynı bağlam oluşturursanız, bunları yeniden yerine önbelleğe alınan meta veri eşleme görünümleri yeniden kullanır. Eşleme görünümü oluşturma ilk sorgu yürütülürken ilişkin genel maliyeti önemli bir parçası olduğundan, Entity Framework, eşleme görünümleri önceden oluşturmak ve bunları derlenmiş projeye dahil etmek sağlar. Daha fazla bilgi için [başarım düşünceleri (Entity Framework)](~/ef6/fundamentals/performance/perf-whitepaper.md).
+# <a name="pre-generated-mapping-views"></a>Önceden oluşturulmuş eşleme görünümleri
+Entity Framework bir sorgu yürütmeden veya veri kaynağında değişiklikler kaydedebilmesi için, veritabanına erişmek üzere bir eşleme görünümleri kümesi oluşturması gerekir. Bu eşleme görünümleri, veritabanını soyut bir şekilde temsil eden bir Entity SQL deyimidir ve uygulama etki alanı başına önbelleğe alınan meta verilerin bir parçasıdır. Aynı uygulama etki alanında aynı bağlamın birden çok örneğini oluşturursanız, eşleme görünümlerini yeniden oluşturmak yerine önbelleğe alınmış meta verilerden yeniden kullanacaktır. Eşleme görünümü oluşturma, ilk sorguyu yürütmenin genel maliyetinin önemli bir parçası olduğundan, Entity Framework eşleme görünümlerini önceden oluşturmanızı ve bunları derlenmiş projeye eklemenizi sağlar. Daha fazla bilgi için bkz.  [performans konuları (Entity Framework)](~/ef6/fundamentals/performance/perf-whitepaper.md).
 
-## <a name="generating-mapping-views-with-the-ef-power-tools-community-edition"></a>EF güç araçları Community Edition görünümleriyle eşleme oluşturma
+## <a name="generating-mapping-views-with-the-ef-power-tools-community-edition"></a>EF Power Tools Community Edition ile eşleme görünümleri oluşturma
 
-Görünümleri önceden oluşturulacak en kolay yolu kullanmaktır [EF Power Tools Community Edition](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition). Güç araçlarının yüklü sonra aşağıda gösterildiği gibi görünümler oluşturmak için bir menü seçeneğine sahip olursunuz.
+Görünümleri önceden oluşturmanın en kolay yolu, [EF Power Tools Community Edition](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition)' ı kullanmaktır. Power Tools yüklendikten sonra, görünümler oluşturmak için aşağıdaki gibi bir menü seçeneğine sahip olursunuz.
 
--   İçin **Code First** modelleri DbContext sınıfınızı içeren kod dosyasını sağ tıklayın.
--   İçin **EF Designer** modelleri EDMX dosyanız sağ tıklayın.
+-   **Code First** modelleri Için DbContext sınıfınızı içeren kod dosyasına sağ tıklayın.
+-   **EF Designer** modellerı için edmx dosyanıza sağ tıklayın.
 
-![Görünümler oluşturma](~/ef6/media/generateviews.png)
+![Görünüm Oluştur](~/ef6/media/generateviews.png)
 
-İşlem tamamlandıktan sonra oluşturulan aşağıdakine benzer bir sınıf olması
+İşlem tamamlandıktan sonra, aşağıdakine benzer bir sınıfa sahip olursunuz
 
-![üretilmiş görünümleri](~/ef6/media/generatedviews.png)
+![oluşturulan görünümler](~/ef6/media/generatedviews.png)
 
-Programını çalıştırdığınızda artık uygulamanızı EF Bu sınıf görünüm gerekli olarak yüklemek için kullanır. Model değişikliklerinizi ve bu sınıf yeniden oluşturmaz varsa EF bir özel durum oluşturur.
+Artık uygulamanızı çalıştırdığınız zaman, görünümleri gereken şekilde yüklemek için bu sınıfı kullanır. Modeliniz değişirse ve bu sınıfı yeniden oluşturmayın, EF bir özel durum oluşturur.
 
-## <a name="generating-mapping-views-from-code---ef6-onwards"></a>Kod - EF6 sonrası görünümleri eşleme oluşturma
+## <a name="generating-mapping-views-from-code---ef6-onwards"></a>Code-EF6 Onlenlerden eşleme görünümleri oluşturma
 
-Görünümleri oluşturmak için başka bir şekilde EF sağlayan API'ler kullanmaktır. Bu yöntemi kullanırken görünümleri istediğiniz, ancak kendiniz yükleme görünümleri gerekir ancak seri hale getirmek için özgürlüğüne sahipsiniz.
+Görünümler oluşturmanın diğer yolu, EF 'in sağladığı API 'Leri kullanmaktır. Bu yöntemi kullanırken, görünümleri ancak istediğiniz şekilde serileştirme özgürlüğü vardır ancak görünümleri de yüklemeniz gerekir.
 
 > [!NOTE]
-> **EF6 ve sonraki sürümler yalnızca** -Bu bölümde gösterilen API'leri, Entity Framework 6'da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bu bilgileri geçerli değildir.
+> **Yalnızca EF6** , bu bölümde gösterilen apı 'ler Entity Framework 6 ' da sunulmuştur. Daha önceki bir sürümü kullanıyorsanız bu bilgiler uygulanmaz.
 
-### <a name="generating-views"></a>Görünüm oluşturma
+### <a name="generating-views"></a>Görünüm Oluşturma
 
-Görünümlerin System.Data.Entity.Core.Mapping.StorageMappingItemCollection sınıfında apı'lerdir. Bir Objectcontext'e MetadataWorkspace kullanarak bir bağlam için bir StorageMappingCollection alabilirsiniz. Bunu kullanarak erişebilirsiniz sonra yeni DbContext API kullanıyorsanız bu kodda, türetilmiş DbContext dbContext adlı örneği sahibiz, IObjectContextAdapter gibi aşağıda:
+Görünümler oluşturmak için API 'Ler System. Data. Entity. Core. Mapping. StorageMappingItemCollection sınıfıdır. Bir ObjectContext 'in MetadataWorkspace 'i kullanarak bir bağlam için StorageMappingCollection alabilirsiniz. Daha yeni DbContext API 'sini kullanıyorsanız, aşağıdaki gibi ıobjectcontextadapter kullanarak buna erişebilirsiniz. Bu kodda, dbContext adlı türetilmiş DbContext 'in bir örneği sunuyoruz:
 
 ``` csharp
     var objectContext = ((IObjectContextAdapter) dbContext).ObjectContext;
@@ -45,31 +45,31 @@ Görünümlerin System.Data.Entity.Core.Mapping.StorageMappingItemCollection sı
                                                                         .GetItemCollection(DataSpace.CSSpace);
 ```
 
-StorageMappingItemCollection oluşturduktan sonra erişim GenerateViews ve ComputeMappingHashValue yöntemlerine alabilirsiniz.
+StorageMappingItemCollection 'ı aldıktan sonra GenerateViews ve ComputeMappingHashValue yöntemlerine erişebilirsiniz.
 
 ``` csharp
     public Dictionary\<EntitySetBase, DbMappingView> GenerateViews(IList<EdmSchemaError> errors)
     public string ComputeMappingHashValue()
 ```
 
-İlk yöntem, kapsayıcı eşlemesindeki her görünüm için bir girişi ile bir sözlük oluşturur. İkinci yöntem tek kapsayıcısı eşlemesine yönelik bir karma değeri hesaplar ve çalışma zamanında doğrulamak için model görünümleri önceden oluşturulan bu yana değişmemiştir kullanılır. Geçersiz kılmalar iki yöntemden biriyle birden çok kapsayıcı eşlemeleri içeren karmaşık senaryolar için sağlanır.
+İlk yöntem, kapsayıcı eşlemesindeki her görünüm için bir girişi olan bir sözlük oluşturur. İkinci yöntem, tek bir kapsayıcı eşlemesi için bir karma değer hesaplar ve çalışma zamanında, görünümlerin önceden oluşturulmasından bu yana modelin değiştirilmediğini doğrulamak için kullanılır. Birden çok kapsayıcı eşlemelerini kapsayan karmaşık senaryolar için iki yöntemin geçersiz kılmaları sağlanır.
 
-Görünümleri oluştururken GenerateViews yöntemini çağırın ve ardından elde edilen EntitySetBase ve DbMappingView öğrenmek yazın. ComputeMappingHashValue yöntemi tarafından oluşturulur karmasını depolamak gerekir.
+Görünümler oluştururken GenerateViews metodunu çağırıp elde edilen EntitySetBase ve DbMappingView ' u yazacaksınız. Ayrıca, ComputeMappingHashValue yöntemi tarafından oluşturulan karmayı depolamanız gerekecektir.
 
 ### <a name="loading-views"></a>Görünümler yükleniyor
 
-Yükleme GenerateViews yöntemi tarafından oluşturulan görünümleri için DbMappingViewCache soyut sınıfından devralan bir sınıf ile EF sağlayabilir. Uygulamanız gereken iki yöntem DbMappingViewCache belirtir:
+GenerateViews yöntemi tarafından oluşturulan görünümleri yüklemek için DbMappingViewCache soyut sınıfından devralan bir sınıf ile EF sağlayabilirsiniz. DbMappingViewCache, uygulamanız gereken iki yöntemi belirtir:
 
 ``` csharp
     public abstract string MappingHashValue { get; }
     public abstract DbMappingView GetView(EntitySetBase extent);
 ```
 
-MappingHashValue özelliği ComputeMappingHashValue yöntemi tarafından oluşturulur karmasını döndürmesi gerekir. EF olduğunda görünümleri, sormak için devam eden ilk oluşturmak ve bu özellik tarafından döndürülen karma model karma değerini karşılaştırır. Bunlar eşleşmiyorsa, EF EntityCommandCompilationException bir özel durum oluşturur.
+MappingHashValue özelliği, ComputeMappingHashValue yöntemi tarafından oluşturulan karmayı döndürmelidir. EF, görünümler için sorulacak olduğunda, önce bu özellik tarafından döndürülen karma ile modelin karma değerini oluşturur ve karşılaştırın. Eşleşiyorlarsa, EF bir EntityCommandCompilationException özel durumu oluşturur.
 
-GetView yöntemi bir EntitySetBase kabul eder ve için oluşturulan EntitySql içeren bir DbMappingVIew GenerateViews yöntemi tarafından oluşturulan sözlükteki belirtilen EntitySetBase ilişkilendirilmiş döndürülecek gerekir. EF için isterse, ardından GetView olmayan bir görünüm null değeri döndürmelidir.
+GetView yöntemi bir EntitySetBase kabul eder ve GenerateViews yöntemi tarafından oluşturulan sözlükte verilen EntitySetBase ile ilişkili olan için oluşturulan EntitySql içeren bir DbMappingVIew döndürmeli. EF, sahip olmayan bir görünüm isterse, GetView null döndürmelidir.
 
-Yukarıda, depolamak ve gerekli EntitySql almak için bir yol görüyoruz açıklandığı gibi güç araçları ile oluşturulan DbMappingViewCache bir ayıklayın verilmiştir.
+Aşağıda açıklandığı gibi güç araçlarıyla oluşturulan DbMappingViewCache öğesinden ayıklama işlemi aşağıdaki gibidir. Bu, içinde EntitySql 'i depolamanın ve almanın bir yolunu görebiliyoruz.
 
 ``` csharp
     public override string MappingHashValue
@@ -117,10 +117,10 @@ Yukarıda, depolamak ve gerekli EntitySql almak için bir yol görüyoruz açık
     }
 ```
 
-Eklediğiniz, DbMappingViewCache EF kullanması için için oluşturulan bağlamı belirtme DbMappingViewCacheTypeAttribute kullanın. Aşağıdaki kod biz BlogContext MyMappingViewCache sınıfı ile ilişkilendirin.
+EF 'in DbMappingViewCache 'i kullanması için, eklediğiniz bağlamı belirterek DbMappingViewCacheTypeAttribute öğesini kullanın. Aşağıdaki kodda, BlogContext MyMappingViewCache sınıfıyla ilişkilendiririz.
 
 ``` csharp
     [assembly: DbMappingViewCacheType(typeof(BlogContext), typeof(MyMappingViewCache))]
 ```
 
-Daha karmaşık senaryolarda, eşleme görünümü önbellek örnekleri bir eşleme görünümü önbellek fabrikası belirterek sağlanabilir. Bu Özet sınıf System.Data.Entity.Infrastructure.MappingViews.DbMappingViewCacheFactory uygulayarak yapılabilir. Kullanılan eşleme görünümü önbellek factory örneğini alınan veya StorageMappingItemCollection.MappingViewCacheFactoryproperty kullanarak ayarlayın.
+Daha karmaşık senaryolar için eşleme görünümü önbellek örnekleri, bir eşleme görünümü önbellek fabrikası belirtilerek sağlanarak temin edilebilir. Bu, System. Data. Entity. Infrastructure. MappingViews. DbMappingViewCacheFactory olan soyut Class. Kullanılan eşleme görünümü önbellek fabrikası örneği, StorageMappingItemCollection. MappingViewCacheFactoryproperty kullanılarak alınabilir veya ayarlanabilir.

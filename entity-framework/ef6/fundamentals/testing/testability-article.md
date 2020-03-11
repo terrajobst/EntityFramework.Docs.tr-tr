@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 9430e2ab-261c-4e8e-8545-2ebc52d7a247
 ms.openlocfilehash: 28ec5446ce9faf98fb8fff141832236d70b29daf
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181585"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416452"
 ---
 # <a name="testability-and-entity-framework-40"></a>Test edilebilirlik ve Entity Framework 4,0
 Scott Allen
@@ -497,7 +497,7 @@ Daha sonra etkileşim tabanlı teste bakacağız. Etkileşim tabanlı test, test
 
 ASP.NET MVC web uygulamasında bir noktada, bir çalışanın bilgilerini göstermek ve çalışanın ilişkili zaman kartlarını eklemek isteyebilirler. Örneğin, çalışanın adını ve sistemdeki toplam zaman kartı sayısını gösteren bir zaman kartı Özet görüntüsü olabilir. Bu özelliği uygulamak için birkaç yaklaşım olabilir.
 
-### <a name="projection"></a>Projeksiyon
+### <a name="projection"></a>Yansıtma
 
 Özet oluşturmaya yönelik kolay bir yaklaşım, görünümde görüntülenmesini istediğimiz bilgilere adanmış bir model oluşturmaktır. Bu senaryoda, model aşağıdaki gibi görünebilir.
 
@@ -917,7 +917,7 @@ Sahte nesnelerle yazılım test etmek için kullanabileceğiniz farklı teknikle
 -   Modelin Dizin yürütüldükten sonra tüm çalışanların bir listesini tuttuğundan emin olun.
 -   Deponun, silme yürütüldükten sonra belirli bir çalışan içermediğini doğrulayın.
 
-Diğer bir yaklaşım de, *etkileşimlerin*doğrulanmak üzere, sahte nesneler ile göreceğiniz bir yaklaşım. Durum tabanlı test, nesnelerin durumu hakkında onaylamaları yaptığında, etkileşim tabanlı test, nesnelerin nasıl etkileşime gireceğini onaylar. Örneğin:
+Diğer bir yaklaşım de, *etkileşimlerin*doğrulanmak üzere, sahte nesneler ile göreceğiniz bir yaklaşım. Durum tabanlı test, nesnelerin durumu hakkında onaylamaları yaptığında, etkileşim tabanlı test, nesnelerin nasıl etkileşime gireceğini onaylar. Örnek:
 
 -   Oluşturma yürütüldüğünde, denetleyicinin deponun Add metodunu çağırdığından emin olun.
 -   Dizin yürütüldüğünde denetleyicinin deponun FindAll yöntemini çağırdığından emin olun.

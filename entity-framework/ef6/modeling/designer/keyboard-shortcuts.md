@@ -1,209 +1,209 @@
 ---
-title: Entity Framework Designer klavye kısayolları - EF6
+title: Entity Framework Designer klavye kısayolları-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 3c76cdd5-17c5-4c54-a6a5-cf21b974636b
 ms.openlocfilehash: c75eafcca0863faa1ad64202e98b61832827377c
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490252"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418520"
 ---
-# <a name="entity-framework-designer-keyboard-shortcuts"></a>Entity Framework Designer klavye kısayolları
-Bu sayfada Visual Studio için Entity Framework Araçları, çeşitli ekranlar kullanılabilen klavye kısayolları listesini sağlar.
+# <a name="entity-framework-designer-keyboard-shortcuts"></a>Klavye kısayollarını Entity Framework Designer
+Bu sayfa, Visual Studio için Entity Framework Tools çeşitli ekranlarda bulunan klavye kısa larının bir listesini sağlar.
 
-## <a name="adonet-entity-data-model-wizard"></a>ADO.NET varlık veri modeli Sihirbazı
+## <a name="adonet-entity-data-model-wizard"></a>ADO.NET Varlık Veri Modeli Sihirbazı
 
-### <a name="step-one-choose-model-contents"></a>Bir adım: Model içeriğinin seçin
+### <a name="step-one-choose-model-contents"></a>Birinci adım: model Içeriğini seçme
 
-![Sihirbazı bir](~/ef6/media/wizardone.png)
+![Sihirbaz bir](~/ef6/media/wizardone.png)
 
 | Kısayol  | Eylem                                                     | Notlar                                               |
 |:----------|:-----------------------------------------------------------|:----------------------------------------------------|
-| **Alt + n** | Sonraki ekrana Taşı                                        | Model içeriğinin tüm seçimleri için kullanılamaz. |
-| **Alt + f** | Sihirbazı tamamlayın                                              | Model içeriğinin tüm seçimleri için kullanılamaz. |
-| **Alt + w** | "Ne model içereceği?" odağını Değiştir bölme. |                                                     |
+| **Alt + n** | Sonraki ekrana taşı                                        | Tüm model içeriği seçimleri için kullanılamaz. |
+| **Alt + f** | Sihirbazı Tamamlama                                              | Tüm model içeriği seçimleri için kullanılamaz. |
+| **Alt + w** | Odağı "model neleri içerecek?" olarak değiştirin paneldeki. |                                                     |
 
-### <a name="step-two-choose-your-connection"></a>İki. adım: Bağlantınızı seçin
+### <a name="step-two-choose-your-connection"></a>Ikinci adım: bağlantınızı seçin
 
-![Sihirbazı iki](~/ef6/media/wizardtwo.png)
+![Iki sihirbaz](~/ef6/media/wizardtwo.png)
 
 | Kısayol  | Eylem                                                     | Notlar                                                   |
 |:----------|:-----------------------------------------------------------|:--------------------------------------------------------|
-| **Alt + n** | Sonraki ekrana Taşı                                        |                                                         |
-| **Alt + p** | Önceki ekrana Taşı                                    |                                                         |
-| **Alt + w** | "Ne model içereceği?" odağını Değiştir bölme. |                                                         |
-| **Alt + c** | "Bağlantı özellikleri" penceresini açın                    | Yeni bir veritabanı bağlantısı tanımını sağlar. |
-| **Alt + e** | Bağlantı dizesinden hassas verileri Dışla          |                                                         |
-| **Alt + ı** | Bağlantı dizesini hassas verileri eklemek            |                                                         |
-| **Alt + s** | "App.Config dosyasında bağlantı ayarlarını Kaydet" seçeneğini değiştirir |                                                         |
+| **Alt + n** | Sonraki ekrana taşı                                        |                                                         |
+| **Alt + p** | Önceki ekrana git                                    |                                                         |
+| **Alt + w** | Odağı "model neleri içerecek?" olarak değiştirin paneldeki. |                                                         |
+| **Alt + c** | "Bağlantı özellikleri" penceresini açın                    | Yeni bir veritabanı bağlantısının tanımına izin verir. |
+| **Alt + e** | Gizli verileri bağlantı dizesinden çıkar          |                                                         |
+| **Alt + ı** | Gizli verileri bağlantı dizesine dahil et            |                                                         |
+| **Alt + s** | "Bağlantı ayarlarını App. config içinde Kaydet" seçeneğini değiştirin |                                                         |
 
-### <a name="step-three-choose-your-version"></a>Adım üç: Sürümünüzü seçin
+### <a name="step-three-choose-your-version"></a>Üçüncü adım: sürümünüzü seçin
 
-![Sihirbazı üç](~/ef6/media/wizardthree.png)
+![Sihirbazın üçü](~/ef6/media/wizardthree.png)
 
 | Kısayol  | Eylem                                             | Notlar                                                                                 |
 |:----------|:---------------------------------------------------|:--------------------------------------------------------------------------------------|
-| **Alt + n** | Sonraki ekrana Taşı                                |                                                                                       |
-| **Alt + p** | Önceki ekrana Taşı                            |                                                                                       |
-| **Alt + w** | Entity Framework sürüm seçimi odağını Değiştir | Entity Framework farklı bir sürümünü kullanmak için projeye belirtmek için izin verir. |
+| **Alt + n** | Sonraki ekrana taşı                                |                                                                                       |
+| **Alt + p** | Önceki ekrana git                            |                                                                                       |
+| **Alt + w** | Odağı Entity Framework sürüm seçimine geçir | Projede kullanılmak üzere farklı bir Entity Framework sürümünün belirtilmesine izin verir. |
 
-### <a name="step-four-choose-your-database-objects-and-settings"></a>Dört. adım: Veritabanı nesneleri ve ayarları seçin
+### <a name="step-four-choose-your-database-objects-and-settings"></a>4\. Adım: veritabanı nesnelerinizi ve ayarlarınızı seçme
 
-![Sihirbazı dört](~/ef6/media/wizardfour.png)
+![Sihirbaz dört](~/ef6/media/wizardfour.png)
 
 | Kısayol  | Eylem                                                                                    | Notlar                                                               |
 |:----------|:------------------------------------------------------------------------------------------|:--------------------------------------------------------------------|
-| **Alt + f** | Sihirbazı tamamlayın                                                                             |                                                                     |
-| **Alt + p** | Önceki ekrana Taşı                                                                   |                                                                     |
-| **Alt + w** | Odağı veritabanı nesne Seçim Bölmesi                                            | Geriye doğru olması için veritabanı nesneleri belirterek mühendislik izin verir.    |
-| **Alt + s** | İki durumlu "olarak çeviren Pluralize veya oluşturulan nesne adlarını singularize" seçeneği                       |                                                                     |
-| **Alt + k** | "Modelde yabancı anahtar sütunu Ekle" seçeneğini değiştirir                              | Model içeriğinin tüm seçimleri için kullanılamaz.                 |
-| **Alt + ı** | "İçeri aktarma saklı yordamları ve işlevleri varlık modele seçili" seçeneğini değiştirir | Model içeriğinin tüm seçimleri için kullanılamaz.                 |
-| **Alt + m** | "Modeli Namespace" metin alanı için anahtarları odağı                                        | Model içeriğinin tüm seçimleri için kullanılamaz.                 |
-| **alanı** | Öğede Seçimi Değiştir                                                               | Alt öğe varsa, tüm alt öğeleri de açılıp |
-| **Sol**  | Alt ağacını Daralt                                                                       |                                                                     |
-| **sağ** | Alt ağacı genişletin                                                                         |                                                                     |
-| **Ayarlama**    | Önceki öğeyle ağacında gidin                                                      |                                                                     |
-| **Aşağı**  | Ağacında sonraki öğeye gidin                                                          |                                                                     |
+| **Alt + f** | Sihirbazı Tamamlama                                                                             |                                                                     |
+| **Alt + p** | Önceki ekrana git                                                                   |                                                                     |
+| **Alt + w** | Odağı veritabanı nesnesi seçim bölmesine geçir                                            | Tersine mühendislik uygulanacak veritabanı nesnelerinin belirtilmesine izin verir.    |
+| **Alt + s** | "Plurlaştır veya SINV üretilen nesne adlarını" seçeneğini değiştirin                       |                                                                     |
+| **Alt + k** | "Modeldeki yabancı anahtar sütunlarını dahil et" seçeneğini değiştirin                              | Tüm model içeriği seçimleri için kullanılamaz.                 |
+| **Alt + ı** | "Seçili saklı yordamları ve işlevleri varlık modeline aktar" seçeneğini değiştirin | Tüm model içeriği seçimleri için kullanılamaz.                 |
+| **Alt + a** | Odağı "model ad alanı" metin alanına geçirir                                        | Tüm model içeriği seçimleri için kullanılamaz.                 |
+| **Boşlu** | Öğe üzerinde seçimi aç                                                               | Öğesinde alt öğe varsa, tüm alt öğeler de açılır |
+| **Tarafta**  | Alt ağacı Daralt                                                                       |                                                                     |
+| **Right** | Alt ağacı Genişlet                                                                         |                                                                     |
+| **Ayarlama**    | Ağaçtaki önceki öğeye git                                                      |                                                                     |
+| **Kapatılıp**  | Ağaçtaki sonraki öğeye git                                                          |                                                                     |
 
-## <a name="ef-designer-surface"></a>EF Tasarımcı yüzeyi
+## <a name="ef-designer-surface"></a>EF Designer yüzeyi
 
 ![Tasarımcı yüzeyi](~/ef6/media/designersurface.png)
 
 | Kısayol                                                                                | Eylem                      | Notlar                                                                                                                                                                                                                               |
 |:----------------------------------------------------------------------------------------|:----------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Alan/girin**                                                                         | Seçimi Değiştir            | Odağı olan nesne üzerindeki seçimi değiştirir.                                                                                                                                                                                         |
-| **ESC**                                                                                 | Seçimi iptal et            | Geçerli seçimi iptal eder.                                                                                                                                                                                                      |
-| **CTRL + A**                                                                            | Tümünü Seç                  | Tasarım yüzeyinde tüm şekiller seçer.                                                                                                                                                                                       |
-| **Yukarı Ok**                                                                            | Yukarı Taşı                     | Seçili varlık bir kılavuz artırma yukarı taşır. <br/> Listede, önceki eşdüzey alt alan için taşır.                                                                                                                            |
-| **Aşağı ok**                                                                          | Aşağı Taşı                   | Seçili varlık bir kılavuz artırma aşağı taşır. <br/> Listede, sonraki eşdüzey alt alan için taşır.                                                                                                                              |
-| **Sol Ok**                                                                          | Sola Taşı                   | Seçili varlık sol tek bir kılavuzda artırma taşır. <br/> Listede, önceki eşdüzey alt alan için taşır.                                                                                                                          |
-| **Sağ ok**                                                                         | Sağa Taşı                  | Seçili varlık sağa bir kılavuz artırma taşır. <br/> Listede, sonraki eşdüzey alt alan için taşır.                                                                                                                             |
-| **Shift + Sol Ok**                                                                  | Sol boyutu şekli             | Seçilen varlığın genişliğini bir kılavuz artışla azaltır.                                                                                                                                                                     |
-| **SHIFT + sağ ok**                                                                 | Boyutunu, şeklini sağ            | Bir kılavuz artışla seçilen varlığın genişliğini artırır.                                                                                                                                                                   |
-| **Giriş**                                                                                | İlk eş                  | Odağı ve eş düzeyde tasarım yüzeyinde ilk nesneye seçimi.                                                                                                                                         |
-| **Son**                                                                                 | Son eş                   | Odağı ve eş düzeyde tasarım yüzeyinde son nesne seçimi.                                                                                                                                          |
-| **Ctrl + Home**                                                                         | İlk eş (odağı)          | İlk eş ancak odak taşıyıp seçimi yerine odağı aynıdır.                                                                                                                                                          |
-| **CTRL + End**                                                                          | Son eş (odağı)           | Son aynı eş ancak odak taşıyıp seçimi yerine odak taşır.                                                                                                                                                           |
-| **sekmesi**                                                                                 | Sonraki eş                   | Odağı ve sonraki nesne eş düzeyde tasarım yüzeyinde seçimi.                                                                                                                                          |
-| **Shift + Sekme**                                                                           | Önceki eş               | Odağı ve eş düzeyde tasarım yüzeyinde önceki Nesne Seçimi.                                                                                                                                      |
-| **Alt + Ctrl + sekme**                                                                        | Sonraki eş (odağı)           | Sonraki aynı eş ancak odak taşıyıp seçimi yerine odak taşır.                                                                                                                                                           |
-| **Alt + Ctrl + Shift + Sekme**                                                                  | Önceki eş (odağı)       | Önceki eş ancak odak taşıyıp seçimi yerine odağı aynıdır.                                                                                                                                                       |
-| **&lt;**                                                                                | Ascend                      | Sonraki tasarım yüzeyi bir düzey hiyerarşinin üst düzeylerindeki nesnede taşır. Bu şeklin hiyerarşideki yukarıda şekil olup olmadığını (diğer bir deyişle, nesne doğrudan tasarım yüzeyinde yerleştirilir), diyagram seçilir. |
-| **&gt;**                                                                                | Düzen                     | Tasarım yüzeyi bir düzey altındaki hiyerarşideki bir sonraki kapsanan nesnesinde taşır. Kapsanan nesne yoksa, bir İşlemsiz budur.                                                                              |
-| **CTRL + &lt;**                                                                         | (Odağı) ascend              | Aynı komutu, odağı seçimi olmadan ancak ascend.                                                                                                                                                                          |
-| **CTRL + &gt;**                                                                         | Düzen (odağı)             | Aynı komutu, odağı seçimi olmadan ancak düzen.                                                                                                                                                                         |
-| **SHIFT + End**                                                                         | Bağlı izleyin         | Bu varlık için bağlı olan bir varlığa yönelik bir varlıktan taşır.                                                                                                                                                               |
-| **DEL**                                                                                 | Sil                      | Bir nesne veya bağlayıcı diyagramdan silin.                                                                                                                                                                                     |
-| **Bileşenleri**                                                                                 | Ekleme                      | "Skaler Özellikler" bölme başlığındaki ya da bir özellik seçildiğinde yeni bir özellik için bir varlık ekler.                                                                                                           |
-| **Sayfa Yukarı**                                                                               | Kaydırma diyagram           | Şu anda görünür tasarım yüzeyine yüksekliğini % 75 oranında eşit halinde, tasarım yüzeyine kaydırır.                                                                                                                    |
-| **Sayfa aşağı**                                                                             | Aşağı kaydırma diyagramı         | Tasarım yüzeyinde, aşağı kaydırır.                                                                                                                                                                                                    |
-| **SHIFT + Aşağı Pg**                                                                     | Sağa kaydırma diyagramı        | Tasarım yüzeyine sağa kaydırır.                                                                                                                                                                                            |
-| **SHIFT + Yukarı Pg**                                                                       | Sola kaydırma diyagramı         | Tasarım yüzeyine Sola kaydırır.                                                                                                                                                                                             |
-| **F2**                                                                                  | Düzenleme moduna girin             | Bir metin denetimi için düzenleme moduna girmek için standart klavye kısayolu'ni kullanın.                                                                                                                                                               |
-| **Shift + F10**                                                                         | Kısayol menüsünü göster       | Seçilen öğenin kısayol menüsünü görüntülemek için standart klavye kısayolu'ni kullanın.                                                                                                                                                          |
-| **Sol tıklama control + Shift + fare**  <br/> **Denetim + Shift + fare tekerleğini ilet**  | Anlam yakınlaştırma            | Fare işaretçisi altındaki diyagram görünümü alanının yakınlaştırır.                                                                                                                                                                 |
-| **Sağ control + Shift + fare tıklatın** <br/> **Denetim + Shift + fare tekerleğini geriye doğru** | Anlam uzaklaştırma           | Fare işaretçisi altındaki diyagram görünümünün alanından uzaklaştırılır. İçin geçerli diyagram merkezi çok uzaktaysa uzaklaştırabilir, diyagram yeniden ortalar.                                                                          |
-| **Control + üst karakter + '+'** <br/> **Control + fare tekerleğini ilet**                        | Yakınlaştır                     | Diyagram görünümü Merkezi'nde yakınlaştırır.                                                                                                                                                                                         |
-| **Control + üst karakter + '-'** <br/> **Control + fare tekerleğini geriye doğru**                       | Uzaklaştır                    | Diyagram görünümü tıklandı alanından uzaklaştırılır. İçin geçerli diyagram merkezi çok uzaktaysa uzaklaştırabilir, diyagram yeniden ortalar.                                                                                            |
-| **Kontrol + Shift + farenin sol düğmesiyle dikdörtgen çizme**                  | Yakınlaştırma alanının                   | Seçtiğiniz alan ortalanmış yakınlaştırır. Denetim + SHIFT tuşlarını basılı tuttuğunuzda, imleç yakınlaştırmak için alanını tanımlamak izin veren Büyüteç, değiştiğini görürsünüz.                        |
-| **Bağlam menüsü tuşu + 'M '**                                                              | Eşleme ayrıntıları penceresini açma | Seçilen varlık eşlemelerini düzenlemek için eşleşme Ayrıntıları penceresi açılır                                                                                                                                                               |
+| **Boşluk/ENTER**                                                                         | Seçimi değiştirme            | Odak ile nesnedeki seçimi değiştirir.                                                                                                                                                                                         |
+| **Larına**                                                                                 | Seçimi iptal et            | Geçerli seçimi iptal eder.                                                                                                                                                                                                      |
+| **CTRL + A**                                                                            | Tümünü Seç                  | Tasarım yüzeyinde tüm şekilleri seçer.                                                                                                                                                                                       |
+| **Yukarı ok**                                                                            | Yukarı taşı                     | Seçili varlığı bir ızgara artışını yukarı kaydırır. <br/> Bir listede ise, önceki eşdüzey alt alanına gider.                                                                                                                            |
+| **Aşağı ok**                                                                          | Aşağı taşı                   | Seçili varlığı bir ızgara artışı aşağı kaydırır. <br/> Bir listede yer alıyorsa, sonraki eşdüzey alt alan ' a gider.                                                                                                                              |
+| **Sol ok**                                                                          | Sola taşı                   | Seçili varlığı bir ızgara artışını sola kaydırır. <br/> Bir listede ise, önceki eşdüzey alt alanına gider.                                                                                                                          |
+| **Sağ ok**                                                                         | Sağa taşı                  | Seçili varlığı bir ızgara artışını sağa kaydırır. <br/> Bir listede yer alıyorsa, sonraki eşdüzey alt alan ' a gider.                                                                                                                             |
+| **SHIFT + sol ok**                                                                  | Şekli sola Boyutlandır             | Seçilen varlığın genişliğini bir ızgara artıkında azaltır.                                                                                                                                                                     |
+| **SHIFT + sağ ok**                                                                 | Şekil sağa Boyutlandır            | Seçilen varlığın genişliğini bir ızgara artışına göre arttırır.                                                                                                                                                                   |
+| **Sayfa**                                                                                | İlk eş                  | Odağı ve seçimi, Tasarım yüzeyinde aynı eş düzeyinde ilk nesneye kaydırır.                                                                                                                                         |
+| **Bitiş**                                                                                 | Son eş                   | Odağı ve seçimi, aynı eş düzeyindeki tasarım yüzeyinde son nesneye kaydırır.                                                                                                                                          |
+| **Ctrl + Home**                                                                         | İlk eş (odak)          | İlk eş ile aynıdır, ancak odağı ve seçimi taşımak yerine odağı taşır.                                                                                                                                                          |
+| **CTRL + END**                                                                          | Son eş (odak)           | Son eş ile aynı, ancak odağı ve seçimi taşımak yerine odağı taşır.                                                                                                                                                           |
+| **Sekmesinde**                                                                                 | Sonraki eş                   | Odağı ve seçimi, Tasarım yüzeyinde aynı eş düzeyinde sonraki nesneye kaydırır.                                                                                                                                          |
+| **SHIFT + TAB**                                                                           | Önceki eş               | Odağı ve seçimi, Tasarım yüzeyinde aynı eş düzeyinde yer alan önceki nesneye taşınır.                                                                                                                                      |
+| **Alt + Ctrl + Sekme**                                                                        | Sonraki eş (odak)           | Sonraki eş ile aynıdır, ancak odağı ve seçimi taşımak yerine odağı taşır.                                                                                                                                                           |
+| **Alt + CTRL + SHIFT + TAB**                                                                  | Önceki eş (odak)       | Önceki eş ile aynı, ancak odağı ve seçimi taşımak yerine odağı taşır.                                                                                                                                                       |
+| **&lt;**                                                                                | Ascend                      | Tasarım yüzeyinde bir sonraki nesneye, hiyerarşide daha yüksek bir düzeye gider. Hiyerarşide bu şeklin üzerinde hiç şekil yoksa (yani, nesne doğrudan tasarım yüzeyine yerleştirilir) diyagram seçilir. |
+| **&gt;**                                                                                | Azalmaz                     | Tasarım yüzeyinde, hiyerarşide bir düzey alttaki bir sonraki içerilen nesneye gider. İçerilen nesne yoksa, bu bir op değildir.                                                                              |
+| **CTRL + &lt;**                                                                         | Ascend (odak)              | Ascend komutuyla aynı, ancak odağı seçim olmadan taşıdır.                                                                                                                                                                          |
+| **CTRL + &gt;**                                                                         | Descend (odak)             | Azalmaz komutuyla aynıdır, ancak odağı seçim olmadan taşımaktadır.                                                                                                                                                                         |
+| **SHIFT + End**                                                                         | Bağlı olarak takip edin         | Bir varlıktan, bu varlığın bağlandığı bir varlığa gider.                                                                                                                                                               |
+| **Tuşunun**                                                                                 | Sil                      | Diyagramdan bir nesne veya bağlayıcıyı silin.                                                                                                                                                                                     |
+| **Eklentiniz**                                                                                 | Ekle                      | "Skaler Özellikler" bölme üstbilgisi veya bir özelliğin kendisi seçili olduğunda varlığa yeni bir özellik ekler.                                                                                                           |
+| **Sayfa yukarı**                                                                               | Diyagramı yukarı kaydır           | Tasarım yüzeyini, şu anda görünen tasarım yüzeyi yüksekliğinin %75 ' luk artışlarla kaydırır.                                                                                                                    |
+| **Sayfa aşağı**                                                                             | Diyagramı aşağı kaydır         | Tasarım yüzeyini aşağı kaydırır.                                                                                                                                                                                                    |
+| **SHIFT + pg aşağı**                                                                     | Diyagramı sağa kaydır        | Tasarım yüzeyini sağa kaydırır.                                                                                                                                                                                            |
+| **SHIFT + pg up**                                                                       | Diyagramı sola kaydır         | Tasarım yüzeyini sola kaydırır.                                                                                                                                                                                             |
+| **F2**                                                                                  | Düzenleme moduna gir             | Metin denetimi için düzenleme moduna girmek için standart klavye kısayolu.                                                                                                                                                               |
+| **SHIFT + F10**                                                                         | Kısayol menüsünü görüntüle       | Seçili öğenin kısayol menüsünü görüntülemek için standart klavye kısayolu.                                                                                                                                                          |
+| **Denetim + Shift + fare sol tıklama**  <br/> **Denetim + SHIFT + MouseWheel ileri**  | Anlamlı yakınlaştırma            | Fare işaretçisinin altındaki diyagram görünümünün alanını yakınlaştırır.                                                                                                                                                                 |
+| **Denetim + Shift + fare sağ tıklama** <br/> **Denetim + SHIFT + MouseWheel geriye doğru** | Anlamlı yakınlaştırma           | Fare işaretçisinin altındaki diyagram görünümünün alanından uzaklaşır. Geçerli diyagram Merkezi için çok fazla büyütme yaparken diyagramı yeniden ortalar.                                                                          |
+| **Denetim + SHIFT + ' + '** <br/> **Control + MouseWheel ileri**                        | Yakınlaştır                     | Diyagram görünümünün merkezini yakınlaştırın.                                                                                                                                                                                         |
+| **Denetim + SHIFT + '-'** <br/> **Denetim + fare tekerleği geriye doğru**                       | Uzaklaştır                    | Diyagram görünümünün tıklanan alanından uzaklaşır. Geçerli diyagram Merkezi için çok fazla büyütme yaparken diyagramı yeniden ortalar.                                                                                            |
+| **Ctrl + Shift + sol fare düğmesiyle bir dikdörtgen çiz**                  | Yakınlaştırma alanı                   | Seçtiğiniz alana göre ortalanmış şekilde yakınlaştırın. Denetim + SHIFT tuşlarını basılı tuttuğunuzda, imlecin yakınlaştırılacak alanı tanımlamanızı sağlayan bir Büyüteç Camı olarak değişiklik olduğunu görürsünüz.                        |
+| **Bağlam menüsü tuşu + 'M '**                                                              | Eşleme ayrıntıları penceresini aç | Seçili varlık için eşlemeleri düzenlemek üzere eşleme ayrıntıları penceresini açar                                                                                                                                                               |
 
-## <a name="mapping-details-window"></a>Eşleme Ayrıntıları penceresi
+## <a name="mapping-details-window"></a>Eşleme ayrıntıları penceresi
 
-![Eşleme kısayolları ayrıntıları](~/ef6/media/mappingdetailsshortcuts.png)
+![Eşleme ayrıntıları kısayolları](~/ef6/media/mappingdetailsshortcuts.png)
 
 | Kısayol                  | Eylem         | Notlar                                                                                                                                 |
 |:--------------------------|:---------------|:--------------------------------------------------------------------------------------------------------------------------------------|
-| **sekmesi**                   | Anahtar bağlamı | Ana pencere alanını ve sol taraftaki araç çubuğu arasında geçiş yapar                                                                     |
-| **Ok tuşları**            | Gezinti     | Ana pencere alanını Sütunlar arasında satır veya sağ ve sol yukarı ve Aşağı Taşı. Sol araç çubuğundaki düğmeler arasındaki taşıyın. |
-| **Girin** <br/> **alanı** | Seçim         | Sol taraftaki araç çubuğunda bir düğmeyi seçtiğinde.                                                                                          |
-| **Alt + Aşağı Ok**      | Listeyi Aç      | Açılan listeden sahip bir hücre seçildiğinde açılan bir liste.                                                                     |
-| **Girin**                 | Liste seçin    | Açılan listeden bir öğe seçer.                                                                                               |
-| **ESC**                   | Liste Kapat     | Açılan listeden kapatır.                                                                                                              |
+| **Sekmesinde**                   | Geçiş bağlamı | Ana pencere alanı ve soldaki araç çubuğu arasında geçiş yapar                                                                     |
+| **Ok tuşları**            | Gezinme     | Ana pencere alanındaki satırları yukarı ve aşağı doğru veya sağ ve sütunlar arasında hareket ettirin. Sol taraftaki araç çubuğundaki düğmeler arasında geçiş yapın. |
+| **Girmesini** <br/> **Boşlu** | Şunu seçin:         | Sol taraftaki araç çubuğunda bir düğme seçer.                                                                                          |
+| **Alt + aşağı ok**      | Açık liste      | Aşağı açılan liste içeren bir hücre seçilmişse listeyi aşağı kaydırın.                                                                     |
+| **Girmesini**                 | Liste Seç    | Açılan listede bir öğe seçer.                                                                                               |
+| **Larına**                   | Listeyi kapat     | Açılan listeyi kapatır.                                                                                                              |
 
-## <a name="visual-studio-navigation"></a>Visual Studio Gezinti
+## <a name="visual-studio-navigation"></a>Visual Studio gezintisi
 
-Varlık çerçevesi de sağlayan bir dizi özel klavye kısayollarını eşlenmiş olan eylem (hiçbir kısayolları varsayılan olarak eşleştirilir). Bu özel kısayollar oluşturmak için Araçlar menüsünde sonra Seçenekleri'ni tıklatın.  Ortam altında klavye seçin.  İstediğiniz komutu seçin, kısayol "kısayol tuşlarına basın" metin kutusuna girin ve tıklayın kadar ortadaki listesinde aşağıya ilerleyin atayın. Olası kısayolları aşağıdaki gibidir:
+Entity Framework Ayrıca, özel klavye kısayollarına eşlenmiş bir dizi eylem sağlar (varsayılan olarak hiçbir kısayol eşlenmedi). Bu özel kısayolları oluşturmak için, Araçlar menüsüne ve ardından Seçenekler ' e tıklayın.  Ortam altında klavye ' yi seçin.  İstediğiniz komutu seçerek ortadaki listeyi aşağı kaydırın, "kısayol tuşlarına basın" metin kutusuna kısayolu girin ve ata ' ya tıklayın. Olası kısayollar aşağıdaki gibidir:
 
 | Kısayol                                                                                       |
 |:-----------------------------------------------------------------------------------------------|
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Add.ComplexProperty.ComplexTypes**        |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.AddCodeGenerationItem**                   |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.AddFunctionImport**                       |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.AddNew.AddEnumType**                      |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.AddNew.Association**                      |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.AddNew.ComplexProperty**                  |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.AddNew.ComplexType**                      |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.AddNew.Entity**                           |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.AddNew.FunctionImport**                   |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.AddNew.Inheritance**                      |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.AddNew.NavigationProperty**               |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.AddNew.ScalarProperty**                   |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.AddNewDiagram**                           |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.AddtoDiagram**                            |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Close**                                   |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Collapse**                                |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.ConverttoEnum**                           |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Diagram.CollapseAll**                     |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Diagram.ExpandAll**                       |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Diagram.ExportasImage**                   |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Diagram.LayoutDiagram**                   |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Edit**                                    |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.EntityKey**                               |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Expand**                                  |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.FunctionImportMapping**                   |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.GenerateDatabasefromModel**               |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.GoToDefinition**                          |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Grid.ShowGrid**                           |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Grid.SnaptoGrid**                         |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.IncludeRelated**                          |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.MappingDetails**                          |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.ModelBrowser**                            |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.MoveDiagramstoSeparateFile**              |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.MoveProperties.Down**                     |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.MoveProperties.Down5**                    |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.MoveProperties.ToBottom**                 |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.MoveProperties.ToTop**                    |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.MoveProperties.Up**                       |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.MoveProperties.Up5**                      |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.MovetonewDiagram**                        |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Open**                                    |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Refactor.MovetoNewComplexType**           |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Refactor.Rename**                         |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.RemovefromDiagram**                       |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Rename**                                  |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.ScalarPropertyFormat.DisplayName**        |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.ScalarPropertyFormat.DisplayNameandType** |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Select.BaseType**                         |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Select.Entity**                           |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Select.Property**                         |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Select.Subtype**                          |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.SelectAll**                               |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.SelectAssociation**                       |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.ShowinDiagram**                           |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.ShowinModelBrowser**                      |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.StoredProcedureMapping**                  |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.TableMapping**                            |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.UpdateModelfromDatabase**                 |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Validate**                                |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.10**                                 |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.100**                                |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.125**                                |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.150**                                |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.200**                                |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.25**                                 |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.300**                                |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.33**                                 |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.400**                                |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.50**                                 |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.66**                                 |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.75**                                 |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.Custom**                             |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.ZoomIn**                             |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.ZoomOut**                            |
-| **OtherContextMenus.MicrosoftDataEntityDesignContext.Zoom.ZoomtoFit**                          |
-| **View.EntityDataModelBrowser**                                                                |
-| **View.EntityDataModelMappingDetails**                                                         |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Add. ComplexProperty. ComplexTypes**        |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Addcodegenerationıtem**                   |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Addfunctionımport**                       |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. AddNew. AddEnumType**                      |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. AddNew. Association**                      |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. AddNew. Complexözelliği**                  |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. AddNew. ComplexType**                      |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. AddNew. Entity**                           |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. AddNew. FunctionImport**                   |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. AddNew. devral**                      |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. AddNew. NavigationProperty**               |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. AddNew. ScalarProperty**                   |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. AddNewDiagram**                           |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. AddtoDiagram**                            |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Close**                                   |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Collapse**                                |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. ConverttoEnum**                           |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Diagram. CollapseAll**                     |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Diagram. ExpandAll**                       |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Diagram. ExportasImage**                   |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Diagram. LayoutDiagram**                   |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Edit**                                    |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. EntityKey**                               |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Expand**                                  |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. FunctionImportMapping**                   |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. GenerateDatabasefromModel**               |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Sayfaydefinition**                          |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Grid. ShowGrid**                           |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Grid. SnaptoGrid**                         |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. ıncluderetildi**                          |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. MappingDetails**                          |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. ModelBrowser**                            |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. MoveDiagramstoSeparateFile**              |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. MoveProperties. aşağı**                     |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. MoveProperties. Down5**                    |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. MoveProperties. ToBottom**                 |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. MoveProperties. ToTop**                    |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. MoveProperties. up**                       |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. MoveProperties. Up5**                      |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. MovetonewDiagram**                        |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Open**                                    |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. yeniden Düzenle. MovetoNewComplexType**           |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. yeniden Düzenle. Rename**                         |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. RemovefromDiagram**                       |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Rename**                                  |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. ScalarPropertyFormat. DisplayName**        |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. ScalarPropertyFormat. DisplayNameandType** |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Select. BaseType**                         |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Select. Entity**                           |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Select. Property**                         |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Select. SubType**                          |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. SelectAll**                               |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. SelectAssociation**                       |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Showwindiagram**                           |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Showwınmodelbrowser**                      |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. StoredProcedureMapping**                  |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. TableMapping**                            |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. UpdateModelfromDatabase**                 |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. Validate**                                |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. 10**                                 |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. 100**                                |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. 125**                                |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. 150**                                |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. 200**                                |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. 25**                                 |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. 300**                                |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. 33**                                 |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. 400**                                |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. 50**                                 |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. 66**                                 |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. 75**                                 |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. Custom**                             |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. ZoomIn**                             |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. ZoomOut**                            |
+| **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. ZoomtoFit**                          |
+| **View. EntityDataModelBrowser**                                                                |
+| **View. EntityDataModelMappingDetails**                                                         |

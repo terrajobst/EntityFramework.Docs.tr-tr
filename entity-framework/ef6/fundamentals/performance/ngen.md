@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: dc6110a0-80a0-4370-8190-cea942841cee
 ms.openlocfilehash: 841aec645abdb2a56076d0b70bfb2614b0acafb4
-ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/16/2019
-ms.locfileid: "72446002"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419463"
 ---
 # <a name="improving-startup-performance-with-ngen"></a>NGen ile başlangıç performansını artırma
 > [!NOTE]
@@ -56,7 +56,7 @@ Bir uygulama için, EF sürüm 6 veya üzerini temel alan bir uygulamada yerel g
 
 - **Ana EF çalışma zamanı derlemesi, EntityFramework. dll**: tıpık bir EF tabanlı uygulama, başlangıçta bu derlemeden veya veritabanına ilk erişimi üzerinde önemli miktarda kod yürütür. Sonuç olarak, bu derlemenin yerel görüntülerini oluşturmak, başlangıç performansındaki en büyük kazancı oluşturacaktır.  
 - **Uygulamanız tarafından kullanılan herhangi BIR EF sağlayıcı derlemesi**: başlangıç saati, bunların yerel görüntülerini oluşturmaktan biraz daha da yararlanabilir. Örneğin, uygulama SQL Server için EF sağlayıcısını kullanıyorsa, EntityFramework. SqlServer. dll için yerel bir görüntü oluşturmak isteyeceksiniz.  
-- **Uygulamanızın derlemeleri ve diğer bağımlılıkları**: [Ngen. exe belgeleri](https://msdn.microsoft.com/library/6t9t5wcf.aspx) , yerel görüntüler için hangi derlemelerin oluşturulacağını ve yerel görüntülerin güvenlik üzerindeki etkisini ve "Hard" gibi gelişmiş seçenekleri bağlama ", hata ayıklama ve profil oluşturma senaryolarında yerel görüntüleri kullanma gibi senaryolar, vb.  
+- **Uygulamanızın derlemeleri ve diğer bağımlılıkları**: [Ngen. exe belgeleri](https://msdn.microsoft.com/library/6t9t5wcf.aspx) , için yerel görüntüler oluşturmak için kullanılan derlemeleri ve güvenlik üzerindeki yerel görüntülerin etkisini, "sabit bağlama" gibi gelişmiş seçenekleri, hata ayıklama ve profil oluşturma senaryolarında yerel görüntüleri kullanma gibi senaryoları, vb. içerir.  
 
 > [!TIP]
 > Yerel görüntülerin hem başlangıç performansı hem de uygulamanızın genel performansı ve gerçek gereksinimlere göre karşılaştırıldığı etkileri dikkatle ölçdiğinizden emin olun. Yerel görüntüler genellikle başlangıçtaki performansı artırmaya yardımcı olur ve bazı durumlarda bellek kullanımını azaltırken, tüm senaryolar eşit olarak avantajına sahip olur. Örneğin, kararlı durum yürütmesinde (yani, uygulama tarafından kullanılan tüm yöntemler en az bir kez çağrıldığında), JıT derleyicisi tarafından oluşturulan kod aslında yerel görüntülerden biraz daha iyi performans sağlayabilir.  

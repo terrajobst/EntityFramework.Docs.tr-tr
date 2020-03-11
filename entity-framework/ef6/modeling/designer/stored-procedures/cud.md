@@ -4,17 +4,17 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 1e773972-2da5-45e0-85a2-3cf3fbcfa5cf
 ms.openlocfilehash: bdb0df969c33d5ad3f103bfa9af6002c9c2bb9b3
-ms.sourcegitcommit: 6c28926a1e35e392b198a8729fc13c1c1968a27b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/02/2019
-ms.locfileid: "71813555"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418324"
 ---
 # <a name="designer-cud-stored-procedures"></a>Tasarımcı CUD saklı yordamları
 
 Bu adım adım izlenecek yol, bir varlık türünün Create\\INSERT, Update ve Delete (CUD) işlemlerinin, Entity Framework Designer (EF Designer) kullanılarak saklı yordamlara nasıl eşleneceğini gösterir.  Varsayılan olarak, Entity Framework CUD işlemleri için SQL deyimlerini otomatik olarak oluşturur, ancak saklı yordamları bu işlemlere de eşleyebilirsiniz.  
 
-Code First, saklı yordamlara veya işlevlere eşlemeyi desteklemediğine unutmayın. Ancak, System. Data. Entity. DbSet. SqlQuery yöntemini kullanarak saklı yordamları veya işlevleri çağırabilirsiniz. Örneğin:
+Code First, saklı yordamlara veya işlevlere eşlemeyi desteklemediğine unutmayın. Ancak, System. Data. Entity. DbSet. SqlQuery yöntemini kullanarak saklı yordamları veya işlevleri çağırabilirsiniz. Örnek:
 
 ``` csharp
 var query = context.Products.SqlQuery("EXECUTE [dbo].[GetAllProducts]");

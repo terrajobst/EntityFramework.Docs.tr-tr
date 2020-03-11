@@ -3,12 +3,12 @@ title: Entity Framework Core 5,0 planlaması
 author: ajcvickers
 ms.date: 01/14/2020
 uid: core/what-is-new/ef-core-5.0/plan.md
-ms.openlocfilehash: 0472841fdcd105ec8ea38db062c6768510b8735d
-ms.sourcegitcommit: f2a38c086291699422d8b28a72d9611d1b24ad0d
+ms.openlocfilehash: c5b7300c61c2f668b6f9393ae51bf9ebddf330a7
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/16/2020
-ms.locfileid: "76125384"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417878"
 ---
 # <a name="plan-for-entity-framework-core-50"></a>Entity Framework Core 5,0 planlaması
 
@@ -47,11 +47,13 @@ Tişörlü Boyut: L
 
 Durum: devam ediyor
 
-Birden çok-çok, GitHub biriktirme listesindeki en çok istenen özelliktir (~ 407 oylardır). Çoktan çoğa ilişkiler için destek üç ana alana ayrılabilir:
+Birden çok-çok, GitHub biriktirme listesindeki [en çok istenen özelliktir](https://github.com/aspnet/EntityFrameworkCore/issues/1368) (~ 407 oylardır).
 
-* Gezinme özelliklerini atlayın. Bunlar, modelin, temel alınan JOIN tablosu varlığına başvurmaksızın sorgular, vb. için kullanılmasına izin verir.
-* Özellik paketi varlık türleri. Bunlar, varlık örnekleri için, her varlık türü için açık bir CLR türü gerektirmeyen standart bir CLR türüne (ör. `Dictionary`) olanak tanır.
-* Çoka çok ilişkilerin kolay yapılandırması için cukr.
+Tam olarak çok-çok ilişkilerini destekler [#10508](https://github.com/aspnet/EntityFrameworkCore/issues/10508)olarak izlenir. Bu, üç ana alana ayrılabilir:
+
+* Gezinme özelliklerini atlayın. Bunlar, modelin, temel alınan JOIN tablosu varlığına başvurmaksızın sorgular, vb. için kullanılmasına izin verir. ([#19003](https://github.com/aspnet/EntityFrameworkCore/issues/19003))
+* Özellik paketi varlık türleri. Bunlar, varlık örnekleri için, her varlık türü için açık bir CLR türü gerektirmeyen standart bir CLR türüne (ör. `Dictionary`) olanak tanır. (5,0 için uzat: [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914).)
+* Çoka çok ilişkilerin kolay yapılandırması için cukr. (5,0 için uzatın.)
 
 Çok-çok desteği olan en önemli engelleyici, JOIN tablosuna başvurulmadan, sorgular gibi iş mantığından "doğal" ilişkileri kullanmadığımızı düşüntik. JOIN tablosu varlık türü yine de mevcut olabilir, ancak iş mantığı gibi kullanılmamalıdır. Bu nedenle 5,0 için gezinme özelliklerini atla ' nın üstesinden gelmeyi seçtik.
 
@@ -122,7 +124,7 @@ Durum: devam ediyor
 * Birden çok iş parçacığı/işlem/sunucu veritabanını aynı anda geçirmeye çalışabilir
 * Uygulamalar, bu durumdayken tutarsız duruma erişmeye çalışabilir
 * Genellikle Şemayı değiştirme veritabanı izinleri uygulama yürütmesi için verilmemelidir
-* Bir şeyler yanlış olursa temiz bir duruma geri dönme
+* Bir sorun varsa temiz bir duruma geri dönmek zordur
 
 Veritabanını dağıtım zamanında geçirmek için kolay bir yol sağlayan daha iyi bir deneyim sunmak istiyoruz. Şunları yapmanız gerekir:
 
@@ -144,7 +146,7 @@ Tişörlü Boyut: L
 
 Durum: başlatılmadı
 
-Geleneksel MVC benzeri Web uygulamalarında EF Core kullanmak için iyi bir kılavuzluk sunuyoruz. Diğer platformlar ve uygulama modelleriyle ilgili rehberlik eksik ya da güncel değil. EF Core 5,0 ' de, ile EF Core kullanma deneyimini araştırmaya, iyileştirmenize ve belgeleyecek şekilde planlıyoruz:
+Geleneksel MVC benzeri Web uygulamalarında EF Core kullanmak için iyi bir kılavuzluk sunuyoruz. Diğer platformlar ve uygulama modelleriyle ilgili rehberlik eksik ya da güncel değil. EF Core 5,0 için, ile EF Core kullanma deneyimini araştırmaya, iyileştirmenize ve belgeleyecek şekilde planlıyoruz:
 
 * Blazor
 * AOT/bağlayıcı hikayesini kullanma dahil Xamarin
@@ -170,7 +172,7 @@ Tişörlü Boyut: L
 
 Durum: devam ediyor
 
-EF Core için performans değerlendirmeleri takımımızı geliştirmeyi ve çalışma zamanında yönlendirilmiş performans iyileştirmeleri yapmayı planlıyoruz. Ayrıca, 3,0 yayın çevrimi sırasında prototip oluşturulan yeni ADO.NET toplu işlem API 'sini tamamlamayı planlıyoruz. Ayrıca, ADO.NET katmanında Npgsql sağlayıcısında ek performans geliştirmeleri planlıyoruz.
+EF Core için, performans kıyaslamamızı iyileştirmemiz ve çalışma zamanında yönlendirilmiş performans geliştirmeleri yapmanız planlanıyoruz. Ayrıca, 3,0 yayın çevrimi sırasında prototip oluşturulan yeni ADO.NET toplu işlem API 'sini tamamlamayı planlıyoruz. Ayrıca, ADO.NET katmanında Npgsql sağlayıcısında ek performans geliştirmeleri planlıyoruz.
 
 Bu çalışmanın bir parçası olarak, uygun şekilde ADO.NET/EF Core performans sayaçlarını ve diğer tanılamayı eklemeyi de planlıyoruz.
 
@@ -178,7 +180,7 @@ Bu çalışmanın bir parçası olarak, uygun şekilde ADO.NET/EF Core performan
 
 Müşteri adayı belge girme: @ajcvickers
 
-[#1920](https://github.com/aspnet/EntityFramework.Docs/issues/1920) tarafından izleniyor
+[#1920](https://github.com/dotnet/EntityFramework.Docs/issues/1920) tarafından izleniyor
 
 Tişörlü Boyut: L
 
@@ -194,7 +196,7 @@ Buradaki fikir, EF Core iç yapıları hakkında daha kolay anlaşılır hale ge
 
 Müşteri adayı belge girme: @bricelam
 
-[#1675](https://github.com/aspnet/EntityFramework.Docs/issues/1675) tarafından izleniyor
+[#1675](https://github.com/dotnet/EntityFramework.Docs/issues/1675) tarafından izleniyor
 
 Tişörlü Boyut: a
 
@@ -206,7 +208,7 @@ EF ekibi, Microsoft. Data. SQLite ADO.NET sağlayıcısına de sahiptir. Bu sağ
 
 Müşteri adayı belge girme: @ajcvickers
 
-[5,0 kilometre taşında docs deposunda bulunan sorunlara](https://github.com/aspnet/EntityFramework.Docs/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A5.0.0+) göre izleniyor
+[5,0 kilometre taşında docs deposunda bulunan sorunlara](https://github.com/dotnet/EntityFramework.Docs/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A5.0.0+) göre izleniyor
 
 Tişörlü Boyut: L
 
@@ -252,6 +254,6 @@ Bunlar, şu anda 5,0 sürümü için zamanlanmamış **olan hata** düzeltmeleri
 
 Ayrıca, planlama sırasında [en fazla oylanan sorunları](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) her zaman göz önünde bulundurmanız gerekir. Bu sorunlardan herhangi birini bir yayından kesmek her zaman çok önemlidir, ancak sahip olduğumuz kaynaklar için gerçekçi bir plana ihtiyacımız var.
 
-## <a name="feedback"></a>Geribildirim
+## <a name="feedback"></a>Geri Bildirim
 
 Planlamaya ilişkin geri bildiriminiz önemlidir. Bir sorunun önemini belirtmenin en iyi yolu GitHub 'da söz konusu sorundan oylanmanız (thumbs-up). Bu veriler daha sonra bir sonraki sürüm için [planlama işlemine](../release-planning.md) akış eklenecektir.

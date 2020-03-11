@@ -1,125 +1,125 @@
 ---
-title: İlişkiler - EF Designer - EF6
+title: İlişkiler-EF Tasarımcısı-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 402fe960-754b-470f-976b-e5de3e9986b5
 ms.openlocfilehash: d429c39dafbf183caabdc85748c188deb8dd6f66
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490689"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418247"
 ---
-# <a name="relationships---ef-designer"></a>İlişkiler - EF Designer
+# <a name="relationships---ef-designer"></a>İlişkiler-EF Tasarımcısı
 > [!NOTE]
-> Bu sayfa, ilişkileri EF Designer kullanarak modelinizdeki ayarlama hakkında bilgi sağlar. EF ve erişmek ve ilişkileri kullanarak verileri işlemek nasıl ilişkiler hakkında genel bilgi için bkz. [ilişkileri ve gezinti özellikleri](~/ef6/fundamentals/relationships.md).
+> Bu sayfada, AŞV tasarımcısını kullanarak modelinizde ilişkiler ayarlama hakkında bilgi sağlanır. EF 'teki ilişkiler ve ilişkileri kullanarak verilere erişme ve verileri işleme hakkında genel bilgi için bkz. [ilişkiler & gezinti özellikleri](~/ef6/fundamentals/relationships.md).
 
-Bir modeldeki varlık türleri arasındaki ilişkileri ilişkileri tanımlayın. Bu konuda, Entity Framework Designer (EF Designer) ilişkilerini eşleme gösterilmektedir. EF Designer ile çalışırken, kullanılan ana windows aşağıdaki resimde gösterilmektedir.
+İlişkilendirmeler bir modeldeki varlık türleri arasındaki ilişkileri tanımlar. Bu konu başlığı, Entity Framework Designer (EF Designer) ile ilişkilerin nasıl eşleneceğini gösterir. Aşağıdaki görüntüde, EF Designer ile çalışırken kullanılan ana pencereler gösterilmektedir.
 
-![EF Designer](~/ef6/media/efdesigner.png)
-
-> [!NOTE]
-> Kavramsal model oluşturduğunuzda, hata Listesi'nde eşlenmemiş varlıkları ve ilişkileri hakkında uyarılar görünebilir. Modelden veritabanını oluşturmak seçtikten sonra hatalar kaybolur çünkü bu uyarıları gözardı edebilirsiniz.
-
-## <a name="associations-overview"></a>İlişkilendirmeleri genel bakış
-
-EF Designer kullanarak modelinizi tasarlarken, bir .edmx dosyası modelinizi temsil eder. .Edmx dosyası içinde bir **ilişkilendirme** öğe iki varlık türleri arasındaki bir ilişkiyi tanımlar. İlişkilendirmesine katılan varlık türleri ve varlık türleri çeşitliliği bilinen ilişkinin her iki ucunda olası sayısını belirtmeniz gerekir. Bir ilişkilendirme end'ün çoğulluğunun bir değer bir (1) sıfır veya bir (0..1) ya da birden çok olabilir (\*). Bu bilgiler, iki alt belirtilen **son** öğeleri.
-
-Ürün (varlıklarınızı yabancı anahtarları kullanıma sunmak isterseniz) çalışma zamanında, varlık türü örneklerinin bir ilişkilendirmenin bir ucunda Gezinti özellikleri veya yabancı anahtarlar erişilebilir. Kullanıma sunulan yabancı anahtarlar ile varlıklar arasında ilişki ile yönetilen bir **Referentialconstraint'teki** öğesi (alt öğesi **ilişkilendirme** öğesi). Yabancı anahtar ilişkileri için her zaman içinde varlıklarınızı kullanıma önerilir.
+![EF Tasarımcısı](~/ef6/media/efdesigner.png)
 
 > [!NOTE]
-> Çoktan çoğa içinde (\*:\*) varlıkları için yabancı anahtarlar ekleyemezsiniz. İçinde bir \*:\* ilişki, ilişki bilgilerini, bağımsız bir nesne ile yönetilir.
+> Kavramsal model oluşturduğunuzda, eşlenmemiş varlıklar ve ilişkilendirmeler hakkında uyarılar Hata Listesi görünebilir. Bu uyarıları yoksayabilirsiniz çünkü veritabanını modelden oluşturmayı seçtiğinizde hatalar kaybolur.
 
-CSDL öğeleri hakkında bilgi için (**Referentialconstraint'teki**, **ilişkilendirme**, vb.) görmek [CSDL belirtimi](~/ef6/modeling/designer/advanced/edmx/csdl-spec.md).
+## <a name="associations-overview"></a>İlişkilendirmelere genel bakış
 
-## <a name="create-and-delete-associations"></a>Oluşturma ve ilişkileri silme
+Ortamınızı EF Designer kullanarak tasarladığınızda, bir. edmx dosyası modelinizi temsil eder. . Edmx dosyasında, bir **ilişkilendirme** öğesi iki varlık türü arasında bir ilişki tanımlar. Bir ilişki, ilişkiye dahil olan varlık türlerini ve ilişkinin her ucunda çoğulluk olarak bilinen varlık türlerinin olası sayısını belirtmelidir. Bir ilişki ucunun çoğulluğu bir (1), sıfır veya bir (0.. 1) veya çok (\*) bir değere sahip olabilir. Bu bilgiler iki alt **End** öğesinde belirtilir.
 
-EF Designer güncelleştirmeleri ile ilişkilendirme .edmx dosyasını modeli içeriğini oluşturma. Bir ilişkilendirme oluşturduktan sonra eşlemeleri (Bu konunun ilerleyen bölümlerinde açıklanmıştır) ilişkisi oluşturmanız gerekir.
+Çalışma zamanında, bir ilişkilendirmenin bir sonundaki varlık türü örneklerine, gezinti özellikleri veya yabancı anahtarlar aracılığıyla erişilebilir (varlıklarınızda yabancı anahtarlar açığa çıkarmak istiyorsanız). Yabancı anahtarlar kullanıma sunulduğunda, varlıklar arasındaki ilişki bir **ReferentialConstraint** öğesi ( **Association** öğesinin bir alt öğesi) ile yönetilir. Varlıklarınızda ilişkiler için her zaman yabancı anahtarlar oluşturmanız önerilir.
 
 > [!NOTE]
-> Bu bölümde, modeldeki arasında bir ilişki oluşturmak istediğiniz varlıkları zaten eklenmiş varsayılır.
+> Çoka çok (\*:\*), varlıklara yabancı anahtarlar ekleyemezsiniz. \*:\* ilişkisinde, ilişki bilgileri bağımsız bir nesne ile yönetilir.
 
-### <a name="to-create-an-association"></a>Bir ilişkilendirme oluşturmak için
+CSDL öğeleri (**ReferentialConstraint**, **ilişkilendirme**vb.) hakkında daha fazla bilgi için bkz. [csdl belirtimi](~/ef6/modeling/designer/advanced/edmx/csdl-spec.md).
 
-1.  Tasarım yüzeyinde boş bir alana sağ tıklayın, fareyle **yeni Ekle**seçip **ilişki...** .
-2.  İlişkilendirmeyi ayarlarını doldurun **ekleme ilişkilendirme** iletişim.
+## <a name="create-and-delete-associations"></a>Ilişki oluşturma ve silme
 
-    ![İlişkilendirme ekleyin](~/ef6/media/addassociation.png)
+EF Designer ile bir ilişki oluşturmak. edmx dosyasının model içeriğini günceller. İlişki oluşturduktan sonra ilişkilendirme için eşlemeler oluşturmanız gerekir (Bu konunun ilerleyen kısımlarında açıklanmıştır).
+
+> [!NOTE]
+> Bu bölümde, modelinize arasında bir ilişki oluşturmak istediğiniz varlıkları zaten eklemiş olduğunuz varsayılır.
+
+### <a name="to-create-an-association"></a>Bir ilişki oluşturmak için
+
+1.  Tasarım yüzeyinde boş bir alana sağ tıklayın, **Yeni Ekle**' nin üzerine gelin ve **ilişkilendirme seç...** öğesini seçin.
+2.  İlişkilendirme **Ekle** iletişim kutusunda ilişkilendirmenin ayarlarını girin.
+
+    ![Ilişki Ekle](~/ef6/media/addassociation.png)
 
     > [!NOTE]
-    > Gezinti özellikleri veya yabancı anahtar özelliklerini ilişkilendirmenin bir ucunda varlıklara temizleyerek eklememeyi seçebilirsiniz ** gezinti özelliği ** ve ** yabancı anahtar özellikleri &lt;varlık türü adı&gt; varlık ** onay kutuları. Yalnızca bir gezinti özelliği eklerseniz, ilişki sadece tek yöndedir traversable olacaktır. Gezinti özelliği eklerseniz, ilişkilendirmenin bir ucunda varlıklara erişmek için yabancı anahtar özelliklerini eklemek seçmeniz gerekir.
+    >  **Gezinti özelliğini **temizleyerek ve varlık onay kutularına **&lt;varlık türü adı&gt; yabancı anahtar özellikleri **ekleyerek, ilişkilendirmenin sonundaki varlıklara gezinti özellikleri veya yabancı anahtar özellikleri eklememe seçeneğini belirleyebilirsiniz. Yalnızca bir gezinti özelliği eklerseniz, ilişki yalnızca bir yönde Traversable olacaktır. Hiçbir gezinti özelliği yoksa, ilişkinin sonunda varlıklara erişebilmek için yabancı anahtar özellikleri eklemeyi seçmeniz gerekir.
     
-3.  **Tamam**'ı tıklatın.
+3.   **Tamam**' a tıklayın.
 
-### <a name="to-delete-an-association"></a>Bir ilişkiyi silmek için
+### <a name="to-delete-an-association"></a>Bir ilişkilendirmeyi silmek için
 
-Bir ilişkilendirme aşağıdakilerden birini yapın silmek için:
+Bir ilişkilendirmeyi silmek için aşağıdakilerden birini yapın:
 
--   EF Tasarımcı yüzeyi ve select ilişkilendirmenin sağ **Sil**.
+-   EF Designer yüzeyinde ilişkiye sağ tıklayın ve **Sil**' i seçin.
 
-- OR-
+- Veya
 
--   Bir veya daha fazla ilişkilendirmesi'ni seçin ve DELETE tuşuna basın.
+-   Bir veya daha fazla ilişki seçin ve DELETE tuşuna basın.
 
-## <a name="include-foreign-key-properties-in-your-entities-referential-constraints"></a>Yabancı anahtar özelliklerini varlıklarınızı (başvuru kısıtlamalarını) içerir.
+## <a name="include-foreign-key-properties-in-your-entities-referential-constraints"></a>Varlıklarınızda yabancı anahtar özellikleri ekleyin (başvurusal kısıtlamalar)
 
-Yabancı anahtar ilişkileri için her zaman içinde varlıklarınızı kullanıma önerilir. Entity Framework başvurusal Kısıt bir ilişki için yabancı anahtar olarak davranan bir özelliği tanımlamak için kullanır.
+Varlıklarınızda ilişkiler için her zaman yabancı anahtarlar oluşturmanız önerilir. Entity Framework bir özelliğin bir ilişki için yabancı anahtar görevi göreceğini belirlemek için bir başvuru kısıtlaması kullanır.
 
-İşaretlediyseniz ***yabancı anahtar özellikleri &lt;varlık türü adı&gt; varlık*** onay kutusu ilişki oluştururken bu başvuru kısıtlamasını sizin için eklendi.
+Bir ilişki oluştururken ***&lt;varlık türü adı&gt; varlık onay kutusuna yabancı anahtar özellikleri ekleme*** ' yi denetlediyseniz, bu başvuru kısıtlaması sizin için eklenmiştir.
 
-EF Designer eklemek veya bir başvuru kısıtlamasını düzenlemek için EF Designer'ı kullandığınızda, ekler veya değiştirir bir **Referentialconstraint'teki** .edmx dosyasını CSDL içeriğini öğesinde.
+Bir başvuru kısıtlaması eklemek veya düzenlemek için EF tasarımcısını kullandığınızda, EF Designer,. edmx dosyasının CSDL içeriğindeki bir **ReferentialConstraint** öğesi ekler veya değiştirir.
 
--   Düzenlemek istediğiniz ilişkilendirme çift tıklayın.
-    **Başvuru kısıtlamasını** iletişim kutusu görüntülenir.
--   Gelen **asıl** aşağı açılan listesinde, başvuru kısıtlamasındaki asıl varlığı seçin.
-    Varlığın anahtar özellikler eklenir **sorumlusu anahtarı** iletişim kutusunda listesi.
--   Gelen **bağımlı** aşağı açılan listesinde, başvuru kısıtlamasındaki bağımlı varlığı seçin.
--   Bağımlı bir anahtara sahip her asıl anahtarı için aşağı açılan listelerden karşılık gelen bir bağımlı anahtarı seçin. **bağımlı anahtarı** sütun.
+-   Düzenlemek istediğiniz ilişkiye çift tıklayın.
+     **Başvurusal kısıtlama** iletişim kutusu görüntülenir.
+-    **Asıl** açılan listesinden, başvuru kısıtlamasındaki asıl varlığı seçin.
+    Varlığın anahtar özellikleri iletişim kutusundaki **asıl anahtar** listesine eklenir.
+-    **Bağımlı** aşağı açılan listesinden, başvuru kısıtlamasındaki bağımlı varlığı seçin.
+-   Bağımlı anahtarı olan her bir asıl anahtar için, **bağımlı anahtar** sütunundaki açılan listelerden karşılık gelen bir bağımlı anahtar seçin.
 
-    ![Başvuru kısıtlaması](~/ef6/media/refconstraint.png)
+    ![Ref kısıtlaması](~/ef6/media/refconstraint.png)
 
--   **Tamam**'ı tıklatın.
+-    **Tamam**' a tıklayın.
 
-## <a name="create-and-edit-association-mappings"></a>Oluşturma ve ilişkilendirme eşlemelerini düzenleme
+## <a name="create-and-edit-association-mappings"></a>Ilişki eşlemeleri oluşturma ve düzenleme
 
-Bir ilişkilendirme veritabanına eşlemelerini nasıl belirtebilirsiniz **eşleşme ayrıntıları** EF Designer'ın penceresi.
+Bir ilişkilendirmenin, EF Designer 'ın **eşleme ayrıntıları** penceresinde veritabanına nasıl eşlendiğini belirtebilirsiniz.
 
 > [!NOTE]
-> Yalnızca belirtilen başvurusal Kısıt olmayan ilişkilendirmeleri ayrıntılarını eşleyebilirsiniz. Başvurusal Kısıt belirtilirse yabancı anahtar özellik varlıkta bulunan ve varlık yabancı anahtarı hangi sütunun eşlendiği denetlemek için eşleşme ayrıntıları kullanabilirsiniz.
+> Yalnızca bir başvuru kısıtlaması belirtilmemiş ilişkilerin ayrıntılarını eşleyebilirsiniz. Bir başvuru kısıtlaması belirtilmişse, varlığa bir yabancı anahtar özelliği dahil edilir ve yabancı anahtarın hangi sütuna eşlendiğini denetlemek için varlık için eşleme ayrıntılarını kullanabilirsiniz.
 
-### <a name="create-an-association-mapping"></a>Bir ilişkilendirme eşlemesi oluşturma
+### <a name="create-an-association-mapping"></a>İlişki eşlemesi oluşturma
 
--   İlişkilendirme tasarım yüzeyi ve seçin, sağ **Tablo eşleme**.
-    Bu ilişkilendirme eşlemede görüntüler **eşleme ayrıntılarını** penceresi.
--   Tıklayın **bir tablo veya Görünüm Ekle**.
-    Depolama modelinde tüm tabloları içeren bir açılır liste görünür.
--   İlişkilendirme eşler tabloyu seçin.
-    **Eşleşme ayrıntıları** pencere görüntüler her iki ucunda da ilişki ve varlık türü için anahtar özellikler her **son**.
--   Her bir anahtar özellik için tıklatın **sütun** alan ve özelliği eşlemek istediğiniz sütunu seçin.
+-   Tasarım yüzeyinde bir ilişkiye sağ tıklayın ve **Tablo eşleme**' yi seçin.
+    Bu, ilişkilendirme eşlemesini **eşleme ayrıntıları** penceresinde görüntüler.
+-    **Tablo veya Görünüm Ekle**' ye tıklayın.
+    Depolama modelindeki tüm tabloları içeren bir açılır liste görüntülenir.
+-   İlişkilendirmenin eşolacağı tabloyu seçin.
+     **Eşleme ayrıntıları** penceresi, ilişkinin her iki ucunu ve her **uçta**varlık türü için anahtar özelliklerini görüntüler.
+-   Her anahtar özelliği için, **sütun** alanına tıklayın ve özelliğin eşolacağı sütunu seçin.
 
     ![Eşleme ayrıntıları 4](~/ef6/media/mappingdetails4.png)
 
-### <a name="edit-an-association-mapping"></a>Bir ilişkilendirme eşlemeyi Düzenle
+### <a name="edit-an-association-mapping"></a>İlişki eşlemesini düzenleme
 
--   İlişkilendirme tasarım yüzeyi ve seçin, sağ **Tablo eşleme**.
-    Bu ilişkilendirme eşlemede görüntüler **eşleme ayrıntılarını** penceresi.
--   Tıklayın **eşlendiği &lt;tablo adı&gt;**.
-    Depolama modelinde tüm tabloları içeren bir açılır liste görünür.
--   İlişkilendirme eşler tabloyu seçin.
-    **Eşleşme ayrıntıları** penceresi, her iki ucunda da ilişki ve varlık türü için anahtar özellikler her sonunda görüntüler.
--   Her bir anahtar özellik için tıklatın **sütun** alan ve özelliği eşlemek istediğiniz sütunu seçin.
+-   Tasarım yüzeyinde bir ilişkiye sağ tıklayın ve **Tablo eşleme**' yi seçin.
+    Bu, ilişkilendirme eşlemesini **eşleme ayrıntıları** penceresinde görüntüler.
+-    **Tablo adı&gt;&lt;Için haritalar **' a tıklayın.
+    Depolama modelindeki tüm tabloları içeren bir açılır liste görüntülenir.
+-   İlişkilendirmenin eşolacağı tabloyu seçin.
+     **Eşleme ayrıntıları** penceresi, ilişkinin her iki ucunu ve her uçta varlık türü için anahtar özelliklerini görüntüler.
+-   Her anahtar özelliği için, **sütun** alanına tıklayın ve özelliğin eşolacağı sütunu seçin.
 
-## <a name="edit-and-delete-navigation-properties"></a>Düzenle ve Sil Gezinti özellikleri
+## <a name="edit-and-delete-navigation-properties"></a>Gezinti özelliklerini Düzenle ve Sil
 
-Gezinti özellikleri bir modelde ilişkilendirme ucunda varlıkları bulmak için kullanılan kısayol özelliklerdir. İki varlık türleri arasındaki ilişkiyi oluşturduğunuzda, gezinti özellikleri oluşturulabilir.
+Gezinti özellikleri, bir modeldeki ilişkilendirmenin sonundaki varlıkları bulmak için kullanılan kısayol özellikleridir. İki varlık türü arasında bir ilişki oluşturduğunuzda, gezinti özellikleri oluşturulabilir.
 
 #### <a name="to-edit-navigation-properties"></a>Gezinti özelliklerini düzenlemek için
 
 -   EF Designer yüzeyinde bir gezinti özelliği seçin.
-    Gezinti özelliği hakkında bilgi, Visual Studio'da görüntülenir **özellikleri** penceresi.
--   Özellik ayarlarını değiştirme **özellikleri** penceresi.
+    Gezinti özelliği hakkında bilgi, Visual Studio **özellikleri** penceresinde görüntülenir.
+-    **Özellikler** penceresindeki özellik ayarlarını değiştirin.
 
-#### <a name="to-delete-navigation-properties"></a>Gezinti özellikleri silmek için
+#### <a name="to-delete-navigation-properties"></a>Gezinti özelliklerini silmek için
 
--   Yabancı anahtarlar kavramsal modelin varlık türlerini gösterilmediğinden, bir gezinti özelliği silme karşılık gelen ilişki traversable tek bir yönde veya değil traversable hiç kalmasına neden olabilir.
--   EF Tasarımcı yüzeyi ve select Gezinti özelliğindeki sağ **Sil**.
+-   Kavramsal modeldeki varlık türlerinde yabancı anahtarlar gösterilmeyerek, bir gezinti özelliğinin silinmesi karşılık gelen ilişkilendirmeyi yalnızca bir yönde Traversable veya Traversable değil.
+-   EF Designer yüzeyinde bir gezinti özelliğine sağ tıklayın ve **Sil**' i seçin.

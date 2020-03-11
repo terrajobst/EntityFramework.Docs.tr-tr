@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: c6ae6d8f-1ace-47db-ad47-b1718f1ba082
 ms.openlocfilehash: 92a763b84a04d3ce7ec0853ef2a4852356cf7997
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182516"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418569"
 ---
 # <a name="enum-support---ef-designer"></a>Enum desteği-EF Tasarımcısı
 > [!NOTE]
@@ -29,7 +29,7 @@ Bu videoda, Entity Framework Designer ile numaralandırma türlerinin nasıl kul
 
 **Video**: [wmv](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.wmv) | [MP4](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-mp4video-enumwithdesiger.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.zip)
 
-## <a name="pre-requisites"></a>Önkoşulların önkoşulları
+## <a name="pre-requisites"></a>Önkoşullar
 
 Bu yönergeyi tamamlamak için Visual Studio 2012, Ultimate, Premium, Professional veya Web Express sürümünün yüklü olması gerekir.
 
@@ -46,7 +46,7 @@ Bu yönergeyi tamamlamak için Visual Studio 2012, Ultimate, Premium, Profession
 2.  Sol menüden **verileri** seçin ve ardından şablonlar bölmesinde **ADO.net varlık veri modeli** seçin
 3.  Dosya adı için **Enumtestmodel. edmx** girin ve ardından **Ekle** ' ye tıklayın.
 4.  Varlık Veri Modeli Sihirbazı sayfasında, model Içeriklerini Seç iletişim kutusunda **boş model** ' i seçin.
-5.  **Son** ' a tıklayın
+5.  **Son**’a tıklayın
 
 Modelinizi düzenlemekte bir tasarım yüzeyi sağlayan Entity Desisgner görüntülenir.
 

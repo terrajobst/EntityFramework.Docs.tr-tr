@@ -6,11 +6,11 @@ ms.date: 11/01/2018
 ms.assetid: 2BDE29FC-4161-41A0-841E-69F51CCD9341
 uid: core/modeling/spatial
 ms.openlocfilehash: 5b45f83ca7f02665f52ccfe16b5af506a6046a62
-ms.sourcegitcommit: f2a38c086291699422d8b28a72d9611d1b24ad0d
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/16/2020
-ms.locfileid: "76124437"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417407"
 ---
 # <a name="spatial-data"></a>Uzamsal Veriler
 
@@ -19,11 +19,11 @@ ms.locfileid: "76124437"
 
 Uzamsal veriler, fiziksel konumu ve nesnelerin şeklini temsil eder. Birçok veritabanı, bu tür veriler için destek sağlar, böylece diğer verilerle birlikte dizinlenebilir ve sorgulanabilir. Yaygın senaryolar, bir konumdan belirli bir uzaklıkta bulunan nesnelerin sorgulanmasını veya kenarlığını belirli bir konumu içeren nesneyi seçmeyi içerir. EF Core, [Nettopologyısuite](https://github.com/NetTopologySuite/NetTopologySuite) uzamsal kitaplığı kullanılarak uzamsal veri türlerine eşlemeyi destekler.
 
-## <a name="installing"></a>Yükleme
+## <a name="installing"></a>Yükleniyor
 
 Uzamsal verileri EF Core kullanmak için, uygun destekleyici NuGet paketini yüklemeniz gerekir. Yüklemeniz gereken paket, kullanmakta olduğunuz sağlayıcıya bağlıdır.
 
-EF Core Sağlayıcısı                        | Uzamsal NuGet paketi
+EF Core sağlayıcı                        | Uzamsal NuGet paketi
 --------------------------------------- | ---------------------
 Microsoft. EntityFrameworkCore. SqlServer | [Microsoft. EntityFrameworkCore. SqlServer. Nettopologyısuite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite)
 Microsoft. EntityFrameworkCore. SQLite    | [Microsoft. EntityFrameworkCore. SQLite. Nettopologyısuite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite.NetTopologySuite)

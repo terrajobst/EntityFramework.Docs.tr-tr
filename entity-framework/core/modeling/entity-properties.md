@@ -6,11 +6,11 @@ ms.date: 12/10/2019
 ms.assetid: e9dff604-3469-4a05-8f9e-18ac281d82a9
 uid: core/modeling/entity-properties
 ms.openlocfilehash: b67603fbffd1f1c8506bc21f8972c851eb8eef29
-ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/27/2019
-ms.locfileid: "75502469"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417218"
 ---
 # <a name="entity-properties"></a>Varlık Özellikleri
 
@@ -22,11 +22,11 @@ Kurala göre, bir alıcı ve ayarlayıcı içeren tüm ortak özellikler modele 
 
 Belirli özellikler aşağıdaki gibi dışarıda bırakılabilirler:
 
-### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
+### <a name="data-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/IgnoreProperty.cs?name=IgnoreProperty&highlight=6)]
 
-### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
+### <a name="fluent-api"></a>[Akıcı API](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/IgnoreProperty.cs?name=IgnoreProperty&highlight=3,4)]
 
@@ -38,11 +38,11 @@ Kurala göre, ilişkisel bir veritabanı kullanılırken varlık özellikleri, �
 
 Sütunlarınızı farklı adlarla yapılandırmayı tercih ediyorsanız, bunu aşağıdaki şekilde yapabilirsiniz:
 
-### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
+### <a name="data-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ColumnName.cs?Name=ColumnName&highlight=3)]
 
-### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
+### <a name="fluent-api"></a>[Akıcı API](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ColumnName.cs?Name=ColumnName&highlight=3-5)]
 
@@ -56,11 +56,11 @@ Sütunlarınızı farklı adlarla yapılandırmayı tercih ediyorsanız, bunu a�
 
 Sütunları, sütun için tam bir veri türü belirtmek üzere de yapılandırabilirsiniz. Örneğin, aşağıdaki kod, `Url` en fazla `200` olan Unicode olmayan bir dize olarak ve `2``5` ve ölçeği ölçeklendirerek ondalık olarak `Rating`:
 
-### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
+### <a name="data-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ColumnDataType.cs?name=ColumnDataType&highlight=4,6)]
 
-### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
+### <a name="fluent-api"></a>[Akıcı API](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ColumnDataType.cs?name=ColumnDataType&highlight=5-6)]
 
@@ -75,11 +75,11 @@ En büyük uzunluk yapılandırması, belirli bir özellik için seçim yapmak �
 
 Aşağıdaki örnekte, 500 uzunluk üst sınırını yapılandırmak SQL Server üzerinde `nvarchar(500)` türünde bir sütunun oluşturulmasına neden olur:
 
-#### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
+#### <a name="data-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/MaxLength.cs?name=MaxLength&highlight=4)]
 
-#### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
+#### <a name="fluent-api"></a>[Akıcı API](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/MaxLength.cs?name=MaxLength&highlight=3-5)]
 
@@ -100,11 +100,11 @@ C#8, başvuru türlerinin açıklanmasına izin veren, null [olabilen başvuru](
 
 Aşağıdaki örnek, null olabilen başvuru özelliği devre dışı (varsayılan) ve etkin olarak, gerekli ve isteğe bağlı özelliklerle bir varlık türü gösterir.
 
-#### <a name="without-nullable-reference-types-defaulttabwithout-nrt"></a>[Nullable başvuru türleri olmadan (varsayılan)](#tab/without-nrt)
+#### <a name="without-nullable-reference-types-default"></a>[Nullable başvuru türleri olmadan (varsayılan)](#tab/without-nrt)
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/CustomerWithoutNullableReferenceTypes.cs?name=Customer&highlight=4-8)]
 
-#### <a name="with-nullable-reference-typestabwith-nrt"></a>[Null yapılabilir başvuru türleri](#tab/with-nrt)
+#### <a name="with-nullable-reference-types"></a>[Null yapılabilir başvuru türleri](#tab/with-nrt)
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/Customer.cs?name=Customer&highlight=4-6)]
 
@@ -121,11 +121,11 @@ Null yapılabilir başvuru türleri hakkında daha fazla bilgi ve bunların EF C
 
 Kurala göre isteğe bağlı olacak bir özellik, aşağıdaki gibi gerekli olacak şekilde yapılandırılabilir:
 
-#### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
+#### <a name="data-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Required.cs?name=Required&highlight=4)]
 
-#### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
+#### <a name="fluent-api"></a>[Akıcı API](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Required.cs?name=Required&highlight=3-5)]
 

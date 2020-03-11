@@ -1,97 +1,97 @@
 ---
-title: -Yapılandırma ve özellikler ve türler eşleme - Fluent API'si EF6
+title: Akıcı API-özellikleri ve türleri yapılandırma ve eşleme-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 648ed274-c501-4630-88e0-d728ab5c4057
 ms.openlocfilehash: 7371cc99142ccf8fc6bea237d7d58d1e67fcecec
-ms.sourcegitcommit: 75f8a179ac9a70ad390fc7ab2a6c5e714e701b8b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/27/2018
-ms.locfileid: "52339809"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419068"
 ---
-# <a name="fluent-api---configuring-and-mapping-properties-and-types"></a>Fluent API'si - özellikler ve türler eşleme ve yapılandırma
-Entity Framework Code First ile çalışırken tablolarına desteklenmiş EF kuralları kümesi kullanarak POCO sınıflarınızı eşlemek için varsayılan davranış. Bazı durumlarda, ancak olamaz veya bu kuralları izleyin ve hangi kuralları dikte dışında bir şey varlıkları eşlemeniz istemediğiniz.  
+# <a name="fluent-api---configuring-and-mapping-properties-and-types"></a>Akıcı API-özellikleri ve türleri yapılandırma ve eşleme
+Code First Entity Framework ile çalışırken, varsayılan davranış, POCO sınıflarınızı, EF 'e bakılan bir dizi kuralı kullanarak tablo olarak eşlemenize yardımcı olur. Ancak, bazen bu kuralları takip edemez veya bu kuralları izlemek istemiyor, varlıkları kuralların izlediklerinde başka bir şeyle eşleştirmek zorunda değilsiniz.  
 
-Yapılandırma kuralları dışında bir şey yani kullanılacak EF başlıca iki yolu vardır [ek açıklamaları](~/ef6/modeling/code-first/data-annotations.md) veya EFs fluent API'si. Ek açıklamalar kullanarak elde edilemeyecek eşleme senaryoları şekilde ek açıklamalar yalnızca fluent API'si işlevlerinin bir alt kümesini kapsar. Bu makalede, fluent API'si özellikleri yapılandırmak için nasıl kullanılacağını göstermek için tasarlanmıştır.  
+Bir kural dışında bir şey kullanmak için EF 'i yapılandırabileceğiniz iki temel yol vardır, yani [ek açıklamalar](~/ef6/modeling/code-first/data-annotations.md) veya EFS Fluent API. Ek açıklamalar yalnızca Fluent API işlevselliğinin bir alt kümesini kapsar, bu nedenle ek açıklamalar kullanılarak elde edilemeyecek olan eşleme senaryoları vardır. Bu makale, özellikleri yapılandırmak için Fluent API nasıl kullanacağınızı göstermek için tasarlanmıştır.  
 
-Kod ilk fluent API'si geçersiz kılarak en sık erişilen [OnModelCreating](https://msdn.microsoft.com/library/system.data.entity.dbcontext.onmodelcreating.aspx) yöntemi türetilmiş [DbContext](https://msdn.microsoft.com/library/system.data.entity.dbcontext.aspx). Aşağıdaki örnekler fluent API'si ile çeşitli görevleri gerçekleştirmek ve kodu kopyalayın ve sahip olarak kullanılabilmesi için modeli görmek istiyorsanız, modelinizi uyacak şekilde özelleştirmenize izin vermek nasıl göstermek için tasarlanmıştır-sonra bu makalenin sonunda sağlanır.  
+İlk Fluent API kod, türetilmiş [DbContext](https://msdn.microsoft.com/library/system.data.entity.dbcontext.aspx)'Teki [onmodeloluþturma](https://msdn.microsoft.com/library/system.data.entity.dbcontext.onmodelcreating.aspx) yöntemi geçersiz kılınarak en yaygın olarak erişilir. Aşağıdaki örnekler, akıcı API ile çeşitli görevlerin nasıl yapılacağını göstermek ve kodu dışarı kopyalayıp modelinize uyacak şekilde özelleştirmeyi sağlamak üzere tasarlanmıştır. Bu durumda, bu makalenin sonunda verilmiştir. Bu durumda, bu makalenin sonunda sağlanır.  
 
-## <a name="model-wide-settings"></a>Model genelindeki ayarları  
+## <a name="model-wide-settings"></a>Model genelindeki ayarlar  
 
-### <a name="default-schema-ef6-onwards"></a>Varsayılan şema (EF6 sonrası)  
+### <a name="default-schema-ef6-onwards"></a>Varsayılan şema (EF6 onsürümleri)  
 
-EF6 ile başlangıç HasDefaultSchema yöntemi, tüm tabloları, saklı yordamlar, vb. için kullanılacak veritabanı şemasını belirtmek için DbModelBuilder üzerinde kullanabilirsiniz. Bu varsayılan ayar için farklı bir şeması açıkça yapılandırdığınız herhangi bir nesne için geçersiz kılınır.  
+EF6 ile başlayarak, tüm tablolar, saklı yordamlar vb. için kullanılacak veritabanı şemasını belirtmek üzere DbModelBuilder üzerinde HasDefaultSchema yöntemini kullanabilirsiniz. Bu varsayılan ayar, için açıkça farklı bir şema yapılandırdığınız tüm nesneler için geçersiz kılınır.  
 
 ``` csharp
 modelBuilder.HasDefaultSchema("sales");
 ```  
 
-### <a name="custom-conventions-ef6-onwards"></a>Özel kuralları (EF6 sonrası)  
+### <a name="custom-conventions-ef6-onwards"></a>Özel kurallar (EF6 ve sonraki sürümler)  
 
-Code First bulunan desteklemek için kendi kurallarına oluşturabilirsiniz EF6 ile'başlatılıyor. Daha fazla ayrıntı için [özel kod öncelikli kurallar](~/ef6/modeling/code-first/conventions/custom.md).  
+EF6 ile başlayarak, Code First dahil olanlar için kendi kurallarınızı oluşturabilirsiniz. Daha ayrıntılı bilgi için bkz. [özel Code First kuralları](~/ef6/modeling/code-first/conventions/custom.md).  
 
-## <a name="property-mapping"></a>Özellik eşleme  
+## <a name="property-mapping"></a>Özellik Eşleme  
 
-[Özelliği](https://msdn.microsoft.com/library/system.data.entity.infrastructure.dbentityentry.property.aspx) yöntemi, bir varlığı veya karmaşık türün ait her bir özellik için öznitelikleri yapılandırmak için kullanılır. Özellik yöntemi, belirli bir özellik için bir yapılandırma nesnesi elde etmek için kullanılır. Yapılandırma nesnesini seçenekleri yapılandırılmakta türüne özeldir; Örneğin, yalnızca dize özellikleri IsUnicode kullanılabilir.  
+[Özellik](https://msdn.microsoft.com/library/system.data.entity.infrastructure.dbentityentry.property.aspx) yöntemi, bir varlığa veya karmaşık türe ait her bir özelliğin özniteliklerini yapılandırmak için kullanılır. Özellik yöntemi, belirli bir özellik için bir yapılandırma nesnesi elde etmek için kullanılır. Yapılandırma nesnesindeki seçenekler, yapılandırılmakta olan türe özgüdür; Isunıcode yalnızca dize özelliklerinde kullanılabilir.  
 
-### <a name="configuring-a-primary-key"></a>Bir birincil anahtar yapılandırma  
+### <a name="configuring-a-primary-key"></a>Birincil anahtar yapılandırma  
 
-Birincil anahtarlar için Entity Framework kuralıdır:  
+Birincil anahtarlar için Entity Framework kuralı:  
 
-1. Sınıfınıza "ID" veya "Id" adı olan bir özelliği tanımlar.  
-2. veya bir sınıf adının ardından "ID" veya "Id"  
+1. Sınıfınız, adı "ID" veya "ID" olan bir özellik tanımlar  
+2. ya da "ID" veya "ID" gelen bir sınıf adı  
 
-Bir birincil anahtar olmasını özellik açıkça ayarlamak için HasKey yöntemi kullanabilirsiniz. Aşağıdaki örnekte, HasKey yöntemi Instructorıd birincil anahtarın OfficeAssignment türüne göre yapılandırmak için kullanılır.  
+Açıkça bir özelliği birincil anahtar olarak ayarlamak için HasKey yöntemini kullanabilirsiniz. Aşağıdaki örnekte, OfficeAssignment türündeki Komutctorıd birincil anahtarını yapılandırmak için HasKey yöntemi kullanılır.  
 
 ``` csharp
 modelBuilder.Entity<OfficeAssignment>().HasKey(t => t.InstructorID);
 ```  
 
-### <a name="configuring-a-composite-primary-key"></a>Bileşik bir birincil anahtar yapılandırma  
+### <a name="configuring-a-composite-primary-key"></a>Bileşik birincil anahtar yapılandırma  
 
-Aşağıdaki örnek, bileşik bir birincil anahtar bölüm türü olmasını DepartmentID ve ad özelliklerini yapılandırır.  
+Aşağıdaki örnek, DepartmentID ve ad özelliklerini departman türünün bileşik birincil anahtarı olacak şekilde yapılandırır.  
 
 ``` csharp
 modelBuilder.Entity<Department>().HasKey(t => new { t.DepartmentID, t.Name });
 ```  
 
-### <a name="switching-off-identity-for-numeric-primary-keys"></a>Kimliğin oturumunu için sayısal birincil anahtarları değiştirme  
+### <a name="switching-off-identity-for-numeric-primary-keys"></a>Sayısal birincil anahtarlar için kimlik devre dışı bırakma  
 
-Aşağıdaki örnek değeri veritabanı tarafından oluşturulmaz belirtmek için System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.None DepartmentID özelliğini ayarlar.  
+Aşağıdaki örnek, değerin veritabanı tarafından üretilmeyeceğini göstermek için DepartmentID özelliğini System. ComponentModel. Dataaçıklamalarda. DatabaseGeneratedOption. None olarak ayarlar.  
 
 ``` csharp
 modelBuilder.Entity<Department>().Property(t => t.DepartmentID)
     .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 ```  
 
-### <a name="specifying-the-maximum-length-on-a-property"></a>En fazla uzunluğu bir özellikte belirtme  
+### <a name="specifying-the-maximum-length-on-a-property"></a>Bir özellikte maksimum uzunluğu belirtme  
 
-Aşağıdaki örnekte, Name özelliği 50 karakterden uzun olmalıdır. Değer 50 karakterden uzun yaparsanız erişmenizi sağlayacak bir [DbEntityValidationException](https://msdn.microsoft.com/library/system.data.entity.validation.dbentityvalidationexception.aspx) özel durum. Code First bir veritabanı bu modelden oluşturması halinde, ad sütununun uzunluğu en fazla 50 karakter olarak ayarlanır.  
+Aşağıdaki örnekte, Name özelliği 50 karakterden uzun olmamalıdır. Değeri 50 karakterden daha uzun yaparsanız, [Dbentityvalidationexception](https://msdn.microsoft.com/library/system.data.entity.validation.dbentityvalidationexception.aspx) özel durumu alırsınız. Code First bu modelden bir veritabanı oluşturursa, Ad sütununun uzunluk üst sınırını 50 karakter olacak şekilde ayarlar.  
 
 ``` csharp
 modelBuilder.Entity<Department>().Property(t => t.Name).HasMaxLength(50);
 ```  
 
-### <a name="configuring-the-property-to-be-required"></a>Özelliği gerekli olacak şekilde yapılandırma  
+### <a name="configuring-the-property-to-be-required"></a>Gerekli olacak özelliği yapılandırma  
 
-Aşağıdaki örnekte, Name özelliği gereklidir. Adı belirtmezseniz, DbEntityValidationException özel durum alırsınız. Bu modelden Code First bir veritabanı oluşturur, ardından bu özellik depolamak için kullanılan sütun genellikle atanamayan olacaktır.  
+Aşağıdaki örnekte, Name özelliği gereklidir. Bu adı belirtmezseniz, bir DbEntityValidationException özel durumu alırsınız. Code First bu modelden bir veritabanı oluşturursa, bu özelliği depolamak için kullanılan sütun genellikle null atanamaz olur.  
 
 > [!NOTE]
-> Bazı durumlarda veritabanını özelliği gerekli olsa bile null yapılamaz sütunda mümkün olmayabilir. Örneğin, ne zaman TPH devralma stratejisi veri için birden fazla türü kullanılarak tek bir tabloda depolanır. Gerekli bir özellik türetilmiş bir tür içeriyorsa, bu özellik hiyerarşideki tüm türleri olduğundan sütun atanamayan yapılamaz.  
+> Bazı durumlarda, özelliği gerekli olsa bile veritabanındaki sütunun null olmaması mümkün olmayabilir. Örneğin, birden çok tür için bir TPH devralma stratejisi verisi kullanıldığında tek bir tabloda depolanır. Türetilmiş bir tür gerekli bir özellik içeriyorsa, hiyerarşideki tüm türlerin bu özelliği içermesi olmadığından, sütun null yapılamayan yapılamaz.  
 
 ``` csharp
 modelBuilder.Entity<Department>().Property(t => t.Name).IsRequired();
 ```  
 
-### <a name="configuring-an-index-on-one-or-more-properties"></a>Bir dizin üzerinde bir veya daha fazla özelliklerini yapılandırma  
+### <a name="configuring-an-index-on-one-or-more-properties"></a>Bir veya daha fazla özelliklerde dizin yapılandırma  
 
 > [!NOTE]
-> **EF6.1 ve sonraki sürümler yalnızca** -Entity Framework 6.1 içinde dizin özniteliği tanıtılmıştır. Önceki bir sürümü kullanıyorsanız, bu bölümdeki bilgiler, geçerli değildir.  
+> **EF 6.1 yalnızca** sonraki sürümler-dizin özniteliği Entity Framework 6,1 ' de tanıtılmıştı. Önceki bir sürümü kullanıyorsanız, bu bölümdeki bilgiler uygulanmaz.  
 
-Dizinler oluşturma Fluent API'si tarafından yerel olarak desteklenmiyor ancak yapabileceğiniz desteği kullanım **IndexAttribute** Fluent API'si üzerinden. Dizin öznitelikleri, bir model ek açıklama sonra işlem hattını veritabanında daha sonra bir dizinde açık bir modeli de dahil olmak üzere tarafından işlenir. Bu ek açıklamaları Fluent API'sini kullanarak el ile ekleyebilirsiniz.  
+Dizin oluşturma, akıcı API tarafından yerel olarak desteklenmez, ancak akıcı API aracılığıyla **ındexattribute** desteğini kullanabilirsiniz. Dizin öznitelikleri, modele daha sonra işlem hattında daha sonra veritabanında bulunan bir model ek açıklaması eklenerek işlenir. Bu ek açıklamaları, akıcı API 'YI kullanarak el ile ekleyebilirsiniz.  
 
-Bunu yapmanın en kolay yolu bir örneği oluşturmaktır **IndexAttribute** , yeni bir dizin için tüm ayarları içerir. Daha sonra bir örneğini oluşturabilirsiniz **IndexAnnotation** dönüştürecek bir EF belirli türü **IndexAttribute** EF model üzerinde depolanan bir model ek açıklama olarak ayarlar. Bunlar ardından geçirilebilir **HasColumnAnnotation** yöntemi Fluent adını belirterek API üzerinde **dizin** ek açıklama için.  
+Bunu yapmanın en kolay yolu, yeni dizinin tüm ayarlarını içeren **ındexattribute** öğesinin bir örneğini oluşturmaktır. Daha sonra **ındexattribute** ayarlarını EF modelinde depolanabilecek bir model ek açıklamasına DÖNÜŞTÜRECEK bir EF özel türü olan **ındexannotation** öğesinin bir örneğini oluşturabilirsiniz. Bunlar daha sonra, ek açıklamanın ad **dizinini** belirterek, akıcı API 'de **Hasccolumnannotation** yöntemine geçirilebilir.  
 
 ``` csharp
 modelBuilder
@@ -100,9 +100,9 @@ modelBuilder
     .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute()));
 ```  
 
-Kullanılabilir ayarların tam listesi için **IndexAttribute**, bkz: *dizin* bölümünü [kod ilk veri ek açıklamaları](~/ef6/modeling/code-first/data-annotations.md). Bu, dizin adı özelleştirme, benzersiz dizinler oluşturma ve birden çok sütun dizinleri oluşturma içerir.  
+**Indexattribute**'da kullanılabilen ayarların tüm listesi Için [Code First veri ek açıklamaları](~/ef6/modeling/code-first/data-annotations.md)' nın *Dizin* bölümüne bakın. Bu, dizin adını özelleştirmeyi, benzersiz dizinler oluşturmayı ve çok sütunlu dizinler oluşturmayı içerir.  
 
-Tek bir özellikte birden çok dizin ek açıklamaları dizisi geçirerek belirtebilirsiniz **IndexAttribute** oluşturucusuna **IndexAnnotation**.  
+Bir **ındexattribute** dizisini **ındexannotation**oluşturucusuna geçirerek, tek bir özellikte birden çok dizin ek açıklaması belirtebilirsiniz.  
 
 ``` csharp
 modelBuilder
@@ -117,17 +117,17 @@ modelBuilder
             })));
 ```  
 
-### <a name="specifying-not-to-map-a-clr-property-to-a-column-in-the-database"></a>Bir CLR özelliği veritabanında bir sütun değil eşlemeye belirtme  
+### <a name="specifying-not-to-map-a-clr-property-to-a-column-in-the-database"></a>CLR özelliğinin veritabanındaki bir sütunla Eşlememe belirtme  
 
-Aşağıdaki örnek, bir CLR türünün bir özelliği, bir veritabanı sütununa eşlenmemiş belirtmek gösterilmektedir.  
+Aşağıdaki örnek, bir CLR türündeki bir özelliğin veritabanındaki bir sütunla eşlenmiyor olduğunu gösterir.  
 
 ``` csharp
 modelBuilder.Entity<Department>().Ignore(t => t.Budget);
 ```  
 
-### <a name="mapping-a-clr-property-to-a-specific-column-in-the-database"></a>Belirli bir sütuna veritabanında bir CLR özellik eşlemesi  
+### <a name="mapping-a-clr-property-to-a-specific-column-in-the-database"></a>CLR özelliğini veritabanındaki belirli bir sütunla eşleme  
 
-Aşağıdaki örnek adı CLR özelliği DepartmentName veritabanı sütununa eşler.  
+Aşağıdaki örnek, ad CLR özelliğini DepartmentName veritabanı sütunuyla eşler.  
 
 ``` csharp
 modelBuilder.Entity<Department>()
@@ -135,9 +135,9 @@ modelBuilder.Entity<Department>()
     .HasColumnName("DepartmentName");
 ```  
 
-### <a name="renaming-a-foreign-key-that-is-not-defined-in-the-model"></a>Modelde tanımlı olmayan bir yabancı anahtar yeniden adlandırma  
+### <a name="renaming-a-foreign-key-that-is-not-defined-in-the-model"></a>Modelde tanımlanmayan bir yabancı anahtarı yeniden adlandırma  
 
-Değil bir CLR türüne bir yabancı anahtar tanımlayın, ancak veritabanında olması gereken hangi adını belirtmek istediğiniz seçerseniz, aşağıdakileri yapın:  
+Bir CLR türünde yabancı anahtar tanımlamadıysanız, ancak veritabanında olması gereken adı belirtmek istiyorsanız aşağıdakileri yapın:  
 
 ``` csharp
 modelBuilder.Entity<Course>()
@@ -146,9 +146,9 @@ modelBuilder.Entity<Course>()
     .Map(m => m.MapKey("ChangedDepartmentID"));
 ```  
 
-### <a name="configuring-whether-a-string-property-supports-unicode-content"></a>Bir dize özelliğini Unicode içeriği destekleyip desteklemediğini yapılandırma  
+### <a name="configuring-whether-a-string-property-supports-unicode-content"></a>Dize özelliğinin Unicode Içeriğini destekleyip desteklemediğini yapılandırma  
 
-Varsayılan olarak, Unicode (SQL Server'da nvarchar) dizelerdir. IsUnicode yöntemi, bir dize varchar türü olması belirtmek için kullanabilirsiniz.  
+Varsayılan dizeler Unicode 'Dur (SQL Server içinde nvarchar). Bir dizenin varchar türünde olması gerektiğini belirtmek için ısunıcode yöntemini kullanabilirsiniz.  
 
 ``` csharp
 modelBuilder.Entity<Department>()
@@ -156,9 +156,9 @@ modelBuilder.Entity<Department>()
     .IsUnicode(false);
 ```  
 
-### <a name="configuring-the-data-type-of-a-database-column"></a>Veritabanı sütununun veri türü yapılandırılıyor  
+### <a name="configuring-the-data-type-of-a-database-column"></a>Veritabanı sütununun veri türünü yapılandırma  
 
-[HasColumnType](https://msdn.microsoft.com/library/system.data.entity.modelconfiguration.configuration.stringcolumnconfiguration.hascolumntype.aspx) yöntemi aynı temel türden farklı temsilleri eşleme sağlar. Bu yöntemi kullanarak, çalışma zamanında verilerin herhangi bir dönüştürme gerçekleştirmek izin vermez. Veritabanı belirsiz olduğundan IsUnicode varchar, tercih edilen şekilde ayarı sütun olduğuna dikkat edin.  
+[Hasccolumntype](https://msdn.microsoft.com/library/system.data.entity.modelconfiguration.configuration.stringcolumnconfiguration.hascolumntype.aspx) yöntemi, aynı temel türün farklı temsillerine eşlemeyi sağlar. Bu yöntemin kullanılması, çalışma zamanında verilerin herhangi bir dönüşümünü gerçekleştirmenize izin vermez. Iunıcode 'un, veritabanı belirsiz olduğu için sütun varchar 'a ayarlamanın tercih edilen yolu olduğunu unutmayın.  
 
 ``` csharp
 modelBuilder.Entity<Department>()   
@@ -166,11 +166,11 @@ modelBuilder.Entity<Department>()
     .HasColumnType("varchar");
 ```  
 
-### <a name="configuring-properties-on-a-complex-type"></a>Karmaşık bir türde özelliklerini yapılandırma  
+### <a name="configuring-properties-on-a-complex-type"></a>Karmaşık bir tür üzerinde özellikleri yapılandırma  
 
-Karmaşık bir türde skaler özellikler yapılandırmanın iki yolu vardır.  
+Karmaşık bir tür üzerinde skaler özellikleri yapılandırmanın iki yolu vardır.  
 
-Üzerinde ComplexTypeConfiguration özelliğini çağırabilirsiniz.  
+ComplexTypeConfiguration üzerindeki özelliği çağırabilirsiniz.  
 
 ``` csharp
 modelBuilder.ComplexType<Details>()
@@ -178,7 +178,7 @@ modelBuilder.ComplexType<Details>()
     .HasMaxLength(20);
 ```  
 
-Nokta gösterimi, karmaşık bir türün bir özelliğe erişmek için de kullanabilirsiniz.  
+Ayrıca, karmaşık bir türün bir özelliğine erişmek için nokta gösterimini de kullanabilirsiniz.  
 
 ``` csharp
 modelBuilder.Entity<OnsiteCourse>()
@@ -186,9 +186,9 @@ modelBuilder.Entity<OnsiteCourse>()
     .HasMaxLength(20);
 ```  
 
-### <a name="configuring-a-property-to-be-used-as-an-optimistic-concurrency-token"></a>Bir iyimser eşzamanlılık belirteci olarak kullanılacak bir özelliğin yapılandırma  
+### <a name="configuring-a-property-to-be-used-as-an-optimistic-concurrency-token"></a>Iyimser eşzamanlılık belirteci olarak kullanılacak bir özelliği yapılandırma  
 
-Bir varlıktaki bir özelliği bir eşzamanlılık belirteci temsil ettiğini belirlemek için ConcurrencyCheck öznitelikte veya IsConcurrencyToken yöntemi kullanabilirsiniz.  
+Bir varlıktaki bir özelliğin eşzamanlılık belirtecini temsil ettiğini belirtmek için ConcurrencyCheck özniteliğini ya da IsConcurrencyToken yöntemini kullanabilirsiniz.  
 
 ``` csharp
 modelBuilder.Entity<OfficeAssignment>()
@@ -196,7 +196,7 @@ modelBuilder.Entity<OfficeAssignment>()
     .IsConcurrencyToken();
 ```  
 
-IsRowVersion yöntemi, özelliği veritabanında bir satır sürümü olacak şekilde yapılandırmak için de kullanabilirsiniz. İyimser eşzamanlılık belirteci olması için bir satır sürümü otomatik olarak yapılandırır özelliğini ayarlama.  
+Ayrıca, özelliğini veritabanında bir satır sürümü olacak şekilde yapılandırmak için ırowversıon yöntemini de kullanabilirsiniz. Özelliği bir satır sürümü olacak şekilde ayarlamak, onu iyimser eşzamanlılık belirteci olacak şekilde otomatik olarak yapılandırır.  
 
 ``` csharp
 modelBuilder.Entity<OfficeAssignment>()
@@ -204,43 +204,43 @@ modelBuilder.Entity<OfficeAssignment>()
     .IsRowVersion();
 ```  
 
-## <a name="type-mapping"></a>Tür eşlemesi  
+## <a name="type-mapping"></a>Tür eşleme  
 
-### <a name="specifying-that-a-class-is-a-complex-type"></a>Bir sınıf bir karmaşık tür olduğunu belirleme  
+### <a name="specifying-that-a-class-is-a-complex-type"></a>Bir sınıfın karmaşık bir tür olduğunu belirtme  
 
-Kural gereği, belirtilen birincil anahtarı olmayan bir türü bir karmaşık tür olarak kabul edilir. Burada Code First bir karmaşık türü (örneğin, kimliği adlı bir özelliğe sahip, ancak bunun için bir birincil anahtar olmasını gelmez varsa) algılamaz bazı senaryolar vardır. Böyle durumlarda, bir türü karmaşık bir tür olduğunu açıkça belirtmek için fluent API'sini kullanırsınız.  
+Kurala göre, belirtilen birincil anahtarı olmayan bir tür karmaşık bir tür olarak değerlendirilir. Code First karmaşık bir türü algılamamasının bazı senaryolar vardır (örneğin, KIMLIK olarak adlandırılan bir özellik varsa, ancak birincil anahtar olması anlamına gelir). Böyle durumlarda, türün karmaşık bir tür olduğunu açıkça belirtmek için Fluent API kullanırsınız.  
 
 ``` csharp
 modelBuilder.ComplexType<Details>();
 ```  
 
-### <a name="specifying-not-to-map-a-clr-entity-type-to-a-table-in-the-database"></a>CLR varlık türü için veritabanında bir tablo değil eşlenecek belirtme  
+### <a name="specifying-not-to-map-a-clr-entity-type-to-a-table-in-the-database"></a>CLR varlık türünün veritabanındaki bir tabloya Eşlenmeme belirtme  
 
-Aşağıdaki örnek, veritabanındaki bir tabloda eşlenen bir CLR türü dışlanacak gösterilmektedir.  
+Aşağıdaki örnek, bir CLR türünün veritabanındaki bir tabloya eşlenmeden nasıl dışlanacağını göstermektedir.  
 
 ``` csharp
 modelBuilder.Ignore<OnlineCourse>();
 ```  
 
-### <a name="mapping-an-entity-type-to-a-specific-table-in-the-database"></a>Bir varlık türü veritabanında belirli bir tablo eşleme  
+### <a name="mapping-an-entity-type-to-a-specific-table-in-the-database"></a>Bir varlık türünü veritabanındaki belirli bir tabloyla eşleme  
 
-Bölüm tüm özellikleri, t_ Departman adlı bir tablodaki sütunları eşleştirilir.  
+Departmanın tüm özellikleri t_ departmanı adlı tablodaki sütunlara eşlenir.  
 
 ``` csharp
 modelBuilder.Entity<Department>()  
     .ToTable("t_Department");
 ```  
 
-Bu gibi şema adı da belirtebilirsiniz:  
+Şema adını şöyle da belirtebilirsiniz:  
 
 ``` csharp
 modelBuilder.Entity<Department>()  
     .ToTable("t_Department", "school");
 ```  
 
-### <a name="mapping-the-table-per-hierarchy-tph-inheritance"></a>Tablo-başına-hiyerarşi (TPH) devralma eşleme  
+### <a name="mapping-the-table-per-hierarchy-tph-inheritance"></a>Hiyerarşi başına tablo (TPH) devralmayı eşleme  
 
-TPH eşleme senaryosunda, tek bir tabloya bir devralma hiyerarşisindeki tüm türleri eşlenir. Bir Ayrıştırıcı sütunu, her satır türünü tanımlamak için kullanılır. Modelinizi Code First ile oluştururken TPH devralma hiyerarşisinde katılan türleri için varsayılan stratejisidir. Varsayılan olarak, "Ayrıştırıcı" adlı bir tablo ayrıştırıcı sütunu eklenir ve hiyerarşideki her bir türü CLR tür adını ayrıştırıcı değerleri kullanılır. Fluent API'sini kullanarak varsayılan davranışını değiştirebilirsiniz.  
+TPH eşleme senaryosunda, bir devralma hiyerarşisindeki tüm türler tek bir tabloyla eşleştirilir. Bir Ayrıştırıcı sütunu, her satırın türünü tanımlamak için kullanılır. Code First ile modelinizi oluştururken, TPH devralma hiyerarşisine katılan türler için varsayılan stratejidir. Varsayılan olarak, ayrıştırıcı sütunu tabloya "ayrıştırıcı" adı ile eklenir ve hiyerarşideki her türün CLR türü adı ayrıştırıcı değerleri için kullanılır. Varsayılan davranışı Fluent API kullanarak değiştirebilirsiniz.  
 
 ``` csharp
 modelBuilder.Entity<Course>()  
@@ -248,23 +248,23 @@ modelBuilder.Entity<Course>()
     .Map<OnsiteCourse>(m => m.Requires("Type").HasValue("OnsiteCourse"));
 ```  
 
-### <a name="mapping-the-table-per-type-tpt-inheritance"></a>Tablo başına tür (TPT) devralma eşleme  
+### <a name="mapping-the-table-per-type-tpt-inheritance"></a>Tablo tür başına (TPT) devralmayı eşleme  
 
-TPT eşleme senaryosunda, tek tek tablolar için tüm türleri eşlenir. Yalnızca bir temel tür veya türetilmiş bir tür ait özellikler bu türüyle eşleyen bir tabloda depolanır. Türetilmiş türleri eşleyen tablo türetilmiş tablonun temel tablosu ile birleştiren bir yabancı anahtar da depolar.  
+TPT eşleme senaryosunda, tüm türler ayrı tablolara eşlenir. Yalnızca bir temel türe veya türetilmiş türe ait özellikler, bu türle eşleşen bir tabloda depolanır. Türetilmiş türlerle eşlenen tablolar, türetilmiş tabloya temel tabloyla birleştiren bir yabancı anahtar de depolar.  
 
 ``` csharp
 modelBuilder.Entity<Course>().ToTable("Course");  
 modelBuilder.Entity<OnsiteCourse>().ToTable("OnsiteCourse");
 ```  
 
-### <a name="mapping-the-table-per-concrete-class-tpc-inheritance"></a>Tablo başına somut sınıf (TPC) devralma eşleme  
+### <a name="mapping-the-table-per-concrete-class-tpc-inheritance"></a>Tablo başına somut sınıf (TPC) devralmayı eşleme  
 
-TPC eşleme senaryosunda, tek tek tablolar için hiyerarşideki tüm soyut olmayan türleri eşlenir. Türetilmiş sınıflara eşleme tabloları temel sınıf veritabanında eşleşen tablo hiçbir ilişkisi. Devralınan özellikler dahil olmak üzere, bir sınıfın tüm özellikler için karşılık gelen bir tablonun sütunlarını eşlenir.  
+TPC eşleme senaryosunda, hiyerarşideki Özet olmayan tüm türler ayrı tablolara eşlenir. Türetilmiş sınıflarla eşlenen tablolarda, veritabanındaki temel sınıfla eşlenen tabloyla ilişki yoktur. Devralınan özellikler dahil olmak üzere bir sınıfın tüm özellikleri karşılık gelen tablonun sütunlarına eşlenir.  
 
-Her türetilmiş bir tür yapılandırma MapInheritedProperties yöntemi çağırın. MapInheritedProperties temel sınıftan türetilmiş bir sınıf için yeni sütun için devralınan tüm özellikleri yeniden eşlemesi.  
+Türetilmiş her türü yapılandırmak için Mapınheritedproperties metodunu çağırın. Mapınheritedproperties, temel sınıftan devralınan tüm özellikleri, türetilmiş sınıf için tablodaki yeni sütunlara yeniden eşler.  
 
 > [!NOTE]
-> TPC devralma hiyerarşisinde katılan tablolara değil paylaştığından birincil anahtar var. Yinelenen varlık anahtarları oluşturulan veritabanı değerleri ile aynı Kimlik tohumu varsa, alt sınıflar için eşlenmiş tablolardaki eklerken olacağını unutmayın. Bu sorunu çözmek için her tablo için farklı başlangıç Çekirdek değer belirtin veya birincil anahtar özelliği kimliği devre dışı geçin. Kimlik, Code First ile çalışırken tamsayı anahtar özellikleri için varsayılan değer.  
+> TPC devralma hiyerarşisine katılan tablolar birincil anahtar paylaşmadığından, veritabanı tarafından oluşturulan ve aynı kimlik kaynağını içeren bir değer varsa, alt sınıflara eşlenen tablolara eklenirken yinelenen varlık anahtarları olacaktır. Bu sorunu çözmek için, her tablo için farklı bir başlangıç çekirdek değeri belirtebilir veya birincil anahtar özelliğindeki kimlik devre dışı bırakabilirsiniz. Kimlik, Code First çalışırken tamsayı anahtar özellikleri için varsayılan değerdir.  
 
 ``` csharp
 modelBuilder.Entity<Course>()
@@ -284,9 +284,9 @@ modelBuilder.Entity<OnlineCourse>().Map(m =>
 });
 ```  
 
-### <a name="mapping-properties-of-an-entity-type-to-multiple-tables-in-the-database-entity-splitting"></a>' % S'veritabanı (bölme varlık) birden çok tabloya bir varlık türünün özellikleri eşleme  
+### <a name="mapping-properties-of-an-entity-type-to-multiple-tables-in-the-database-entity-splitting"></a>Bir varlık türünün özelliklerini veritabanındaki birden çok tabloya eşleme (varlık bölme)  
 
-Bölme varlık birden çok tabloda yayılma için bir varlık türünün özelliklerini sağlar. Aşağıdaki örnekte, iki tabloya departmanı varlık bölünür: bölüm ve DepartmentDetails. Varlık bölme, belirli bir tabloya bir özellik alt kümesi eşlemek için birden çok çağrı harita yöntemi kullanır.  
+Varlık bölünmesi bir varlık türünün özelliklerinin birden çok tabloya yayılmasını sağlar. Aşağıdaki örnekte, departman varlığı iki tabloya ayrılır: Department ve DepartmentDetails. Varlık bölünmesi, bir özellik alt kümesini belirli bir tabloya eşlemek için Map yöntemine birden çok çağrı kullanır.  
 
 ``` csharp
 modelBuilder.Entity<Department>()
@@ -302,9 +302,9 @@ modelBuilder.Entity<Department>()
     });
 ```  
 
-### <a name="mapping-multiple-entity-types-to-one-table-in-the-database-table-splitting"></a>Birden çok varlık türleri (bölme tablosu) veritabanında bir tablo eşleme  
+### <a name="mapping-multiple-entity-types-to-one-table-in-the-database-table-splitting"></a>Birden çok varlık türünü veritabanındaki bir tabloyla eşleme (tablo bölme)  
 
-Aşağıdaki örnek, bir tablonun birincil anahtara paylaşan iki varlık türleri eşler.  
+Aşağıdaki örnek, birincil anahtarı tek bir tabloyla paylaşan iki varlık türünü eşler.  
 
 ``` csharp
 modelBuilder.Entity<OfficeAssignment>()
@@ -319,11 +319,11 @@ modelBuilder.Entity<Instructor>().ToTable("Instructor");
 modelBuilder.Entity<OfficeAssignment>().ToTable("Instructor");
 ```  
 
-### <a name="mapping-an-entity-type-to-insertupdatedelete-stored-procedures-ef6-onwards"></a>Insert/Update/Delete saklı yordamlar (EF6 sonrası) için bir varlık türü eşleme  
+### <a name="mapping-an-entity-type-to-insertupdatedelete-stored-procedures-ef6-onwards"></a>Bir varlık türünü, saklı yordamları ekleme/güncelleştirme/silme (EF6 ve sonraki sürümler) ile eşleme  
 
-EF6 ile başlangıç, saklı yordamlar için ekleme güncelleştirme ve silme varlığın eşleyebilirsiniz. Daha fazla bilgi için [kod ilk Insert/Update/Delete saklı yordamlar](~/ef6/modeling/code-first/fluent/cud-stored-procedures.md).  
+EF6 ' den itibaren, güncelleştirme Ekle ve Sil için saklı yordamları kullanmak üzere bir varlığı eşleyebilirsiniz. Daha fazla ayrıntı için bkz. [Code First, saklı yordamları ekleme/güncelleştirme/silme](~/ef6/modeling/code-first/fluent/cud-stored-procedures.md).  
 
-## <a name="model-used-in-samples"></a>Örneklerde kullanılan modeli  
+## <a name="model-used-in-samples"></a>Örneklerde kullanılan model  
 
 Bu sayfadaki örnekler için aşağıdaki Code First modeli kullanılır.  
 

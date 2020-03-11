@@ -1,44 +1,44 @@
 ---
-title: Varlık durumları - EF6 ile çalışma
+title: Varlık durumlarıyla çalışma-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: acb27f46-3f3a-4179-874a-d6bea5d7120c
 ms.openlocfilehash: ef0e8d5a5a9d66adab7046088c49d8cd472edc8a
-ms.sourcegitcommit: e5f9ca4aa41e64141fa63a1e5fcf4d4775d67d24
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52899658"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419701"
 ---
-# <a name="working-with-entity-states"></a>Varlık durumları ile çalışma
-Bu konuda, ekleme ve varlıklar için bir bağlam eklemek ve Entity Framework SaveChanges sırasında bunları nasıl işlediğini ele alınacaktır.
-Entity Framework için bir bağlam bağlı, ancak bağlantısı kesilmiş veya N-katmanlı senaryolarda durum varlıklarınızı bilmeniz EF sağlayabilirsiniz varlıkların durumunu olmalıdır izleme üstlenir.
-Bu konuda gösterilen teknikleri Code First ve EF Designer ile oluşturulan modeller için eşit oranda geçerlidir.  
+# <a name="working-with-entity-states"></a>Varlık durumlarıyla çalışma
+Bu konu, bir bağlama nasıl varlık ekleneceğini ve ekleneceğini ve Entity Framework SaveChanges sırasında bunların nasıl işlem yapılacağını ele almaktadır.
+Entity Framework, bir içeriğe bağlıyken varlıkların durumunu izlemenin bir bölümünü ele alır, ancak bağlantısı kesik veya N katmanlı senaryolarda, varlıklarınızın varlıklarınızın hangi durumlarına sahip olduğunu bilmesini sağlayabilirsiniz.
+Bu konu başlığında gösterilen teknikler Code First ve EF Designer ile oluşturulan modellere eşit olarak uygulanır.  
 
 ## <a name="entity-states-and-savechanges"></a>Varlık durumları ve SaveChanges
 
-Bir varlık beş durumlardan birinde EntityState numaralandırmasıyla tanımlanan olabilir. Bu durumlar şunlardır:  
+Varlık, EntityState numaralandırması tarafından tanımlanan beş durumdan birinde olabilir. Bu durumlar şunlardır:  
 
-- Eklenen: Varlık bağlam tarafından izlenen ancak henüz veritabanında mevcut değil  
-- Değiştirilmemiş: Varlık bağlam tarafından izlenen ve veritabanında var ve özellik değerlerini veritabanındaki değerlerinin değişmedi  
-- Değiştirilen: Varlık bağlam tarafından izleniyor ve veritabanında var ve bazı veya tüm özellik değerleri değiştirilmiş  
-- Silinen: Varlık bağlam tarafından izleniyor ve veritabanında var, ancak silinmek üzere veritabanından SaveChanges bir sonraki zamana işaretlendi  
-- Ayrılmış: Varlık bağlam tarafından izlenmiyor  
+- Eklendi: varlık bağlam tarafından izleniyor ancak veritabanında henüz yok  
+- Değiştirilmemiş: varlık bağlam tarafından izleniyor ve veritabanında var ve özellik değerleri veritabanındaki değerlerden değişmemiştir  
+- Değiştirilen: varlık bağlam tarafından izleniyor ve veritabanında var ve özellik değerlerinin bazıları veya tümü değiştirildi  
+- Silindi: varlık bağlam tarafından izleniyor ve veritabanında var, ancak SaveChanges bir sonraki sefer çağrıldığında veritabanından silinmek üzere işaretlendi  
+- Ayrılmış: varlık bağlam tarafından izlenmiyor  
 
-SaveChanges farklı durumlarda varlıklar için farklı şeyler yapar:  
+SaveChanges farklı durumlardaki varlıklar için farklı şeyler yapar:  
 
-- Değiştirilmemiş varlıkları SaveChanges tarafından kullanılmayan. Güncelleştirmeleri değişmemiş durumda varlıklar için veritabanına gönderilmez.  
-- Eklenen varlıkları veritabanına eklenir ve ardından değişmedi haline SaveChanges döndürür.  
-- Değiştirilmiş varlıklar veritabanında güncelleştirilen ve ardından değişmedi haline SaveChanges döndürür.  
-- Silinen varlıklar veritabanından silinir ve ardından bağlamdan ayrılır.  
+- Değiştirilmemiş varlıklar SaveChanges 'e dokunmaz. Güncelleştirmeler, değiştirilmemiş durumdaki varlıklar için veritabanına gönderilmez.  
+- Eklenen varlıklar veritabanına eklenir ve ardından SaveChanges döndürüldüğünde değişmeden hale gelir.  
+- Değiştirilen varlıklar veritabanında güncelleştirilir ve SaveChanges döndürüldüğünde değiştirilmez.  
+- Silinen varlıklar veritabanından silinir ve sonra bağlamdan ayrılır.  
 
-Aşağıdaki örnekler bir varlık veya varlık graf durumunu değiştirilebilir yollarını gösterir.  
+Aşağıdaki örneklerde bir varlık veya bir varlık grafiğinin durumunun değiştirilebileceği yollar gösterilmektedir.  
 
-## <a name="adding-a-new-entity-to-the-context"></a>Bağlam için yeni bir varlık ekleme  
+## <a name="adding-a-new-entity-to-the-context"></a>Bağlama yeni bir varlık ekleniyor  
 
-Yeni bir varlık üzerinde olan DB Ekle yöntemi çağırarak bağlamına eklenebilir.
-Bu varlık eklenen durumuna, bunun veritabanına SaveChanges adlı bir sonraki açışınızda eklenir, yani koyar.
-Örneğin:  
+DbSet üzerinde Add yöntemi çağırarak içeriğe yeni bir varlık eklenebilir.
+Bu, varlığı eklenen duruma geçirir, yani bu, SaveChanges 'in bir sonraki çağrılışında veritabanına eklenecektir.
+Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -49,7 +49,7 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Bağlam için yeni bir varlık eklemek için başka bir yol için eklenen durumunu değiştirmektir. Örneğin:  
+İçeriğine yeni bir varlık eklemenin başka bir yolu da, durumunu eklendi olarak değiştirkullanmaktır. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -60,8 +60,8 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Son olarak, zaten izlenmekte olan başka bir varlık kadar takma tarafından yeni bir varlık bağlamına ekleyebilirsiniz.
-Bu, başka bir varlık koleksiyon gezinme özelliği için yeni bir varlık ekleme veya yeni varlığa işaret edecek şekilde başka bir varlık başvurusu gezinti özelliğini ayarlayarak olabilir. Örneğin:  
+Son olarak, daha önce izlenmekte olan başka bir varlığa bağlanarak içeriğe yeni bir varlık ekleyebilirsiniz.
+Bu, yeni varlığı başka bir varlığın koleksiyon gezintisi özelliğine ekleyerek veya başka bir varlığın başvuru gezintisi özelliğini yeni varlığa işaret etmek üzere ayarlayarak olabilir. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -77,11 +77,11 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Henüz bu yeni varlıklar ardından izlenen, tüm eklenen varlık olmayan diğer varlıklara başvurular varsa, bu örnekler için Not bağlamına da eklenir ve SaveChanges adlı bir sonraki zamandan veritabanına eklenir.  
+Eklenmekte olan varlık henüz izlenmeyen diğer varlıklara başvurular içeriyorsa, bu yeni varlıkların de bağlamına ekleneceğini ve SaveChanges 'in bir sonraki çağrılışında veritabanına eklenebileceğini unutmayın.  
 
-## <a name="attaching-an-existing-entity-to-the-context"></a>Var olan bir varlığa bağlamına ekleme  
+## <a name="attaching-an-existing-entity-to-the-context"></a>Varolan bir varlığı bağlama iliştirme  
 
-' İniz varsa zaten bildiğiniz bir varlık veritabanı ancak bağlam üzerinde olan DB Attach yöntemi kullanarak varlık izlemek için size daha sonra şu anda bağlam tarafından izlenmiyor bulunmaktadır. Varlık bağlamı değişmemiş durumda olacaktır. Örneğin:  
+Veritabanında zaten var olduğunu bildiğiniz ancak şu anda bağlam tarafından izlenmekte olan bir varlığınız varsa, DbSet üzerinde Attach metodunu kullanarak varlığı izlemek için bağlama söyleyebilirsiniz. Varlık bağlamda değiştirilmemiş durumda olacaktır. Örnek:  
 
 ``` csharp
 var existingBlog = new Blog { BlogId = 1, Name = "ADO.NET Blog" };
@@ -96,9 +96,9 @@ using (var context = new BloggingContext())
 }
 ```  
 
-SaveChanges ekli varlık herhangi bir değişiklik yapmadan çağrılırsa hiçbir değişiklik veritabanına yapılan olduğunu unutmayın. Varlık durumda olmasıdır.  
+SaveChanges, eklenen varlığın başka bir düzenlemesi yapılmadan çağrılırsa veritabanına hiçbir değişiklik yapılmadığını unutmayın. Bunun nedeni, varlığın Unchanged durumda olması.  
 
-Var olan bir varlığa bağlamına eklemek için başka bir Unchanged olarak kendi durumunu değiştirmek için yoludur. Örneğin:  
+Var olan bir varlığı bağlama eklemek için başka bir yöntem de durumunu değiştirilmemiş olarak değiştirir. Örnek:  
 
 ``` csharp
 var existingBlog = new Blog { BlogId = 1, Name = "ADO.NET Blog" };
@@ -113,12 +113,12 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Bu örneklerin her ikisi için iliştirilmekte varlık değil henüz izlenen diğer varlıklara başvurular varsa, ardından bu yeni varlıklar ayrıca bağlı değişmeden durumunda içeriği dikkat edin.  
+Bu örneklerin her ikisi için de iliştirilmekte olan varlık henüz izlenmeyen diğer varlıklara başvurular içeriyorsa, bu yeni varlıkların de Unchanged durumunda içeriğe eklendiği unutulmamalıdır.  
 
-## <a name="attaching-an-existing-but-modified-entity-to-the-context"></a>Değiştirilen varlık içeriği ancak mevcut bir ekleme  
+## <a name="attaching-an-existing-but-modified-entity-to-the-context"></a>Var olan ancak değiştirilen bir varlığı içeriğe ekleme  
 
-' İniz varsa zaten bildiğiniz bir varlık veritabanında ancak varlık ekleme ve değiştirme için durumunu ayarlamak için bağlam söyleyebilirsiniz sonra hangi değişiklikler yapılmıştır bulunmaktadır.
-Örneğin:  
+Veritabanında zaten var olan ancak hangi değişikliklerin yapıldığını bildiğiniz bir varlığınız varsa, bağlamı eklemek ve durumunu değiştirilme olarak ayarlamak için bağlam söyleyebilirsiniz.
+Örnek:  
 
 ``` csharp
 var existingBlog = new Blog { BlogId = 1, Name = "ADO.NET Blog" };
@@ -133,14 +133,14 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Değiştirilen için durum değiştirdiğinizde varlığın tüm özellikleri değiştirilmiş olarak işaretlenir ve SaveChanges çağrıldığında tüm özellik değerlerini veritabanına gönderilir.  
+Durumu değiştirildi olarak değiştirdiğinizde, varlığın tüm özellikleri değiştirilmiş olarak işaretlenir ve SaveChanges çağrıldığında tüm özellik değerleri veritabanına gönderilir.  
 
-İliştirilmekte varlık değil henüz izlenen diğer varlıklara başvurular varsa, ardından bu yeni varlıklar bağlı değişmeden durumunda içeriği unutmayın; bunlar otomatik olarak değişiklik yapılamaz.
-Değiştirilen işaretlenmiş olması gereken birden fazla varlık olduğunda durumu bunların her biri için ayrı ayrı ayarlamanız gerekir.  
+İliştirilmekte olan varlık henüz izlenmeyen diğer varlıklara başvurular içeriyorsa, bu yeni varlıkların, değiştirilmemiş durumdaki bir içeriğe eklendiği, otomatik olarak değiştirilme yapılmayacağını unutmayın.
+Değiştirilmiş olarak işaretlenmesi gereken birden çok varlık varsa, bu varlıkların her biri için durumu ayrı ayrı ayarlamanız gerekir.  
 
-## <a name="changing-the-state-of-a-tracked-entity"></a>İzlenen varlık durumu değiştirme  
+## <a name="changing-the-state-of-a-tracked-entity"></a>İzlenen bir varlığın durumunu değiştirme  
 
-Kendi girişinde durum özelliğini ayarlayarak zaten izlenmekte olan varlık durumunu değiştirebilirsiniz. Örneğin:  
+Girdisinde durum özelliğini ayarlayarak zaten izlenmekte olan bir varlığın durumunu değiştirebilirsiniz. Örnek:  
 
 ``` csharp
 var existingBlog = new Blog { BlogId = 1, Name = "ADO.NET Blog" };
@@ -156,13 +156,13 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Ekleme veya iliştirme zaten izlenen bir varlık için arama da varlık durumu değişikliği için kullanılabileceğini unutmayın. Örneğin, Attach Added durumda olan bir varlık için çağırma durumuna Unchanged olarak değişecektir.  
+Zaten izlenen bir varlık için Add veya Attach çağrısı, varlık durumunu değiştirmek için de kullanılabilir. Örneğin, şu anda eklenmiş durumdaki bir varlık için Iliştirme çağrısı, durumunu değiştirilmemiş olarak değiştirecek.  
 
-## <a name="insert-or-update-pattern"></a>Ekleme veya güncelleştirme deseni  
+## <a name="insert-or-update-pattern"></a>Ekleme veya güncelleştirme stili  
 
-Yeni (bir veritabanı insert sonucu olarak) bir varlık eklemek veya mevcut olarak bir varlık eklemek ve (veritabanı güncelleştirmesindeki kaynaklanan) değiştirilmiş olarak işaretleyin için bazı uygulamalar için yaygın bir düzen olan birincil anahtar değerine bağlı olarak.
-Örneğin, oluşturulan veritabanı tamsayı birincil anahtarları kullanırken anahtarla bir sıfır olarak yeni bir varlık ile mevcut olarak bir sıfır olmayan anahtarına sahip bir varlık değerlendirilecek yaygındır.
-Bu düzen, birincil anahtar değeri üzerinde bir denetimi göre varlık durumu ayarlayarak gerçekleştirilebilir. Örneğin:  
+Bazı uygulamalar için ortak bir model, yeni olarak bir varlık eklemektir (veritabanı eklemeye yol açar) ya da bir varlığı mevcut olarak ekler ve birincil anahtarın değerine bağlı olarak değiştirilmiş olarak işaretler (bir veritabanı güncelleştirmesine yol açar).
+Örneğin, veritabanı tarafından oluşturulan tamsayı birincil anahtarları kullanılırken, bir varlığı, sıfır olmayan bir anahtarla yeni bir varlık ve var olan sıfır olmayan bir anahtarla değerlendirmek yaygındır.
+Bu model, birincil anahtar değerinin bir denetimine göre varlık durumu ayarlanarak elde edilebilir. Örnek:  
 
 ``` csharp
 public void InsertOrUpdate(Blog blog)
@@ -178,4 +178,4 @@ public void InsertOrUpdate(Blog blog)
 }
 ```  
 
-Değiştirilen için durum değiştirdiğinizde varlığın tüm özellikleri değiştirilmiş olarak işaretlenir ve SaveChanges çağrıldığında tüm özellik değerlerini veritabanına gönderilir unutmayın.  
+Durumu değiştirildi olarak değiştirdiğinizde varlığın tüm özellikleri değiştirilmiş olarak işaretlenir ve SaveChanges çağrıldığında tüm özellik değerlerinin veritabanına gönderileceğini unutmayın.  

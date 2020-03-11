@@ -4,21 +4,21 @@ author: smitpatel
 ms.date: 10/03/2019
 ms.assetid: 2e187a2a-4072-4198-9040-aaad68e424fd
 uid: core/querying/complex-query-operators
-ms.openlocfilehash: 350a7fa6a3ee1de16bad4b63e10842f9356a1b60
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 44c2695ea003da043925740a52596fd27da638f8
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72186262"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417745"
 ---
 # <a name="complex-query-operators"></a>Karmaşık Sorgu İşleçleri
 
 Dil ile tümleşik sorgu (LINQ), birden çok veri kaynağını birleştiren veya karmaşık işleme olan birçok karmaşık işleç içerir. Tüm LINQ işleçleri sunucu tarafında uygun Çeviriler içermez. Bazen, tek bir formdaki bir sorgu sunucuya çevrilir ancak farklı bir biçimde yazılmışsa, sonuç aynı olsa bile bu şekilde çevrilmez. Bu sayfada bazı karmaşık işleçler ve bunların desteklenen çeşitlemeleri açıklanmaktadır. Gelecek sürümlerde, daha fazla desen tanıyabilir ve bunlara karşılık gelen çevirileri ekleyebiliriz. Ayrıca, çeviri desteğinin sağlayıcılar arasında değiştiğini aklınızda bulundurmanız önemlidir. SqlServer içinde çevrilen belirli bir sorgu, SQLite veritabanları için çalışmayabilir.
 
 > [!TIP]
-> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub üzerinde.
+> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub ' da görebilirsiniz.
 
-## <a name="join"></a>Birleştirme
+## <a name="join"></a>Birleştir
 
 LINQ JOIN işleci, her bir kaynak için anahtar seçicisine göre iki veri kaynağını bağlamanıza olanak tanır ve anahtar eşleştiğinde bir değer grubu oluşturabilirsiniz. İlişkisel veritabanlarında `INNER JOIN` doğal olarak çevirir. LINQ birleşimi dış ve iç anahtar seçicileri içerdiğinden, veritabanı tek bir JOIN koşulu gerektirir. EF Core, dış anahtar seçiciyi eşitlik için iç anahtar seçiciyle karşılaştırarak bir birleşim koşulu oluşturur. Ayrıca, anahtar seçicileri anonim türse EF Core eşitlik bileşeni yönlerini karşılaştırmak için bir JOIN koşulu oluşturur.
 
@@ -113,11 +113,11 @@ ORDER BY [p].[AuthorId]
 EF Core tarafından desteklenen toplama işleçleri şunlardır
 
 - Ortalama
-- Sayısı
+- Sayı
 - LongCount
 - Maks
 - Min
-- TOPLA
+- Toplam
 
 ## <a name="left-join"></a>Sola ekleme
 

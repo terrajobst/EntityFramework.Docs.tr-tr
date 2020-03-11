@@ -5,12 +5,12 @@ author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 9/13/2019
 uid: core/modeling/keyless-entity-types
-ms.openlocfilehash: 129e24b154ba32583435aeb742dbf478350344e8
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.openlocfilehash: 520c9ed93240c05deee36fa527a3757490fd7082
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824667"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417318"
 ---
 # <a name="keyless-entity-types"></a>Anahtarsız Varlık Türleri
 
@@ -47,7 +47,7 @@ Anahtarsız varlık türlerine yönelik ana kullanım senaryolarından bazılar�
 
 ## <a name="mapping-to-database-objects"></a>Veritabanı nesneleri eşleme
 
-`ToTable` veya `ToView` Fluent API kullanılarak, bir anahtarsız varlık türünü bir veritabanı nesnesiyle eşleme elde edilir. EF Core açısından bakıldığında, bu yöntemde belirtilen veritabanı nesnesi olan bir _görünümü_, yani bir salt okunur sorgu kaynağı olarak kabul edilir ve güncelleştirme işleminin hedefi, ekleme ya da silme işlemleri. Ancak bu, veritabanı nesnesinin gerçekten bir veritabanı görünümü olması gerektiği anlamına gelmez. Alternatif olarak, salt okunurdur olarak değerlendirilecek bir veritabanı tablosu olabilir. Buna karşılık, normal varlık türleri için EF Core, `ToTable` yönteminde belirtilen bir veritabanı nesnesinin _tablo_olarak değerlendirilebileceği anlamına gelir, yani bir sorgu kaynağı olarak kullanılabilecek ancak aynı zamanda Update, DELETE ve INSERT işlemleri tarafından hedeflenebilir. Aslında, bir veritabanı görünümü'nde adını belirtebilirsiniz. `ToTable` ve görünümü veritabanında güncelleştirilebilir olarak yapılandırılmış olduğu sürece her şeyin düzgün çalışmalıdır.
+`ToTable` veya `ToView` Fluent API kullanılarak, bir anahtarsız varlık türünü bir veritabanı nesnesiyle eşleme elde edilir. EF Core perspektifinden, bu yöntemde belirtilen veritabanı nesnesi bir _görünümdir_, yani salt okunurdur bir sorgu kaynağı olarak kabul edilir ve güncelleştirme, ekleme veya silme işlemlerinin hedefi olamaz. Ancak bu, veritabanı nesnesinin gerçekten bir veritabanı görünümü olması gerektiği anlamına gelmez. Alternatif olarak, salt okunurdur olarak değerlendirilecek bir veritabanı tablosu olabilir. Buna karşılık, normal varlık türleri için EF Core, `ToTable` yönteminde belirtilen bir veritabanı nesnesinin _tablo_olarak değerlendirilebileceği anlamına gelir, yani bir sorgu kaynağı olarak kullanılabilecek ancak aynı zamanda Update, DELETE ve INSERT işlemleri tarafından hedeflenebilir. Aslında, `ToTable` ' de bir veritabanı görünümünün adını belirtebilir ve görünümün veritabanında güncelleştirimek üzere yapılandırıldığı sürece her şey iyi çalışmalıdır.
 
 > [!NOTE]
 > `ToView`, nesnenin veritabanında zaten var olduğunu ve geçişler tarafından oluşturulmayacak olduğunu varsayar.
@@ -57,7 +57,7 @@ Anahtarsız varlık türlerine yönelik ana kullanım senaryolarından bazılar�
 Aşağıdaki örnek, bir veritabanı görünümünü sorgulamak için anahtarsız varlık türlerinin nasıl kullanılacağını gösterir.
 
 > [!TIP]
-> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/KeylessEntityTypes) GitHub üzerinde.
+> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/KeylessEntityTypes) GitHub ' da görebilirsiniz.
 
 İlk olarak, basit bir Blog ve gönderi modeli tanımlayın:
 

@@ -4,18 +4,18 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 2eda668b-1e5d-487d-9a8c-0e3beef03fcb
 ms.openlocfilehash: efd646348d8a18bbeed2d0a0e708d4d36eb26eac
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182426"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417111"
 ---
 # <a name="local-data"></a>Yerel Veriler
 LINQ sorgusunun doğrudan bir DbSet 'e karşı çalıştırılması veritabanına her zaman bir sorgu gönderir, ancak şu anda DbSet. local özelliğini kullanarak bellekteki verilere erişebilirsiniz. DbContext. Entry ve DbContext. ChangeTracker. Entries yöntemlerini kullanarak varlıklarınız hakkında daha fazla bilgi için EF 'e de erişebilirsiniz. Bu konu başlığında gösterilen teknikler Code First ve EF Designer ile oluşturulan modellere eşit olarak uygulanır.  
 
 ## <a name="using-local-to-look-at-local-data"></a>Yerel verilere bakmak için yerel kullanma  
 
-DbSet 'in yerel özelliği, şu anda bağlam tarafından izlenmekte olan ve silinmiş olarak işaretlenmeyen, küme varlıklarına basit erişim sağlar. Yerel özelliğe erişim hiçbir şekilde bir sorgunun veritabanına gönderilmesine neden olmaz. Bu, genellikle bir sorgu daha önce gerçekleştirildikten sonra kullanıldığı anlamına gelir. Yük uzantısı metodu, içeriğin sonuçları izlemesi için bir sorgu yürütmek üzere kullanılabilir. Örneğin:  
+DbSet 'in yerel özelliği, şu anda bağlam tarafından izlenmekte olan ve silinmiş olarak işaretlenmeyen, küme varlıklarına basit erişim sağlar. Yerel özelliğe erişim hiçbir şekilde bir sorgunun veritabanına gönderilmesine neden olmaz. Bu, genellikle bir sorgu daha önce gerçekleştirildikten sonra kullanıldığı anlamına gelir. Yük uzantısı metodu, içeriğin sonuçları izlemesi için bir sorgu yürütmek üzere kullanılabilir. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -73,7 +73,7 @@ Bu üç noktayı gösterir:
 
 ## <a name="using-local-to-add-and-remove-entities-from-the-context"></a>Bağlamdan varlık eklemek ve kaldırmak için yerel kullanma  
 
-DbSet üzerindeki yerel özellik, olayların içeriğiyle eşitlenmiş olarak kalacak şekilde, olayları bağlayan bir [ObservableCollection](https://msdn.microsoft.com/library/ms668604.aspx) döndürür. Bu, varlıkların yerel koleksiyona ya da DbSet 'e eklenebileceği veya kaldırılabileceği anlamına gelir. Ayrıca, yeni varlıkları içeriğine getiren sorguların, yerel koleksiyonun bu varlıklarla güncelleştirilmesine neden olacağı anlamına gelir. Örneğin:  
+DbSet üzerindeki yerel özellik, olayların içeriğiyle eşitlenmiş olarak kalacak şekilde, olayları bağlayan bir [ObservableCollection](https://msdn.microsoft.com/library/ms668604.aspx) döndürür. Bu, varlıkların yerel koleksiyona ya da DbSet 'e eklenebileceği veya kaldırılabileceği anlamına gelir. Ayrıca, yeni varlıkları içeriğine getiren sorguların, yerel koleksiyonun bu varlıklarla güncelleştirilmesine neden olacağı anlamına gelir. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -155,7 +155,7 @@ Bu, tam bir WPF veri bağlama örneği için uygun bir yer değildir ancak anaht
 
 ## <a name="wpf-binding-to-navigation-properties"></a>Gezinti özelliklerine WPF bağlama  
 
-Ana/ayrıntı veri bağlama yapıyorsanız, ayrıntı görünümünü varlıklarınızın bir gezinti özelliğine bağlamak isteyebilirsiniz. Bu işi yapmanın kolay bir yolu, gezinti özelliği için bir ObservableCollection kullanmaktır. Örneğin:  
+Ana/ayrıntı veri bağlama yapıyorsanız, ayrıntı görünümünü varlıklarınızın bir gezinti özelliğine bağlamak isteyebilirsiniz. Bu işi yapmanın kolay bir yolu, gezinti özelliği için bir ObservableCollection kullanmaktır. Örnek:  
 
 ``` csharp
 public class Blog
@@ -175,7 +175,7 @@ public class Blog
 
 ## <a name="using-local-to-clean-up-entities-in-savechanges"></a>SaveChanges 'da varlıkları temizlemek için yerel kullanma  
 
-Çoğu durumda, bir gezinti özelliğinden kaldırılan varlıklar bağlamda silinmiş olarak otomatik olarak işaretlenmez. Örneğin, blog. gönderimleri koleksiyonundan bir post nesnesini kaldırırsanız, SaveChanges çağrıldığında bu gönderi otomatik olarak silinmez. Bunun silinmeli olması gerekiyorsa, bu salgze varlıklarını bulmanız ve SaveChanges 'ı veya geçersiz kılınan SaveChanges 'un bir parçası olarak bu varlıkları silinmek üzere işaretlemeniz gerekebilir. Örneğin:  
+Çoğu durumda, bir gezinti özelliğinden kaldırılan varlıklar bağlamda silinmiş olarak otomatik olarak işaretlenmez. Örneğin, blog. gönderimleri koleksiyonundan bir post nesnesini kaldırırsanız, SaveChanges çağrıldığında bu gönderi otomatik olarak silinmez. Bunun silinmeli olması gerekiyorsa, bu salgze varlıklarını bulmanız ve SaveChanges 'ı veya geçersiz kılınan SaveChanges 'un bir parçası olarak bu varlıkları silinmek üzere işaretlemeniz gerekebilir. Örnek:  
 
 ``` csharp
 public override int SaveChanges()
@@ -208,7 +208,7 @@ Bu, tam Windows Forms veri bağlama örneği için uygun bir yer değildir ancak
 
 Bu dizideki birçok örnek, bir varlık için DbEntityEntry örneği döndürmek üzere entry metodunu kullanır. Bu giriş nesnesi daha sonra varlık hakkında geçerli durumu gibi bilgi toplamak için başlangıç noktası olarak, varlık üzerinde de ilgili bir varlığı açıkça yükleme gibi işlemler gerçekleştirmek için de çalışır.  
 
-Giriş yöntemleri, bağlam tarafından izlenen birçok veya tüm varlık için DbEntityEntry nesneleri döndürür. Bu, yalnızca tek bir giriş yerine birçok varlık üzerinde bilgi toplamanıza veya işlem gerçekleştirmenize olanak tanır. Örneğin:  
+Giriş yöntemleri, bağlam tarafından izlenen birçok veya tüm varlık için DbEntityEntry nesneleri döndürür. Bu, yalnızca tek bir giriş yerine birçok varlık üzerinde bilgi toplamanıza veya işlem gerçekleştirmenize olanak tanır. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())

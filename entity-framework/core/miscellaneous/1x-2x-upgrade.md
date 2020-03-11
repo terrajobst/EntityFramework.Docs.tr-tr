@@ -5,11 +5,11 @@ ms.date: 08/13/2017
 ms.assetid: 8BD43C8C-63D9-4F3A-B954-7BC518A1B7DB
 uid: core/miscellaneous/1x-2x-upgrade
 ms.openlocfilehash: b27c09fdb6210dd7c6aa0c8bc912a8bd183c16b9
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824421"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416758"
 ---
 # <a name="upgrading-applications-from-previous-versions-to-ef-core-20"></a>Önceki sürümlerden uygulamaları EF Core 2,0 ' ye yükseltme
 
@@ -78,7 +78,7 @@ Yukarıda açıklanan ASP.NET Core 2,0 değişikliği nedeniyle, `DbContextFacto
 |:------------------------|:-------------------------------------------------------------|
 | ApplicationBasePath     | AppContext. BaseDirectory                                     |
 | ContentRootPath         | Directory.GetCurrentDirectory()                              |
-| environmentName         | Environment. GetEnvironmentVariable ("ASPNETCORE_ENVIRONMENT") |
+| EnvironmentName         | Environment. GetEnvironmentVariable ("ASPNETCORE_ENVIRONMENT") |
 
 ## <a name="design-time-working-directory-changed"></a>Tasarım zamanı çalışma dizini değişti
 
@@ -118,7 +118,7 @@ var tableName = context.Model.FindEntityType(typeof(User)).SqlServer().TableName
 var tableName = context.Model.FindEntityType(typeof(User)).Relational().TableName;
 ```
 
-`ForSqlServerToTable`gibi yöntemleri kullanmak yerine, genişletme yöntemleri artık kullanımda olan geçerli sağlayıcıyı temel alarak koşullu kod yazmak için kullanılabilir. Örneğin:
+`ForSqlServerToTable`gibi yöntemleri kullanmak yerine, genişletme yöntemleri artık kullanımda olan geçerli sağlayıcıyı temel alarak koşullu kod yazmak için kullanılabilir. Örnek:
 
 ```csharp
 modelBuilder.Entity<User>().ToTable(
@@ -135,7 +135,7 @@ EF Core iç uygulama için bir iç `IServiceProvider` (bağımlılık ekleme kap
 
 ## <a name="in-memory-databases-must-be-named"></a>Bellek içi veritabanlarının adlandırılması gerekir
 
-Genel adlandırılmamış bellek içi veritabanı kaldırılmıştır ve bunun yerine tüm bellek içi veritabanlarının adlandırılması gerekir. Örneğin:
+Genel adlandırılmamış bellek içi veritabanı kaldırılmıştır ve bunun yerine tüm bellek içi veritabanlarının adlandırılması gerekir. Örnek:
 
 ``` csharp
 optionsBuilder.UseInMemoryDatabase("MyDatabase");

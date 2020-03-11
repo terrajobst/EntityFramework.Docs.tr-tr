@@ -5,11 +5,11 @@ ms.date: 10/27/2016
 ms.assetid: 6d75b229-cc79-4d08-88cd-3a1c1b24d88f
 uid: core/miscellaneous/rc1-rc2-upgrade
 ms.openlocfilehash: 887b7cd539b9c0f5a680398f5039757420228710
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181284"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416612"
 ---
 # <a name="upgrading-from-ef-core-10-rc1-to-10-rc2"></a>EF Core 1,0 RC1 'ten 1,0 RC2 'ye yükseltme
 
@@ -17,7 +17,7 @@ Bu makalede, RC1 paketleriyle derlenmiş bir uygulamayı RC2 'ye taşımaya yön
 
 ## <a name="package-names-and-versions"></a>Paket adları ve sürümleri
 
-RC1 ve RC2 arasında "Entity Framework 7" iken "Entity Framework Core" olarak değiştiriyoruz. [Scott Hanselman tarafından bu postadaki](https://www.hanselman.com/blog/ASPNET5IsDeadIntroducingASPNETCore10AndNETCore10.aspx)değişikliğin nedenleri hakkında daha fazla bilgi edinebilirsiniz. Bu değişiklik nedeniyle, paket adlarımız `EntityFramework.*` ' dan `Microsoft.EntityFrameworkCore.*` ' e ve sürümlerimize `7.0.0-rc1-final` ' den `1.0.0-rc2-final` ' e (ya da araç için `1.0.0-preview1-final`) değişti.
+RC1 ve RC2 arasında "Entity Framework 7" iken "Entity Framework Core" olarak değiştiriyoruz. [Scott Hanselman tarafından bu postadaki](https://www.hanselman.com/blog/ASPNET5IsDeadIntroducingASPNETCore10AndNETCore10.aspx)değişikliğin nedenleri hakkında daha fazla bilgi edinebilirsiniz. Bu değişiklik nedeniyle, paket adlarımız `EntityFramework.*` 'den `Microsoft.EntityFrameworkCore.*` ve sürümlerimize `7.0.0-rc1-final` `1.0.0-rc2-final` (ya da araç için `1.0.0-preview1-final`) olarak değiştirilmiştir.
 
 **RC1 paketlerini tamamen kaldırmanız ve ardından RC2 'yi yüklemeniz gerekir.** Bazı ortak paketlere yönelik eşleme aşağıda verilmiştir.
 
@@ -35,11 +35,11 @@ RC1 ve RC2 arasında "Entity Framework 7" iken "Entity Framework Core" olarak de
 
 ## <a name="namespaces"></a>Ad Alanları
 
-Paket adlarıyla birlikte ad alanları `Microsoft.Data.Entity.*` ' dan `Microsoft.EntityFrameworkCore.*` ' e değişmiştir. Bu değişikliği, `using Microsoft.Data.Entity` ' ın bir Bul/Değiştir ile `using Microsoft.EntityFrameworkCore` ile işleyebilirsiniz.
+Paket adlarıyla birlikte `Microsoft.Data.Entity.*` ad alanları `Microsoft.EntityFrameworkCore.*`olarak değiştirilir. Bu değişikliği, `using Microsoft.EntityFrameworkCore``using Microsoft.Data.Entity` Bul/Değiştir ile işleyebilirsiniz.
 
 ## <a name="table-naming-convention-changes"></a>Tablo adlandırma kuralı değişiklikleri
 
-RC2 'de yaptığımız önemli bir işlevsel değişiklik, belirli bir varlık için yalnızca sınıf adı yerine, eşlendiği tablo adı olarak `DbSet<TEntity>` özelliğinin adını kullanmaktır. [İlgili duyuru sorununu](https://github.com/aspnet/Announcements/issues/167)bu değişiklik hakkında daha fazla bilgi edinebilirsiniz.
+RC2 'de yaptığımız önemli bir işlevsel değişiklik, belirli bir varlık için `DbSet<TEntity>` özelliğinin adını yalnızca sınıf adı yerine, eşlendiği tablo adı olarak kullanmaktır. [İlgili duyuru sorununu](https://github.com/aspnet/Announcements/issues/167)bu değişiklik hakkında daha fazla bilgi edinebilirsiniz.
 
 Mevcut RC1 uygulamaları için, RC1 adlandırma stratejisini korumak üzere `OnModelCreating` yönteminizin başlangıcına aşağıdaki kodu eklemeniz önerilir:
 
@@ -63,7 +63,7 @@ services.AddEntityFramework()
     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 ```
 
-RC2 'de `AddEntityFramework()`, `AddSqlServer()` vb. çağrıları kaldırabilirsiniz:
+RC2 'de `AddEntityFramework()`, `AddSqlServer()`, vb. çağrıları kaldırabilirsiniz:
 
 ``` csharp
 services.AddDbContext<ApplicationDbContext>(options =>
@@ -81,7 +81,7 @@ public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
 
 ## <a name="passing-in-an-iserviceprovider"></a>IServiceProvider 'a geçirme
 
-Bağlam `IServiceProvider` ' ı geçiren RC1 kodunuz varsa, bu artık ayrı bir oluşturucu parametresi yerine `DbContextOptions` ' e taşınır. Hizmet sağlayıcısını ayarlamak için `DbContextOptionsBuilder.UseInternalServiceProvider(...)` kullanın.
+Bir `IServiceProvider` bağlama sahip olan RC1 kodunuz varsa, bu artık ayrı bir oluşturucu parametresi yerine `DbContextOptions`' a taşınır. Hizmet sağlayıcısını ayarlamak için `DbContextOptionsBuilder.UseInternalServiceProvider(...)` kullanın.
 
 ### <a name="testing"></a>Test Etme
 
@@ -89,7 +89,7 @@ Bunu yapmanın en yaygın senaryosu, test edilirken bir InMemory veritabanının
 
 ### <a name="resolving-internal-services-from-application-service-provider-aspnet-core-projects-only"></a>Uygulama hizmeti sağlayıcısından Iç Hizmetleri çözme (yalnızca ASP.NET Core projeleri)
 
-Bir ASP.NET Core uygulamanız varsa ve uygulama hizmeti sağlayıcısından iç Hizmetleri çözümlemek istiyorsanız, bunu yapılandırmanıza izin veren `AddDbContext` ' ın bir aşırı yüklemesi vardır:
+Bir ASP.NET Core uygulamanız varsa ve uygulama hizmeti sağlayıcısından iç Hizmetleri çözümlemek istiyorsanız, bunu yapılandırmanıza izin veren `AddDbContext` aşırı yüklemesi vardır:
 
 ``` csharp
 services.AddEntityFrameworkSqlServer()
@@ -103,9 +103,9 @@ services.AddEntityFrameworkSqlServer()
 
 ## <a name="dnx-commands--net-cli-aspnet-core-projects-only"></a>DNX komutları = > .NET CLı (yalnızca ASP.NET Core projeleri)
 
-Daha önce ASP.NET 5 projeleri için `dnx ef` komutlarını kullandıysanız, bunlar artık `dotnet ef` komutlarına taşınmıştır. Aynı komut söz dizimi hala geçerlidir. Sözdizimi bilgileri için `dotnet ef --help` kullanabilirsiniz.
+Daha önce ASP.NET 5 projeleri için `dnx ef` komutlarını kullandıysanız, bunlar artık `dotnet ef` komutlara taşınmıştır. Aynı komut söz dizimi hala geçerlidir. Sözdizimi bilgileri için `dotnet ef --help` kullanabilirsiniz.
 
-DNX 'in .NET CLı tarafından değiştirilmeleri nedeniyle, komutların kayıtlı olduğu Yöntem RC2 'de değiştirilmiştir. Komutlar artık `project.json` ' deki bir `tools` bölümüne kaydedilir:
+DNX 'in .NET CLı tarafından değiştirilmeleri nedeniyle, komutların kayıtlı olduğu Yöntem RC2 'de değiştirilmiştir. Komutlar artık `project.json`bir `tools` bölümüne kaydedilir:
 
 ``` json
 "tools": {
@@ -120,7 +120,7 @@ DNX 'in .NET CLı tarafından değiştirilmeleri nedeniyle, komutların kayıtl�
 ```
 
 > [!TIP]  
-> Visual Studio kullanıyorsanız artık ASP.NET Core projelerine yönelik EF komutlarını çalıştırmak için Package Manager konsolunu kullanabilirsiniz (Bu, RC1 'de desteklenmez). Bunu yapmak için yine de `project.json` ' in `tools` bölümünde komutları kaydetmeniz gerekir.
+> Visual Studio kullanıyorsanız artık ASP.NET Core projelerine yönelik EF komutlarını çalıştırmak için Package Manager konsolunu kullanabilirsiniz (Bu, RC1 'de desteklenmez). Bunu yapmak için, `project.json` `tools` bölümündeki komutları kaydetmeniz gerekir.
 
 ## <a name="package-manager-commands-require-powershell-5"></a>Paket Yöneticisi komutları PowerShell 5 gerektirir
 

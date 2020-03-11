@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 000044c6-1d32-4cf7-ae1f-ea21d86ebf8f
 ms.openlocfilehash: 86389e4a3a3bac46e2a4cf2da648a4b19e29f3c3
-ms.sourcegitcommit: 299011fc4bd576eed58a4274f967639fa13fec53
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 08/21/2019
-ms.locfileid: "69886561"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417975"
 ---
 # <a name="configuration-file-settings"></a>Yapılandırma dosyası ayarları
 Entity Framework, yapılandırma dosyasından bir dizi ayar belirtilmesini sağlar. Genel EF ' de bir ' yapılandırma üzerinden kural ' prensibi: bu gönderide ele alınan tüm ayarların varsayılan bir davranışı vardır; yalnızca varsayılan değer gereksinimlerinizi karşılamıyorsa ayarı değiştirme konusunda endişelenmeniz gerekir.  
@@ -40,7 +40,7 @@ EntityFramework NuGet paketini yüklediğinizde **EntityFramework** bölümü pr
 
 Bağlantı dizeleri standart **ConnectionString** öğesine gider ve **EntityFramework** bölümünü gerektirmez.  
 
-Code First tabanlı modeller normal ADO.NET bağlantı dizelerini kullanır. Örneğin:  
+Code First tabanlı modeller normal ADO.NET bağlantı dizelerini kullanır. Örnek:  
 
 ``` xml
 <connectionStrings>
@@ -50,7 +50,7 @@ Code First tabanlı modeller normal ADO.NET bağlantı dizelerini kullanır. Ör
 </connectionStrings>
 ```  
 
-EF Designer tabanlı modeller özel EF bağlantı dizeleri kullanır. Örneğin:  
+EF Designer tabanlı modeller özel EF bağlantı dizeleri kullanır. Örnek:  
 
 ``` xml  
 <connectionStrings>
@@ -110,7 +110,7 @@ Bir örnek olarak, Entity Framework yüklediğinizde varsayılan SQL Server sağ
 
 EF 6.1 ile başlayarak, yapılandırma dosyasına dinleyici kaydedebilirsiniz. Yakalayıcılar, veritabanı sorguları yürütme, bağlantılar açma vb. gibi belirli işlemleri gerçekleştirdiğinde, ek mantık çalıştırmanızı sağlar.  
 
-Dinleyici oluşturma, **EntityFramework** bölümünün alt bölümünün altına bir **yakalayıcısı** öğesi eklenerek kaydedilir. Örneğin, aşağıdaki yapılandırma, tüm veritabanı işlemlerini konsola kaydedecek yerleşik **Databasegünlükçü** yakalayıcısını kaydeder.  
+Dinleyici oluşturma, **EntityFramework** **bölümünün alt bölümünün** altına bir **yakalayıcısı** öğesi eklenerek kaydedilir. Örneğin, aşağıdaki yapılandırma, tüm veritabanı işlemlerini konsola kaydedecek yerleşik **Databasegünlükçü** yakalayıcısını kaydeder.  
 
 ``` xml  
 <interceptors>
@@ -145,7 +145,7 @@ Bu, varsayılan olarak, uygulama her başlatıldığında günlük dosyasının 
 </interceptors>
 ```  
 
-**Databasegünlükçü** ve kayıt yaptırıcılar hakkında daha fazla bilgi için, bkz. Web [günlüğü gönderi aşv 6,1: Yeniden derleme](https://blog.oneunicorn.com/2014/02/09/ef-6-1-turning-on-logging-without-recompiling/)olmadan günlüğe kaydetme açılıyor.  
+**Databasegünlükçü** ve kayıt yaptırıcılar hakkında daha fazla bilgi için, bkz. Web günlüğü gönderi [aşv 6,1: yeniden derleme olmadan günlüğe kaydetmeyi açma](https://blog.oneunicorn.com/2014/02/09/ef-6-1-turning-on-logging-without-recompiling/).  
 
 ## <a name="code-first-default-connection-factory"></a>Code First varsayılan bağlantı fabrikası  
 
@@ -180,7 +180,7 @@ Yukarıdaki örnek, özel fabrikasının parametresiz bir oluşturucuya sahip ol
 </entityFramework>
 ```  
 
-Varsayılan bir bağlantı fabrikası ayarlamazsanız Code First, ' nin üzerine gelip `.\SQLEXPRESS`SqlConnectionFactory 'yi kullanır. SqlConnectionFactory ayrıca bağlantı dizesinin parçalarını geçersiz kılmanızı sağlayan bir oluşturucuya sahiptir. Dışında SQL Server bir örnek `.\SQLEXPRESS` kullanmak istiyorsanız, bu oluşturucuyu sunucuyu ayarlamak için kullanabilirsiniz.  
+Varsayılan bir bağlantı fabrikası ayarlamazsanız, Code First `.\SQLEXPRESS`işaret eden SqlConnectionFactory 'yi kullanır. SqlConnectionFactory ayrıca bağlantı dizesinin parçalarını geçersiz kılmanızı sağlayan bir oluşturucuya sahiptir. `.\SQLEXPRESS` dışında SQL Server bir örnek kullanmak istiyorsanız, bu oluşturucuyu sunucuyu ayarlamak için kullanabilirsiniz.  
 
 Aşağıdaki yapılandırma, Code First bir açık bağlantı dizesi kümesi olmayan bağlamlarda **MyDatabaseServer** 'ı kullanmasına neden olur.  
 
@@ -240,7 +240,7 @@ Oluşturucu parametreleri varsayılan bağlantı fabrikaları ile aynı sözdizi
 
 Entity Framework bulunan genel veritabanı başlatıcılarının birini yapılandırabilirsiniz. **Tür** özniteliği genel türler için .NET Framework biçimini kullanır.  
 
-Örneğin, Code First Migrations kullanıyorsanız, veritabanını `MigrateDatabaseToLatestVersion<TContext, TMigrationsConfiguration>` Başlatıcı kullanılarak otomatik olarak geçirilecek şekilde yapılandırabilirsiniz.  
+Örneğin, Code First Migrations kullanıyorsanız, veritabanını `MigrateDatabaseToLatestVersion<TContext, TMigrationsConfiguration>` başlatıcısı kullanılarak otomatik olarak geçirilecek şekilde yapılandırabilirsiniz.  
 
 ``` xml
 <contexts>

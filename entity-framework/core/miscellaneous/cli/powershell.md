@@ -5,11 +5,11 @@ ms.author: bricelam
 ms.date: 09/18/2018
 uid: core/miscellaneous/cli/powershell
 ms.openlocfilehash: a9ce6d5b5f36a72e3715a9de787f1f00e989a58c
-ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/23/2019
-ms.locfileid: "72811906"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416720"
 ---
 # <a name="entity-framework-core-tools-reference---package-manager-console-in-visual-studio"></a>Visual Studio 'da Entity Framework Core araçları başvurusu-Paket Yöneticisi konsolu
 
@@ -176,9 +176,9 @@ Parametreler:
 
 | Parametre | Açıklama                                                                     |
 |:----------|:--------------------------------------------------------------------------------|
-| -Zorla    | Geçişi geri alma (veritabanına uygulanan değişiklikleri geri alın). |
+| -Force    | Geçişi geri alma (veritabanına uygulanan değişiklikleri geri alın). |
 
-## <a name="scaffold-dbcontext"></a>Yapı iskelesi-DbContext
+## <a name="scaffold-dbcontext"></a>Scaffold-DbContext
 
 Bir veritabanı için `DbContext` ve varlık türleri için kod üretir. `Scaffold-DbContext` bir varlık türü oluşturmak için veritabanı tablosunun birincil anahtarı olmalıdır.
 
@@ -195,7 +195,7 @@ Parametreler:
 | -Tables \<dize [] >                | İçin varlık türleri oluşturulacak tablolar. Bu parametre atlanırsa, tüm tablolar dahil edilir.                                                                                                                                                                         |
 | -Datanot açıklamaları                   | Modeli yapılandırmak için öznitelikleri kullanın (mümkün olduğunda). Bu parametre atlanırsa yalnızca Fluent API kullanılır.                                                                                                                                                      |
 | -UseDatabaseNames                  | Tablo ve sütun adlarını tam olarak veritabanında göründükleri gibi kullanın. Bu parametre atlanırsa, veritabanı adları C# ad stili kurallarıyla daha yakından uyumlu olacak şekilde değiştirilir.                                                                                       |
-| -Zorla                             | Varolan dosyaların üzerine yaz.                                                                                                                                                                                                                                               |
+| -Force                             | Varolan dosyaların üzerine yaz.                                                                                                                                                                                                                                               |
 
 Örnek:
 
@@ -217,7 +217,7 @@ Parametreler:
 
 | Parametre                | Açıklama                                                                                                                                                                                                                |
 |:-------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| *-* \<dizeden >        | Geçiş başlatılıyor. Geçişler, ada veya KIMLIĞE göre tanımlanabilir. 0 sayısı, *ilk geçişten önceki*anlamına gelen özel bir durumdur. Varsayılan değer 0 ' dır.                                                              |
+| *-* \<dizeden >        | Geçiş başlatılıyor. Geçişler, ada veya KIMLIĞE göre tanımlanabilir. 0 sayısı, *ilk geçişten önceki*anlamına gelen özel bir durumdur. Varsayılan ayar: 0.                                                              |
 | *-* \<dize >          | Son geçiş. Son geçişin varsayılan değeri.                                                                                                                                                                      |
 | <nobr>-Idempotent</nobr> | Herhangi bir geçişte veritabanında kullanılabilecek bir betik oluşturun.                                                                                                                                                         |
 | -Output \<dize >        | Sonucun yazılacağı dosya. Bu parametre atlanırsa dosya, uygulamanın çalışma zamanı dosyaları oluşturulduğu klasörde oluşturulmuş bir adla oluşturulur, örneğin: */obj/Debug/netcoreapp2,/ghbkztfz.exe*. |

@@ -3,15 +3,16 @@ title: İlişkiler, gezinti özellikleri ve yabancı anahtarlar-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 8a21ae73-6d9b-4b50-838a-ec1fddffcf37
-ms.openlocfilehash: cc7160f2d0ab7ac0c6009f820441c88590cacfaf
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 892e872e3cb11ea95084cf6d9ab43c8d500bc0de
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655873"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419355"
 ---
 # <a name="relationships-navigation-properties-and-foreign-keys"></a>İlişkiler, gezinti özellikleri ve yabancı anahtarlar
-Bu konu, varlıklar arasındaki ilişkileri nasıl yönettiğini Entity Framework bir genel bakış sunar. Ayrıca, ilişkilerin eşlenme ve işleme hakkında bazı yönergeler de sağlar.
+
+Bu makale, varlıklar arasındaki ilişkileri nasıl yönettiğini Entity Framework bir genel bakış sunar. Ayrıca, ilişkilerin eşlenme ve işleme hakkında bazı yönergeler de sağlar.
 
 ## <a name="relationships-in-ef"></a>EF 'teki ilişkiler
 
@@ -86,14 +87,14 @@ Aşağıdaki örneklerde, ilişkili nesneleri ilişkilendirmek için yabancı an
   ```
 
   >[!NOTE]
-  > Başvuru eklenen durumundaysa (Bu örnekte, kurs nesnesi), SaveChanges çağrılmadan önce başvuru gezintisi özelliği yeni bir nesnenin anahtar değerleriyle eşitlenmez. Nesne bağlamı, kaydedilmeden eklenen nesneler için kalıcı anahtarlar içermediğinden eşitleme gerçekleşmez. İlişkiyi ayarladığınız anda yeni nesneleri tamamen eşitlenmiş olması gerekiyorsa, aşağıdaki yöntemlerden birini kullanın. *
+  > Başvuru eklenen durumundaysa (Bu örnekte, kurs nesnesi), SaveChanges çağrılmadan önce başvuru gezintisi özelliği yeni bir nesnenin anahtar değerleriyle eşitlenmez. Nesne bağlamı, kaydedilmeden eklenen nesneler için kalıcı anahtarlar içermediğinden eşitleme gerçekleşmez. Yeni nesneler ilişkisi hemen sonra tam olarak eşitlenmiş olması gerekir, aşağıdaki yöntemlerin birini kullanın.*
 
 - Bir gezinti özelliğine yeni bir nesne atayarak. Aşağıdaki kod, kurs ile `department`arasında bir ilişki oluşturur. Nesneler bağlama eklenirse, `course` `department.Courses` koleksiyonuna de eklenir ve `course` nesnesindeki karşılık gelen yabancı anahtar özelliği departmanın anahtar özellik değerine ayarlanır.  
   ``` csharp
   course.Department = department;
   ```
 
-- İlişkiyi silmek için, gezinti özelliğini `null`olarak ayarlayın. .NET 4,0 tabanlı Entity Framework çalışıyorsanız, null olarak ayarlamadan önce ilgili ucun yüklenmesi gerekir. Örneğin:   
+- İlişkiyi silmek için, gezinti özelliğini `null`olarak ayarlayın. .NET 4,0 tabanlı Entity Framework çalışıyorsanız, null olarak ayarlamadan önce ilgili ucun yüklenmesi gerekir. Örnek:   
   ``` csharp
   context.Entry(course).Reference(c => c.Department).Load();
   course.Department = null;
@@ -166,7 +167,7 @@ Entity Framework, tanımlı ilişki tarafından döndürülen varlıkla ilişkil
 
 Bağımsız bir ilişkide, bağımlı bir nesnenin ilgili ucu, şu anda veritabanında olan yabancı anahtar değerine göre sorgulanır. Ancak, ilişki değiştirildiyse ve bağımlı nesne üzerindeki başvuru özelliği, nesne bağlamına yüklenen farklı bir Principal nesnesine işaret ediyorsa, Entity Framework istemci üzerinde tanımlanan bir ilişki oluşturmayı dener.
 
-## <a name="managing-concurrency"></a>Eşzamanlılık yönetimi
+## <a name="managing-concurrency"></a>Eşzamanlılığı yönetme
 
 Hem yabancı anahtar hem de bağımsız İlişkilendirmelerde eşzamanlılık denetimleri, modelde tanımlanan varlık anahtarlarına ve diğer varlık özelliklerine göre yapılır. Bir model oluşturmak için EF tasarımcısını kullanırken, özelliğinin eşzamanlılık için denetlenmesi gerektiğini belirtmek üzere `ConcurrencyMode` özniteliğini **fixed** olarak ayarlayın. Bir modeli tanımlamak için Code First kullanırken, eşzamanlılık için denetlenmesini istediğiniz özelliklerde `ConcurrencyCheck` ek açıklamasını kullanın. Code First ile çalışırken, özelliğin eşzamanlılık için denetlenmesi gerektiğini belirtmek için `TimeStamp` ek açıklamasını de kullanabilirsiniz. Belirli bir sınıfta yalnızca bir zaman damgası özelliğine sahip olabilirsiniz. Code First, bu özelliği veritabanında null olmayan bir alana eşleştirir.
 

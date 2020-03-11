@@ -1,73 +1,73 @@
 ---
-title: Visual Studio sürümlerine - EF6
+title: Visual Studio yayınları-EF6
 author: divega
 ms.date: 07/05/2018
 ms.assetid: 028FF890-4EDB-4F03-AE53-72F9C33EC92F
 ms.openlocfilehash: 16bcdc6d0e7c5632d4f4c06ba285a7a666f24204
-ms.sourcegitcommit: 5e11125c9b838ce356d673ef5504aec477321724
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50022257"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416942"
 ---
-# <a name="visual-studio-releases"></a>Visual Studio sürümleri
+# <a name="visual-studio-releases"></a>Visual Studio Yayınları
 
-Visual Studio'nun en son sürümü, .NET, NuGet ve Entity Framework için en yeni araçlara içerdiği için her zaman kullanılması önerilir.
-Aslında, çeşitli örnekleri ve izlenecek yollar için Entity Framework belgelerine arasında Visual Studio'nun yeni bir sürümü kullandığınız varsayılır.
+.NET, NuGet ve Entity Framework için en son Araçları içerdiğinden, her zaman Visual Studio 'nun en son sürümünü kullanmanızı öneririz.
+Aslında Entity Framework belgelerindeki çeşitli örnekler ve izlenecek yollar, Visual Studio 'nun yeni bir sürümünü kullandığınızı varsayar.
 
-İçine almak sürece kullanmak için Visual Studio'nun eski sürümlerini Entity Framework'ün farklı sürümlerini bazı farklılıklar hesap ancak mümkündür:
+Ancak bazı farklılıklar dikkate aldığından, farklı Entity Framework sürümleriyle Visual Studio 'nun eski sürümlerini kullanmak mümkündür:
 
-## <a name="visual-studio-2017-157-and-newer"></a>Visual Studio 2017 15.7 ve üzeri
+## <a name="visual-studio-2017-157-and-newer"></a>Visual Studio 2017 15,7 ve üzeri
 
-- Visual Studio'nun bu sürümü, Entity Framework Araçları ve EF 6.2 çalışma zamanı en son sürümünü içerir ve ek kurulum adımı gerektirmez.
-Bkz: [yenilikler](~/ef6/what-is-new/index.md) bu sürümler hakkında daha fazla ayrıntı için.
-- Entity Framework EF araçları kullanarak yeni projelere ekleme EF 6.2 NuGet paketini otomatik olarak ekler.
-El ile yüklemek veya yükseltme çevrimiçi herhangi EF NuGet paketine kullanılabilir.
-- Varsayılan olarak, Visual Studio'nun bu sürümü ile kullanılabilir SQL Server örneği ifadesini MSSQLLocalDB adlı bir LocalDB örneğidir.
-Bağlantı dizesi kullanması gereken sunucu bölümü "(localdb)\\ifadesini MSSQLLocalDB".
-Ön ekine sahip bir verbatim dizesi kullanmayı unutmayın `@` veya çift ters eğik çizgi "\\\\" C# kodunda belirtmek için bir bağlantı dizesi.  
+- Visual Studio 'nun bu sürümü Entity Framework araçları ve EF 6,2 çalışma zamanının en son sürümünü içerir ve ek kurulum adımları gerektirmez.
+Bu sürümler hakkında daha fazla [ayrıntı için bkz. yenilikler.](~/ef6/what-is-new/index.md)
+- EF araçlarını kullanarak yeni projelere Entity Framework eklemek, EF 6,2 NuGet paketini otomatik olarak ekler.
+Çevrimiçi kullanılabilir olan herhangi bir EF NuGet paketini el ile yükleyebilir veya yükseltebilirsiniz.
+- Varsayılan olarak, Visual Studio 'nun bu sürümüyle birlikte sunulan SQL Server örneği, MSSQLLocalDB adlı bir LocalDB örneğidir.
+Kullanmanız gereken bağlantı dizesinin sunucu bölümü "(LocalDB)\\MSSQLLocalDB" dir.
+C# Kodda bir bağlantı dizesi belirtirken `@` veya çift ters eğik çizgi "\\\\" önekli bir tam dize kullanmayı unutmayın.  
 
 
-## <a name="visual-studio-2015-to-visual-studio-2017-156"></a>Visual Studio 2015 için Visual Studio 2017 15.6
+## <a name="visual-studio-2015-to-visual-studio-2017-156"></a>Visual Studio 2015-Visual Studio 2017 15,6
 
-- Visual Studio'nun bu sürümleri, Entity Framework Araçları ve çalışma zamanı 6.1.3 içerir.
-Bkz: [son sürümleri](~/ef6/what-is-new/past-releases.md#ef-613) bu sürümler hakkında daha fazla ayrıntı için.
-- Entity Framework EF araçları kullanarak yeni projelere ekleme 6.1.3 EF otomatik olarak eklenir NuGet paketi.
-El ile yüklemek veya yükseltme çevrimiçi herhangi EF NuGet paketine kullanılabilir.
-- Varsayılan olarak, Visual Studio'nun bu sürümü ile kullanılabilir SQL Server örneği ifadesini MSSQLLocalDB adlı bir LocalDB örneğidir.
-Bağlantı dizesi kullanması gereken sunucu bölümü "(localdb)\\ifadesini MSSQLLocalDB".
-Ön ekine sahip bir verbatim dizesi kullanmayı unutmayın `@` veya çift ters eğik çizgi "\\\\" C# kodunda belirtmek için bir bağlantı dizesi.  
+- Visual Studio 'nun bu sürümleri Entity Framework araçları ve çalışma zamanı 6.1.3 içerir.
+Bu sürümler hakkında daha fazla bilgi için bkz. [Geçmiş yayınlar](~/ef6/what-is-new/past-releases.md#ef-613) .
+- EF araçlarını kullanarak yeni projelere Entity Framework eklemek, EF 6.1.3 NuGet paketini otomatik olarak ekler.
+Çevrimiçi kullanılabilir olan herhangi bir EF NuGet paketini el ile yükleyebilir veya yükseltebilirsiniz.
+- Varsayılan olarak, Visual Studio 'nun bu sürümüyle birlikte sunulan SQL Server örneği, MSSQLLocalDB adlı bir LocalDB örneğidir.
+Kullanmanız gereken bağlantı dizesinin sunucu bölümü "(LocalDB)\\MSSQLLocalDB" dir.
+C# Kodda bir bağlantı dizesi belirtirken `@` veya çift ters eğik çizgi "\\\\" önekli bir tam dize kullanmayı unutmayın.  
 
 
 ## <a name="visual-studio-2013"></a>Visual Studio 2013
-- Visual Studio'nun bu sürümü, içerir ve Entity Framework Araçları ve çalışma zamanı sürümünü daha eski.
-Entity Framework Araçları 6.1.3, yükseltmeniz kesinlikle önerilir kullanarak [yükleyici](https://www.microsoft.com/download/details.aspx?id=40762) Microsoft Download Center'daki kullanılabilir.
-Bkz: [son sürümleri](~/ef6/what-is-new/past-releases.md#ef-613) bu sürümler hakkında daha fazla ayrıntı için.
-- Entity Framework yükseltilen EF araçları kullanarak yeni projelere ekleme 6.1.3 EF otomatik olarak eklenir NuGet paketi.
-El ile yüklemek veya yükseltme çevrimiçi herhangi EF NuGet paketine kullanılabilir.
-- Varsayılan olarak, Visual Studio'nun bu sürümü ile kullanılabilir SQL Server örneği ifadesini MSSQLLocalDB adlı bir LocalDB örneğidir.
-Bağlantı dizesi kullanması gereken sunucu bölümü "(localdb)\\ifadesini MSSQLLocalDB".
-Ön ekine sahip bir verbatim dizesi kullanmayı unutmayın `@` veya çift ters eğik çizgi "\\\\" C# kodunda belirtmek için bir bağlantı dizesi.  
+- Visual Studio 'nun bu sürümü, Entity Framework araçları ve çalışma zamanının daha eski bir sürümünü içerir.
+Microsoft Indirme merkezi 'nde bulunan [yükleyiciyi](https://www.microsoft.com/download/details.aspx?id=40762) kullanarak Entity Framework Tools 6.1.3 sürümüne yükseltmeniz önerilir.
+Bu sürümler hakkında daha fazla bilgi için bkz. [Geçmiş yayınlar](~/ef6/what-is-new/past-releases.md#ef-613) .
+- Yükseltilen EF araçlarını kullanarak yeni projelere Entity Framework eklemek, EF 6.1.3 NuGet paketini otomatik olarak ekler.
+Çevrimiçi kullanılabilir olan herhangi bir EF NuGet paketini el ile yükleyebilir veya yükseltebilirsiniz.
+- Varsayılan olarak, Visual Studio 'nun bu sürümüyle birlikte sunulan SQL Server örneği, MSSQLLocalDB adlı bir LocalDB örneğidir.
+Kullanmanız gereken bağlantı dizesinin sunucu bölümü "(LocalDB)\\MSSQLLocalDB" dir.
+C# Kodda bir bağlantı dizesi belirtirken `@` veya çift ters eğik çizgi "\\\\" önekli bir tam dize kullanmayı unutmayın.  
 
 ## <a name="visual-studio-2012"></a>Visual Studio 2012
 
-- Visual Studio'nun bu sürümü, içerir ve Entity Framework Araçları ve çalışma zamanı sürümünü daha eski.
-Entity Framework Araçları 6.1.3, yükseltmeniz kesinlikle önerilir kullanarak [yükleyici](https://www.microsoft.com/download/details.aspx?id=40762) Microsoft Download Center'daki kullanılabilir.
-Bkz: [son sürümleri](~/ef6/what-is-new/past-releases.md#ef-613) bu sürümler hakkında daha fazla ayrıntı için.
-- Entity Framework yükseltilen EF araçları kullanarak yeni projelere ekleme 6.1.3 EF otomatik olarak eklenir NuGet paketi.
-El ile yüklemek veya yükseltme çevrimiçi herhangi EF NuGet paketine kullanılabilir.
-- Varsayılan olarak, Visual Studio'nun bu sürümü ile kullanılabilir SQL Server örneği v11.0 adlı bir LocalDB örneğidir.
-Bağlantı dizesi kullanması gereken sunucu bölümü "(localdb)\\v11.0".
-Ön ekine sahip bir verbatim dizesi kullanmayı unutmayın `@` veya çift ters eğik çizgi "\\\\" C# kodunda belirtmek için bir bağlantı dizesi.  
+- Visual Studio 'nun bu sürümü, Entity Framework araçları ve çalışma zamanının daha eski bir sürümünü içerir.
+Microsoft Indirme merkezi 'nde bulunan [yükleyiciyi](https://www.microsoft.com/download/details.aspx?id=40762) kullanarak Entity Framework Tools 6.1.3 sürümüne yükseltmeniz önerilir.
+Bu sürümler hakkında daha fazla bilgi için bkz. [Geçmiş yayınlar](~/ef6/what-is-new/past-releases.md#ef-613) .
+- Yükseltilen EF araçlarını kullanarak yeni projelere Entity Framework eklemek, EF 6.1.3 NuGet paketini otomatik olarak ekler.
+Çevrimiçi kullanılabilir olan herhangi bir EF NuGet paketini el ile yükleyebilir veya yükseltebilirsiniz.
+- Varsayılan olarak, Visual Studio 'nun bu sürümüyle birlikte sunulan SQL Server örneği, v 11.0 adlı bir LocalDB örneğidir.
+Kullanmanız gereken bağlantı dizesinin sunucu bölümü "(LocalDB)\\v 11.0" dir.
+C# Kodda bir bağlantı dizesi belirtirken `@` veya çift ters eğik çizgi "\\\\" önekli bir tam dize kullanmayı unutmayın.  
 
 ## <a name="visual-studio-2010"></a>Visual Studio 2010
 
-- Entity Framework Tools sürümü Visual Studio'nun bu sürümü ile Entity Framework 6 çalışma zamanı ile uyumlu değildir ve yükseltilemez.
-- Varsayılan olarak Entity Framework Araçları Entity Framework 4.0 projelerinize ekler.
-Daha yeni sürümlerinden hiçbirini EF kullanan uygulamalar oluşturmak için önce yüklemeniz gerekir [NuGet paket yöneticisini uzantısı](https://marketplace.visualstudio.com/items?itemName=NuGetTeam.NuGetPackageManager).
-- Varsayılan olarak, tüm kod oluşturma EF araçları sürümünde EntityObject ve Entity Framework 4'te temel alır.
-DbContext ve Entity Framework 5 DbContext kod oluşturma şablonlar yükleyerek dayalı için kod oluşturma geçiş öneririz [C#](https://marketplace.visualstudio.com/items?itemName=EntityFrameworkTeam.EF5xDbContextGeneratorforC) veya [Visual Basic](https://marketplace.visualstudio.com/items?itemName=EntityFrameworkTeam.EF5xDbContextGeneratorforVBNET).
-- NuGet Paket Yöneticisi Uzantıları yükledikten sonra el ile yükleyebilir veya çevrimiçi tüm kullanılabilir EF NuGet paketini yükseltin ve EF6 kod bir tasarımcı gerektirmeyen ilk ile kullanın.
-- Varsayılan olarak, SQL Server, Visual Studio'nun bu sürümü ile kullanılabilir SQLEXPRESS adlı SQL Server Express örneğidir.
-Bağlantı dizesi kullanması gereken sunucu bölümü ". \\SQLEXPRESS ".
-Ön ekine sahip bir verbatim dizesi kullanmayı unutmayın `@` veya çift ters eğik çizgi "\\\\" C# kodunda belirtmek için bir bağlantı dizesi.
+- Visual Studio 'nun bu sürümü ile kullanılabilen Entity Framework Tools sürümü Entity Framework 6 çalışma zamanı ile uyumlu değildir ve yükseltilemez.
+- Varsayılan olarak, Entity Framework araçları projelerinize Entity Framework 4,0 ekler.
+EF 'in daha yeni sürümlerini kullanan uygulamalar oluşturmak için önce [NuGet Paket Yöneticisi uzantısını](https://marketplace.visualstudio.com/items?itemName=NuGetTeam.NuGetPackageManager)yüklemeniz gerekir.
+- Varsayılan olarak, EF araçları sürümündeki tüm kod üretimi EntityObject ve Entity Framework 4 ' ü temel alır.
+Veya [C#](https://marketplace.visualstudio.com/items?itemName=EntityFrameworkTeam.EF5xDbContextGeneratorforC) [Visual Basic](https://marketplace.visualstudio.com/items?itemName=EntityFrameworkTeam.EF5xDbContextGeneratorforVBNET)için DbContext kod oluşturma şablonlarını yükleyerek, kod oluşturma 'yı DbContext ve Entity Framework 5 ' e dayandırarak geçiş yapmanızı öneririz.
+- NuGet Paket Yöneticisi uzantıları 'nı yükledikten sonra çevrimiçi kullanılabilir olan herhangi bir EF NuGet paketini el ile yükleyebilir veya yükseltebilirsiniz ve tasarımcı gerektirmeyen Code First ile EF6 kullanabilirsiniz.
+- Varsayılan olarak, Visual Studio 'nun bu sürümüyle birlikte sunulan SQL Server örneği SQLEXPRESS adlı SQL Server Express.
+Bağlantı dizesinin kullanmanız gereken sunucu bölümü ".\\SQLEXPRESS ".
+C# Kodda bir bağlantı dizesi belirtirken `@` veya çift ters eğik çizgi "\\\\" önekli bir tam dize kullanmayı unutmayın.

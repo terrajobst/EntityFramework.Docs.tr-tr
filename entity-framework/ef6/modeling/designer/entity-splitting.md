@@ -1,51 +1,51 @@
 ---
-title: Tasarımcı varlık bölme - EF6
+title: Tasarımcı varlık bölünmesi-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: aa2dd48a-1f0e-49dd-863d-d6b4f5834832
 ms.openlocfilehash: ba1895ae491cec909ff88a8784eea82f1876f595
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490863"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418464"
 ---
-# <a name="designer-entity-splitting"></a>Tasarımcı varlık bölme
-Bu izlenecek yol, bir model Entity Framework Designer (EF Designer) ile değiştirerek, iki tabloya bir varlık türü eşlemeyle ilgili bilgi gösterir. Tablolar, bir ortak anahtar paylaştığınızda bir varlık için birden çok tablo eşleyebilirsiniz. İki tabloya bir varlık türü eşlemek için uygulanacak kavramları kolayca ikiden fazla tablolara eşleme bir varlık türü için genişletilir.
+# <a name="designer-entity-splitting"></a>Tasarımcı varlığı bölme
+Bu izlenecek yol, bir modeli Entity Framework Designer (EF Designer) ile değiştirerek bir varlık türünün iki tabloya nasıl eşleneceğini gösterir. Tablolar ortak bir anahtar paylaşıyorsa, bir varlığı birden çok tabloya eşleyebilirsiniz. Bir varlık türünü iki tabloya eşlemek için uygulanan kavramlar, bir varlık türünü ikiden fazla tabloya eşlemek için kolayca genişletilir.
 
-EF Designer ile çalışırken, kullanılan ana windows aşağıdaki resimde gösterilmektedir.
+Aşağıdaki görüntüde, EF Designer ile çalışırken kullanılan ana pencereler gösterilmektedir.
 
-![EF Designer](~/ef6/media/efdesigner.png)
+![EF Tasarımcısı](~/ef6/media/efdesigner.png)
 
 ## <a name="prerequisites"></a>Önkoşullar
 
-Visual Studio 2012 veya Visual Studio 2010, Ultimate, Premium, Professional veya Web Express sürümü.
+Visual Studio 2012 veya Visual Studio 2010, Ultimate, Premium, Professional veya Web Express Edition.
 
-## <a name="create-the-database"></a>Veritabanı oluşturma
+## <a name="create-the-database"></a>Veritabanını oluşturma
 
-Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio sürümüne bağlı olarak farklılık gösterir:
+Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio sürümüne bağlı olarak farklılık gösteren bir sürümdür:
 
--   Visual Studio 2012 kullanıyorsanız, bir LocalDB veritabanına oluşturmayı.
--   Visual Studio 2010 kullanıyorsanız, SQL Express veritabanı oluşturursunuz.
+-   Visual Studio 2012 kullanıyorsanız, LocalDB veritabanı oluşturursunuz.
+-   Visual Studio 2010 kullanıyorsanız, bir SQL Express veritabanı oluşturursunuz.
 
-İlk iki tablolarla birleştirmek için tek bir varlığa kullanacağız bir veritabanı oluşturacağız.
+İlk olarak, tek bir varlıkta birleştirme yapacağımız iki tablo içeren bir veritabanı oluşturacağız.
 
--   Visual Studio'yu Aç
--   **Görünüm -&gt; Sunucu Gezgini**
--   Sağ tıklayın **veri bağlantıları -&gt; bağlantı ekle...**
--   Sunucu gezgininden veritabanına bağlamadıysanız seçmeniz gerekir önce **Microsoft SQL Server** veri kaynağı
--   LocalDB veya hangisinin bağlı olarak yüklediğiniz SQL Express için Bağlan
--   Girin **EntitySplitting** veritabanı adı
--   Seçin **Tamam** ve bir yeni bir veritabanı oluşturmak istiyorsanız istenir **Evet**
--   Yeni veritabanı şimdi sunucu Gezgini'nde görünür.
+-   Visual Studio’yu açın
+-   **&gt; Sunucu Gezgini görüntüle**
+-   Veri bağlantıları ' na sağ tıklayın **&gt; bağlantı ekle...**
+-   Sunucu Gezgini bir veritabanına bağlı değilseniz, veri kaynağı olarak **Microsoft SQL Server** seçmeniz gerekir
+-   Hangi hangisinin yüklü olduğuna bağlı olarak, LocalDB veya SQL Express 'e bağlanın
+-   Veritabanı adı olarak **Entitybölünmesi** girin
+-   **Tamam** ' ı seçtiğinizde, yeni bir veritabanı oluşturmak isteyip istemediğiniz sorulur, **Evet** ' i seçin.
+-   Yeni veritabanı artık Sunucu Gezgini görüntülenir
 -   Visual Studio 2012 kullanıyorsanız
-    -   Sunucu Gezgini veritabanı üzerinde sağ tıklayıp **yeni sorgu**
-    -   Yeni bir sorguda aşağıdaki SQL kopyalayın, sonra sağ tıklatın ve sorgu **Yürüt**
+    -   Sunucu Gezgini veritabanında veritabanına sağ tıklayın ve **Yeni sorgu** ' yı seçin.
+    -   Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **Yürüt** ' ü seçin.
 -   Visual Studio 2010 kullanıyorsanız
-    -   Seçin **veri -&gt; Transact - SQL Düzenleyicisi&gt; yeni bağlantı...**
-    -   Girin **.\\ SQLEXPRESS** tıklayın ve sunucu adı olarak **Tamam**
-    -   Seçin **EntitySplitting** veritabanı açılır menüden aşağı sorgu Düzenleyicisi'ni üstünde
-    -   Yeni bir sorguda aşağıdaki SQL kopyalayın, sonra sağ tıklatın ve sorgu **SQL Yürüt**
+    -   **Veri&gt; Transact SQL Düzenleyicisi-&gt; yeni sorgu bağlantısı ' nı seçin...**
+    -   Sunucu adı olarak **.\\SQLExpress** girin ve **Tamam 'a** tıklayın
+    -   Sorgu düzenleyicisinin en üstündeki açılan listeden **Entitybölünmesi** veritabanını seçin
+    -   Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **SQL 'ı Yürüt** ' ü seçin.
 
 ``` SQL
 CREATE TABLE [dbo].[Person] (
@@ -66,48 +66,48 @@ CONSTRAINT [FK_Person_PersonInfo] FOREIGN KEY ([PersonId]) REFERENCES [dbo].[Per
 
 ## <a name="create-the-project"></a>Proje oluşturma
 
--   Üzerinde **dosya** menüsünde **yeni**ve ardından **proje**.
--   Sol bölmede **Visual C\#** ve ardından **konsol uygulaması** şablonu.
--   Girin **MapEntityToTablesSample** tıklayın ve proje adı olarak **Tamam**.
--   Tıklayın **Hayır** ilk bölümde oluşturduğunuz SQL sorguyu kaydetmek isteyip istemediğiniz sorulduğunda.
+-   **Dosya** menüsünde, **Yeni**' nin üzerine gelin ve ardından **Proje**' ye tıklayın.
+-   Sol bölmede, **Visual C\#** ' ye tıklayın ve ardından **konsol uygulaması** şablonunu seçin.
+-   Projenin adı olarak **Mapentitytotablessample** girin ve **Tamam**' a tıklayın.
+-   İlk bölümde oluşturulan SQL sorgusunu kaydetmek isteyip istemediğiniz sorulduğunda **Hayır** ' a tıklayın.
 
-## <a name="create-a-model-based-on-the-database"></a>Veritabanını temel alan bir Model oluşturma
+## <a name="create-a-model-based-on-the-database"></a>Veritabanını temel alan bir model oluşturma
 
--   Çözüm Gezgini'nde proje adına sağ tıklayın, fareyle **Ekle**ve ardından **yeni öğe**.
--   Seçin **veri** seçin ve soldaki menüden **ADO.NET varlık veri modeli** Şablonlar bölmesinde.
--   Girin **MapEntityToTablesModel.edmx** dosya adı ve ardından **Ekle**.
--   Choose Model Contents iletişim kutusunda **veritabanından Oluştur**ve ardından **sonraki.**
--   Seçin **EntitySplitting** açılan bağlantı ve **sonraki**.
--   Veritabanı nesnelerinizi seçin iletişim kutusunda yanındaki kutuyu işaretleyin **tabloları** düğümü.
-    Bu tablodan tüm ekler **EntitySplitting** veritabanı modeli.
--   **Son**'a tıklayın.
+-   Çözüm Gezgini ' de proje adına sağ tıklayın, **Ekle**' nin üzerine gelin ve ardından **Yeni öğe**' ye tıklayın.
+-   Sol menüden **verileri** seçin ve ardından şablonlar bölmesinde **ADO.net varlık veri modeli** öğesini seçin.
+-   Dosya adı için **Mapentitytotablesmodel. edmx** girin ve ardından **Ekle**' ye tıklayın.
+-   Model Içeriğini seçin iletişim kutusunda, **veritabanından oluştur**' u seçin ve ardından İleri ' ye tıklayın **.**
+-   Açılan listeden **Entitybölünmesi** bağlantısını seçin ve **İleri**' ye tıklayın.
+-   Veritabanı nesnelerinizi seçin iletişim kutusunda, **tablolar** düğümünün yanındaki kutuyu işaretleyin.
+    Bu, tüm tabloları **Entitybölünmesi** veritabanından modele ekler.
+-    **Son**' a tıklayın.
 
-Modelinizi düzenleme için bir tasarım yüzeyi sağlar, varlık Tasarımcısı görüntülenir.
+Modelinizi düzenlemekte bir tasarım yüzeyi sağlayan Entity Desisgner görüntülenir.
 
-## <a name="map-an-entity-to-two-tables"></a>Bir varlık için iki tablo eşleme
+## <a name="map-an-entity-to-two-tables"></a>Bir varlığı Iki tabloya eşleme
 
-Bu adımda güncelleştireceğiz **kişi** alınan verileri birleştirmek varlık türü **kişi** ve **PersonInfo** tablolar.
+Bu adımda **Person ve Person** **Info** tablolarından verileri birleştirmek için **kişi** varlık türünü güncelleştireceğiz.
 
--   Seçin **e-posta** ve **telefon** özelliklerini ** PersonInfo ** varlık ve ENTER tuşuna **Ctrl + X** anahtarları.
--   Seçin ** kişi ** varlık ve ENTER tuşuna **Ctrl + V** anahtarları.
--   Tasarım yüzeyinde seçin **PersonInfo** varlık ve ENTER tuşuna **Sil** klavyedeki düğmesi.
--   Tıklayın **Hayır** kaldırmak isteyip istemediğiniz sorulduğunda **PersonInfo** tablo hakkında eşlemek üzere duyuyoruz modelden **kişi** varlık.
+-    **PersonInfo **varlığının **e-posta** ve **Telefon** özelliklerini seçin ve **CTRL + X** tuşlarına basın.
+-    **Kişi **varlığını seçin ve **CTRL + V** tuşlarına basın.
+-   Tasarım yüzeyinde, **PersonInfo** varlığını seçin ve klavyede **Sil** düğmesine basın.
+-   Modelden Person (kişi) **' ı kaldırmak isteyip istemediğiniz sorulduğunda,** bu **bilgileri** **kişi** varlığıyla eşlemek istiyoruz.
 
-    ![Tabloları Sil](~/ef6/media/deletetables.png)
+    ![Tabloları sil](~/ef6/media/deletetables.png)
 
-Sonraki adımlar gerektiren **eşleşme ayrıntıları** penceresi. Bu pencere göremiyorsanız, tasarım yüzeyi ve select sağ **eşleşme ayrıntıları**.
+Sonraki adımlarda **eşleme ayrıntıları** penceresi gerekir. Bu pencereyi göremiyorsanız, tasarım yüzeyine sağ tıklayıp **eşleme ayrıntıları**' nı seçin.
 
--   Seçin **kişi** varlık türü ve tıklatın **&lt;bir tablo veya Görünüm Ekle&gt;** içinde **eşleşme ayrıntıları** penceresi.
--   Seçin ** PersonInfo ** aşağı açılan listeden.
-    **Eşleşme ayrıntıları** penceresi, varsayılan sütun eşlemelerini ile güncelleştirilir, bunlar bizim senaryomuz için bir sakınca yoktur.
+-    ** varlık** türünü seçin ve **eşleme ayrıntıları** penceresinde **&lt;tablo Ekle veya &gt;görüntüle** ' ye tıklayın.
+-   Açılan listeden **PersonInfo ** seçin.
+     **Eşleme ayrıntıları** penceresi varsayılan sütun eşlemeleriyle güncelleştirilir, bunlar senaryolarımız için uygundur.
 
-**Kişi** varlık türü için eşlenmiş artık **kişi** ve **PersonInfo** tablolar.
+ **Kişi** varlık türü artık **kişi** ve **PersonInfo** tablolarıyla eşlenir.
 
-![2 eşleme](~/ef6/media/mapping2.png)
+![Eşleme 2](~/ef6/media/mapping2.png)
 
-## <a name="use-the-model"></a>Kullanım modeli
+## <a name="use-the-model"></a>Modeli kullanma
 
--   Main yöntemine aşağıdaki kodu yapıştırın.
+-   Aşağıdaki kodu Main yöntemine yapıştırın.
 
 ``` csharp
     using (var context = new EntitySplittingEntities())
@@ -130,15 +130,15 @@ Sonraki adımlar gerektiren **eşleşme ayrıntıları** penceresi. Bu pencere g
     }
 ```
 
--   Derleme ve uygulamayı çalıştırın.
+-   Uygulamayı derleyin ve çalıştırın.
 
-Bu uygulamayı çalıştıran sonucunda veritabanında aşağıdaki T-SQL deyimlerini yürütüldü. 
+Aşağıdaki T-SQL deyimleri, bu uygulamayı çalıştırmanın bir sonucu olarak veritabanına karşı yürütüldü. 
 
--   Aşağıdaki iki **Ekle** deyimleri yürütülen bağlam yürütmenin sonucu olarak. SaveChanges(). Verilerden aldıkları **kişi** varlık ve arasında bölmek **kişi** ve **PersonInfo** tablolar.
+-   Aşağıdaki iki **Insert** deyimi, bağlamını yürütmenin sonucu olarak yürütüldü. SaveChanges (). Bunlar, **kişi** varlığındaki verileri alır ve **kişi ile Person** **Info** tabloları arasında böler.
 
-    ![1 Ekle](~/ef6/media/insert1.png)
+    ![1 ekle](~/ef6/media/insert1.png)
 
     ![2 Ekle](~/ef6/media/insert2.png)
--   Aşağıdaki **seçin** veritabanında kişiler numaralandırma sonucu olarak yürütülmesi. Verileri birleştirir **kişi** ve **PersonInfo** tablo.
+-   Veritabanındaki kişilerin numaralandırıldığı bir sonuç olarak aşağıdaki **seçim** yürütüldü. **Kişi ve Person** **Info** tablosundaki verileri birleştirir.
 
-    ![Seçim](~/ef6/media/select.png)
+    ![Şunu seçin:](~/ef6/media/select.png)

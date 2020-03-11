@@ -5,11 +5,11 @@ ms.date: 02/19/2018
 ms.assetid: 3154BF3C-1749-4C60-8D51-AE86773AA116
 uid: core/modeling/value-conversions
 ms.openlocfilehash: 93774bc1bc3887f982faeac151825a6643c1107c
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73654788"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417204"
 ---
 # <a name="value-conversions"></a>Değer Dönüştürmeleri
 
@@ -18,7 +18,7 @@ ms.locfileid: "73654788"
 
 Değer dönüştürücüler, veritabanından okuma veya yazma sırasında özellik değerlerinin dönüştürülmesine izin verir. Bu dönüştürme bir değerden diğerine (örneğin, şifreleme dizeleri) veya bir türden bir değerden başka bir türdeki bir değere (örneğin, Enum değerlerini veritabanındaki dizelerdeki veya dizeden dönüştürme) olabilir.
 
-## <a name="fundamentals"></a>Temeller
+## <a name="fundamentals"></a>Temel Konular
 
 Değer dönüştürücüler bir `ModelClrType` ve bir `ProviderClrType`bakımından belirtilmiştir. Model türü, varlık türündeki özelliğin .NET türüdür. Sağlayıcı türü, veritabanı sağlayıcısı tarafından anlaşılan .NET türüdür. Örneğin, numaralandırmaları veritabanına dizeler olarak kaydetmek için, model türü numaralandırmanın türüdür ve sağlayıcı türü `String`. Bu iki tür aynı olabilir.
 
@@ -63,7 +63,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 ## <a name="the-valueconverter-class"></a>ValueConverter sınıfı
 
-Yukarıda gösterildiği gibi `HasConversion` çağırmak, bir `ValueConverter` örneği oluşturur ve bunu özelliğinde ayarlar. `ValueConverter` bunun yerine açık bir şekilde oluşturulabilir. Örneğin:
+Yukarıda gösterildiği gibi `HasConversion` çağırmak, bir `ValueConverter` örneği oluşturur ve bunu özelliğinde ayarlar. `ValueConverter` bunun yerine açık bir şekilde oluşturulabilir. Örnek:
 
 ``` csharp
 var converter = new ValueConverter<EquineBeast, string>(

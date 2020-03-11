@@ -6,11 +6,11 @@ ms.author: ansvyryd
 ms.date: 11/05/2019
 uid: core/providers/cosmos/unstructured-data
 ms.openlocfilehash: 69f979d46174ff56310b334f28438ac271f45155
-ms.sourcegitcommit: b3cf5d2e3cb170b9916795d1d8c88678269639b1
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/30/2020
-ms.locfileid: "76888102"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417194"
 ---
 # <a name="working-with-unstructured-data-in-ef-core-azure-cosmos-db-provider"></a>EF Core Azure Cosmos DB sağlayıcısında yapılandırılmamış verilerle çalışma
 
@@ -55,7 +55,7 @@ EF Core tamamen ayırmak için, `DbContext`[Azure Cosmos DB SDK 'sının parças
 
 ## <a name="missing-property-values"></a>Özellik değerleri eksik
 
-Önceki örnekte `"TrackingNumber"` özelliğini siparişten kaldırdık. Dizin oluşturmanın Cosmos DB çalışma biçimi nedeniyle, projeksiyondan farklı bir yerde eksik özelliğe başvuruda bulunan sorgular beklenmeyen sonuçlar döndürebilir. Örneğin:
+Önceki örnekte `"TrackingNumber"` özelliğini siparişten kaldırdık. Dizin oluşturmanın Cosmos DB çalışma biçimi nedeniyle, projeksiyondan farklı bir yerde eksik özelliğe başvuruda bulunan sorgular beklenmeyen sonuçlar döndürebilir. Örnek:
 
 [!code-csharp[MissingProperties](../../../../samples/core/Cosmos/UnstructuredData/Sample.cs?name=MissingProperties)]
 

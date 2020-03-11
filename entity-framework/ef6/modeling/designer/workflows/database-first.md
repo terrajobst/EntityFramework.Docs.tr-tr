@@ -4,23 +4,23 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: cc6ffdb3-388d-4e79-a201-01ec2577c949
 ms.openlocfilehash: d40cff4ddccf43a394ef4f244653372a5a89b05a
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182459"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418359"
 ---
 # <a name="database-first"></a>Database First
 Bu video ve adım adım yönergeler, Entity Framework kullanarak Database First geliştirmeye yönelik bir giriş sağlar. Database First, varolan bir veritabanından bir modele ters mühendislik yapmanıza olanak sağlar. Model bir EDMX dosyasında (. edmx uzantılı) depolanır ve Entity Framework Designer görüntülenebilir ve düzenlenebilir. Uygulamanızda etkileşimde bulunan sınıflar, EDMX dosyasından otomatik olarak oluşturulur.
 
-## <a name="watch-the-video"></a>Videoyu izleyin
+## <a name="watch-the-video"></a>Videoyu izleme
 Bu videoda Entity Framework kullanarak Database First geliştirmeye bir giriş sunulmaktadır. Database First, varolan bir veritabanından bir modele ters mühendislik yapmanıza olanak sağlar. Model bir EDMX dosyasında (. edmx uzantılı) depolanır ve Entity Framework Designer görüntülenebilir ve düzenlenebilir. Uygulamanızda etkileşimde bulunan sınıflar, EDMX dosyasından otomatik olarak oluşturulur.
 
 **Sunulma ölçütü**: [Rowa Miller](https://romiller.com/)
 
 **Video**: [wmv](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.wmv) | [MP4](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-mp4video-databasefirst.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.zip)
 
-## <a name="pre-requisites"></a>Önkoşulların önkoşulları
+## <a name="pre-requisites"></a>Önkoşullar
 
 Bu izlenecek yolu tamamlamak için en az Visual Studio 2010 veya Visual Studio 2012 yüklü olmalıdır.
 
@@ -41,7 +41,7 @@ Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio s
 
 Şimdi veritabanını oluşturalım.
 
--   Visual Studio 'Yu aç
+-   Visual Studio’yu açın
 -   **&gt; Sunucu Gezgini görüntüle**
 -   Veri bağlantıları ' na sağ tıklayın **&gt; bağlantı ekle...**
 -   Sunucu Gezgini bir veritabanına bağlı değilseniz, veri kaynağı olarak Microsoft SQL Server seçmeniz gerekir
@@ -83,11 +83,11 @@ CREATE TABLE [dbo].[Posts] (
 
 Şeyleri basit tutmak için, veri erişimi gerçekleştirmek üzere Database First kullanan temel bir konsol uygulaması oluşturacağız:
 
--   Visual Studio 'Yu aç
+-   Visual Studio’yu açın
 -   **Dosya-&gt; yeni&gt; projesi...**
 -   Sol taraftaki menüden ve **konsol uygulamasından** **Windows** ' u seçin
 -   Ad olarak **Databasefirstsample** yazın
--   **Tamam 'ı** seçin
+-   **Tamam**’ı seçin
 
  
 

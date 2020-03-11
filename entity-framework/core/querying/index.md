@@ -4,19 +4,19 @@ author: smitpatel
 ms.date: 10/03/2019
 ms.assetid: 7c65ec3e-46c8-48f8-8232-9e31f96c277b
 uid: core/querying/index
-ms.openlocfilehash: 009235c3673a414e06d1a64f9877b60e7cde97b0
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 0e1e50d1a3f647d65301552d0a447f9fcae81438
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181925"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417689"
 ---
 # <a name="querying-data"></a>Veri Sorgulama
 
 Entity Framework Core, veritabanındaki verileri sorgulamak için dil ile tümleşik sorgu (LINQ) kullanır. LINQ, kesin tür belirtilmiş C# sorgular yazmak için (veya .net dilinizi tercih ettiğiniz) kullanmanıza olanak tanır. Veritabanı nesnelerine başvurmak için türetilmiş bağlam ve varlık sınıflarınızı kullanır. EF Core, LINQ sorgusunun bir gösterimini veritabanı sağlayıcısına geçirir. İçindeki veritabanı sağlayıcıları sırasıyla veritabanına özgü sorgu diline (örneğin, bir ilişkisel veritabanı için SQL) çevirir.
 
 > [!TIP]
-> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub üzerinde.
+> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub ' da görebilirsiniz.
 
 Aşağıdaki kod parçacıklarında Entity Framework Core ortak görevlerin nasıl elde edilebilmesi için birkaç örnek gösterilmektedir.
 

@@ -5,11 +5,11 @@ ms.date: 02/23/2018
 ms.assetid: 420AFFE7-B709-4A68-9149-F06F8746FB33
 uid: core/modeling/constructors
 ms.openlocfilehash: ddfaa8eebde388a9d3309f21b8891de593077956
-ms.sourcegitcommit: 2355447d89496a8ca6bcbfc0a68a14a0bf7f0327
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/23/2019
-ms.locfileid: "72811888"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417331"
 ---
 # <a name="entity-types-with-constructors"></a>Oluşturucularla varlık türleri
 
@@ -48,7 +48,7 @@ public class Post
 }
 ```
 
-EF Core, bir sorgunun sonuçları gibi bu türlerin örneklerini oluşturduğunda, önce varsayılan parametresiz oluşturucuyu çağırır ve sonra her bir özelliği veritabanından değer olarak ayarlar. Ancak, EF Core eşlenmiş özelliklerden eşleşen parametre adları ve türleri olan parametreli bir Oluşturucu bulursa, bunun yerine bu özellikler için değerler içeren parametreli oluşturucuyu çağırır ve her bir özelliği açıkça ayarlayameyecektir. Örneğin:
+EF Core, bir sorgunun sonuçları gibi bu türlerin örneklerini oluşturduğunda, önce varsayılan parametresiz oluşturucuyu çağırır ve sonra her bir özelliği veritabanından değer olarak ayarlar. Ancak, EF Core eşlenmiş özelliklerden eşleşen parametre adları ve türleri olan parametreli bir Oluşturucu bulursa, bunun yerine bu özellikler için değerler içeren parametreli oluşturucuyu çağırır ve her bir özelliği açıkça ayarlayameyecektir. Örnek:
 
 ``` csharp
 public class Blog
@@ -101,7 +101,7 @@ Dikkat edilmesi gerekenler:
 * Ayarlayıcıları olmayan özellikler kurala göre eşlenmedi. (Bu durumda, hesaplanan özellikler gibi eşlenmemelidir.)
 * Otomatik olarak oluşturulan anahtar değerlerini kullanmak, anahtar değerinin yeni varlıklar eklenirken anahtar Oluşturucu tarafından ayarlanması gerektiğinden, okuma-yazma olan bir anahtar özelliği gerektirir.
 
-Bu şeyleri önlemenin kolay bir yolu özel ayarlayıcıları kullanmaktır. Örneğin:
+Bu şeyleri önlemenin kolay bir yolu özel ayarlayıcıları kullanmaktır. Örnek:
 
 ``` csharp
 public class Blog

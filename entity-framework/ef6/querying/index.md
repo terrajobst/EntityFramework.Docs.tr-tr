@@ -1,21 +1,21 @@
 ---
-title: Sorgulamak ve varlıkları - EF6 bulma
+title: Varlıkları sorgulama ve bulma-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 65bb3db2-2226-44af-8864-caa575cf1b46
 ms.openlocfilehash: 29a86817e250a2f53ecaa73e8fa4bf93452f0497
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489797"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417170"
 ---
-# <a name="querying-and-finding-entities"></a>Sorgulamak ve varlıkları bulma
-Bu konu LINQ ve bulma yöntemini de dahil olmak üzere, Entity Framework kullanarak verileri sorgulamak farklı yöntemleri kapsar. Bu konuda gösterilen teknikleri Code First ve EF Designer ile oluşturulan modeller için eşit oranda geçerlidir.  
+# <a name="querying-and-finding-entities"></a>Varlıkları sorgulama ve bulma
+Bu konu, LINQ ve Find yöntemi de dahil olmak üzere Entity Framework kullanarak verileri sorgulamak için kullanabileceğiniz çeşitli yolları ele almaktadır. Bu konu başlığında gösterilen teknikler Code First ve EF Designer ile oluşturulan modellere eşit olarak uygulanır.  
 
-## <a name="finding-entities-using-a-query"></a>Bir sorgu kullanarak varlıkları bulma  
+## <a name="finding-entities-using-a-query"></a>Sorgu kullanarak varlıkları bulma  
 
-Olan DB ve IDbSet Iqueryable'a uygulayın ve veritabanında bir LINQ sorgusunu yazmak için başlangıç noktası olarak bu nedenle kullanılabilir. LINQ ilgili ayrıntılı bir tartışma için uygun bir yerde değil, ancak birkaç basit bir örnek aşağıdadır:  
+DbSet ve ıdbset IQueryable uygular ve bu nedenle veritabanına karşı bir LINQ sorgusu yazmak için başlangıç noktası olarak kullanılabilir. Bu, LINQ 'ın derinlemesine bir tartışması için uygun yer değildir, ancak birkaç basit örnek aşağıda verilmiştir:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -32,30 +32,30 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Olan DB ve IDbSet her zaman veritabanına karşı sorgular oluşturun ve zaten döndürülen varlıklara bağlamında bulunsa bile her zaman veritabanına gidiş dönüş içerecektir unutmayın. Bir sorgu veritabanında yürütüldüğü zaman:  
+DbSet ve ıdbset 'in veritabanına göre her zaman sorgu oluşturdığına ve varlıklar bağlamda zaten mevcut olsa bile her zaman veritabanına gidiş dönüş içereceği unutulmamalıdır. Veritabanına karşı bir sorgu yürütülür:  
 
-- Tarafından numaralandırılmış bir **foreach** (C#) veya **her** deyimi (Visual Basic).  
-- Bir toplama işlemi tarafından gibi numaralandırılana [ToArray](https://msdn.microsoft.com/library/bb298736), [ToDictionary](https://msdn.microsoft.com/library/system.linq.enumerable.todictionary), veya [ToList](https://msdn.microsoft.com/library/bb342261).  
-- Gibi LINQ işleçleri [ilk](https://msdn.microsoft.com/library/bb291976) veya [herhangi](https://msdn.microsoft.com/library/bb337697) en dıştaki sorgunun parçası belirtilir.  
-- Aşağıdaki yöntem de çağrıldığında: [yük](https://msdn.microsoft.com/library/system.data.entity.dbextensions.load) genişletme yöntemini bir olan DB [DbEntityEntry.Reload](https://msdn.microsoft.com/library/system.data.entity.infrastructure.dbentityentry.reload.aspx)ve Database.ExecuteSqlCommand.  
+- **Foreach** (C#) veya **her** bir (Visual Basic) ifadesi tarafından numaralandırılır.  
+- [ToArray](https://msdn.microsoft.com/library/bb298736), [ToDictionary](https://msdn.microsoft.com/library/system.linq.enumerable.todictionary)veya [ToList](https://msdn.microsoft.com/library/bb342261)gibi bir koleksiyon işlemi tarafından numaralandırılır.  
+- Sorgunun en dıştaki bölümünde [ilki](https://msdn.microsoft.com/library/bb291976) veya [Any](https://msdn.microsoft.com/library/bb337697) gibi LINQ işleçleri belirtilmiştir.  
+- Aşağıdaki yöntemler çağrılır: bir DbSet, [DbEntityEntry. Reload](https://msdn.microsoft.com/library/system.data.entity.infrastructure.dbentityentry.reload.aspx)ve Database. executesqlcommand üzerindeki [Load](https://msdn.microsoft.com/library/system.data.entity.dbextensions.load) genişletme yöntemi.  
 
-Veritabanından sonuçları döndürdüğünde bağlamda mevcut değil bir nesne bağlamına eklenir. Bir nesne bağlamı ise, varolan nesne döndürülür (geçerli ve orijinal nesnenin özelliklerini giriş değerleri **değil** veritabanı değerlerle geçersiz kılınır).  
+Veritabanından sonuçlar döndürüldüğünde, bağlamda mevcut olmayan nesneler bağlamına iliştirilir. Bir nesne zaten bağlamda varsa, varolan nesne döndürülür (nesne içindeki özelliklerin geçerli ve orijinal **değerlerinin, veritabanı değerleriyle üzerine yazılmaz** ).  
 
-Bir sorgu gerçekleştirdiğinizde, bağlamına eklenmiş ancak veritabanı henüz kaydedilmedi varlıklar sonuç kümesinin bir parçası olarak döndürülmez. Bir bağlam içinde veri almak için bkz [yerel veri](~/ef6/querying/local-data.md).  
+Bir sorgu gerçekleştirdiğinizde, içeriğe eklenmiş ancak henüz veritabanına kaydedilmemiş varlıklar sonuç kümesinin bir parçası olarak döndürülmez. Bağlamdaki verileri almak için bkz. [yerel veriler](~/ef6/querying/local-data.md).  
 
-Bir sorgu, veritabanından satır döndürürse, sonuç boş bir koleksiyon olacaktır yerine **null**.  
+Sorgu veritabanından hiçbir satır döndürürse, sonuç **null**yerine boş bir koleksiyon olur.  
 
-## <a name="finding-entities-using-primary-keys"></a>Birincil anahtarlar kullanarak varlıkları bulma  
+## <a name="finding-entities-using-primary-keys"></a>Birincil anahtarları kullanarak varlıkları bulma  
 
-Bulma yöntemini olan DB bağlam tarafından izlenen bir varlığın bulmaya için birincil anahtar değeri kullanır. Varlık bağlamı bulunamazsa sonra bir sorgu veritabanına varlık var. bulmak için gönderilir. Varlık bağlamı veya veritabanında bulunmazsa null döndürülür.  
+DbSet üzerindeki Find yöntemi, bağlam tarafından izlenen bir varlık bulmayı denemek için birincil anahtar değerini kullanır. Varlık bağlamda bulunmazsa, varlığı bulmak için veritabanına bir sorgu gönderilir. Varlık bağlamda veya veritabanında bulunmazsa null döndürülür.  
 
-Bulma, bir sorgu kullanarak iki önemli şekilde farklıdır:  
+Find, iki önemli şekilde sorgu kullanmaktan farklıdır:  
 
-- Bağlam içinde verilen anahtara sahip bir varlık bulunamıyorsa bir gidiş dönüş veritabanına yalnızca sunulacaktır.  
-- Bul Added durumda olan varlıklar döndürür. Bu, bulabilir, bağlamına eklenmiş ancak veritabanı henüz kaydedilmedi varlıkları döndürür.  
-### <a name="finding-an-entity-by-primary-key"></a>Bir varlığın birincil anahtara göre bulma  
+- Veritabanına gidiş dönüş, yalnızca verilen anahtara sahip varlık bağlamda bulunmazsa yapılır.  
+- Bul, eklenen durumdaki varlıkları döndürür. Diğer bir deyişle, bul, içeriğe eklenmiş ancak henüz veritabanına kaydedilmemiş olan varlıkları döndürür.  
+### <a name="finding-an-entity-by-primary-key"></a>Birincil anahtara göre bir varlık bulma  
 
-Aşağıdaki kod bulma bazı kullanımlarını gösterir:  
+Aşağıdaki kodda bazı bul kullanımları gösterilmektedir:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -76,9 +76,9 @@ using (var context = new BloggingContext())
 }
 ```  
 
-### <a name="finding-an-entity-by-composite-primary-key"></a>Bir varlığın birincil bileşik anahtara göre bulma  
+### <a name="finding-an-entity-by-composite-primary-key"></a>Bileşik birincil anahtara göre varlık bulma  
 
-Entity Framework varlıklarınızı birden fazla özelliği oluşan bir anahtar kullanıcının bileşik anahtarlar - olmasını sağlar. Örneğin, belirli bir blog için kullanıcı ayarlarını temsil eden bir BlogSettings varlık olabilir. Bir kullanıcı her zaman sadece yeterli olacağından bir BlogSettings yapabilirsiniz her blog için birincil anahtarı olarak BlogSettings BlogId ve kullanıcı adı olun seçtiniz. Aşağıdaki kod ile BlogId BlogSettings bulmayı dener 3 ve kullanıcı adı = "johndoe1987" =:  
+Entity Framework, varlıklarınızın bileşik anahtarlara sahip olmasına olanak sağlar. Bu, birden fazla özellikten oluşan bir anahtardır. Örneğin, belirli bir blog için Kullanıcı ayarlarını temsil eden bir BlogSettings varlığına sahip olabilirsiniz. Bir Kullanıcı her blog için yalnızca bir BlogSettings sahibi olacağından, BlogSettings 'ın birincil anahtarını blogID ve Kullanıcı adının bir birleşimini yapmayı tercih edebilirsiniz. Aşağıdaki kod, blogID = 3 ve username = "johndoe1987" ile BlogSettings bulmayı dener:  
 
 ``` csharp  
 using (var context = new BloggingContext())
@@ -87,4 +87,4 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Bileşik anahtarlar olduğunda bileşik anahtarın özelliklerini sıralama belirtmek için ColumnAttribute ya da fluent API'sini kullanmanız gerektiğini unutmayın. Bul çağrısı bu anahtarı form değerler belirtirken kullanmalısınız.  
+Bileşik anahtarlarınız varsa, bileşik anahtarın özelliklerine yönelik bir sıralama belirtmek için ColumnAttribute veya Fluent API kullanmanız gerektiğini unutmayın. Bu anahtarı oluşturan değerleri belirtirken bulma çağrısının bu sırayı kullanması gerekir.  

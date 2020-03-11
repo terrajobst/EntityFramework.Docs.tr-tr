@@ -1,31 +1,31 @@
 ---
-title: İlk veri ek açıklamaları - EF6 kod
+title: Code First Data ek açıklamaları-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 80abefbd-23c9-4fce-9cd3-520e5df9856e
-ms.openlocfilehash: fcd01aef7303573001460b352f8099b2cc6e224a
-ms.sourcegitcommit: e90d6cfa3e96f10b8b5275430759a66a0c714ed1
+ms.openlocfilehash: 9fac2a90c46d78ff5fd632800cc0050276467773
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/17/2019
-ms.locfileid: "68286475"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419187"
 ---
-# <a name="code-first-data-annotations"></a>Kod ilk veri ek açıklamaları
+# <a name="code-first-data-annotations"></a>Code First veri açıklamaları
 > [!NOTE]
-> **EF4.1 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb. Entity Framework 4.1 içinde kullanıma sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bu bilgilerin geçerli değildir.
+> **EF 4.1 yalnızca** sonraki sürümler-bu sayfada açıklanan özellikler, API 'ler vb. Entity Framework 4,1 ' de tanıtılmıştı. Önceki bir sürümü kullanıyorsanız, bu bilgilerin bazıları veya tümü uygulanmaz.
 
-Bu sayfadaki içeriğin başlangıçta Julie Lerman tarafından yazılmış bir makaledeki uyarlanmış (\<http://thedatafarm.com>).
+Bu sayfadaki içerik, başlangıçta Julie Lerman (\<http://thedatafarm.com>)tarafından yazılmış bir makaleden uyarlanmıştır.
 
-Entity Framework Code First EF sorgulama, gerçekleştirilecek dayanan modeli temsil etmek için kendi etki alanı sınıfları kullanmanıza olanak tanır değişiklik izleme ve işlevleri güncelleştiriliyor. Kod 'kuralı yapılandırmanız üzerinde.' olarak adlandırılan bir programlama modeli ilk yararlanır. Kod ilk sınıflarınızı Entity Framework kurallarını izleyin ve bu durumda, öğrenmek, işi gerçekleştirmek için otomatik olarak çalışacak varsayar. Ancak, sınıflarınızı bu kuralları uygulamazsanız sınıflarınızı EF önkoşul bilgilerini sağlamak için yapılandırmaları ekleme olanağına sahip olursunuz.
+Entity Framework Code First, sorgu, değişiklik izleme ve işlevleri güncelleştirme işlemleri gerçekleştirmek için EF 'in kullandığı modeli göstermek üzere kendi etki alanı sınıflarınızı kullanmanıza olanak sağlar. Code First ' yapılandırma üzerinden kural ' olarak adlandırılan bir programlama deseninin üzerinden yararlanır. Code First, sınıflarınızın Entity Framework kurallarını izlediğinden emin olur ve bu durumda, işini nasıl gerçekleştireceğiniz otomatik olarak çalışır. Ancak, sınıflarınız bu kurallara uymadıysanız, gerekli bilgileri içeren EF sağlamak için sınıflarınıza yapılandırma ekleme olanağınız vardır.
 
-Kod öncelikle bu yapılandırmalar, sınıfa eklemek için iki yol sunar. Bir basit öznitelikleri DataAnnotations adlı kullanıyor ve ikinci Code First's Fluent yapılandırmaları kesin, kodda açıklamak için bir yol sağlayan API kullanıyor.
+Code First, bu yapılandırmaların sınıflarınızı eklenmesi için iki yol sunar. Bunlardan biri, Datanot 'ler adlı basit öznitelikleri, ikincisi ise imperatively yapılandırma bilgilerini (kod içinde) açıklamanıza olanak sağlayan Code First akıcı API 'yi kullanmaktır.
 
-Bu makalede, en sık gerekli yapılandırmaları vurgulama – sınıflarınızı yapılandırmak için (System.ComponentModel.DataAnnotations ad alanında) DataAnnotations üzerinden odaklanır. DataAnnotations ayrıca .NET uygulamaları, bu uygulamalar, istemci tarafı doğrulama için aynı ek açıklamalar yararlanmasını sağlayan bir ASP.NET MVC gibi bir dizi tarafından anlaşılabilir.
+Bu makale, sınıflarınızı yapılandırmak için gerekli olan en sık kullanılan yapılandırmaların vurgulanması için veri açıklamalarını (System. ComponentModel. Dataaçıklamalarda ad alanında) kullanmaya odaklanacaktır. Dataaçıklamalarda Ayrıca, ASP.NET MVC gibi çeşitli .NET uygulamaları (Bu uygulamaların istemci tarafı doğrulamaları için aynı ek açıklamaların kullanmasına izin veren) tarafından da anlaşılmıştır.
 
 
 ## <a name="the-model"></a>Model
 
-Ben sınıfları için basit bir çift kod ilk DataAnnotations kazandırabileceğinizi göstereceğiz: Blog ve gönderi.
+Basit bir sınıf çiftiyle Code First veri açıklamalarını göstereceğim: blog ve gönderi.
 
 ``` csharp
     public class Blog
@@ -47,15 +47,15 @@ Ben sınıfları için basit bir çift kod ilk DataAnnotations kazandırabilece�
     }
 ```
 
-Olduğu gibi Blog ve gönderi sınıfları rahatça kod ilk kuralını izler ve EF uyumluluk etkinleştirmek için hiçbir tweaks gerektirir. Ancak, sınıfları ve bunların eşleneceğine veritabanı hakkında daha fazla bilgi için EF sağlamak için ek açıklamaları kullanabilirsiniz.
+Bu şekilde, blog ve gönderi sınıfları kod ilk kuralını kullanır ve EF uyumluluk sağlamak için bir tdalgalı KS gerektirmez. Ancak, açıklamaları ve bunların eşlendikleri veritabanı hakkında daha fazla bilgi sağlamak için ek açıklamaları da kullanabilirsiniz.
 
  
 
 ## <a name="key"></a>Anahtar
 
-Entity Framework varlık izleme için kullanılan bir anahtar değere sahip her varlık kullanır. Bir Code First, örtük anahtar özellikleri kuraldır; Kod, önce "Id" veya sınıf adı ve "Id" gibi "BlogId" adlı bir özellik arar. Bu özellik için bir birincil anahtar sütunu veritabanında eşler.
+Entity Framework, varlık izleme için kullanılan bir anahtar değeri olan her varlığa dayanır. Code First bir kuralı örtük anahtar özelliklerdir; Code First, "ID" adlı bir özelliği veya "blogID" gibi sınıf adı ve "kimlik" birleşimini arayacaktır. Bu özellik, veritabanındaki bir birincil anahtar sütunuyla eşleşmeyecektir.
 
-Blog ve gönderi sınıfları bu kural izleyin. Bunlar ne oldu? Peki Blog kullanılan adı *PrimaryTrackingKey* bunun yerine veya hatta *foo*? Kod öncelikle bu kuralıyla eşleşen bir özellik bulamazsa bir anahtarı özelliği olması gerekir, Entity Framework'ün gereksinimi nedeniyle bir özel durum oluşturur. Anahtar ek açıklama EntityKey kullanılacak hangi özelliğinin olduğunu belirtmek için kullanabilirsiniz.
+Blog ve post sınıflarının her ikisi de bu kuralı izler. Ne olursa? Blog bunun yerine *Primarytrackingkey* adını kullansa da, hatta *foo*? Kod ilk olarak bu kurala uyan bir özellik bulamazsa, bir anahtar özelliği olması gereken Entity Framework gereksinimi nedeniyle bir özel durum oluşturur. EntityKey olarak kullanılacak özelliği belirlemek için anahtar ek açıklamasını kullanabilirsiniz.
 
 ``` csharp
     public class Blog
@@ -68,13 +68,13 @@ Blog ve gönderi sınıfları bu kural izleyin. Bunlar ne oldu? Peki Blog kullan
     }
 ```
 
-Eğer ilk kod kullanarak veritabanı oluşturma özelliği, Blog tablonun varsayılan olarak kimlik olarak da tanımlanır PrimaryTrackingKey adlı birincil anahtar sütunu gerekir.
+Kod birincisinin veritabanı oluşturma özelliğini kullanıyorsanız, blog tablosu, varsayılan olarak kimlik olarak da tanımlanan PrimaryTrackingKey adlı bir birincil anahtar sütununa sahip olur.
 
-![Blog tabloda birincil anahtar ile](~/ef6/media/jj591583-figure01.png)
+![Birincil anahtarla blog tablosu](~/ef6/media/jj591583-figure01.png)
 
 ### <a name="composite-keys"></a>Bileşik anahtarlar
 
-Entity Framework, bileşik anahtarlar - birden fazla özelliği içeren birincil anahtarları destekler. Örneğin, birincil anahtarı PassportNumber ve IssuingCountry bir birleşimi olan bir Passport sınıfı olabilir.
+Entity Framework, birden fazla özellikten oluşan bileşik anahtarlar-birincil anahtarlar destekler. Örneğin, birincil anahtarı PassportNumber ve ıssuingcountry birleşimi olan bir Passport sınıfına sahip olabilirsiniz.
 
 ``` csharp
     public class Passport
@@ -88,14 +88,14 @@ Entity Framework, bileşik anahtarlar - birden fazla özelliği içeren birincil
     }
 ```
 
-Yukarıdaki sınıfı EF modelinizde kullanılmaya çalışılıyor sonuçlanır bir `InvalidOperationException`:
+EF modelinizde yukarıdaki sınıfı kullanmaya çalışmak `InvalidOperationException`neden olur:
 
-*Bileşik birincil anahtar türü için 'Passport' sıralama belirlenemiyor. ColumnAttribute veya HasKey yöntemi bileşik birincil anahtarlar için sipariş belirtmek için kullanın.*
+*' Passport ' türü için bileşik birincil anahtar sıralaması belirlenemiyor. Bileşik birincil anahtarlar için bir sipariş belirtmek üzere ColumnAttribute veya HasKey metodunu kullanın.*
 
-Bileşik anahtarlar kullanmak için Entity Framework anahtar özellikleri için bir sipariş tanımlamanızı gerektirir. Bir sıra belirtmek için sütunu ek açıklama kullanarak bunu yapabilirsiniz.
+Bileşik anahtarlar kullanabilmek için Entity Framework, anahtar özellikler için bir sıra tanımlamanızı gerektirir. Bunu, bir sipariş belirtmek için sütun ek açıklamasını kullanarak yapabilirsiniz.
 
 >[!NOTE]
-> (Dizin temelinde güncellememek yerine) sıra değeri herhangi bir değer kullanılabilmesi için görelidir. Örneğin, 100 ve 200 1 ve 2 yerine kabul edilebilir olacaktır.
+> Düzen değeri göreli olur (dizin tabanlı değil), böylece herhangi bir değer kullanılabilir. Örneğin, 100 ve 200, 1 ve 2 ' nin yerine kabul edilebilir.
 
 ``` csharp
     public class Passport
@@ -111,9 +111,9 @@ Bileşik anahtarlar kullanmak için Entity Framework anahtar özellikleri için 
     }
 ```
 
-Bileşik yabancı anahtarları varlık varsa, karşılık gelen birincil anahtar özellikleri için kullanılan aynı sütun belirtmeniz gerekir.
+Birleşik yabancı anahtarlar içeren varlıklarınız varsa, ilgili birincil anahtar özellikleri için kullandığınız sütun sıralamasını belirtmeniz gerekir.
 
-Yalnızca göreli yabancı anahtar özellikleri içinde sıralamasını aynı, atanan değerleri tam olması gerekir **sipariş** eşleşmesi gerekmez. Örneğin, aşağıdaki sınıfında, 3 ve 4 1 ve 2 yerine kullanılabilir.
+Yalnızca yabancı anahtar özellikleri içindeki göreli sıralama aynı olmalıdır, **sipariş** için atanan değerlerin tam olarak eşleşmesi gerekmez. Örneğin, aşağıdaki sınıfta, 1 ve 2 ' nin yerine 3 ve 4 kullanılabilir.
 
 ``` csharp
     public class PassportStamp
@@ -137,61 +137,61 @@ Yalnızca göreli yabancı anahtar özellikleri içinde sıralamasını aynı, a
 
 ## <a name="required"></a>Gerekli
 
-Gerekli ek açıklama EF belirli bir özellik gereklidir bildirir.
+Gerekli ek açıklama EF öğesine belirli bir özelliğin gerekli olduğunu söyler.
 
-Başlık özelliği için gerekli ekleme özelliği veri içerdiğinden emin olmak için EF (ve MVC) zorlar.
+Title özelliğine gerekli ekleme özelliği, özelliğin veri içerdiğinden emin olmak için EF (ve MVC) özelliğini zorunlu kılar.
 
 ``` csharp
     [Required]
     public string Title { get; set; }
 ```
 
-Hiçbir ek kod veya uygulama biçimlendirme değişikliklerle, bir MVC uygulaması dinamik olarak bile özellik ve ek açıklama adları kullanarak bir ileti oluşturma, istemci tarafı doğrulama gerçekleştirir.
+Uygulamada ek kod veya biçimlendirme değişikliği olmadan, bir MVC uygulaması, özelliği ve ek açıklama adlarını kullanarak dinamik olarak bir ileti oluşturarak istemci tarafı doğrulaması gerçekleştirir.
 
-![Oluşturma sayfasıdır başlıklı gerekli hata](~/ef6/media/jj591583-figure02.png)
+![Başlığa sahip sayfa oluştur gerekli hata](~/ef6/media/jj591583-figure02.png)
 
-Gerekli öznitelik eşlenen özelliği null olamaz yapmanızı tarafından oluşturulan veritabanı da etkiler. Başlık alanı "için null olmayan" olarak değiştiğine dikkat edin.
+Gerekli öznitelik, eşlenen özelliği null atanamaz hale getirerek oluşturulan veritabanını da etkiler. Title alanının "Not null" olarak değiştirildiğine dikkat edin.
 
 >[!NOTE]
-> Bazı durumlarda veritabanını özelliği gerekli olsa bile null yapılamaz sütunda mümkün olmayabilir. Örneğin, ne zaman TPH devralma stratejisi veri için birden fazla türü kullanılarak tek bir tabloda depolanır. Gerekli bir özellik türetilmiş bir tür içeriyorsa, bu özellik hiyerarşideki tüm türleri olduğundan sütun atanamayan yapılamaz.
+> Bazı durumlarda, özelliği gerekli olsa bile veritabanındaki sütunun null olmaması mümkün olmayabilir. Örneğin, birden çok tür için bir TPH devralma stratejisi verisi kullanıldığında tek bir tabloda depolanır. Türetilmiş bir tür gerekli bir özellik içeriyorsa, hiyerarşideki tüm türlerin bu özelliği içermesi olmadığından, sütun null yapılamayan yapılamaz.
 
  
 
-![Bloglar tablo](~/ef6/media/jj591583-figure03.png)
+![Bloglar tablosu](~/ef6/media/jj591583-figure03.png)
 
  
 
 ## <a name="maxlength-and-minlength"></a>MaxLength ve MinLength
 
-Yalnızca gerekli olduğu gibi MaxLength ve MinLength öznitelikleri ek özellik doğrulamaları belirtmenizi sağlar.
+MaxLength ve MinLength öznitelikleri, gerekli olduğu gibi ek özellik doğrulamaları belirtmenize olanak tanır.
 
-BloggerName uzunluğu gereksinimleri aşağıda verilmiştir. Örnek ayrıca nasıl birleştirileceğini öznitelikleri gösterir.
+Length gereksinimlerine sahip BloggerName. Örnek ayrıca özniteliklerin nasıl birleştirileceğini gösterir.
 
 ``` csharp
     [MaxLength(10),MinLength(5)]
     public string BloggerName { get; set; }
 ```
 
-MaxLength ek açıklaması özelliğinin uzunluğu 10'a ayarlayarak veritabanı etkiler.
+MaxLength ek açıklaması, özelliğin uzunluğunu 10 olarak ayarlayarak veritabanını etkiler.
 
-![En büyük uzunluk BloggerName sütunu gösteren blogları tablo](~/ef6/media/jj591583-figure04.png)
+![BloggerName sütununda maksimum uzunluğu gösteren Bloglar tablosu](~/ef6/media/jj591583-figure04.png)
 
-MVC istemci-tarafı ek açıklama ve EF 4.1 sunucu tarafı ek açıklama hem de bir hata iletisi dinamik olarak yeniden oluşturma, bu doğrulama yerine getirir: "Alan BloggerName '10' en fazla uzunluğu bir dize veya dizi türü olmalıdır." Bu iletiyi biraz daha uzun. Birçok ek açıklamaları ErrorMessage özniteliğiyle bir hata iletisi belirtmenizi sağlar.
+MVC istemci tarafı ek açıklaması ve EF 4,1 sunucu tarafı ek açıklaması, her ikisi de bu doğrulamaya uyar ve bir hata iletisini dinamik olarak oluşturuyor: "alan BloggerName, en fazla uzunluğu ' 10 ' olan bir dize veya dizi türü olmalıdır." Bu ileti çok uzun. Birçok ek açıklama, ErrorMessage özniteliğiyle bir hata iletisi belirtmenizi sağlar.
 
 ``` csharp
     [MaxLength(10, ErrorMessage="BloggerName must be 10 characters or less"),MinLength(5)]
     public string BloggerName { get; set; }
 ```
 
-Ayrıca, gerekli ek açıklamada ErrorMessage belirtebilirsiniz.
+Gerekli ek açıklamada ErrorMessage de belirtebilirsiniz.
 
-![Özel hata iletisiyle sayfası oluşturma](~/ef6/media/jj591583-figure05.png)
+![Özel hata iletisiyle sayfa oluştur](~/ef6/media/jj591583-figure05.png)
 
  
 
-## <a name="notmapped"></a>NotMapped
+## <a name="notmapped"></a>Noteşlendi
 
-Kod ilk kuralı, veritabanında bir desteklenen veri türü her bir özellik temsil edildiğini belirler. Ancak bu her zaman uygulamalarınızı durumda değildir. Örneğin başlık ve BloggerName alanlara göre bir kod oluşturur Blog sınıftaki bir özelliği olabilir. Bu özellik, dinamik olarak oluşturulabilir ve depolanması gerekmez. Bu BlogCode özelliği gibi NotMapped ek açıklama ile veritabanına eşlemeyin herhangi bir özelliği işaretleyebilirsiniz.
+Code First yöntemi, desteklenen bir veri türü olan her özelliğin veritabanında temsil edileceğini belirler. Ancak bu, uygulamalarınızda her zaman durum değildir. Örneğin, blog sınıfında başlık ve BloggerName alanlarını temel alan bir kod oluşturan bir özelliğe sahip olabilirsiniz. Bu özellik dinamik olarak oluşturulabilir ve depolanması gerekmez. Veritabanıyla eşlenmez olan herhangi bir özelliği, bu BlogCode özelliği gibi Noteşlenmiş ek açıklamayla işaretleyebilirsiniz.
 
 ``` csharp
     [NotMapped]
@@ -206,9 +206,9 @@ Kod ilk kuralı, veritabanında bir desteklenen veri türü her bir özellik tem
 
  
 
-## <a name="complextype"></a>ComplexType
+## <a name="complextype"></a>Türündedir
 
-Etki alanı varlıklarınızı sınıf kümesi açıklamak ve eksiksiz bir varlık tanımlamak için bu sınıflardan sonra katman durumdur. Örneğin, modelinize BlogDetails adlı bir sınıf ekleyebilir.
+Etki alanı varlıklarınızı bir sınıf kümesi genelinde anlatmak ve ardından bu sınıfları bir bütün varlığı tanımlayacak şekilde katmanlara eklemek çok seyrek değildir. Örneğin, modelinize BlogDetails adlı bir sınıf ekleyebilirsiniz.
 
 ``` csharp
     public class BlogDetails
@@ -220,9 +220,9 @@ Etki alanı varlıklarınızı sınıf kümesi açıklamak ve eksiksiz bir varl�
     }
 ```
 
-Anahtar özelliği herhangi bir türde BlogDetails yok dikkat edin. Etki alanı Odaklı Tasarım içinde BlogDetails bir değer nesnesi olarak adlandırılır. Varlık çerçevesi karmaşık türler değer nesnelere başvurur.  Karmaşık türler, kendi izlenemez.
+BlogDetails öğesinin herhangi bir anahtar özelliği türüne sahip olmadığına dikkat edin. Etki alanı odaklı tasarımda, BlogDetails değer nesnesi olarak adlandırılır. Entity Framework, değer nesnelerini karmaşık türler olarak ifade eder.  Karmaşık türler kendi üzerinde izlenemez.
 
-Ancak, izleniyor Blog nesnesinin bir parçası BlogDetails Blog sınıf özelliği olarak. Bu ilk tanımak kod için sırada BlogDetails sınıfı bir ComplexType işaretlemeniz gerekir.
+Ancak blog sınıfındaki bir özellik olarak BlogDetails, bir blog nesnesinin bir parçası olarak izlenir. Kodun bu adı tanıması için, BlogDetails sınıfını bir ComplexType olarak işaretlemeniz gerekir.
 
 ``` csharp
     [ComplexType]
@@ -235,105 +235,105 @@ Ancak, izleniyor Blog nesnesinin bir parçası BlogDetails Blog sınıf özelli�
     }
 ```
 
-Artık bu blog BlogDetails temsil etmek için Blog sınıftaki bir özelliği ekleyebilirsiniz.
+Artık blog sınıfına, bu blog için BlogDetails temsil eden bir özellik ekleyebilirsiniz.
 
 ``` csharp
         public BlogDetails BlogDetail { get; set; }
 ```
 
-Veritabanında Blog tablo adını BlogDetail özelliğinde yer alan özellikler dahil olmak üzere blog özelliklerin tümünü içerir. Varsayılan olarak, her biri ile BlogDetail karmaşık türün adı gelmelidir.
+Veritabanında blog tablosu, BlogDetail özelliğinde yer alan özellikler de dahil olmak üzere blogun tüm özelliklerini içerir. Varsayılan olarak, her biri daha önce karmaşık türün adı olan BlogDetail.
 
-![Karmaşık tür tabloyla blogu](~/ef6/media/jj591583-figure06.png)
+![Karmaşık türdeki blog tablosu](~/ef6/media/jj591583-figure06.png)
 
 
 ## <a name="concurrencycheck"></a>ConcurrencyCheck
 
-ConcurrencyCheck ek açıklama, veritabanında bir kullanıcı, düzenler veya bir varlığı silen denetimi eşzamanlılık için kullanılacak bir veya daha fazla özellik bayrağını olanak tanır. EF Designer ile aşinaysanız, sabit bir özelliğin ConcurrencyMode ayarı ile hizalar.
+ConcurrencyCheck ek açıklaması, bir Kullanıcı bir varlığı düzenlediğinde veya sildiğinde veritabanında eşzamanlılık denetimi için kullanılacak bir veya daha fazla özelliği işaretetmenize olanak tanır. EF Designer ile çalışıyorsanız bu, özelliğin ConcurrencyMode 'ı fixed olarak ayarlamaya göre hizalanır.
 
-BloggerName özelliğini ekleyerek ConcurrencyCheck nasıl çalıştığını görelim.
+BloggerName özelliğine ekleyerek ConcurrencyCheck 'in nasıl çalıştığını görelim.
 
 ``` csharp
     [ConcurrencyCheck, MaxLength(10, ErrorMessage="BloggerName must be 10 characters or less"),MinLength(5)]
     public string BloggerName { get; set; }
 ```
 
-SaveChanges çağrıldığında ConcurrencyCheck üzerindeki ek açıklama BloggerName alanı nedeniyle güncelleştirme bu özellik, özgün değer kullanılır. Komut doğru satır yalnızca anahtar değeri aynı zamanda BloggerName özgün değeri filtreleyerek bulmaya çalışır.  Komutu bir PrimaryTrackingKey sahip olan satırı güncelleştirin görebileceğiniz veritabanına gönderilen güncelleştirme komut kritik bölümleri, 1 ve "Bu blog veritabanından alınırken, özgün değer Julie", bir BloggerName şunlardır.
+SaveChanges çağrıldığında, BloggerName alanındaki ConcurrencyCheck ek açıklaması nedeniyle, bu özelliğin özgün değeri güncelleştirmede kullanılacaktır. Komutu doğru satırı yalnızca anahtar değerde değil, BloggerName özgün değerine göre filtreleyerek bulmaya çalışacaktır.  GÜNCELLEŞTIRME komutunun veritabanına gönderilen kritik bölümleri aşağıda verilmiştir. komutun, bir PrimaryTrackingKey değeri 1 ve bir BloggerName "Julie" olan satırı veritabanından alındığı zaman özgün değeri olan "" olarak güncelleştiği, burada görebilirsiniz.
 
 ``` SQL
     where (([PrimaryTrackingKey] = @4) and ([BloggerName] = @5))
     @4=1,@5=N'Julie'
 ```
 
-Birisi bu blog blogger adı sırada değişti, bu güncelleştirme başarısız olur ve işlemek için gereken bir DbUpdateConcurrencyException elde edersiniz.
+Bu, bu bloga ait blogu adını bu sırada değiştirdiyseniz, bu güncelleştirme başarısız olur ve işlemeniz gereken bir DbUpdateConcurrencyException alırsınız.
 
  
 
-## <a name="timestamp"></a>Zaman damgası
+## <a name="timestamp"></a>Ilişkin
 
-Eşzamanlılık denetimi için rowversion veya zaman damgası alanı kullanımı daha yaygındır. Ancak bayt dizisi özellik türü olduğu sürece ConcurrencyCheck ek açıklama kullanmak yerine daha belirli zaman damgası ek açıklama kullanabilirsiniz. Kod ilk zaman damgası özellikleri aynı ConcurrencyCheck özellikleri olarak değerlendirir, ancak aynı zamanda kod oluşturan veritabanı alanını atanamaz olduğundan emin olmanızı sağlar. Bu gibi durumlarda, bir zaman damgası özelliği yalnızca belirli bir sınıf içinde olabilir.
+Eşzamanlılık denetimi için rowversion veya timestamp alanlarını kullanmak daha yaygındır. Ancak, ConcurrencyCheck ek açıklamasını kullanmak yerine, özelliğin türü byte dizisi olduğu sürece daha belirli zaman damgası ek açıklamasını kullanabilirsiniz. Önce kod zaman damgası özelliklerini ConcurrencyCheck özellikleriyle aynı kabul eder, ancak kodun ilk oluşturduğu veritabanı alanının null değer atanamaz olduğundan da emin olur. Belirli bir sınıfta yalnızca bir zaman damgası özelliğine sahip olabilirsiniz.
 
-Aşağıdaki özellikler, Blog sınıfına ekleme:
+Aşağıdaki özelliği blog sınıfına ekleme:
 
 ``` csharp
     [Timestamp]
     public Byte[] TimeStamp { get; set; }
 ```
 
-ilk veritabanı tablosu, bir NULL olmayan bir zaman damgası sütunu oluşturma kod sonuçlanır.
+kod sonuçları, veritabanı tablosunda null yapılamayan bir zaman damgası sütunu oluşturuyor.
 
-![Zaman damgası sütunu tabloyla blogları](~/ef6/media/jj591583-figure07.png)
+![Zaman damgası sütunuyla Bloglar tablosu](~/ef6/media/jj591583-figure07.png)
 
  
 
 ## <a name="table-and-column"></a>Tablo ve sütun
 
-Code First veritabanı oluşturma izni vermiş olursunuz, tabloları ve sütunları sanal makinesi adını değiştirmek isteyebilirsiniz. Code First ile varolan bir veritabanını kullanabilirsiniz. Ancak, her zaman sınıfları ve özellikleri, etki alanınızdaki adları tabloları ve sütunları veritabanınızdaki adlarının eşleştiğini durumda değil.
+Veritabanı oluşturmaya Code First izin verirseniz, oluşturduğu tablo ve sütunların adını değiştirmek isteyebilirsiniz. Ayrıca, var olan bir veritabanıyla Code First de kullanabilirsiniz. Ancak, etki alanındaki sınıfların ve özelliklerin adlarının veritabanınızdaki tablo ve sütunların adlarıyla eşleşmesi her zaman değildir.
 
-My sınıfı Blog olarak adlandırılır ve bu blogları adlı bir tabloya eşler ilk kural olarak, kod varsayar. Bu durumda değilse tablo özniteliğiyle tablonun adını belirtebilirsiniz. Burada Örneğin, ek açıklama tablo adını InternalBlogs olduğunu belirler.
+Sınıfım, blog ve kurala göre adlandırılır, kod ise bu, blogların adlı bir tabloyla eşlenir. Böyle bir durum söz konusu değilse tablo özniteliği ile tablonun adını belirtebilirsiniz. Örneğin, ek açıklama tablo adının InternalBlogs olduğunu belirtmektir.
 
 ``` csharp
     [Table("InternalBlogs")]
     public class Blog
 ```
 
-Sütun ek açıklama eşlenen sütun özniteliklerini belirtilirken bir daha fazla yatkın olduğu. Bir ad, veri türü veya hatta bir sütun tabloda göründüğü sırayı koşabilirsiniz. Sütun özniteliği örneği aşağıda verilmiştir.
+Sütun ek açıklaması, eşlenmiş bir sütunun özniteliklerini belirtmekte olan bir Apart ' dır. Bir ad, veri türü ya da tabloda bir sütunun göründüğü sıra gibi bir ad girebilirsiniz. Sütun özniteliğine bir örnek aşağıda verilmiştir.
 
 ``` csharp
     [Column("BlogDescription", TypeName="ntext")]
     public String Description {get;set;}
 ```
 
-Sütunun TypeName öznitelik veri türü DataAnnotation ile karıştırmayın. Veri türü, kullanıcı Arabiriminde kullanılan ek açıklamanın olup ve Code First tarafından göz ardı edilir.
+Sütunun TypeName özniteliğini DataType DataAnnotation ile karıştırmayın. Veri türü, Kullanıcı arabirimi için kullanılan bir ek açıklama ve Code First tarafından yok sayılır.
 
-Yeniden oluşturulduğunda sonra tablosu aşağıdadır. Tablo adı için InternalBlogs değişti ve karmaşık tür tanımı sütundan BlogDescription sunulmuştur. Ek açıklamada ad belirtilmediğinden, kod sütun adı karmaşık tür adı ile başlangıç kuralı ilk kullanmaz.
+Oluşturulduktan sonra tablo aşağıda verilmiştir. Tablo adı InternalBlogs olarak değiştirilmiştir ve karmaşık türden Açıklama sütunu artık BlogDescription. Ad ek açıklamada belirtildiğinden, önce kod sütun adını karmaşık türün adı ile başlatma kuralını kullanmaz.
 
-![Bloglar tablo ve sütun olarak yeniden adlandırıldı](~/ef6/media/jj591583-figure08.png)
+![Bloglar tablosu ve sütunu yeniden adlandırıldı](~/ef6/media/jj591583-figure08.png)
 
  
 
-## <a name="databasegenerated"></a>DatabaseGenerated
+## <a name="databasegenerated"></a>Veritabanı oluşturuldu
 
-Hesaplanan özellikler olanağı önemli veritabanı özellikleri var. Code First sınıflarınızı eşleniyorsa, hesaplanan sütunlar içeren tablolar, varlık Çerçevesi'bu sütunları güncelleştirmeye çalışmak istemediğiniz. Ancak, veritabanından eklenmiş veya güncelleştirilmiş verileri sonra bu değerleri döndürülecek EF istiyorsunuz. Sınıfınızda, hesaplanan enum yanı sıra özelliklere işaretleyemedi DatabaseGenerated ek açıklama kullanabilirsiniz. Diğer numaralandırmalar yok ve kimlik.
+Önemli bir veritabanı özellikleri, hesaplanmış Özellikler kullanabilme özelliğidir. Code First sınıflarınızı, hesaplanan sütunları içeren tablolarla eşleştirmeniz durumunda, bu sütunları güncelleştirmeyi denemek Entity Framework istemezsiniz. Ancak verileri ekledikten veya güncelleştirdikten sonra bu değerleri veritabanından döndürmesini isteyebilirsiniz. Sınıfınızın bu özelliklerini hesaplanan Enum ile birlikte işaretlemek için DatabaseGenerated ek açıklamasını kullanabilirsiniz. Diğer numaralandırmalar None ve Identity 'Tur.
 
 ``` csharp
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime DateCreated { get; set; }
 ```
 
-Kod ilk veritabanı oluşturulurken bayt veya zaman damgası sütuna oluşturulan veritabanı kullanabilir, aksi durumda yalnızca bu kod önce hesaplanan sütun için formülün belirlemek mümkün olmayacağından, mevcut veritabanlarının işaret ettiğinde kullanmanız gerekir.
+Kod ilk veritabanını oluştururken bayt veya zaman damgası sütunlarında oluşturulan veritabanını kullanabilirsiniz; Aksi takdirde, kod ilk olarak hesaplanan sütun formülünü belirleyemeyeceği için yalnızca var olan veritabanlarına işaret ederken bunu kullanmanız gerekir.
 
-Varsayılan olarak, okuma, tamsayı olan bir anahtar özellik veritabanındaki bir kimlik anahtarı olur. DatabaseGenerated DatabaseGeneratedOption.Identity için ayarı ile aynı olacaktır. Bir kimlik anahtarı olmasını istemiyorsanız DatabaseGeneratedOption.None için değeri ayarlayabilirsiniz.
+Yukarıdaki, varsayılan olarak bir tamsayı olan anahtar özelliği veritabanında bir kimlik anahtarı olacak şekilde daha fazla bilgi edinebilirsiniz. Bu, DatabaseGeneratedOption. Identity olarak oluşturulan databasesetting ile aynı olacaktır. Kimlik anahtarı olmasını istemiyorsanız, bu değeri DatabaseGeneratedOption. None olarak ayarlayabilirsiniz.
 
  
 
-## <a name="index"></a>Dizin
+## <a name="index"></a>Dizin oluşturma
 
 > [!NOTE]
-> **EF6.1 ve sonraki sürümler yalnızca** -Entity Framework 6.1 içinde dizin özniteliği tanıtılmıştır. Önceki bir sürümü kullanıyorsanız, bu bölümdeki bilgiler, geçerli değildir.
+> **EF 6.1 yalnızca** sonraki sürümler-dizin özniteliği Entity Framework 6,1 ' de tanıtılmıştı. Önceki bir sürümü kullanıyorsanız, bu bölümdeki bilgiler uygulanmaz.
 
-Bir veya daha fazla sütuna kullanarak bir dizin oluşturabilirsiniz **IndexAttribute**. Öznitelik için bir veya daha fazla özellik ekleyerek EF veritabanında oluşturduğunda, veritabanında ilgili dizini oluşturmak neden veya karşılık gelen iskelesini **CreateIndex** Code First Migrations'ı kullanıyorsanız çağırır.
+**Indexattribute**kullanarak bir veya daha fazla sütunda bir dizin oluşturabilirsiniz. Özniteliği bir veya daha fazla özelliğe eklemek, EF veritabanını oluşturduğunda karşılık gelen dizini veritabanında oluşturmasına veya Code First Migrations kullanıyorsanız karşılık gelen CreateIndex çağrılarını dolandırıcıya **dönüştürmesine** neden olur.
 
-Örneğin, aşağıdaki kod üzerinde oluşturulan bir dizin sonuçlanır **derecelendirme** sütununun **gönderileri** veritabanındaki tablo.
+Örneğin, aşağıdaki kod veritabanındaki **postalar** tablosunun **Derecelendirme** sütununda oluşturulacak bir dizin oluşmasına neden olur.
 
 ``` csharp
     public class Post
@@ -347,14 +347,14 @@ Bir veya daha fazla sütuna kullanarak bir dizin oluşturabilirsiniz **IndexAttr
     }
 ```
 
-Varsayılan olarak, dizin adlandırılacağını **IX\_&lt;özellik adı&gt;**  (IX\_yukarıdaki örnekte derecelendirme). Dizini için bir ad olsa da belirtebilirsiniz. Aşağıdaki örnek dizinin adlandırılmalıdır belirtir **PostRatingIndex**.
+Varsayılan olarak, Dizin **x\_&lt;Özellik adı&gt;** (Yukarıdaki örnekte x\_derecelendirmesi) olarak adlandırılır. Ayrıca, dizin için de bir ad belirtebilirsiniz. Aşağıdaki örnek, dizininin **Postraytingındex**olarak adlandırılması gerektiğini belirtir.
 
 ``` csharp
     [Index("PostRatingIndex")]
     public int Rating { get; set; }
 ```
 
-Varsayılan olarak, dizinleri benzersiz olmayan, ancak kullanabileceğiniz **IsUnique** adlı bir dizin benzersiz olması gerektiğini belirtmek için parametre. Aşağıdaki örnekte benzersiz bir dizin üzerinde tanıtır. bir **kullanıcı**ait oturum açma adı.
+Varsayılan olarak, dizinler benzersiz değildir, ancak bir dizinin benzersiz olması gerektiğini belirtmek için **IsUnique** adlandırılmış parametresini kullanabilirsiniz. Aşağıdaki örnekte, **kullanıcının**oturum açma adında benzersiz bir dizin tanıtılmıştır.
 
 ``` csharp
     public class User
@@ -369,9 +369,9 @@ Varsayılan olarak, dizinleri benzersiz olmayan, ancak kullanabileceğiniz **IsU
     }
 ```
 
-### <a name="multiple-column-indexes"></a>Birden çok sütun dizinleri
+### <a name="multiple-column-indexes"></a>Birden çok sütunlu dizinler
 
-Birden fazla sütuna yayılmış dizinler için belirli bir tabloda birden fazla dizin ek açıklamalar aynı adı kullanarak belirtilir. Çok sütunlu dizinleri oluşturduğunuzda, sipariş sütunlar için dizin belirtmeniz gerekir. Örneğin, aşağıdaki kod üzerinde çok sütunlu bir dizin oluşturur **derecelendirme** ve **BlogId** adlı **IX\_BlogIdAndRating**. **BlogId** dizini ilk sütunda ve **derecelendirme** saniyedir.
+Birden çok sütuna yayılan dizinler, belirli bir tablo için birden fazla dizin ek açıklamasında aynı ad kullanılarak belirtilir. Çok sütunlu dizinler oluşturduğunuzda, dizindeki sütunlar için bir sıra belirtmeniz gerekir. Örneğin, aşağıdaki kod, **Derecelendirme** ve **blogID** **\_blogidandrating**adlı bir çok sütunlu dizin oluşturur. **BlogID** dizindeki ilk sütundur ve **Derecelendirme ikincisdir** .
 
 ``` csharp
     public class Post
@@ -388,16 +388,16 @@ Birden fazla sütuna yayılmış dizinler için belirli bir tabloda birden fazla
 
  
 
-## <a name="relationship-attributes-inverseproperty-and-foreignkey"></a>İlişki öznitelikleri: InverseProperty ve ForeignKey
+## <a name="relationship-attributes-inverseproperty-and-foreignkey"></a>İlişki öznitelikleri: Evirseproperty ve ForeignKey
 
 > [!NOTE]
-> Bu sayfa, Code First modelinizde veri ek açıklamalarını kullanma ilişkileri ayarlama hakkında bilgi sağlar. EF ve erişmek ve ilişkileri kullanarak verileri işlemek nasıl ilişkiler hakkında genel bilgi için bkz. [ilişkileri ve gezinti özellikleri](~/ef6/fundamentals/relationships.md). *
+> Bu sayfa, veri ek açıklamalarını kullanarak Code First modelinizde ilişkiler ayarlama hakkında bilgi sağlar. EF 'teki ilişkiler ve ilişkileri kullanarak verilere erişme ve verileri işleme hakkında genel bilgi için bkz. [relationships & gezinti özellikleri](~/ef6/fundamentals/relationships.md). *
 
-Kod ilk kuralı modelinizdeki en yaygın ilişki ölçeklendirilmesini, ancak Yardım gereken yere bazı durumlar vardır.
+Kod ilk kuralı modelinizdeki en yaygın ilişkilerle ilgilenirken, ancak yardım gerektiren bazı durumlar vardır.
 
-Anahtar özelliği ilişkisini gönderi ile ilgili bir sorun oluşturulan Blog sınıfında adının değiştirilmesi. 
+Blog sınıfındaki anahtar özelliğinin adının değiştirilmesi, gönderiyle ilişkili bir sorun oluşturdu. 
 
-Veritabanı oluşturma, kod ilk Post sınıfı BlogId özelliğinde görür ve, bir sınıf adına ve "Id" olarak Blog sınıfı için yabancı anahtar değeriyle aynı olduğunu kural olarak tanır. Ancak blog sınıfında BlogId özellik yok. Bu çözüm iletide bir gezinti özelliği oluşturun ve ilk iki sınıf arasında bir ilişki oluşturma işlemini anlama kod yardımcı olmak için yabancı DataAnnotation kullanmaktır — Post.BlogId özelliğini kullanarak — kısıtlamalarını belirleme yanı sıra Veritabanı.
+Veritabanı oluşturulurken, kod ilk olarak post sınıfında blogID özelliğini görür ve onu bir sınıf adı artı "kimlik" olarak, blog sınıfına yabancı anahtar olarak eşleşen kurala göre tanır. Ancak blog sınıfında blogID özelliği yok. Bunun çözümü, göndermede bir gezinti özelliği oluşturmak ve yabancı veri ek açıklamasını kullanarak kodun ilk olarak iki sınıf arasında ilişki oluşturma (Post. blogID özelliğini kullanarak) ve içinde kısıtlamaları belirtme veritabanınızı.
 
 ``` csharp
     public class Post
@@ -413,20 +413,20 @@ Veritabanı oluşturma, kod ilk Post sınıfı BlogId özelliğinde görür ve, 
     }
 ```
 
-Veritabanı kısıtlamasındaki InternalBlogs.PrimaryTrackingKey Posts.BlogId arasında bir ilişki gösterilmektedir. 
+Veritabanındaki kısıtlama, InternalBlogs. PrimaryTrackingKey ve gönderimleri. blogID arasındaki ilişkiyi gösterir. 
 
-![InternalBlogs.PrimaryTrackingKey Posts.BlogId arasındaki ilişki](~/ef6/media/jj591583-figure09.png)
+![InternalBlogs. PrimaryTrackingKey ve gönderimleri. blogID arasındaki ilişki](~/ef6/media/jj591583-figure09.png)
 
-Sınıflar arasında birden çok ilişkilerine sahip InverseProperty kullanılır.
+Ters Çevir özelliği, sınıflar arasında birden fazla ilişksahipseniz kullanılır.
 
-Post sınıfta olan bir blog gönderisi yazıp izlemek isteyebilirsiniz düzenleyen kişiyi yanı sıra. Post sınıfı için iki yeni gezinti özellikleri aşağıda verilmiştir.
+Post sınıfında, bir blog gönderisi yazanın yanı sıra kimin düzenlediğinden haberdar olmak isteyebilirsiniz. Post sınıfının iki yeni gezinti özelliği aşağıda verilmiştir.
 
 ``` csharp
     public Person CreatedBy { get; set; }
     public Person UpdatedBy { get; set; }
 ```
 
-Bu özellik tarafından başvurulan kişi sınıfı eklemek gerekir. Kişi sınıfın tüm kişi ve tüm bu kişi tarafından güncelleştirilmiş gönderilerinin tarafından yazılan gönderiler için bir posta dön Gezinti özellikleri vardır.
+Ayrıca, bu özellikler tarafından başvurulan kişi sınıfına da eklemeniz gerekir. Kişi sınıfının gönderiye geri dönmesi, biri kişi tarafından yazılan gönderilerin hepsi ve bu kişi tarafından güncellenen tüm gönderiler için bir tane.
 
 ``` csharp
     public class Person
@@ -438,11 +438,11 @@ Bu özellik tarafından başvurulan kişi sınıfı eklemek gerekir. Kişi sın�
     }
 ```
 
-Kod ilk iki sınıf kendi özelliklerinde eşleştirilecek mümkün değil. Gönderiler için veritabanı tablosu oluşturan kişi, diğeri UpdatedBy kişinin bir yabancı anahtar olması gerekir, ancak kod ilk dört yabancı anahtar özelliklerini oluşturur: Kişi\_kimliği, kişi\_ıd1, oluşturan\_kimliği ve UpdatedBy\_kimliği.
+Önce kod, kendi kendine iki sınıftaki özellikleri eşleşmeyebilir. Gönderimler için veritabanı tablosunda, CreatedBy kişiye ait bir yabancı anahtar ve bir tane de UpdatedBy kişiye ait olmalıdır, ancak kod ilk olarak dört yabancı anahtar özelliği oluşturur: kişi\_kimliği, kişi\_ID1, CreatedBy\_ID ve UpdatedBy\_ID.
 
-![Tablo fazladan yabancı anahtarlar ile gönderir.](~/ef6/media/jj591583-figure10.png)
+![Ek yabancı anahtarlarla nakleder tablosu](~/ef6/media/jj591583-figure10.png)
 
-Bu sorunları düzeltmek için InverseProperty ek açıklama özellikleri hizalaması belirtmek için kullanabilirsiniz.
+Bu sorunları çözebilmeniz için, özelliklerin hizalamasını belirtmek üzere Evirseproperty ek açıklamasını kullanabilirsiniz.
 
 ``` csharp
     [InverseProperty("CreatedBy")]
@@ -452,14 +452,14 @@ Bu sorunları düzeltmek için InverseProperty ek açıklama özellikleri hizala
     public List<Post> PostsUpdated { get; set; }
 ```
 
-Bizzat PostsWritten özelliği bu Post türe başvurur bildiğinden Post.CreatedBy ilişkisi oluşturun. Benzer şekilde, PostsUpdated Post.UpdatedBy için bağlanacaksınız. Ve kod önce ek yabancı anahtarlar oluşturmaz.
+Bu kişiye ait Postsyazıldığı özelliği, bu, post türüne başvurduğunu bildiği için, bu, gönderi. CreatedBy ile ilişki oluşturur. Benzer şekilde, PostsUpdated, posta. UpdatedBy Ile gönderilir. Ve ilk olarak kod, ek yabancı anahtarlar oluşturmaz.
 
-![Ek yabancı anahtarlar tablosuz gönderir](~/ef6/media/jj591583-figure11.png)
+![Ek yabancı anahtarlar olmadan gönderi tablosu](~/ef6/media/jj591583-figure11.png)
 
  
 
 ## <a name="summary"></a>Özet
 
-DataAnnotations yalnızca, istemci ve sunucu tarafı doğrulama kodu ilk sınıflarınızı açıklayan sağlar, ancak geliştirmek ve hatta kendi kurallarına dayalı sınıflarınızı hakkında kod ilk hale getirecek varsayımların düzeltmek de sağlar. İle DataAnnotations, yalnızca veritabanı şeması oluşturma sürücü değil, ancak kod ilk sınıflarınızı önceden varolan bir veritabanına eşleyebilirsiniz.
+Veri açıklamaları yalnızca kodunuzun ilk sınıflarında istemci ve sunucu tarafı doğrulamasını açıklamanıza izin vermekle kalmaz, aynı zamanda kodun kuralları temel alınarak sınıflarınız hakkında daha fazla bilgi sahibi olacağı varsayımları geliştirmenize ve hatta düzeltmenizi de sağlar. Dataaçıklamalarla yalnızca veritabanı şeması oluşturmayı kullanamazsınız, ancak kod ilk sınıflarınızı önceden var olan bir veritabanına eşleyebilirsiniz.
 
-Bunlar çok esnek olmakla birlikte, yalnızca en yaygın olarak kod ilk sınıflarınızı üzerinde yaptığınız değişikliklerin gerekli DataAnnotations sağlayan aklınızda bulundurun. Sınıflarınızı istisnai durumlara bazıları için yapılandırmak için diğer yapılandırma mekanizması, Code First's Fluent API'si görünmelidir.
+Çok esnek olsa da, Datanot açıklamalarının yalnızca kod ilk sınıflarınızda yapabileceğiniz en sık gereken yapılandırma değişikliklerini sunabileceini unutmayın. Sınıflarınızı bazı uç durumlardan bazılarına göre yapılandırmak için, farklı yapılandırma mekanizmasına, Code First akıcı API 'sine bakmanız gerekir.

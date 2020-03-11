@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 80fc5062-2f1c-4dbd-ab6e-b99496784b36
 ms.openlocfilehash: 4b3eee20ff238864b94ef4edfb97c1bae0713300
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181795"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419605"
 ---
 # <a name="databinding-with-winforms"></a>WinForms ile veri bağlama
 Bu adım adım izlenecek yol, POCO türlerinin bir "ana-ayrıntı" formunda pencere formları (WinForms) denetimlerine nasıl bağlanacağını gösterir. Uygulama, nesneleri veritabanındaki verilerle doldurmak, değişiklikleri izlemek ve verileri veritabanına kalıcı hale getirmek için Entity Framework kullanır.
@@ -17,7 +17,7 @@ Model bire çok ilişkiye katılan iki tür tanımlar: kategori (asıl\\ana) ve 
 
 Bu izlenecek yolda ekran görüntüleri ve kod listeleri Visual Studio 2013 alınmıştır ancak Visual Studio 2012 veya Visual Studio 2010 ile bu yönergeyi tamamlayabilirsiniz.
 
-## <a name="pre-requisites"></a>Önkoşulların önkoşulları
+## <a name="pre-requisites"></a>Önkoşullar
 
 Bu izlenecek yolu tamamlamak için Visual Studio 2013, Visual Studio 2012 veya Visual Studio 2010 yüklü olmalıdır.
 
@@ -25,11 +25,11 @@ Visual Studio 2010 kullanıyorsanız, NuGet ' i de yüklemelisiniz. Daha fazla b
 
 ## <a name="create-the-application"></a>Uygulamayı oluşturma
 
--   Visual Studio 'Yu aç
+-   Visual Studio’yu açın
 -   **Dosya-&gt; yeni&gt; projesi....**
 -   Sağ bölmedeki sol bölmedeki ve **Windows FormsApplication** penceresinde **Windows** ' u seçin
 -   Ad olarak **Winformyüzthefsample** girin
--   **Tamam 'ı** seçin
+-   **Tamam**’ı seçin
 
 ## <a name="install-the-entity-framework-nuget-package"></a>Entity Framework NuGet paketini yükler
 
@@ -189,7 +189,7 @@ Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio s
 
 -   **Tamam** ' ı seçtiğinizde, yeni bir veritabanı oluşturmak isteyip istemediğiniz sorulur, **Evet** ' i seçin.
 
-    ![Veritabanı Oluştur](~/ef6/media/createdatabase.png)
+    ![Veritabanı Oluşturma](~/ef6/media/createdatabase.png)
 
 -   Yeni veritabanı artık Sunucu Gezgini görüntülenir, sağ tıklayıp **Yeni sorgu** ' yı seçin.
 -   Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **Yürüt** ' ü seçin.
@@ -280,7 +280,7 @@ Bu WinForms uygulaması için modelde tanımlanan sınıfları veri kaynağı ol
 
     ![Veri Kaynağı](~/ef6/media/datasource.png)
 
--   Son ' a tıklayın **.**
+-   **Son**'a tıklayın.
     Veri kaynakları penceresi gösterilmiyorsa, **diğer Windows&gt; veri kaynaklarını&gt; görüntüle** ' yi seçin.
 -   Veri kaynakları penceresi otomatik olarak gizlenmemesi için Sabitle simgesine basın. Pencere zaten görünür durumdaysa Yenile düğmesine vurması gerekebilir.
 
@@ -297,7 +297,7 @@ Bu WinForms uygulaması için modelde tanımlanan sınıfları veri kaynağı ol
     -   DataGridView denetimine sağ tıklayıp **Sütunları Düzenle...** seçeneğini belirleyin.
     -   **ProductID** sütununu seçin ve **ReadOnly** **değerini true**olarak ayarlayın.
     -   **CategoryID** sütununu seçin ve **Kaldır** düğmesine basın. **Kategori** sütunuyla aynısını yapın.
-    -   Tuşuna **Tamam**.
+    -   **Tamam**'a basın.
 
     Şimdiye kadar, tasarımcı 'daki BindingSource bileşenleriyle DataGridView denetimlerimizi ilişkilendirdik. Sonraki bölümde, categoryBindingSource. DataSource öğesini DbContext tarafından izlenmekte olan varlıkların koleksiyonuna ayarlamak için arkasındaki koda kod ekleyeceğiz. Kategori altındaki ürünleri sürüklediğimiz ve bıraktığı zaman, WinForms, productsBindingSource. DataSource özelliğini Products BindingSource ve productsBindingSource. DataMember özelliğine ayarlamamız gerekir. Bu bağlama nedeniyle, yalnızca şu anda seçili olan kategoriye ait ürünler productDataGridView içinde görüntülenir.
 -   Sağ fare düğmesine tıklayıp **etkin**' i seçerek gezinti araç çubuğundaki **Kaydet** düğmesini etkinleştirin.

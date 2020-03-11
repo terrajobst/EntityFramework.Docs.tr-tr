@@ -1,35 +1,35 @@
 ---
-title: Bağlantı Yönetimi - EF6
+title: Bağlantı yönetimi-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: ecaa5a27-b19e-4bf9-8142-a3fb00642270
 ms.openlocfilehash: a6352bbbc38c38bd5f30536736ec969056df2c7d
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489342"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417989"
 ---
-# <a name="connection-management"></a>Bağlantı Yönetimi
-Bu sayfa bağlamı ve işlevselliği için bağlantıları geçirme onaylamaz Entity Framework davranışını açıklar **Database.Connection.Open()** API.  
+# <a name="connection-management"></a>Bağlantı yönetimi
+Bu sayfada, bağlama bağlantılarının ve **Database. Connection. Open ()** API 'sinin işlevselliğiyle ilgili olarak Entity Framework davranışı açıklanmaktadır.  
 
-## <a name="passing-connections-to-the-context"></a>Bağlam bağlantılarını geçirme  
+## <a name="passing-connections-to-the-context"></a>Bağlama bağlantıları geçirme  
 
-### <a name="behavior-for-ef5-and-earlier-versions"></a>EF5 ve önceki sürümleri için davranışı  
+### <a name="behavior-for-ef5-and-earlier-versions"></a>EF5 ve önceki sürümler için davranış  
 
-Bağlantıları kabul iki Oluşturucu vardır:  
+Bağlantıları kabul eden iki Oluşturucu vardır:  
 
 ``` csharp
 public DbContext(DbConnection existingConnection, bool contextOwnsConnection)
 public DbContext(DbConnection existingConnection, DbCompiledModel model, bool contextOwnsConnection)
 ```  
 
-Bunlar kullanmak da mümkündür, ancak birkaç sınırlama çalışma gerekir:  
+Bunları kullanmak mümkündür ancak birkaç sınırlamaya geçici çözüm kullanmanız gerekir:  
 
-1. Diyor açık bir bağlantı bunlardan birisi sonra framework, bir InvalidOperationException durum kullanmayı dener ilk kez geçirirseniz zaten açık bir bağlantı yeniden açamazsınız.  
-2. ContextOwnsConnection bayrağı, temel alınan depolama bağlantı bağlamı çıkarıldığından çıkarılması gereken olup olmadığını anlama olarak yorumlanır. Ancak bağlam çıkarıldığından, ayar ne olursa olsun, depolama bağlantı her zaman kapalı. Aynı bağlantı birden fazla DbContext varsa, hangi bağlam atıldı önce (bir DbContext ile var olan bir ADO.NET bağlantı karıştırıldığında çıkarıldığından, benzer şekilde DbContext her zaman bağlantısını kesecektir) bağlantı kapatılacak şekilde .  
+1. Bunlardan herhangi birine açık bir bağlantı geçirirseniz, çerçeve bunu ilk kez kullanmaya çalıştığında, zaten açık bir bağlantıyı yeniden açkullanılamadığını belirten bir InvalidOperationException oluşturulur.  
+2. ContextOwnsConnection bayrağı, bağlam atıldığı zaman temeldeki depo bağlantısının atılıp atılmayacağı anlamına gelir. Ancak, bu ayardan bağımsız olarak, bağlam atıldığı zaman mağaza bağlantısı her zaman kapalıdır. Bu nedenle, aynı bağlantıya sahip olan birden fazla DbContext varsa, ilk olarak bağlantıyı kapatır (benzer şekilde, bir DbContext ile var olan bir ADO.NET bağlantısı karmalırsa DbContext, her zaman bırakıldığında bağlantıyı kapatır) .  
 
-İlk sınırlaması geçici olarak kapatılan bir bağlantı geçirme ve yalnızca tüm bağlamları oluşturduktan sonra açmak kodu yürüten çalışma mümkündür:  
+Kapalı bir bağlantıyı geçirerek ve yalnızca tüm bağlamlar oluşturulduktan sonra açılacak kodu yürüterek yukarıdaki ilk kısıtlamayı geçici olarak çözmek mümkündür:  
 
 ``` csharp
 using System.Collections.Generic;
@@ -71,11 +71,11 @@ namespace ConnectionManagementExamples
 }
 ```  
 
-İkinci sınırlama, yalnızca bağlantı kapatılacak hazır olana kadar herhangi bir DbContext nesnelerinizi disposing gelen engellemeye ihtiyacınız olduğu anlamına gelir.  
+İkinci sınırlama, bağlantının kapatılmasını sağlamak için hazırlanana kadar DbContext Nesnelerinizden herhangi birini elden atma konusunda sizi onaylama gereği duymaktan kaçınabilirsiniz.  
 
-### <a name="behavior-in-ef6-and-future-versions"></a>EF6 ve gelecek sürümlerde davranışı  
+### <a name="behavior-in-ef6-and-future-versions"></a>EF6 ve gelecekteki sürümlerde davranış  
 
-EF6 ve gelecek sürümlerde DbContext aynı iki Oluşturucusu vardır, ancak artık, alındığında oluşturucuya geçirilen bağlantı kapalı gerektirir. Bu nedenle bu artık mümkündür:  
+EF6 ve gelecekteki sürümlerde, DbContext aynı iki oluşturucuya sahiptir ancak artık, oluşturucuya geçirilen bağlantının alındığı sırada kapatılmasını gerektirmez. Bu nedenle şu anda mümkündür:  
 
 ``` csharp
 using System.Collections.Generic;
@@ -123,24 +123,24 @@ namespace ConnectionManagementExamples
 }
 ```  
 
-Ayrıca contextOwnsConnection bayrağı artık olsun veya olmasın, bağlantı hem kapatılır ve DbContext silinmediğinde denetler. Yukarıdaki örnekte bağlantı kapatıldığında, bu bağlam olduğunda değil için (satır 32) EF önceki sürümlerinde olabilirdi gibi ancak bunun yerine, bağlantı çıkarıldığından elden (satır 40).  
+Ayrıca, contextOwnsConnection bayrağı artık, DbContext atıldığı zaman bağlantının kapatılıp kapatılmayacağını denetler. Yukarıdaki örnekte, bağlam bırakıldığında bağlantı kapanmaz (satır 32), EF 'in önceki sürümlerinde olduğu gibi, ancak bağlantının kendisi atıldığı zaman (satır 40).  
 
-Elbette DbContext (doğru veya diğer oluşturucular birini yalnızca kümesi contextOwnsConnection) bağlantı denetimini almak hala mümkün şekilde istiyorsanız.  
+Bu işlem, DbContext 'in bağlantı denetimini ele geçirmesine (yalnızca contextOwnsConnection ' i true olarak ayarlamanız veya diğer oluşturuculardan birini kullanması) mümkün olmaya devam etmektedir.  
 
 > [!NOTE]
-> İşlem, bu yeni modelde kullanırken bazı ek hususlar vardır. Ayrıntılar için bkz. [işlemleri çalışma](~/ef6/saving/transactions.md).  
+> Bu yeni modelle işlemler kullanılırken bazı ek hususlar vardır. Ayrıntılar için bkz. [Işlemlerle çalışma](~/ef6/saving/transactions.md).  
 
-## <a name="databaseconnectionopen"></a>Database.Connection.Open()  
+## <a name="databaseconnectionopen"></a>Database. Connection. Open ()  
 
-### <a name="behavior-for-ef5-and-earlier-versions"></a>EF5 ve önceki sürümleri için davranışı  
+### <a name="behavior-for-ef5-and-earlier-versions"></a>EF5 ve önceki sürümler için davranış  
 
-EF5 ve önceki sürümlerde bir hata varsa şekilde **ObjectContext.Connection.State** true temel alınan depolama bağlantı durumunu yansıtacak şekilde güncelleştirilmedi. Aşağıdaki kod yürütüldüğünde, örneğin, durum döndürülebilir **kapalı** aslında temel alınan depolama olsa da bağlantı **açık**.  
+EF5 ve önceki sürümlerde, **ObjectContext. Connection. State** öğesinin temel alınan depo bağlantısının gerçek durumunu yansıtacak şekilde güncellenmemiş gibi bir hata vardır. Örneğin, aşağıdaki kodu yürütülürsünüz, aslında temeldeki depo bağlantısının **Açık**olmasına rağmen **Kapatılan** durum döndürülür.  
 
 ``` csharp
 ((IObjectContextAdapter)context).ObjectContext.Connection.State
 ```  
 
-Database.Connection.Open() çağırarak veritabanı bağlantısını açtığınıza gerekirse kadar sonraki açışınızda, bir sorgu yürütme veya bir veritabanı bağlantısı gerektiren her şeyi arayın ayrı olarak açık olacak (örneğin, SaveChanges()) sonra ancak arka plandaki depolamanız bağlantı kapatılacak. Bağlamı daha sonra yeniden açılacak ve bağlantıyı başka bir veritabanı işlemi gereklidir dilediğiniz zaman yeniden kapatın:  
+Ayrıca Database. Connection. Open () yöntemini çağırarak veritabanı bağlantısını açarsanız, bir sorgu yürütülene veya bir veritabanı bağlantısı gerektiren (örneğin, SaveChanges ()), ancak temel alınan mağazadan sonra bir şey çağırana kadar açık olacaktır. bağlantı kapatılacak. Bağlam daha sonra, başka bir veritabanı işlemi gerektiğinde bağlantıyı yeniden açıp yeniden kapatacak:  
 
 ``` csharp
 using System;
@@ -184,14 +184,14 @@ namespace ConnectionManagementExamples
 }
 ```  
 
-### <a name="behavior-in-ef6-and-future-versions"></a>EF6 ve gelecek sürümlerde davranışı  
+### <a name="behavior-in-ef6-and-future-versions"></a>EF6 ve gelecekteki sürümlerde davranış  
 
-Çağıran kod tarafından çağıran bağlamını bağlantı açmayı seçerse EF6 ve sonraki sürümleri için Biz bu yaklaşım, yönlendirdik. Database.Connection.Open() sonra bunu yapmak için geçerli bir nedeniniz var ve framework denetime açılış ve kapanış bağlantının istediği ve artık bağlantı otomatik olarak kapanacak varsayar.  
+EF6 ve gelecekteki sürümlerde, çağıran kod, bağlamı çağırarak bağlantıyı açmayı seçerse bu yaklaşımı gerçekleştirdik. Database. Connection. Open (), bunu yapmak için iyi bir nedene sahiptir ve Framework, bağlantının açılmasını ve kapatılmasını denetlemek istediğini ve bağlantıyı otomatik olarak kapatmayacak olduğunu varsayacaktır.  
 
 > [!NOTE]
-> Bu olası dikkatli uzun şekilde kullanmak için açık olan bağlantılar açabilir.  
+> Bu, büyük olasılıkla açık olan bağlantılara neden olabilir ve bu da dikkatli olarak kullanılır.  
 
-Böylece ObjectContext.Connection.State artık temel alınan bağlantı durumunu doğru şekilde izler ayrıca kod güncelleştirdik.  
+Ayrıca, ObjectContext. Connection. State artık temel alınan bağlantının durumunu doğru bir şekilde izlemek için kodu güncelleştirdik.  
 
 ``` csharp
 using System;

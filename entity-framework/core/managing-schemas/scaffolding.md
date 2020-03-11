@@ -6,17 +6,17 @@ ms.date: 11/13/2018
 ms.assetid: 6263EF7D-4989-42E6-BDEE-45DA770342FB
 uid: core/managing-schemas/scaffolding
 ms.openlocfilehash: 1ba9352d261f1c131b0d70f8cdad2128d9afaefe
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824459"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416765"
 ---
 # <a name="reverse-engineering"></a>Tersine mühendislik
 
 Tersine mühendislik, yapı iskelesi varlık türü sınıfları ve veritabanı şemasını temel alan bir DbContext sınıfı işlemidir. Bu, EF Core Paket Yöneticisi Konsolu (PMC) araçlarının `Scaffold-DbContext` komutu veya .NET komut satırı arabirimi (CLı) araçlarının `dotnet ef dbcontext scaffold` komutu kullanılarak gerçekleştirilebilir.
 
-## <a name="installing"></a>Yükleme
+## <a name="installing"></a>Yükleniyor
 
 Ters mühendisden önce, [PMC araçları](xref:core/miscellaneous/cli/powershell) 'nı (yalnızca Visual Studio) veya [CLI araçlarını](xref:core/miscellaneous/cli/dotnet)yüklemeniz gerekir. Ayrıntılar için bkz. bağlantılar.
 

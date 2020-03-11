@@ -1,29 +1,29 @@
 ---
-title: Eşzamanlılık çakışmalarını - EF6 işleme
+title: Eşzamanlılık çakışmalarını işleme-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 2318e4d3-f561-4720-bbc3-921556806476
 ms.openlocfilehash: 81ae186201fdfac331b1d4e7836b222545fe78b5
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489160"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419694"
 ---
-# <a name="handling-concurrency-conflicts"></a>Eşzamanlılık çakışmalarını işleme
-İyimser eşzamanlılık açıklamayı kaçırmadığından içerir varlığınız veriler varlık bu yana değişmemiştir umuduyla veritabanına kaydetme girişiminde yüklendi. Gösterilmiş, bir özel durum ve kaydetmeyi yeniden denemeden önce çakışmayı çözmelisiniz sonra veri değişti. Bu konu, Entity Framework, bu tür özel durumların nasıl işleneceğini kapsar. Bu konuda gösterilen teknikleri Code First ve EF Designer ile oluşturulan modeller için eşit oranda geçerlidir.  
+# <a name="handling-concurrency-conflicts"></a>Eşzamanlılık Çakışmalarını İşleme
+İyimser eşzamanlılık, varlığınızın, varlık yüklenmeden bu yana değiştirilmediğinden verileri veritabanına kaydetmeye yönelik optimizasyonu yapmayı içerir. Verilerin değiştiğini algıladığında, bir özel durum oluşturulur ve yeniden kaydetmeyi denemeden önce çakışmayı çözmeniz gerekir. Bu konu, Entity Framework özel durumların nasıl işleneceğini ele alır. Bu konu başlığında gösterilen teknikler Code First ve EF Designer ile oluşturulan modellere eşit olarak uygulanır.  
 
-Bu gönderi, iyimser eşzamanlılık tam bir irdelemesi için uygun bir yerde değil. Aşağıdaki bölümler, eşzamanlılık çözümleme biraz bilgi varsayar ve ortak görevler için desenleri gösterir.  
+Bu gönderi, iyimser eşzamanlılık hakkında tam bir tartışma için uygun yer değildir. Aşağıdaki bölümler, eşzamanlılık çözümünden oluşan bazı bilgileri varsayar ve ortak görevler için desenleri gösterir.  
 
-Bu düzenleri birçoğu olun açıklandığı konularda kullanım [özellik değerleri ile çalışma](~/ef6/saving/change-tracking/property-values.md).  
+Bu desenlerin çoğu, [özellik değerleriyle çalışma](~/ef6/saving/change-tracking/property-values.md)bölümünde ele alınan konuları kullanır.  
 
-(Burada yabancı anahtarı varlığınız özelliğinde eşlenmedi) bağımsız ilişkilerini kullanırken eşzamanlılık sorunlarını çözme, yabancı anahtar ilişkilerini kullanırken daha çok daha zordur. Uygulamanızdaki eşzamanlılık çözümleme yapmak için kullanacaksanız bu nedenle, yabancı anahtarlar her zaman, varlıklara eşleme önerilir. Aşağıdaki örneklerde, yabancı anahtar ilişkilerini kullandığınız varsayılmıştır.  
+Bağımsız ilişkilendirmeler kullanırken eşzamanlılık sorunlarını çözme (yabancı anahtar, varlığınızda bir özellikle eşlenmiyor), yabancı anahtar ilişkilendirmelerini kullanırken çok daha zordur. Bu nedenle, uygulamanızda eşzamanlılık çözümlemesi yapacaksanız, her zaman yabancı anahtarları varlıklarınıza eşlemeniz önerilir. Aşağıdaki örneklerde, yabancı anahtar ilişkilendirmelerini kullandığınız varsayılır.  
 
-Yabancı anahtar ilişkilerini kullanan varlık kaydedilmeye çalışılırken bir iyimser eşzamanlılık özel durum tespit edildiğinde bir DbUpdateConcurrencyException SaveChanges tarafından oluşturulur.  
+Yabancı anahtar ilişkilendirmelerini kullanan bir varlık kaydedilmeye çalışılırken bir iyimser eşzamanlılık özel durumu algılandığında, SaveChanges tarafından bir DbUpdateConcurrencyException oluşturulur.  
 
-## <a name="resolving-optimistic-concurrency-exceptions-with-reload-database-wins"></a>Reload (veritabanı WINS) ile iyimser eşzamanlılık özel durumlar  
+## <a name="resolving-optimistic-concurrency-exceptions-with-reload-database-wins"></a>Yeniden yükleme ile iyimser eşzamanlılık özel durumlarını çözme (veritabanı WINS)  
 
-Yeniden yükleme yöntemi, artık veritabanında değerlerle varlığın geçerli değerlerin üzerine yazmak için kullanılabilir. Varlık sonra genellikle geri biçimdeki kullanıcıya verilir ve bunların değişiklikleri tekrar yapmanıza ve yeniden kaydetmek denemeniz gerekir. Örneğin:  
+Yeniden yükleme yöntemi, varlığın geçerli değerlerinin üzerine veritabanında şu değerlerle birlikte yazmak için kullanılabilir. Daha sonra varlık, genellikle kullanıcı tarafından bir formda geri verilir ve değişiklikleri yeniden yapıp yeniden kaydetmeniz gerekir. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -52,18 +52,18 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Bir eşzamanlılık özel durumunu benzetimini yapmak için en iyi yolu, SaveChanges çağrıda bir kesme noktası ayarlayın ve sonra SQL Management Studio gibi başka bir araç kullanarak veritabanında kaydedilmiş bir varlık değiştirme sağlamaktır. Ayrıca, SaveChanges SqlCommand kullanarak doğrudan veritabanını güncellemek için bir satır ekleyebilirsiniz. Örneğin:  
+Eşzamanlılık özel durumunun benzetimini yapmanın iyi bir yolu, SaveChanges çağrısında bir kesme noktası ayarlamak ve sonra SQL Management Studio gibi başka bir aracı kullanarak veritabanına kaydedilen bir varlığı değiştirmektir. Ayrıca, veritabanının SqlCommand 'ı kullanarak doğrudan güncelleştirilmesini sağlamak için SaveChanges 'tan önce bir satır ekleyebilirsiniz. Örnek:  
 
 ``` csharp
 context.Database.SqlCommand(
     "UPDATE dbo.Blogs SET Name = 'Another Name' WHERE BlogId = 1");
 ```  
 
-DbUpdateConcurrencyException girişleri yöntemi güncelleştirilemedi varlıkların DbEntityEntry örneği döndürür. (Bu özellik şu anda her zaman eşzamanlılık sorunları için tek bir değer döndürür. Bu genel güncelleştirme özel durumlar için birden çok değer döndürebilir.) Girişler veritabanından yüklenmesi gereken tüm varlıkları almak için bazı durumlar için bir alternatif olabilir ve bunların her biri için çağrı yeniden yükleyin.  
+DbUpdateConcurrencyException üzerindeki Entries yöntemi, güncellenemedi olan varlıkların DbEntityEntry örneklerini döndürür. (Bu özellik şu anda eşzamanlılık sorunları için her zaman tek bir değer döndürür. Genel güncelleştirme özel durumları için birden çok değer döndürebilir.) Bazı durumlar için bir alternatif, veritabanından yeniden yüklenmesi gerekebilecek tüm varlıkların girdilerini almak ve bunların her biri için yeniden yükleme çağırmak olabilir.  
 
-## <a name="resolving-optimistic-concurrency-exceptions-as-client-wins"></a>İyimser eşzamanlılık özel durumları istemci WINS çözümleme  
+## <a name="resolving-optimistic-concurrency-exceptions-as-client-wins"></a>İstemci WINS olarak iyimser eşzamanlılık özel durumlarını çözme  
 
-Yeniden kullanan yukarıdaki örnekte veritabanı WINS adlandırılır veya varlıktaki değerler, veritabanından alınan değerlerin tarafından üzerine yazılır olduğundan depolama WINS. Bazen varlıktaki değerlerle veritabanındaki değerlerin üzerine ve bunun tersini yapmak isteyebilirsiniz. Bu, istemci WINS adlandırılır ve geçerli veritabanı değerlerini alma ve bunları varlığın özgün değer olarak ayarlayarak gerçekleştirilebilir. (Bkz [özellik değerleri ile çalışma](~/ef6/saving/change-tracking/property-values.md) geçerli ve orijinal değerleri hakkında bilgi almak için.) Örneğin:  
+Yukarıdaki örnek, veritabanındaki değerlerin üzerine yazılacak şekilde, yeniden yükleme kullanan yukarıdaki örnek bazen veritabanı WINS veya mağaza WINS olarak adlandırılır. Bazen bunun tersini yapmak isteyebilirsiniz ve veritabanındaki değerlerin üzerine varlık içinde olan değerleri yazabilirsiniz. Bu bazen istemci WINS olarak adlandırılır ve geçerli veritabanı değerlerini alarak ve varlık için özgün değerler olarak ayarlanarak yapılabilir. (Bkz. geçerli ve orijinal değerler hakkında bilgi için bkz. [özellik değerleriyle çalışma](~/ef6/saving/change-tracking/property-values.md) .) Örneğin:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -92,9 +92,9 @@ using (var context = new BloggingContext())
 }
 ```  
 
-## <a name="custom-resolution-of-optimistic-concurrency-exceptions"></a>İyimser eşzamanlılık özel durumların özel çözümleme  
+## <a name="custom-resolution-of-optimistic-concurrency-exceptions"></a>İyimser eşzamanlılık özel durumlarının özel çözümlemesi  
 
-Bazen, veritabanı şu anda değerler şu anda varlıktaki değerler birleştirmek isteyebilirsiniz. Bu genellikle bazı özel mantığı ya da kullanıcı etkileşimini gerektirir. Örneğin, geçerli değerler veritabanında içeren kullanıcı için bir form sunabilir ve varsayılan çözümlenen değerlerini ayarlayın. Kullanıcı çözümlenen değerleri gereken şekilde ardından düzenleyin ve bunun veritabanına kaydedilir, çözümlenen bu değerleri olur. Bu yapılabilir DbPropertyValues nesneleri kullanarak CurrentValues ve GetDatabaseValues varlığın girişinde döndürdü. Örneğin:  
+Bazen veritabanında Şu anda varlıktaki değerleri birleştirmek isteyebilirsiniz. Bu genellikle bazı özel Logic veya kullanıcı etkileşimini gerektirir. Örneğin, kullanıcıya geçerli değerleri, veritabanındaki değerleri ve çözümlenen değerlerin varsayılan bir kümesini içeren bir form sunabilirsiniz. Daha sonra Kullanıcı çözümlenmiş değerleri gerektiği gibi düzenleyebilir ve veritabanına kaydedilen bu çözümlenmiş değerlerdir. Bu işlem, varlık girişinde CurrentValues ve GetDatabaseValues 'tan döndürülen DbPropertyValues nesneleri kullanılarak yapılabilir. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -143,9 +143,9 @@ public void HaveUserResolveConcurrency(DbPropertyValues currentValues,
 }
 ```  
 
-## <a name="custom-resolution-of-optimistic-concurrency-exceptions-using-objects"></a>İyimser eşzamanlılık özel durumların nesneleri kullanarak özel çözümleme  
+## <a name="custom-resolution-of-optimistic-concurrency-exceptions-using-objects"></a>Nesneler kullanılarak iyimser eşzamanlılık özel durumlarının özel çözümlenmesi  
 
-Yukarıdaki kod, geçerli etrafında geçirme, veritabanı ve çözümlenen değerleri DbPropertyValues örnekleri kullanır. Bazen bu varlığın örneklerinin kullanımı daha kolay olabilir. Bu yapılabilir DbPropertyValues ToObject ve SetValues yöntemlerini kullanma. Örneğin:  
+Yukarıdaki kod, geçerli, veritabanı ve çözümlenen değerleri geçirmek için DbPropertyValues örnekleri kullanır. Bazen bunun için varlık türünün örneklerinin kullanılması daha kolay olabilir. Bu, DbPropertyValues 'un ToObject ve SetValues yöntemleri kullanılarak yapılabilir. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())

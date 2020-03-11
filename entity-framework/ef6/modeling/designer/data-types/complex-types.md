@@ -1,157 +1,157 @@
 ---
-title: Karmaşık türler - EF Designer - EF6
+title: Karmaşık türler-EF Tasarımcısı-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 9a8228ef-acfd-4575-860d-769d2c0e18a1
 ms.openlocfilehash: a3c5578acee23688c04772d2dd0a2221779af562
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489914"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418653"
 ---
-# <a name="complex-types---ef-designer"></a>Karmaşık türler - EF Designer
-Bu konuda, karmaşık türün özelliklerini içeren varlıklar için sorgulama ve karmaşık türler Entity Framework Designer (EF Designer) ile eşlemek nasıl gösterir.
+# <a name="complex-types---ef-designer"></a>Karmaşık türler-EF Tasarımcısı
+Bu konu, karmaşık türlerin Entity Framework Designer (EF Designer) ile nasıl eşleneceğini ve karmaşık türün özelliklerini içeren varlıkların nasıl sorgulanalınacağını gösterir.
 
-EF Designer ile çalışırken, kullanılan ana windows aşağıdaki resimde gösterilmektedir.
+Aşağıdaki görüntüde, EF Designer ile çalışırken kullanılan ana pencereler gösterilmektedir.
 
-![EF Designer](~/ef6/media/efdesigner.png)
+![EF Tasarımcısı](~/ef6/media/efdesigner.png)
 
 > [!NOTE]
-> Kavramsal model oluşturduğunuzda, hata Listesi'nde eşlenmemiş varlıkları ve ilişkileri hakkında uyarılar görünebilir. Modelden veritabanını oluşturmak seçtikten sonra hatalar kaybolur çünkü bu uyarıları gözardı edebilirsiniz.
+> Kavramsal model oluşturduğunuzda, eşlenmemiş varlıklar ve ilişkilendirmeler hakkında uyarılar Hata Listesi görünebilir. Bu uyarıları yoksayabilirsiniz çünkü veritabanını modelden oluşturmayı seçtiğinizde hatalar kaybolur.
 
-## <a name="what-is-a-complex-type"></a>Karmaşık bir tür nedir
+## <a name="what-is-a-complex-type"></a>Karmaşık tür nedir?
 
-Skaler olmayan özelliklerinin skaler özellikler varlıkları düzenlenmesine olanak sağlayan varlık türler karmaşık türleridir. Varlıklar gibi karmaşık türler, skaler özellikler veya diğer karmaşık tür özellikleri oluşur.
+Karmaşık türler, skalar özelliklerin varlıklar içinde düzenlenmesine olanak sağlayan varlık türlerinin skalar olmayan özellikleridir. Varlıklar gibi karmaşık türler de skalar özelliklerden veya diğer karmaşık tür özelliklerinden oluşur.
 
-Karmaşık türleri temsil eden nesneleri ile çalışırken, aşağıdakilere dikkat edin:
+Karmaşık türleri temsil eden nesnelerle çalışırken, aşağıdakilere dikkat edin:
 
--   Karmaşık türler, anahtarları yoksa ve bu nedenle bağımsız olarak var olamaz. Karmaşık türler yalnızca varlık türleri veya diğer karmaşık türler özellikleri olarak bulunabilir.
--   Karmaşık türler ilişkilendirmeler katılamaz ve gezinti özellikleri içeremez.
--   Karmaşık tür özellikleri olamaz **null**. Bir ** InvalidOperationException ** gerçekleşir, **DbContext.SaveChanges** çağrılır ve karmaşık bir null Nesne karşılaşıldı. Skaler özellikleri karmaşık nesneler olabilir **null**.
--   Karmaşık türler, diğer karmaşık türlerden devralamaz.
--   Karmaşık tür olarak tanımlamalıdır bir **sınıfı**. 
--   EF üyeleri bir karmaşık tür nesne üzerindeki değişiklikleri algılar, **DbContext.DetectChanges** çağrılır. Varlık çerçevesi çağıran **DetectChanges** otomatik olarak, aşağıdaki üyeleri çağrılır: **DbSet.Find**, **DbSet.Local**, **DbSet.Remove**, **DbSet.Add**, **DbSet.Attach**, **DbContext.SaveChanges**, **DbContext.GetValidationErrors**, **DbContext.Entry**, **DbChangeTracker.Entries**.
+-   Karmaşık türlerde anahtarlar yoktur ve bu nedenle bağımsız olarak bulunamaz. Karmaşık türler yalnızca varlık türlerinin veya diğer karmaşık türlerin özellikleri olarak bulunabilir.
+-   Karmaşık türler ilişkilendirmelere katılamaz ve gezinti özellikleri içeremez.
+-   Karmaşık tür özellikleri **null**olamaz. **DbContext. SaveChanges** çağrıldığında ve null karmaşık bir nesneyle karşılaşıldığında **InvalidOperationException **oluşur. Karmaşık nesnelerin skaler özellikleri **null**olabilir.
+-   Karmaşık türler diğer karmaşık türlerden devralınabilir.
+-   Karmaşık türü bir **sınıf**olarak tanımlamanız gerekir. 
+-   EF, **DbContext. DetectChanges** çağrıldığında karmaşık tür nesnesindeki üyelerin değişikliklerini algılar. Entity Framework, aşağıdaki Üyeler çağrıldığında **DetectChanges** öğesini otomatik olarak çağırır: **Dbset. Find**, **dbset. Local**, **Dbset. Remove**, **dbset. Add**, **dbset. Attach**, **DbContext. SaveChanges**, **DbContext. getvalidationerrors**, **DbContext. Entry**, **dbchangetracker. Entries**.
 
-## <a name="refactor-an-entitys-properties-into-new-complex-type"></a>Bir varlığın özelliklerini yeni karmaşık tür yeniden düzenleyin.
+## <a name="refactor-an-entitys-properties-into-new-complex-type"></a>Varlığın özelliklerini yeni karmaşık türe yeniden düzenleme
 
-Bir varlık, kavramsal modelde zaten varsa, bazı özellikleri bir karmaşık tür özellikte yeniden isteyebilirsiniz.
+Kavramsal modelinizde zaten bir varlık varsa, bazı özelliklerden karmaşık tür özelliklerine yeniden düzenleme yapmak isteyebilirsiniz.
 
-Tasarımcı yüzeyinde birini seçin veya daha fazla özellik (Gezinti özellikleri hariç), bir varlığın sonra sağ tıklayıp **yeniden düzenleme -&gt; taşımak için yeni karmaşık tür**.
+Tasarımcı yüzeyinde bir varlığın bir veya daha fazla özelliğini (gezinme özellikleri hariç) seçin, sonra sağ tıklayıp yeniden&gt; Düzenle ' yi seçerek **Yeni karmaşık türe taşıyın**.
 
 ![Yeniden Düzenleme (Refactor)](~/ef6/media/refactor.png)
 
-Seçili özelliklere sahip yeni bir karmaşık türü eklenir **Model tarayıcı**. Karmaşık tür bir varsayılan ad verilir.
+**Model tarayıcıya**seçili özelliklere sahip yeni bir karmaşık tür eklenmiştir. Karmaşık türe varsayılan bir ad verilir.
 
-Yeni oluşturulan türü karmaşık bir özellik seçili nesnenin özelliklerini değiştirir. Tüm özellik eşlemeleri korunur.
+Yeni oluşturulan türün karmaşık bir özelliği seçilen özelliklerin yerini alır. Tüm özellik eşlemeleri korunur.
 
-![2 yeniden düzenleyin](~/ef6/media/refactor2.png)
+![Yeniden Düzenle 2](~/ef6/media/refactor2.png)
 
-## <a name="create-a-new-complex-type"></a>Yeni bir karmaşık tür oluşturma
+## <a name="create-a-new-complex-type"></a>Yeni bir karmaşık tür oluşturun
 
-Var olan bir varlığa özelliklerini içermeyen yeni bir karmaşık türü de oluşturabilirsiniz.
+Ayrıca, var olan bir varlığın özelliklerini içermeyen yeni bir karmaşık tür oluşturabilirsiniz.
 
-Sağ **karmaşık türler** klasör modeli tarayıcıda işaret **AddNew karmaşık türü...** . Alternatif olarak, seçebileceğiniz **karmaşık türler** klasörü ve ENTER tuşuna **Ekle** klavyenizde anahtar.
+Model tarayıcısında **karmaşık türler** klasörüne sağ tıklayın, **AddNew karmaşık türü..** . seçeneğine gelin. Alternatif olarak, **karmaşık türler** klasörünü seçip klavyenizdeki **Insert** tuşuna basabilirsiniz.
 
-![Yeni karmaşık tür ekleyin](~/ef6/media/addnewcomplextype.png)
+![Yeni karmaşık tür Ekle](~/ef6/media/addnewcomplextype.png)
 
-Yeni bir karmaşık türü bir varsayılan ada sahip klasör eklenir. Bu gibi durumlarda, özellikleri artık türüne ekleyebilirsiniz.
+Klasöre varsayılan adla yeni bir karmaşık tür eklenir. Artık türüne özellikler ekleyebilirsiniz.
 
-## <a name="add-properties-to-a-complex-type"></a>Karmaşık bir türü özellikleri ekleyin
+## <a name="add-properties-to-a-complex-type"></a>Karmaşık bir türe özellikler ekleme
 
-Karmaşık bir tür özelliklerinin skaler türler veya var olan bir karmaşık türler olabilir. Ancak, karmaşık tür özellikleri döngüsel başvurulara sahip olamaz. Örneğin, bir karmaşık tür **OnsiteCourseDetails** karmaşık türün bir özellik olamaz **OnsiteCourseDetails**.
+Karmaşık bir türün özellikleri skaler türler veya var olan karmaşık türler olabilir. Ancak, karmaşık tür özelliklerinin döngüsel başvuruları olamaz. Örneğin, bir karmaşık tür **onsitecoursedetails** karmaşık türde **onsitecoursedetails**özelliğine sahip olamaz.
 
-Aşağıda listelenen şekilde karmaşık bir tür için bir özelliği ekleyebilirsiniz.
+Bir özelliği, aşağıda listelenen yollarla karmaşık bir türe ekleyebilirsiniz.
 
--   Model tarayıcı karmaşık tür sağ tıklatın, **Ekle**, gelin **skaler özelliği** veya **karmaşık özellik**, ardından istenen özellik türünü seçin. Alternatif olarak, bir karmaşık türü seçin ve sonra basın **Ekle** klavyenizde anahtar.  
+-   Model tarayıcısında bir karmaşık türe sağ tıklayın, **Ekle**' nin üzerine gelin, sonra da **skaler Özellik** veya **karmaşık özellik**' in üzerine gelin ve istediğiniz özellik türünü seçin. Alternatif olarak, bir karmaşık tür seçebilir ve klavyenizdeki **ınsert** tuşuna basabilirsiniz.  
 
-    ![Karmaşık tür için özellikleri ekleyin](~/ef6/media/addpropertiestocomplextype.png)
+    ![Karmaşık türe özellikler ekleme](~/ef6/media/addpropertiestocomplextype.png)
 
-    Yeni bir özellik varsayılan ada sahip karmaşık tür eklenir.
+    Varsayılan bir ada sahip karmaşık türe yeni bir özellik eklenir.
 
-- OR-
+- Veya
 
--   Bir varlık özelliği sağ tıklayın **EF Designer** seçin ve yüzey **kopyalama**, karmaşık türü ardından sağ tıklayarak **Model tarayıcı** seçip  **Yapıştırma**.
+-   **EF Designer** yüzeyinde bir varlık özelliğine sağ tıklayın ve **Kopyala**' yı seçin, ardından **model tarayıcısında** karmaşık türe sağ tıklayıp **Yapıştır**' ı seçin.
 
-## <a name="rename-a-complex-type"></a>Karmaşık bir tür yeniden adlandır
+## <a name="rename-a-complex-type"></a>Karmaşık bir türü yeniden adlandırma
 
-Karmaşık bir tür yeniden adlandırdığınızda, tüm başvuruları türüne proje boyunca güncelleştirilir.
+Karmaşık bir türü yeniden adlandırdığınızda, türe yapılan tüm başvurular proje genelinde güncellenir.
 
--   Yavaş bir karmaşık tür çift **Model tarayıcı**.
-    Ad seçilir ve buna düzenleme modu.
+-   **Model tarayıcısında**bir karmaşık türe yavaş bir çift tıklayın.
+    Ad, düzenleme modunda seçilir ve görüntülenir.
 
-- OR-
+- Veya
 
--   Karmaşık tür sağ **Model tarayıcı** seçip **Yeniden Adlandır**.
+-   **Model tarayıcısında** bir karmaşık türe sağ tıklayıp **Yeniden Adlandır**' ı seçin.
 
-- OR-
+- Veya
 
--   Model tarayıcıda bir karmaşık türü seçin ve F2 tuşuna basın.
+-   Model tarayıcısında bir karmaşık tür seçin ve F2 tuşuna basın.
 
-- OR-
+- Veya
 
--   Karmaşık tür sağ **Model tarayıcı** seçip **özellikleri**. Adını düzenleyin **özellikleri** penceresi.
+-   **Model tarayıcısında** karmaşık bir türe sağ tıklayın ve **Özellikler**' i seçin.   **Özellikler** penceresinde adı düzenleyin.
 
-## <a name="add-an-existing-complex-type-to-an-entity-and-map-its-properties-to-table-columns"></a>Var olan bir karmaşık türü bir varlığa eklemek ve tablo sütunları özellikleriyle eşleyin
+## <a name="add-an-existing-complex-type-to-an-entity-and-map-its-properties-to-table-columns"></a>Bir varlığa var olan bir karmaşık türü ekleyin ve özelliklerini tablo sütunlarına eşleyin
 
-1.  Bir varlık sağ tıklatın, **yeni Ekle**seçip **karmaşık özellik**.
-    Varsayılan ada sahip bir karmaşık tür özelliği varlık eklenir. Varsayılan türü (seçtiğiniz var olan bir karmaşık türlerinden) özelliğine atanır.
-2.  İstenen türde özelliğine atayın **özellikleri** penceresi.
-    Bir varlığa bir karmaşık tür özelliği ekledikten sonra özelliklerini tablo sütunları eşlemeniz gerekir.
-3.  Tasarım yüzeyinde veya bir varlık türüne sağ **Model tarayıcı** seçip **Tablo eşlemeleri**.
-    Tablo eşlemeleri görüntülenen **eşleşme ayrıntıları** penceresi.
-4.  Genişletin **eşlendiği &lt;tablo adı&gt;**  düğümü.
-    A **sütun eşlemelerini** düğümü görüntülenir.
-5.  Genişletin **sütun eşlemelerini** düğümü.
-    Tablodaki tüm sütunlar listesi görüntülenir. Varsayılan özellikleri (varsa) hangi sütunları eşlemeniz altında listelenen **değeri/özellik** başlığı.
-6.  Eşlemek istediğiniz sütunu seçin ve ardından ilgili sağ tıklayarak **değeri/özellik** alan.
-    Tüm skaler özellikler aşağı açılan listesi görüntülenir.
-7.  Uygun özelliğini seçin.
+1.  Bir varlığa sağ tıklayın, **Yeni Ekle**' nin üzerine gelin ve **karmaşık özellik**' i seçin.
+    Varlığa varsayılan adda bir karmaşık tür özelliği eklenir. Varsayılan bir tür (varolan karmaşık türlerden seçilen) özelliğine atanır.
+2.  İstenen türü **özellikler** penceresindeki özelliğe atayın.
+    Bir varlığa karmaşık bir tür özelliği eklendikten sonra, özelliklerini tablo sütunlarına eşlemeniz gerekir.
+3.  Tasarım yüzeyinde veya **model tarayıcısı** bir varlık türüne sağ tıklayın ve **tablo eşlemeleri**' ni seçin.
+    Tablo eşlemeleri **eşleme ayrıntıları** penceresinde görüntülenir.
+4.   **Haritaları &lt;tablo adı&gt;**  düğümünü genişletin.
+    Bir **sütun eşlemeleri** düğümü görüntülenir.
+5.   **Sütun eşlemelerini** düğümünü genişletin.
+    Tablodaki tüm sütunların bir listesi görüntülenir. Sütun haritasının, **değer/özellik** başlığı altında listelendiği varsayılan Özellikler (varsa).
+6.  Eşlemek istediğiniz sütunu seçin ve ardından karşılık gelen **değer/özellik** alanına sağ tıklayın.
+    Tüm skaler özelliklerin açılan listesi görüntülenir.
+7.  Uygun özelliği seçin.
 
-    ![Karmaşık tür eşlemesi](~/ef6/media/mapcomplextype.png)
+    ![Eşleme karmaşık türü](~/ef6/media/mapcomplextype.png)
 
-8.  Her bir tablo sütunu için 6 ve 7. adımları tekrarlayın.
+8.  Her tablo sütunu için 6 ve 7. adımları yineleyin.
 
 >[!NOTE]
-> Sütun eşlemesini silmek için eşleme ve ardından istediğiniz sütunu seçin **değeri/özellik** alan. Ardından, **Sil** aşağı açılan listeden.
+> Bir sütun eşlemesini silmek için, eşlemek istediğiniz sütunu seçin ve ardından **değer/özellik** alanına tıklayın. Sonra, açılan listeden **Sil** ' i seçin.
 
-## <a name="map-a-function-import-to-a-complex-type"></a>Harita karmaşık bir tür için bir işlev içeri aktarma
+## <a name="map-a-function-import-to-a-complex-type"></a>Bir Işlev Içeri aktarmayı karmaşık bir türe eşleyin
 
-İşlev içeri aktarmalar saklı yordamlara dayanır. Karmaşık bir tür için bir işlev içeri aktarma eşlemek için karşılık gelen bir saklı yordam tarafından döndürülen sütun numarası karmaşık türü özelliklerini eşleşmelidir ve özellik türleri ile uyumlu depolama türleri olması gerekir.
+İşlev içeri aktarmaları, saklı yordamlara dayalıdır. Bir işlev içeri aktarmayı karmaşık bir türe eşlemek için, karşılık gelen saklı yordam tarafından döndürülen sütunlar sayı olarak karmaşık türün özellikleriyle eşleşmelidir ve özellik türleriyle uyumlu depolama türlerine sahip olmalıdır.
 
--   Karmaşık bir türü eşlemek istediğiniz içeri aktarılan bir işlevin çift tıklayın.
+-   Karmaşık bir türe eşlemek istediğiniz içeri aktarılan işleve çift tıklayın.
 
-    ![İşlev içeri aktarmalar](~/ef6/media/functionimports.png)
+    ![İşlev Içeri aktarmaları](~/ef6/media/functionimports.png)
 
--   Yeni işlev içeri aktarma ayarlarını aşağıdaki gibi doldurun:
-    -   Bir işlev alma oluşturma saklı yordamı belirtin **saklı yordam adı** alan. Depolama modelinde tüm saklı yordamları görüntüleyen bir açılır liste alandır.
-    -   İşlev alma adını **işlev adı alma** alan.
-    -   Seçin **karmaşık** dönüş olarak yazın ve ardından uygun türde aşağı açılan listeden seçim yaparak karmaşık belirli dönüş türü belirtin.
+-   Yeni işlev içeri aktarma ayarlarını aşağıdaki gibi girin:
+    -    **Saklı yordam adı** alanında bir işlev içeri aktarması oluşturduğunuz saklı yordamı belirtin. Bu alan, depolama modelindeki tüm saklı yordamları görüntüleyen bir açılan liste listesidir.
+    -   İşlev **içeri aktarma adı** alanında işlev içeri aktarma adını belirtin.
+    -   Dönüş türü olarak **karmaşık** seçin ve ardından açılan listeden uygun türü seçerek belirli karmaşık dönüş türünü belirtin.
 
-        ![İşlev Düzenle](~/ef6/media/editfunctionimport.png)
+        ![Işlev Içeri aktarmayı Düzenle](~/ef6/media/editfunctionimport.png)
 
--   **Tamam**'ı tıklatın.
-    Kavramsal modelde işlev içeri aktarma girişi oluşturulur.
+-    **Tamam**' a tıklayın.
+    İşlev içeri aktarma girişi kavramsal modelde oluşturulur.
 
-### <a name="customize-column-mapping-for-function-import"></a>Sütun eşleme işlev içeri aktarma için özelleştirme
+### <a name="customize-column-mapping-for-function-import"></a>Işlev Içeri aktarması için sütun eşlemeyi özelleştirme
 
--   Model tarayıcıdaki işlev içeri aktarma sağ tıklayıp **alma işlev eşleme Mapping**.
-    **Eşleme ayrıntılarını** penceresi görüntülenir ve işlev içeri aktarma için varsayılan eşlemeyi gösterir. Oklar sütun değerleri ve özellik değerlerini arasındaki eşlemeleri gösterir. Varsayılan olarak, sütun adlarını karmaşık türünün özellik adlarıyla aynı olduğu varsayılır. Varsayılan sütun adlarını gri metin olarak görüntülenir.
--   Gerekirse, sütun adlarını işlevi alma işlemi karşılık gelen saklı yordam tarafından döndürülen sütun adlarını eşleştirmek için değiştirin.
+-   Model tarayıcısında içeri aktarma işlevine sağ tıklayın ve **Işlev Içeri aktarma eşlemesi**' ni seçin.
+     **Eşleme ayrıntıları** penceresi görünür ve işlev içeri aktarma için varsayılan eşlemeyi gösterir. Oklar, sütun değerleri ve özellik değerleri arasındaki eşlemeleri gösterir. Varsayılan olarak, sütun adlarının karmaşık türün Özellik adlarıyla aynı olduğu varsayılır. Varsayılan sütun adları gri metinde görünür.
+-   Gerekirse, sütun adlarını, işlev içeri aktarmaya karşılık gelen saklı yordamın döndürdüğü sütun adlarıyla eşleşecek şekilde değiştirin.
 
-## <a name="delete-a-complex-type"></a>Karmaşık bir tür Sil
+## <a name="delete-a-complex-type"></a>Karmaşık bir türü silme
 
-Karmaşık bir tür sildiğinizde, kavramsal modelden türü silinir ve eşlemeleri türünün tüm örnekleri için silinir. Ancak, başvuru türü için güncelleştirilmez. Örneğin, bir karmaşık tür özelliği ComplexType1 türünde bir varlık varsa ve ComplexType1 silinir **Model tarayıcı**, ilgili varlık özelliği güncelleştirilmez. Silinen bir karmaşık tür başvuran bir varlık içerdiğinden model doğrulama değil. Güncelleştirmesi veya varlık Tasarımcısı kullanarak silinen karmaşık tür başvuruları silin.
+Karmaşık bir türü sildiğinizde tür kavramsal modelden silinir ve türün tüm örnekleri için eşlemeler silinir. Ancak, türe yapılan başvurular güncellenmez. Örneğin, bir varlığın ComplexType1 türünde karmaşık bir tür özelliği varsa ve ComplexType1 **model tarayıcısında**silinirse, karşılık gelen varlık özelliği güncellenmez. Silinen bir karmaşık türe başvuran bir varlık içerdiğinden model doğrulanmayacak. Entity Desisgner kullanarak silinen karmaşık türlere başvuruları güncelleştirebilir veya silebilirsiniz.
 
--   Model tarayıcı karmaşık tür sağ tıklayıp **Sil**.
+-   Model tarayıcısında karmaşık bir türe sağ tıklayın ve **Sil**' i seçin.
 
-- OR-
+- Veya
 
--   Model tarayıcıda bir karmaşık türü seçin ve klavyenizde Delete tuşuna basın.
+-   Model tarayıcısında bir karmaşık tür seçin ve klavyenizdeki DELETE tuşuna basın.
 
-## <a name="query-for-entities-containing-properties-of-complex-type"></a>Karmaşık türün özelliklerini içeren varlıklar için sorgu
+## <a name="query-for-entities-containing-properties-of-complex-type"></a>Karmaşık türün özelliklerini Içeren varlıklar için sorgu
 
-Aşağıdaki kodu içeren bir karmaşık tür özelliği türü nesneleri varlık koleksiyonunu döndüren bir sorgu yürütme gösterilmektedir.
+Aşağıdaki kod, karmaşık tür özelliği içeren varlık türü nesnelerinin bir koleksiyonunu döndüren bir sorgunun nasıl yürütüleceğini gösterir.
 
 ``` csharp
     using (SchoolEntities context = new SchoolEntities())

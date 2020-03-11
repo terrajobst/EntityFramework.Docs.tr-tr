@@ -1,39 +1,39 @@
 ---
-title: School örnek veritabanını - EF6
+title: Okul örnek veritabanı-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: e83a6a06-e63b-4530-8656-614bf609b12b
 ms.openlocfilehash: 1e9dc98edb8590021bbf3393e9edda1929d505e0
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490720"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417000"
 ---
-# <a name="school-sample-database"></a>School örnek veritabanını
-Bu konu, şema ve School veritabanını verilerini içerir. Örnek School veritabanını, Entity Framework belgelerine çeşitli yerlerde kullanılır.  
+# <a name="school-sample-database"></a>Örnek Okul Veritabanı
+Bu konu, okul veritabanına yönelik şemayı ve verileri içerir. Örnek okul veritabanı, Entity Framework belgelerinin tamamında çeşitli yerlerde kullanılır.  
 
 > [!NOTE]
-> Visual Studio ile yüklenen veritabanı sunucusu, kullandığınız Visual Studio sürümüne bağlı olarak farklıdır. Bkz: [Visual Studio sürümlerine](~/ef6/what-is-new/visual-studio.md) ne kullanma hakkında ayrıntılı bilgi için.  
+> Visual Studio ile yüklenen veritabanı sunucusu, kullandığınız Visual Studio sürümüne bağlı olarak farklılık gösteren bir veritabanıdır. Nelerin kullanılacağı hakkında ayrıntılı bilgi için bkz. [Visual Studio yayınları](~/ef6/what-is-new/visual-studio.md) .  
 
-Veritabanını oluşturmak için adımlar şunlardır:
+Veritabanını oluşturma adımları aşağıda verilmiştir:
 
-- Visual Studio'yu Aç  
-- **Görünüm** -> **Sunucu Gezgini**  
-- Sağ tıklayın **veri bağlantıları** -> **bağlantı ekle...**  
-- Sunucu gezgininden veritabanına bağlamadıysanız seçmeniz gerekir önce **Microsoft SQL Server** veri kaynağı  
-- LocalDB veya hangisinin bağlı olarak yüklediğiniz SQL Express için Bağlan  
-- Girin **Okul** veritabanı adı  
-- Seçin **Tamam** ve bir yeni bir veritabanı oluşturmak istiyorsanız istenir **Evet**  
-- Yeni veritabanı şimdi sunucu Gezgini'nde görünür.  
-- Visual Studio 2012 veya daha yeni kullanıyorsanız
-    - Sunucu Gezgini veritabanı üzerinde sağ tıklayıp **yeni sorgu**  
-    - Yeni bir sorguda aşağıdaki SQL kopyalayın, sonra sağ tıklatın ve sorgu **Yürüt**  
+- Visual Studio’yu açın  
+-  -> **Sunucu Gezgini** **görüntüle**  
+- Bağlantı Ekle -> **veri bağlantılarına** sağ tıklayın **...**  
+- Sunucu Gezgini bir veritabanına bağlı değilseniz, veri kaynağı olarak **Microsoft SQL Server** seçmeniz gerekir  
+- Hangi hangisinin yüklü olduğuna bağlı olarak, LocalDB veya SQL Express 'e bağlanın  
+- **Okulu** veritabanı adı olarak girin  
+- **Tamam** ' ı seçtiğinizde, yeni bir veritabanı oluşturmak isteyip istemediğiniz sorulur, **Evet** ' i seçin.  
+- Yeni veritabanı artık Sunucu Gezgini görüntülenir  
+- Visual Studio 2012 veya daha yeni bir sürümünü kullanıyorsanız
+    - Sunucu Gezgini veritabanında veritabanına sağ tıklayın ve **Yeni sorgu** ' yı seçin.  
+    - Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **Yürüt** ' ü seçin.  
 - Visual Studio 2010 kullanıyorsanız  
-    - Seçin **veri** -> **Transact SQL Düzenleyicisi** -> **yeni bağlantı...**  
-    - Girin **. \SQLEXPRESS** tıklayın ve sunucu adı olarak **Tamam**  
-    - Seçin **STESample** veritabanı açılır menüden aşağı sorgu Düzenleyicisi'ni üstünde  
-    - Yeni bir sorguda aşağıdaki SQL kopyalayın, sonra sağ tıklatın ve sorgu **SQL Yürüt**  
+    - Yeni sorgu bağlantısı -> **Transact SQL düzenleyicisi** -> **veri** seçin **...**  
+    - Sunucu adı olarak **.\Sqlexpress** girin ve **Tamam 'a** tıklayın  
+    - Sorgu Düzenleyicisi 'nin en üstündeki açılan listeden **Stesample** veritabanını seçin  
+    - Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **SQL 'ı Yürüt** ' ü seçin.  
 
 ``` SQL  
 SET ANSI_NULLS ON

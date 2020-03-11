@@ -5,17 +5,17 @@ ms.date: 02/20/2018
 ms.assetid: 585F90A3-4D5A-4DD1-92D8-5243B14E0FEC
 uid: core/what-is-new/ef-core-2.1
 ms.openlocfilehash: ba3a26bcd76cd0b9615b13f32456e7280afe533a
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73654839"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417484"
 ---
 # <a name="new-features-in-ef-core-21"></a>EF Core 2,1 ' deki yeni özellikler
 
 Çok sayıda hata düzeltmesi ve küçük işlevsellik ve performans geliştirmelerinin yanı sıra EF Core 2,1 bazı etkileyici yeni özellikler içerir:
 
-## <a name="lazy-loading"></a>Geç yükleme
+## <a name="lazy-loading"></a>geç yükleme
 
 EF Core artık, herhangi bir kişinin gezinti özelliklerini isteğe bağlı olarak yükleyebilen varlık sınıfları yazmak için gerekli yapı taşlarını içerir. Ayrıca, en düşük düzeyde değiştirilen varlık sınıflarına (örneğin, sanal gezinti özelliklerine sahip sınıflar) göre yavaş yükleme proxy sınıfları oluşturmak için bu yapı taşlarından yararlanan yeni bir Microsoft. EntityFrameworkCore. proxy paketi oluşturduk.
 

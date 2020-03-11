@@ -1,29 +1,29 @@
 ---
-title: İşlem işleme hataları - EF6 işleme
+title: İşlem işleme başarısızlıklarını işleme-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 5b1f7a7d-1b24-4645-95ec-5608a31ef577
 ms.openlocfilehash: 27e75e6a1919ee2300fe76cfcdf67cceaad887b3
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283660"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417372"
 ---
-# <a name="handling-transaction-commit-failures"></a>İşlem işleme hatalarını işleme
+# <a name="handling-transaction-commit-failures"></a>İşlem işleme başarısızlıklarını işleme
 > [!NOTE]
-> **EF6.1 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb. Entity Framework 6.1 kullanıma sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.  
+> **EF 6.1 yalnızca** sonraki sürümler-bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 6,1 ' de tanıtılmıştı. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.  
 
-6.1 bir parçası olarak yeni bir bağlantı dayanıklılığı özelliği için EF sunuyoruz: algılamak ve geçici bağlantı hataları hareket işleme bildirim zaman etkileyen otomatik olarak kurtarmak yeteneği. Senaryo tam ayrıntılarını en iyi blog gönderisinde açıklanan [SQL veritabanı bağlantısı ve Teklik sorunu](https://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx).  Özet olarak, bir işlem kaydı sırasında bir özel durum harekete geçirildiğinde, iki olası nedeni vardır senaryodur:  
+6,1 kapsamında, EF için yeni bir bağlantı dayanıklılığı özelliği sunuyoruz: geçici bağlantı arızaları işlem yürütmelerinin bildirimini etkilediği zaman otomatik olarak algılama ve kurtarma özelliği. Senaryonun tüm ayrıntıları en iyi şekilde [SQL veritabanı bağlantısı ve en etkili sorun sorunu](https://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx)konusunda açıklanmıştır.  Özet bölümünde senaryo, işlem sırasında bir özel durum ortaya çıktığında iki olası neden vardır:  
 
-1. İşlem yürütme sunucuda başarısız oldu
-2. İşlem işleme sunucu üzerinde başarılı ancak bir bağlantı sorunu başarı bildirimi, istemciye ulaşmasını önleyen  
+1. Sunucuda işlem işleme başarısız oldu
+2. İşlem, sunucuda başarılı bir şekilde tamamlandı, ancak bir bağlantı sorunu, Başarı bildiriminin istemciye ulaşmasını engelledi  
 
-İlk durum uygulama veya kullanıcıya durumda, işlemi yeniden deneyebilirsiniz, ancak ikinci durum oluştuğunda deneme kaçınılmalıdır ve uygulama otomatik olarak geri yüklenemiyor. Sınama uygulama eyleminin doğru kurs seçemezsiniz bir özel durum işleme sırasında bildirildi gerçek nedeni neydi algılama özelliğini olmasıdır. İşlemin başarılı olduğunu ve doğru kurs eyleminin şeffaf bir şekilde ele, veritabanı ile bir kez daha denetleyin EF EF 6.1 yeni özelliği sağlar.  
+İlk durum uygulama olduğunda veya Kullanıcı işlemi yeniden deneyebilir, ancak ikinci durum oluştuğunda yeniden denemeler önlenmiş olmalıdır ve uygulama otomatik olarak kurtarabilir. Bu zorluk, kayıt sırasında bir özel durumun ne kadar gerçek olduğunu tespit etme yeteneği olmadan, uygulamanın doğru işlem planını seçemediğinden emin değildir. EF 6,1 ' deki yeni özellik, işlem başarılı olursa ve doğru şekilde eyleme geçmek için EF 'in veritabanına iki kez işaret etmesine olanak tanır.  
 
 ## <a name="using-the-feature"></a>Özelliğini kullanma  
 
-Özelliği etkinleştirmek için bir çağrı ekleyin [SetTransactionHandler](https://msdn.microsoft.com/library/system.data.entity.dbconfiguration.setdefaulttransactionhandler.aspx) oluşturucusunun içinde **DbConfiguration**. Alışık olduğunuz **DbConfiguration**, bkz: [kod tabanlı yapılandırma](~/ef6/fundamentals/configuring/code-based.md). Bu özellik, işlem gerçekten sunucuda geçici bir hata nedeniyle başarısız oldu durumda yardımcı otomatik deneme EF6 içinde kullanıma sunduk ile birlikte kullanılabilir:  
+İhtiyacınız olan özelliği etkinleştirmek için, **DBConfiguration**' ın oluşturucusunda [settransactionhandler](https://msdn.microsoft.com/library/system.data.entity.dbconfiguration.setdefaulttransactionhandler.aspx) ' a bir çağrı ekleyin. **DBConfiguration**hakkında bilginiz yoksa bkz. [kod tabanlı yapılandırma](~/ef6/fundamentals/configuring/code-based.md). Bu özellik, EF6 ' de tanıtıldığımız otomatik yeniden denemeler ile birlikte kullanılabilir ve bu durum, geçici bir hata nedeniyle işlemin gerçekten sunucuda işleme amaması durumunda yardımcı olur:  
 
 ``` csharp
 using System.Data.Entity;
@@ -40,33 +40,33 @@ public class MyConfiguration : DbConfiguration
 }
 ```  
 
-## <a name="how-transactions-are-tracked"></a>İşlemler nasıl izlenir  
+## <a name="how-transactions-are-tracked"></a>İşlemler nasıl izlenir?  
 
-Bu özellik etkinleştirildiğinde, EF otomatik olarak yeni bir tablo adlı veritabanına ekler **__Transactions**. Yeni bir satır, bir işlem tarafından EF oluşturulur ve işleme sırasında bir işlem hatası oluşursa, satır varlığını denetlenir her zaman bu tabloda eklenir.  
+Özellik etkinleştirildiğinde, EF otomatik olarak **__Transactions**adlı veritabanına yeni bir tablo ekler. Her bir işlem EF tarafından oluşturulduğunda bu tabloya yeni bir satır eklenir ve kayıt sırasında bir işlem hatası oluşursa bu satır varlık için denetlenir.  
 
-EF artık ihtiyaç duyulmayan zaman çizelgesinden satırlar ayıklamak üzere en iyi çaba İlkesi ne yapacağını olsa da, uygulamanın erken ve tablo bazı durumlarda elle temizleme gerekebilir. Bu nedenle çıkılıyorsa tablo büyüyebilir.  
+EF, artık gerek duyulmadığında tablodaki satırları ayıklamak için en iyi çaba yapabilse de, uygulama zamanından önce çıktığında tablo büyüyebilir ve bu nedenle, bazı durumlarda tabloyu el ile temizlemeniz gerekebilir.  
 
-## <a name="how-to-handle-commit-failures-with-previous-versions"></a>Önceki sürümlerle işleme hatalarını işlemek nasıl
+## <a name="how-to-handle-commit-failures-with-previous-versions"></a>Önceki sürümlerle işleme başarısızlıklarını işleme
 
-Önce EF 6.1 yoktu EF ürün hatalarını işleme mekanizması. EF6 önceki sürümleri için uygulanabilir bu durumla ilgilenmek için çeşitli yollar vardır:  
+EF 6,1 ' den önce EF ürününde işleme başarısızlıklarını işlemeye yönelik bir mekanizma yoktu. Önceki EF6 sürümlerine uygulanabilecek bu durumla ilgilenmenin birkaç yolu vardır:  
 
-* 1. seçenek - hiçbir şey yapma  
+* Seçenek 1-hiçbir şey yapma  
 
-  İşlem işleme sırasında bağlantı hatası olasılığını düşük olduğundan aslında bu durum ortaya çıkarsa, yalnızca başarısız olmasına, uygulamanız için kabul edilebilir olabilir.  
+  İşlem işleme sırasında bağlantı hatası olasılığı düşük olduğundan, bu durum aslında gerçekleşirse uygulamanızın başarısız olması için kabul edilebilir hale gelebilir.  
 
-* 2. seçenek - durumunu sıfırlamak için veritabanını kullan  
+* Seçenek 2-durumu sıfırlamak için veritabanını kullanma  
 
-  1. Geçerli DbContext AT  
-  2. Yeni bir DbContext oluşturma ve uygulama durumunu veritabanından geri yükleme  
-  3. Son işlemi başarıyla tamamlanmamış, kullanıcıyı bilgilendirmeniz  
+  1. Geçerli DbContext 'i at  
+  2. Yeni bir DbContext oluşturun ve uygulamanızın durumunu veritabanından geri yükleyin  
+  3. Kullanıcıya son işlemin başarıyla tamamlanmamış olabileceğini bildirin  
 
-* 3. seçenek - el ile işlem izleme  
+* Seçenek 3-işlemi el Ile izleme  
 
-  1. İzlenen olmayan tablo işlemlerin durumunu izlemek için kullanılan veritabanı ekleyin.  
-  2. Her işlem başındaki tabloya bir satır ekleyin.  
-  3. Yürütme sırasında bağlantı başarısız olursa, veritabanı karşılık gelen satırı varlığını denetleyin.  
-     - Satır varsa, işlemin başarıyla yürütüldü gibi normal olarak devam eder  
+  1. İşlemlerin durumunu izlemek için kullanılan veritabanına izlenmeyen bir tablo ekleyin.  
+  2. Her bir işlemin başındaki tabloya bir satır ekleyin.  
+  3. Kayıt sırasında bağlantı başarısız olursa, veritabanında karşılık gelen satırın varolup olmadığını kontrol edin.  
+     - Satır mevcutsa, işlem başarıyla yürütüldüğü için normal olarak devam edin  
      - Satır yoksa, geçerli işlemi yeniden denemek için bir yürütme stratejisi kullanın.  
-  4. Kaydetme başarılı olursa, tablonun büyümesini önlemek için karşılık gelen satırı silin.  
+  4. Kayıt başarılı olursa, tablonun büyümesini önlemek için karşılık gelen satırı silin.  
 
-[Bu blog gönderisini](https://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) SQL Azure üzerinde bu işlemi gerçekleştirmek için örnek kod içerir.  
+[Bu blog gönderisi](https://blogs.msdn.com/b/adonet/archive/2013/03/11/sql-database-connectivity-and-the-idempotency-issue.aspx) , SQL Azure için bu kodu yerine getirmeye yönelik örnek kod içerir.  

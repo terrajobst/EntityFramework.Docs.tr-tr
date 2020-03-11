@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: d6d5a465-6434-45fa-855d-5eb48c61a2ea
 ms.openlocfilehash: 07eb605f0d39f0c1bcfe781540525180f0dd0b22
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181655"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419449"
 ---
 # <a name="performance-considerations-for-ef-4-5-and-6"></a>EF 4, 5 ve 6 için performans konuları
 David OBANDO, Eric Dettu ve diğerleri
@@ -104,12 +104,12 @@ Model için şema dosyalarında el ile düzenleme yaparsanız, görünümler dos
 
 Ayrıca, bir EDMX dosyasının görünümlerini oluşturmak için EDMGen ' yı kullanabilirsiniz. daha önce başvurulan MSDN konusu bunu yapmak için oluşturma öncesi bir olay eklemeyi açıklar; ancak bu karmaşıktır ve mümkün olmayan bazı durumlar vardır. Modeliniz bir edmx dosyasında olduğunda görünümleri oluşturmak için bir T4 şablonu kullanmak genellikle daha kolay olur.
 
-Görünümü oluşturmak için T4 şablonu kullanmayı açıklayan bir gönderi ADO.NET ekibi blogu vardır ( \<http://blogs.msdn.com/b/adonet/archive/2008/06/20/how-to-use-a-t4-template-for-view-generation.aspx>). Bu gönderi, indirilip projenize eklenebilen bir şablon içerir. Şablon, Entity Framework ilk sürümü için yazıldığı için, en son Entity Framework sürümleriyle çalışmayı garanti edilmez. Ancak, Visual Studio galerisinden Entity Framework 4 ve 5 için daha güncel bir görünüm oluşturma şablonları yükleyebilirsiniz:
+ADO.NET ekip blogu, görünüm oluşturma (\<http://blogs.msdn.com/b/adonet/archive/2008/06/20/how-to-use-a-t4-template-for-view-generation.aspx>)için T4 şablonunun nasıl kullanılacağını açıklayan bir gönderisine sahiptir. Bu gönderi, indirilip projenize eklenebilen bir şablon içerir. Şablon, Entity Framework ilk sürümü için yazıldığı için, en son Entity Framework sürümleriyle çalışmayı garanti edilmez. Ancak, Visual Studio galerisinden Entity Framework 4 ve 5 için daha güncel bir görünüm oluşturma şablonları yükleyebilirsiniz:
 
 -   VB.NET: \<http://visualstudiogallery.msdn.microsoft.com/118b44f2-1b91-4de2-a584-7a680418941d>
 -   C\#: \<http://visualstudiogallery.msdn.microsoft.com/ae7730ce-ddab-470f-8456-1b313cd2c44d>
 
-Entity Framework 6 kullanıyorsanız, görünüm oluşturma T4 şablonlarını konumundaki Visual Studio Galerisi'nden alabileceğiniz \<http://visualstudiogallery.msdn.microsoft.com/18a7db90-6705-4d19-9dd1-0a6c23d0751f>.
+Entity Framework 6 kullanıyorsanız, Visual Studio galerisindeki görünüm üretimi T4 şablonlarını \<http://visualstudiogallery.msdn.microsoft.com/18a7db90-6705-4d19-9dd1-0a6c23d0751f>edinebilirsiniz.
 
 ### <a name="24-reducing-the-cost-of-view-generation"></a>2,4 görüntü oluşturma maliyetini azaltma
 
@@ -133,12 +133,12 @@ Entity Framework 4 ve 5 ' teki önceden üretilen görünümlerin EDMGen veya En
 
 EDMGen veya Visual Studio 'da Entity Desisgner kullanırken, varsayılan olarak, FKs 'ler ve IAS arasında geçiş yapmak için yalnızca tek bir onay kutusu ya da komut satırı bayrağı alır.
 
-Büyük bir Code First modeliniz varsa, bağımsız Ilişkilerin kullanılması görünüm üretimi üzerinde aynı etkiye sahip olur. Bağımlı nesnelerinizin sınıflarına yabancı anahtar özellikleri ekleyerek bu etkiden kaçınabilirsiniz, ancak bazı geliştiriciler bunu nesne modellerini yoklamak üzere kabul eder. Bu konu hakkında daha fazla bilgi bulabilirsiniz \<http://blog.oneunicorn.com/2011/12/11/whats-the-deal-with-mapping-foreign-keys-using-the-entity-framework/>.
+Büyük bir Code First modeliniz varsa, bağımsız Ilişkilerin kullanılması görünüm üretimi üzerinde aynı etkiye sahip olur. Bağımlı nesnelerinizin sınıflarına yabancı anahtar özellikleri ekleyerek bu etkiden kaçınabilirsiniz, ancak bazı geliştiriciler bunu nesne modellerini yoklamak üzere kabul eder. Bu konuyla ilgili daha fazla bilgiyi \<http://blog.oneunicorn.com/2011/12/11/whats-the-deal-with-mapping-foreign-keys-using-the-entity-framework/>bulabilirsiniz.
 
 | Kullanırken      | Bunu yapın                                                                                                                                                                                                                                                                                                                              |
 |:----------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Entity Desisgner | İki varlık arasında bir ilişki ekledikten sonra, bir başvuru kısıtlamasına sahip olduğunuzdan emin olun. Başvurusal kısıtlamalar Entity Framework bağımsız Ilişkilendirmeler yerine yabancı anahtarlar kullanmasını söyler. Ek ayrıntılar için ziyaret edin \<http://blogs.msdn.com/b/efdesign/archive/2009/03/16/foreign-keys-in-the-entity-framework.aspx>. |
-| EDMGen          | Veritabanından dosyaları oluşturmak için EDMGen kullanıldığında, yabancı anahtarlarınız dikkate alınır ve bu şekilde modele eklenir. EDMGen tarafından kullanıma sunulan farklı seçenekler hakkında daha fazla bilgi için ziyaret [http://msdn.microsoft.com/library/bb387165.aspx](https://msdn.microsoft.com/library/bb387165.aspx).                           |
+| Entity Desisgner | İki varlık arasında bir ilişki ekledikten sonra, bir başvuru kısıtlamasına sahip olduğunuzdan emin olun. Başvurusal kısıtlamalar Entity Framework bağımsız Ilişkilendirmeler yerine yabancı anahtarlar kullanmasını söyler. Daha fazla bilgi için \<http://blogs.msdn.com/b/efdesign/archive/2009/03/16/foreign-keys-in-the-entity-framework.aspx>ziyaret edin. |
+| EDMGen          | Veritabanından dosyaları oluşturmak için EDMGen kullanıldığında, yabancı anahtarlarınız dikkate alınır ve bu şekilde modele eklenir. EDMGen tarafından sunulan farklı seçenekler hakkında daha fazla bilgi için [http://msdn.microsoft.com/library/bb387165.aspx](https://msdn.microsoft.com/library/bb387165.aspx)ziyaret edin.                           |
 | Code First      | Code First kullanırken bağımlı nesnelere yabancı anahtar özellikleri ekleme hakkında bilgi için [Code First kuralları](~/ef6/modeling/code-first/conventions/built-in.md) konusunun "ilişki kuralı" bölümüne bakın.                                                                                              |
 
 #### <a name="242-moving-your-model-to-a-separate-assembly"></a>2.4.2 sections modelinizi ayrı bir derlemeye taşıma
@@ -175,7 +175,7 @@ Find, bağlam tarafından izlenen bir varlığı bulmayı denemek için birincil
 
 Bul kullanılırken dikkate alınması gereken bir performans vardır. Bu yönteme varsayılan olarak yapılan çağrılar, hala veritabanına kaydedilmesi bekleyen değişiklikleri algılamak için nesne önbelleğinin doğrulanmasını tetikler. Nesne önbelleğinde çok fazla sayıda nesne varsa veya nesne önbelleğine eklenen büyük bir nesne grafiğinde bu işlem çok pahalı olabilir, ancak devre dışı bırakılabilir. Belirli durumlarda, değişiklikleri otomatik olarak algılamayı devre dışı bıraktığınızda Find metodunu çağırma konusunda farklılık gösterebilir. İkinci Büyüklük sırası, nesne gerçekten önbellekte olduğunda, nesnenin veritabanından alınması gerektiğinde algılanır. Aşağıda, 5000 varlıkların bir yüküne göre milisaniye olarak ifade edilen mikro kıyaslamalarımızın bazıları kullanılarak alınan ölçümlere örnek bir grafik verilmiştir:
 
-![.Net 4,5 Logaritmik ölçek](~/ef6/media/net45logscale.png ".NET 4,5-Logaritmik ölçek")
+![.NET 4,5 Logaritmik ölçek](~/ef6/media/net45logscale.png ".NET 4,5-Logaritmik ölçek")
 
 Değişiklik otomatik algılama devre dışı olan bul örneği:
 
@@ -209,7 +209,7 @@ Sorgu planı önbelleği aynı AppDomain içindeki ObjectContext örnekleri aras
 
 -   Sorgu planı önbelleği tüm sorgu türleri için paylaşılır: Entity SQL, LINQ to Entities ve CompiledQuery nesneleri.
 -   Varsayılan olarak, bir EntityCommand aracılığıyla veya bir ObjectQuery aracılığıyla yürütülüp yürütülmeksizin, sorgu planı önbelleğe alma, Entity SQL sorguları için etkinleştirilir. Ayrıca, .NET 4,5 ve Entity Framework 6 ' da Entity Framework LINQ to Entities sorguları için varsayılan olarak etkinleştirilir
-    -   Sorgu planı önbelleğe alma, EnablePlanCaching özelliği (EntityCommand veya ObjectQuery üzerinde) false olarak ayarlanarak devre dışı bırakılabilir. Örneğin:
+    -   Sorgu planı önbelleğe alma, EnablePlanCaching özelliği (EntityCommand veya ObjectQuery üzerinde) false olarak ayarlanarak devre dışı bırakılabilir. Örnek:
 ``` csharp
                     var query = from customer in context.Customer
                                 where customer.CustomerId == id
@@ -244,11 +244,11 @@ Sorgu planı önbelleğinin uygulamanızın performansına etkisini göstermek i
 
 ##### <a name="3231-test-results"></a>3.2.3.1 Test Sonuçları
 
-| {1&gt;Sınama&lt;1}                                                                   | EF5 önbellek yok | EF5 önbelleğe alındı | EF6 önbellek yok | EF6 önbelleğe alındı |
+| Test etme                                                                   | EF5 önbellek yok | EF5 önbelleğe alındı | EF6 önbellek yok | EF6 önbelleğe alındı |
 |:-----------------------------------------------------------------------|:-------------|:-----------|:-------------|:-----------|
 | Tüm 18723 sorguları numaralandırılıyor                                          | 124          | 125,4      | 124,3        | 125,3      |
 | Süpürme (karmaşıklıktan bağımsız olarak yalnızca ilk 800 sorgu)  | 41,7         | 5.5        | 40.5         | 5,4        |
-| Yalnızca Aggregatingalt toplamları sorguları (178 toplam, süpürme önlenir) | 39,5         | 4.5        | 38,1         | 4.6        |
+| Yalnızca Aggregatingalt toplamları sorguları (178 toplam, süpürme önlenir) | 39,5         | 4,5        | 38,1         | 4.6        |
 
 *Saniyeler içinde her zaman.*
 
@@ -396,7 +396,7 @@ Entity Framework meta verileri önbelleğe almayı da destekler. Bu, temel olara
 4.  ItemCollection düzenli olarak kullanım için denetlenir. Bir çalışma alanına son zamanlarda erişilmediğini tespit ediyorsanız, bir sonraki önbellek tarama işlemi üzerinde Temizleme için işaretlenir.
 5.  Yalnızca bir EntityConnection oluşturmak, meta veri önbelleğinin oluşturulmasına neden olur (ancak, içindeki öğe koleksiyonları bağlantı açılıncaya kadar başlatılamaz). Bu çalışma alanı, önbelleğe alma algoritması "kullanımda" olmadığını belirlediğinde bellek içinde kalır.
 
-Müşteri danışma ekibi, "kullanımdan kaldırma" büyük modellerin kullanırken önlemek için bir ItemCollection bir başvuru tutan açıklayan bir blog gönderisi yazmıştır: \<http://blogs.msdn.com/b/appfabriccat/archive/2010/10/22/metadataworkspace-reference-in-wcf-services.aspx>.
+Müşteri danışmanlığı ekibi, büyük modeller kullanırken "kullanımdan kaldırma" olmaması için bir ItemCollection 'ın başvurusunu tutan bir blog gönderisi yazdı: \<http://blogs.msdn.com/b/appfabriccat/archive/2010/10/22/metadataworkspace-reference-in-wcf-services.aspx>.
 
 #### <a name="342-the-relationship-between-metadata-caching-and-query-plan-caching"></a>Meta veri önbelleği ve sorgu planı önbelleğe alma arasındaki ilişkiyi 3.4.2
 
@@ -411,7 +411,7 @@ Sonuçları önbelleğe alma ("ikinci düzey önbelleğe alma" olarak da bilinir
 #### <a name="351-additional-references-for-results-caching-with-the-wrapping-provider"></a>sarmalama sağlayıcısıyla önbelleğe alma sonuçları için 3.5.1 ek başvuruları
 
 -   Julie Lerman, örnek sarmalama sağlayıcısını Windows Server AppFabric Önbelleği kullanmak üzere güncelleştirmeyi içeren bir "Entity Framework ve Windows Azure 'da Ikinci düzey önbelleğe alma" MSDN makalesinde yazılmıştır: [https://msdn.microsoft.com/magazine/hh394143.aspx](https://msdn.microsoft.com/magazine/hh394143.aspx)
--   Entity Framework 5 ile çalışıyorsanız, önbelleğe alma sağlayıcısı için Entity Framework 5 ile çalışan gerçekleştirmeyi açıklayan bir gönderi ekibi blogu vardır: \<http://blogs.msdn.com/b/adonet/archive/2010/09/13/ef-caching-with-jarek-kowalski-s-provider.aspx>. Ayrıca, projenize 2. düzey önbellek eklemeyi otomatik hale getirmeye yardımcı olan bir T4 şablonu da içerir.
+-   Entity Framework 5 ile çalışıyorsanız, ekip bloguna Entity Framework 5: \<http://blogs.msdn.com/b/adonet/archive/2010/09/13/ef-caching-with-jarek-kowalski-s-provider.aspx>için önbelleğe alma sağlayıcısıyla birlikte çalışan şeyleri nasıl alacağınız açıklanmaktadır. Ayrıca, projenize 2. düzey önbellek eklemeyi otomatik hale getirmeye yardımcı olan bir T4 şablonu da içerir.
 
 ## <a name="4-autocompiled-queries"></a>4 oto derlenmiş sorgular
 
@@ -424,7 +424,7 @@ Entity Framework, bir sorgunun yeniden derlenmesi gereken zaman algılar ve sorg
 -   Sorgunuzla ilişkili MergeOption değiştiriliyor. Önbelleğe alınmış sorgu kullanılmayacak, bunun yerine plan derleyicisi yeniden çalışır ve yeni oluşturulan plan önbelleğe alınır.
 -   ContextOptions. UseCSharpNullComparisonBehavior değeri değiştiriliyor. Birleştirme seçeneğini değiştirme ile aynı etkiyi alırsınız.
 
-Diğer koşullar, sorgunuzun önbelleği kullanmasını engelleyebilir. Yaygın örnekler şunlardır:
+Diğer koşullar, sorgunuzun önbelleği kullanmasını engelleyebilir. Sık karşılaşılan örnekler:
 
 -   IEnumerable&lt;T&gt;kullanılıyor.&lt;&gt;(T değeri) içerir.
 -   Sabitler ile sorgu üreten işlevleri kullanma.
@@ -454,7 +454,7 @@ Entity Framework 6, IEnumerable&lt;T&gt;yönteme iyileştirmeler içerir. Sorgul
 
 ### <a name="42-using-functions-that-produce-queries-with-constants"></a>sabitler ile sorgu üreten işlevleri kullanarak 4,2
 
-Skip (), take (), Contains () ve Defautıempty () LINQ işleçleri, parametreleri olan SQL sorguları oluşturmaz, ancak bunun yerine, bunlara sabitler olarak geçirilen değerleri yerleştirir. Bu nedenle, başka bir şekilde özdeş olabilecek sorgular, her ikisi de EF Stack ve veritabanı sunucusunda sorgu planı önbelleğini yoklamaya ve aynı sabitler sonraki bir sorgu yürütmesinde kullanılmadıkça yeniden kullanılmamalıdır. Örneğin:
+Skip (), take (), Contains () ve Defautıempty () LINQ işleçleri, parametreleri olan SQL sorguları oluşturmaz, ancak bunun yerine, bunlara sabitler olarak geçirilen değerleri yerleştirir. Bu nedenle, başka bir şekilde özdeş olabilecek sorgular, her ikisi de EF Stack ve veritabanı sunucusunda sorgu planı önbelleğini yoklamaya ve aynı sabitler sonraki bir sorgu yürütmesinde kullanılmadıkça yeniden kullanılmamalıdır. Örnek:
 
 ``` csharp
 var id = 10;
@@ -508,7 +508,7 @@ for (; i < count; ++i)
 
 ### <a name="43-using-the-properties-of-a-non-mapped-object"></a>4,3 eşlenmeyen bir nesnenin özelliklerini kullanma
 
-Bir sorgu, eşlenmiş olmayan bir nesne türünün özelliklerini parametre olarak kullandığında sorgu önbelleğe alınmaz. Örneğin:
+Bir sorgu, eşlenmiş olmayan bir nesne türünün özelliklerini parametre olarak kullandığında sorgu önbelleğe alınmaz. Örnek:
 
 ``` csharp
 using (var context = new MyContext())
@@ -647,14 +647,14 @@ Entity Framework, sorgulamak için birkaç farklı yol sunar. Aşağıdaki seçe
 var q = context.Products.Where(p => p.Category.CategoryName == "Beverages");
 ```
 
-**Ları**
+**Artıları**
 
 -   CUD işlemlerine uygun.
 -   Tam gerçekleştirilmiş nesneler.
 -   Programlama diline yerleşik sözdizimi ile yazmak en basit.
 -   İyi performans.
 
-**Larını**
+**Eksileri**
 
 -   Gibi belirli teknik kısıtlamalar:
     -   Dış BIRLEŞIM sorguları için Defaultıempty kullanan desenler Entity SQL ' deki basit dış BIRLEŞIM deyimlerinden daha karmaşık sorgularla sonuçlanır.
@@ -676,20 +676,20 @@ var q = context.Products.AsNoTracking()
                         .Where(p => p.Category.CategoryName == "Beverages");
 ```
 
-**Ları**
+**Artıları**
 
 -   Normal LINQ sorguları üzerinden geliştirilmiş performans.
 -   Tam gerçekleştirilmiş nesneler.
 -   Programlama diline yerleşik sözdizimi ile yazmak en basit.
 
-**Larını**
+**Eksileri**
 
 -   CUD işlemleri için uygun değildir.
 -   Gibi belirli teknik kısıtlamalar:
     -   Dış BIRLEŞIM sorguları için Defaultıempty kullanan desenler Entity SQL ' deki basit dış BIRLEŞIM deyimlerinden daha karmaşık sorgularla sonuçlanır.
     -   Hala genel kalıp eşleme ile gıbı kullanamazsınız.
 
-NoTracking belirtilmemiş olsa bile, proje skaler özelliklerinin izlenmediğini unutmayın. Örneğin:
+NoTracking belirtilmemiş olsa bile, proje skaler özelliklerinin izlenmediğini unutmayın. Örnek:
 
 ``` csharp
 var q = context.Products.Where(p => p.Category.CategoryName == "Beverages").Select(p => new { p.ProductName });
@@ -703,13 +703,13 @@ Bu belirli sorgu açıkça NoTracking olarak belirtilmiyor, ancak nesne durumu Y
 ObjectQuery<Product> products = context.Products.Where("it.Category.CategoryName = 'Beverages'");
 ```
 
-**Ları**
+**Artıları**
 
 -   CUD işlemlerine uygun.
 -   Tam gerçekleştirilmiş nesneler.
 -   Sorgu planı önbelleğe almayı destekler.
 
-**Larını**
+**Eksileri**
 
 -   Dile yerleştirilmiş sorgu yapılarından daha fazla kullanıcı hatası ile daha fazla olan metinsel Sorgu dizelerini içerir.
 
@@ -728,11 +728,11 @@ using (EntityDataReader reader = cmd.ExecuteReader(CommandBehavior.SequentialAcc
 }
 ```
 
-**Ları**
+**Artıları**
 
 -   .NET 4,0 ' de sorgu planı önbelleğe almayı destekler (plan önbelleği, .NET 4,5 ' deki diğer tüm sorgu türleri tarafından desteklenir).
 
-**Larını**
+**Eksileri**
 
 -   Dile yerleştirilmiş sorgu yapılarından daha fazla kullanıcı hatası ile daha fazla olan metinsel Sorgu dizelerini içerir.
 -   CUD işlemleri için uygun değildir.
@@ -764,13 +764,13 @@ var beverages = context.ExecuteStoreQuery<Product>(
 );
 ```
 
-**Ları**
+**Artıları**
 
 -   Plan derleyicisi atlandığından genellikle en hızlı performans.
 -   Tam gerçekleştirilmiş nesneler.
 -   DbSet 'ten kullanıldığında CUD işlemlerine uygun.
 
-**Larını**
+**Eksileri**
 
 -   Sorgu metinsel ve hataya açıktır.
 -   Sorgu, kavramsal semantik yerine depo semantiğini kullanarak belirli bir arka uca bağlanır.
@@ -787,13 +787,13 @@ private static readonly Func<NorthwindEntities, string, IQueryable<Product>> pro
 var q = context.InvokeProductsForCategoryCQ("Beverages");
 ```
 
-**Ları**
+**Artıları**
 
 -   Normal LINQ sorguları üzerinde en fazla %7 performans geliştirmesini sağlar.
 -   Tam gerçekleştirilmiş nesneler.
 -   CUD işlemlerine uygun.
 
-**Larını**
+**Eksileri**
 
 -   Artan karmaşıklık ve programlama yükü.
 -   Derlenmiş bir sorgunun üzerine oluştururken performans iyileştirmesi kaybolur.
@@ -803,7 +803,7 @@ var q = context.InvokeProductsForCategoryCQ("Beverages");
 
 Bağlam oluşturma işlemi zaman aşımına uğramayan basit mikro kıyaslamalar. Denetlenen bir ortamda, önbelleğe alınmamış varlıkların bir kümesi için 5000 kez sorgu ölçüleceğini ölçüyoruz. Bu numaralar bir uyarı ile birlikte alınırlar: bir uygulama tarafından üretilen gerçek sayıları yansıtmaz, ancak bunun yerine farklı sorgulama seçenekleri karşılaştırıldığında performans farkının ne kadarının olacağını çok doğru bir ölçüdür Yeni bağlam oluşturma maliyeti hariç, elmalar ve elmalar.
 
-| AŞV  | {1&gt;Sınama&lt;1}                                 | Zaman (MS) | Bellek   |
+| AŞV  | Test etme                                 | Zaman (MS) | Bellek   |
 |:----|:-------------------------------------|:----------|:---------|
 | EF5 | ObjectContext ESQL                   | 2414      | 38801408 |
 | EF5 | ObjectContext LINQ sorgusu             | 2692      | 38277120 |
@@ -825,7 +825,7 @@ Mikro kıyaslamalar, koddaki küçük değişikliklere çok duyarlıdır. Bu dur
 
 Farklı sorgu seçeneklerinin gerçek dünya performansını karşılaştırmak için, kategori adı "Içecek" olan tüm ürünleri seçmek üzere farklı bir sorgu seçeneği kullandığımız 5 ayrı test varyasyonunu oluşturduk. Her yineleme, bağlam oluşturma maliyetinin yanı sıra döndürülen tüm varlıkların nasıl bir ücret almakta olduğunu içerir. 10 yineleme, 1000 süreli yinelemelerin toplamı alınmadan önce zaman aşımına uğramadan çalıştırılır. Gösterilen sonuçlar, her testin 5 çalıştırmasından alınan ortanca çalışmadır. Daha fazla bilgi için bkz. Ek B, test kodunu içerir.
 
-| AŞV  | {1&gt;Sınama&lt;1}                                        | Zaman (MS) | Bellek   |
+| AŞV  | Test etme                                        | Zaman (MS) | Bellek   |
 |:----|:--------------------------------------------|:----------|:---------|
 | EF5 | ObjectContext varlık komutu                | 621       | 39350272 |
 | EF5 | Veritabanı üzerinde DbContext SQL sorgusu             | 825       | 37519360 |
@@ -871,15 +871,15 @@ Entity Framework kullanırken başka bir performans değerlendirmesi kullandığ
 
 Modeliniz TPT devralmayı kullanıyorsa, oluşturulan sorgular diğer devralma stratejileriyle oluşturulanlardan daha karmaşık olacaktır, bu da depodaki yürütme sürelerinin uzun süreleriyle sonuçlanabilir.  Genellikle bir TPT modeli üzerinde sorgu oluşturmak ve sonuçta elde edilen nesneleri faturalandırmak daha uzun sürer.
 
-"TPT (tablo başına tür) devralma varlık Çerçevesi'nde kullanırken performans konuları" Bkz MSDN blog gönderisi: \<http://blogs.msdn.com/b/adonet/archive/2010/08/17/performance-considerations-when-using-tpt-table-per-type-inheritance-in-the-entity-framework.aspx>.
+"MSDN blog gönderisi: \<http://blogs.msdn.com/b/adonet/archive/2010/08/17/performance-considerations-when-using-tpt-table-per-type-inheritance-in-the-entity-framework.aspx>Entity Framework, TPT (tür başına tablo) devralma ile Ilgili performans konuları bölümüne bakın.
 
 #### <a name="711-avoiding-tpt-in-model-first-or-code-first-applications"></a>Model First veya Code First uygulamalarında TPT 7.1.1 önleme
 
 Bir TPT şemasına sahip var olan bir veritabanı üzerinde bir model oluşturduğunuzda çok sayıda seçeneğiniz yoktur. Ancak Model First veya Code First kullanarak bir uygulama oluştururken performans sorunları için TPT devralmasından kaçının.
 
-Entity Desisgner sihirbazında Model First kullandığınızda, modelinizde devralma için TPT alırsınız. TPH devralma strateji ile ilk Model geçmek istiyorsanız, Visual Studio Gallery'den "varlık Tasarımcısı veritabanı oluşturma Power paketi" kullanıma kullanabilirsiniz ( \<http://visualstudiogallery.msdn.microsoft.com/df3541c3-d833-4b65-b942-989e7ec74c87/>).
+Entity Desisgner sihirbazında Model First kullandığınızda, modelinizde devralma için TPT alırsınız. Model First ile bir TPH devralma stratejisine geçiş yapmak istiyorsanız, Visual Studio galerisindeki (\<http://visualstudiogallery.msdn.microsoft.com/df3541c3-d833-4b65-b942-989e7ec74c87/>)bulunan "Entity Desisgner veritabanı oluşturma Power Pack" kullanabilirsiniz.
 
-Bir modelin devralma ile eşlemesini yapılandırmak için Code First kullanırken EF, varsayılan olarak TPH kullanır, bu nedenle devralma hiyerarşisindeki tüm varlıklar aynı tabloyla eşleştirilir. MSDN magazine'de "Kod ilk olarak varlığın Framework4.1" makale "Eşleme ile Fluent API'si" bölümüne bakın ( [http://msdn.microsoft.com/magazine/hh126815.aspx](https://msdn.microsoft.com/magazine/hh126815.aspx)) daha fazla ayrıntı için.
+Bir modelin devralma ile eşlemesini yapılandırmak için Code First kullanırken EF, varsayılan olarak TPH kullanır, bu nedenle devralma hiyerarşisindeki tüm varlıklar aynı tabloyla eşleştirilir. Daha fazla bilgi için MSDN [http://msdn.microsoft.com/magazine/hh126815.aspx](https://msdn.microsoft.com/magazine/hh126815.aspx)Magazine 'teki "Code First Entity Framework 4.1" makalesindeki "akıcı API ile eşleme" bölümüne bakın.
 
 ### <a name="72-upgrading-from-ef4-to-improve-model-generation-time"></a>7,2 model oluşturma süresini geliştirmek için EF4 'ten yükseltme
 
@@ -899,7 +899,7 @@ SSDL 'ı oluştururken yükün neredeyse tamamen SQL Server, istemci geliştirme
 
 ### <a name="73-splitting-large-models-with-database-first-and-model-first"></a>7,3 Database First ve Model First büyük modelleri bölme
 
-Model boyutu arttıkça tasarımcı yüzeyi de karışık hale gelir ve kullanılması zordur. Genellikle, tasarımcı 'nın etkin bir şekilde kullanılması için 300 ' den fazla varlık içeren bir model düşünün. Büyük modellerin bölmek için çeşitli seçenekler şu blog gönderisinde açıklanmaktadır: \<http://blogs.msdn.com/b/adonet/archive/2008/11/25/working-with-large-models-in-entity-framework-part-2.aspx>.
+Model boyutu arttıkça tasarımcı yüzeyi de karışık hale gelir ve kullanılması zordur. Genellikle, tasarımcı 'nın etkin bir şekilde kullanılması için 300 ' den fazla varlık içeren bir model düşünün. Aşağıdaki blog gönderisine büyük modelleri bölmek için çeşitli seçenekler açıklanmaktadır: \<http://blogs.msdn.com/b/adonet/archive/2008/11/25/working-with-large-models-in-entity-framework-part-2.aspx>.
 
 Gönderi Entity Framework ilk sürümü için yazıldı, ancak adımlar hala geçerlidir.
 
@@ -915,7 +915,7 @@ ContextTypeName alanının ayarlanması ayrıca, .NET 4,0 ' deki EntityDataSourc
 
 Entity Framework, veri sınıflarında herhangi bir değişiklik yapmadan veri modelinizle birlikte özel veri sınıflarını kullanmanıza olanak sağlar. Bu, mevcut etki alanı nesneleri gibi "düz eski" CLR nesnelerini (POCO) veri modelinizle kullanabileceğiniz anlamına gelir. Bu POCO veri sınıfları (Kalıcılık-Ignorant nesneleri olarak da bilinir), aynı sorgunun çoğunu destekler, Varlık Veri Modeli araçları tarafından oluşturulan varlık türleri olarak davranışları ekleyin, güncelleştirin ve silin.
 
-Entity Framework, Poco varlıklarınızda elde edilen yavaş yükleme ve otomatik değişiklik izleme gibi özellikleri etkinleştirmek istediğinizde kullanılan, POCO türlerinizi türetilmiş proxy sınıfları da oluşturabilir. POCO sınıflarınızı proxy'ler kullanmanız Entity Framework, burada açıklandığı şekilde izin vermek için belirli gereksinimleri karşılamalıdır: [http://msdn.microsoft.com/library/dd468057.aspx](https://msdn.microsoft.com/library/dd468057.aspx).
+Entity Framework, Poco varlıklarınızda elde edilen yavaş yükleme ve otomatik değişiklik izleme gibi özellikleri etkinleştirmek istediğinizde kullanılan, POCO türlerinizi türetilmiş proxy sınıfları da oluşturabilir. POCO sınıflarınız, aşağıda açıklandığı gibi Entity Framework proxy 'leri kullanmasına izin vermek için bazı gereksinimleri karşılamalıdır: [http://msdn.microsoft.com/library/dd468057.aspx](https://msdn.microsoft.com/library/dd468057.aspx).
 
 Varlık izleme proxy 'leri, varlıklarınızın özelliklerinden herhangi birinin değeri değiştiği her seferinde nesne durumu yöneticisini bilgilendirir, bu nedenle varlıklarınızın gerçek durumunu her zaman bilir Entity Framework. Bu işlem, özelliklerinizi ayarlarınızın ayarlayıcı yöntemlerinin gövdesine ekleyerek ve nesne durumu yöneticisinin bu gibi olayları işlemesini sağlamak için yapılır. Bir proxy varlık oluşturmanın genellikle Entity Framework tarafından oluşturulan eklenen olay kümesi nedeniyle proxy olmayan bir POCO varlığı oluşturmaktan daha pahalı olacağını unutmayın.
 
@@ -1141,7 +1141,7 @@ Lazy yüklemesinde olduğu gibi, zorunluluğunu getirir daha küçük yük için
 
 Entity Framework şu anda skaler veya karmaşık özelliklerin geç yüklemesini desteklemez. Ancak, BLOB gibi büyük bir nesne içeren bir tablonuz olduğu durumlarda, büyük özellikleri ayrı bir varlığa ayırmak için tablo bölmeyi kullanabilirsiniz. Örneğin, değişken fotoğraf sütunu içeren bir ürün tablonuz olduğunu varsayalım. Sorgularda bu özelliğe sık sık erişmeniz gerekmiyorsa, yalnızca normal olarak ihtiyaç duyduğunuz varlığın parçalarını getirmek için tablo bölmeyi kullanabilirsiniz. Ürün fotoğrafı temsil eden varlık yalnızca açıkça ihtiyacınız olduğunda yüklenecektir.
 
-Gil Fink'ın "Tablo bölme, Entity Framework" blog gönderisine tablo bölme etkinleştirme gösteren makaleden faydalanabilirsiniz: \<http://blogs.microsoft.co.il/blogs/gilf/archive/2009/10/13/table-splitting-in-entity-framework.aspx>.
+Tablo bölmenin nasıl etkinleştirileceğini gösteren iyi bir kaynak, Entity Framework \<blog gönderisine "http://blogs.microsoft.co.il/blogs/gilf/archive/2009/10/13/table-splitting-in-entity-framework.aspx>tablo bölme"
 
 ## <a name="9-other-considerations"></a>9 diğer konular
 
@@ -1179,7 +1179,7 @@ finally
 }
 ```
 
-Oto DetectChanges 'ı kapatmadan önce, bunun Entity Framework varlıklarda gerçekleşen değişikliklerle ilgili belirli bilgileri takip etme yeteneğini kaybetmesine neden olabileceğini anlamanız yararlı olur. Yanlış işlenirse, bu durum uygulamanızda veri tutarsızlığına neden olabilir. AutoDetectChanges kapatarak daha fazla bilgi için okuma \<http://blog.oneunicorn.com/2012/03/12/secrets-of-detectchanges-part-3-switching-off-automatic-detectchanges/>.
+Oto DetectChanges 'ı kapatmadan önce, bunun Entity Framework varlıklarda gerçekleşen değişikliklerle ilgili belirli bilgileri takip etme yeteneğini kaybetmesine neden olabileceğini anlamanız yararlı olur. Yanlış işlenirse, bu durum uygulamanızda veri tutarsızlığına neden olabilir. Oto DetectChanges 'i kapatma hakkında daha fazla bilgi için \<http://blog.oneunicorn.com/2012/03/12/secrets-of-detectchanges-part-3-switching-off-automatic-detectchanges/>okuyun.
 
 ### <a name="93-context-per-request"></a>istek başına 9,3 bağlam
 
@@ -1226,7 +1226,7 @@ Yukarıdaki örnek sorguda performans farkı, denetlenen bir ortamda çalışan 
 
 Entity Framework 6, .NET 4,5 veya üzeri sürümlerde çalışırken zaman uyumsuz işlemler desteği getirmiştir. Çoğu bölümde, GÇ ile ilgili çekişmeye sahip uygulamalar, zaman uyumsuz sorgu ve kaydetme işlemlerini kullanmanın en iyi avantajını kullanacaktır. Uygulamanız GÇ çekişme ile karşılaşmamışsa, zaman uyumsuz kullanılması en iyi şekilde çalışır ve sonucu zaman uyumlu bir çağrı ile aynı süre içinde döndürür ya da en kötü durumda yürütmeyi zaman uyumsuz bir göreve erteleyin ve ek Tim ekleyin Senaryonuzun tamamlanmasını sağlar.
 
-Zaman uyumsuz bir uygulamanızın performansını artıracak karar yardımcı olacak ne zaman uyumsuz programlama iş ziyaret bilgi [http://msdn.microsoft.com/library/hh191443.aspx](https://msdn.microsoft.com/library/hh191443.aspx). Entity Framework zaman uyumsuz işlemlerin kullanımı hakkında daha fazla bilgi için bkz. [Async Query ve Save](~/ef6/fundamentals/async.md
+Zaman uyumsuz programlama işinin, zaman uyumsuz olarak uygulamanızın performansını iyileştirecağına karar vermenize yardımcı olacak bilgiler için [http://msdn.microsoft.com/library/hh191443.aspx](https://msdn.microsoft.com/library/hh191443.aspx)ziyaret edin. Entity Framework zaman uyumsuz işlemlerin kullanımı hakkında daha fazla bilgi için bkz. [Async Query ve Save](~/ef6/fundamentals/async.md
 ).
 
 ### <a name="96-ngen"></a>9,6 NGEN
@@ -1247,7 +1247,7 @@ EDMX 'i Code First karşı kullanmayı seçerken, Code First tarafından tanıt�
 
 ### <a name="101-using-the-visual-studio-profiler"></a>10,1 Visual Studio Profiler 'ı kullanma
 
-Entity Framework performans sorunları yaşıyorsanız, uygulamanızın zamanını nerede harcadığını görmek için Visual Studio içinde yerleşik bir profil oluşturucu kullanabilirsiniz. Bu "Keşfetme - bölüm 1 ADO.NET Entity Framework performansının" blog gönderisinde pasta grafikler oluşturmak için kullandığımız aracıdır ( \<http://blogs.msdn.com/b/adonet/archive/2008/02/04/exploring-the-performance-of-the-ado-net-entity-framework-part-1.aspx>) Entity Framework, süre boyunca soğuk ve orta Gecikmeli sorgular nerede geçirdiği göster.
+Entity Framework performans sorunları yaşıyorsanız, uygulamanızın zamanını nerede harcadığını görmek için Visual Studio içinde yerleşik bir profil oluşturucu kullanabilirsiniz. Bu araç, "ADO.NET Entity Framework-Part 1" blog gönderisinin performansını keşfetme (\<http://blogs.msdn.com/b/adonet/archive/2008/02/04/exploring-the-performance-of-the-ado-net-entity-framework-part-1.aspx>), soğuk ve sıcak sorgular sırasında Entity Framework nereden zaman harcadığını gösteren bir araçtır.
 
 "Visual Studio 2010 Profiler kullanılarak profil oluşturma Entity Framework, veri ve modelleme müşteri danışmanlığı ekibi, bir performans sorununu araştırmak için profil oluşturucuyu nasıl kullandıklarından gerçek bir örnek gösterir.  \<http://blogs.msdn.com/b/dmcat/archive/2010/04/30/profiling-entity-framework-using-the-visual-studio-2010-profiler.aspx>. Bu gönderi bir Windows uygulaması için yazılmıştır. Bir Web uygulaması profili oluşturmanız gerekiyorsa, Windows performans Kaydedicisi (WPR) ve Windows Performans Çözümleyicisi (WPA) araçları Visual Studio 'dan çalışmaktan daha iyi çalışabilir. WPR ve WPA, Windows değerlendirme ve dağıtım seti 'Nde ( [http://www.microsoft.com/download/details.aspx?id=39982](https://www.microsoft.com/download/details.aspx?id=39982)) bulunan Windows performans araç seti 'nin bir parçasıdır.
 
@@ -1257,7 +1257,7 @@ Visual Studio 'da yerleşik olarak bulunan profil oluşturucu gibi araçlar, uyg
 
 Entity Framework profil Oluşturucu (\<http://efprof.com>) ve ORMProfiler (\<http://ormprofiler.com>), ticari olarak kullanılabilir iki profil oluşturucular.
 
-Uygulamanız Code First kullanan bir MVC uygulaması ise, StackExchange 'in mini Profiler 'ı kullanabilirsiniz. Scott Hanselman blog bu araç açıklar: \<http://www.hanselman.com/blog/NuGetPackageOfTheWeek9ASPNETMiniProfilerFromStackExchangeRocksYourWorld.aspx>.
+Uygulamanız Code First kullanan bir MVC uygulaması ise, StackExchange 'in mini Profiler 'ı kullanabilirsiniz. Scott Hanselman bu aracı blogda şu adreste açıklar: \<http://www.hanselman.com/blog/NuGetPackageOfTheWeek9ASPNETMiniProfilerFromStackExchangeRocksYourWorld.aspx>.
 
 Uygulamanızın veritabanı etkinliğinin profilini oluşturma hakkında daha fazla bilgi için, [Entity Framework profil oluşturma veritabanı etkinliği](https://msdn.microsoft.com/magazine/gg490349.aspx)başlıklı Julie Lerman 'ın MSDN Magazine makalesine bakın.
 
@@ -1288,7 +1288,7 @@ Veritabanı günlüğünü yeniden derlemeden etkinleştirmek istiyorsanız ve E
   </interceptors>
 ```
 
-Git yeniden derlemeye gerek kalmadan günlüğe kaydetme ekleme hakkında daha fazla bilgi için \<http://blog.oneunicorn.com/2014/02/09/ef-6-1-turning-on-logging-without-recompiling/>.
+Yeniden derleme olmadan günlüğe kaydetme ekleme hakkında daha fazla bilgi için \<http://blog.oneunicorn.com/2014/02/09/ef-6-1-turning-on-logging-without-recompiling/>gidin.
 
 ## <a name="11-appendix"></a>11 ek
 

@@ -3,20 +3,20 @@ title: Var olan bir veritabanına Code First-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: a7e60b74-973d-4480-868f-500a3899932e
-ms.openlocfilehash: 61980bbd1f236f496a9d4fd92aa52264f1454615
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 0a51f826422d7e2bff33b968605eace1e754c425
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182626"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418877"
 ---
 # <a name="code-first-to-an-existing-database"></a>Var olan bir veritabanına Code First
 Bu video ve adım adım yönergeler, var olan bir veritabanını hedefleyen Code First geliştirmeye yönelik bir giriş sağlar. Code First, modelinizi C\# veya VB.Net sınıfları kullanarak tanımlamanızı sağlar. İsteğe bağlı olarak, sınıflarınızda ve özelliklerde öznitelikler kullanılarak veya bir Fluent API kullanarak ek yapılandırma gerçekleştirilebilir.
 
-## <a name="watch-the-video"></a>Videoyu izleyin
+## <a name="watch-the-video"></a>Videoyu izleme
 Bu video [artık Channel 9 ' da kullanılabilir](https://channel9.msdn.com/blogs/ef/code-first-to-existing-database-ef6-1-onwards-).
 
-## <a name="pre-requisites"></a>Önkoşulların önkoşulları
+## <a name="pre-requisites"></a>Önkoşullar
 
 Bu izlenecek yolu tamamlamak için **Visual Studio 2012** veya **Visual Studio 2013** yüklü olması gerekir.
 
@@ -28,7 +28,7 @@ Genellikle, var olan bir veritabanını hedeflerken zaten oluşturulur, ancak bu
 
 Şimdi veritabanını oluşturalım.
 
--   Visual Studio 'Yu aç
+-   Visual Studio’yu açın
 -   **&gt; Sunucu Gezgini görüntüle**
 -   Veri bağlantıları ' na sağ tıklayın **&gt; bağlantı ekle...**
 -   **Sunucu Gezgini** bir veritabanına bağlı değilseniz, veri kaynağı olarak **Microsoft SQL Server** seçmeniz gerekir
@@ -72,19 +72,19 @@ VALUES ('.NET Framework Blog', 'http://blogs.msdn.com/dotnet/')
 
 ## <a name="2-create-the-application"></a>2. uygulamayı oluşturun
 
-Şeyleri basit tutmak için veri erişimi gerçekleştirmek üzere Code First kullanan temel bir konsol uygulaması oluşturacağız:
+Şeyleri basit tutmak için, veri erişimi yapmak üzere Code First kullanan temel bir konsol uygulaması oluşturacaksınız:
 
--   Visual Studio 'Yu aç
+-   Visual Studio’yu açın
 -   **Dosya-&gt; yeni&gt; projesi...**
 -   Sol taraftaki menüden ve **konsol uygulamasından** **Windows** ' u seçin
 -   Ad olarak **Codefırstexistingdatabasesample** girin
--   **Tamam 'ı** seçin
+-   **Tamam**’ı seçin
 
  
 
 ## <a name="3-reverse-engineer-model"></a>3. tersine mühendislik modeli
 
-Veritabanına eşlemek için bazı ilk kod oluşturmamıza yardımcı olmak üzere Visual Studio için Entity Framework Tools kullanacağız. Bu araçlar, isterseniz, el ile de yazabileceğiniz bir kod oluşturuyor.
+Veritabanına eşlenecek ilk kod üretmemize yardımcı olması için Visual Studio Entity Framework Tools kullanacağız. Bu araçlar, isterseniz, el ile de yazabileceğiniz bir kod oluşturuyor.
 
 -   **Proje-&gt; yeni öğe Ekle...**
 -   Sol menüden **verileri** seçin ve ardından **ADO.net varlık veri modeli**

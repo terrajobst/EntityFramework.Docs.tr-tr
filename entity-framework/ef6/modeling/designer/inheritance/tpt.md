@@ -1,79 +1,79 @@
 ---
-title: Tasarımcı TPT devralma - EF6
+title: Tasarımcı TPT devralma-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: efc78c31-b4ea-4ea3-a0cd-c69eb507020e
 ms.openlocfilehash: 84330fba4807620aa242a70cd8ac76a60284416d
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489459"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418212"
 ---
 # <a name="designer-tpt-inheritance"></a>Tasarımcı TPT devralma
-Bu adım adım kılavuzda, Entity Framework Designer (EF Designer) kullanarak modelinize tablo başına tür (TPT) devralma uygulamak gösterilmektedir. Tablo başına tür devralma devralınan özellikler ve devralma hiyerarşisinde her türü için anahtar özellikler için verileri korumak için veritabanında ayrı bir tabloda kullanır.
+Bu adım adım izlenecek yol, Entity Framework Designer (EF Designer) kullanarak modelinizde tablo başına (TPT) devralmayı nasıl uygulayacağınızı gösterir. Tablo başına tür devralma, devralma hiyerarşisindeki her bir türün devralınmamış özellikleri ve anahtar özellikleri için verileri korumak üzere veritabanında ayrı bir tablo kullanır.
 
-Bu örnekte biz eşler **kurs** (temel türü), **OnlineCourse** (kursuna türetilir) ve **OnsiteCourse** (türetilen **Kurs**) aynı ada sahip tablolar için varlıklar. Biz bir model veritabanından oluşturacak ve ardından TPT devralma uygulamak için modeli alter.
+Bu kılavuzda, **kursu** (temel tür), **onlinekursu** (kursa türetiliyor) ve **Onsitekursu** ( **kursa**türetilir) varlıklarıyla aynı adlara sahip tablolara eşliyoruz. Veritabanından bir model oluşturacak ve ardından modeli TPT devralmayı uygulayacak şekilde değiştirecek.
 
-Ayrıca ilk Model başlatabilir ve sonra da modelden veritabanı oluşturun. EF Designer TPT stratejisi varsayılan olarak kullanır ve bu nedenle herhangi bir devralma modeli tabloları ayırmak için eşleştirilecek.
+Ayrıca Model First başlatabilir ve sonra veritabanını modelden oluşturabilirsiniz. EF Designer, varsayılan olarak TPT stratejisini kullanır ve böylece modeldeki Devralınanlar ayrı tablolarla eşleştirilir.
 
 ## <a name="other-inheritance-options"></a>Diğer devralma seçenekleri
 
-Tablo-başına-hiyerarşi (TPH) devralma hangi bir veritabanında tablo varlık türleri bir devralma hiyerarşisindeki tüm verileri korumak için kullanılan başka bir türdür.  Varlık Tasarımcısı tablo başına hiyerarşi kalıtım eşlemek hakkında daha fazla bilgi için bkz: [EF Designer TPH devralma](~/ef6/modeling/designer/inheritance/tph.md). 
+Hiyerarşi başına tablo (TPH), bir devralma hiyerarşisindeki tüm varlık türlerinin verilerini korumak için bir veritabanı tablosunun kullanıldığı başka bir devralma türüdür.  Entity Desisgner hiyerarşi başına devralmayı, ile eşleme hakkında bilgi için bkz. [EF Designer TPH devralma](~/ef6/modeling/designer/inheritance/tph.md). 
 
-Devralma (TPC) ve karma devralma modelleri Entity Framework çalışma zamanı tarafından desteklenir ancak EF tasarımcı tarafından desteklenmeyen türü,'somut başına tablo unutmayın. TPC veya karma devralma kullanmak istiyorsanız, iki seçeneğiniz vardır: Code First kullanın veya el ile EDMX dosyasını düzenleyin. EDMX ile çalışmayı tercih ederseniz eşleme Ayrıntıları penceresi "Güvenli Mod'da" yerleştirilir ve eşlemelerini değiştirmek için tasarımcı kullanmanız mümkün olmayacaktır.
+Somut tür devralma (TPC) ve karışık devralma modellerinin tablo başına Entity Framework çalışma zamanı tarafından desteklendiğini ancak EF Designer tarafından desteklenmediğini unutmayın. TPC veya karışık devralma kullanmak istiyorsanız iki seçeneğiniz vardır: Code First kullanın veya EDMX dosyasını el ile düzenleyin. EDMX dosyası ile çalışmayı seçerseniz, eşleme ayrıntıları penceresi "güvenli mod" a yerleştirilir ve bu eşlemeleri değiştirmek için tasarımcıyı kullanamazsınız.
 
 ## <a name="prerequisites"></a>Önkoşullar
 
 Bu kılavuzu tamamlamak için şunlara ihtiyacınız olacak:
 
-- Visual Studio'nun en son sürümü.
-- [School örnek veritabanını](~/ef6/resources/school-database.md).
+- Visual Studio 'nun son sürümü.
+- [Okul örnek veritabanı](~/ef6/resources/school-database.md).
 
-## <a name="set-up-the-project"></a>Projesi kurun
+## <a name="set-up-the-project"></a>Projeyi ayarlama
 
 -   Visual Studio 2012'yi açın.
--   Seçin **File -&gt; yeni -&gt; proje**
--   Sol bölmede **Visual C\#** ve ardından **konsol** şablonu.
--   Girin **TPTDBFirstSample** adı.
--   Seçin **Tamam**.
+-   **Dosya&gt; yeni&gt; proje** ' yi seçin
+-   Sol bölmede, **Visual C\#** ' ye tıklayın ve ardından **konsol** şablonunu seçin.
+-   Ad olarak **Tptdbfirstsample** girin.
+-    **Tamam ' ı**seçin.
 
 ## <a name="create-a-model"></a>Model oluşturma
 
--   Çözüm Gezgini'nde projeye sağ tıklayıp seçin **Ekle -&gt; yeni öğe**.
--   Seçin **veri** seçin ve soldaki menüden **ADO.NET varlık veri modeli** Şablonlar bölmesinde.
--   Girin **TPTModel.edmx** dosya adı ve ardından **Ekle**.
--   Choose Model Contents iletişim kutusunda seçim ** Oluştur veritabanı ** kutusuna ve ardından **sonraki**.
--   Tıklayın **yeni bağlantı**.
-    Bağlantı Özellikleri iletişim kutusuna sunucu adını girin (örneğin, **(localdb)\\ifadesini mssqllocaldb**) seçin kimlik doğrulama yöntemi, tür **Okul** veritabanı adı ve ardından tıklayın **Tamam**.
-    Veri bağlantınızı seçin iletişim kutusunda, veritabanı bağlantı ayarı ile güncelleştirilir.
--   Veritabanı nesnelerinizi seçin iletişim kutusunda, tablolar düğümünü seçin **departmanı**, **kurs OnlineCourse ve OnsiteCourse** tablolar.
--   **Son**'a tıklayın.
+-   Çözüm Gezgini projeye sağ tıklayın ve **Ekle-&gt; yeni öğe**' yi seçin.
+-   Sol menüden **verileri** seçin ve ardından şablonlar bölmesinde **ADO.net varlık veri modeli** öğesini seçin.
+-   Dosya adı için **Tptmodel. edmx** yazın ve ardından **Ekle**' ye tıklayın.
+-   Model Içeriğini seçin iletişim kutusunda, **veritabanından oluştur**' u seçin ve ardından **İleri**' ye tıklayın.
+-    **Yeni bağlantı**' ya tıklayın.
+    Bağlantı özellikleri iletişim kutusunda sunucu adını (örneğin, **(LocalDB)\\mssqllocaldb**) girin, kimlik doğrulama yöntemini seçin, veritabanı adı için **okul** yazın ve ardından **Tamam**' a tıklayın.
+    Veri bağlantınızı seçin iletişim kutusu, veritabanı bağlantı ayarınız ile güncelleştirilir.
+-   Veritabanı nesnelerinizi seçin iletişim kutusundaki tablolar düğümünün altında **departmanı**, **kursu, onlinekursu ve onsitekursu** tablolarını seçin.
+-    **Son**' a tıklayın.
 
-Modelinizi düzenleme için bir tasarım yüzeyi sağlar, varlık Tasarımcısı görüntülenir. Veritabanı nesnelerinizi seçin iletişim kutusunda seçilen tüm nesneler, modele eklenir.
+Modelinizi düzenlemekte bir tasarım yüzeyi sağlayan Entity Desisgner görüntülenir. Veritabanı nesnelerinizi seçin iletişim kutusunda seçtiğiniz tüm nesneler modele eklenir.
 
-## <a name="implement-table-per-type-inheritance"></a>Tablo başına tür devralma uygulama
+## <a name="implement-table-per-type-inheritance"></a>Tablo türü devralma Uygula
 
--   Tasarım yüzeyinde, sağ **OnlineCourse** varlık türü **özellikleri**.
--   İçinde **özellikleri** penceresinde ayarlanmış temel tür özelliği **kurs**.
--   Sağ **OnsiteCourse** varlık türü **özellikleri**.
--   İçinde **özellikleri** penceresinde ayarlanmış temel tür özelliği **kurs**.
--   Arasındaki ilişkiyi (satır) sağ **OnlineCourse** ve **kurs** varlık türleri.
-    Seçin **modelden silmek**.
--   Arasındaki ilişkiyi sağ **OnsiteCourse** ve **kurs** varlık türleri.
-    Seçin **modelden silmek**.
+-   Tasarım yüzeyinde **onlinekurs** varlık türüne sağ tıklayın ve **Özellikler**' i seçin.
+-   **Özellikler** penceresinde, temel tür özelliğini **Kurs**olarak ayarlayın.
+-   **Onsitekursu** varlık türüne sağ tıklayın ve **Özellikler**' i seçin.
+-   **Özellikler** penceresinde, temel tür özelliğini **Kurs**olarak ayarlayın.
+-   **Onlinekurs** ve **Kurs** varlık türleri arasındaki ilişkiye (satır) sağ tıklayın.
+    **Modelden Sil**' i seçin.
+-   **Onsitekursu** ve **Kurs** varlık türleri arasındaki ilişkiye sağ tıklayın.
+    **Modelden Sil**' i seçin.
 
-Şimdi biz silecek **CourseID** özelliğinden **OnlineCourse** ve **OnsiteCourse** bu sınıfların devraldığı **CourseID** gelen **kurs** temel türü.
+Artık, bu sınıflar **Kurs** temel türünden **CourseID** 'Yi devraldığı için **Onlinekursu** ve **onsitekursu** ' ndan kurs **Seid** özelliğini silecağız.
 
--   Sağ **CourseID** özelliği **OnlineCourse** varlık türü ve ardından **modelden silmek**.
--   Sağ **CourseID** özelliği **OnsiteCourse** varlık türü ve ardından **modelden Sil**
--   Tablo başına tür devralma artık uygulanır.
+-   **Onlinekurs** varlık türünün **Kurs Seid** özelliğine sağ tıklayın ve sonra **Modelden Sil**' i seçin.
+-   **Onsitekursu** varlık türünün **CourseID** özelliğine sağ tıklayın ve sonra **Modelden Sil** ' i seçin.
+-   Tablo türü devralma artık uygulandı.
 
 ![TPT](~/ef6/media/tpt.png)
 
-## <a name="use-the-model"></a>Kullanım modeli
+## <a name="use-the-model"></a>Modeli kullanma
 
-Açık **Program.cs** dosya nerede **ana** yöntemi tanımlanır. Aşağıdaki kodu yapıştırın **ana** işlevi. Kod üç sorguları yürütür. İlk sorgu geri getirir tüm **kursları** belirtilen departmana ilgili. İkinci sorgu kullanan **OfType** döndürülecek yöntemi **OnlineCourses** belirtilen departmana ilgili. Üçüncü sorgunun döndürdüğü **OnsiteCourses**.
+**Main** yönteminin tanımlandığı **program.cs** dosyasını açın. Aşağıdaki kodu **Main** işlevine yapıştırın. Kod üç sorguyu yürütür. İlk sorgu belirtilen departmanla ilgili tüm **kursları** geri getirir. İkinci sorgu, belirtilen departmanla ilgili **Onlinekurslar** döndürmek için **OfType** metodunu kullanır. Üçüncü sorgu **Onsitekursu**döndürür.
 
 ``` csharp
     using (var context = new SchoolEntities())

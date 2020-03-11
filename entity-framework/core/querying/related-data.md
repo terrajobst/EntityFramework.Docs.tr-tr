@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: f9fb64e2-6699-4d70-a773-592918c04c19
 uid: core/querying/related-data
-ms.openlocfilehash: bfabe8fd5b0a64edd5d97baff3beab9d712f1c20
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 915aaa41beb495a046f2d6260e9c3b174d5f3031
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73654626"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417679"
 ---
 # <a name="loading-related-data"></a>İlgili Verileri Yükleme
 
@@ -20,9 +20,9 @@ Entity Framework Core, ilişkili varlıkları yüklemek için modelinizdeki gezi
 * **Yavaş yükleme** , gezinti özelliğine erişildiğinde ilgili verilerin veritabanından saydam olarak yüklendiği anlamına gelir.
 
 > [!TIP]  
-> Bu makalenin [örneğini](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub ' da görebilirsiniz.
+> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub ' da görebilirsiniz.
 
-## <a name="eager-loading"></a>Ekip yükleme
+## <a name="eager-loading"></a>ekip yükleme
 
 Sorgu sonuçlarına dahil edilecek ilgili verileri belirtmek için `Include` yöntemini kullanabilirsiniz. Aşağıdaki örnekte, sonuçlarda döndürülen blogların `Posts` özelliği ilgili gönderileriyle doldurulmuş olacaktır.
 
@@ -114,7 +114,7 @@ public class School
   context.People.Include("School").ToList()
   ```
 
-## <a name="explicit-loading"></a>Açık yükleme
+## <a name="explicit-loading"></a>açık yükleme
 
 `DbContext.Entry(...)` API 'SI aracılığıyla bir gezinti özelliğini açıkça yükleyebilirsiniz.
 
@@ -134,9 +134,9 @@ Ayrıca, hangi ilgili varlıkların belleğe yükleneceğini de filtreleyebilirs
 
 [!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#NavQueryFiltered)]
 
-## <a name="lazy-loading"></a>Geç yükleme
+## <a name="lazy-loading"></a>geç yükleme
 
-Geç yüklemeyi kullanmanın en basit yolu, [Microsoft. EntityFrameworkCore. proxy](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) paketini yükleyip `UseLazyLoadingProxies`çağrısı yaparak bunu yapmanızı sağlar. Örneğin:
+Geç yüklemeyi kullanmanın en basit yolu, [Microsoft. EntityFrameworkCore. proxy](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) paketini yükleyip `UseLazyLoadingProxies`çağrısı yaparak bunu yapmanızı sağlar. Örnek:
 
 ```csharp
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -176,7 +176,7 @@ public class Post
 
 ### <a name="lazy-loading-without-proxies"></a>Proxy olmadan yavaş yükleme
 
-Yavaş yükleme proxy 'leri, [varlık türü oluşturucuları](../modeling/constructors.md)bölümünde açıklandığı gibi `ILazyLoader` hizmetini bir varlığa ekleme. Örneğin:
+Yavaş yükleme proxy 'leri, [varlık türü oluşturucuları](../modeling/constructors.md)bölümünde açıklandığı gibi `ILazyLoader` hizmetini bir varlığa ekleme. Örnek:
 
 ```csharp
 public class Blog
@@ -231,7 +231,7 @@ public class Post
 }
 ```
 
-Bu, varlık türlerinin devralınacağı veya gezinti özelliklerinden sanal olmasına gerek yoktur ve `new` oluşturulan varlık örneklerinin bir içeriğe eklendikten sonra yavaş yükleme yapmasına izin verir. Ancak, [Microsoft. EntityFrameworkCore. soyutlamalar](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Abstractions/) paketinde tanımlanan `ILazyLoader` hizmetine bir başvuru gerektirir. Bu paket, buna bağlı olarak çok az etkisi olması için en az bir tür kümesi içerir. Ancak, varlık türlerindeki tüm EF Core paketlerine bağlı olarak tamamen kaçınmak için, `ILazyLoader.Load` metodunu bir temsilci olarak eklemek mümkündür. Örneğin:
+Bu, varlık türlerinin devralınacağı veya gezinti özelliklerinden sanal olmasına gerek yoktur ve `new` oluşturulan varlık örneklerinin bir içeriğe eklendikten sonra yavaş yükleme yapmasına izin verir. Ancak, [Microsoft. EntityFrameworkCore. soyutlamalar](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Abstractions/) paketinde tanımlanan `ILazyLoader` hizmetine bir başvuru gerektirir. Bu paket, buna bağlı olarak çok az etkisi olması için en az bir tür kümesi içerir. Ancak, varlık türlerindeki tüm EF Core paketlerine bağlı olarak tamamen kaçınmak için, `ILazyLoader.Load` metodunu bir temsilci olarak eklemek mümkündür. Örnek:
 
 ```csharp
 public class Blog

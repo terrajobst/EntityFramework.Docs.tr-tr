@@ -5,11 +5,11 @@ ms.author: bricelam
 ms.date: 09/16/2019
 uid: core/miscellaneous/cli/dbcontext-creation
 ms.openlocfilehash: f44f0648678af5a70e5171d69692bde1c1d5e0eb
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655533"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416744"
 ---
 # <a name="design-time-dbcontext-creation"></a>Tasarım Zamanında DbContext Oluşturma
 
@@ -36,14 +36,14 @@ DbContext uygulama hizmeti sağlayıcısından alınamıyorsa, Araçlar proje i�
 
 ## <a name="from-a-design-time-factory"></a>Tasarım zamanı fabrikasından
 
-Ayrıca, `IDesignTimeDbContextFactory<TContext>` arabirimini uygulayarak DbContext 'in nasıl oluşturulacağını de söyleyebilirsiniz: Bu arabirimi uygulayan bir sınıf türetilen `DbContext` aynı projede ya da uygulamanın başlangıç projesinde bulunursa, Araçlar diğerini atlar DbContext oluşturma ve bunun yerine tasarım zamanı fabrikasını kullanma yolları.
+Ayrıca, `IDesignTimeDbContextFactory<TContext>` arabirimini uygulayarak DbContext 'in nasıl oluşturulacağını de söyleyebilirsiniz: Bu arabirimi uygulayan bir sınıf türetilmiş `DbContext` aynı projede veya uygulamanın başlangıç projesinde bulunursa, Araçlar DbContext oluşturmanın diğer yollarını atlar ve bunun yerine tasarım zamanı fabrikasını kullanır.
 
 [!code-csharp[Main](../../../../samples/core/Miscellaneous/CommandLine/BloggingContextFactory.cs)]
 
 > [!NOTE]
 > `args` parametresi şu anda kullanılmıyor. Araçlardan tasarım zamanı bağımsız değişkenlerini belirtme yeteneği izlenirken [bir sorun][8] oluştu.
 
-Tasarım zamanı fabrikası, çalışma zamanından farklı olarak DbContext 'i tasarım zamanı için farklı şekilde yapılandırmanız gerektiğinde kullanışlı olabilir. `DbContext` Oluşturucu ek parametreler alırsa, bu durumda DI 'yi kullanmıyorsanız veya bazı nedenlerden dolayı ASP.NET Core uygulamanızın `Main` sınıfında bir `BuildWebHost` yöntemi bulundurmayı tercih edin.
+Tasarım zamanı fabrikası, çalışma zamanından farklı olarak DbContext 'i tasarım zamanı için farklı şekilde yapılandırmanız gerektiğinde kullanışlı olabilir. `DbContext` Oluşturucu başka parametreler alırsa, ara ' ya hiçbir nedenden dolayı yoksa, hiçbir nedenden dolayı ASP.NET Core uygulamanızın `Main` sınıfında bir `BuildWebHost` yöntemi bulundurmayı tercih etmeniz gerekir.
 
   [1]: xref:core/managing-schemas/migrations/index
   [2]: xref:core/miscellaneous/configuring-dbcontext

@@ -5,11 +5,11 @@ ms.date: 01/03/2020
 ms.assetid: bc8b1cb0-befe-4b67-8004-26e6c5f69385
 uid: core/modeling/concurrency
 ms.openlocfilehash: bfeb611f222f7195fe22d920b452b40cc4addf90
-ms.sourcegitcommit: f2a38c086291699422d8b28a72d9611d1b24ad0d
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/16/2020
-ms.locfileid: "76124372"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417290"
 ---
 # <a name="concurrency-tokens"></a>Eşzamanlılık Belirteçleri
 
@@ -20,11 +20,11 @@ Eşzamanlılık belirteçleri olarak yapılandırılan özellikler, iyimser eşz
 
 ## <a name="configuration"></a>Yapılandırma
 
-### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
+### <a name="data-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Concurrency.cs?name=Concurrency&highlight=5)]
 
-### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
+### <a name="fluent-api"></a>[Akıcı API](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Concurrency.cs?name=Concurrency&highlight=5)]
 
@@ -36,11 +36,11 @@ Zaman damgası/ROWVERSION, her satır eklendiğinde veya güncelleştirilirse ve
 
 Bir özelliği şu şekilde bir zaman damgası/rowversion olacak şekilde yapılandırabilirsiniz:
 
-### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
+### <a name="data-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Timestamp.cs?name=Timestamp&highlight=7)]
 
-### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
+### <a name="fluent-api"></a>[Akıcı API](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Timestamp.cs?name=Timestamp&highlight=9,17)]
 

@@ -5,11 +5,11 @@ ms.author: bricelam
 ms.date: 10/30/2017
 uid: core/managing-schemas/migrations/teams
 ms.openlocfilehash: 6c17c56277821159962884aef72d46c624442e20
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655537"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416772"
 ---
 # <a name="migrations-in-team-environments"></a>Takım Ortamlarında Geçişler
 
@@ -48,7 +48,7 @@ b.Property<string>("Alias");
 >>>>>>> Theirs
 ```
 
-Bu tür çakışmayla karşılaşırsanız, geçişinizi yeniden oluşturarak çözümleyin. Aşağıdaki adımları uygulayın:
+Bu tür çakışmayla karşılaşırsanız, geçişinizi yeniden oluşturarak çözümleyin. Şu adımları uygulayın:
 
 1. Birleştirme işleminden önce birleştirme ve çalışma dizininize geri alma işlemini iptal edin
 2. Geçişinizi kaldırma (ancak model değişiklerinizi koru)

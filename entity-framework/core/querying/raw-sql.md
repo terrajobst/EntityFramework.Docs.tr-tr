@@ -4,23 +4,23 @@ author: smitpatel
 ms.date: 10/08/2019
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
-ms.openlocfilehash: b7087771f1a9e8ee5e044cfea367d74a0b1c1d35
-ms.sourcegitcommit: 37d0e0fd1703467918665a64837dc54ad2ec7484
+ms.openlocfilehash: a54bb67c0fce9d621382f6372e70fe4cdca48a20
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/16/2019
-ms.locfileid: "72445928"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417672"
 ---
 # <a name="raw-sql-queries"></a>Ham SQL Sorguları
 
 Entity Framework Core, ilişkisel bir veritabanıyla çalışırken ham SQL sorgularına karşı aşağı açılan bir liste sağlar. Ham SQL sorguları, istediğiniz sorgu LINQ kullanılarak ifade edilebilmesi yararlıdır. Ham SQL sorguları, bir LINQ sorgusunun kullanılması verimsiz bir SQL sorgusuna neden olursa da kullanılır. Ham SQL sorguları, modelinizin bir parçası olan normal varlık türlerini veya [anahtarsız varlık türlerini](xref:core/modeling/keyless-entity-types) döndürebilir.
 
 > [!TIP]  
-> Bu makalenin [örneğini](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Querying/) GitHub ' da görebilirsiniz.
+> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying/) GitHub ' da görebilirsiniz.
 
 ## <a name="basic-raw-sql-queries"></a>Temel ham SQL sorguları
 
-Ham SQL sorgusuna dayalı bir LINQ sorgusuna başlamak için `FromSqlRaw` genişletme yöntemini kullanabilirsiniz. `FromSqlRaw` yalnızca sorgu köklerinin üzerinde kullanılabilir, doğrudan `DbSet<>` ' dir.
+Ham SQL sorgusuna dayalı bir LINQ sorgusuna başlamak için `FromSqlRaw` uzantısı yöntemini kullanabilirsiniz. `FromSqlRaw` yalnızca doğrudan `DbSet<>`olan sorgu köklerine uygulanabilir.
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlRaw)]
 
@@ -35,20 +35,20 @@ Ham SQL sorguları, saklı bir yordamı yürütmek için kullanılabilir.
 >
 > Bir ham SQL sorgusuna Kullanıcı tarafından sağlanmış herhangi bir değer alındığınızda, SQL ekleme saldırılarından kaçınmak için dikkatli olunması gerekir. Bu tür değerlerin geçersiz karakterler içermediğini doğrulamaya ek olarak, her zaman değerleri SQL metinden ayrı gönderen Parametreleştirme kullanın.
 >
-> Özellikle, hiç bir birleştirilmiş veya enterpolasyonlu dize (`$""`) `FromSqlRaw` veya `ExecuteSqlRaw` ' ye sahip olmayan kullanıcı tarafından belirtilen değerlerle geçirmez. @No__t-0 ve `ExecuteSqlInterpolated` yöntemleri, SQL ekleme saldırılarına karşı koruma sağlayacak şekilde dize ilişkilendirme sözdiziminin kullanılmasına izin verir.
+> Özellikle, hiç bir birleştirilmiş veya enterpolasyonsuz dize (`$""`) `FromSqlRaw` veya `ExecuteSqlRaw`olarak doğrulanmamış kullanıcı tarafından sağlanmış değerlerle geçirmez. `FromSqlInterpolated` ve `ExecuteSqlInterpolated` yöntemleri, SQL ekleme saldırılarına karşı koruma sağlayacak şekilde dize ilişkilendirme sözdiziminin kullanılmasına izin verir.
 
-Aşağıdaki örnek, SQL sorgu dizesinde bir parametre yer tutucusu ekleyerek ve ek bir bağımsız değişken sağlayarak, saklı yordama tek bir parametre geçirir. Bu söz dizimi `String.Format` sözdizimi gibi görünebilir, ancak sağlanan değer bir `DbParameter` ve `{0}` yer tutucusunun belirtildiği oluşturulan parametre adı ile sarmalanır.
+Aşağıdaki örnek, SQL sorgu dizesinde bir parametre yer tutucusu ekleyerek ve ek bir bağımsız değişken sağlayarak, saklı yordama tek bir parametre geçirir. Bu söz dizimi `String.Format` sözdizimine benzeyebilir, ancak verilen değer bir `DbParameter` sarmalanır ve `{0}` yer tutucusunun belirtilmiş olduğu oluşturulan parametre adı eklenir.
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlRawStoredProcedureParameter)]
 
-`FromSqlInterpolated` `FromSqlRaw` ' e benzer ancak dize ilişkilendirme söz dizimini kullanmanıza olanak sağlar. @No__t-0 gibi `FromSqlInterpolated` yalnızca sorgu köklerinin üzerinde kullanılabilir. Önceki örnekte olduğu gibi, değer `DbParameter` ' a dönüştürülür ve SQL ekleme ile ilgili değildir.
+`FromSqlInterpolated` `FromSqlRaw` benzerdir ancak dize ilişkilendirme söz dizimini kullanmanıza izin verir. `FromSqlRaw`tıpkı tıpkı yalnızca sorgu köklerinin üzerinde `FromSqlInterpolated` kullanılabilir. Önceki örnekte olduğu gibi, değer bir `DbParameter` dönüştürülür ve SQL ekleme ile savunmasız değildir.
 
 > [!NOTE]
-> Sürüm 3,0 ' den önce, `FromSqlRaw` ve `FromSqlInterpolated` `FromSql` adlı iki aşırı yüklemedir. Daha fazla bilgi için [önceki sürümler bölümüne](#previous-versions)bakın.
+> Sürüm 3,0 ' den önce, `FromSqlRaw` ve `FromSqlInterpolated` `FromSql`adlı iki aşırı yüklemedir. Daha fazla bilgi için [önceki sürümler bölümüne](#previous-versions)bakın.
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlInterpolatedStoredProcedureParameter)]
 
-Ayrıca bir DbParameter oluşturup bunu bir parametre değeri olarak sağlayabilirsiniz. Bir dize yer tutucusu yerine düzenli bir SQL parametre yer tutucusu kullanıldığından, `FromSqlRaw` güvenli bir şekilde kullanılabilir.
+Ayrıca bir DbParameter oluşturup bunu bir parametre değeri olarak sağlayabilirsiniz. Bir dize yer tutucusu yerine düzenli bir SQL parametre yer tutucusu kullanıldığından `FromSqlRaw` güvenle kullanılabilir:
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlRawStoredProcedureSqlParameter)]
 
@@ -75,7 +75,7 @@ ORDER BY [b].[Rating] DESC
 
 ### <a name="including-related-data"></a>İlgili verileri dahil etme
 
-@No__t-0 yöntemi, diğer herhangi bir LINQ sorgusuyla benzer şekilde ilgili verileri dahil etmek için kullanılabilir:
+`Include` yöntemi, diğer herhangi bir LINQ sorgusuyla olduğu gibi ilgili verileri dahil etmek için kullanılabilir:
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlInterpolatedInclude)]
 
@@ -85,13 +85,13 @@ EF Core, sağlanan SQL 'in bir alt sorgu olarak davranmasından bu yana, LINQ il
 - SQL Server, sondaki sorgu düzeyi İpucu (örneğin, `OPTION (HASH JOIN)`)
 - SQL Server, `SELECT` yan tümcesinde `OFFSET 0` veya `TOP 100 PERCENT` ile kullanılmayan bir `ORDER BY` yan tümcesi
 
-SQL Server, saklı yordam çağrılarının üzerinde oluşturmaya izin vermez, bu nedenle, bu tür bir çağrıya ek sorgu işleçleri uygulama girişimleri geçersiz SQL 'e neden olur. EF Core bir saklı yordam üzerinden oluşturmaya çalıştığından emin olmak için `FromSqlRaw` veya `FromSqlInterpolated` yöntemlerinden sonra `AsEnumerable` veya `AsAsyncEnumerable` yöntemi kullanın.
+SQL Server, saklı yordam çağrılarının üzerinde oluşturmaya izin vermez, bu nedenle, bu tür bir çağrıya ek sorgu işleçleri uygulama girişimleri geçersiz SQL 'e neden olur. EF Core bir saklı yordam üzerinden oluşturmaya çalıştığından emin olmak için `FromSqlRaw` veya `FromSqlInterpolated` yöntemlerinden hemen sonra `AsEnumerable` veya `AsAsyncEnumerable` yöntemi kullanın.
 
 ## <a name="change-tracking"></a>Değişiklik İzleme
 
-@No__t-0 veya `FromSqlInterpolated` yöntemlerini kullanan sorgular, EF Core ' deki diğer LINQ sorgularıyla tam olarak aynı değişiklik izleme kurallarını izler. Örneğin, sorgu projeleri varlık türlerdir, sonuçlar varsayılan olarak izlenir.
+`FromSqlRaw` veya `FromSqlInterpolated` yöntemlerini kullanan sorgular, EF Core ' deki diğer LINQ sorgularıyla tam olarak aynı değişiklik izleme kurallarını izler. Örneğin, sorgu projeleri varlık türlerdir, sonuçlar varsayılan olarak izlenir.
 
-Aşağıdaki örnek, bir tablo değerli Işlevden (TVF) seçim yapan ham bir SQL sorgusu kullanır ve sonra değişiklik izlemeyi devre dışı bırakarak `AsNoTracking`:
+Aşağıdaki örnek, bir tablo değerli Işlevden (TVF) seçim yapan ham bir SQL sorgusu kullanır ve `AsNoTracking`çağrısıyla değişiklik izlemeyi devre dışı bırakır:
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlInterpolatedAsNoTracking)]
 
@@ -101,8 +101,8 @@ Ham SQL sorguları kullanırken dikkat etmeniz için bazı sınırlamalar vardı
 
 - SQL sorgusu, varlık türünün tüm özellikleri için veri döndürmelidir.
 - Sonuç kümesindeki sütun adları, özelliklerin eşlendiği sütun adlarıyla eşleşmelidir. Bu davranışın EF6 öğesinden farklı olduğunu aklınızda edin. EF6, ham SQL sorguları için sütun eşlemesine yoksayılan özelliği ve sonuç kümesi sütun adlarının Özellik adlarıyla eşleşmesi gerekiyordu.
-- SQL sorgusu ilgili verileri içeremez. Ancak çoğu durumda, ilgili verileri (bkz. [ilgili verileri dahil](#including-related-data)) döndürmek için `Include` işlecini kullanarak sorgunun üzerine yazabilirsiniz.
+- SQL sorgusu ilgili verileri içeremez. Ancak çoğu durumda, ilgili verileri ( [ilgili verileri dahil olmak](#including-related-data)üzere) döndürmek için `Include` işlecini kullanarak sorgunun üzerine oluşturabilirsiniz.
 
 ## <a name="previous-versions"></a>Önceki sürümler
 
-EF Core sürüm 2,2 ve önceki sürümleri, daha yeni `FromSqlRaw` ve `FromSqlInterpolated` ile aynı şekilde davranmış `FromSql` adlı yöntemin iki aşırı yüküne sahipti. Amaç, enterpolasyonlu dize yöntemini çağırdığınızda ve diğer bir şekilde, ham dize metodunu yanlışlıkla çağırmak kolaydır. Yanlışlıkla yanlış aşırı yükleme çağırmak, sorguların olması gerektiği zaman parametreli hale getirmemelidir.
+EF Core sürüm 2,2 ve önceki sürümleri, daha yeni `FromSqlRaw` ve `FromSqlInterpolated`aynı şekilde davranmış `FromSql`adlı yöntemin iki aşırı yüküne sahipti. Amaç, enterpolasyonlu dize yöntemini çağırdığınızda ve diğer bir şekilde, ham dize metodunu yanlışlıkla çağırmak kolaydır. Yanlışlıkla yanlış aşırı yükleme çağırmak, sorguların olması gerektiği zaman parametreli hale getirmemelidir.

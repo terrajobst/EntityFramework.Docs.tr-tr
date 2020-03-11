@@ -6,11 +6,11 @@ ms.date: 01/23/2019
 ms.assetid: a6b9cd22-6803-4c6c-a4d4-21147c0a81cb
 uid: efcore-and-ef6/index
 ms.openlocfilehash: e28c7d0299e5089f56fb0795d00917cfc30f5cf1
-ms.sourcegitcommit: b3cf5d2e3cb170b9916795d1d8c88678269639b1
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/30/2020
-ms.locfileid: "76888154"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419649"
 ---
 # <a name="compare-ef-core--ef6"></a>EF Core ve EF6 Karşılaştırması
 
@@ -34,99 +34,99 @@ EF Core sütunu, özelliğin ilk göründüğü ürün sürümünü belirtir.
 
 ### <a name="creating-a-model"></a>Model oluşturma
 
-| **Özelliği**                                           | **EF 6.4**| **EF Core**                           |
+| **Özellik**                                           | **EF 6.4**| **EF Core**                           |
 |:------------------------------------------------------|:---------|:--------------------------------------|
-| Temel sınıf eşleme                                   | Evet      | 1.0                                   |
+| Temel sınıf eşleme                                   | Yes      | 1.0                                   |
 | Parametrelere sahip oluşturucular                          |          | 2.1                                   |
 | Özellik değeri dönüştürmeleri                            |          | 2.1                                   |
 | Anahtarı olmayan eşlenmiş türler                             |          | 2.1                                   |
-| Kurallar                                           | Evet      | 1.0                                   |
-| Özel kurallar                                    | Evet      | 1,0 (kısmi; [#214](https://github.com/dotnet/efcore/issues/214)) |
-| Veri açıklamaları                                      | Evet      | 1.0                                   |
-| Akıcı API                                            | Evet      | 1.0                                   |
-| Devralma: hiyerarşi başına tablo (TPH)                | Evet      | 1.0                                   |
-| Devralma: tür başına tablo (TPT)                     | Evet      | 5,0 için planlandı ([#2266](https://github.com/dotnet/efcore/issues/2266)) |
-| Devralma: somut sınıf başına tablo (TPC)           | Evet      | 5,0 için uzat ([#3170](https://github.com/dotnet/efcore/issues/3170)) <sup>(1)</sup> |
+| Kurallar                                           | Yes      | 1.0                                   |
+| Özel kurallar                                    | Yes      | 1,0 (kısmi; [#214](https://github.com/dotnet/efcore/issues/214)) |
+| Veri açıklamaları                                      | Yes      | 1.0                                   |
+| Akıcı API                                            | Yes      | 1.0                                   |
+| Devralma: hiyerarşi başına tablo (TPH)                | Yes      | 1.0                                   |
+| Devralma: tür başına tablo (TPT)                     | Yes      | 5,0 için planlandı ([#2266](https://github.com/dotnet/efcore/issues/2266)) |
+| Devralma: somut sınıf başına tablo (TPC)           | Yes      | 5,0 için uzat ([#3170](https://github.com/dotnet/efcore/issues/3170)) <sup>(1)</sup> |
 | Gölge durumu özellikleri                               |          | 1.0                                   |
 | Alternatif anahtarlar                                        |          | 1.0                                   |
-| Çoktan çoğa gezinmeler                              | Evet      | 5,0 için planlandı ([#19003](https://github.com/dotnet/efcore/issues/19003)) |
-| Çok-çok, JOIN varlığı olmadan                      | Evet      | Biriktirme listesi ([#1368](https://github.com/dotnet/efcore/issues/1368)) |
-| Anahtar oluşturma: veritabanı                              | Evet      | 1.0                                   |
+| Çoktan çoğa gezinmeler                              | Yes      | 5,0 için planlandı ([#19003](https://github.com/dotnet/efcore/issues/19003)) |
+| Çok-çok, JOIN varlığı olmadan                      | Yes      | Biriktirme listesi ([#1368](https://github.com/dotnet/efcore/issues/1368)) |
+| Anahtar oluşturma: veritabanı                              | Yes      | 1.0                                   |
 | Anahtar üretimi: Istemci                                |          | 1.0                                   |
-| Karmaşık/sahip türler                                   | Evet      | 2,0                                   |
-| Uzamsal veriler                                          | Evet      | 2.2                                   |
-| Model biçimi: kod                                    | Evet      | 1.0                                   |
-| Veritabanından model oluştur: komut satırı              | Evet      | 1.0                                   |
+| Karmaşık/sahip türler                                   | Yes      | 2,0                                   |
+| Uzamsal veriler                                          | Yes      | 2.2                                   |
+| Model biçimi: kod                                    | Yes      | 1.0                                   |
+| Veritabanından model oluştur: komut satırı              | Yes      | 1.0                                   |
 | Modeli veritabanından Güncelleştir                            | Kısmi  | Biriktirme listesi ([#831](https://github.com/dotnet/efcore/issues/831)) |
 | Genel sorgu filtreleri                                  |          | 2,0                                   |
-| Tablo bölme                                       | Evet      | 2,0                                   |
-| Varlık bölme                                      | Evet      | 5,0 için uzat ([#620](https://github.com/dotnet/efcore/issues/620)) <sup>(1)</sup> |
+| Tablo bölme                                       | Yes      | 2,0                                   |
+| Varlık bölme                                      | Yes      | 5,0 için uzat ([#620](https://github.com/dotnet/efcore/issues/620)) <sup>(1)</sup> |
 | Veritabanı skaler işlev eşlemesi                      | Kötü     | 2,0                                   |
 | Alan eşleme                                         |          | 1.1                                   |
 | Null yapılabilir başvuru türleriC# (8,0)                     |          | 3.0                                   |
-| Modelin grafik görselleştirmesi                      | Evet      | Planlanmış destek yok <sup>(2)</sup>     |
-| Grafik Model Düzenleyicisi                                | Evet      | Planlanmış destek yok <sup>(2)</sup>     |
-| Model biçimi: EDMX (XML)                              | Evet      | Planlanmış destek yok <sup>(2)</sup>     |
-| Veritabanından model oluştur: VS Wizard                 | Evet      | Planlanmış destek yok <sup>(2)</sup>     |
+| Modelin grafik görselleştirmesi                      | Yes      | Planlanmış destek yok <sup>(2)</sup>     |
+| Grafik Model Düzenleyicisi                                | Yes      | Planlanmış destek yok <sup>(2)</sup>     |
+| Model biçimi: EDMX (XML)                              | Yes      | Planlanmış destek yok <sup>(2)</sup>     |
+| Veritabanından model oluştur: VS Wizard                 | Yes      | Planlanmış destek yok <sup>(2)</sup>     |
 
-### <a name="querying-data"></a>Verileri sorgulama
+### <a name="querying-data"></a>Veri sorgulama
 
-| **Özelliği**                                           | **EF 6.4**| **EF Core**                           |
+| **Özellik**                                           | **EF 6.4**| **EF Core**                           |
 |:------------------------------------------------------|:---------|:--------------------------------------|
-| LINQ sorguları                                          | Evet      | 1.0                                   |
+| LINQ sorguları                                          | Yes      | 1.0                                   |
 | Okunabilir oluşturulmuş SQL                                | Kötü     | 1.0                                   |
-| GroupBy çevirisi                                   | Evet      | 2.1                                   |
-| İlgili verileri yükleme: Eager                           | Evet      | 1.0                                   |
+| GroupBy çevirisi                                   | Yes      | 2.1                                   |
+| İlgili verileri yükleme: Eager                           | Yes      | 1.0                                   |
 | İlgili verileri yükleme: türetilmiş türler için ekip yükleme |          | 2.1                                   |
-| İlgili verileri yükleme: yavaş                            | Evet      | 2.1                                   |
-| İlgili verileri yükleme: açık                        | Evet      | 1.1                                   |
-| Ham SQL sorguları: varlık türleri                         | Evet      | 1.0                                   |
-| Ham SQL sorguları: Keyless varlık türleri                 | Evet      | 2.1                                   |
+| İlgili verileri yükleme: yavaş                            | Yes      | 2.1                                   |
+| İlgili verileri yükleme: açık                        | Yes      | 1.1                                   |
+| Ham SQL sorguları: varlık türleri                         | Yes      | 1.0                                   |
+| Ham SQL sorguları: Keyless varlık türleri                 | Yes      | 2.1                                   |
 | Ham SQL sorguları: LINQ ile oluşturma                  |          | 1.0                                   |
 | Açıkça derlenmiş sorgular                           | Kötü     | 2,0                                   |
 | await foreach (C# 8,0)                                |          | 3.0                                   |
-| Metin tabanlı sorgu dili (Entity SQL)                | Evet      | Planlanmış destek yok <sup>(2)</sup>     |
+| Metin tabanlı sorgu dili (Entity SQL)                | Yes      | Planlanmış destek yok <sup>(2)</sup>     |
 
 ### <a name="saving-data"></a>Verileri kaydetme
 
-| **Özelliği**                                           | **EF 6.4**| **EF Core**                           |
+| **Özellik**                                           | **EF 6.4**| **EF Core**                           |
 |:------------------------------------------------------|:---------|:--------------------------------------|
-| Değişiklik izleme: anlık görüntü                             | Evet      | 1.0                                   |
-| Değişiklik izleme: bildirim                         | Evet      | 1.0                                   |
-| Değişiklik izleme: proxy 'Ler                              | Evet      | 5,0 için birleştirildi ([#10949](https://github.com/dotnet/efcore/issues/10949)) |
-| İzlenen duruma erişme                               | Evet      | 1.0                                   |
-| İyimser eşzamanlılık                                | Evet      | 1.0                                   |
-| İşlemler                                          | Evet      | 1.0                                   |
+| Değişiklik izleme: anlık görüntü                             | Yes      | 1.0                                   |
+| Değişiklik izleme: bildirim                         | Yes      | 1.0                                   |
+| Değişiklik izleme: proxy 'Ler                              | Yes      | 5,0 için birleştirildi ([#10949](https://github.com/dotnet/efcore/issues/10949)) |
+| İzlenen duruma erişme                               | Yes      | 1.0                                   |
+| İyimser eşzamanlılık                                | Yes      | 1.0                                   |
+| İşlemler                                          | Yes      | 1.0                                   |
 | Deyimlerin toplu işi                                |          | 1.0                                   |
-| Saklı yordam eşleme                              | Evet      | Biriktirme listesi ([#245](https://github.com/dotnet/efcore/issues/245)) |
+| Saklı yordam eşleme                              | Yes      | Biriktirme listesi ([#245](https://github.com/dotnet/efcore/issues/245)) |
 | Bağlantısı kesilmiş grafik alt düzey API 'Ler                     | Kötü     | 1.0                                   |
 | Bağlantısı kesilen Graph uçtan uca                         |          | 1,0 (kısmi; [#5536](https://github.com/dotnet/efcore/issues/5536)) |
 
 ### <a name="other-features"></a>Diğer özellikler
 
-| **Özelliği**                                           | **EF 6.4**| **EF Core**                           |
+| **Özellik**                                           | **EF 6.4**| **EF Core**                           |
 |:------------------------------------------------------|:---------|:--------------------------------------|
-| Geçişler                                            | Evet      | 1.0                                   |
-| Veritabanı oluşturma/silme API 'Leri                       | Evet      | 1.0                                   |
-| Çekirdek verileri                                             | Evet      | 2.1                                   |
-| Bağlantı dayanıklılığı                                 | Evet      | 1.1                                   |
-| Durdurucular                                          | Evet      | 3.0                                   |
-| Olaylar                                                | Evet      | 3,0 (kısmi; [#626](https://github.com/dotnet/efcore/issues/626)) |
-| Basit günlüğe kaydetme (Database. log)                         | Evet      | 5,0 için birleştirildi ([#1199](https://github.com/dotnet/efcore/issues/1199)) |
+| Geçişler                                            | Yes      | 1.0                                   |
+| Veritabanı oluşturma/silme API 'Leri                       | Yes      | 1.0                                   |
+| Çekirdek verileri                                             | Yes      | 2.1                                   |
+| Bağlantı dayanıklılığı                                 | Yes      | 1.1                                   |
+| Durdurucular                                          | Yes      | 3.0                                   |
+| Olaylar                                                | Yes      | 3,0 (kısmi; [#626](https://github.com/dotnet/efcore/issues/626)) |
+| Basit günlüğe kaydetme (Database. log)                         | Yes      | 5,0 için birleştirildi ([#1199](https://github.com/dotnet/efcore/issues/1199)) |
 | DbContext havuzu                                     |          | 2,0                                   |
 
 ### <a name="database-providers-sup3sup"></a>Veritabanı sağlayıcıları <sup>(3)</sup>
 
-| **Özelliği**                                           | **EF 6.4**| **EF Core**                           |
+| **Özellik**                                           | **EF 6.4**| **EF Core**                           |
 |:------------------------------------------------------|:---------|:--------------------------------------|
-| SQL Server                                            | Evet      | 1.0                                   |
-| MySQL                                                 | Evet      | 1.0                                   |
-| PostgreSQL                                            | Evet      | 1.0                                   |
-| Oracle                                                | Evet      | 1.0                                   |
-| SQLite                                                | Evet      | 1.0                                   |
-| SQL Server Compact                                    | Evet      | 1,0 <sup>(4)</sup>                    |
-| DB2                                                   | Evet      | 1.0                                   |
-| Firebird                                              | Evet      | 2,0                                   |
+| SQL Server                                            | Yes      | 1.0                                   |
+| MySQL                                                 | Yes      | 1.0                                   |
+| PostgreSQL                                            | Yes      | 1.0                                   |
+| Oracle                                                | Yes      | 1.0                                   |
+| SQLite                                                | Yes      | 1.0                                   |
+| SQL Server Compact                                    | Yes      | 1,0 <sup>(4)</sup>                    |
+| DB2                                                   | Yes      | 1.0                                   |
+| Firebird                                              | Yes      | 2,0                                   |
 | Jet (Microsoft Access)                                |          | 2,0 <sup>(4)</sup>                    |
 | Azure Cosmos DB                                       |          | 3.0                                   |
 | Bellek içi (test için)                               |          | 1.0                                   |

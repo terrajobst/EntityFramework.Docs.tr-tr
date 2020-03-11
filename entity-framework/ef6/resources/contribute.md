@@ -1,18 +1,18 @@
 ---
-title: Entity Framework - EF6 katkıda bulunun
+title: Entity Framework katkıda bulun-EF6
 author: divega
 ms.date: 07/05/2018
 ms.assetid: EFA3C3F5-79A4-4A0A-BB37-035C31FC7372
-ms.openlocfilehash: fef724c33d5a21d71f266986c0b15ff370b63382
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.openlocfilehash: 81159c2e1807122be90ef861805f94794f91493f
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45488965"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417069"
 ---
-# <a name="contribute-to-entity-framework-6"></a>Entity Framework 6 katkıda bulunun
-GitHub üzerinde açık kaynak modeli kullanarak Entity Framework 6 ile geliştirilmiştir. Entity Framework Core için yeni özellikler eklemeye yönelik Microsoft Entity Framework takımının temel odak noktası, herhangi bir önemli özelliği için Entity Framework 6 eklenecek bekliyoruz yoksa kurtarır ancak biz yine de katkılarını kabul edin.
+# <a name="contribute-to-entity-framework-6"></a>Entity Framework 6 ' ya katkıda bulunun
+Entity Framework 6, GitHub 'da açık kaynak modeli kullanılarak geliştirilir. Microsoft 'un Entity Framework ekibinin ana odağında Entity Framework Core yeni özellikler ekleme ve Entity Framework 6 ' ya hiçbir ana özelliğin eklenmesi Beklenmediğimiz halde katkıların kabul edileceği de kabul ediyoruz.
 
-Ürün katkılar için lütfen başlangıç [katkıda wiki sayfası GitHub depomuzda bulunan](https://github.com/aspnet/EntityFramework6/wiki/Contributing).
+Ürün katkıları için lütfen [GitHub deponuzdaki katkıda bulunan wiki sayfasından](https://github.com/aspnet/EntityFramework6/wiki/Contributing)başlayın.
 
-Belgeleri katkılar için lütfen okuma başlatın [katkı kılavuzunu](https://github.com/aspnet/EntityFramework.Docs/blob/master/CONTRIBUTING.md) belge depomuza içinde.
+Belge katkıları için lütfen belge deponuzda [katkı kılavuzunu](https://github.com/dotnet/EntityFramework.Docs/blob/master/CONTRIBUTING.md) okumaya başlayın.

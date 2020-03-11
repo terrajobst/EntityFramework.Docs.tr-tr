@@ -1,75 +1,75 @@
 ---
-title: Sorgu - EF Designer - EF6 tanımlama
+title: Sorgu-EF Designer-EF6 tanımlama
 author: divega
 ms.date: 10/23/2016
 ms.assetid: e52a297e-85aa-42f6-a922-ba960f8a4b22
 ms.openlocfilehash: b1589dc12ccb50754c2e950932a2d82bc4869f6b
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489485"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418800"
 ---
-# <a name="defining-query---ef-designer"></a>Sorgu - EF Designer tanımlama
-Bu kılavuzda bir tanımlama ekleneceği gösterilmektedir. sorgu ve karşılık gelen bir varlığın EF Designer kullanarak bir modele yazın. Tanımlayan bir sorgu için bir veritabanı görünümü tarafından sağlanan benzer işlevselliği sağlamak için yaygın olarak kullanılır, ancak görünüm modeli, veritabanı tanımlanır. Tanımlayan bir sorgu içinde belirtilen bir SQL deyimi yürütme sağlar **DefiningQuery** bir .edmx dosyası öğesidir. Daha fazla bilgi için **DefiningQuery** içinde [SSDL belirtimi](~/ef6/modeling/designer/advanced/edmx/ssdl-spec.md).
+# <a name="defining-query---ef-designer"></a>Query-EF tasarımcısını tanımlama
+Bu izlenecek yol, EF Designer kullanarak bir modele bir tanımlama sorgusunun ve ilgili varlık türünün nasıl ekleneceğini gösterir. Bir veritabanı görünümü tarafından sağlananlara benzer işlevsellik sağlamak için genellikle tanımlama sorgusu kullanılır, ancak görünüm, veritabanında değil modelde tanımlanır. Tanımlama sorgusu, bir. edmx dosyasının **Definingquery** öğesinde BELIRTILEN bir SQL ifadesini çalıştırmanıza izin verir. Daha fazla bilgi için, [SSDL belirtiminde](~/ef6/modeling/designer/advanced/edmx/ssdl-spec.md) **definingquery** bölümüne bakın.
 
-Tanımlama sorguları kullanırken, ayrıca bir varlık türü modelinizde tanımlamak vardır. Varlık türü tanımlayan sorgu tarafından kullanıma sunulan veri yüzey için kullanılır. Bu varlık türü ortaya veri salt okunur olduğunu unutmayın.
+Sorgu tanımlama kullanılırken, modelinizde bir varlık türü de tanımlamanız gerekir. Varlık türü, tanımlama sorgusunun açığa çıkarılan verileri yüzey için kullanılır. Bu varlık türünün karşılaştığı verilerin salt okunurdur.
 
-Parametreli sorgular sorguları tanımlama olarak yürütülemiyor. Ancak, veri, INSERT, update ve delete işlevleri varlık türünün bu yüzeyleri veriler için saklı yordamlar eşleyerek güncelleştirilebilir. Daha fazla bilgi için [INSERT, Update ve Delete saklı yordamlarla](~/ef6/modeling/designer/stored-procedures/cud.md).
+Parametreli sorgular sorgu tanımlayarak yürütülemez. Ancak veriler, saklı yordamlara veri sunan varlık türünün INSERT, Update ve delete işlevleri eşlenerek güncellenebilir. Daha fazla bilgi için bkz. [Saklı yordamlarla ekleme, güncelleştirme ve silme](~/ef6/modeling/designer/stored-procedures/cud.md).
 
-Bu konu aşağıdaki görevlerin nasıl gerçekleştirileceğini gösterir.
+Bu konu başlığı altında, aşağıdaki görevlerin nasıl gerçekleştirileceği gösterilmektedir.
 
--   Tanımlayan bir sorgu Ekle
--   Modele bir varlık türü Ekle
--   Varlık türü tanımlayan sorgu eşleme
+-   Tanımlama sorgusu ekleme
+-   Modele bir varlık türü ekleyin
+-   Tanımlama sorgusunu varlık türü ile eşleyin
 
 ## <a name="prerequisites"></a>Önkoşullar
 
 Bu kılavuzu tamamlamak için şunlara ihtiyacınız olacak:
 
-- Visual Studio'nun en son sürümü.
-- [School örnek veritabanını](~/ef6/resources/school-database.md).
+- Visual Studio 'nun son sürümü.
+- [Okul örnek veritabanı](~/ef6/resources/school-database.md).
 
-## <a name="set-up-the-project"></a>Projesi kurun
+## <a name="set-up-the-project"></a>Projeyi ayarlama
 
-Bu izlenecek yol, Visual Studio 2012 veya daha yeni kullanıyor.
+Bu izlenecek yol, Visual Studio 2012 veya daha yeni bir sürümünü kullanıyor.
 
 -   Visual Studio'yu açın.
--   Üzerinde **dosya** menüsünde **yeni**ve ardından **proje**.
--   Sol bölmede **Visual C\#** ve ardından **konsol uygulaması** şablonu.
--   Girin **DefiningQuerySample** tıklayın ve proje adı olarak **Tamam**.
+-   **Dosya** menüsünde, **Yeni**' nin üzerine gelin ve ardından **Proje**' ye tıklayın.
+-   Sol bölmede, **Visual C\#** ' ye tıklayın ve ardından **konsol uygulaması** şablonunu seçin.
+-   Projenin adı olarak **Definingquerysample** girin ve **Tamam**' a tıklayın.
 
- 
+ 
 
-## <a name="create-a-model-based-on-the-school-database"></a>School veritabanını temel alan bir Model oluşturma
+## <a name="create-a-model-based-on-the-school-database"></a>Okul veritabanına dayalı bir model oluşturma
 
--   Çözüm Gezgini'nde proje adına sağ tıklayın, fareyle **Ekle**ve ardından **yeni öğe**.
--   Seçin **veri** seçin ve soldaki menüden **ADO.NET varlık veri modeli** Şablonlar bölmesinde.
--   Girin **DefiningQueryModel.edmx** dosya adı ve ardından **Ekle**.
--   Choose Model Contents iletişim kutusunda **veritabanından Oluştur**ve ardından **sonraki**.
--   Yeni bağlantı tıklayın. Bağlantı Özellikleri iletişim kutusuna sunucu adını girin (örneğin, **(localdb)\\ifadesini mssqllocaldb**) seçin kimlik doğrulama yöntemi, tür **Okul** veritabanı adı ve ardından tıklayın **Tamam**.
-    Veri bağlantınızı seçin iletişim kutusunda, veritabanı bağlantı ayarı ile güncelleştirilir.
--   Veritabanı nesnelerinizi seçin iletişim kutusunda, denetleyin **tabloları** düğümü. Bu, tüm tablolara ekler **Okul** modeli.
--   **Son**'a tıklayın.
--   Çözüm Gezgini'nde sağ **DefiningQueryModel.edmx** seçin ve dosya **birlikte Aç...** .
--   Seçin **XML (metin) Düzenleyicisi**.
+-   Çözüm Gezgini ' de proje adına sağ tıklayın, **Ekle**' nin üzerine gelin ve ardından **Yeni öğe**' ye tıklayın.
+-   Sol menüden **verileri** seçin ve ardından şablonlar bölmesinde **ADO.net varlık veri modeli** öğesini seçin.
+-   Dosya adı için **Definingquerymodel. edmx** girin ve ardından **Ekle**' ye tıklayın.
+-   Model Içeriğini seçin iletişim kutusunda, **veritabanından oluştur**' u seçin ve ardından **İleri**' ye tıklayın.
+-   Yeni bağlantı ' ya tıklayın. Bağlantı özellikleri iletişim kutusunda sunucu adını (örneğin, **(LocalDB)\\mssqllocaldb**) girin, kimlik doğrulama yöntemini seçin, veritabanı adı için **okul** yazın ve ardından **Tamam**' a tıklayın.
+    Veri bağlantınızı seçin iletişim kutusu, veritabanı bağlantı ayarınız ile güncelleştirilir.
+-   Veritabanı nesnelerinizi seçin iletişim kutusunda **tablolar** düğümünü kontrol edin. Bu, tüm tabloları **okul** modeline ekler.
+-    **Son**' a tıklayın.
+-   Çözüm Gezgini, **Definingquerymodel. edmx** dosyasına sağ tıklayın ve **birlikte aç...** seçeneğini belirleyin.
+-   **XML (metin) Düzenleyicisi**seçin.
 
     ![XML Düzenleyicisi](~/ef6/media/xmleditor.png)
 
--   Tıklayın **Evet** şu ileti ile istenirse:
+-   Aşağıdaki iletiyle istenirse **Evet** ' e tıklayın:
 
     ![Uyarı 2](~/ef6/media/warning2.png)
 
- 
+ 
 
-## <a name="add-a-defining-query"></a>Tanımlayan bir sorgu Ekle
+## <a name="add-a-defining-query"></a>Tanımlama sorgusu ekleme
 
-Bir tanımlama eklemek için XML Düzenleyicisi'ni kullanacağız Bu adımda sorgulamak ve bir varlık .edmx dosyasını SSDL bölümünü yazın. 
+Bu adımda,. edmx dosyasının SSDL bölümüne bir tanımlama sorgusu ve bir varlık türü eklemek için XML düzenleyicisini kullanacağız. 
 
--   Ekleme bir **EntitySet** SSDL bölümüne .edmx dosyasını (Satır 5 13'ya kadar geçerli) öğesi. Aşağıdakileri belirtin:
-    -   Yalnızca **adı** ve **EntityType** özniteliklerini **EntitySet** öğe belirtilir.
-    -   Varlık türü tam adı kullanılıyor **EntityType** özniteliği.
-    -   Çalıştırılacak SQL deyimi belirtilen **DefiningQuery** öğesi.
+-   . Edmx dosyasının SSDL bölümüne bir **EntitySet** öğesi ekleyin (satır 5 ile 13 arasında). Aşağıdakileri belirtin:
+    -    **EntitySet** öğesinin yalnızca **ad** ve **EntityType** öznitelikleri belirtilir.
+    -   Varlık türünün tam adı **EntityType** özniteliğinde kullanılır.
+    -   Yürütülecek SQL açıklaması **Definingquery** öğesinde belirtilmiştir.
 
 ``` xml
     <!-- SSDL content -->
@@ -88,10 +88,10 @@ Bir tanımlama eklemek için XML Düzenleyicisi'ni kullanacağız Bu adımda sor
           <EntitySet Name="Course" EntityType="SchoolModel.Store.Course" store:Type="Tables" Schema="dbo" />
 ```
 
--   Ekleme **EntityType** .edmx SSDL bölümüne öğesi. Aşağıdaki dosya gösterildiği gibi. Şunlara dikkat edin:
-    -   Değerini **adı** öznitelik değerine karşılık gelen **EntityType** özniteliğini **EntitySet** öğesi yukarıdaki rağmen tam adı varlık türü kullanılan **EntityType** özniteliği.
-    -   Özellik adlarını SQL deyiminin döndürdüğü sütun adlarına karşılık gelen **DefiningQuery** öğesi (yukarıda).
-    -   Bu örnekte, varlık anahtarı benzersiz bir anahtar değeri sağlamak için üç özelliklerinden oluşur.
+-   **EntityType** öğesini. edmx öğesinin SSDL bölümüne ekleyin. dosyası aşağıda gösterildiği gibi. Şunlara dikkat edin:
+    -   **Ad** özniteliğinin değeri, yukarıdaki **EntitySet** öğesinde **EntityType** özniteliğinin değerine karşılık gelir, ancak varlık türünün tam adı **EntityType** özniteliğinde kullanılır.
+    -   Özellik adları, **Definingquery** öğesinde (yukarıda) SQL ifadesinin döndürdüğü sütun adlarına karşılık gelir.
+    -   Bu örnekte, varlık anahtarı benzersiz bir anahtar değeri sağlamak için üç özelliklerden oluşur.
 
 ``` xml
     <EntityType Name="GradeReport">
@@ -119,40 +119,40 @@ Bir tanımlama eklemek için XML Düzenleyicisi'ni kullanacağız Bu adımda sor
 ```
 
 >[!NOTE]
-> Daha sonra çalıştırdığınızda **güncelleştirme modeli Sihirbazı** iletişim kutusunda, sorguları tanımlama dahil olmak üzere depolama modelinde yapılan değişiklikleri yazılır.
+> Daha sonra **güncelleştirme modeli Sihirbazı** iletişim kutusunu çalıştırırsanız, sorgu tanımlama da dahil olmak üzere depolama modelinde yapılan tüm değişikliklerin üzerine yazılır.
 
- 
+ 
 
-## <a name="add-an-entity-type-to-the-model"></a>Modele bir varlık türü Ekle
+## <a name="add-an-entity-type-to-the-model"></a>Modele bir varlık türü ekleyin
 
-Bu adımda EF Designer kullanarak kavramsal modele varlık türü ekleyeceğiz.  Şunlara dikkat edin:
+Bu adımda, EF tasarımcısını kullanarak varlık türünü kavramsal modele ekleyeceğiz.  Aşağıdakilere göz önünde edin:
 
--   **Adı** varlığı değerine karşılık gelen **EntityType** özniteliğini **EntitySet** yukarıdaki öğesi.
--   Özellik adlarını SQL deyiminin döndürdüğü sütun adlarına karşılık gelen **DefiningQuery** yukarıdaki öğesi.
--   Bu örnekte, varlık anahtarı benzersiz bir anahtar değeri sağlamak için üç özelliklerinden oluşur.
+-   Varlığın **adı** , yukarıdaki **EntitySet** öğesinde **EntityType** özniteliğinin değerine karşılık gelir.
+-   Özellik adları, yukarıdaki **Definingquery** öğesinde SQL ifadesinin döndürdüğü sütun adlarına karşılık gelir.
+-   Bu örnekte, varlık anahtarı benzersiz bir anahtar değeri sağlamak için üç özelliklerden oluşur.
 
-Model EF Designer ile açın.
+Modeli EF tasarımcısında açın.
 
--   DefiningQueryModel.edmx çift tıklayın.
--   Söyleyin **Evet** aşağıdaki iletisi:
+-   DefiningQueryModel. edmx öğesine çift tıklayın.
+-   Aşağıdaki iletiyi **Evet** olarak söyleyin:
 
     ![Uyarı 2](~/ef6/media/warning2.png)
 
- 
+ 
 
-Modelinizi düzenleme için bir tasarım yüzeyi sağlar, varlık Tasarımcısı görüntülenir.
+Modelinizi düzenlemekte bir tasarım yüzeyi sağlayan Entity Desisgner görüntülenir.
 
--   Tasarımcı yüzeyi ve select sağ **yeni Ekle**-&gt;**varlık...** .
--   Belirtin **GradeReport** varlık adı için ve **CourseID** için **anahtar özellik**.
--   Sağ **GradeReport** varlık ve select **yeni Ekle** - &gt; **skaler özelliği**.
--   Özellik için varsayılan adı değiştirmek **FirstName**.
--   Başka bir skaler bir özellik ekleyin ve belirtin **LastName** adı.
--   Başka bir skaler bir özellik ekleyin ve belirtin **sınıf** adı.
--   İçinde **özellikleri** penceresinde değişiklik **sınıf**'s **türü** özelliğini **ondalık**.
--   Seçin **FirstName** ve **LastName** özellikleri.
--   İçinde **özellikleri** penceresinde değişiklik **EntityKey** özellik değerini **True**.
+-   Tasarımcı yüzeyine sağ tıklayın ve yeni-&gt;varlık **Ekle** ' yi seçin **...**
+-   **Anahtar özelliği**için varlık adı ve **CourseID** Için **gradereport** belirtin.
+-   **Gradereport** varlığına sağ tıklayın ve yeni-&gt; **skalar Özellik** **Ekle** ' yi seçin.
+-   Özelliğin varsayılan adını **FirstName**olarak değiştirin.
+-   Başka bir skaler özellik ekleyin ve ad için **LastName** öğesini belirtin.
+-   Başka bir skaler özellik ekleyin ve ad için bir **sınıf** belirtin.
+-   **Özellikler** penceresinde, **sınıf** **türü** özelliğini **Decimal**olarak değiştirin.
+-   **FirstName** ve **LastName** özelliklerini seçin.
+-   **Özellikler** penceresinde **EntityKey** özellik değerini **true**olarak değiştirin.
 
-Sonuç olarak, aşağıdaki öğeleri eklenme **CSDL** .edmx dosyasını bölümü.
+Sonuç olarak, aşağıdaki öğeler. edmx dosyasının **csdl** bölümüne eklenmiştir.
 
 ``` xml
     <EntitySet Name="GradeReport" EntityType="SchoolModel.GradeReport" />
@@ -162,19 +162,19 @@ Sonuç olarak, aşağıdaki öğeleri eklenme **CSDL** .edmx dosyasını bölüm
     </EntityType>
 ```
 
- 
+ 
 
-## <a name="map-the-defining-query-to-the-entity-type"></a>Varlık türü tanımlayan sorgu eşleme
+## <a name="map-the-defining-query-to-the-entity-type"></a>Tanımlama sorgusunu varlık türü ile eşleyin
 
-Bu adımda, depolama varlık türleri ve eşleşme Ayrıntıları penceresi kavramsal eşlemek için kullanacağız.
+Bu adımda, kavramsal ve depolama varlık türlerini eşlemek için eşleme ayrıntıları penceresini kullanacağız.
 
--   Sağ **GradeReport** tasarım yüzeyi ve select varlıkta **Tablo eşleme**.  
-    **Eşleşme ayrıntıları** penceresi görüntülenir.
--   Seçin **GradeReport** gelen **&lt;bir tablo veya Görünüm Ekle&gt;** açılır liste (altında bulunan **tablo**s).  
-    Varsayılan kavramsal arasındaki eşlemeleri ve depolama **GradeReport** varlık türü görüntülenir.  
-    ![Details3 eşleme](~/ef6/media/mappingdetails.png)
+-   Tasarım yüzeyinde **Gradereport** varlığına sağ tıklayın ve **Tablo eşleme**' yi seçin.  
+    **Eşleme ayrıntıları** penceresi görüntülenir.
+-   **&lt;tablo Ekle veya görüntüle&gt;** açılan listesini ( **tablo**s altında bulunur **) seçin.**  
+    Kavramsal ve depolama **Gradereport** varlık türü arasındaki varsayılan eşlemeler görüntülenir.  
+    ![eşleme Details3](~/ef6/media/mappingdetails.png)
 
-Sonuç olarak, **EntitySetMapping** öğesi .edmx dosyası için eşleme bölümüne eklenir. 
+Sonuç olarak, **EntitySetMapping** öğesi. edmx dosyasının Mapping bölümüne eklenir. 
 
 ``` xml
     <EntitySetMapping Name="GradeReports">
@@ -191,11 +191,11 @@ Sonuç olarak, **EntitySetMapping** öğesi .edmx dosyası için eşleme bölüm
 
 -   Uygulamayı derleyin.
 
- 
+ 
 
-## <a name="call-the-defining-query-in-your-code"></a>Kodunuzda tanımlayan sorgu çağırın
+## <a name="call-the-defining-query-in-your-code"></a>Kodunuzda tanımlama sorgusunu çağırma
 
-Kullanarak artık tanımlayan sorgu yürütebilirsiniz **GradeReport** varlık türü. 
+Artık, **Gradereport** varlık türünü kullanarak tanımlama sorgusunu çalıştırabilirsiniz. 
 
 ``` csharp
     using (var context = new SchoolEntities())

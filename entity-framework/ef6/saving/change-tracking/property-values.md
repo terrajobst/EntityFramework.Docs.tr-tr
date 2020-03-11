@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: e3278b4b-9378-4fdb-923d-f64d80aaae70
 ms.openlocfilehash: d8a18182754980d79b71df3f227b30c4ce40366f
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182137"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416969"
 ---
 # <a name="working-with-property-values"></a>Özellik değerleriyle çalışma
 Çoğu bölüm için Entity Framework durum, özgün değerler ve varlık örneklerinizin özelliklerinin güncel değerlerini takip eder. Ancak, bağlantısı kesik olan senaryolar gibi bazı durumlar olabilir. Bu bilgiler, EF 'in özelliklerle ilgili olduğunu göstermek veya değiştirmek istediğiniz yerdir. Bu konu başlığında gösterilen teknikler Code First ve EF Designer ile oluşturulan modellere eşit olarak uygulanır.  
@@ -55,7 +55,7 @@ Bu şekilde bir özellik değeri ayarlandığında, otomatik DetectChanges kapal
 
 ## <a name="getting-and-setting-the-current-value-of-an-unmapped-property"></a>Eşlenmemiş bir özelliğin geçerli değerini alma ve ayarlama  
 
-Veritabanına eşlenmemiş bir özelliğin geçerli değeri de okunabilir. Eşlenmemiş özelliğe bir örnek, blogda bir RssLink özelliği olabilir. Bu değer blogID temelinde hesaplanabilir ve bu nedenle veritabanında depolanması gerekmez. Örneğin:  
+Veritabanına eşlenmemiş bir özelliğin geçerli değeri de okunabilir. Eşlenmemiş özelliğe bir örnek, blogda bir RssLink özelliği olabilir. Bu değer blogID temelinde hesaplanabilir ve bu nedenle veritabanında depolanması gerekmez. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -71,7 +71,7 @@ using (var context = new BloggingContext())
 
 Özellik bir ayarlayıcı kullanıma sunarsa geçerli değer de ayarlanabilir.  
 
-Eşlenmemiş özelliklerin değerlerini okumak, eşlenmemiş özelliklerin Entity Framework doğrulanması gerçekleştirilirken faydalıdır. Aynı nedenden dolayı geçerli değerler, şu anda bağlam tarafından izlenmeyen varlıkların özellikleri için okunabilir ve ayarlanabilir. Örneğin:  
+Eşlenmemiş özelliklerin değerlerini okumak, eşlenmemiş özelliklerin Entity Framework doğrulanması gerçekleştirilirken faydalıdır. Aynı nedenden dolayı geçerli değerler, şu anda bağlam tarafından izlenmeyen varlıkların özellikleri için okunabilir ve ayarlanabilir. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -167,7 +167,7 @@ Geçerli değerler, varlık özelliklerinin Şu anda içerdiği değerlerdir. Ö
 
 ## <a name="setting-current-or-original-values-from-another-object"></a>Geçerli veya orijinal değerleri başka bir nesneden ayarlama  
 
-İzlenen bir varlığın geçerli veya orijinal değerleri başka bir nesneden değerler kopyalanarak güncellenebilir. Örneğin:  
+İzlenen bir varlığın geçerli veya orijinal değerleri başka bir nesneden değerler kopyalanarak güncellenebilir. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -214,7 +214,7 @@ Yalnızca diğer nesneden kopyalandıklarında farklı değerlere ayarlanmış �
 
 ## <a name="setting-current-or-original-values-from-a-dictionary"></a>Sözlükten geçerli veya orijinal değerleri ayarlama  
 
-İzlenen bir varlığın geçerli veya orijinal değerleri, bir sözlükten veya başka bir veri yapısından değerler kopyalanarak güncellenebilir. Örneğin:  
+İzlenen bir varlığın geçerli veya orijinal değerleri, bir sözlükten veya başka bir veri yapısından değerler kopyalanarak güncellenebilir. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -242,7 +242,7 @@ using (var context = new BloggingContext())
 
 ## <a name="setting-current-or-original-values-from-a-dictionary-using-property"></a>Özelliği kullanarak bir sözlükten geçerli veya orijinal değerleri ayarlama  
 
-Yukarıda gösterildiği gibi CurrentValues veya OriginalValues kullanmanın bir alternatifi, her bir özelliğin değerini ayarlamak için Property metodunu kullanmaktır. Bu, karmaşık özelliklerin değerlerini ayarlamanız gerektiğinde tercih edilebilir. Örneğin:  
+Yukarıda gösterildiği gibi CurrentValues veya OriginalValues kullanmanın bir alternatifi, her bir özelliğin değerini ayarlamak için Property metodunu kullanmaktır. Bu, karmaşık özelliklerin değerlerini ayarlamanız gerektiğinde tercih edilebilir. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -270,7 +270,7 @@ Yukarıdaki örnekte, karmaşık özelliklere, noktalı adlar kullanılarak eri�
 
 ## <a name="creating-a-cloned-object-containing-current-original-or-database-values"></a>Geçerli, orijinal veya veritabanı değerlerini içeren kopyalanmış nesne oluşturma  
 
-CurrentValues, OriginalValues veya GetDatabaseValues 'tan döndürülen DbPropertyValues nesnesi varlığın bir kopyasını oluşturmak için kullanılabilir. Bu kopya, onu oluşturmak için kullanılan DbPropertyValues nesnesinden özellik değerlerini içerecektir. Örneğin:  
+CurrentValues, OriginalValues veya GetDatabaseValues 'tan döndürülen DbPropertyValues nesnesi varlığın bir kopyasını oluşturmak için kullanılabilir. Bu kopya, onu oluşturmak için kullanılan DbPropertyValues nesnesinden özellik değerlerini içerecektir. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -287,7 +287,7 @@ Kopyalanmış nesne, özellikle de belirli bir türdeki nesnelere veri bağlamay
 
 ## <a name="getting-and-setting-the-current-or-original-values-of-complex-properties"></a>Karmaşık özelliklerin geçerli veya orijinal değerlerini alma ve ayarlama  
 
-Tüm karmaşık bir nesnenin değeri, basit bir özellik için olduğu gibi, Property yöntemi kullanılarak okunabilir ve ayarlanabilir. Ayrıca, karmaşık nesnenin detayına gidebilir ve bu nesnenin özelliklerini okuyabilir veya ayarlayabilirsiniz, hatta iç içe geçmiş bir nesne. Bazı örnekler şunlardır:  
+Tüm karmaşık bir nesnenin değeri, basit bir özellik için olduğu gibi, Property yöntemi kullanılarak okunabilir ve ayarlanabilir. Ayrıca, karmaşık nesnenin detayına gidebilir ve bu nesnenin özelliklerini okuyabilir veya ayarlayabilirsiniz, hatta iç içe geçmiş bir nesne. İşte bazı örnekler:  
 
 ``` csharp
 using (var context = new BloggingContext())

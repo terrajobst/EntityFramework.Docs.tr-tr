@@ -4,23 +4,23 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 2df6cb0a-7d8b-4e28-9d05-e2b9a90125af
 ms.openlocfilehash: d540fc6e84049f345ae22998f94c309e0be73fc3
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182565"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418814"
 ---
 # <a name="code-first-to-a-new-database"></a>Yeni bir veritabanına Code First
 Bu video ve adım adım yönergeler, yeni bir veritabanını hedefleyen Code First geliştirmeye yönelik bir giriş sağlar. Bu senaryo, mevcut olmayan bir veritabanının hedeflenmesini ve Code First oluşturulacağını ve Code First yeni tablolar ekleyecek boş bir veritabanı içerir. Code First, modelinizi C\# veya VB.Net sınıfları kullanarak tanımlamanızı sağlar. Ek yapılandırma, isteğe bağlı olarak sınıflarınızda ve özelliklerde öznitelikler kullanılarak veya bir Fluent API kullanılarak gerçekleştirilebilir.
 
-## <a name="watch-the-video"></a>Videoyu izleyin
+## <a name="watch-the-video"></a>Videoyu izleme
 Bu videoda yeni bir veritabanını hedefleyen Code First geliştirmeye yönelik bir giriş sunulmaktadır. Bu senaryo, mevcut olmayan bir veritabanının hedeflenmesini ve Code First oluşturulacağını ve Code First yeni tablolar ekleyecek boş bir veritabanı içerir. Code First, veya VB.Net sınıfları kullanarak C# modelinizi tanımlamanızı sağlar. Ek yapılandırma, isteğe bağlı olarak sınıflarınızda ve özelliklerde öznitelikler kullanılarak veya bir Fluent API kullanılarak gerçekleştirilebilir.
 
 **Sunulma ölçütü**: [Rowa Miller](https://romiller.com/)
 
 **Video**: [wmv](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.wmv) | [MP4](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-mp4Video-CodeFirstNewDatabase.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.zip)
 
-## <a name="pre-requisites"></a>Önkoşulların önkoşulları
+## <a name="pre-requisites"></a>Önkoşullar
 
 Bu izlenecek yolu tamamlamak için en az Visual Studio 2010 veya Visual Studio 2012 yüklü olmalıdır.
 
@@ -30,11 +30,11 @@ Visual Studio 2010 kullanıyorsanız, [NuGet](https://visualstudiogallery.msdn.m
 
 Şeyleri basit tutmak için veri erişimi gerçekleştirmek üzere Code First kullanan temel bir konsol uygulaması oluşturacağız.
 
--   Visual Studio 'Yu aç
+-   Visual Studio’yu açın
 -   **Dosya-&gt; yeni&gt; projesi...**
 -   Sol taraftaki menüden ve **konsol uygulamasından** **Windows** ' u seçin
 -   Ad olarak **Codefırstnewdatabasesample** girin
--   **Tamam 'ı** seçin
+-   **Tamam**’ı seçin
 
 ## <a name="2-create-the-model"></a>2. model oluşturma
 

@@ -3,12 +3,12 @@ title: Eşzamanlılık çakışmalarını işleme-EF Core
 author: rowanmiller
 ms.date: 03/03/2018
 uid: core/saving/concurrency
-ms.openlocfilehash: b72fa472698e76e18f155cf96b738b0e193eee0f
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: a1d1a5a11d482f9104691aa3c072dbd1c548e9f1
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73654624"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417592"
 ---
 # <a name="handling-concurrency-conflicts"></a>Eşzamanlılık Çakışmalarını İşleme
 
@@ -16,7 +16,7 @@ ms.locfileid: "73654624"
 > Bu sayfa, eşzamanlılık EF Core ' de nasıl çalıştığını ve uygulamanızda eşzamanlılık çakışmalarının nasıl işleneceğini belgeler. Modelinizdeki eşzamanlılık belirteçlerini yapılandırma hakkında ayrıntılı bilgi için bkz. [eşzamanlılık belirteçleri](xref:core/modeling/concurrency) .
 
 > [!TIP]
-> Bu makalenin [örneğini](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Concurrency/) GitHub ' da görebilirsiniz.
+> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/Concurrency/) GitHub ' da görebilirsiniz.
 
 _Veritabanı eşzamanlılık_ , birden fazla işlem veya kullanıcının aynı anda bir veritabanındaki verileri erişen veya değiştiren durumlara başvurur. _Eşzamanlılık denetimi_ , eşzamanlı değişiklikler olması halinde veri tutarlılığı sağlamak için kullanılan belirli mekanizmaların anlamına gelir.
 
@@ -24,7 +24,7 @@ EF Core, birden çok işlemin veya kullanıcının değişiklik yapmasına veya 
 
 ## <a name="how-concurrency-control-works-in-ef-core"></a>Eşzamanlılık denetimi nasıl EF Core?
 
-Eşzamanlılık belirteçleri olarak yapılandırılan Özellikler iyimser eşzamanlılık denetimi uygulamak için kullanılır: `SaveChanges`sırasında her bir güncelleştirme veya silme işlemi gerçekleştirildiğinde, veritabanındaki eşzamanlılık belirtecinin değeri, okunan özgün değere göre karşılaştırılır EF Core.
+Eşzamanlılık belirteçleri olarak yapılandırılan Özellikler iyimser eşzamanlılık denetimini uygulamak için kullanılır: `SaveChanges`sırasında her bir güncelleştirme veya silme işlemi gerçekleştirildiğinde, veritabanındaki eşzamanlılık belirtecinin değeri, EF Core tarafından okunan özgün değer ile karşılaştırılır.
 
 - Değerler eşleşiyorsa, işlem tamamlanabilir.
 - Değerler eşleşmezse EF Core başka bir kullanıcının çakışan bir işlem gerçekleştirdiğinizi ve geçerli işlemi iptal eder.

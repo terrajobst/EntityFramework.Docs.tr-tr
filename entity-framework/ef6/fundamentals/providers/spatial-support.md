@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 1097cb00-15f5-453d-90ed-bff9403d23e3
 ms.openlocfilehash: 863f1b4551bd62160915eba90fee7ba6c49c169c
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181591"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416341"
 ---
 # <a name="provider-support-for-spatial-types"></a>Uzamsal türler için sağlayıcı desteği
 Entity Framework, Dbcoğrafya veya DbGeometry sınıfları aracılığıyla uzamsal verilerle çalışmayı destekler. Bu sınıflar, Entity Framework sağlayıcısı tarafından sunulan veritabanına özgü işlevleri kullanır. Tüm sağlayıcılar uzamsal verileri desteklemez ve bu, uzamsal tür derlemelerinin yüklenmesi gibi ek önkoşullara sahip olabilir. Uzamsal türler için sağlayıcı desteği hakkında daha fazla bilgi aşağıda verilmiştir.  
@@ -56,4 +56,4 @@ SQL Server uzamsal destek, alt düzey, SQL Server özgü tür Sqlcoğrafya ve Sq
 
 Visual Studio yüklendiğinde, genellikle SQL Server bir sürümünü de yükler ve bu, Microsoft. SqlServer. Types. dll ' nin yüklenmesini içerir.  
 
-Uzamsal türleri kullanmak istediğiniz makinede SQL Server yüklü değilse veya uzamsal türler SQL Server yüklemesinden dışlanmazsa, bunları el ile yüklemeniz gerekir. Türler, Microsoft SQL Server Özellik paketinin bir parçası olan `SQLSysClrTypes.msi` kullanılarak yüklenebilir. Uzamsal türler sürüme özgü SQL Server, bu nedenle Microsoft Indirme merkezi 'nde ["SQL Server Özellik paketi" için arama](https://www.microsoft.com/search/result.aspx?q=sql+server+feature+pack) yapmanızı öneririz, sonra kullanacağınız SQL Server sürümüne karşılık gelen seçeneği seçin ve indirin.
+Uzamsal türleri kullanmak istediğiniz makinede SQL Server yüklü değilse veya uzamsal türler SQL Server yüklemesinden dışlanmazsa, bunları el ile yüklemeniz gerekir. Türler, Microsoft SQL Server Özellik paketinin bir parçası olan `SQLSysClrTypes.msi`kullanılarak yüklenebilir. Uzamsal türler sürüme özgü SQL Server, bu nedenle Microsoft Indirme merkezi 'nde ["SQL Server Özellik paketi" için arama](https://www.microsoft.com/search/result.aspx?q=sql+server+feature+pack) yapmanızı öneririz, sonra kullanacağınız SQL Server sürümüne karşılık gelen seçeneği seçin ve indirin.

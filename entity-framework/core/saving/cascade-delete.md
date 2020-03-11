@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 uid: core/saving/cascade-delete
-ms.openlocfilehash: 51c8b6f4517a3f87821ed1e4e2d60549e06ed39d
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 6e92b869d691d0224abf1997d9eb7ea035489c5d
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73656066"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417616"
 ---
 # <a name="cascade-delete"></a>Basamaklı Silme
 
@@ -19,7 +19,7 @@ EF Core birkaç farklı silme davranışı uygular ve tek tek ilişkilerin silme
 
 ## <a name="delete-behaviors"></a>Davranışları Sil
 
-Silme davranışları *DeleteBehavior* Numaralandırıcı türünde tanımlanır ve bir sorumlu/üst varlığın silinmesini veya bağımlı/alt varlıklara olan ilişkinin ne kadar olduğunu denetlemek Için *OnDelete* Fluent API geçirilebilir bağımlı/alt varlıklar üzerinde yan etkisi vardır.
+Silme davranışları *DeleteBehavior* Numaralandırıcı türünde tanımlanır ve bir sorumlu/üst varlığın silinmesini veya bağımlı/alt varlıklara olan ilişkinin doğru bir şekilde yapılıp yapılmayacağını denetlemek Için *OnDelete* Fluent API geçirilebilir.
 
 Bir asıl/üst varlık silindiğinde veya alt öğeyle olan ilişki bırakıldığında, EF 'in gerçekleştirebileceği üç eylem vardır:
 
@@ -41,9 +41,9 @@ Aşağıdaki tablolarda listelendiği gibi dört silme davranışı vardır.
 | Davranış adı               | Bellekte bağımlı/alt öğe üzerindeki etki    | Veritabanında bağımlı/alt öğe üzerindeki etki  |
 |:----------------------------|:---------------------------------------|:---------------------------------------|
 | **Seçilemez**                 | Varlıklar silindi                   | Varlıklar silindi                   |
-| **Clientsetnull** (varsayılan) | Yabancı anahtar özellikleri null olarak ayarlandı | Yok.                                   |
+| **Clientsetnull** (varsayılan) | Yabancı anahtar özellikleri null olarak ayarlandı | Yok                                   |
 | **SetNull**                 | Yabancı anahtar özellikleri null olarak ayarlandı | Yabancı anahtar özellikleri null olarak ayarlandı |
-| **Girmesini**                | Yok.                                   | Yok.                                   |
+| **Girmesini**                | Yok                                   | Yok                                   |
 
 ### <a name="required-relationships"></a>Gerekli ilişkiler
 
@@ -52,9 +52,9 @@ Gerekli ilişkiler (null yapılamayan yabancı anahtar) için, bir boş yabancı
 | Davranış adı         | Bellekte bağımlı/alt öğe üzerindeki etki | Veritabanında bağımlı/alt öğe üzerindeki etki |
 |:----------------------|:------------------------------------|:--------------------------------------|
 | **Basamakla** (varsayılan) | Varlıklar silindi                | Varlıklar silindi                  |
-| **ClientSetNull**     | SaveChanges atar                  | Yok.                                  |
+| **ClientSetNull**     | SaveChanges atar                  | Yok                                  |
 | **SetNull**           | SaveChanges atar                  | SaveChanges atar                    |
-| **Girmesini**          | Yok.                                | Yok.                                  |
+| **Girmesini**          | Yok                                | Yok                                  |
 
 Yukarıdaki tablolarda, *none* bir kısıtlama ihlaline yol açabilir. Örneğin, bir asıl/alt varlık silinirse ancak bağımlı/alt öğenin yabancı anahtarını değiştirmek için herhangi bir eylem yapılmaz, veritabanı büyük olasılıkla yabancı bir kısıtlama ihlali nedeniyle SaveChanges üzerinde oluşturulur.
 
@@ -75,7 +75,7 @@ Yüksek düzeyde:
 
 ## <a name="entity-deletion-examples"></a>Varlık silme örnekleri
 
-Aşağıdaki kod, indirilebilen ve çalıştırılabilen bir [Örneğin](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/CascadeDelete/) parçasıdır. Örnek, bir üst varlık silindiğinde hem isteğe bağlı hem de gerekli ilişkilerin her silme davranışı için ne olacağını gösterir.
+Aşağıdaki kod, indirilebilen ve çalıştırılabilen bir [Örneğin](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/CascadeDelete/) parçasıdır. Örnek, bir üst varlık silindiğinde hem isteğe bağlı hem de gerekli ilişkilerin her silme davranışı için ne olacağını gösterir.
 
 [!code-csharp[Main](../../../samples/core/Saving/CascadeDelete/Sample.cs#DeleteBehaviorVariations)]
 
@@ -186,7 +186,7 @@ Ne olduğunu anlamak için her çeşitlemeyi inceleyelim.
 
 ## <a name="delete-orphans-examples"></a>Artık örnekleri Sil örnekleri
 
-Aşağıdaki kod, indirilebilen ve çalıştırılabilen bir [Örneğin](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/CascadeDelete/) parçasıdır. Örnek, bir üst/birincil ve alt öğeleri/bağımlılığının arasındaki ilişki olmadığında, hem isteğe bağlı hem de gerekli ilişkiler için her silme davranışının ne olacağını gösterir. Bu örnekte, birincil/üst öğe (blog) üzerindeki koleksiyon gezintisi özelliğinden bağımlılar/alt öğeler (postalar) kaldırılarak ilişki ortadan kaldırılır. Ancak, bağımlı/alt ile asıl/üst öğeye yapılan başvurunun null olarak dışına çıkar olması durumunda davranış aynıdır.
+Aşağıdaki kod, indirilebilen ve çalıştırılabilen bir [Örneğin](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/CascadeDelete/) parçasıdır. Örnek, bir üst/birincil ve alt öğeleri/bağımlılığının arasındaki ilişki olmadığında, hem isteğe bağlı hem de gerekli ilişkiler için her silme davranışının ne olacağını gösterir. Bu örnekte, birincil/üst öğe (blog) üzerindeki koleksiyon gezintisi özelliğinden bağımlılar/alt öğeler (postalar) kaldırılarak ilişki ortadan kaldırılır. Ancak, bağımlı/alt ile asıl/üst öğeye yapılan başvurunun null olarak dışına çıkar olması durumunda davranış aynıdır.
 
 [!code-csharp[Main](../../../samples/core/Saving/CascadeDelete/Sample.cs#DeleteOrphansVariations)]
 

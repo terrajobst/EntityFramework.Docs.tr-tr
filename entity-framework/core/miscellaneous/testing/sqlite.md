@@ -1,54 +1,54 @@
 ---
-title: SQLite - EF Core ile test etme
+title: SQLite ile test etme-EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 7a2b75e2-1875-4487-9877-feff0651b5a6
 uid: core/miscellaneous/testing/sqlite
-ms.openlocfilehash: e8ff204a09d50064b4f0d4376f02b05c8681ac25
-ms.sourcegitcommit: 8f801993c9b8cd8a8fbfa7134818a8edca79e31a
+ms.openlocfilehash: f7f847d8c766c0d4d7577ea6760ee72a17f84933
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 04/14/2019
-ms.locfileid: "59562539"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417304"
 ---
 # <a name="testing-with-sqlite"></a>SQLite ile test etme
 
-SQLite gerçek veritabanı işlemleri yükü olmadan ilişkisel bir veritabanında testler yazmak için SQLite kullanmanıza olanak sağlayan bir bellek içi modda sahiptir.
+SQLite, gerçek veritabanı işlemlerinin ek yükü olmadan, bir ilişkisel veritabanına karşı testler yazmak için SQLite kullanmanıza olanak tanıyan bellek içi bir moda sahiptir.
 
 > [!TIP]  
-> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Testing) github'da
+> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Testing) GitHub 'da görüntüleyebilirsiniz
 
-## <a name="example-testing-scenario"></a>Örnek Test senaryosu
+## <a name="example-testing-scenario"></a>Örnek test senaryosu
 
-Uygulama kodunun Bloglarda ilgili bazı işlemlerini gerçekleştirmenize izin veren aşağıdaki hizmet göz önünde bulundurun. Dahili olarak kullandığı bir `DbContext` bir SQL Server veritabanına bağlanır. Bu bağlam, böylece biz kodu değiştirmek zorunda kalmadan bu hizmet için verimli testleri yazmak veya birçok test oluşturmak için iş yapmak bir bellek içi SQLite veritabanına bağlanmak için takas etmek yararlı olabilecek çift bağlam.
+Uygulama kodunun bloglarla ilgili bazı işlemleri gerçekleştirmesini sağlayan aşağıdaki hizmeti göz önünde bulundurun. Dahili olarak, bir SQL Server veritabanına bağlanan `DbContext` kullanır. Bu bağlamı, kodu değiştirmek zorunda kalmadan bu hizmete yönelik etkili testler yazabilmeniz veya içeriğin bir test Double 'u oluşturmak için çok fazla iş yapmak için bellek içi bir SQLite veritabanına bağlanmak üzere takas etmek yararlı olacaktır.
 
 [!code-csharp[Main](../../../../samples/core/Miscellaneous/Testing/BusinessLogic/BlogService.cs)]
 
-## <a name="get-your-context-ready"></a>Bağlamınızı hazırlanın
+## <a name="get-your-context-ready"></a>Bağlamınızı hazırlayın
 
-### <a name="avoid-configuring-two-database-providers"></a>İki veritabanı sağlayıcısı yapılandırmamak
+### <a name="avoid-configuring-two-database-providers"></a>İki veritabanı sağlayıcısı yapılandırmaktan kaçının
 
-Testlerinizde dışarıdan bağlamı Inmemory sağlayıcıyı kullanacak şekilde yapılandırmak için yükleyeceksiniz. Veritabanı sağlayıcısı geçersiz kılarak yapılandırıyorsanız `OnConfiguring` Bağlamınızı, ardından, bir değil zaten yapılandırılmışsa, yalnızca veritabanı sağlayıcısı yapılandırdığınız emin olmak için bazı koşullu kodu eklemeniz gerekir.
+Testlerinizde, InMemory sağlayıcısını kullanmak için bağlamını dışarıdan yapılandıracaksınız. Bir veritabanı sağlayıcısını, bağlamınızda `OnConfiguring` geçersiz kılarak yapılandırıyorsanız, yalnızca bir tane yapılandırılmışsa veritabanı sağlayıcısını yapılandırdığınızdan emin olmak için bazı koşullu kodlar eklemeniz gerekir.
 
 > [!TIP]  
-> ASP.NET Core kullanıyorsanız, veritabanı sağlayıcınız bağlamında (Startup.cs) dışında yapılandırıldığından daha sonra bu kod gerek.
+> ASP.NET Core kullanıyorsanız, veritabanı sağlayıcınız bağlam dışında yapılandırıldıktan sonra bu koda ihtiyacınız olmaz (Startup.cs).
 
 [!code-csharp[Main](../../../../samples/core/Miscellaneous/Testing/BusinessLogic/BloggingContext.cs#OnConfiguring)]
 
-### <a name="add-a-constructor-for-testing"></a>Test etmek için bir oluşturucu ekleyin
+### <a name="add-a-constructor-for-testing"></a>Test için bir Oluşturucu ekleyin
 
-Kabul eden bir oluşturucu kullanıma sunmak için Bağlamınızı değiştirmek için farklı bir veritabanına karşı test etkinleştirmek için en kolay yolu olan bir `DbContextOptions<TContext>`.
+Farklı bir veritabanına karşı test etkinleştirmenin en basit yolu, `DbContextOptions<TContext>`kabul eden bir oluşturucuyu göstermek için bağlamını değiştirmektir.
 
 [!code-csharp[Main](../../../../samples/core/Miscellaneous/Testing/BusinessLogic/BloggingContext.cs#Constructors)]
 
 > [!TIP]  
-> `DbContextOptions<TContext>` bağlam tüm bağlanmak için hangi veritabanı gibi ilişkili ayarları belirtir. Bağlamınızı içinde OnConfiguring yöntemi çalıştırarak oluşturulan aynı nesne budur.
+> `DbContextOptions<TContext>`, tüm ayarlarını, örneğin hangi veritabanına bağlanılacağını söyler. Bu, bağlamınızın Onyapılandırıyor yöntemi çalıştırılarak oluşturulan nesnedir.
 
 ## <a name="writing-tests"></a>Testleri yazma
 
-Bu sağlayıcıyla sınaması için SQLite kullanın ve bellek içi veritabanına kapsamını denetlemek için bağlam olanağından anahtardır. Veritabanı kapsamı, açma ve kapatma bağlantı denetlenir. Veritabanı bağlantı açıldıktan süre kapsamlıdır. Genellikle her bir test yöntemi için temiz bir veritabanı istersiniz.
+Bu sağlayıcı ile test etmek için kullanılan anahtar, bağlamın SQLite kullanmasını söylemek ve bellek içi veritabanının kapsamını denetleyebilmesidir. Veritabanının kapsamı, bağlantı açılarak ve kapatılırken denetlenir. Veritabanı, bağlantının açık olduğu süreye göre kapsamlandırılır. Genellikle her test yöntemi için temiz bir veritabanı istiyorsunuz.
 
 >[!TIP]
-> Kullanılacak `SqliteConnection()` ve `.UseSqlite()` genişletme yöntemi, NuGet paketi başvurusu [Microsoft.EntityFrameworkCore.Sqlite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite/).
+> `SqliteConnection()` ve `.UseSqlite()` uzantısı metodunu kullanmak için [Microsoft. EntityFrameworkCore. SQLite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite/)NuGet paketine başvurun.
 
 [!code-csharp[Main](../../../../samples/core/Miscellaneous/Testing/TestProject/SQLite/BlogServiceTests.cs)]

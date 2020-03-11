@@ -6,11 +6,11 @@ ms.author: ansvyryd
 ms.date: 11/06/2019
 uid: core/modeling/generated-properties
 ms.openlocfilehash: 9c616e157ff1bdb9700f436a7ae2788330fe5d45
-ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/27/2019
-ms.locfileid: "75502038"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416348"
 ---
 # <a name="generated-values"></a>Oluşturulan Değerler
 
@@ -32,7 +32,7 @@ Ekleme sırasında oluşturulan değer, yeni varlıklar için bir değerin oluş
 
 Kullanılan veritabanı sağlayıcısına bağlı olarak, değerler istemci tarafında EF veya veritabanında oluşturulabilir. Değer veritabanı tarafından oluşturulduysa, varlığı bağlama eklediğinizde EF geçici bir değer atayabilir. Bu geçici değer, `SaveChanges()`sırasında veritabanı tarafından oluşturulan değerle değiştirilmelidir.
 
-Özelliğe atanmış bir değere sahip bir varlık eklerseniz, EF yeni bir değer oluşturmak yerine bu değeri eklemeye çalışacaktır. Bir özellik, CLR varsayılan değeri (`string`için`null`, `int`için `0` `Guid.Empty`, vb.) atanmadığı takdirde atanan bir değere sahip olarak kabul edilir. Daha fazla bilgi için bkz. [oluşturulan Özellikler Için açık değerler](../saving/explicit-values-generated-properties.md).
+Özelliğe atanmış bir değere sahip bir varlık eklerseniz, EF yeni bir değer oluşturmak yerine bu değeri eklemeye çalışacaktır. Bir özellik, CLR varsayılan değeri (`string`için`null`, `int`için `0` `Guid.Empty`, vb.) atanmadığı takdirde atanan bir değere sahip olarak kabul edilir.`Guid` Daha fazla bilgi için bkz. [oluşturulan Özellikler Için açık değerler](../saving/explicit-values-generated-properties.md).
 
 > [!WARNING]
 > Eklenen varlıklar için değerin nasıl oluşturulduğu, kullanılmakta olan veritabanı sağlayıcısına bağlıdır. Veritabanı sağlayıcıları bazı özellik türleri için değer oluşturmayı otomatik olarak oluşturabilir, ancak diğerleri değerin nasıl oluşturulduğunu el ile ayarlamanıza gerek olabilir.
@@ -58,11 +58,11 @@ Kural gereği, uygulama tarafından bir değer sağlanmadıysa, anahtar, int, Lo
 
 Herhangi bir özelliği, ekli varlıklar için değeri oluşturulacak şekilde aşağıdaki gibi yapılandırabilirsiniz:
 
-### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
+### <a name="data-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ValueGeneratedOnAdd.cs?name=ValueGeneratedOnAdd&highlight=5)]
 
-### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
+### <a name="fluent-api"></a>[Akıcı API](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedOnAdd.cs?name=ValueGeneratedOnAdd&highlight=5)]
 
@@ -87,11 +87,11 @@ Varsayılan bir değer belirtmek, özelliği, ekleme sırasında oluşturulan de
 
 ## <a name="value-generated-on-add-or-update"></a>Ekleme veya güncelleştirme üzerinde oluşturulan değer
 
-### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
+### <a name="data-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ValueGeneratedOnAddOrUpdate.cs?name=ValueGeneratedOnAddOrUpdate&highlight=5)]
 
-### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
+### <a name="fluent-api"></a>[Akıcı API](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedOnAddOrUpdate.cs?name=ValueGeneratedOnAddOrUpdate&highlight=5)]
 
@@ -113,11 +113,11 @@ Bazı ilişkisel veritabanlarında, bir sütun değeri, genellikle diğer sütun
 
 Bir özellik üzerinde değer oluşturmayı devre dışı bırakmak genellikle bir kural değer oluşturma için yapılandırıyorsa gereklidir. Örneğin, int türünde bir birincil anahtarınız varsa, bu, ekleme sırasında oluşturulan değer olarak örtülü olarak ayarlanır; Bunu aşağıdakiler aracılığıyla devre dışı bırakabilirsiniz:
 
-### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
+### <a name="data-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ValueGeneratedNever.cs?name=ValueGeneratedNever&highlight=3)]
 
-### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
+### <a name="fluent-api"></a>[Akıcı API](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ValueGeneratedNever.cs?name=ValueGeneratedNever&highlight=5)]
 

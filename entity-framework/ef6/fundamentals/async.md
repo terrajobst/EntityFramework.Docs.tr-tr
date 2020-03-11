@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: d56e6f1d-4bd1-4b50-9558-9a30e04a8ec3
 ms.openlocfilehash: 0642dc13e7aa3906fa1495031c62701fc16f0192
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181841"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417982"
 ---
 # <a name="async-query-and-save"></a>Zaman uyumsuz sorgu ve Kaydet
 > [!NOTE]
@@ -155,11 +155,11 @@ Kod zaman uyumlu olduğundan, programı çalıştırdığımızda aşağıdaki y
 Programımızın çalışır duruma getirdiğimiz ve bu aşamada, yeni Async ve await anahtar sözcüklerini kullanmaya başlayabiliriz. Program.cs için aşağıdaki değişiklikleri yaptık
 
 1.  2\. satır: **System. Data. Entity** ad alanı için using metodu, EF Async Extension yöntemlerine bize erişim sağlar.
-2.  4\. satır: **System. Threading. Tasks** ad alanı için using ifadesinin **görev** türünü kullanmamızı sağlar.
-3.  Satır 12 & 18: **Performsomedatabaseoperations** (12. satır) ilerleme durumunu izleyen ve sonra bu görevin tüm işleri tamamlandığında bu görevin tamamlanması için program yürütmeyi engelleyen bir görev olarak yakalıyoruz (satır 18).
-4.  25. satır: **Zaman uyumsuz** olarak işaretlenecek ve bir **görev**döndüren **performsomedatabaseoperations** güncelleştirdik.
-5.  Satır 35: Şimdi SaveChanges 'un zaman uyumsuz sürümünü çağırıyor ve tamamlanmasını bekliyor.
-6.  Satır 42: Artık ToList 'in zaman uyumsuz sürümünü çağırıyor ve sonuç üzerinde bekleniyor.
+2.  Satır 4: **System. Threading. Tasks** ad alanı için using ifadesinin **görev** türünü kullanmamızı sağlar.
+3.  Satır 12 & 18: **Performsomedatabaseoperations** (12. satır) ilerlemesini izleyen bir görev olarak yakalıyoruz ve sonra programa yönelik tüm işler yapıldıktan sonra bu görevin tamamlanması için program yürütmesini engelliyor (satır 18).
+4.  25. satır: **zaman uyumsuz** olarak işaretlenecek ve bir **görev**döndüren **performsomedatabaseoperations** 'ı güncelleştirdik.
+5.  Satır 35: Şu anda SaveChanges 'un zaman uyumsuz sürümünü çağırıyor ve tamamlanmasını bekliyor.
+6.  Satır 42: artık ToList 'in zaman uyumsuz sürümünü çağırıyor ve sonuç üzerinde bekleniyor.
 
 System. Data. Entity ad alanındaki kullanılabilir uzantı yöntemlerinin kapsamlı bir listesi için, QueryableExtensions sınıfına bakın. *Ayrıca, using deyimlerine "System. Data. Entity kullanma" eklemeniz gerekecektir.*
 
@@ -222,12 +222,12 @@ System. Data. Entity ad alanındaki kullanılabilir uzantı yöntemlerinin kapsa
 Artık kod zaman uyumsuz olduğuna göre, programı çalıştırdığımızda farklı bir yürütme akışını gözlemlebiliriz:
 
 1. **SaveChanges** yeni **blogunuzu** veritabanına göndermeye başlıyor  
-    *Komut veritabanına gönderildikten sonra, geçerli yönetilen iş parçacığında daha fazla işlem süresi gerekmez. **Performdatabaseoperations** yöntemi döndürüyor (yürütmeyi bitirmemiş olsa bile) ve Main yönteminde Program Flow devam eder.*
+    *Komut veritabanına gönderildikten sonra, geçerli yönetilen iş parçacığında daha fazla işlem süresi gerekmez. **Performdatabaseoperations** yöntemi döndürür (yürütmeyi bitirmemiş olsa da) ve Main yönteminde Program Flow devam eder.*
 2. **Günün teklifi konsola yazılır**  
-    *Ana yöntemde başka iş yapamadıklarından, veritabanı işlemi tamamlanana kadar, yönetilen iş parçacığı bekleme çağrısında engellenir. Tamamlandıktan sonra, **Performdatabaseoperations** 'imizin geri kalanı yürütülür.*
+    *Main yönteminde yapılacak başka bir iş olmadığından, veritabanı işlemi tamamlanana kadar, yönetilen iş parçacığı bekleme çağrısında engellenir. Tamamlandıktan sonra, **Performdatabaseoperations** 'imizin geri kalanı yürütülür.*
 3.  **SaveChanges** tamamlandı  
 4.  Tüm **blogların** sorgusu veritabanına gönderiliyor  
-    *Yeniden, yönetilen iş parçacığı sorgu veritabanında işlendiği sırada başka bir iş yapmak için ücretsizdir. Diğer tüm yürütme tamamlandığından, iş parçacığı yalnızca bekleme çağrısında da durabilir.*
+    *Bu durumda, sorgu veritabanında işlendiği sırada yönetilen iş parçacığı başka bir iş yapmak için ücretsizdir. Diğer tüm yürütme tamamlandığından iş parçacığı de yalnızca bekleme çağrısında durabilir.*
 5.  Sorgu dönüşleri ve sonuçlar **konsola** yazılır  
 
 ![Zaman uyumsuz çıkış](~/ef6/media/asyncoutput.png) 

@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 12138003-a373-4817-b1b7-724130202f5f
 ms.openlocfilehash: f1ce44e7b00ec4c60a81ed850ce5c9d866495e1b
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181762"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419528"
 ---
 # <a name="working-with-disconnected-entities"></a>Bağlantısı kesilmiş varlıklarla çalışma
 Entity Framework tabanlı bir uygulamada, izlenen varlıklara uygulanan değişikliklerin saptanmasından bağlam sınıfı sorumludur. SaveChanges yöntemini çağırmak, bağlamı tarafından izlenen değişiklikleri veritabanına devam ettirir. N katmanlı uygulamalarla çalışırken, varlık nesneleri genellikle bağlamla bağlantısı kesildiğinde değiştirilir ve değişikliklerin nasıl izleneceğini ve bu değişiklikleri içeriğe geri rapor etme kararı vermeniz gerekir. Bu konuda, bağlantısı kesilen varlıklarla Entity Framework kullanılırken kullanılabilen farklı seçenekler açıklanmaktadır.   
@@ -30,4 +30,4 @@ EF bağlamıyla bağlantısı kesilirken varlıkların rastgele grafiklerde yap�
 Bu şablon, EF Designer kullanılarak oluşturulan modellerle birlikte kullanılabilir, ancak Code First modelleriyle kullanılamaz. Daha fazla bilgi için bkz. [kendi kendine Izleme varlıkları](self-tracking-entities/index.md).  
 
 > [!IMPORTANT]
-> Artık kendi kendine izleme varlıkları şablonunu kullanmanızı önermiyoruz. Yalnızca var olan uygulamaları desteklemek için kullanılabilir olmaya devam edecektir. Uygulamanız, bağlantısı kesilen varlıkların, topluluk tarafından daha etkin bir şekilde geliştirilen veya yazma gibi, kendi kendini Izlemeye benzer bir teknoloji olan, [izleyicileri](https://trackableentities.github.io/)olan diğer alternatifleri göz önünde bulundurun. alt düzey değişiklik izleme API 'Lerini kullanan özel kod.
+> Artık kendi kendine izleme varlıkları şablonunu kullanmanızı önermiyoruz. Yalnızca var olan uygulamaları desteklemek için kullanılabilir olmaya devam edecektir. Uygulamanız, bağlantılı olmayan grafik grafiklerle çalışmayı gerektiriyorsa, bu, topluluk tarafından daha etkin bir şekilde geliştirilmiş olan ve alt düzey değişiklik izleme API 'Leri kullanılarak özel kod yazma gibi, kendini Izlemeye benzer bir teknoloji olan, [izleyicileri oluşturan varlıklar](https://trackableentities.github.io/)gibi diğer alternatifleri göz önünde bulundurun.

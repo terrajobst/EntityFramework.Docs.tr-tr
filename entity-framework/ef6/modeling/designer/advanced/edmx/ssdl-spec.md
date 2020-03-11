@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: a4af4b1a-40f4-48cc-b2e0-fa8f5d9d5419
 ms.openlocfilehash: b20d1f99f1da9c53a8a164fccc461e07d19c879d
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182542"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418727"
 ---
 # <a name="ssdl-specification"></a>SSDL Belirtimi
 Mağaza şeması tanım dili (SSDL), bir Entity Framework uygulamasının depolama modelini tanımlayan XML tabanlı bir dildir.
@@ -42,7 +42,7 @@ Aşağıdaki tabloda **ilişkilendirme** öğesine uygulanabilen öznitelikler a
 
 | Öznitelik adı | Gereklidir | Değer                                                                            |
 |:---------------|:------------|:---------------------------------------------------------------------------------|
-| **Ad**       | Evet         | Temel alınan veritabanında karşılık gelen yabancı anahtar kısıtlamasının adı. |
+| **Ad**       | Yes         | Temel alınan veritabanında karşılık gelen yabancı anahtar kısıtlamasının adı. |
 
 > [!NOTE]
 > **İlişkilendirme** öğesine herhangi bir sayıda ek açıklama özniteliği (özel XML özniteliği) uygulanabilir. Ancak, özel öznitelikler SSDL için ayrılan herhangi bir XML ad alanına ait olamaz. İki özel öznitelik için tam nitelikli adlar aynı olamaz.
@@ -88,8 +88,8 @@ Aşağıdaki tabloda **AssociationSet** öğesine uygulanabilen öznitelikler a�
 
 | Öznitelik adı  | Gereklidir | Değer                                                                                                |
 |:----------------|:------------|:-----------------------------------------------------------------------------------------------------|
-| **Ad**        | Evet         | İlişki kümesinin temsil ettiği yabancı anahtar kısıtlamasının adı.                          |
-| **İlişkilendirme** | Evet         | Yabancı anahtar kısıtlamasına katılan sütunları tanımlayan ilişkilendirmenin adı. |
+| **Ad**        | Yes         | İlişki kümesinin temsil ettiği yabancı anahtar kısıtlamasının adı.                          |
+| **Kaldırma** | Yes         | Yabancı anahtar kısıtlamasına katılan sütunları tanımlayan ilişkilendirmenin adı. |
 
 > [!NOTE]
 > **AssociationSet** öğesine herhangi bir sayıda ek açıklama özniteliği (özel XML özniteliği) uygulanabilir. Ancak, özel öznitelikler SSDL için ayrılan herhangi bir XML ad alanına ait olamaz. İki özel öznitelik için tam nitelikli adlar aynı olamaz.
@@ -199,7 +199,7 @@ Aşağıdaki tabloda **bağımlı** öğeye uygulanabilen öznitelikler açıkla
 
 | Öznitelik adı | Gereklidir | Değer                                                                                                                                                       |
 |:---------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Rol**       | Evet         | Karşılık gelen End öğesinin **rol** özniteliğiyle aynı değer (kullanılıyorsa); Aksi takdirde, başvuran sütununu içeren tablonun adı. |
+| **Rol**       | Yes         | Karşılık gelen End öğesinin **rol** özniteliğiyle aynı değer (kullanılıyorsa); Aksi takdirde, başvuran sütununu içeren tablonun adı. |
 
 > [!NOTE]
 > Herhangi bir sayıda ek açıklama özniteliği (özel XML öznitelikleri) **bağımlı** öğeye uygulanabilir. Ancak, özel öznitelikler CSDL için ayrılan herhangi bir XML ad alanına ait olamaz. İki özel öznitelik için tam nitelikli adlar aynı olamaz.
@@ -278,9 +278,9 @@ Aşağıdaki tabloda, bir **ilişkilendirme** öğesinin alt öğesi olduğunda,
 
 | Öznitelik adı   | Gereklidir | Değer                                                                                                                                                                                                                                                                                                                                                                                      |
 |:-----------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Tür**         | Evet         | Yabancı anahtar kısıtlamasının sonundaki SSDL varlık kümesinin tam adı.                                                                                                                                                                                                                                                                                          |
+| **Tür**         | Yes         | Yabancı anahtar kısıtlamasının sonundaki SSDL varlık kümesinin tam adı.                                                                                                                                                                                                                                                                                          |
 | **Rol**         | Hayır          | Karşılık gelen ReferentialConstraint öğesinin Principal veya Dependent öğesinde **rol** özniteliğinin değeri (kullanılıyorsa).                                                                                                                                                                                                                                             |
-| **Ğunun** | Evet         | **1**, **0.. 1**veya yabancı anahtar kısıtlamasının sonunda olabilecek satır sayısına göre **\*** . <br/> **1** yabancı anahtar kısıtlama ucunda tam olarak bir satır olduğunu gösterir. <br/> **0.. 1** yabancı anahtar kısıtlaması sonunda sıfır veya bir satırın bulunduğunu gösterir. <br/> **\*** , yabancı anahtar kısıtlaması sonunda sıfır, bir veya daha fazla satırın bulunduğunu belirtir. |
+| **Çokluk** | Yes         | **1**, **0.. 1**veya yabancı anahtar kısıtlamasının sonunda olabilecek satır sayısına göre **\*** . <br/> **1** yabancı anahtar kısıtlama ucunda tam olarak bir satır olduğunu gösterir. <br/> **0.. 1** yabancı anahtar kısıtlaması sonunda sıfır veya bir satırın bulunduğunu gösterir. <br/> **\*** , yabancı anahtar kısıtlaması sonunda sıfır, bir veya daha fazla satırın bulunduğunu belirtir. |
 
 > [!NOTE]
 > Herhangi bir sayıda ek açıklama özniteliği (özel XML özniteliği), **End** öğesine uygulanabilir. Ancak, özel öznitelikler CSDL için ayrılan herhangi bir XML ad alanına ait olamaz. İki özel öznitelik için tam nitelikli adlar aynı olamaz.
@@ -323,7 +323,7 @@ Aşağıdaki tabloda, bir **AssociationSet** öğesinin alt öğesi olduğunda *
 
 | Öznitelik adı | Gereklidir | Değer                                                                                                                  |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------|
-| **Di**  | Evet         | Yabancı anahtar kısıtlamasının sonundaki SSDL varlık kümesinin adı.                                      |
+| **Di**  | Yes         | Yabancı anahtar kısıtlamasının sonundaki SSDL varlık kümesinin adı.                                      |
 | **Rol**       | Hayır          | Karşılık gelen Ilişkilendirme öğesinin bir **End** öğesinde belirtilen **rol** özniteliklerinden birinin değeri. |
 
 > [!NOTE]
@@ -367,7 +367,7 @@ Aşağıdaki tabloda, **EntityContainer** öğesine uygulanabilen öznitelikler 
 
 | Öznitelik adı | Gereklidir | Değer                                                                   |
 |:---------------|:------------|:------------------------------------------------------------------------|
-| **Ad**       | Evet         | Varlık kapsayıcısının adı. Bu ad nokta (.) içeremez. |
+| **Ad**       | Yes         | Varlık kapsayıcısının adı. Bu ad nokta (.) içeremez. |
 
 > [!NOTE]
 > Herhangi bir sayıda ek açıklama özniteliği (özel XML özniteliği), **EntityContainer** öğesine uygulanabilir. Ancak, özel öznitelikler SSDL için ayrılan herhangi bir XML ad alanına ait olamaz. İki özel öznitelik için tam nitelikli adlar aynı olamaz.
@@ -411,9 +411,9 @@ Aşağıdaki tabloda, **EntitySet** öğesine uygulanabilen öznitelikler açık
 
 | Öznitelik adı | Gereklidir | Değer                                                                                    |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------|
-| **Ad**       | Evet         | Varlık kümesinin adı.                                                              |
-| **EntityType** | Evet         | Varlık kümesinin örnek içerdiği varlık türünün tam adı. |
-| **Şema**     | Hayır          | Veritabanı şeması.                                                                     |
+| **Ad**       | Yes         | Varlık kümesinin adı.                                                              |
+| **EntityType** | Yes         | Varlık kümesinin örnek içerdiği varlık türünün tam adı. |
+| **Manızı**     | Hayır          | Veritabanı şeması.                                                                     |
 | **Tablo**      | Hayır          | Veritabanı tablosu.                                                                      |
 
 > [!NOTE]
@@ -455,7 +455,7 @@ Aşağıdaki tabloda, **EntityType** öğesine uygulanabilen öznitelikler açı
 
 | Öznitelik adı | Gereklidir | Değer                                                                                                                                                                  |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Ad**       | Evet         | Varlık türünün adı. Bu değer genellikle varlık türünün bir satırı temsil ettiği tablonun adı ile aynıdır. Bu değer, nokta (.) içeremez. |
+| **Ad**       | Yes         | Varlık türünün adı. Bu değer genellikle varlık türünün bir satırı temsil ettiği tablonun adı ile aynıdır. Bu değer, nokta (.) içeremez. |
 
 > [!NOTE]
 > Herhangi bir sayıda ek açıklama özniteliği (özel XML özniteliği) **EntityType** öğesine uygulanabilir. Ancak, özel öznitelikler SSDL için ayrılan herhangi bir XML ad alanına ait olamaz. İki özel öznitelik için tam nitelikli adlar aynı olamaz.
@@ -503,7 +503,7 @@ Aşağıdaki tabloda, **işlev** öğesine uygulanabilen öznitelikler açıklan
 
 | Öznitelik adı             | Gereklidir | Değer                                                                                                                                                                                                              |
 |:---------------------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Ad**                   | Evet         | Saklı yordamın adı.                                                                                                                                                                                  |
+| **Ad**                   | Yes         | Saklı yordamın adı.                                                                                                                                                                                  |
 | **'Indaki**             | Hayır          | Saklı yordamın dönüş türü.                                                                                                                                                                           |
 | **Birleşik**              | Hayır          | Saklı yordam bir toplama değeri döndürürse **true** ; Aksi halde **yanlış**.                                                                                                                                  |
 | **Yerleik**                | Hayır          | İşlev yerleşik bir<sup>1</sup> Işlevse **true** ; Aksi halde **yanlış**.                                                                                                                                  |
@@ -511,7 +511,7 @@ Aşağıdaki tabloda, **işlev** öğesine uygulanabilen öznitelikler açıklan
 | **NiladicFunction**        | Hayır          | İşlev bir niladic<sup>2</sup> **işlevliyse doğru** ; Aksi takdirde **false** .                                                                                                                                   |
 | **IsComposable**           | Hayır          | İşlev birleştirilebilir<sup>3</sup> Işlevse **doğru** ; Aksi takdirde **false** .                                                                                                                                |
 | **Parametertypesemantiği** | Hayır          | İşlev aşırı yüklerini çözümlemek için kullanılan tür semantiğini tanımlayan sabit listesi. Sabit listesi, işlev tanımı başına sağlayıcı bildiriminde tanımlanmıştır. Varsayılan değer **Allowwimplicitconversion**' dir. |
-| **Şema**                 | Hayır          | Saklı yordamın tanımlandığı şemanın adı.                                                                                                                                                   |
+| **Manızı**                 | Hayır          | Saklı yordamın tanımlandığı şemanın adı.                                                                                                                                                   |
 
 <sup>1</sup> yerleşik bir işlev, veritabanında tanımlanan bir işlevdir. Depolama modelinde tanımlanan işlevler hakkında daha fazla bilgi için, bkz. CommandText öğesi (SSDL).
 
@@ -583,7 +583,7 @@ Aşağıdaki tabloda, **OnDelete** öğesine uygulanabilen öznitelikler açıkl
 
 | Öznitelik adı | Gereklidir | Değer                                                                                               |
 |:---------------|:------------|:----------------------------------------------------------------------------------------------------|
-| **Eylem**     | Evet         | **Cascade** veya **none**. ( **Kısıtlanmış** değer geçerli ancak **none**ile aynı davranışa sahiptir.) |
+| **Eylem**     | Yes         | **Cascade** veya **none**. ( **Kısıtlanmış** değer geçerli ancak **none**ile aynı davranışa sahiptir.) |
 
 > [!NOTE]
 > **OnDelete** öğesine herhangi bir sayıda ek açıklama özniteliği (özel XML özniteliği) uygulanabilir. Ancak, özel öznitelikler SSDL için ayrılan herhangi bir XML ad alanına ait olamaz. İki özel öznitelik için tam nitelikli adlar aynı olamaz.
@@ -626,12 +626,12 @@ Aşağıdaki tabloda, **parametre** öğesine uygulanabilen öznitelikler açık
 
 | Öznitelik adı | Gereklidir | Değer                                                                                                                                                                                                                           |
 |:---------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Ad**       | Evet         | Parametrenin adı.                                                                                                                                                                                                      |
-| **Tür**       | Evet         | Parametre türü.                                                                                                                                                                                                             |
+| **Ad**       | Yes         | Parametrenin adı.                                                                                                                                                                                                      |
+| **Tür**       | Yes         | Parametre türü.                                                                                                                                                                                                             |
 | **Modundaysa**       | Hayır          | Parametresinin bir giriş, çıkış veya giriş/çıkış parametresi olup olmadığına bağlı olarak, **içinde**, **Out**veya **InOut** .                                                                                                                |
 | **'In**  | Hayır          | Parametrenin uzunluk üst sınırı.                                                                                                                                                                                            |
 | **Duyarlılık**  | Hayır          | Parametrenin duyarlığı.                                                                                                                                                                                                 |
-| **Ölçek**      | Hayır          | Parametresinin ölçeği.                                                                                                                                                                                                     |
+| **Ölçeklendirme**      | Hayır          | Parametresinin ölçeği.                                                                                                                                                                                                     |
 | **SRıD**       | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin parametreleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
 
 > [!NOTE]
@@ -669,7 +669,7 @@ Aşağıdaki tabloda, **Principal** öğesine uygulanabilen öznitelikler açık
 
 | Öznitelik adı | Gereklidir | Değer                                                                                                                                                      |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Rol**       | Evet         | Karşılık gelen End öğesinin **rol** özniteliğiyle aynı değer (kullanılıyorsa); Aksi takdirde, başvurulan sütununu içeren tablonun adı. |
+| **Rol**       | Yes         | Karşılık gelen End öğesinin **rol** özniteliğiyle aynı değer (kullanılıyorsa); Aksi takdirde, başvurulan sütununu içeren tablonun adı. |
 
 > [!NOTE]
 > Herhangi bir sayıda ek açıklama özniteliği (özel XML özniteliği), **Principal** öğesine uygulanabilir. Ancak, özel öznitelikler CSDL için ayrılan herhangi bir XML ad alanına ait olamaz. İki özel öznitelik için tam nitelikli adlar aynı olamaz.
@@ -709,14 +709,14 @@ Aşağıdaki tabloda, **özellik** öğesine uygulanabilen öznitelikler açıkl
 
 | Öznitelik adı            | Gereklidir | Değer                                                                                                                                                                                                                           |
 |:--------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Ad**                  | Evet         | Karşılık gelen sütunun adı.                                                                                                                                                                                           |
-| **Tür**                  | Evet         | Karşılık gelen sütunun türü.                                                                                                                                                                                           |
+| **Ad**                  | Yes         | Karşılık gelen sütunun adı.                                                                                                                                                                                           |
+| **Tür**                  | Yes         | Karşılık gelen sütunun türü.                                                                                                                                                                                           |
 | **Yapılamaz**              | Hayır          | **True** (varsayılan değer) veya false değeri, karşılık gelen sütunun null değere sahip olup olmadığına bağlı olarak **yanlış** .                                                                                                                  |
 | **Değerinin**          | Hayır          | Karşılık gelen sütunun varsayılan değeri.                                                                                                                                                                                  |
 | **'In**             | Hayır          | Karşılık gelen sütunun uzunluk üst sınırı.                                                                                                                                                                                 |
 | **FixedLength**           | Hayır          | Karşılık gelen sütun değerinin sabit uzunluklu bir dize olarak depolanıp saklanmayacağı seçeneğe bağlı olarak **doğru** veya **yanlış** .                                                                                                              |
 | **Duyarlılık**             | Hayır          | Karşılık gelen sütunun duyarlığı.                                                                                                                                                                                      |
-| **Ölçek**                 | Hayır          | Karşılık gelen sütunun ölçeği.                                                                                                                                                                                          |
+| **Ölçeklendirme**                 | Hayır          | Karşılık gelen sütunun ölçeği.                                                                                                                                                                                          |
 | **Unicode**               | Hayır          | Karşılık gelen sütun değerinin bir Unicode dize olarak saklanıp saklanmayacağı **doğru** veya **yanlış** .                                                                                                                   |
 | **Mediğinden**             | Hayır          | Veri kaynağında kullanılacak harmanlama sırasını belirten bir dize.                                                                                                                                                   |
 | **SRıD**                  | Hayır          | Uzamsal sistem başvuru tanımlayıcısı. Yalnızca uzamsal türlerin özellikleri için geçerlidir. Daha fazla bilgi için bkz. [srid](https://en.wikipedia.org/wiki/SRID) ve [srid (SQL Server)](https://msdn.microsoft.com/library/bb964707.aspx). |
@@ -761,7 +761,7 @@ Aşağıdaki tabloda, **Propertyref** öğesine uygulanabilen öznitelikler aç�
 
 | Öznitelik adı | Gereklidir | Değer                                |
 |:---------------|:------------|:-------------------------------------|
-| **Ad**       | Evet         | Başvurulan özelliğin adı. |
+| **Ad**       | Yes         | Başvurulan özelliğin adı. |
 
 > [!NOTE]
 > **Propertyref** öğesine herhangi bir sayıda ek açıklama özniteliği (özel XML özniteliği) uygulanabilir. Ancak, özel öznitelikler CSDL için ayrılan herhangi bir XML ad alanına ait olamaz. İki özel öznitelik için tam nitelikli adlar aynı olamaz.
@@ -910,10 +910,10 @@ Aşağıdaki tabloda, özniteliklerin **şema** öğesine uygulanabileceğini a�
 
 | Öznitelik adı            | Gereklidir | Değer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 |:--------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Namespace**             | Evet         | Depolama modelinin ad alanı. **Ad alanı** özniteliğinin değeri, bir türün tam nitelikli adını biçimlendirmek için kullanılır. Örneğin, *Müşteri* adlı bir **EntityType** , ExampleModel. Store ad alanında ise, **EntityType** 'ın tam adı örnek model. Store. Customer olur. <br/> Şu dizeler **ad alanı** özniteliği değeri olarak kullanılamaz: **System**, **geçici**veya **EDM**. **Ad alanı** özniteliği DEĞERI, csdl şeması öğesindeki **Namespace** özniteliğinin değeri ile aynı olamaz. |
-| **Diğer ad**                 | Hayır          | Ad alanı adı yerine kullanılan tanımlayıcı. Örneğin, *Müşteri* adlı bir **EntityType** , ExampleModel ' de yer alıyorsa. Depo ad alanı ve **diğer ad** özniteliğinin değeri *Storagemodel*ise storagemodel. Customer öğesini EntityType 'ın tam adı olarak kullanabilirsiniz **.**                                                                                                                                                                                                                                                                                    |
-| **Sağlayıcı**              | Evet         | Veri sağlayıcı.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| **ProviderManifestToken** | Evet         | Sağlayıcıya döndürülecek sağlayıcı bildirimini gösteren bir belirteç. Belirteç için biçim tanımlanmadı. Belirtecin değerleri sağlayıcı tarafından tanımlanır. SQL Server sağlayıcısı bildirim belirteçleri hakkında daha fazla bilgi için bkz. SqlClient Entity Framework.                                                                                                                                                                                                                                                                                                                        |
+| **Uzayına**             | Yes         | Depolama modelinin ad alanı. **Ad alanı** özniteliğinin değeri, bir türün tam nitelikli adını biçimlendirmek için kullanılır. Örneğin, *Müşteri* adlı bir **EntityType** , ExampleModel. Store ad alanında ise, **EntityType** 'ın tam adı örnek model. Store. Customer olur. <br/> Şu dizeler **ad alanı** özniteliği değeri olarak kullanılamaz: **System**, **geçici**veya **EDM**. **Ad alanı** özniteliği DEĞERI, csdl şeması öğesindeki **Namespace** özniteliğinin değeri ile aynı olamaz. |
+| **Ek**                 | Hayır          | Ad alanı adı yerine kullanılan tanımlayıcı. Örneğin, *Müşteri* adlı bir **EntityType** , ExampleModel ' de yer alıyorsa. Depo ad alanı ve **diğer ad** özniteliğinin değeri *Storagemodel*ise storagemodel. Customer öğesini EntityType 'ın tam adı olarak kullanabilirsiniz **.**                                                                                                                                                                                                                                                                                    |
+| **Sağlayıcı**              | Yes         | Veri sağlayıcı.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **ProviderManifestToken** | Yes         | Sağlayıcıya döndürülecek sağlayıcı bildirimini gösteren bir belirteç. Belirteç için biçim tanımlanmadı. Belirtecin değerleri sağlayıcı tarafından tanımlanır. SQL Server sağlayıcısı bildirim belirteçleri hakkında daha fazla bilgi için bkz. SqlClient Entity Framework.                                                                                                                                                                                                                                                                                                                        |
 
 ### <a name="example"></a>Örnek
 
@@ -1074,5 +1074,5 @@ Aşağıdaki tabloda, SSDL içinde desteklenen modeller açıklanmaktadır:
 | **FixedLength** | Sütun değerinin uzunluğunun değişebileceğini belirtir.                                                                                                                                                                                                  |
 | **'In**   | Sütun değerinin uzunluk üst sınırını belirtir.                                                                                                                                                                                                           |
 | **Duyarlılık**   | **Decimal**türü özellikler için, bir özellik değerinin sahip olduğu basamak sayısını belirtir. **Time**, **DateTime**ve **DateTimeOffset**türündeki özellikler için, sütun değeri saniyelik kesirli kısmının basamak sayısını belirtir. |
-| **Ölçek**       | Sütun değeri için ondalık noktanın sağ tarafındaki basamak sayısını belirtir.                                                                                                                                                                      |
+| **Ölçeklendirme**       | Sütun değeri için ondalık noktanın sağ tarafındaki basamak sayısını belirtir.                                                                                                                                                                      |
 | **Unicode**     | Sütun değerinin Unicode olarak depolandığını belirtir.                                                                                                                                                                                                    |

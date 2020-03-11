@@ -5,12 +5,12 @@ ms.author: avickers
 ms.date: 10/27/2016
 ms.assetid: 2533b195-d357-4056-b0e0-8698971bc3b0
 uid: core/saving/disconnected-entities
-ms.openlocfilehash: 88c3fa8ea5b8246a932f5cf21e674bc7cc71c0ea
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 421531e68ac98c0553938f1c24892701f22fef3c
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73656266"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417599"
 ---
 # <a name="disconnected-entities"></a>Bağlantısı kesilen varlıklar
 
@@ -20,7 +20,7 @@ Ancak, bazen varlıklar bir bağlam örneği kullanılarak sorgulanır ve sonra 
 
 <!-- markdownlint-disable MD028 -->
 > [!TIP]
-> Bu makalenin [örneğini](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Disconnected/) GitHub ' da görebilirsiniz.
+> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/Disconnected/) GitHub ' da görebilirsiniz.
 
 > [!TIP]
 > EF Core, belirli bir birincil anahtar değeri olan herhangi bir varlığın yalnızca bir örneğini izleyebilir. Bu sorunu önlemenin en iyi yolu, her iş birimi için, içeriğin boş başlaması, kendisine iliştirilmiş varlıklar olması, bu varlıkları kaydettiğinden ve sonra bağlamın atılacağını ve atılmasına yönelik kısa süreli bir bağlam kullanmaktır.
@@ -131,7 +131,7 @@ Daha önce olduğu gibi, otomatik olarak oluşturulan anahtarlar kullanılmazsa 
 
 Genellikle bir varlık yokluğu, silinmesi gerektiği anlamına gelir. Bunu yapmanın bir yolu, varlığın gerçekten silinmesi yerine silinmiş olarak işaretlenmesi için "geçici silme" kullanmaktır. Sonra siler, güncelleştirmelerle aynı olur. Geçici silme, [sorgu filtreleri](xref:core/querying/filters)kullanılarak uygulanabilir.
 
-Doğru silme işlemleri için genel bir model, temel bir grafik farkı olan bir sorgu deseninin uzantısını kullanmaktır. Örneğin:
+Doğru silme işlemleri için genel bir model, temel bir grafik farkı olan bir sorgu deseninin uzantısını kullanmaktır. Örnek:
 
 [!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#InsertUpdateOrDeleteGraphWithFind)]
 

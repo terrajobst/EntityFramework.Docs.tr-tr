@@ -4,19 +4,19 @@ author: anmiller
 ms.date: 10/27/2016
 ms.assetid: 1165e2ec-e421-43fc-92ab-d92f9ab3c494
 uid: core/providers/writing-a-provider
-ms.openlocfilehash: 9d52a8581772cc5405e94966fa7ebdff4128c252
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: 2d9e4a6cdfda80d7dfcfb6e7bf0480eb49f8e057
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73654773"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417885"
 ---
 # <a name="writing-a-database-provider"></a>Veritabanı Sağlayıcısı Yazma
 
 Entity Framework Core veritabanı sağlayıcısı yazma hakkında daha fazla bilgi için, bkz. [Arthur Vicranlar](https://github.com/ajcvickers)tarafından [bir EF Core sağlayıcısı yazmak istiyor](https://blog.oneunicorn.com/2016/11/11/so-you-want-to-write-an-ef-core-provider/) .
 
 > [!NOTE]
-> Bu gönderimler EF Core 1,1 ' den beri güncelleştirilmemiş ve bu süre [681 sorunu](https://github.com/aspnet/EntityFramework.Docs/issues/681) bu belgelerde yapılan güncelleştirmeleri izlemediğinden önemli değişiklikler yapıldı.
+> Bu gönderimler EF Core 1,1 ' den beri güncelleştirilmemiş ve bu süre [681 sorunu](https://github.com/dotnet/EntityFramework.Docs/issues/681) bu belgelerde yapılan güncelleştirmeleri izlemediğinden önemli değişiklikler yapıldı.
 
 EF Core kod temeli açık kaynaktır ve başvuru olarak kullanılabilecek çeşitli veritabanı sağlayıcıları içerir. Kaynak kodunu <https://github.com/aspnet/EntityFrameworkCore>' de bulabilirsiniz. Ayrıca, [Npgsql](https://github.com/npgsql/Npgsql.EntityFrameworkCore.PostgreSQL), [Pomelo MySQL](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql)ve [SQL Server Compact](https://github.com/ErikEJ/EntityFramework.SqlServerCompact)gibi yaygın olarak kullanılan üçüncü taraf sağlayıcılarının koduna bakmak da yararlı olabilir. Özellikle, bu projeler, NuGet üzerinde yayımladığımız işlev testlerini genişletmek ve çalıştırmak için kurulumlardır. Bu tür bir kurulum kesinlikle önerilir.
 
@@ -32,7 +32,7 @@ NuGet paketleri için aşağıdaki adlandırmanın kullanılması önerilir. Bu,
 
 `<Optional project/company name>.EntityFrameworkCore.<Database engine name>`
 
-Örneğin:
+Örnek:
 
 * `Microsoft.EntityFrameworkCore.SqlServer`
 * `Npgsql.EntityFrameworkCore.PostgreSQL`

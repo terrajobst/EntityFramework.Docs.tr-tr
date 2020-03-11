@@ -1,38 +1,38 @@
 ---
-title: Saklı yordamları birden çok sonuç kümesi - EF6 ile
+title: Birden çok sonuç kümesi ile saklı yordamlar-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 1b3797f9-cd3d-4752-a55e-47b84b399dc1
 ms.openlocfilehash: 098ed88ba52e211965baf3660f0e51bd74c71efd
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489316"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418706"
 ---
-# <a name="stored-procedures-with-multiple-result-sets"></a>Birden çok sonuç kümesi saklı yordamlar
-Bazen kullanarak saklı yordamları birden fazla sonuç döndürmesi gerekir ayarlanır. Bu senaryo veritabanı sayısını azaltmak için yaygın olarak kullanılan gidiş dönüş tek bir ekran oluşturmak için gereklidir. Entity Framework EF5 önce çağrılacak saklı yordamı çalıştırmasına olanak tanır ancak yalnızca ilk sonuç çağrıldığı koda kümesini döndürür.
+# <a name="stored-procedures-with-multiple-result-sets"></a>Birden çok sonuç kümesiyle saklı yordamlar
+Bazen saklı yordamlar kullanılırken, birden fazla sonuç kümesi döndürihtiyacınız olacaktır. Bu senaryo, tek bir ekran oluşturmak için gereken veritabanı gidiş dönüş sayısını azaltmak için yaygın olarak kullanılır. EF5 ' dan önce, Entity Framework saklı yordamın çağrılmasına izin verir, ancak yalnızca ilk sonuç kümesini çağıran koda döndürür.
 
-Bu makale, birden fazla sonuç kümesi saklı yordam, Entity Framework erişmek için kullanabileceğiniz iki yolu gösterir. Yalnızca kod kullanır ve her iki koduyla önce çalışır ve EF Designer diğeri, yalnızca EF Designer ile çalışır. Gelecekte araçları ve API desteği Entity Framework sürümlerini geliştirmek.
+Bu makalede, Entity Framework ' deki bir saklı yordamdan birden fazla sonuç kümesine erişmek için kullanabileceğiniz iki yol gösterilir. Yalnızca kod kullanan ve hem kod hem de EF Tasarımcısı ve yalnızca EF Designer ile birlikte çalışarak çalıştırılan bir tane. Bu için araç ve API desteği, Entity Framework gelecek sürümlerinde iyileştirmelidir.
 
 ## <a name="model"></a>Model
 
-Bu makaledeki örneklerde temel bir Blog kullanın ve tek bir blog gönderileri modeli blog birçok gönderileri ve bir gönderi sahip olduğu ait. Tüm blog ve gönderi şuna benzeyen döndürür veritabanında bir saklı yordam kullanacağız:
+Bu makaledeki örneklerde, bir blogun birçok gönderiye sahip olduğu ve bir gönderisinin tek bir blog 'a ait olduğu temel bir blog ve gönderi modeli kullanılır. Veritabanında, şunun gibi tüm blogları ve gönderileri döndüren bir saklı yordam kullanacağız:
 
 ``` SQL
     CREATE PROCEDURE [dbo].[GetAllBlogsAndPosts]
     AS
-        SELECT * FROM dbo.Blogs
-        SELECT * FROM dbo.Posts
+        SELECT * FROM dbo.Blogs
+        SELECT * FROM dbo.Posts
 ```
 
-## <a name="accessing-multiple-result-sets-with-code"></a>Birden çok sonuç erişme koduyla ayarlar
+## <a name="accessing-multiple-result-sets-with-code"></a>Birden çok sonuç kümesine kodla erişme
 
-Size sunduğumuz saklı yordamı yürütmek için ham SQL komutu için kullanmak kod yürütebilir. Bu yaklaşımın avantajı, her iki kod ile ilk çalışıyor olması ve EF Designer.
+Saklı yordamımızı yürütmek için ham bir SQL komutu vermek üzere kullanım kodu yürütüyoruz. Bu yaklaşımın avantajı, hem Code First hem de EF Designer ile birlikte çalışabildir.
 
-Birden çok sonuç almak için çalışma IObjectContextAdapter arabirimini kullanarak ObjectContext API'sı tarafından açılan ihtiyacımız ayarlar.
+Çalışan birden çok sonuç kümesi almak için, ıobjectcontextadapter arabirimini kullanarak ObjectContext API 'sine bırakması gerekir.
 
-Biz bir Objectcontext'e tamamladıktan sonra Translate yöntemi izlenen ve EF normal olarak kullanılan varlıklar bizim saklı yordamının sonuçları küçültmesini kullanabiliriz. Aşağıdaki kod örneği, bu eylem gösterir.
+Bir ObjectContext olduktan sonra, saklı yordamımızın sonuçlarını, normal şekilde, bu şekilde izlenebilirler ve kullanılabilecek varlıklara dönüştürmek için Çevir yöntemini kullanabiliriz. Aşağıdaki kod örneği bu eylemi gösterir.
 
 ``` csharp
     using (var db = new BloggingContext())
@@ -82,33 +82,33 @@ Biz bir Objectcontext'e tamamladıktan sonra Translate yöntemi izlenen ve EF no
     }
 ```
 
-Translate yöntemi biz yordamı, bir EntitySet adı ve bir MergeOption yürütüldüğünde, aldık okuyucunun kabul eder. EntitySet adı türetilmiş Bağlamınızı olan DB özelliği ile aynı olacaktır. Bellekte aynı varlık zaten varsa, sonuçları nasıl işleneceğini MergeOption enum denetler.
+Çeviri yöntemi, yordamı, bir EntitySet adını ve bir birleştirme seçeneğini yürütüyoruz, aldığımız okuyucuyu kabul eder. EntitySet adı, türetilmiş bağlamınızın DbSet özelliği ile aynı olacaktır. MergeOption numaralandırması, bellekte aynı varlık zaten varsa sonuçların nasıl işlendiğini denetler.
 
-Burada ilk sonuç kümesi için sonraki sonuç kümesini taşımadan önce kullanılması gerekir çünkü biz NextResult, yukarıdaki kod verilen önemli budur çağırmadan önce biz blogları, koleksiyonda gezin.
+Burada, NextResult 'ı çağırmadan önce blogların koleksiyonunu yineliyoruz. ilk sonuç kümesi bir sonraki sonuç kümesine geçmeden önce tüketilmesi gerektiğinden Yukarıdaki kod verilmesinden önemlidir.
 
-İki Çevir sonra yöntemleri sonra Blog ve gönderi varlıkların herhangi bir varlık aynı şekilde EF tarafından izlenir ve değiştirilebilir veya silindi ve normal olarak kaydedilen çağrılır.
-
->[!NOTE]
-> Translate yöntemi kullanarak varlıkları oluşturduğunda EF hiçbir eşlemeyle dikkate almaz. Yalnızca sonuç sınıflarınızı üzerinde özellik adları ile kümesini sütun adları aynı olacaktır.
+İki çevirme yöntemi çağrıldıktan sonra, blog ve gönderi varlıkları diğer varlıklarıyla aynı şekilde işlenir ve bu nedenle değiştirilebilir veya silinebilir ve normal şekilde kaydedilebilir.
 
 >[!NOTE]
-> Blog varlıklardan biri gönderileri özelliği erişim etkinse, yavaş yükleniyor varsa zaten tümünü yüklendik olsa da ardından EF gevşek tüm gönderileri yüklemek için veritabanına bağlanmanızı. EF tüm gönderileri yüklü veya olup olmadığını veritabanında daha fazla biliyor olmasıdır. Ardından, bu durumu önlemek istiyorsanız yavaş yükleniyor devre dışı bırakmanız gerekir.
-
-## <a name="multiple-result-sets-with-configured-in-edmx"></a>Yapılandırılmış EDMX ile birden çok sonuç kümesi
+> EF, çeviri yöntemini kullanarak varlıkları oluşturduğunda, hiçbir eşleme almaz. Bu, sonuç kümesindeki sütun adlarını sınıflarınızda Özellik adlarıyla eşleştirecek.
 
 >[!NOTE]
-> .NET Framework 4. 5'i EDMX içinde birden çok sonuç kümesi yapılandırmak için hedeflemesi gerekir. .NET 4.0 hedefliyorsanız, önceki bölümde gösterilen kod tabanlı yöntemi kullanabilirsiniz.
+> Yavaş yükleme özelliği etkinse, blog varlıklarından birindeki gönderi özelliğine eriştiğinizde EF, tümünü zaten yüklemiş olduğumuz halde tüm gönderileri geç yüklemek için veritabanına bağlanır. Bunun nedeni, EF 'in tüm gönderilerinizi mi yüklediklerini yoksa ya da veritabanında daha fazla olup olmadığını bilemez. Bundan kaçınmak isterseniz, geç yüklemeyi devre dışı bırakmanız gerekir.
 
-EF Designer kullanıyorsanız, böylece döndürülecek farklı sonuç kümeleri hakkında bilmesi modelinizi değiştirebilirsiniz. Edmx dosyasını el ile düzenlemek ihtiyacınız olacak şekilde elle araçları birden çok sonuç değil önce bilmeniz gereken bir şey kullanan, ayarlayın. Bir edmx dosyası bu çalışır, ancak aynı zamanda VS'de modelin doğrulama keser gibi düzenleme. Bu nedenle, modelinizi doğrulama her zaman hata almazsınız.
+## <a name="multiple-result-sets-with-configured-in-edmx"></a>EDMX içinde yapılandırılmış birden çok sonuç kümesi
 
--   Bunu yapmak için tek bir sonuç kümesi sorguda yaptığınız gibi modelinize saklı yordamı eklemeniz gerekir.
--   Modelinize göre sağ tıklatın ve seçin için ihtiyaç duyduğunuz sonra bunu aldıktan sonra **birlikte Aç...** ardından **Xml**
+>[!NOTE]
+> EDMX 'te birden çok sonuç kümesi yapılandırabilmek için .NET Framework 4,5 ' i hedeflemelidir. .NET 4,0 ' i hedefliyorsanız, önceki bölümde gösterilen kod tabanlı yöntemi kullanabilirsiniz.
 
-    ![Açık olarak](~/ef6/media/openas.png)
+EF Designer kullanıyorsanız, modelinizi, döndürülecek farklı sonuç kümelerini bilmesi için de değiştirebilirsiniz. Her şey, araçları birden çok sonuç kümesi olmadan önce bilmeniz, bu nedenle edmx dosyasını el ile düzenlemeniz gerekir. Bu dosya gibi edmx dosyasını düzenleme işi çalışır, ancak aynı zamanda, VS 'deki modelin doğrulanmasını de keser. Bu nedenle modelinizi doğrulamanız durumunda her zaman hata alırsınız.
 
-XML olarak aşağıdaki adımları gerçekleştirmeniz gereken sonra açılan modeli olduğunda:
+-   Bunu yapmak için, tek bir sonuç kümesi sorgusuyla yaptığınız gibi modelinize saklı yordamı eklemeniz gerekir.
+-   Bunu yaptıktan sonra modelinize sağ tıklayıp **birlikte Aç** ' ı seçmeniz gerekir. sonra **XML**
 
--   Karmaşık tür ve işlevi içeri aktarma, modelinizde bulun:
+    ![Farklı aç](~/ef6/media/openas.png)
+
+Modeli XML olarak açtıktan sonra, aşağıdaki adımları gerçekleştirmeniz gerekir:
+
+-   Modelinizde karmaşık tür ve işlev içeri aktarmayı bulun:
 
 ``` xml
     <!-- CSDL content -->
@@ -131,10 +131,10 @@ XML olarak aşağıdaki adımları gerçekleştirmeniz gereken sonra açılan mo
     </edmx:ConceptualModels>
 ```
 
- 
+ 
 
--   Karmaşık tür Kaldır
--   İşlev güncelleştirin, böylece bunun aşağıdaki gibi görünür durumda varlıklarınızı eşlenir:
+-   Karmaşık türü kaldır
+-   İşlev içeri aktarmayı, varlıklarınıza eşlenecek şekilde güncelleştirin, bu durumda aşağıdaki gibi görünür:
 
 ``` xml
     <FunctionImport Name="GetAllBlogsAndPosts">
@@ -143,9 +143,9 @@ XML olarak aşağıdaki adımları gerçekleştirmeniz gereken sonra açılan mo
     </FunctionImport>
 ```
 
-Bu saklı yordamı blog girişleri, diğeri post girişlerinin iki koleksiyonu döndürür, modeli bildirir.
+Bu, modele saklı yordamın iki koleksiyon döndürmeyeceğini, blog girişlerinden birini ve post girişlerinden birini söyler.
 
--   İşlev eşleme öğesi bulun:
+-   İşlev eşleme öğesini bul:
 
 ``` xml
     <!-- C-S mapping content -->
@@ -168,7 +168,7 @@ Bu saklı yordamı blog girişleri, diğeri post girişlerinin iki koleksiyonu d
     </edmx:Mappings>
 ```
 
--   Biri, aşağıdakiler gibi döndürülen her varlık için sonuç eşleme değiştirin:
+-   Sonuç eşlemesini, döndürülmekte olan her varlık için bir ile değiştirin; Örneğin, aşağıdaki gibi:
 
 ``` xml
     <ResultMapping>
@@ -188,9 +188,9 @@ Bu saklı yordamı blog girişleri, diğeri post girişlerinin iki koleksiyonu d
     </ResultMapping>
 ```
 
-Sonuç kümeleri varsayılan olarak oluşturulan gibi karmaşık türler eşlemek mümkündür. Bunu yapmak için yeni bir karmaşık türü, bunları kaldırma yerine oluşturun ve karmaşık türler Yukarıdaki örneklerde varlık adları kullanmışsınız her yerde kullanın.
+Sonuç kümelerinin, varsayılan olarak oluşturulan bir gibi karmaşık türlerle eşleşmesi de mümkündür. Bunu yapmak için, bunları kaldırmak yerine yeni bir karmaşık tür oluşturun ve Yukarıdaki örneklerde varlık adlarını kullandığınız her yerde karmaşık türleri kullanın.
 
-Bu eşlemeler değiştirilmiş bir kez daha sonra modeli kaydedin ve saklı yordamı kullanmak için şu kodu yürütün:
+Bu eşlemeler değiştirildikten sonra modeli kaydedebilir ve saklı yordamı kullanmak için aşağıdaki kodu çalıştırabilirsiniz:
 
 ``` csharp
     using (var db = new BlogEntities())
@@ -214,8 +214,8 @@ Bu eşlemeler değiştirilmiş bir kez daha sonra modeli kaydedin ve saklı yord
 ```
 
 >[!NOTE]
-> Edmx dosyasını modeliniz için el ile düzenlerseniz, hiç olmadığı kadar veritabanı modelden oluşturursanız üzerine yazılacak.
+> Modelinize ilişkin edmx dosyasını el ile düzenlerseniz, modeli veritabanından yeniden oluşturduysanız üzerine yazılır.
 
 ## <a name="summary"></a>Özet
 
-Burada birden çok sonuç erişmenin iki farklı yöntemle ayarlar Entity Framework kullanarak göstermiştir. Her ikisi de durumunuza göre eşit olarak geçerlidir ve tercihleri ve koşullarınıza için en iyi görünüyor birini seçmeniz gerekir. Birden çok sonuç kümesi olacak desteği gelecekte Entity Framework sürümlerini geliştirildi ve bu belgedeki adımları gerçekleştirmeden artık gerekli olacağını planlanmaktadır.
+Burada, birden çok sonuç kümesine Entity Framework kullanarak erişmenin iki farklı yöntemi gösterildik. Her ikisi de durumunuza ve tercihlerinize göre eşit oranda geçerlidir ve koşullarınız için en iyi görünen birini seçmeniz gerekir. Birden çok sonuç kümesi desteğinin, Entity Framework gelecek sürümlerinde iyileştirilen ve bu belgedeki adımların gerçekleştirilmesi artık gerekli olmayacak şekilde planlanacaktır.

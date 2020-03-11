@@ -5,11 +5,11 @@ ms.date: 12/17/2019
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/extensions/index
 ms.openlocfilehash: 99f59153a452a2f4aad5811110ebc5b5da7717ef
-ms.sourcegitcommit: b3cf5d2e3cb170b9916795d1d8c88678269639b1
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/30/2020
-ms.locfileid: "76888049"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417197"
 ---
 # <a name="ef-core-tools--extensions"></a>EF Core araçları & uzantıları
 
@@ -18,23 +18,23 @@ Bu araçlar ve uzantılar, Entity Framework Core 2,1 ve üzeri için ek işlevle
 > [!IMPORTANT]  
 > Uzantılar çeşitli kaynaklardan oluşturulmuştur ve Entity Framework Core projenin bir parçası olarak korunmaz. Üçüncü taraf uzantısını değerlendirirken, gereksinimlerinizi karşıladığından emin olmak için kalite, lisanslama, uyumluluk, destek vb. değerlendirdiğinizden emin olun. Özellikle, EF Core eski bir sürümü için oluşturulmuş bir uzantının en son sürümlerle çalışmadan önce güncelleştirilmesi gerekebilir.
 
-## <a name="tools"></a>Araçları
+## <a name="tools"></a>Araçlar
 
 ### <a name="llblgen-pro"></a>LLBLGen Pro
 
 LLBLGen Pro, Entity Framework ve Entity Framework Core desteğiyle bir varlık modelleme çözümüdür. Bu, varlık modelinizi kolayca tanımlamanızı ve veritabanını ilk veya modeli kullanarak veritabanınıza eşlemenizi sağlar, böylece sorguları hemen yazmaya başlayabilirsiniz. EF Core için: 2.
 
-[Web sitesi](https://www.llblgen.com/)
+[Websitesi](https://www.llblgen.com/)
 
 ### <a name="devart-entity-developer"></a>Varlık geliştiriciyi kaldırma
 
 Varlık geliştiricisi, ADO.NET Entity Framework, Nhazırda beklet, LinqConnect, Telerik veri erişimi ve LINQ to SQL için güçlü bir ORM tasarlayıcıdır. EF Core modellerinin görsel olarak tasarlanmasını, ilk veya veritabanı ilk yaklaşımı ve C# ya da kod üretimini Visual Basic destekler. EF Core için: 2.
 
-[Web sitesi](https://www.devart.com/entitydeveloper/)
+[Websitesi](https://www.devart.com/entitydeveloper/)
 
 ### <a name="nhydrate-orm-for-entity-framework"></a>Entity Framework için Nhizte ORM
 
-Entity Framework için türü kesin belirlenmiş, Genişletilebilir sınıflar oluşturan bir ORM. Oluşturulan kod Entity Framework Core. Fark yoktur. Bu, EF veya Custom ORM için bir değiştirme değildir. Ekibin karmaşık veritabanı şemalarını yönetmesine olanak tanıyan bir görsel modelleme katmanıdır. Git gibi SCM yazılımıyla birlikte çalışarak, en az çakışmalarıyla modelinize çoklu Kullanıcı erişimi sağlar. Yükleyici, model değişikliklerini izler ve yükseltme betikleri oluşturur. EF Core için: 3.
+Entity Framework için türü kesin belirlenmiş, Genişletilebilir sınıflar oluşturan bir ORM. Oluşturulan kod Entity Framework Core. Aralarında herhangi bir fark yoktur. Bu, EF veya Custom ORM için bir değiştirme değildir. Ekibin karmaşık veritabanı şemalarını yönetmesine olanak tanıyan bir görsel modelleme katmanıdır. Git gibi SCM yazılımıyla birlikte çalışarak, en az çakışmalarıyla modelinize çoklu Kullanıcı erişimi sağlar. Yükleyici, model değişikliklerini izler ve yükseltme betikleri oluşturur. EF Core için: 3.
 
 [GitHub sitesi](https://github.com/nHydrate/nHydrate)
 
@@ -48,7 +48,7 @@ EF Core güç araçları, basit bir kullanıcı arabiriminde çeşitli EF Core t
 
 Entity Framework Visual Düzenleyicisi, EF 6 ve EF Core sınıflarının görsel tasarımı için bir ORM Tasarımcısı ekleyen bir Visual Studio uzantısıdır. Kod, T4 şablonları kullanılarak oluşturulur, bu nedenle, herhangi bir gereksinimlerinize uyacak şekilde özelleştirilebilir. Devralma, tek yönlü ve çift yönlü ilişkilendirmeler, numaralandırmalar ve sınıflarınızın renk Kodlayabilme ve tasarımınızın potansiyel olarak büyük bir kısmını açıklamak için metin blokları ekleme imkanını destekler. EF Core için: 2.
 
-['Nde](https://marketplace.visualstudio.com/items?itemName=michaelsawczyn.EFDesigner)
+[Market](https://marketplace.visualstudio.com/items?itemName=michaelsawczyn.EFDesigner)
 
 ### <a name="catfactory"></a>Katfactory
 
@@ -63,7 +63,7 @@ Entity Framework Core Generator (EFG), `dotnet ef dbcontext scaffold`gibi var ol
 [Eğitim](https://www.loresoft.com/Generate-ASP-NET-Web-API)
 [belgeleri](https://efg.loresoft.com/en/latest/)
 
-## <a name="extensions"></a>Uzantıları
+## <a name="extensions"></a>Uzantılar
 
 ### <a name="microsoftentityframeworkcoreautohistory"></a>Microsoft. EntityFrameworkCore. oto geçmişi
 
@@ -168,7 +168,7 @@ DbContext dosyanızı, şunlar gibi özelliklerle genişletir: filtre, denetim, 
 
 DbContext uygulamanızı yüksek performanslı toplu işlemlerle genişletir: BulkSaveChanges, Bulkınsert, BulkUpdate, BulkDelete, BulkMerge ve daha fazlası. EF Core için: 2, 3.
 
-[Web sitesi](https://entityframework-extensions.net/)
+[Websitesi](https://entityframework-extensions.net/)
 
 ### <a name="expressionify"></a>Expressionbelirt
 

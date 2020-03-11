@@ -1,38 +1,38 @@
 ---
-title: Entity Framework Tasarımcısı - EF6 ObjectContext geri dönülüyor
+title: Entity Framework Designer-EF6 ' de ObjectContext 'e geri dönme
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 36550569-a1de-47cb-ba6d-544794ffd500
 ms.openlocfilehash: 3e436f0d9cf94720be9c424b327816438d571ae8
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45488953"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418660"
 ---
-# <a name="reverting-to-objectcontext-in-entity-framework-designer"></a>Entity Framework Tasarımcısı'nda ObjectContext geri dönülüyor
-EF Designer ile oluşturulan bir model Entity Framework'ün önceki sürümüyle ObjectContext türetilmiş bir bağlam ve EntityObject türetilen varlık sınıfları oluşturur.
+# <a name="reverting-to-objectcontext-in-entity-framework-designer"></a>Entity Framework Designer içinde ObjectContext 'e geri döndürülüyor
+Entity Framework önceki sürümüyle EF Designer ile oluşturulan bir model, ObjectContext 'ten türetilmiş bir bağlam ve EntityObject öğesinden türetilen varlık sınıflarından oluşur.
 
-EF4.1 ile başlayan DbContext ve POCO varlık sınıflarından türetme bir bağlamı oluşturan kod oluşturma şablonuna takas önerilir.
+EF 4.1 ile başlayarak, DbContext ve POCO varlık sınıflarından türeten bir içerik üreten bir kod oluşturma şablonuna değiştirmeyi öneririz.
 
-Visual Studio 2012'de varsayılan olarak EF Designer ile oluşturulan tüm yeni modeller için oluşturulan DbContext kodunu alın. Mevcut modellerde DbContext göre Kod Oluşturucu için takas etmek karar vermediğiniz sürece ObjectContext göre kod üretmek devam eder.
+Visual Studio 2012 ' de, EF Designer ile oluşturulan tüm yeni modeller için varsayılan olarak oluşturulan DbContext kodu alırsınız. DbContext tabanlı kod oluşturucuya takas etmeye karar vermediğiniz durumlar dışında mevcut modeller ObjectContext tabanlı kod oluşturmaya devam edecektir.
 
-## <a name="reverting-back-to-objectcontext-code-generation"></a>ObjectContext kod oluşturma için geri döndürülüyor
+## <a name="reverting-back-to-objectcontext-code-generation"></a>ObjectContext kod oluşturmaya geri döndürülüyor
 
-### <a name="1-disable-dbcontext-code-generation"></a>1. DbContext kod oluşturmayı devre dışı bırak
+### <a name="1-disable-dbcontext-code-generation"></a>1. DbContext kodu oluşturmayı devre dışı bırak
 
-Nesil DbContext ve POCO türetilen sınıfların, projede iki .tt dosyaları tarafından işlenir, Çözüm Gezgini'nde .edmx dosyasını genişletirseniz, bu dosyaları görürsünüz. Bu dosyaların her ikisini de projenizden silin.
+Türetilmiş DbContext ve POCO sınıflarının oluşturulması projenizdeki iki. tt dosyası tarafından işlenirse, Çözüm Gezgini 'nde. edmx dosyasını genişletirseniz bu dosyalar görüntülenir. Bu dosyaların her ikisini de projenizden silin.
 
-![Kod Gen dosyaları](~/ef6/media/codegenfiles.png)
+![Kod genel dosyaları](~/ef6/media/codegenfiles.png)
 
-VB.NET kullanıyorsanız seçmeniz gerekecek **tüm dosyaları göster** iç içe geçmiş dosyaları görmek için düğme.
+VB.NET kullanıyorsanız, iç içe geçmiş dosyaları görmek için **tüm dosyaları göster** düğmesini seçmeniz gerekir.
 
 ![Tüm dosyaları göster](~/ef6/media/showallfiles.png)
 
-### <a name="2-re-enable-objectcontext-code-generation"></a>2. Yeniden ObjectContext kod oluşturmayı etkinleştir
+### <a name="2-re-enable-objectcontext-code-generation"></a>2. ObjectContext kod üretimini yeniden etkinleştirin
 
-EF Tasarımcısı'nda model açık sağ tıklayın, boş bir bölüm tasarım yüzeyi ve select **özellikleri**.
+Bu modeli, EF tasarımcısında açın, Tasarım yüzeyinde boş bir bölüme sağ tıklayıp **Özellikler**' i seçin.
 
-Özellikler penceresinde değişiklik **kod oluşturma stratejisi** gelen **hiçbiri** için **varsayılan**.
+Özellikler penceresi, **kod oluşturma stratejisini** **none** ' dan **varsayılana**değiştirin.
 
-![Kod Gen stratejisi](~/ef6/media/codegenstrategy.png)
+![Kod genel stratejisi](~/ef6/media/codegenstrategy.png)

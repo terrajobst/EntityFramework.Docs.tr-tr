@@ -5,18 +5,18 @@ author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 11/06/2019
 uid: core/modeling/owned-entities
-ms.openlocfilehash: 30b91b6e66b6c0f516d1ba12485304b52770cbef
-ms.sourcegitcommit: 4e86f01740e407ff25e704a11b1f7d7e66bfb2a6
+ms.openlocfilehash: da4a459fbc40010fc14190204c8ed66fe0495b84
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75781241"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416462"
 ---
 # <a name="owned-entity-types"></a>Sahip Olunan Varlık Türleri
 
 EF Core, yalnızca diğer varlık türlerinin gezinti özelliklerinde görünebilen varlık türlerini modeletmenize olanak tanır. Bunlara sahip olan _varlık türleri_denir. Sahip olduğu varlık türü içeren varlık _sahibi_.
 
-Sahibi olan varlıklar aslında sahibin bir parçasıdır ve bu olmadan mevcut olamaz, bu değerler [toplamalara](https://martinfowler.com/bliki/DDD_Aggregate.html)kavramsal olarak benzerdir. Bu, sahip olduğu türün sahip olduğu ilişkinin bağımlı tarafında tanımına göre olduğu anlamına gelir.
+Sahibi olan varlıklar aslında sahibin bir parçasıdır ve bu olmadan mevcut olamaz, bu değerler [toplamalara](https://martinfowler.com/bliki/DDD_Aggregate.html)kavramsal olarak benzerdir. Bu, sahip olduğu varlığın, sahip olduğu ilişkinin bağımlı tarafında tanımına göre olduğu anlamına gelir.
 
 ## <a name="explicit-configuration"></a>Açık yapılandırma
 
@@ -38,7 +38,7 @@ Ayrıca, `ShippingAddress` özelliğinin `Order` varlık türüne ait bir varlı
 
 [!code-csharp[OwnsOneString](../../../samples/core/Modeling/OwnedEntities/OwnedEntityContext.cs?name=OwnsOneString)]
 
-Daha fazla bağlam için bkz. [tam örnek proje](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Modeling/OwnedEntities) .
+Daha fazla bağlam için bkz. [tam örnek proje](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Modeling/OwnedEntities) .
 
 ## <a name="implicit-keys"></a>Örtük anahtarlar
 

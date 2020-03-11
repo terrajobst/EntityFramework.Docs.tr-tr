@@ -5,11 +5,11 @@ ms.date: 10/27/2016
 ms.assetid: 2dce1a50-7d84-4856-abf6-2763dd9be99d
 uid: efcore-and-ef6/porting/port-code
 ms.openlocfilehash: 0a99eac2091c07d8bcf7d4e5e4bdc2afcaeee810
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181223"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419639"
 ---
 # <a name="porting-an-ef6-code-based-model-to-ef-core"></a>EF6 kod tabanlı bir modelin EF Core için taşıma
 
@@ -17,7 +17,7 @@ Tüm uyarıları okuduğunuzda ve bağlantı noktasına hazırsanız, kullanmaya
 
 ## <a name="install-ef-core-nuget-packages"></a>EF Core NuGet paketlerini yükler
 
-EF Core kullanmak için, kullanmak istediğiniz veritabanı sağlayıcısı için NuGet paketini yüklersiniz. Örneğin, SQL Server hedeflenirken, `Microsoft.EntityFrameworkCore.SqlServer` ' ı yüklersiniz. Ayrıntılar için bkz. [veritabanı sağlayıcıları](../../core/providers/index.md) .
+EF Core kullanmak için, kullanmak istediğiniz veritabanı sağlayıcısı için NuGet paketini yüklersiniz. Örneğin, SQL Server hedeflenirken `Microsoft.EntityFrameworkCore.SqlServer`yüklersiniz. Ayrıntılar için bkz. [veritabanı sağlayıcıları](../../core/providers/index.md) .
 
 Geçişleri kullanmayı planlıyorsanız, `Microsoft.EntityFrameworkCore.Tools` paketini de yüklemelisiniz.
 
@@ -31,7 +31,7 @@ EF6 içinde kullandığınız çoğu API 'Ler `System.Data.Entity` ad alanında 
 
 [EF Core uygulamanız Için çalıştığından emin olun](ensure-requirements.md), EF Core bağlanılacak veritabanını algılayarak daha az bir sihirli olur. Türetilmiş bağlamınızda `OnConfiguring` yöntemini geçersiz kılmanız ve veritabanına bağlantıyı kurmak için veritabanı sağlayıcısına özgü API 'yi kullanmanız gerekir.
 
-Çoğu EF6 uygulaması bağlantı dizesini uygulamalar `App/Web.config` dosyasında depolar. EF Core, `ConfigurationManager` API 'sini kullanarak bu bağlantı dizesini okuyabilirsiniz. Bu API 'yi kullanabilmeniz için `System.Configuration` çerçeve derlemesine bir başvuru eklemeniz gerekebilir.
+Çoğu EF6 uygulaması bağlantı dizesini uygulamalar `App/Web.config` dosyasında depolar. EF Core, `ConfigurationManager` API 'sini kullanarak bu bağlantı dizesini okuyabilirsiniz. Bu API 'yi kullanabilmek için `System.Configuration` Framework derlemesine bir başvuru eklemeniz gerekebilir.
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -54,7 +54,7 @@ Bu noktada, bu durum derleme hatalarının adreslenmesi ve kodu gözden geçirer
 
 EF Core için mevcut EF6 geçişlerini bağlantı noktası için uygun bir yol yoktur.
 
-Mümkünse, EF6 ' den önceki tüm geçişlerin veritabanına uygulandığını varsaymak ve sonra EF Core kullanarak şemayı bu noktadan geçirmeye başlamanız en iyisidir. Bunu yapmak için, model EF Core bağlantı kurulduktan sonra bir geçiş eklemek için `Add-Migration` komutunu kullanın. Daha sonra, `Up` ' dan ve `Down` ' den, yapı iskelesi geçişinin tüm kodunu kaldırırsınız. Sonraki geçişler, ilk geçiş iskele alındığı zaman modeliyle karşılaştırılır.
+Mümkünse, EF6 ' den önceki tüm geçişlerin veritabanına uygulandığını varsaymak ve sonra EF Core kullanarak şemayı bu noktadan geçirmeye başlamanız en iyisidir. Bunu yapmak için, model EF Core bağlantı kurulduktan sonra bir geçiş eklemek için `Add-Migration` komutunu kullanın. Ardından, tüm kodu, yapı iskelesi geçişinin `Up` ve `Down` yöntemlerinden kaldırırsınız. Sonraki geçişler, ilk geçiş iskele alındığı zaman modeliyle karşılaştırılır.
 
 ## <a name="test-the-port"></a>Bağlantı noktasını test etme
 

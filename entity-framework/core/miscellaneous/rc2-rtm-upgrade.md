@@ -5,11 +5,11 @@ ms.date: 10/27/2016
 ms.assetid: c3c1940b-136d-45d8-aa4f-cb5040f8980a
 uid: core/miscellaneous/rc2-rtm-upgrade
 ms.openlocfilehash: 779caad7883d13684b389dab7515be44bc42e1ef
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73655812"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416525"
 ---
 # <a name="upgrading-from-ef-core-10-rc2-to-rtm"></a>EF Core 1,0 RC2 'den RTM 'ye yükseltme
 
@@ -36,10 +36,10 @@ RTM kullanılmadan önce iskele alınan mevcut geçişler, `maxLength` bağıms�
 Bu değişiklik ASP.NET Identity kullanan projeleri etkiler ve bir pre-RTM proje şablonundan oluşturulmuştur. Proje şablonu, veritabanını oluşturmak için kullanılan bir geçiş içerir. Bu geçiş, aşağıdaki sütunlar için en fazla `256` uzunluğunu belirtmek üzere düzenlenmelidir.
 
 * **AspNetRoles**
-  * Name
+  * Adı
   * NormalizedName
 * **AspNetUsers**
-  * E-posta
+  * Email
   * NormalizedEmail
   * NormalizedUserName
   * UserName

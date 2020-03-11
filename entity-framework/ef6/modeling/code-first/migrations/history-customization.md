@@ -1,49 +1,49 @@
 ---
-title: Geçişleri geçmiş tablosu - EF6 özelleştirme
+title: Geçişler geçmiş tablosunu özelleştirme-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: ed5518f0-a9a6-454e-9e98-a4fa7748c8d0
 ms.openlocfilehash: eb19f367611a86f685557a6741a5f2f0bad6b718
-ms.sourcegitcommit: e66745c9f91258b2cacf5ff263141be3cba4b09e
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/06/2019
-ms.locfileid: "54058753"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418981"
 ---
-# <a name="customizing-the-migrations-history-table"></a>Geçişleri geçmiş tablosu özelleştirme
+# <a name="customizing-the-migrations-history-table"></a>Geçişler geçmiş tablosunu özelleştirme
 > [!NOTE]
-> **EF6 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb., Entity Framework 6'da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.
+> **Yalnızca EF6** , bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 6 ' da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.
 
 > [!NOTE]
-> Bu makalede, temel senaryolarda Code First Migrations nasıl kullanılacağını varsayar. Sizin sonra okumak ihtiyacınız olacak [Code First Migrations](~/ef6/modeling/code-first/migrations/index.md) devam etmeden önce.
+> Bu makalede temel senaryolarda Code First Migrations kullanmayı bildiğiniz varsayılmaktadır. Bunu yapmazsanız devam etmeden önce [Code First Migrations](~/ef6/modeling/code-first/migrations/index.md) okumanız gerekir.
 
-## <a name="what-is-migrations-history-table"></a>Geçişleri geçmiş tablosu nedir?
+## <a name="what-is-migrations-history-table"></a>Geçişler geçmiş tablosu nedir?
 
-Geçişleri geçmiş tablosu, Code First Migrations ile veritabanına uygulanan geçişleri ayrıntılarını depolamak için kullanılan bir tablodur. Varsayılan olarak veritabanındaki tablo adıdır. \_ \_MigrationHistory ve ilk geçiş veritabanına uygularken oluşturulur. Uygulama, Microsoft Sql Server veritabanı kullandıysanız Entity Framework 5'te bu tabloda sistem tablosunda oluştu. Bu Entity Framework 6 ancak değişti ve geçişleri geçmiş tablosu bir sistem tablosu artık işaretlenir.
+Geçişler geçmiş tablosu, veritabanına uygulanan geçişler hakkındaki ayrıntıları depolamak için Code First Migrations tarafından kullanılan bir tablodur. Varsayılan olarak, veritabanındaki tablonun adı \_\_MigrationHistory ' dir ve veritabanına ilk geçiş uygulanırken oluşturulur. Entity Framework 5 ' te, uygulama Microsoft SQL Server veritabanını kullanıyorsa bu tablo bir sistem tablosu idi. Bu, Entity Framework 6 ' da değişmiştir ve geçişler geçmiş tablosu artık bir sistem tablosu olarak işaretlenmemiştir.
 
-## <a name="why-customize-migrations-history-table"></a>Neden geçişleri geçmiş tablosu özelleştirebilir?
+## <a name="why-customize-migrations-history-table"></a>Geçişleri geçmiş tablosunu neden özelleştirsin?
 
-Geçişleri geçmiş tablosunda yalnızca Code First Migrations tarafından kullanılan beklenir ve el ile değiştirme geçişleri bozabilir. Ancak bazen varsayılan yapılandırmayı uygun değil ve tabloda, örneği için özelleştirilmiş olması gerekir:
+Geçişler geçmiş tablosunun yalnızca Code First Migrations tarafından kullanılması ve el ile değiştirilmesi geçişleri kesebilir. Ancak bazen varsayılan yapılandırma uygun değildir ve tablonun özelleştirilmesi gerekir, örneğin:
 
--   Adları ve/veya sütun 3 etkinleştirmek için modelleri değiştirmeniz gereken<sup>rd</sup> taraf geçişleri sağlayıcısı
--   Tablonun adını değiştirmek istediğiniz
--   Varsayılan olmayan şema için kullanmanız gereken \_ \_MigrationHistory tablo
--   Belirli bir sürümü bağlam için ek verileri depolamak gerekir ve bu nedenle, başka bir sütuna tabloya eklemeniz gerekir
+-   3 bir<sup>RD</sup> parti geçişi sağlayıcısını etkinleştirmek için sütunların adlarını ve/veya modellerini değiştirmeniz gerekir
+-   Tablonun adını değiştirmek istiyorsunuz
+-   \_\_MigrationHistory tablosu için varsayılan olmayan bir şema kullanmanız gerekir
+-   İçeriğin belirli bir sürümü için ek verileri depolamanız ve bu nedenle tabloya ek bir sütun eklemeniz gerekir
 
-## <a name="words-of-precaution"></a>Önlem sözcükleri
+## <a name="words-of-precaution"></a>Önlem kelimeleri
 
-Geçiş geçmişi tablosu değiştirme güçlüdür ancak uzaklaşmasına konusunda dikkatli olmanız gerekir. EF çalışma zamanı şu anda özelleştirilmiş geçişleri geçmiş tablosu çalışma zamanı ile uyumlu olup olmadığını kontrol etmez. Uygulamanızı değilse, çalışma zamanında sonu olabilir veya beklenmeyen şekilde davranır. Bu veritabanı başına birden fazla bağlamı kullanırsanız bu durumda birden fazla bağlamı aynı geçiş geçmiş tablosu geçişleri hakkında bilgi depolamak için kullanabilirsiniz daha da önem taşır.
+Geçiş geçmişi tablosunun değiştirilmesi güçlüdür, ancak bunu yapmak için dikkatli olmanız gerekir. EF Runtime Şu anda özelleştirilmiş geçişler geçmiş tablosunun çalışma zamanıyla uyumlu olup olmadığını denetlemiyor. Uygulamanız değilse, çalışma zamanında kesintiye uğramayabilir veya öngörülemeyen yollarla davranabilir. Bu, veritabanı başına birden çok bağlam kullandığınızda daha da çok önemlidir. Bu durumda birden çok bağlam, geçişler hakkındaki bilgileri depolamak için aynı geçiş geçmişi tablosunu kullanabilir.
 
-## <a name="how-to-customize-migrations-history-table"></a>Geçişleri geçmiş tablosu özelleştirmek nasıl?
+## <a name="how-to-customize-migrations-history-table"></a>Geçişler geçmiş tablosu nasıl özelleştirilir?
 
-Başlamadan önce ilk geçiş yalnızca uygulamadan önce geçişler geçmiş tablosu özelleştirebilirsiniz bilmeniz gerekir. Artık, kod.
+Başlamadan önce, geçişleri geçmiş tablosunu yalnızca ilk geçişi uygulamadan önce özelleştirebileceğinizi bilmeniz gerekir. Şimdi koda.
 
-İlk olarak, System.Data.Entity.Migrations.History.HistoryContext sınıfından türetilen bir sınıf oluşturmanız gerekecektir. Yapılandırma geçişleri geçmiş tablosu EF modelleri fluent API'si ile yapılandırmak için çok benzer şekilde HistoryContext sınıfı DbContext sınıfından türetilir. OnModelCreating yöntemi yok sayın ve tablo yapılandırmak için fluent API'sini kullanmak yeterlidir.
+İlk olarak, System. Data. Entity. geçişler. history. Geçmişcontext sınıfından türetilmiş bir sınıf oluşturmanız gerekir. Geçmişten bağlam sınıfı DbContext sınıfından türetilir, böylece geçişler geçmiş tablosunu yapılandırmak Fluent API ile EF modellerini yapılandırmaya çok benzer. Yalnızca Onmodeloluşturma yöntemini geçersiz kılmanız ve tabloyu yapılandırmak için Fluent API kullanmanız gerekir.
 
 >[!NOTE]
-> Genellikle EF modeli yapılandırırken temel çağrı gerekmez. Geçersiz kılınan OnModelCreating yönteminden DbContext.OnModelCreating() beri OnModelCreating() boş bir gövdeye sahip. Bu durum geçişlerini geçmiş tablosu yapılandırırken değildir. Bu durumda ilk OnModelCreating() geçersiz kılmada yapılacak şey gerçekten temel çağırmaktır. OnModelCreating(). Bu geçersiz kılma yöntemi ince ayar varsayılan şekilde geçişleri geçmiş tablosu yapılandıracaksınız.
+> Genellikle EF modellerini yapılandırdığınızda, taban ' i çağırmanız gerekmez. DbContext. Onmodeloluşturuluyor () boş gövde içerdiğinden, geçersiz kılınan Onmodeloluþturma yönteminden Onmodeloluşturuluyor (). Geçişler geçmiş tablosu yapılandırılırken bu durum böyle değildir. Bu durumda Onmodeloluþturma () geçersiz kılmanızda yapılacak ilk şey aslında temel çağırmalıdır. Onmodeloluşturuluyor (). Bu, geçişleri geçmiş tablosunu varsayılan şekilde yapılandırır, daha sonra geçersiz kılma yönteminde ince ayar.
 
-Geçişleri geçmişi tabloyu yeniden adlandırma ve "Yönetici" adlı bir özel şemaya koymak istediğiniz varsayalım. Ayrıca, DBA geçiş MigrationId sütunu yeniden adlandırmak istediğiniz\_kimliği  Aşağıdaki HistoryContext türetilmiş sınıf oluşturarak bunu:
+Geçişleri geçmiş tablosunu yeniden adlandırmak ve "admin" adlı özel bir şemaya koymak istediğinizi varsayalım. Ayrıca, DBA 'nın MigrationID sütununu geçiş\_KIMLIĞI olarak yeniden adlandırmanızı istersiniz.  Bu, aşağıdaki bir türeme bağlamından türetilen sınıfı oluşturarak bunu elde edebilirsiniz:
 
 ``` csharp
     using System.Data.Common;
@@ -69,7 +69,7 @@ Geçişleri geçmişi tabloyu yeniden adlandırma ve "Yönetici" adlı bir özel
     }
 ```
 
-EF ile kaydederek bu haberdar olmak gerekir, özel HistoryContext hazır olduktan sonra [kod tabanlı yapılandırma](https://msdn.com/data/jj680699):
+Özel bir [ıncode tabanlı yapılandırma](https://msdn.com/data/jj680699)yoluyla kaydederek özel bir ın,
 
 ``` csharp
     using System.Data.Entity;
@@ -87,6 +87,6 @@ EF ile kaydederek bu haberdar olmak gerekir, özel HistoryContext hazır oldukta
     }
 ```
 
-Tarayıcınızdaki İşte bu kadar. Etkinleştir-geçişler, Paket Yöneticisi konsolu gidebilirsiniz artık geçiş Ekle ve son olarak veritabanını güncelleştir. Bu, veritabanı geçişleri geçmiş tablosu HistoryContext türetilmiş sınıfınızın belirtilen ayrıntılara göre yapılandırılmış ekleme neden olur.
+Bu çok önemlidir. Artık Paket Yöneticisi konsoluna, Enable-geçişleri, Add-Migration ve finally Update-Database ' e gidebilirsiniz. Bu, geçmişe yönelik bağlam türetilmiş sınıfında belirttiğiniz ayrıntılara göre yapılandırılmış bir geçiş geçmişi tablosu veritabanına eklenmesine neden olmalıdır.
 
-![Veritabanı](~/ef6/media/database.png)
+![Database](~/ef6/media/database.png)

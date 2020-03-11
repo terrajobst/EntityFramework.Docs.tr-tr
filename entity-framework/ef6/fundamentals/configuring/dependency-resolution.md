@@ -1,20 +1,20 @@
 ---
-title: Bağımlılık çözümlemesi - EF6
+title: Bağımlılık çözümlemesi-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 32d19ac6-9186-4ae1-8655-64ee49da55d0
 ms.openlocfilehash: 6082124481f5795bbcb62fff2bb6a58ecdcb48e4
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490967"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417864"
 ---
 # <a name="dependency-resolution"></a>Bağımlılık çözümlemesi
 > [!NOTE]
-> **EF6 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb., Entity Framework 6'da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.  
+> **Yalnızca EF6** , bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 6 ' da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.  
 
-EF6 ile başlayarak, Entity Framework gerekli hizmetleri, uygulamaları alma genel amaçlı bir mekanizma içerir. Diğer bir deyişle, EF bazı arabirimleri ya da taban sınıfların örneği kullandığında bunu kullanmak için somut bir uygulama arabirim veya temel sınıfının sorar. Bu, IDbDependencyResolver arabirimi kullanılmasıyla elde edilir:  
+EF6 ile başlayarak Entity Framework, gereken hizmet uygulamalarını almak için genel amaçlı bir mekanizma içerir. Diğer bir deyişle, EF bazı arabirimlerin veya temel sınıfların bir örneğini kullandığında, arabirim veya temel sınıf için somut bir uygulama ister. Bu, ıdbdependencyresolver arabirimi kullanılarak sağlanır:  
 
 ``` csharp
 public interface IDbDependencyResolver
@@ -23,186 +23,186 @@ public interface IDbDependencyResolver
 }
 ```  
 
-GetService yöntemi genellikle EF tarafından çağrılır ve EF veya uygulama tarafından sağlanan IDbDependencyResolver uygulaması tarafından işlenir. Çağrıldığında, tür bağımsız değişkeni istenen hizmet arabirimi veya temel sınıf türünde olduğundan ve anahtar nesnesi null ya da istenen hizmeti hakkında bağlamsal bilgiler sağlayan bir nesne değil.  
+GetService yöntemi genellikle EF tarafından çağrılır ve EF ya da uygulama tarafından verilen bir ıdbdependencyresolver uygulaması tarafından işlenir. Çağrıldığında tür bağımsız değişkeni, istenen hizmetin arabirimi veya temel sınıf türüdür ve anahtar nesne null ya da istenen hizmet hakkında bağlamsal bilgiler sağlayan bir nesnedir.  
 
-Tekil olarak kullanılabildiğinden döndürülen herhangi bir nesne iş parçacığı açısından güvenli olmalıdır aksi belirtilmediği sürece. Çoğu durumda nesne bir factory, bu durumda, döndürülen iş parçacığı açısından güvenli Fabrika olmalıdır ancak fabrikadan döndürülen nesne, her kullanım için Fabrika öğesinden yeni bir örneğini istediğinden itibaren geçen iş parçacığı açısından güvenli olması gerekmez.
+Aksi belirtilmediği sürece, döndürülen herhangi bir nesne, tek bir olarak kullanılabilmesi için iş parçacığı açısından güvenli olmalıdır. Çoğu durumda, döndürülen nesne bir fabrikadır, ancak her kullanım için fabrikadan yeni bir örnek istendiğinden, fabrikadan döndürülen nesnenin iş parçacığı açısından güvenli olması gerekmez.
 
-Bu makalede IDbDependencyResolver uygulamak tam birleştiremiyorsa içermiyor, ancak bunun yerine, EF GetService anahtar nesnesi semantiği bunların her biri için çağırır ve hizmet türleri (diğer bir deyişle, arabirimi ve temel sınıf türleri) için bir başvuru olarak davranır çağırır.
+Bu makale, ıdbdependencyresolver 'ın nasıl uygulanacağı hakkında tam ayrıntı içermez, ancak bunun yerine, EF 'in GetService 'i çağırdığı ve bunların her biri için anahtar nesnesinin semantiğinin hizmet türleri (yani, arabirim ve temel sınıf türleri) için başvuru görevi görür aramalarda.
 
-## <a name="systemdataentityidatabaseinitializertcontext"></a>System.Data.Entity.IDatabaseInitializer < TContext\>  
+## <a name="systemdataentityidatabaseinitializertcontext"></a>System. Data. Entity. ıdatabasebaşlatıcısı < TContext\>  
 
-**Kullanıma sunulan sürümü**: EF6.0.0  
+**Sunulan sürüm**: EF 6.0.0  
 
-**Döndürülen nesne**: Belirtilen içerik türü için bir veritabanı Başlatıcısı  
+**Döndürülen nesne**: belirtilen bağlam türü için bir veritabanı başlatıcısı  
 
-**Anahtar**: kullanılan; null  
+**Anahtar**: kullanılmıyor; null olur  
 
-## <a name="funcsystemdataentitymigrationssqlmigrationsqlgenerator"></a>FUNC < System.Data.Entity.Migrations.Sql.MigrationSqlGenerator\>  
+## <a name="funcsystemdataentitymigrationssqlmigrationsqlgenerator"></a>Func < System. Data. Entity. geçişler. Sql. MigrationSqlGenerator\>  
 
-**Kullanıma sunulan sürümü**: EF6.0.0
+**Sunulan sürüm**: EF 6.0.0
 
-**Döndürülen nesne**: geçişler ve veritabanı başlatıcılar ile veritabanı oluşturma gibi oluşturulması için bir veritabanı neden diğer eylemler için kullanılabilir bir SQL oluşturucuyu oluşturmak için bir üreteci.  
+**Döndürülen nesne**: geçiş için kullanılabilen ve veritabanı başlatıcılarla veritabanı oluşturma gibi bir veritabanının oluşturulmasına neden olan diğer eylemler için KULLANıLABILEN bir SQL Oluşturucu oluşturmaya yönelik bir fabrika.  
 
-**Anahtar**: SQL oluşturulacak veritabanı türünü belirleyen ADO.NET sağlayıcısı değişmez adını içeren bir dize. Örneğin, SQL Server SQL Oluşturucu "System.Data.SqlClient" anahtarı için döndürülür.  
-
->[!NOTE]
-> EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
-
-## <a name="systemdataentitycorecommondbproviderservices"></a>System.Data.Entity.Core.Common.DbProviderServices  
-
-**Kullanıma sunulan sürümü**: EF6.0.0  
-
-**Döndürülen nesne**: verilen sağlayıcı değişmez adı için kullanılacak EF sağlayıcısı  
-
-**Anahtar**: bir sağlayıcı gereklidir veritabanı türünü belirleyen ADO.NET sağlayıcısı değişmez adını içeren bir dize. Örneğin, SQL Server sağlayıcısı için "System.Data.SqlClient" anahtar döndürülür.  
+**Anahtar**: SQL oluşturulacak veritabanının türünü belirten ADO.NET sağlayıcısı değişmez adını içeren bir dize. Örneğin, "System. Data. SqlClient" anahtarı için SQL Server SQL Oluşturucu döndürülür.  
 
 >[!NOTE]
-> EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
+> EF6 içindeki sağlayıcıyla ilgili hizmetler hakkında daha fazla bilgi için bkz. [EF6 Provider model](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
 
-## <a name="systemdataentityinfrastructureidbconnectionfactory"></a>System.Data.Entity.Infrastructure.IDbConnectionFactory  
+## <a name="systemdataentitycorecommondbproviderservices"></a>System. Data. Entity. Core. Common. DbProviderServices  
 
-**Kullanıma sunulan sürümü**: EF6.0.0  
+**Sunulan sürüm**: EF 6.0.0  
 
-**Döndürülen nesne**: EF veritabanı bağlantısı oluşturduğunda, kural olarak kullanılacak bağlantı üreteci. Diğer bir deyişle, hiçbir bağlantı veya bağlantı dizesi için EF verilir ve bağlantı dizesi app.config veya web.config içinde bulunabilir, sonra bu hizmet bir bağlantı oluşturmak için kural olarak kullanılır. Bağlantı üreteci değiştirme EF farklı türde bir veritabanı (örneğin, SQL Server Compact Edition) kullanmak varsayılan olarak izin verebilirsiniz.  
+**Döndürülen nesne**: belirli bir sağlayıcı sabit adı IÇIN kullanılacak EF sağlayıcısı  
 
-**Anahtar**: kullanılan; null  
-
->[!NOTE]
-> EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
-
-## <a name="systemdataentityinfrastructureimanifesttokenservice"></a>System.Data.Entity.Infrastructure.IManifestTokenService  
-
-**Kullanıma sunulan sürümü**: EF6.0.0  
-
-**Döndürülen nesne**: bağlantı sağlayıcısı bildirimi belirteci oluşturan bir hizmet. Bu hizmet, genellikle iki şekilde kullanılır. İlk olarak, Code First modeli oluştururken veritabanına bağlanırken önlemek için kullanılabilir. İkinci olarak, SQL Server 2008 bazen kullanıldığında bile bir modeli SQL Server 2005'te zorlamak için belirli bir veritabanı sürümü için--örneğin, bir model oluşturmak için Code First zorlamak için kullanılabilir.  
-
-**Nesne ömrü**: tekil--aynı nesneye kullanılan birden çok kez ve aynı anda farklı iş parçacıkları tarafından olabilir  
-
-**Anahtar**: kullanılan; null  
-
-## <a name="systemdataentityinfrastructureidbproviderfactoryservice"></a>System.Data.Entity.Infrastructure.IDbProviderFactoryService  
-
-**Kullanıma sunulan sürümü**: EF6.0.0  
-
-**Döndürülen nesne**: bir hizmet sağlayıcı üreteci belirli bir bağlantı edinebilirsiniz. .NET 4.5 üzerinde sağlayıcı bağlantısı genel olarak erişilebilir. .NET 4'te bu hizmetin varsayılan uygulama eşleşen sağlayıcı bulunamadı bazı buluşsal yöntemler kullanır. Bunlar daha sonra bu hizmetin yeni bir uygulama başarısız olursa, uygun bir çözüm sağlamak için kaydedilebilir.  
-
-**Anahtar**: kullanılan; null  
-
-## <a name="funcdbcontext-systemdataentityinfrastructureidbmodelcachekey"></a>FUNC < DbContext, System.Data.Entity.Infrastructure.IDbModelCacheKey\>  
-
-**Kullanıma sunulan sürümü**: EF6.0.0  
-
-**Döndürülen nesne**: belirli bir bağlam için bir model önbellek anahtarını oluşturan bir üreteci. Varsayılan olarak EF DbContext tür sağlayıcı başına başına bir model önbelleğe alır. Bu hizmetin farklı bir uygulama için önbellek anahtarını şema adı gibi diğer bilgilerini eklemek için kullanılabilir.  
-
-**Anahtar**: kullanılan; null  
-
-## <a name="systemdataentityspatialdbspatialservices"></a>System.Data.Entity.Spatial.DbSpatialServices  
-
-**Kullanıma sunulan sürümü**: EF6.0.0  
-
-**Döndürülen nesne**: temel EF sağlayıcı coğrafya ve geometri uzamsal türler için destek ekleyen bir EF uzamsal sağlayıcısı.  
-
-**Anahtar**: DbSptialServices sorular için iki yolla. İlk olarak, sağlayıcıya özgü uzamsal hizmetler DbProviderInfo nesnesi kullanılarak istenir (değişmez değer içeren ad ve bildirim belirteci) anahtarı olarak. İkinci olarak, DbSpatialServices için hiçbir anahtar ile onaylayanlara sorulabilir. Bu, "tek başına DbGeography veya DbGeometry türleri oluştururken kullanılan genel uzamsal sağlayıcı" çözmek için kullanılır.  
+**Anahtar**: bir sağlayıcının gerektirdiği veritabanının türünü belirten ADO.NET sağlayıcısı değişmez adını içeren bir dize. Örneğin, SQL Server sağlayıcı "System. Data. SqlClient" anahtarı için döndürülür.  
 
 >[!NOTE]
-> EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
+> EF6 içindeki sağlayıcıyla ilgili hizmetler hakkında daha fazla bilgi için bkz. [EF6 Provider model](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
 
-## <a name="funcsystemdataentityinfrastructureidbexecutionstrategy"></a>FUNC < System.Data.Entity.Infrastructure.IDbExecutionStrategy\>  
+## <a name="systemdataentityinfrastructureidbconnectionfactory"></a>System. Data. Entity. Infrastructure. ıdbconnectionfactory  
 
-**Kullanıma sunulan sürümü**: EF6.0.0  
+**Sunulan sürüm**: EF 6.0.0  
 
-**Döndürülen nesne**: veritabanına karşı sorgulara ve komutlara yürütüldüğünde, yeniden deneme veya diğer davranışı uygulamak bir sağlayıcı sağlayan bir hizmet oluşturmak için bir üreteci. Uygulaması sağlanırsa, ardından EF yalnızca şu komutları çalıştırın ve oluşturulan tüm özel durumları yayar. SQL Server için SQL Azure gibi bulut tabanlı veritabanı sunucularına karşı çalışırken kullanışlı olan bir yeniden deneme ilkesi sağlamak için bu hizmeti kullanılır.  
+**Döndürülen nesne**: EF, kurala göre bir veritabanı bağlantısı oluşturduğunda kullanılacak bağlantı fabrikası. Diğer bir deyişle, bir bağlantı veya bağlantı dizesinin EF 'e verilme ve App. config veya Web. config dosyasında hiçbir bağlantı dizesinin bulunamaması durumunda bu hizmet, kurala göre bir bağlantı oluşturmak için kullanılır. Bağlantı fabrikasının değiştirilmesi, EF 'in varsayılan olarak farklı türde bir veritabanı (örneğin, SQL Server Compact Edition) kullanmasına izin verebilir.  
 
-**Anahtar**: sağlayıcının değişmez adı ve isteğe bağlı yürütme stratejisi kullanılacak bir sunucu adı içeren bir ExecutionStrategyKey nesne.  
-
->[!NOTE]
-> EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
-
-## <a name="funcdbconnection-string-systemdataentitymigrationshistoryhistorycontext"></a>FUNC < DbConnection, dize, System.Data.Entity.Migrations.History.HistoryContext\>  
-
-**Kullanıma sunulan sürümü**: EF6.0.0  
-
-**Döndürülen nesne**: HistoryContext için eşlemeyi yapılandırmak bir sağlayıcı izin veren bir Fabrika `__MigrationHistory` EF geçişleri tarafından kullanılan tablo. HistoryContext kod ilk DbContext olduğundan ve tablo ve sütun eşleme belirtimlerini adı gibi şeyleri değiştirmek için normal fluent API'si kullanılarak yapılandırılabilir.  
-
-**Anahtar**: kullanılan; null  
+**Anahtar**: kullanılmıyor; null olur  
 
 >[!NOTE]
-> EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
+> EF6 içindeki sağlayıcıyla ilgili hizmetler hakkında daha fazla bilgi için bkz. [EF6 Provider model](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
 
-## <a name="systemdatacommondbproviderfactory"></a>System.Data.Common.DbProviderFactory  
+## <a name="systemdataentityinfrastructureimanifesttokenservice"></a>System. Data. Entity. Infrastructure. IManifestTokenService  
 
-**Kullanıma sunulan sürümü**: EF6.0.0  
+**Sunulan sürüm**: EF 6.0.0  
 
-**Döndürülen nesne**: ADO.NET sağlayıcısı belirtilen sağlayıcı değişmez adı için kullanılacak.  
+**Döndürülen nesne**: bir bağlantıdan sağlayıcı bildirim belirteci oluşturabilen bir hizmet. Bu hizmet genellikle iki şekilde kullanılır. İlk olarak, bir model oluştururken veritabanına bağlantı Code First önlemek için kullanılabilir. İkincisi, belirli bir veritabanı sürümü için bir model oluşturmak üzere Code First zorlamak için kullanılabilir (örneğin, bazen SQL Server 2008 kullanılıyorsa bile, bir modeli SQL Server 2005 için zorlamak için kullanılır.  
+
+**Nesne ömrü**: tek--aynı nesne birden çok kez ve farklı iş parçacıkları tarafından aynı anda kullanılabilir  
+
+**Anahtar**: kullanılmıyor; null olur  
+
+## <a name="systemdataentityinfrastructureidbproviderfactoryservice"></a>System. Data. Entity. Infrastructure. ıdbproviderfactoryservice  
+
+**Sunulan sürüm**: EF 6.0.0  
+
+**Döndürülen nesne**: belirli bir bağlantıdan sağlayıcı fabrikası elde eden bir hizmet. .NET 4,5 ' de, sağlayıcıya genel olarak bağlantıdan erişilebilir. .NET 4 ' te bu hizmetin varsayılan uygulanması, eşleşen sağlayıcıyı bulmak için bazı buluşsal yöntemler kullanır. Bunlar başarısız olursa, uygun bir çözüm sağlamak için bu hizmetin yeni bir uygulama kaydı yapılabilir.  
+
+**Anahtar**: kullanılmıyor; null olur  
+
+## <a name="funcdbcontext-systemdataentityinfrastructureidbmodelcachekey"></a>Func < DbContext, System. Data. Entity. Infrastructure. ıdbmodelcachekey\>  
+
+**Sunulan sürüm**: EF 6.0.0  
+
+**Döndürülen nesne**: belirli bir bağlam için model önbellek anahtarı oluşturacak bir fabrika. Varsayılan olarak, EF, sağlayıcı başına her DbContext türü için bir modeli önbelleğe alır. Bu hizmetin farklı bir uygulanması, şema adı gibi diğer bilgileri önbellek anahtarına eklemek için kullanılabilir.  
+
+**Anahtar**: kullanılmıyor; null olur  
+
+## <a name="systemdataentityspatialdbspatialservices"></a>System. Data. Entity. uzamsal. DbSpatialServices  
+
+**Sunulan sürüm**: EF 6.0.0  
+
+**Döndürülen nesne**: Coğrafya ve geometri uzamsal türler IÇIN temel EF sağlayıcısına destek ekleyen bir EF uzamsal sağlayıcı.  
+
+**Anahtar**: dbsptialservices 'in iki şekilde istenir. İlk olarak, sağlayıcıya özgü uzamsal hizmetler, anahtar olarak bir DBProviderInfo nesnesi (Sabit adı ve bildirim belirteci içerir) kullanılarak istenir. İkinci olarak, DbSpatialServices hiçbir anahtar olmadan istenebilir. Bu, tek başına Dbcoğrafya veya DbGeometry türleri oluştururken kullanılan "küresel uzamsal sağlayıcıyı" çözümlemek için kullanılır.  
+
+>[!NOTE]
+> EF6 içindeki sağlayıcıyla ilgili hizmetler hakkında daha fazla bilgi için bkz. [EF6 Provider model](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
+
+## <a name="funcsystemdataentityinfrastructureidbexecutionstrategy"></a>Func < System. Data. Entity. Infrastructure. ıdbexecutionstrateji\>  
+
+**Sunulan sürüm**: EF 6.0.0  
+
+**Döndürülen nesne**: bir sağlayıcının, sorgular ve komutlar veritabanına göre yürütüldüğünde yeniden denemeler veya diğer davranışları uygulamasına izin veren bir hizmet oluşturmak için bir fabrika. Uygulama sağlanmazsa, EF komutları yürütür ve oluşturulan özel durumları yayacaktır. SQL Server için bu hizmet, SQL Azure gibi bulut tabanlı veritabanı sunucularında çalışırken yararlı olan bir yeniden deneme ilkesi sağlamak için kullanılır.  
+
+**Anahtar**: sağlayıcı sabit adı ve isteğe bağlı olarak yürütme stratejisi kullanılacak bir sunucu adı Içeren bir Executionstratejik jkey nesnesi.  
+
+>[!NOTE]
+> EF6 içindeki sağlayıcıyla ilgili hizmetler hakkında daha fazla bilgi için bkz. [EF6 Provider model](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
+
+## <a name="funcdbconnection-string-systemdataentitymigrationshistoryhistorycontext"></a>Func < DbConnection, String, System. Data. Entity. geçişler. history. Geçmişcontext\>  
+
+**Sunulan sürüm**: EF 6.0.0  
+
+**Döndürülen nesne**: bir sağlayıcının, IBir IBU bağlamın EŞLEMESINI, EF geçişi tarafından kullanılan `__MigrationHistory` tablosuna yapılandırmasını sağlayan bir fabrika. Bu bir DbContext Code First ve tablo adı ve sütun eşleme belirtimleri gibi şeyleri değiştirmek için normal Fluent API kullanılarak yapılandırılabilir.  
+
+**Anahtar**: kullanılmıyor; null olur  
+
+>[!NOTE]
+> EF6 içindeki sağlayıcıyla ilgili hizmetler hakkında daha fazla bilgi için bkz. [EF6 Provider model](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
+
+## <a name="systemdatacommondbproviderfactory"></a>System. Data. Common. DbProviderFactory  
+
+**Sunulan sürüm**: EF 6.0.0  
+
+**Döndürülen nesne**: belirli bir sağlayıcı sabit adı için kullanılacak ADO.NET sağlayıcısı.  
 
 **Anahtar**: ADO.NET sağlayıcısı değişmez adını içeren bir dize  
 
 >[!NOTE]
-> Varsayılan uygulama normal ADO.NET Sağlayıcısı kaydı kullandığından bu hizmet genellikle doğrudan değiştirilemez. EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
+> Varsayılan uygulama normal ADO.NET sağlayıcısı kaydını kullandığından, bu hizmet genellikle doğrudan değiştirilmez. EF6 içindeki sağlayıcıyla ilgili hizmetler hakkında daha fazla bilgi için bkz. [EF6 Provider model](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
 
-## <a name="systemdataentityinfrastructureiproviderinvariantname"></a>System.Data.Entity.Infrastructure.IProviderInvariantName  
+## <a name="systemdataentityinfrastructureiproviderinvariantname"></a>System. Data. Entity. Infrastructure. IProviderInvariantName  
 
-**Kullanıma sunulan sürümü**: EF6.0.0  
+**Sunulan sürüm**: EF 6.0.0  
 
-**Döndürülen nesne**: DbProviderFactory belirli bir tür bir sağlayıcı değişmez adını belirlemek için kullanılan bir hizmettir. Bu hizmet, varsayılan uygulama, ADO.NET Sağlayıcısı kaydı kullanır. Bu DbProviderFactory tarafından EF çözümlendiğinden ADO.NET sağlayıcısı normal bir şekilde kayıtlı değil, daha sonra Ayrıca bu hizmet çözmek gerekli anlamına gelir.  
+**Döndürülen nesne**: belirli bir DbProviderFactory türü için sağlayıcı sabit adını belirlemede kullanılan bir hizmet. Bu hizmetin varsayılan uygulanması ADO.NET sağlayıcı kaydını kullanır. Bu, DbProviderFactory EF tarafından çözümlendiği için ADO.NET sağlayıcısı normal şekilde kaydedilmemişse, bu hizmetin çözümlenmesi için de gerekli olacaktır.  
 
-**Anahtar**: DbProviderFactory örneği için bir değişmez adı gereklidir.  
+**Anahtar**: sabit adının gerekli olduğu DbProviderFactory örneği.  
 
 >[!NOTE]
-> EF6 Hizmetleri Sağlayıcısı ile ilgili daha fazla ayrıntı görmek için [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
+> EF6 içindeki sağlayıcıyla ilgili hizmetler hakkında daha fazla bilgi için bkz. [EF6 Provider model](~/ef6/fundamentals/providers/provider-model.md) bölümü.  
 
-## <a name="systemdataentitycoremappingviewgenerationiviewassemblycache"></a>System.Data.Entity.Core.Mapping.ViewGeneration.IViewAssemblyCache  
+## <a name="systemdataentitycoremappingviewgenerationiviewassemblycache"></a>System. Data. Entity. Core. Mapping. ViewGeneration. ıviewassemblycache  
 
-**Kullanıma sunulan sürümü**: EF6.0.0  
+**Sunulan sürüm**: EF 6.0.0  
 
-**Döndürülen nesne**: önceden üretilmiş görünümleri içeren derlemeler, bir önbellek. Bir değiştirme, genellikle tüm keşfi olmadan hangi derlemelerin önceden üretilmiş görünümleri içeren bilmeniz EF izin vermek için kullanılır.  
+**Döndürülen nesne**: önceden oluşturulmuş görünümleri içeren derlemelerin bir önbelleği. Bir değiştirme işlemi, hiçbir keşfi yapmadan, EF 'in hangi derlemelerin önceden oluşturulmuş görünümleri içerdiğini bilmesini sağlamak için kullanılır.  
 
-**Anahtar**: kullanılan; null  
+**Anahtar**: kullanılmıyor; null olur  
 
-## <a name="systemdataentityinfrastructurepluralizationipluralizationservice"></a>System.Data.Entity.Infrastructure.Pluralization.IPluralizationService
+## <a name="systemdataentityinfrastructurepluralizationipluralizationservice"></a>System. Data. Entity. Infrastructure. pluralization. IPluralizationService
 
-**Kullanıma sunulan sürümü**: EF6.0.0  
+**Sunulan sürüm**: EF 6.0.0  
 
-**Döndürülen nesne**: pluralize ve adları singularize EF tarafından kullanılan bir hizmet. Varsayılan olarak İngilizce çoğullaştırma hizmeti kullanılır.  
+**Döndürülen nesne**: adları plurmak ve sıngumize etmek için EF tarafından kullanılan bir hizmet. Varsayılan olarak, Ingilizce plurselleştirme hizmeti kullanılır.  
 
-**Anahtar**: kullanılan; null  
+**Anahtar**: kullanılmıyor; null olur  
 
-## <a name="systemdataentityinfrastructureinterceptionidbinterceptor"></a>System.Data.Entity.Infrastructure.Interception.IDbInterceptor  
+## <a name="systemdataentityinfrastructureinterceptionidbinterceptor"></a>System. Data. Entity. Infrastructure. yakalayıcısı. ıdbyakalayıcısı  
 
-**Kullanıma sunulan sürümü**: EF6.0.0
+**Sunulan sürüm**: EF 6.0.0
 
-**Döndürülen nesne**: uygulama başlatıldığında, kaydedilmesi gereken tüm dinleyicileri. Herhangi bir bağımlılık çözümleyici tarafından döndürülen tüm dinleyicileri GetServices kullanarak bu nesneleri istenen ve Not kayıtlı.
+**Döndürülen nesneler**: uygulama başladığında kaydedilmesi gereken her bir dinleyici. Bu nesnelerin GetServices çağrısı kullanılarak istendiğine ve herhangi bir bağımlılık Çözümleyicisi tarafından döndürülen tüm yakalayıcılar kaydettirildiğine unutmayın.
 
-**Anahtar**: kullanılan; null olacaktır.  
+**Anahtar**: kullanılmıyor; null olacaktır.  
 
-## <a name="funcsystemdataentitydbcontext-actionstring-systemdataentityinfrastructureinterceptiondatabaselogformatter"></a>FUNC < System.Data.Entity.DbContext, eylem < dize\>, System.Data.Entity.Infrastructure.Interception.DatabaseLogFormatter\>  
+## <a name="funcsystemdataentitydbcontext-actionstring-systemdataentityinfrastructureinterceptiondatabaselogformatter"></a>Func < System. Data. Entity. DbContext, ACTION < String\>, System. Data. Entity. Infrastructure. Yakation. DatabaseLogFormatter\>  
 
-**Kullanıma sunulan sürümü**: EF6.0.0  
+**Sunulan sürüm**: EF 6.0.0  
 
-**Döndürülen nesne**: olacak veritabanı günlük biçimlendirici oluşturmak için kullanılan Fabrika kullanılabilir bağlamı. Belirtilen bağlama Database.Log özelliği ayarlanmış.  
+**Döndürülen nesne**: bağlam sırasında kullanılacak veritabanı günlük biçimlendirici öğesini oluşturmak için kullanılacak bir fabrika. Database. Log özelliği verilen bağlamda ayarlandı.  
 
-**Anahtar**: kullanılan; null olacaktır.  
+**Anahtar**: kullanılmıyor; null olacaktır.  
 
-## <a name="funcsystemdataentitydbcontext"></a>FUNC < System.Data.Entity.DbContext\>  
+## <a name="funcsystemdataentitydbcontext"></a>Func < System. Data. Entity. DbContext\>  
 
-**Kullanıma sunulan sürümü**: EF6.1.0  
+**Sunulan sürüm**: EF 6.1.0  
 
-**Döndürülen nesne**: bağlam erişilebilir parametresiz bir oluşturucu yoksa, geçişler için bağlam örnekleri oluşturmak için kullanılacak bir Üreteç.  
+**Döndürülen nesne**: bağlam, erişilebilir parametresiz bir oluşturucuya sahip olmadığında geçişler için bağlam örnekleri oluşturmak için kullanılacak bir fabrika.  
 
-**Anahtar**: bir Fabrika gereklidir türetilmiş DbContext tür için tür nesnesi.  
+**Anahtar**: bir fabrika için gereken türetilmiş DbContext türünün türü nesne.  
 
-## <a name="funcsystemdataentitycoremetadataedmimetadataannotationserializer"></a>FUNC < System.Data.Entity.Core.Metadata.Edm.IMetadataAnnotationSerializer\>  
+## <a name="funcsystemdataentitycoremetadataedmimetadataannotationserializer"></a>Func < System. Data. Entity. Core. Metadata. Edm. ımetadataannotationserializer\>  
 
-**Kullanıma sunulan sürümü**: EF6.1.0  
+**Sunulan sürüm**: EF 6.1.0  
 
-**Döndürülen nesne**: serileştiricileri seri hale getirme türü kesin belirlenmiş özel ek açıklamaları, sıralanabilir ve XML olarak kullanılmak üzere Code First Migrations desterilized şekilde oluşturmak için kullanılan bir Üreteç.  
+**Döndürülen nesne**: Code First Migrations ' de kullanılmak üzere serileştirilmek ve hedeflenebilir özel açıklamaların serileştirilmesi için kullanılan bir fabrika.  
 
-**Anahtar**: yüklenmekte olan ek açıklama adı serileştirilecek veya serisi.  
+**Anahtar**: seri hale getirilen veya seri durumdan çıkarılan ek açıklamanın adı.  
 
-## <a name="funcsystemdataentityinfrastructuretransactionhandler"></a>FUNC < System.Data.Entity.Infrastructure.TransactionHandler\>  
+## <a name="funcsystemdataentityinfrastructuretransactionhandler"></a>Func < System. Data. Entity. Infrastructure. TransactionHandler\>  
 
-**Kullanıma sunulan sürümü**: EF6.1.0  
+**Sunulan sürüm**: EF 6.1.0  
 
-**Döndürülen nesne**: işleyicileri işlemler için özel işlem işleme hataları işleme gibi durumlar için uygulanabilir olacak şekilde oluşturmak için kullanılan bir Üreteç.  
+**Döndürülen nesne**: işleme başarısızlıklarını işleme gibi durumlar için özel işlemenin uygulanabilmesi için, işlemler için işleyiciler oluşturmak üzere kullanılacak bir fabrika.  
 
-**Anahtar**: sağlayıcının değişmez adı ve isteğe bağlı olarak hareket işleyicisi kullanılacak bir sunucu adı içeren bir ExecutionStrategyKey nesne.  
+**Anahtar**: sağlayıcının sabit adını ve isteğe bağlı olarak işlem işleyicisinin kullanılacağı sunucu adını Içeren bir Executionstratejik jkey nesnesi.  

@@ -5,11 +5,11 @@ ms.date: 10/27/2016
 ms.assetid: aeb0f5f8-b212-4f89-ae83-c642a5190ba0
 uid: core/miscellaneous/connection-strings
 ms.openlocfilehash: ed89d6d09b15b0dea7fd8bc3ff3e3f631495ecb7
-ms.sourcegitcommit: cbaa6cc89bd71d5e0bcc891e55743f0e8ea3393b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/20/2019
-ms.locfileid: "71149124"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416591"
 ---
 # <a name="connection-strings"></a>Bağlantı Dizeleri
 
@@ -31,9 +31,9 @@ WinForms, WPF ve ASP.NET 4 uygulamaları, denenen ve sınanan bir bağlantı diz
 ```
 
 > [!TIP]  
-> Veritabanı sağlayıcısı kod aracılığıyla yapılandırıldığı için App. config dosyasında depolanan EF Core bağlantı dizeleri üzerinde bu ayargereklideğildir.`providerName`
+> Veritabanı sağlayıcısı kod aracılığıyla yapılandırıldığından, App. config dosyasında depolanan EF Core bağlantı dizeleri `providerName` ayarı gerekli değildir.
 
-Daha sonra bağlantı dizesini `ConfigurationManager` `OnConfiguring` bağlam yöntemindeki API 'yi kullanarak okuyabilirsiniz. Bu API 'yi kullanabilmeniz için `System.Configuration` Framework derlemesine bir başvuru eklemeniz gerekebilir.
+Daha sonra `ConfigurationManager` API 'sini kullanarak bağlantı dizesini bağlam `OnConfiguring` yönteminde okuyabilirsiniz. Bu API 'yi kullanabilmek için `System.Configuration` Framework derlemesine bir başvuru eklemeniz gerekebilir.
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -65,9 +65,9 @@ public class BloggingContext : DbContext
 }
 ```
 
-## <a name="aspnet-core"></a>ASP.NET Core
+## <a name="aspnet-core"></a>ASP.NET Çekirdeği
 
-ASP.NET Core yapılandırma sistemi çok esnektir ve bağlantı dizesi, bir ortam değişkeni, Kullanıcı gizli dizisi veya `appsettings.json`başka bir yapılandırma kaynağı içinde depolanabilir. Daha fazla bilgi için [ASP.NET Core belgelerinin yapılandırma bölümüne](https://docs.asp.net/en/latest/fundamentals/configuration.html) bakın. Aşağıdaki örnek, içinde `appsettings.json`depolanan bağlantı dizesini gösterir.
+ASP.NET Core yapılandırma sistemi çok esnektir ve bağlantı dizesi `appsettings.json`, bir ortam değişkeni, Kullanıcı gizli dizisi ya da başka bir yapılandırma kaynağı içinde depolanabilir. Daha fazla bilgi için [ASP.NET Core belgelerinin yapılandırma bölümüne](https://docs.asp.net/en/latest/fundamentals/configuration.html) bakın. Aşağıdaki örnek, `appsettings.json`depolanan bağlantı dizesini gösterir.
 
 ``` json
 {
@@ -77,7 +77,7 @@ ASP.NET Core yapılandırma sistemi çok esnektir ve bağlantı dizesi, bir orta
 }
 ```
 
-Bağlam genellikle, ' de `Startup.cs` yapılandırmadan okunmakta olan bağlantı dizesi ile yapılandırılır. Yöntemi, `GetConnectionString()` `ConnectionStrings:<connection string name>`anahtarı olan bir yapılandırma değeri arar. Bu genişletme yöntemini kullanmak için [Microsoft. Extensions. Configuration](https://docs.microsoft.com/dotnet/api/microsoft.extensions.configuration) ad alanını içeri aktarmanız gerekir.
+Bağlam genellikle bağlantı dizesinin yapılandırmadan okunmakta olan `Startup.cs` içinde yapılandırılır. `GetConnectionString()` yöntemi, anahtarı `ConnectionStrings:<connection string name>`olan bir yapılandırma değeri arar. Bu genişletme yöntemini kullanmak için [Microsoft. Extensions. Configuration](https://docs.microsoft.com/dotnet/api/microsoft.extensions.configuration) ad alanını içeri aktarmanız gerekir.
 
 ``` csharp
 public void ConfigureServices(IServiceCollection services)

@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 452f17c3-9f26-4de4-9894-8bc036e23b0f
 ms.openlocfilehash: f5e7532e6c0b473d8ce77cbd11e3e673b0af6cbe
-ms.sourcegitcommit: b2b9468de2cf930687f8b85c3ce54ff8c449f644
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/12/2019
-ms.locfileid: "70921778"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418170"
 ---
 # <a name="designer-table-splitting"></a>Tasarımcı tablosu bölme
 Bu izlenecek yol, bir modeli Entity Framework Designer (EF Designer) ile değiştirerek birden çok varlık türünün tek bir tabloya nasıl eşlendiğini gösterir.
@@ -65,7 +65,7 @@ Bu bölümde, **kişi** varlığını iki varlığa bölecektir ve sonra bunlar�
 -   **Kişi** ve **hireınfo**arasında bir ilişki oluşturun. Bunu yapmak için tasarım yüzeyinde boş bir alana sağ tıklayın, **Yeni Ekle**' nin üzerine gelin ve **ilişkilendirme**' ye tıklayın.
 -    **Ilişki ekle** iletişim kutusu görüntülenir. **Personhireınfo** adı varsayılan olarak verilir.
 -   İlişkinin her iki ucunda çeşitlilik **1 (bir)** belirtin.
--   Tuşuna **Tamam**.
+-   **Tamam**'a basın.
 
 Sonraki adım için **eşleme ayrıntıları** penceresi gerekir. Bu pencereyi göremiyorsanız, tasarım yüzeyine sağ tıklayıp **eşleme ayrıntıları**' nı seçin.
 
@@ -79,7 +79,7 @@ Sonraki adım için **eşleme ayrıntıları** penceresi gerekir. Bu pencereyi
 -   Tasarım yüzeyinde ilişkiye sağ tıklayın ve **Özellikler**' i seçin.
 -   **Özellikler** penceresinde **başvurusal kısıtlamalar** özelliğini seçin ve üç nokta düğmesine tıklayın.
 -   **Sorumlu** açılan listesinden **kişi** ' yi seçin.
--   Tuşuna **Tamam**.
+-   **Tamam**'a basın.
 
  
 

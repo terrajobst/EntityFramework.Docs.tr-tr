@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 07/11/2019
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: 5686d28e6847797130476cd858bd3fb611620140
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.openlocfilehash: 7dc7a4404820a7c935648169cc6ff8d0f0118d87
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824473"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416751"
 ---
 # <a name="entity-framework-core-tools-reference---net-cli"></a>Entity Framework Core araçları başvurusu-.NET CLı
 
@@ -39,7 +39,7 @@ Yükleme yordamı proje türüne ve sürümüne bağlıdır:
 
   `dotnet ef` yerel araç olarak da kullanabilirsiniz. Bunu yerel bir araç olarak kullanmak için, bir [araç bildirim dosyası](https://github.com/dotnet/cli/issues/10288)kullanarak bunu araç bağımlılığı olarak bildiren bir projenin bağımlılıklarını geri yükleyin.
 
-* [3,0 .NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0)'yi yükler. Visual Studio 'nun en son sürümüne sahip olsanız bile SDK 'nın yüklenmesi gerekir.
+* [.NET Core SDK](https://www.microsoft.com/net/download/core)'i yükler.
 
 * En son `Microsoft.EntityFrameworkCore.Design` paketini yükler.
 

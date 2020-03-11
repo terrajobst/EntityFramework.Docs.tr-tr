@@ -5,11 +5,11 @@ ms.date: 04/09/2017
 ms.assetid: 94ab4800-c460-4caa-a5e8-acdfee6e6ce2
 uid: core/providers/sqlite/limitations
 ms.openlocfilehash: 2f80dc195265787318ac4925dd937da45ffad011
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72179779"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417776"
 ---
 # <a name="sqlite-ef-core-database-provider-limitations"></a>SQLite EF Core veritabanı sağlayıcısı sınırlamaları
 
@@ -19,7 +19,7 @@ SQLite sağlayıcının bir dizi geçiş sınırlaması vardır. Bu sınırlamal
 
 Ortak ilişkisel kitaplık (Entity Framework ilişkisel veritabanı sağlayıcıları tarafından paylaşılır), en ilişkisel veritabanı altyapılarında ortak olan modelleme kavramları için API 'Leri tanımlar. Bu kavramların birkaç ikisi SQLite sağlayıcısı tarafından desteklenmez.
 
-* Şemaları
+* Şemalar
 * Diziler
 * Hesaplanan sütunlar
 
@@ -28,13 +28,13 @@ Ortak ilişkisel kitaplık (Entity Framework ilişkisel veritabanı sağlayıcı
 SQLite, aşağıdaki veri türlerini yerel olarak desteklemez. EF Core bu türlerin değerlerini okuyup yazabilir ve eşitlik için sorgulama (`where e.Property == value`) de desteklenir. Bununla birlikte, karşılaştırma ve sıralama gibi diğer işlemler de istemci üzerinde değerlendirme gerektirir.
 
 * DateTimeOffset
-* Decimal
+* Ondalık
 * TimeSpan
 * UInt64
 
-@No__t-0 yerine, DateTime değerlerini kullanmanızı öneririz. Birden çok saat dilimini işlerken, kaydetmeden önce değerleri UTC 'ye dönüştürmenizi ve sonra uygun saat dilimine geri dönüştürmeyi öneririz.
+`DateTimeOffset`yerine, DateTime değerlerini kullanmanızı öneririz. Birden çok saat dilimini işlerken, kaydetmeden önce değerleri UTC 'ye dönüştürmenizi ve sonra uygun saat dilimine geri dönüştürmeyi öneririz.
 
-@No__t-0 türü yüksek düzeyde bir duyarlık sağlar. Ancak bu duyarlık düzeyine ihtiyacınız yoksa, bunun yerine Double kullanmanızı öneririz. Sınıflarınızda ondalık olarak kullanmaya devam etmek için bir [değer Dönüştürücüsü](../../modeling/value-conversions.md) kullanabilirsiniz.
+`Decimal` türü yüksek düzeyde bir duyarlık sağlar. Ancak bu duyarlık düzeyine ihtiyacınız yoksa, bunun yerine Double kullanmanızı öneririz. Sınıflarınızda ondalık olarak kullanmaya devam etmek için bir [değer Dönüştürücüsü](../../modeling/value-conversions.md) kullanabilirsiniz.
 
 ``` csharp
 modelBuilder.Entity<MyEntity>()
@@ -46,7 +46,7 @@ modelBuilder.Entity<MyEntity>()
 
 SQLite veritabanı altyapısı, diğer ilişkisel veritabanlarının çoğunluğu tarafından desteklenen bir dizi şema işlemini desteklemez. Desteklenmeyen işlemlerden birini bir SQLite veritabanına uygulamaya çalışırsanız, `NotSupportedException` oluşturulur.
 
-| İşlem            | Destek? | Sürüm gerektirir |
+| İşlem            | Destekleniyor mu? | Sürüm gerektirir |
 |:---------------------|:-----------|:-----------------|
 | AddColumn            | ✔          | 1.0              |
 | AddForeignKey        | ✗          |                  |
@@ -64,11 +64,11 @@ SQLite veritabanı altyapısı, diğer ilişkisel veritabanlarının çoğunluğ
 | RenameColumn         | ✔          | 2.2.2            |
 | RenameIndex          | ✔          | 2.1              |
 | RenameTable          | ✔          | 1.0              |
-| EnsureSchema         | ✔ (-OP)  | 2.0              |
-| DropSchema           | ✔ (-OP)  | 2.0              |
-| Ekle               | ✔          | 2.0              |
-| Güncelleştirme               | ✔          | 2.0              |
-| Sil               | ✔          | 2.0              |
+| EnsureSchema         | ✔ (-OP)  | 2,0              |
+| DropSchema           | ✔ (-OP)  | 2,0              |
+| Ekle               | ✔          | 2,0              |
+| Güncelleştir               | ✔          | 2,0              |
+| Sil               | ✔          | 2,0              |
 
 ## <a name="migrations-limitations-workaround"></a>Geçiş kısıtlamaları geçici çözümü
 

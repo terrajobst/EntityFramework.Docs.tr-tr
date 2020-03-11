@@ -1,21 +1,21 @@
 ---
-title: Proxy - EF6 ile çalışma
+title: Proxy 'ler ile çalışma-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 869ee4dc-06f1-471d-8e0e-0a1a2bc59c30
 ms.openlocfilehash: 8f7d2e8b41ece28efe8d1df3b0679e6e4510d64a
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489823"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419341"
 ---
 # <a name="working-with-proxies"></a>Proxy ile çalışma
-Entity Framework, genellikle POCO varlık türleri örneklerini oluştururken, varlık için bir proxy görevi gören dinamik olarak üretilen bir türetilmiş türün örneklerini oluşturur. Bu proxy özelliği erişildiğinde eylemlerini otomatik olarak gerçekleştirmek için kancaları eklenecek varlık sanal bazı özelliklerini geçersiz kılar. Örneğin, bu mekanizma, ilişkilerin yavaş yükleniyor desteklemek için kullanılır. Bu konuda gösterilen teknikleri Code First ve EF Designer ile oluşturulan modeller için eşit oranda geçerlidir.  
+POCO varlık türlerinin örneklerini oluştururken, Entity Framework genellikle varlık için proxy görevi gören dinamik olarak oluşturulan türetilmiş türün örneklerini oluşturur. Bu proxy, özellik erişildiği zaman otomatik olarak eylem gerçekleştirmeye yönelik kancalar eklemek için varlığın bazı sanal özelliklerini geçersiz kılar. Örneğin, bu mekanizma ilişkilerin geç yüklemesini desteklemek için kullanılır. Bu konu başlığında gösterilen teknikler Code First ve EF Designer ile oluşturulan modellere eşit olarak uygulanır.  
 
-## <a name="disabling-proxy-creation"></a>Proxy oluşturma devre dışı bırakma  
+## <a name="disabling-proxy-creation"></a>Proxy oluşturma devre dışı bırakılıyor  
 
-Bazen Entity Framework proxy örnekleri oluşturmasını önlemek yararlıdır. Örneğin, olmayan proxy'si örneklerini serileştirmek proxy örneklerini serileştirmek daha önemli ölçüde daha kolay olur. Proxy oluşturma ProxyCreationEnabled bayrağı temizleyerek kapatılabilir. Bunun tek bir yerde bağlamınızın oluşturucusunda ' dir. Örneğin:  
+Bazen Entity Framework proxy örnekleri oluşturmasını engellemek yararlı olur. Örneğin, proxy olmayan örneklerin serileştirilmesi proxy örneklerinden serileştirilden çok daha kolay. ProxyCreationEnabled bayrağı temizlenerek proxy oluşturma kapatılabilir. Bunu yapabileceğiniz bir yer, bağlamınızın kurucusudur. Örnek:  
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -30,11 +30,11 @@ public class BloggingContext : DbContext
 }
 ```  
 
-EF proxy türleri için oluşturmaz unutmayın burada yapmak proxy için bir şey yoktur. Bu, ayrıca proxy'leri mühürlendi ve/veya sanal özelliğe sahip türler tarafından önleyebilirsiniz olduğunu anlamına gelir.  
+EF 'in proxy 'nin yapması için hiçbir şey olmadığı türler için proxy oluşturmayacak olduğunu unutmayın. Bu, korumalı ve/veya hiç sanal özelliği olmayan türlere sahip olan proxy 'leri de önlemenize yol açabilir.  
 
-## <a name="explicitly-creating-an-instance-of-a-proxy"></a>Açıkça bir ara sunucu örneğini oluşturma  
+## <a name="explicitly-creating-an-instance-of-a-proxy"></a>Bir ara sunucu örneğini açıkça oluşturma  
 
-New işleci kullanarak bir varlık örneği oluşturursanız, bir proxy örneği oluşturulmayacak. Bu bir sorun olmayabilir ancak (örneğin, yavaş yükleniyor veya proxy değişiklik izleme çalışır böylece) proxy'si örneği oluşturmanız gerekiyorsa ardından olan DB oluşturma yöntemini kullanarak bunu yapabilirsiniz. Örneğin:  
+New işlecini kullanarak bir varlığın örneğini oluşturursanız bir proxy örneği oluşturulmaz. Bu bir sorun olmayabilir, ancak bir ara sunucu örneği oluşturmanız gerekiyorsa (örneğin, yavaş yükleme veya ara sunucu değişikliği izlemenin çalışması için), bunu DbSet oluşturma yöntemini kullanarak yapabilirsiniz. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -43,7 +43,7 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Türetilen varlık türünün örneğini oluşturmak istiyorsanız Oluştur genel sürümü kullanılabilir. Örneğin:  
+Türetilmiş varlık türünün bir örneğini oluşturmak isterseniz, Create öğesinin genel sürümü kullanılabilir. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -52,17 +52,17 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Create yöntemi değil veya oluşturulan varlığın bağlamına ekleme olduğunu unutmayın.  
+Oluşturma yönteminin oluşturulan varlığı içeriğine eklemediğini veya ekleyemediğini unutmayın.  
 
-Bunu herhangi bir şey yapmak çünkü Create yöntemi yalnızca varlık türünün bir örneği bir varlığın proxy türü oluşturuyorsanız oluşturacağını Not hiçbir değer yoktur. Örneğin, varlık türü korumalı ve/veya sanal özellikleri yok oluşturma yalnızca varlık türünün bir örneğini oluşturur.  
+Oluşturma yönteminin yalnızca varlık türünün bir örneğini oluşturacaksa, varlık için bir proxy türü oluşturmak hiçbir değer yoksa, hiçbir şey yapmamasını unutmayın. Örneğin, varlık türü mühürlü ve/veya sanal özellikleri yoksa, Oluştur yalnızca varlık türünün bir örneğini oluşturur.  
 
-## <a name="getting-the-actual-entity-type-from-a-proxy-type"></a>Bir proxy türünden gerçek varlık türü alma  
+## <a name="getting-the-actual-entity-type-from-a-proxy-type"></a>Asıl varlık türünü bir proxy türünden alma  
 
-Proxy türlerinin, aşağıdakine benzer şekilde adlara sahiptir:  
+Proxy türleri şuna benzer adlara sahiptir:  
 
-System.Data.Entity.DynamicProxies.Blog_5E43C6C196972BF0754973E48C9C941092D86818CD94005E9A759B70BF6E48E6  
+System. Data. Entity. DynamicProxy 'Leri. Blog_5E43C6C196972BF0754973E48C9C941092D86818CD94005E9A759B70BF6E48E6  
 
-ObjectContext GetObjectType yöntemini kullanarak bu proxy türü için varlık türü bulabilirsiniz. Örneğin:  
+Bu proxy türünün varlık türünü ObjectContext 'ten GetObjectType metodunu kullanarak bulabilirsiniz. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -72,4 +72,4 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Türü geçirilmiş GetObjectType bir proxy tür varlık türü değil bir varlık türünün bir örneği hala döndürülen olduğunu unutmayın. Başka bir deyişle, her zaman gerçek varlık türü herhangi diğer tür proxy türü olup olmadığını görmek için denetlemeden almak için bu yöntemi kullanabilirsiniz.  
+GetObjectType öğesine geçirilen tür bir proxy türü olmayan bir varlık türü örneğidir, daha sonra varlık türü de döndürülür. Bu, türün bir proxy türü olup olmadığını görmek için herhangi bir denetim olmadan gerçek varlık türünü almak üzere her zaman bu yöntemi kullanabileceğiniz anlamına gelir.  

@@ -1,29 +1,29 @@
 ---
-title: Bağlantı dizelerini ve modelleri - EF6
+title: Bağlantı dizeleri ve modeller-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 294bb138-978f-4fe2-8491-fdf3cd3c60c4
 ms.openlocfilehash: 2c9f084107e4de7f5439bf0082b46a3b538496e0
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490757"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419299"
 ---
-# <a name="connection-strings-and-models"></a>Bağlantı dizelerini ve modeller
-Bu konuda, Entity Framework için kullanılacak veritabanı bağlantıyı nasıl bulur ve nasıl değiştirebileceğinizi kapsar. Code First ve EF Designer ile oluşturulan modeller Bu konu başlığında ele alınmaktadır.  
+# <a name="connection-strings-and-models"></a>Bağlantı dizeleri ve modeller
+Bu konu, hangi veritabanı bağlantısının kullanılacağını ve bunu nasıl değiştirebildiğini Entity Framework nasıl keşfedeceğini ele alır. Code First ve EF Designer ile oluşturulan modeller bu konuda ele alınmıştır.  
 
-Genellikle bir Entity Framework uygulamasını DbContext türetilmiş bir sınıf kullanır. Bu türetilmiş sınıf oluşturucular bir denetim temel DbContext sınıfına çağırmak:  
+Genellikle bir Entity Framework uygulama DbContext 'ten türetilmiş bir sınıfı kullanır. Bu türetilmiş sınıf, denetlemek için Base DbContext sınıfındaki oluşturuculardan birini çağırır:  
 
-- Bağlam bir veritabanına nasıl bağlanacağını — diğer bir deyişle, nasıl bir bağlantı dizesi bulunamadı/kullanılır  
-- Bağlam kullanıp kullanmayacağını Code First kullanarak bir model hesaplamak veya EF Designer ile oluşturulan bir modeli yüklenemiyor  
+- Bağlamın bir veritabanına bağlanması — yani bir bağlantı dizesinin nasıl bulunduğu/kullanıldığı  
+- Bağlamın Code First kullanarak model hesaplama veya EF Designer ile oluşturulmuş bir modeli yükleme kullanılacağını belirtir  
 - Ek Gelişmiş Seçenekler  
 
-DbContext oluşturucular yollardan bazılarını kullanılabilir aşağıdaki parçalarını gösterir.  
+Aşağıdaki parçalar, DbContext oluşturucuların kullanılabileceği bazı yolları göstermektedir.  
 
-## <a name="use-code-first-with-connection-by-convention"></a>Code First bağlantı ile kural olarak kullanın  
+## <a name="use-code-first-with-connection-by-convention"></a>Kurala göre bağlantı ile Code First kullanma  
 
-Uygulamanızda herhangi bir yapılandırma yapmadıysanız, parametresiz bir oluşturucu üzerinde DbContext sonra çağırma kuralı tarafından oluşturulmuş bir veritabanı bağlantısı ile Code First modunda çalışacak şekilde DbContext neden olur. Örneğin:  
+Uygulamanızda başka bir yapılandırma yapmadıysanız, parametresiz oluşturucuyu DbContext üzerinde çağırmak, DbContext 'in kural tarafından oluşturulan bir veritabanı bağlantısıyla Code First modunda çalışmasına neden olur. Örnek:  
 
 ``` csharp  
 namespace Demo.EF
@@ -38,13 +38,13 @@ namespace Demo.EF
 }
 ```  
 
-Bu örnekte DbContext, türetilmiş bağlam class—Demo.EF.BloggingContext—as veritabanı adı tam ad alanı adını kullanır ve SQL Express veya LocalDB kullanarak bu veritabanı için bir bağlantı dizesi oluşturur. Her ikisi de yüklüyse, SQL Express kullanılır.  
+Bu örnekte, DbContext türetilmiş bağlam sınıfınızın ad alanını (demo. EF. BloggingContext) veritabanı adı olarak kullanır ve SQL Express veya LocalDB kullanarak bu veritabanı için bir bağlantı dizesi oluşturur. Her ikisi de yüklüyse, SQL Express kullanılacaktır.  
 
-Visual Studio 2010, SQL Express varsayılan ve Visual Studio 2012 tarafından içerir ve daha sonra LocalDB içerir. Yükleme sırasında hangi veritabanı sunucusu kullanılabilir EntityFramework NuGet paketi denetler. Kural gereği bağlantı oluştururken Code First kullanan varsayılan veritabanı sunucusu ayarlayarak NuGet paketini daha sonra yapılandırma dosyasını güncelleştirin. SQL Express çalışıyorsa kullanılır. SQL Express kullanılabilir değilse, ardından LocalDB varsayılan olarak bunun yerine kaydedilir. Varsayılan bağlantı üreteci için bir ayar varsa yapılandırma dosyasına hiçbir değişiklik yapılmaz.  
+Visual Studio 2010, varsayılan olarak SQL Express 'i içerir ve Visual Studio 2012 ve sonraki sürümleri LocalDB içerir. Yükleme sırasında, EntityFramework NuGet paketi hangi veritabanı sunucusunun kullanılabilir olduğunu denetler. NuGet paketi, bir bağlantı kuralı oluştururken Code First kullandığı varsayılan veritabanı sunucusunu ayarlayarak yapılandırma dosyasını güncelleştirir. SQL Express çalışıyorsa, kullanılacaktır. SQL Express kullanılamıyorsa, LocalDB bunun yerine varsayılan olarak kaydedilir. Varsayılan bağlantı fabrikası için zaten bir ayar varsa yapılandırma dosyasında değişiklik yapılmaz.  
 
-## <a name="use-code-first-with-connection-by-convention-and-specified-database-name"></a>Code First bağlantıyla kuralı ve belirtilen veritabanı adı kullanın  
+## <a name="use-code-first-with-connection-by-convention-and-specified-database-name"></a>Kurala göre bağlantı ve belirtilen veritabanı adı ile Code First kullanın  
 
-Uygulamanızda herhangi bir yapılandırma yapmadıysanız, kullanmak istediğiniz veritabanı adıyla'da DbContext dize yapılandırıcının çağrılmasıyla veritabanına kural tarafından oluşturulan bir veritabanı bağlantısı ile Code First modunda çalışacak şekilde DbContext neden olur Bu adı. Örneğin:  
+Uygulamanızda başka herhangi bir yapılandırma yapmadıysanız, kullanmak istediğiniz veritabanı adıyla DbContext üzerinde dize oluşturucusunu çağırmak, DbContext 'in kural tarafından oluşturulan bir veritabanı bağlantısıyla Code First modunda çalışmasına neden olur. Bu ad. Örnek:  
 
 ``` csharp  
 public class BloggingContext : DbContext
@@ -56,11 +56,11 @@ public class BloggingContext : DbContext
 }
 ```  
 
-Bu örnekte DbContext "BloggingDatabase" adlı veritabanı kullanır ve (Visual Studio 2010 ile yüklü), SQL Express veya LocalDB (Visual Studio 2012 ile yüklenen) kullanarak bu veritabanı için bir bağlantı dizesi oluşturur. Her ikisi de yüklüyse, SQL Express kullanılır.  
+Bu örnekte, DbContext veritabanı adı olarak "BloggingDatabase" kullanır ve SQL Express (Visual Studio 2010 ile yüklenir) veya LocalDB (Visual Studio 2012 ile yüklenir) kullanarak bu veritabanı için bir bağlantı dizesi oluşturur. Her ikisi de yüklüyse, SQL Express kullanılacaktır.  
 
-## <a name="use-code-first-with-connection-string-in-appconfigwebconfig-file"></a>Code First app.config/web.config dosyasındaki bağlantı dizesi ile kullanma  
+## <a name="use-code-first-with-connection-string-in-appconfigwebconfig-file"></a>App. config/Web. config dosyasında bağlantı dizesiyle Code First kullanın  
 
-App.config veya web.config dosyanızda bir bağlantı dizesi koymak isteyebilirsiniz. Örneğin:  
+App. config veya Web. config dosyanıza bir bağlantı dizesi koymak için seçim yapabilirsiniz. Örnek:  
 
 ``` xml  
 <configuration>
@@ -72,9 +72,9 @@ App.config veya web.config dosyanızda bir bağlantı dizesi koymak isteyebilirs
 </configuration>
 ```  
 
-SQL Express ya da LocalDB dışındaki bir veritabanı sunucusunu kullanmak üzere DbContext bildirmek için kolay bir yol budur; Yukarıdaki örnek bir SQL Server Compact Edition veritabanını belirtir.  
+Bu, DbContext 'in SQL Express veya LocalDB dışında bir veritabanı sunucusunu kullanmasını söylemek için kolay bir yoldur — yukarıdaki örnek bir SQL Server Compact Edition veritabanı belirtir.  
 
-Bağlantı dizesinin adını bağlamınızın (ile veya ad alanı nitelik olmadan) ad eşleşiyorsa parametresiz kullanıldığında, ardından bunu DbContext tarafından bulunur. Bağlantı dizesi adı Bağlamınızı adından farklıysa, bağlantı dizesi adı DbContext oluşturucusuna geçirerek Code First modunda bu bağlantıyı kullanmak için DbContext söyleyebilirsiniz. Örneğin:  
+Bağlantı dizesinin adı, bağlamınızın adı ile eşleşiyorsa (ad alanı nitelemesiz ya da olmadan), parametresiz Oluşturucu kullanıldığında DbContext tarafından bulunur. Bağlantı dizesi adı bağlamınızın adından farklıysa, DbContext 'in bu bağlantıyı Code First modunda kullanmasını, bağlantı dizesi adını DbContext oluşturucusuna geçirerek söyleyebilirsiniz. Örnek:  
 
 ``` csharp  
 public class BloggingContext : DbContext
@@ -86,7 +86,7 @@ public class BloggingContext : DbContext
 }
 ```  
 
-Alternatif olarak, form kullanabilirsiniz "name =\<bağlantı dizesi adı\>" DbContext oluşturucuya geçirilen bir dize. Örneğin:  
+Alternatif olarak, DbContext oluşturucusuna geçirilen dize için "ad =\<bağlantı dizesi adı\>" biçimini kullanabilirsiniz. Örnek:  
 
 ``` csharp  
 public class BloggingContext : DbContext
@@ -98,13 +98,13 @@ public class BloggingContext : DbContext
 }
 ```  
 
-Bu formu açık bağlantı dizesini yapılandırma dosyanızda bulunan beklediğiniz kolaylaştırır. Belirtilen ada sahip bir bağlantı dizesi bulunmazsa, bir özel durum oluşturulur.  
+Bu form, bağlantı dizesinin yapılandırma dosyanızda bulunabilmesini beklediğinizi açık hale getirir. Verilen ada sahip bir bağlantı dizesi bulunmazsa bir özel durum oluşturulur.  
 
-## <a name="databasemodel-first-with-connection-string-in-appconfigwebconfig-file"></a>İlk app.config/web.config dosyasındaki bağlantı dizesi ile veritabanı/modeli  
+## <a name="databasemodel-first-with-connection-string-in-appconfigwebconfig-file"></a>App. config/Web. config dosyasında bağlantı dizesiyle veritabanı/Model First  
 
-EF Designer ile oluşturulan modeller, modelinizi zaten var ve uygulama çalıştığında koddan oluşturulan değil, Code First farklılık gösterir. Model, genellikle, projenizdeki bir EDMX dosyası olarak bulunmaktadır.  
+EF Designer ile oluşturulan modeller modelinizdeki Code First farklıdır ve uygulama çalışırken koddan oluşturulmaz. Model genellikle projenizde bir EDMX dosyası olarak mevcuttur.  
 
-Tasarımcı için app.config veya web.config dosyanızda bir EF bağlantı dizesini ekleyeceksiniz. EDMX dosyanız bilgileri bulma hakkında bilgiler içerir, bu bağlantı dizesini özeldir. Örneğin:  
+Tasarımcı, App. config veya Web. config dosyanıza bir EF bağlantı dizesi ekler. Bu bağlantı dizesi, EDMX dosyasında bilgilerin nasıl bulunacağı hakkında bilgi içermesi için özeldir. Örnek:  
 
 ``` xml  
 <configuration>  
@@ -124,7 +124,7 @@ Tasarımcı için app.config veya web.config dosyanızda bir EF bağlantı dizes
 </configuration>
 ```  
 
-EF Designer DbContext DbContext oluşturucuya bağlantı dizesi adı geçirerek bu bağlantıyı kullanmak için bildiren kod ayrıca oluşturur. Örneğin:  
+EF Designer Ayrıca, bağlantı dizesi adını DbContext oluşturucusuna geçirerek, DbContext 'in bu bağlantıyı kullanmasını söyleyen kodu oluşturur. Örnek:  
 
 ``` csharp  
 public class NorthwindContext : DbContext
@@ -136,13 +136,13 @@ public class NorthwindContext : DbContext
 }
 ```  
 
-DbContext bilir varolan modeli (yerine koddan hesaplamak için Code First kullanarak) yüklemek için bağlantı dizesini kullanmak için modelin ayrıntılarını içeren bir EF bağlantı dizesi olduğundan.  
+DbContext, bağlantı dizesi kullanılacak modelin ayrıntılarını içeren bir EF bağlantı dizesi olduğundan, var olan modeli (koddan hesaplamak için Code First kullanmak yerine) yüklemeyi bilir.  
 
-## <a name="other-dbcontext-constructor-options"></a>Diğer DbContext Oluşturucusu seçenekleri  
+## <a name="other-dbcontext-constructor-options"></a>Diğer DbContext Oluşturucu seçenekleri  
 
-DbContext sınıfı diğer oluşturucular ve bazı daha gelişmiş senaryoları etkinleştirmek kullanım düzenlerini içerir. Bunlardan bazıları şunlardır:  
+DbContext sınıfı, daha gelişmiş senaryolar sağlayan diğer oluşturucular ve kullanım düzenlerini içerir. Bunlardan bazıları şunlardır:  
 
-- DbModelBuilder sınıfı bir DbContext örneği örnekleme olmadan bir Code First modelini oluşturmak için kullanabilirsiniz. Bunun sonucu olarak bir DbModel nesnesidir. DbContext örneğinizi oluşturmak hazır olduğunuzda, ardından bu DbModel nesne bir DbContext oluşturucular geçirebilirsiniz.  
-- DbContext için yalnızca veritabanı veya bağlantı dizesi adı yerine tam bağlantı dizesi geçirebilirsiniz. Varsayılan olarak, bu bağlantı dizesi ile System.Data.SqlClient sağlayıcısı kullanılır; Bu, farklı bir uygulama IConnectionFactory bağlam üzerine ayarlayarak değiştirilebilir. Database.DefaultConnectionFactory.  
-- DbContext oluşturucusuna geçirerek, varolan bir DbConnection nesnesini kullanabilirsiniz. Bağlantı nesnesi EntityConnection, örneğini, belirtilen bağlantı modeli kullanılan yerine hesaplamak modeli kullanarak kodu ilk kez. Nesneyi başka bir tür örneği olup olmadığını — Örneğin, SqlConnection — bağlamı için Code First modunu kullanır.  
-- Mevcut bir bağlamı sarmalama DbContext oluşturmak için bir DbContext oluşturucuya varolan bir Objectcontext'e geçirebilirsiniz. Bu ObjectContext kullanan, ancak bazı bölümleri uygulamanın DbContext yararlanmak istediğiniz var olan uygulamalar için kullanılabilir.  
+- DbModelBuilder sınıfını bir DbContext örneği örneklemeden bir Code First modeli oluşturmak için kullanabilirsiniz. Bunun sonucu bir DbModel nesnesidir. Daha sonra DbContext örneğinizi oluşturmaya hazırsanız bu DbModel nesnesini DbContext oluşturucularından birine geçirebilirsiniz.  
+- Tam bir bağlantı dizesini yalnızca veritabanı veya bağlantı dizesi adı yerine DbContext 'e geçirebilirsiniz. Varsayılan olarak, bu bağlantı dizesi System. Data. SqlClient sağlayıcısıyla birlikte kullanılır; Bu, IConnectionFactory 'in farklı bir uygulamasına bağlam üzerine ayarlanarak değiştirilebilir. Database. DefaultConnectionFactory.  
+- Var olan bir DbConnection nesnesini DbContext oluşturucusuna geçirerek kullanabilirsiniz. Bağlantı nesnesi EntityConnection 'un bir örneği ise, bağlantıda belirtilen model Code First kullanarak bir modeli hesaplamak yerine kullanılacaktır. Nesne başka bir türün örneğidir — Örneğin, SqlConnection — daha sonra bağlam, Code First modu için kullanacaktır.  
+- Var olan bağlamı sarmalama oluşturmak için var olan bir ObjectContext 'i bir DbContext oluşturucusuna geçirebilirsiniz. Bu, ObjectContext kullanan mevcut uygulamalar için ve uygulamanın bazı bölümlerinde DbContext 'in avantajlarından yararlanmak için kullanılabilir.  

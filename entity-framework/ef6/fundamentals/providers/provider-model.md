@@ -4,11 +4,11 @@ author: divega
 ms.date: 06/27/2018
 ms.assetid: 066832F0-D51B-4655-8BE7-C983C557E0E4
 ms.openlocfilehash: 8bda3f51e8934f2add862c30e60f1185f068c515
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181604"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419362"
 ---
 # <a name="the-entity-framework-6-provider-model"></a>Entity Framework 6 sağlayıcı modeli
 
@@ -74,7 +74,7 @@ Kullanılacak DbProviderServices uygulaması, uygulamanın yapılandırma dosyas
 
 ### <a name="config-file-registration"></a>Yapılandırma dosyası kaydı
 
-Kullanılacak DbProviderServices türü, uygulamanın yapılandırma dosyasının entityFramework bölümünün sağlayıcılar listesinde bir sağlayıcı öğesi olarak kaydedilir. Örneğin:
+Kullanılacak DbProviderServices türü, uygulamanın yapılandırma dosyasının entityFramework bölümünün sağlayıcılar listesinde bir sağlayıcı öğesi olarak kaydedilir. Örnek:
 
 ``` xml
 <entityFramework>
@@ -88,7 +88,7 @@ _Tür_ dizesi, kullanılacak DbProviderServices uygulamasının derleme nitelikl
 
 ### <a name="code-based-registration"></a>Kod tabanlı kayıt
 
-EF6 sağlayıcılardan itibaren, kod kullanılarak da kaydedilebilir. Bu, bir EF sağlayıcısının uygulamanın yapılandırma dosyasında herhangi bir değişiklik yapılmadan kullanılmasına izin verir. Kod tabanlı yapılandırmayı kullanmak için bir uygulamanın, [kod tabanlı yapılandırma belgelerinde](https://msdn.com/data/jj680699)açıklandığı gibi bir DBConfiguration sınıfı oluşturması gerekir. DbConfiguration sınıfının Oluşturucusu, EF sağlayıcısını kaydettirmek için SetProviderServices öğesini çağırmalıdır. Örneğin:
+EF6 sağlayıcılardan itibaren, kod kullanılarak da kaydedilebilir. Bu, bir EF sağlayıcısının uygulamanın yapılandırma dosyasında herhangi bir değişiklik yapılmadan kullanılmasına izin verir. Kod tabanlı yapılandırmayı kullanmak için bir uygulamanın, [kod tabanlı yapılandırma belgelerinde](https://msdn.com/data/jj680699)açıklandığı gibi bir DBConfiguration sınıfı oluşturması gerekir. DbConfiguration sınıfının Oluşturucusu, EF sağlayıcısını kaydettirmek için SetProviderServices öğesini çağırmalıdır. Örnek:
 
 ``` csharp
 public class MyConfiguration : DbConfiguration
@@ -161,7 +161,7 @@ Yukarıda açıklanan ek sağlayıcı hizmetlerinden bazılarını doğrudan bir
 
 EF5 ile başlayarak EntityFramework NuGet paketi otomatik olarak SQL Express bağlantı fabrikası veya yapılandırma dosyasında LocalDb bağlantı fabrikası olarak kaydedilir.
 
-Örneğin:
+Örnek:
 
 ``` xml
 <entityFramework>

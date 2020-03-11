@@ -6,13 +6,13 @@ ms.date: 12/03/2019
 ms.assetid: cbe6935e-2679-4b77-8914-a8d772240cf1
 uid: core/modeling/entity-types
 ms.openlocfilehash: b3d9ad753637d021d9aa52965da38091ae690f77
-ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/27/2019
-ms.locfileid: "75502455"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417235"
 ---
-# <a name="entity-types"></a>Varlık türleri
+# <a name="entity-types"></a>Varlık Türleri
 
 Bağlam üzerindeki bir DbSet türü de dahil olmak, EF Core modeline dahil olduğu anlamına gelir; genellikle *varlık*olarak böyle bir türe başvurduk. EF Core, ve veritabanından varlık örnekleri okuyup yazabilir ve ilişkisel bir veritabanı kullanıyorsanız, geçişler aracılığıyla varlıklarınız için tablolar oluşturabilir EF Core.
 
@@ -32,11 +32,11 @@ Aşağıdaki kod örneğinde, tüm türler dahil edilmiştir:
 
 Modele bir türün dahil edilmesini istemiyorsanız, bu tür dışında bırakabilirsiniz:
 
-### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
+### <a name="data-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/IgnoreType.cs?name=IgnoreType&highlight=1)]
 
-### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
+### <a name="fluent-api"></a>[Akıcı API](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/IgnoreType.cs?name=IgnoreType&highlight=3)]
 
@@ -48,11 +48,11 @@ Kural gereği, her varlık türü, varlığı sunan DbSet özelliğiyle aynı ad
 
 Tablo adını el ile yapılandırabilirsiniz:
 
-### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
+### <a name="data-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/TableName.cs?Name=TableName&highlight=1)]
 
-### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
+### <a name="fluent-api"></a>[Akıcı API](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/TableName.cs?Name=TableName&highlight=3-4)]
 
@@ -64,11 +64,11 @@ Tablo adını el ile yapılandırabilirsiniz:
 
 Belirli bir şemada oluşturulacak tabloları aşağıdaki gibi yapılandırabilirsiniz:
 
-### <a name="data-annotationstabdata-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
+### <a name="data-annotations"></a>[Veri Açıklamaları](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/TableNameAndSchema.cs?name=TableNameAndSchema&highlight=1)]
 
-### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
+### <a name="fluent-api"></a>[Akıcı API](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/TableNameAndSchema.cs?name=TableNameAndSchema&highlight=3-4)]
 

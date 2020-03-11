@@ -6,11 +6,11 @@ ms.author: ansvyryd
 ms.date: 10/27/2016
 uid: core/modeling/inheritance
 ms.openlocfilehash: 507854e3acc0347adee612e516b3e2e0b10f55cf
-ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/27/2019
-ms.locfileid: "75502180"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417297"
 ---
 # <a name="inheritance"></a>Devralma
 
@@ -31,7 +31,7 @@ Devralma hiyerarşisindeki her bir tür için bir DbSet sunarak modele türler e
 
 Bu model aşağıdaki veritabanı şemasına eşlendi (her satırda hangi *Blog* türünün depolandığını belirleyen örtük olarak oluşturulmuş *ayrıştırıcı* sütununu aklınızda bulunur):
 
-![görüntü](_static/inheritance-tph-data.png)
+![image](_static/inheritance-tph-data.png)
 
 >[!NOTE]
 > Veritabanı sütunları, TPH eşlemesi kullanılırken gerektiğinde otomatik olarak null yapılabilir hale getirilir. Örneğin, normal *Blog* örnekleri bu özelliğe sahip olmadığından *rssurl* sütunu null yapılabilir.

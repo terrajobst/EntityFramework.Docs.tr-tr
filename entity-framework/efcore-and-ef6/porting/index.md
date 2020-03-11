@@ -5,11 +5,11 @@ ms.date: 10/27/2016
 ms.assetid: 826b58bd-77b0-4bbc-bfcd-24d1ed3a8f38
 uid: efcore-and-ef6/porting/index
 ms.openlocfilehash: 77096b9bffba6b8c2a3d7bfb0c2e41e2d170a7db
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182085"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416952"
 ---
 # <a name="porting-from-ef6-to-ef-core"></a>EF6’dan EF Core’a taşıma
 
@@ -19,7 +19,7 @@ EF6 ' dan EF Core bir yükseltme yerine bir bağlantı noktası olarak ilerletir
 > [!IMPORTANT]
 > Taşıma işlemine başlamadan önce, EF Core uygulamanızın veri erişim gereksinimlerini karşıladığını doğrulamak önemlidir.
 
-## <a name="missing-features"></a>Eksik Özellikler
+## <a name="missing-features"></a>Bazı özellikler yok
 
 EF Core uygulamanızda kullanmak için gereken tüm özelliklere sahip olduğundan emin olun. EF Core özellik kümesinin EF6 ile nasıl Karşılaştırıldığı hakkında ayrıntılı bir karşılaştırma için bkz. [Özellik Karşılaştırması](xref:efcore-and-ef6/index) . Gerekli özelliklerden herhangi biri eksikse, EF Core 'e geçmeden önce bu özelliklerin eksik olup olmadığını dengelemediğinizden emin olun.
 

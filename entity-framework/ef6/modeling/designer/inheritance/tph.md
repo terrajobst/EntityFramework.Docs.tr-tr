@@ -1,111 +1,111 @@
 ---
-title: Tasarımcı TPH devralma - EF6
+title: Tasarımcı TPH devralma-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 72d26a8e-20ab-4500-bd13-394a08e73394
 ms.openlocfilehash: 43ba34a98c3960a7a3052a00e2ed2751c2f2b121
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490135"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418429"
 ---
 # <a name="designer-tph-inheritance"></a>Tasarımcı TPH devralma
-Bu adım adım kılavuzda, Entity Framework Designer (EF Designer) ile kavramsal modeldeki tablo başına hiyerarşi (TPH) devralma uygulamak gösterilmektedir. TPH devralma, varlık türleri bir devralma hiyerarşisindeki tüm verileri korumak için bir veritabanı tablosu kullanır.
+Bu adım adım izlenecek yol, Entity Framework Designer (EF Designer) ile kavramsal modelinizde hiyerarşi başına tablo (TPH) devralmanın nasıl uygulanacağını gösterir. TPH devralma bir devralma hiyerarşisindeki tüm varlık türlerinin verilerini korumak için bir veritabanı tablosu kullanır.
 
-Bu izlenecek yolda biz kişi tablo üç varlık türü için eşler: kişi (temel türü), (türetilen kişiden) Öğrenci ve Eğitmen (türetilen kişiden). Biz kavramsal model veritabanı (veritabanı ilk) oluşturacak ve ardından EF Designer kullanarak TPH devralma uygulamak için modeli alter.
+Bu kılavuzda kişi tablosunu üç varlık türü ile eşliyoruz: kişi (temel tür), öğrenci (kişiden türetiliyor) ve eğitmen (kişiden türetilir). Veritabanından bir kavramsal model oluşturacağız (Database First) ve ardından modeli, EF tasarımcısını kullanarak TPH devralmayı uygulayacak şekilde değiştirin.
 
-İlk modeli kullanarak bir TPH devralma eşlemek mümkündür, ancak karmaşık olan kendi veritabanı oluşturma iş akışı yazma etmesi gerekir. Bu iş akışını ardından atadığınız **veritabanı oluşturma iş akışı** EF Designer özelliği. Daha kolay bir alternatif, Code First kullanmaktır.
+Model First kullanarak bir TPH devrtabanına eşleme yapılabilir, ancak karmaşık olan kendi veritabanı oluşturma iş akışınızı yazmanız gerekir. Daha sonra bu iş akışını EF tasarımcısında **veritabanı oluşturma Iş akışı** özelliğine atamalısınız. Code First kullanmak daha kolay bir alternatiftir.
 
 ## <a name="other-inheritance-options"></a>Diğer devralma seçenekleri
 
-Tablo başına tür (TPT), veritabanı ayrı tablolarda Devralmada rol oynayan varlıkları eşlenen devralma başka bir türdür.  Tablo başına tür devralma EF Designer ile eşlemek hakkında daha fazla bilgi için bkz: [EF Designer TPT devralma](~/ef6/modeling/designer/inheritance/tpt.md).
+Tablo/tür (TPT), veritabanındaki ayrı tabloların devralmaya katılan varlıklara eşlendiği başka bir devralma türüdür.  EF Designer ile tablo türü devralmayı eşleme hakkında daha fazla bilgi için, bkz. [EF Designer TPT devralma](~/ef6/modeling/designer/inheritance/tpt.md).
 
-Tablo başına somut tür devralma (TPC) ve karma devralma modelleri Entity Framework çalışma zamanı tarafından desteklenir ancak EF tasarımcı tarafından desteklenmiyor. TPC veya karma devralma kullanmak istiyorsanız, iki seçeneğiniz vardır: Code First kullanın veya el ile EDMX dosyasını düzenleyin. EDMX ile çalışmayı tercih ederseniz eşleme Ayrıntıları penceresi "Güvenli Mod'da" yerleştirilir ve eşlemelerini değiştirmek için tasarımcı kullanmanız mümkün olmayacaktır.
+Tablo başına somut tür devralma (TPC) ve karışık devralma modelleri Entity Framework çalışma zamanı tarafından desteklenir, ancak EF Designer tarafından desteklenmez. TPC veya karışık devralma kullanmak istiyorsanız iki seçeneğiniz vardır: Code First kullanın veya EDMX dosyasını el ile düzenleyin. EDMX dosyası ile çalışmayı seçerseniz, eşleme ayrıntıları penceresi "güvenli mod" a yerleştirilir ve bu eşlemeleri değiştirmek için tasarımcıyı kullanamazsınız.
 
 ## <a name="prerequisites"></a>Önkoşullar
 
 Bu kılavuzu tamamlamak için şunlara ihtiyacınız olacak:
 
-- Visual Studio'nun en son sürümü.
-- [School örnek veritabanını](~/ef6/resources/school-database.md).
+- Visual Studio 'nun son sürümü.
+- [Okul örnek veritabanı](~/ef6/resources/school-database.md).
 
-## <a name="set-up-the-project"></a>Projesi kurun
+## <a name="set-up-the-project"></a>Projeyi ayarlama
 
 -   Visual Studio 2012'yi açın.
--   Seçin **File -&gt; yeni -&gt; proje**
--   Sol bölmede **Visual C\#** ve ardından **konsol** şablonu.
--   Girin **TPHDBFirstSample** adı.
--   Seçin **Tamam**.
+-   **Dosya&gt; yeni&gt; proje** ' yi seçin
+-   Sol bölmede, **Visual C\#** ' ye tıklayın ve ardından **konsol** şablonunu seçin.
+-   Ad olarak **Tphdbfirstsample** girin.
+-    **Tamam ' ı**seçin.
 
 ## <a name="create-a-model"></a>Model oluşturma
 
--   Çözüm Gezgini'nde proje adına sağ tıklayın ve seçin **Ekle -&gt; yeni öğe**.
--   Seçin **veri** seçin ve soldaki menüden **ADO.NET varlık veri modeli** Şablonlar bölmesinde.
--   Girin **TPHModel.edmx** dosya adı ve ardından **Ekle**.
--   Choose Model Contents iletişim kutusunda **veritabanından Oluştur**ve ardından **sonraki**.
--   Tıklayın **yeni bağlantı**.
-    Bağlantı Özellikleri iletişim kutusuna sunucu adını girin (örneğin, **(localdb)\\ifadesini mssqllocaldb**) seçin kimlik doğrulama yöntemi, tür **Okul** veritabanı adı ve ardından tıklayın **Tamam**.
-    Veri bağlantınızı seçin iletişim kutusunda, veritabanı bağlantı ayarı ile güncelleştirilir.
--   Veritabanı nesnelerinizi seçin iletişim kutusunda, tablolar düğümünü seçin **kişi** tablo.
--   **Son**'a tıklayın.
+-   Çözüm Gezgini ' de proje adına sağ tıklayın ve **Ekle-&gt; yeni öğe**' yi seçin.
+-   Sol menüden **verileri** seçin ve ardından şablonlar bölmesinde **ADO.net varlık veri modeli** öğesini seçin.
+-   Dosya adı için **Tphmodel. edmx** girin ve ardından **Ekle**' ye tıklayın.
+-   Model Içeriğini seçin iletişim kutusunda, **veritabanından oluştur**' u seçin ve ardından **İleri**' ye tıklayın.
+-    **Yeni bağlantı**' ya tıklayın.
+    Bağlantı özellikleri iletişim kutusunda sunucu adını (örneğin, **(LocalDB)\\mssqllocaldb**) girin, kimlik doğrulama yöntemini seçin, veritabanı adı için **okul** yazın ve ardından **Tamam**' a tıklayın.
+    Veri bağlantınızı seçin iletişim kutusu, veritabanı bağlantı ayarınız ile güncelleştirilir.
+-   Veritabanı nesnelerinizi seçin iletişim kutusundaki tablolar düğümünün altında **kişi** tablosunu seçin.
+-    **Son**' a tıklayın.
 
-Modelinizi düzenleme için bir tasarım yüzeyi sağlar, varlık Tasarımcısı görüntülenir. Veritabanı nesnelerinizi seçin iletişim kutusunda seçilen tüm nesneler, modele eklenir.
+Modelinizi düzenlemekte bir tasarım yüzeyi sağlayan Entity Desisgner görüntülenir. Veritabanı nesnelerinizi seçin iletişim kutusunda seçtiğiniz tüm nesneler modele eklenir.
 
-Diğer bir deyişle nasıl **kişi** veritabanında tablo görünür.
+Bu, **kişi** tablosunun veritabanında nasıl göründüğünü bu şekilde yapar.
 
-![Kişi tablosu](~/ef6/media/persontable.png) 
+![Kişi tablosu](~/ef6/media/persontable.png) 
 
-## <a name="implement-table-per-hierarchy-inheritance"></a>Tablo başına hiyerarşi devralma uygulama
+## <a name="implement-table-per-hierarchy-inheritance"></a>Tablo-hiyerarşi devralmayı Uygula
 
-**Kişi** tablolu **ayrıştırıcı** sütunu iki değerden birine sahip olabilir: "Öğrenci" ve "Eğitmen". Değerine bağlı olarak **kişi** tablo için eşleştirilir **Öğrenci** varlık veya **Eğitmen** varlık. **Kişi** tablo de iki sütun vardır **İşeAlmaTarihi** ve **EnrollmentDate**, olması gereken **boş değer atanabilir** bir kişi olamayacağı için bir Öğrenci ve aynı zamanda bir eğitmen (en az değil, bu izlenecek yol).
+ **Kişi** tablosu, iki değerden birine sahip olabilen **ayrıştırıcı** sütununa sahiptir: "öğrenci" ve "eğitmen". **Kişi** tablosunun, **öğrenci** varlığına veya **eğitmen** varlığına eşlendiği değere bağlı olarak. Kişi **tablosunda Ayrıca** , bir kişi aynı anda bir öğrenci ve bir eğitmen (Bu kılavuzda değil) olabileceğinden **null değer atanabilir** olması gereken Iki sütun vardır: **HireDate**  ** ve kayıttarihi.**
 
 ### <a name="add-new-entities"></a>Yeni varlık Ekle
 
--   Yeni varlık ekleyin.
-    Bunu yapmak için Entity Framework Designer'ın tasarım yüzeyinde boş bir alanı sağ tıklatın ve seçin **Add -&gt;varlık**.
--   Tür **Eğitmen** için **varlık adı** seçip **kişi** için aşağı açılan listeden **temel türü**.
--   **Tamam**'ı tıklatın.
--   Başka bir yeni varlık ekleyin. Tür **Öğrenci** için **varlık adı** seçip **kişi** için aşağı açılan listeden **temel türü**.
+-   Yeni bir varlık ekleyin.
+    Bunu yapmak için Entity Framework Designer Tasarım yüzeyindeki boş bir alana sağ tıklayın ve **Ekle-&gt;varlık**' ı seçin.
+-    **Varlık adı** için **eğitmen** yazın ve **temel tür**için açılan listeden **kişi** ' yı seçin.
+-    **Tamam**' a tıklayın.
+-   Başka bir yeni varlık ekleyin.  **Varlık adı** için **öğrenci** yazın ve **temel tür**için açılan listeden **kişi** ' yı seçin.
 
-İki yeni varlık türleri tasarım yüzeyine eklendi. Bir ok işaret yeni varlık türlerinden **kişi** varlık türü; gösterir **kişi** yeni varlık türleri için temel türdür.
+Tasarım yüzeyine iki yeni varlık türü eklenmiştir. Bir ok, yeni varlık türlerinden **kişiye** varlık türüne göre işaret eder; Bu, **kişinin** yeni varlık türleri için temel tür olduğunu gösterir.
 
--   Sağ **İşeAlmaTarihi** özelliği **kişi** varlık. Seçin **Kes** (veya Ctrl-X anahtarını kullanın).
--   Sağ **Eğitmen** varlık ve select **Yapıştır** (veya Ctrl-V anahtarı kullanın).
--   Sağ **İşeAlmaTarihi** özelliğini tıklatın ve **özellikleri**.
--   İçinde **özellikleri** penceresinde **Nullable** özelliğini **false**.
--   Sağ **EnrollmentDate** özelliği **kişi** varlık. Seçin **Kes** (veya Ctrl-X anahtarını kullanın).
--   Sağ **Öğrenci** varlık ve select **yapıştırın (veya anahtar kullan Ctrl-V).**
--   Seçin **EnrollmentDate** özelliği ve kümesi **Nullable** özelliğini **false**.
--   Seçin **kişi** varlık türü. İçinde **özellikleri** penceresinde kendi **soyut** özelliğini **true**.
--   Silme **ayrıştırıcı** özelliğinden **kişi**. Silinmesi nedeni aşağıdaki bölümde açıklanmıştır.
+-    **Kişi** varlığının **hiredate** özelliğine sağ tıklayın.  **Kes** ' i seçin (veya CTRL + X tuşunu kullanın).
+-    **Eğitmen** varlığına sağ tıklayıp **Yapıştır** ' ı seçin (veya CTRL-V anahtarını kullanın).
+-    **HireDate** özelliğine sağ tıklayın ve **Özellikler**' i seçin.
+-    **Özellikler** penceresinde, **Nullable** özelliğini **false**olarak ayarlayın.
+-    **Kişi** varlığının **kayıttarihi** özelliğine sağ tıklayın.  **Kes** ' i seçin (veya CTRL + X tuşunu kullanın).
+-    **Öğrenci** varlığına sağ tıklayıp Yapıştır ' ı seçin **(veya CTRL-V anahtarını kullanın).**
+-   Kayıttarihi ****  özelliğini seçin ve **Nullable** özelliğini **false**olarak ayarlayın.
+-   Varlık türü  **kişiyi** seçin.  **Özellikler** penceresinde, **soyut** özelliğini **doğru**olarak ayarlayın.
+-   **Kişiden** **ayrıştırıcı** özelliğini silin. Silinmesi gereken neden aşağıdaki bölümde açıklanmıştır.
 
-### <a name="map-the-entities"></a>Varlıkları Eşle
+### <a name="map-the-entities"></a>Varlıkları eşleme
 
--   Sağ **Eğitmen** seçip **Tablo eşleme.**
-    Eşleme Ayrıntıları penceresinde Eğitmen varlığı seçilidir.
--   Tıklayın **&lt;bir tablo veya Görünüm Ekle&gt;** içinde **eşleşme ayrıntıları** penceresi.
-    **&lt;Bir tablo veya Görünüm Ekle&gt;** alan görünümler seçilen varlığın hangi eşlenebilir için veya tablo açılır listesini olur.
--   Seçin **kişi** aşağı açılan listeden.
--   **Eşleşme ayrıntıları** penceresi varsayılan sütun eşlemelerini ve isteğe bağlı bir koşul eklemek için güncelleştirilmiştir.
--   Tıklayarak  **&lt;koşul Ekle&gt;**.
-    **&lt;Koşul Ekle&gt;** alan koşulları ayarlanabilir sütun açılan listesini duruma gelir.
--   Seçin **ayrıştırıcı** aşağı açılan listeden.
--   İçinde **işleci** sütununun **eşleşme ayrıntıları** penceresinde açılan listeden =.
--   İçinde **değeri/özellik** sütununa, **Eğitmen**. Nihai sonucu şu şekilde görünmelidir:
+-    **Eğitmeni** sağ tıklatın ve **Tablo eşleme** ' yi seçin.
+    Eğitmen varlığı, eşleme ayrıntıları penceresinde seçilir.
+-    **Eşleme ayrıntıları** penceresinde ** tablo eklemek&lt;veya &gt;görüntüleyin** ' e tıklayın.
+     **&lt;tablo veya görünüm&gt;**  alanı seçili varlığın eşleştiribileceği tablo veya görünümlerin açılan bir listesi haline gelir.
+-   Açılan listeden **kişi** seçin.
+-    **Eşleme ayrıntıları** penceresi, varsayılan sütun eşlemeleriyle ve koşul ekleme seçeneği ile güncelleştirilir.
+-    **Koşul eklemek&lt;** ' ye tıklayın&gt;.
+     **&lt;koşul ekleme&gt;**  alan, koşulların ayarlanbileceği bir aşağı açılan sütun listesi haline gelir.
+-   Aşağı açılan listeden **ayrıştırıcı** seçin.
+-    **Eşleme ayrıntıları** penceresinin **işleç** sütununda, açılan listeden = seçeneğini belirleyin.
+-    **Değer/özellik** sütununda, **eğitmen**yazın. Nihai sonuç şöyle görünmelidir:
 
     ![Eşleme ayrıntıları](~/ef6/media/mappingdetails2.png)
 
--   Bu adımı yineleyin **Öğrenci** varlık türü, ancak yapma eşittir koşulu **Öğrenci** değeri.  
-    *İstedik kaldırmak için neden **ayrıştırıcı** özelliğidir, çünkü bir tablo sütunu birden çok kez eşlenemez. Bu nedenle de özellik eşlemesi kullanılamaz bu sütun koşullu eşlemek için kullanılacaktır. Bu kullanılabilir her ikisi için de bir koşul kullanıyorsa tek yolu bir **Is Null** veya **Is Not Null** karşılaştırma.*
+-    **Öğrenci** varlık türü için bu adımları yineleyin, ancak koşulu **öğrenci** değerine eşit yapın.  
+    ***Ayrıştırıcı** özelliğini kaldırmak istediğimiz neden, bir tablo sütununu birden çok kez eşleyemezsiniz. Bu sütun koşullu eşleme için kullanılacaktır, bu nedenle de Özellik eşleme için kullanılamaz. Her ikisi için de kullanılabilecek tek yol, bir koşul **null** kullanıyorsa veya null karşılaştırma **değildir** .*
 
-Tablo başına hiyerarşi devralma artık uygulanır.
+Hiyerarşi başına tablo devralma işlemi şimdi uygulandı.
 
 ![Son TPH](~/ef6/media/finaltph.png)
 
-## <a name="use-the-model"></a>Kullanım modeli
+## <a name="use-the-model"></a>Modeli kullanma
 
-Açık **Program.cs** dosya nerede **ana** yöntemi tanımlanır. Aşağıdaki kodu yapıştırın **ana** işlevi. Kod üç sorguları yürütür. İlk sorgu geri getirir tüm **kişi** nesneleri. İkinci sorgu kullanan **OfType** döndürülecek yöntemi **Eğitmen** nesneleri. Üçüncü sorgunun kullanan **OfType** döndürülecek yöntemi **Öğrenci** nesneleri.
+**Main** yönteminin tanımlandığı **program.cs** dosyasını açın. Aşağıdaki kodu **Main** işlevine yapıştırın. Kod üç sorguyu yürütür. İlk sorgu tüm **kişi** nesnelerini geri getirir. İkinci sorgu, **eğitmen** nesnelerini döndürmek için **OfType** metodunu kullanır. Üçüncü sorgu, **öğrenci** nesnelerini döndürmek için **OfType** metodunu kullanır.
 
 ``` csharp
     using (var context = new SchoolEntities())

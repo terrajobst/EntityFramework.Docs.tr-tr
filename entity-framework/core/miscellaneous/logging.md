@@ -4,17 +4,17 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: f6e35c6d-45b7-4258-be1d-87c1bb67438d
 uid: core/miscellaneous/logging
-ms.openlocfilehash: 1a3863ee5f508c1fd393d4ec2c25c46ab8634f00
-ms.sourcegitcommit: 32c51c22988c6f83ed4f8e50a1d01be3f4114e81
+ms.openlocfilehash: e8adc39ec01ff75112b03446a488df6199cc7041
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/27/2019
-ms.locfileid: "75502103"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416584"
 ---
-# <a name="logging"></a>Günlüğe Kaydetme
+# <a name="logging"></a>Günlüğe kaydetme
 
 > [!TIP]  
-> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Logging) GitHub üzerinde.
+> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Logging) GitHub ' da görebilirsiniz.
 
 ## <a name="aspnet-core-applications"></a>ASP.NET Core uygulamalar
 
@@ -33,11 +33,11 @@ EF Core günlüğü, kendisi bir veya daha fazla günlüğe kaydetme sağlayıc�
 
 Uygun paketleri yükledikten sonra, uygulamanın bir LoggerFactory 'nin tek/genel örneğini oluşturması gerekir. Örneğin, konsol günlükçüsü kullanarak:
 
-### <a name="version-30tabv3"></a>[Sürüm 3,0](#tab/v3)
+### <a name="version-3x"></a>[Sürüm 3. x](#tab/v3)
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/Logging/Logging/BloggingContext.cs#DefineLoggerFactory)]
 
-### <a name="version-2xtabv2"></a>[Sürüm 2. x](#tab/v2)
+### <a name="version-2x"></a>[Sürüm 2. x](#tab/v2)
 
 > [!NOTE]
 > Aşağıdaki kod örneği, sürüm 2,2 ' de kullanımdan kaldırılmış ve 3,0 ' de değiştirilen bir `ConsoleLoggerProvider` oluşturucusunu kullanır. 2,2 kullanılırken uyarıları yoksaymak ve gizlemek güvenlidir.
@@ -49,7 +49,7 @@ public static readonly LoggerFactory MyLoggerFactory
 
 ***
 
-Bu tek/genel örnek daha sonra `DbContextOptionsBuilder`EF Core kaydedilmelidir. Örneğin:
+Bu tek/genel örnek daha sonra `DbContextOptionsBuilder`EF Core kaydedilmelidir. Örnek:
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/Logging/Logging/BloggingContext.cs#RegisterLoggerFactory)]
 
@@ -58,13 +58,13 @@ Bu tek/genel örnek daha sonra `DbContextOptionsBuilder`EF Core kaydedilmelidir.
 
 ## <a name="filtering-what-is-logged"></a>Günlüğe kaydedilen filtreleme
 
-Uygulama, ıloggerprovider üzerinde bir filtre yapılandırarak günlüğe nelerin kaydedildiğini denetleyebilir. Örneğin:
+Uygulama, ıloggerprovider üzerinde bir filtre yapılandırarak günlüğe nelerin kaydedildiğini denetleyebilir. Örnek:
 
-### <a name="version-30tabv3"></a>[Sürüm 3,0](#tab/v3)
+### <a name="version-3x"></a>[Sürüm 3. x](#tab/v3)
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/Logging/Logging/BloggingContextWithFiltering.cs#DefineLoggerFactory)]
 
-### <a name="version-2xtabv2"></a>[Sürüm 2. x](#tab/v2)
+### <a name="version-2x"></a>[Sürüm 2. x](#tab/v2)
 
 > [!NOTE]
 > Aşağıdaki kod örneği, sürüm 2,2 ' de kullanımdan kaldırılmış ve 3,0 ' de değiştirilen bir `ConsoleLoggerProvider` oluşturucusunu kullanır. 2,2 kullanılırken uyarıları yoksaymak ve gizlemek güvenlidir.

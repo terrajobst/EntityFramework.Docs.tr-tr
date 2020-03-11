@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: b21207c9-1d95-4aa3-ae05-bc5fe300dab0
 ms.openlocfilehash: 9bd644461f50a7eff1006cb8866ca9a3b08b6b8d
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181711"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419535"
 ---
 # <a name="self-tracking-entities-walkthrough"></a>Kendi kendine Izlenen varlıkları gözden geçirme
 > [!IMPORTANT]
@@ -29,7 +29,7 @@ Bu izlenecek yol aşağıdaki eylemleri tamamlar:
 
 Bu izlenecek yolda Database First kullanacağız, ancak aynı teknikler Model First için de aynı şekilde uygulanır.
 
-## <a name="pre-requisites"></a>Önkoşulların önkoşulları
+## <a name="pre-requisites"></a>Önkoşullar
 
 Bu izlenecek yolu tamamlamak için, Visual Studio 'nun yeni bir sürümüne ihtiyacınız olacaktır.
 
@@ -42,7 +42,7 @@ Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio s
 
 Şimdi veritabanını oluşturalım.
 
--   Visual Studio 'Yu aç
+-   Visual Studio’yu açın
 -   **&gt; Sunucu Gezgini görüntüle**
 -   Veri bağlantıları ' na sağ tıklayın **&gt; bağlantı ekle...**
 -   Sunucu Gezgini bir veritabanına bağlı değilseniz, veri kaynağı olarak **Microsoft SQL Server** seçmeniz gerekir

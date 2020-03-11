@@ -1,24 +1,24 @@
 ---
-title: İlk kod ekleme, güncelleştirme ve saklı yordamlar - EF6 silme
+title: Code First saklı yordamları ekleme, güncelleştirme ve silme-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 9a7ae7f9-4072-4843-877d-506dd7eef576
 ms.openlocfilehash: bfc56671814aec1965ac054ff901297e5cdbbecb
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489628"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419089"
 ---
-# <a name="code-first-insert-update-and-delete-stored-procedures"></a>İlk kod ekleme, güncelleştirme ve saklı yordamlar silme
+# <a name="code-first-insert-update-and-delete-stored-procedures"></a>Code First saklı yordamları ekleme, güncelleştirme ve silme
 > [!NOTE]
-> **EF6 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb., Entity Framework 6'da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.  
+> **Yalnızca EF6** , bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 6 ' da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.  
 
-Varsayılan olarak, Code First INSERT işlemi, güncelleştirme ve silme komutları doğrudan Tablo erişimini kullanarak tüm varlıklar yapılandıracaksınız. EF6 ', başlatma, Code First modeli modelinizdeki bazı veya tüm varlıklar için saklı yordamları kullanmak için yapılandırabilirsiniz.  
+Code First, varsayılan olarak, tüm varlıkları doğrudan tablo erişimini kullanarak INSERT, Update ve DELETE komutlarını gerçekleştirecek şekilde yapılandırır. EF6 ' den başlayarak, modelinizdeki bazı veya tüm varlıklar için Code First modelinizi saklı yordamlar kullanacak şekilde yapılandırabilirsiniz.  
 
 ## <a name="basic-entity-mapping"></a>Temel varlık eşleme  
 
-INSERT saklı yordamlar kullanmayı seçen, güncelleştirme ve Fluent API'sini kullanarak silin.  
+Akıcı API kullanarak INSERT, Update ve delete için saklı yordamları kullanmayı tercih edebilirsiniz.  
 
 ``` csharp
 modelBuilder
@@ -26,17 +26,17 @@ modelBuilder
   .MapToStoredProcedures();
 ```  
 
-Bunun yapılması beklenen şeklini veritabanında saklı yordamları oluşturmak için bazı kurallar kullanmak Code First neden olur.  
+Bunu yapmak Code First, saklı yordamların veritabanında beklenen şeklini oluşturmak için bazı kuralları kullanmasına neden olur.  
 
-- Üç saklı yordamlar adlı  **\<type_name\>_ekle**,  **\<type_name\>_güncelleştirme** ve  **\<type_ adı\>_sil** (örneğin, Blog_Insert, Blog_Update ve Blog_Delete).  
-- Parametre adları, özellik adlara karşılık gelir.  
+- **\<type_name\>_Insert**, **\<** type_name\>_Update ve **\<** type_name\>_Delete (örneğin, Blog_Insert, Blog_Update ve Blog_Delete) adlı üç saklı yordam.  
+- Parametre adları, özellik adlarına karşılık gelir.  
   > [!NOTE]
-  > Belirli bir özellik için bir sütunu yeniden adlandırmak için HasColumnName() veya sütun özniteliğini kullanırsanız, bu ad özelliği adı yerine parametreleri için kullanılır.  
-- **INSERT saklı yordamı** oluşturulan depolama işaretlenmiş hariç her bir özellik için bir parametre gerekir (kimlik veya hesaplanan). Saklı yordamı bir sonuç deposu oluşturulan her bir özellik için bir sütun kümesi döndürmelidir.  
-- **Update saklı yordamı** bir 'Computed' oluşturulan depolama deseniyle işaretlenenler dışında her bir özellik için bir parametreye sahip. Bazı eşzamanlılık belirteçleri ilk değeri bir parametre gerekli, bkz: *eşzamanlılık belirteçleri* ayrıntılarını bölümü altında. Saklı yordam her hesaplanan bir özellik için bir sütun kümesi bir sonuç döndürmesi gerekir.  
-- **Delete saklı yordamı** varlık (veya varlık bir bileşik anahtarı varsa, birden çok parametre) anahtar değeri için bir parametre olmalıdır. Ayrıca, delete yordamı hedef tablodaki (varlık içinde bildirilen, karşılık gelen, yabancı anahtar özelliklerini olmayan ilişkiler) da bağımsız ilişkilendirme yabancı anahtarları için parametreleri olmalıdır. Bazı eşzamanlılık belirteçleri ilk değeri bir parametre gerekli, bkz: *eşzamanlılık belirteçleri* ayrıntılarını bölümü altında.  
+  > Verilen bir özelliğin sütununu yeniden adlandırmak için Hasccolumnname () veya Column özniteliğini kullanırsanız, bu ad, özellik adı yerine parametreler için kullanılır.  
+- **Ekle saklı yordamı** her özellik için bir parametreye sahip olur, örneğin, oluşturulan depo olarak işaretlenmiş (kimlik veya hesaplanan). Saklı yordam, her mağaza tarafından oluşturulan özellik için bir sütun içeren bir sonuç kümesi döndürmelidir.  
+- **Güncelleştirme saklı yordamı** , bir depo tarafından oluşturulan ' hesaplanan ' bir örüntüle işaretlenenler hariç her özellik için bir parametreye sahip olacaktır. Bazı eşzamanlılık belirteçleri özgün değer için bir parametre gerektirir, Ayrıntılar için aşağıdaki *eşzamanlılık belirteçleri* bölümüne bakın. Saklı yordam, hesaplanan her özellik için bir sütun içeren bir sonuç kümesi döndürmelidir.  
+- **Delete saklı yordamı** , varlığın anahtar değeri için bir parametreye sahip olmalıdır (veya varlık bir bileşik anahtar içeriyorsa birden fazla parametre). Ayrıca, silme yordamının aynı zamanda hedef tablodaki bağımsız Association yabancı anahtarları için parametreler olması gerekir (varlık içinde bildirildiği karşılık gelen yabancı anahtar özelliklerine sahip olmayan ilişkiler). Bazı eşzamanlılık belirteçleri özgün değer için bir parametre gerektirir, Ayrıntılar için aşağıdaki *eşzamanlılık belirteçleri* bölümüne bakın.  
 
-Aşağıdaki sınıftan bir örnek olarak kullanma:  
+Örnek olarak aşağıdaki sınıfı kullanma:  
 
 ``` csharp
 public class Blog  
@@ -47,7 +47,7 @@ public class Blog
 }
 ```  
 
-Varsayılan saklı yordamlar şu şekilde olur:  
+Varsayılan saklı yordamlar şöyle olacaktır:  
 
 ``` SQL
 CREATE PROCEDURE [dbo].[Blog_Insert]  
@@ -77,9 +77,9 @@ AS
 
 ### <a name="overriding-the-defaults"></a>Varsayılanları geçersiz kılma  
 
-Kısmını veya tamamını varsayılan olarak yapılandırılmış geçersiz kılabilirsiniz.  
+Varsayılan olarak yapılandırılmış olan bölümü veya tümünü geçersiz kılabilirsiniz.  
 
-Bir veya daha fazla saklı yordamlar adını değiştirebilirsiniz. Bu örnekte, yalnızca update kayıtlı yordamı yeniden adlandırır.  
+Bir veya daha fazla saklı yordamın adını değiştirebilirsiniz. Bu örnek yalnızca Update saklı yordamını yeniden adlandırır.  
 
 ``` csharp
 modelBuilder  
@@ -88,7 +88,7 @@ modelBuilder
     s.Update(u => u.HasName("modify_blog")));
 ```  
 
-Bu örnekte, tüm üç saklı yordamlar yeniden adlandırır.  
+Bu örnek, üç saklı yordamın hepsini yeniden adlandırır.  
 
 ``` csharp
 modelBuilder  
@@ -99,7 +99,7 @@ modelBuilder
      .Insert(i => i.HasName("insert_blog")));
 ```  
 
-Bu örneklerde çağrıları birlikte Zincirli olan, ancak lambda blok söz dizimi de kullanabilirsiniz.  
+Bu örneklerde çağrılar birlikte zincirleme, ancak lambda blok sözdizimini de kullanabilirsiniz.  
 
 ``` csharp
 modelBuilder  
@@ -112,7 +112,7 @@ modelBuilder
     });
 ```  
 
-Bu örnekte parametre update kayıtlı yordamı BlogId özelliği için yeniden adlandırır.  
+Bu örnek, Update saklı yordamındaki blogID özelliğinin parametresini yeniden adlandırır.  
 
 ``` csharp
 modelBuilder  
@@ -121,7 +121,7 @@ modelBuilder
     s.Update(u => u.Parameter(b => b.BlogId, "blog_id")));
 ```  
 
-Bu, tüm chainable ve birleştirilebilir çağrılarıdır. Üç tüm saklı yordamları ve parametreleri yeniden adlandırır bir örnek aşağıda verilmiştir.  
+Bu çağrılar, tüm chainable ve birleştirilebilir. Aşağıda, üç saklı yordamın ve bunların parametrelerinin yeniden adlandırdıkları bir örnek verilmiştir.  
 
 ``` csharp
 modelBuilder  
@@ -138,7 +138,7 @@ modelBuilder
                    .Parameter(b => b.Url, "blog_url")));
 ```  
 
-Oluşturulan veritabanı değerlerini içeren bir sonuç kümesi sütun adını da değiştirebilirsiniz.  
+Sonuç kümesinde, veritabanı tarafından oluşturulan değerleri içeren sütunların adını da değiştirebilirsiniz.  
 
 ``` csharp
 modelBuilder
@@ -160,11 +160,11 @@ BEGIN
 END
 ```  
 
-## <a name="relationships-without-a-foreign-key-in-the-class-independent-associations"></a>Olmadan (bağımsız ilişkileri) sınıfında yabancı anahtar ilişkileri  
+## <a name="relationships-without-a-foreign-key-in-the-class-independent-associations"></a>Sınıfta yabancı anahtar olmadan ilişkiler (bağımsız Ilişkilendirmeler)  
 
-Bir yabancı anahtar özelliği, sınıf tanımında dahil edilirse, karşılık gelen parametre tıpkı diğer herhangi bir özelliği olarak adlandırılabilir. Bir yabancı anahtar özellik sınıfında olmadan bir ilişki mevcut olduğunda, varsayılan parametre adı.  **\<navigation_property_name\>_\<primary_key_name\>**.  
+Bir yabancı anahtar özelliği sınıf tanımına dahil edildiğinde, karşılık gelen parametre diğer tüm özellikler ile aynı şekilde yeniden adlandırılabilir. Sınıfında yabancı anahtar özelliği olmadan bir ilişki varsa, varsayılan parametre adı **\<navigation_property_name\>_\<primary_key_name\>** .  
 
-Örneğin, aşağıdaki sınıf tanımları eklemek ve iletileri güncelleştirmek için saklı yordamları beklenen Blog_BlogId parametresinde neden olur.  
+Örneğin, aşağıdaki sınıf tanımları, gönderimler eklemek ve güncelleştirmek için saklı yordamlarda beklenen bir Blog_BlogId parametresi oluşmasına neden olur.  
 
 ``` csharp
 public class Blog  
@@ -188,7 +188,7 @@ public class Post
 
 ### <a name="overriding-the-defaults"></a>Varsayılanları geçersiz kılma  
 
-Birincil anahtar özelliği parametre yönteme yolunu sağlayarak sınıfında yer almayan yabancı anahtarlar parametrelerini değiştirebilirsiniz.  
+Parametre yöntemine birincil anahtar özelliğinin yolunu sağlayarak sınıfına dahil olmayan yabancı anahtarların parametrelerini değiştirebilirsiniz.  
 
 ``` csharp
 modelBuilder
@@ -197,7 +197,7 @@ modelBuilder
     s.Insert(i => i.Parameter(p => p.Blog.BlogId, "blog_id")));
 ```  
 
-Bağımlı varlık (yani bir gezinti özelliği yoksa hiçbir Post.Blog özelliği) ilişkilendirme yöntemi, ilişkinin diğer ucundaki belirleyin ve ardından her anahtar özellik karşılık gelen parametreleri yapılandırmak için kullanabilirsiniz.  
+Bağımlı varlık üzerinde bir gezinti özelliği yoksa (ör. Post. blog özelliği yok) ilişki yöntemini kullanarak ilişkinin diğer sonunu tanımlayabilir ve ardından her anahtar özelliğin (ler) öğesine karşılık gelen parametreleri yapılandırabilirsiniz.  
 
 ``` csharp
 modelBuilder
@@ -208,17 +208,17 @@ modelBuilder
       c => c.Parameter(b => b.BlogId, "blog_id"))));
 ```  
 
-## <a name="concurrency-tokens"></a>Eşzamanlılık belirteçleri  
+## <a name="concurrency-tokens"></a>Eşzamanlılık Belirteçleri  
 
-Update ve delete saklı yordamları eşzamanlılık ile dağıtılacak da gerekebilir:  
+Saklı yordamları güncelleştir ve Sil eşzamanlılık ile de uğraşmak gerekebilir:  
 
-- Varlık eşzamanlılık belirteçleri varsa, saklı yordam isteğe bağlı olarak güncelleştirilen/silinen satır (etkilenen satır) sayısını döndüren bir output parametresi olabilir. Bu tür RowsAffectedParameter yöntemi kullanılarak yapılandırılması gerekir.  
-Varsayılan olarak EF kaç satır etkilendiğini belirlemek için dönüş değeri ExecuteNonQuery kullanır. Satırlardan etkilenen çıkış parametresi ExecuteNonQuery (EF'ın açısından) için yanlış olan dönüş değeri neden olacağından, sproc herhangi bir mantık gerçekleştirmek istiyorsanız, kullanışlı belirtme yürütme sonunda.  
-- Her eşzamanlılık belirteci yok adlı bir parametre olacak  **\<property_name\>_Original** (örneğin, Timestamp_Original). Bu özelliğin – veritabanından sorgulandığında değer özgün değeri geçirilir.  
-    - Zaman damgaları gibi– – veritabanı tarafından hesaplanan eşzamanlılık belirteçleri, yalnızca özgün bir değer parametresi sahip olur.  
-    - Eşzamanlılık belirteçleri ayarlanan olmayan hesaplanan özellikler, güncelleştirme yordamı da yeni bir değer için bir parametre gerekir. Bu yeni değerleri için zaten ele adlandırma kurallarını kullanır. Böyle bir belirteç örneği bir Blog URL bir eşzamanlılık belirteci olarak kullanılmasına, kodunuzu (aksine, yalnızca bir veritabanı tarafından güncelleştirilen zaman damgası belirteç) tarafından yeni bir değer bu güncelleştirilebilir olduğundan yeni bir değer gereklidir.  
+- Varlık eşzamanlılık belirteçleri içeriyorsa, saklı yordam isteğe bağlı olarak, güncellenen/silinen satır sayısını döndüren bir çıkış parametresine sahip olabilir (etkilenen satırlar). Bu tür bir parametre RowsAffectedParameter yöntemi kullanılarak yapılandırılmalıdır.  
+Varsayılan olarak, bir kaç satır etkilendiğini öğrenmek için ExecuteNonQuery 'den dönüş değeri kullanır. Sproc üzerinde bir mantık gerçekleştirdiğinizde, bir satır için etkilenen çıktı parametresi, yürütme sonunda ExecuteNonQuery 'nin dönüş değeri yanlış (EF perspektifinden) ile sonuçlanacaktır.  
+- Her eşzamanlılık belirteci için, **\<property_name\>_original** adlı bir parametre (örneğin, Timestamp_Original) olacaktır. Bu, bu özelliğin orijinal değerine geçirilir: veritabanından sorgulandığında değeri.  
+    - Zaman damgaları gibi veritabanı tarafından hesaplanan eşzamanlılık belirteçleri yalnızca bir özgün değer parametresine sahip olur.  
+    - Eşzamanlılık belirteçleri olarak ayarlanan hesaplanamayan özellikler, Update yordamındaki yeni değer için de bir parametreye sahip olur. Bu, yeni değerler için önceden tartıılan adlandırma kurallarını kullanır. Bu tür bir belirtece bir örnek, bir blog belirteci olarak blog URL 'SI kullanıyor olabilir. Bu, kodunuzun (yalnızca veritabanı tarafından güncelleştirilmiş bir zaman damgası belirtecinin aksine) yeni bir değere güncelleştirilemediğinden yeni değer gereklidir.  
 
-Bir örnek sınıf ve saklı yordam zaman damgası eşzamanlı bir simge ile güncelleştirin.  
+Bu örnek bir sınıftır ve saklı yordamı bir zaman damgası eşzamanlılık belirteci ile güncelleştirir.  
 
 ``` csharp
 public class Blog  
@@ -243,7 +243,7 @@ AS
   WHERE BlogId = @BlogId AND [Timestamp] = @Timestamp_Original
 ```  
 
-İşte bir örnek sınıf ve saklı yordam hesaplanmayan eşzamanlılık belirteci ile güncelleştirin.  
+Aşağıda örnek bir sınıf yer verilmiştir ve saklı yordam hesaplanmayan eşzamanlılık belirteci ile güncelleştirilsin.  
 
 ``` csharp
 public class Blog  
@@ -269,7 +269,7 @@ AS
 
 ### <a name="overriding-the-defaults"></a>Varsayılanları geçersiz kılma  
 
-Satırlardan etkilenen parametresi isteğe bağlı olarak çıkarabilir.  
+İsteğe bağlı olarak etkilenen bir satır parametresi sağlayabilirsiniz.  
 
 ``` csharp
 modelBuilder  
@@ -278,7 +278,7 @@ modelBuilder
     s.Update(u => u.RowsAffectedParameter("rows_affected")));
 ```  
 
-Hesaplanan Veritabanı eşzamanlılık belirteçleri için – yalnızca özgün değer geçirildiği – yalnızca mekanizması yeniden adlandırma standart parametresi parametresi özgün değeri için yeniden adlandırmak için de kullanabilirsiniz.  
+Veritabanı tarafından hesaplanan eşzamanlılık belirteçleri – yalnızca özgün değerin geçirildiği yerlerde, özgün değerin parametresini yeniden adlandırmak için yalnızca standart parametre yeniden adlandırma mekanizmasını kullanabilirsiniz.  
 
 ``` csharp
 modelBuilder  
@@ -287,7 +287,7 @@ modelBuilder
     s.Update(u => u.Parameter(b => b.Timestamp, "blog_timestamp")));
 ```  
 
-– Nerede hem özgün hem yeni değeri geçirilir – hesaplanmayan eşzamanlılık belirteçleri için bir aşırı yüklemesini her parametre için bir ad sağlayın olanak tanıyan parametresini kullanabilirsiniz.  
+Hem özgün hem de yeni değerin geçirildiği, hesaplanmayan eşzamanlılık belirteçleri için – her bir parametre için bir ad vermenizi sağlayan bir parametresinin aşırı yüklemesini kullanabilirsiniz.  
 
 ``` csharp
 modelBuilder
@@ -297,7 +297,7 @@ modelBuilder
 
 ## <a name="many-to-many-relationships"></a>Çoktan Çoğa İlişkiler  
 
-Bu bölümde örnek olarak aşağıdaki sınıflar kullanacağız.  
+Bu bölümde bir örnek olarak aşağıdaki sınıfları kullanacağız.  
 
 ``` csharp
 public class Post  
@@ -318,7 +318,7 @@ public class Tag
 }
 ```  
 
-Çok-çok ilişkileri saklı yordamlar aşağıdaki söz dizimi ile eşlenebilir.  
+Birçok çoğa ilişki, aşağıdaki sözdizimi ile saklı yordamlara eşlenebilir.  
 
 ``` csharp
 modelBuilder  
@@ -328,12 +328,12 @@ modelBuilder
   .MapToStoredProcedures();
 ```  
 
-Sonra başka bir yapılandırma belirtilirse aşağıdaki saklı yordamı şekil varsayılan olarak kullanılır.  
+Başka bir yapılandırma sağlanmıyorsa, varsayılan olarak aşağıdaki saklı yordam şekli kullanılır.  
 
-- İki saklı yordamlar adlı  **\<type_one\>\<type_two\>_ekle** ve  **\<type_one\>\<type_two \>_Sil** (örneğin, PostTag_Insert ve PostTag_Delete).  
-- Parametreleri her türü için anahtar değerleri olacaktır. Her parametre olma adı **\<type_name\>_\<property_name\>** (örneğin, Post_PostId ve Tag_TagId).
+- **\<type_one\>\<type_two\>_Insert** ve\<type_one\> **\<type_two**\>_Delete adlı iki saklı yordam (örneğin, PostTag_Insert ve PostTag_Delete).  
+- Parametreler, her tür için anahtar değer (ler) i olacaktır. **\<type_name\>_\<property_name\>** olan her parametrenin adı (örneğin, Post_PostId ve Tag_TagId).
 
-Örnek İşte ekleme ve saklı yordamları güncelleştirme.  
+Aşağıda, saklı yordamlar ekleme ve güncelleştirme örnekleri verilmiştir.  
 
 ``` SQL
 CREATE PROCEDURE [dbo].[PostTag_Insert]  
@@ -352,7 +352,7 @@ AS
 
 ### <a name="overriding-the-defaults"></a>Varsayılanları geçersiz kılma  
 
-Yordam ve parametre adları, varlık saklı yordamlar için benzer bir şekilde yapılandırılabilir.  
+Yordam ve parametre adları, varlık saklı yordamlarına benzer bir şekilde yapılandırılabilir.  
 
 ``` csharp
 modelBuilder  

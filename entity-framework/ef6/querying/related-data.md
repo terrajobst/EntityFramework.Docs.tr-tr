@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: c8417e18-a2ee-499c-9ce9-2a48cc5b468a
 ms.openlocfilehash: c359d8d32a88049213fd5e98e99fe49d7e3121a3
-ms.sourcegitcommit: d01fc19aa42ca34c3bebccbc96ee26d06fcecaa2
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/16/2019
-ms.locfileid: "71005486"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417090"
 ---
 # <a name="loading-related-entities"></a>Ilgili varlıkları yükleme
 
@@ -124,7 +124,7 @@ Gönderi koleksiyonu yüklemesi yine de Eager yüklemesi (bkz. yukarıya *yükle
 
 ### <a name="turn-off-lazy-loading-for-all-entities"></a>Tüm varlıklar için yavaş yüklemeyi kapat
 
-Yapılandırma özelliğinde bir bayrak ayarlanarak, bağlam içindeki tüm varlıklar için yavaş yükleme kapatılabilir. Örneğin:
+Yapılandırma özelliğinde bir bayrak ayarlanarak, bağlam içindeki tüm varlıklar için yavaş yükleme kapatılabilir. Örnek:
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -140,7 +140,7 @@ public class BloggingContext : DbContext
 
 ## <a name="explicitly-loading"></a>Açıkça yükleme
 
-Yavaş yükleme devre dışı bırakılmış olsa bile, ilgili varlıkların geç yüklenmeye devam edebilir, ancak açık bir çağrıyla yapılması gerekir. Bunu yapmak için, ilgili varlığın girişinde Load yöntemini kullanırsınız. Örneğin:
+Yavaş yükleme devre dışı bırakılmış olsa bile, ilgili varlıkların geç yüklenmeye devam edebilir, ancak açık bir çağrıyla yapılması gerekir. Bunu yapmak için, ilgili varlığın girişinde Load yöntemini kullanırsınız. Örnek:
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -169,7 +169,7 @@ using (var context = new BloggingContext())
 
 ### <a name="applying-filters-when-explicitly-loading-related-entities"></a>İlgili varlıkları açıkça yüklerken filtre uygulama
 
-Sorgu yöntemi, ilgili varlıklar yüklenirken Entity Framework kullanacağı temel sorguya erişim sağlar. Daha sonra, ToList, Load, vb. gibi bir LINQ genişletme yöntemine yapılan bir çağrıyla yürütmeden önce sorguya filtre uygulamak için LINQ kullanabilirsiniz. Sorgu yöntemi hem başvuru hem de koleksiyon gezinme özellikleriyle birlikte kullanılabilir, ancak koleksiyonun yalnızca bir bölümünü yüklemek için kullanılabilecek olan koleksiyonlar için en yararlı seçenektir. Örneğin:
+Sorgu yöntemi, ilgili varlıklar yüklenirken Entity Framework kullanacağı temel sorguya erişim sağlar. Daha sonra, ToList, Load, vb. gibi bir LINQ genişletme yöntemine yapılan bir çağrıyla yürütmeden önce sorguya filtre uygulamak için LINQ kullanabilirsiniz. Sorgu yöntemi hem başvuru hem de koleksiyon gezinme özellikleriyle birlikte kullanılabilir, ancak koleksiyonun yalnızca bir bölümünü yüklemek için kullanılabilecek olan koleksiyonlar için en yararlı seçenektir. Örnek:
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -200,7 +200,7 @@ Sorgu yöntemi kullanılırken, gezinti özelliği için yavaş yüklemeyi devre
 
 ## <a name="using-query-to-count-related-entities-without-loading-them"></a>Sorgu kullanarak ilgili varlıkları yüklemeden Sayın
 
-Bazen, tüm bu varlıkları yükleme maliyetini karşılamak zorunda kalmadan veritabanında bulunan başka bir varlıkla ilgili kaç varlık olduğunu öğrenmek faydalı olur. Bunu yapmak için LINQ Count yöntemine sahip sorgu yöntemi kullanılabilir. Örneğin:
+Bazen, tüm bu varlıkları yükleme maliyetini karşılamak zorunda kalmadan veritabanında bulunan başka bir varlıkla ilgili kaç varlık olduğunu öğrenmek faydalı olur. Bunu yapmak için LINQ Count yöntemine sahip sorgu yöntemi kullanılabilir. Örnek:
 
 ``` csharp
 using (var context = new BloggingContext())

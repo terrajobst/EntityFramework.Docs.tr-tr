@@ -1,21 +1,21 @@
 ---
-title: Ham SQL sorguları - EF6
+title: Ham SQL sorguları-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 9e1ee76e-2499-408c-81e8-9b6c5d1945a0
 ms.openlocfilehash: 168aee67186535bf2a50705e86bfc5a88147e369
-ms.sourcegitcommit: 269c8a1a457a9ad27b4026c22c4b1a76991fb360
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/18/2018
-ms.locfileid: "46283790"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417097"
 ---
-# <a name="raw-sql-queries"></a>Ham SQL sorguları
-Entity Framework, varlık sınıfları ile LINQ kullanarak sorgulama sağlar. Ancak, kullanarak doğrudan veritabanında ham SQL sorguları çalıştırmak istediğiniz zamanlar olabilir. Bu, şu anda saklı yordamlar için eşleme desteklemeyen Code First modelleri için yararlı olabilir saklı yordam çağırma içerir. Bu konuda gösterilen teknikleri Code First ve EF Designer ile oluşturulan modeller için eşit oranda geçerlidir.  
+# <a name="raw-sql-queries"></a>Ham SQL Sorguları
+Entity Framework, varlık sınıflarınız ile LINQ kullanarak sorgulama yapmanıza olanak sağlar. Ancak, ham SQL kullanarak doğrudan veritabanına karşı sorguları çalıştırmak istediğiniz zamanlar olabilir. Bu, saklı yordamların çağrılmasını içerir. Bu, şu anda saklı yordamlara eşlemeyi desteklemeyen Code First modeller için yararlı olabilir. Bu konu başlığında gösterilen teknikler Code First ve EF Designer ile oluşturulan modellere eşit olarak uygulanır.  
 
 ## <a name="writing-sql-queries-for-entities"></a>Varlıklar için SQL sorguları yazma  
 
-Varlık örneklerini döndürür yazılacak ham bir SQL sorgusu olan DB SqlQuery yöntemi sağlar. Yalnızca bunlar bir LINQ Sorgu tarafından döndürülen durumunda olduğu gibi döndürülen nesneleri bağlam tarafından izlenir. Örneğin:  
+DbSet üzerindeki SqlQuery metodu, varlık örnekleri döndürecek ham bir SQL sorgusunun yazılmasına izin verir. Döndürülen nesneler, LINQ sorgusu tarafından döndürüldüler olduğu gibi bağlam tarafından izlenir. Örnek:  
 
 ``` csharp  
 using (var context = new BloggingContext())
@@ -24,15 +24,15 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Sonuçları numaralandırılır kadar LINQ sorguları olduğu gibi sorgu yürütülmez ise, Not: Yukarıdaki örnekte, bu ToList çağrısıyla yapılır.  
+LINQ sorguları için olduğu gibi, sonuçlar numaralandırılıncaya kadar sorgu yürütülmez — Yukarıdaki örnekte, ToList çağrısıyla yapılır.  
 
-Ham SQL sorguları iki nedenden dolayı yazılan her dikkatli olunması. İlk olarak, yalnızca gerçekten istenen türde olan varlıklar döndürüyor emin olmak için sorgu yazılması gerekir. Örneğin, devralma gibi özellikleri kullanarak CLR türü yanlış olan varlıkları oluşturan bir sorgu yazmak kolaydır.  
+Her iki nedenden dolayı ham SQL sorguları yazıldığında dikkatli olunmalıdır. İlk olarak, yalnızca istenen türden gerçekten varlık döndüren varlıkların döndürüldüğünden emin olmak için sorgunun yazılması gerekir. Örneğin, devralma gibi özellikleri kullanırken yanlış CLR türünde varlıklar oluşturacak bir sorgu yazmak kolaydır.  
 
-İkinci olarak, bazı türleri ham SQL sorgusunun özellikle geçici SQL ekleme saldırılarına karşı olası güvenlik risklerini kullanıma sunar. Bu tür saldırılara karşı korunmak için doğru şekilde sorgu parametreleri kullandığınızdan emin olun.  
+İkinci olarak, bazı ham SQL sorgusu türleri, özellikle SQL ekleme saldırıları etrafında olası güvenlik riskleri sunar. Bu tür saldırılara karşı koruma sağlamak için Sorgunuzdaki parametreleri doğru şekilde kullandığınızdan emin olun.  
 
-### <a name="loading-entities-from-stored-procedures"></a>Saklı yordamlardan varlıklar yükleniyor  
+### <a name="loading-entities-from-stored-procedures"></a>Saklı yordamlardan varlık yükleme  
 
-DbSet.SqlQuery varlıklar bir saklı yordam sonuçlarından yüklemek için kullanabilirsiniz. Örneğin, aşağıdaki kod, dbo çağırır. Veritabanı yordamda GetBlogs:  
+Saklı yordamın sonuçlarından varlıkları yüklemek için DbSet. SqlQuery ' i kullanabilirsiniz. Örneğin, aşağıdaki kod dbo 'yı çağırır. Veritabanında Getbloglar yordamı:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -41,7 +41,7 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Ayrıca, aşağıdaki söz dizimini kullanarak bir saklı yordam parametreleri geçirebilirsiniz:  
+Ayrıca, aşağıdaki sözdizimini kullanarak parametreleri saklı yordama geçirebilirsiniz:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -52,9 +52,9 @@ using (var context = new BloggingContext())
 }
 ```  
 
-## <a name="writing-sql-queries-for-non-entity-types"></a>Varlık olmayan türleri için SQL sorguları yazma  
+## <a name="writing-sql-queries-for-non-entity-types"></a>Varlık dışı türler için SQL sorguları yazma  
 
-İlkel türler dahil olmak üzere herhangi bir türü örneklerini döndüren bir SQL sorgusu üzerinde veritabanı sınıfı SqlQuery yöntemi kullanılarak oluşturulabilir. Örneğin:  
+İlkel türler de dahil olmak üzere herhangi bir türün örnek döndüren bir SQL sorgusu, veritabanı sınıfında SqlQuery yöntemi kullanılarak oluşturulabilir. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -64,11 +64,11 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Nesneleri bir varlık türü örneklerini olsa bile, SqlQuery döndürülen veritabanı sonuçları hiçbir zaman bağlam tarafından izlenir.  
+Nesneler bir varlık türünün örnekleri olsa bile, veritabanındaki SqlQuery 'den döndürülen sonuçlar hiçbir şekilde bağlam tarafından izlenmeyecektir.  
 
-## <a name="sending-raw-commands-to-the-database"></a>Veritabanına ham komut gönderme  
+## <a name="sending-raw-commands-to-the-database"></a>Ham komutları veritabanına gönderme  
 
-Sorgu dışı komutları veritabanında ExecuteSqlCommand yöntemi kullanarak veritabanına gönderilir. Örneğin:  
+Sorgu olmayan komutlar veritabanı üzerinde ExecuteSqlCommand yöntemi kullanılarak veritabanına gönderilebilir. Örnek:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -78,8 +78,8 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Varlıkları yüklenen veya veritabanından yeniden kadar ExecuteSqlCommand kullanarak veritabanındaki verileri yapılan tüm değişiklikler bağlamına donuk olduğunu unutmayın.  
+Veritabanında veri yüklenmeden veya yeniden yüklenene kadar, ExecuteSqlCommand kullanılarak veritabanındaki verilerde yapılan tüm değişikliklerin bağlam halinde donuk olduğunu unutmayın.  
 
 ### <a name="output-parameters"></a>Çıktı Parametreleri  
 
-Çıktı parametreleri kullandıysanız değerleri sonuçları tamamen okunana kadar kullanılamaz. Bu dbdatareader öğesine dönüştürülemedi arka plandaki davranışı nedeniyle, bkz: [alma verileri kullanarak bir DataReader](https://go.microsoft.com/fwlink/?LinkID=398589) daha fazla ayrıntı için.  
+Çıkış parametreleri kullanılıyorsa, sonuçlar tamamen okunana kadar bu değerler kullanılamaz. Bu, DbDataReader 'ın temel davranışının nedeni, daha fazla ayrıntı için [DataReader kullanarak veri alma](https://go.microsoft.com/fwlink/?LinkID=398589) konusuna bakın.  

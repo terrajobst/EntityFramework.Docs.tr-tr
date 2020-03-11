@@ -1,33 +1,33 @@
 ---
-title: Özel kod öncelikli kurallar - EF6
+title: Özel Code First kuralları-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: dd2bdbd9-ae9e-470a-aeb8-d0ba160499b7
 ms.openlocfilehash: cfd7f7cad532dca5227793c04d7d91e977ea5e4e
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45489850"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419229"
 ---
-# <a name="custom-code-first-conventions"></a>Özel kod öncelikli kurallar
+# <a name="custom-code-first-conventions"></a>Özel Code First kuralları
 > [!NOTE]
-> **EF6 ve sonraki sürümler yalnızca** -özellikler, API'ler, bu sayfada açıklanan vb., Entity Framework 6'da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bazı veya tüm bilgileri geçerli değildir.
+> **Yalnızca EF6** , bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 6 ' da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.
 
-Code First kullanarak modelinizi sınıflardan kuralları kümesi kullanılarak hesaplanır. Varsayılan [kod öncelikli kurallar](~/ef6/modeling/code-first/conventions/built-in.md) şeyler gibi özellik olur bir varlığın birincil anahtarı, bir varlık eşler için tablo ve hangi kesinlik ve ölçek ondalık bir sütun varsayılan olarak sahip adını belirleyin.
+Code First kullanılırken, modelinizle bir dizi kural kullanarak sınıfınızdan hesaplanır. Varsayılan [Code First kuralları](~/ef6/modeling/code-first/conventions/built-in.md) , hangi özelliğin bir varlığın birincil anahtarı, bir varlığın eşlendiği tablo adı ve bir ondalık sütunu için varsayılan olarak hangi duyarlık ve ölçekleme olacağını belirleyen şeyleri belirlemektir.
 
-Bazen bu varsayılan kuralları modeliniz için ideal değildir ve bunların etrafına veri ek açıklamaları ya da Fluent API'sini kullanarak birçok tek tek varlıklarla yapılandırarak çalışmak zorunda. Özel kod öncelikli kurallar modeliniz için yapılandırma Varsayılanları sağlayan kendi kuralları tanımlamanıza olanak sağlar. Bu kılavuzda, biz özel kuralları ve bunların her biri oluşturma farklı türlerini keşfedin.
+Bazen bu varsayılan kurallar modelinize uygun değildir ve veri açıklamalarını veya akıcı API 'YI kullanarak çok sayıda varlığı yapılandırarak onları geçici olarak çözebilirsiniz. Özel Code First kuralları modelinize yönelik yapılandırma Varsayılanları sağlayan kendi kurallarınızı tanımlamanızı sağlar. Bu kılavuzda, farklı özel kural türlerini ve bunların her birini oluşturmayı inceleyeceğiz.
 
 
-## <a name="model-based-conventions"></a>Model tabanlı kuralları
+## <a name="model-based-conventions"></a>Model tabanlı kurallar
 
-Bu sayfa DbModelBuilder API'si için özel kurallar kapsar. Bu API, çoğu özel kuralları yazmak için yeterli olmalıdır. Ancak, de mevcuttur özelliği, model tabanlı kuralları - oluşturulduktan sonra son modelin yönlendirme kurallarını yazmak için - Gelişmiş senaryolar işlemek için. Daha fazla bilgi için [Model tabanlı kuralları](~/ef6/modeling/code-first/conventions/model.md).
+Bu sayfa, özel kurallar için DbModelBuilder API 'sini içerir. Bu API, çoğu özel kuralı yazmak için yeterli olmalıdır. Bununla birlikte, gelişmiş senaryoları işlemek için, oluşturulduktan sonra son modeli düzenleyen model tabanlı kuralları yazma özelliği de vardır. Daha fazla bilgi için bkz. [model tabanlı kurallar](~/ef6/modeling/code-first/conventions/model.md).
 
- 
+ 
 
 ## <a name="our-model"></a>Modelimiz
 
-Size sunduğumuz kuralları ile kullanabileceğiniz basit bir model tanımlayarak başlayalım. Aşağıdaki sınıflar, projenize ekleyin.
+Kılavuzlarımızla birlikte kullanabilmemiz için basit bir model tanımlayarak başlayalım. Aşağıdaki sınıfları projenize ekleyin.
 
 ``` csharp
     using System;
@@ -62,13 +62,13 @@ Size sunduğumuz kuralları ile kullanabileceğiniz basit bir model tanımlayara
     }
 ```
 
- 
+ 
 
-## <a name="introducing-custom-conventions"></a>Özel kuralları ile tanışın
+## <a name="introducing-custom-conventions"></a>Özel kurallara giriş
 
-Varlık türü için birincil anahtar olmasını anahtar adlı herhangi bir özelliği yapılandıran bir kuralı yazalım.
+Anahtar adlı herhangi bir özelliği, varlık türü için birincil anahtar olacak şekilde yapılandıran bir kural yazalım.
 
-Kuralları bağlamında OnModelCreating geçersiz kılarak erişilebilir model oluşturucu üzerinde etkindir. ProductContext sınıfı aşağıdaki gibi güncelleştirin:
+Kurallar, bağlamda Onmodeloluþturma geçersiz kılınarak erişilebilen model Oluşturucu üzerinde etkinleştirilir. ProductContext sınıfını aşağıdaki gibi güncelleştirin:
 
 ``` csharp
     public class ProductContext : DbContext
@@ -89,9 +89,9 @@ Kuralları bağlamında OnModelCreating geçersiz kılarak erişilebilir model o
     }
 ```
 
-Artık, herhangi bir özelliği modelimizi anahtar adlı olacak kendi parçası ne olursa olsun varlığın birincil anahtarı yapılandırılmış.
+Şimdi, modelinizdeki anahtar adlı bir özellik, bölümünün parçası olan her bir varlığın birincil anahtarı olarak yapılandırılacaktır.
 
-Biz de bizim kuralları daha belirli yapılandırma kullanacağız özelliği türüne göre filtreleme yapabilirsiniz:
+Ayrıca, yapılandırdığımız Özellik türü üzerine filtreleyerek kurallarımızı daha belirgin hale yapabiliriz:
 
 ``` csharp
     modelBuilder.Properties<int>()
@@ -99,9 +99,9 @@ Biz de bizim kuralları daha belirli yapılandırma kullanacağız özelliği t�
                 .Configure(p => p.IsKey());
 ```
 
-Bu, varlığın anahtarı, ancak bir tamsayı ise yalnızca birincil anahtarının adlı tüm özelliklerini yapılandırır.
+Bu, anahtar adlı tüm özellikleri varlığının birincil anahtarı olacak şekilde yapılandırır, ancak yalnızca bir tamsayıdır.
 
-Iskey yöntemi ilgi çekici bir özelliğidir, olmasıdır eklenebilir. Bu, birden çok özellikleri Iskey çağırın ve tüm bileşik anahtarın bir parçası olacak anlamına gelir. Bunun için bir uyarı, bir anahtar için birden çok özellik belirttiğinizde bu özellikler için bir sipariş da belirtmelisiniz ' dir. Bu yöntem gibi aşağıda HasColumnOrder çağırarak yapabilirsiniz:
+IsKey yönteminin ilginç bir özelliği eklenebilir. Yani, IsKey öğesini birden çok özelliklerde çağırdığınızda ve hepsi bir bileşik anahtarın parçası haline gelirse. Bunun için bir desteklenmediği uyarısıyla, bir anahtar için birden çok özellik belirttiğinizde, bu özellikler için de bir sıra belirtmeniz gerekir. Bunu aşağıdaki gibi Hasccolumnorder metodunu çağırarak yapabilirsiniz:
 
 ``` csharp
     modelBuilder.Properties<int>()
@@ -113,24 +113,24 @@ Iskey yöntemi ilgi çekici bir özelliğidir, olmasıdır eklenebilir. Bu, bird
                 .Configure(x => x.IsKey().HasColumnOrder(2));
 ```
 
-Bu kod türlerine int anahtar sütunu ve dize adı sütunu oluşan bileşik anahtara sahip modelimizi yapılandıracaksınız. Biz modeli Tasarımcısı'nda görüntülediğinizde şöyle görünebilir:
+Bu kod, modelimizin türlerini, int anahtar sütununu ve dize adı sütununu içeren bileşik bir anahtara sahip olacak şekilde yapılandırır. Modeli tasarımcıda görüntüleyebilmemiz şu şekilde görünür:
 
 ![bileşik anahtar](~/ef6/media/compositekey.png)
 
-Başka bir özellik kuralları my modeldeki datetime yerine SQL Server datetime2 türüne eşlemek için tüm DateTime özelliklerini yapılandırmak için örneğidir. Bunu aşağıdaki elde:
+Özellik kurallarına başka bir örnek, modelinmdeki tüm DateTime özelliklerini, DateTime yerine SQL Server datetime2 türüyle eşlenecek şekilde yapılandırmaktır. Bunu aşağıdakiler ile elde edebilirsiniz:
 
 ``` csharp
     modelBuilder.Properties<DateTime>()
                 .Configure(c => c.HasColumnType("datetime2"));
 ```
 
- 
+ 
 
-## <a name="convention-classes"></a>Kuralı sınıfları
+## <a name="convention-classes"></a>Kural sınıfları
 
-Kuralları tanımlamanın bir başka yolu kuralınızın yalıtılacak kuralı sınıfı kullanmaktır. Bir kuralı sınıf kullanırken System.Data.Entity.ModelConfiguration.Conventions ad alanındaki kuralı sınıfından devralan bir tür oluşturun.
+Kuralları tanımlamanın bir diğer yolu, kurallarınızı kapsüllemek için bir kural sınıfı kullanmaktır. Bir kural sınıfı kullanırken, System. Data. Entity. ModelConfiguration. Convention ad alanındaki kural sınıfından devralan bir tür oluşturursunuz.
 
-Aşağıdakileri yaparak size daha önce gösterilen datetime2 kuralıyla bir kuralı sınıf oluşturabiliriz:
+Daha önce aşağıdakileri yaparak, datetime2 kuralına sahip bir kural sınıfı oluşturuyoruz:
 
 ``` csharp
     public class DateTime2Convention : Convention
@@ -143,7 +143,7 @@ Aşağıdakileri yaparak size daha önce gösterilen datetime2 kuralıyla bir ku
     }
 ```
 
-Bu kural, adım adım kılavuzla birlikte takip ediyorsanız, şuna benzeyecektir OnModelCreating kuralları koleksiyona eklediğiniz kullanılacak EF bildirmek için:
+Bu kuralı kullanmak için EF 'in bu kuralı kullanmasını söylemek için, bu yönergeyi Onmodeloluþturma 'daki kurallara göre eklersiniz. Bu, izlenecek yol aşağıdaki gibi görünür:
 
 ``` csharp
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -156,13 +156,13 @@ Bu kural, adım adım kılavuzla birlikte takip ediyorsanız, şuna benzeyecekti
     }
 ```
 
-Gördüğünüz gibi biz bizim kuralı örneği kuralları koleksiyona ekleyin. Kuralı devralan gruplandırma ve takımlar veya projeleri arasında kuralları paylaşımı kullanışlı bir yol sağlar. Örneğin, bir sınıf kitaplığı ile kuruluşunuzun tüm projeleri, kullanım kuralları ortak bir dizi olabilir.
+Gördüğünüz gibi, kural koleksiyonu için kuralımız bir örnek ekleyeceğiz. Kurallardan devralma, takımlar veya projeler arasında kuralları gruplandırmanın ve paylaşmanın kolay bir yolunu sağlar. Örneğin, tüm kuruluşların projelerinin kullandığı ortak bir kural kümesine sahip bir sınıf kitaplığına sahip olabilirsiniz.
 
- 
+ 
 
 ## <a name="custom-attributes"></a>Özel Öznitelikler
 
-Kuralları başka bir harika kullanımı modeli yapılandırırken kullanılacak yeni bir öznitelik etkinleştirmektir. Bunu açıklamak üzere; dize özellikleri Unicode olmayan işaretlemek için kullanabileceğiniz bir öznitelik oluşturalım.
+Kuralların diğer harika kullanımı, bir modeli yapılandırırken yeni özniteliklerin kullanılmasını olanaklı hale kullanmaktır. Bunu göstermek için, dize özelliklerini Unicode olmayan olarak işaretlemek üzere kullandığımız bir öznitelik oluşturalım.
 
 ``` csharp
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
@@ -171,7 +171,7 @@ Kuralları başka bir harika kullanımı modeli yapılandırırken kullanılacak
     }
 ```
 
-Şimdi, bu öznitelik için modelimizi uygulamak için bir kural oluşturalım:
+Şimdi bu özniteliği modelinize uygulamak için bir kural oluşturalım:
 
 ``` csharp
     modelBuilder.Properties()
@@ -179,13 +179,13 @@ Kuralları başka bir harika kullanımı modeli yapılandırırken kullanılacak
                 .Configure(c => c.IsUnicode(false));
 ```
 
-Bu kural ile herhangi bir veritabanı sütunu anlamına gelir bizim dize özellikleri Unicode olmayan tüm karşılaştırmalar öznitelik nvarchar yerine varchar olarak depolanan ekleyebilirsiniz.
+Bu kural ile Unicode olmayan özniteliğini dize özelliklerinden herhangi birine ekleyebiliriz. Bu, veritabanındaki sütunun nvarchar yerine varchar olarak depolanacağı anlamına gelir.
 
-Bir özel durum oluşturur sonra Unicode olmayan tüm karşılaştırmalar özniteliği bir dize özelliği dışında herhangi bir şey üzerinde koyarsanız bu kural hakkında dikkat edilecek bir şey olmasıdır. Bir dize dışında herhangi bir türü IsUnicode yapılandıramıyorsunuz için bunu yapar. Bu durumda, böylece bir dize olmayan şeyi filtreleri sonra kuralınızın daha belirli yapabilirsiniz.
+Bu kural hakkında daha fazla bilgi için, Unicode olmayan özniteliğini dize özelliği dışındaki herhangi bir yere yerleştirirseniz bir özel durum oluşturur. Bu, bir dize dışında herhangi bir türde ısunıcode 'u yapılandıramadığı için bunu yapar. Bu durumda, bir dize olmayan herhangi bir şeyi filtreleyerek, daha sonra, kuralınızın daha özel olmasını sağlayabilirsiniz.
 
-Özel öznitelikler tanımlamak için yukarıdaki kuralı çalışırken kullanmak özellikle öznitelik sınıfından özellikleri kullanmak istediğinizde çok daha kolay olabilir başka bir API yoktur.
+Yukarıdaki kural özel öznitelikler tanımlamak için çalışırken, özellikle öznitelik sınıfından özellikleri kullanmak istediğinizde, daha kolay olabilecek başka bir API vardır.
 
-Bu örnekte bizim özniteliği güncelleştirme ve şuna benzer şekilde IsUnicode özniteliğin değiştirme kullanacağız:
+Bu örnekte, öznitemizi güncelleyeceğiz ve bunu bir ıunıcode özniteliğiyle değiştiririz, bu nedenle şöyle görünür:
 
 ``` csharp
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
@@ -200,7 +200,7 @@ Bu örnekte bizim özniteliği güncelleştirme ve şuna benzer şekilde IsUnico
     }
 ```
 
-Biz bunu aldıktan sonra bool bizim özniteliği olup olmadığını bir özelliği Unicode olmalıdır kuralı bildirmek için ayarlayabilirsiniz. Biz zaten böyle yapılandırma sınıfın ClrProperty erişerek sahibiz kuralı içinde yapabilirsiniz:
+Bunu yaptıktan sonra, bir özelliğin Unicode olması gerekip gerekmediğini bildirmek için öznitemize bir bool ayarlayabiliriz. Bunu şu şekilde yapılandırma sınıfının ClrProperty öğesine erişmekte olduğumuz kurala göre yapabiliriz:
 
 ``` csharp
     modelBuilder.Properties()
@@ -208,7 +208,7 @@ Biz bunu aldıktan sonra bool bizim özniteliği olup olmadığını bir özelli
                 .Configure(c => c.IsUnicode(c.ClrPropertyInfo.GetCustomAttribute<IsUnicode>().Unicode));
 ```
 
-Bu oldukça kolaydır, ancak sahip kullanarak bunu elde etmenin daha birleştiren bir yolu yoktur API kurallarının yöntemi. Sahip yönteminin bir parametresi vardır, Func yazın&lt;PropertyInfo, T&gt; kabul eden PropertyInfo Where aynı yöntemi, bir nesneyi döndürmek için bekleniyordu ancak. Özellik yapılandırılmadı sonra döndürülen nesne null ise, yani özellikleriyle, nerede olduğu gibi kullanıma filtre uygulayabilirsiniz, ancak ayrıca döndürülen nesne yakalamak ve yapılandırma yönteme geçirin, farklıdır. Bu, aşağıdaki gibi çalışır:
+Bu çok kolaydır, ancak kuralları API 'nin HAVING metodunu kullanarak elde etmenin daha kısa bir yolu vardır. HAVING yöntemi Func&lt;PropertyInfo, T&gt; türünde bir parametreye sahiptir ve bu, WHERE yöntemiyle aynı şekilde PropertyInfo kabul eder, ancak bir nesne döndürmesi beklenir. Döndürülen nesne null ise, özelliği yapılandırılmaz, bu, özellikleri burada olduğu gibi filtreleyebilirsiniz, ancak döndürülen nesneyi de yakalayıp yapılandırma yöntemine iletmektir çünkü farklı olur. Bu, aşağıdaki gibi çalışmaktadır:
 
 ``` csharp
     modelBuilder.Properties()
@@ -216,15 +216,15 @@ Bu oldukça kolaydır, ancak sahip kullanarak bunu elde etmenin daha birleştire
                 .Configure((config, att) => config.IsUnicode(att.Unicode));
 ```
 
-Özel özniteliklere sahip kullanmak için tek nedeni olmayan yöntemi, bu yararlıdır, türler veya özellikler yapılandırırken filtre uyguladığınız bir şey hakkında neden gereken herhangi bir yerde.
+Özel öznitelikler HAVING metodunu kullanmanın tek nedeni olmadığından, türlerinizi veya özellikleri yapılandırırken filtrelemediğiniz bir şey hakkında neden olmanız gerektiği her yerde yararlı olur.
 
- 
+ 
 
-## <a name="configuring-types"></a>Yapılandırma türü
+## <a name="configuring-types"></a>Türleri yapılandırma
 
-Kadarki tüm müşterilerimizin kuralları özelliklerini silinmiş, ancak türleri modelinizde yapılandırmak için başka bir alan kurallarının API olduğu. Deneyimi şu ana kadar gördük kurallarına benzer, ancak varlık özelliği yerine şu iç yapılandırma seçenekleri düzeyinde olacaktır.
+Şimdiye kadar tüm kurallarımızda özellikler için olduğundan, modelinizdeki türleri yapılandırmak için kurallar API 'sinin başka bir alanı vardır. Deneyim şimdiye kadar görtiğimiz kurallara benzer, ancak yapılandırma içindeki Seçenekler özellik düzeyi yerine varlıkta olacaktır.
 
-Tür düzeyi kuralları için gerçekten kullanışlı olabilecek şeylerden biri tablo adlandırma kuralı, EF varsayılandan farklı bir var olan bir şema eşlemek için veya farklı bir adlandırma kuralı ile yeni bir veritabanı oluşturmak için değişiyor. Bunu yapmak için öncelikle TypeInfo modelimizi bir türü için kabul edebilir ve dönüş türü için tablo adı ne olmalıdır bir yöntem ihtiyacımız:
+Tür düzeyi kuralları için gerçekten yararlı olabilecek olan işlemlerden biri, bir veya daha fazla farklı adlandırma kuralına sahip olan mevcut bir şemayla eşlemek için tablo adlandırma kuralını değiştiriyor. Bunu yapmak için ilk olarak modelinizdeki bir türün TypeInfo kabul edebilecek ve bu tür için tablo adının ne olması gerektiğini döndüren bir yönteme ihtiyaç duyarsınız:
 
 ``` csharp
     private string GetTableName(Type type)
@@ -235,20 +235,20 @@ Tür düzeyi kuralları için gerçekten kullanışlı olabilecek şeylerden bir
     }
 ```
 
-Bu yöntem, bir türü alır ve alt çizgi CamelCase yerine küçük kullanan bir dize döndürür. Modelimiz bu ProductCategory sınıfı ürün adlı bir tabloya eşlenmesi anlamına gelir\_öğelerini tire yerine kategorisi.
+Bu yöntem bir tür alır ve CamelCase yerine alt çizgi ile küçük harf kullanan bir dize döndürür. Modelimizde bu, ProductCategory sınıfının ProductCategories yerine ürün\_kategorisi adlı bir tabloyla eşlenecek anlamına gelir.
 
-Bu yöntem sahibiz sonra size, böyle bir kural içinde çağırabilirsiniz:
+Bu yönteme ulaştıktan sonra, bunu şöyle çağırabiliriz:
 
 ``` csharp
     modelBuilder.Types()
                 .Configure(c => c.ToTable(GetTableName(c.ClrType)));
 ```
 
-Bu kural her tür modelimiz bizim GetTableName yönteminden döndürülen tablo adını eşleştirmek için yapılandırır. Bu kural Fluent API'sini kullanarak modeldeki her bir varlık için ToTable metodunu eşdeğerdir.
+Bu kural, modelimizin her türünü, GetTableName yönteminden döndürülen tablo adıyla eşlenecek şekilde yapılandırır. Bu kural, akıcı API kullanılarak modeldeki her varlık için ToTable yöntemini çağırmaya eşdeğerdir.
 
-Bu hakkında dikkat edilecek bir çağırdığınızda ToTable EF herhangi bir tablo adları belirlerken normalde yaptığınız çoğullaştırma olmadan tam tablo adı olarak sağlayan dize süreceğini şeydir. Tablo adı bizim kuralı ürünüdür. Bu yüzden\_kategori yerine ürün\_kategorileri. Bizim kuralına kendimize çoğullaştırma hizmetine bir çağrı yaparak çözebiliriz.
+Bunun için bir şey, ToTable EF 'i çağırdığınızda tablo adlarını belirlerken normalde yapacağından emin olmak için, tam tablo adı olarak sağladığınız dizeyi doğru bir şekilde alır. Kuralımız tablo adının ürün\_kategorileri yerine ürün\_kategorisi olması neden olur. Çoğullaştırma hizmeti kendimize ' e bir çağrı yaparak kurallarımızda bunu çözebiliriz.
 
-Aşağıdaki kodda kullanacağız [bağımlılık çözümlemesi](~/ef6/fundamentals/configuring/dependency-resolution.md) EF kullandığınız çoğullaştırma hizmet alınacak EF6 içinde eklenen özellik ve pluralize bizim tablo adı.
+Aşağıdaki kodda, EF 'in kullandığı ve tablo adınızla plmış olan çoğullaştırma hizmetini almak için EF6 ' de eklenen [bağımlılık çözümleme](~/ef6/fundamentals/configuring/dependency-resolution.md) özelliğini kullanacağız.
 
 ``` csharp
     private string GetTableName(Type type)
@@ -264,11 +264,11 @@ Aşağıdaki kodda kullanacağız [bağımlılık çözümlemesi](~/ef6/fundamen
 ```
 
 > [!NOTE]
-> Genel sürümünü GetService System.Data.Entity.Infrastructure.DependencyResolution ad alanındaki bir genişletme yöntemi, kullanarak bir eklemeniz gerekecektir Bağlamınızı kullanmak için deyimi.
+> GetService 'in genel sürümü System. Data. Entity. Infrastructure. DependencyResolution ad alanındaki bir genişletme yöntemidir, bunu kullanabilmeniz için bağlamına bir using ifadesini eklemeniz gerekir.
 
 ### <a name="totable-and-inheritance"></a>ToTable ve devralma
 
-Bir tür açıkça belirli bir tabloda eşlerseniz EF kullanan eşleme stratejisi değiştirebilirsiniz sonra başka bir önemli yönüyle ToTable olmasıdır. Devralma hiyerarşisinde her tür için ToTable çağırırsanız, yukarıda yaptığımız gibi tür adı tablonun adı geçirerek daha sonra varsayılan tablo başına hiyerarşi (TPH) eşleme stratejisi tablo başına tür (TPT) değişir. Bunu açıklamak için en iyi yolu whith somut bir örnek verilmiştir:
+ToTable 'ın diğer önemli bir yönü, bir türü belirli bir tabloyla açıkça eşleştirdiğinizde, EF 'in kullanacağı eşleme stratejisini değiştirebilirsiniz. Bir devralma hiyerarşisindeki her tür için ToTable çağrısı yaparsanız, tür adını yukarıda yaptığımız gibi tablonun adı olarak geçirerek, varsayılan hiyerarşi başına (TPH) eşleme stratejisini tür başına tablo (TPT) olarak değiştirirsiniz. Bunu tanımlamanın en iyi yolu somut bir örnektir.
 
 ``` csharp
     public class Employee
@@ -283,27 +283,27 @@ Bir tür açıkça belirli bir tabloda eşlerseniz EF kullanan eşleme stratejis
     }
 ```
 
-Varsayılan olarak, veritabanındaki (çalışan) aynı tabloya hem çalışan hem de manager eşlenir. Tablo çalışan ve yöneticilerin ne tür bir örnek, her satır için depolanan söyleyecektir bir ayrıştırıcı sütunu içerir. Hiyerarşi için tek bir tablo olmadığından TPH eşleme budur. Her iki classe üzerinde ToTable çağırırsanız ancak ardından her tür bunun yerine kendi tablo olarak da bilinen her türü kendi tablosunda bulunduğundan TPT eşleştirilir.
+Varsayılan olarak, hem çalışan hem de yönetici veritabanında aynı tablo (çalışanlar) ile eşlenir. Tabloda, her bir satırda ne tür bir örnek depolandığını söyleyen bir Ayrıştırıcı sütunu olan çalışanlar ve yöneticiler bulunur. Bu, hiyerarşi için tek bir tablo olduğundan, bu TPH eşlemedir. Ancak, her iki ClassID üzerinde de ToTable ' ı çağırırsanız her bir türün kendi tablosu olduğu için, her tür kendi tablosuyla eşlenir (TPT olarak da bilinir).
 
 ``` csharp
     modelBuilder.Types()
                 .Configure(c=>c.ToTable(c.ClrType.Name));
 ```
 
-Yukarıdaki kodu aşağıdakine benzer bir tablo yapısı için eşler:
+Yukarıdaki kod, aşağıdakine benzer bir tablo yapısına eşlenir:
 
-![Tpt örneği](~/ef6/media/tptexample.jpg)
+![TPT örneği](~/ef6/media/tptexample.jpg)
 
-Bu durumu önlemek ve birkaç yolla varsayılan TPH eşleme Koru:
+Bunu ortadan kaldırabilirsiniz ve varsayılan TPH eşlemesini birkaç yolla koruyabilirsiniz:
 
-1.  Hiyerarşideki her bir türü için aynı tablo adıyla ToTable çağırın.
-2.  ToTable yalnızca üzerinde çalışan olacaktır Bizim örneğimizde hiyerarşinin temel sınıfı çağırın.
+1.  Hiyerarşideki her tür için aynı tablo adına sahip ToTable öğesini çağırın.
+2.  Yalnızca hiyerarşinin temel sınıfında, örneğin Employee olacak şekilde ToTable ' ı çağırın.
 
- 
+ 
 
 ## <a name="execution-order"></a>Yürütme sırası
 
-Bir son WINS şekilde Fluent API'si ile aynı kuralları çalışır. Ne bu yapılandırma aynı seçeneği aynı özelliğin iki kuralları ve WINS yürütülecek sonuncu yazarsanız, anlamına gelir. Örneğin, aşağıdaki kod tüm dizeleri en fazla uzunluğu 500'e ayarlanır ancak ardından 250 uzunluk üst sınırını olmasını modelinde adı olan tüm özellikleri yapılandırıyoruz.
+Kurallar, akıcı API ile aynı olan son bir WINS biçiminde çalışır. Bunun anlamı, aynı özellikte aynı seçeneği yapılandıran iki kural yazarsanız ve ardından WINS 'i yürütmek için son bir şeydir. Örnek olarak, aşağıdaki kodda tüm dizelerin uzunluk üst sınırı 500 olarak ayarlanır ancak modeldeki ad adlı tüm özellikler en fazla 250 uzunluğunda olacak şekilde yapılandırılır.
 
 ``` csharp
     modelBuilder.Properties<string>()
@@ -314,23 +314,23 @@ Bir son WINS şekilde Fluent API'si ile aynı kuralları çalışır. Ne bu yap�
                 .Configure(c => c.HasMaxLength(250));
 ```
 
-Uzunluk üst sınırı 250'ye ayarlamak için kuralı tüm dizeleri 500'e ayarlayan bir sonra olduğundan, bizim modelinde adı tüm özellikler 250 açıklamaları gibi herhangi diğer dizeler çalışırken, bir MaxLength gerekir, 500 olacaktır. Bu şekilde kurallarını kullanarak anlamına gelir, genel bir kural türleri veya modeli ve ardından geçersiz kılma özellikleri sağlayabilirsiniz bunları farklı alt kümeleri için.
+En fazla uzunluğu 250 olarak ayarlayan kural, tüm dizeleri 500 ' ye ayarlayan bir kural olduğundan, modelimizin adı adlı tüm özellikler, açıklamalar gibi diğer dizeler 500 olacak şekilde bir 250 MaxLength 'e sahip olur. Bu şekilde kuralların kullanılması, modelinizdeki türler veya özellikler için genel bir kural sağlayabilmeniz ve bunları farklı alt kümeler için overide.
 
-Fluent API'si ve veri ek açıklamaları belirli durumlarda bir yöntemi geçersiz kılmak için de kullanılabilir. Biz Fluent API'si uzunluğu bir özelliği ayarlamak için kullanmışsınız daha belirli Fluent API'si daha genel yapılandırma kuralı kazanacak çünkü yukarıdaki ardından biz bunu önce veya sonra kural, yerleştirebilirsiniz.
+Akıcı API ve veri ek açıklamaları, belirli durumlarda bir kuralı geçersiz kılmak için de kullanılabilir. Yukarıdaki örneğimizde, bir özelliğin maksimum uzunluğunu ayarlamak için akıcı API kullandığımızda, daha fazla sayıda akıcı API daha genel yapılandırma kuralını kazanacağından, bunu kurala göre veya sonra koyabiliriz.
 
- 
+ 
 
-## <a name="built-in-conventions"></a>Yerleşik kuralları
+## <a name="built-in-conventions"></a>Yerleşik kurallar
 
-Özel kurallar tarafından varsayılan kod öncelikli kurallar etkilenebilir, çünkü önce veya sonra başka bir kuralı çalıştırmak için kuralları eklemek yararlı olabilir. Bunu yapmak için türetilmiş bir DbContext üzerinde kuralları koleksiyonu AddBefore ve AddAfter yöntemlerini kullanabilirsiniz. Aşağıdaki kod, oluşturduğumuz daha önce oluşturulmuş önce çalıştıracağı kuralı sınıfı eklersiniz, anahtar bulma kuralı.
+Özel kurallar varsayılan Code First kurallarından etkilendiğinden, başka bir kural öncesinde veya sonrasında çalıştırılacak kurallar eklemek yararlı olabilir. Bunu yapmak için, türetilmiş DbContext 'teki kural koleksiyonunun AddBefore ve Addadfter yöntemlerini kullanabilirsiniz. Aşağıdaki kod, daha önce oluşturduğumuz kural sınıfını ekleyerek yerleşik anahtar bulma kuralına göre çalışacaktır.
 
 ``` csharp
     modelBuilder.Conventions.AddBefore<IdKeyDiscoveryConvention>(new DateTime2Convention());
 ```
 
-Bu geçmeden önce veya sonra yerleşik kurallarını çalıştırmak için gereksinim kuralları eklerken en çok kullanımı olması için yerleşik kuralları listesini burada bulunabilir: [System.Data.Entity.ModelConfiguration.Conventions Namespace](https://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx) .
+Bu, yerleşik kurallardan önce veya sonra çalıştırılması gereken kuralları eklerken en çok kullanılan bir deyişle, yerleşik kuralların bir listesi burada bulunabilir: [System. Data. Entity. ModelConfiguration. kurallara ad alanı](https://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx).
 
-Ayrıca, modelinize uygulanan istemediğiniz kuralları kaldırabilirsiniz. Bir kuralı kaldırmak için Remove yöntemi kullanın. PluralizingTableNameConvention kaldırmanın bir örnek aşağıda verilmiştir.
+Ayrıca, modelinize uygulanmasını istemediğiniz kuralları da kaldırabilirsiniz. Bir kuralı kaldırmak için Remove metodunu kullanın. PluralizingTableNameConvention öğesinin kaldırılmasına bir örnek aşağıda verilmiştir.
 
 ``` csharp
     protected override void OnModelCreating(DbModelBuilder modelBuilder)

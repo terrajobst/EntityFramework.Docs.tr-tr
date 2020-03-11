@@ -4,23 +4,23 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: e1b9c319-bb8a-4417-ac94-7890f257e7f6
 ms.openlocfilehash: 1b37805beb3d33f0b6dad2577a8abb3ea8f7b1e4
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182437"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418107"
 ---
 # <a name="model-first"></a>Model First
 Bu video ve adım adım yönergeler, Entity Framework kullanarak Model First geliştirmeye yönelik bir giriş sağlar. Model First, Entity Framework Designer kullanarak yeni bir model oluşturmanızı ve sonra modelden bir veritabanı şeması oluşturmanızı sağlar. Model bir EDMX dosyasında (. edmx uzantılı) depolanır ve Entity Framework Designer görüntülenebilir ve düzenlenebilir. Uygulamanızda etkileşimde bulunan sınıflar, EDMX dosyasından otomatik olarak oluşturulur.
 
-## <a name="watch-the-video"></a>Videoyu izleyin
+## <a name="watch-the-video"></a>Videoyu izleme
 Bu video ve adım adım yönergeler, Entity Framework kullanarak Model First geliştirmeye yönelik bir giriş sağlar. Model First, Entity Framework Designer kullanarak yeni bir model oluşturmanızı ve sonra modelden bir veritabanı şeması oluşturmanızı sağlar. Model bir EDMX dosyasında (. edmx uzantılı) depolanır ve Entity Framework Designer görüntülenebilir ve düzenlenebilir. Uygulamanızda etkileşimde bulunan sınıflar, EDMX dosyasından otomatik olarak oluşturulur.
 
 **Sunulma ölçütü**: [Rowa Miller](https://romiller.com/)
 
 **Video**: [wmv](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-winvideo-modelfirst.wmv) | [MP4](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-mp4video-modelfirst.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/5/B/1/5B1C338C-AFA7-4F68-B304-48BB008146EF/HDI-ITPro-MSDN-winvideo-modelfirst.zip)
 
-## <a name="pre-requisites"></a>Önkoşulların önkoşulları
+## <a name="pre-requisites"></a>Önkoşullar
 
 Bu izlenecek yolu tamamlamak için Visual Studio 2010 veya Visual Studio 2012 yüklü olmalıdır.
 
@@ -30,11 +30,11 @@ Visual Studio 2010 kullanıyorsanız, [NuGet](https://visualstudiogallery.msdn.m
 
 Şeyleri basit tutmak için, veri erişimi gerçekleştirmek üzere Model First kullanan temel bir konsol uygulaması oluşturacağız:
 
--   Visual Studio 'Yu aç
+-   Visual Studio’yu açın
 -   **Dosya-&gt; yeni&gt; projesi...**
 -   Sol taraftaki menüden ve **konsol uygulamasından** **Windows** ' u seçin
 -   Ad olarak **Modelfirstsample** girin
--   **Tamam 'ı** seçin
+-   **Tamam**’ı seçin
 
 ## <a name="2-create-model"></a>2. model oluştur
 
@@ -189,7 +189,7 @@ Modelinize yeni bir kullanıcı varlığı ekleyerek başlayacağız.
 Şimdi güncelleştirilmiş bir modelimiz var ve veritabanını yeni Kullanıcı varlık türü ile uyumlu olacak şekilde güncelleştirmeye hazırsınız.
 
 -   Tasarım yüzeyine sağ tıklayın ve **modelden veritabanı oluştur...** ' u seçin, Entity Framework güncelleştirilmiş modele göre bir şemayı yeniden oluşturmak için bir komut dosyası hesaplar.
--   **Son** ' a tıklayın
+-   **Son**’a tıklayın
 -   Var olan DDL betiğinin üzerine yazma ve modelin eşleme ve depolama bölümlerinin yazılmasına ilişkin uyarılar alabilirsiniz, her iki uyarı için de **Evet** ' e tıklayabilirsiniz
 -   Veritabanını oluşturmak için güncelleştirilmiş SQL betiği sizin için açıldı  
     *Oluşturulan komut dosyası tüm mevcut tabloları bırakacak ve sonra şemayı sıfırdan yeniden oluşturacak. Bu, yerel geliştirme için çalışabilir, ancak daha önce dağıtılmış bir veritabanına yapılan değişiklikleri göndermek için uygun değildir. Zaten dağıtılmış bir veritabanında değişiklikler yayımlamanız gerekiyorsa, bir geçiş betiği hesaplamak için betiği düzenlemeniz veya bir şema karşılaştırma aracı kullanmanız gerekir.*

@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 13ae7bc1-74b4-4ee4-8d73-c337be841467
 ms.openlocfilehash: 8990d1373ea2121ce11337a43dbcdf3b9e1532bd
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182562"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418734"
 ---
 # <a name="msl-specification"></a>MSL Belirtimi
 Eşleme belirtim dili (MSL), bir Entity Framework uygulamasının kavramsal modeli ve depolama modeli arasındaki eşlemeyi açıklayan XML tabanlı bir dildir.
@@ -39,8 +39,8 @@ Aşağıdaki tabloda, **diğer ad** öğesine uygulanabilen öznitelikler açık
 
 | Öznitelik adı | Gereklidir | Değer                                                                     |
 |:---------------|:------------|:--------------------------------------------------------------------------|
-| **Anahtar**        | Evet         | **Değer** özniteliği tarafından belirtilen ad alanı için diğer ad. |
-| **Değer**      | Evet         | **Anahtar** öğesi değerinin bir diğer adı olduğu ad alanı.     |
+| **Anahtar**        | Yes         | **Değer** özniteliği tarafından belirtilen ad alanı için diğer ad. |
+| **Değer**      | Yes         | **Anahtar** öğesi değerinin bir diğer adı olduğu ad alanı.     |
 
 ### <a name="example"></a>Örnek
 
@@ -93,9 +93,9 @@ Aşağıdaki tabloda, **Associationend** öğesi için geçerli olan öznitelikl
 
 | Öznitelik adı     | Gereklidir | Değer                                                                                                                                                                             |
 |:-------------------|:------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **AssociationSet** | Evet         | Eşlenmekte olan ilişkilendirmenin adı.                                                                                                                                 |
-| **From**           | Evet         | Eşlenen ilişkiye karşılık gelen Gezinti özelliğinin **FromRole** özniteliğinin değeri. Daha fazla bilgi için bkz. NavigationProperty öğesi (CSDL). |
-| **To**             | Evet         | Eşlenen ilişkiye karşılık gelen Gezinti özelliğinin **ToRole** özniteliğinin değeri. Daha fazla bilgi için bkz. NavigationProperty öğesi (CSDL).   |
+| **AssociationSet** | Yes         | Eşlenmekte olan ilişkilendirmenin adı.                                                                                                                                 |
+| **Kaynak**           | Yes         | Eşlenen ilişkiye karşılık gelen Gezinti özelliğinin **FromRole** özniteliğinin değeri. Daha fazla bilgi için bkz. NavigationProperty öğesi (CSDL). |
+| **Alıcı**             | Yes         | Eşlenen ilişkiye karşılık gelen Gezinti özelliğinin **ToRole** özniteliğinin değeri. Daha fazla bilgi için bkz. NavigationProperty öğesi (CSDL).   |
 
 ### <a name="example"></a>Örnek
 
@@ -200,7 +200,7 @@ Aşağıdaki tabloda, **Associationsetmapping** öğesine uygulanabilen öznitel
 
 | Öznitelik adı     | Gereklidir | Değer                                                                                       |
 |:-------------------|:------------|:--------------------------------------------------------------------------------------------|
-| **Ad**           | Evet         | Eşlenmekte olan kavramsal model ilişkilendirme kümesinin adı.                      |
+| **Ad**           | Yes         | Eşlenmekte olan kavramsal model ilişkilendirme kümesinin adı.                      |
 | **'Ta**       | Hayır          | Eşlenmekte olan kavramsal model ilişki türünün ad alanı nitelenmiş adı. |
 | **StoreEntitySet** | Hayır          | Eşlenmekte olan tablonun adı.                                                 |
 
@@ -238,7 +238,7 @@ Aşağıdaki tabloda, **ComplexProperty** öğesi için geçerli olan öznitelik
 
 | Öznitelik adı | Gereklidir | Değer                                                                                            |
 |:---------------|:------------|:-------------------------------------------------------------------------------------------------|
-| **Ad**       | Evet         | Eşlenmekte olan kavramsal modeldeki bir varlık türünün karmaşık özelliğinin adı. |
+| **Ad**       | Yes         | Eşlenmekte olan kavramsal modeldeki bir varlık türünün karmaşık özelliğinin adı. |
 | **'Ta**   | Hayır          | Kavramsal model özelliği türünün ad alanı nitelikli adı.                              |
 
 ### <a name="example"></a>Örnek
@@ -308,7 +308,7 @@ Aşağıdaki tabloda, **Complextypemapping** öğesi için geçerli olan öznite
 
 | Öznitelik adı | Gereklidir | Değer                                                                  |
 |:---------------|:------------|:-----------------------------------------------------------------------|
-| **'Ta**   | Evet         | Eşlenmekte olan karmaşık türün ad alanı nitelikli adı. |
+| **'Ta**   | Yes         | Eşlenmekte olan karmaşık türün ad alanı nitelikli adı. |
 
 ### <a name="example"></a>Örnek
 
@@ -440,7 +440,7 @@ Aşağıdaki tabloda, bir **Entitytypemapping** öğesine uygulandığında **de
 
 | Öznitelik adı            | Gereklidir | Değer                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Ifadelerini**          | Evet         | Delete işlevinin eşlendiği saklı yordamın ad alanı nitelikli adı. Saklı yordam, depolama modelinde bildirilmelidir. |
+| **Ifadelerini**          | Yes         | Delete işlevinin eşlendiği saklı yordamın ad alanı nitelikli adı. Saklı yordam, depolama modelinde bildirilmelidir. |
 | **RowsAffectedParameter** | Hayır          | Etkilenen satır sayısını döndüren çıkış parametresinin adı.                                                                               |
 
 #### <a name="example"></a>Örnek
@@ -504,7 +504,7 @@ Aşağıdaki tablo, **Associationsetmapping** öğesine uygulandığında **dele
 
 | Öznitelik adı            | Gereklidir | Değer                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Ifadelerini**          | Evet         | Delete işlevinin eşlendiği saklı yordamın ad alanı nitelikli adı. Saklı yordam, depolama modelinde bildirilmelidir. |
+| **Ifadelerini**          | Yes         | Delete işlevinin eşlendiği saklı yordamın ad alanı nitelikli adı. Saklı yordam, depolama modelinde bildirilmelidir. |
 | **RowsAffectedParameter** | Hayır          | Etkilenen satır sayısını döndüren çıkış parametresinin adı.                                                                               |
 
 #### <a name="example"></a>Örnek
@@ -558,7 +558,7 @@ Aşağıdaki tabloda, **Endproperty** öğesi için geçerli olan öznitelikler 
 
 | Öznitelik adı | Gereklidir | Değer                                                 |
 |:---------------|:------------|:------------------------------------------------------|
-| Name           | Evet         | Eşlenmekte olan ilişki ucunun adı. |
+| Adı           | Yes         | Eşlenmekte olan ilişki ucunun adı. |
 
 ### <a name="example"></a>Örnek
 
@@ -628,8 +628,8 @@ Aşağıdaki tabloda **Entitycontainermapping** öğesine uygulanabilen öznitel
 
 | Öznitelik adı            | Gereklidir | Değer                                                                                                                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **StorageModelContainer** | Evet         | Eşlenmekte olan depolama modeli varlık kapsayıcısının adı.                                                                                                                                                                                     |
-| **CdmEntityContainer**    | Evet         | Eşlenmekte olan kavramsal model varlık kapsayıcısının adı.                                                                                                                                                                                  |
+| **StorageModelContainer** | Yes         | Eşlenmekte olan depolama modeli varlık kapsayıcısının adı.                                                                                                                                                                                     |
+| **CdmEntityContainer**    | Yes         | Eşlenmekte olan kavramsal model varlık kapsayıcısının adı.                                                                                                                                                                                  |
 | **GenerateUpdateViews**   | Hayır          | **True** veya **false**. **Yanlışsa**, güncelleştirme görünümleri oluşturulmaz. Veriler başarıyla geri dönüş yaptığından, geçersiz olabilecek bir salt okuma eşlemi varsa, bu öznitelik **false** olarak ayarlanmalıdır. <br/> Varsayılan değer **Doğru** değeridir. |
 
 ### <a name="example"></a>Örnek
@@ -679,7 +679,7 @@ Aşağıdaki tabloda **EntitySetMapping** öğesine uygulanabilen öznitelikler 
 
 | Öznitelik adı           | Gereklidir | Değer                                                                                                                                                                                                                         |
 |:-------------------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Ad**                 | Evet         | Eşlenmekte olan kavramsal model varlık kümesinin adı.                                                                                                                                                             |
+| **Ad**                 | Yes         | Eşlenmekte olan kavramsal model varlık kümesinin adı.                                                                                                                                                             |
 | **TypeName** **1**       | Hayır          | Eşlenmekte olan kavramsal model varlık türünün adı.                                                                                                                                                            |
 | **Storeentityset** **1** | Hayır          | Eşlenmekte olan depolama modeli varlık kümesinin adı.                                                                                                                                                             |
 | **MakeColumnsDistinct**  | Hayır          | Yalnızca ayrı satırların döndürülüp döndürülmediğine bağlı olarak **doğru** veya **yanlış** . <br/> Bu öznitelik **true**olarak ayarlanırsa, EntityContainerMapping öğesinin **generateupdateviews** özniteliği **false**olarak ayarlanmalıdır. |
@@ -745,7 +745,7 @@ Aşağıdaki tabloda **Entitytypemapping** öğesine uygulanabilen öznitelikler
 
 | Öznitelik adı | Gereklidir | Değer                                                                                                                                                                                                |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **'Ta**   | Evet         | Eşlenmekte olan kavramsal model varlık türünün ad alanı nitelikli adı. <br/> Tür soyut veya türetilmiş bir tür ise, değer `IsOfType(Namespace-qualified_type_name)`olmalıdır. |
+| **'Ta**   | Yes         | Eşlenmekte olan kavramsal model varlık türünün ad alanı nitelikli adı. <br/> Tür soyut veya türetilmiş bir tür ise, değer `IsOfType(Namespace-qualified_type_name)`olmalıdır. |
 
 ### <a name="example"></a>Örnek
 
@@ -831,8 +831,8 @@ Aşağıdaki tabloda **FunctionImportMapping** öğesi için geçerli olan özni
 
 | Öznitelik adı         | Gereklidir | Değer                                                                                   |
 |:-----------------------|:------------|:----------------------------------------------------------------------------------------|
-| **Işleviçeaktarmaadı** | Evet         | Eşlenmekte olan kavramsal modelde işlev içeri aktarma işleminin adı.           |
-| **Ifadelerini**       | Evet         | Eşlenen depolama modelindeki işlevin ad alanı nitelikli adı. |
+| **Işleviçeaktarmaadı** | Yes         | Eşlenmekte olan kavramsal modelde işlev içeri aktarma işleminin adı.           |
+| **Ifadelerini**       | Yes         | Eşlenen depolama modelindeki işlevin ad alanı nitelikli adı. |
 
 ### <a name="example"></a>Örnek
 
@@ -889,7 +889,7 @@ Aşağıdaki tabloda, bir **Entitytypemapping** öğesine uygulandığında **ı
 
 | Öznitelik adı            | Gereklidir | Değer                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Ifadelerini**          | Evet         | INSERT işlevinin eşlendiği saklı yordamın ad alanı nitelikli adı. Saklı yordam, depolama modelinde bildirilmelidir. |
+| **Ifadelerini**          | Yes         | INSERT işlevinin eşlendiği saklı yordamın ad alanı nitelikli adı. Saklı yordam, depolama modelinde bildirilmelidir. |
 | **RowsAffectedParameter** | Hayır          | Etkilenen satır sayısını döndüren çıkış parametresinin adı.                                                                               |
 
 #### <a name="example"></a>Örnek
@@ -940,7 +940,7 @@ Aşağıdaki tablo, **Associationsetmapping** öğesine uygulandığında **ıns
 
 | Öznitelik adı            | Gereklidir | Değer                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Ifadelerini**          | Evet         | INSERT işlevinin eşlendiği saklı yordamın ad alanı nitelikli adı. Saklı yordam, depolama modelinde bildirilmelidir. |
+| **Ifadelerini**          | Yes         | INSERT işlevinin eşlendiği saklı yordamın ad alanı nitelikli adı. Saklı yordam, depolama modelinde bildirilmelidir. |
 | **RowsAffectedParameter** | Hayır          | Etkilenen satır sayısını döndüren çıkış parametresinin adı.                                                                               |
 
 #### <a name="example"></a>Örnek
@@ -997,7 +997,7 @@ Aşağıdaki tabloda, **Mapping** öğesine uygulanabilen öznitelikler açıkla
 
 | Öznitelik adı | Gereklidir | Değer                                                 |
 |:---------------|:------------|:------------------------------------------------------|
-| **Boşlu**      | Evet         | **C-S**. Bu sabit bir değerdir ve değiştirilemez. |
+| **Boşlu**      | Yes         | **C-S**. Bu sabit bir değerdir ve değiştirilemez. |
 
 ### <a name="example"></a>Örnek
 
@@ -1050,7 +1050,7 @@ Aşağıdaki tabloda, **Mappingfragment** öğesine uygulanabilen öznitelikler 
 
 | Öznitelik adı          | Gereklidir | Değer                                                                                                                                                                                                                         |
 |:------------------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **StoreEntitySet**      | Evet         | Eşlenmekte olan tablonun veya görünümün adı.                                                                                                                                                                           |
+| **StoreEntitySet**      | Yes         | Eşlenmekte olan tablonun veya görünümün adı.                                                                                                                                                                           |
 | **MakeColumnsDistinct** | Hayır          | Yalnızca ayrı satırların döndürülüp döndürülmediğine bağlı olarak **doğru** veya **yanlış** . <br/> Bu öznitelik **true**olarak ayarlanırsa, EntityContainerMapping öğesinin **generateupdateviews** özniteliği **false**olarak ayarlanmalıdır. |
 
 ### <a name="example"></a>Örnek
@@ -1287,7 +1287,7 @@ Sonraki örnek, bir **Associationsetmapping** öğesinin alt öğesi olarak **Qu
  </EntityContainerMapping>
 ```
  
-### <a name="comments"></a>Açıklamalar
+### <a name="comments"></a>Yorumlar
 
 Aşağıdaki senaryoları etkinleştirmek için sorgu görünümleri tanımlayabilirsiniz:
 
@@ -1327,8 +1327,8 @@ Aşağıdaki tabloda, **Resultbinding** öğesi için geçerli olan öznitelikle
 
 | Öznitelik adı | Gereklidir | Değer                                                                         |
 |:---------------|:------------|:------------------------------------------------------------------------------|
-| **Ad**       | Evet         | Eşlenmekte olan kavramsal modeldeki varlık özelliğinin adı. |
-| **Tation** | Evet         | Eşlenen sütunun adı.                                          |
+| **Ad**       | Yes         | Eşlenmekte olan kavramsal modeldeki varlık özelliğinin adı. |
+| **Tation** | Yes         | Eşlenen sütunun adı.                                          |
 
 ### <a name="example"></a>Örnek
 
@@ -1479,15 +1479,15 @@ Aşağıdaki **tabloda, bir** kavramsal model özelliğini veritabanındaki bir 
 
 | Öznitelik adı | Gereklidir | Değer                                                           |
 |:---------------|:------------|:----------------------------------------------------------------|
-| **Ad**       | Evet         | Eşlenmekte olan kavramsal model özelliğinin adı. |
-| **Tation** | Evet         | Eşlenmekte olan tablo sütununun adı.              |
+| **Ad**       | Yes         | Eşlenmekte olan kavramsal model özelliğinin adı. |
+| **Tation** | Yes         | Eşlenmekte olan tablo sütununun adı.              |
 
 Aşağıdaki tabloda, bir kavramsal model özelliğini saklı yordam parametresine eşlemek için kullanıldığında **Scalarproperty** öğesi için geçerli olan öznitelikler açıklanmaktadır:
 
 | Öznitelik adı    | Gereklidir | Değer                                                                                                                                           |
 |:------------------|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Ad**          | Evet         | Eşlenmekte olan kavramsal model özelliğinin adı.                                                                                 |
-| **ParameterName** | Evet         | Eşlenmekte olan parametrenin adı.                                                                                                 |
+| **Ad**          | Yes         | Eşlenmekte olan kavramsal model özelliğinin adı.                                                                                 |
+| **ParameterName** | Yes         | Eşlenmekte olan parametrenin adı.                                                                                                 |
 | **Sürüm**       | Hayır          | **Geçerli** veya **orijinal** değerin, özelliğin orijinal değerinin eşzamanlılık denetimleri için kullanılıp kullanılmayacağını belirtir. |
 
 ### <a name="example"></a>Örnek
@@ -1597,7 +1597,7 @@ Aşağıdaki tablo **Updatefunction** öğesine uygulanabilen öznitelikleri aç
 
 | Öznitelik adı            | Gereklidir | Değer                                                                                                                                                    |
 |:--------------------------|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Ifadelerini**          | Evet         | Update işlevinin eşlendiği saklı yordamın ad alanı nitelikli adı. Saklı yordam, depolama modelinde bildirilmelidir. |
+| **Ifadelerini**          | Yes         | Update işlevinin eşlendiği saklı yordamın ad alanı nitelikli adı. Saklı yordam, depolama modelinde bildirilmelidir. |
 | **RowsAffectedParameter** | Hayır          | Etkilenen satır sayısını döndüren çıkış parametresinin adı.                                                                               |
 
 ### <a name="example"></a>Örnek

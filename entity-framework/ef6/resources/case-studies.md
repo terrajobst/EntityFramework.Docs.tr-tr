@@ -1,56 +1,56 @@
 ---
-title: Entity Framework - EF6 için örnek olay incelemeleri
+title: Entity Framework-EF6 için örnek olay Incelemeleri
 author: divega
 ms.date: 10/23/2016
 ms.assetid: cd5d3ae3-717d-4095-a2ef-0e8fd72b1a2f
 ms.openlocfilehash: d7982a3f89ac1e57b48039d828f287adf6dc5068
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490889"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417083"
 ---
-# <a name="microsoft-case-studies-for-entity-framework"></a>Entity Framework için Microsoft incelemeleri
-Bu sayfadaki örnek olay incelemeleri, Entity Framework işe birkaç gerçek üretim projeleri vurgulayın.
+# <a name="microsoft-case-studies-for-entity-framework"></a>Entity Framework için Microsoft örnek olay Incelemeleri
+Bu sayfadaki olay incelemeleri, Entity Framework çalışan birkaç gerçek dünya Üretim projesini vurgulayacaktır.
 > [!NOTE]
-> Bu örnek olay incelemeleri ayrıntılı sürümleri artık Microsoft Web sitesindeki kullanılamaz. Bu nedenle bağlantıları kaldırıldı.
+> Bu örnek olay incelemelerine ilişkin ayrıntılı sürümler artık Microsoft Web sitesinde bulunmamaktadır. Bu nedenle bağlantılar kaldırılmıştır.
 
 ## <a name="epicor"></a>Epicor
-Epicor 150'den fazla ülkede şirketler için kurumsal kaynak planlama (ERP) çözümleri geliştirir bir büyük Genel yazılım (ile 400'den geliştiriciler) şirketidir.
-Epicor 9, kendi Gemisi ürünü bir Service-Oriented mimarisi (.NET Framework kullanarak SOA üzerinde) temel alır.
-Takım, dil tümleşik sorgu (LINQ) ve ayrıca kendi arka uç SQL sunucuları üzerindeki yükü azaltmak isteyen desteği sağlamak için çok sayıda müşteri istekleri ile karşılaşılan, Visual Studio 2010 ve .NET Framework 4.0 yükseltme karar verdi.
-Entity Framework 4.0 kullanarak, bunlar bu hedefleri gerçekleştirmeye ve geliştirme ve Bakım büyük ölçüde basitleştirir.
-Özellikle, Entity Framework'ün zengin T4 desteği bunları kendi oluşturulan kod tam denetimini elinize alın ve önceden derlenmiş sorgular ve önbelleğe alma gibi performans koruma özellikleri otomatik olarak oluşturmak izin verilir.
+Epicor, en fazla 150 ülkede yer alan şirketler için kurumsal kaynak planlama (ERP) çözümlerini geliştiren büyük bir küresel yazılım şirketidir (400 'den fazla geliştiriciyle).
+Kendi flagnakliye ürünü, Epicveya 9, .NET Framework kullanarak hizmet yönelimli bir mimariye (SOA) dayanır.
+Dil ile tümleşik sorgu (LINQ) desteği sağlamak ve ayrıca arka uç SQL sunucularındaki yükü azaltmak için çok sayıda müşteri isteği ile birlikte, takım Visual Studio 2010 ve 4,0 .NET Framework yükseltmeye karar verdi.
+4,0 Entity Framework kullanarak, bu hedeflere ulaşabiliyor ve ayrıca geliştirme ve bakımın önemli ölçüde basitleşiyor.
+Özellikle, Entity Framework zengin T4 desteği, kendilerine oluşturulan kodların tam denetimini ele geçirmesine ve önceden derlenmiş sorgular ve önbelleğe alma gibi performans tasarrufu özellikleriyle otomatik olarak derlenmesine izin verilir.
 
-> "Biz varolan kodu ile kısa bir süre önce bazı performans testleri yürütülür ve biz isteklerin yüzde 90'ının SQL Server'a azaltabilirsiniz.
-ADO.NET Entity Framework 4 nedeniyle olmasıdır." – Erik Johnson, Başkan Yardımcısı, ürün araştırma  
+> "Bazı performans testlerini son zamanlarda mevcut kodla ekledik ve SQL Server %90 oranında istekleri azalttık.
+Bunun nedeni, ADO.NET Entity Framework 4. " – Erik Johnson, Başkan Yardımcısı, ürün araştırması  
 
-## <a name="veracity-solutions"></a>Belki çözümleri
-Belki çözümleri uzun süreli genişletin ve korumak zor giden bir olay planlama yazılım sistemi alınan, güçlü ve kullanımı kolay bir zengin Internet uygulaması Silverlight 4'te yerleşik olarak yeniden yazmak için Visual Studio 2010 kullanılır.
-.NET RIA hizmetlerini kullanarak, bir hizmet katmanı, kod yinelemesi kurtuldu ve Katmanlar arası ortak doğrulama ve kimlik doğrulaması mantığı için izin verilen Entity Framework'ün üstünde hızlıca oluşturabiliyor.  
+## <a name="veracity-solutions"></a>Coacity çözümleri
+Uzun süreli uygulamalar üzerinde bakım ve genişletme olanağı sunan bir olay planlama yazılım sistemi elde etmekle, Visual Studio 2010, Silverlight 4 ' te oluşturulan güçlü ve kullanımı kolay zengin bir Internet uygulaması olarak yeniden yazmak için Visual Studio ' i kullandı.
+.NET RıA hizmetlerini kullanarak, kod çoğaltmasının önden çıkarılan ve katmanlar arasında ortak doğrulama ve kimlik doğrulama mantığı için izin verilen Entity Framework en üstünde hızlı bir şekilde bir hizmet katmanı oluşturabilebiliyoruz.  
 
-> "Biz Entity Framework'ü ilk kez sunulmuştur ve daha da iyi olması için Entity Framework 4 kanıtlamış satıldı.
-Araç geliştirilmiştir ve kavramsal model, depolama modelinin ve bu modelleri arasındaki eşlemeyi tanımlar .edmx dosyaları yönetmek daha kolay... Entity Framework ile çalışan bir gün içinde veri erişim katmanı alabilirim — miyim ilerledikçe kullanıma derleyin.
-Entity Framework bizim pratikte veri erişim katmanı sınıflandırabilirsiniz. Herkes bunu neden kullanmaz bilmiyorum." – ALi McBride, üst düzey Geliştirici
+> "İlk tanıtıldığı sırada Entity Framework satıldık ve Entity Framework 4 ' ün daha da iyi olduğunu kanıtlamış.
+Araç geliştirildi ve bu modeller arasındaki kavramsal modeli, depolama modelini ve eşlemeyi tanımlayan. edmx dosyalarını işlemek daha kolay... Entity Framework, bu veri erişim katmanının bir gün içinde çalışmasını sağlayabilir ve sonra da kullanıma sundum.
+Entity Framework de veri erişim katmanımız. Herkesin neden kullanmadığına bilmiyorum. " – Ali McBride, üst düzey geliştirici
 
-## <a name="nec-display-solutions-of-america"></a>NEC görünen çözümlerinizi Amerika
-NEC, kendi gelirlerini artırın ve reklamcılar ve ağ sahipleri yararlanmak için bir çözüm ile dijital yer alarak reklam için pazarına girmeleri istiyordu.
-Bunu yapabilmek için geleneksel ad kampanyada gerekli el ile gerçekleştirilen işlemleri otomatikleştirin web uygulamalarının bir çift başlattı.
-Siteleri, ASP.NET, Silverlight 3, AJAX ve WCF, SQL Server 2008'e konuşmak için Entity Framework Veri erişim katmanında birlikte kullanılarak oluşturulmuştur.
+## <a name="nec-display-solutions-of-america"></a>Amerika NEC ekran çözümleri
+NEC, reklamları ve ağ sahiplerini avantaj sağlamak ve kendi gelirlerini artırmak için bir çözümle dijital BT tabanlı reklam için pazara girmek istedi.
+Bunu yapmak için, geleneksel bir ad kampanyasında gereken el ile işlemleri otomatikleştiren bir çift Web uygulaması başlattı.
+Siteler, SQL Server 2008 ile konuşmak için veri erişim katmanındaki Entity Framework birlikte ASP.NET, Silverlight 3, AJAX ve WCF kullanılarak oluşturulmuştur.
 
-> "SQL Server ile biz size alabilir ihtiyacımız reklamcılar ve ağlar ile gerçek zamanlı ve güvenilirliği kritik uygulamalarımızın bilgileri her zaman kullanılabilir olacağına dikkat sağlamaya yardımcı olmak için bilgi sunmak için aktarım hızı düşünmüştür"-Mike Corcoran Direktörü BT
+> "SQL Server sayesinde, gerçek zamanlı bilgileri ve iş açısından kritik uygulamalarımızda bulunan bilgilerin her zaman kullanılabilir olmasını sağlamaya yardımcı olmak için gerekli olan aktarım hızını ve"-Mike Corcora, BT BT Müdürü
 
 ## <a name="darwin-dimensions"></a>Darwin boyutları
-Çeşitli Microsoft teknolojilerini kullanarak, ekip Darwin, Evolver - tüketiciler kullanmak için çarpıcı, gerçek avatarlar oyunlar, animasyonları ve sosyal ağ sayfaları oluşturmak için kullanabilirsiniz, bir çevrimiçi avatar portalı oluşturmak için ayarlanan.
-Entity Framework ve Windows Workflow Foundation (WF) ve Windows Server AppFabric (yüksek oranda ölçeklenebilir bellek içi uygulama önbelleği) gibi bileşenleri çekiliyor üretkenlik avantajlarıyla birlikte takım % 35 daha az harika bir ürün teslim edebilirsiniz geliştirme zamanı.
-Takım üyeleri sahip olmasına rağmen bir Çevik Geliştirme işlemi haftalık sürümleriyle aşağıdaki takım birden fazla ülkede arasında bölün.
+Çok sayıda Microsoft teknolojisinden yararlanarak, Darwin 'daki ekip yeni bir avaku oluşturmak için, tüketicilerin oyun, animasyon ve sosyal ağ sayfalarında kullanılmak üzere şaşırtıcı ve harika bir harika ve harika bir şekilde iletişim kurmak için kullanabileceği bir çevrimiçi Avatar portalı oluşturur.
+Entity Framework verimlilik avantajları ve Windows Workflow Foundation (WF) ve Windows Server AppFabric (yüksek düzeyde ölçeklenebilir bir bellek içi uygulama önbelleği) gibi bileşenlere çekilerek, takım %35 daha az bir ürünün harika bir ürününü sunmaya geliştirme süresi.
+Ekip üyelerinin birden çok ülkede bölünmesine rağmen, ekip haftalık yayınlar ile çevik bir geliştirme sürecini takip eden bir işlemdir.
 
- > "Bu sizi teknolojinin çok teknoloji oluşturmamayı çalışırız. Bir başlangıç size zaman ve para tasarrufu teknolojisini kullanır önemlidir.
- .NET için hızlı ve uygun maliyetli geliştirme seçim sağladı." – Zachary Olsen, Mimarı  
+ > "Teknolojinin sake için teknoloji oluşturmamalıdır. Bir başlangıç olarak, saat ve para tasarrufu sağlayan teknolojimizin faydalanma açısından önemlidir.
+ .NET, hızlı ve uygun maliyetli geliştirme seçimiydi. " – Zachary Olsen, mimar  
 
 ## <a name="silverware"></a>Silverware
-Daha büyük çekmek için daha fazla kuruluş düzeyi özellikleri ile ürün geliştirmek için Silverware geliştirme ekibinin 15 yıldan fazla ile küçük ve orta ölçekli bir restoran grupları için satış noktası (POS) çözümleri geliştirme deneyiminin, belirlenmiş Restoran zincirleri.
-Microsoft'un Geliştirme Araçları'nın en son sürümünü kullanarak, bunlar dört kat daha hızlı daha önce yeni çözümü oluşturmak kullanabilirsiniz.
-LINQ ve SQL Server 2008 ve SQL Server Raporlama Hizmetleri (SSRS) için kendi veri depolama için Crystal raporlardan taşımak kolay ve raporlama ihtiyaçlarını Entity Framework gibi önemli yeni özellikler.
+Küçük ve orta büyüklükte Restoran grupları için satış noktası (POS) çözümleri geliştirme konusunda 15 yıldan fazla deneyimle, Silverware adresindeki geliştirme ekibi, daha fazla bilgi almak için ürünleri daha fazla kurumsal düzey özelliklerle geliştirmeye yönelik olarak ayarlanmıştır Restoran zincirleri.
+Microsoft 'un geliştirme araçlarının en son sürümünü kullanarak, yeni çözümü daha önce dört kat daha hızlı derleyebilir.
+LINQ ve Entity Framework gibi temel yeni özellikler, veri depolama ve raporlama ihtiyaçları için Crystal Reports 'tan SQL Server 2008 ve SQL Server Reporting Services (SSRS) arasında geçiş yapılmasını kolaylaştırır.
 
-> "Etkili veri yönetimi SilverWare – başarısını anahtarıdır ve SQL Raporlama benimsemeye karar nedeni budur." -Nicholas Romanidis, Direktörü BT / yazılım Mühendisliği
+> "Geçerli veri yönetimi SilverWare başarısının bir anahtarıdır ve SQL raporlamayı benimsemeye karar verdik." -Nicholas Romanidu, BT/yazılım mühendisliği müdürü

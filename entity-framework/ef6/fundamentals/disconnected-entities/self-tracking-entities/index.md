@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 5e60f5be-7bbb-4bf8-835e-0ac808d6c84a
 ms.openlocfilehash: 3bb9759d89fbd0c10b911625aa7d0afd7747de14
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72181724"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419525"
 ---
 # <a name="self-tracking-entities"></a>Kendi kendine izleme varlıkları
 
@@ -46,7 +46,7 @@ Kendi kendine izleme varlıklarıyla çalışırken aşağıdakileri göz önün
 - Kendi kendini izleyen varlıklar, yavaş yükleme gerçekleştirmek için etkin değildir.  
 - İkili serileştirme ve ASP.NET durum yönetimi nesnelerine serileştirme, kendi kendine izleme varlıkları tarafından desteklenmez. Ancak, ikili serileştirme desteğini eklemek için şablonu özelleştirebilirsiniz. Daha fazla bilgi için, bkz. [Ikili serileştirme ve kendi kendine Izleme varlıkları Ile ViewState kullanma](https://go.microsoft.com/fwlink/?LinkId=199208).  
 
-## <a name="security-considerations"></a>Güvenlik Değerlendirmeleri  
+## <a name="security-considerations"></a>Güvenlikle İlgili Dikkat Edilmesi Gerekenler  
 
 Kendi kendine izleme varlıklarıyla çalışırken aşağıdaki güvenlik konuları dikkate alınmalıdır:  
 

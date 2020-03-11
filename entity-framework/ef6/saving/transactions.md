@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 0d0f1824-d781-4cb3-8fda-b7eaefced1cd
 ms.openlocfilehash: 7030dc675993339f72c935f6b430cead85fecb7f
-ms.sourcegitcommit: c9c3e00c2d445b784423469838adc071a946e7c9
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 07/18/2019
-ms.locfileid: "68306518"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419687"
 ---
 # <a name="working-with-transactions"></a>Işlemlerle çalışma
 > [!NOTE]
@@ -32,21 +32,21 @@ Ancak bazı kullanıcılar işlemleri üzerinde daha fazla denetim gerektirir. B
 
 ## <a name="how-the-apis-work"></a>API 'Ler nasıl çalışır?  
 
-EF6 ' dan önce, veritabanı bağlantısının kendisini açmaya yönelik olarak Entity Framework, (zaten açık olan bir bağlantıyı geçirmişse bir özel durum oluşturdu). Bir işlem yalnızca açık bir bağlantı üzerinde başlatılacağından, bu, bir kullanıcının birkaç işlemi tek bir işlemde kaydıracağından, bir [TransactionScope](https://msdn.microsoft.com/library/system.transactions.transactionscope.aspx) kullanmanın veya **ObjectContext. Connection** özelliğini kullanırken ve Başlarken doğrudan döndürülen **EntityConnection** nesnesinde **Open ()** ve **BeginTransaction ()** çağrılıyor. Buna ek olarak, kendi üzerinde temel alınan veritabanı bağlantısında bir işlem başladıysanız veritabanıyla iletişim kurulan API çağrıları başarısız olur.  
+EF6 ' dan önce, veritabanı bağlantısının kendisini açmaya yönelik olarak Entity Framework, (zaten açık olan bir bağlantıyı geçirmişse bir özel durum oluşturdu). Bir işlem yalnızca açık bir bağlantı üzerinde başlatılacağından, bu, bir kullanıcının birkaç işlemi tek bir işlemde kaydıracağından, bir [TransactionScope](https://msdn.microsoft.com/library/system.transactions.transactionscope.aspx) kullanmanın veya **ObjectContext. Connection** özelliğini kullanmanın ve doğrudan döndürülen **EntityConnection** nesnesinde **Open ()** ve **BeginTransaction ()** yöntemini çağırmaya başladığı anlamına gelir. Buna ek olarak, kendi üzerinde temel alınan veritabanı bağlantısında bir işlem başladıysanız veritabanıyla iletişim kurulan API çağrıları başarısız olur.  
 
 > [!NOTE]
 > Yalnızca kapalı bağlantıları kabul etme sınırlaması Entity Framework 6 ' da kaldırılmıştır. Ayrıntılar için bkz. [bağlantı yönetimi](~/ef6/fundamentals/connection-management.md).  
 
 EF6 ile başlayarak Framework artık şunları sağlar:  
 
-1. **Database. BeginTransaction ()** : Bir kullanıcının mevcut bir DbContext içinde kendi işlemlerini başlatması ve tamamlaması için daha kolay bir yöntem vardır. birkaç işlemin aynı işlem içinde birleştirilmesi ve bu nedenle tümü kaydedilmiş ya da tümünün bir tane olarak geri alınması sağlanır. Ayrıca, kullanıcının işlem için yalıtım düzeyini daha kolay belirlemesine izin verir.  
+1. **Database. BeginTransaction ()** : bir kullanıcının var olan bir DbContext içinde işlem başlatması ve tamamlaması için daha kolay bir yöntem; aynı işlem içinde birden çok işlemin birleştirilmesi ve bu nedenle tümü kaydedilmiş ya da tümü bir tane olarak geri alındı. Ayrıca, kullanıcının işlem için yalıtım düzeyini daha kolay belirlemesine izin verir.  
 2. **Database. UseTransaction ()** : dbcontext 'in Entity Framework dışında başlatılan bir işlem kullanmasına izin verir.  
 
 ### <a name="combining-several-operations-into-one-transaction-within-the-same-context"></a>Birkaç işlemi aynı bağlam içindeki tek bir işlemde birleştirme  
 
 **Database. BeginTransaction ()** iki geçersiz kılmaya sahiptir: bir açık [IsolationLevel](https://msdn.microsoft.com/library/system.data.isolationlevel.aspx) ve bağımsız değişken alan ve temel alınan veritabanı sağlayıcısından varsayılan IsolationLevel 'ı kullanan bir tane. Her iki geçersiz kılma de, temel alınan depolama işleminde COMMIT ve Rollback gerçekleştiren **COMMIT ()** ve **Rollback ()** yöntemlerini sağlayan bir **dbcontexttransaction** nesnesi döndürür.  
 
-**Dbcontexttransaction** , kaydedildikten veya geri alındıktan sonra atılmalıdır. Bunu yapmanın kolay bir yolu, **using (...) {...}** using bloğu tamamlandığında **Dispose ()** öğesini otomatik olarak çağıran sözdizimi:  
+**Dbcontexttransaction** , kaydedildikten veya geri alındıktan sonra atılmalıdır. Bunu yapmanın kolay bir yolu **(...) {...}** using bloğu tamamlandığında **Dispose ()** öğesini otomatik olarak çağıran sözdizimi:  
 
 ``` csharp
 using System;
@@ -111,7 +111,7 @@ using (var conn = new SqlConnection("..."))
 
 Ayrıca, işlemi kendiniz başlatmanız gerekir (varsayılan ayarı önlemek istiyorsanız IsolationLevel dahil olmak üzere) ve bağlantı üzerinde zaten başlatılmış olan mevcut bir işlem olduğunu bildirmek Entity Framework (bkz. Line 33).  
 
-Daha sonra, veritabanı işlemlerini doğrudan SqlConnection üzerinde ya da DbContext üzerinde yürütebilirsiniz. Bu gibi tüm işlemler tek bir işlem içinde yürütülür. İşlemin uygulanması veya geri alınması ve üzerinde Dispose () çağrısı yapmak ve veritabanı bağlantısını kapatmak ve elden atmak için sorumluluğu vardır. Örneğin:  
+Daha sonra, veritabanı işlemlerini doğrudan SqlConnection üzerinde ya da DbContext üzerinde yürütebilirsiniz. Bu gibi tüm işlemler tek bir işlem içinde yürütülür. İşlemin uygulanması veya geri alınması ve üzerinde Dispose () çağrısı yapmak ve veritabanı bağlantısını kapatmak ve elden atmak için sorumluluğu vardır. Örnek:  
 
 ``` csharp
 using System;

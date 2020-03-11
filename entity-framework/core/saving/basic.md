@@ -4,19 +4,19 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 850d842e-3fad-4ef2-be17-053768e97b9e
 uid: core/saving/basic
-ms.openlocfilehash: 6f72458504a9dbe99038af7cfd23b6991258f6b8
-ms.sourcegitcommit: ec196918691f50cd0b21693515b0549f06d9f39c
+ms.openlocfilehash: 066d67d6104316832a33f5a3648f1f2fa6cc9c50
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/23/2019
-ms.locfileid: "71197782"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417637"
 ---
 # <a name="basic-save"></a>Temel Kaydetme
 
 Bağlam ve varlık sınıflarınızı kullanarak verileri ekleme, değiştirme ve kaldırma hakkında bilgi edinin.
 
 > [!TIP]  
-> Bu makalenin görüntüleyebileceğiniz [örnek](https://github.com/aspnet/EntityFramework.Docs/tree/master/samples/core/Saving/Basics/) GitHub üzerinde.
+> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/Basics/) GitHub ' da görebilirsiniz.
 
 ## <a name="adding-data"></a>Veri ekleme
 
@@ -25,7 +25,7 @@ Varlık sınıflarınızın yeni örneklerini eklemek için *Dbset. Add* metodun
 [!code-csharp[Main](../../../samples/core/Saving/Basics/Sample.cs#Add)]
 
 > [!TIP]  
-> Add, Attach ve Update yöntemleri, [Ilişkili veri](related-data.md) bölümünde açıklandığı gibi, bunlara geçirilen varlıkların tam grafiğinde çalışır. Alternatif olarak, EntityEntry. State özelliği yalnızca tek bir varlığın durumunu ayarlamak için kullanılabilir. Örneğin, uygulamasında yönetilen Hyper-V konakları olarak eklemek için aşağıdaki yordamı kullanabilirsiniz.
+> Add, Attach ve Update yöntemleri, [Ilişkili veri](related-data.md) bölümünde açıklandığı gibi, bunlara geçirilen varlıkların tam grafiğinde çalışır. Alternatif olarak, EntityEntry. State özelliği yalnızca tek bir varlığın durumunu ayarlamak için kullanılabilir. Örneğin, `context.Entry(blog).State = EntityState.Modified`.
 
 ## <a name="updating-data"></a>Verileri güncelleştirme
 

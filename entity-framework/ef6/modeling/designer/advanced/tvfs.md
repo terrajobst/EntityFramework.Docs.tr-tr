@@ -4,11 +4,11 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: f019c97b-87b0-4e93-98f4-2c539f77b2dc
 ms.openlocfilehash: 35684196dcd7b708a8feeb1eca3096e8d4e555ec
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182531"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418699"
 ---
 # <a name="table-valued-functions-tvfs"></a>Tablo değerli Işlevler (TVFs)
 > [!NOTE]
@@ -22,13 +22,13 @@ TVF desteği Entity Framework sürüm 5 ' te tanıtılmıştı. Tablo değerli i
 
 TVFs, tek bir anahtar farklılığı olan saklı yordamlara çok benzer: bir TVF 'nin sonucu birleştirilebilir. Bu, bir TVF 'nin sonuçlarının bir LINQ sorgusunda kullanılabileceği anlamına gelir, çünkü saklı yordamın sonuçları.
 
-## <a name="watch-the-video"></a>Videoyu izleyin
+## <a name="watch-the-video"></a>Videoyu izleme
 
 **Sunduğu**: Julia Kornich
 
 [Wmv](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-winvideo-tvf.wmv) | [MP4](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-mp4video-tvf.m4v) | [WMV (ZIP)](https://download.microsoft.com/download/6/0/A/60A6E474-5EF3-4E1E-B9EA-F51D2DDB446A/HDI-ITPro-MSDN-winvideo-tvf.zip)
 
-## <a name="pre-requisites"></a>Önkoşulların önkoşulları
+## <a name="pre-requisites"></a>Önkoşullar
 
 Bu yönergeyi tamamlamak için şunları yapmanız gerekir:
 
@@ -38,7 +38,7 @@ Bu yönergeyi tamamlamak için şunları yapmanız gerekir:
 
 ## <a name="set-up-the-project"></a>Projeyi ayarlama
 
-1.  Visual Studio 'Yu aç
+1.  Visual Studio’yu açın
 2.  **Dosya** menüsünde, **Yeni**' nin üzerine gelin ve ardından **Proje** ' ye tıklayın.
 3.  Sol bölmede, **Visual C\#** ' ye tıklayın ve ardından **konsol** şablonunu seçin
 4.  Projenin adı olarak **TVF** girin ve **Tamam 'a** tıklayın
