@@ -19,7 +19,7 @@
       items:
         - name: Genel Bakış
           href: core/index.md
-        - name: Sürümler ve planlama (Yol haritası)
+        - name: Sürümler ve planlama (yol haritası)
           items:
             - name: Mevcut ve planlanan sürümler
               href: core/what-is-new/index.md
@@ -55,21 +55,21 @@
                   href: core/miscellaneous/rc2-rtm-upgrade.md
                 - name: 1.x sürümünden 2.0’ye
                   href: core/miscellaneous/1x-2x-upgrade.md
-        - name: Başlarken
+        - name: Kullanmaya başlayın
           items:
             - name: EF Core öğreticisi
               href: core/get-started/index.md
-            - name: EF Core’u Yükleme
+            - name: EF Core’u yükleme
               href: core/get-started/install/index.md
-            - name: ASP.NET Core Öğreticisi >>
+            - name: ASP.NET Core öğreticisi >>
               href: /aspnet/core/data/ef-rp/intro
         - name: Temeller
           items:
-            - name: Bağlantı Dizeleri
+            - name: Bağlantı dizeleri
               href: core/miscellaneous/connection-strings.md
             - name: Günlüğe Kaydetme
               href: core/miscellaneous/logging.md
-            - name: Bağlantı Dayanıklılığı
+            - name: Bağlantı dayanıklılığı
               href: core/miscellaneous/connection-resiliency.md
             - name: Sınama
               items:
@@ -81,23 +81,23 @@
                   href: core/miscellaneous/testing/in-memory.md
             - name: DbContext yapılandırma
               href: core/miscellaneous/configuring-dbcontext.md
-            - name: Boş Değer Atanabilir Başvuru Türleri
+            - name: Boş değer atanabilir başvuru türleri
               href: core/miscellaneous/nullable-reference-types.md
-        - name: Model Oluşturma
+        - name: Bir model oluşturma
           items:
             - name: Genel Bakış
               href: core/modeling/index.md
-            - name: Varlık Türleri
+            - name: Varlık türleri
               href: core/modeling/entity-types.md
-            - name: Varlık Özellikleri
+            - name: Varlık özellikleri
               href: core/modeling/entity-properties.md
             - name: Anahtarlar
               href: core/modeling/keys.md
-            - name: Oluşturulan Değerler
+            - name: Oluşturulan değerler
               href: core/modeling/generated-properties.md
-            - name: Eşzamanlılık Belirteçleri
+            - name: Eşzamanlılık belirteçleri
               href: core/modeling/concurrency.md
-            - name: Gölge Özellikler
+            - name: Gölge özellikler
               href: core/modeling/shadow-properties.md
             - name: İlişkiler
               href: core/modeling/relationships.md
@@ -107,26 +107,26 @@
               href: core/modeling/inheritance.md
             - name: Diziler
               href: core/modeling/sequences.md
-            - name: Destek Alanları
+            - name: Destek alanları
               href: core/modeling/backing-field.md
-            - name: Değer Dönüştürmeleri
+            - name: Değer dönüştürmeleri
               href: core/modeling/value-conversions.md
-            - name: Veri Çekirdeği Oluşturma
+            - name: Veri çekirdeği oluşturma
               href: core/modeling/data-seeding.md
-            - name: Varlık Türü Oluşturucuları
+            - name: Varlık türü oluşturucuları
               href: core/modeling/constructors.md
-            - name: Tablo Bölme
+            - name: Tablo bölme
               href: core/modeling/table-splitting.md
-            - name: Sahip Olunan Varlık Türleri
+            - name: Sahip olunan varlık türleri
               href: core/modeling/owned-entities.md
-            - name: Anahtarsız Varlık Türleri
+            - name: Anahtarsız varlık türleri
               href: core/modeling/keyless-entity-types.md
             - name: Aynı DbContext’e sahip alternatif modeller
               href: core/modeling/dynamic-model.md
-            - name: Uzamsal Veriler
+            - name: Uzamsal veriler
               displayName: GIS
               href: core/modeling/spatial.md
-        - name: Veritabanı Şemalarını Yönetme
+        - name: Veritabanı şemalarını yönetme
           items:
             - name: Genel Bakış
               href: core/managing-schemas/index.md
@@ -134,65 +134,65 @@
               items:
                 - name: Genel Bakış
                   href: core/managing-schemas/migrations/index.md
-                - name: Takım Ortamları
+                - name: Takım ortamları
                   href: core/managing-schemas/migrations/teams.md
-                - name: Özel İşlemler
+                - name: Özel işlemler
                   href: core/managing-schemas/migrations/operations.md
-                - name: Ayrı Proje Kullanma
+                - name: Ayrı proje kullanma
                   href: core/managing-schemas/migrations/projects.md
-                - name: Birden Çok Sağlayıcı
+                - name: Birden çok sağlayıcı
                   href: core/managing-schemas/migrations/providers.md
-                - name: Özel Geçmiş Tablosu
+                - name: Özel geçmiş tablosu
                   href: core/managing-schemas/migrations/history-table.md
-            - name: API Oluşturma ve Bırakma
+            - name: API oluşturma ve bırakma
               href: core/managing-schemas/ensure-created.md
-            - name: Tersine Mühendislik (Yapı İskelesi Kurma)
+            - name: Tersine mühendislik (yapı iskelesi kurma)
               href: core/managing-schemas/scaffolding.md
-        - name: Veri Sorgulama
+        - name: Verileri sorgulama
           items:
             - name: Genel Bakış
               href: core/querying/index.md
-            - name: İstemci ile Sunucunun Karşılaştırmalı Değerlendirmesi
+            - name: İstemci ve sunucu karşılaştırması
               href: core/querying/client-eval.md
-            - name: İzleme ile İzlememe Karşılaştırması
+            - name: İzleme ve izlememe karşılaştırması
               href: core/querying/tracking.md
-            - name: Karmaşık Sorgu İşleçleri
+            - name: Karmaşık sorgu işleçleri
               href: core/querying/complex-query-operators.md
-            - name: İlgili Verileri Yükleme
+            - name: İlgili verileri yükleme
               href: core/querying/related-data.md
-            - name: Zaman Uyumsuz Sorgular
+            - name: Zaman uyumsuz sorgular
               href: core/querying/async.md
-            - name: Ham SQL Sorguları
+            - name: Ham SQL sorguları
               href: core/querying/raw-sql.md
-            - name: Genel Sorgu Filtreleri
+            - name: Genel sorgu filtreleri
               href: core/querying/filters.md
-            - name: Sorgu Etiketleri
+            - name: Sorgu etiketleri
               href: core/querying/tags.md
-            - name: Sorgunun Çalışma Biçimi
+            - name: Sorgular nasıl çalışır?
               href: core/querying/how-query-works.md
-        - name: Verileri Kaydetme
+        - name: Verileri kaydetme
           items:
             - name: Genel Bakış
               href: core/saving/index.md
-            - name: Temel Kaydetme
+            - name: Temel kaydetme
               href: core/saving/basic.md
-            - name: İlgili Veriler
+            - name: İlgili veriler
               href: core/saving/related-data.md
-            - name: Basamaklı Silme
+            - name: Basamaklı silme
               href: core/saving/cascade-delete.md
-            - name: Eşzamanlılık Çakışmaları
+            - name: Eşzamanlılık çakışmaları
               href: core/saving/concurrency.md
             - name: İşlemler
               href: core/saving/transactions.md
-            - name: Zaman Uyumsuz Kaydetme
+            - name: Zaman uyumsuz kaydetme
               href: core/saving/async.md
-            - name: Bağlantısı Kesilmiş Varlıklar
+            - name: Bağlantısı kesilmiş varlıklar
               href: core/saving/disconnected-entities.md
             - name: Oluşturulan özellikler için açık değerler
               href: core/saving/explicit-values-generated-properties.md
-        - name: Desteklenen .NET Uygulamaları
+        - name: Desteklenen .NET uygulamaları
           href: core/platforms/index.md
-        - name: Veritabanı Sağlayıcıları
+        - name: Veritabanı sağlayıcıları
           items:
             - name: Genel Bakış
               href: core/providers/index.md
@@ -200,33 +200,33 @@
               items:
                 - name: Genel Bakış
                   href: core/providers/sql-server/index.md
-                - name: Bellek için İyileştirilmiş Tablolar
+                - name: Bellek için iyileştirilmiş tablolar
                   href: core/providers/sql-server/memory-optimized-tables.md
-                - name: Azure SQL Veritabanı Seçeneklerini Belirtme
+                - name: Azure SQL Veritabanı seçeneklerini belirtme
                   href: core/providers/sql-server/azure-sql-database.md
             - name: SQLite
               items:
                 - name: Genel Bakış
                   href: core/providers/sqlite/index.md
-                - name: SQLite Sınırlamaları
+                - name: SQLite sınırlamaları
                   href: core/providers/sqlite/limitations.md
             - name: Cosmos
               items:
                 - name: Genel Bakış
                   href: core/providers/cosmos/index.md
-                - name: Yapılandırılmamış Verilerle Çalışma
+                - name: Yapılandırılmamış verilerle çalışma
                   href: core/providers/cosmos/unstructured-data.md
-                - name: Cosmos Sınırlamaları
+                - name: Cosmos sınırlamaları
                   href: core/providers/cosmos/limitations.md
-            - name: InMemory (Test için)
+            - name: InMemory (test için)
               href: core/providers/in-memory/index.md
-            - name: Veritabanı Sağlayıcısı Yazma
+            - name: Veritabanı sağlayıcısı yazma
               href: core/providers/writing-a-provider.md
             - name: Sağlayıcıları etkileyen değişiklikler
               href: core/providers/provider-log.md
-        - name: Araçlar ve Uzantılar
+        - name: Araçlar ve uzantılar
           href: core/extensions/index.md
-        - name: Komut Satırı Başvurusu
+        - name: Komut satırı başvurusu
           items:
             - name: Genel Bakış
               href: core/miscellaneous/cli/index.md
@@ -234,11 +234,11 @@
               href: core/miscellaneous/cli/powershell.md
             - name: .NET Core CLI
               href: core/miscellaneous/cli/dotnet.md
-            - name: Tasarım Zamanında DbContext Oluşturma
+            - name: Tasarım zamanında DbContext oluşturma
               href: core/miscellaneous/cli/dbcontext-creation.md
-            - name: Tasarım Zamanı Hizmetleri
+            - name: Tasarım zamanı hizmetleri
               href: core/miscellaneous/cli/services.md
-        - name: EF Core API Başvurusu >>
+        - name: EF Core API başvurusu >>
           href: /dotnet/api/?view=efcore-3.1
     - name: Entity Framework 6
       items:
@@ -248,103 +248,103 @@
           items:
             - name: Genel Bakış
               href: ef6/what-is-new/index.md
-            - name: Geçmiş Yayınlar
+            - name: Geçmiş yayınlar
               href: ef6/what-is-new/past-releases.md
-            - name: EF6 sürümüne yükseltme
+            - name: EF6’ya yükseltme
               href: ef6/what-is-new/upgrading-to-ef6.md
             - name: Visual Studio Yayınları
               href: ef6/what-is-new/visual-studio.md
-        - name: Başlarken
+        - name: Kullanmaya başlayın
           href: ef6/get-started.md
         - name: Temeller
           items:
             - name: Entity Framework Alma
               href: ef6/fundamentals/install.md
-            - name: DbContext ile Çalışma
+            - name: DbContext ile çalışma
               href: ef6/fundamentals/working-with-dbcontext.md
-            - name: İlişkileri Anlama
+            - name: İlişkileri anlama
               href: ef6/fundamentals/relationships.md
-            - name: Zaman Uyumsuz Sorgulama ve Kaydetme
+            - name: Zaman uyumsuz sorgulama ve kaydetme
               href: ef6/fundamentals/async.md
             - name: Yapılandırma
               items:
-                - name: Kod Tabanlı
+                - name: Kod tabanlı
                   href: ef6/fundamentals/configuring/code-based.md
-                - name: Yapılandırma Dosyası
+                - name: Yapılandırma dosyası
                   href: ef6/fundamentals/configuring/config-file.md
-                - name: Bağlantı Dizeleri
+                - name: Bağlantı dizeleri
                   href: ef6/fundamentals/configuring/connection-strings.md
                 - name: Bağımlılık çözümlemesi
                   href: ef6/fundamentals/configuring/dependency-resolution.md
-            - name: Bağlantı Yönetimi
+            - name: Bağlantı yönetimi
               href: ef6/fundamentals/connection-management.md
-            - name: Bağlantı Dayanıklılığı
+            - name: Bağlantı dayanıklılığı
               items:
-                - name: Yeniden Deneme Mantığı
+                - name: Yeniden deneme mantığı
                   href: ef6/fundamentals/connection-resiliency/retry-logic.md
-                - name: İşlem Yürütme Hataları
+                - name: İşlem yürütme hataları
                   href: ef6/fundamentals/connection-resiliency/commit-failures.md
-            - name: Veri Bağlama
+            - name: Veri bağlama
               items:
                 - name: WinForms
                   href: ef6/fundamentals/databinding/winforms.md
                 - name: WPF
                   href: ef6/fundamentals/databinding/wpf.md
-            - name: Bağlantısı Kesilmiş Varlıklar
+            - name: Bağlantısı kesilmiş varlıklar
               items:
                 - name: Genel Bakış
                   href: ef6/fundamentals/disconnected-entities/index.md
-                - name: Kendi Kendine İzleme Varlıkları
+                - name: Kendi kendine izleme varlıkları
                   items:
                     - name: Genel Bakış
                       href: ef6/fundamentals/disconnected-entities/self-tracking-entities/index.md
                     - name: İzlenecek yol
                       href: ef6/fundamentals/disconnected-entities/self-tracking-entities/walkthrough.md
-            - name: Günlüğe Kaydetme ve Durdurma
+            - name: Günlüğe kaydetme ve durdurma
               href: ef6/fundamentals/logging-and-interception.md
             - name: Performans
               items:
-                - name: Performans Konuları (Teknik İnceleme)
+                - name: Performans konuları (teknik inceleme)
                   href: ef6/fundamentals/performance/perf-whitepaper.md
                 - name: NGEN kullanma
                   href: ef6/fundamentals/performance/ngen.md
-                - name: Önceden Oluşturulmuş Görünümleri Kullanma
+                - name: Önceden oluşturulmuş görünümleri kullanma
                   href: ef6/fundamentals/performance/pre-generated-views.md
             - name: Sağlayıcılar
               items:
                 - name: Genel Bakış
                   href: ef6/fundamentals/providers/index.md
-                - name: EF6 Sağlayıcı Modeli
+                - name: EF6 sağlayıcı modeli
                   href: ef6/fundamentals/providers/provider-model.md
-                - name: Sağlayıcılarda Uzamsal Destek
+                - name: Sağlayıcılarda uzamsal destek
                   href: ef6/fundamentals/providers/spatial-support.md
-            - name: Proxy'leri Kullanma
+            - name: Proxy’leri kullanma
               href: ef6/fundamentals/proxies.md
             - name: EF6 ile Test Etme
               items:
-                - name: Sahte İşlem Kullanma
+                - name: Sahte işlem kullanma
                   href: ef6/fundamentals/testing/mocking.md
-                - name: Kendi Test Çiftlerinizi Yazma
+                - name: Kendi test çiftlerinizi yazma
                   href: ef6/fundamentals/testing/writing-test-doubles.md
-                - name: EF4 ile Test Edilebilirlik (Makale)
+                - name: EF4 ile test edilebilirlik (makale)
                   href: ef6/fundamentals/testing/testability-article.md
-        - name: Model oluşturma
+        - name: Bir model oluşturma
           items:
             - name: Genel Bakış
               href: ef6/modeling/index.md
-            - name: Code First Kullanma
+            - name: Code First kullanma
               items:
                 - name: İş Akışları
                   items:
-                    - name: Yeni Veritabanı İle
+                    - name: Yeni veritabanı ile
                       href: ef6/modeling/code-first/workflows/new-database.md
-                    - name: Mevcut Veritabanı İle
+                    - name: Mevcut veritabanı ile
                       href: ef6/modeling/code-first/workflows/existing-database.md
-                - name: Veri Açıklamaları
+                - name: Veri açıklamaları
                   href: ef6/modeling/code-first/data-annotations.md
                 - name: DbSets
                   href: ef6/modeling/code-first/dbsets.md
-                - name: Veri Türleri
+                - name: Veri türleri
                   items:
                     - name: Numaralandırmalar
                       href: ef6/modeling/code-first/data-types/enums.md
@@ -352,37 +352,37 @@
                       href: ef6/modeling/code-first/data-types/spatial.md
                 - name: Kurallar
                   items:
-                    - name: Yerleşik Kurallar
+                    - name: Yerleşik kurallar
                       href: ef6/modeling/code-first/conventions/built-in.md
-                    - name: Özel Kurallar
+                    - name: Özel kurallar
                       href: ef6/modeling/code-first/conventions/custom.md
-                    - name: Model Kurallar
+                    - name: Model kurallar
                       href: ef6/modeling/code-first/conventions/model.md
-                - name: Fluent Yapılandırması
+                - name: Fluent yapılandırması
                   items:
                     - name: İlişkiler
                       href: ef6/modeling/code-first/fluent/relationships.md
-                    - name: Türler ve Özellikler
+                    - name: Türler ve özellikler
                       href: ef6/modeling/code-first/fluent/types-and-properties.md
-                    - name: Visual Basic'te Kullanma
+                    - name: Visual Basic’de kullanma
                       href: ef6/modeling/code-first/fluent/vb.md
-                    - name: Saklı Yordam Eşlemesi
+                    - name: Saklı yordam eşlemesi
                       href: ef6/modeling/code-first/fluent/cud-stored-procedures.md
                 - name: Geçişler
                   items:
                     - name: Genel Bakış
                       href: ef6/modeling/code-first/migrations/index.md
-                    - name: Otomatik Geçişler
+                    - name: Otomatik geçişler
                       href: ef6/modeling/code-first/migrations/automatic.md
-                    - name: Mevcut Veritabanlarıyla Çalışma
+                    - name: Mevcut veritabanlarıyla çalışma
                       href: ef6/modeling/code-first/migrations/existing-database.md
-                    - name: Geçiş Geçmişini Özelleştirme
+                    - name: Geçiş geçmişini özelleştirme
                       href: ef6/modeling/code-first/migrations/history-customization.md
-                    - name: Migrate.exe Kullanma
+                    - name: Migrate.exe kullanma
                       href: ef6/modeling/code-first/migrations/migrate-exe.md
-                    - name: Takım Ortamlarında Geçişler
+                    - name: Takım ortamlarında geçişler
                       href: ef6/modeling/code-first/migrations/teams.md
-            - name: EF Designer Kullanma
+            - name: EF Designer kullanma
               items:
                 - name: İş Akışları
                   items:
@@ -392,37 +392,37 @@
                       href: ef6/modeling/designer/workflows/database-first.md
                 - name: Veri türleri
                   items:
-                    - name: Karmaşık Türler
+                    - name: Karmaşık türler
                       href: ef6/modeling/designer/data-types/complex-types.md
                     - name: Numaralandırmalar
                       href: ef6/modeling/designer/data-types/enums.md
                     - name: Uzamsal
                       href: ef6/modeling/designer/data-types/spatial.md
-                - name: Bölme Eşlemeleri
+                - name: Bölme eşlemeleri
                   items:
-                    - name: Varlık Bölme
+                    - name: Varlık bölme
                       href: ef6/modeling/designer/entity-splitting.md
-                    - name: Tablo Bölme
+                    - name: Tablo bölme
                       href: ef6/modeling/designer/table-splitting.md
-                - name: Devralma Eşlemeleri
+                - name: Devralma eşlemeleri
                   items:
-                    - name: Hiyerarşi Başına Tablo
+                    - name: Hiyerarşi başına tablo
                       href: ef6/modeling/designer/inheritance/tph.md
-                    - name: Tür Başına Tablo
+                    - name: Tür başına tablo
                       href: ef6/modeling/designer/inheritance/tpt.md
-                - name: Saklı Yordamları Eşleme
+                - name: Saklı yordamları eşleme
                   items:
                     - name: Sorgu
                       href: ef6/modeling/designer/stored-procedures/query.md
                     - name: Güncelleştirme
                       href: ef6/modeling/designer/stored-procedures/cud.md
-                - name: İlişkileri Eşleme
+                - name: İlişkileri eşleme
                   href: ef6/modeling/designer/relationships.md
-                - name: Birden Fazla Diyagram
+                - name: Birden fazla diyagram
                   href: ef6/modeling/designer/multiple-diagrams.md
-                - name: Çalışma Zamanı Sürümü Seçme
+                - name: Çalışma zamanı sürümünü seçme
                   href: ef6/modeling/designer/select-runtime-version.md
-                - name: Kod Üretimi
+                - name: Kod oluşturma
                   items:
                     - name: Genel Bakış
                       href: ef6/modeling/designer/codegen/index.md
@@ -430,69 +430,69 @@
                       href: ef6/modeling/designer/codegen/legacy-objectcontext.md
                 - name: Gelişmiş
                   items:
-                    - name: EDMX Dosya Biçimi
+                    - name: EDMX dosya biçimi
                       items:
-                        - name: CSDL Belirtimi
+                        - name: CSDL belirtimi
                           href: ef6/modeling/designer/advanced/edmx/csdl-spec.md
-                        - name: MSL Belirtimi
+                        - name: MSL belirtimi
                           href: ef6/modeling/designer/advanced/edmx/msl-spec.md
-                        - name: SSDL Belirtimi
+                        - name: SSDL belirtimi
                           href: ef6/modeling/designer/advanced/edmx/ssdl-spec.md
-                    - name: Tanımlama Sorgusu
+                    - name: Tanımlama sorgusu
                       href: ef6/modeling/designer/advanced/defining-query.md
-                    - name: Birden Fazla Sonuç Kümesi
+                    - name: Birden fazla sonuç kümesi
                       href: ef6/modeling/designer/advanced/multiple-result-sets.md
-                    - name: Tablo Değerli İşlevler
+                    - name: Tablo değerli işlevler
                       href: ef6/modeling/designer/advanced/tvfs.md
-                - name: Klavye Kısayolları
+                - name: Klavye kısayolları
                   href: ef6/modeling/designer/keyboard-shortcuts.md
-        - name: Veri Sorgulama
+        - name: Verileri sorgulama
           items:
             - name: Genel Bakış
               href: ef6/querying/index.md
-            - name: Load Yöntemi
+            - name: Load metodu
               href: ef6/querying/load-method.md
-            - name: Yerel Veriler
+            - name: Yerel veriler
               href: ef6/querying/local-data.md
-            - name: İzleme Yapan ve Yapmayan Sorgular
+            - name: İzleme yapan ve yapmayan sorgular
               href: ef6/querying/no-tracking.md
-            - name: Ham SQL Sorgularını Kullanma
+            - name: Ham SQL sorgularını kullanma
               href: ef6/querying/raw-sql.md
-            - name: İlgili Verileri Sorgulama
+            - name: Sorgu ile ilgili veriler
               href: ef6/querying/related-data.md
-        - name: Verileri Kaydetme
+        - name: Verileri kaydetme
           items:
             - name: Genel Bakış
               href: ef6/saving/index.md
-            - name: Değişiklik İzleme
+            - name: Change tracking
               items:
-                - name: Değişiklikleri Otomatik Algılama
+                - name: Değişiklikleri otomatik olarak algılama
                   href: ef6/saving/change-tracking/auto-detect-changes.md
-                - name: Varlık Durumu
+                - name: Varlık durumu
                   href: ef6/saving/change-tracking/entity-state.md
-                - name: Özellik Değerleri
+                - name: Özellik değerleri
                   href: ef6/saving/change-tracking/property-values.md
-            - name: Eşzamanlılık Çakışmalarını İşleme
+            - name: Eşzamanlılık çakışmalarını işleme
               href: ef6/saving/concurrency.md
-            - name: İşlemleri Kullanma
+            - name: İşlemleri kullanma
               href: ef6/saving/transactions.md
-            - name: Veri Doğrulama
+            - name: Veri doğrulama
               href: ef6/saving/validation.md
-        - name: Ek Kaynaklar
+        - name: Ek kaynaklar
           items:
             - name: Bloglar
               href: ef6/resources/blogs.md
-            - name: Örnek Olay İncelemeleri
+            - name: Örnek olay incelemeleri
               href: ef6/resources/case-studies.md
             - name: Katkıda Bulun
               href: ef6/resources/contribute.md
-            - name: Yardım Alma
+            - name: Yardım alın
               href: ef6/resources/get-help.md
             - name: Sözlük
               href: ef6/resources/glossary.md
-            - name: Örnek Okul Veritabanı
+            - name: Örnek okul veritabanı
               href: ef6/resources/school-database.md
-            - name: Araçlar ve Uzantılar
+            - name: Araçlar ve uzantılar
               href: ef6/resources/tools.md
             - name: Lisanslar
               items:
@@ -524,7 +524,7 @@
                       items:
                         - name: Alfa
                           href: ef6/resources/licenses/ef6/prerelease/alpha.md
-                        - name: Beta - Sürüm Adayı
+                        - name: Beta - sürüm adayı
                           href: ef6/resources/licenses/ef6/prerelease/beta-rc.md
                     - name: Basitleştirilmiş Çince
                       href: ef6/resources/licenses/ef6/chs.md
@@ -546,5 +546,5 @@
                       href: ef6/resources/licenses/ef6/kor.md
                     - name: Rusça
                       href: ef6/resources/licenses/ef6/rus.md
-        - name: EF6 API Başvurusu >>
-          href: 'https://docs.microsoft.com/dotnet/api/?view=entity-framework-6.2.0'
+        - name: EF6 API başvurusu >>
+          href: /dotnet/api/?view=entity-framework-6.2.0
