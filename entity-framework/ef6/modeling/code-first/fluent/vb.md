@@ -4,42 +4,42 @@ author: divega
 ms.date: 10/23/2016
 ms.assetid: 763dc6a2-764a-4600-896c-f6f13abf56ec
 ms.openlocfilehash: 1c889877b827408919c6170cf997e8805cc607cf
-ms.sourcegitcommit: 7a709ce4f77134782393aa802df5ab2718714479
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 12/04/2019
-ms.locfileid: "74824822"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78419061"
 ---
-# <a name="fluent-api-with-vbnet"></a><span data-ttu-id="7c123-102">VB.NET ile akıcı API</span><span class="sxs-lookup"><span data-stu-id="7c123-102">Fluent API with VB.NET</span></span>
-<span data-ttu-id="7c123-103">Code First, modelinizi C\# veya VB.NET sınıfları kullanarak tanımlamanızı sağlar.</span><span class="sxs-lookup"><span data-stu-id="7c123-103">Code First allows you to define your model using C\# or VB.NET classes.</span></span> <span data-ttu-id="7c123-104">Ek yapılandırma, isteğe bağlı olarak sınıflarınızda ve özelliklerde öznitelikler kullanılarak veya bir Fluent API kullanılarak gerçekleştirilebilir.</span><span class="sxs-lookup"><span data-stu-id="7c123-104">Additional configuration can optionally be performed using attributes on your classes and properties or by using a fluent API.</span></span> <span data-ttu-id="7c123-105">Bu izlenecek yol, VB.NET kullanarak Fluent API yapılandırmanın nasıl gerçekleştirileceğini gösterir.</span><span class="sxs-lookup"><span data-stu-id="7c123-105">This walkthrough shows how to perform fluent API configuration using VB.NET.</span></span>
+# <a name="fluent-api-with-vbnet"></a><span data-ttu-id="bc224-102">VB.NET ile akıcı API</span><span class="sxs-lookup"><span data-stu-id="bc224-102">Fluent API with VB.NET</span></span>
+<span data-ttu-id="bc224-103">Code First, modelinizi C\# veya VB.NET sınıfları kullanarak tanımlamanızı sağlar.</span><span class="sxs-lookup"><span data-stu-id="bc224-103">Code First allows you to define your model using C\# or VB.NET classes.</span></span> <span data-ttu-id="bc224-104">Ek yapılandırma, isteğe bağlı olarak sınıflarınızda ve özelliklerde öznitelikler kullanılarak veya bir Fluent API kullanılarak gerçekleştirilebilir.</span><span class="sxs-lookup"><span data-stu-id="bc224-104">Additional configuration can optionally be performed using attributes on your classes and properties or by using a fluent API.</span></span> <span data-ttu-id="bc224-105">Bu izlenecek yol, VB.NET kullanarak Fluent API yapılandırmanın nasıl gerçekleştirileceğini gösterir.</span><span class="sxs-lookup"><span data-stu-id="bc224-105">This walkthrough shows how to perform fluent API configuration using VB.NET.</span></span>
 
-<span data-ttu-id="7c123-106">Bu sayfa Code First temel bir anlama sahip olduğunuzu varsayar.</span><span class="sxs-lookup"><span data-stu-id="7c123-106">This page assumes you have a basic understanding of Code First.</span></span> <span data-ttu-id="7c123-107">Code First hakkında daha fazla bilgi için aşağıdaki izlenecek yollara göz atın:</span><span class="sxs-lookup"><span data-stu-id="7c123-107">Check out the following walkthroughs for more information on Code First:</span></span>
+<span data-ttu-id="bc224-106">Bu sayfa Code First temel bir anlama sahip olduğunuzu varsayar.</span><span class="sxs-lookup"><span data-stu-id="bc224-106">This page assumes you have a basic understanding of Code First.</span></span> <span data-ttu-id="bc224-107">Code First hakkında daha fazla bilgi için aşağıdaki izlenecek yollara göz atın:</span><span class="sxs-lookup"><span data-stu-id="bc224-107">Check out the following walkthroughs for more information on Code First:</span></span>
 
--   [<span data-ttu-id="7c123-108">Yeni bir veritabanına Code First</span><span class="sxs-lookup"><span data-stu-id="7c123-108">Code First to a New Database</span></span>](~/ef6/modeling/code-first/workflows/new-database.md)
--   [<span data-ttu-id="7c123-109">Var olan bir veritabanına Code First</span><span class="sxs-lookup"><span data-stu-id="7c123-109">Code First to an Existing Database</span></span>](~/ef6/modeling/code-first/workflows/existing-database.md)
+-   [<span data-ttu-id="bc224-108">Yeni bir veritabanına Code First</span><span class="sxs-lookup"><span data-stu-id="bc224-108">Code First to a New Database</span></span>](~/ef6/modeling/code-first/workflows/new-database.md)
+-   [<span data-ttu-id="bc224-109">Var olan bir veritabanına Code First</span><span class="sxs-lookup"><span data-stu-id="bc224-109">Code First to an Existing Database</span></span>](~/ef6/modeling/code-first/workflows/existing-database.md)
 
-## <a name="pre-requisites"></a><span data-ttu-id="7c123-110">Önkoşullar</span><span class="sxs-lookup"><span data-stu-id="7c123-110">Pre-Requisites</span></span>
+## <a name="pre-requisites"></a><span data-ttu-id="bc224-110">Önkoşullar</span><span class="sxs-lookup"><span data-stu-id="bc224-110">Pre-Requisites</span></span>
 
-<span data-ttu-id="7c123-111">Bu izlenecek yolu tamamlamak için en az Visual Studio 2010 veya Visual Studio 2012 yüklü olmalıdır.</span><span class="sxs-lookup"><span data-stu-id="7c123-111">You will need to have at least Visual Studio 2010 or Visual Studio 2012 installed to complete this walkthrough.</span></span>
+<span data-ttu-id="bc224-111">Bu izlenecek yolu tamamlamak için en az Visual Studio 2010 veya Visual Studio 2012 yüklü olmalıdır.</span><span class="sxs-lookup"><span data-stu-id="bc224-111">You will need to have at least Visual Studio 2010 or Visual Studio 2012 installed to complete this walkthrough.</span></span>
 
-<span data-ttu-id="7c123-112">Visual Studio 2010 kullanıyorsanız, [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) ' in yüklü olması gerekir</span><span class="sxs-lookup"><span data-stu-id="7c123-112">If you are using Visual Studio 2010, you will also need to have [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) installed</span></span>
+<span data-ttu-id="bc224-112">Visual Studio 2010 kullanıyorsanız, [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) ' in yüklü olması gerekir</span><span class="sxs-lookup"><span data-stu-id="bc224-112">If you are using Visual Studio 2010, you will also need to have [NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) installed</span></span>
 
-## <a name="create-the-application"></a><span data-ttu-id="7c123-113">Uygulamayı oluşturma</span><span class="sxs-lookup"><span data-stu-id="7c123-113">Create the Application</span></span>
+## <a name="create-the-application"></a><span data-ttu-id="bc224-113">Uygulamayı oluşturma</span><span class="sxs-lookup"><span data-stu-id="bc224-113">Create the Application</span></span>
 
-<span data-ttu-id="7c123-114">Şeyleri basit tutmak için veri erişimi gerçekleştirmek üzere Code First kullanan temel bir konsol uygulaması oluşturacağız.</span><span class="sxs-lookup"><span data-stu-id="7c123-114">To keep things simple we’re going to build a basic console application that uses Code First to perform data access.</span></span>
+<span data-ttu-id="bc224-114">Şeyleri basit tutmak için veri erişimi gerçekleştirmek üzere Code First kullanan temel bir konsol uygulaması oluşturacağız.</span><span class="sxs-lookup"><span data-stu-id="bc224-114">To keep things simple we’re going to build a basic console application that uses Code First to perform data access.</span></span>
 
--   <span data-ttu-id="7c123-115">Visual Studio’yu açın</span><span class="sxs-lookup"><span data-stu-id="7c123-115">Open Visual Studio</span></span>
--   <span data-ttu-id="7c123-116">**Dosya-&gt; yeni&gt; projesi...**</span><span class="sxs-lookup"><span data-stu-id="7c123-116">**File -&gt; New -&gt; Project…**</span></span>
--   <span data-ttu-id="7c123-117">Sol taraftaki menüden ve **konsol uygulamasından** **Windows** ' u seçin</span><span class="sxs-lookup"><span data-stu-id="7c123-117">Select **Windows** from the left menu and **Console Application**</span></span>
--   <span data-ttu-id="7c123-118">Ad olarak **Codefırstvbsample** girin</span><span class="sxs-lookup"><span data-stu-id="7c123-118">Enter **CodeFirstVBSample** as the name</span></span>
--   <span data-ttu-id="7c123-119">**Tamam**'ı seçin</span><span class="sxs-lookup"><span data-stu-id="7c123-119">Select **OK**</span></span>
+-   <span data-ttu-id="bc224-115">Visual Studio’yu açın</span><span class="sxs-lookup"><span data-stu-id="bc224-115">Open Visual Studio</span></span>
+-   <span data-ttu-id="bc224-116">**Dosya-&gt; yeni&gt; projesi...**</span><span class="sxs-lookup"><span data-stu-id="bc224-116">**File -&gt; New -&gt; Project…**</span></span>
+-   <span data-ttu-id="bc224-117">Sol taraftaki menüden ve **konsol uygulamasından** **Windows** ' u seçin</span><span class="sxs-lookup"><span data-stu-id="bc224-117">Select **Windows** from the left menu and **Console Application**</span></span>
+-   <span data-ttu-id="bc224-118">Ad olarak **Codefırstvbsample** girin</span><span class="sxs-lookup"><span data-stu-id="bc224-118">Enter **CodeFirstVBSample** as the name</span></span>
+-   <span data-ttu-id="bc224-119">**Tamam**’ı seçin</span><span class="sxs-lookup"><span data-stu-id="bc224-119">Select **OK**</span></span>
 
-## <a name="define-the-model"></a><span data-ttu-id="7c123-120">Modeli tanımlama</span><span class="sxs-lookup"><span data-stu-id="7c123-120">Define the Model</span></span>
+## <a name="define-the-model"></a><span data-ttu-id="bc224-120">Modeli tanımlama</span><span class="sxs-lookup"><span data-stu-id="bc224-120">Define the Model</span></span>
 
-<span data-ttu-id="7c123-121">Bu adımda, kavramsal modeli temsil eden VB.NET POCO varlık türlerini tanımlayacaksınız.</span><span class="sxs-lookup"><span data-stu-id="7c123-121">In this step you will define VB.NET POCO entity types that represent the conceptual model.</span></span> <span data-ttu-id="7c123-122">Sınıfların herhangi bir taban sınıftan türetmesine veya herhangi bir arabirim uygulamasına gerek yoktur.</span><span class="sxs-lookup"><span data-stu-id="7c123-122">The classes do not need to derive from any base classes or implement any interfaces.</span></span>
+<span data-ttu-id="bc224-121">Bu adımda, kavramsal modeli temsil eden VB.NET POCO varlık türlerini tanımlayacaksınız.</span><span class="sxs-lookup"><span data-stu-id="bc224-121">In this step you will define VB.NET POCO entity types that represent the conceptual model.</span></span> <span data-ttu-id="bc224-122">Sınıfların herhangi bir taban sınıftan türetmesine veya herhangi bir arabirim uygulamasına gerek yoktur.</span><span class="sxs-lookup"><span data-stu-id="bc224-122">The classes do not need to derive from any base classes or implement any interfaces.</span></span>
 
--   <span data-ttu-id="7c123-123">Projeye yeni bir sınıf ekleyin, sınıf adı için **SchoolModel** girin</span><span class="sxs-lookup"><span data-stu-id="7c123-123">Add a new class to the project, enter **SchoolModel** for the class name</span></span>
--   <span data-ttu-id="7c123-124">Yeni sınıfın içeriğini aşağıdaki kodla değiştirin</span><span class="sxs-lookup"><span data-stu-id="7c123-124">Replace the contents of the new class with the following code</span></span>
+-   <span data-ttu-id="bc224-123">Projeye yeni bir sınıf ekleyin, sınıf adı için **SchoolModel** girin</span><span class="sxs-lookup"><span data-stu-id="bc224-123">Add a new class to the project, enter **SchoolModel** for the class name</span></span>
+-   <span data-ttu-id="bc224-124">Yeni sınıfın içeriğini aşağıdaki kodla değiştirin</span><span class="sxs-lookup"><span data-stu-id="bc224-124">Replace the contents of the new class with the following code</span></span>
 
 ``` vb
 Public Class Department
@@ -133,21 +133,21 @@ Public Class OfficeAssignment
 End Class
 ```
 
-## <a name="define-a-derived-context"></a><span data-ttu-id="7c123-125">Türetilmiş bir bağlam tanımlayın</span><span class="sxs-lookup"><span data-stu-id="7c123-125">Define a Derived Context</span></span>
+## <a name="define-a-derived-context"></a><span data-ttu-id="bc224-125">Türetilmiş bir bağlam tanımlayın</span><span class="sxs-lookup"><span data-stu-id="bc224-125">Define a Derived Context</span></span>
 
-<span data-ttu-id="7c123-126">Entity Framework türleri kullanmaya başlamak istiyoruz, bu nedenle EntityFramework NuGet paketini eklememiz gerekiyor.</span><span class="sxs-lookup"><span data-stu-id="7c123-126">We’re about to start to using types from the Entity Framework so we need to add the EntityFramework NuGet package.</span></span>
+<span data-ttu-id="bc224-126">Entity Framework türleri kullanmaya başlamak istiyoruz, bu nedenle EntityFramework NuGet paketini eklememiz gerekiyor.</span><span class="sxs-lookup"><span data-stu-id="bc224-126">We’re about to start to using types from the Entity Framework so we need to add the EntityFramework NuGet package.</span></span>
 
--   <span data-ttu-id="7c123-127">\* \* Proje –&gt; **NuGet Paketlerini Yönet...**</span><span class="sxs-lookup"><span data-stu-id="7c123-127">\*\*Project –&gt; **Manage NuGet Packages…**</span></span>
+-   <span data-ttu-id="bc224-127">\* \* Proje –&gt; **NuGet Paketlerini Yönet...**</span><span class="sxs-lookup"><span data-stu-id="bc224-127">\*\*Project –&gt; **Manage NuGet Packages…**</span></span>
 > [!NOTE]
-> <span data-ttu-id="7c123-128">**NuGet Paketlerini Yönet..** .</span><span class="sxs-lookup"><span data-stu-id="7c123-128">If you don’t have the **Manage NuGet Packages…**</span></span> <span data-ttu-id="7c123-129">[en son NuGet sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklemelisiniz.</span><span class="sxs-lookup"><span data-stu-id="7c123-129">option you should install the [latest version of NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)</span></span>
--   <span data-ttu-id="7c123-130">**Çevrimiçi** sekmesini seçin</span><span class="sxs-lookup"><span data-stu-id="7c123-130">Select the **Online** tab</span></span>
--   <span data-ttu-id="7c123-131">**EntityFramework** paketini seçin</span><span class="sxs-lookup"><span data-stu-id="7c123-131">Select the **EntityFramework** package</span></span>
--   <span data-ttu-id="7c123-132">**Install** 'a tıklayın</span><span class="sxs-lookup"><span data-stu-id="7c123-132">Click **Install**</span></span>
+> <span data-ttu-id="bc224-128">**NuGet Paketlerini Yönet..** .</span><span class="sxs-lookup"><span data-stu-id="bc224-128">If you don’t have the **Manage NuGet Packages…**</span></span> <span data-ttu-id="bc224-129">[en son NuGet sürümünü](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) yüklemelisiniz.</span><span class="sxs-lookup"><span data-stu-id="bc224-129">option you should install the [latest version of NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)</span></span>
+-   <span data-ttu-id="bc224-130">**Çevrimiçi** sekmesini seçin</span><span class="sxs-lookup"><span data-stu-id="bc224-130">Select the **Online** tab</span></span>
+-   <span data-ttu-id="bc224-131">**EntityFramework** paketini seçin</span><span class="sxs-lookup"><span data-stu-id="bc224-131">Select the **EntityFramework** package</span></span>
+-   <span data-ttu-id="bc224-132">**Install** 'a tıklayın</span><span class="sxs-lookup"><span data-stu-id="bc224-132">Click **Install**</span></span>
 
-<span data-ttu-id="7c123-133">Şimdi, veritabanı ile bir oturumu temsil eden ve verileri sorgulayıp kaydedebileceğimizi sağlayan bir türetilmiş bağlam tanımlama zamanı.</span><span class="sxs-lookup"><span data-stu-id="7c123-133">Now it’s time to define a derived context, which represents a session with the database, allowing us to query and save data.</span></span> <span data-ttu-id="7c123-134">System. Data. Entity. DbContext öğesinden türeten bir bağlam tanımladık ve modelimizin her bir sınıfı için tür bir DbSet&lt;TEntity&gt; kullanıma sunuyor.</span><span class="sxs-lookup"><span data-stu-id="7c123-134">We define a context that derives from System.Data.Entity.DbContext and exposes a typed DbSet&lt;TEntity&gt; for each class in our model.</span></span>
+<span data-ttu-id="bc224-133">Şimdi, veritabanı ile bir oturumu temsil eden ve verileri sorgulayıp kaydedebileceğimizi sağlayan bir türetilmiş bağlam tanımlama zamanı.</span><span class="sxs-lookup"><span data-stu-id="bc224-133">Now it’s time to define a derived context, which represents a session with the database, allowing us to query and save data.</span></span> <span data-ttu-id="bc224-134">System. Data. Entity. DbContext öğesinden türeten bir bağlam tanımladık ve modelimizin her bir sınıfı için tür bir DbSet&lt;TEntity&gt; kullanıma sunuyor.</span><span class="sxs-lookup"><span data-stu-id="bc224-134">We define a context that derives from System.Data.Entity.DbContext and exposes a typed DbSet&lt;TEntity&gt; for each class in our model.</span></span>
 
--   <span data-ttu-id="7c123-135">Projeye yeni bir sınıf ekleyin, sınıf adı için **SchoolContext** girin</span><span class="sxs-lookup"><span data-stu-id="7c123-135">Add a new class to the project, enter **SchoolContext** for the class name</span></span>
--   <span data-ttu-id="7c123-136">Yeni sınıfın içeriğini aşağıdaki kodla değiştirin</span><span class="sxs-lookup"><span data-stu-id="7c123-136">Replace the contents of the new class with the following code</span></span>
+-   <span data-ttu-id="bc224-135">Projeye yeni bir sınıf ekleyin, sınıf adı için **SchoolContext** girin</span><span class="sxs-lookup"><span data-stu-id="bc224-135">Add a new class to the project, enter **SchoolContext** for the class name</span></span>
+-   <span data-ttu-id="bc224-136">Yeni sınıfın içeriğini aşağıdaki kodla değiştirin</span><span class="sxs-lookup"><span data-stu-id="bc224-136">Replace the contents of the new class with the following code</span></span>
 
 ```vb
 Imports System.ComponentModel.DataAnnotations
@@ -169,11 +169,11 @@ Public Class SchoolContext
 End Class
 ```
 
-## <a name="configuring-with-the-fluent-api"></a><span data-ttu-id="7c123-137">Akıcı API ile yapılandırma</span><span class="sxs-lookup"><span data-stu-id="7c123-137">Configuring with the Fluent API</span></span>
+## <a name="configuring-with-the-fluent-api"></a><span data-ttu-id="bc224-137">Akıcı API ile yapılandırma</span><span class="sxs-lookup"><span data-stu-id="bc224-137">Configuring with the Fluent API</span></span>
 
-<span data-ttu-id="7c123-138">Bu bölümde, modelinizdeki tür\\eşleme, sütun eşleme özellikleri ve tablolar arasındaki ilişkiler arasındaki ilişkileri yapılandırmak için akıcı API 'Lerin nasıl kullanılacağı gösterilmektedir.</span><span class="sxs-lookup"><span data-stu-id="7c123-138">This section demonstrates how to use the fluent APIs to configure types to tables mapping, properties to columns mapping, and relationships between tables\\type in your model.</span></span> <span data-ttu-id="7c123-139">Fluent API **Dbmodelbuilder** türü aracılığıyla sunulur ve en yaygın olarak **DbContext**üzerinde **onmodeloluþturma** yöntemi geçersiz kılınarak erişilir.</span><span class="sxs-lookup"><span data-stu-id="7c123-139">The fluent API is exposed through the **DbModelBuilder** type and is most commonly accessed by overriding the **OnModelCreating** method on **DbContext**.</span></span>
+<span data-ttu-id="bc224-138">Bu bölümde, modelinizdeki tür\\eşleme, sütun eşleme özellikleri ve tablolar arasındaki ilişkiler arasındaki ilişkileri yapılandırmak için akıcı API 'Lerin nasıl kullanılacağı gösterilmektedir.</span><span class="sxs-lookup"><span data-stu-id="bc224-138">This section demonstrates how to use the fluent APIs to configure types to tables mapping, properties to columns mapping, and relationships between tables\\type in your model.</span></span> <span data-ttu-id="bc224-139">Fluent API **Dbmodelbuilder** türü aracılığıyla sunulur ve en yaygın olarak **DbContext**üzerinde **onmodeloluþturma** yöntemi geçersiz kılınarak erişilir.</span><span class="sxs-lookup"><span data-stu-id="bc224-139">The fluent API is exposed through the **DbModelBuilder** type and is most commonly accessed by overriding the **OnModelCreating** method on **DbContext**.</span></span>
 
--   <span data-ttu-id="7c123-140">Aşağıdaki kodu kopyalayın ve **SchoolContext** sınıfında tanımlanan **onmodeloluşturma** yöntemine ekleyin. her eşlemenin ne yaptığını açıklar</span><span class="sxs-lookup"><span data-stu-id="7c123-140">Copy the following code and add it to the **OnModelCreating** method defined on the **SchoolContext** class The comments explain what each mapping does</span></span>
+-   <span data-ttu-id="bc224-140">Aşağıdaki kodu kopyalayın ve **SchoolContext** sınıfında tanımlanan **onmodeloluşturma** yöntemine ekleyin. her eşlemenin ne yaptığını açıklar</span><span class="sxs-lookup"><span data-stu-id="bc224-140">Copy the following code and add it to the **OnModelCreating** method defined on the **SchoolContext** class The comments explain what each mapping does</span></span>
 
 ``` vb
 ' Configure Code First to ignore PluralizingTableName convention
@@ -363,12 +363,12 @@ modelBuilder.Entity(Of Course)().
     WillCascadeOnDelete(False)
 ```
 
-## <a name="using-the-model"></a><span data-ttu-id="7c123-141">Modeli kullanma</span><span class="sxs-lookup"><span data-stu-id="7c123-141">Using the Model</span></span>
+## <a name="using-the-model"></a><span data-ttu-id="bc224-141">Modeli kullanma</span><span class="sxs-lookup"><span data-stu-id="bc224-141">Using the Model</span></span>
 
-<span data-ttu-id="7c123-142">Ayrıca, **SchoolContext** kullanarak, bir modeli çalışırken görmek için bazı veri erişimi gerçekleştirelim.</span><span class="sxs-lookup"><span data-stu-id="7c123-142">Let's perform some data access using the **SchoolContext** to see out model in action.</span></span>
+<span data-ttu-id="bc224-142">Ayrıca, **SchoolContext** kullanarak, bir modeli çalışırken görmek için bazı veri erişimi gerçekleştirelim.</span><span class="sxs-lookup"><span data-stu-id="bc224-142">Let's perform some data access using the **SchoolContext** to see out model in action.</span></span>
 
--   <span data-ttu-id="7c123-143">Main işlevinin tanımlandığı Module1. vb dosyasını açın</span><span class="sxs-lookup"><span data-stu-id="7c123-143">Open the Module1.vb file where the Main function is defined</span></span>
--   <span data-ttu-id="7c123-144">Aşağıdaki Module1 tanımını kopyalayıp yapıştırın</span><span class="sxs-lookup"><span data-stu-id="7c123-144">Copy and paste the following Module1 definition</span></span>
+-   <span data-ttu-id="bc224-143">Main işlevinin tanımlandığı Module1. vb dosyasını açın</span><span class="sxs-lookup"><span data-stu-id="bc224-143">Open the Module1.vb file where the Main function is defined</span></span>
+-   <span data-ttu-id="bc224-144">Aşağıdaki Module1 tanımını kopyalayıp yapıştırın</span><span class="sxs-lookup"><span data-stu-id="bc224-144">Copy and paste the following Module1 definition</span></span>
 
 ``` vb
 Imports System.Data.Entity
@@ -408,7 +408,7 @@ Module Module1
 End Module
 ```
 
-<span data-ttu-id="7c123-145">Şimdi uygulamayı çalıştırabilir ve test edebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="7c123-145">You can now run the application and test it out.</span></span>
+<span data-ttu-id="bc224-145">Şimdi uygulamayı çalıştırabilir ve test edebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="bc224-145">You can now run the application and test it out.</span></span>
 
 ```console
 Enter a name for a new Department: Computing

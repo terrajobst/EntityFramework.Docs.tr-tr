@@ -6,11 +6,11 @@ ms.date: 10/27/2016
 ms.assetid: 6bb12583-c39a-454c-8d83-d2a2793ca9ef
 uid: index
 ms.openlocfilehash: 1643e3c9d1b8565155ebc1c04713a40883d03a07
-ms.sourcegitcommit: 4e86f01740e407ff25e704a11b1f7d7e66bfb2a6
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 01/09/2020
-ms.locfileid: "75781020"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78416928"
 ---
 <div id="main" class="v2">
     <div class="container">
@@ -24,7 +24,7 @@ ms.locfileid: "75781020"
                         <ul id="entityfmwk1" class="cardsC">
                             <li>
                                 <div class="container intro">
-                                    <p>Entity Framework, .NET geliştiricilerinin .NET nesneleri kullanarak bir veritabanıyla çalışmasına imkan tanıyan bir nesne ilişkisel eşleyicidir (O/RM). Genellikle geliştiricilerin yazmak zorunda olduğu çoğu veri erişim koduna yönelik gereksinimi ortadan kaldırır.</p>
+                                    <p>Entity Framework, .NET geliştiricilerinin .NET nesneleri kullanarak bir veritabanıyla çalışmasına imkan tanıyan bir nesne ilişkisel eşleyicidir (O/RM). Geliştiricilerin genellikle yazması gereken çoğu veri erişim kodu gereksinimini ortadan kaldırır.</p>
                                 </div>
                             </li>
                             <li>
@@ -129,7 +129,7 @@ ms.locfileid: "75781020"
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="/ef/core/">Başlarken</a>
+                                                    <a href="/ef/core/">Kullanmaya başlayın</a>
                                                 </h3>
                                                 <p>
                                                     <a href="/ef/core/">Genel bakış</a>

@@ -1,39 +1,39 @@
 ---
-title: School örnek veritabanını - EF6
+title: Okul örnek veritabanı-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: e83a6a06-e63b-4530-8656-614bf609b12b
 ms.openlocfilehash: 1e9dc98edb8590021bbf3393e9edda1929d505e0
-ms.sourcegitcommit: 2b787009fd5be5627f1189ee396e708cd130e07b
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 09/13/2018
-ms.locfileid: "45490720"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78417000"
 ---
-# <a name="school-sample-database"></a><span data-ttu-id="1fb50-102">School örnek veritabanını</span><span class="sxs-lookup"><span data-stu-id="1fb50-102">School Sample Database</span></span>
-<span data-ttu-id="1fb50-103">Bu konu, şema ve School veritabanını verilerini içerir.</span><span class="sxs-lookup"><span data-stu-id="1fb50-103">This topic contains the schema and data for the School database.</span></span> <span data-ttu-id="1fb50-104">Örnek School veritabanını, Entity Framework belgelerine çeşitli yerlerde kullanılır.</span><span class="sxs-lookup"><span data-stu-id="1fb50-104">The sample School database is used in various places throughout the Entity Framework documentation.</span></span>  
+# <a name="school-sample-database"></a><span data-ttu-id="437dc-102">Örnek Okul Veritabanı</span><span class="sxs-lookup"><span data-stu-id="437dc-102">School Sample Database</span></span>
+<span data-ttu-id="437dc-103">Bu konu, okul veritabanına yönelik şemayı ve verileri içerir.</span><span class="sxs-lookup"><span data-stu-id="437dc-103">This topic contains the schema and data for the School database.</span></span> <span data-ttu-id="437dc-104">Örnek okul veritabanı, Entity Framework belgelerinin tamamında çeşitli yerlerde kullanılır.</span><span class="sxs-lookup"><span data-stu-id="437dc-104">The sample School database is used in various places throughout the Entity Framework documentation.</span></span>  
 
 > [!NOTE]
-> <span data-ttu-id="1fb50-105">Visual Studio ile yüklenen veritabanı sunucusu, kullandığınız Visual Studio sürümüne bağlı olarak farklıdır.</span><span class="sxs-lookup"><span data-stu-id="1fb50-105">The database server that is installed with Visual Studio is different depending on the version of Visual Studio you use.</span></span> <span data-ttu-id="1fb50-106">Bkz: [Visual Studio sürümlerine](~/ef6/what-is-new/visual-studio.md) ne kullanma hakkında ayrıntılı bilgi için.</span><span class="sxs-lookup"><span data-stu-id="1fb50-106">See [Visual Studio Releases](~/ef6/what-is-new/visual-studio.md) for details on what to use.</span></span>  
+> <span data-ttu-id="437dc-105">Visual Studio ile yüklenen veritabanı sunucusu, kullandığınız Visual Studio sürümüne bağlı olarak farklılık gösteren bir veritabanıdır.</span><span class="sxs-lookup"><span data-stu-id="437dc-105">The database server that is installed with Visual Studio is different depending on the version of Visual Studio you use.</span></span> <span data-ttu-id="437dc-106">Nelerin kullanılacağı hakkında ayrıntılı bilgi için bkz. [Visual Studio yayınları](~/ef6/what-is-new/visual-studio.md) .</span><span class="sxs-lookup"><span data-stu-id="437dc-106">See [Visual Studio Releases](~/ef6/what-is-new/visual-studio.md) for details on what to use.</span></span>  
 
-<span data-ttu-id="1fb50-107">Veritabanını oluşturmak için adımlar şunlardır:</span><span class="sxs-lookup"><span data-stu-id="1fb50-107">Here are the steps to create the database:</span></span>
+<span data-ttu-id="437dc-107">Veritabanını oluşturma adımları aşağıda verilmiştir:</span><span class="sxs-lookup"><span data-stu-id="437dc-107">Here are the steps to create the database:</span></span>
 
-- <span data-ttu-id="1fb50-108">Visual Studio'yu Aç</span><span class="sxs-lookup"><span data-stu-id="1fb50-108">Open Visual Studio</span></span>  
-- <span data-ttu-id="1fb50-109">**Görünüm** -> **Sunucu Gezgini**</span><span class="sxs-lookup"><span data-stu-id="1fb50-109">**View** -> **Server Explorer**</span></span>  
-- <span data-ttu-id="1fb50-110">Sağ tıklayın **veri bağlantıları** -> **bağlantı ekle...**</span><span class="sxs-lookup"><span data-stu-id="1fb50-110">Right click on **Data Connections** -> **Add Connection…**</span></span>  
-- <span data-ttu-id="1fb50-111">Sunucu gezgininden veritabanına bağlamadıysanız seçmeniz gerekir önce **Microsoft SQL Server** veri kaynağı</span><span class="sxs-lookup"><span data-stu-id="1fb50-111">If you haven’t connected to a database from Server Explorer before you’ll need to select **Microsoft SQL Server** as the data source</span></span>  
-- <span data-ttu-id="1fb50-112">LocalDB veya hangisinin bağlı olarak yüklediğiniz SQL Express için Bağlan</span><span class="sxs-lookup"><span data-stu-id="1fb50-112">Connect to either LocalDB or SQL Express, depending on which one you have installed</span></span>  
-- <span data-ttu-id="1fb50-113">Girin **Okul** veritabanı adı</span><span class="sxs-lookup"><span data-stu-id="1fb50-113">Enter **School** as the database name</span></span>  
-- <span data-ttu-id="1fb50-114">Seçin **Tamam** ve bir yeni bir veritabanı oluşturmak istiyorsanız istenir **Evet**</span><span class="sxs-lookup"><span data-stu-id="1fb50-114">Select **OK** and you will be asked if you want to create a new database, select **Yes**</span></span>  
-- <span data-ttu-id="1fb50-115">Yeni veritabanı şimdi sunucu Gezgini'nde görünür.</span><span class="sxs-lookup"><span data-stu-id="1fb50-115">The new database will now appear in Server Explorer</span></span>  
-- <span data-ttu-id="1fb50-116">Visual Studio 2012 veya daha yeni kullanıyorsanız</span><span class="sxs-lookup"><span data-stu-id="1fb50-116">If you are using Visual Studio 2012 or newer</span></span>
-    - <span data-ttu-id="1fb50-117">Sunucu Gezgini veritabanı üzerinde sağ tıklayıp **yeni sorgu**</span><span class="sxs-lookup"><span data-stu-id="1fb50-117">Right-click on the database in Server Explorer and select **New Query**</span></span>  
-    - <span data-ttu-id="1fb50-118">Yeni bir sorguda aşağıdaki SQL kopyalayın, sonra sağ tıklatın ve sorgu **Yürüt**</span><span class="sxs-lookup"><span data-stu-id="1fb50-118">Copy the following SQL into the new query, then right-click on the query and select **Execute**</span></span>  
-- <span data-ttu-id="1fb50-119">Visual Studio 2010 kullanıyorsanız</span><span class="sxs-lookup"><span data-stu-id="1fb50-119">If you are using Visual Studio 2010</span></span>  
-    - <span data-ttu-id="1fb50-120">Seçin **veri** -> **Transact SQL Düzenleyicisi** -> **yeni bağlantı...**</span><span class="sxs-lookup"><span data-stu-id="1fb50-120">Select **Data** -> **Transact SQL Editor** -> **New Query Connection...**</span></span>  
-    - <span data-ttu-id="1fb50-121">Girin **. \SQLEXPRESS** tıklayın ve sunucu adı olarak **Tamam**</span><span class="sxs-lookup"><span data-stu-id="1fb50-121">Enter **.\SQLEXPRESS** as the server name and click **OK**</span></span>  
-    - <span data-ttu-id="1fb50-122">Seçin **STESample** veritabanı açılır menüden aşağı sorgu Düzenleyicisi'ni üstünde</span><span class="sxs-lookup"><span data-stu-id="1fb50-122">Select the **STESample** database from the drop down at the top of the query editor</span></span>  
-    - <span data-ttu-id="1fb50-123">Yeni bir sorguda aşağıdaki SQL kopyalayın, sonra sağ tıklatın ve sorgu **SQL Yürüt**</span><span class="sxs-lookup"><span data-stu-id="1fb50-123">Copy the following SQL into the new query, then right-click on the query and select **Execute SQL**</span></span>  
+- <span data-ttu-id="437dc-108">Visual Studio’yu açın</span><span class="sxs-lookup"><span data-stu-id="437dc-108">Open Visual Studio</span></span>  
+- <span data-ttu-id="437dc-109"> -> **Sunucu Gezgini** **görüntüle**</span><span class="sxs-lookup"><span data-stu-id="437dc-109">**View** -> **Server Explorer**</span></span>  
+- <span data-ttu-id="437dc-110">Bağlantı Ekle -> **veri bağlantılarına** sağ tıklayın **...**</span><span class="sxs-lookup"><span data-stu-id="437dc-110">Right click on **Data Connections** -> **Add Connection…**</span></span>  
+- <span data-ttu-id="437dc-111">Sunucu Gezgini bir veritabanına bağlı değilseniz, veri kaynağı olarak **Microsoft SQL Server** seçmeniz gerekir</span><span class="sxs-lookup"><span data-stu-id="437dc-111">If you haven’t connected to a database from Server Explorer before you’ll need to select **Microsoft SQL Server** as the data source</span></span>  
+- <span data-ttu-id="437dc-112">Hangi hangisinin yüklü olduğuna bağlı olarak, LocalDB veya SQL Express 'e bağlanın</span><span class="sxs-lookup"><span data-stu-id="437dc-112">Connect to either LocalDB or SQL Express, depending on which one you have installed</span></span>  
+- <span data-ttu-id="437dc-113">**Okulu** veritabanı adı olarak girin</span><span class="sxs-lookup"><span data-stu-id="437dc-113">Enter **School** as the database name</span></span>  
+- <span data-ttu-id="437dc-114">**Tamam** ' ı seçtiğinizde, yeni bir veritabanı oluşturmak isteyip istemediğiniz sorulur, **Evet** ' i seçin.</span><span class="sxs-lookup"><span data-stu-id="437dc-114">Select **OK** and you will be asked if you want to create a new database, select **Yes**</span></span>  
+- <span data-ttu-id="437dc-115">Yeni veritabanı artık Sunucu Gezgini görüntülenir</span><span class="sxs-lookup"><span data-stu-id="437dc-115">The new database will now appear in Server Explorer</span></span>  
+- <span data-ttu-id="437dc-116">Visual Studio 2012 veya daha yeni bir sürümünü kullanıyorsanız</span><span class="sxs-lookup"><span data-stu-id="437dc-116">If you are using Visual Studio 2012 or newer</span></span>
+    - <span data-ttu-id="437dc-117">Sunucu Gezgini veritabanında veritabanına sağ tıklayın ve **Yeni sorgu** ' yı seçin.</span><span class="sxs-lookup"><span data-stu-id="437dc-117">Right-click on the database in Server Explorer and select **New Query**</span></span>  
+    - <span data-ttu-id="437dc-118">Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **Yürüt** ' ü seçin.</span><span class="sxs-lookup"><span data-stu-id="437dc-118">Copy the following SQL into the new query, then right-click on the query and select **Execute**</span></span>  
+- <span data-ttu-id="437dc-119">Visual Studio 2010 kullanıyorsanız</span><span class="sxs-lookup"><span data-stu-id="437dc-119">If you are using Visual Studio 2010</span></span>  
+    - <span data-ttu-id="437dc-120">Yeni sorgu bağlantısı -> **Transact SQL düzenleyicisi** -> **veri** seçin **...**</span><span class="sxs-lookup"><span data-stu-id="437dc-120">Select **Data** -> **Transact SQL Editor** -> **New Query Connection...**</span></span>  
+    - <span data-ttu-id="437dc-121">Sunucu adı olarak **.\Sqlexpress** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="437dc-121">Enter **.\SQLEXPRESS** as the server name and click **OK**</span></span>  
+    - <span data-ttu-id="437dc-122">Sorgu Düzenleyicisi 'nin en üstündeki açılan listeden **Stesample** veritabanını seçin</span><span class="sxs-lookup"><span data-stu-id="437dc-122">Select the **STESample** database from the drop down at the top of the query editor</span></span>  
+    - <span data-ttu-id="437dc-123">Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **SQL 'ı Yürüt** ' ü seçin.</span><span class="sxs-lookup"><span data-stu-id="437dc-123">Copy the following SQL into the new query, then right-click on the query and select **Execute SQL**</span></span>  
 
 ``` SQL  
 SET ANSI_NULLS ON

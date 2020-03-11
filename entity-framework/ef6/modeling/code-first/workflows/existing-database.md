@@ -3,48 +3,48 @@ title: Var olan bir veritabanına Code First-EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: a7e60b74-973d-4480-868f-500a3899932e
-ms.openlocfilehash: 61980bbd1f236f496a9d4fd92aa52264f1454615
-ms.sourcegitcommit: 708b18520321c587b2046ad2ea9fa7c48aeebfe5
+ms.openlocfilehash: 0a51f826422d7e2bff33b968605eace1e754c425
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "72182626"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "78418877"
 ---
-# <a name="code-first-to-an-existing-database"></a><span data-ttu-id="f17b0-102">Var olan bir veritabanına Code First</span><span class="sxs-lookup"><span data-stu-id="f17b0-102">Code First to an Existing Database</span></span>
-<span data-ttu-id="f17b0-103">Bu video ve adım adım yönergeler, var olan bir veritabanını hedefleyen Code First geliştirmeye yönelik bir giriş sağlar.</span><span class="sxs-lookup"><span data-stu-id="f17b0-103">This video and step-by-step walkthrough provide an introduction to Code First development targeting an existing database.</span></span> <span data-ttu-id="f17b0-104">Code First, modelinizi C\# veya VB.Net sınıfları kullanarak tanımlamanızı sağlar.</span><span class="sxs-lookup"><span data-stu-id="f17b0-104">Code First allows you to define your model using C\# or VB.Net classes.</span></span> <span data-ttu-id="f17b0-105">İsteğe bağlı olarak, sınıflarınızda ve özelliklerde öznitelikler kullanılarak veya bir Fluent API kullanarak ek yapılandırma gerçekleştirilebilir.</span><span class="sxs-lookup"><span data-stu-id="f17b0-105">Optionally additional configuration can be performed using attributes on your classes and properties or by using a fluent API.</span></span>
+# <a name="code-first-to-an-existing-database"></a><span data-ttu-id="4620b-102">Var olan bir veritabanına Code First</span><span class="sxs-lookup"><span data-stu-id="4620b-102">Code First to an Existing Database</span></span>
+<span data-ttu-id="4620b-103">Bu video ve adım adım yönergeler, var olan bir veritabanını hedefleyen Code First geliştirmeye yönelik bir giriş sağlar.</span><span class="sxs-lookup"><span data-stu-id="4620b-103">This video and step-by-step walkthrough provide an introduction to Code First development targeting an existing database.</span></span> <span data-ttu-id="4620b-104">Code First, modelinizi C\# veya VB.Net sınıfları kullanarak tanımlamanızı sağlar.</span><span class="sxs-lookup"><span data-stu-id="4620b-104">Code First allows you to define your model using C\# or VB.Net classes.</span></span> <span data-ttu-id="4620b-105">İsteğe bağlı olarak, sınıflarınızda ve özelliklerde öznitelikler kullanılarak veya bir Fluent API kullanarak ek yapılandırma gerçekleştirilebilir.</span><span class="sxs-lookup"><span data-stu-id="4620b-105">Optionally additional configuration can be performed using attributes on your classes and properties or by using a fluent API.</span></span>
 
-## <a name="watch-the-video"></a><span data-ttu-id="f17b0-106">Videoyu izleyin</span><span class="sxs-lookup"><span data-stu-id="f17b0-106">Watch the video</span></span>
-<span data-ttu-id="f17b0-107">Bu video [artık Channel 9 ' da kullanılabilir](https://channel9.msdn.com/blogs/ef/code-first-to-existing-database-ef6-1-onwards-).</span><span class="sxs-lookup"><span data-stu-id="f17b0-107">This video is [now available on Channel 9](https://channel9.msdn.com/blogs/ef/code-first-to-existing-database-ef6-1-onwards-).</span></span>
+## <a name="watch-the-video"></a><span data-ttu-id="4620b-106">Videoyu izleme</span><span class="sxs-lookup"><span data-stu-id="4620b-106">Watch the video</span></span>
+<span data-ttu-id="4620b-107">Bu video [artık Channel 9 ' da kullanılabilir](https://channel9.msdn.com/blogs/ef/code-first-to-existing-database-ef6-1-onwards-).</span><span class="sxs-lookup"><span data-stu-id="4620b-107">This video is [now available on Channel 9](https://channel9.msdn.com/blogs/ef/code-first-to-existing-database-ef6-1-onwards-).</span></span>
 
-## <a name="pre-requisites"></a><span data-ttu-id="f17b0-108">Önkoşulların önkoşulları</span><span class="sxs-lookup"><span data-stu-id="f17b0-108">Pre-Requisites</span></span>
+## <a name="pre-requisites"></a><span data-ttu-id="4620b-108">Önkoşullar</span><span class="sxs-lookup"><span data-stu-id="4620b-108">Pre-Requisites</span></span>
 
-<span data-ttu-id="f17b0-109">Bu izlenecek yolu tamamlamak için **Visual Studio 2012** veya **Visual Studio 2013** yüklü olması gerekir.</span><span class="sxs-lookup"><span data-stu-id="f17b0-109">You will need to have **Visual Studio 2012** or **Visual Studio 2013** installed to complete this walkthrough.</span></span>
+<span data-ttu-id="4620b-109">Bu izlenecek yolu tamamlamak için **Visual Studio 2012** veya **Visual Studio 2013** yüklü olması gerekir.</span><span class="sxs-lookup"><span data-stu-id="4620b-109">You will need to have **Visual Studio 2012** or **Visual Studio 2013** installed to complete this walkthrough.</span></span>
 
-<span data-ttu-id="f17b0-110">Ayrıca, **Visual Studio için Entity Framework Tools** sürüm **6,1** (veya üzeri) yüklü olmalıdır.</span><span class="sxs-lookup"><span data-stu-id="f17b0-110">You will also need version **6.1** (or later) of the **Entity Framework Tools for Visual Studio** installed.</span></span> <span data-ttu-id="f17b0-111">Entity Framework Tools 'ın en son sürümünü yükleme hakkında bilgi için bkz. [Get Entity Framework](~/ef6/fundamentals/install.md) .</span><span class="sxs-lookup"><span data-stu-id="f17b0-111">See [Get Entity Framework](~/ef6/fundamentals/install.md) for information on installing the latest version of the Entity Framework Tools.</span></span>
+<span data-ttu-id="4620b-110">Ayrıca, **Visual Studio için Entity Framework Tools** sürüm **6,1** (veya üzeri) yüklü olmalıdır.</span><span class="sxs-lookup"><span data-stu-id="4620b-110">You will also need version **6.1** (or later) of the **Entity Framework Tools for Visual Studio** installed.</span></span> <span data-ttu-id="4620b-111">Entity Framework Tools 'ın en son sürümünü yükleme hakkında bilgi için bkz. [Get Entity Framework](~/ef6/fundamentals/install.md) .</span><span class="sxs-lookup"><span data-stu-id="4620b-111">See [Get Entity Framework](~/ef6/fundamentals/install.md) for information on installing the latest version of the Entity Framework Tools.</span></span>
 
-## <a name="1-create-an-existing-database"></a><span data-ttu-id="f17b0-112">1. var olan bir veritabanını oluşturun</span><span class="sxs-lookup"><span data-stu-id="f17b0-112">1. Create an Existing Database</span></span>
+## <a name="1-create-an-existing-database"></a><span data-ttu-id="4620b-112">1. var olan bir veritabanını oluşturun</span><span class="sxs-lookup"><span data-stu-id="4620b-112">1. Create an Existing Database</span></span>
 
-<span data-ttu-id="f17b0-113">Genellikle, var olan bir veritabanını hedeflerken zaten oluşturulur, ancak bu izlenecek yol için, erişmek üzere bir veritabanı oluşturulması gerekir.</span><span class="sxs-lookup"><span data-stu-id="f17b0-113">Typically when you are targeting an existing database it will already be created, but for this walkthrough we need to create a database to access.</span></span>
+<span data-ttu-id="4620b-113">Genellikle, var olan bir veritabanını hedeflerken zaten oluşturulur, ancak bu izlenecek yol için, erişmek üzere bir veritabanı oluşturulması gerekir.</span><span class="sxs-lookup"><span data-stu-id="4620b-113">Typically when you are targeting an existing database it will already be created, but for this walkthrough we need to create a database to access.</span></span>
 
-<span data-ttu-id="f17b0-114">Şimdi veritabanını oluşturalım.</span><span class="sxs-lookup"><span data-stu-id="f17b0-114">Let's go ahead and generate the database.</span></span>
+<span data-ttu-id="4620b-114">Şimdi veritabanını oluşturalım.</span><span class="sxs-lookup"><span data-stu-id="4620b-114">Let's go ahead and generate the database.</span></span>
 
--   <span data-ttu-id="f17b0-115">Visual Studio 'Yu aç</span><span class="sxs-lookup"><span data-stu-id="f17b0-115">Open Visual Studio</span></span>
--   <span data-ttu-id="f17b0-116">**&gt; Sunucu Gezgini görüntüle**</span><span class="sxs-lookup"><span data-stu-id="f17b0-116">**View -&gt; Server Explorer**</span></span>
--   <span data-ttu-id="f17b0-117">Veri bağlantıları ' na sağ tıklayın **&gt; bağlantı ekle...**</span><span class="sxs-lookup"><span data-stu-id="f17b0-117">Right click on **Data Connections -&gt; Add Connection…**</span></span>
--   <span data-ttu-id="f17b0-118">**Sunucu Gezgini** bir veritabanına bağlı değilseniz, veri kaynağı olarak **Microsoft SQL Server** seçmeniz gerekir</span><span class="sxs-lookup"><span data-stu-id="f17b0-118">If you haven’t connected to a database from **Server Explorer** before you’ll need to select **Microsoft SQL Server** as the data source</span></span>
+-   <span data-ttu-id="4620b-115">Visual Studio’yu açın</span><span class="sxs-lookup"><span data-stu-id="4620b-115">Open Visual Studio</span></span>
+-   <span data-ttu-id="4620b-116">**&gt; Sunucu Gezgini görüntüle**</span><span class="sxs-lookup"><span data-stu-id="4620b-116">**View -&gt; Server Explorer**</span></span>
+-   <span data-ttu-id="4620b-117">Veri bağlantıları ' na sağ tıklayın **&gt; bağlantı ekle...**</span><span class="sxs-lookup"><span data-stu-id="4620b-117">Right click on **Data Connections -&gt; Add Connection…**</span></span>
+-   <span data-ttu-id="4620b-118">**Sunucu Gezgini** bir veritabanına bağlı değilseniz, veri kaynağı olarak **Microsoft SQL Server** seçmeniz gerekir</span><span class="sxs-lookup"><span data-stu-id="4620b-118">If you haven’t connected to a database from **Server Explorer** before you’ll need to select **Microsoft SQL Server** as the data source</span></span>
 
     ![Veri Kaynağı Seç](~/ef6/media/selectdatasource.png)
 
--   <span data-ttu-id="f17b0-120">LocalDB örneğinize bağlanın ve veritabanı adı olarak **Blog** girin</span><span class="sxs-lookup"><span data-stu-id="f17b0-120">Connect to your LocalDB instance, and enter **Blogging** as the database name</span></span>
+-   <span data-ttu-id="4620b-120">LocalDB örneğinize bağlanın ve veritabanı adı olarak **Blog** girin</span><span class="sxs-lookup"><span data-stu-id="4620b-120">Connect to your LocalDB instance, and enter **Blogging** as the database name</span></span>
 
     ![LocalDB bağlantısı](~/ef6/media/localdbconnection.png)
 
--   <span data-ttu-id="f17b0-122">**Tamam** ' ı seçtiğinizde, yeni bir veritabanı oluşturmak isteyip istemediğiniz sorulur, **Evet** ' i seçin.</span><span class="sxs-lookup"><span data-stu-id="f17b0-122">Select **OK** and you will be asked if you want to create a new database, select **Yes**</span></span>
+-   <span data-ttu-id="4620b-122">**Tamam** ' ı seçtiğinizde, yeni bir veritabanı oluşturmak isteyip istemediğiniz sorulur, **Evet** ' i seçin.</span><span class="sxs-lookup"><span data-stu-id="4620b-122">Select **OK** and you will be asked if you want to create a new database, select **Yes**</span></span>
 
     ![Veritabanı oluştur Iletişim kutusu](~/ef6/media/createdatabasedialog.png)
 
--   <span data-ttu-id="f17b0-124">Yeni veritabanı artık Sunucu Gezgini görüntülenir, sağ tıklayıp **Yeni sorgu** ' yı seçin.</span><span class="sxs-lookup"><span data-stu-id="f17b0-124">The new database will now appear in Server Explorer, right-click on it and select **New Query**</span></span>
--   <span data-ttu-id="f17b0-125">Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **Yürüt** ' ü seçin.</span><span class="sxs-lookup"><span data-stu-id="f17b0-125">Copy the following SQL into the new query, then right-click on the query and select **Execute**</span></span>
+-   <span data-ttu-id="4620b-124">Yeni veritabanı artık Sunucu Gezgini görüntülenir, sağ tıklayıp **Yeni sorgu** ' yı seçin.</span><span class="sxs-lookup"><span data-stu-id="4620b-124">The new database will now appear in Server Explorer, right-click on it and select **New Query**</span></span>
+-   <span data-ttu-id="4620b-125">Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **Yürüt** ' ü seçin.</span><span class="sxs-lookup"><span data-stu-id="4620b-125">Copy the following SQL into the new query, then right-click on the query and select **Execute**</span></span>
 
 ``` SQL
 CREATE TABLE [dbo].[Blogs] (
@@ -70,43 +70,43 @@ INSERT INTO [dbo].[Blogs] ([Name],[Url])
 VALUES ('.NET Framework Blog', 'http://blogs.msdn.com/dotnet/')
 ```
 
-## <a name="2-create-the-application"></a><span data-ttu-id="f17b0-126">2. uygulamayı oluşturun</span><span class="sxs-lookup"><span data-stu-id="f17b0-126">2. Create the Application</span></span>
+## <a name="2-create-the-application"></a><span data-ttu-id="4620b-126">2. uygulamayı oluşturun</span><span class="sxs-lookup"><span data-stu-id="4620b-126">2. Create the Application</span></span>
 
-<span data-ttu-id="f17b0-127">Şeyleri basit tutmak için veri erişimi gerçekleştirmek üzere Code First kullanan temel bir konsol uygulaması oluşturacağız:</span><span class="sxs-lookup"><span data-stu-id="f17b0-127">To keep things simple we’re going to build a basic console application that uses Code First to perform data access:</span></span>
+<span data-ttu-id="4620b-127">Şeyleri basit tutmak için, veri erişimi yapmak üzere Code First kullanan temel bir konsol uygulaması oluşturacaksınız:</span><span class="sxs-lookup"><span data-stu-id="4620b-127">To keep things simple we will build a basic console application that uses Code First to do the data access:</span></span>
 
--   <span data-ttu-id="f17b0-128">Visual Studio 'Yu aç</span><span class="sxs-lookup"><span data-stu-id="f17b0-128">Open Visual Studio</span></span>
--   <span data-ttu-id="f17b0-129">**Dosya-&gt; yeni&gt; projesi...**</span><span class="sxs-lookup"><span data-stu-id="f17b0-129">**File -&gt; New -&gt; Project…**</span></span>
--   <span data-ttu-id="f17b0-130">Sol taraftaki menüden ve **konsol uygulamasından** **Windows** ' u seçin</span><span class="sxs-lookup"><span data-stu-id="f17b0-130">Select **Windows** from the left menu and **Console Application**</span></span>
--   <span data-ttu-id="f17b0-131">Ad olarak **Codefırstexistingdatabasesample** girin</span><span class="sxs-lookup"><span data-stu-id="f17b0-131">Enter **CodeFirstExistingDatabaseSample** as the name</span></span>
--   <span data-ttu-id="f17b0-132">**Tamam 'ı** seçin</span><span class="sxs-lookup"><span data-stu-id="f17b0-132">Select **OK**</span></span>
+-   <span data-ttu-id="4620b-128">Visual Studio’yu açın</span><span class="sxs-lookup"><span data-stu-id="4620b-128">Open Visual Studio</span></span>
+-   <span data-ttu-id="4620b-129">**Dosya-&gt; yeni&gt; projesi...**</span><span class="sxs-lookup"><span data-stu-id="4620b-129">**File -&gt; New -&gt; Project…**</span></span>
+-   <span data-ttu-id="4620b-130">Sol taraftaki menüden ve **konsol uygulamasından** **Windows** ' u seçin</span><span class="sxs-lookup"><span data-stu-id="4620b-130">Select **Windows** from the left menu and **Console Application**</span></span>
+-   <span data-ttu-id="4620b-131">Ad olarak **Codefırstexistingdatabasesample** girin</span><span class="sxs-lookup"><span data-stu-id="4620b-131">Enter **CodeFirstExistingDatabaseSample** as the name</span></span>
+-   <span data-ttu-id="4620b-132">**Tamam**’ı seçin</span><span class="sxs-lookup"><span data-stu-id="4620b-132">Select **OK**</span></span>
 
  
 
-## <a name="3-reverse-engineer-model"></a><span data-ttu-id="f17b0-133">3. tersine mühendislik modeli</span><span class="sxs-lookup"><span data-stu-id="f17b0-133">3. Reverse Engineer Model</span></span>
+## <a name="3-reverse-engineer-model"></a><span data-ttu-id="4620b-133">3. tersine mühendislik modeli</span><span class="sxs-lookup"><span data-stu-id="4620b-133">3. Reverse Engineer Model</span></span>
 
-<span data-ttu-id="f17b0-134">Veritabanına eşlemek için bazı ilk kod oluşturmamıza yardımcı olmak üzere Visual Studio için Entity Framework Tools kullanacağız.</span><span class="sxs-lookup"><span data-stu-id="f17b0-134">We’re going to make use of the Entity Framework Tools for Visual Studio to help us generate some initial code to map to the database.</span></span> <span data-ttu-id="f17b0-135">Bu araçlar, isterseniz, el ile de yazabileceğiniz bir kod oluşturuyor.</span><span class="sxs-lookup"><span data-stu-id="f17b0-135">These tools are just generating code that you could also type by hand if you prefer.</span></span>
+<span data-ttu-id="4620b-134">Veritabanına eşlenecek ilk kod üretmemize yardımcı olması için Visual Studio Entity Framework Tools kullanacağız.</span><span class="sxs-lookup"><span data-stu-id="4620b-134">We will use the Entity Framework Tools for Visual Studio to help us generate some initial code to map to the database.</span></span> <span data-ttu-id="4620b-135">Bu araçlar, isterseniz, el ile de yazabileceğiniz bir kod oluşturuyor.</span><span class="sxs-lookup"><span data-stu-id="4620b-135">These tools are just generating code that you could also type by hand if you prefer.</span></span>
 
--   <span data-ttu-id="f17b0-136">**Proje-&gt; yeni öğe Ekle...**</span><span class="sxs-lookup"><span data-stu-id="f17b0-136">**Project -&gt; Add New Item…**</span></span>
--   <span data-ttu-id="f17b0-137">Sol menüden **verileri** seçin ve ardından **ADO.net varlık veri modeli**</span><span class="sxs-lookup"><span data-stu-id="f17b0-137">Select **Data** from the left menu and then **ADO.NET Entity Data Model**</span></span>
--   <span data-ttu-id="f17b0-138">Ad olarak **BloggingContext** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="f17b0-138">Enter **BloggingContext** as the name and click **OK**</span></span>
--   <span data-ttu-id="f17b0-139">Bu, **varlık veri modeli Sihirbazı 'nı** başlatır</span><span class="sxs-lookup"><span data-stu-id="f17b0-139">This launches the **Entity Data Model Wizard**</span></span>
--   <span data-ttu-id="f17b0-140">**Veritabanından Code First** seçin ve **İleri** ' ye tıklayın.</span><span class="sxs-lookup"><span data-stu-id="f17b0-140">Select **Code First from Database** and click **Next**</span></span>
+-   <span data-ttu-id="4620b-136">**Proje-&gt; yeni öğe Ekle...**</span><span class="sxs-lookup"><span data-stu-id="4620b-136">**Project -&gt; Add New Item…**</span></span>
+-   <span data-ttu-id="4620b-137">Sol menüden **verileri** seçin ve ardından **ADO.net varlık veri modeli**</span><span class="sxs-lookup"><span data-stu-id="4620b-137">Select **Data** from the left menu and then **ADO.NET Entity Data Model**</span></span>
+-   <span data-ttu-id="4620b-138">Ad olarak **BloggingContext** girin ve **Tamam 'a** tıklayın</span><span class="sxs-lookup"><span data-stu-id="4620b-138">Enter **BloggingContext** as the name and click **OK**</span></span>
+-   <span data-ttu-id="4620b-139">Bu, **varlık veri modeli Sihirbazı 'nı** başlatır</span><span class="sxs-lookup"><span data-stu-id="4620b-139">This launches the **Entity Data Model Wizard**</span></span>
+-   <span data-ttu-id="4620b-140">**Veritabanından Code First** seçin ve **İleri** ' ye tıklayın.</span><span class="sxs-lookup"><span data-stu-id="4620b-140">Select **Code First from Database** and click **Next**</span></span>
 
     ![Sihirbaz bir CFE](~/ef6/media/wizardonecfe.png)
 
--   <span data-ttu-id="f17b0-142">İlk bölümde oluşturduğunuz veritabanına bağlantıyı seçin ve **İleri** ' ye tıklayın.</span><span class="sxs-lookup"><span data-stu-id="f17b0-142">Select the connection to the database you created in the first section and click **Next**</span></span>
+-   <span data-ttu-id="4620b-142">İlk bölümde oluşturduğunuz veritabanına bağlantıyı seçin ve **İleri** ' ye tıklayın.</span><span class="sxs-lookup"><span data-stu-id="4620b-142">Select the connection to the database you created in the first section and click **Next**</span></span>
 
     ![Sihirbaz Iki CFE](~/ef6/media/wizardtwocfe.png)
 
--   <span data-ttu-id="f17b0-144">**Tablolar** ' ın yanındaki onay kutusuna tıklayarak tüm tabloları Içeri aktarıp **son** ' a tıklayın.</span><span class="sxs-lookup"><span data-stu-id="f17b0-144">Click the checkbox next to **Tables** to import all tables and click **Finish**</span></span>
+-   <span data-ttu-id="4620b-144">**Tablolar** ' ın yanındaki onay kutusuna tıklayarak tüm tabloları Içeri aktarıp **son** ' a tıklayın.</span><span class="sxs-lookup"><span data-stu-id="4620b-144">Click the checkbox next to **Tables** to import all tables and click **Finish**</span></span>
 
     ![Sihirbaz üç CFE](~/ef6/media/wizardthreecfe.png)
 
-<span data-ttu-id="f17b0-146">Tersine mühendislik işlemi tamamlandıktan sonra projeye bir dizi öğe eklendiğinde, nelerin eklendiğine göz atalım.</span><span class="sxs-lookup"><span data-stu-id="f17b0-146">Once the reverse engineer process completes a number of items will have been added to the project, let's take a look at what's been added.</span></span>
+<span data-ttu-id="4620b-146">Tersine mühendislik işlemi tamamlandıktan sonra projeye bir dizi öğe eklendiğinde, nelerin eklendiğine göz atalım.</span><span class="sxs-lookup"><span data-stu-id="4620b-146">Once the reverse engineer process completes a number of items will have been added to the project, let's take a look at what's been added.</span></span>
 
-### <a name="configuration-file"></a><span data-ttu-id="f17b0-147">Yapılandırma dosyası</span><span class="sxs-lookup"><span data-stu-id="f17b0-147">Configuration file</span></span>
+### <a name="configuration-file"></a><span data-ttu-id="4620b-147">Yapılandırma dosyası</span><span class="sxs-lookup"><span data-stu-id="4620b-147">Configuration file</span></span>
 
-<span data-ttu-id="f17b0-148">Projeye bir App. config dosyası eklenmiştir, bu dosya mevcut veritabanına yönelik bağlantı dizesini içerir.</span><span class="sxs-lookup"><span data-stu-id="f17b0-148">An App.config file has been added to the project, this file contains the connection string to the existing database.</span></span>
+<span data-ttu-id="4620b-148">Projeye bir App. config dosyası eklenmiştir, bu dosya mevcut veritabanına yönelik bağlantı dizesini içerir.</span><span class="sxs-lookup"><span data-stu-id="4620b-148">An App.config file has been added to the project, this file contains the connection string to the existing database.</span></span>
 
 ``` xml
 <connectionStrings>
@@ -117,12 +117,12 @@ VALUES ('.NET Framework Blog', 'http://blogs.msdn.com/dotnet/')
 </connectionStrings>
 ```
 
-<span data-ttu-id="f17b0-149">*Yapılandırma dosyasında başka bazı ayarlar da fark edersiniz. Bunlar, Code First veritabanlarının nerede oluşturulacağını söyleyen varsayılan EF 'dir. Mevcut bir veritabanıyla eşleştirdiğimiz için bu ayar uygulamamızda yok sayılır.*</span><span class="sxs-lookup"><span data-stu-id="f17b0-149">*You’ll notice some other settings in the configuration file too, these are default EF settings that tell Code First where to create databases. Since we are mapping to an existing database these setting will be ignored in our application.*</span></span>
+<span data-ttu-id="4620b-149">*Yapılandırma dosyasında başka bazı ayarlar da fark edersiniz. Bunlar, Code First veritabanlarının nerede oluşturulacağını söyleyen varsayılan EF 'dir. Mevcut bir veritabanıyla eşleştirdiğimiz için bu ayar uygulamamızda yok sayılır.*</span><span class="sxs-lookup"><span data-stu-id="4620b-149">*You’ll notice some other settings in the configuration file too, these are default EF settings that tell Code First where to create databases. Since we are mapping to an existing database these setting will be ignored in our application.*</span></span>
 
-### <a name="derived-context"></a><span data-ttu-id="f17b0-150">Türetilmiş bağlam</span><span class="sxs-lookup"><span data-stu-id="f17b0-150">Derived Context</span></span>
+### <a name="derived-context"></a><span data-ttu-id="4620b-150">Türetilmiş bağlam</span><span class="sxs-lookup"><span data-stu-id="4620b-150">Derived Context</span></span>
 
-<span data-ttu-id="f17b0-151">Projeye bir **BloggingContext** sınıfı eklendi.</span><span class="sxs-lookup"><span data-stu-id="f17b0-151">A **BloggingContext** class has been added to the project.</span></span> <span data-ttu-id="f17b0-152">Bağlam, veritabanı ile bir oturumu temsil eder ve verileri sorgulamanızı ve kaydetmemizi sağlar.</span><span class="sxs-lookup"><span data-stu-id="f17b0-152">The context represents a session with the database, allowing us to query and save data.</span></span>
-<span data-ttu-id="f17b0-153">Bağlam, modelimizin her türü için bir **Dbset&lt;TEntity&gt;** sunar.</span><span class="sxs-lookup"><span data-stu-id="f17b0-153">The context exposes a **DbSet&lt;TEntity&gt;** for each type in our model.</span></span> <span data-ttu-id="f17b0-154">Ayrıca, varsayılan oluşturucunun **Name =** söz dizimini kullanarak bir temel Oluşturucu çağırdığına de dikkat edin.</span><span class="sxs-lookup"><span data-stu-id="f17b0-154">You’ll also notice that the default constructor calls a base constructor using the **name=** syntax.</span></span> <span data-ttu-id="f17b0-155">Bu, bu bağlam için kullanılacak bağlantı dizesinin yapılandırma dosyasından yüklü olması gerektiğini Code First söyler.</span><span class="sxs-lookup"><span data-stu-id="f17b0-155">This tells Code First that the connection string to use for this context should be loaded from the configuration file.</span></span>
+<span data-ttu-id="4620b-151">Projeye bir **BloggingContext** sınıfı eklendi.</span><span class="sxs-lookup"><span data-stu-id="4620b-151">A **BloggingContext** class has been added to the project.</span></span> <span data-ttu-id="4620b-152">Bağlam, veritabanı ile bir oturumu temsil eder ve verileri sorgulamanızı ve kaydetmemizi sağlar.</span><span class="sxs-lookup"><span data-stu-id="4620b-152">The context represents a session with the database, allowing us to query and save data.</span></span>
+<span data-ttu-id="4620b-153">Bağlam, modelimizin her türü için bir **Dbset&lt;TEntity&gt;** sunar.</span><span class="sxs-lookup"><span data-stu-id="4620b-153">The context exposes a **DbSet&lt;TEntity&gt;** for each type in our model.</span></span> <span data-ttu-id="4620b-154">Ayrıca, varsayılan oluşturucunun **Name =** söz dizimini kullanarak bir temel Oluşturucu çağırdığına de dikkat edin.</span><span class="sxs-lookup"><span data-stu-id="4620b-154">You’ll also notice that the default constructor calls a base constructor using the **name=** syntax.</span></span> <span data-ttu-id="4620b-155">Bu, bu bağlam için kullanılacak bağlantı dizesinin yapılandırma dosyasından yüklü olması gerektiğini Code First söyler.</span><span class="sxs-lookup"><span data-stu-id="4620b-155">This tells Code First that the connection string to use for this context should be loaded from the configuration file.</span></span>
 
 ``` csharp
 public partial class BloggingContext : DbContext
@@ -141,11 +141,11 @@ public partial class BloggingContext : DbContext
     }
 ```
 
-<span data-ttu-id="f17b0-156">*Yapılandırma dosyasında bir bağlantı dizesi kullanırken, her zaman **Name =** sözdizimini kullanmanız gerekir. Bu, bağlantı dizesinin mevcut olmamasını sağlar ve Entity Framework kurala göre yeni bir veritabanı oluşturmak yerine oluşturulacak.*</span><span class="sxs-lookup"><span data-stu-id="f17b0-156">*You should always use the **name=** syntax when you are using a connection string in the config file. This ensures that if the connection string is not present then Entity Framework will throw rather than creating a new database by convention.*</span></span>
+<span data-ttu-id="4620b-156">*Yapılandırma dosyasında bir bağlantı dizesi kullanırken, her zaman **Name =** sözdizimini kullanmanız gerekir. Bu, bağlantı dizesinin mevcut olmamasını sağlar ve Entity Framework kurala göre yeni bir veritabanı oluşturmak yerine oluşturulacak.*</span><span class="sxs-lookup"><span data-stu-id="4620b-156">*You should always use the **name=** syntax when you are using a connection string in the config file. This ensures that if the connection string is not present then Entity Framework will throw rather than creating a new database by convention.*</span></span>
 
-### <a name="model-classes"></a><span data-ttu-id="f17b0-157">Model sınıfları</span><span class="sxs-lookup"><span data-stu-id="f17b0-157">Model classes</span></span>
+### <a name="model-classes"></a><span data-ttu-id="4620b-157">Model sınıfları</span><span class="sxs-lookup"><span data-stu-id="4620b-157">Model classes</span></span>
 
-<span data-ttu-id="f17b0-158">Son olarak, projeye bir **Blog** ve **Post** sınıfı de eklenmiştir.</span><span class="sxs-lookup"><span data-stu-id="f17b0-158">Finally, a **Blog** and **Post** class have also been added to the project.</span></span> <span data-ttu-id="f17b0-159">Bunlar, modelimizi oluşturan etki alanı sınıflarıdır.</span><span class="sxs-lookup"><span data-stu-id="f17b0-159">These are the domain classes that make up our model.</span></span> <span data-ttu-id="f17b0-160">Code First kurallarının mevcut veritabanının yapısıyla hizalanmayan yapılandırmayı belirtmek için sınıflara uygulanan veri ek açıklamalarını görürsünüz.</span><span class="sxs-lookup"><span data-stu-id="f17b0-160">You'll see Data Annotations applied to the classes to specify configuration where the Code First conventions would not align with the structure of the existing database.</span></span> <span data-ttu-id="f17b0-161">Örneğin, veritabanında en fazla **200** uzunluğuna sahip olduklarından **blog.Name** ve **blog. URL** ' de **StringLength** ek açıklamasını görürsünüz (Code First varsayılan olarak, SQL Server) veritabanı sağlayıcısı tarafından desteklenen en yüksek uzunluğu **(max)** kullanmaktır.</span><span class="sxs-lookup"><span data-stu-id="f17b0-161">For example, you'll see the **StringLength** annotation on **Blog.Name** and **Blog.Url** since they have a maximum length of **200** in the database (the Code First default is to use the maximun length supported by the database provider - **nvarchar(max)** in SQL Server).</span></span>
+<span data-ttu-id="4620b-158">Son olarak, projeye bir **Blog** ve **Post** sınıfı de eklenmiştir.</span><span class="sxs-lookup"><span data-stu-id="4620b-158">Finally, a **Blog** and **Post** class have also been added to the project.</span></span> <span data-ttu-id="4620b-159">Bunlar, modelimizi oluşturan etki alanı sınıflarıdır.</span><span class="sxs-lookup"><span data-stu-id="4620b-159">These are the domain classes that make up our model.</span></span> <span data-ttu-id="4620b-160">Code First kurallarının mevcut veritabanının yapısıyla hizalanmayan yapılandırmayı belirtmek için sınıflara uygulanan veri ek açıklamalarını görürsünüz.</span><span class="sxs-lookup"><span data-stu-id="4620b-160">You'll see Data Annotations applied to the classes to specify configuration where the Code First conventions would not align with the structure of the existing database.</span></span> <span data-ttu-id="4620b-161">Örneğin, veritabanında en fazla **200** uzunluğuna sahip olduklarından **blog.Name** ve **blog. URL** ' de **StringLength** ek açıklamasını görürsünüz (Code First varsayılan olarak, SQL Server) veritabanı sağlayıcısı tarafından desteklenen en yüksek uzunluğu **(max)** kullanmaktır.</span><span class="sxs-lookup"><span data-stu-id="4620b-161">For example, you'll see the **StringLength** annotation on **Blog.Name** and **Blog.Url** since they have a maximum length of **200** in the database (the Code First default is to use the maximun length supported by the database provider - **nvarchar(max)** in SQL Server).</span></span>
 
 ``` csharp
 public partial class Blog
@@ -167,9 +167,9 @@ public partial class Blog
 }
 ```
 
-## <a name="4-reading--writing-data"></a><span data-ttu-id="f17b0-162">4. verileri okuma & yazma</span><span class="sxs-lookup"><span data-stu-id="f17b0-162">4. Reading & Writing Data</span></span>
+## <a name="4-reading--writing-data"></a><span data-ttu-id="4620b-162">4. verileri okuma & yazma</span><span class="sxs-lookup"><span data-stu-id="4620b-162">4. Reading & Writing Data</span></span>
 
-<span data-ttu-id="f17b0-163">Artık bir modelimiz olduğuna göre, bazı verilere erişmek için bunu kullanmanın zamanı.</span><span class="sxs-lookup"><span data-stu-id="f17b0-163">Now that we have a model it’s time to use it to access some data.</span></span> <span data-ttu-id="f17b0-164">**Ana** yöntemi aşağıda gösterildiği gibi **program.cs** ' de uygulayın.</span><span class="sxs-lookup"><span data-stu-id="f17b0-164">Implement the **Main** method in **Program.cs** as shown below.</span></span> <span data-ttu-id="f17b0-165">Bu kod, bağlamımız yeni bir örnek oluşturur ve yeni bir **Blog**eklemek için onu kullanır.</span><span class="sxs-lookup"><span data-stu-id="f17b0-165">This code creates a new instance of our context and then uses it to insert a new **Blog**.</span></span> <span data-ttu-id="f17b0-166">Daha sonra, bir LINQ sorgusu kullanarak, veritabanındaki tüm **blogları** **başlık**sırasına göre sıralanmış olarak alır.</span><span class="sxs-lookup"><span data-stu-id="f17b0-166">Then it uses a LINQ query to retrieve all **Blogs** from the database ordered alphabetically by **Title**.</span></span>
+<span data-ttu-id="4620b-163">Artık bir modelimiz olduğuna göre, bazı verilere erişmek için bunu kullanmanın zamanı.</span><span class="sxs-lookup"><span data-stu-id="4620b-163">Now that we have a model it’s time to use it to access some data.</span></span> <span data-ttu-id="4620b-164">**Ana** yöntemi aşağıda gösterildiği gibi **program.cs** ' de uygulayın.</span><span class="sxs-lookup"><span data-stu-id="4620b-164">Implement the **Main** method in **Program.cs** as shown below.</span></span> <span data-ttu-id="4620b-165">Bu kod, bağlamımız yeni bir örnek oluşturur ve yeni bir **Blog**eklemek için onu kullanır.</span><span class="sxs-lookup"><span data-stu-id="4620b-165">This code creates a new instance of our context and then uses it to insert a new **Blog**.</span></span> <span data-ttu-id="4620b-166">Daha sonra, bir LINQ sorgusu kullanarak, veritabanındaki tüm **blogları** **başlık**sırasına göre sıralanmış olarak alır.</span><span class="sxs-lookup"><span data-stu-id="4620b-166">Then it uses a LINQ query to retrieve all **Blogs** from the database ordered alphabetically by **Title**.</span></span>
 
 ``` csharp
 class Program
@@ -204,7 +204,7 @@ class Program
 }
 ```
 
-<span data-ttu-id="f17b0-167">Şimdi uygulamayı çalıştırabilir ve test edebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="f17b0-167">You can now run the application and test it out.</span></span>
+<span data-ttu-id="4620b-167">Şimdi uygulamayı çalıştırabilir ve test edebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="4620b-167">You can now run the application and test it.</span></span>
 
 ```console
 Enter a name for a new Blog: ADO.NET Blog
@@ -215,14 +215,14 @@ The Visual Studio Blog
 Press any key to exit...
 ```
  
-## <a name="what-if-my-database-changes"></a><span data-ttu-id="f17b0-168">Veritabanım değişirse ne olacak?</span><span class="sxs-lookup"><span data-stu-id="f17b0-168">What if My Database Changes?</span></span>
+## <a name="what-if-my-database-changes"></a><span data-ttu-id="4620b-168">Veritabanım değişirse ne olacak?</span><span class="sxs-lookup"><span data-stu-id="4620b-168">What if My Database Changes?</span></span>
 
-<span data-ttu-id="f17b0-169">Veritabanına Code First Sihirbazı, daha sonra ince ayar ve değiştirebileceğiniz bir başlangıç noktası kümesi oluşturmak için tasarlanmıştır.</span><span class="sxs-lookup"><span data-stu-id="f17b0-169">The Code First to Database wizard is designed to generate a starting point set of classes that you can then tweak and modify.</span></span> <span data-ttu-id="f17b0-170">Veritabanı şemanız değişirse, sınıfları el ile düzenleyebilir veya sınıfların üzerine yazmak için başka bir geri mühendis gerçekleştirebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="f17b0-170">If your database schema changes you can either manually edit the classes or perform another reverse engineer to overwrite the classes.</span></span>
+<span data-ttu-id="4620b-169">Veritabanına Code First Sihirbazı, daha sonra ince ayar ve değiştirebileceğiniz bir başlangıç noktası kümesi oluşturmak için tasarlanmıştır.</span><span class="sxs-lookup"><span data-stu-id="4620b-169">The Code First to Database wizard is designed to generate a starting point set of classes that you can then tweak and modify.</span></span> <span data-ttu-id="4620b-170">Veritabanı şemanız değişirse, sınıfları el ile düzenleyebilir veya sınıfların üzerine yazmak için başka bir geri mühendis gerçekleştirebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="4620b-170">If your database schema changes you can either manually edit the classes or perform another reverse engineer to overwrite the classes.</span></span>
 
-## <a name="using-code-first-migrations-to-an-existing-database"></a><span data-ttu-id="f17b0-171">Mevcut bir veritabanına Code First Migrations kullanma</span><span class="sxs-lookup"><span data-stu-id="f17b0-171">Using Code First Migrations to an Existing Database</span></span>
+## <a name="using-code-first-migrations-to-an-existing-database"></a><span data-ttu-id="4620b-171">Mevcut bir veritabanına Code First Migrations kullanma</span><span class="sxs-lookup"><span data-stu-id="4620b-171">Using Code First Migrations to an Existing Database</span></span>
 
-<span data-ttu-id="f17b0-172">Mevcut bir veritabanıyla Code First Migrations kullanmak istiyorsanız, bkz. [Code First Migrations var olan bir veritabanına](~/ef6/modeling/code-first/migrations/existing-database.md).</span><span class="sxs-lookup"><span data-stu-id="f17b0-172">If you want to use Code First Migrations with an existing database, see [Code First Migrations to an existing database](~/ef6/modeling/code-first/migrations/existing-database.md).</span></span>
+<span data-ttu-id="4620b-172">Mevcut bir veritabanıyla Code First Migrations kullanmak istiyorsanız, bkz. [Code First Migrations var olan bir veritabanına](~/ef6/modeling/code-first/migrations/existing-database.md).</span><span class="sxs-lookup"><span data-stu-id="4620b-172">If you want to use Code First Migrations with an existing database, see [Code First Migrations to an existing database](~/ef6/modeling/code-first/migrations/existing-database.md).</span></span>
 
-## <a name="summary"></a><span data-ttu-id="f17b0-173">Özet</span><span class="sxs-lookup"><span data-stu-id="f17b0-173">Summary</span></span>
+## <a name="summary"></a><span data-ttu-id="4620b-173">Özet</span><span class="sxs-lookup"><span data-stu-id="4620b-173">Summary</span></span>
 
-<span data-ttu-id="f17b0-174">Bu kılavuzda, var olan bir veritabanını kullanarak Code First geliştirmeye baktık.</span><span class="sxs-lookup"><span data-stu-id="f17b0-174">In this walkthrough we looked at Code First development using an existing database.</span></span> <span data-ttu-id="f17b0-175">Veritabanına eşlenen ve veri depolamak ve almak için kullanılabilecek bir sınıf kümesine ters mühendislik uygulamak için Visual Studio için Entity Framework Tools kullandık.</span><span class="sxs-lookup"><span data-stu-id="f17b0-175">We used the Entity Framework Tools for Visual Studio to reverse engineer a set of classes that mapped to the database and could be used to store and retrieve data.</span></span>
+<span data-ttu-id="4620b-174">Bu kılavuzda, var olan bir veritabanını kullanarak Code First geliştirmeye baktık.</span><span class="sxs-lookup"><span data-stu-id="4620b-174">In this walkthrough we looked at Code First development using an existing database.</span></span> <span data-ttu-id="4620b-175">Veritabanına eşlenen ve veri depolamak ve almak için kullanılabilecek bir sınıf kümesine ters mühendislik uygulamak için Visual Studio için Entity Framework Tools kullandık.</span><span class="sxs-lookup"><span data-stu-id="4620b-175">We used the Entity Framework Tools for Visual Studio to reverse engineer a set of classes that mapped to the database and could be used to store and retrieve data.</span></span>
