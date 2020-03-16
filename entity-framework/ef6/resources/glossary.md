@@ -5,11 +5,11 @@ ms.date: 10/23/2016
 ms.assetid: 3f05ffdd-49bc-499c-9732-4a368bf5d2d7
 uid: ef6/resources/glossary
 ms.openlocfilehash: df0da4a68b3d2c882d9673417ee5fe335eccae2b
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73656152"
+ms.lasthandoff: 03/15/2020
+ms.locfileid: "79402203"
 ---
 # <a name="entity-framework-glossary"></a>Entity Framework sözlüğü
 ## <a name="code-first"></a>Code First
@@ -24,7 +24,7 @@ Sınıflarınızda modelinizin şeklini çıkarsmak için Entity Framework taraf
 ## <a name="database-first"></a>Database First
 Var olan bir veritabanını hedefleyen EF tasarımcısını kullanarak Entity Framework modeli oluşturma.
 
-## <a name="eager-loading"></a>Ekip yükleme
+## <a name="eager-loading"></a>ekip yükleme
 Bir varlık türü için bir sorgunun aynı zamanda ilgili varlıkları sorgunun bir parçası olarak yüklediği ilgili verileri yükleme kalıbı.
 
 ## <a name="ef-designer"></a>EF Tasarımcısı
@@ -36,22 +36,22 @@ Müşteriler, ürünler ve siparişler gibi uygulama verilerini temsil eden bir 
 ## <a name="entity-data-model"></a>Varlık Veri Modeli
 Varlıkları ve aralarındaki ilişkileri açıklayan bir model. EF, geliştirici programlarının yanındaki kavramsal modeli anlatmak için EDM kullanır. EDM derlemeleri Dr. Peter Chen tarafından tanıtılan varlık Ilişki modelinde. EDM, ilk olarak Microsoft 'un bir geliştirici ve sunucu teknolojileri paketi genelinde ortak veri modeli olma konusunda birincil hedefle geliştirilmiştir. EDM, OData protokolünün bir parçası olarak da kullanılır.
 
-## <a name="explicit-loading"></a>Açık yükleme
+## <a name="explicit-loading"></a>açık yükleme
 Bir API çağırarak ilgili nesnelerin yüklendiği ilgili verileri yükleme kalıbı.
 
 ## <a name="fluent-api"></a>Akıcı API
 Code First modeli yapılandırmak için kullanılabilen bir API.
 
-## <a name="foreign-key-association"></a>Yabancı anahtar ilişkilendirmesi
+## <a name="foreign-key-association"></a>yabancı anahtar ilişkilendirmesi
 Bağımlı varlığın sınıfına, yabancı anahtarı temsil eden bir özelliğin dahil olduğu varlıklar arasındaki ilişki. Örneğin, ürün bir CategoryID özelliği içerir.
 
-## <a name="identifying-relationship"></a>İlişki tanımlama
+## <a name="identifying-relationship"></a>ilişki tanımlama
 Asıl varlığın birincil anahtarının bağımlı varlığın birincil anahtarının bir parçası olduğu bir ilişki. Bu tür bir ilişkide, bağımlı varlık asıl varlık olmadan bulunamaz.
 
-## <a name="independent-association"></a>Bağımsız ilişkilendirme
+## <a name="independent-association"></a>bağımsız ilişkilendirme
 Bağımlı varlık sınıfındaki yabancı anahtarı temsil eden özellik olmayan varlıklar arasındaki ilişki. Örneğin, bir ürün sınıfı kategori ile ilişki içerir ancak CategoryID özelliği yoktur. Entity Framework, ilişkinin durumunu iki ilişkilendirme sonunda varlıkların durumundan bağımsız olarak izler.
 
-## <a name="lazy-loading"></a>Geç yükleme
+## <a name="lazy-loading"></a>geç yükleme
 Bir gezinti özelliğine erişildiğinde ilgili nesnelerin otomatik olarak yüklendiği ilgili verileri yükleme kalıbı.
 
 ## <a name="model-first"></a>Model First
@@ -66,7 +66,7 @@ Düz eski CLR nesnesi kısaltması. Hiçbir çerçeveye bağımlılığı olmaya
 ## <a name="relationship-inverse"></a>İlişki ters
 Bir ilişkinin ters sonu (örneğin, ürün). Kategori ve kategori. Ürünüyle.
 
-## <a name="self-tracking-entity"></a>Kendini izleyen varlık
+## <a name="self-tracking-entity"></a>kendini izleyen varlık
 N katmanlı geliştirmeye yardımcı olan kod oluşturma şablonundan oluşturulmuş bir varlık.
 
 ## <a name="table-per-concrete-type-tpc"></a>Tablo başına somut tür (TPC)

@@ -5,11 +5,11 @@ author: AndriySvyryd
 ms.date: 11/21/2019
 uid: core/modeling/relationships
 ms.openlocfilehash: 6d68e813cec6c989e8e4cb848f8740489645c65c
-ms.sourcegitcommit: 89567d08c9d8bf9c33bb55a62f17067094a4065a
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 02/06/2020
-ms.locfileid: "77051413"
+ms.lasthandoff: 03/15/2020
+ms.locfileid: "79402168"
 ---
 # <a name="relationships"></a>İlişkiler
 
@@ -118,13 +118,13 @@ Farklı silme davranışları ve kural tarafından kullanılan varsayılanlar ha
 
 ## <a name="manual-configuration"></a>El ile yapılandırma
 
-### <a name="fluent-apitabfluent-api"></a>[Akıcı API](#tab/fluent-api)
+### <a name="fluent-api"></a>[Akıcı API](#tab/fluent-api)
 
 Akıcı API 'de bir ilişki yapılandırmak için, ilişkiyi oluşturan gezinti özelliklerini tanımlayarak başlacaksınız. `HasOne` veya `HasMany`, üzerinde yapılandırmaya başmakta olduğunuz varlık türünde gezinti özelliğini tanımlar. Daha sonra ters gezintiyi belirlemek için `WithOne` veya `WithMany` bir çağrı zincirleyebilirsiniz. `HasOne`/`WithOne` başvuru gezinti özellikleri için kullanılır ve koleksiyon gezinti özellikleri için `HasMany`/`WithMany` kullanılır.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/NoForeignKey.cs?name=NoForeignKey&highlight=8-10)]
 
-### <a name="data-annotationstabdata-annotations"></a>[Veri açıklamaları](#tab/data-annotations)
+### <a name="data-annotations"></a>[Veri açıklamaları](#tab/data-annotations)
 
 Bağımlı ve birincil varlıklarda gezinti özelliklerinin nasıl kullandığını yapılandırmak için veri açıklamalarını kullanabilirsiniz. Bu, genellikle iki varlık türü arasında birden fazla gezinti özelliği olduğunda yapılır.
 
@@ -146,19 +146,19 @@ Yalnızca bir gezinti özelliğine sahipseniz, `WithOne` ve `WithMany`Parametres
 
 ### <a name="foreign-key"></a>Yabancı anahtar
 
-#### <a name="fluent-api-simple-keytabfluent-api-simple-key"></a>[Akıcı API (basit anahtar)](#tab/fluent-api-simple-key)
+#### <a name="fluent-api-simple-key"></a>[Akıcı API (basit anahtar)](#tab/fluent-api-simple-key)
 
 Belirli bir ilişki için yabancı anahtar özelliği olarak kullanılması gereken özelliği yapılandırmak için Floent API 'sini kullanabilirsiniz:
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/ForeignKey.cs?name=ForeignKey&highlight=11)]
 
-#### <a name="fluent-api-composite-keytabfluent-api-composite-key"></a>[Akıcı API (bileşik anahtar)](#tab/fluent-api-composite-key)
+#### <a name="fluent-api-composite-key"></a>[Akıcı API (bileşik anahtar)](#tab/fluent-api-composite-key)
 
 Belirli bir ilişki için bileşik yabancı anahtar özellikleri olarak kullanılması gereken özellikleri yapılandırmak için akıcı API 'YI kullanabilirsiniz:
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/CompositeForeignKey.cs?name=CompositeForeignKey&highlight=13)]
 
-#### <a name="data-annotations-simple-keytabdata-annotations-simple-key"></a>[Veri açıklamaları (basit anahtar)](#tab/data-annotations-simple-key)
+#### <a name="data-annotations-simple-key"></a>[Veri açıklamaları (basit anahtar)](#tab/data-annotations-simple-key)
 
 Belirli bir ilişki için yabancı anahtar özelliği olarak kullanılması gereken özelliği yapılandırmak için veri açıklamalarını kullanabilirsiniz. Bu, genellikle yabancı anahtar özelliği kural tarafından keşfedildiğinde yapılır:
 
@@ -196,11 +196,11 @@ Bir gezinti özelliği sağlamanız gerekmez. İlişkinin yalnızca bir tarafın
 
 Yabancı anahtarın birincil anahtar dışında bir özelliğe başvurmasına isterseniz, ilişkinin asıl anahtar özelliğini yapılandırmak için Floent API 'sini kullanabilirsiniz. Asıl anahtar olarak yapılandırdığınız özellik otomatik olarak [alternatif bir anahtar](alternate-keys.md)olarak ayarlar.
 
-#### <a name="simple-keytabsimple-key"></a>[Basit anahtar](#tab/simple-key)
+#### <a name="simple-key"></a>[Basit anahtar](#tab/simple-key)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/PrincipalKey.cs?name=PrincipalKey&highlight=11)]
 
-#### <a name="composite-keytabcomposite-key"></a>[Bileşik anahtar](#tab/composite-key)
+#### <a name="composite-key"></a>[Bileşik anahtar](#tab/composite-key)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/CompositePrincipalKey.cs?name=CompositePrincipalKey&highlight=11)]
 

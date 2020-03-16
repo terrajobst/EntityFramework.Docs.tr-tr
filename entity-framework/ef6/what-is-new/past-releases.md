@@ -4,12 +4,12 @@ author: divega
 ms.date: 09/12/2019
 ms.assetid: 1060bb99-765f-4f32-aaeb-d6635d3dbd3e
 uid: ef6/what-is-new/past-releases
-ms.openlocfilehash: fada7740453cd9a55a1d0069236efcecbd9aa314
-ms.sourcegitcommit: 18ab4c349473d94b15b4ca977df12147db07b77f
+ms.openlocfilehash: b7181334cd125c5cbf296d5b3674c0b5f087f438
+ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 11/06/2019
-ms.locfileid: "73656134"
+ms.lasthandoff: 03/15/2020
+ms.locfileid: "79402175"
 ---
 # <a name="past-releases-of-entity-framework"></a>Entity Framework geçmiş sürümleri
 
@@ -19,7 +19,7 @@ EF 4.1 sürümünden başlayarak, [EntityFramework NuGet paketi](https://www.nug
 
 EntityFramework NuGet paketi, 4,1 ve 5,0 sürümleri arasında .NET Framework bir parçası olarak gönderilen EF kitaplıklarını genişletti.
 
-Sürüm 6 ' dan başlayarak, EF açık kaynaklı bir proje haline geldi ve ayrıca .NET Framework tamamen bant dışı biçimde taşındı.
+Sürüm 6 ' dan başlayarak, EF açık kaynaklı bir proje haline geldi ve ayrıca .NET Framework tamamen bant dışına taşındı.
 Yani, bir uygulamaya EntityFramework sürüm 6 NuGet paketi eklediğinizde, .NET Framework bir parçası olarak gönderilen EF bitlerini temel alan EF kitaplığının tamamen bir kopyasını alıyorsunuz.
 Bu, yeni özelliklerin geliştirilmesi ve tesliminin ilerlemesini hızlandırmaya yardımcı oldu.
 
@@ -94,7 +94,7 @@ Bu küçük güncelleştirme, önemli sayıda yeni özellik içerir:
 - Uygulama **[/Web. config dosyası aracılığıyla yakalayıcılar yapılandırma özelliği](~/ef6/fundamentals/configuring/config-file.md)** , uygulama yeniden derlenmeden ekleme yapılmasına izin verir.
 - **System. Data. Entity. Infrastructure. yakalayıcısı. Databasegünlükçü**, tüm veritabanı işlemlerini bir dosyaya günlüğe kaydetmek kolay hale getiren yeni bir dinleyici. Önceki özellikle birlikte, bu, yeniden derlemenize gerek kalmadan [dağıtılan bir uygulama için veritabanı işlemlerinin günlüğe kaydedilmesini](~/ef6/fundamentals/configuring/config-file.md)kolayca değiştirmenize olanak sağlar.
 - **Geçiş modeli değişikliği algılaması** geliştirilmiştir, böylece yapı iskelesi geçişleri daha doğru olur; değişiklik algılama sürecinin performansı de geliştirilmiştir.
-- Başlatma sırasında azaltılmış veritabanı işlemleri de dahil olmak üzere **performans iyileştirmeleri** , LINQ sorgularında null eşitlik karşılaştırması için iyileştirmeler, daha hızlı görünüm oluşturma (model oluşturma) ve daha verimli hale getirme birden çok ilişkiye sahip izlenen varlıklar.
+- Başlatma sırasında azaltılmış veritabanı işlemleri, LINQ sorgularında null eşitlik karşılaştırması için iyileştirmeler, daha hızlı görünüm oluşturma (model oluşturma) ve birden çok ilişki içeren izlenen varlıkların daha verimli bir şekilde hazırlanması gibi **performans iyileştirmeleri** .
 
 ## <a name="ef-602"></a>EF 6.0.2
 EF 6.0.2 Runtime, Aralık 2013 ' de NuGet 'e yayımlandı.
@@ -121,7 +121,7 @@ Aşağıdaki özellikler Code First veya EF Designer ile oluşturulan modeller i
 - **[Bağımlılık çözümlemesi](~/ef6/fundamentals/configuring/dependency-resolution.md)** , hizmet bulucu deseninin desteğini tanıtır ve özel uygulamalarla değiştirilebilmesi için bazı işlevsellik parçalarını değerlendirdik.
 - **[Ele geçirme/SQL günlüğü](~/ef6/fundamentals/logging-and-interception.md)** , en üstte yerleşik olarak bulunan basit SQL günlüğü ile EF işlemlerinin ele geçirilmesini sağlayan alt düzey yapı taşları sağlar.
 - Test edilebilir **iyileştirmeler** , [bir sahte işlem çerçevesi kullanırken](~/ef6/fundamentals/testing/mocking.md) veya [kendi test Double 'larınızı yazarken](~/ef6/fundamentals/testing/writing-test-doubles.md)DbContext ve dbset için test Double değerleri oluşturmayı kolaylaştırır.
-- **[DbContext artık zaten açık olan bir DbConnection ile oluşturulabilir](~/ef6/fundamentals/connection-management.md)** . Bu, bağlam oluşturulurken bağlantının açık olması durumunda (örneğin, garanti edebildiğiniz bileşenler arasında bir bağlantı paylaşımı gibi) yararlı olabilecek senaryolar sağlar. bağlantının durumu).
+- **[DbContext artık zaten açık olan bir DbConnection ile oluşturulabilir](~/ef6/fundamentals/connection-management.md)** . Bu, bağlantı bağlamı oluşturulurken (bağlantının durumunu garanti edebildiğiniz bileşenler arasında bir bağlantı paylaşımı gibi) açık olduğunda yararlı olabilecek senaryolara izin verebilir.
 - **[Iyileştirilmiş Işlem desteği](~/ef6/saving/transactions.md)** , çerçeveye dışarıdan bir işlem için destek sağlar ve Framework içinde işlem oluşturmanın gelişmiş yollarını sağlar.
 - **.Net 4,0 ' de numaralandırmalar, uzamsal ve daha Iyi performans** -.NET Framework olması için kullanılan çekırdek bileşenleri EF NuGet paketine taşıyarak, artık .NET 4,0 üzerinde EF5 adresinden enum desteği, uzamsal veri türleri ve performans iyileştirmeleri sunabilebiliyoruz.
 - **Sıralanabilir. LINQ sorgularında gelişmiş performans performansı**.
@@ -142,7 +142,7 @@ Aşağıdaki özellikler yalnızca Code First için geçerlidir:
 - **[Dbmodelbuilder. HasDefaultSchema](~/ef6/modeling/code-first/fluent/types-and-properties.md)** , bir Code First modelinin varsayılan veritabanı şemasının tek bir yerde yapılandırılmasına izin veren yeni BIR Code First API 'sidir. Daha önce Code First varsayılan şeması, &quot;dbo&quot; ve bir tablonun ait olduğu şemayı ToTable API 'SI aracılığıyla yapılandırmanın tek yolunu yapılandırmak için sabit kodlandı.
 - **Dbmodelbuilder. Configurations. AddFromAssembly yöntemi** , Code FIRST akıcı API ile yapılandırma sınıfları kullandığınızda bir derlemede tanımlanan tüm yapılandırma sınıflarını kolayca eklemenize olanak tanır.
 - **[Özel geçiş işlemleri](https://romiller.com/2013/02/27/ef6-writing-your-own-code-first-migration-operations/)** , kod tabanlı geçişlerde kullanılacak ek işlemler eklemenizi sağlar.
-- **Varsayılan işlem yalıtım düzeyi** , Code First kullanılarak oluşturulan VERITABANLARı için READ_COMMITTED_SNAPSHOT olarak değiştirilir ve daha fazla ölçeklenebilirlik ve daha az kilitlenme sağlar.
+- **Varsayılan işlem yalıtım düzeyi** , Code First kullanılarak oluşturulan veritabanları için READ_COMMITTED_SNAPSHOT olarak değiştirilir ve daha fazla ölçeklenebilirlik ve daha az kilitlenme sağlar.
 - **Varlık ve karmaşık türler artık nestedinsıde sınıfları olabilir**.
 
 ## <a name="ef-50"></a>EF 5,0
@@ -234,7 +234,7 @@ EF 4,3 sürümü için bir araya koyduğumuz içeriğin bir listesi aşağıda, 
 ## <a name="ef-42"></a>EF 4,2
 EF 4.2.0 Runtime, Kasım 2011 ' de NuGet 'e yayımlandı.
 Bu sürüm, EF 4.1.1 sürümüne hata düzeltmeleri içerir.
-Bu yayında yalnızca hata düzeltmeleri bulunduğundan, EF 4.1.2 Patch sürümü olabilir, ancak 4.1. x yayınlarında kullandığımız Tarih tabanlı düzeltme eki sürüm numaralarının dışında hareket etmemizi ve s için [semantik Versionsing](https://semver.org) standardını benimsememizi sağlamak üzere 4,2 ' a geçmek zorunda olduğumuz emanit sürümü oluşturma.
+Bu yayında yalnızca hata düzeltmeleri bulunduğundan, EF 4.1.2 Patch sürümü olabilir, ancak 4.1. x yayınlarında kullandığımız Tarih tabanlı düzeltme eki sürüm numaralarını benimsememizi ve anlamsal sürüm oluşturma için [semantik Versionsing](https://semver.org) standardını benimsememizi sağlamak üzere 4,2 ' a geçmek zorunda olduğumuz.
 
 Yalnızca EF 4,2 sürümü için birlikte koyduğumuz içerik listesi, EF 4,1 için sunulan içerik yine de EF 4,2 için geçerlidir:
 
