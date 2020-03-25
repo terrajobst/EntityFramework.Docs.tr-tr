@@ -4,18 +4,18 @@ author: divega
 ms.date: 08/06/2017
 ms.assetid: 608cc774-c570-4809-8a3e-cd2c8446b8b2
 uid: core/get-started/install/index
-ms.openlocfilehash: 987b6f38954c291f88b5167fa9b061853b15a6cb
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 6575b1ac028f8b67b49ca7f4e49d6f19500be98f
+ms.sourcegitcommit: c3b8386071d64953ee68788ef9d951144881a6ab
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78416882"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80136178"
 ---
 # <a name="installing-entity-framework-core"></a>Entity Framework Core yükleniyor
 
 ## <a name="prerequisites"></a>Önkoşullar
 
-* EF Core bir [.NET Standard 2,1](/dotnet/standard/net-standard) kitaplığı. EF Core .NET Standard 2,1 ' i destekleyen bir .NET uygulamasının çalışmasını gerektirir. EF Core diğer .NET Standard 2,1 kitaplıkları tarafından da başvurulabilirler.
+* EF Core bir [.NET Standard 2,0](/dotnet/standard/net-standard) kitaplığı. EF Core .NET Standard 2,0 ' i destekleyen bir .NET uygulamasının çalışmasını gerektirir. EF Core diğer .NET Standard 2,0 kitaplıkları tarafından da başvurulabilirler.
 
 * Örneğin, .NET Core 'u hedefleyen uygulamalar geliştirmek için EF Core kullanabilirsiniz. .NET Core uygulamaları oluşturmak için [.NET Core SDK](https://dotnet.microsoft.com/download)gerekir. İsteğe bağlı olarak, [Visual Studio](https://visualstudio.microsoft.com/vs), [Mac için Visual Studio](https://visualstudio.microsoft.com/vs/mac)veya [Visual Studio Code](https://code.visualstudio.com)gibi bir geliştirme ortamı da kullanabilirsiniz. Daha fazla bilgi için [.NET Core Ile çalışmaya](/dotnet/core/get-started)başlama konusuna bakın.
 

@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: d7a22b5a-4c5b-4e3b-9897-4d7320fcd13f
 uid: core/miscellaneous/configuring-dbcontext
-ms.openlocfilehash: 3ab90d46b7a4476044e5ea38eaf04f995708e7bf
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 53b38f288cd45e66d68ebcc3b6066646d59b0262
+ms.sourcegitcommit: c3b8386071d64953ee68788ef9d951144881a6ab
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78416671"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80136185"
 ---
 # <a name="configuring-a-dbcontext"></a>DbContext yapılandırma
 
@@ -186,11 +186,11 @@ Her zaman zaman uyumsuz yöntemleri hemen EF Core.
 
 [`AddDbContext`](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) uzantısı yöntemi, varsayılan olarak [kapsamlı yaşam süresine](https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection#service-lifetimes) sahip `DbContext` türlerini kaydeder.
 
-Belirli bir zamanda her istemci isteğini yürüten tek bir iş parçacığı olduğundan ve her istek ayrı bir bağımlılık ekleme kapsamı (ve dolayısıyla ayrı bir `DbContext` örneği) aldığından, bu, ASP.NET Core uygulamalardaki eşzamanlı erişim sorunlarından güvenlidir.
+Belirli bir zamanda her istemci isteğini yürüten tek bir iş parçacığı olduğundan ve her istek ayrı bir bağımlılık ekleme kapsamı (ve dolayısıyla ayrı bir `DbContext` örneği) aldığından, çoğu ASP.NET Core uygulamalarda eşzamanlı erişim sorunlarından daha güvenlidir. Blazor sunucusu barındırma modeli için, Blazor Kullanıcı devresini sürdürmek için bir mantıksal istek kullanılır ve bu nedenle varsayılan ekleme kapsamı kullanılırsa Kullanıcı devresi başına yalnızca bir kapsamlı DbContext örneği kullanılabilir.
 
-Ancak birden çok iş parçacığını paralel olarak doğrudan yürüten kod, `DbContext` örneklerine hiçbir zaman eş zamanlı olarak erişilmemesini sağlamalıdır.
+Birden çok iş parçacığını paralel olarak doğrudan yürüten tüm kodlar `DbContext` örneklerine aynı anda erişilmemesini sağlamalıdır.
 
-Bağımlılık ekleme 'yi kullanarak, bu, her bir iş parçacığı için bağlamı kapsam olarak kaydederek (`IServiceScopeFactory`kullanarak) ya da `DbContext` geçici olarak kaydederek (`ServiceLifetime` parametresi alan `AddDbContext` aşırı yüklemesini kullanarak) elde edilebilir.
+Bağımlılık ekleme 'yi kullanarak bu, bağlamı kapsam olarak kaydederek ve her bir iş parçacığı için kapsam oluşturarak (`IServiceScopeFactory`kullanarak) ya da `DbContext` geçici olarak kaydederek (`ServiceLifetime` parametresi alan `AddDbContext` aşırı yüklemesini kullanarak) elde edilebilir.
 
 ## <a name="more-reading"></a>Daha fazla okuma
 

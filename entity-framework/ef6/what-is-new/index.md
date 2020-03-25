@@ -4,18 +4,22 @@ author: divega
 ms.date: 09/12/2019
 ms.assetid: 41d1f86b-ce66-4bf2-8963-48514406fb4c
 uid: ef6/what-is-new/index
-ms.openlocfilehash: 9daae787d0cec0ca536413e6263bb363ba76ff2c
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: e0367aeefd682434bf520301776bcff4f0e72e06
+ms.sourcegitcommit: c3b8386071d64953ee68788ef9d951144881a6ab
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78419659"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80136133"
 ---
 # <a name="whats-new-in-ef6"></a>EF6 'deki yenilikler
 
 En son özellikleri ve en yüksek kararlılığı elde etmenizi sağlamak için en son yayınlanan Entity Framework sürümünü kullanmanızı kesinlikle öneririz.
 Bununla birlikte, önceki bir sürümü kullanmanız gerektiğini veya en son yayın öncesi sürümde yeni geliştirmeler yapmak isteyebileceğiniz hakkında fark ediyoruz.
 EF 'in belirli sürümlerini yüklemek için bkz. [Get Entity Framework](~/ef6/fundamentals/install.md).
+
+## <a name="ef-640"></a>EF 6.4.0
+
+EF 6.4.0 Runtime, Aralık 2019 ' de NuGet 'e yayımlandı. EF 6,4 ' in birincil amacı, EF 6,3 ' de sunulan özellikler ve senaryolar için Lehçe ' dır. GitHub 'daki [önemli düzeltmelerin listesini](https://github.com/dotnet/ef6/milestone/14?closed=1) görüntüleyin.
 
 ## <a name="ef-630"></a>EF 6.3.0
 
@@ -31,7 +35,7 @@ EF 6.3.0 Runtime, Eylül 2019 ' de NuGet 'e yayımlandı. Bu sürümün ana amac
 
 ### <a name="ef-designer-support"></a>EF Designer desteği
 
-Şu anda EF Designer 'ı doğrudan .NET Core veya .NET Standard projelerinde kullanma desteği yoktur. 
+Şu anda EF Designer 'ı doğrudan .NET Core veya .NET Standard projelerinde ya da bir SDK stili .NET Framework projesinde kullanma desteği yoktur. 
 
 Aynı çözümde bir .NET Core 3,0 veya .NET Standard 2,1 projesine, öğeler için EDMX dosyasını ve üretilen sınıfları ve DbContext 'i bağlı dosyalar olarak ekleyerek bu sınırlamaya geçici bir çözüm bulabilirsiniz.
 
@@ -47,6 +51,8 @@ Bağlantılı dosyalar proje dosyasında şöyle görünür:
 ```
 
 EDMX dosyasının EntityDeploy derleme eylemiyle bağlantılı olduğunu unutmayın. Bu, EF modelinin hedef derlemeye gömülü kaynaklar olarak eklenmesi (veya EDMX 'in meta veri yapıt Işleme ayarına bağlı olarak çıktı klasörüne dosya olarak kopyalamak) için özel bir MSBuild görevi (artık EF 6,3 paketine eklenmiştir). Bu kurulumu nasıl alacağınız hakkında daha fazla bilgi için bkz. [edmx .NET Core örneği](https://aka.ms/EdmxDotNetCoreSample).
+
+Uyarı: eski stilin (yani SDK olmayan), "Real". edmx dosyasını tanımlayan .NET Framework proje, bağlantıyı. sln dosyası içinde tanımlayan projeden _önce_ geldiğinden emin olun. Aksi halde, tasarımcıda. edmx dosyasını açtığınızda, "Entity Framework proje için geçerli olarak belirtilen hedef çerçevede kullanılamıyor" hata iletisini görürsünüz. Projenin hedef çerçevesini değiştirebilir veya modeli Xmtaditor 'da düzenleyebilirsiniz.
 
 ## <a name="past-releases"></a>Geçmiş Yayınlar
 

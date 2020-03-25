@@ -3,12 +3,12 @@ title: Entity Framework Core 5,0 planlaması
 author: ajcvickers
 ms.date: 01/14/2020
 uid: core/what-is-new/ef-core-5.0/plan.md
-ms.openlocfilehash: c5b7300c61c2f668b6f9393ae51bf9ebddf330a7
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 8b4ca32524869019c04d5a4d4d55967f68181cd7
+ms.sourcegitcommit: c3b8386071d64953ee68788ef9d951144881a6ab
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78417878"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80136234"
 ---
 # <a name="plan-for-entity-framework-core-50"></a>Entity Framework Core 5,0 planlaması
 
@@ -67,7 +67,7 @@ Lider geliştiricisi: @AndriySvyryd
 
 Tişörlü Boyut: XL
 
-Durum: başlatılmadı
+Durum: devam ediyor
 
 Yüksek düzeyde istenmiş bir Özellik (~ 254 oy ve 3. Genel) olduğundan ve genel .NET 5 planının temel yapısı için uygun olan bazı düşük düzey değişiklikler gerektirdiğinden TPT yapıyoruz. Bunun, 3,0 için gereken değişikliklerden çok daha az ciddi olmasına rağmen, bu, veritabanı sağlayıcılarının değişikliklere neden olduğunu umyoruz.
 
@@ -79,7 +79,7 @@ Lider geliştiricisi: @maumar
 
 Tişörlü Boyut: a
 
-Durum: başlatılmadı
+Durum: devam ediyor
 
 Filtrelenmiş dahil, çok büyük bir iş miktarı olmayan ve şu anda model düzeyi filtreler veya daha karmaşık sorgular gerektiren çok sayıda senaryonun engellemesini veya daha kolay olduğunu düşünmemiz için yüksek düzeyde istenmiş bir özelliktir (~ 317 oy; 2. Genel).
 
@@ -91,7 +91,7 @@ Lider geliştiricileri: @maumar ve @smitpatel
 
 Tişörlü Boyut: L
 
-Durum: başlatılmadı
+Durum: devam ediyor
 
 Ham SQL, anahtarsız türlerini ve ilgili alanı desteklemeye yönelik önceki sürümlerde ilerleme yaptık. Ancak, her şeyin bir bütün olarak birlikte çalıştıkları şekilde hem boşluklar hem de tutarsızlıklar vardır. 5,0 için amaç bunları çözmektir ve farklı varlık türlerini ve bunlarla ilişkili sorguları ve veritabanı yapılarını tanımlamak, geçirmek ve kullanmak için iyi bir deneyim oluşturmaktır. Bu, derlenmiş sorgu API 'SI güncelleştirmelerini de içerebilir.
 
@@ -184,7 +184,7 @@ Müşteri adayı belge girme: @ajcvickers
 
 Tişörlü Boyut: L
 
-Durum: başlatılmadı
+Durum: devam ediyor
 
 Buradaki fikir, EF Core iç yapıları hakkında daha kolay anlaşılır hale getirmek için. Bu, EF Core kullanan herkes için yararlı olabilir, ancak birincil mosyon, dış kişilerin şunları yapmasını kolaylaştırır:
 

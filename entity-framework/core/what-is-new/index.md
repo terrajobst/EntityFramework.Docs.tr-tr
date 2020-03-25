@@ -4,12 +4,12 @@ author: ajcvickers
 ms.date: 03/03/2020
 ms.assetid: C21F89EE-FB08-4ED9-A2A0-76CB7656E6E4
 uid: core/what-is-new/index
-ms.openlocfilehash: 2c41f65d1fead8430a39c6230a0f22506686504e
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 7b58b4de0eb8d9575f77e0b147da017eabad1867
+ms.sourcegitcommit: c3b8386071d64953ee68788ef9d951144881a6ab
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78417961"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80136217"
 ---
 # <a name="ef-core-releases-and-planning"></a>EF Core yayınları ve planlamayı
 
@@ -57,10 +57,12 @@ Bu veriler daha sonra bir sonraki sürüm için planlama işlemine akış eklene
 
 ### <a name="get-it-now"></a>Hemen alın!
 
-EF Core 5,0 paketleri, [günlük derlemeler](https://github.com/aspnet/AspNetCore/blob/master/docs/DailyBuilds.md)olarak **artık kullanılabilir** . 
+EF Core 5,0 paketleri **Şu şekilde kullanılabilir**
 
-Günlük derlemelerin kullanılması, sorunları bulmak ve mümkün olduğunca erken geri bildirimde bulunmak için harika bir yoldur.
+* [Günlük derlemeler](https://github.com/dotnet/aspnetcore/blob/master/docs/DailyBuilds.md)
+  * Tüm en son özellikler ve hata düzeltmeleri. Genel olarak çok kararlı; 57000 + test her bir derlemede çalışır.
+* [NuGet önizlemesi](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore)
+  * Günlük derlemelerin arkasına gecikti, ancak karşılık gelen ASP.NET Core ve .NET Core önizlemeleriyle birlikte çalışmak üzere test edilmiştir.
+
+Önizlemeleri veya günlük derlemeler kullanmak, sorunları bulmanın ve mümkün olduğunca erken geri bildirimde bulunmak için harika bir yoldur.
 Daha erken bu geri bildirimde bulunduk, daha büyük olasılıkla sonraki resmi yayından önce eyleme geçirilecektir.
-Her derleme için her bir platform için 56.000 testten fazla testi çalıştırarak günlük yapıların iyi şekilde kalmasını sağlamak için çok çalıştık.
-
-Önizleme paketleri, yılda daha sonra NuGet 'e gönderilir.

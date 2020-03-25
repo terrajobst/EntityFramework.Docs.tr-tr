@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 10/05/2018
 uid: core/managing-schemas/migrations/index
-ms.openlocfilehash: dc0c1ae1a03c98c6f230557dc0bdd4d29ec191dd
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 190057daed61c58c1f89ee8d775913458e413a50
+ms.sourcegitcommit: c3b8386071d64953ee68788ef9d951144881a6ab
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78416858"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80136205"
 ---
 # <a name="migrations"></a>Geçişler
 
@@ -215,15 +215,43 @@ Geçişlerinizi hata ayıkladığınızda veya bir üretim veritabanına dağıt
 
 ### <a name="net-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
+#### <a name="basic-usage"></a>Temel kullanım
 ```dotnetcli
 dotnet ef migrations script
 ```
 
+#### <a name="with-from-to-implied"></a>İle (örtük)
+Bu, en son geçişe Bu geçişten bir SQL betiği oluşturur.
+```dotnetcli
+dotnet ef migrations script 20190725054716_Add_new_tables
+```
+
+#### <a name="with-from-and-to"></a>İle ve arasında
+Bu işlem, `from` geçişten belirtilen `to` geçişine bir SQL betiği oluşturur.
+```dotnetcli
+dotnet ef migrations script 20190725054716_Add_new_tables 20190829031257_Add_audit_table
+```
+Geri alma betiği oluşturmak için `to` daha yeni bir `from` kullanabilirsiniz. *Lütfen olası veri kaybı senaryolarına göz atın.*
+
 ### <a name="visual-studio"></a>[Visual Studio](#tab/vs)
 
+#### <a name="basic-usage"></a>Temel kullanım
 ``` powershell
 Script-Migration
 ```
+
+#### <a name="with-from-to-implied"></a>İle (örtük)
+Bu, en son geçişe Bu geçişten bir SQL betiği oluşturur.
+```powershell
+Script-Migration 20190725054716_Add_new_tables
+```
+
+#### <a name="with-from-and-to"></a>İle ve arasında
+Bu işlem, `from` geçişten belirtilen `to` geçişine bir SQL betiği oluşturur.
+```powershell
+Script-Migration 20190725054716_Add_new_tables 20190829031257_Add_audit_table
+```
+Geri alma betiği oluşturmak için `to` daha yeni bir `from` kullanabilirsiniz. *Lütfen olası veri kaybı senaryolarına göz atın.*
 
 ***
 

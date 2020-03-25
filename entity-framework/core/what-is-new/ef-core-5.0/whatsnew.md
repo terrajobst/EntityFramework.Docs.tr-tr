@@ -1,27 +1,26 @@
 ---
 title: EF Core 5,0 ' deki yenilikler
 author: ajcvickers
-ms.date: 01/29/2020
+ms.date: 03/15/2020
 uid: core/what-is-new/ef-core-5.0/whatsnew.md
-ms.openlocfilehash: 65d7bd43e8a00c77fd6091a74c677635710d03e3
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 08a93555fd76d8a9f6d3011f59d9a34f76d0b22f
+ms.sourcegitcommit: c3b8386071d64953ee68788ef9d951144881a6ab
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78417968"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80136251"
 ---
 # <a name="whats-new-in-ef-core-50"></a>EF Core 5,0 ' deki yenilikler
 
 EF Core 5,0 şu anda geliştirme aşamasındadır.
 Bu sayfa, her önizlemede sunulan ilginç değişikliklere genel bir bakış içerir.
-EF Core 5,0 ' nin ilk önizlemesi, içinde, 2020 ' in ilk çeyreğinde kesin olarak beklenmez.
 
 Bu sayfa [EF Core 5,0 planını](plan.md)yinelemez.
 Plan, son yayını teslim etmeden önce dahil ettiğimiz her şey dahil olmak üzere EF Core 5,0 ' a yönelik genel temaları açıklar.
 
 Yayımlanmakta olan resmi belgelere buradan bağlantılar ekleyeceğiz.
 
-## <a name="preview-1-not-yet-shipped"></a>Önizleme 1 (henüz sevk edilmemiş)
+## <a name="preview-1"></a>Önizleme 1
 
 ### <a name="simple-logging"></a>Basit günlüğe kaydetme
 
@@ -40,15 +39,22 @@ EF Core 5,0, bir LINQ sorgusu yürütürken EF Core üretebileceği SQL döndür
 
 Ek belgeler [#1331](https://github.com/dotnet/EntityFramework.Docs/issues/1331)soruna göre izlenir.
 
-### <a name="enhanced-debug-views"></a>Gelişmiş hata ayıklama görünümleri
+### <a name="use-a-c-attribute-to-indicate-that-an-entity-has-no-key"></a>Bir varlığın C# anahtara sahip olmadığını göstermek için bir öznitelik kullanın
 
-Hata ayıklama görünümlerinde EF Core iç yapıları göz atmak kolay bir yoludur.
-Modelin bir hata ayıklama görünümü bir süre önce uygulandı.
-EF Core 5,0 için model görünümü ' ne daha kolay okunabilir ve durum yöneticisinde izlenen varlıklar için yeni bir hata ayıklama görünümü ekledik.
+Bir varlık türü artık yeni `KeylessAttribute`hiçbir anahtara sahip olmadığı için yapılandırılabilir.
+Örneğin:
 
-Ön belgeler, [12 aralık 2019 Için EF haftalık durumuna](https://github.com/dotnet/efcore/issues/15403#issuecomment-565196206)dahildir.
+```CSharp
+[Keyless]
+public class Address
+{
+    public string Street { get; set; }
+    public string City { get; set; }
+    public int Zip { get; set; }
+}
+```
 
-Ek belgeler [#2086](https://github.com/dotnet/EntityFramework.Docs/issues/2086)soruna göre izlenir.
+Belgeler [#2186](https://github.com/dotnet/EntityFramework.Docs/issues/2186)soruna göre izlenir.
 
 ### <a name="connection-or-connection-string-can-be-changed-on-initialized-dbcontext"></a>Bağlantı veya bağlantı dizesi, başlatılmış DbContext üzerinde değiştirilebilir
 
@@ -65,6 +71,16 @@ Böylece, varlık özelliklerindeki değer değişiklikleri doğrudan EF Core ol
 Ancak, proxy 'ler kendi kısıtlama kümesiyle gelir, bu nedenle herkes için değildir.
 
 Belgeler [#2076](https://github.com/dotnet/EntityFramework.Docs/issues/2076)soruna göre izlenir.
+
+### <a name="enhanced-debug-views"></a>Gelişmiş hata ayıklama görünümleri
+
+Hata ayıklama görünümlerinde EF Core iç yapıları göz atmak kolay bir yoludur.
+Modelin bir hata ayıklama görünümü bir süre önce uygulandı.
+EF Core 5,0 için model görünümü ' ne daha kolay okunabilir ve durum yöneticisinde izlenen varlıklar için yeni bir hata ayıklama görünümü ekledik.
+
+Ön belgeler, [12 aralık 2019 Için EF haftalık durumuna](https://github.com/dotnet/efcore/issues/15403#issuecomment-565196206)dahildir.
+
+Ek belgeler [#2086](https://github.com/dotnet/EntityFramework.Docs/issues/2086)soruna göre izlenir.
 
 ### <a name="improved-handling-of-database-null-semantics"></a>Veritabanı null semantiğini gelişmiş işleme
 
@@ -85,7 +101,7 @@ Belgeler [#2018](https://github.com/dotnet/EntityFramework.Docs/issues/2018)soru
 ### <a name="generation-of-check-constraints-for-enum-mappings"></a>Enum eşlemeleri için denetim kısıtlamaları oluşturma
 
 EF Core 5,0 geçişleri, artık enum özelliği eşlemeleri için DENETIM kısıtlamaları oluşturabilir.
-Örnek:
+Örneğin:
 
 ```SQL
 MyEnumColumn VARCHAR(10) NOT NULL CHECK (MyEnumColumn IN('Useful', 'Useless', 'Unknown'))
@@ -93,10 +109,52 @@ MyEnumColumn VARCHAR(10) NOT NULL CHECK (MyEnumColumn IN('Useful', 'Useless', 'U
 
 Belgeler [#2082](https://github.com/dotnet/EntityFramework.Docs/issues/2082)soruna göre izlenir.
 
+### <a name="isrelational"></a>Isilikisel
+
+Mevcut `IsSqlServer`, `IsSqlite`ve `IsInMemory`ek olarak yeni bir `IsRelational` yöntemi eklenmiştir.
+Bu, DbContext 'in herhangi bir ilişkisel veritabanı sağlayıcısı kullanıp kullankullanılmadığını test etmek için kullanılabilir.
+Örneğin:
+
+```CSharp
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    if (Database.IsRelational())
+    {
+        // Do relational-specific model configuration.
+    }
+}
+```
+
+Belgeler [#2185](https://github.com/dotnet/EntityFramework.Docs/issues/2185)soruna göre izlenir.
+
+### <a name="cosmos-optimistic-concurrency-with-etags"></a>Cosmos, ETags ile iyimser eşzamanlılık
+
+Azure Cosmos DB veritabanı sağlayıcısı artık ETags kullanarak iyimser eşzamanlılığı desteklemektedir.
+ETag yapılandırmak için Onmodelyaratırken model oluşturucuyu kullanın:
+
+```CSharp
+builder.Entity<Customer>().Property(c => c.ETag).IsEtagConcurrency();
+```
+
+Ardından SaveChanges, yeniden denemeler uygulamak için [işlenebilen](https://docs.microsoft.com/ef/core/saving/concurrency) eşzamanlılık çakışmasıyla ilgili bir `DbUpdateConcurrencyException` oluşturur.
+
+
+Belgeler [#2099](https://github.com/dotnet/EntityFramework.Docs/issues/2099)soruna göre izlenir.
+
 ### <a name="query-translations-for-more-datetime-constructs"></a>Daha fazla TarihSaat yapıları için sorgu çevirileri
 
-Yeni veri süresi oluşturma içeren sorgular artık çevrilir.
-Ayrıca, DateDiffWeek SQL Server işlevi artık eşleştirilir.
+Yeni tarih saat oluşturma içeren sorgular artık çevrilir.
+
+Ayrıca, aşağıdaki SQL Server işlevleri artık eşleştirilir:
+* Tarih dağılımı haftası
+* Datefrompsanat
+
+Örneğin:
+
+```CSharp
+var count = context.Orders.Count(c => date > EF.Functions.DateFromParts(DateTime.Now.Year, 12, 25));
+
+```
 
 Belgeler [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.
 
@@ -111,7 +169,7 @@ Ek belgeler [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)s
 ### <a name="query-translation-for-reverse"></a>Ters için sorgu çevirisi
 
 `Reverse` kullanan sorgular artık çevrilir.
-Örnek:
+Örneğin:
 
 ```CSharp
 context.Employees.OrderBy(e => e.EmployeeID).Reverse()
