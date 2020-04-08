@@ -2,6 +2,6 @@
   tocHref: /
   topicHref: /
   items:
-    - name: Varlık Çerçevesi
+    - name: Entity Framework
       tocHref: /ef/
       topicHref: /ef/index
