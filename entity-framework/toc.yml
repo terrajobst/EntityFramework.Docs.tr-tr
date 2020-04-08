@@ -1,4 +1,4 @@
-- name: Varlık Çerçevesi
+- name: Entity Framework
   href: index.md
   items:
     - name: EF Core ve EF6
@@ -55,7 +55,7 @@
                   href: core/miscellaneous/rc2-rtm-upgrade.md
                 - name: 1.x sürümünden 2.0’ye
                   href: core/miscellaneous/1x-2x-upgrade.md
-        - name: Kullanmaya başlayın
+        - name: başlarken
           items:
             - name: EF Core öğreticisi
               href: core/get-started/index.md
@@ -63,15 +63,15 @@
               href: core/get-started/install/index.md
             - name: ASP.NET Core öğreticisi >>
               href: /aspnet/core/data/ef-rp/intro
-        - name: Temeller
+        - name: Temel Konular
           items:
             - name: Bağlantı dizeleri
               href: core/miscellaneous/connection-strings.md
-            - name: Günlüğe Kaydetme
+            - name: Günlüğe kaydetme
               href: core/miscellaneous/logging.md
             - name: Bağlantı dayanıklılığı
               href: core/miscellaneous/connection-resiliency.md
-            - name: Sınama
+            - name: Test Etme
               items:
                 - name: Genel Bakış
                   href: core/miscellaneous/testing/index.md
@@ -254,9 +254,9 @@
               href: ef6/what-is-new/upgrading-to-ef6.md
             - name: Visual Studio Yayınları
               href: ef6/what-is-new/visual-studio.md
-        - name: Kullanmaya başlayın
+        - name: başlarken
           href: ef6/get-started.md
-        - name: Temeller
+        - name: Temel Konular
           items:
             - name: Entity Framework Alma
               href: ef6/fundamentals/install.md
@@ -298,7 +298,7 @@
                   items:
                     - name: Genel Bakış
                       href: ef6/fundamentals/disconnected-entities/self-tracking-entities/index.md
-                    - name: İzlenecek yol
+                    - name: Kılavuz
                       href: ef6/fundamentals/disconnected-entities/self-tracking-entities/walkthrough.md
             - name: Günlüğe kaydetme ve durdurma
               href: ef6/fundamentals/logging-and-interception.md
@@ -334,7 +334,7 @@
               href: ef6/modeling/index.md
             - name: Code First kullanma
               items:
-                - name: İş Akışları
+                - name: İş akışları
                   items:
                     - name: Yeni veritabanı ile
                       href: ef6/modeling/code-first/workflows/new-database.md
@@ -384,7 +384,7 @@
                       href: ef6/modeling/code-first/migrations/teams.md
             - name: EF Designer kullanma
               items:
-                - name: İş Akışları
+                - name: İş akışları
                   items:
                     - name: Model First
                       href: ef6/modeling/designer/workflows/model-first.md
@@ -414,7 +414,7 @@
                   items:
                     - name: Sorgu
                       href: ef6/modeling/designer/stored-procedures/query.md
-                    - name: Güncelleştirme
+                    - name: Güncelleştir
                       href: ef6/modeling/designer/stored-procedures/cud.md
                 - name: İlişkileri eşleme
                   href: ef6/modeling/designer/relationships.md
@@ -464,7 +464,7 @@
           items:
             - name: Genel Bakış
               href: ef6/saving/index.md
-            - name: Change tracking
+            - name: Değişiklik izleme
               items:
                 - name: Değişiklikleri otomatik olarak algılama
                   href: ef6/saving/change-tracking/auto-detect-changes.md
@@ -504,7 +504,7 @@
                       href: ef6/resources/licenses/ef5/cht.md
                     - name: Almanca
                       href: ef6/resources/licenses/ef5/deu.md
-                    - name: İngilizce
+                    - name: Türkçe
                       href: ef6/resources/licenses/ef5/enu.md
                     - name: İspanyolca
                       href: ef6/resources/licenses/ef5/esn.md
@@ -532,7 +532,7 @@
                       href: ef6/resources/licenses/ef6/cht.md
                     - name: Almanca
                       href: ef6/resources/licenses/ef6/deu.md
-                    - name: İngilizce
+                    - name: Türkçe
                       href: ef6/resources/licenses/ef6/enu.md
                     - name: İspanyolca
                       href: ef6/resources/licenses/ef6/esn.md
