@@ -1,93 +1,93 @@
 ---
-title: Oluşturulan özellikler için açık değerleri ayarlama-EF Core
+title: Oluşturulan Özellikler için Açık Değerleri Ayarlama - EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 3f1993c2-cdf5-425b-bac2-a2665a20322b
 uid: core/saving/explicit-values-generated-properties
 ms.openlocfilehash: 43c4ab3c2a60645cdeff2a6cc40ce979f832f2fd
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417571"
 ---
-# <a name="setting-explicit-values-for-generated-properties"></a><span data-ttu-id="66913-102">Oluşturulan özellikler için açık değerler ayarlanıyor</span><span class="sxs-lookup"><span data-stu-id="66913-102">Setting Explicit Values for Generated Properties</span></span>
+# <a name="setting-explicit-values-for-generated-properties"></a><span data-ttu-id="1b4f3-102">Oluşturulan Özellikler için Açık Değerleri Ayarlama</span><span class="sxs-lookup"><span data-stu-id="1b4f3-102">Setting Explicit Values for Generated Properties</span></span>
 
-<span data-ttu-id="66913-103">Oluşturulan özellik, varlık eklendiğinde ve/veya güncelleştirilirken değeri oluşturulan (EF veya Database) bir özelliktir.</span><span class="sxs-lookup"><span data-stu-id="66913-103">A generated property is a property whose value is generated (either by EF or the database) when the entity is added and/or updated.</span></span> <span data-ttu-id="66913-104">Daha fazla bilgi için bkz. [üretilen Özellikler](../modeling/generated-properties.md) .</span><span class="sxs-lookup"><span data-stu-id="66913-104">See [Generated Properties](../modeling/generated-properties.md) for more information.</span></span>
+<span data-ttu-id="1b4f3-103">Oluşturulan özellik, varlık eklendiğinde ve/veya güncelleştirildiğinde değeri (EF veya veritabanı tarafından) oluşturulan bir özelliktir.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-103">A generated property is a property whose value is generated (either by EF or the database) when the entity is added and/or updated.</span></span> <span data-ttu-id="1b4f3-104">Daha fazla bilgi için [Oluşturulan Özellikler'e](../modeling/generated-properties.md) bakın.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-104">See [Generated Properties](../modeling/generated-properties.md) for more information.</span></span>
 
-<span data-ttu-id="66913-105">Oluşturulmuş bir özellik için, oluşturulması yerine açık bir değer ayarlamak istediğiniz durumlar olabilir.</span><span class="sxs-lookup"><span data-stu-id="66913-105">There may be situations where you want to set an explicit value for a generated property, rather than having one generated.</span></span>
+<span data-ttu-id="1b4f3-105">Oluşturulan bir özellik için açık bir değer ayarlamak istediğiniz durumlar olabilir.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-105">There may be situations where you want to set an explicit value for a generated property, rather than having one generated.</span></span>
 
 > [!TIP]  
-> <span data-ttu-id="66913-106">Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/ExplicitValuesGenerateProperties/) GitHub ' da görebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="66913-106">You can view this article's [sample](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/ExplicitValuesGenerateProperties/) on GitHub.</span></span>
+> <span data-ttu-id="1b4f3-106">Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/ExplicitValuesGenerateProperties/) GitHub'da görüntüleyebilirsiniz.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-106">You can view this article's [sample](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/ExplicitValuesGenerateProperties/) on GitHub.</span></span>
 
-## <a name="the-model"></a><span data-ttu-id="66913-107">Model</span><span class="sxs-lookup"><span data-stu-id="66913-107">The model</span></span>
+## <a name="the-model"></a><span data-ttu-id="1b4f3-107">Model</span><span class="sxs-lookup"><span data-stu-id="1b4f3-107">The model</span></span>
 
-<span data-ttu-id="66913-108">Bu makalede kullanılan model tek bir `Employee` varlığı içerir.</span><span class="sxs-lookup"><span data-stu-id="66913-108">The model used in this article contains a single `Employee` entity.</span></span>
+<span data-ttu-id="1b4f3-108">Bu makalede kullanılan model tek `Employee` bir varlık içerir.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-108">The model used in this article contains a single `Employee` entity.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/Employee.cs#Sample)]
 
-## <a name="saving-an-explicit-value-during-add"></a><span data-ttu-id="66913-109">Ekleme sırasında açık bir değer kaydetme</span><span class="sxs-lookup"><span data-stu-id="66913-109">Saving an explicit value during add</span></span>
+## <a name="saving-an-explicit-value-during-add"></a><span data-ttu-id="1b4f3-109">Ekleme sırasında açık bir değer kaydetme</span><span class="sxs-lookup"><span data-stu-id="1b4f3-109">Saving an explicit value during add</span></span>
 
-<span data-ttu-id="66913-110">`Employee.EmploymentStarted` özelliği, yeni varlıklar için veritabanı tarafından oluşturulan değerlere sahip olacak şekilde yapılandırılır (varsayılan değer kullanılarak).</span><span class="sxs-lookup"><span data-stu-id="66913-110">The `Employee.EmploymentStarted` property is configured to have values generated by the database for new entities (using a default value).</span></span>
+<span data-ttu-id="1b4f3-110">Özellik, `Employee.EmploymentStarted` yeni varlıklar için veritabanı tarafından oluşturulan değerlere sahip olacak şekilde yapılandırılır (varsayılan değer kullanılarak).</span><span class="sxs-lookup"><span data-stu-id="1b4f3-110">The `Employee.EmploymentStarted` property is configured to have values generated by the database for new entities (using a default value).</span></span>
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/EmployeeContext.cs#EmploymentStarted)]
 
-<span data-ttu-id="66913-111">Aşağıdaki kod veritabanına iki çalışan ekler.</span><span class="sxs-lookup"><span data-stu-id="66913-111">The following code inserts two employees into the database.</span></span>
+<span data-ttu-id="1b4f3-111">Aşağıdaki kod veritabanına iki çalışanı ekler.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-111">The following code inserts two employees into the database.</span></span>
 
-* <span data-ttu-id="66913-112">İlki için, `Employee.EmploymentStarted` özelliğine hiçbir değer atanmaz, bu nedenle `DateTime`için CLR varsayılan değerine ayarlanır.</span><span class="sxs-lookup"><span data-stu-id="66913-112">For the first, no value is assigned to `Employee.EmploymentStarted` property, so it remains set to the CLR default value for `DateTime`.</span></span>
-* <span data-ttu-id="66913-113">İkincisi, `1-Jan-2000`açık bir değer belirledik.</span><span class="sxs-lookup"><span data-stu-id="66913-113">For the second, we have set an explicit value of `1-Jan-2000`.</span></span>
+* <span data-ttu-id="1b4f3-112">İlk olarak, özellik için `Employee.EmploymentStarted` hiçbir değer atanır, bu yüzden CLR `DateTime`varsayılan değeri için ayarlanmış kalır.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-112">For the first, no value is assigned to `Employee.EmploymentStarted` property, so it remains set to the CLR default value for `DateTime`.</span></span>
+* <span data-ttu-id="1b4f3-113">İkincisi için, açık bir değer `1-Jan-2000`belirledik.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-113">For the second, we have set an explicit value of `1-Jan-2000`.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/Sample.cs#EmploymentStarted)]
 
-<span data-ttu-id="66913-114">Çıktı, veritabanının ilk çalışan için bir değer üretdiği ve ikincisi için açık değer kullanıldığını gösterir.</span><span class="sxs-lookup"><span data-stu-id="66913-114">Output shows that the database generated a value for the first employee and our explicit value was used for the second.</span></span>
+<span data-ttu-id="1b4f3-114">Çıktı, veritabanının ilk çalışan için bir değer oluşturduğunu ve ikinci için açık değerimizin kullanıldığını gösterir.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-114">Output shows that the database generated a value for the first employee and our explicit value was used for the second.</span></span>
 
 ``` Console
 1: John Doe, 1/26/2017 12:00:00 AM
 2: Jane Doe, 1/1/2000 12:00:00 AM
 ```
 
-### <a name="explicit-values-into-sql-server-identity-columns"></a><span data-ttu-id="66913-115">SQL Server KIMLIK sütunlarına açık değerler</span><span class="sxs-lookup"><span data-stu-id="66913-115">Explicit values into SQL Server IDENTITY columns</span></span>
+### <a name="explicit-values-into-sql-server-identity-columns"></a><span data-ttu-id="1b4f3-115">SQL Server IDENTITY sütunlarına açık değerler</span><span class="sxs-lookup"><span data-stu-id="1b4f3-115">Explicit values into SQL Server IDENTITY columns</span></span>
 
-<span data-ttu-id="66913-116">Kurala göre `Employee.EmployeeId` özelliği bir depo `IDENTITY` sütunu olarak oluşturulur.</span><span class="sxs-lookup"><span data-stu-id="66913-116">By convention the `Employee.EmployeeId` property is a store generated `IDENTITY` column.</span></span>
+<span data-ttu-id="1b4f3-116">Kural olarak `Employee.EmployeeId` özellik bir `IDENTITY` mağaza oluşturulan sütundur.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-116">By convention the `Employee.EmployeeId` property is a store generated `IDENTITY` column.</span></span>
 
-<span data-ttu-id="66913-117">Çoğu durumda, yukarıda gösterilen yaklaşım anahtar özellikleri için çalışacaktır.</span><span class="sxs-lookup"><span data-stu-id="66913-117">For most situations, the approach shown above will work for key properties.</span></span> <span data-ttu-id="66913-118">Ancak, bir SQL Server `IDENTITY` sütununa açık değerler eklemek için, `SaveChanges()`çağrılmadan önce `IDENTITY_INSERT` el ile etkinleştirmeniz gerekir.</span><span class="sxs-lookup"><span data-stu-id="66913-118">However, to insert explicit values into a SQL Server `IDENTITY` column, you need to manually enable `IDENTITY_INSERT` before calling `SaveChanges()`.</span></span>
+<span data-ttu-id="1b4f3-117">Çoğu durumda, yukarıda gösterilen yaklaşım önemli özellikler için çalışacaktır.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-117">For most situations, the approach shown above will work for key properties.</span></span> <span data-ttu-id="1b4f3-118">Ancak, bir SQL Server `IDENTITY` sütununa açık değerler eklemek `IDENTITY_INSERT` için, `SaveChanges()`aramadan önce el ile etkinleştirmeniz gerekir.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-118">However, to insert explicit values into a SQL Server `IDENTITY` column, you need to manually enable `IDENTITY_INSERT` before calling `SaveChanges()`.</span></span>
 
 > [!NOTE]  
-> <span data-ttu-id="66913-119">Kapsamımızda SQL Server sağlayıcısı içinde otomatik olarak bunu yapması için bir [özellik isteği](https://github.com/aspnet/EntityFramework/issues/703) sunuyoruz.</span><span class="sxs-lookup"><span data-stu-id="66913-119">We have a [feature request](https://github.com/aspnet/EntityFramework/issues/703) on our backlog to do this automatically within the SQL Server provider.</span></span>
+> <span data-ttu-id="1b4f3-119">Biriktirme listemizde bunu SQL Server sağlayıcısında otomatik olarak yapmak için bir [özellik isteğimiz](https://github.com/aspnet/EntityFramework/issues/703) var.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-119">We have a [feature request](https://github.com/aspnet/EntityFramework/issues/703) on our backlog to do this automatically within the SQL Server provider.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/Sample.cs#EmployeeId)]
 
-<span data-ttu-id="66913-120">Çıktı, sağlanan kimliklerin veritabanına kaydedildiğini gösterir.</span><span class="sxs-lookup"><span data-stu-id="66913-120">Output shows that the supplied ids were saved to the database.</span></span>
+<span data-ttu-id="1b4f3-120">Çıktı, verilen kimliklerin veritabanına kaydedildiğini gösterir.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-120">Output shows that the supplied ids were saved to the database.</span></span>
 
 ``` Console
 100: John Doe
 101: Jane Doe
 ```
 
-## <a name="setting-an-explicit-value-during-update"></a><span data-ttu-id="66913-121">Güncelleştirme sırasında açık bir değer ayarlama</span><span class="sxs-lookup"><span data-stu-id="66913-121">Setting an explicit value during update</span></span>
+## <a name="setting-an-explicit-value-during-update"></a><span data-ttu-id="1b4f3-121">Güncelleştirme sırasında açık bir değer ayarlama</span><span class="sxs-lookup"><span data-stu-id="1b4f3-121">Setting an explicit value during update</span></span>
 
-<span data-ttu-id="66913-122">`Employee.LastPayRaise` özelliği, güncelleştirmeler sırasında veritabanı tarafından oluşturulan değerlere sahip olacak şekilde yapılandırılmıştır.</span><span class="sxs-lookup"><span data-stu-id="66913-122">The `Employee.LastPayRaise` property is configured to have values generated by the database during updates.</span></span>
+<span data-ttu-id="1b4f3-122">Özellik, `Employee.LastPayRaise` güncelleştirmeler sırasında veritabanı tarafından oluşturulan değerlere sahip olacak şekilde yapılandırılır.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-122">The `Employee.LastPayRaise` property is configured to have values generated by the database during updates.</span></span>
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/EmployeeContext.cs#LastPayRaise)]
 
 > [!NOTE]  
-> <span data-ttu-id="66913-123">Varsayılan olarak, güncelleştirme sırasında oluşturulacak şekilde yapılandırılmış bir özellik için açık bir değer kaydetmeye çalışırsanız, EF Core bir özel durum oluşturur.</span><span class="sxs-lookup"><span data-stu-id="66913-123">By default, EF Core will throw an exception if you try to save an explicit value for a property that is configured to be generated during update.</span></span> <span data-ttu-id="66913-124">Bunu önlemek için, alt düzey meta veri API 'sine aşağı doğru açmanız ve `AfterSaveBehavior` (yukarıda gösterildiği gibi) ayarlamanız gerekir.</span><span class="sxs-lookup"><span data-stu-id="66913-124">To avoid this, you need to drop down to the lower level metadata API and set the `AfterSaveBehavior` (as shown above).</span></span>
+> <span data-ttu-id="1b4f3-123">Varsayılan olarak, güncelleştirme sırasında oluşturulacak şekilde yapılandırılan bir özellik için açık bir değer kaydetmeye çalışırsanız, EF Core bir özel durum oluşturur.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-123">By default, EF Core will throw an exception if you try to save an explicit value for a property that is configured to be generated during update.</span></span> <span data-ttu-id="1b4f3-124">Bunu önlemek için, alt düzey meta veri API'sine `AfterSaveBehavior` inmeniz ve (yukarıda gösterildiği gibi) ayarlamanız gerekir.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-124">To avoid this, you need to drop down to the lower level metadata API and set the `AfterSaveBehavior` (as shown above).</span></span>
 
 > [!NOTE]  
-> <span data-ttu-id="66913-125">**EF Core 2,0 değişiklikleri:** Önceki sürümlerde, sonra Kaydet davranışı `IsReadOnlyAfterSave` bayrağıyla denetlenir.</span><span class="sxs-lookup"><span data-stu-id="66913-125">**Changes in EF Core 2.0:** In previous releases the after-save behavior was controlled through the `IsReadOnlyAfterSave` flag.</span></span> <span data-ttu-id="66913-126">Bu bayrak kullanımdan kaldırılmıştır ve `AfterSaveBehavior`tarafından değiştirildi.</span><span class="sxs-lookup"><span data-stu-id="66913-126">This flag has been obsoleted and replaced by `AfterSaveBehavior`.</span></span>
+> <span data-ttu-id="1b4f3-125">**EF Core 2.0'daki değişiklikler:** Önceki sürümlerde kaydsonrası davranış `IsReadOnlyAfterSave` bayrak üzerinden denetlendi.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-125">**Changes in EF Core 2.0:** In previous releases the after-save behavior was controlled through the `IsReadOnlyAfterSave` flag.</span></span> <span data-ttu-id="1b4f3-126">Bu bayrak obsoleted ve yerini `AfterSaveBehavior`.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-126">This flag has been obsoleted and replaced by `AfterSaveBehavior`.</span></span>
 
-<span data-ttu-id="66913-127">Ayrıca, `UPDATE` işlemleri sırasında `LastPayRaise` sütunu için değerler oluşturmak üzere veritabanında bir tetikleyici de vardır.</span><span class="sxs-lookup"><span data-stu-id="66913-127">There is also a trigger in the database to generate values for the `LastPayRaise` column during `UPDATE` operations.</span></span>
+<span data-ttu-id="1b4f3-127">Ayrıca, işlem sırasında `LastPayRaise` `UPDATE` sütun için değer oluşturmak için veritabanında bir tetikleyici vardır.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-127">There is also a trigger in the database to generate values for the `LastPayRaise` column during `UPDATE` operations.</span></span>
 
 [!code-sql[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/employee_UPDATE.sql)]
 
-<span data-ttu-id="66913-128">Aşağıdaki kod, veritabanında iki çalışanın maaşını artırır.</span><span class="sxs-lookup"><span data-stu-id="66913-128">The following code increases the salary of two employees in the database.</span></span>
+<span data-ttu-id="1b4f3-128">Aşağıdaki kod veritabanında iki çalışanın maaş Artar.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-128">The following code increases the salary of two employees in the database.</span></span>
 
-* <span data-ttu-id="66913-129">İlki için, `Employee.LastPayRaise` özelliğine hiçbir değer atanmaz, bu nedenle null olarak ayarlanır.</span><span class="sxs-lookup"><span data-stu-id="66913-129">For the first, no value is assigned to `Employee.LastPayRaise` property, so it remains set to null.</span></span>
-* <span data-ttu-id="66913-130">İkincisi için bir hafta önce açık bir değer belirledik (ödeme yapını geri alıyorsunuz).</span><span class="sxs-lookup"><span data-stu-id="66913-130">For the second, we have set an explicit value of one week ago (back dating the pay raise).</span></span>
+* <span data-ttu-id="1b4f3-129">İlk olarak, özellik için `Employee.LastPayRaise` hiçbir değer atanır, bu nedenle null olarak ayarlanır.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-129">For the first, no value is assigned to `Employee.LastPayRaise` property, so it remains set to null.</span></span>
+* <span data-ttu-id="1b4f3-130">İkincisi için, bir hafta önce (geri maaş zammı kalma) açık bir değer belirledik.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-130">For the second, we have set an explicit value of one week ago (back dating the pay raise).</span></span>
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/Sample.cs#LastPayRaise)]
 
-<span data-ttu-id="66913-131">Çıktı, veritabanının ilk çalışan için bir değer üretdiği ve ikincisi için açık değer kullanıldığını gösterir.</span><span class="sxs-lookup"><span data-stu-id="66913-131">Output shows that the database generated a value for the first employee and our explicit value was used for the second.</span></span>
+<span data-ttu-id="1b4f3-131">Çıktı, veritabanının ilk çalışan için bir değer oluşturduğunu ve ikinci için açık değerimizin kullanıldığını gösterir.</span><span class="sxs-lookup"><span data-stu-id="1b4f3-131">Output shows that the database generated a value for the first employee and our explicit value was used for the second.</span></span>
 
 ``` Console
 1: John Doe, 1/26/2017 12:00:00 AM
