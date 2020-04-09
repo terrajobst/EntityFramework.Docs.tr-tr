@@ -1,26 +1,26 @@
 ---
-title: Zaman uyumsuz sorgular-EF Core
+title: Eşzamanlı Sorgular - EF Core
 author: smitpatel
 ms.date: 10/03/2019
 ms.assetid: b6429b14-cba0-4af4-878f-b829777c89cb
 uid: core/querying/async
 ms.openlocfilehash: ce26db32a616dac5edac2a8451014ae63cbfc12d
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417755"
 ---
 # <a name="asynchronous-queries"></a>Zaman Uyumsuz Sorgular
 
-Zaman uyumsuz sorgular, sorgu veritabanında yürütüldüğü sırada bir iş parçacığının engellenmesini önler. Zaman uyumsuz sorgular, çok duyarlı bir kullanıcı arabirimini kalın istemci uygulamalarında tutmak için önemlidir. Ayrıca, Web uygulamalarındaki diğer isteklere hizmet vermek için iş parçacığını boşaldıkları Web uygulamalarında üretilen işi de artırabilir. Daha fazla bilgi için bkz. [zaman uyumsuz C#programlama ](/dotnet/csharp/async).
+Eşiş sorguları veritabanında yürütülürken iş parçacığı engellemekaçının. Async sorguları kalın istemci uygulamalarında duyarlı bir Kullanıcı Arabirimi tutmak için önemlidir. Ayrıca, web uygulamalarındaki diğer isteklere hizmet vermek için iş parçacığı serbest web uygulamalarında iş parçacığı artırabilir. Daha fazla bilgi için [C# içinde Asynchronous Programming 'e](/dotnet/csharp/async)bakın.
 
 > [!WARNING]  
-> EF Core, aynı bağlam örneğinde çalıştırılan birden çok paralel işlemi desteklemez. Sonraki işleme başlamadan önce her zaman bir işlemin tamamlanmasını beklemeniz gerekir. Bu, genellikle her zaman uyumsuz işlem üzerinde `await` anahtar sözcüğü kullanılarak yapılır.
+> EF Core, aynı bağlam örneğinde çalıştırılan birden çok paralel işlemi desteklemez. Her zaman bir sonraki işlem başlamadan önce tamamlanması için bir işlem için beklemeniz gerekir. Bu genellikle her async `await` işleminde anahtar kelime kullanılarak yapılır.
 
-Entity Framework Core, bir sorgu ve sonuç döndüren LINQ yöntemlerine benzer bir zaman uyumsuz uzantı yöntemleri kümesi sağlar. `ToListAsync()`, `ToArrayAsync()`, `SingleAsync()`sayılabilir. `Where(...)` veya `OrderBy(...)` gibi bazı LINQ işleçlerinin zaman uyumsuz sürümleri yoktur, çünkü bu yöntemler yalnızca LINQ ifade ağacını oluşturur ve sorgunun veritabanında yürütülmesine neden olmaz.
+Entity Framework Core, bir sorgu ve return sonuçları yürütmek LINQ yöntemlerine benzer bir async uzantı yöntemleri kümesi sağlar. Örnekler `ToListAsync()`arasında `ToArrayAsync()` `SingleAsync()`, , . Bazı LINQ işleçlerinin yalnızca LINQ `Where(...)` `OrderBy(...)` ifade ağacını oluşturması ve sorgunun veritabanında yürütülmesine neden olmaması gibi async sürümleri yoktur.
 
 > [!IMPORTANT]  
-> EF Core zaman uyumsuz uzantı yöntemleri `Microsoft.EntityFrameworkCore` ad alanında tanımlanmıştır. Yöntemlerin kullanılabilmesi için bu ad alanı içeri aktarılmalıdır.
+> EF Core async uzantı yöntemleri `Microsoft.EntityFrameworkCore` ad alanında tanımlanır. Bu ad alanı, kullanılabilir yöntemler için içe aktarılmalıdır.
 
 [!code-csharp[Main](../../../samples/core/Querying/Async/Sample.cs#ToListAsync)]

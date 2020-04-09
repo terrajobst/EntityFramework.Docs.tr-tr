@@ -1,70 +1,75 @@
 ---
-title: WPF ile veri bağlama-EF6
+title: WPF ile Veri Bağlama - EF6
 author: divega
-ms.date: 10/23/2016
-ms.assetid: e90d48e6-bea5-47ef-b756-7b89cce4daf0
-ms.openlocfilehash: 1933988277d3be8fecc02fced3293f2b7f80c901
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.date: 04/02/2020
+ms.assetid: e90d48e6-bea7785-47ef-b756-7b89cce4daf0
+ms.openlocfilehash: 6908e2a7597d0c199620c6015ed3ea06226c5ea9
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78416598"
+ms.lasthandoff: 04/03/2020
+ms.locfileid: "80639139"
 ---
+> [!IMPORTANT]
+> **Bu belge sadece .NET Framework'de WPF için geçerlidir**
+>
+> Bu belge, .NET Framework üzerinde WPF için veri bağlama açıklar. Yeni .NET Core projeleri için Varlık Çerçevesi 6 yerine [EF Core'u](/ef/core) kullanmanızı öneririz. EF Core'da veri bağlama için gerekli belgeler [Sayı #778'da](https://github.com/dotnet/EntityFramework.Docs/issues/778)izlenir.
+
 # <a name="databinding-with-wpf"></a>WPF ile veri bağlama
-Bu adım adım kılavuzda, POCO türlerinin bir "ana-ayrıntı" formunda WPF denetimlerine nasıl bağlanacağı gösterilmektedir. Uygulama, nesneleri veritabanındaki verilerle doldurmak, değişiklikleri izlemek ve verileri veritabanına kalıcı hale getirmek için Entity Framework API 'Lerini kullanır.
+Bu adım adım gözden geçirme, POCO türlerinin WPF denetimlerine nasıl "ana ayrıntı" biçiminde bağlanılabildiğini gösterir. Uygulama, nesneleri veritabanındaki verilerle doldurmak, değişiklikleri izlemek ve verileri veritabanında kalıcı olarak sürdürmek için Varlık Çerçeve API'lerini kullanır.
 
-Model bire çok ilişkiye katılan iki tür tanımlar: **Kategori** (asıl\\ana) ve **ürün** (bağımlı\\ayrıntısı). Daha sonra, Visual Studio Araçları modelde tanımlanan türleri WPF denetimlerine bağlamak için kullanılır. WPF veri bağlama çerçevesi ilgili nesneler arasında gezinmeyi sağlar: ana görünümdeki satırları seçme, ayrıntı görünümünün karşılık gelen alt verilerle güncelleştirilmesine neden olur.
+Model, bir-çok ilişkisine katılan iki tür **Category** tanımlar:\\Kategori (asıl asıl) ve **Ürün** (bağımlı\\ayrıntı). Daha sonra, Visual Studio araçları wpf denetimleri için modelde tanımlanan türleri bağlamak için kullanılır. WPF veri bağlama çerçevesi ilgili nesneler arasında gezinmeyi sağlar: ana görünümdeki satırları seçmek ayrıntı görünümünün ilgili alt verilerle güncelleştirilmesine neden olur.
 
-Bu izlenecek yolda ekran görüntüleri ve kod listeleri Visual Studio 2013 alınmıştır ancak Visual Studio 2012 veya Visual Studio 2010 ile bu yönergeyi tamamlayabilirsiniz.
+Bu iznin ekran görüntüleri ve kod listeleri Visual Studio 2013'ten alınmıştır ancak Visual Studio 2012 veya Visual Studio 2010 ile bu walkthrough'u tamamlayabilirsiniz.
 
-## <a name="use-the-object-option-for-creating-wpf-data-sources"></a>WPF veri kaynakları oluşturmak için ' nesne ' seçeneğini kullanın
+## <a name="use-the-object-option-for-creating-wpf-data-sources"></a>WPF Veri Kaynakları Oluşturmak için 'Nesne' Seçeneğini Kullanma
 
-Entity Framework önceki sürümüyle, EF Designer ile oluşturulmuş bir modele dayalı yeni bir veri kaynağı oluştururken **veritabanı** seçeneğini kullanmanızı öneririz. Bunun nedeni, tasarımcının ObjectContext 'ten türetilen ve EntityObject öğesinden türetilen varlık sınıflarından bir bağlam üretmesidir. Veritabanı seçeneğini kullanmak, bu API yüzeyine etkileşimde bulunmak için en iyi kodu yazmanıza yardımcı olur.
+Varlık Çerçevesi'nin önceki sürümünde, EF Tasarımcısı ile oluşturulan bir modele dayalı yeni bir Veri Kaynağı oluştururken **Veritabanı** seçeneğini kullanmanızı öneririz. Bunun nedeni, tasarımcının ObjectContext'tan türetilen bir bağlam ve EntityObject'ten türetilen varlık sınıfları oluşturmasıdır. Veritabanı seçeneğini kullanmak, bu API yüzeyi ile etkileşim için en iyi kodu yazmanıza yardımcı olur.
 
-Visual Studio 2012 ve Visual Studio 2013 için EF tasarımcıları, basit POCO varlık sınıflarıyla birlikte DbContext 'ten türeten bir bağlam oluşturur. Visual Studio 2010 ile, bu kılavuzda daha sonra açıklandığı gibi DbContext kullanan bir kod oluşturma şablonuna değiştirmeyi öneririz.
+Visual Studio 2012 ve Visual Studio 2013 için EF Designers basit POCO varlık sınıfları ile birlikte DbContext türetilen bir bağlam oluşturur. Visual Studio 2010 ile, bu iznin ilerleyen saatlerinde açıklandığı gibi DbContext kullanan bir kod oluşturma şablonuna geçiş yapmanızı öneririz.
 
-DbContext API yüzeyini kullanırken, bu kılavuzda gösterildiği gibi yeni bir veri kaynağı oluştururken **nesne** seçeneğini kullanmanız gerekir.
+DbContext API yüzeyini kullanırken, bu izbarada gösterildiği gibi yeni bir Veri Kaynağı oluştururken **Nesne** seçeneğini kullanmanız gerekir.
 
-Gerekirse, EF Designer ile oluşturulan modeller için [ObjectContext tabanlı kod oluşturmaya döndürebilirsiniz](~/ef6/modeling/designer/codegen/legacy-objectcontext.md) .
+Gerekirse, EF Designer ile oluşturulan modeller için [ObjectContext tabanlı kod oluşturma](~/ef6/modeling/designer/codegen/legacy-objectcontext.md) geri dönebilirsiniz.
 
 ## <a name="pre-requisites"></a>Önkoşullar
 
-Bu izlenecek yolu tamamlamak için Visual Studio 2013, Visual Studio 2012 veya Visual Studio 2010 yüklü olmalıdır.
+Bu walkthrough tamamlamak için Visual Studio 2013, Visual Studio 2012 veya Visual Studio 2010 yüklü olması gerekir.
 
-Visual Studio 2010 kullanıyorsanız, NuGet ' i de yüklemelisiniz. Daha fazla bilgi için bkz. [NuGet 'ı yükleme](https://docs.microsoft.com/nuget/install-nuget-client-tools).  
+Visual Studio 2010 kullanıyorsanız, NuGet'i de yüklemeniz gerekir. Daha fazla bilgi için [NuGet'i Yükleme'ye](https://docs.microsoft.com/nuget/install-nuget-client-tools)bakın.  
 
-## <a name="create-the-application"></a>Uygulamayı oluşturma
+## <a name="create-the-application"></a>Uygulamayı Oluştur
 
 -   Visual Studio’yu açın
--   **Dosya-&gt; yeni&gt; projesi....**
--   Sol bölmedeki **Windows** ve sağ bölmedeki **WPFApplication** seçin
--   Ad olarak **WPFwithEFSample** girin
--    **Tamam 'ı** seçin
+-   **Dosya&gt; -&gt; Yeni - Proje....**
+-   Sol bölmede **Windows'u** ve sağ bölmede **WPFApplication'ı** seçin
+-    **WPFwithEFSample'ı** ad olarak girin
+-    **Tamam'ı** seçin
 
-## <a name="install-the-entity-framework-nuget-package"></a>Entity Framework NuGet paketini yükler
+## <a name="install-the-entity-framework-nuget-package"></a>Varlık Çerçevesi NuGet paketini yükleyin
 
--   Çözüm Gezgini, **Winformyüzthefsample** projesine sağ tıklayın
--   **NuGet Paketlerini Yönet...** seçeneğini belirleyin.
--   NuGet Paketlerini Yönet iletişim kutusunda **çevrimiçi** sekmesini seçin ve **EntityFramework** paketini seçin
--   **Install** 'a tıklayın  
+-   Solution Explorer'da **WinFormswithEFSample** projesine sağ tıklayın
+-   **NuGet Paketlerini Yönet'i seçin...**
+-   NuGet Paketlerini Yönet iletişim **kutusunda, Çevrimiçi** sekmesini seçin ve **EntityFramework** paketini seçin
+-   **Yükle'yi** tıklatın  
     >[!NOTE]
-    > EntityFramework derlemesine ek olarak, System. ComponentModel. Dataaçıklamalarda bir başvuru de eklenir. Projenin System. Data. Entity başvurusu varsa, EntityFramework paketi yüklendiğinde kaldırılır. System. Data. Entity derlemesi artık Entity Framework 6 uygulamaları için kullanılmıyor.
+    > EntityFramework derlemesine ek olarak System.ComponentModel.DataAnnotations'a bir başvuru da eklenir. Projenin System.Data.Entity'e bir başvurusu varsa, EntityFramework paketi yüklendiğinde kaldırılır. System.Data.Entity derlemesi artık Entity Framework 6 uygulamaları için kullanılmaz.
 
-## <a name="define-a-model"></a>Model tanımlama
+## <a name="define-a-model"></a>Model Tanımla
 
-Bu izlenecek yolda, Code First veya EF tasarımcısını kullanarak bir model uygulamayı seçebilirsiniz. Aşağıdaki iki bölümden birini doldurun.
+Bu izne Code First veya EF Designer kullanarak bir model uygulamayı seçebilirsiniz. Aşağıdaki iki bölümden birini tamamlayın.
 
-### <a name="option-1-define-a-model-using-code-first"></a>Seçenek 1: Code First kullanarak model tanımlama
+### <a name="option-1-define-a-model-using-code-first"></a>Seçenek 1: Önce Kodu Kullanarak Model Tanımlayın
 
-Bu bölümde, Code First kullanarak bir modelin ve ilişkili veritabanının nasıl oluşturulacağı gösterilmektedir. Bir sonraki bölüme atlayın (**seçenek 2: Database First kullanarak bir model tanımlayın)** , bir VERITABANıNDAN, EF Designer kullanarak modelinize ters mühendislik uygulamak için Database First kullanmayı tercih ediyorsanız
+Bu bölümde, Önce Kod'u kullanarak bir modelin ve ilişkili veritabanının nasıl oluşturulutamamolduğu gösterilmektedir. MODELINIZI EF tasarımcısını kullanarak bir veritabanından tersine mühendislik yapmak için Önce Veritabanı'nı kullanarak bir model tanımlayın **(Seçenek 2: Önce Veritabanı'nı kullanarak bir model tanımlayın)**
 
-Code First geliştirme kullanılırken, genellikle kavramsal (etki alanı) modelinizi tanımlayan .NET Framework sınıfları yazarak başlarsınız.
+Kod İlk geliştirme kullanırken genellikle kavramsal (etki alanı) modelinizi tanımlayan .NET Framework sınıfları yazarak başlarsınız.
 
--   WPFwithEFSample için yeni bir sınıf ekleyin **:**
+-    **WPFwithEFSample'a** yeni bir sınıf ekleyin:
     -   Proje adına sağ tıklayın
-    -   **Ekle**' yi ve ardından **Yeni öğe** ' yi seçin
-    -   Sınıf adı için **sınıf** ' ı seçin ve **ürün** girin
--    **Ürün** sınıfı tanımını aşağıdaki kodla değiştirin:
+    -   **Ekle'yi**seçin, ardından **Yeni Öğe**
+    -   **Sınıf'ı** seçin ve sınıf adı için **Ürün** girin
+-    **Ürün** sınıf tanımını aşağıdaki kodla değiştirin:
 
 ``` csharp
     namespace WPFwithEFSample
@@ -100,13 +105,13 @@ Code First geliştirme kullanılırken, genellikle kavramsal (etki alanı) model
     }
 ```
 
-**Product** sınıfında **category** sınıfı ve **category** özelliğindeki **Products** özelliği gezinti özellikleridir. Entity Framework, gezinti özellikleri iki varlık türü arasında bir ilişkiye gitmek için bir yol sağlar.
+**Ürün** sınıfındaki **Kategori** sınıfı ve **Kategori** özelliğindeki **Ürünler** özelliği gezinti özellikleridir. Varlık Çerçevesi'nde, gezinti özellikleri iki varlık türü arasındaki ilişkiyi gezinmenin bir yolunu sağlar.
 
-Varlıkları tanımlamaya ek olarak, DbContext 'ten türeten bir sınıf tanımlamanız ve DbSet&lt;TEntity&gt; özelliklerini kullanıma sunabilmeniz gerekir. DbSet&lt;TEntity&gt; özellikleri, bağlamın modele hangi türleri dahil etmek istediğinizi bilmesini sağlar.
+Varlıkları tanımlamaya ek olarak, DbContext'dan türetilen ve DbSet&lt;TEntity&gt; özelliklerini ortaya çıkaran bir sınıf tanımlamanız gerekir. DbSet&lt;TEntity&gt; özellikleri, içeriğe modele hangi türleri eklemek istediğinizi bildirin.
 
-DbContext türetilmiş türünün bir örneği, çalışma zamanı sırasında varlık nesnelerini yönetir, bu da nesneleri bir veritabanındaki verilerle doldurmayı, değişiklik izlemeyi ve kalıcı verileri veritabanına getirmeyi içerir.
+DbContext türetilmiş türünün bir örneği, nesneleri veritabanındaki verilerle doldurmayı, izlemeyi değiştirmeyi ve verileri veritabanına kalıcı olarak dahil etmeyi içeren çalışma süresi sırasında varlık nesnelerini yönetir.
 
--   Aşağıdaki tanıma sahip projeye yeni bir **Productcontext** sınıfı ekleyin:
+-   Projeye aşağıdaki tanımla yeni bir **ProductContext** sınıfı ekleyin:
 
 ``` csharp
     using System.Data.Entity;
@@ -121,41 +126,41 @@ DbContext türetilmiş türünün bir örneği, çalışma zamanı sırasında v
     }
 ```
 
-Projeyi derleyin.
+Projeyi derle.
 
-### <a name="option-2-define-a-model-using-database-first"></a>Seçenek 2: Database First kullanarak model tanımlama
+### <a name="option-2-define-a-model-using-database-first"></a>Seçenek 2: Önce Veritabanı'nı kullanarak bir model tanımlayın
 
-Bu bölümde, EF Designer kullanarak bir veritabanından modelinize ters mühendislik uygulamak için Database First nasıl kullanılacağı gösterilmektedir. Önceki bölümü (**1. seçenek: Code First kullanarak model tanımlama)** tamamladıysanız, bu bölümü atlayın ve doğrudan **geç yükleme** bölümüne gidin.
+Bu bölümde, MODELINIZI EF tasarımcısını kullanarak bir veritabanından tersine mühendislik yapmak için Veritabanı İlk'in nasıl kullanılacağı gösterilmektedir. Önceki bölümü tamamladıysanız **(Seçenek 1: Önce Kod'u kullanarak bir model tanımlayın)** sonra bu bölümü atlayın ve doğrudan **Tembel Yükleme** bölümüne gidin.
 
-#### <a name="create-an-existing-database"></a>Var olan bir veritabanı oluştur
+#### <a name="create-an-existing-database"></a>Varolan Veritabanı Oluşturma
 
-Genellikle, var olan bir veritabanını hedeflerken zaten oluşturulur, ancak bu izlenecek yol için, erişmek üzere bir veritabanı oluşturulması gerekir.
+Genellikle varolan bir veritabanını hedefliyorsanız zaten oluşturulur, ancak bu izlenecek yol için erişmek için bir veritabanı oluşturmamız gerekir.
 
-Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio sürümüne bağlı olarak farklılık gösteren bir sürümdür:
+Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio sürümüne bağlı olarak farklıdır:
 
--   Visual Studio 2010 kullanıyorsanız, bir SQL Express veritabanı oluşturursunuz.
--   Visual Studio 2012 kullanıyorsanız, [LocalDB](https://msdn.microsoft.com/library/hh510202.aspx) veritabanı oluşturursunuz.
+-   Visual Studio 2010 kullanıyorsanız bir SQL Express veritabanı oluşturuyor olacaksınız.
+-   Visual Studio 2012 kullanıyorsanız, bir [LocalDB](https://msdn.microsoft.com/library/hh510202.aspx) veritabanı oluşturuyor olacaksınız.
 
-Şimdi veritabanını oluşturalım.
+Devam edelim ve veritabanını oluşturalım.
 
--   **&gt; Sunucu Gezgini görüntüle**
--   Veri bağlantıları ' na sağ tıklayın **&gt; bağlantı ekle...**
--   Sunucu Gezgini bir veritabanına bağlı değilseniz, veri kaynağı olarak Microsoft SQL Server seçmeniz gerekir
+-   **Görünüm&gt; - Sunucu Gezgini**
+-   **Veri Bağlantıları -&gt; Bağlantı Ekle'ye** sağ tıklayın...
+-   Veri kaynağı olarak Microsoft SQL Server'ı seçmeniz gerekirken, sunucu gezgininden bir veritabanına bağlanmadıysanız
 
-    ![Veri kaynağını Değiştir](~/ef6/media/changedatasource.png)
+    ![Veri Kaynağını Değiştir](~/ef6/media/changedatasource.png)
 
--   Hangisini yüklediğinize bağlı olarak LocalDB 'ye veya SQL Express 'e bağlanın ve veritabanı adı olarak **ürünleri** girin
+-   Hangisini yüklediğinize bağlı olarak LocalDB veya SQL Express'e bağlanın ve **Ürünleri** veritabanı adı olarak girin
 
-    ![Bağlantı LocalDB Ekle](~/ef6/media/addconnectionlocaldb.png)
+    ![Bağlantı Ekle LocalDB](~/ef6/media/addconnectionlocaldb.png)
 
-    ![Bağlantı Express ekleme](~/ef6/media/addconnectionexpress.png)
+    ![Bağlantı Ekspresi Ekle](~/ef6/media/addconnectionexpress.png)
 
--   **Tamam** ' ı seçtiğinizde, yeni bir veritabanı oluşturmak isteyip istemediğiniz sorulur, **Evet** ' i seçin.
+-   **Tamam'ı** seçin ve yeni bir veritabanı oluşturmak isteyip istemediğiniz sorulur, **Evet'i** seçin
 
     ![Veritabanı Oluşturma](~/ef6/media/createdatabase.png)
 
--   Yeni veritabanı artık Sunucu Gezgini görüntülenir, sağ tıklayıp **Yeni sorgu** ' yı seçin.
--   Aşağıdaki SQL 'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayıp **Yürüt** ' ü seçin.
+-   Yeni veritabanı artık Server Explorer'da görünecek, üzerine sağ tıklanacak ve **Yeni Sorgu'yu** seçecektir
+-   Aşağıdaki SQL'i yeni sorguya kopyalayın, ardından sorguya sağ tıklayın ve **Yürüt''''ün**
 
 ``` SQL
     CREATE TABLE [dbo].[Categories] (
@@ -176,88 +181,88 @@ Visual Studio ile yüklenen veritabanı sunucusu, yüklediğiniz Visual Studio s
     ALTER TABLE [dbo].[Products] ADD CONSTRAINT [FK_dbo.Products_dbo.Categories_CategoryId] FOREIGN KEY ([CategoryId]) REFERENCES [dbo].[Categories] ([CategoryId]) ON DELETE CASCADE
 ```
 
-#### <a name="reverse-engineer-model"></a>Tersine mühendislik modeli
+#### <a name="reverse-engineer-model"></a>Ters Mühendis Modeli
 
-Modelimizi oluşturmak için Visual Studio 'nun bir parçası olarak dahil edilen Entity Framework Designer kullanacağız.
+Modelimizi oluşturmak için Visual Studio'nun bir parçası olarak yer alan Entity Framework Designer'ı kullanacağız.
 
--   **Proje-&gt; yeni öğe Ekle...**
--   Sol menüden **verileri** seçin ve ardından **ADO.net varlık veri modeli**
--   Ad olarak **ProductModel** girin ve **Tamam 'a** tıklayın
--   Bu, **varlık veri modeli Sihirbazı 'nı** başlatır
--   **Veritabanından oluştur** ' u seçin ve **İleri** ' ye tıklayın.
+-   **Proje&gt; - Yeni Öğe Ekle...**
+-   Sol menüden **Veri'yi** seçin ve ardından **Varlık Veri Modeli ADO.NET**
+-   Ürün **Model'i** ad olarak girin ve **Tamam'ı** tıklatın
+-   Bu, **Varlık Veri Modeli Sihirbazı'nı** başlattı
+-   **Veritabanından Oluştur'u** seçin ve **İleri'yi** tıklatın
 
-    ![Model Içeriğini seçin](~/ef6/media/choosemodelcontents.png)
+    ![Model İçeriklerini Seçin](~/ef6/media/choosemodelcontents.png)
 
--   İlk bölümde oluşturduğunuz veritabanına bağlantıyı seçin, bağlantı dizesinin adı olarak **Productcontext** girin ve **İleri** ' ye tıklayın.
+-   İlk bölümde oluşturduğunuz veritabanına bağlantıyı seçin, bağlantı dizesinin adı olarak **ProductContext'ı** girin ve **İleri'yi** tıklatın
 
-    ![Bağlantınızı seçin](~/ef6/media/chooseyourconnection.png)
+    ![Bağlantınızı Seçin](~/ef6/media/chooseyourconnection.png)
 
--   Tüm tabloları içeri aktarmak için ' tablolar ' seçeneğinin yanındaki onay kutusuna tıklayın ve ' son ' a tıklayın
+-   Tüm tabloları almak için 'Tablolar'ın yanındaki onay kutusunu tıklatın ve 'Finish' düğmesini tıklatın
 
-    ![Nesnelerinizi seçin](~/ef6/media/chooseyourobjects.png)
+    ![Nesnelerinizi Seçin](~/ef6/media/chooseyourobjects.png)
 
-Tersine mühendislik işlemi tamamlandıktan sonra, yeni model projenize eklenir ve Entity Framework Designer görüntülemeniz için açılır. Veritabanına yönelik bağlantı ayrıntılarına sahip bir App. config dosyası da projenize eklenmiştir.
+Ters mühendislik işlemi tamamlandıktan sonra yeni model projenize eklenir ve Entity Framework Designer'da görüntülemeniz için açılır. Veritabanının bağlantı ayrıntılarıyla birlikte projenize bir App.config dosyası da eklendi.
 
-#### <a name="additional-steps-in-visual-studio-2010"></a>Visual Studio 2010 ' de ek adımlar
+#### <a name="additional-steps-in-visual-studio-2010"></a>Visual Studio 2010'da Ek Adımlar
 
-Visual Studio 2010 ' de çalışıyorsanız, EF6 kod oluşturmayı kullanmak için EF tasarımcısını güncelleştirmeniz gerekir.
+Visual Studio 2010'da çalışıyorsanız, EF6 kod oluşturmayı kullanmak için EF tasarımcısını güncellemeniz gerekir.
 
--   EF Designer 'daki modelinizin boş bir noktasına sağ tıklayıp **kod oluşturma öğesi Ekle...** seçeneğini belirleyin.
--   Sol menüden **çevrimiçi şablonlar** ' ı seçin ve **DbContext** ' i arayın
--   **C\#Için EF 6. x DbContext oluşturucusunu seçin,** ad olarak **productsmodel** girin ve Ekle ' ye tıklayın.
+-   EF Designer'da modelinizin boş bir noktasına sağ tıklayın ve **Kod Oluşturma Öğesi Ekle'yi seçin...**
+-   Sol menüden **Çevrimiçi Şablonlar'ı** seçin ve **DbContext'ı** arayın
+-   **C\#için EF 6.x DbContext Jeneratörünü seçin,** ürün adı olarak **ProductsModel'i** girin ve Ekle'yi tıklatın
 
-#### <a name="updating-code-generation-for-data-binding"></a>Veri bağlama için kod üretimi güncelleştiriliyor
+#### <a name="updating-code-generation-for-data-binding"></a>Veri bağlama için kod oluşturma yı güncelleştirme
 
-EF, modelden T4 şablonları kullanarak kod oluşturur. Visual Studio ile birlikte gelen veya Visual Studio galerisinden indirilen şablonlar genel amaçlı kullanım amaçlıdır. Bu, bu şablonlardan oluşturulan varlıkların basit ICollection&lt;T&gt; özelliklerine sahip olduğu anlamına gelir. Bununla birlikte, WPF kullanarak veri bağlama yaparken, WPF 'in koleksiyonlarda yapılan değişiklikleri izleyebilmesi için koleksiyon özellikleri için **ObservableCollection** kullanılması tercih edilir. Bu uçta, ObservableCollection kullanmak için şablonları değiştiririz.
+EF, T4 şablonlarını kullanarak modelinizden kod oluşturur. Visual Studio ile gönderilen veya Visual Studio galerisinden indirilen şablonlar genel amaçlı kullanım için tasarlanmıştır. Bu, bu şablonlardan oluşturulan varlıkların basit&lt;ICollection&gt; T özelliklerine sahip olduğu anlamına gelir. Ancak, WPF kullanarak veri bağlama yaparken, WPF'nin koleksiyonlarda yapılan değişiklikleri takip edebilmesi için toplama özellikleri için **ObservableCollection'ı** kullanmak istenir. Bu amaçla, observableCollection kullanmak için şablonları değiştirmek olacaktır.
 
--   **Çözüm Gezgini** açın ve **ProductModel. edmx** dosyasını bulun
--   ProductModel. edmx dosyasının altında iç içe olacak **ProductModel.tt** dosyasını bulun
+-   Solution **Explorer'ı** açın ve **ProductModel.edmx** dosyasını bulun
+-   ProductModel.edmx dosyasının altına yer alacak **ProductModel.tt** dosyayı bulun
 
-    ![WPF ürün modeli şablonu](~/ef6/media/wpfproductmodeltemplate.png)
+    ![WPF Ürün Modeli Şablonu](~/ef6/media/wpfproductmodeltemplate.png)
 
--   Visual Studio Düzenleyicisi 'nde açmak için ProductModel.tt dosyasına çift tıklayın
--   "**ICollection**" sözcüğünün iki yinelemesini "**ObservableCollection**" ile bulur ve değiştirin. Bunlar, 296 ve 484 satırlarında yaklaşık olarak bulunur.
--   İlk "**HashSet**" oluşumunu "**ObservableCollection**" ile bulur ve değiştirin. Bu oluşum yaklaşık olarak 50. satırda bulunur. Kodda daha sonra bulunan ikinci diyez kümesi **oluşumunu değiştirmeyin.**
--   Tek "**System. Collections. Generic**" oluşumunu "**System. Collections. ObjectModel**" ile bulur ve değiştirir. Bu yaklaşık 424. satırda bulunur.
--   ProductModel.tt dosyasını kaydedin. Bu, varlıkların kodunun yeniden üretilmesine neden olmalıdır. Kod otomatik olarak yeniden oluşturmaz, ProductModel.tt 'e sağ tıklayın ve "özel araç Çalıştır" seçeneğini belirleyin.
+-   Visual Studio editöründe açmak için ProductModel.tt dosyasına çift tıklayın
+-   "**ICollection**" un iki olayını "**ObservableCollection**" ile bulun ve değiştirin. Bunlar yaklaşık olarak 296 ve 484.
+-   "**HashSet**" in ilk oluşumunu "**ObservableCollection**" ile bulun ve değiştirin. Bu oluşum yaklaşık 50 satırında yer alır. **Do not** Daha sonra kodda bulunan HashSet'in ikinci oluşumunu değiştirmeyin.
+-   "**System.Collections.Generic**" in tek oluşumunu "**System.Collections.ObjectModel**" ile bulun ve değiştirin. Bu yaklaşık 424 hattında yer almaktadır.
+-   ProductModel.tt dosyasını kaydedin. Bu, varlıkların yeniden oluşturulması için kodun neden olmalıdır. Kod otomatik olarak yenilenmezse, ProductModel.tt sağ tıklayın ve "Özel Aracı Çalıştır"ı seçin.
 
-Artık Category.cs dosyasını (ProductModel.tt altında iç içe yerleştirilmiş) açarsanız, Products koleksiyonunun **ObservableCollection&lt;ürün&gt;** türünde olduğunu görmeniz gerekir.
+Şimdi Category.cs dosyayı açarsanız (ProductModel.tt altında iç içe dir) o zaman Ürünler koleksiyonunda **ObservableCollection&lt;&gt;Ürün**türüne sahip olduğunu görmeniz gerekir.
 
-Projeyi derleyin.
+Projeyi derle.
 
-## <a name="lazy-loading"></a>Geç yükleme
+## <a name="lazy-loading"></a>Tembel Yükleme
 
-**Product** sınıfında **category** sınıfı ve **category** özelliğindeki **Products** özelliği gezinti özellikleridir. Entity Framework, gezinti özellikleri iki varlık türü arasında bir ilişkiye gitmek için bir yol sağlar.
+**Ürün** sınıfındaki **Kategori** sınıfı ve **Kategori** özelliğindeki **Ürünler** özelliği gezinti özellikleridir. Varlık Çerçevesi'nde, gezinti özellikleri iki varlık türü arasındaki ilişkiyi gezinmenin bir yolunu sağlar.
 
-EF, gezinti özelliğine ilk kez eriştiğinizde ilgili varlıkları veritabanından otomatik olarak yükleme seçeneği sunar. Bu yükleme türü (yavaş yükleme olarak adlandırılır) ile, her gezinti özelliğine ilk kez eriştiğinizde, içerik bağlamda değilse veritabanına karşı ayrı bir sorgu yürütülecektir.
+EF, gezinti özelliğine ilk erişimenizden itibaren ilgili varlıkları veritabanından otomatik olarak yükleme seçeneği sunar. Bu tür yüklemelerle (tembel yükleme olarak adlandırılır), her gezinti özelliğine ilk kez erişirdiğinizde, içerik bağlamında değilse veritabanına karşı ayrı bir sorgu yürütüleceğini unutmayın.
 
-POCO varlık türleri kullanılırken, EF, çalışma zamanı sırasında türetilmiş proxy türlerinin örneklerini oluşturarak ve sonra yükleme kancasını eklemek için sınıflarınızda sanal özellikleri geçersiz kılarak geç yüklemeye erişir. İlgili nesnelerin geç yüklemesini almak için, gezinti özelliği alıcıları ' ı **Public** ve **Virtual** (Visual Basic) olarak bildirmeniz ve sınıfınız **mühürlenmemelidir** **(Visual Basic** içinde**NotOverridable** ). Database First gezinti özelliklerinin kullanılması, yavaş yüklemeyi etkinleştirmek için otomatik olarak sanal hale getirilir. Code First bölümünde, aynı nedenden dolayı gezinti özelliklerini sanal hale getirmeyi seçtik
+POCO varlık türlerini kullanırken, EF çalışma süresi sırasında türetilmiş proxy türlerinin örnekleri oluşturarak ve ardından yükleme kancasını eklemek için sınıflarınızdaki sanal özellikleri geçersiz kılarak tembel yükleme elde eder. İlgili nesnelerin tembel cereyan etmesini sağlamak için, gezinti özelliği nial **ve** **sanal** (Visual Basic'te**geçersiz kılınabilir)** olarak beyan etmeniz gerekir ve sınıf **mühürlenmemelidir** (Visual Basic'te**Geçersiz kılınmaz).** Veritabanı kullanırken İlk gezinme özellikleri otomatik olarak tembel yükleme sağlamak için sanal yapılır. Kod İlk bölümünde biz aynı nedenle navigasyon özellikleri sanal yapmak için seçti
 
-## <a name="bind-object-to-controls"></a>Nesneyi denetimlere bağlama
+## <a name="bind-object-to-controls"></a>Nesneyi Denetimlere Bağlama
 
 Modelde tanımlanan sınıfları bu WPF uygulaması için veri kaynağı olarak ekleyin.
 
--   Ana formu açmak için Çözüm Gezgini **MainWindow. xaml** öğesine çift tıklayın
--   Ana menüden **Proje-&gt; yeni veri kaynağı Ekle...** öğesini seçin.
-    (Visual Studio 2010 ' de, **veri&gt; yeni veri kaynağı Ekle...** ' i seçmeniz gerekir.)
--   Bir veri kaynağı türü seçin penceresinde, **nesne** ' yi seçin ve **İleri** ' ye tıklayın.
--   Veri nesnelerini seçin iletişim kutusunda, **WPFwithEFSample** iki kez katlamayı kaldırın ve **Kategori** ' yi seçin.  
-    ***Ürün veri kaynağını** seçme gereksinimi yoktur, çünkü bu Işlem, **Kategori** veri kaynağındaki **ürünün**özelliği aracılığıyla sunulacaktır*  
+-   Ana formu açmak için Solution Explorer'da **MainWindow.xaml'a** çift tıklayın
+-   Ana menüden **Project -&gt; Yeni Veri Kaynağı Ekle'yi** seçin ...
+    (Visual Studio 2010'da Veri - **Yeni Veri Kaynağı&gt; Ekle...**)
+-   Veri Kaynağı Yazı Penceresini Seç'te **Nesne'yi** seçin ve **İleri'yi** tıklatın
+-   Veri Nesnelerini Seç iletişim kutusunda, **WPFwithEFSample'ı** iki kez açın ve **Kategori'yi** seçin  
+    ***Ürün** veri kaynağını seçmenize gerek yoktur, çünkü ürüne **Kategori**veri kaynağındaki **Category** Ürünün özelliği üzerinden ulaşacağız*  
 
-    ![Veri nesnelerini seçin](~/ef6/media/selectdataobjects.png)
+    ![Veri Nesnelerini Seçin](~/ef6/media/selectdataobjects.png)
 
 -   **Son**'a tıklayın.
--   Veri kaynakları penceresi açık değilse, MainWindow. xaml penceresinin yanında veri kaynakları penceresi açılır.  ***&gt; diğer Windows-&gt; veri kaynaklarını görüntüle** ' yi seçin*
--   Veri kaynakları penceresi otomatik olarak gizlenmemesi için Sabitle simgesine basın. Pencere zaten görünür durumdaysa Yenile düğmesine vurması gerekebilir.
+-   Veri Kaynakları penceresi MainWindow.xaml penceresinin yanında açılır *Veri Kaynakları penceresi görünmüyorsa, **Görünüm -&gt; Diğer Windows-&gt; Veri Kaynakları** *
+-   Pin simgesine bastığımda, Veri Kaynakları penceresi otomatik gizlemez. Pencere zaten görünüyorsa yenileme düğmesine basmanız gerekebilir.
 
     ![Veri Kaynakları](~/ef6/media/datasources.png)
 
--    **Kategori** veri kaynağını seçin ve form üzerine sürükleyin.
+-    **Kategori** veri kaynağını seçin ve forma sürükleyin.
 
-Bu kaynağı sürüklediğiniz sırada şunlar oldu:
+Bu kaynağı sürüklediğimizde şunlar oldu:
 
--   **Categoryviewsource** kaynağı ve **CATEGORYDATAGRID** denetimi xaml 'ye eklendi 
--   Üst kılavuz öğesindeki DataContext özelliği "{StaticResource **Categoryviewsource** }" olarak ayarlandı. **Categoryviewsource** kaynağı, dış\\üst kılavuz öğesi için bir bağlama kaynağı işlevi görür. İç kılavuz öğeleri daha sonra üst ızgaraya DataContext değerini devralınır (categoryDataGrid 'in ItemId özelliği "{Binding}" olarak ayarlanır)
+-   **CategoryViewSource** kaynak ve **kategoriDataGrid** kontrolü XAML eklendi 
+-   Ana Izgara öğesindeki DataContext özelliği "{StaticResource **categoryViewSource** }" olarak ayarlandı.**categoryViewSource** kaynağı dış\\üst Izgara öğesi için bağlayıcı bir kaynak olarak hizmet vermektedir. İç Izgara öğeleri daha sonra ana Kılavuz'dan Veri Bağlamı değerini devralır (CategoryDataGrid'in ItemsSource özelliği "{Binding}" olarak ayarlanır)
 
 ``` xml
     <Window.Resources>
@@ -278,34 +283,34 @@ Bu kaynağı sürüklediğiniz sırada şunlar oldu:
     </Grid>
 ```
 
-## <a name="adding-a-details-grid"></a>Ayrıntı Kılavuzu ekleme
+## <a name="adding-a-details-grid"></a>Ayrıntı Izgara ekleme
 
-Şimdi Kategoriler görüntüleyen bir kılavuza sahip olduğumuz ilgili ürünleri göstermek için bir ayrıntı Kılavuzu ekleyelim.
+Kategorileri görüntülemek için bir ızgaramız olduğuna göre, ilişkili Ürünleri görüntülemek için bir ayrıntı ızgarası ekleyelim.
 
--    **Kategori** veri kaynağı altında **Products** özelliğini seçin ve forma sürükleyin.
-    -   **Categoryproductsviewsource** kaynağı ve **PRODUCTDATAGRID** Kılavuzu xaml 'ye eklenir
-    -   Bu kaynak için bağlama yolu ürünler olarak ayarlandı
-    -   WPF veri bağlama çerçevesi yalnızca seçili kategoriyle ilgili ürünlerin **Productdatagrid** 'de görünmesini sağlar
--   Araç kutusu ' ndan **düğme** ' ye sürükleyin. **Name** özelliğini **Buttonsave** , **içerik** özelliği ise **Save**olarak ayarlayın.
+-    **Kategori** veri kaynağının altından **Ürünler** özelliğini seçin ve forma sürükleyin.
+    -   **CategoryProductsViewSource** kaynak ve **ürünDataGrid** ızgara XAML eklenir
+    -   Bu kaynak için bağlayıcı yol Ürünler olarak ayarlanır
+    -   WPF veri bağlama çerçevesi, yalnızca seçili Kategoriile ilgili Ürünlerin **productDataGrid'de** gösterilmesini sağlar
+-   Araç Kutusundan **Düğmeyi** forma sürükleyin. **Ad** özelliğini **kaydet düğmesine** ve **Kaydet'e İçerik** özelliğini ayarla. **Save**
 
-Form şuna benzer görünmelidir:
+Form buna benzer olmalıdır:
 
 ![Tasarımcı](~/ef6/media/designer.png) 
 
-## <a name="add-code-that-handles-data-interaction"></a>Veri etkileşimini Işleyen kod ekleme
+## <a name="add-code-that-handles-data-interaction"></a>Veri Etkileşimini İşleyen Kod Ekleme
 
-Ana pencereye bazı olay işleyicileri ekleme zamanı.
+Ana pencereye bazı olay işleyicileri eklemenin zamanı doldu.
 
--   XAML penceresinde **&lt;pencere** öğesine tıklayın, bu, ana pencereyi seçer
--   **Özellikler** penceresinde, sağ üst köşedeki **Olaylar** ' ı seçin ve ardından **yüklenen** etiketin sağ tarafındaki metin kutusunu çift tıklatın
+-   XAML penceresinde, ** &lt;Pencere** öğesini tıklatın, bu ana pencereyi seçer
+-   **Özellikler** penceresinde sağ üstteki **Etkinlikler'i** seçin ve **ardından Yüklenen** etiketin sağındaki metin kutusunu çift tıklatın
 
-    ![Ana pencere özellikleri](~/ef6/media/mainwindowproperties.png)
+    ![Ana Pencere Özellikleri](~/ef6/media/mainwindowproperties.png)
 
--   Ayrıca, tasarımcıda Kaydet düğmesine çift tıklayarak **Kaydet** düğmesine ait **Click** olayını da ekleyin. 
+-   Ayrıca **tasarımcıda** Kaydet düğmesini çift tıklatarak **Kaydet** düğmesine tıklayın olayını ekleyin. 
 
-Bu, sizi form için arka plan koduna getirir, artık kodu, veri erişimi gerçekleştirmek için ProductContext 'i kullanacak şekilde düzenliyoruz. MainWindow için kodu aşağıda gösterildiği gibi güncelleştirin.
+Bu form için arkasındaki kod getiriyor, şimdi veri erişimi gerçekleştirmek için ProductContext kullanmak için kodu edeceğiz. MainWindow kodunu aşağıda gösterildiği gibi güncelleştirin.
 
-Kod, **Productcontext**'in uzun süre çalışan bir örneğini bildirir. Verileri sorgulamak ve veritabanına kaydetmek için **Productcontext** nesnesi kullanılır. **Productcontext** örneğindeki **Dispose ()** , geçersiz kılınan **OnClosing** yönteminden çağırılır. Kod açıklamaları kodun ne yaptığını hakkında ayrıntılar sağlar.
+Kod, **ProductContext'ın**uzun soluklu bir örneğini bildirir. **ProductContext** nesnesi verileri sorgulamak ve veritabanına kaydetmek için kullanılır. **ProductContext** örneğindeki **Elden Çıkarma()** daha sonra geçersiz kılınan **OnClosing** yönteminden çağrılır.Kod açıklamaları, kodun ne yaptığı hakkında ayrıntılı bilgi sağlar.
 
 ``` csharp
     using System.Data.Entity;
@@ -380,19 +385,19 @@ Kod, **Productcontext**'in uzun süre çalışan bir örneğini bildirir. Verile
     }
 ```
 
-## <a name="test-the-wpf-application"></a>WPF uygulamasını test etme
+## <a name="test-the-wpf-application"></a>WPF Uygulamasını Test Edin
 
--   Uygulamayı derleyin ve çalıştırın. Code First kullandıysanız, sizin için bir **WPFwithEFSample. ProductContext** veritabanının oluşturulduğunu görürsünüz.
--   Üst kılavuza bir kategori adı girin ve *birincil anahtar veritabanı tarafından oluşturulduğundan alt kılavuzdaki ürün adları ID sütunlarında hiçbir şey girmeyin*
+-   Uygulamayı derle ve çalıştır. Önce Kod'u kullandıysanız, sizin için bir **WPFwithEFSample.ProductContext** veritabanı oluşturulduğunu görürsünüz.
+-   *Birincil anahtar veritabanı tarafından oluşturulduğundan,* üst ızgaraya bir kategori adı ve alt ızgaraya ürün adları girin Kimlik sütunlarında hiçbir şey girmeyin
 
-    ![Yeni kategoriler ve ürünlerle ana pencere](~/ef6/media/screen1.png)
+    ![Yeni kategoriler ve ürünlerle Ana Pencere](~/ef6/media/screen1.png)
 
 -   Verileri veritabanına kaydetmek için **Kaydet** düğmesine basın
 
-DbContext 'in **SaveChanges ()** çağrısından sonra, kimlikler veritabanı tarafından oluşturulan değerlerle doldurulur. **SaveChanges** () sonrasında **Refresh (** ) çağırdığımız için **DataGrid** denetimleri yeni değerlerle de güncelleştirilir.
+DbContext'S **SaveChanges()** için aramadan sonra, d's veritabanı oluşturulan değerleri ile doldurulur. **SaveChanges()** den sonra **Yenile()** adını verdiğimiz için **DataGrid** denetimleri yeni değerlerle de güncelleştirilir.
 
-![Doldurulan kimlikleri içeren ana pencere](~/ef6/media/screen2.png)
+![Doldurulan doldurulmuş doldurulmuş ana pencere](~/ef6/media/screen2.png)
 
 ## <a name="additional-resources"></a>Ek Kaynaklar
 
-WPF kullanarak koleksiyonlara veri bağlama hakkında daha fazla bilgi edinmek için WPF belgelerindeki [Bu konuya](https://docs.microsoft.com/dotnet/framework/wpf/data/data-binding-overview#binding-to-collections) bakın.  
+WPF kullanarak koleksiyonlara veri bağlama hakkında daha fazla bilgi edinmek için [bu konuya](https://docs.microsoft.com/dotnet/framework/wpf/data/data-binding-overview#binding-to-collections) WPF belgelerinde bakın.  

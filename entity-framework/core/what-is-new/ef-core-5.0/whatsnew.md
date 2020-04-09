@@ -1,47 +1,106 @@
 ---
-title: EF Core 5,0 ' deki yenilikler
+title: EF Core 5.0'da Yenilikler
+description: EF Core 5.0'daki yeni özelliklere genel bakış
 author: ajcvickers
-ms.date: 03/15/2020
+ms.date: 03/30/2020
 uid: core/what-is-new/ef-core-5.0/whatsnew.md
-ms.openlocfilehash: 08a93555fd76d8a9f6d3011f59d9a34f76d0b22f
-ms.sourcegitcommit: c3b8386071d64953ee68788ef9d951144881a6ab
+ms.openlocfilehash: c047a308cadf44eea577dcab29b68b36942a50df
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/24/2020
-ms.locfileid: "80136251"
+ms.lasthandoff: 04/07/2020
+ms.locfileid: "80634274"
 ---
-# <a name="whats-new-in-ef-core-50"></a>EF Core 5,0 ' deki yenilikler
+# <a name="whats-new-in-ef-core-50"></a>EF Core 5.0'da Yenilikler
 
-EF Core 5,0 şu anda geliştirme aşamasındadır.
-Bu sayfa, her önizlemede sunulan ilginç değişikliklere genel bir bakış içerir.
+EF Core 5.0 şu anda geliştirilmektedir.
+Bu sayfa, her önizlemede tanıtılan ilginç değişikliklerin genel bir özetini içerir.
 
-Bu sayfa [EF Core 5,0 planını](plan.md)yinelemez.
-Plan, son yayını teslim etmeden önce dahil ettiğimiz her şey dahil olmak üzere EF Core 5,0 ' a yönelik genel temaları açıklar.
+Bu [sayfa, EF Core 5.0 için planı](plan.md)çoğaltmaz.
+Planda, son sürümü göndermeden önce eklemeyi planladığımız her şey de dahil olmak üzere EF Core 5.0'ın genel temaları açıklanmaktadır.
 
-Yayımlanmakta olan resmi belgelere buradan bağlantılar ekleyeceğiz.
+Yayınlandığı resmi belgelere buradan linkler ekleyeceğiz.
+
+## <a name="preview-2"></a>Önizleme 2
+
+### <a name="use-a-c-attribute-to-specify-a-property-backing-field"></a>Özellik destek alanı belirtmek için C# özniteliği kullanma
+
+C# özniteliği artık bir özelliğin destek alanını belirtmek için kullanılabilir.
+Bu öznitelik, EF Core'un destek alanı otomatik olarak bulunamasa bile normalde olduğu gibi destek alanına yazmaya ve okumasına olanak tanır.
+Örneğin:
+
+```CSharp
+public class Blog
+{
+    private string _mainTitle;
+
+    public int Id { get; set; }
+
+    [BackingField(nameof(_mainTitle))]
+    public string Title
+    {
+        get => _mainTitle;
+        set => _mainTitle = value;
+    }
+}
+```
+
+Dokümantasyon, sorun [#2230](https://github.com/dotnet/EntityFramework.Docs/issues/2230)tarafından izlenir.
+
+### <a name="complete-discriminator-mapping"></a>Tam ayırıcı eşleme
+
+EF Core, [bir kalıtım hiyerarşisinin TPH eşlemi](/ef/core/modeling/inheritance)için bir ayırıcı sütun kullanır.
+EF Core ayırıcı için tüm olası değerleri bildiği sürece bazı performans geliştirmeleri mümkündür.
+EF Core 5.0 şimdi bu geliştirmeleri uygular.
+
+Örneğin, EF Core'un önceki sürümleri, hiyerarşideki tüm türleri döndüren bir sorgu için her zaman bu SQL'i oluşturur:
+
+```sql
+SELECT [a].[Id], [a].[Discriminator], [a].[Name]
+FROM [Animal] AS [a]
+WHERE [a].[Discriminator] IN (N'Animal', N'Cat', N'Dog', N'Human')
+```
+
+EF Core 5.0 şimdi tam bir ayrımcı eşleme yapılandırıldığınızda aşağıdakileri oluşturacaktır:
+
+```sql
+SELECT [a].[Id], [a].[Discriminator], [a].[Name]
+FROM [Animal] AS [a]
+```
+
+Önizleme 3 ile başlayan varsayılan davranış olacaktır.
+
+### <a name="performance-improvements-in-microsoftdatasqlite"></a>Microsoft.Data.Sqlite'de performans iyileştirmeleri
+
+SQLIte için iki performans iyileştirmesi yaptık:
+
+* GetBytes, GetChars ve GetTextReader ile ikili ve dize verilerini alma artık SqliteBlob ve akışlardan yararlanarak daha verimli hale geldi.
+* SqliteConnection'ın başlatılması artık tembel.
+
+Bu geliştirmeler Microsoft.Data.Sqlite sağlayıcısı ADO.NET ve dolayısıyla DA EF Core dışında performansı artırmak bulunmaktadır.
 
 ## <a name="preview-1"></a>Önizleme 1
 
 ### <a name="simple-logging"></a>Basit günlüğe kaydetme
 
-Bu özellik EF6 içinde `Database.Log` benzer işlevler ekler.
-Yani, her türlü harici günlük çerçevesini yapılandırmaya gerek kalmadan EF Core günlükleri almanın basit bir yolunu sunar.
+Bu özellik, EF6'dakine `Database.Log` benzer işlevsellik ekler.
+Diğer bir zamanda, her türlü dış günlük çerçevesini yapılandırmaya gerek kalmadan EF Core'dan günlük almanın basit bir yolunu sağlar.
 
-İlk belgeler, [5 aralık 2019 Için EF haftalık durumuna](https://github.com/dotnet/efcore/issues/15403#issuecomment-562332863)dahildir.
+Ön belgeler [5 Aralık 2019 için EF haftalık durumuna](https://github.com/dotnet/efcore/issues/15403#issuecomment-562332863)dahildir.
 
 Ek belgeler [#2085](https://github.com/dotnet/EntityFramework.Docs/issues/2085)soruna göre izlenir.
 
-### <a name="simple-way-to-get-generated-sql"></a>Oluşturulan SQL almanın basit yolu
+### <a name="simple-way-to-get-generated-sql"></a>Oluşturulan SQL almak için basit bir yol
 
-EF Core 5,0, bir LINQ sorgusu yürütürken EF Core üretebileceği SQL döndürecek `ToQueryString` genişletme yöntemini tanıtır.
+EF Core 5.0, `ToQueryString` BIR LINQ sorgusu yürükarırken EF Core'un oluşturacağı SQL'i döndürecek uzantı yöntemini sunar.
 
-Ön belgeler, [9 ocak 2020 Için EF haftalık durumuna](https://github.com/dotnet/efcore/issues/19549#issuecomment-572823246)dahildir.
+Ön belgeler [9 Ocak 2020 için EF haftalık durumuna](https://github.com/dotnet/efcore/issues/19549#issuecomment-572823246)dahildir.
 
 Ek belgeler [#1331](https://github.com/dotnet/EntityFramework.Docs/issues/1331)soruna göre izlenir.
 
-### <a name="use-a-c-attribute-to-indicate-that-an-entity-has-no-key"></a>Bir varlığın C# anahtara sahip olmadığını göstermek için bir öznitelik kullanın
+### <a name="use-a-c-attribute-to-indicate-that-an-entity-has-no-key"></a>Bir varlığın anahtarı olmadığını belirtmek için C# özniteliği kullanın
 
-Bir varlık türü artık yeni `KeylessAttribute`hiçbir anahtara sahip olmadığı için yapılandırılabilir.
+Bir varlık türü artık yeni `KeylessAttribute`yi kullanarak anahtara sahip olmayacak şekilde yapılandırılabilir.
 Örneğin:
 
 ```CSharp
@@ -54,65 +113,65 @@ public class Address
 }
 ```
 
-Belgeler [#2186](https://github.com/dotnet/EntityFramework.Docs/issues/2186)soruna göre izlenir.
+Dokümantasyon, sorun [#2186](https://github.com/dotnet/EntityFramework.Docs/issues/2186)tarafından izlenir.
 
-### <a name="connection-or-connection-string-can-be-changed-on-initialized-dbcontext"></a>Bağlantı veya bağlantı dizesi, başlatılmış DbContext üzerinde değiştirilebilir
+### <a name="connection-or-connection-string-can-be-changed-on-initialized-dbcontext"></a>Başlatmalı DbContext'da bağlantı veya bağlantı dizesi değiştirilebilir
 
-Artık herhangi bir bağlantı veya bağlantı dizesi olmadan bir DbContext örneği oluşturulması daha kolay.
-Ayrıca, bağlantı veya bağlantı dizesi artık bağlam örneği üzerinde değiştirilebilir.
-Bu, aynı bağlam örneğinin farklı veritabanlarına dinamik olarak bağlanmasını sağlar.
+Herhangi bir bağlantı veya bağlantı dizesi olmadan bir DbContext örneği oluşturmak artık daha kolaydır.
+Ayrıca, bağlantı veya bağlantı dizesi artık bağlam örneğinde mutasyona uğrayabilir.
+Bu özellik, aynı bağlam örneğinin farklı veritabanlarına dinamik olarak bağlanmasını sağlar.
 
-Belgeler [#2075](https://github.com/dotnet/EntityFramework.Docs/issues/2075)soruna göre izlenir.
+Dokümantasyon, sorun [#2075](https://github.com/dotnet/EntityFramework.Docs/issues/2075)tarafından izlenir.
 
-### <a name="change-tracking-proxies"></a>Değişiklik izleme proxy 'leri
+### <a name="change-tracking-proxies"></a>Değiştirme izleme vekilleri
 
-EF Core, artık otomatik olarak [INotifyPropertyChanging](https://docs.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging?view=netcore-3.1) ve [INotifyPropertyChanged](https://docs.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged?view=netcore-3.1)uygulayan çalışma zamanı proxy 'leri oluşturabilir.
-Böylece, varlık özelliklerindeki değer değişiklikleri doğrudan EF Core olarak raporlanarak değişiklik taraması ihtiyacını önler.
-Ancak, proxy 'ler kendi kısıtlama kümesiyle gelir, bu nedenle herkes için değildir.
+EF Core artık otomatik olarak [INotifyPropertyChanging](https://docs.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging?view=netcore-3.1) ve [INotifyPropertyChanged](https://docs.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged?view=netcore-3.1)uygulayan çalışma zamanı vekilleri oluşturabilir.
+Bunlar daha sonra varlık özelliklerindeki değer değişikliklerini doğrudan EF Core'a raporlayarak değişiklikleri taramaya ihtiyaç duymayı önler.
+Ancak, vekiller sınırlamalar kendi kümesi ile gelir, bu yüzden herkes için değildir.
 
-Belgeler [#2076](https://github.com/dotnet/EntityFramework.Docs/issues/2076)soruna göre izlenir.
+Dokümantasyon, #2076 [#2076](https://github.com/dotnet/EntityFramework.Docs/issues/2076)soruna göre izlenir.
 
 ### <a name="enhanced-debug-views"></a>Gelişmiş hata ayıklama görünümleri
 
-Hata ayıklama görünümlerinde EF Core iç yapıları göz atmak kolay bir yoludur.
-Modelin bir hata ayıklama görünümü bir süre önce uygulandı.
-EF Core 5,0 için model görünümü ' ne daha kolay okunabilir ve durum yöneticisinde izlenen varlıklar için yeni bir hata ayıklama görünümü ekledik.
+Hata ayıklama görünümleri, hata ayıklama sorunları sırasında EF Core'un iç etkilerine bakmanın kolay bir yoludur.
+Model için hata ayıklama görünümü bir süre önce uygulandı.
+EF Core 5.0 için, model görünümünün okunmasını kolaylaştırdık ve devlet yöneticisindeki izlenen varlıklar için yeni bir hata ayıklama görünümü ekledik.
 
-Ön belgeler, [12 aralık 2019 Için EF haftalık durumuna](https://github.com/dotnet/efcore/issues/15403#issuecomment-565196206)dahildir.
+Ön belgeler [12 Aralık 2019 için EF haftalık durumuna](https://github.com/dotnet/efcore/issues/15403#issuecomment-565196206)dahildir.
 
-Ek belgeler [#2086](https://github.com/dotnet/EntityFramework.Docs/issues/2086)soruna göre izlenir.
+Ek belgeler sorun [#2086](https://github.com/dotnet/EntityFramework.Docs/issues/2086)tarafından izlenir.
 
-### <a name="improved-handling-of-database-null-semantics"></a>Veritabanı null semantiğini gelişmiş işleme
+### <a name="improved-handling-of-database-null-semantics"></a>Veritabanı null semantik geliştirilmiş işleme
 
-İlişkisel veritabanları genellikle NULL değerini bilinmeyen bir değer olarak değerlendirir ve bu nedenle başka bir NULL değere eşit değildir.
-C#, diğer taraftan, null değeri, diğer herhangi bir null ile eşit olan tanımlı bir değer olarak davranır.
-EF Core, varsayılan olarak, null semantiğini kullanacak C# şekilde sorguları çevirir.
-EF Core 5,0, bu çevirilerin verimliliğini önemli ölçüde geliştirir.
+İlişkisel veritabanları genellikle null'u bilinmeyen bir değer olarak ele alacaktır ve bu nedenle diğer NULL'lara eşit değildir.
+C# null'u diğer null'lara eşit olan tanımlı bir değer olarak değerlendirirken.
+EF Core varsayılan olarak sorguları c# null semantiklerini kullanarak çevirir.
+EF Core 5.0 bu çevirilerin verimliliğini büyük ölçüde artırır.
 
-Belgeler [#1612](https://github.com/dotnet/EntityFramework.Docs/issues/1612)soruna göre izlenir.
+Dokümantasyon, sorun [#1612](https://github.com/dotnet/EntityFramework.Docs/issues/1612)tarafından izlenir.
 
-### <a name="indexer-properties"></a>Dizin Oluşturucu özellikleri
+### <a name="indexer-properties"></a>Dizinleyici özellikleri
 
-EF Core 5,0, C# Dizin Oluşturucu özelliklerinin eşlenmesini destekler.
-Bu, varlıkların, sütunların pakette adlandırılmış özelliklerle eşlendikleri özellik paketleri olarak davranmasını sağlar.
+EF Core 5.0, C# dizinleyici özelliklerinin eşlenemesini destekler.
+Bu özellikler, varlıkların, sütunların çantadaki adlandırılmış özelliklere eşlendiği mülk torbası olarak hareket etmesine olanak sağlar.
 
-Belgeler [#2018](https://github.com/dotnet/EntityFramework.Docs/issues/2018)soruna göre izlenir.
+Dokümantasyon, #2018 [#2018](https://github.com/dotnet/EntityFramework.Docs/issues/2018)tarafından izlenir.
 
 ### <a name="generation-of-check-constraints-for-enum-mappings"></a>Enum eşlemeleri için denetim kısıtlamaları oluşturma
 
-EF Core 5,0 geçişleri, artık enum özelliği eşlemeleri için DENETIM kısıtlamaları oluşturabilir.
+EF Core 5.0 Geçişler artık enum özellik eşlemeleri için ÇEK kısıtlamaları oluşturabilir.
 Örneğin:
 
 ```SQL
-MyEnumColumn VARCHAR(10) NOT NULL CHECK (MyEnumColumn IN('Useful', 'Useless', 'Unknown'))
+MyEnumColumn VARCHAR(10) NOT NULL CHECK (MyEnumColumn IN ('Useful', 'Useless', 'Unknown'))
 ```
 
-Belgeler [#2082](https://github.com/dotnet/EntityFramework.Docs/issues/2082)soruna göre izlenir.
+Dokümantasyon, sorun [#2082](https://github.com/dotnet/EntityFramework.Docs/issues/2082)tarafından izlenir.
 
-### <a name="isrelational"></a>Isilikisel
+### <a name="isrelational"></a>İlişkisel
 
-Mevcut `IsSqlServer`, `IsSqlite`ve `IsInMemory`ek olarak yeni bir `IsRelational` yöntemi eklenmiştir.
-Bu, DbContext 'in herhangi bir ilişkisel veritabanı sağlayıcısı kullanıp kullankullanılmadığını test etmek için kullanılabilir.
+Yeni `IsRelational` bir yöntem varolan `IsSqlServer`ek olarak `IsSqlite`eklendi `IsInMemory`, , ve .
+Bu yöntem, DbContext'ın herhangi bir ilişkisel veritabanı sağlayıcısı kullanıp kullanmadığını sınamak için kullanılabilir.
 Örneğin:
 
 ```CSharp
@@ -125,29 +184,29 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 
-Belgeler [#2185](https://github.com/dotnet/EntityFramework.Docs/issues/2185)soruna göre izlenir.
+Dokümantasyon, sorun [#2185](https://github.com/dotnet/EntityFramework.Docs/issues/2185)tarafından izlenir.
 
-### <a name="cosmos-optimistic-concurrency-with-etags"></a>Cosmos, ETags ile iyimser eşzamanlılık
+### <a name="cosmos-optimistic-concurrency-with-etags"></a>ETags ile Cosmos iyimser eşzamanlılık
 
-Azure Cosmos DB veritabanı sağlayıcısı artık ETags kullanarak iyimser eşzamanlılığı desteklemektedir.
-ETag yapılandırmak için Onmodelyaratırken model oluşturucuyu kullanın:
+Azure Cosmos DB veritabanı sağlayıcısı artık ETags kullanarak iyimser eşzamanlılığı destekliyor.
+Bir ETag yapılandırmak için OnModelCreating modeli oluşturucu kullanın:
 
 ```CSharp
 builder.Entity<Customer>().Property(c => c.ETag).IsEtagConcurrency();
 ```
 
-Ardından SaveChanges, yeniden denemeler uygulamak için [işlenebilen](https://docs.microsoft.com/ef/core/saving/concurrency) eşzamanlılık çakışmasıyla ilgili bir `DbUpdateConcurrencyException` oluşturur.
+SaveChanges daha sonra `DbUpdateConcurrencyException` yeniden denemeler, vb uygulamak için [ele alınabilir](https://docs.microsoft.com/ef/core/saving/concurrency) bir eşzamanlılık çakışması, bir atar.
 
+Dokümantasyon, #2099 [#2099](https://github.com/dotnet/EntityFramework.Docs/issues/2099)soruna göre izlenir.
 
-Belgeler [#2099](https://github.com/dotnet/EntityFramework.Docs/issues/2099)soruna göre izlenir.
+### <a name="query-translations-for-more-datetime-constructs"></a>Daha fazla DateTime yapıları için sorgu çevirileri
 
-### <a name="query-translations-for-more-datetime-constructs"></a>Daha fazla TarihSaat yapıları için sorgu çevirileri
+Yeni DateTime yapısı içeren sorgular artık çevrilmiştir.
 
-Yeni tarih saat oluşturma içeren sorgular artık çevrilir.
+Buna ek olarak, aşağıdaki SQL Server işlevleri şimdi eşlenir:
 
-Ayrıca, aşağıdaki SQL Server işlevleri artık eşleştirilir:
-* Tarih dağılımı haftası
-* Datefrompsanat
+* TarihDiffWeek
+* DateFromParts
 
 Örneğin:
 
@@ -156,39 +215,39 @@ var count = context.Orders.Count(c => date > EF.Functions.DateFromParts(DateTime
 
 ```
 
-Belgeler [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.
+Dokümantasyon, sorun [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)tarafından izlenir.
 
-### <a name="query-translations-for-more-byte-array-constructs"></a>Daha fazla bayt dizisi yapıları için sorgu çevirileri
+### <a name="query-translations-for-more-byte-array-constructs"></a>Daha fazla bayt dizi yapıları için sorgu çevirileri
 
-Byte [] özellikleri, Contains, length, Sequenceeşittir, vb. kullanan sorgular artık SQL 'e çevrilir.
+Bayt[] özelliklerindeki İçer, Uzunluk, DiziEşit vb. sorgular artık SQL'e çevrilmiştir.
 
-İlk belgeler, [5 aralık 2019 Için EF haftalık durumuna](https://github.com/dotnet/efcore/issues/15403#issuecomment-562332863)dahildir.
+Ön belgeler [5 Aralık 2019 için EF haftalık durumuna](https://github.com/dotnet/efcore/issues/15403#issuecomment-562332863)dahildir.
 
 Ek belgeler [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.
 
 ### <a name="query-translation-for-reverse"></a>Ters için sorgu çevirisi
 
-`Reverse` kullanan sorgular artık çevrilir.
+Kullanan `Reverse` sorgular artık çevrilmiştir.
 Örneğin:
 
 ```CSharp
 context.Employees.OrderBy(e => e.EmployeeID).Reverse()
 ```
 
-Belgeler [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.
+Dokümantasyon, sorun [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)tarafından izlenir.
 
-### <a name="query-translation-for-bitwise-operators"></a>Bit düzeyinde işleçler için sorgu çevirisi
+### <a name="query-translation-for-bitwise-operators"></a>Bitwise işleçleri için sorgu çevirisi
 
-Bit düzeyinde işleçler kullanan sorgular artık daha fazla durumda çevrilir:
+Bitwise işleçleri kullanan sorgular artık daha fazla durumda tercüme edilir Örneğin:
 
 ```CSharp
 context.Orders.Where(o => ~o.OrderID == negatedId)
 ```
 
-Belgeler [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.
+Dokümantasyon, sorun [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)tarafından izlenir.
 
-### <a name="query-translation-for-strings-on-cosmos"></a>Cosmos üzerinde dizeler için sorgu çevirisi
+### <a name="query-translation-for-strings-on-cosmos"></a>Cosmos'taki dizeleri sorgula çeviri
 
-Dize yöntemlerini kullanan sorgular şunlardır, StartsWith ve EndsWith artık Azure Cosmos DB sağlayıcısı kullanılırken çevrilir.
+İçeren, StartsWith ve EndsWith dize yöntemlerini kullanan sorgular artık Azure Cosmos DB sağlayıcısını kullanırken çevrilmiştir.
 
-Belgeler [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)soruna göre izlenir.
+Dokümantasyon, sorun [#2079](https://github.com/dotnet/EntityFramework.Docs/issues/2079)tarafından izlenir.

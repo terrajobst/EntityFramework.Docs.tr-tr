@@ -1,23 +1,23 @@
 ---
-title: Sorgu etiketleri-EF Core
+title: Sorgu Etiketleri - EF Core
 author: divega
 ms.date: 11/14/2018
 ms.assetid: 73C7A627-C8E9-452D-9CD5-AFCC8FEFE395
 uid: core/querying/tags
 ms.openlocfilehash: e8415b237df45ce652dcd152013f4f12a992aed7
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417892"
 ---
 # <a name="query-tags"></a>Sorgu etiketleri
 
 > [!NOTE]
-> Bu özellik EF Core 2,2 ' de yenidir.
+> Bu özellik EF Core 2.2'de yenidir.
 
-Bu özellik, günlüklerde yakalanan oluşturulmuş SQL sorgularıyla kodda LINQ sorgularının bağıntılı olarak yardımcı olur.
-Yeni `TagWith()` yöntemini kullanarak bir LINQ sorgusuna açıklama ekleyebilirsiniz:
+Bu özellik, linq sorgularını koddaki SQL sorgularıyla günlüklerde yakalanan sql sorgularıyla ilişkilendirmenize yardımcı olur.
+Yeni `TagWith()` yöntemi kullanarak bir LINQ sorgusuna açıklama ekine bilirsiniz:
 
 ``` csharp
   var nearestFriends =
@@ -26,7 +26,7 @@ Yeni `TagWith()` yöntemini kullanarak bir LINQ sorgusuna açıklama ekleyebilir
       select f).Take(5).ToList();
 ```
 
-Bu LINQ sorgusu şu SQL ifadesine çevrilir:
+Bu LINQ sorgusu aşağıdaki SQL deyimine çevrilir:
 
 ``` sql
 -- This is my spatial query!
@@ -36,9 +36,9 @@ FROM [Friends] AS [f]
 ORDER BY [f].[Location].STDistance(@__myLocation_0) DESC
 ```
 
-Aynı sorgu üzerinde `TagWith()` çok sayıda çağırmak mümkündür.
-Sorgu etiketleri birikimlidir.
-Örneğin, aşağıdaki yöntemler verildiğinde:
+Aynı sorguda birçok `TagWith()` kez aramak mümkündür.
+Sorgu etiketleri birikmeli.
+Örneğin, aşağıdaki yöntemler göz önüne alındığında:
 
 ``` csharp
 IQueryable<Friend> GetNearestFriends(Point myLocation) =>
@@ -68,8 +68,8 @@ FROM [Friends] AS [f]
 ORDER BY [f].[Location].STDistance(@__myLocation_0) DESC
 ```
 
-Çok satırlı dizeleri sorgu etiketleri olarak kullanmak da mümkündür.
-Örnek:
+Sorgu etiketleri olarak çok satırlı dizeleri kullanmak da mümkündür.
+Örneğin:
 
 ``` csharp
 var results = Limit(GetNearestFriends(myLocation), 25).TagWith(
@@ -77,7 +77,7 @@ var results = Limit(GetNearestFriends(myLocation), 25).TagWith(
 string").ToList();
 ```
 
-Aşağıdaki SQL 'i üretir:
+Aşağıdaki SQL'i üretir:
 
 ``` sql
 -- GetNearestFriends
@@ -94,5 +94,5 @@ ORDER BY [f].[Location].STDistance(@__myLocation_0) DESC
 
 ## <a name="known-limitations"></a>Bilinen sınırlamalar
 
-**Sorgu etiketlerine parametreleştirilebilir:** EF Core, LINQ sorgusundaki sorgu etiketlerine her zaman oluşturulan SQL 'e dahil edilen dize sabit değerleri olarak davranır.
-Sorgu etiketleri parametre olarak alan derlenmiş sorgulara izin verilmez.
+**Sorgu etiketleri parametreyetabi değildir:** EF Core, LINQ sorgusundaki sorgu etiketlerini her zaman oluşturulan SQL'de bulunan dize literal'leri olarak ele alır.
+Parametreler olarak sorgu etiketleri alan derlenmiş sorgular izin verilmez.

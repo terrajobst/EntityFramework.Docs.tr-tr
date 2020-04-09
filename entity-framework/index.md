@@ -1,15 +1,15 @@
 ---
 layout: HubPage
-title: Entity Framework-EF
+title: Varlık Çerçevesi - EF
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 6bb12583-c39a-454c-8d83-d2a2793ca9ef
 uid: index
 ms.openlocfilehash: 1643e3c9d1b8565155ebc1c04713a40883d03a07
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78416928"
 ---
 <div id="main" class="v2">
@@ -17,7 +17,7 @@ ms.locfileid: "78416928"
         <h1>Entity Framework Belgeleri</h1>
         <ul class="pivots">
             <li>
-                <a href="#entityfmwk">Entity Framework</a>
+                <a href="#entityfmwk">Varlık Çerçevesi</a>
                 <ul id="entityfmwk">
                     <li>
                         <a href="#entityfmwk1"></a>
@@ -96,7 +96,7 @@ ms.locfileid: "78416928"
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>EF Core’a taşıma</h3>
-                                                    <p>Mevcut bir EF 6 uygulamasının EF Core için taşıma Kılavuzu.</p>
+                                                    <p>Varolan bir EF 6 uygulamasını EF Core'a taşıma kılavuzu.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -108,10 +108,10 @@ ms.locfileid: "78416928"
                 </ul>
             </li>
             <li>
-                <a href="#efcore">EF Core</a>
+                <a href="#efcore">EF Çekirdek</a>
                 <ul id="efcore">
                     <li>
-                        <a href="#efcore-all">tümü</a>
+                        <a href="#efcore-all">Tüm</a>
                         <ul id="efcore-all" class="cardsF">
                             <li>
                                 <div class="container intro">
@@ -129,7 +129,7 @@ ms.locfileid: "78416928"
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="/ef/core/">Kullanmaya başlayın</a>
+                                                    <a href="/ef/core/">Başlayın</a>
                                                 </h3>
                                                 <p>
                                                     <a href="/ef/core/">Genel bakış</a>
@@ -138,10 +138,10 @@ ms.locfileid: "78416928"
                                                     <a href="/ef/core/modeling/">Model Oluşturma</a>
                                                 </p>
                                                 <p>
-                                                    <a href="/ef/core/querying/">Verileri Sorgulama</a>
+                                                    <a href="/ef/core/querying/">Sorgu Verileri</a>
                                                 </p>
                                                 <p>
-                                                    <a href="/ef/core/saving/">Verileri Kaydetme</a>
+                                                    <a href="/ef/core/saving/">Veri Kaydet</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -162,7 +162,7 @@ ms.locfileid: "78416928"
                                                     <a href="/ef/core/get-started/">Öğreticiler</a>
                                                 </h3>
                                                 <p>
-                                                    <a href="/ef/core/get-started/">diğer…</a>
+                                                    <a href="/ef/core/get-started/">-nda daha fazla...</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -183,22 +183,22 @@ ms.locfileid: "78416928"
                                                     <a href="/ef/core/providers/">Veritabanı sağlayıcıları</a>
                                                 </h3>
                                                 <p>
-                                                    <a href="/ef/core/providers/sql-server/">SQL Server</a>
+                                                    <a href="/ef/core/providers/sql-server/">SQL Sunucu</a>
                                                 </p>
                                                 <p>
-                                                    <a href="/ef/core/providers/mysql/">MySQL</a>
+                                                    <a href="/ef/core/providers/mysql/">Mysql</a>
                                                 </p>
                                                 <p>
-                                                    <a href="/ef/core/providers/npgsql/">PostgreSQL</a>
+                                                    <a href="/ef/core/providers/npgsql/">Postgresql</a>
                                                 </p>
                                                 <p>
-                                                    <a href="/ef/core/providers/sqlite/">SQLite</a>
+                                                    <a href="/ef/core/providers/sqlite/">Sqlite</a>
                                                 </p>
                                                 <p>
                                                     <a href="/ef/core/providers/cosmos/">Cosmos</a>
                                                 </p>
                                                 <p>
-                                                    <a href="/ef/core/providers/">diğer…</a>
+                                                    <a href="/ef/core/providers/">-nda daha fazla...</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -225,7 +225,7 @@ ms.locfileid: "78416928"
                                                     <a href="https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a>
                                                 </p>
                                                 <p>
-                                                    <a href="https://docs.microsoft.com/dotnet/api/?view=efcore-2.1">diğer…</a>
+                                                    <a href="https://docs.microsoft.com/dotnet/api/?view=efcore-2.1">-nda daha fazla...</a>
                                                 </p>
                                             </div>
                                         </div>

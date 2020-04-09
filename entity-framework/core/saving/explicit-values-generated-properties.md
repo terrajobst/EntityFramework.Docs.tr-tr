@@ -1,63 +1,63 @@
 ---
-title: Oluşturulan özellikler için açık değerleri ayarlama-EF Core
+title: Oluşturulan Özellikler için Açık Değerleri Ayarlama - EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 3f1993c2-cdf5-425b-bac2-a2665a20322b
 uid: core/saving/explicit-values-generated-properties
 ms.openlocfilehash: 43c4ab3c2a60645cdeff2a6cc40ce979f832f2fd
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417571"
 ---
-# <a name="setting-explicit-values-for-generated-properties"></a>Oluşturulan özellikler için açık değerler ayarlanıyor
+# <a name="setting-explicit-values-for-generated-properties"></a>Oluşturulan Özellikler için Açık Değerleri Ayarlama
 
-Oluşturulan özellik, varlık eklendiğinde ve/veya güncelleştirilirken değeri oluşturulan (EF veya Database) bir özelliktir. Daha fazla bilgi için bkz. [üretilen Özellikler](../modeling/generated-properties.md) .
+Oluşturulan özellik, varlık eklendiğinde ve/veya güncelleştirildiğinde değeri (EF veya veritabanı tarafından) oluşturulan bir özelliktir. Daha fazla bilgi için [Oluşturulan Özellikler'e](../modeling/generated-properties.md) bakın.
 
-Oluşturulmuş bir özellik için, oluşturulması yerine açık bir değer ayarlamak istediğiniz durumlar olabilir.
+Oluşturulan bir özellik için açık bir değer ayarlamak istediğiniz durumlar olabilir.
 
 > [!TIP]  
-> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/ExplicitValuesGenerateProperties/) GitHub ' da görebilirsiniz.
+> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/ExplicitValuesGenerateProperties/) GitHub'da görüntüleyebilirsiniz.
 
 ## <a name="the-model"></a>Model
 
-Bu makalede kullanılan model tek bir `Employee` varlığı içerir.
+Bu makalede kullanılan model tek `Employee` bir varlık içerir.
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/Employee.cs#Sample)]
 
 ## <a name="saving-an-explicit-value-during-add"></a>Ekleme sırasında açık bir değer kaydetme
 
-`Employee.EmploymentStarted` özelliği, yeni varlıklar için veritabanı tarafından oluşturulan değerlere sahip olacak şekilde yapılandırılır (varsayılan değer kullanılarak).
+Özellik, `Employee.EmploymentStarted` yeni varlıklar için veritabanı tarafından oluşturulan değerlere sahip olacak şekilde yapılandırılır (varsayılan değer kullanılarak).
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/EmployeeContext.cs#EmploymentStarted)]
 
-Aşağıdaki kod veritabanına iki çalışan ekler.
+Aşağıdaki kod veritabanına iki çalışanı ekler.
 
-* İlki için, `Employee.EmploymentStarted` özelliğine hiçbir değer atanmaz, bu nedenle `DateTime`için CLR varsayılan değerine ayarlanır.
-* İkincisi, `1-Jan-2000`açık bir değer belirledik.
+* İlk olarak, özellik için `Employee.EmploymentStarted` hiçbir değer atanır, bu yüzden CLR `DateTime`varsayılan değeri için ayarlanmış kalır.
+* İkincisi için, açık bir değer `1-Jan-2000`belirledik.
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/Sample.cs#EmploymentStarted)]
 
-Çıktı, veritabanının ilk çalışan için bir değer üretdiği ve ikincisi için açık değer kullanıldığını gösterir.
+Çıktı, veritabanının ilk çalışan için bir değer oluşturduğunu ve ikinci için açık değerimizin kullanıldığını gösterir.
 
 ``` Console
 1: John Doe, 1/26/2017 12:00:00 AM
 2: Jane Doe, 1/1/2000 12:00:00 AM
 ```
 
-### <a name="explicit-values-into-sql-server-identity-columns"></a>SQL Server KIMLIK sütunlarına açık değerler
+### <a name="explicit-values-into-sql-server-identity-columns"></a>SQL Server IDENTITY sütunlarına açık değerler
 
-Kurala göre `Employee.EmployeeId` özelliği bir depo `IDENTITY` sütunu olarak oluşturulur.
+Kural olarak `Employee.EmployeeId` özellik bir `IDENTITY` mağaza oluşturulan sütundur.
 
-Çoğu durumda, yukarıda gösterilen yaklaşım anahtar özellikleri için çalışacaktır. Ancak, bir SQL Server `IDENTITY` sütununa açık değerler eklemek için, `SaveChanges()`çağrılmadan önce `IDENTITY_INSERT` el ile etkinleştirmeniz gerekir.
+Çoğu durumda, yukarıda gösterilen yaklaşım önemli özellikler için çalışacaktır. Ancak, bir SQL Server `IDENTITY` sütununa açık değerler eklemek `IDENTITY_INSERT` için, `SaveChanges()`aramadan önce el ile etkinleştirmeniz gerekir.
 
 > [!NOTE]  
-> Kapsamımızda SQL Server sağlayıcısı içinde otomatik olarak bunu yapması için bir [özellik isteği](https://github.com/aspnet/EntityFramework/issues/703) sunuyoruz.
+> Biriktirme listemizde bunu SQL Server sağlayıcısında otomatik olarak yapmak için bir [özellik isteğimiz](https://github.com/aspnet/EntityFramework/issues/703) var.
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/Sample.cs#EmployeeId)]
 
-Çıktı, sağlanan kimliklerin veritabanına kaydedildiğini gösterir.
+Çıktı, verilen kimliklerin veritabanına kaydedildiğini gösterir.
 
 ``` Console
 100: John Doe
@@ -66,28 +66,28 @@ Kurala göre `Employee.EmployeeId` özelliği bir depo `IDENTITY` sütunu olarak
 
 ## <a name="setting-an-explicit-value-during-update"></a>Güncelleştirme sırasında açık bir değer ayarlama
 
-`Employee.LastPayRaise` özelliği, güncelleştirmeler sırasında veritabanı tarafından oluşturulan değerlere sahip olacak şekilde yapılandırılmıştır.
+Özellik, `Employee.LastPayRaise` güncelleştirmeler sırasında veritabanı tarafından oluşturulan değerlere sahip olacak şekilde yapılandırılır.
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/EmployeeContext.cs#LastPayRaise)]
 
 > [!NOTE]  
-> Varsayılan olarak, güncelleştirme sırasında oluşturulacak şekilde yapılandırılmış bir özellik için açık bir değer kaydetmeye çalışırsanız, EF Core bir özel durum oluşturur. Bunu önlemek için, alt düzey meta veri API 'sine aşağı doğru açmanız ve `AfterSaveBehavior` (yukarıda gösterildiği gibi) ayarlamanız gerekir.
+> Varsayılan olarak, güncelleştirme sırasında oluşturulacak şekilde yapılandırılan bir özellik için açık bir değer kaydetmeye çalışırsanız, EF Core bir özel durum oluşturur. Bunu önlemek için, alt düzey meta veri API'sine `AfterSaveBehavior` inmeniz ve (yukarıda gösterildiği gibi) ayarlamanız gerekir.
 
 > [!NOTE]  
-> **EF Core 2,0 değişiklikleri:** Önceki sürümlerde, sonra Kaydet davranışı `IsReadOnlyAfterSave` bayrağıyla denetlenir. Bu bayrak kullanımdan kaldırılmıştır ve `AfterSaveBehavior`tarafından değiştirildi.
+> **EF Core 2.0'daki değişiklikler:** Önceki sürümlerde kaydsonrası davranış `IsReadOnlyAfterSave` bayrak üzerinden denetlendi. Bu bayrak obsoleted ve yerini `AfterSaveBehavior`.
 
-Ayrıca, `UPDATE` işlemleri sırasında `LastPayRaise` sütunu için değerler oluşturmak üzere veritabanında bir tetikleyici de vardır.
+Ayrıca, işlem sırasında `LastPayRaise` `UPDATE` sütun için değer oluşturmak için veritabanında bir tetikleyici vardır.
 
 [!code-sql[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/employee_UPDATE.sql)]
 
-Aşağıdaki kod, veritabanında iki çalışanın maaşını artırır.
+Aşağıdaki kod veritabanında iki çalışanın maaş Artar.
 
-* İlki için, `Employee.LastPayRaise` özelliğine hiçbir değer atanmaz, bu nedenle null olarak ayarlanır.
-* İkincisi için bir hafta önce açık bir değer belirledik (ödeme yapını geri alıyorsunuz).
+* İlk olarak, özellik için `Employee.LastPayRaise` hiçbir değer atanır, bu nedenle null olarak ayarlanır.
+* İkincisi için, bir hafta önce (geri maaş zammı kalma) açık bir değer belirledik.
 
 [!code-csharp[Main](../../../samples/core/Saving/ExplicitValuesGenerateProperties/Sample.cs#LastPayRaise)]
 
-Çıktı, veritabanının ilk çalışan için bir değer üretdiği ve ikincisi için açık değer kullanıldığını gösterir.
+Çıktı, veritabanının ilk çalışan için bir değer oluşturduğunu ve ikinci için açık değerimizin kullanıldığını gösterir.
 
 ``` Console
 1: John Doe, 1/26/2017 12:00:00 AM

@@ -1,55 +1,55 @@
 ---
-title: Kendi kendine izleme varlıkları-EF6
+title: Kendi kendini takip eden varlıklar - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 5e60f5be-7bbb-4bf8-835e-0ac808d6c84a
 ms.openlocfilehash: 3bb9759d89fbd0c10b911625aa7d0afd7747de14
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78419525"
 ---
-# <a name="self-tracking-entities"></a>Kendi kendine izleme varlıkları
+# <a name="self-tracking-entities"></a>Kendi kendini izleyen varlıklar
 
 > [!IMPORTANT]
-> Artık kendi kendine izleme varlıkları şablonunu kullanmanızı önermiyoruz. Yalnızca var olan uygulamaları desteklemek için kullanılabilir olmaya devam edecektir. Uygulamanız, bağlantılı olmayan grafik grafiklerle çalışmayı gerektiriyorsa, bu, topluluk tarafından daha etkin bir şekilde geliştirilmiş olan ve alt düzey değişiklik izleme API 'Leri kullanılarak özel kod yazma gibi, kendini Izlemeye benzer bir teknoloji olan, [izleyicileri oluşturan varlıklar](https://trackableentities.github.io/)gibi diğer alternatifleri göz önünde bulundurun.
+> Artık kendi kendine izleme varlıkları şablonu kullanmanızı önermiyoruz. Yalnızca varolan uygulamaları desteklemek için kullanılabilir olmaya devam edecektir. Uygulamanız, varlıkların bağlantısı kesilmiş grafiklerle çalışmayı gerektiriyorsa, topluluk tarafından daha aktif olarak geliştirilen Self-Tracking-Tntities'a benzer bir teknoloji olan [İzlenebilir Varlıklar](https://trackableentities.github.io/)veya düşük düzeyli değişiklik izleme API'lerini kullanarak özel kod yazma gibi diğer alternatifleri göz önünde bulundurun.
 
-Entity Framework tabanlı bir uygulamada, nesnelerdeki değişiklikleri izlemeden bir bağlam sorumludur. Sonra değişiklikleri veritabanında kalıcı hale getirmek için SaveChanges yöntemini kullanırsınız. N katmanlı uygulamalarla çalışırken, varlık nesnelerinin genellikle bağlamla bağlantısı kesilir ve değişikliklerin nasıl izleneceğini ve bu değişiklikleri içeriğe geri rapor etmeniz gerektiğine karar vermeniz gerekir. Kendi kendini izleyen varlıklar (Steler), herhangi bir katmandaki değişiklikleri izlemenize ve sonra bu değişiklikleri kaydedilecek bir bağlamda yeniden yürütmeye yardımcı olabilir.  
+Varlık Çerçevesi tabanlı bir uygulamada, nesnelerinizdeki değişiklikleri izlemekiçin bir bağlam sorumludur. Daha sonra veritabanındaki değişiklikleri sürdürmek için SaveChanges yöntemini kullanırsınız. N-Tier uygulamalarıyla çalışırken, varlık nesneleri genellikle bağlamdan kesilir ve değişiklikleri nasıl izleyeceğinize ve bu değişiklikleri bağlama geri bildirmeye karar vermeniz gerekir. Kendi Kendini İzleme Varlıkları (STEs) herhangi bir katmandaki değişiklikleri izlemenize ve sonra bu değişiklikleri kaydedilecek bir bağlamda yeniden oynatmanıza yardımcı olabilir.  
 
-Yalnızca bağlam, nesne grafiğinde yapılan değişikliklerin yapıldığı bir katmanda kullanılabilir değilse, STEs 'yi kullanın. Bağlam kullanılabiliyorsa, bağlam değişiklikleri izlemek için gereken bir işlem olması gerekmez.  
+STEs'i yalnızca bağlam nesne grafiğinde yapılan değişikliklerin yapıldığı bir katmanda kullanılamıyorsa kullanın. Bağlam varsa, bağlam değişiklikleri izleme yi ilgilenecek, çünkü STS'leri kullanmaya gerek yoktur.  
 
-Bu şablon öğesi iki. tt (metin şablonu) dosyası oluşturur:  
+Bu şablon öğesi iki .tt (metin şablonu) dosyası oluşturur:  
 
-- **\<model adı\>. tt** dosyası, kendi kendine izleme varlıkları ve kendi kendini izleme varlıklarında ayar durumuna izin veren genişletme yöntemleri tarafından kullanılan değişiklik izleme mantığını içeren varlık türlerini ve yardımcı sınıfı oluşturur.  
-- **\<modeli adı\>. Context.tt** dosyası türetilmiş bir bağlam ve **ObjectContext** ve **ObjectSet** sınıfları için **ApplyChanges** yöntemlerini içeren bir uzantı sınıfı oluşturur. Bu yöntemler, değişiklikleri veritabanına kaydetmek için gerçekleştirilmesi gereken işlemler kümesini çıkarması için kendi kendine izleme varlıklarının grafiğinde bulunan değişiklik izleme bilgilerini inceler.  
+- **Model adı\>.tt dosyası, kendi kendini izleyen varlıklar tarafından kullanılan değişiklik izleme mantığını ve kendi kendine izleme varlıkları üzerinde durum ayarlamasını sağlayan uzantı yöntemlerini içeren varlık türlerini ve yardımcı sınıfını oluşturur. \<**  
+- ** \<Model adı.\> Context.tt** dosyası, **ObjectContext** ve **ObjectSet** sınıfları için **Uygulamalı Değişiklikler** yöntemlerini içeren türetilmiş bir bağlam ve uzantı sınıfı oluşturur. Bu yöntemler, veritabanındaki değişiklikleri kaydetmek için gerçekleştirilmesi gereken işlem kümesini ortaya çıkarmak için kendi kendini izleyen varlıkların grafiğinde bulunan değişiklik izleme bilgilerini inceler.  
 
 ## <a name="get-started"></a>Başlarken  
 
-Başlamak için, [kendi kendine Izleme varlıkları Izlenecek yol](walkthrough.md) sayfasını ziyaret edin.  
+Başlamak [için, Kendi Kendine İzleme Varlıklar Walkthrough](walkthrough.md) sayfasını ziyaret edin.  
 
-## <a name="functional-considerations-when-working-with-self-tracking-entities"></a>Kendi kendine Izleme varlıklarıyla çalışırken işlevsel konular  
+## <a name="functional-considerations-when-working-with-self-tracking-entities"></a>Kendi Kendini Takip Eden Varlıklarla Çalışırken İşlevsel Hususlar  
 > [!IMPORTANT]
-> Artık kendi kendine izleme varlıkları şablonunu kullanmanızı önermiyoruz. Yalnızca var olan uygulamaları desteklemek için kullanılabilir olmaya devam edecektir. Uygulamanız, bağlantılı olmayan grafik grafiklerle çalışmayı gerektiriyorsa, bu, topluluk tarafından daha etkin bir şekilde geliştirilmiş olan ve alt düzey değişiklik izleme API 'Leri kullanılarak özel kod yazma gibi, kendini Izlemeye benzer bir teknoloji olan, [izleyicileri oluşturan varlıklar](https://trackableentities.github.io/)gibi diğer alternatifleri göz önünde bulundurun.
+> Artık kendi kendine izleme varlıkları şablonu kullanmanızı önermiyoruz. Yalnızca varolan uygulamaları desteklemek için kullanılabilir olmaya devam edecektir. Uygulamanız, varlıkların bağlantısı kesilmiş grafiklerle çalışmayı gerektiriyorsa, topluluk tarafından daha aktif olarak geliştirilen Self-Tracking-Tntities'a benzer bir teknoloji olan [İzlenebilir Varlıklar](https://trackableentities.github.io/)veya düşük düzeyli değişiklik izleme API'lerini kullanarak özel kod yazma gibi diğer alternatifleri göz önünde bulundurun.
 
-Kendi kendine izleme varlıklarıyla çalışırken aşağıdakileri göz önünde bulundurun:  
+Kendi kendini izleyen varlıklarla çalışırken aşağıdakileri göz önünde bulundurun:  
 
-- İstemci projenizin varlık türlerini içeren derlemeye bir başvurusu olduğundan emin olun. İstemci projesine yalnızca hizmet başvurusunu eklerseniz, istemci projesi gerçek kendi kendini izleyen varlık türlerini değil, WCF proxy türlerini kullanır. Bu, istemci üzerindeki varlıkların izlenmesini yöneten otomatik bildirim özelliklerini alacağınız anlamına gelir. Özellikle varlık türlerini eklemek istemiyorsanız, hizmete geri gönderilecek değişiklikler için istemcideki değişiklik izleme bilgilerini el ile ayarlamanız gerekir.  
-- Hizmet işlemine yapılan çağrılar durum bilgisiz olmalıdır ve yeni bir nesne bağlamı örneği oluşturur. Ayrıca, bir **using** bloğunda nesne bağlamı oluşturmanızı öneririz.  
-- İstemcide değiştirilmiş olan grafiği hizmetine gönderdiğinizde ve sonra istemcide aynı grafikle çalışmaya devam etmeyi planlıyorsanız, grafikte el ile yineleme yapmanız ve değişiklik izleyicisini sıfırlamak için her bir nesne üzerinde **AcceptChanges** yöntemini çağırmanız gerekir.  
+- İstemci projenizin varlık türlerini içeren derlemeye bir başvurusu olduğundan emin olun. İstemci projeye yalnızca hizmet başvurusu eklerseniz, istemci proje gerçek kendi kendini izleyen varlık türlerini değil, WCF proxy türlerini kullanır. Bu, istemcideki varlıkların izlenmesini yöneten otomatik bildirim özelliklerini almeyeceğiniz anlamına gelir. Varlık türlerini kasıtlı olarak eklemek istemiyorsanız, değişikliklerin hizmete geri gönderilmesi için istemcideki değişiklik izleme bilgilerini el ile ayarlamanız gerekir.  
+- Hizmet işlemine yapılan çağrılar devletsiz olmalı ve nesne bağlamının yeni bir örneğini oluşturmalı. Ayrıca, nesne bağlamı **kullanarak** bir blok oluşturmanızı öneririz.  
+- İstemci üzerinde değiştirilen grafiği hizmete gönderdiğinizde ve ardından istemci üzerinde aynı grafikle çalışmaya devam etmeyi planladığında, değişiklik izleyicisini sıfırlamak için grafikte el ile yinele ve her nesnedeki **AcceptChanges** yöntemini aramanız gerekir.  
 
-    > Grafiğinizde nesneler veritabanı tarafından oluşturulan değerlerle (örneğin, kimlik veya eşzamanlılık değerleri) özellikler içeriyorsa Entity Framework, bu özelliklerin değerleri, **SaveChanges** yöntemi çağrıldıktan sonra veritabanı tarafından oluşturulan değerlerle değiştirilir. Kaydedilmiş nesneleri ya da nesneler için oluşturulan özellik değerlerinin bir listesini istemciye geri döndürmek için hizmet işleminizi uygulayabilirsiniz. Daha sonra istemci, nesne örnekleri veya nesne özelliği değerlerini hizmet işleminden döndürülen nesneler veya özellik değerleriyle değiştirmek zorunda olur.  
-- Birden çok hizmet isteğinin grafiklerini birleştirme, sonuçta elde edilen grafikte yinelenen anahtar değerleriyle nesneleri ortaya çıkarabilir. Entity Framework **ApplyChanges** metodunu çağırdığınızda yinelenen anahtarlarla nesneleri kaldırmaz, ancak bunun yerine bir özel durum oluşturur. Yinelenen anahtar değerleriyle grafiklerin oluşmasını önlemek için, aşağıdaki blogda açıklanan desenlerden birini izleyin: [kendi kendine Izleme varlıkları: ApplyChanges ve Duplicate Entities](https://go.microsoft.com/fwlink/?LinkID=205119&clcid=0x409).  
-- Yabancı anahtar özelliğini ayarlayarak nesneler arasındaki ilişkiyi değiştirdiğinizde, başvuru gezintisi özelliği null olarak ayarlanır ve istemcideki uygun asıl varlıkla eşitlenmez. Grafik nesne bağlamına eklendikten sonra (örneğin, **ApplyChanges** yöntemini çağırdıktan sonra), yabancı anahtar özellikleri ve gezinti özellikleri eşitlenir.  
+    > Grafiğinizdeki nesneler veritabanı tarafından oluşturulan değerlere (örneğin, kimlik veya eşzamanlılık değerleri) sahip özellikler içeriyorsa, Varlık Çerçevesi, **SaveChanges** yöntemi çağrıldıktan sonra bu özelliklerin değerlerini veritabanı tarafından oluşturulan değerlerle değiştirir. Kaydedilen nesneleri döndürmek için hizmet işleminizi veya istemciye geri dönen nesneler için oluşturulan özellik değerlerinin listesini uygulayabilirsiniz. İstemci daha sonra nesne örnekleri veya nesne özellik değerlerini hizmet işleminden döndürülen nesneler veya özellik değerleriyle değiştirmesi gerekir.  
+- Birden çok hizmet isteğinden grafiklerin birleştirilmesi, ortaya çıkan grafikte yinelenen anahtar değerleri olan nesneleri tanıtabilir. Entity Framework, **ApplyChanges** yöntemini aradiğinizde yinelenen anahtarlarla nesneleri kaldırmaz, bunun yerine bir özel durum atar. Yinelenen anahtar değerlere sahip grafiklerin olmasını önlemek için aşağıdaki blogda açıklanan desenlerden birini izleyin: [Kendi Kendine İzleme Varlıkları: Değişiklikleri Uygula ve yinelenen varlıklar.](https://go.microsoft.com/fwlink/?LinkID=205119&clcid=0x409)  
+- Yabancı anahtar özelliğini ayarlayarak nesneler arasındaki ilişkiyi değiştirdiğinizde, başvuru navigasyon özelliği null olarak ayarlanır ve istemcideki ilgili asıl varlıkla eşitlenmemiş olarak ayarlanır. Grafik nesne bağlamına iliştirildikten sonra (örneğin, **Değişiklikleri Uygula** yöntemini aradıktan sonra), yabancı anahtar özellikleri ve gezinti özellikleri eşitlenir.  
 
-    > Yabancı anahtar ilişkisinde basamaklı silme belirttiyseniz, başvuru gezintisi özelliğinin uygun asıl nesneyle eşitlenmiş olmadığı bir sorun olabilir. Sorumluyu silerseniz, silme bağımlı nesnelere yayılmaz. Art arda silme belirtilirse, yabancı anahtar özelliğini ayarlamak yerine ilişkileri değiştirmek için gezinti özelliklerini kullanın.  
-- Kendi kendini izleyen varlıklar, yavaş yükleme gerçekleştirmek için etkin değildir.  
-- İkili serileştirme ve ASP.NET durum yönetimi nesnelerine serileştirme, kendi kendine izleme varlıkları tarafından desteklenmez. Ancak, ikili serileştirme desteğini eklemek için şablonu özelleştirebilirsiniz. Daha fazla bilgi için, bkz. [Ikili serileştirme ve kendi kendine Izleme varlıkları Ile ViewState kullanma](https://go.microsoft.com/fwlink/?LinkId=199208).  
+    > Yabancı anahtar ilişkisinde basamaklı silme yi belirttiyseniz, uygun ana nesneyle eşitlenmiş bir başvuru gezinti özelliğinin olmaması sorun olabilir. Anaparayı silerseniz, silme bağımlı nesnelere yayılmaz. Belirtilen basamaklı silmeleriniz varsa, yabancı anahtar özelliğini ayarlamak yerine ilişkileri değiştirmek için gezinti özelliklerini kullanın.  
+- Kendi kendine izleme varlıklar tembel yükleme gerçekleştirmek için etkin değildir.  
+- ASP.NET durum yönetimi nesneleri için ikili serileştirme ve serileştirme kendi kendini izleyen varlıklar tarafından desteklenmez. Ancak, ikili serileştirme desteği eklemek için şablonu özelleştirebilirsiniz. Daha fazla bilgi için, [Kendi Kendini İzleme Varlıkları ile İkili Serileştirme ve ViewState kullanma](https://go.microsoft.com/fwlink/?LinkId=199208)bakın.  
 
 ## <a name="security-considerations"></a>Güvenlikle İlgili Dikkat Edilmesi Gerekenler  
 
-Kendi kendine izleme varlıklarıyla çalışırken aşağıdaki güvenlik konuları dikkate alınmalıdır:  
+Kendi kendini izleyen varlıklarla çalışırken aşağıdaki güvenlik hususları göz önünde bulundurulmalıdır:  
 
-- Hizmet, güvenilir olmayan bir istemciden veya güvenilmeyen bir kanaldan veri alma veya güncelleştirme isteklerine güvenmemelidir. İstemcinin kimliği doğrulanmalıdır: güvenli bir kanal veya ileti zarfı kullanılmalıdır. Verilen senaryoya ilişkin beklenen ve meşru değişikliklere uyduğundan emin olmak için istemcilerin verileri güncelleştirme veya alma isteklerinin doğrulanması gerekir.  
-- Gizli bilgileri varlık anahtarları (örneğin, sosyal güvenlik numaraları) olarak kullanmaktan kaçının. Bu, kendi kendini takip eden varlık grafiklerde hassas bilgileri tam güvenilir olmayan bir istemciye yanlışlıkla serileştirmek olasılığını azaltır. Bağımsız İlişkilendirmelerde, serileştirilmekte olan varlıkla ilişkili bir varlığın özgün anahtarı da istemciye gönderilebilir.  
-- Gizli veriler içeren özel durum iletilerini istemci katmanına yaymamak için sunucu katmanındaki **ApplyChanges** ve **SaveChanges** çağrılarına özel durum işleme kodunda sarmalanması gerekir.  
+- Bir hizmet, güvenilmeyen bir istemciden veya güvenilmeyen bir kanaldan veri alma veya güncelleştirme isteklerine güvenmemelidir. İstemcinin kimliği doğrulanmalıdır: güvenli bir kanal veya ileti zarfı kullanılmalıdır. İstemcilerin verileri güncelleştirme veya alma istekleri, verilen senaryo için beklenen ve meşru değişikliklere uyduklarından emin olmak için doğrulanmalıdır.  
+- Hassas bilgileri varlık anahtarı (örneğin, sosyal güvenlik numaraları) olarak kullanmaktan kaçının. Bu, kendi kendine izleme varlık grafiklerinde bulunan ve tam olarak güvenilmeyen bir istemciye, farkında olmadan hassas bilgileri serileştirme olasılığını azaltır. Bağımsız ilişkilendirmelerle, serihale edilen varlıkla ilgili bir varlığın özgün anahtarı istemciye de gönderilebilir.  
+- Önemli verileri istemci katmanına içeren özel durum iletilerinin yayılmasını önlemek için, sunucu katmanındaki **Değişiklikleri Uygula** ve **Kaydet** çağrıları özel durum işleme koduna sarılı olmalıdır.  

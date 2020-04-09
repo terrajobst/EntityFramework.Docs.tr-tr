@@ -1,50 +1,50 @@
 ---
-title: Entity Framework Core 3,0 ' deki yeni özellikler EF Core
+title: Entity Framework Core 3.0'daki yeni özellikler - EF Core
 author: divega
 ms.date: 02/19/2019
 ms.assetid: 2EBE2CCC-E52D-483F-834C-8877F5EB0C0C
 uid: core/what-is-new/ef-core-3.0/index
 ms.openlocfilehash: ebc676930ffc396aa70bb8afb91cf5a0cd43e04d
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417944"
 ---
-# <a name="new-features-in-entity-framework-core-30"></a>Entity Framework Core 3,0 ' deki yeni özellikler
+# <a name="new-features-in-entity-framework-core-30"></a>Entity Framework Core 3.0'daki yeni özellikler
 
-Aşağıdaki listede EF Core 3,0 ' deki başlıca yeni özellikler yer almaktadır.
+Aşağıdaki liste, EF Core 3.0'daki başlıca yeni özellikleri içerir.
 
-Büyük bir sürüm olarak EF Core 3,0, mevcut uygulamalar üzerinde olumsuz etkileri olabilecek API geliştirmeleri olan çok sayıda [Son değişiklik](xref:core/what-is-new/ef-core-3.0/breaking-changes)de içerir.  
+Önemli bir sürüm olarak, EF Core 3.0 da varolan uygulamalar üzerinde olumsuz etkisi olabilir API iyileştirmeleri olan birkaç [kesme değişiklikleri](xref:core/what-is-new/ef-core-3.0/breaking-changes)içerir.  
 
-## <a name="linq-overhaul"></a>LINQ fazla mesafe
+## <a name="linq-overhaul"></a>LINQ revizyonu
 
-LINQ, IntelliSense ve derleme zamanı tür denetimi sunmak için zengin tür bilgilerinin avantajlarından yararlanarak tercih ettiğiniz .NET dilini kullanarak veritabanı sorguları yazmanızı sağlar.
-Ancak LINQ, rastgele ifadeler (Yöntem çağrıları veya işlemler) içeren sınırsız sayıda karmaşık sorgu yazmanızı de sağlar.
-Bu kombinasyonların nasıl işleneceği, LINQ sağlayıcıları için Ana zorluk dır.
+LINQ, intelliSense sunmak ve derleme zamanı türü denetimi sunmak için zengin tür bilgilerinden yararlanarak seçtiğiniz .NET dilini kullanarak veritabanı sorguları yazmanızı sağlar.
+Ancak LINQ, rasgele ifadeler (yöntem çağrıları veya işlemler) içeren sınırsız sayıda karmaşık sorgu yazmanızı da sağlar.
+Tüm bu kombinasyonların nasıl işleyeceğinilinq sağlayıcıları için en büyük zorluk.
 
-EF Core 3,0 ' de, LINQ sağlayıcımız, daha fazla sorgu desenini SQL 'e çevirmeyi, daha fazla durumda verimli sorgular oluşturmayı ve verimsiz sorguların algılanışlanmasını engellemeyi sağlayan bir şekilde yeniden tasarlanmıştır. Yeni LINQ sağlayıcısı, mevcut uygulamaları ve veri sağlayıcılarını bozmadan gelecek sürümlerde yeni sorgu özellikleri ve performans iyileştirmeleri sunabilediğimiz temel bir temelidir.
+EF Core 3.0'da, DAHA fazla sorgu deseninin SQL'e çevrilmesini, daha fazla durumda verimli sorgular oluşturmasını ve verimsiz sorguların algılanmamasını önlemek için LINQ sağlayıcımızı yeniden yeniden biçimlendirdik. Yeni LINQ sağlayıcısı, mevcut uygulamaları ve veri sağlayıcılarını bozmadan gelecek sürümlerde yeni sorgu yetenekleri ve performans iyileştirmeleri sunabileceğimiz temeldir.
 
-### <a name="restricted-client-evaluation"></a>Kısıtlanmış istemci değerlendirmesi
+### <a name="restricted-client-evaluation"></a>Kısıtlı istemci değerlendirmesi
 
-En önemli tasarım değişikliği, parametrelere dönüştürülemeyen veya SQL 'e çevrilemeyen LINQ ifadelerini nasıl işleytiğimiz ile aynı olmalıdır.
+En önemli tasarım değişikliği, parametrelere dönüştürülemeyen veya SQL'e çevrilemeyen LINQ ifadelerini nasıl işlediğimizle ilgilidir.
 
-Önceki sürümlerde, bir sorgunun hangi bölümlerinin SQL 'e çevrilebileceğini ve bu sorgunun geri kalanını istemcide yürütüldüğünü EF Core.
-Bu tür istemci tarafı yürütme, bazı durumlarda istenebilir, ancak çoğu durumda verimsiz sorgulara yol açabilir.
+Önceki sürümlerde, EF Core sorgunun hangi bölümlerinin SQL'e çevrilebileceğini belirlemiş ve sorgunun geri kalanını istemciüzerinde yürütmüştür.
+İstemci tarafı yürütme bu tür bazı durumlarda arzu edilir, ancak diğer birçok durumda verimsiz sorguları neden olabilir.
 
-Örneğin, EF Core 2,2 `Where()` çağrısındaki bir koşulu çeviremez, filtre olmadan bir SQL ifadesini yürütür, veritabanından tüm satırları aktardı ve sonra bunları bellek içinde filtreledi:
+Örneğin, EF Core 2.2 bir `Where()` çağrıda bir yüklemi çeviremiyorsa, filtresiz bir SQL deyimi yürüttü, tüm satırları veritabanından aktardı ve sonra bunları bellekte filtreledi:
 
 ``` csharp
 var specialCustomers = context.Customers
     .Where(c => c.Name.StartsWith(n) && IsSpecialCustomer(c));
 ```
 
-Bu, veritabanı az sayıda satır içeriyorsa, ancak veritabanı çok sayıda satır içeriyorsa önemli performans sorunlarına yol açabilir ve hatta uygulama başarısızlığından kaynaklanabilir.
+Veritabanı az sayıda satır içeriyorsa, ancak veritabanı çok sayıda satır içeriyorsa önemli performans sorunlarına ve hatta uygulama hatasına neden olabilir.
 
-EF Core 3,0 ' de, istemci değerlendirmesinin yalnızca en üst düzey projeksiyonde (temelde, `Select()`yapılan son çağrı) gerçekleşmesini kısıtlarız.
-EF Core 3,0, sorguda başka herhangi bir yere çevrilemeyen ifadeler algıladığında, çalışma zamanı özel durumu oluşturur.
+EF Core 3.0'da, istemci değerlendirmesini yalnızca üst düzey projeksiyonda (aslında son `Select()`çağrı) gerçekleşmesi için kısıtladık.
+EF Core 3.0 sorguda başka hiçbir yerde çevrilemez ifadeler algılar, bir çalışma zamanı özel durum atar.
 
-Önceki örnekte olduğu gibi, istemci üzerindeki bir koşul koşulunu değerlendirmek için, geliştiricilerin artık sorgunun değerlendirmesini LINQ to Objects için açıkça geçiş yapması gerekir:
+Önceki örnekte olduğu gibi istemci üzerinde bir yüklem koşulunu değerlendirmek için, geliştiricilerin artık sorgunun değerlendirmesini linq'e nesnelere açıkça değiştirmeleri gerekir:
 
 ``` csharp
 var specialCustomers = context.Customers
@@ -53,27 +53,27 @@ var specialCustomers = context.Customers
     .Where(c => IsSpecialCustomer(c));
 ```
 
-Bunun var olan uygulamaları nasıl etkileyebileceği hakkında daha fazla ayrıntı için bkz. [son değişiklikler belgeleri](xref:core/what-is-new/ef-core-3.0/breaking-changes#linq-queries-are-no-longer-evaluated-on-the-client) .
+Bunun varolan uygulamaları nasıl etkileyebileceği hakkında daha fazla ayrıntı için [sondaki değişiklikler belgelerine](xref:core/what-is-new/ef-core-3.0/breaking-changes#linq-queries-are-no-longer-evaluated-on-the-client) bakın.
 
-### <a name="single-sql-statement-per-linq-query"></a>LINQ sorgusu başına tek SQL ekstresi
+### <a name="single-sql-statement-per-linq-query"></a>LINQ sorgusu başına tek SQL deyimi
 
-Tasarımın 3,0 ' de önemli ölçüde değiştiği başka bir yönü de her LINQ sorgusu için her zaman tek bir SQL ekstresi oluşturmamız. Önceki sürümlerde, bazı durumlarda birden çok SQL deyimi oluşturmak için kullanıyoruz. Bu, çevrilmiş `Include()`, toplama gezinti özellikleri ve alt sorgularda belirli desenleri izleyen çevrilmiş sorgular üzerinde çağrılar. Bu, bazı durumlarda kullanışlı olsa da, `Include()` için çok fazla veri göndermekten kaçınmaya yardımcı olsa da, uygulama karmaşıktır ve son derece verimsiz davranışlar (N + 1 sorgu) ile sonuçlanır. Birden çok sorgu arasında döndürülen verilerin büyük olasılıkla tutarsız olduğu durumlar vardı.
+3.0'da önemli ölçüde değişen tasarımın bir diğer yönü de, artık LINQ sorgusu başına her zaman tek bir SQL deyimi oluşturmamızdır. Önceki sürümlerde, belirli durumlarda birden çok SQL deyimi, koleksiyon gezinti özellikleri yle ilgili çevrilmiş `Include()` çağrılar ve alt sorgularla belirli desenleri izleyen çevrilmiş sorgular oluşturmak için kullanılırdık. Bu bazı durumlarda uygun olmasına `Include()` rağmen ve hatta tel üzerinden gereksiz veri göndermemek yardımcı oldu, uygulama karmaşık tı ve bazı son derece verimsiz davranışlar (N +1 sorguları) sonuçlandı. Birden çok sorguda döndürülen verilerin tutarsız olabileceği durumlar vardı.
 
-İstemci değerlendirmesine benzer şekilde, EF Core 3,0 bir LINQ sorgusunu tek bir SQL ifadesine çeviremiyorsa, çalışma zamanı özel durumu oluşturur. Ancak birleşimli tek bir sorgu için birden çok sorgu oluşturmak için kullanılan yaygın desenlerin çoğunu çevirdiğimiz EF Core yaptık.
+İstemci değerlendirmesine benzer şekilde, EF Core 3.0 bir LINQ sorgusunu tek bir SQL deyimine çeviremezse, çalışma zamanı özel bir durum oluşturur. Ancak EF Core'u, birden çok sorguyu JO'larla tek bir sorguya oluşturmak için kullanılan ortak desenlerin çoğunu çevirebilme özelliğine sahip kıldık.
 
 ## <a name="cosmos-db-support"></a>Cosmos DB desteği
 
-EF Core için Cosmos DB sağlayıcısı, EF programlama modeliyle tanıdık geliştiricilerin, uygulama veritabanı olarak Azure Cosmos DB kolayca hedeflemesini sağlar. Amaç, küresel dağıtım, "her zaman açık" kullanılabilirlik, elastik ölçeklenebilirlik ve düşük gecikme süresi gibi Cosmos DB avantajlarından bazılarını, hatta .NET geliştiricilerine daha erişilebilir hale getirmek için kullanılır. Sağlayıcı, Cosmos DB içindeki SQL API 'sine karşı otomatik değişiklik izleme, LINQ ve değer dönüştürmeleri gibi EF Core özelliklerinin çoğunu mümkün bir şekilde sunar.
+EF Core için Cosmos DB sağlayıcısı, EF programlama modeline aşina olan geliştiricilerin Azure Cosmos DB'yi uygulama veritabanı olarak kolayca hedeflemesini sağlar. Amaç, küresel dağıtım gibi Cosmos DB'nin bazı avantajlarını ,.her zaman açık, elastik ölçeklenebilirlik ve düşük gecikme süresini ,.NET geliştiricileri için daha da erişilebilir hale getirmektir. Sağlayıcı, Cosmos DB'deki SQL API'ye karşı otomatik değişiklik izleme, LINQ ve değer dönüşümleri gibi çoğu EF Core özelliğine olanak tanır.
 
-Daha fazla bilgi için [Cosmos DB sağlayıcı belgelerine](xref:core/providers/cosmos/index) bakın.
+Daha fazla ayrıntı için [Cosmos DB sağlayıcı belgelerine](xref:core/providers/cosmos/index) bakın.
 
-## <a name="c-80-support"></a>C#8,0 desteği
+## <a name="c-80-support"></a>C# 8.0 desteği
 
-EF Core 3,0, [8,0 ' deki C# yeni özelliklerden](https://docs.microsoft.com/dotnet/csharp/whats-new/csharp-8)faydalanır:
+EF Core 3.0 C # [8.0 yeni özellikler](https://docs.microsoft.com/dotnet/csharp/whats-new/csharp-8)bir çift yararlanır:
 
-### <a name="asynchronous-streams"></a>Zaman uyumsuz akışlar
+### <a name="asynchronous-streams"></a>Asenkron akarsular
 
-Zaman uyumsuz sorgu sonuçları artık yeni standart `IAsyncEnumerable<T>` arabirimi kullanılarak kullanıma sunulmuştur ve `await foreach`kullanılarak tüketilebilir.
+Asynchronous sorgu sonuçları artık yeni `IAsyncEnumerable<T>` standart arabirim kullanılarak `await foreach`açıklanır ve .
 
 ``` csharp
 var orders =
@@ -87,13 +87,13 @@ await foreach(var o in orders.AsAsyncEnumerable())
 }
 ```
 
-Daha fazla bilgi için [ C# belgelerindeki zaman uyumsuz akışlara](https://docs.microsoft.com/dotnet/csharp/whats-new/csharp-8#asynchronous-streams) bakın.
+Daha fazla ayrıntı için [C# belgelerindeki eşzamanlı akışlara](https://docs.microsoft.com/dotnet/csharp/whats-new/csharp-8#asynchronous-streams) bakın.
 
 ### <a name="nullable-reference-types"></a>Boş değer atanabilir başvuru türleri
 
-Kodunuzda bu yeni özellik etkinleştirildiğinde EF Core, başvuru türü özelliklerinin null olduğunu inceler ve veritabanındaki ilgili sütunlara ve ilişkilere uygular: null yapılamayan başvuruların özelliklerinin özellikleri `[Required]` veri ek açıklaması özniteliğine sahip gibi değerlendirilir.
+Bu yeni özellik kodunuzda etkinleştirildiğinde, EF Core başvuru türü özelliklerinin nullable'ını inceler ve veritabanındaki ilgili sütunlara ve ilişkilere uygular: `[Required]` nullable olmayan başvuru türlerinin özellikleri, veri ek açıklama özelliğine sahipmiş gibi değerlendirilir.
 
-Örneğin, aşağıdaki sınıfta, `string?` türü olarak işaretlenen özellikler isteğe bağlı olarak yapılandırılır, ancak `string` gerekli olarak yapılandırılır:
+Örneğin, aşağıdaki sınıfta, tür `string?` olarak işaretlenmiş özellikler isteğe bağlı olarak `string` yapılandırılırken, gerektiği gibi yapılandırılacaktır:
 
 ``` csharp
 public class Customer
@@ -105,15 +105,15 @@ public class Customer
 }
 ```
 
-Daha fazla bilgi için EF Core belgelerinde [null yapılabilir başvuru türleriyle çalışma](xref:core/miscellaneous/nullable-reference-types) konusuna bakın.
+Daha fazla ayrıntı için EF Core belgelerinde [geçersiz başvuru türleri ile çalışma](xref:core/miscellaneous/nullable-reference-types) hakkında bilgi verilir.
 
-## <a name="interception-of-database-operations"></a>Veritabanı işlemlerinin yakaçıkarılması
+## <a name="interception-of-database-operations"></a>Veritabanı işlemlerinin engellenmesi
 
-EF Core 3,0 ' deki yeni yakama API 'SI, EF Core normal işleminin bir parçası olarak düşük düzey veritabanı işlemleri gerçekleşdiğinde otomatik olarak çağrılması için özel mantık sağlamaya olanak sağlar. Örneğin, bağlantılar açılırken, işlemler uygulanırken veya komutları yürütürken.
+EF Core 3.0'daki yeni durdurma API'si, EF Core'un normal çalışmasının bir parçası olarak düşük düzeyli veritabanı işlemleri gerçekleştiğinde özel mantığın otomatik olarak çağrılmasını sağlar. Örneğin, bağlantıları açarken, hareketler işlerken veya komutları yürüterken.
 
-EF 6 ' da var olan ele geçirme özelliklerine benzer şekilde, kırıcılar, işlemleri gerçekleşmeden önce veya sonra ele aktarmanıza olanak tanır. Bunları gerçekleşmeden önce zaman geçitirsiniz, yürütmeye göre yürütme ve yedek mantığdan alternatif sonuçlar sağlama izni verilir.
+EF 6'da bulunan durdurma özelliklerine benzer şekilde, durdurucular da operasyonlar gerçekleşmeden önce veya sonra durdurmanızı sağlar. Bunlar olmadan önce onları yakaladığınızda, yürütmeyi by-pass ve durdurma mantığından alternatif sonuçlar sağlamanıza izin verilir.
 
-Örneğin, komut metnini işlemek için bir `IDbCommandInterceptor`oluşturabilirsiniz:
+Örneğin, komut metnini işlemek için aşağıdakileri `IDbCommandInterceptor`oluşturabilirsiniz:
 
 ``` csharp
 public class HintCommandInterceptor : DbCommandInterceptor
@@ -130,7 +130,7 @@ public class HintCommandInterceptor : DbCommandInterceptor
 }
 ```
 
-Ve `DbContext`kaydedin:
+Ve ile kaydedin: `DbContext`
 
 ``` csharp
 services.AddDbContext(b => b
@@ -138,18 +138,18 @@ services.AddDbContext(b => b
     .AddInterceptors(new HintCommandInterceptor()));
 ```
 
-## <a name="reverse-engineering-of-database-views"></a>Veritabanı görünümlerinin tersine mühendislik
+## <a name="reverse-engineering-of-database-views"></a>Veritabanı görünümlerinin ters mühendislik
 
-Veritabanından okunabilecek ancak güncelleştirilmemiş verileri temsil eden sorgu türleri, [anahtarsız varlık türleri](xref:core/modeling/keyless-entity-types)olarak yeniden adlandırıldı.
-Çoğu senaryoda veritabanı görünümlerini eşlemek için mükemmel bir uyum olduğundan, EF Core artık tersine mühendislik veritabanı görünümlerinde otomatik olarak anahtarsız varlık türleri oluşturur.
+Veritabanından okunabilen ancak güncelleştirilmeyen verileri temsil eden sorgu türleri [anahtarsız varlık türlerine](xref:core/modeling/keyless-entity-types)yeniden adlandırıldı.
+Çoğu senaryoda veritabanı görünümlerini eşleme için mükemmel bir uyum sağladıklarından, EF Core artık veritabanı görünümlerini tersine çevirdiğinde anahtarsız varlık türleri oluşturur.
 
-Örneğin, [DotNet EF komut satırı aracını](xref:core/miscellaneous/cli/dotnet) kullanarak şunu yazabilirsiniz:
+Örneğin, [dotnet ef komut satırı aracını](xref:core/miscellaneous/cli/dotnet) kullanarak yazabilirsiniz:
 
 ```dotnetcli
 dotnet ef dbcontext scaffold "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
 ```
 
-Ve araç artık, anahtarlar olmadan görünümler ve tablolar için fkatlama türlerini otomatik olarak dolandırıcılardır:
+Ve araç artık anahtarsız görünümler ve tablolar için otomatik olarak iskele tipleri olacaktır:
 
 ``` csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -167,11 +167,11 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 
-## <a name="dependent-entities-sharing-the-table-with-the-principal-are-now-optional"></a>Tabloyu sorumlu ile paylaşan bağımlı varlıklar artık isteğe bağlıdır
+## <a name="dependent-entities-sharing-the-table-with-the-principal-are-now-optional"></a>Tabloyu anaparayla paylaşan bağımlı varlıklar artık isteğe bağlıdır
 
-EF Core 3,0 ' den başlayarak, `OrderDetails` aynı tabloyla `Order` veya açıkça eşlenmişse, birincil anahtar null yapılabilir sütunlara eşleneceğini hariç, `OrderDetails` ve tüm `OrderDetails` özellikleri olmadan bir `Order` eklemek mümkün olacaktır.
+EF Core 3.0 ile `OrderDetails` başlayarak, `Order` sahip olunan veya açıkça aynı tabloya eşlenmişse, birincil anahtar hariç, bir `Order` özellik olmadan ve `OrderDetails` tüm `OrderDetails` özellikleri niçin geçersiz sütunlara eşlenecektir.
 
-Sorgulama yaparken, gerekli özelliklerinden herhangi birinin bir değere sahip olmaması veya birincil anahtar ve tüm `null`Özellikler ' in yanı sıra gerekli özellikleri yoksa EF Core `OrderDetails` `null` olarak ayarlar.
+Sorgulanırken, EF Core `OrderDetails` `null` gerekli özelliklerinden herhangi birinin bir değeri yoksa veya birincil anahtar dışında gerekli özellikleri yoksa `null`ve tüm özellikleri.
 
 ``` csharp
 public class Order
@@ -189,18 +189,18 @@ public class OrderDetails
 }
 ```
 
-## <a name="ef-63-on-net-core"></a>.NET Core üzerinde EF 6,3
+## <a name="ef-63-on-net-core"></a>EF 6.3 üzerinde .NET Core
 
-Bu aslında EF Core 3,0 özelliği değildir, ancak geçerli müşterilerimizin birçoğu için önemli olduğunu düşündük.
+Bu gerçekten bir EF Core 3.0 özelliği değil, ama biz mevcut müşterilerinin çoğu için önemli olduğunu düşünüyorum.
 
-Mevcut birçok uygulamanın daha önceki EF sürümlerini kullandığını ve yalnızca .NET Core 'un avantajlarından yararlanmak için EF Core aktarmak için önemli bir çaba gerektirebilir.
-Bu nedenle, .NET Core 3,0 ' de çalıştırmak için en yeni EF 6 sürümü bağlantı noktasına karar verdik.
+Varolan birçok uygulamanın EF'nin önceki sürümlerini kullandığını ve bunları yalnızca .NET Core'dan yararlanmak için EF Core'a taşımanın önemli bir çaba gerektirebileceğini biliyoruz.
+Bu nedenle, .NET Core 3.0 üzerinde çalıştırmak için EF 6 en yeni sürümünü bağlantı noktasına karar verdi.
 
-Daha ayrıntılı bilgi için bkz. [EF 6 ' daki](xref:ef6/what-is-new/index)yenilikler.
+Daha fazla bilgi [için, EF 6'daki yeniliklere](xref:ef6/what-is-new/index)bakın.
 
-## <a name="postponed-features"></a>Ertelenmiş Özellikler
+## <a name="postponed-features"></a>Ertelenen özellikler
 
-EF Core 3,0 için başlangıçta planlanmış bazı özellikler gelecek sürümlere ertelendi:
+Başlangıçta EF Core 3.0 için planlanan bazı özellikler gelecek sürümlere ertelendi:
 
-- [#2725](https://github.com/aspnet/EntityFrameworkCore/issues/2725)olarak izlenen, geçişler içindeki bir modelin parçalarını yok saybilme özelliği.
-- İki ayrı sorun olarak izlenen özellik paketi varlıkları: paylaşılan türdeki varlıklar hakkında [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914) ve dizinli özellik eşleme desteği hakkında [#13610](https://github.com/aspnet/EntityFrameworkCore/issues/13610) .
+- [Geçişlerde](https://github.com/aspnet/EntityFrameworkCore/issues/2725)bir modelin bölümlerini yok sayma yeteneği, #2725 olarak izlenir.
+- Mülkiyet çanta varlıklar, iki ayrı konu olarak izlenen: paylaşılan tür varlıklar hakkında [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914) ve endeksli özellik haritalama desteği hakkında [#13610.](https://github.com/aspnet/EntityFrameworkCore/issues/13610)

@@ -1,23 +1,23 @@
 ---
-title: Zaman uyumsuz kaydetme-EF Core
+title: Asynchronous Kaydetme - EF Core
 author: rowanmiller
 ms.date: 01/24/2017
 ms.assetid: b64a606e-ecd9-4807-829a-b6ec05ade33f
 uid: core/saving/async
 ms.openlocfilehash: 0823b86f0579dd3e42f6bd2aebfb433d3cbe00ab
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417644"
 ---
 # <a name="asynchronous-saving"></a>Zaman Uyumsuz Kaydetme
 
-Zaman uyumsuz kaydetme, değişiklikler veritabanına yazılırken bir iş parçacığının engellenmesini önler. Bu, bir kalın istemci uygulamasının Kullanıcı arabirimini dondurmaktan kaçınmak için yararlı olabilir. Zaman uyumsuz işlemler, bir Web uygulamasındaki aktarım hızını da artırabilir ve bu durumda iş parçacığı, veritabanı işlemi tamamlanırken diğer isteklere hizmet vermek için serbest bırakılabilirler. Daha fazla bilgi için bkz. [zaman uyumsuz C#programlama ](https://docs.microsoft.com/dotnet/csharp/async).
+Eşiş yarası kaydetme, değişiklikler veritabanına yazılırken iş parçacığının engellenmesini önler. Bu, kalın istemci uygulamasının kullanıcı kullanıcı ayını dondurmayı önlemek için yararlı olabilir. Eşiş işlemleri, veritabanı işlemi tamamlarken iş parçacığının diğer isteklere hizmet vermek üzere serbest bırakılabildiği bir web uygulamasında iş parçacığının da artırılabilir. Daha fazla bilgi için [C# içinde Asynchronous Programming 'e](https://docs.microsoft.com/dotnet/csharp/async)bakın.
 
 > [!WARNING]  
-> EF Core, aynı bağlam örneğinde çalıştırılan birden çok paralel işlemi desteklemez. Sonraki işleme başlamadan önce her zaman bir işlemin tamamlanmasını beklemeniz gerekir. Bu, genellikle her zaman uyumsuz işlem üzerinde `await` anahtar sözcüğü kullanılarak yapılır.
+> EF Core, aynı bağlam örneğinde çalıştırılan birden çok paralel işlemi desteklemez. Her zaman bir sonraki işlem başlamadan önce tamamlanması için bir işlem için beklemeniz gerekir. Bu genellikle her eşzamanlı `await` işlemde anahtar kelime kullanılarak yapılır.
 
-Entity Framework Core, `DbContext.SaveChanges()`için zaman uyumsuz bir alternatif olarak `DbContext.SaveChangesAsync()` sağlar.
+Varlık Framework `DbContext.SaveChangesAsync()` Core' a asynchronous alternatif olarak `DbContext.SaveChanges()`sağlar.
 
 [!code-csharp[Main](../../../samples/core/Saving/Async/Sample.cs#Sample)]

@@ -1,33 +1,33 @@
 ---
-title: Bağlantısı kesilen varlıklarla çalışma-EF6
+title: Bağlantısı kesilen varlıklarla çalışma - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 12138003-a373-4817-b1b7-724130202f5f
 ms.openlocfilehash: f1ce44e7b00ec4c60a81ed850ce5c9d866495e1b
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78419528"
 ---
-# <a name="working-with-disconnected-entities"></a>Bağlantısı kesilmiş varlıklarla çalışma
-Entity Framework tabanlı bir uygulamada, izlenen varlıklara uygulanan değişikliklerin saptanmasından bağlam sınıfı sorumludur. SaveChanges yöntemini çağırmak, bağlamı tarafından izlenen değişiklikleri veritabanına devam ettirir. N katmanlı uygulamalarla çalışırken, varlık nesneleri genellikle bağlamla bağlantısı kesildiğinde değiştirilir ve değişikliklerin nasıl izleneceğini ve bu değişiklikleri içeriğe geri rapor etme kararı vermeniz gerekir. Bu konuda, bağlantısı kesilen varlıklarla Entity Framework kullanılırken kullanılabilen farklı seçenekler açıklanmaktadır.   
+# <a name="working-with-disconnected-entities"></a>Bağlantısı kesilen varlıklarla çalışma
+Varlık Çerçevesi tabanlı bir uygulamada, izlenen varlıklara uygulanan değişiklikleri algılamaktan bir bağlam sınıfı sorumludur. SaveChanges yöntemini çağırmak, bağlam tarafından izlenen değişiklikleri veritabanına kadar devam eder. N katmanlı uygulamalarla çalışırken, varlık nesneleri genellikle bağlamdan bağlantısı kesilirken değiştirilir ve değişiklikleri nasıl izleyeceğinize ve bu değişiklikleri içeriğe nasıl bildireceğine karar vermeniz gerekir. Bu konu, bağlantısı kesilen varlıklarla Varlık Çerçevesi kullanırken kullanılabilen farklı seçenekleri tartışır.   
 
 ## <a name="web-service-frameworks"></a>Web hizmeti çerçeveleri
 
-Web hizmetleri teknolojileri, genellikle, bağlantısı kesilen nesneler üzerinde değişiklikleri kalıcı hale getirmek için kullanılabilen desenleri destekler. Örneğin, ASP.NET Web API 'SI, bir veritabanındaki bir nesneye yapılan değişiklikleri sürdürmek için EF çağrıları içerebilen kod denetleyici eylemleri sağlar. Aslında, Visual Studio 'da Web API 'SI araçları, Entity Framework 6 modelinizdeki bir Web API denetleyicisinin dağlamayı kolaylaştırır. Daha fazla bilgi için bkz. [Entity Framework 6 Ile Web API 'si kullanma](https://docs.microsoft.com/aspnet/web-api/overview/data/using-web-api-with-entity-framework/).   
+Web hizmetleri teknolojileri genellikle tek tek bağlantısı kesilen nesnelerdeki değişiklikleri sürdürmek için kullanılabilecek desenleri destekler. Örneğin, ASP.NET Web API, veritabanındaki bir nesnede yapılan değişiklikleri sürdürmek için EF'ye yapılan çağrıları da içerebilen denetleyici eylemlerini kodlayanıza olanak tanır. Aslında, Visual Studio'daki Web API aracılama, Entity Framework 6 modelinizden bir Web API denetleyicisi satın almanızı kolaylaştırır. Daha fazla bilgi için, [Entity Framework 6 ile Web API'yi kullanarak](https://docs.microsoft.com/aspnet/web-api/overview/data/using-web-api-with-entity-framework/)bakın.   
 
-Tarihsel olarak, [WCF veri Hizmetleri](https://docs.microsoft.com/dotnet/framework/data/wcf/create-a-data-service-using-an-adonet-ef-data-wcf) ve [rıa Hizmetleri](https://docs.microsoft.com/previous-versions/dotnet/wcf-ria/ee707344(v=vs.91))gibi Entity Framework tümleştirme Için sunulan başka birçok Web hizmeti teknolojisi de mevcuttur.
+Tarihsel olarak, [WCF Veri Hizmetleri](https://docs.microsoft.com/dotnet/framework/data/wcf/create-a-data-service-using-an-adonet-ef-data-wcf) ve [RIA Hizmetleri](https://docs.microsoft.com/previous-versions/dotnet/wcf-ria/ee707344(v=vs.91))gibi Entity Framework ile entegrasyon sunan birkaç diğer Web hizmetleri teknolojileri olmuştur.
 
-## <a name="low-level-ef-apis"></a>Düşük düzey EF API 'Leri
+## <a name="low-level-ef-apis"></a>Düşük seviyeli EF API'leri
 
-Var olan n katmanlı bir çözümü kullanmak istemiyorsanız veya bir Web API hizmetlerindeki denetleyici eyleminde ne olduğunu özelleştirmek istiyorsanız Entity Framework, bağlantısı kesilen bir katmanda yapılan değişiklikleri uygulamanıza izin veren API 'Ler sağlar. Daha fazla bilgi için bkz. [ekleme, iliştirme ve varlık durumu](~/ef6/saving/change-tracking/entity-state.md).  
+Varolan bir n katmanlı çözüm kullanmak istemiyorsanız veya bir Web API hizmetlerinde denetleyici eyleminde neler olduğunu özelleştirmek istiyorsanız, Entity Framework bağlantısı kesilmiş bir katmanda yapılan değişiklikleri uygulamanıza olanak tanıyan API'ler sağlar. Daha fazla bilgi için [bkz.](~/ef6/saving/change-tracking/entity-state.md)  
 
-## <a name="self-tracking-entities"></a>Kendi kendine Izleme varlıkları  
+## <a name="self-tracking-entities"></a>Kendi Kendini Takip Eden Varlıklar  
 
-EF bağlamıyla bağlantısı kesilirken varlıkların rastgele grafiklerde yapılan değişiklikleri izlemek, sabit bir sorundur. Bu uygulamayı çözme denemesinden biri kendi kendini Izleyen varlıkların kod oluşturma şablonudur. Bu şablon, bağlı olmayan bir katmanda, varlıkların kendisinde durum olarak yapılan değişiklikleri izlemek için mantığı içeren varlık sınıfları oluşturur. Bu değişiklikleri bir bağlamda uygulamak için bir genişletme yöntemleri kümesi de oluşturulur.
+EF bağlamından bağlantısı kesilirken varlıkların rasgele grafikleri üzerindeki değişiklikleri izlemek zor bir sorundur. Bunu çözme girişimlerinden biri de Kendi Kendine İzleme Varlıklar kod oluşturma şablonuydu. Bu şablon, bağlantısı kesilmiş bir katmanda yapılan değişiklikleri varlıkların kendilerinde durum olarak izlemek için mantık içeren varlık sınıfları oluşturur. Bu değişiklikleri bir içeriğe uygulamak için bir dizi uzantı yöntemi de oluşturulur.
 
-Bu şablon, EF Designer kullanılarak oluşturulan modellerle birlikte kullanılabilir, ancak Code First modelleriyle kullanılamaz. Daha fazla bilgi için bkz. [kendi kendine Izleme varlıkları](self-tracking-entities/index.md).  
+Bu şablon, EF Designer kullanılarak oluşturulan modellerde kullanılabilir, ancak Code First modelleri ile kullanılamaz. Daha fazla bilgi için, [Kendi Kendini İzleme Varlıkları'na](self-tracking-entities/index.md)bakın.  
 
 > [!IMPORTANT]
-> Artık kendi kendine izleme varlıkları şablonunu kullanmanızı önermiyoruz. Yalnızca var olan uygulamaları desteklemek için kullanılabilir olmaya devam edecektir. Uygulamanız, bağlantılı olmayan grafik grafiklerle çalışmayı gerektiriyorsa, bu, topluluk tarafından daha etkin bir şekilde geliştirilmiş olan ve alt düzey değişiklik izleme API 'Leri kullanılarak özel kod yazma gibi, kendini Izlemeye benzer bir teknoloji olan, [izleyicileri oluşturan varlıklar](https://trackableentities.github.io/)gibi diğer alternatifleri göz önünde bulundurun.
+> Artık kendi kendine izleme varlıkları şablonu kullanmanızı önermiyoruz. Yalnızca varolan uygulamaları desteklemek için kullanılabilir olmaya devam edecektir. Uygulamanız, varlıkların bağlantısı kesilmiş grafiklerle çalışmayı gerektiriyorsa, topluluk tarafından daha aktif olarak geliştirilen Self-Tracking-Tntities'a benzer bir teknoloji olan [İzlenebilir Varlıklar](https://trackableentities.github.io/)veya düşük düzeyli değişiklik izleme API'lerini kullanarak özel kod yazma gibi diğer alternatifleri göz önünde bulundurun.

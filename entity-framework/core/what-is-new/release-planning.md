@@ -1,110 +1,110 @@
 ---
-title: Yayın planlamasını EF Core
+title: EF Core sürüm planlaması
 author: ajcvickers
 ms.date: 01/28/2020
 uid: core/what-is-new/release_planning.md
 ms.openlocfilehash: 71045b8d49c319a73f74443612bedd84ee33ab8a
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417338"
 ---
 # <a name="release-planning-process"></a>Sürüm planlama süreci
 
-Genellikle belirli bir yayına gitmek için belirli özellikleri nasıl seçtiğimiz hakkında sorular sunuyoruz.
-Bu belge, kullandığımız süreci özetler.
-Planlamada daha iyi yollar bulduğumuz sürece süreç sürekli gelişiyor, ancak genel fikirler aynı kalır.
+Sık sık belirli bir sürümde belirli özellikleri nasıl seçtiğimiz hakkında sorular alabiliriz.
+Bu belge, kullandığımız işlemi özetliyor.
+Planlamak için daha iyi yollar buldukça süreç sürekli olarak gelişmektedir, ancak genel fikirler aynı kalır.
 
 ## <a name="different-kinds-of-releases"></a>Farklı sürüm türleri
 
-Farklı sürüm türleri farklı türlerde değişiklikler içerir.
-Buna karşılık, yayın planlaması farklı sürüm türlerine göre farklılık gösterir.
+Farklı türde sürümler farklı türde değişiklikler içerir.
+Bu da sürüm planlaması serbest bırakma farklı türleri için farklı olduğu anlamına gelir.
 
-### <a name="patch-releases"></a>Düzeltme Eki sürümleri
+### <a name="patch-releases"></a>Yama bültenleri
 
-Düzeltme Eki sürümleri yalnızca sürümün "Patch" bölümünü değiştirir.
-Örneğin, 3,1 EF Core. **1** EF Core 3,1 ' de bulunan düzeltme eki eklenen bir sürümdür. **0**.
+Yama sürümleri sürümün yalnızca "yama" kısmını değiştirir.
+Örneğin, EF Core 3.1. **1,** EF Core 3.1'de bulunan sorunları yakan bir sürümdür. 0 ' dan **fazla.**
 
-Düzeltme Eki sürümleri, kritik müşteri hatalarını gidermeye yöneliktir.
-Bu, düzeltme sürümlerinin yeni özellikler içermediği anlamına gelir.
-Özel durumlar dışında, yama yayımlarıyla API değişikliklerine izin verilmez.
+Yama sürümleri kritik müşteri hatalarını düzeltmek için tasarlanmıştır.
+Bu, yama sürümlerinin yeni özellikler içermemesi anlamına gelir.
+Özel durumlar dışında yama sürümlerinde API değişikliklerine izin verilmez.
 
 Bir yama sürümünde değişiklik yapmak için çubuk çok yüksektir.
-Bunun nedeni, düzeltme sürümlerinin yeni hatalar sunmaz önemli öneme sahiptir.
-Bu nedenle, karar işlemi yüksek değeri ve düşük riski vurgular.
+Bunun nedeni, yama sürümlerinin yeni hatalar getirmemesi açısından önemlidir.
+Bu nedenle, karar süreci yüksek değer ve düşük risk vurgulamaktadır.
 
-Şu durumlarda bir sorunun yaması daha olasıdır:
-  * Birden çok müşteriyi etkiliyor
-  * Önceki bir sürümden gerileme
-  * Hata veri bozulmasına neden oluyor
+Biz daha fazla bir sorun yama olasılığı vardır:
+  * Birden fazla müşteriyi etkiliyor
+  * Bir önceki sürümden bir gerileme
+  * Hata veri bozulmasına neden olur
 
-Şu durumlarda bir soruna düzeltme eki uygulama olasılığınız düşüktür:
-  * Makul geçici çözümler mevcuttur
-  * Bu düzeltmeyle, başka bir şeyi koparmadan yüksek risk vardır
-  * Hata bir köşe durumunda
+Bir sorunu düzeltme olasılığımız daha düşüktür:
+  * Makul geçici çözüm geçici çözüm
+  * Düzeltme başka bir şey kırma riski yüksektür
+  * Hata bir köşe çantasında.
 
-Bu çubuk, [uzun süreli destek (LTS)](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) sürümünün ömrü boyunca yavaş bir şekilde arttığında. Bunun nedeni, LTS 'nin kararlılığı vurgularken oluşur.
+Bu çubuk, [uzun vadeli bir destek (LTS)](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) sürümü ömrü boyunca kademeli olarak yükselir. Bunun nedeni LTS sürümlerinin kararlılığı vurgulamasıdır.
 
-Microsoft 'ta .NET yöneticileri tarafından bir sorunun düzeltme eki uygulanıp yapılmayacağı konusunda son karar.
+Bir sorunu düzeltmeme konusundaki son karar Microsoft'taki .NET Directors tarafından verilir.
 
-### <a name="minor-releases"></a>Küçük yayınlar
+### <a name="minor-releases"></a>Küçük sürümler
 
-Küçük yayınlar yalnızca sürümün "ikincil" kısmını değiştirir.
-Örneğin, EF Core 3. **1**0, EF Core 3 ' te geliştiren bir sürümdür. **0**. 0.
+Küçük sürümler, sürümün yalnızca "küçük" kısmını değiştirir.
+Örneğin, EF Core 3. **1**.0, EF Core 3'te geliştiren bir sürümdür. **0**.0.
 
-Küçük yayınlar:
-* , Önceki sürümün kalitesini ve özelliklerini geliştirmek için tasarlanmıştır
+Küçük sürümler:
+* Önceki sürümün kalitesini ve özelliklerini geliştirmeyi amaçlamaktadır
 * Genellikle hata düzeltmeleri ve yeni özellikler içerir
-* Kasıtlı olarak yapılan değişiklikleri dahil etme
-* NuGet 'e birkaç yayın öncesi önizleme gönderildi
+* Kasıtlı kırma değişikliklerini eklemeyin
+* NuGet'e itilen birkaç ön sürüm önizlemesi var
 
-### <a name="major-releases"></a>Ana yayınlar
+### <a name="major-releases"></a>Önemli sürümler
 
-Ana yayınlar EF "ana" sürüm numarasını değiştirir.
-Örneğin, EF Core **3**. 0,0, EF Core 2.2. x ' in üzerine büyük bir adım ileri getiren önemli bir sürümdür.
+Büyük sürümler EF "büyük" sürüm numarasını değiştirir.
+Örneğin, EF Core **3**.0.0, EF Core 2.2.x üzerinde büyük bir adım atan önemli bir sürümdür.
 
-Ana yayınlar:
-* , Önceki sürümün kalitesini ve özelliklerini geliştirmek için tasarlanmıştır
+Başlıca sürümler:
+* Önceki sürümün kalitesini ve özelliklerini geliştirmeyi amaçlamaktadır
 * Genellikle hata düzeltmeleri ve yeni özellikler içerir
-  * Yeni özelliklerden bazıları EF Core çalışması için temel değişiklikler olabilir
-* Genellikle kasıtlı olarak yapılan değişiklikleri dahil et
-  * Önemli değişiklikler, öğrendiğimiz EF Core gelişen bir parçasıdır
-  * Bununla birlikte, olası müşteri etkisi nedeniyle herhangi bir son değişiklik yapma konusunda çok dikkatli bir düşünün. Geçmişteki değişikliklere karşı çok ısruz olmuş olabilir. İleri giderek, uygulamaları kesen değişiklikleri en aza indirmek ve veritabanı sağlayıcılarını ve uzantılarını kesen değişiklikleri azaltmak için çaba duyuyoruz.
-* NuGet 'e çok sayıda yayın öncesi önizleme gönderildi
+  * Yeni özelliklerden bazıları, EF Core'un çalışma şeklindeki temel değişiklikler olabilir
+* Genellikle kasıtlı kesme değişiklikleri içerir
+  * Son dakika değişiklikleri, öğrendiğimiz gibi gelişen EF Core'un gerekli bir parçasıdır
+  * Ancak, potansiyel müşteri etkisi nedeniyle herhangi bir kırılma değişiklik yapma konusunda çok dikkatli düşünüyorum. Geçmişteki değişiklikleri kırmak konusunda çok agresif olabiliriz. İleriye dönük olarak, uygulamaları bozan değişiklikleri en aza indirmek ve veritabanı sağlayıcılarını ve uzantılarını kıran değişiklikleri azaltmak için çalışacağız.
+* NuGet'e itilen birçok ön sürüm önizlemesi var
 
-## <a name="planning-for-majorminor-releases"></a>Büyük/küçük yayınlar için planlama
+## <a name="planning-for-majorminor-releases"></a>Büyük/küçük sürümler için planlama
 
 ### <a name="github-issue-tracking"></a>GitHub sorun izleme
 
-GitHub ([https://github.com/dotnet/efcore](https://github.com/dotnet/efcore)), tüm EF Core planlama için Truth kaynağıdır.
+GitHub[https://github.com/dotnet/efcore](https://github.com/dotnet/efcore)( ) tüm EF Core planlaması için gerçeğin kaynağıdır.
 
-GitHub 'daki sorunlar şunlardır:
+GitHub'da sorunlar:
 
 * Bir durum
-  * [Açık](https://github.com/dotnet/efcore/issues) sorunlar giderilmemiş.
-  * [Kapatılan](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aclosed) sorunlar giderilmiştir.
-    * Düzeltilen tüm sorunlar [kapalı-sabit ile etiketlenir](https://github.com/dotnet/efcore/issues?q=is%3Aissue+label%3Aclosed-fixed+is%3Aclosed). Kapalı-fixed ile etiketlenmiş bir sorun düzeltildi ve birleştirildi, ancak yayımlanmamış olabilir.
-    * Diğer `closed-` Etiketler bir sorunu kapatmayla ilgili diğer nedenleri gösterir. Örneğin, yinelemeler kapalı-yinelenen ile etiketlendi.
-* Bir tür
-  * [Hatalar hataları temsil eder](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+label%3Atype-bug) .
-  * [Geliştirmeler](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+label%3Atype-enhancement) , yeni özellikleri veya mevcut özelliklerde daha iyi işlevselliği temsil eder.
-* Kilometre taşı
-  * [Kilometre Taşsız sorunlar](https://github.com/dotnet/efcore/issues?q=is%3Aopen+is%3Aissue+no%3Amilestone) takım tarafından değerlendiriliyor. Sorun ile ne yapacaklarınız henüz yapılmadı veya karardaki bir değişiklik göz önünde bulundurulmaktadır.
-  * [Biriktirme listesindeki sorunlar](https://github.com/dotnet/efcore/issues?q=is%3Aopen+is%3Aissue+milestone%3ABacklog) , EF ekibinin sonraki bir sürümde üzerinde çalışmayı düşünecağı öğelerdir
-    * Biriktirme listesindeki sorunlar, bu iş öğesinin bir sonraki sürüm için listede yüksek olduğunu belirten, bir [sonraki-for-for-Release ile etiketlenebilir](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+label%3Aconsider-for-next-release) .
-  * Sürümlü kilometre taşlarındaki açık sorunlar, takımın o sürümde çalışmayı planlıyor olan öğelerdir. Örneğin, [bunlar EF Core 5,0 ' de çalışmayı planladığımız sorunlardır](https://github.com/dotnet/efcore/issues?q=is%3Aopen+is%3Aissue+milestone%3A5.0.0).
-  * Sürümlü kilometre taşında kapatılan sorunlar, bu sürüm için tamamlanmış sorunlardır. Sürümün henüz yayımlanmadığını unutmayın. Örneğin, [bunlar EF Core 3,0 için tamamlanan sorunlardır](https://github.com/dotnet/efcore/issues?q=is%3Aissue+milestone%3A3.0.0+is%3Aclosed).
-* Oyları!
-  * Oylama, bir sorunun sizin için önemli olduğunu belirtmenin en iyi yoludur.
-  * Oylamak için, soruna bir "thumbs-up" 👍 eklemeniz yeterlidir. Örneğin, [bunlar en önemli sorunlardır](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc)
-  * Bu, değer eklediğinizi düşünüyorsanız, özelliğin ihtiyaç duymadığınız belirli nedenleri açıklayan yorum yapın. "+ 1" veya benzer yorum ekleme değeri eklemez.
+  * [Açık](https://github.com/dotnet/efcore/issues) sorunlar ele alınmadı.
+  * [Kapalı](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aclosed) sorunlar ele alındı.
+    * Düzeltilen tüm sorunlar [kapalı sabit ile etiketlenir.](https://github.com/dotnet/efcore/issues?q=is%3Aissue+label%3Aclosed-fixed+is%3Aclosed) Kapalı sabit etiketli bir sorun düzeltilir ve birleştirilir, ancak yayımlanmamış olabilir.
+    * Diğer `closed-` etiketler, bir sorunu kapatmak için başka nedenler gösterir. Örneğin, yinelenenler kapalı yinelenen olarak etiketlenir.
+* A türü
+  * [Hatalar](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+label%3Atype-bug) hataları temsil ediyor.
+  * [Geliştirmeler,](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+label%3Atype-enhancement) varolan özelliklerdeki yeni özellikleri veya daha iyi işlevselliği temsil eder.
+* Bir kilometre taşı
+  * [Kilometre taşı olmayan sorunlar](https://github.com/dotnet/efcore/issues?q=is%3Aopen+is%3Aissue+no%3Amilestone) takım tarafından değerlendirilmektedir. Konuyla ilgili ne yapılacağına ilişkin karar henüz verilmedi veya kararda bir değişiklik düşünüldü.
+  * [Biriktirme Listesi kilometre taşındaki sorunlar,](https://github.com/dotnet/efcore/issues?q=is%3Aopen+is%3Aissue+milestone%3ABacklog) EF ekibinin gelecekteki bir sürümde üzerinde çalışmayı düşüneceği öğelerdir
+    * Biriktirme listesindeki sorunlar, bu çalışma öğesinin bir sonraki sürüm listesinde üst sıralarda olduğunu belirten [bir sonraki sürüm için düşününle etiketlenebilir.](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+label%3Aconsider-for-next-release)
+  * Sürümlenmiş bir kilometre taşındaki açık sorunlar, takımın bu sürümde üzerinde çalışmayı planladığı öğelerdir. Örneğin, [bunlar EF Core 5.0 için çalışmayı planladığımız konulardır.](https://github.com/dotnet/efcore/issues?q=is%3Aopen+is%3Aissue+milestone%3A5.0.0)
+  * Sürümlenmiş bir kilometre taşındaki kapalı sorunlar, bu sürüm için tamamlanan sorunlardır. Sürümün henüz yayımlanmamış olabileceğini unutmayın. Örneğin, [bunlar EF Core 3.0 için tamamlanan sorunlardır.](https://github.com/dotnet/efcore/issues?q=is%3Aissue+milestone%3A3.0.0+is%3Aclosed)
+* Oy!
+  * Oylama, bir sorunun sizin için önemli olduğunu göstermenin en iyi yoludur.
+  * Oy vermek için, konuya bir "thumbs-up" 👍 eklemeniz gerekiyor. Örneğin, [bunlar en çok oylanan konulardır](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc)
+  * Değer kattığını düşünüyorsanız, lütfen özelliğe ihtiyacınız olan belirli nedenleri açıklayan yorum da yapın. "+1" veya benzeri yorum lama değer katmaz.
 
-### <a name="the-planning-process"></a>Planlama işlemi
+### <a name="the-planning-process"></a>Planlama süreci
 
-Planlama işlemi, biriktirme listesinden yalnızca en çok istenen özelliklerden yararlanılarak daha fazla yer alır.
-Bunun nedeni birden çok paydaşdan birden çok farklı şekilde geri bildirim topladığımyız.
-Daha sonra aşağıdakileri temel alarak bir yayın şekilliyoruz:
+Planlama işlemi, biriktirme listesinin en çok istenen özelliklerini almaktan daha fazla ilgilidir.
+Bunun nedeni, birden çok paydaştan birden çok şekilde geri bildirim toplamamızdır.
+Daha sonra bir sürümü şu temele göre şekillendiriz:
 
 * Müşterilerden giriş
 * Diğer paydaşlardan giriş
@@ -114,14 +114,14 @@ Daha sonra aşağıdakileri temel alarak bir yayın şekilliyoruz:
 
 Sorduğumuz sorulardan bazıları şunlardır:
 
-1. **Kaç geliştirici özelliği kullanacağınızı ve uygulamalarını ya da deneyimlerini ne kadar daha iyi hale getireceğinizi düşünüyorsunuz?** Bu soruyu yanıtlamak için birçok kaynaktan geri bildirim topladık. sorunların açıklamaları ve oyları bu kaynaklardan biridir. Önemli müşterilerle belirli görevlendirmeler başka bir öneme sahiptir.
+1. **Kaç geliştiriciler bu özelliği kullanacağını ve ne kadar daha iyi kendi uygulamaları veya deneyim yapacak düşünüyorum?** Bu soruyu cevaplamak için, birçok kaynaktan geri bildirim toplarız — Yorumlar ve oylar bu kaynaklardan biridir. Önemli müşterilerle belirli etkileşimler de başka bir şeydir.
 
-2. **Bu özelliği henüz uygulamadığımızda kişilerin kullanabileceği geçici çözümler nelerdir?** Örneğin, birçok geliştirici, yerel çoktan çoğa desteğin olmaması için bir JOIN tablosunu eşleyebilir. Kuşkusuz, tüm geliştiriciler bunu yapmak istememiz, ancak pek çok can ve kararımız bir faktör olarak sayılır.
+2. **Bu özelliği henüz uygulamazsak, kişilerin kullanabileceği geçici çözüm nedir?** Örneğin, birçok geliştirici, yerel çok-çok destek eksikliğini aşmak için bir birleştirme tablosunu eşleyebilir. Açıkçası, tüm geliştiriciler bunu yapmak istiyorum, ama birçok olabilir, ve bu bizim kararda bir faktör olarak sayar.
 
-3. **Bu özelliğin uygulanması, diğer özellikleri uygulamaya yaklaştırmak üzere EF Core mimarisini geliştirsin mi?** Diğer özellikler için yapı taşları görevi gören özellikleri tercih ederiz. Örneğin, özellik paketi varlıkları çoktan çoğa destekten ve varlık oluşturucularının yavaş yükleme desteğimizi etkinleştirmemize yardımcı olabilir.
+3. **Bu özelliğin uygulanması, bizi diğer özellikleri uygulamaya yaklaştıracak şekilde EF Core mimarisini geliştirir mi?** Biz diğer özellikler için yapı taşları olarak hareket özellikleri lehine eğilimindedir. Örneğin, özellik torbası varlıkları çok-çok destek doğru hareket yardımcı olabilir ve varlık yapıcılar bizim tembel yükleme desteği sağladı.
 
-4. **Özellik bir genişletilebilirlik noktası mi?** Geliştiricilerin kendi davranışlarını ve eksik işlevleri dengelamalarını sağladığından normal Özellikler üzerinde genişletilebilirlik noktalarını tercih ederiz.
+4. **Özellik genişletilebilirlik noktası mı?** Geliştiricilerin kendi davranışlarını kancaya takmalarını ve eksik işlevleri telafi etmelerini sağladığından, genişletilebilirlik noktalarını normal özelliklere göre tercih etme eğilimindeyizdir.
 
-5. **Diğer ürünlerle birlikte kullanıldığında özelliğin sinerjiden bahsederek denemelerini özelliği nedir?** .NET Core, Visual Studio 'nun en son sürümü, Microsoft Azure vb. gibi diğer ürünlerle EF Core kullanma deneyimini etkinleştiren veya önemli ölçüde iyileştiren Özellikler önerilir.
+5. **Diğer ürünlerle birlikte kullanıldığında özelliğin sinerjisi nedir?** EF Core'u Visual Studio'nun en son sürümü, Microsoft Azure gibi diğer ürünlerle birlikte kullanma deneyimini etkinleştiren veya önemli ölçüde iyileştiren özelliklerden yanayız.
 
-6. **Bir özellik üzerinde çalışmak için kullanılabilecek kişilerin becerileri nelerdir ve bu kaynaklardan en iyi şekilde faydalanabilirsiniz?** EF ekibinin ve topluluk Katkılarımızın her üyesi farklı alanlarda farklı deneyim düzeylerine sahiptir, bu nedenle uygun şekilde planlamanız gerekir. "Her türlü BT destesi", GroupBy çevirileri veya çoktan çoğa gibi belirli bir özellik üzerinde çalışması için pratik olmasa bile.
+6. **Bir özellik üzerinde çalışabilecek kişilerin becerileri nelerdir ve bu kaynaklardan en iyi şekilde nasıl yararlanabiliriz?** EF ekibinin her üyesi ve topluluk katılımcılarımız farklı alanlarda farklı deneyim seviyelerine sahiptir, bu nedenle buna göre planlamayapmak zorundayız. GroupBy çevirileri veya çok-çok gibi belirli bir özellik üzerinde çalışmak için "tüm eller güvertede" olmasını istesek bile, bu pratik olmaz.

@@ -1,43 +1,43 @@
 ---
-title: Eşzamanlılık çakışmalarını işleme-EF Core
+title: Eşzamanlılık Çakışmalarını Ele Alma - EF Core
 author: rowanmiller
 ms.date: 03/03/2018
 uid: core/saving/concurrency
 ms.openlocfilehash: a1d1a5a11d482f9104691aa3c072dbd1c548e9f1
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417592"
 ---
 # <a name="handling-concurrency-conflicts"></a>Eşzamanlılık Çakışmalarını İşleme
 
 > [!NOTE]
-> Bu sayfa, eşzamanlılık EF Core ' de nasıl çalıştığını ve uygulamanızda eşzamanlılık çakışmalarının nasıl işleneceğini belgeler. Modelinizdeki eşzamanlılık belirteçlerini yapılandırma hakkında ayrıntılı bilgi için bkz. [eşzamanlılık belirteçleri](xref:core/modeling/concurrency) .
+> Bu sayfa, eşzamanlıbirimin EF Core'da nasıl çalıştığını ve uygulamanızdaki eşzamanlılık çakışmaları nasıl işleyeceğini belgeletir. Modelinizde eşzamanlılık belirteçleri yapılandırma hakkında ayrıntılar için [Eşzamanlılık Belirteçleri'ne](xref:core/modeling/concurrency) bakın.
 
 > [!TIP]
-> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/Concurrency/) GitHub ' da görebilirsiniz.
+> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/Concurrency/) GitHub'da görüntüleyebilirsiniz.
 
-_Veritabanı eşzamanlılık_ , birden fazla işlem veya kullanıcının aynı anda bir veritabanındaki verileri erişen veya değiştiren durumlara başvurur. _Eşzamanlılık denetimi_ , eşzamanlı değişiklikler olması halinde veri tutarlılığı sağlamak için kullanılan belirli mekanizmaların anlamına gelir.
+_Veritabanı eşzamanlılığı,_ birden çok işlem veya kullanıcının aynı anda bir veritabanındaki aynı verilere erişteği veya değiştirdiği durumları ifade eder. _Eşzamanlı denetim,_ eşzamanlı değişikliklerin varlığında veri tutarlılığı sağlamak için kullanılan belirli mekanizmaları ifade eder.
 
-EF Core, birden çok işlemin veya kullanıcının değişiklik yapmasına veya kilitlenmeden bağımsız olarak değişiklik yapmasına olanak tanıyan _iyimser eşzamanlılık denetimini_uygular. İdeal durumda, bu değişiklikler birbirini engellemez ve bu nedenle başarılı olur. En kötü durum senaryosunda, iki veya daha fazla işlem çakışan değişiklikler yapmaya çalışacaktır ve bunlardan yalnızca biri başarılı olmalıdır.
+EF _Core, eşitleme_veya kilitleme yükü olmadan birden çok sürecin veya kullanıcıların bağımsız olarak değişiklik yapmalarına izin verdiği anlamına gelen iyimser eşzamanlılık denetimini uygular. İdeal durumda, bu değişiklikler birbirine müdahale etmeyecek ve bu nedenle başarılı olmak mümkün olacak. En kötü durum senaryosunda, iki veya daha fazla işlem çakışan değişiklikler yapmaya çalışır ve bunlardan yalnızca biri başarılı olmalıdır.
 
-## <a name="how-concurrency-control-works-in-ef-core"></a>Eşzamanlılık denetimi nasıl EF Core?
+## <a name="how-concurrency-control-works-in-ef-core"></a>EŞZAMANLıL denetim EF Core'da nasıl çalışır?
 
-Eşzamanlılık belirteçleri olarak yapılandırılan Özellikler iyimser eşzamanlılık denetimini uygulamak için kullanılır: `SaveChanges`sırasında her bir güncelleştirme veya silme işlemi gerçekleştirildiğinde, veritabanındaki eşzamanlılık belirtecinin değeri, EF Core tarafından okunan özgün değer ile karşılaştırılır.
+Eşzamanlılık belirteçleri olarak yapılandırılan özellikler iyimser eşzamanlılık denetimini uygulamak için `SaveChanges`kullanılır: bir güncelleştirme veya silme işlemi sırasında gerçekleştirildiğinde, veritabanındaki eşzamanlılık belirteci değeri EF Core tarafından okunan özgün değerle karşılaştırılır.
 
-- Değerler eşleşiyorsa, işlem tamamlanabilir.
-- Değerler eşleşmezse EF Core başka bir kullanıcının çakışan bir işlem gerçekleştirdiğinizi ve geçerli işlemi iptal eder.
+- Değerler eşleşirse, işlem tamamlanabilir.
+- Değerler eşleşmiyorsa, EF Core başka bir kullanıcının çakışan bir işlem gerçekleştirdiğini varsayar ve geçerli hareketi iptal eder.
 
-Başka bir Kullanıcı, geçerli işlemle çakışan bir işlem gerçekleştirdiğinde _eşzamanlılık çakışması_olarak bilinir.
+Başka bir kullanıcının geçerli işlemle çakışan bir işlem gerçekleştirdiği durum _eşzamanlılık çakışması_olarak bilinir.
 
-Veritabanı sağlayıcıları eşzamanlılık belirteci değerlerinin karşılaştırmasını uygulamaktan sorumludur.
+Veritabanı sağlayıcıları eşzamanlılık belirteç değerlerinin karşılaştırmasını uygulamaktan sorumludur.
 
-İlişkisel veritabanlarında EF Core, herhangi bir `UPDATE` veya `DELETE` deyimlerinin `WHERE` yan tümcesindeki eşzamanlılık belirtecinin değeri için bir denetim içerir. Deyimlerini yürüttükten sonra, EF Core etkilenen satır sayısını okur.
+İlişkisel veritabanlarında EF Core, herhangi `WHERE` `UPDATE` bir veya `DELETE` deyimin yan tümcesindeki eşzamanlılık belirteci değerini denetler. İfadeleri çalıştırdıktan sonra, EF Core etkilenen satır sayısını okur.
 
-Hiçbir satır etkilenmiyorsa, bir eşzamanlılık çakışması algılanır ve EF Core `DbUpdateConcurrencyException`oluşturur.
+Satır lar etkilenmezse, eşzamanlılık çakışması algılanır `DbUpdateConcurrencyException`ve EF Core atar.
 
-Örneğin, `Person` `LastName` bir eşzamanlılık belirteci olacak şekilde yapılandırmak isteyebilirsiniz. Ardından, kişi üzerindeki tüm güncelleştirme işlemleri `WHERE` yan tümcesine eşzamanlılık denetimini içerir:
+Örneğin, eşzamanlılık belirteci `LastName` `Person` olarak yapılandırmak isteyebiliriz. Daha sonra Person üzerindeki herhangi bir güncelleştirme `WHERE` işlemi, maddede eşzamanlılık denetimini içerir:
 
 ``` sql
 UPDATE [Person] SET [FirstName] = @p1
@@ -46,27 +46,27 @@ WHERE [PersonId] = @p0 AND [LastName] = @p2;
 
 ## <a name="resolving-concurrency-conflicts"></a>Eşzamanlılık çakışmalarını çözme
 
-Önceki örnekle devam etmek, bir Kullanıcı `Person`bazı değişiklikleri kaydetmeye çalışırsa, ancak başka bir Kullanıcı `LastName`zaten değiştirdiyseniz, bir özel durum oluşturulur.
+Önceki örnekle devam edersek, bir kullanıcı bazı değişiklikleri `Person`kaydetmeye çalışırsa, ancak `LastName`başka bir kullanıcı zaten , bir özel durum atılır.
 
-Bu noktada, uygulama, değişiklikleri çakışan değişiklikler nedeniyle başarılı bir şekilde kullanıcıya bildirebilir ve üzerinde geçiş yapın. Ancak kullanıcıdan bu kaydın aynı gerçek kişiyi temsil ettiğini ve işlemi yeniden denemesini istemek istenebilir.
+Bu noktada, uygulama yalnızca çakışan değişiklikler nedeniyle güncelleştirmenin başarılı olmadığını kullanıcıya bildirebilir ve devam edebilir. Ancak, kullanıcıdan bu kaydın hala aynı gerçek kişiyi temsil ettiğinden emin olmasını ve işlemi yeniden denemesini isteyebilir.
 
-Bu işlem, _bir eşzamanlılık çakışmasını çözmeye_yönelik bir örnektir.
+Bu işlem, _eşzamanlılık çakışması çözme_bir örnektir.
 
-Eşzamanlılık çakışmasını çözmek, geçerli `DbContext` bekleyen değişikliklerin veritabanındaki değerlerle birleştirilmesini içerir. Birleştirilecek değerler uygulamaya göre değişir ve Kullanıcı girişiyle yönlendirilebilir.
+Eşzamanlılık çakışması çözümlenmesi, bekleyen değişiklikleri `DbContext` geçerliden veritabanındaki değerlerle birleştirmeyi içerir. Hangi değerlerin birleştirilmesi uygulamaya göre değişir ve kullanıcı girişi tarafından yönlendirilebilir.
 
-**Eşzamanlılık çakışmasını çözmeye yardımcı olmak için üç değer kümesi mevcuttur:**
+**Eşzamanlılık çakışmasını çözmeye yardımcı olmak için kullanılabilir üç değer kümesi vardır:**
 
-- **Geçerli değerler** , uygulamanın veritabanına yazmaya çalışan değerlerdir.
-- **Orijinal değerler** , hiçbir düzenleme yapılmadan önce veritabanından ilk olarak alınan değerlerdir.
-- Veritabanı **değerleri** , veritabanında Şu anda depolanan değerlerdir.
+- **Geçerli değerler,** uygulamanın veritabanına yazmaya çalıştığı değerlerdir.
+- **Özgün değerler,** herhangi bir değiştirme yapılmadan önce ilk olarak veritabanından alınan değerlerdir.
+- **Veritabanı değerleri,** veritabanında depolanan değerlerdir.
 
-Eşzamanlılık çakışmalarını işlemeye yönelik genel yaklaşım şunlardır:
+Eşzamanlılık çakışmalarını işlemek için genel yaklaşım:
 
-1. `SaveChanges`sırasında catch `DbUpdateConcurrencyException`.
-2. Etkilenen varlıklar için yeni bir değişiklik kümesi hazırlamak üzere `DbUpdateConcurrencyException.Entries` kullanın.
-3. Veritabanının geçerli değerlerini yansıtmak için eşzamanlılık belirtecinin orijinal değerlerini yenileyin.
-4. Çakışma gerçekleşene kadar işlemi yeniden deneyin.
+1. Sırasında `DbUpdateConcurrencyException` `SaveChanges`catch .
+2. Etkilenen `DbUpdateConcurrencyException.Entries` varlıklar için yeni bir değişiklik kümesi hazırlamak için kullanın.
+3. Veritabanındaki geçerli değerleri yansıtacak şekilde eşzamanlılık belirteci orijinal değerlerini yenileyin.
+4. Çakışma oluşmayana işlemi yeniden deneyin.
 
-Aşağıdaki örnekte `Person.FirstName` ve `Person.LastName` eşzamanlılık belirteçleri olarak ayarlanır. Kaydedilecek değeri seçmek için uygulamaya özgü mantığı dahil ettiğiniz konumda bir `// TODO:` yorumu vardır.
+Aşağıdaki örnekte `Person.FirstName` ve `Person.LastName` eşzamanlılık belirteçleri olarak ayarlanır. Kaydedilecek `// TODO:` değeri seçmek için uygulamaya özgü mantık eklediğiniz konumda bir açıklama vardır.
 
 [!code-csharp[Main](../../../samples/core/Saving/Concurrency/Sample.cs?name=ConcurrencyHandlingCode&highlight=34-35)]

@@ -1,35 +1,35 @@
 ---
-title: İzleme ve Izleme sorguları karşılaştırması-EF Core
+title: İzleme ve İzleme Sorgusu Yok - EF Core
 author: smitpatel
 ms.date: 10/10/2019
 ms.assetid: e17e060c-929f-4180-8883-40c438fbcc01
 uid: core/querying/tracking
 ms.openlocfilehash: a6c71c12f429f1324abe91d1b2cef96312bec051
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417651"
 ---
-# <a name="tracking-vs-no-tracking-queries"></a>İzleme ve Izleme sorguları karşılaştırması
+# <a name="tracking-vs-no-tracking-queries"></a>İzleme ve İzleme Yok Sorguları
 
-Entity Framework Core değişiklik izleyicide bir varlık örneği hakkındaki bilgileri tutacağı davranış denetimlerini izleme. Bir varlık izleniyorsa, varlıkta algılanan tüm değişiklikler `SaveChanges()`sırasında veritabanında kalıcı hale getirilir. EF Core, bir izleme sorgusu sonucu ve değişiklik izleyicide bulunan varlıklar arasındaki gezinti özelliklerini de düzeltir.
+Entity Framework Core, değişiklik izleyicisinde bir varlık örneği hakkında bilgi tutacaksa davranış denetimlerini izleme. Bir varlık izlenirse, varlıkta algılanan tüm değişiklikler `SaveChanges()`veritabanında kalıcı olarak süre. EF Core ayrıca, izleme sorgusu sonucundaki varlıklar la değişiklik izleyicisi içinde bulunan varlıklar arasındaki gezinti özelliklerini de düzeltecektir.
 
 > [!NOTE]
-> [Keyless varlık türleri](xref:core/modeling/keyless-entity-types) hiçbir şekilde izlenmez. Bu makalede varlık türleri söz konusu olduğunda, tanımlı bir anahtarı olan varlık türleri anlamına gelir.
+> [Anahtarsız varlık türleri](xref:core/modeling/keyless-entity-types) hiçbir zaman izlenmez. Bu makalede varlık türleri nerede belirtilirse belirtilsin, anahtar tanımlanmış varlık türlerini ifade eder.
 
 > [!TIP]  
-> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub ' da görebilirsiniz.
+> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub'da görüntüleyebilirsiniz.
 
 ## <a name="tracking-queries"></a>Sorguları izleme
 
-Varsayılan olarak, varlık türleri döndüren sorgular izliyor. Bu, söz konusu varlık örneklerinde değişiklik yapabileceğiniz ve bu değişikliklerin `SaveChanges()`kalıcı olmasını sağlayan anlamına gelir. Aşağıdaki örnekte, blogların derecelendirmesi değişikliği `SaveChanges()`sırasında veritabanı üzerinde algılanır ve kalıcı hale getirilir.
+Varsayılan olarak, varlık türlerini döndüren sorgular izlenir. Bu da, bu varlık örneklerinde değişiklik yapabileceğiniz ve `SaveChanges()`bu değişiklikleri kalıcı hale getirebileceğiniz anlamına gelir. Aşağıdaki örnekte, bloglar derecelendirmesinde yapılan değişiklik algılanır ve veritabanına devam eder. `SaveChanges()`
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#Tracking)]
 
-## <a name="no-tracking-queries"></a>İzleme sorguları yok
+## <a name="no-tracking-queries"></a>Sorguları izlememe
 
-Bir salt okuma senaryosunda sonuçlar kullanıldığında hiçbir izleme sorgusu yararlı değildir. Değişiklik izleme bilgilerini ayarlamaya gerek olmadığı için daha hızlı bir şekilde yürütüyoruz. Veritabanından alınan varlıkları güncelleştirmeniz gerekmiyorsa, bir izleme sorgusunun kullanılması gerekir. Tek bir sorguyu bir izleme olmayacak şekilde takas edebilirsiniz.
+Sonuçlar salt okunur senaryoda kullanıldığında hiçbir izleme sorgusu yararlıdır. Değişiklik izleme bilgilerini ayarlamaya gerek olmadığından daha hızlı yürütülürler. Veritabanından alınan varlıkları güncelleştirmeniz gerekmiyorsa, izleme sorgusu kullanılmamalıdır. Tek bir sorguyu izlememek için değiştirebilirsiniz.
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#NoTracking)]
 
@@ -37,44 +37,44 @@ Bağlam örneği düzeyinde varsayılan izleme davranışını da değiştirebil
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#ContextDefaultTrackingBehavior)]
 
-## <a name="identity-resolution"></a>Kimlik çözümlemesi
+## <a name="identity-resolution"></a>Kimlik çözünürlüğü
 
-İzleme sorgusu değişiklik izleyicisini kullandığından, EF Core izleme sorgusunda kimlik çözümlemesi yapılır. Bir varlığı oluştururken EF Core, zaten izleniyorsa değişiklik izleyicide aynı varlık örneğini döndürür. Sonuç aynı varlığı birden çok kez içeriyorsa, her oluşum için aynı örneği geri alırsınız. Hiçbir izleme sorgusu değişiklik izleyicisini kullanmaz ve kimlik çözümlemesi yapmayın. Bu nedenle, aynı varlık sonucun birden çok kez dahil edildiğinde bile yeni varlık örneğini geri alırsınız. Bu davranış EF Core 3,0 öncesi sürümlerde farklıydı, [önceki sürümlere](#previous-versions)bakın.
+Bir izleme sorgusu değişiklik izleyicisini kullandığından, EF Core bir izleme sorgusunda kimlik çözümlemesi yapar. Bir varlığı somutlaştırırken, EF Core zaten izleniyorsa aynı varlık örneğini değişim izleyicisinden döndürecektir. Sonuç aynı varlığı birden çok kez içeriyorsa, her oluşum için aynı örneği geri alırsınız. İzleme olmayan sorgular değişiklik izleyicisini kullanmaz ve kimlik çözümlemesi yapmaz. Böylece, aynı varlık sonucu birden çok kez içerse bile yeni varlık örneğini geri alırsınız. Bu davranış, EF Core 3.0'dan önceki sürümlerde farklıydı, [önceki sürümler](#previous-versions)bakın.
 
-## <a name="tracking-and-custom-projections"></a>İzleme ve özel tahminler
+## <a name="tracking-and-custom-projections"></a>İzleme ve özel projeksiyonlar
 
-Sorgunun sonuç türü bir varlık türü olmasa bile EF Core, varsayılan olarak sonuçta bulunan varlık türlerini izlemeye devam eder. Bir anonim tür döndüren aşağıdaki sorguda, sonuç kümesindeki `Blog` örnekleri izlenir.
+Sorgunun sonuç türü bir varlık türü olmasa bile, EF Core varsayılan olarak sonuçta bulunan varlık türlerini izlemeye devam eder. Anonim bir türü döndüren aşağıdaki `Blog` sorguda, sonuç kümesindeki örnekler izlenir.
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#CustomProjection1)]
 
-Sonuç kümesi, LINQ kompozisyonunuzdan gelen varlık türlerini içeriyorsa, EF Core bunları izler.
+Sonuç kümesi LINQ kompozisyonundan çıkan varlık türlerini içeriyorsa, EF Core bunları izler.
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#CustomProjection2)]
 
-Sonuç kümesi herhangi bir varlık türü içermiyorsa, izleme yapılmaz. Aşağıdaki sorguda, varlıktan bazı değerler içeren anonim bir tür döndürüyoruz (ancak gerçek varlık türünün örneklerinden hiçbiri). Sorgudan gelen hiçbir izlenen varlık yok.
+Sonuç kümesi herhangi bir varlık türü içermiyorsa, izleme yapılmaz. Aşağıdaki sorguda, varlıktan bazı değerlerle anonim bir tür döndürür (ancak gerçek varlık türünün örnekleri yoktur). Sorgudan gelen izlenen varlıklar yok.
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#CustomProjection3)]
 
- EF Core, en üst düzey projeksiyde istemci değerlendirmesi yapmak destekler. EF Core, istemci değerlendirmesi için bir varlık örneği içeriyorsa izlenir. Burada `blog` varlıkları istemci yöntemine geçirdiğimiz için `StandardizeURL`, EF Core blog örneklerini de izler.
+ EF Core, üst düzey projeksiyonda müşteri değerlendirmesini desteklemektedir. EF Core, istemci değerlendirmesi için bir varlık örneğini somutlaştırırsa, izlenir. Burada, varlıkları istemci `blog` yöntemine `StandardizeURL`aktardığımız için, EF Core blog örneklerini de izleyecektir.
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#ClientProjection)]
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#ClientMethod)]
 
-EF Core, sonuçta yer alan anahtarsız varlık örneklerini izlemez. Ancak EF Core Yukarıdaki kurallara göre anahtar içeren tüm varlık türlerinin diğer örneklerini izler.
+EF Core, sonuçta yer alan anahtarsız varlık örneklerini izlemez. Ancak EF Core, yukarıdaki kurallara göre anahtarla varlık türlerinin diğer tüm örneklerini izler.
 
-Yukarıdaki kurallardan bazıları EF Core 3,0 ' dan önce farklı şekilde çalıştı. Daha fazla bilgi için bkz. [önceki sürümler](#previous-versions).
+Yukarıdaki kurallardan bazıları EF Core 3.0'dan önce farklı şekilde çalıştı. Daha fazla bilgi için [önceki sürümler'e](#previous-versions)bakın.
 
 ## <a name="previous-versions"></a>Önceki sürümler
 
-Sürüm 3,0 ' den önce, EF Core izlemenin nasıl yapıldığı konusunda bazı farklılıklar vardı. Önemli farklar şunlardır:
+Sürüm 3.0'dan önce, EF Core izlemenin nasıl yapıldığı konusunda bazı farklılıklar vardı. Önemli farklılıklar şunlardır:
 
-- [İstemci vs Server değerlendirmesi](xref:core/querying/client-eval) sayfasında açıklandığı gibi, 3,0 sürümünden önceki sorgunun herhangi bir bölümünde desteklenen istemci değerlendirmesi EF Core. İstemci değerlendirmesi, sonucun bir parçası olmayan varlıkların bir şekilde oluşturulmasına neden oldu. EF Core, nelerin izleneceğini algılamak için sonucu analiz eder. Bu tasarımda aşağıdaki gibi bazı farklılıklar vardı:
-  - Yansıtmada oluşan, ancak gerçekleştirilmiş varlık örneğini döndürmeyen istemci değerlendirmesi izlenmiyor. Aşağıdaki örnek `blog` varlıkları izlememedi.
+- [İstemci vs Sunucu Değerlendirmesi](xref:core/querying/client-eval) sayfasında açıklandığı gibi, EF Core sürüm 3.0'dan önce sorgunun herhangi bir bölümünde istemci değerlendirmesini desteklemişti. İstemci değerlendirmesi, sonucun bir parçası olmayan varlıkların somutlaşmasına neden oldu. Böylece EF Core ne izlenir bulmak için sonucu analiz etti. Bu tasarım aşağıdaki gibi bazı farklılıklar vardı:
+  - Projeksiyondaki müşteri değerlendirmesi, maddeleşmeye neden oldu ancak maddeleşmiş varlık örneğini döndürmedi izlenmedi. Aşağıdaki örnek varlıkları izlemedi. `blog`
     [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#ClientProjection)]
 
-  - EF Core, bazı durumlarda LINQ kompozisyonunun geldiği nesneleri izlememedi. Aşağıdaki örnek `Post`izlememedi.
+  - EF Core bazı durumlarda LINQ bileşiminden çıkan nesneleri izlemedi. Aşağıdaki örnek izlemedi. `Post`
     [!code-csharp[Main](../../../samples/core/Querying/Tracking/Sample.cs#CustomProjection2)]
 
-- Sorgu sonuçları, anahtarsız varlık türleri içerdiğinde, tüm sorgu izlenmesiz hale getirilir. Diğer bir deyişle, sonuçları bulunan anahtarlar içeren varlık türlerinin, her ikisi de izlenemez.
-- EF Core, hiçbir izleme sorgusunda kimlik çözümlemesi gerçekleştirmedi. Daha önceden döndürülen varlıkların izlenmesini sağlamak için zayıf başvurular kullandı. Bu nedenle, bir sonuç kümesi aynı varlığı çarpan bir kez içeriyorsa, her oluşum için aynı örneği elde edersiniz. Aynı kimliğe sahip önceki bir sonuç kapsam dışında gelse ve atık toplanmışsa, EF Core yeni bir örnek döndürdü.
+- Sorgu sonuçları anahtarsız varlık türleri içerse, tüm sorgu izleme denmeye niçin yapılırdı. Bu, sonuç olarak anahtarlı varlık türlerinin de izlenmediği anlamına gelir.
+- EF Core, izleme sorgusunda kimlik çözümlemesi yaptı. Zaten döndürülmüş olan varlıkları izlemek için zayıf başvurular kullanılır. Bu nedenle, bir sonuç kümesi aynı varlığın katları kez içeriyorsa, her oluşum için aynı örneği alırsınız. Aynı kimliğe sahip önceki bir sonuç kapsam dışına çıkmış ve çöp toplanmış olsa da, EF Core yeni bir örnek döndürdü.

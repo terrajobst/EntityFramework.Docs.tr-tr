@@ -1,56 +1,56 @@
 ---
-title: Entity Framework sağlayıcıları-EF6
+title: Taraf Çerçeve Sağlayıcıları - EF6
 author: divega
 ms.date: 06/27/2018
 ms.assetid: 7BFB7763-CD6C-4520-93A2-7B265F5FA586
 uid: ef6/fundamentals/providers/index
 ms.openlocfilehash: 661398e7d6037875ce0cdb15c221a729d1f0c7d8
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78419365"
 ---
-# <a name="entity-framework-6-providers"></a>Entity Framework 6 sağlayıcı
+# <a name="entity-framework-6-providers"></a>Varlık Çerçevesi 6 Sağlayıcıları
 > [!NOTE]
-> **Yalnızca EF6** , bu sayfada açıklanan özellikler, API 'ler, vb. Entity Framework 6 ' da sunulmuştur. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü uygulanmaz.
+> **EF6 Yalnızca -** Bu sayfada tartışılan özellikler, API'ler vb. Entity Framework 6'da tanıtıldı. Önceki bir sürümü kullanıyorsanız, bilgilerin bazıları veya tümü geçerli değildir.
 
-Entity Framework artık açık kaynaklı bir lisans altında geliştirilmektedir ve EF6 bir .NET Framework parçası olarak, yukarıdaki ve üzeri olarak gönderilmeyecektir. Bunun birçok avantajı vardır, ancak EF6 derlemelerinde EF sağlayıcılarının yeniden oluşturulmasını gerektirir. Bu, EF5 ve aşağıdaki için EF sağlayıcılarının yeniden oluşturulana kadar EF6 ile çalışmadıkları anlamına gelir.
+Varlık Çerçevesi şu anda açık kaynak lisansı altında geliştirilmektedir ve EF6 ve üzeri .NET Çerçevesi'nin bir parçası olarak sevk edilmeyecektir. Bunun birçok avantajı vardır, ancak EF sağlayıcılarının EF6 montajlarına karşı yeniden inşa edilmesi de gerekir. Bu, EF5 ve altındaki EF sağlayıcılarının yeniden oluşturulana kadar EF6 ile çalışmayacağı anlamına gelir.
 
 ## <a name="which-providers-are-available-for-ef6"></a>EF6 için hangi sağlayıcılar kullanılabilir?
 
-EF6 şunlar için yeniden derlendiğimiz sağlayıcılar:
+EF6 için yeniden inşa edildiğini bildiğimiz sağlayıcılar şunlardır:
 
-*   **Microsoft SQL Server sağlayıcı**
-    *   [Entity Framework açık kaynak kodu tabanı](https://github.com/aspnet/EntityFramework6) tarafından oluşturuldu
-    *   [EntityFramework NuGet paketinin](https://nuget.org/packages/EntityFramework) parçası olarak sevk edildi
-*   **Microsoft SQL Server Compact sürümü sağlayıcısı**
-    *   [Entity Framework açık kaynak kodu tabanı](https://github.com/aspnet/EntityFramework6) tarafından oluşturuldu
-    *   [EntityFramework. SqlServerCompact NuGet paketinde](https://nuget.org/packages/EntityFramework.SqlServerCompact) sevk edildi
-*   [**Devart dotConnect veri sağlayıcıları**](https://www.devart.com/dotconnect/)
-    *   Oracle, MySQL, PostgreSQL, SQLite, Salesforce, DB2 ve SQL Server gibi çeşitli veritabanları için [Devart](https://www.devart.com/) 'ten üçüncü taraf sağlayıcılar vardır
-*   [**CData yazılım sağlayıcıları**](https://www.cdata.com/ado/)
-    *   Salesforce, Azure Table Storage, MySql ve çok daha fazlasını içeren çeşitli veri depoları için [CDATA yazılımından](https://www.cdata.com/ado/) üçüncü taraf sağlayıcılar vardır
+*   **Microsoft SQL Server sağlayıcısı**
+    *   [Varlık Çerçevesi açık kaynak kod tabanından oluşturulmuştur](https://github.com/aspnet/EntityFramework6)
+    *   [EntityFramework NuGet paketinin](https://nuget.org/packages/EntityFramework) bir parçası olarak sevk edildi
+*   **Microsoft SQL Server Compact Edition sağlayıcısı**
+    *   [Varlık Çerçevesi açık kaynak kod tabanından oluşturulmuştur](https://github.com/aspnet/EntityFramework6)
+    *   [EntityFramework.SqlServerCompact NuGet paketinde](https://nuget.org/packages/EntityFramework.SqlServerCompact) gönderildi
+*   [**Devart dotConnect Veri Sağlayıcıları**](https://www.devart.com/dotconnect/)
+    *   Oracle, MySQL, PostgreSQL, SQLite, Salesforce, DB2 ve SQL Server dahil olmak üzere çeşitli veritabanları için [Devart'ın](https://www.devart.com/) üçüncü taraf sağlayıcıları vardır
+*   [**CData Yazılım sağlayıcıları**](https://www.cdata.com/ado/)
+    *   Salesforce, Azure Table Storage, MySql ve daha birçok veri deposu için [CData Software'in](https://www.cdata.com/ado/) üçüncü taraf sağlayıcıları vardır
 *   **Firebird sağlayıcısı**
-    *   [NuGet paketi](https://www.nuget.org/packages/EntityFramework.Firebird/) olarak kullanılabilir
-*   **Visual Fox Pro sağlayıcısı**
+    *   [NuGet Paketi](https://www.nuget.org/packages/EntityFramework.Firebird/) olarak kullanılabilir
+*   **Görsel Fox Pro sağlayıcısı**
     *   [NuGet paketi](https://www.nuget.org/packages/VFPEntityFrameworkProvider2/) olarak kullanılabilir
 *   **MySQL**
-    *   [Entity Framework için MySQL Bağlayıcısı/ağı](https://dev.mysql.com/doc/connector-net/en/connector-net-entityframework60.html)
+    *   [Entity Framework için MySQL Bağlayıcısı/NET](https://dev.mysql.com/doc/connector-net/en/connector-net-entityframework60.html)
 *   **PostgreSQL**
-    *   Npgsql bir [NuGet paketi](https://www.nuget.org/packages/EntityFramework6.Npgsql/) olarak kullanılabilir
+    *   Npgsql [NuGet paketi](https://www.nuget.org/packages/EntityFramework6.Npgsql/) olarak kullanılabilir
 *   **Oracle**
-    *   ODP.NET, bir [NuGet paketi](https://www.nuget.org/packages/Oracle.ManagedDataAccess.EntityFramework/) olarak kullanılabilir
+    *   ODP.NET [NuGet paketi](https://www.nuget.org/packages/Oracle.ManagedDataAccess.EntityFramework/) olarak kullanılabilir
 
-Bu listede yer alan, belirli bir sağlayıcı için işlev düzeyini veya desteğin olduğunu göstermez, yalnızca bir EF6 derlemesi kullanılabilir hale getirilir.
+Bu listeye eklenmesinin belirli bir sağlayıcı için işlevsellik düzeyini veya destek düzeyini göstermediğini, yalnızca EF6 için bir yapının kullanıma sunulduğunu unutmayın.
 
-## <a name="registering-ef-providers"></a>EF sağlayıcılarını kaydetme
+## <a name="registering-ef-providers"></a>EF sağlayıcılarının kaydedilmesi
 
-Entity Framework 6 EF sağlayıcılarından itibaren, kod tabanlı yapılandırma veya uygulamanın yapılandırma dosyası kullanılarak kayıt yapılabilir.
+Entity Framework 6 EF sağlayıcıları ndan başlayarak kod tabanlı yapılandırma kullanılarak veya uygulamanın config dosyasına kaydedilebilir.
 
-### <a name="config-file-registration"></a>Yapılandırma dosyası kaydı
+### <a name="config-file-registration"></a>Config dosya kaydı
 
-App. config veya Web. config dosyasındaki EF sağlayıcısı 'nın kaydı şu biçimdedir:
+EF sağlayıcısının app.config veya web.config'e kaydolması aşağıdaki biçimdedir:
 
 
 ``` xml
@@ -61,15 +61,15 @@ App. config veya Web. config dosyasındaki EF sağlayıcısı 'nın kaydı şu b
     </entityFramework>
 ```
 
-Bu durum genellikle, NuGet 'den EF sağlayıcısı yüklüyse, NuGet paketinin bu kaydı yapılandırma dosyasına otomatik olarak eklemesini unutmayın. NuGet paketini uygulamanız için başlangıç projesi olmayan bir projeye yüklerseniz, kaydı başlangıç projeniz için yapılandırma dosyasına kopyalamanız gerekebilir.
+EF sağlayıcısı NuGet'den yüklüyse, NuGet paketinin bu kaydı otomatik olarak config dosyasına ekleyeceğini unutmayın. NuGet paketini uygulamanızın başlangıç projesi olmayan bir projeye yüklerseniz, başlangıç projeniz için kaydı config dosyasına kopyalamanız gerekebilir.
 
-Bu kayıtta "invariantName", bir ADO.NET sağlayıcısı tanımlamak için kullanılan sabit addır. Bu, bir DbProviderFactory kaydında "sabit" özniteliği olarak ve bir bağlantı dizesi kaydında "providerName" özniteliği olarak bulunabilir. Kullanılacak sabit ad, sağlayıcıya yönelik belgelere de eklenmelidir. Sabit adlara örnek olarak, SQL Server için "System. Data. SqlClient" ve SQL Server Compact için "System. Data. SqlServerCe. 4.0" verilebilir.
+Bu kayıttaki "değişmez Ad", ADO.NET sağlayıcısını tanımlamak için kullanılan değişmez adla aynıdır. Bu, Bir DbProviderFactorys kaydında "değişmez" özniteliği ve bağlantı dize kaydındaki "providerName" özniteliği olarak bulunabilir. Kullanılacak değişmez ad da sağlayıcı için belgelere eklenmelidir. Değişmez adlara örnek olarak SQL Server için "System.Data.SqlClientClient" ve SQL Server Compact için "System.Data.SqlServerCe.4.0" verilebilir.
 
-Bu kayıtta "tür", "System. Data. Entity. Core. Common. DbProviderServices" öğesinden türetilen sağlayıcı türünün derleme nitelikli adıdır. Örneğin, SQL Compact için kullanılacak dize "System. Data. Entity. SqlServerCompact. SqlCeProviderServices, EntityFramework. SqlServerCompact" dir. Burada kullanılacak tür, sağlayıcının belgelerine eklenmelidir.
+Bu kayıttaki "tür" "System.Data.Entity.Core.Common.DbProviderServices" adresinden türeyen sağlayıcı türünün montaja uygun adıdır. Örneğin, SQL Compact için kullanılacak dize "System.Data.Entity.SqlServerCompact.SqlCeProviderServices, EntityFramework.SqlServerCompact" dır. Burada kullanılacak tür sağlayıcı için belgelere eklenmelidir.
 
 ### <a name="code-based-registration"></a>Kod tabanlı kayıt
 
-Entity Framework 6 ' dan itibaren EF için uygulama genelinde yapılandırma, kodda belirtilebilir. Tam Ayrıntılar için bkz. _[kod tabanlı yapılandırma Entity Framework](https://msdn.microsoft.com/data/jj680699)_ . Kod tabanlı yapılandırma kullanarak EF sağlayıcısını kaydetmek için normal yol, System. Data. Entity. DbConfiguration ' tan türetilen yeni bir sınıf oluşturmak ve bunu DbContext sınıfınız ile aynı derlemeye yerleştirkullanmaktır. DbConfiguration sınıfınız daha sonra sağlayıcıyı yapıcısına kaydetmelidir. Örneğin, SQL Compact sağlayıcısını kaydetmek için DbConfiguration sınıfı şuna benzer:
+VARLıK Framework 6 ile başlayan EF için uygulama çapında yapılandırma kod olarak belirtilebilir. Tüm ayrıntılar için Entity _[Framework Code Tabanlı Yapılandırma'ya](https://msdn.microsoft.com/data/jj680699)_ bakın. Kod tabanlı yapılandırmakullanarak bir EF sağlayıcısını kaydetmenin normal yolu, System.Data.Entity.DbConfiguration'dan türetilen yeni bir sınıf oluşturmak ve onu DbContext sınıfınızla aynı derlemeye yerleştirmektir. DbConfiguration sınıfınız sağlayıcıyı oluşturucusuna kaydettirmelidir. Örneğin, SQL Compact sağlayıcısını kaydetmek için DbConfiguration sınıfı aşağıdaki gibi görünür:
 
 ``` csharp
     public class MyConfiguration : DbConfiguration
@@ -83,14 +83,14 @@ Entity Framework 6 ' dan itibaren EF için uygulama genelinde yapılandırma, ko
     }
 ```
 
-Bu kodda, "SqlCeProviderServices. ProviderInvariantName", SQL Server Compact sağlayıcı sabit adı dizesi ("System. Data. SqlServerCe. 4.0") ve SqlCeProviderServices. Instance için SQL Compact 'in Singleton örneğini döndürür EF sağlayıcısı.
+Bu kodda "SqlCeProviderServices.ProviderInvariantName" SQL Server Compact sağlayıcı değişmez ad dizesi ("System.Data.SqlServerCe.4.0") ve SqlCeProviderServices.Instance sql Compact EF sağlayıcısının singleton örneğini döndürür.
 
-## <a name="what-if-the-provider-i-need-isnt-available"></a>Yapmam gereken sağlayıcı yoksa ne olacak?
+## <a name="what-if-the-provider-i-need-isnt-available"></a>İhtiyacım olan sağlayıcı kullanılamıyorsa ne olur?
 
-Sağlayıcı, EF 'in önceki sürümleri için kullanılabilirse, sağlayıcının sahibine başvurmanız ve bir EF6 sürümü oluşturmasını isteyeceğiz. [EF6 sağlayıcı modelinin belgelerine](~/ef6/fundamentals/providers/provider-model.md)bir başvuru eklemeniz gerekir.
+Sağlayıcı EF'nin önceki sürümleri için kullanılabilirse, sağlayıcının sahibiyle iletişime geçmenizi ve onlardan bir EF6 sürümü oluşturmalarını istemenizi öneririz. [EF6 sağlayıcı modeli](~/ef6/fundamentals/providers/provider-model.md)için belgelere bir başvuru eklemeniz gerekir.
 
-## <a name="can-i-write-a-provider-myself"></a>Bir sağlayıcıyı kendim yazabilir miyim?
+## <a name="can-i-write-a-provider-myself"></a>Ben de bir sağlayıcı yazabilir miyim?
 
-Tamamen bir EF sağlayıcısı oluşturmak, ancak önemsiz bir şekilde düşünülmemelidir. EF6 sağlayıcı modeliyle ilgili yukarıdaki bağlantının başlaması iyi bir yerdir. Ayrıca, bir başlangıç noktası veya başvuru olarak [EF açık kaynak kod](https://github.com/aspnet/EntityFramework6) tabanına dahil SQL Server ve SQL CE sağlayıcısı için kodu kullanmayı yararlı bulabilirsiniz.
+Önemsiz bir girişim olarak kabul edilmemelidir rağmen kesinlikle bir EF sağlayıcı kendiniz oluşturmak mümkündür. EF6 sağlayıcı modeli hakkında yukarıdaki bağlantı başlamak için iyi bir yerdir. Ayrıca, [EF açık kaynak kod tabanında](https://github.com/aspnet/EntityFramework6) yer alan SQL Server ve SQL CE sağlayıcısının kodunu başlangıç noktası olarak veya başvuru için kullanmayı da yararlı bulabilirsiniz.
 
-EF6 ile başlayan EF sağlayıcısı, temel alınan ADO.NET sağlayıcısına daha sıkı bir şekilde bağlanmış olduğunu unutmayın. Bu, ADO.NET sınıfları yazmaya veya kaydırmaya gerek kalmadan bir EF sağlayıcısı yazmayı kolaylaştırır.
+EF6'dan başlayarak EF sağlayıcısının altta yatan ADO.NET sağlayıcısıyla daha az sıkı bir şekilde birleştiğinde olduğunu unutmayın. Bu, ADO.NET sınıflarını yazmaya veya sarmaya gerek kalmadan bir EF sağlayıcısı yazmayı kolaylaştırır.

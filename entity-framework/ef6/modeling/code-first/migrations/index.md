@@ -1,33 +1,33 @@
 ---
-title: Code First Migrations-EF6
+title: Kod İlk Geçişler - EF6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 36591d8f-36e1-4835-8a51-90f34f633d1e
 ms.openlocfilehash: e5a91af73bab9d45b0f1f4242ce503c6b6f407f6
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78418964"
 ---
-# <a name="code-first-migrations"></a>Code First Migrations
-Code First Migrations, Code First iş akışını kullanıyorsanız uygulamanızın veritabanı şemasını geliştirmek için önerilen yoldur. Geçişler, izin veren bir araç kümesi sağlar:
+# <a name="code-first-migrations"></a>Kod İlk Geçişler
+Code First Migrations, Önce Kod iş akışını kullanıyorsanız, uygulamanızın veritabanı şemasını geliştirmenin önerilen yoludur. Geçişler, şuna izin veren bir araç kümesi sağlar:
 
-1. EF modelinizle birlikte çalışarak ilk veritabanı oluşturma
-2. EF modelinizde yaptığınız değişiklikleri izlemek için geçişler oluşturma
-2. Veritabanınızı bu değişikliklerle güncel tutun
+1. EF modelinizde çalışan bir başlangıç veritabanı oluşturma
+2. EF modelinizde yaptığınız değişiklikleri izlemek için geçiş oluşturma
+2. Veritabanınızı bu değişikliklerden haberdar edin
 
-Aşağıdaki izlenecek yol, Entity Framework Code First Migrations bir genel bakış sağlar. Tüm yönergeyi tamamlayabilir ya da ilgilendiğiniz konuya atlayabilirsiniz. Aşağıdaki konular ele alınmıştır:
+Aşağıdaki izlenecek yol, Varlık Çerçevesi'ndeki İlk Geçişler Kodu'na genel bir bakış sağlayacaktır. Tüm gözden geçiriyi tamamlayabilir veya ilgilendiğiniz konuya atlayabilirsiniz. Aşağıdaki konular ele alınmıştır:
 
-## <a name="building-an-initial-model--database"></a>Ilk model & veritabanı oluşturma
+## <a name="building-an-initial-model--database"></a>İlk Model & Veritabanı Oluşturma
 
-Geçişleri kullanmaya başlamadan önce bir proje ve ile çalışmak için bir Code First modeli gerekir. Bu izlenecek yol için kurallı **Blog** ve **gönderi** modelini kullanacağız.
+Geçişleri kullanmaya başlamadan önce bir projeye ve çalışmak için Bir İlk Kod modeline ihtiyacımız vardır. Bu izlenebilir için biz kanonik **Blog** ve **Post** modeli kullanmak için gidiyoruz.
 
--   Yeni bir **Migrationsdemo** konsol uygulaması oluşturma
--   Projeye **EntityFramework** NuGet paketinin en son sürümünü ekleyin
-    -   **Araçlar –&gt; kitaplığı Paket Yöneticisi –&gt; Paket Yöneticisi konsolu**
+-   Yeni **migrationsDemo** Console uygulaması oluşturma
+-   **EntityFramework** NuGet paketinin en son sürümünü projeye ekleyin
+    -   **Araçlar&gt; – Kütüphane&gt; Paket Yöneticisi – Package Manager Konsolu**
     -   **Install-Package EntityFramework** komutunu çalıştırın
--   Aşağıda gösterilen kodla bir **model.cs** dosyası ekleyin. Bu kod, etki alanı modelimizi ve EF Code First bağlamımız bir **BlogContext** sınıfını oluşturan tek bir **Blog** sınıfını tanımlar
+-   Aşağıda gösterilen kodu içeren bir **Model.cs** dosyası ekleyin. Bu kod, etki alanı modelimizi oluşturan tek bir **Blog** sınıfımızı ve EF Code First bağlamımız olan **bir BlogContext** sınıfımızı tanımlar
 
   ``` csharp
       using System.Data.Entity;
@@ -50,7 +50,7 @@ Geçişleri kullanmaya başlamadan önce bir proje ve ile çalışmak için bir 
       }
   ```
 
--   Artık bir modelimiz olduğuna göre, veri erişimi gerçekleştirmek için bunu kullanmanın zamanı. **Program.cs** dosyasını aşağıda gösterilen kodla güncelleştirin.
+-   Artık bir modelimiz olduğuna göre veri erişimi gerçekleştirmek için kullanma nın zamanı gelmiştir. Program.cs **dosyayı** aşağıda gösterilen kodla güncelleştirin.
 
   ``` csharp
       using System;
@@ -82,50 +82,50 @@ Geçişleri kullanmaya başlamadan önce bir proje ve ile çalışmak için bir 
       }
   ```
 
--   Uygulamanızı çalıştırın ve sizin için bir **Migrationscodedemo. BlogContext** veritabanının oluşturulduğunu görürsünüz.
+-   Uygulamanızı çalıştırın ve sizin için bir **MigrationsCodeDemo.BlogContext** veritabanı oluşturulduğunu göreceksiniz.
 
-    ![Veritabanı Yereldb](~/ef6/media/databaselocaldb.png)
+    ![Veritabanı LocalDB](~/ef6/media/databaselocaldb.png)
 
-## <a name="enabling-migrations"></a>Geçişleri etkinleştirme
+## <a name="enabling-migrations"></a>Geçişleri Etkinleştirme
 
-Modelinizde daha fazla değişiklik yapmak zaman alabilir.
+Modelimizde daha fazla değişiklik yapma zamanı.
 
--   Blog sınıfına bir URL özelliği tanıtalım.
+-   Blog sınıfına bir Url özelliği tanıyalım.
 
 ``` csharp
     public string Url { get; set; }
 ```
 
-Uygulamayı yeniden çalıştırırsanız, *veritabanı oluşturulduktan sonra ' BlogContext ' bağlamının yedeklendiğini belirten bir InvalidOperationException alacaksınız. Veritabanını güncelleştirmek için Code First Migrations kullanmayı düşünün (* [ *http://go.microsoft.com/fwlink/?LinkId=238269* ](https://go.microsoft.com/fwlink/?LinkId=238269) *).*
+Uygulamayı yeniden çalıştıracak olursanız, veritabanı oluşturulduğundan *beri 'BlogContext' bağlamını destekleyen modelin değiştiğini belirten bir GeçersizOperasyonİst alırsınız. Veritabanını güncelleştirmek için Kod İlk Geçişleri 'ni kullanmayı düşünün (* [*http://go.microsoft.com/fwlink/?LinkId=238269*](https://go.microsoft.com/fwlink/?LinkId=238269) *).*
 
-Özel durum önerdiğinde Code First Migrations kullanmaya başlama zamanı. İlk adım bağlamımız için geçişleri etkinleştirmektir.
+Özel olarak da anlaşılacağı gibi, Kod İlk Geçişler kullanmaya başlama zamanı. İlk adım, bağlamımız için geçişleri mümkün kılmaktır.
 
--   Paket Yöneticisi konsolunda **Etkinleştir-geçişleri** komutunu çalıştırın
+-   Paket Yöneticisi Konsolunda **Geçişleri Etkinleştir** komutunu çalıştırın
 
-    Bu komut, projenize bir **geçişler** klasörü ekledi. Bu yeni klasör iki dosya içerir:
+    Bu komut projemize bir **Geçişler** klasörü ekledi. Bu yeni klasör iki dosya içerir:
 
--   **Yapılandırma sınıfı.** Bu sınıf, bağlam için geçişlerin nasıl davranacağını yapılandırmanıza olanak tanır. Bu kılavuzda, yalnızca varsayılan yapılandırmayı kullanacağız.
-    *Projenizde yalnızca tek bir Code First bağlamı olduğundan, Enable-geçişler bu yapılandırmanın uygulandığı bağlam türüne otomatik olarak doldurulur.*
--   **Bir ınitialcreate geçişi**. Bu geçiş, geçişleri etkinleştirmeden önce bizim için bir veritabanı oluşturmak Code First zaten vardı. Bu yapı iskelesi geçişi içindeki kod, veritabanında zaten oluşturulmuş olan nesneleri temsil eder. Küçük harfli bir **blogID** ve **ad** sütunları olan **Blog** tablosu. Dosya adı, sıralamaya yardımcı olacak bir zaman damgası içerir.
-    *Veritabanı zaten oluşturulmadıysa, bu ınitialcreate geçişi projeye eklenmemiş olur. Bunun yerine, ekleme geçişi ilk kez bu tabloları oluşturmak için kod yeni bir geçişe iskele olacaktır.*
+-   **Yapılandırma sınıfı.** Bu sınıf, Geçişler'in bağlamınız için nasıl bir şekilde nasıl bir şekilde nasıl bir şekilde nasıl bir şekilde uygun olduğunu yapılandırmanızı sağlar. Bu izlenecek yol için varsayılan yapılandırmayı kullanacağız.
+    *Projenizde yalnızca tek bir Code First bağlamı olduğundan, Geçişleri Etkinleştir medenleri bu yapılandırmanın geçerli olduğu bağlam türünü otomatik olarak doldurdu.*
+-   **Başlangıç Geçişi Oluşturma**. Bu geçiş, geçişleri etkinleştirmeden önce Code First'in bizim için bir veritabanı oluşturmasına sahip olduğumuz için oluşturuldu. Bu iskelegeçişindeki kod, veritabanında zaten oluşturulmuş nesneleri temsil eder. Bizim durumumuzda bir **BlogId** ve **Ad** sütunları ile **Blog** tablodur. Dosya adı, sipariş vermeye yardımcı olacak bir zaman damgası içerir.
+    *Veritabanı zaten oluşturulmasaydı bu InitialCreate geçişi projeye eklenmezdi. Bunun yerine, bu tabloları oluşturmak için kod Ekleme-Geçiş dediğimiz ilk kez yeni bir geçiş iskele olacaktır.*
 
-### <a name="multiple-models-targeting-the-same-database"></a>Aynı veritabanını hedefleyen birden çok model
+### <a name="multiple-models-targeting-the-same-database"></a>Aynı Veritabanını Hedefleyen Birden Çok Model
 
-EF6 ' den önceki sürümleri kullanırken bir veritabanının şemasını oluşturmak/yönetmek için yalnızca bir Code First modeli kullanılabilir. Bu, hangi girişlerin hangi modele ait olduğunu belirlemenin hiçbir yolu olmadan veritabanı başına tek bir **\_\_MigrationsHistory** tablosunun sonucudur.
+EF6'dan önceki sürümleri kullanırken, veritabanının şemasını oluşturmak/yönetmek için yalnızca bir Code First modeli kullanılabilir. Bu, hangi girişlerin ** \_ \_** hangi modele ait olduğunu belirlemenin hiçbir yolu olmayan veritabanı başına tek bir MigrationsHistory tablosunun sonucudur.
 
-EF6 ile başlayarak, **yapılandırma** sınıfı bir **contextKey** özelliği içerir. Bu, her bir Code First modeli için benzersiz bir tanımlayıcı işlevi görür. **\_\_MigrationsHistory** tablosundaki karşılık gelen bir sütun, birden çok modeldeki girişlerin tabloyu paylaşmasına izin verir. Varsayılan olarak, bu özellik, bağlamınızın tam adına ayarlanır.
+EF6 ile **başlayarak, Yapılandırma** sınıfı bir **ContextKey** özelliği içerir. Bu, her Code First modeli için benzersiz bir tanımlayıcı görevi görür. ** \_ \_MigrationsHistory** tablosundaki karşılık gelen sütun, birden çok modelden girişlerin tabloyu paylaşmasına olanak tanır. Varsayılan olarak, bu özellik bağlamınızın tam nitelikli adına ayarlanır.
 
-## <a name="generating--running-migrations"></a>Çalıştırılan & geçişleri oluşturma
+## <a name="generating--running-migrations"></a>& Çalıştırma Geçişleri Oluşturma
 
-Code First Migrations, öğrenecek iki birincil komuta sahiptir.
+Kod İlk Geçişler aşina olacak iki birincil komutları vardır.
 
--   **Geçiş geçişi** , son geçişin oluşturulmasından bu yana modelinizde yaptığınız değişikliklere dayalı olarak bir sonraki geçişi kankatalacak
--   **Güncelleştir-veritabanı** bekleyen geçişleri veritabanına uygular
+-   **Add-Migration,** son geçiş oluşturulduğundan beri modelinizde yaptığınız değişikliklere göre bir sonraki geçişi şekillendirecek
+-   **Update-Database** veritabanına bekleyen geçişleri uygular
 
-Eklediğimiz yeni URL özelliğinden yararlanmak için bir geçişi bir geçişe katdık. **Add-Migration** komutu bu geçişlere bir ad vermemizi sağlar. yalnızca **Bizaddblogurl**'yi çağıralım.
+Eklediğimiz yeni Url özelliğinin icabına bakmak için bir göç inşa etmeliyiz. **Add-Migration** komutu bize bu göçler bir isim vermek için izin verir, sadece bizim **AddBlogUrl**çağıralım.
 
--   Paket Yöneticisi konsolunda **Add-Migration AddBlogUrl** komutunu çalıştırma
--   **Geçişler** klasöründe artık yeni bir **Addblogurl** geçişi var. Geçiş dosya adı, sıralamaya yardımcı olması için zaman damgasıyla önceden düzeltildi
+-   Paket Yöneticisi Konsolunda **Ekle-Geçiş AddBlogUrl** komutunu çalıştırın
+-   **Migrations** klasöründe artık yeni bir **AddBlogUrl** geçişi var. Geçiş dosya adı, sipariş eve yardımcı olmak için bir zaman damgası ile önceden düzeltilir
 
 ``` csharp
     namespace MigrationsDemo.Migrations
@@ -148,18 +148,18 @@ Eklediğimiz yeni URL özelliğinden yararlanmak için bir geçişi bir geçişe
     }
 ```
 
-Şimdi bu geçişe düzenleme veya ekleme yapabiliriz, ancak her şey oldukça iyi görünüyor. Bu geçişi veritabanına uygulamak için **Update-Database** ' i kullanalım.
+Şimdi bu göç ekini yapabilir veya ekleyebiliriz ama her şey oldukça iyi görünüyor. Bu geçişi veritabanına uygulamak için **Update-Database'i** kullanalım.
 
--   Package Manager konsolunda **Update-Database** komutunu çalıştırın
--   Code First Migrations, **geçişleri** klasörünüzdeki geçişleri veritabanına uygulanmış olanlarla karşılaştıracaktır. **Addblogurl** geçişinin uygulanması gerektiğini görebilir ve bu işlem çalışır.
+-   Paket Yöneticisi Konsolunda **Update-Database** komutunu çalıştırın
+-   Kod İlk Geçişler, **Geçişler** klasörümüzdeki geçişleri veritabanına uygulananlarla karşılaştırır. **Bu AddBlogUrl** geçiş uygulanması gerektiğini göreceksiniz, ve çalıştırın.
 
-**Migrationsdemo. BlogContext** veritabanı artık **Bloglar** tablosuna **URL** sütununu içerecek şekilde güncelleştirildi.
+**MigrationsDemo.BlogContext** veritabanı artık **Bloglar** tablosuna **Url** sütununu içerecek şekilde güncelleştirildi.
 
-## <a name="customizing-migrations"></a>Geçişleri özelleştirme
+## <a name="customizing-migrations"></a>Geçişleri Özelleştirme
 
-Şimdiye kadar herhangi bir değişiklik yapmadan bir geçiş oluşturmuş ve çalıştırdık. Şimdi varsayılan olarak oluşturulan kodu düzenleyerek göz atalım.
+Şimdiye kadar herhangi bir değişiklik yapmadan bir göç oluşturduk ve çalıştırdık. Şimdi varsayılan olarak oluşturulan kodu düzenlemeye bakalım.
 
--   Modelimizde daha fazla değişiklik yapma zamanı, **Blog** sınıfına yeni bir **Derecelendirme** özelliği ekleyelim
+-   Bizim model bazı daha fazla değişiklik yapmak için zamanı, **Blog** sınıfına yeni bir **Derecelendirme** özelliği ekleyelim
 
 ``` csharp
     public int Rating { get; set; }
@@ -180,20 +180,20 @@ Eklediğimiz yeni URL özelliğinden yararlanmak için bir geçişi bir geçişe
     }
 ```
 
--   Ayrıca **, blog ve** **gönderi** arasındaki ilişkinin diğer sonunu oluşturmak Için **Blog** sınıfına bir **gönderi** koleksiyonu ekleyeceğiz
+-   Ayrıca **Blog** ve **Post** arasındaki ilişkinin diğer ucunu oluşturmak için **Blog** sınıfına bir **Gönderiler** koleksiyonu ekleyeceğiz
 
 ``` csharp
     public virtual List<Post> Posts { get; set; }
 ```
 
-Geçiş sırasında en iyi tahmininizi Code First Migrations Scam etmek için **Add-Migration** komutunu kullanacağız. Bu geçiş **Addpostclass**'ı çağıracağız.
+Kod İlk Geçişler bizim için göç en iyi tahmin iskele izin vermek için **Ekle-Geçiş** komutunu kullanacağız. Bu göçe **AddPostClass**diyeceğiz.
 
--   Paket Yöneticisi konsolundaki **Add-Migration AddPostClass** komutunu çalıştırın.
+-   Paket Yöneticisi Konsolunda **Ekle-Geçiş EklePostClass** komutunu çalıştırın.
 
-Code First Migrations, bu değişikliklerin etkili bir şekilde sağlam bir işi olduğundan, değiştirmek isteyebileceğiniz bazı şeyler vardır:
+Kod İlk Göçler bu değişiklikleri iskele oldukça iyi bir iş yaptı, ama değiştirmek isteyebilirsiniz bazı şeyler vardır:
 
-1.  İlk olarak, postalarınıza benzersiz bir dizin ekleyelim **. title** sütununa (aşağıdaki kodda 22 & 29 satıra ekleme).
-2.  Ayrıca, null olamayan **blogların. derecelendirme** sütununu da ekliyoruz. Tabloda varolan veriler varsa, yeni sütun için veri türünün CLR varsayılanı atanır (derecelendirme tamdır, yani **0**olur). Ancak varsayılan olarak **3** değerini belirtmek istiyoruz, bu sayede **blogların** tablosundaki mevcut satırların bir sıra derecelendirmesi ile başlaması gerekir.
+1.  İlk olarak, **Posts.Title** sütununa benzersiz bir dizin ekleyelim (Aşağıdaki koda satır 22 & 29'a ekleme).
+2.  Ayrıca geçersiz **bloglar.Rating** sütunu ekliyoruz. Tabloda varolan herhangi bir veri varsa, yeni sütun için veri türünün CLR varsayılanı atanır (Derecelendirme, yani **0**olur). Ancak, **Bloglar** tablosundaki varolan satırların iyi bir derecelendirmeyle başlaması için **varsayılan değeri 3** olarak belirtmek istiyoruz.
     (Aşağıdaki kodun 24. satırında belirtilen varsayılan değeri görebilirsiniz)
 
 ``` csharp
@@ -235,25 +235,25 @@ Code First Migrations, bu değişikliklerin etkili bir şekilde sağlam bir işi
     }
 ```
 
-Düzenlenmiş geçişimiz çalışmaya devam eder, bu nedenle veritabanını güncel hale getirmek için **Update-Database** ' i kullanalım. Bu süre, Code First Migrations çalışan SQL 'i görebilmeniz için **– verbose** bayrağını belirtlim.
+Düzenlenen geçişimiz kullanıma hazır, bu nedenle veritabanını güncel duruma getirmek için **Update-Database'i** kullanalım. Bu kez ,İlk Geçişler Kodu'nun çalıştırdığı SQL'i görebilmeniz için **Verbose** bayrağını belirtelim.
 
--   Package Manager konsolundaki **Update-Database – verbose** komutunu çalıştırın.
+-   Paket Yöneticisi Konsolunda **Update-Database –Verbose** komutunu çalıştırın.
 
-## <a name="data-motion--custom-sql"></a>Veri hareketi/özel SQL
+## <a name="data-motion--custom-sql"></a>Veri Hareketi / Özel SQL
 
-Şimdiye kadar herhangi bir veriyi değiştirmeyin veya taşımamış geçiş işlemlerine baktık, şimdi bazı verilerin etrafında taşınması gereken bir şeye bakalım. Henüz veri hareketi için yerel destek yoktur, ancak betiğimizde herhangi bir noktada bazı rastgele SQL komutları çalıştırabiliriz.
+Şimdiye kadar herhangi bir veriyi değiştirmeyen veya taşımayan geçiş işlemlerine baktık, şimdi bazı verileri hareket ettirmesi gereken bir şeye bakalım. Veri hareketi için henüz yerel bir destek yoktur, ancak komut dosyamızın herhangi bir noktasında bazı rasgele SQL komutları çalıştırabiliriz.
 
--   Modelinize bir **Post. Abstract** özelliği ekleyelim. Daha sonra, **içerik** sütununun başından itibaren bazı metinleri kullanarak mevcut gönderimler için **Özet** 'i önceden dolduracağız.
+-   Modelimize **Bir Post.Abstract** özelliği ekleyelim. Daha sonra, **İçerik** sütununun başından itibaren bazı metinleri kullanarak varolan gönderiler için **Özet'i** önceden dolduracağız.
 
 ``` csharp
     public string Abstract { get; set; }
 ```
 
-Geçiş sırasında en iyi tahmininizi Code First Migrations Scam etmek için **Add-Migration** komutunu kullanacağız.
+Kod İlk Geçişler bizim için göç en iyi tahmin iskele izin vermek için **Ekle-Geçiş** komutunu kullanacağız.
 
--   Paket Yöneticisi konsolunda **Add-Migration AddPostAbstract** komutunu çalıştırın.
--   Oluşturulan geçiş, şema değişikliklerinden yararlanır, ancak her gönderi için içeriğin ilk 100 karakterini kullanarak **soyut** sütunu önceden doldurmak de istiyoruz. Bunu, SQL 'e bırakarak ve sütun eklendikten sonra bir **Update** ifadesini çalıştırarak yapabiliriz.
-    (Aşağıdaki kodda 12. satırda ekleme)
+-   Paket Yöneticisi Konsolunda **Ekle-Geçiş AddPostAbstract** komutunu çalıştırın.
+-   Oluşturulan geçiş şema değişiklikleri ilgilenir ama biz de her yazı için içerik ilk 100 karakter kullanarak **Özet** sütun önceden doldurmak istiyorum. Bunu, SQL'e bırakarak ve sütun eklendikten sonra bir **UPDATE** deyimi çalıştırarak yapabiliriz.
+    (Aşağıdaki kodda 12. satıra ekleme)
 
 ``` csharp
     namespace MigrationsDemo.Migrations
@@ -278,43 +278,43 @@ Geçiş sırasında en iyi tahmininizi Code First Migrations Scam etmek için **
     }
 ```
 
-Düzenlenmiş geçişimiz iyi arıyor, bu nedenle veritabanını güncel hale getirmek için **Update-Database** ' i kullanalım. Veritabanına karşı çalışan SQL 'i görebilmemiz için **– verbose** bayrağını belirteceğiz.
+Düzenlenen geçişimiz iyi görünüyor, bu nedenle veritabanını güncel duruma getirmek için **Update-Database'i** kullanalım. SQL'in veritabanına karşı çalıştırıldığını görebilmemiz için **Verbose** bayrağını belirtiriz.
 
--   Package Manager konsolundaki **Update-Database – verbose** komutunu çalıştırın.
+-   Paket Yöneticisi Konsolunda **Update-Database –Verbose** komutunu çalıştırın.
 
-## <a name="migrate-to-a-specific-version-including-downgrade"></a>Belirli bir sürüme geçiş (düşürme dahil)
+## <a name="migrate-to-a-specific-version-including-downgrade"></a>Belirli Bir Sürüme Geçiş (Düşürme Dahil)
 
-Şimdiye kadar her zaman en son geçişe yükseltildik, ancak belirli bir geçişe yükseltme/düşürme yapmak istediğiniz zamanlar olabilir.
+Şimdiye kadar her zaman en son geçiş yükselttik, ancak yükseltme / belirli bir geçiş için downgrade istediğiniz zamanlar olabilir.
 
-Şimdi, **Addblogurl** geçişimizi çalıştırdıktan sonra veritabanını bulunduğu duruma geçirmek istiyoruz. Bu geçişe düşürme sağlamak için **– Targetmigration** anahtarını kullanabiliriz.
+Veritabanımızı **AddBlogUrl** geçişimizi çalıştırdıktan sonra içinde olduğu duruma geçirmek istediğimizi varsayalım. Bu geçişe indirgenmek için **–TargetMigration** anahtarını kullanabiliriz.
 
--   Package Manager konsolundaki **Update-Database – TargetMigration: AddBlogUrl** komutunu çalıştırın.
+-   **Update-Database çalıştırın –TargetMigration: AddBlogUrl** komutu Package Manager Console'da.
 
-Bu komut, **AddBlogAbstract** ve **addpostclass** geçişlerimiz için aşağı komut dosyasını çalıştırır.
+Bu **komut, AddBlogAbstract** ve **AddPostClass** geçişlerimiz için Aşağı komut dosyasını çalıştıracaktır.
 
-Bir bütün olarak boş bir veritabanına geri dönmek istiyorsanız, **Update-Database – TargetMigration: $InitialDatabase** komutunu kullanabilirsiniz.
+Boş bir veritabanına geri dönmek **istiyorsanız, Update-Database -TargetMigration: $InitialDatabase** komutunu kullanabilirsiniz.
 
-## <a name="getting-a-sql-script"></a>SQL betiği alma
+## <a name="getting-a-sql-script"></a>SQL Script alma
 
-Başka bir geliştirici makinesinde bu değişikliklere istiyorsa, değişiklikleri kaynak denetimine denetliyoruz bir kez daha zaman eşitlenebilir. Yeni geçişlerimiz olduktan sonra, değişikliklerin yerel olarak uygulanmasını sağlamak için yalnızca Update-database komutunu çalıştırabilir. Ancak, bu değişiklikleri bir test sunucusuna göndermek istiyoruz ve son olarak üretimde, büyük olasılıkla DBA için bir SQL betiği sunmamız istiyoruz.
+Başka bir geliştirici bu değişiklikleri makinelerinde isterse, biz değişikliklerimizi kaynak denetimine kontrol ettiğimizde senkronize edebilirler. Yeni geçişlerimizi yaptıktan sonra değişiklikleri yerel olarak çalıştırmak için Update-Database komutunu çalıştırabilirler. Ancak bu değişiklikleri bir test sunucusuna itmek ve sonunda üretim yapmak istersek, muhtemelen DBA'mıza teslim edebileceğimiz bir SQL komut dosyası isteriz.
 
--   **Update-Database** komutunu çalıştırın, ancak bu kez, değişikliklerin uygulanması yerine bir betiğe yazılması Için **– Script** bayrağını belirtin. Ayrıca, komut dosyasını oluşturmak için bir kaynak ve hedef geçişi de belirteceğiz. Bir betiğin boş bir veritabanından ( **$InitialDatabase**) en son sürüme (geçiş **Addpostabstract**) gitmesini istiyoruz.
-    *Hedef geçiş belirtmezseniz, geçişler hedef olarak en son geçişi kullanır. Kaynak geçişleri belirtmezseniz, geçişler veritabanının geçerli durumunu kullanacaktır.*
--   **Güncelleştirme-veritabanı-betiği-SourceMigration: $InitialDatabase-TargetMigration: AddPostAbstract** komutunu, Paket Yöneticisi konsolu 'nda çalıştırın
+-   **Update-Database** komutunu çalıştırın, ancak bu kez değişikliklerin uygulanmak yerine bir komut dosyasına yazılması için **-Script** bayrağını belirtin. Komut dosyasını oluşturmak için bir kaynak ve hedef geçişi de belirteceğiz. Boş bir veritabanından **($InitialDatabase)** en son sürüme (geçiş **AddPostAbstract)** gitmek için bir komut dosyası istiyorum.
+    *Bir hedef geçişi belirtmezseniz, Geçişler hedef olarak en son geçişi kullanır. Kaynak geçişleri belirtmezseniz, Geçişler veritabanının geçerli durumunu kullanır.*
+-   **Update-Database -Script -SourceMigration: $InitialDatabase -TargetMigration: AddPostAbstract** komutunu Paket Yöneticisi Konsolunda çalıştırın
 
-Code First Migrations, geçiş işlem hattını çalıştıracak ancak değişiklikleri gerçekten uygulamak yerine, sizin için bir. SQL dosyasına yazacak. Betik oluşturulduktan sonra, Visual Studio 'da sizin için açılır, bu sizin için sizin için açılır.
+Kod İlk Geçişler geçiş ardışık çalışır, ancak değişiklikleri gerçekten uygulamak yerine bunları sizin için bir .sql dosyasına yazar. Komut dosyası oluşturulduktan sonra, visual studio'da sizin için açılır ve görüntülemeniz veya kaydetmeniz için hazır hale gelir.
 
-### <a name="generating-idempotent-scripts"></a>Idempotent betikleri üretiliyor
+### <a name="generating-idempotent-scripts"></a>İktidarlı Komut Dosyaları Oluşturma
 
-EF6 ile başlayarak, **– Sourcemigration $InitialDatabase** belirtirseniz oluşturulan betik ' ıdempotent ' olur. Idempotent betikleri, şu anda herhangi bir sürümdeki bir veritabanını en son sürüme (ya da **– Targetmigration**kullanıyorsanız, belirtilen sürüme) yükseltebilirler. Oluşturulan betik, **\_\_MigrationsHistory** tablosunu denetleme mantığını içerir ve yalnızca daha önce uygulanmamış değişiklikleri uygular.
+EF6 ile başlayarak, belirtirseniz **–SourceMigration $InitialDatabase** sonra oluşturulan komut dosyası 'idempotent' olacaktır. Idempotent komut dosyaları en son sürüme herhangi bir sürümü şu anda bir veritabanı yükseltebilirsiniz (veya kullanırsanız belirtilen sürümü **–TargetMigration).** Oluşturulan komut ** \_ \_dosyası, MigrationsHistory** tablosunu denetlemek ve yalnızca daha önce uygulanmamış değişiklikleri uygulamak için mantık içerir.
 
-## <a name="automatically-upgrading-on-application-startup-migratedatabasetolatestversion-initializer"></a>Uygulama başlangıcında otomatik olarak yükseltme (MigrateDatabaseToLatestVersion Başlatıcısı)
+## <a name="automatically-upgrading-on-application-startup-migratedatabasetolatestversion-initializer"></a>Uygulama Başlatmada Otomatik Yükseltme (MigrateDatabaseToLatestVersion Initializer)
 
-Uygulamanızı dağıtıyorsanız, uygulamanın başlatıldığında veritabanını otomatik olarak yükseltmesini (bekleyen geçişler uygulayarak) isteyebilirsiniz. Bunu, **Migratedatabasetolatestversion** veritabanı Başlatıcısı ' nı kaydederek yapabilirsiniz. Veritabanı başlatıcısı yalnızca veritabanının doğru şekilde ayarlandığından emin olmak için kullanılan bir mantığı içerir. Bu mantık, içerik uygulama işlemi (**AppDomain**) içinde ilk kez kullanıldığında çalıştırılır.
+Uygulamanızı dağıtıyorsanız, uygulama başlatıldığında veritabanını otomatik olarak yükseltmesini (bekleyen geçişleri uygulayarak) isteyebilirsiniz. Bunu, **GeçirveriToLatestVersion** veritabanı baş harflerini kaydederek yapabilirsiniz. Veritabanı baş harflerini yalnızca veritabanının doğru şekilde kurulum olduğundan emin olmak için kullanılan bazı mantık içerir. Bu mantık, bağlam ın uygulama işlemi **(AppDomain)** içinde ilk kez kullanılmasıyla çalıştırılır.
 
-Bağlamı kullanmadan önce BlogContext için **Migratedatabasetolatestversion** başlatıcısı 'nı ayarlamak üzere, aşağıda gösterildiği gibi **program.cs** dosyasını güncelleştirebiliriz (satır 14). **System. Data. Entity** ad alanı (5. satır) için bir using ifadesini de eklemeniz gerektiğini unutmayın.
+Bağlamı (Satır 14) kullanmadan önce BlogContext için **GeçirVeritabanıToLatestVersion** başlatlayıcısını ayarlamak için **Program.cs** dosyasını güncelleştirebiliriz. **System.Data.Entity** ad alanı (Satır 5) için bir dekullanarak ifade eklemeniz gerektiğini unutmayın.
 
-*Bu başlatıcı 'nin bir örneğini oluşturduğumuzda, bağlam türünü (**BlogContext**) ve geçişler yapılandırmasını (**yapılandırma**) belirtmemiz gerekir-geçişleri etkinleştirmemiz durumunda **geçişler klasörünüze eklenen** sınıftır.*
+*Bu başlatanın bir örneğini oluşturduğumuzda bağlam türünü **(BlogContext)** ve geçişyapılandırmasını **(Yapılandırma)** belirtmemiz gerekir - Geçişler yapılandırması, Geçişleri etkinleştirdiğimizde **Geçişler** klasörümüze eklenen sınıftır.*
 
 ``` csharp
     using System;
@@ -350,4 +350,4 @@ Bağlamı kullanmadan önce BlogContext için **Migratedatabasetolatestversion**
     }
 ```
 
-Artık uygulamamız her çalıştığında, öncelikle hedeflediği veritabanının güncel olup olmadığını kontrol eder ve yoksa bekleyen geçişleri uygular.
+Şimdi uygulamamız çalıştığında, ilk olarak hedeflenen veritabanının güncel olup olmadığını denetleyecek ve değilse bekleyen geçişleri uygulayacaktır.

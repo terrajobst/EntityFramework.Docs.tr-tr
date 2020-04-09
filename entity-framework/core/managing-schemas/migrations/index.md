@@ -1,43 +1,43 @@
 ---
-title: Geçişler-EF Core
+title: Göçler - EF Core
 author: bricelam
 ms.author: bricelam
 ms.date: 10/05/2018
 uid: core/managing-schemas/migrations/index
 ms.openlocfilehash: 190057daed61c58c1f89ee8d775913458e413a50
-ms.sourcegitcommit: c3b8386071d64953ee68788ef9d951144881a6ab
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/24/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "80136205"
 ---
 # <a name="migrations"></a>Geçişler
 
-Geliştirme sırasında bir veri modeli değişir ve veritabanı ile eşitlenmemiş olur. Veritabanını bırakabilir ve EF ile eşleşen yeni bir tane oluşturmasını sağlayabilirsiniz, ancak bu yordam veri kaybına neden olur. EF Core geçiş özelliği, veritabanı şemasını, veritabanında var olan verileri korurken uygulamanın veri modeliyle eşitlenmiş halde tutmak için artımlı olarak güncellemek üzere bir yol sağlar.
+Bir veri modeli geliştirme sırasında değişir ve veritabanı ile eşitlenmemiş olur. Veritabanını bırakabilir ve EF'nin modelle eşleşen yeni bir veritabanı oluşturmasına izin verebilirsiniz, ancak bu yordam veri kaybına neden olabilir. EF Core'daki geçişler özelliği, veritabanındaki varolan verileri korurken uygulamanın veri modeliyle eşit tutmak için veritabanı şemasını aşamalı olarak güncelleştirmenin bir yolunu sağlar.
 
-Geçişler, aşağıdaki görevlerle yardım eden komut satırı araçlarını ve API 'Leri içerir:
+Geçişler, aşağıdaki görevlere yardımcı olan komut satırı araçlarını ve API'leri içerir:
 
-* [Geçiş oluşturun](#create-a-migration). Veritabanını bir model değişikliği kümesiyle eşitlenecek şekilde güncelleştiren bir kod oluşturun.
-* [Veritabanını güncelleştirin](#update-the-database). Veritabanı şemasını güncelleştirmek için bekleyen geçişleri uygulayın.
-* [Geçiş kodunu özelleştirin](#customize-migration-code). Bazen oluşturulan kodun değiştirilmesi veya takıma alınması gerekir.
-* [Bir geçişi kaldırın](#remove-a-migration). Oluşturulan kodu silin.
-* [Bir geçişi döndürür](#revert-a-migration). Veritabanı değişikliklerini geri al.
-* [SQL betikleri oluşturun](#generate-sql-scripts). Bir üretim veritabanını güncelleştirmek veya geçiş kodu sorunlarını gidermek için bir betiğe gerek duyabilirsiniz.
-* [Çalışma zamanında geçişleri uygulayın](#apply-migrations-at-runtime). Tasarım zamanı güncelleştirmeleri ve çalıştırma betikleri en iyi seçenek olmadığından, `Migrate()` yöntemini çağırın.
+* [Geçiş oluşturun.](#create-a-migration) Veritabanını bir model değişikliği kümesiyle eşitlemek için güncelleştirebilecek kod oluşturun.
+* [Veritabanını güncelleştirin.](#update-the-database) Veritabanı şemasını güncelleştirmek için bekleyen geçişleri uygulayın.
+* [Geçiş kodunu özelleştirin.](#customize-migration-code) Bazen oluşturulan kodun değiştirilmesi veya desteklenmesi gerekir.
+* [Geçişkaldırma.](#remove-a-migration) Oluşturulan kodu silin.
+* [Geçişi geri çevirin.](#revert-a-migration) Veritabanı değişikliklerini geri ala.
+* [SQL komut dosyaları oluşturun.](#generate-sql-scripts) Üretim veritabanını güncelleştirmek veya geçiş kodunu gidermek için bir komut dosyasına ihtiyacınız olabilir.
+* [Geçişleri çalışma zamanında uygulayın.](#apply-migrations-at-runtime) Tasarım zamanı güncelleştirmeleri ve çalışan komut dosyaları en iyi `Migrate()` seçenek olmadığında, yöntemi arayın.
 
 > [!TIP]
-> `DbContext` başlangıç projesinden farklı bir derlemede yer alıyorsa, hedef ve başlangıç projelerini [Paket Yöneticisi konsol araçları](xref:core/miscellaneous/cli/powershell#target-and-startup-project) veya [.NET Core CLI araçları](xref:core/miscellaneous/cli/dotnet#target-project-and-startup-project)'nda açıkça belirtebilirsiniz.
+> Başlangıç `DbContext` projesinden farklı bir derlemedeyse, [Paket Yöneticisi Konsolu araçlarında](xref:core/miscellaneous/cli/powershell#target-and-startup-project) veya [.NET Core CLI araçlarında](xref:core/miscellaneous/cli/dotnet#target-project-and-startup-project)hedef ve başlangıç projelerini açıkça belirtebilirsiniz.
 
-## <a name="install-the-tools"></a>Araçları yükler
+## <a name="install-the-tools"></a>Araçları yükleme
 
-[Komut satırı araçlarını](xref:core/miscellaneous/cli/index)yükler:
+Komut [satırı araçlarını](xref:core/miscellaneous/cli/index)yükleyin:
 
-* Visual Studio için [Paket Yöneticisi konsol araçları](xref:core/miscellaneous/cli/powershell)önerilir.
-* Diğer geliştirme ortamları için [.NET Core CLI araçları](xref:core/miscellaneous/cli/dotnet)' nı seçin.
+* Visual Studio için [Paket Yöneticisi Konsolu araçlarını](xref:core/miscellaneous/cli/powershell)öneririz.
+* Diğer geliştirme ortamları için [.NET Core CLI araçlarını](xref:core/miscellaneous/cli/dotnet)seçin.
 
 ## <a name="create-a-migration"></a>Geçiş oluşturma
 
-[İlk modelinizi tanımladıktan](xref:core/modeling/index)sonra, veritabanının oluşturulması zaman alabilir. İlk geçiş eklemek için aşağıdaki komutu çalıştırın.
+[İlk modelinizi tanımladıktan](xref:core/modeling/index)sonra veritabanını oluşturma nın zamanı doldu. İlk geçiş eklemek için aşağıdaki komutu çalıştırın.
 
 ### <a name="net-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
@@ -53,20 +53,20 @@ Add-Migration InitialCreate
 
 ***
 
-**Geçiş** dizini altında projenize üç dosya eklenir:
+**Geçişler** dizininde projenize üç dosya eklenir:
 
-* **XXXXXXXXXXXXXX_InitialCreate. cs**--ana geçişler dosyası. Geçişi uygulamak için gerekli işlemleri içerir (`Up()`) ve döndürür (`Down()`).
-* **XXXXXXXXXXXXXX_InitialCreate. Designer. cs**--geçişler meta verileri dosyası. EF tarafından kullanılan bilgileri içerir.
-* **MyContextModelSnapshot.cs**--geçerli modelinize ait bir anlık görüntü. Sonraki geçiş eklenirken nelerin değiştiğini belirlemek için kullanılır.
+* **XXXXXXXXXXXXXX_InitialCreate.cs**--Ana geçişler dosyası. Geçiş (in) `Up()`uygulamak ve geri almak için (içinde) `Down()`gerekli işlemleri içerir.
+* **XXXXXXXXXXXXXX_InitialCreate.Designer.cs**--Geçişler meta veri dosyası. EF tarafından kullanılan bilgileri içerir.
+* **MyContextModelSnapshot.cs**-- Geçerli modelinizin anlık görüntüsü. Sonraki geçiş eklenince nelerin değiştiğini belirlemek için kullanılır.
 
-Dosya adında zaman damgası, değişikliklerin ilerlemesini görebileceğiniz şekilde kronolojik olarak sıralanmasına yardımcı olur.
+Dosya adındaki zaman damgası, değişikliklerin ilerlemesini görebilmeniz için kronolojik olarak sıralı kalmalarına yardımcı olur.
 
 > [!TIP]
-> Geçiş dosyalarını taşımak ve ad alanını değiştirmek ücretsizdir. Yeni geçişler, son geçişin eşdüzey öğeleri olarak oluşturulur.
+> Geçişler dosyalarını taşımak ve ad alanlarını değiştirmek ücretsizdir. Yeni geçişler son geçişin kardeşleri olarak oluşturulur.
 
 ## <a name="update-the-database"></a>Veritabanını güncelleştirme
 
-Sonra, şemayı oluşturmak için geçiş veritabanını veritabanına uygulayın.
+Ardından, şemayı oluşturmak için geçiş işimdi veritabanına uygulayın.
 
 ### <a name="net-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
@@ -84,7 +84,7 @@ Update-Database
 
 ## <a name="customize-migration-code"></a>Geçiş kodunu özelleştirme
 
-EF Core modelinizde değişiklik yaptıktan sonra veritabanı şeması eşitlenmemiş olabilir. Bunu güncel hale getirmek için başka bir geçiş ekleyin. Geçiş adı, bir sürüm denetim sisteminde bir COMMIT iletisi gibi kullanılabilir. Örneğin, gözden geçirmeler için değişiklik yeni bir varlık sınıfı ise *Addproductincelemeleri* gibi bir ad seçebilirsiniz.
+EF Core modelinizde değişiklik yaptıktan sonra, veritabanı şeması eşitlenmemiş olabilir. Güncel getirmek için başka bir geçiş ekleyin. Geçiş adı, sürüm denetim sisteminde bir ileti iletisi gibi kullanılabilir. Örneğin, değişiklik incelemeler için yeni bir varlık sınıfıysa *AddProductReviews* gibi bir ad seçebilirsiniz.
 
 ### <a name="net-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
@@ -100,7 +100,7 @@ Add-Migration AddProductReviews
 
 ***
 
-Geçiş, daha sonra (bunun için oluşturulan kod) bir kez alındıktan sonra, kodu doğruluk için gözden geçirin ve doğru uygulamak için gereken tüm işlemleri ekleyin, kaldırın veya değiştirin.
+Geçiş iskelesi (bunun için oluşturulan kod) oluşturulduktan sonra, doğruluk için kodu gözden geçirin ve doğru uygulamak için gereken işlemleri ekleyin, kaldırın veya değiştirin.
 
 Örneğin, bir geçiş aşağıdaki işlemleri içerebilir:
 
@@ -119,7 +119,7 @@ migrationBuilder.AddColumn<string>(
     nullable: true);
 ```
 
-Bu işlemler veritabanı şemasını uyumlu hale getirir, ancak mevcut müşteri adlarını korumaz. Daha iyi hale getirmek için aşağıdaki gibi yeniden yazın.
+Bu işlemler veritabanı şema uyumlu hale getirmekle birlikte, varolan müşteri adlarını korumaz. Daha iyi hale getirmek için aşağıdaki gibi yeniden yazın.
 
 ``` csharp
 migrationBuilder.AddColumn<string>(
@@ -143,9 +143,9 @@ migrationBuilder.DropColumn(
 ```
 
 > [!TIP]
-> Geçiş yapı iskelesi işlemi, bir işlem veri kaybına neden olabileceği zaman uyarır (bir sütunu bırakma gibi). Uyarı görürseniz, özellikle de geçişler için geçiş kodunu gözden geçirdiğinizden emin olun.
+> Geçiş iskelesi işlemi, bir işlemin veri kaybına (sütun düşürme gibi) neden olabileceği konusunda uyarır. Bu uyarıyı görürseniz, doğruluk için geçişler kodunu gözden geçirdiğinizden özellikle emin olun.
 
-Uygun komutu kullanarak geçişi veritabanına uygulayın.
+Geçişi uygun komutu kullanarak veritabanına uygulayın.
 
 ### <a name="net-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
@@ -163,17 +163,17 @@ Update-Database
 
 ### <a name="empty-migrations"></a>Boş geçişler
 
-Bazen herhangi bir model değişikliği yapmadan bir geçiş eklemek yararlı olabilir. Bu durumda, yeni bir geçiş eklemek boş sınıflarla kod dosyaları oluşturur. Bu geçişi, EF Core modeliyle doğrudan bağlantılı olmayan işlemleri gerçekleştirmek için özelleştirebilirsiniz. Bu şekilde yönetmek isteyebileceğiniz bazı şeyler şunlardır:
+Bazen herhangi bir model değişikliği yapmadan bir geçiş eklemek yararlıdır. Bu durumda, yeni bir geçiş eklemek boş sınıfları olan kod dosyaları oluşturur. Bu geçişi, EF Core modeliyle doğrudan ilişkili olmayan işlemleri gerçekleştirmek için özelleştirebilirsiniz. Bu şekilde yönetmek isteyebileceğin bazı şeyler şunlardır:
 
-* Tam metin arama
+* Tam Metin Arama
 * İşlevler
 * Saklı yordamlar
 * Tetikleyiciler
 * Görünümler
 
-## <a name="remove-a-migration"></a>Geçiş kaldırma
+## <a name="remove-a-migration"></a>Geçişi kaldırma
 
-Bazen bir geçiş ekleyip EF Core modelinizde uygulamadan önce ek değişiklikler yapmanız gerektiğini fark edebilirsiniz. Son geçişi kaldırmak için bu komutu kullanın.
+Bazen bir geçiş ekler ve uygulamadan önce EF Core modelinizde ek değişiklikler yapmanız gerektiğini fark elersiniz. Son geçişi kaldırmak için bu komutu kullanın.
 
 ### <a name="net-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
@@ -189,11 +189,11 @@ Remove-Migration
 
 ***
 
-Geçiş kaldırıldıktan sonra, ek model değişiklikleri yapıp yeniden ekleyebilirsiniz.
+Geçişi kaldırdıktan sonra, ek model değişiklikleri yapabilir ve yeniden ekleyebilirsiniz.
 
-## <a name="revert-a-migration"></a>Geçişi döndürür
+## <a name="revert-a-migration"></a>Geçişi geri almak
 
-Veritabanına zaten bir geçiş (veya birkaç geçiş) uyguladıysanız ancak geri döndürmeniz gerekiyorsa, geçişleri uygulamak için aynı komutu kullanabilirsiniz, ancak geri almak istediğiniz geçişin adını belirtebilirsiniz.
+Veritabanına zaten bir geçiş (veya birkaç geçiş) uyguladıysanız, ancak geri almanız gerekiyorsa, geçişleri uygulamak için aynı komutu kullanabilirsiniz, ancak geri almak istediğiniz geçişin adını belirtebilirsiniz.
 
 ### <a name="net-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
@@ -209,65 +209,65 @@ Update-Database LastGoodMigration
 
 ***
 
-## <a name="generate-sql-scripts"></a>SQL betikleri oluştur
+## <a name="generate-sql-scripts"></a>SQL komut dosyaları oluşturma
 
-Geçişlerinizi hata ayıkladığınızda veya bir üretim veritabanına dağıttığınızda, bir SQL betiği oluşturmak yararlı olur. Betik daha sonra doğruluk açısından daha fazla incelenebilir ve bir üretim veritabanının ihtiyaçlarına uyacak şekilde ayarlanabilir. Betik Ayrıca bir dağıtım teknolojisiyle birlikte kullanılabilir. Temel komut aşağıdaki gibidir.
+Geçişlerinizin hata ayıklanması veya bunları bir üretim veritabanına dağıtırken, bir SQL komut dosyası oluşturmak yararlıdır. Komut dosyası daha sonra doğruluk açısından daha fazla gözden geçirilebilir ve bir üretim veritabanının gereksinimlerine uyacak şekilde ayarlanabilir. Komut dosyası, dağıtım teknolojisiyle birlikte de kullanılabilir. Temel komut aşağıdaki gibidir.
 
 ### <a name="net-core-cli"></a>[.NET Core CLI](#tab/dotnet-core-cli)
 
-#### <a name="basic-usage"></a>Temel kullanım
+#### <a name="basic-usage"></a>Temel Kullanım
 ```dotnetcli
 dotnet ef migrations script
 ```
 
-#### <a name="with-from-to-implied"></a>İle (örtük)
-Bu, en son geçişe Bu geçişten bir SQL betiği oluşturur.
+#### <a name="with-from-to-implied"></a>From ile (zımni olarak)
+Bu, bu geçişten en son geçişe kadar bir SQL komut dosyası oluşturur.
 ```dotnetcli
 dotnet ef migrations script 20190725054716_Add_new_tables
 ```
 
-#### <a name="with-from-and-to"></a>İle ve arasında
-Bu işlem, `from` geçişten belirtilen `to` geçişine bir SQL betiği oluşturur.
+#### <a name="with-from-and-to"></a>From ve To ile
+Bu, `from` geçişten belirtilen `to` geçişe kadar bir SQL komut dosyası oluşturur.
 ```dotnetcli
 dotnet ef migrations script 20190725054716_Add_new_tables 20190829031257_Add_audit_table
 ```
-Geri alma betiği oluşturmak için `to` daha yeni bir `from` kullanabilirsiniz. *Lütfen olası veri kaybı senaryolarına göz atın.*
+Geri alma `from` komut dosyası oluşturmak `to` için daha yeni bir komut dosyası kullanabilirsiniz. *Lütfen olası veri kaybı senaryolarına dikkat edin.*
 
 ### <a name="visual-studio"></a>[Visual Studio](#tab/vs)
 
-#### <a name="basic-usage"></a>Temel kullanım
+#### <a name="basic-usage"></a>Temel Kullanım
 ``` powershell
 Script-Migration
 ```
 
-#### <a name="with-from-to-implied"></a>İle (örtük)
-Bu, en son geçişe Bu geçişten bir SQL betiği oluşturur.
+#### <a name="with-from-to-implied"></a>From ile (zımni olarak)
+Bu, bu geçişten en son geçişe kadar bir SQL komut dosyası oluşturur.
 ```powershell
 Script-Migration 20190725054716_Add_new_tables
 ```
 
-#### <a name="with-from-and-to"></a>İle ve arasında
-Bu işlem, `from` geçişten belirtilen `to` geçişine bir SQL betiği oluşturur.
+#### <a name="with-from-and-to"></a>From ve To ile
+Bu, `from` geçişten belirtilen `to` geçişe kadar bir SQL komut dosyası oluşturur.
 ```powershell
 Script-Migration 20190725054716_Add_new_tables 20190829031257_Add_audit_table
 ```
-Geri alma betiği oluşturmak için `to` daha yeni bir `from` kullanabilirsiniz. *Lütfen olası veri kaybı senaryolarına göz atın.*
+Geri alma `from` komut dosyası oluşturmak `to` için daha yeni bir komut dosyası kullanabilirsiniz. *Lütfen olası veri kaybı senaryolarına dikkat edin.*
 
 ***
 
-Bu komut için birkaç seçenek vardır.
+Bu komutun birkaç seçeneği vardır.
 
-Komut dosyası çalıştırılmadan önce geçiş **işleminden** önce veritabanına uygulanan son geçiş yapılmalıdır. Hiçbir geçiş uygulanmışsa, `0` belirtin (bu varsayılandır).
+**Geçiş,** komut dosyasını çalıştırmadan önce veritabanına uygulanan son geçiş olmalıdır. Geçiş uygulanmadıysa, belirtin `0` (bu varsayılandır).
 
-**-** Geçiş, komut dosyası çalıştırıldıktan sonra veritabanına uygulanacak son geçiştir. Bu, varsayılan olarak projenizdeki son geçişe göre yapılır.
+**Geçiş,** komut dosyasını çalıştırdıktan sonra veritabanına uygulanacak son geçiştir. Bu, projenizdeki son geçiş için varsayılandır.
 
-İsteğe bağlı olarak **ıdempotent** betiği oluşturulabilir. Bu betik yalnızca, veritabanına henüz uygulanmadıklarında geçişler uygular. Bu, veritabanına en son geçişin ne olduğunu tam olarak bilmiyorsanız veya her biri farklı bir geçişte olabilecek birden çok veritabanına dağıtım yapıyorsanız kullanışlıdır.
+İsteğe bağlı olarak **bir idempotent** komut dosyası oluşturulabilir. Bu komut dosyası, yalnızca veritabanına zaten uygulanmamışsa geçişleri uygular. Veritabanına uygulanan son geçişin ne olduğunu tam olarak bilmiyorsanız veya her biri farklı bir geçişte olabilecek birden çok veritabanına dağıtıyorsanız bu kullanışlıdır.
 
-## <a name="apply-migrations-at-runtime"></a>Çalışma zamanında geçişleri Uygula
+## <a name="apply-migrations-at-runtime"></a>Geçişleri çalışma zamanında uygulama
 
-Bazı uygulamalar, başlangıç veya ilk çalıştırma sırasında çalışma zamanında geçiş uygulamak isteyebilir. `Migrate()` yöntemini kullanarak bunu yapın.
+Bazı uygulamalar, başlangıç veya ilk çalıştırma sırasında çalışma zamanında geçişuygulamak isteyebilir. Yöntemi kullanarak `Migrate()` bunu yapın.
 
-Bu yöntem, daha gelişmiş senaryolar için kullanılabilen `IMigrator` hizmetinin üst kısmında oluşturulur. Erişmek için `myDbContext.GetInfrastructure().GetService<IMigrator>()` kullanın.
+Bu yöntem, daha gelişmiş `IMigrator` senaryolar için kullanılabilecek hizmetin üstüne oluşturur. Erişmek `myDbContext.GetInfrastructure().GetService<IMigrator>()` için kullan.
 
 ``` csharp
 myDbContext.Database.Migrate();
@@ -275,8 +275,8 @@ myDbContext.Database.Migrate();
 
 > [!WARNING]
 >
-> * Bu yaklaşım herkes için değildir. Yerel bir veritabanına sahip uygulamalar için harika olsa da, çoğu uygulama SQL betikleri oluşturma gibi daha güçlü dağıtım stratejisi gerektirir.
-> * `Migrate()`önce `EnsureCreated()` çağırmayın. `EnsureCreated()` şemayı oluşturmak için geçişleri atlar, bu da `Migrate()` başarısız olmasına neden olur.
+> * Bu yaklaşım herkes için değil. Yerel veritabanına sahip uygulamalar için harika olsa da, çoğu uygulama SQL komut dosyası oluşturma gibi daha sağlam dağıtım stratejisi gerektirir.
+> * Daha önce `Migrate()` `EnsureCreated()` arama. `EnsureCreated()`başarısız olmaya neden `Migrate()` olan şema oluşturmak için Geçişleri atlar.
 
 ## <a name="next-steps"></a>Sonraki adımlar
 

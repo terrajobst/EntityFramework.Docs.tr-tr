@@ -1,177 +1,188 @@
 ---
-title: Araçlar & Uzantılar-EF Core
+title: Araçlar & Uzantıları - EF Core
 author: ErikEJ
 ms.date: 12/17/2019
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/extensions/index
-ms.openlocfilehash: 99f59153a452a2f4aad5811110ebc5b5da7717ef
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: e3806f7161fecfe66450d3e08f97caf3d2c84cf3
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78417197"
+ms.lasthandoff: 04/07/2020
+ms.locfileid: "80634233"
 ---
-# <a name="ef-core-tools--extensions"></a>EF Core araçları & uzantıları
+# <a name="ef-core-tools--extensions"></a>EF Temel Araçlar & Uzantıları
 
-Bu araçlar ve uzantılar, Entity Framework Core 2,1 ve üzeri için ek işlevler sağlar.
+Bu araçlar ve uzantılar, Entity Framework Core 2.1 ve sonraki etkinlikler için ek işlevler sağlar.
 
 > [!IMPORTANT]  
-> Uzantılar çeşitli kaynaklardan oluşturulmuştur ve Entity Framework Core projenin bir parçası olarak korunmaz. Üçüncü taraf uzantısını değerlendirirken, gereksinimlerinizi karşıladığından emin olmak için kalite, lisanslama, uyumluluk, destek vb. değerlendirdiğinizden emin olun. Özellikle, EF Core eski bir sürümü için oluşturulmuş bir uzantının en son sürümlerle çalışmadan önce güncelleştirilmesi gerekebilir.
+> Uzantılar çeşitli kaynaklar tarafından oluşturulur ve Entity Framework Core projesinin bir parçası olarak sürdürülemez. Bir üçüncü taraf uzantısı nı düşünürken, gereksinimlerinizi karşıladığından emin olmak için kalitesini, lisansını, uyumluluğunu, desteğini vb. değerlendirdiğinizden emin olun. Özellikle, EF Core'un eski bir sürümü için oluşturulmuş bir uzantının en son sürümlerle çalışmadan önce güncelleştirilmesi gerekebilir.
 
 ## <a name="tools"></a>Araçlar
 
 ### <a name="llblgen-pro"></a>LLBLGen Pro
 
-LLBLGen Pro, Entity Framework ve Entity Framework Core desteğiyle bir varlık modelleme çözümüdür. Bu, varlık modelinizi kolayca tanımlamanızı ve veritabanını ilk veya modeli kullanarak veritabanınıza eşlemenizi sağlar, böylece sorguları hemen yazmaya başlayabilirsiniz. EF Core için: 2.
+LLBLGen Pro, Entity Framework ve Entity Framework Core desteğine sahip bir varlık modelleme çözümüdür. Önce veritabanını veya modeli kullanarak varlık modelinizi kolayca tanımlamanızı ve veritabanınızla eşlenizi belirlemenizi sağlar, böylece sorguları hemen yazmaya başlarsınız. EF Çekirdek için: 2.
 
-[Websitesi](https://www.llblgen.com/)
+[Web sitesi](https://www.llblgen.com/)
 
-### <a name="devart-entity-developer"></a>Varlık geliştiriciyi kaldırma
+### <a name="devart-entity-developer"></a>Devart Entity Developer
 
-Varlık geliştiricisi, ADO.NET Entity Framework, Nhazırda beklet, LinqConnect, Telerik veri erişimi ve LINQ to SQL için güçlü bir ORM tasarlayıcıdır. EF Core modellerinin görsel olarak tasarlanmasını, ilk veya veritabanı ilk yaklaşımı ve C# ya da kod üretimini Visual Basic destekler. EF Core için: 2.
+Entity Developer, ADO.NET Entity Framework, NHibernate, LinqConnect, Telerik Data Access ve LINQ to SQL için güçlü bir ORM tasarımcısıdır. EF Core modellerinin görsel olarak tasarlanması, önce model veya veritabanı yaklaşımlarının kullanılması ve C# veya Visual Basic kod oluşturmayı destekler. EF Çekirdek için: 2.
 
-[Websitesi](https://www.devart.com/entitydeveloper/)
+[Web sitesi](https://www.devart.com/entitydeveloper/)
 
-### <a name="nhydrate-orm-for-entity-framework"></a>Entity Framework için Nhizte ORM
+### <a name="nhydrate-orm-for-entity-framework"></a>Varlık Çerçevesi için nHydrate ORM
 
-Entity Framework için türü kesin belirlenmiş, Genişletilebilir sınıflar oluşturan bir ORM. Oluşturulan kod Entity Framework Core. Aralarında herhangi bir fark yoktur. Bu, EF veya Custom ORM için bir değiştirme değildir. Ekibin karmaşık veritabanı şemalarını yönetmesine olanak tanıyan bir görsel modelleme katmanıdır. Git gibi SCM yazılımıyla birlikte çalışarak, en az çakışmalarıyla modelinize çoklu Kullanıcı erişimi sağlar. Yükleyici, model değişikliklerini izler ve yükseltme betikleri oluşturur. EF Core için: 3.
+Varlık Çerçevesi için güçlü bir şekilde yazılmış, genişletilebilir sınıflar oluşturan bir ORM. Oluşturulan kod Varlık Framework Core'dur. Aralarında herhangi bir fark yoktur. Bu, EF veya özel bir ORM'un yerini almayacak. Bir takımın karmaşık veritabanı şemalarını yönetmesine olanak tanıyan görsel, modelleme katmanıdır. Git gibi SCM yazılımlarında iyi çalışır ve en az çakışma ile modelinize çok kullanıcılı erişim sağlar. Yükleyici model değişikliklerini izler ve yükseltme komut dosyaları oluşturur. EF Çekirdek için: 3.
 
-[GitHub sitesi](https://github.com/nHydrate/nHydrate)
+[Github sitesi](https://github.com/nHydrate/nHydrate)
 
-### <a name="ef-core-power-tools"></a>EF Core güç araçları
+### <a name="ef-core-power-tools"></a>EF Çekirdek Elektrikli El Aletleri
 
-EF Core güç araçları, basit bir kullanıcı arabiriminde çeşitli EF Core tasarım zamanı görevleri sunan bir Visual Studio uzantısıdır. Bu, var olan veritabanlarından DbContext ve varlık sınıflarının tersine mühendislik ve [SQL Server DACPACs](https://docs.microsoft.com/sql/relational-databases/data-tier-applications/data-tier-applications), veritabanı geçişleri yönetimi ve model görselleştirmeleri içerir. EF Core için: 2, 3.
+EF Core Power Tools, çeşitli EF Core tasarım zamanı görevlerini basit bir kullanıcı arabiriminde ortaya çıkaran bir Visual Studio uzantısıdır. Varolan veritabanlarından ve [SQL Server DACPACs'dan](https://docs.microsoft.com/sql/relational-databases/data-tier-applications/data-tier-applications)DbContext ve varlık sınıflarının ters mühendislik, veritabanı geçişlerinin yönetimi ve model görselleştirmelerini içerir. EF Çekirdek için: 2, 3.
 
 [GitHub wiki](https://github.com/ErikEJ/EFCorePowerTools/wiki)
 
-### <a name="entity-framework-visual-editor"></a>Entity Framework görsel düzenleyici
+### <a name="entity-framework-visual-editor"></a>Entity Framework Görsel Editör
 
-Entity Framework Visual Düzenleyicisi, EF 6 ve EF Core sınıflarının görsel tasarımı için bir ORM Tasarımcısı ekleyen bir Visual Studio uzantısıdır. Kod, T4 şablonları kullanılarak oluşturulur, bu nedenle, herhangi bir gereksinimlerinize uyacak şekilde özelleştirilebilir. Devralma, tek yönlü ve çift yönlü ilişkilendirmeler, numaralandırmalar ve sınıflarınızın renk Kodlayabilme ve tasarımınızın potansiyel olarak büyük bir kısmını açıklamak için metin blokları ekleme imkanını destekler. EF Core için: 2.
+Entity Framework Visual Editor, EF 6'nın görsel tasarımı için bir ORM tasarımcısı ve EF Core sınıfları ekleyen bir Visual Studio uzantısıdır. Kod, t4 şablonları kullanılarak oluşturulur, böylece her ihtiyaca uyacak şekilde özelleştirilebilir. Devralma, tek yönlü ve çift yönlü çağrışımları, sayısallaştırmaları ve sınıflarınızı renk kodlama ve tasarımınızın olası esrarengiz kısımlarını açıklamak için metin blokları ekleme yeteneğini destekler. EF Çekirdek için: 2.
 
-[Market](https://marketplace.visualstudio.com/items?itemName=michaelsawczyn.EFDesigner)
+[Mağaza](https://marketplace.visualstudio.com/items?itemName=michaelsawczyn.EFDesigner)
 
-### <a name="catfactory"></a>Katfactory
+### <a name="catfactory"></a>CatFactory
 
-CatFactory, bir SQL Server veritabanından DbContext sınıflarının, varlıkların, eşleme yapılandırmalarının ve depo sınıflarının oluşturulmasını otomatik hale getirebilen .NET Core için bir yapı iskelesi altyapısıdır. EF Core için: 2.
+CatFactory, .NET Core için, DbContext sınıflarının, varlıkların, eşleme yapılandırmalarının ve depo sınıflarının bir SQL Server veritabanından üretimini otomatikleştirebilen bir iskele motorudur. EF Çekirdek için: 2.
 
 [GitHub deposu](https://github.com/hherzl/CatFactory.EntityFrameworkCore)
 
-### <a name="loresofts-entity-framework-core-generator"></a>LoreSoft 'ın Entity Framework Core Oluşturucu
+### <a name="loresofts-entity-framework-core-generator"></a>LoreSoft'un Varlık Çerçeve Çekirdek Jeneratörü
 
-Entity Framework Core Generator (EFG), `dotnet ef dbcontext scaffold`gibi var olan bir veritabanından EF Core modeller oluşturabilen, ancak bölge değişikliği aracılığıyla veya eşleme dosyalarını ayrıştırarak güvenli kod yeniden [oluşturmayı](https://efg.loresoft.com/en/latest/regeneration/) da destekleyen bir .NET Core CLI aracıdır. Bu araç, görünüm modellerinin, doğrulamanın ve nesne Eşleyici kodunun oluşturulmasını destekler. EF Core için: 2.
+Entity Framework Core Generator (efg), varolan bir veritabanından EF Core modelleri oluşturabilen bir .NET Core CLI aracıdır, `dotnet ef dbcontext scaffold`ancak bölge değiştirme veya haritalama dosyalarını ayrıştırarak güvenli kod [yenilenmesini](https://efg.loresoft.com/en/latest/regeneration/) de destekler. Bu araç, görünüm modelleri, doğrulama ve nesne mapper kodu oluşturmayı destekler. EF Çekirdek için: 2.
 
-[Eğitim](https://www.loresoft.com/Generate-ASP-NET-Web-API)
-[belgeleri](https://efg.loresoft.com/en/latest/)
+[Öğretici](https://www.loresoft.com/Generate-ASP-NET-Web-API)
+[Dokümantasyon](https://efg.loresoft.com/en/latest/)
 
-## <a name="extensions"></a>Uzantılar
+## <a name="extensions"></a>Uzantıları
 
-### <a name="microsoftentityframeworkcoreautohistory"></a>Microsoft. EntityFrameworkCore. oto geçmişi
+### <a name="microsoftentityframeworkcoreautohistory"></a>Microsoft.EntityFrameworkCore.AutoHistory
 
-EF Core tarafından gerçekleştirilen veri değişikliklerinin bir geçmiş tablosuna otomatik olarak kaydedilmesini sağlayan bir eklenti kitaplığı. EF Core için: 2.
+EF Core tarafından gerçekleştirilen veri değişikliklerinin tarih tablosuna otomatik olarak kaydedilmesini sağlayan bir eklenti kitaplığı. EF Çekirdek için: 2.
 
 [GitHub deposu](https://github.com/Arch/AutoHistory/)
 
-### <a name="efsecondlevelcachecore"></a>EFSecondLevelCache. Core
+### <a name="efsecondlevelcachecore"></a>EFSecondLevelCache.Core
 
-Aynı sorguların sonraki yürütmelerinin veritabanına erişmeyi ve verileri doğrudan önbellekten almasını önlemek için, EF Core sorgularının sonuçlarının ikinci düzey bir önbellekte depolanmasını sağlayan bir uzantı. EF Core için: 2.
+Aynı sorguların sonraki yürütmelerinin veritabanına erişmesini önleyebilmesi ve verileri doğrudan önbellekten alabilmeleri için EF Core sorgularının sonuçlarını ikinci düzey bir önbelleğe depolamayı sağlayan uzantı. EF Çekirdek için: 2.
 
 [GitHub deposu](https://github.com/VahidN/EFSecondLevelCache.Core/)
 
 ### <a name="geco"></a>Geco
 
-Geco (Oluşturucu konsolu), .NET Core üzerinde çalışan ve kod oluşturma için enterpolasyonlu dizeler kullanan C# bir konsol projesine dayalı basit bir kod Oluşturucu. Geco, plurmaya, sinleştirme ve düzenlenebilir şablonlara yönelik desteğe sahip EF Core için bir ters model Oluşturucu içerir. Ayrıca, bir çekirdek veri betik Oluşturucu, bir komut dosyası Çalıştırıcısı ve bir veritabanı temizleyicisi de sağlar. EF Core için: 2.
+Geco (Jeneratör Konsolu) .NET Core üzerinde çalışan ve kod oluşturma için C# enterpolasyonlu dizeleri kullanan bir konsol projesine dayalı basit bir kod üretecidir. Geco, EF Core için çoğullaştırma, tekilleştirme ve değiştirilebilir şablonlar için desteklenen bir ters model jeneratörü içerir. Ayrıca bir tohum veri komut dosyası jeneratör, bir komut dosyası koşucusu ve bir veritabanı temizleyici sağlar. EF Çekirdek için: 2.
 
 [GitHub deposu](https://github.com/iQuarc/Geco)
 
-### <a name="entityframeworkcorescaffoldinghandlebars"></a>EntityFrameworkCore. Scafkatlama. Handleçubuklar 
+### <a name="entityframeworkcorescaffoldinghandlebars"></a>EntityFrameworkCore.Scaffolding.Handlebars 
 
-Handleçubuklar şablonlarıyla Entity Framework Core toolzincirini kullanarak var olan bir veritabanından ters mühendislik uygulanmış sınıfların özelleştirilmesine izin verir. EF Core için: 2, 3.
+Handlebars şablonları ile Entity Framework Core araç zincirini kullanarak varolan bir veritabanından yeniden tasarlanmış sınıfların özelleştirmesine olanak tanır. EF Çekirdek için: 2, 3.
 
 [GitHub deposu](https://github.com/TrackableEntities/EntityFrameworkCore.Scaffolding.Handlebars)
 
-### <a name="neinlinqentityframeworkcore"></a>Newınlınq. EntityFrameworkCore 
+### <a name="neinlinqentityframeworkcore"></a>NeinLinq.EntityFrameworkCore 
 
-Neınlinq, işlevleri yeniden kullanmayı, sorguları yeniden yazmayı ve çevrilebilir koşullara ve seçicileri kullanarak dinamik sorgular oluşturmayı etkinleştirmek için Entity Framework gibi LINQ sağlayıcılarını genişletir. EF Core için: 2, 3.
+NeinLinq, işlevleri yeniden kullanma, sorguları yeniden yazma ve translatable yüklemleri ve seçiciler kullanarak dinamik sorgular oluşturmayı etkinleştirmek için Entity Framework gibi LINQ sağlayıcılarını genişletir. EF Çekirdek için: 2, 3.
 
 [GitHub deposu](https://github.com/axelheer/nein-linq/)
 
-### <a name="microsoftentityframeworkcoreunitofwork"></a>Microsoft. EntityFrameworkCore. UnitOfWork
+### <a name="microsoftentityframeworkcoreunitofwork"></a>Microsoft.EntityFrameworkCore.UnitOfWork
 
-Microsoft. EntityFrameworkCore 'un depoyu, iş biçimlerini ve dağıtılmış işlem desteklenen birden çok veritabanını desteklemesi için bir eklentisi. EF Core için: 2.
+Microsoft.EntityFrameworkCore için depo, iş desenleri birimi ve dağıtılmış işlem desteklenen birden çok veritabanını destekleyen bir eklenti. EF Çekirdek için: 2.
 
 [GitHub deposu](https://github.com/Arch/UnitOfWork/)
 
-### <a name="efcorebulkextensions"></a>EFCore. BulkExtensions
+### <a name="efcorebulkextensions"></a>EFCore.BulkExtensions
 
-Toplu işlemler için EF Core uzantıları (INSERT, Update, Delete). EF Core için: 2, 3.
+Toplu işlemler için EF Core uzantıları (Ekleme, Güncelleme, Silme). EF Çekirdek için: 2, 3.
 
 [GitHub deposu](https://github.com/borisdj/EFCore.BulkExtensions)
 
-### <a name="bricelamentityframeworkcorepluralizer"></a>Brıcelam. EntityFrameworkCore. Pluralizer
+### <a name="bricelamentityframeworkcorepluralizer"></a>Bricelam.EntityFrameworkCore.Pluralizer
 
-Tasarım zamanı plurlaması ekler. EF Core için: 2.
+Tasarım zamanı çoğullaştırma ekler. EF Çekirdek için: 2.
 
 [GitHub deposu](https://github.com/bricelam/EFCore.Pluralizer)
 
-### <a name="toolbeltentityframeworkcoreindexattribute"></a>Toolbandı. EntityFrameworkCore. ındexattribute
+### <a name="toolbeltentityframeworkcoreindexattribute"></a>Toolbelt.EntityFrameworkCore.IndexAttribute
 
-[Index] özniteliğinin (model oluşturma uzantısı ile) bir önceki örneği. EF Core için: 2, 3.
+[Index] özniteliğinin canlandırılması (model oluşturma uzantısı ile). EF Çekirdek için: 2, 3.
 
 [GitHub deposu](https://github.com/jsakamoto/EntityFrameworkCore.IndexAttribute)
 
-### <a name="efcoreinmemoryhelpers"></a>EfCore. ınmemoryyardımcıları
+### <a name="efcoreinmemoryhelpers"></a>EfCore.InMemoryHelpers
 
-Bellek Içi veritabanı sağlayıcısı EF Core etrafında bir sarmalayıcı sağlar. İlişkisel bir sağlayıcı gibi çalışır hale getirir. EF Core için: 2.
+EF Core In-Memory Veritabanı Sağlayıcısı etrafında bir sarmalayıcı sağlar. Daha çok ilişkisel bir sağlayıcı gibi davranması sağlar. EF Çekirdek için: 2.
 
 [GitHub deposu](https://github.com/SimonCropp/EfCore.InMemoryHelpers)
 
-### <a name="efcoretemporalsupport"></a>EFCore. TemporalSupport
+### <a name="efcoretemporalsupport"></a>EFCore.TemporalSupport
 
-Zamana bağlı destek uygulama. EF Core için: 2.
+Zamansal desteğin uygulanması. EF Çekirdek için: 2.
 
 [GitHub deposu](https://github.com/cpoDesign/EFCore.TemporalSupport)
 
 ### <a name="efcoretemporaltable"></a>EfCoreTemporalTable
 
-Sunulan uzantı yöntemlerini kullanarak, sık kullanılan veritabanınızda kolayca zamana bağlı sorgular gerçekleştirin: `AsTemporalAll()`, `AsTemporalAsOf(date)`, `AsTemporalFrom(startDate, endDate)`, `AsTemporalBetween(startDate, endDate)`, `AsTemporalContained(startDate, endDate)`. EF Core için: 3.
+Tanıtılan uzantı yöntemlerini kullanarak favori veritabanınızda `AsTemporalAll()` `AsTemporalAsOf(date)`zamansal `AsTemporalBetween(startDate, endDate)` `AsTemporalContained(startDate, endDate)`sorguları kolayca gerçekleştirin: , , `AsTemporalFrom(startDate, endDate)`, . EF Çekirdek için: 3.
 
 [GitHub deposu](https://github.com/glautrou/EfCoreTemporalTable)
 
-### <a name="efcoretimetraveler"></a>EFCore. TimeTraveler
+### <a name="efcoretimetraveler"></a>EFCore.TimeTraveler
 
-Zaten tanımlamış olduğunuz EF Core kodu, varlıkları ve eşleştirmeleri kullanarak, isteğe bağlı [SQL Server geçmişle](/sql/relational-databases/tables/temporal-table-usage-scenarios#point-in-time-analysis-time-travel) karşı tam özellikli Entity Framework Core sorgulara izin verin.  Kodunuzu `using (TemporalQuery.AsOf(targetDateTime)) {...}`içine sarmalayarak zaman içinde hareket edin. EF Core için: 3.
+Daha önce tanımlamış olduğunuz EF Core kodunu, varlıkları ve eşleşmelerini kullanarak [SQL Server Geçici Geçmişi'](/sql/relational-databases/tables/temporal-table-usage-scenarios#point-in-time-analysis-time-travel) ne karşı tam özellikli Entity Framework Core sorgularına izin verin.  Kodunuzu ' a `using (TemporalQuery.AsOf(targetDateTime)) {...}`sarmalayarak zamanda yolculuk EF Çekirdek için: 3.
 
 [GitHub deposu](https://github.com/VantageSoftware/EFCore.TimeTraveler)
 
 
-### <a name="entityframeworkcoretemporaltables"></a>EntityFrameworkCore. TemporalTables
+### <a name="entityframeworkcoretemporaltables"></a>EntityFrameworkCore.TemporalTables
 
-SQL Server kullanan geliştiricilerin kolayca zamana bağlı tabloları kullanmasına izin veren Entity Framework Core için uzantı kitaplığı. EF Core için: 2.
+SQL Server kullanan geliştiricilerin zamansal tabloları kolayca kullanmasına olanak tanıyan Entity Framework Core uzantılı kitaplığı. EF Çekirdek için: 2.
 
 [GitHub deposu](https://github.com/findulov/EntityFrameworkCore.TemporalTables)
 
 
-### <a name="entityframeworkcorecacheable"></a>EntityFrameworkCore. önbelleklenebilir
+### <a name="entityframeworkcorecacheable"></a>EntityFrameworkCore.Önbelleğe
 
-Yüksek performanslı ikinci düzey bir sorgu önbelleği. EF Core için: 2.
+Yüksek performanslı ikinci düzey sorgu önbelleği. EF Çekirdek için: 2.
 
 [GitHub deposu](https://github.com/SteffenMangold/EntityFrameworkCore.Cacheable)
 
-### <a name="entity-framework-plus"></a>Entity Framework Plus
+### <a name="entity-framework-plus"></a>Varlık Çerçevesi Plus
 
-DbContext dosyanızı, şunlar gibi özelliklerle genişletir: filtre, denetim, önbelleğe alma, sorgu gelecekteki, toplu silme, toplu güncelleştirme ve daha fazlasını Içerir. EF Core için: 2, 3.
+DbContext'ınızı Şu gibi özelliklerle genişletir: Filtre Ekle, Denetim, Önbelleğe Alma, Sorgula, Gelecek Sorgula, Toplu İş Silme, Toplu Güncelleme ve daha fazlası. EF Çekirdek için: 2, 3.
 
 [Web sitesi](https://entityframework-plus.net/)
 [GitHub deposu](https://github.com/zzzprojects/EntityFramework-Plus)
 
-### <a name="entity-framework-extensions"></a>Entity Framework uzantıları
+### <a name="entity-framework-extensions"></a>Varlık Çerçeve Uzantıları
 
-DbContext uygulamanızı yüksek performanslı toplu işlemlerle genişletir: BulkSaveChanges, Bulkınsert, BulkUpdate, BulkDelete, BulkMerge ve daha fazlası. EF Core için: 2, 3.
+Yüksek performanslı toplu işlemlerle DbContext'ınızı genişletir: BulkSaveChanges, BulkInsert, BulkUpdate, BulkDelete, BulkMerge ve daha fazlası. EF Çekirdek için: 2, 3.
 
-[Websitesi](https://entityframework-extensions.net/)
+[Web sitesi](https://entityframework-extensions.net/)
 
-### <a name="expressionify"></a>Expressionbelirt
+### <a name="expressionify"></a>İfade
 
-Uzantı yöntemlerini LINQ Lambdalar içinde çağırma desteği ekleyin. EF Core için: 3,1
+Linq lambdas arama uzatma yöntemleri için destek ekleyin. EF Çekirdek için: 3.1
 
 [GitHub deposu](https://github.com/ClaveConsulting/Expressionify)
+
+### <a name="xlinq"></a>XLinq
+
+İlişkisel veritabanları için Dil Tümleşik Sorgu (LINQ) teknolojisi. Güçlü bir şekilde yazılan sorguları yazmak için C# kullanmanızı sağlar. EF Çekirdek için: 3.1
+
+- Sorgu oluşturma için tam C# desteği: lambda içinde birden fazla ifade, değişkenler, fonksiyonlar, vb.
+- SQL ile anlamsal boşluk yok. XLinq, xLinq, `SELECT` `FROM`xandiman, tip güvenliği ve yeniden düzenleme ile tanıdık sözdizimini birleştirerek SQL deyimlerini (, , `WHERE`) birinci sınıf C# yöntemleri olarak bildirir.
+
+Sonuç olarak SQL, API'sini yerel olarak ortaya çıkaran "başka" sınıf kitaplığı olur, tam anlamıyla *"Dil Tümleşik SQL"* olur.
+
+[Web sitesi](http://xlinq.live/)

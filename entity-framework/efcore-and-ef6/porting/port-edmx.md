@@ -1,50 +1,50 @@
 ---
-title: EF6 'den EF Core taşıma-EDMX tabanlı model-EF ile taşıma
+title: EF6'dan EF Core'a taşıma - EDMX Tabanlı Model Taşıma - EF
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 63003709-f1ec-4bdc-8083-65a60c4826d2
 uid: efcore-and-ef6/porting/port-edmx
 ms.openlocfilehash: f0bb06dc687aaa774981d97daadc55f00fbd527e
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78416925"
 ---
-# <a name="porting-an-ef6-edmx-based-model-to-ef-core"></a>EF6 EDMX tabanlı bir modelin EF Core taşıma
+# <a name="porting-an-ef6-edmx-based-model-to-ef-core"></a>EF6 EDMX Tabanlı Modeli EF Core'a Taşıma
 
-EF Core modeller için EDMX dosya biçimini desteklemez. Bu modellerin bağlantı noktası için en iyi seçenek, uygulamanız için veritabanından yeni bir kod tabanlı model oluşturmak içindir.
+EF Core, modeller için EDMX dosya biçimini desteklemez. Bu modelleri taşımanın en iyi seçeneği, uygulamanız için veritabanından yeni bir kod tabanlı model oluşturmaktır.
 
-## <a name="install-ef-core-nuget-packages"></a>EF Core NuGet paketlerini yükler
+## <a name="install-ef-core-nuget-packages"></a>EF Core NuGet paketlerini yükleyin
 
-`Microsoft.EntityFrameworkCore.Tools` NuGet paketini yükler.
+NuGet `Microsoft.EntityFrameworkCore.Tools` paketini yükleyin.
 
-## <a name="regenerate-the-model"></a>Modeli yeniden oluştur
+## <a name="regenerate-the-model"></a>Modeli yeniden oluşturma
 
-Artık, mevcut veritabanınıza dayalı bir model oluşturmak için ters mühendislik işlevini kullanabilirsiniz.
+Artık varolan veritabanınızı temel alan bir model oluşturmak için ters mühendislik işlevini kullanabilirsiniz.
 
-Paket Yöneticisi konsolunda aşağıdaki komutu çalıştırın (Araçlar – > NuGet Paket Yöneticisi – > Paket Yöneticisi konsolu). Tabloların bir alt kümesini kankatlamak için bkz. komut seçenekleri için [Paket Yöneticisi Konsolu (Visual Studio)](../../core/miscellaneous/cli/powershell.md) .
+Paket Yöneticisi Konsolu'nda (Araçlar –> NuGet Paket Yöneticisi –> Paket Yöneticisi Konsolu) aşağıdaki komutu çalıştırın. Tabloların bir alt kümesini iskelek için komut seçenekleri için [Paket Yöneticisi Konsolu 'na (Visual Studio)](../../core/miscellaneous/cli/powershell.md) bakın.
 
 ``` powershell
 Scaffold-DbContext "<connection string>" <database provider name>
 ```
 
-Örneğin, SQL Server LocalDB örneğinizdeki blog veritabanından bir modeli dolandırın bir komut aşağıda verilmiştir.
+Örneğin, SQL Server LocalDB örneğiniz üzerindeki Blog veritabanından bir modeli iskeleoluşturma komutu burada dır.
 
 ``` powershell
 Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer
 ```
 
-## <a name="remove-ef6-model"></a>EF6 modelini kaldır
+## <a name="remove-ef6-model"></a>EF6 modelini kaldırma
 
-Artık EF6 modelini uygulamanızdan kaldırırsınız.
+Şimdi EF6 modelini uygulamanızdan kaldırırsınız.
 
-EF Core ve EF6 'nin aynı uygulamada yan yana kullanılabilmesi için, EF6 NuGet paketini (EntityFramework) yüklü bırakmak çok iyidir. Ancak, uygulamanızın herhangi bir alanında EF6 kullanmayı hiç bilmiyorsanız, paketin kaldırılması, dikkat edilmesi gereken kod parçalarında derleme hataları sağlamaya yardımcı olur.
+EF Core ve EF6 aynı uygulamada yan yana kullanılabildiği için EF6 NuGet paketini (EntityFramework) yüklü bırakmak iyidir. Ancak, UYGULAMANIZIN herhangi bir alanında EF6'yı kullanmak istemiyorsanız, paketi kaldırmanız dikkat gerektiren kod parçaları üzerinde derleme hataları na yardımcı olacaktır.
 
-## <a name="update-your-code"></a>Kodunuzu güncelleştirme
+## <a name="update-your-code"></a>Kodunuzu güncelleştirin
 
-Bu noktada derleme hatalarının adreslenmesi ve kodu gözden geçirmesinden bağımsız olarak, EF6 ve EF Core arasındaki davranış değişikliklerinin sizi etkileyebileceğini görürsünüz.
+Bu noktada, EF6 ve EF Core arasındaki davranış değişikliklerinin sizi etkileyip etkilemeyeceğini görmek için derleme hatalarını ele alma ve kodu gözden geçirme meselesidir.
 
-## <a name="test-the-port"></a>Bağlantı noktasını test etme
+## <a name="test-the-port"></a>Bağlantı noktasını test edin
 
-Uygulamanız derlendiğinden, EF Core başarılı bir şekilde bir şekilde bağlantı edildiği anlamına gelmez. Davranış değişikliklerinin hiçbirinin uygulamanızı olumsuz yönde etkilememesini sağlamak için uygulamanızın tüm bölümlerini test etmeniz gerekir.
+Uygulamanızın derlenmiş olması, uygulamanın ef core'a başarıyla iletilmiş olduğu anlamına gelmez. Davranış değişikliklerinin hiçbirinin uygulamanızı olumsuz etkilemediğinden emin olmak için uygulamanızın tüm alanlarını test etmeniz gerekir.

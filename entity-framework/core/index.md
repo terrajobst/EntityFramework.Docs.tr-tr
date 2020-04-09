@@ -1,44 +1,44 @@
 ---
-title: Entity Framework Core genel bakış EF Core
+title: Varlık Çerçeve Çekirdeğine Genel Bakış - EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: bc2a2676-bc46-493f-bf49-e3cc97994d57
 uid: core/index
 ms.openlocfilehash: e6127f775d6bbbdf81debf5519388fe252fe079d
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78416848"
 ---
 # <a name="entity-framework-core"></a>Entity Framework Core
 
-Entity Framework (EF) Core, popüler Entity Framework veri erişim teknolojisinin basit, Genişletilebilir, [Açık kaynaklı](https://github.com/aspnet/EntityFrameworkCore) ve platformlar arası bir sürümüdür.
+Entity Framework (EF) Core, popüler Entity Framework veri erişim teknolojisinin hafif, genişletilebilir, [açık kaynak](https://github.com/aspnet/EntityFrameworkCore) kodlu ve çapraz platformlu bir sürümüdür.
 
-EF Core, nesne ilişkisel Eşleyici (O/RM) olarak görev yapabilir, .NET geliştiricilerin .NET nesnelerini kullanarak bir veritabanıyla çalışmasını sağlar ve genellikle yazması gereken veri erişimi kodunun çoğunu ortadan kaldırır.
+EF Core, .NET geliştiricilerin .NET nesnelerini kullanarak bir veritabanıyla çalışmasını sağlayan ve genellikle yazmaları gereken veri erişim kodunun çoğuna olan gereksinimi ortadan kaldıran bir nesne ilişkisisel mapper (O/RM) olarak hizmet verebilir.
 
-EF Core birçok veritabanı altyapısını destekler, Ayrıntılar için bkz. [veritabanı sağlayıcıları](providers/index.md) .
+EF Core birçok veritabanı altyapılarını destekler, ayrıntılar için [Veritabanı Sağlayıcıları'na](providers/index.md) bakın.
 
-## <a name="the-model"></a>Model
+## <a name="the-model"></a>The Model
 
-EF Core, veri erişimi bir model kullanılarak gerçekleştirilir. Bir model, varlık sınıflarından ve veritabanı ile bir oturumu temsil eden bir bağlam nesnesinden oluşur ve verileri sorgulayıp kaydetmenizi sağlar. Daha fazla bilgi için bkz. [model oluşturma](modeling/index.md) .
+EF Core ile veri erişimi bir model kullanılarak gerçekleştirilir. Bir model, varlık sınıfları ve veritabanıyla bir oturumu temsil eden ve verileri sorgulayıp kaydetmenize olanak tanıyan bir bağlam nesnesi oluşur. Bkz. Daha fazla bilgi edinmek için [Model Oluşturma.](modeling/index.md)
 
-Var olan bir veritabanından bir model oluşturabilir, bir modeli veritabanınızdan eşlemek üzere kodlayabilir veya modelinizden bir veritabanı oluşturmak için [EF geçişleri](managing-schemas/migrations/index.md) kullanabilirsiniz.
+Varolan bir veritabanından bir model oluşturabilir, veritabanınızla eşleşecek bir modeli el koduyla kodlayabilir veya modelinizden bir veritabanı oluşturmak için [EF Geçişleri'ni](managing-schemas/migrations/index.md) kullanabilir ve modeliniz zaman içinde değiştikçe bu modeli geliştirebilirsiniz.
 
 [!code-csharp[Main](../../samples/core/Intro/Model.cs)]
 
 ## <a name="querying"></a>Sorgulama
 
-Varlık sınıflarınızın örnekleri, dil ile tümleşik sorgu (LINQ) kullanılarak veritabanından alınır. Daha fazla bilgi için bkz. [veri sorgulama](querying/index.md) .
+Varlık sınıflarınızın örnekleri, Language Integrated Query (LINQ) kullanılarak veritabanından alınır. Daha fazla bilgi edinmek için [Verileri Sorgulama'ya](querying/index.md) bakın.
 
 [!code-csharp[Main](../../samples/core/Intro/Program.cs#Querying)]
 
 ## <a name="saving-data"></a>Verileri Kaydetme
 
-Veri, varlık sınıflarınızın örnekleri kullanılarak oluşturulur, silinir ve değiştirilir. Daha fazla bilgi edinmek için [verileri kaydetme](saving/index.md) konusuna bakın.
+Veriler, varlık sınıflarınızın örnekleri kullanılarak veritabanında oluşturulur, silinir ve değiştirilir. Daha fazla bilgi edinmek için [Verileri Kaydetme'ye](saving/index.md) bakın.
 
 [!code-csharp[Main](../../samples/core/Intro/Program.cs#SavingData)]
 
 ## <a name="next-steps"></a>Sonraki adımlar
 
-Tanıtım öğreticileri için bkz. [Entity Framework Core kullanmaya](get-started/index.md)başlama.
+Giriş eğitimleri için Entity [Framework Core ile Başlarken'e](get-started/index.md)bakın.

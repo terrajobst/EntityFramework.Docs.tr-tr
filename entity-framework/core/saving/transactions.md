@@ -1,55 +1,55 @@
 ---
-title: İşlemler-EF Core
+title: İşlemler - EF Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: d3e6515b-8181-482c-a790-c4a6778748c1
 uid: core/saving/transactions
 ms.openlocfilehash: 390d89398ebfdf015804749e71ff0b61d3f278d3
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417557"
 ---
 # <a name="using-transactions"></a>İşlemleri Kullanma
 
-İşlemler birkaç veritabanı işlemin atomik bir şekilde işlenmesine izin verir. İşlem yürütüolduysa, tüm işlemler veritabanına başarıyla uygulanır. İşlem geri alınırsa, hiçbir işlem veritabanına uygulanmaz.
+İşlemler, çeşitli veritabanı işlemlerinin atomik bir şekilde işlenmesine izin verir. Hareket işlenirse, tüm işlemler veritabanına başarıyla uygulanır. Hareket geri alınırsa, işlemlerin hiçbiri veritabanına uygulanmaz.
 
 > [!TIP]  
-> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/Transactions/) GitHub ' da görebilirsiniz.
+> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/Transactions/) GitHub'da görüntüleyebilirsiniz.
 
-## <a name="default-transaction-behavior"></a>Varsayılan işlem davranışı
+## <a name="default-transaction-behavior"></a>Varsayılan hareket davranışı
 
-Varsayılan olarak, veritabanı sağlayıcısı işlemleri destekliyorsa, tek bir `SaveChanges()` çağrısıyla yapılan tüm değişiklikler bir işlem içinde uygulanır. Değişikliklerden herhangi biri başarısız olursa, işlem geri alınır ve veritabanına hiçbir değişiklik uygulanmaz. Bu, `SaveChanges()` tamamen başarılı veya bir hata oluşursa veritabanını değiştirilmemiş olarak bırakma işleminin garanti olduğu anlamına gelir.
+Varsayılan olarak, veritabanı sağlayıcısı hareketleri destekliyorsa, tek `SaveChanges()` bir çağrıdaki tüm değişiklikler bir harekette uygulanır. Değişikliklerden herhangi biri başarısız olursa, hareket geri alınır ve değişikliklerin hiçbiri veritabanına uygulanmaz. Bu, `SaveChanges()` bir hata oluşursa veritabanının tamamen başarılı olması veya veritabanını değiştirilmeden bırakması garanti edilir.
 
-Çoğu uygulama için bu varsayılan davranış yeterlidir. İşlemleri yalnızca, uygulama gereksinimleriniz gerekli değilse el ile kontrol etmelisiniz.
+Çoğu uygulama için bu varsayılan davranış yeterlidir. Yalnızca başvuru gereksinimleriniz gerekli yse hareketleri el ile denetlemeniz gerekir.
 
-## <a name="controlling-transactions"></a>İşlemleri denetleme
+## <a name="controlling-transactions"></a>Hareketleri denetleme
 
-İşlemleri başlatmak, yürütmek ve geri almak için `DbContext.Database` API 'sini kullanabilirsiniz. Aşağıdaki örnekte, tek bir işlemde yürütülen iki `SaveChanges()` işlemi ve bir LINQ sorgusu gösterilmektedir.
+`DbContext.Database` Hareketleri başlatmak, işlemek ve geri almak için API'yi kullanabilirsiniz. Aşağıdaki örnekte, `SaveChanges()` iki işlem ve tek bir işlemde yürütülmekte olan bir LINQ sorgusu gösterilmektedir.
 
-Tüm veritabanı sağlayıcıları işlemleri desteklemez. İşlem API 'Leri çağrıldığında bazı sağlayıcılar bu işlemleri atabilir veya gerektirmez.
+Tüm veritabanı sağlayıcıları hareketleri desteklemez. Bazı sağlayıcılar, işlem API'leri çağrıldığında atabilir veya işlem olmayabilir.
 
 [!code-csharp[Main](../../../samples/core/Saving/Transactions/ControllingTransaction/Sample.cs?name=Transaction&highlight=3,17,18,19)]
 
-## <a name="cross-context-transaction-relational-databases-only"></a>Çapraz bağlam işlemi (yalnızca ilişkisel veritabanları)
+## <a name="cross-context-transaction-relational-databases-only"></a>Bağlamlar arası işlem (yalnızca ilişkisel veritabanları)
 
-Ayrıca, bir işlemi birden çok bağlam örneği arasında paylaşabilirsiniz. Bu işlevsellik yalnızca, ilişkisel veritabanlarına özgü `DbTransaction` ve `DbConnection`kullanımını gerektirdiğinden ilişkisel bir veritabanı sağlayıcısı kullanılırken kullanılabilir.
+Bir hareketi birden çok bağlam örnekleri arasında da paylaşabilirsiniz. Bu işlevsellik yalnızca ilişkisel veritabanlarının `DbTransaction` kullanımını ve `DbConnection`ilişkisel veritabanlarına özgü olmasını gerektirdiğinden ilişkisel bir veritabanı sağlayıcısı kullanırken kullanılabilir.
 
-Bir işlemi paylaşmak için bağlamlar hem `DbConnection` hem de bir `DbTransaction`paylaşmalıdır.
+Bir hareketi paylaşmak için bağlamların hem `DbConnection` a `DbTransaction`hem de bir' yi paylaşması gerekir.
 
-### <a name="allow-connection-to-be-externally-provided"></a>Bağlantının dışarıdan sağlanması için izin ver
+### <a name="allow-connection-to-be-externally-provided"></a>Bağlantının dışarıdan sağlanmasına izin ver
 
-Bir `DbConnection` paylaşmak, bir bağlantıyı oluştururken bir bağlama geçirebilmesini gerektirir.
+Bir `DbConnection` bağlantıyı oluşturmak için bir bağlama geçiş yeteneği gerektirir.
 
-`DbConnection` dışarıdan sağlanmak için en kolay yol, bağlamı yapılandırmak ve `DbContextOptions` dışarıdan oluşturmak ve onları bağlam oluşturucusuna geçirmek için `DbContext.OnConfiguring` metodunu kullanmayı durdurmaktır.
+Dışarıdan sağlanmanın `DbConnection` en kolay yolu, bağlamı `DbContext.OnConfiguring` yapılandırmak ve bunları dışsal olarak `DbContextOptions` oluşturmak ve bağlam oluşturucuya aktarmak için yöntemi kullanmayı durdurmaktır.
 
 > [!TIP]  
-> `DbContextOptionsBuilder`, bağlamı yapılandırmak için `DbContext.OnConfiguring` kullandığınız API 'dir, artık `DbContextOptions`oluşturmak için bunu dışarıdan kullanacaksınız.
+> `DbContextOptionsBuilder`bağlamı `DbContext.OnConfiguring` yapılandırmak için kullandığınız API'dir, şimdi oluşturmak `DbContextOptions`için harici olarak kullanacaksınız.
 
 [!code-csharp[Main](../../../samples/core/Saving/Transactions/SharingTransaction/Sample.cs?name=Context&highlight=3,4,5)]
 
-Diğer bir seçenek de `DbContext.OnConfiguring`kullanmaya devam etmesinin yanı sıra, kaydedilen ve daha sonra `DbContext.OnConfiguring`kullanılan bir `DbConnection` kabul etmelidir.
+Alternatif olarak kullanmaya `DbContext.OnConfiguring`devam etmek, `DbConnection` ancak kaydedilmiş ve `DbContext.OnConfiguring`daha sonra kullanılan bir kabul etmektir.
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -70,38 +70,38 @@ public class BloggingContext : DbContext
 }
 ```
 
-### <a name="share-connection-and-transaction"></a>Bağlantıyı ve işlemi paylaşma
+### <a name="share-connection-and-transaction"></a>Bağlantı ve hareketi paylaşma
 
-Artık aynı bağlantıyı paylaşan birden çok bağlam örneği oluşturabilirsiniz. Daha sonra aynı işlemde her iki bağlamı da listeleme `DbContext.Database.UseTransaction(DbTransaction)` API 'sini kullanın.
+Artık aynı bağlantıyı paylaşan birden çok bağlam örneği oluşturabilirsiniz. `DbContext.Database.UseTransaction(DbTransaction)` Ardından, her iki bağlamı da aynı işlemde kullanmak için API'yi kullanın.
 
 [!code-csharp[Main](../../../samples/core/Saving/Transactions/SharingTransaction/Sample.cs?name=Transaction&highlight=1,2,3,7,16,23,24,25)]
 
-## <a name="using-external-dbtransactions-relational-databases-only"></a>Dış DbTransactions kullanma (yalnızca ilişkisel veritabanları)
+## <a name="using-external-dbtransactions-relational-databases-only"></a>Harici DbTransactions kullanma (yalnızca ilişkisel veritabanları)
 
 İlişkisel bir veritabanına erişmek için birden çok veri erişim teknolojisi kullanıyorsanız, bu farklı teknolojiler tarafından gerçekleştirilen işlemler arasında bir işlem paylaşmak isteyebilirsiniz.
 
-Aşağıdaki örnek, aynı işlemde bir ADO.NET SqlClient işleminin ve Entity Framework Core işleminin nasıl gerçekleştirileceğini gösterir.
+Aşağıdaki örnek, aynı işlemde bir sqlclient işlemi ve bir Entity Framework Core işlemi ADO.NET nasıl gerçekleştirilini gösterir.
 
 [!code-csharp[Main](../../../samples/core/Saving/Transactions/ExternalDbTransaction/Sample.cs?name=Transaction&highlight=4,10,21,26,27,28)]
 
-## <a name="using-systemtransactions"></a>System. Transactions kullanma
+## <a name="using-systemtransactions"></a>System.Transactions'ı Kullanma
 
 > [!NOTE]  
-> Bu özellik EF Core 2,1 ' de yenidir.
+> Bu özellik EF Core 2.1'de yenidir.
 
-Daha büyük bir kapsamda koordine etmeniz gerekiyorsa çevresel işlemler kullanmak mümkündür.
+Daha geniş bir kapsamda koordine olmanız gerekiyorsa ortam hareketlerini kullanmak mümkündür.
 
 [!code-csharp[Main](../../../samples/core/Saving/Transactions/AmbientTransaction/Sample.cs?name=Transaction&highlight=1,2,3,26,27,28)]
 
-Ayrıca, açık bir işlemde listeleme de mümkündür.
+Açık bir işlem için kaydolmak da mümkündür.
 
 [!code-csharp[Main](../../../samples/core/Saving/Transactions/CommitableTransaction/Sample.cs?name=Transaction&highlight=1,15,28,29,30)]
 
-### <a name="limitations-of-systemtransactions"></a>System. Transactions sınırlamaları  
+### <a name="limitations-of-systemtransactions"></a>System.Transactions Sınırlamaları  
 
-1. EF Core, System. Transactions desteğini uygulamak için veritabanı sağlayıcılarını kullanır. Destek, .NET Framework için ADO.NET sağlayıcıları arasında oldukça yaygın olsa da, API yalnızca .NET Core 'a eklenmiştir ve bu nedenle destek yaygın olarak değildir. Bir sağlayıcı System. Transactions için destek uygulamaz, bu API 'lere yapılan çağrılar tamamen yok sayılır. .NET Core için SqlClient, bunu 2,1 ve sonraki sürümlerde destekler. .NET Core 2,0 için SqlClient, özelliği kullanmayı denerseniz bir özel durum oluşturur.
+1. EF Core, System.Transactions desteğini uygulamak için veritabanı sağlayıcılarına güvenir. Destek .NET Framework için ADO.NET sağlayıcılar arasında oldukça yaygın olmasına rağmen, API sadece son zamanlarda .NET Core eklenmiştir ve bu nedenle destek kadar yaygın değildir. Bir sağlayıcı System.Transactions için destek uygulamazsa, bu API'lere yapılan çağrıların tamamen yoksayılması mümkündür. .NET Core için SqlClient 2.1'den itibaren destekler. .NET Core 2.0 için SqlClient özelliğini kullanmaya çalışırsanız bir özel durum oluşturur.
 
    > [!IMPORTANT]  
-   > İşlemleri yönetmek için kullanmadan önce API 'nin sağlayıcınızı doğru şekilde davrandığını test etmeniz önerilir. Veri tabanı sağlayıcının bakımınonu ile iletişim kurmanız önerilir.
+   > Hareketleri yönetmek için güvenmeden önce API'nin sağlayıcınıza doğru şekilde hareket ettiğini test etmek önerilir. Yoksa veritabanı sağlayıcısının bakıcısına başvurmanız tavsiye edilir.
 
-2. Sürüm 2,1 itibariyle, .NET Core 'daki System. Transactions uygulamasında dağıtılmış işlemler için destek yoktur; bu nedenle, birden çok kaynak yöneticisi arasında işlem koordine etmek için `TransactionScope` veya `CommittableTransaction` kullanamazsınız.
+2. Sürüm 2.1 itibariyle, .NET Core'daki System.Transactions uygulaması dağıtılmış hareketler için `TransactionScope` `CommittableTransaction` destek içermez, bu nedenle birden çok kaynak yöneticisi arasında hareketleri kullanamaz veya koordine edemezsiniz.

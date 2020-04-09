@@ -1,29 +1,29 @@
 ---
-title: İstemci ile sunucu değerlendirmesi-EF Core
+title: İstemci ve Sunucu Değerlendirmesi - EF Core
 author: smitpatel
 ms.date: 10/03/2019
 ms.assetid: 8b6697cc-7067-4dc2-8007-85d80503d123
 uid: core/querying/client-eval
 ms.openlocfilehash: e01bd146c4dfe7a8d36b641cb52ae366fddd8239
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "78417762"
 ---
-# <a name="client-vs-server-evaluation"></a>İstemci ile sunucu değerlendirmesi
+# <a name="client-vs-server-evaluation"></a>İstemci ve Sunucu Değerlendirmesi
 
-Genel bir kural olarak, Entity Framework Core sunucu üzerinde mümkün olduğunca bir sorguyu değerlendirmeye çalışır. EF Core sorgunun bölümlerini, istemci tarafında değerlendirebileceği parametrelere dönüştürür. Sorgunun geri kalanı (oluşturulan parametrelerle birlikte), sunucuda değerlendirilecek eşdeğer veritabanı sorgusunun belirlenmesi için veritabanı sağlayıcısına verilir. EF Core, üst düzey projeksiyonda (temelde, `Select()`yapılan son çağrı) kısmi istemci değerlendirmesini destekler. Sorgudaki en üst düzey projeksiyon sunucuya çevrilemediği takdirde, EF Core sunucudan gerekli verileri alır ve sorgunun kalan bölümlerini değerlendirir. EF Core, üst düzey projeksiyon dışında herhangi bir yerde, sunucuya çevrilemeyen bir ifade algılarsa, çalışma zamanı özel durumu oluşturur. Sorgunun ne EF Core sunucuya çevrilemeyecek olduğunu anlamak için [sorgunun nasıl çalıştığını](xref:core/querying/how-query-works) görün.
+Genel bir kural olarak, Entity Framework Core sunucudaki bir sorguyu mümkün olduğunca değerlendirmeye çalışır. EF Core, sorgunun bazı bölümlerini istemci tarafında değerlendirebileceği parametrelere dönüştürür. Sorgunun geri kalanı (oluşturulan parametrelerle birlikte) sunucuda değerlendirilecek eşdeğer veritabanı sorgusunu belirlemek üzere veritabanı sağlayıcısına verilir. EF Core, üst düzey projeksiyonda kısmi istemci değerlendirmesini destekler `Select()`(aslında, son çağrı). Sorgudaki üst düzey projeksiyon sunucuya çevrilemezse, EF Core sunucudan gerekli verileri alır ve istemcide sorgunun kalan bölümlerini değerlendirir. EF Core, sunucuya çevrilemez üst düzey projeksiyon dışında herhangi bir yerde bir ifade algılarsa, o zaman bir çalışma zamanı özel durum atar. EF Core'un sunucuya çevrilemeyecek leri nasıl belirlediğini anlamak için [sorgunun nasıl çalıştığını](xref:core/querying/how-query-works) görün.
 
 > [!NOTE]
-> Sürüm 3,0 ' den önce, sorgudaki her yerde desteklenen istemci değerlendirmesi Entity Framework Core. Daha fazla bilgi için [önceki sürümler bölümüne](#previous-versions)bakın.
+> Sürüm 3.0'dan önce, Entity Framework Core sorgunun herhangi bir yerindeki istemci değerlendirmesini destekledi. Daha fazla bilgi için [önceki sürümler bölümüne](#previous-versions)bakın.
 
 > [!TIP]
-> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub ' da görebilirsiniz.
+> Bu makalenin [örneğini](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) GitHub'da görüntüleyebilirsiniz.
 
-## <a name="client-evaluation-in-the-top-level-projection"></a>Üst düzey projeksiyde istemci değerlendirmesi
+## <a name="client-evaluation-in-the-top-level-projection"></a>Üst düzey projeksiyonda müşteri değerlendirmesi
 
-Aşağıdaki örnekte, bir SQL Server veritabanından döndürülen blogların URL 'Lerini standartlaştırmak için bir yardımcı yöntem kullanılır. SQL Server sağlayıcının bu yöntemin nasıl uygulandığı hakkında öngörü olmadığından, SQL 'e çevirmek mümkün değildir. Sorgunun diğer tüm yönleri veritabanında değerlendirilir, ancak döndürülen `URL` bu yöntem aracılığıyla istemciye yapılır.
+Aşağıdaki örnekte, SQL Server veritabanından döndürülen bloglar için URL'leri standartlaştırmak için yardımcı yöntemi kullanılır. SQL Server sağlayıcısının bu yöntemin nasıl uygulandığına dair bir içgörüsü olmadığından, bu yöntemin SQL'e çevrilmesi mümkün değildir. Sorgunun diğer tüm yönleri veritabanında değerlendirilir, ancak `URL` bu yöntem üzerinden döndürülen istemci üzerinde yapılır.
 
 [!code-csharp[Main](../../../samples/core/Querying/ClientEval/Sample.cs#ClientProjection)]
 
@@ -31,36 +31,36 @@ Aşağıdaki örnekte, bir SQL Server veritabanından döndürülen blogların U
 
 ## <a name="unsupported-client-evaluation"></a>Desteklenmeyen istemci değerlendirmesi
 
-İstemci değerlendirmesi yararlı olsa da, bazı durumlarda düşük performansa neden olabilir. Aşağıdaki sorguyu göz önünde bulundurun. Bu, yardımcı yönteminin Şu anda bir WHERE filtresinde kullanıldığı bir yerdir. Filtre veritabanına uygulanamadığından, filtrenin istemciye uygulanması için tüm verilerin belleğe çekililmesi gerekir. Filtre ve sunucudaki veri miktarına bağlı olarak, istemci değerlendirmesi kötü performansa neden olabilir. Entity Framework Core, bu tür istemci değerlendirmesini engeller ve bir çalışma zamanı özel durumu oluşturur.
+İstemci değerlendirmesi yararlı olsa da, bazen düşük performansa neden olabilir. Yardımcı yönteminin artık bir where filtresinde kullanıldığı aşağıdaki sorguyu göz önünde bulundurun. Filtre veritabanında uygulanamadığından, istemciye filtre uygulamak için tüm verilerin belleğe çekilmesi gerekir. Filtreye ve sunucudaki veri miktarına bağlı olarak, istemci değerlendirmesi düşük performansa neden olabilir. Yani Entity Framework Core bu tür istemci değerlendirmesini engeller ve çalışma zamanı özel bir durum atar.
 
 [!code-csharp[Main](../../../samples/core/Querying/ClientEval/Sample.cs#ClientWhere)]
 
 ## <a name="explicit-client-evaluation"></a>Açık istemci değerlendirmesi
 
-Aşağıdaki gibi belirli durumlarda istemci değerlendirmesi için açıkça zorlamanız gerekebilir
+Aşağıdaki gibi bazı durumlarda açıkça müşteri değerlendirmesine zorlamanız gerekebilir
 
-- Verilerin miktarı küçüktür. böylece, istemcide değerlendirmek büyük bir performans cezası olmaz.
-- Kullanılan LINQ işlecinin sunucu tarafı çevirisi yok.
+- Veri miktarı küçüktür, böylece istemci üzerinde değerlendirme büyük bir performans cezasına neden olmaz.
+- Kullanılan LINQ işlecinin sunucu tarafı çevirisi yoktur.
 
-Bu gibi durumlarda, `AsEnumerable` veya `ToList` (`AsAsyncEnumerable` veya `ToListAsync` zaman uyumsuz) gibi yöntemleri çağırarak istemci değerlendirmesini açıkça tercih edebilirsiniz. `AsEnumerable` kullanarak sonuçları akışla kalmaz, ancak `ToList` kullanmak, bir liste oluşturarak arabelleğe alma işlemine neden olur ve bu da ek bellek de alır. Birden çok kez numaralandırdıysanız, sonuçları bir listede depolamak, veritabanında yalnızca bir sorgu olduğundan daha fazlasına yardımcı olur. Belirli bir kullanıma bağlı olarak, hangi yöntemin durum için daha yararlı olduğunu değerlendirmeniz gerekir.
+Bu gibi durumlarda, `AsEnumerable` gibi veya `ToList` (veya`AsAsyncEnumerable` `ToListAsync` async) gibi yöntemleri arayarak açıkça istemci değerlendirmesini tercih edebilirsiniz. Kullanarak `AsEnumerable` sonuçları akışı olurdu, ancak `ToList` kullanarak da ek bellek alır bir liste oluşturarak arabelleğe alma neden olur. Birden çok kez sıralama ediyorsanız, veritabanında yalnızca bir sorgu olduğundan sonuçları bir listede depolamak daha fazla yardımcı olur. Belirli kullanıma bağlı olarak, hangi yöntemin servis talebi için daha yararlı olduğunu değerlendirmelisiniz.
 
 [!code-csharp[Main](../../../samples/core/Querying/ClientEval/Sample.cs#ExplicitClientEval)]
 
 ## <a name="potential-memory-leak-in-client-evaluation"></a>İstemci değerlendirmesinde olası bellek sızıntısı
 
-Sorgu çevirisi ve derleme pahalı olduğundan, derlenmiş sorgu planını EF Core önbelleğe alır. Önbelleğe alınan temsilci, en üst düzey projeksiyonun istemci değerlendirmesi sırasında istemci kodunu kullanabilir. EF Core, ağacın istemci tarafından değerlendirilen parçaları için parametreler üretir ve parametre değerlerini değiştirerek sorgu planını yeniden kullanır. Ancak ifade ağacındaki bazı sabitler parametrelere dönüştürülemez. Önbelleğe alınmış temsilci bu tür sabitleri içeriyorsa, bu nesneler hala başvurulduğu için atık olarak toplanamaz. Böyle bir nesne, içindeki bir DbContext veya diğer hizmetleri içeriyorsa, uygulamanın bellek kullanımının zaman içinde büyümesine neden olabilir. Bu davranış genellikle Bellek sızıntısının bir imzadır. EF Core, geçerli veritabanı sağlayıcısı kullanılarak eşleştirilenemeyen bir türün sabitlerinde her geldiğinde bir özel durum oluşturur. Yaygın nedenler ve çözümleri aşağıdaki gibidir:
+Sorgu çevirisi ve derleme pahalı olduğundan, EF Core derlenmiş sorgu planını önbelleğe alır. Önbelleğe alınan temsilci, üst düzey projeksiyonun istemci değerlendirmesini yaparken istemci kodunu kullanabilir. EF Core, ağacın istemci tarafından değerlendirilen bölümleri için parametreler oluşturur ve parametre değerlerini değiştirerek sorgu planını yeniden kullanır. Ancak ifade ağacındaki bazı sabitler parametreye dönüştürülemez. Önbelleğe alınan temsilci bu tür sabitleri içeriyorsa, bu nesneler hala başvurulmakta oldukları için çöp olarak toplanabilir. Böyle bir nesne içinde bir DbContext veya başka hizmetler içeriyorsa, uygulamanın bellek kullanımının zaman içinde büyümesine neden olabilir. Bu davranış genellikle bir bellek sızıntısının bir işaretidir. EF Core, geçerli veritabanı sağlayıcısı kullanılarak eşlenemez bir tür sabitleri karşılaştığında bir özel durum atar. Ortak nedenleri ve çözümleri aşağıdaki gibidir:
 
-- **Örnek yöntemi kullanma**: bir istemci projeksiyonundaki örnek yöntemleri kullanırken, ifade ağacı örneğin bir sabitini içerir. Yönteminiz örnekten herhangi bir veri kullanmıyorsa, yöntemi statik hale getirmeyi düşünün. Yöntem gövdesinde örnek veriye ihtiyacınız varsa, belirli verileri yöntemine bir bağımsız değişken olarak geçirin.
-- **Yönteme sabit bağımsız değişkenler geçiliyor**: Bu durum genellikle istemci metoduna yönelik bir bağımsız değişkende `this` kullanarak oluşur. İçindeki bağımsız değişkenini, veritabanı sağlayıcısı tarafından eşlenmekte olan birden çok skaler bağımsız değişkene bölmeyi göz önünde bulundurun.
-- **Diğer sabitler**: bir sabit başka herhangi bir durumda geliyorsa, sabit işlemin işlenmek üzere gerekli olup olmadığını değerlendirebilirsiniz. Sabit olması gerekiyorsa veya yukarıdaki durumlardan bir çözüm kullanamıyoruz, değeri depolamak için yerel bir değişken oluşturun ve sorguda yerel değişkeni kullanın. EF Core, yerel değişkeni bir parametreye dönüştürecek.
+- **Örnek yöntemi kullanma**: Bir istemci projeksiyonunda örnek yöntemlerini kullanırken, ifade ağacı örneğin sabitini içerir. Yönteminiz örnekten herhangi bir veri kullanmıyorsa, yöntemi statik hale getirmeyi düşünün. Yöntem gövdesinde örnek verilere ihtiyacınız varsa, belirli verileri bir bağımsız değişken olarak yönteme geçirin.
+- **Sabit bağımsız değişkenleri yönteme geçirme**: `this` Bu durum genellikle bir bağımsız değişkende istemci yöntemi kullanılarak ortaya çıkar. Bağımsız değişkeni veritabanı sağlayıcısı tarafından eşlenen birden çok skaler bağımsız değişkene bölmeyi düşünün.
+- **Diğer sabitler**: Başka bir durumda bir sabit rastlarsa, o zaman sabitin işlenmesinde gerekli olup olmadığını değerlendirebilirsiniz. Sabite sahip olmak gerekiyorsa veya yukarıdaki durumlardan bir çözüm kullanamıyorsanız, değeri depolamak ve sorguda yerel değişkeni kullanmak için yerel bir değişken oluşturun. EF Core yerel değişkeni bir parametreye dönüştürür.
 
 ## <a name="previous-versions"></a>Önceki sürümler
 
-Aşağıdaki bölüm 3,0 öncesi EF Core sürümler için geçerlidir.
+Aşağıdaki bölüm 3.0'dan önceki EF Core sürümleri için geçerlidir.
 
-Daha eski EF Core, bir sorgunun herhangi bir bölümünde istemci değerlendirmesi desteklenir; yalnızca üst düzey projeksiyon değil. Bu nedenle, [Desteklenmeyen istemci değerlendirme](#unsupported-client-evaluation) bölümü altında gönderilen sorgular doğru bir şekilde çalışmıştır. Bu davranış fark edilmemiş performans sorunlarına neden olabileceği için EF Core istemci değerlendirme uyarısını günlüğe kaydetti. Günlüğe kaydetme çıkışını görüntüleme hakkında daha fazla bilgi için bkz. [Logging](xref:core/miscellaneous/logging).
+Eski EF Core sürümleri, yalnızca üst düzey projeksiyonu değil, sorgunun herhangi bir bölümünde istemci değerlendirmesini desteklenebilmiştir. Bu nedenle [Desteklenmeyen istemci değerlendirme](#unsupported-client-evaluation) bölümü altında deftere nakledilene benzer sorgular doğru çalıştı. Bu davranış fark edilmeyen performans sorunlarına neden olabileceğinden, EF Core bir istemci değerlendirme uyarısı günlüğe kaydetmiştir. Günlüğe kaydetme çıktısını görüntüleme hakkında daha fazla bilgi için [Günlük'](xref:core/miscellaneous/logging)e bakın.
 
-İsteğe bağlı olarak EF Core, varsayılan davranışı bir özel durum oluşturmak veya istemci değerlendirmesi yaparken (projeksiyonu hariç) hiçbir şey yapmak üzere değiştirmenize izin verilir. Özel durum atma davranışı, 3,0 'deki davranışa benzer hale gelir. Davranışı değiştirmek için, bağlam için seçenekleri ayarlarken uyarıları yapılandırmanız gerekir-genellikle `DbContext.OnConfiguring`veya ASP.NET Core kullanıyorsanız `Startup.cs`.
+İsteğe bağlı olarak EF Core, varsayılan davranışı bir özel durum atmak veya istemci değerlendirmesi yaparken hiçbir şey yapmamak için (projeksiyon hariç) değiştirmenize olanak sağladı. Özel durum atma davranışı 3.0'daki davranışa benzer hale getirecek. Davranışı değiştirmek için, bağlamınıziçin seçenekleri ayarlarken uyarıları yapılandırmanız gerekir `DbContext.OnConfiguring`- genellikle `Startup.cs` ASP.NET Core'da veya burada.
 
 ```csharp
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

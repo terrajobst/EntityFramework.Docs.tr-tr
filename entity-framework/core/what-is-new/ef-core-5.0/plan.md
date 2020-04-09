@@ -1,259 +1,259 @@
 ---
-title: Entity Framework Core 5,0 planlaması
+title: Varlık Çerçeve Çekirdek 5.0 Planı
 author: ajcvickers
 ms.date: 01/14/2020
 uid: core/what-is-new/ef-core-5.0/plan.md
 ms.openlocfilehash: 8b4ca32524869019c04d5a4d4d55967f68181cd7
-ms.sourcegitcommit: c3b8386071d64953ee68788ef9d951144881a6ab
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: MT
 ms.contentlocale: tr-TR
-ms.lasthandoff: 03/24/2020
+ms.lasthandoff: 04/07/2020
 ms.locfileid: "80136234"
 ---
-# <a name="plan-for-entity-framework-core-50"></a>Entity Framework Core 5,0 planlaması
+# <a name="plan-for-entity-framework-core-50"></a>Varlık Çerçeve Çekirdek 5.0 Planı
 
-[Planlama sürecinde](../release-planning.md)açıklandığı gibi, hissedarlardan EF Core 5,0 sürümü için geçici bir plana toplanan girişleri topladık.
+[Planlama sürecinde](../release-planning.md)açıklandığı gibi, paydaşlardan EF Core 5.0 sürümü için geçici bir plan için girdi topladık.
 
 > [!IMPORTANT] 
-> Bu plan hala devam eden bir çalışmadır. Taahhüt aşağıda verilmiştir. Bu plan, daha fazla öğrendiğimiz için geliştireceğiz bir başlangıç noktasıdır. 5,0 için şu anda planlanmayan bazı şeyler, çekime alabilir. 5,0 için şu anda planlanmış bazı şeyler kullanıma hazır olabilir.
+> Bu plan hala devam etmekte olan bir çalışmadır. Buradaki hiçbir şey bağlılık değildir. Bu plan, biz daha fazla bilgi olarak gelişecek bir başlangıç noktasıdır. Şu anda 5.0 için planlanmamış bazı şeyler çekilebilir. Şu anda 5.0 için planlanan bazı şeyler dışarı punted alabilirsiniz.
 
-### <a name="version-number-and-release-date"></a>Sürüm numarası ve sürüm tarihi.
+### <a name="version-number-and-release-date"></a>Sürüm numarası ve çıkış tarihi.
 
-EF Core 5,0 şu anda sürüm için [.net 5,0 ile aynı zamanda](https://devblogs.microsoft.com/dotnet/introducing-net-5/)zamanlandı. .NET 5,0 ile hizalamak için "5,0" sürümü seçildi.
+EF Core 5.0 şu anda [.NET 5.0 ile aynı anda](https://devblogs.microsoft.com/dotnet/introducing-net-5/)piyasaya sürülmesi planlanıyor. "5.0" sürümü .NET 5.0 ile hizalamak için seçildi.
 
 ### <a name="supported-platforms"></a>Desteklenen platformlar
 
-EF Core 5,0, [Bu platformların .NET Core 'a yakınsamasını](https://devblogs.microsoft.com/dotnet/introducing-net-5/)temel alan herhangi bir .NET 5,0 platformunda çalıştırılmak üzere planlanmaktadır. Bu .NET Standard, ne anlama gelir ve kullanılan gerçek tfd, hala TBD 'dir.
+EF Core 5.0'ın [bu platformların .NET Core ile yakınsaması](https://devblogs.microsoft.com/dotnet/introducing-net-5/)temel alınabilmek için herhangi bir .NET 5.0 platformunda çalışması planlanmaktadır. Bu .NET Standart ve kullanılan gerçek TFM açısından ne anlama geliyor hala TBD olduğunu.
 
-EF Core 5,0 .NET Framework çalıştırmayacak.
+EF Core 5.0 .NET Framework üzerinde çalışmaz.
 
 ### <a name="breaking-changes"></a>Yeni değişiklikler
 
-EF Core 5,0 bazı önemli değişiklikler içerir, ancak bu durum EF Core 3,0 ' den çok daha az önem altına alınır. Hedefimiz, uygulamanın büyük çoğunluğunun bozmadan güncelleştirilmesine izin vermektir.
+EF Core 5.0 bazı kırılma değişiklikleri içerecektir, ancak bu EF Core 3.0 için olduğu gibi çok daha az şiddetli olacaktır. Amacımız, uygulamaların büyük çoğunluğunun kırılmadan güncellemesine izin vermektir.
 
-Veritabanı sağlayıcılarının, özellikle de TPT desteğinin çevresinde bazı önemli değişiklikler olacağı için bu değer beklenmektedir. Bununla birlikte, 5,0 için bir sağlayıcıyı güncelleştirme işinin 3,0 için güncelleştirilmesi gerekenden daha az olacağını umyoruz.
+Özellikle TPT desteği çevresinde veritabanı sağlayıcıları için bazı kırılma değişiklikleri olması beklenmektedir. Ancak, 5.0 için bir sağlayıcı güncelleştirmek için çalışma 3.0 için güncelleştirmek için gerekli olandan daha az olacağını bekliyoruz.
 
 ## <a name="themes"></a>Temalar
 
-EF Core 5,0 ' de büyük yatırımların temelini oluşturacak birkaç önemli alanı veya temaları ayıkladık.
+EF Core 5.0'daki büyük yatırımların temelini oluşturacak birkaç ana alan veya tema çıkardık.
 
-## <a name="many-to-many-navigation-properties-aka-skip-navigations"></a>Çoka çok gezinti özellikleri (bir. k. a "gezintilerini atla")
+## <a name="many-to-many-navigation-properties-aka-skip-navigations"></a>Çok-çok navigasyon özellikleri (aka "gezintileri atlamak")
 
-Lider geliştiricileri: @smitpatel ve @AndriySvyryd
+Müşteri adayı @smitpatel geliştiriciler: ve@AndriySvyryd
 
-[#19003](https://github.com/aspnet/EntityFrameworkCore/issues/19003) tarafından izleniyor
+#19003 [tarafından](https://github.com/aspnet/EntityFrameworkCore/issues/19003) izlenir
 
-Tişörlü Boyut: L
+T-shirt boyutu: L
 
-Durum: devam ediyor
+Durum: Devam ediyor
 
-Birden çok-çok, GitHub biriktirme listesindeki [en çok istenen özelliktir](https://github.com/aspnet/EntityFrameworkCore/issues/1368) (~ 407 oylardır).
+Çok-to-çok GitHub biriktirme listesien [çok istenen özellik](https://github.com/aspnet/EntityFrameworkCore/issues/1368) (~ 407 oy) olduğunu.
 
-Tam olarak çok-çok ilişkilerini destekler [#10508](https://github.com/aspnet/EntityFrameworkCore/issues/10508)olarak izlenir. Bu, üç ana alana ayrılabilir:
+Onların bütünüyle çok-çok ilişkiler için destek [#10508](https://github.com/aspnet/EntityFrameworkCore/issues/10508)olarak izlenir. Bu üç ana alana ayrılabilir:
 
-* Gezinme özelliklerini atlayın. Bunlar, modelin, temel alınan JOIN tablosu varlığına başvurmaksızın sorgular, vb. için kullanılmasına izin verir. ([#19003](https://github.com/aspnet/EntityFrameworkCore/issues/19003))
-* Özellik paketi varlık türleri. Bunlar, varlık örnekleri için, her varlık türü için açık bir CLR türü gerektirmeyen standart bir CLR türüne (ör. `Dictionary`) olanak tanır. (5,0 için uzat: [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914).)
-* Çoka çok ilişkilerin kolay yapılandırması için cukr. (5,0 için uzatın.)
+* Gezinme özelliklerini atlayın. Bunlar, altyapı birleştirme tablosu varlığına başvurmadan, modelin sorgular vb. için kullanılmasına izin verir. ([#19003](https://github.com/aspnet/EntityFrameworkCore/issues/19003))
+* Özellik-çanta varlık türleri. Bunlar, standart bir CLR türünün `Dictionary`(örn. ) varlık örnekleri için kullanılmasına izin verir, böylece her varlık türü için açık bir CLR türü gerekmez. (5.0 için stretch: [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914).)
+* Çok-çok ilişkilerin kolay yapılandırma için Şeker. (5.0 için streç.)
 
-Çok-çok desteği olan en önemli engelleyici, JOIN tablosuna başvurulmadan, sorgular gibi iş mantığından "doğal" ilişkileri kullanmadığımızı düşüntik. JOIN tablosu varlık türü yine de mevcut olabilir, ancak iş mantığı gibi kullanılmamalıdır. Bu nedenle 5,0 için gezinme özelliklerini atla ' nın üstesinden gelmeyi seçtik.
+Çok-çok destek isteyenler için en önemli engelleyicinin, birleştirme tablosuna atıfta bulunmaksızın, sorgular gibi iş mantığıyla "doğal" ilişkileri kullanamamak olduğuna inanıyoruz. Birleştirme tablosu varlık türü hala var olabilir, ancak iş mantığının önüne girmemelidir. Bu nedenle 5.0 için atlama navigasyon özellikleri ele seçtik.
 
-Şu anda, çoktan çoğa diğer bölümleri EF Core 5,0 için bir Esnetme hedefi olarak işlenir. Bu, şu anda 5,0 için planda olmadıkları anlamına gelir, ancak şeyler ' ın içinde çekmesini umuyoruz.
+Şu anda çok-çok diğer parçaları EF Core 5.0 için bir streç hedef olarak takip edilmektedir. Bu da şu anda 5.0 için planda olmadıkları anlamına geliyor, ancak işler yolunda giderse onları içeri çekmeyi umuyoruz.
 
-## <a name="table-per-type-tpt-inheritance-mapping"></a>Tablo/tür (TPT) devralma eşleme
+## <a name="table-per-type-tpt-inheritance-mapping"></a>Tablo başına tip (TPT) kalıtım eşleme
 
-Lider geliştiricisi: @AndriySvyryd
+Müşteri adayı geliştirici:@AndriySvyryd
 
-[#2266](https://github.com/aspnet/EntityFrameworkCore/issues/2266) tarafından izleniyor
+İzlenen [#2266](https://github.com/aspnet/EntityFrameworkCore/issues/2266)
 
-Tişörlü Boyut: XL
+T-shirt boyutu: XL
 
-Durum: devam ediyor
+Durum: Devam ediyor
 
-Yüksek düzeyde istenmiş bir Özellik (~ 254 oy ve 3. Genel) olduğundan ve genel .NET 5 planının temel yapısı için uygun olan bazı düşük düzey değişiklikler gerektirdiğinden TPT yapıyoruz. Bunun, 3,0 için gereken değişikliklerden çok daha az ciddi olmasına rağmen, bu, veritabanı sağlayıcılarının değişikliklere neden olduğunu umyoruz.
+Hem çok istenen bir özellik (~254 oy; genel olarak 3. Bunun veritabanı sağlayıcıları için kırılmaya neden olmasını bekliyoruz, ancak bunlar 3.0 için gereken değişikliklerden çok daha az ciddi olmalıdır.
 
-## <a name="filtered-include"></a>Filtrelenen ekleme
+## <a name="filtered-include"></a>Filtrelenmiş Ekle
 
-Lider geliştiricisi: @maumar
+Müşteri adayı geliştirici:@maumar
 
-[#1833](https://github.com/aspnet/EntityFrameworkCore/issues/1833) tarafından izleniyor
+#1833 [tarafından](https://github.com/aspnet/EntityFrameworkCore/issues/1833) izlenir
 
-Tişörlü Boyut: a
+T-shirt boyutu: M
 
-Durum: devam ediyor
+Durum: Devam ediyor
 
-Filtrelenmiş dahil, çok büyük bir iş miktarı olmayan ve şu anda model düzeyi filtreler veya daha karmaşık sorgular gerektiren çok sayıda senaryonun engellemesini veya daha kolay olduğunu düşünmemiz için yüksek düzeyde istenmiş bir özelliktir (~ 317 oy; 2. Genel).
+Filtreli Include, çok fazla istenen bir özelliktir (~317 oy; genel olarak 2.) ve şu anda model düzeyinde filtreler veya daha karmaşık sorgular gerektiren birçok senaryonun engelini kaldıracağına veya kolaylaştıracağına inandığımız bir özelliktir.
 
-## <a name="rationalize-totable-toquery-toview-fromsql-etc"></a>Dtiontotable, ToQuery, ToView, FromSql vb.
+## <a name="rationalize-totable-toquery-toview-fromsql-etc"></a>ToTable, ToQuery, ToView, FromSql, vb. rasyonalize edin
 
-Lider geliştiricileri: @maumar ve @smitpatel
+Müşteri adayı @maumar geliştiriciler: ve@smitpatel
 
-[#17270](https://github.com/aspnet/EntityFrameworkCore/issues/17270) tarafından izleniyor
+İzlendi [#17270](https://github.com/aspnet/EntityFrameworkCore/issues/17270)
 
-Tişörlü Boyut: L
+T-shirt boyutu: L
 
-Durum: devam ediyor
+Durum: Devam ediyor
 
-Ham SQL, anahtarsız türlerini ve ilgili alanı desteklemeye yönelik önceki sürümlerde ilerleme yaptık. Ancak, her şeyin bir bütün olarak birlikte çalıştıkları şekilde hem boşluklar hem de tutarsızlıklar vardır. 5,0 için amaç bunları çözmektir ve farklı varlık türlerini ve bunlarla ilişkili sorguları ve veritabanı yapılarını tanımlamak, geçirmek ve kullanmak için iyi bir deneyim oluşturmaktır. Bu, derlenmiş sorgu API 'SI güncelleştirmelerini de içerebilir.
+Ham SQL, anahtarsız türleri ve ilgili alanları destekleme yolunda önceki sürümlerde ilerleme kaydettik. Ancak, her şeyin bir bütün olarak birlikte çalışması nda hem boşluklar hem de tutarsızlıklar vardır. 5.0 için amaç bunları düzeltmek ve farklı türde varlıkları ve bunların ilişkili sorgularını ve veritabanı yapılarını tanımlamak, geçiş yapmak ve kullanmak için iyi bir deneyim oluşturmaktır. Bu, derlenmiş sorgu API güncelleştirmelerini de içerebilir.
 
-Bu öğe, şu anda kişilerin hata Pits 'e hızlı bir şekilde yol açabileceğini sağlayan çok fazla izin olduğundan, bu öğenin bazı uygulama düzeyi değişikliklere neden olabileceğini unutmayın. Bunun yerine ne yapacaklarla ilgili rehberlik ile bu işlevlerden bazılarını engellemeyi büyük olasılıkla yapacağız.
+Şu anda sahip olduğumuz bazı işlevler insanları hızlı bir şekilde başarısızlık çukurlarına sokabilecek kadar izin verici olduğundan, bu öğenin bazı uygulama düzeyinde kırılmadeğişikliklerine neden olabileceğini unutmayın. Büyük olasılıkla bu işlevlerin bir kısmını, bunun yerine ne yapacağımıza ilişkin rehberlikle birlikte engelleyeceğiz.
 
 ## <a name="general-query-enhancements"></a>Genel sorgu geliştirmeleri
 
-Lider geliştiricileri: @smitpatel ve @maumar
+Müşteri adayı @smitpatel geliştiriciler: ve@maumar
 
-[5,0 kilometre taşında `area-query` etiketli sorunlar](https://github.com/dotnet/efcore/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Aarea-query+milestone%3A5.0.0+) tarafından izleniyor
+[5.0 `area-query` kilometre taşında etiketlenmiş sorunlarla](https://github.com/dotnet/efcore/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Aarea-query+milestone%3A5.0.0+) izlenir
 
-Tişörlü Boyut: XL
+T-shirt boyutu: XL
 
-Durum: devam ediyor
+Durum: Devam ediyor
 
-Sorgu çevirisi kodu EF Core 3,0 için kapsamlı olarak yeniden yazıldı. Sorgu kodu genellikle bu nedenle çok daha sağlam durumda. 5,0 için, TPT 'yi desteklemek ve gezinme özelliklerini atlamak için gerekenlerden büyük sorgu değişiklikleri yapmayı planlamadık. Bununla birlikte, 3,0 fazla yerine kalan bazı teknik borcu gidermek için hala önemli bir iş vardır. Ayrıca, genel sorgu deneyimini geliştirmek için birçok hatayı gidermeyi planlıyoruz ve küçük geliştirmeler uygulayacağız.
+Sorgu çeviri kodu EF Core 3.0 için kapsamlı olarak yeniden yazılmıştır. Sorgu kodu genellikle bu nedenle çok daha sağlam bir durumdadır. 5.0 için, TPT'yi desteklemek ve gezinme özelliklerini atlamak için gerekenler dışında büyük sorgu değişiklikleri yapmayı planlamiyoruz. Ancak 3,0'lık elden geçirmeden geriye kalan bazı teknik borçları düzeltmek için hala önemli çalışmalar gerekiyor. Ayrıca, genel sorgu deneyimini daha da geliştirmek için birçok hatayı düzeltmeyi ve küçük geliştirmeler uygulamayı planlıyoruz.
 
 ## <a name="migrations-and-deployment-experience"></a>Geçişler ve dağıtım deneyimi
 
-Lider geliştiricileri: @bricelam
+Müşteri adayı geliştiriciler:@bricelam
 
-[#19587](https://github.com/dotnet/efcore/issues/19587) tarafından izleniyor
+[#19587](https://github.com/dotnet/efcore/issues/19587) tarafından izlenir
 
-Tişörlü Boyut: L
+T-shirt boyutu: L
 
-Durum: devam ediyor
+Durum: Devam ediyor
 
-Şu anda birçok geliştirici, veritabanlarını uygulama başlatma zamanına geçirecektir. Bu kolay ancak önerilmez, çünkü:
+Şu anda, birçok geliştirici uygulama başlangıç zamanında veritabanlarını geçirin. Bu kolay, ancak önerilmez çünkü:
 
 * Birden çok iş parçacığı/işlem/sunucu veritabanını aynı anda geçirmeye çalışabilir
-* Uygulamalar, bu durumdayken tutarsız duruma erişmeye çalışabilir
-* Genellikle Şemayı değiştirme veritabanı izinleri uygulama yürütmesi için verilmemelidir
-* Bir sorun varsa temiz bir duruma geri dönmek zordur
+* Bu olurken uygulamalar tutarsız duruma erişmeye çalışabilir
+* Genellikle şema değiştirmek için veritabanı izinleri uygulama yürütme için verilmemelidir
+* Bir şeyler ters giderse temiz bir duruma dönmek zordur.
 
-Veritabanını dağıtım zamanında geçirmek için kolay bir yol sağlayan daha iyi bir deneyim sunmak istiyoruz. Şunları yapmanız gerekir:
+Dağıtım zamanında veritabanını geçirmenin kolay bir yolunu sağlayan daha iyi bir deneyim sunmak istiyoruz. Bu gerekir:
 
 * Linux, Mac ve Windows üzerinde çalışma
-* Komut satırında iyi bir deneyim olun
+* Komut satırında iyi bir deneyim yaşayın
 * Kapsayıcılarla destek senaryoları
-* Yaygın olarak kullanılan gerçek dünya dağıtım araçlarıyla ve akışlarla çalışma
-* En az Visual Studio ile tümleştirin
+* Yaygın olarak kullanılan gerçek dünya dağıtım araçları/akışları ile çalışma
+* En azından Visual Studio'ya entegre edin
 
-Sonuçta, yalnızca EF 'in ötesinde çok sayıda küçük EF Core geliştirmeler (örneğin, SQLite üzerinde daha iyi geçişler), diğer ekiplere yönelik kılavuzlarla daha fazla geçiş ve daha uzun süreli İşbirlikten yararlanmaktır.
+Sonuç, EF Core'da (örneğin, SQLite'deki daha iyi Göçler) ve sadece EF'nin ötesine geçen uçtan uca deneyimleri geliştirmek için diğer ekiplerle daha uzun vadeli işbirlikleri yle birlikte pek çok küçük iyileştirme olacaktır.
 
 ## <a name="ef-core-platforms-experience"></a>EF Core platformları deneyimi 
 
-Lider geliştiricileri: @roji ve @bricelam
+Müşteri adayı @roji geliştiriciler: ve@bricelam
 
-[#19588](https://github.com/dotnet/efcore/issues/19588) tarafından izleniyor
+#19588 [tarafından](https://github.com/dotnet/efcore/issues/19588) izlenir
 
-Tişörlü Boyut: L
+T-shirt boyutu: L
 
-Durum: başlatılmadı
+Durum: Başlamadı
 
-Geleneksel MVC benzeri Web uygulamalarında EF Core kullanmak için iyi bir kılavuzluk sunuyoruz. Diğer platformlar ve uygulama modelleriyle ilgili rehberlik eksik ya da güncel değil. EF Core 5,0 için, ile EF Core kullanma deneyimini araştırmaya, iyileştirmenize ve belgeleyecek şekilde planlıyoruz:
+Geleneksel MVC benzeri web uygulamalarında EF Core'u kullanmak için iyi bir kılavuzumuz vardır. Diğer platformlar ve uygulama modelleri için kılavuz eksik veya güncel değil. EF Core 5.0 için, EF Core'u aşağıdakilerle birlikte kullanma deneyimini araştırmayı, geliştirmeyi ve belgelemayı planlıyoruz:
 
 * Blazor
-* AOT/bağlayıcı hikayesini kullanma dahil Xamarin
-* WinForms/WPF/WinUI ve muhtemelen diğer U.I. çerçeveleri
+* Xamarin, AOT/linker hikayesini kullanmak da dahil olmak üzere
+* WinForms/WPF/WinUI ve muhtemelen diğer U.I. Çerçeve
 
-Bu, EF Core çok küçük geliştirmeler, diğer ekiplere yönelik kılavuz ve uzun süreli ortak çalışmalarla birlikte, yalnızca EF 'in ötesine geçen uçtan uca deneyimler geliştirmeye olanak sağlar.
+Bu, EF Core'da, sadece EF'nin ötesine geçen uçtan uca deneyimleri geliştirmek için diğer ekiplerle rehberlik ve uzun vadeli işbirlikleriyle birlikte pek çok küçük iyileştirme olması muhtemeldir.
 
-Göz atadığımız belirli bölgeler şunlardır:
+Bakmayı planladığımız belirli alanlar şunlardır:
 
-* Geçiş için gibi EF araçları kullanma deneyimini de içeren dağıtım
-* Xamarin ve Blazor dahil olmak üzere uygulama modelleri ve büyük olasılıkla diğerleri
-* Uzamsal deneyim ve tablo da dahil olmak üzere SQLite deneyimler
-* AOT ve bağlama deneyimleri
-* Performans sayaçlarını içeren tanılama tümleştirmesi
+* Geçişler gibi EF takımlarını kullanma deneyimi de dahil olmak üzere dağıtım
+* Xamarin ve Blazor ve muhtemelen diğerleri de dahil olmak üzere uygulama modelleri,
+* Mekansal deneyim ve tablo yeniden de dahil olmak üzere SQLite deneyimleri,
+* AOT ve bağlantı deneyimleri
+* Perf sayaçları da dahil olmak üzere tanılama entegrasyonu
 
 ## <a name="performance"></a>Performans
 
-Lider geliştiricisi: @roji
+Müşteri adayı geliştirici:@roji
 
-[5,0 kilometre taşında `area-perf` etiketli sorunlar](https://github.com/dotnet/efcore/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Aarea-perf+milestone%3A5.0.0+) tarafından izleniyor
+[5.0 `area-perf` kilometre taşında etiketlenmiş sorunlarla](https://github.com/dotnet/efcore/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Aarea-perf+milestone%3A5.0.0+) izlenir
 
-Tişörlü Boyut: L
+T-shirt boyutu: L
 
-Durum: devam ediyor
+Durum: Devam ediyor
 
-EF Core için, performans kıyaslamamızı iyileştirmemiz ve çalışma zamanında yönlendirilmiş performans geliştirmeleri yapmanız planlanıyoruz. Ayrıca, 3,0 yayın çevrimi sırasında prototip oluşturulan yeni ADO.NET toplu işlem API 'sini tamamlamayı planlıyoruz. Ayrıca, ADO.NET katmanında Npgsql sağlayıcısında ek performans geliştirmeleri planlıyoruz.
+EF Core için, performans kriterleri paketimizi geliştirmeyi ve çalışma süresine yönelik performans iyileştirmeleri yapmayı planlıyoruz. Buna ek olarak, 3.0 sürüm döngüsü sırasında prototipedildi yeni ADO.NET toplu API tamamlamak için planlıyoruz. Ayrıca ADO.NET katmanında, Npgsql sağlayıcısına ek performans iyileştirmeleri planlıyoruz.
 
-Bu çalışmanın bir parçası olarak, uygun şekilde ADO.NET/EF Core performans sayaçlarını ve diğer tanılamayı eklemeyi de planlıyoruz.
+Bu çalışmanın bir parçası olarak, uygun ADO.NET/EF Çekirdek performans sayaçları ve diğer tanılamaeklemeyi planlıyoruz.
 
-## <a name="architecturalcontributor-documentation"></a>Mimari/katkıda bulunan belgeleri
+## <a name="architecturalcontributor-documentation"></a>Mimari/katkıda bulunan dokümantasyon
 
-Müşteri adayı belge girme: @ajcvickers
+Müşteri adayı belgeleyici:@ajcvickers
 
-[#1920](https://github.com/dotnet/EntityFramework.Docs/issues/1920) tarafından izleniyor
+İzlenen [#1920](https://github.com/dotnet/EntityFramework.Docs/issues/1920)
 
-Tişörlü Boyut: L
+T-shirt boyutu: L
 
-Durum: devam ediyor
+Durum: Devam ediyor
 
-Buradaki fikir, EF Core iç yapıları hakkında daha kolay anlaşılır hale getirmek için. Bu, EF Core kullanan herkes için yararlı olabilir, ancak birincil mosyon, dış kişilerin şunları yapmasını kolaylaştırır:
+Buradaki fikir, EF Core'un iç lerinde neler olup bittiğini daha kolay anlamaktır. Bu, EF Core kullanan herkes için yararlı olabilir, ancak birincil motivasyon, dış insanların aşağıdakileri yapmasını kolaylaştırmaktır:
 
 * EF Core koduna katkıda bulunun
 * Veritabanı sağlayıcıları oluşturma
 * Diğer uzantıları oluşturma
 
-## <a name="microsoftdatasqlite-documentation"></a>Microsoft. Data. SQLite belgeleri
+## <a name="microsoftdatasqlite-documentation"></a>Microsoft.Data.Sqlite belgeleri
 
-Müşteri adayı belge girme: @bricelam
+Müşteri adayı belgeleyici:@bricelam
 
-[#1675](https://github.com/dotnet/EntityFramework.Docs/issues/1675) tarafından izleniyor
+İzlenen [#1675](https://github.com/dotnet/EntityFramework.Docs/issues/1675)
 
-Tişörlü Boyut: a
+T-shirt boyutu: M
 
-Durum: tamamlandı. Yeni belgeler [Microsoft docs sitesinde canlı](https://docs.microsoft.com/dotnet/standard/data/sqlite/?tabs=netcore-cli).
+Durum: Tamamlandı. Yeni belgeler [Microsoft dokümanlar sitesinde yayında.](https://docs.microsoft.com/dotnet/standard/data/sqlite/?tabs=netcore-cli)
 
-EF ekibi, Microsoft. Data. SQLite ADO.NET sağlayıcısına de sahiptir. Bu sağlayıcıyı 5,0 sürümünün bir parçası olarak tam olarak belgelemek planlıyoruz.
+EF Ekibi ayrıca Microsoft.Data.Sqlite ADO.NET sağlayıcısının da sahibidir. Bu sağlayıcıyı 5.0 sürümün bir parçası olarak tam olarak belgeletmayı planlıyoruz.
 
-## <a name="general-documentation"></a>Genel belgeler
+## <a name="general-documentation"></a>Genel dokümantasyon
 
-Müşteri adayı belge girme: @ajcvickers
+Müşteri adayı belgeleyici:@ajcvickers
 
-[5,0 kilometre taşında docs deposunda bulunan sorunlara](https://github.com/dotnet/EntityFramework.Docs/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A5.0.0+) göre izleniyor
+[5.0 kilometre taşındaki dokümanreposundaki sorunlar](https://github.com/dotnet/EntityFramework.Docs/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A5.0.0+) tarafından izlenir
 
-Tişörlü Boyut: L
+T-shirt boyutu: L
 
-Durum: devam ediyor
+Durum: Devam ediyor
 
-3,0 ve 3,1 sürümleri için belgeleri güncelleştirme sürecimiz zaten var. Ayrıca şu şekilde çalışıyoruz:
-  * Daha fazla ulaşılabilir/daha kolay hale getirmek için kullanmaya başlama belgelerine yönelik fazla mesafe
-  * Çapraz başvuruları bulmayı ve eklemeyi kolaylaştırmak için belgeleri yeniden düzenleme
-  * Mevcut docs için daha fazla ayrıntı ve ayrıntılı açıklamalar ekleme
-  * Örnekleri güncelleştirme ve daha fazla örnek ekleme
+3.0 ve 3.1 sürümleri için belgeleri güncelleme sürecindeyiz. Biz de üzerinde çalışıyoruz:
+  * Daha ulaşılabilir/takip edilebilen daha kolay hale getirmek için dokümanların elden geçirilmesi
+  * İşleri bulmayı kolaylaştırmak ve çapraz referanslar eklemek için dokümanların yeniden düzenlenmesi
+  * Varolan dokümanlara daha fazla ayrıntı ve açıklama ekleme
+  * Örnekleri güncelleme ve daha fazla örnek ekleme
 
 ## <a name="fixing-bugs"></a>Hataları düzeltme
 
-[5,0 kilometre taşında `type-bug` etiketli sorunlar](https://github.com/dotnet/efcore/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A5.0.0+label%3Atype-bug+) tarafından izleniyor
+[5.0 `type-bug` kilometre taşında etiketlenmiş sorunlarla](https://github.com/dotnet/efcore/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A5.0.0+label%3Atype-bug+) izlenir
 
-Geliştiriciler: @roji, @maumar, @bricelam, @smitpatel, @AndriySvyryd, @ajcvickers
+Geliştiriciler: @roji @maumar, @bricelam @smitpatel, @AndriySvyryd, ,@ajcvickers
 
-Tişörlü Boyut: L
+T-shirt boyutu: L
 
-Durum: devam ediyor
+Durum: Devam ediyor
 
-Yazma sırasında, 5,0 sürümünde (zaten düzeltilmiş olan 62) düzeltilen 135 hata değerlendirildi, ancak yukarıdaki _genel sorgu geliştirmeleri_ bölümünde önemli bir çakışma var.
+Yazma sırasında, 5.0 sürümünde (62'si zaten sabitlenmiş) düzeltilmesi gereken 135 hata var, ancak yukarıdaki _Genel sorgu geliştirmeleri_ bölümüyle önemli bir çakışma söz vardır.
 
-Gelen ücret (bir kilometre taşında çalışan olarak biten sorunlar) 3,0 sürümü boyunca ayda yaklaşık 23 sorun olmuştur. Bunların tümünün 5,0 ' de düzeltilmesi gerekmez. Kabaca bir tahmin olarak 5,0 zaman çerçevesinde ek 150 sorunları gidermeyi planlıyoruz.
+Gelen oran (bir kilometre taşı çalışma olarak sona erer sorunları) 3.0 sürümü boyunca ayda yaklaşık 23 sorunları oldu. Bunların hepsinin 5.0'da düzeltilmesi gerekmez. Kaba bir tahmin olarak, 5,0 zaman diliminde 150 sorunu daha düzeltmeyi planlıyoruz.
 
 ## <a name="small-enhancements"></a>Küçük geliştirmeler
 
-[5,0 kilometre taşında `type-enhancement` etiketli sorunlar](https://github.com/dotnet/efcore/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A5.0.0+label%3Atype-enhancement+) tarafından izleniyor
+[5.0 `type-enhancement` kilometre taşında etiketlenmiş sorunlarla](https://github.com/dotnet/efcore/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A5.0.0+label%3Atype-enhancement+) izlenir
 
-Geliştiriciler: @roji, @maumar, @bricelam, @smitpatel, @AndriySvyryd, @ajcvickers
+Geliştiriciler: @roji @maumar, @bricelam @smitpatel, @AndriySvyryd, ,@ajcvickers
 
-Tişörlü Boyut: L
+T-shirt boyutu: L
 
-Durum: devam ediyor
+Durum: Devam ediyor
 
-Yukarıda özetlenen daha büyük özelliklere ek olarak, 5,0 "kağıt-keser" düzeltmesini sağlamak için zamanlanan çok sayıda daha küçük geliştirmeler de sunuyoruz. Bu geliştirmelerin birçoğu yukarıda özetlenen daha genel temalar tarafından da ele alınmıştır.
+Yukarıda özetlenen büyük özelliklere ek olarak, biz de "kağıt kesim" düzeltmek için 5.0 için planlanan birçok küçük iyileştirmeler var. Bu geliştirmelerin çoğunun yukarıda özetlenen daha genel temalar tarafından da karşılandığını unutmayın.
 
-## <a name="below-the-line"></a>Satır altı
+## <a name="below-the-line"></a>Satır Altı
 
-[`consider-for-next-release`etiketli sorunlar](https://github.com/aspnet/EntityFrameworkCore/issues?q=is%3Aopen+is%3Aissue+label%3Aconsider-for-next-release) tarafından izleniyor
+[Etiketli sorunlartarafından `consider-for-next-release` ](https://github.com/aspnet/EntityFrameworkCore/issues?q=is%3Aopen+is%3Aissue+label%3Aconsider-for-next-release) izlenen
 
-Bunlar, şu anda 5,0 sürümü için zamanlanmamış **olan hata** düzeltmeleri ve geliştirmeleridir, ancak yukarıdaki iş üzerinde yapılan ilerlemeye bağlı olarak, Esnetme hedefleri olarak bakacağız.
+Bunlar, **not** şu anda 5.0 sürümü için zamanlanmamış hata düzeltmeleri ve geliştirmelerdir, ancak yukarıdaki çalışmada kaydedilen ilerlemeye bağlı olarak streç hedefler olarak bakacağız.
 
-Ayrıca, planlama sırasında [en fazla oylanan sorunları](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) her zaman göz önünde bulundurmanız gerekir. Bu sorunlardan herhangi birini bir yayından kesmek her zaman çok önemlidir, ancak sahip olduğumuz kaynaklar için gerçekçi bir plana ihtiyacımız var.
+Buna ek olarak, biz her zaman planlama [en çok oy sorunları](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) düşünün. Bu sorunlardan herhangi birini bir sürümden kesmek her zaman acı vericidir, ancak sahip olduğumuz kaynaklar için gerçekçi bir plana ihtiyacımız vardır.
 
 ## <a name="feedback"></a>Geri Bildirim
 
-Planlamaya ilişkin geri bildiriminiz önemlidir. Bir sorunun önemini belirtmenin en iyi yolu GitHub 'da söz konusu sorundan oylanmanız (thumbs-up). Bu veriler daha sonra bir sonraki sürüm için [planlama işlemine](../release-planning.md) akış eklenecektir.
+Planlama hakkındaki görüşleriniz önemlidir. Bir sorunun önemini belirtmenin en iyi yolu GitHub'da bu sorun için oy kullanmaktır (thumbs-up). Bu veriler daha sonra bir sonraki sürüm için [planlama sürecine](../release-planning.md) beslenir.
